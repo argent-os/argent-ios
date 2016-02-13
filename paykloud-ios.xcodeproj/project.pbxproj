@@ -1,0 +1,720 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		30BECBDA1C6E9FF200B8A088 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBCC1C6E9FF200B8A088 /* AppDelegate.swift */; };
+		30BECBDB1C6E9FF200B8A088 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBCD1C6E9FF200B8A088 /* Extensions.swift */; };
+		30BECBDC1C6E9FF200B8A088 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBCE1C6E9FF200B8A088 /* HomeViewController.swift */; };
+		30BECBDD1C6E9FF200B8A088 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30BECBCF1C6E9FF200B8A088 /* LaunchScreen.storyboard */; };
+		30BECBDE1C6E9FF200B8A088 /* LeftMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBD01C6E9FF200B8A088 /* LeftMenuViewController.swift */; };
+		30BECBDF1C6E9FF200B8A088 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBD11C6E9FF200B8A088 /* LoginViewController.swift */; };
+		30BECBE01C6E9FF200B8A088 /* Logs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBD21C6E9FF200B8A088 /* Logs.swift */; };
+		30BECBE11C6E9FF200B8A088 /* Paths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBD31C6E9FF200B8A088 /* Paths.swift */; };
+		30BECBE31C6E9FF200B8A088 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBD51C6E9FF200B8A088 /* PaymentViewController.swift */; };
+		30BECBE41C6E9FF200B8A088 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBD61C6E9FF200B8A088 /* RootViewController.swift */; };
+		30BECBE51C6E9FF200B8A088 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBD71C6E9FF200B8A088 /* SettingsViewController.swift */; };
+		30BECBE61C6E9FF200B8A088 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBD81C6E9FF200B8A088 /* SignupViewController.swift */; };
+		30BECBE71C6E9FF200B8A088 /* StarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBD91C6E9FF200B8A088 /* StarButton.swift */; };
+		30BECBEB1C6EA02800B8A088 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30BECBE91C6EA02800B8A088 /* Main.storyboard */; };
+		30BECBF91C6EA5C600B8A088 /* paykloud_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBF81C6EA5C600B8A088 /* paykloud_iosTests.swift */; };
+		30BECBFB1C6EA5D100B8A088 /* paykloud_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBFA1C6EA5D100B8A088 /* paykloud_iosTests.swift */; };
+		30BECBFF1C6EA6EC00B8A088 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30BECBFE1C6EA6EC00B8A088 /* Assets.xcassets */; };
+		30BECC011C6F71B500B8A088 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECC001C6F71B500B8A088 /* ProfileViewController.swift */; };
+		30BECC031C6F778B00B8A088 /* Gravatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECC021C6F778B00B8A088 /* Gravatar.swift */; };
+		8E723A7E4D0FB354304689B7 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1AC01881780C6537201E7C5 /* Pods.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		30FB541F1C6A58B40004A538 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 30FB54021C6A58B40004A538 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 30FB54091C6A58B40004A538;
+			remoteInfo = "timekloud-ios";
+		};
+		30FB542A1C6A58B40004A538 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 30FB54021C6A58B40004A538 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 30FB54091C6A58B40004A538;
+			remoteInfo = "timekloud-ios";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		30852D781C6E9ADF00CDCAA2 /* PayKloud.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = PayKloud.entitlements; path = "paykloud-ios/PayKloud.entitlements"; sourceTree = SOURCE_ROOT; };
+		30BECBCC1C6E9FF200B8A088 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "paykloud-ios/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
+		30BECBCD1C6E9FF200B8A088 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = "paykloud-ios/Extensions.swift"; sourceTree = SOURCE_ROOT; };
+		30BECBCE1C6E9FF200B8A088 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = "paykloud-ios/HomeViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30BECBCF1C6E9FF200B8A088 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "paykloud-ios/LaunchScreen.storyboard"; sourceTree = SOURCE_ROOT; };
+		30BECBD01C6E9FF200B8A088 /* LeftMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LeftMenuViewController.swift; path = "paykloud-ios/LeftMenuViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30BECBD11C6E9FF200B8A088 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "paykloud-ios/LoginViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30BECBD21C6E9FF200B8A088 /* Logs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Logs.swift; path = "paykloud-ios/Logs.swift"; sourceTree = SOURCE_ROOT; };
+		30BECBD31C6E9FF200B8A088 /* Paths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Paths.swift; path = "paykloud-ios/Paths.swift"; sourceTree = SOURCE_ROOT; };
+		30BECBD51C6E9FF200B8A088 /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentViewController.swift; path = "paykloud-ios/PaymentViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30BECBD61C6E9FF200B8A088 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootViewController.swift; path = "paykloud-ios/RootViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30BECBD71C6E9FF200B8A088 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = "paykloud-ios/SettingsViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30BECBD81C6E9FF200B8A088 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewController.swift; path = "paykloud-ios/SignupViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30BECBD91C6E9FF200B8A088 /* StarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StarButton.swift; path = "paykloud-ios/StarButton.swift"; sourceTree = SOURCE_ROOT; };
+		30BECBE81C6EA00F00B8A088 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "paykloud-ios/Info.plist"; sourceTree = SOURCE_ROOT; };
+		30BECBEA1C6EA02800B8A088 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "paykloud-ios/Base.lproj/Main.storyboard"; sourceTree = SOURCE_ROOT; };
+		30BECBEE1C6EA07200B8A088 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "paykloud-iosTests/Info.plist"; sourceTree = SOURCE_ROOT; };
+		30BECBF11C6EA08500B8A088 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "paykloud-iosUITests/Info.plist"; sourceTree = SOURCE_ROOT; };
+		30BECBF81C6EA5C600B8A088 /* paykloud_iosTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = paykloud_iosTests.swift; path = "paykloud-iosTests/paykloud_iosTests.swift"; sourceTree = SOURCE_ROOT; };
+		30BECBFA1C6EA5D100B8A088 /* paykloud_iosTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = paykloud_iosTests.swift; path = "paykloud-iosTests/paykloud_iosTests.swift"; sourceTree = SOURCE_ROOT; };
+		30BECBFE1C6EA6EC00B8A088 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "paykloud-ios/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
+		30BECC001C6F71B500B8A088 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = "paykloud-ios/ProfileViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30BECC021C6F778B00B8A088 /* Gravatar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Gravatar.swift; path = "paykloud-ios/Gravatar.swift"; sourceTree = SOURCE_ROOT; };
+		30FB540A1C6A58B40004A538 /* PayKloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PayKloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		30FB541E1C6A58B40004A538 /* paykloud-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "paykloud-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		30FB54291C6A58B40004A538 /* paykloud-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "paykloud-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		30FB54411C6ABF6A0004A538 /* ObjC-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjC-Bridging-Header.h"; sourceTree = "<group>"; };
+		72852BFA7077A9B4E42196D9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		A1AC01881780C6537201E7C5 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0548BB1437D038D9B3DF873 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		30FB54071C6A58B40004A538 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E723A7E4D0FB354304689B7 /* Pods.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30FB541B1C6A58B40004A538 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30FB54261C6A58B40004A538 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		30BECC041C6F92C200B8A088 /* StarButton */ = {
+			isa = PBXGroup;
+			children = (
+				30BECBCD1C6E9FF200B8A088 /* Extensions.swift */,
+				30BECBD91C6E9FF200B8A088 /* StarButton.swift */,
+				30BECBD31C6E9FF200B8A088 /* Paths.swift */,
+			);
+			name = StarButton;
+			sourceTree = "<group>";
+		};
+		30BECC061C6F92EF00B8A088 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				30BECBD81C6E9FF200B8A088 /* SignupViewController.swift */,
+				30BECBD11C6E9FF200B8A088 /* LoginViewController.swift */,
+			);
+			name = Auth;
+			sourceTree = "<group>";
+		};
+		30BECC071C6F932400B8A088 /* MainScreens */ = {
+			isa = PBXGroup;
+			children = (
+				30BECBCE1C6E9FF200B8A088 /* HomeViewController.swift */,
+				30BECBD71C6E9FF200B8A088 /* SettingsViewController.swift */,
+				30BECC001C6F71B500B8A088 /* ProfileViewController.swift */,
+				30BECBD51C6E9FF200B8A088 /* PaymentViewController.swift */,
+			);
+			name = MainScreens;
+			sourceTree = "<group>";
+		};
+		30BECC081C6F934A00B8A088 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				30BECBD61C6E9FF200B8A088 /* RootViewController.swift */,
+			);
+			name = Root;
+			sourceTree = "<group>";
+		};
+		30BECC091C6F935200B8A088 /* MainMenu */ = {
+			isa = PBXGroup;
+			children = (
+				30BECBD01C6E9FF200B8A088 /* LeftMenuViewController.swift */,
+			);
+			name = MainMenu;
+			sourceTree = "<group>";
+		};
+		30BECC0A1C6F936E00B8A088 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				30BECBD21C6E9FF200B8A088 /* Logs.swift */,
+				30BECC021C6F778B00B8A088 /* Gravatar.swift */,
+			);
+			name = Modules;
+			sourceTree = "<group>";
+		};
+		30BECC0B1C6F939800B8A088 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				30BECBE91C6EA02800B8A088 /* Main.storyboard */,
+				30BECBCF1C6E9FF200B8A088 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		30BECC0C1C6F93AF00B8A088 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				30BECC041C6F92C200B8A088 /* StarButton */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		30FB54011C6A58B40004A538 = {
+			isa = PBXGroup;
+			children = (
+				30FB54411C6ABF6A0004A538 /* ObjC-Bridging-Header.h */,
+				30FB540C1C6A58B40004A538 /* paykloud-ios */,
+				30FB54211C6A58B40004A538 /* paykloud-iosTests */,
+				30FB542C1C6A58B50004A538 /* paykloud-iosUITests */,
+				30FB540B1C6A58B40004A538 /* Products */,
+				725FEE2455E80C94BBA37597 /* Pods */,
+				8B9765A98BF669E54968EFD0 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		30FB540B1C6A58B40004A538 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				30FB540A1C6A58B40004A538 /* PayKloud.app */,
+				30FB541E1C6A58B40004A538 /* paykloud-iosTests.xctest */,
+				30FB54291C6A58B40004A538 /* paykloud-iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		30FB540C1C6A58B40004A538 /* paykloud-ios */ = {
+			isa = PBXGroup;
+			children = (
+				30852D781C6E9ADF00CDCAA2 /* PayKloud.entitlements */,
+				30BECBCC1C6E9FF200B8A088 /* AppDelegate.swift */,
+				30BECC081C6F934A00B8A088 /* Root */,
+				30BECC061C6F92EF00B8A088 /* Auth */,
+				30BECC071C6F932400B8A088 /* MainScreens */,
+				30BECC091C6F935200B8A088 /* MainMenu */,
+				30BECC0C1C6F93AF00B8A088 /* UI */,
+				30BECC0B1C6F939800B8A088 /* Storyboards */,
+				30BECC0A1C6F936E00B8A088 /* Modules */,
+				30BECBE81C6EA00F00B8A088 /* Info.plist */,
+				30BECBFE1C6EA6EC00B8A088 /* Assets.xcassets */,
+			);
+			name = "paykloud-ios";
+			path = "timekloud-ios";
+			sourceTree = "<group>";
+		};
+		30FB54211C6A58B40004A538 /* paykloud-iosTests */ = {
+			isa = PBXGroup;
+			children = (
+				30BECBF81C6EA5C600B8A088 /* paykloud_iosTests.swift */,
+				30BECBEE1C6EA07200B8A088 /* Info.plist */,
+			);
+			name = "paykloud-iosTests";
+			path = "timekloud-iosTests";
+			sourceTree = "<group>";
+		};
+		30FB542C1C6A58B50004A538 /* paykloud-iosUITests */ = {
+			isa = PBXGroup;
+			children = (
+				30BECBFA1C6EA5D100B8A088 /* paykloud_iosTests.swift */,
+				30BECBF11C6EA08500B8A088 /* Info.plist */,
+			);
+			name = "paykloud-iosUITests";
+			path = "timekloud-iosUITests";
+			sourceTree = "<group>";
+		};
+		725FEE2455E80C94BBA37597 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				72852BFA7077A9B4E42196D9 /* Pods.debug.xcconfig */,
+				E0548BB1437D038D9B3DF873 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		8B9765A98BF669E54968EFD0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A1AC01881780C6537201E7C5 /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		30FB54091C6A58B40004A538 /* paykloud-ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30FB54321C6A58B50004A538 /* Build configuration list for PBXNativeTarget "paykloud-ios" */;
+			buildPhases = (
+				12CCEAF27A81A4F36AB2087C /* Check Pods Manifest.lock */,
+				30FB54061C6A58B40004A538 /* Sources */,
+				30FB54071C6A58B40004A538 /* Frameworks */,
+				30FB54081C6A58B40004A538 /* Resources */,
+				1B628A2396EE3DB44E45FD78 /* Embed Pods Frameworks */,
+				545614C87EF7766B953CD8F4 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "paykloud-ios";
+			productName = "timekloud-ios";
+			productReference = 30FB540A1C6A58B40004A538 /* PayKloud.app */;
+			productType = "com.apple.product-type.application";
+		};
+		30FB541D1C6A58B40004A538 /* paykloud-iosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30FB54351C6A58B50004A538 /* Build configuration list for PBXNativeTarget "paykloud-iosTests" */;
+			buildPhases = (
+				30FB541A1C6A58B40004A538 /* Sources */,
+				30FB541B1C6A58B40004A538 /* Frameworks */,
+				30FB541C1C6A58B40004A538 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				30FB54201C6A58B40004A538 /* PBXTargetDependency */,
+			);
+			name = "paykloud-iosTests";
+			productName = "timekloud-iosTests";
+			productReference = 30FB541E1C6A58B40004A538 /* paykloud-iosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		30FB54281C6A58B40004A538 /* paykloud-iosUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30FB54381C6A58B50004A538 /* Build configuration list for PBXNativeTarget "paykloud-iosUITests" */;
+			buildPhases = (
+				30FB54251C6A58B40004A538 /* Sources */,
+				30FB54261C6A58B40004A538 /* Frameworks */,
+				30FB54271C6A58B40004A538 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				30FB542B1C6A58B40004A538 /* PBXTargetDependency */,
+			);
+			name = "paykloud-iosUITests";
+			productName = "timekloud-iosUITests";
+			productReference = 30FB54291C6A58B40004A538 /* paykloud-iosTests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		30FB54021C6A58B40004A538 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Sinan Ulkuatam";
+				TargetAttributes = {
+					30FB54091C6A58B40004A538 = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 95ZGR52Q89;
+						SystemCapabilities = {
+							com.apple.OMC = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+					};
+					30FB541D1C6A58B40004A538 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					30FB54281C6A58B40004A538 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 30FB54091C6A58B40004A538;
+					};
+				};
+			};
+			buildConfigurationList = 30FB54051C6A58B40004A538 /* Build configuration list for PBXProject "paykloud-ios" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 30FB54011C6A58B40004A538;
+			productRefGroup = 30FB540B1C6A58B40004A538 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				30FB54091C6A58B40004A538 /* paykloud-ios */,
+				30FB541D1C6A58B40004A538 /* paykloud-iosTests */,
+				30FB54281C6A58B40004A538 /* paykloud-iosUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		30FB54081C6A58B40004A538 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30BECBEB1C6EA02800B8A088 /* Main.storyboard in Resources */,
+				30BECBFF1C6EA6EC00B8A088 /* Assets.xcassets in Resources */,
+				30BECBDD1C6E9FF200B8A088 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30FB541C1C6A58B40004A538 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30FB54271C6A58B40004A538 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		12CCEAF27A81A4F36AB2087C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		1B628A2396EE3DB44E45FD78 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		545614C87EF7766B953CD8F4 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		30FB54061C6A58B40004A538 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30BECBE01C6E9FF200B8A088 /* Logs.swift in Sources */,
+				30BECC031C6F778B00B8A088 /* Gravatar.swift in Sources */,
+				30BECBDC1C6E9FF200B8A088 /* HomeViewController.swift in Sources */,
+				30BECBE31C6E9FF200B8A088 /* PaymentViewController.swift in Sources */,
+				30BECBDE1C6E9FF200B8A088 /* LeftMenuViewController.swift in Sources */,
+				30BECBE71C6E9FF200B8A088 /* StarButton.swift in Sources */,
+				30BECBE11C6E9FF200B8A088 /* Paths.swift in Sources */,
+				30BECBE51C6E9FF200B8A088 /* SettingsViewController.swift in Sources */,
+				30BECBDA1C6E9FF200B8A088 /* AppDelegate.swift in Sources */,
+				30BECBDF1C6E9FF200B8A088 /* LoginViewController.swift in Sources */,
+				30BECBE41C6E9FF200B8A088 /* RootViewController.swift in Sources */,
+				30BECC011C6F71B500B8A088 /* ProfileViewController.swift in Sources */,
+				30BECBE61C6E9FF200B8A088 /* SignupViewController.swift in Sources */,
+				30BECBDB1C6E9FF200B8A088 /* Extensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30FB541A1C6A58B40004A538 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30BECBF91C6EA5C600B8A088 /* paykloud_iosTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30FB54251C6A58B40004A538 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30BECBFB1C6EA5D100B8A088 /* paykloud_iosTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		30FB54201C6A58B40004A538 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 30FB54091C6A58B40004A538 /* paykloud-ios */;
+			targetProxy = 30FB541F1C6A58B40004A538 /* PBXContainerItemProxy */;
+		};
+		30FB542B1C6A58B40004A538 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 30FB54091C6A58B40004A538 /* paykloud-ios */;
+			targetProxy = 30FB542A1C6A58B40004A538 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		30BECBE91C6EA02800B8A088 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				30BECBEA1C6EA02800B8A088 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		30FB54301C6A58B50004A538 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = PayKloud;
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "ObjC-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		30FB54311C6A58B50004A538 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = PayKloud;
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "ObjC-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		30FB54331C6A58B50004A538 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 72852BFA7077A9B4E42196D9 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "paykloud-ios/PayKloud.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "paykloud-ios/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.paykloud.paykloud-ios";
+				PRODUCT_NAME = PayKloud;
+				PROVISIONING_PROFILE = "";
+			};
+			name = Debug;
+		};
+		30FB54341C6A58B50004A538 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E0548BB1437D038D9B3DF873 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "paykloud-ios/PayKloud.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "paykloud-ios/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.paykloud.paykloud-ios";
+				PRODUCT_NAME = PayKloud;
+				PROVISIONING_PROFILE = "";
+			};
+			name = Release;
+		};
+		30FB54361C6A58B50004A538 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = "paykloud-iosTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.paykloud.paykloud-iosTests";
+				PRODUCT_NAME = "paykloud-iosTests";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		30FB54371C6A58B50004A538 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = "paykloud-iosTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.paykloud.paykloud-iosTests";
+				PRODUCT_NAME = "paykloud-iosTests";
+			};
+			name = Release;
+		};
+		30FB54391C6A58B50004A538 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = "paykloud-iosUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.paykloud.paykloud-iosUITests";
+				PRODUCT_NAME = "paykloud-iosTests";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TEST_TARGET_NAME = "paykloud-ios";
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		30FB543A1C6A58B50004A538 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = "paykloud-iosUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.paykloud.paykloud-iosUITests";
+				PRODUCT_NAME = "paykloud-iosTests";
+				TEST_TARGET_NAME = "paykloud-ios";
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		30FB54051C6A58B40004A538 /* Build configuration list for PBXProject "paykloud-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30FB54301C6A58B50004A538 /* Debug */,
+				30FB54311C6A58B50004A538 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		30FB54321C6A58B50004A538 /* Build configuration list for PBXNativeTarget "paykloud-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30FB54331C6A58B50004A538 /* Debug */,
+				30FB54341C6A58B50004A538 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		30FB54351C6A58B50004A538 /* Build configuration list for PBXNativeTarget "paykloud-iosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30FB54361C6A58B50004A538 /* Debug */,
+				30FB54371C6A58B50004A538 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		30FB54381C6A58B50004A538 /* Build configuration list for PBXNativeTarget "paykloud-iosUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30FB54391C6A58B50004A538 /* Debug */,
+				30FB543A1C6A58B50004A538 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 30FB54021C6A58B40004A538 /* Project object */;
+}

@@ -1,0 +1,42 @@
+PODS:
+  - Alamofire (3.2.0)
+  - CardIO (5.3.1)
+  - Firebase (2.5.0)
+  - Neon (0.0.3)
+  - RESideMenu (4.0.7)
+  - Stripe (6.2.0):
+    - Stripe/Core (= 6.2.0)
+  - Stripe/Core (6.2.0)
+  - SVProgressHUD (1.1.3)
+  - SwiftyJSON (2.3.2)
+
+DEPENDENCIES:
+  - Alamofire (~> 3.0)
+  - CardIO
+  - Firebase (>= 2.5.0)
+  - Neon (~> 0.0.3)
+  - RESideMenu (~> 4.0.7)
+  - Stripe
+  - SVProgressHUD
+  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
+
+EXTERNAL SOURCES:
+  SwiftyJSON:
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+CHECKOUT OPTIONS:
+  SwiftyJSON:
+    :commit: 42bdb102d2624b143c07850ebdc1537d5b6579b6
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+SPEC CHECKSUMS:
+  Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
+  CardIO: a299efcd0348c3b256a1da53f22951319c3855a2
+  Firebase: 744617c0733b45198f9486ebd5cac64ec2d10d79
+  Neon: 589d3d217d326abe09726bf81add106cff685bf2
+  RESideMenu: f24c508404b49c667344c54aba7e590883533958
+  Stripe: 275524137e6c4cc1058f6d32ece248adf30a21f9
+  SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+
+COCOAPODS: 0.39.0
