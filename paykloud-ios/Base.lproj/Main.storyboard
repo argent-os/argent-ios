@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -190,7 +189,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundGradientNature" translatesAutoresizingMaskIntoConstraints="NO" id="QDc-jK-TQi">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundGradient" translatesAutoresizingMaskIntoConstraints="NO" id="QDc-jK-TQi">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
@@ -215,7 +214,7 @@
         <!--Login Controller-->
         <scene sceneID="Dz7-2R-lwm">
             <objects>
-                <viewController id="mQk-jK-m8v" userLabel="Login Controller" customClass="LoginViewController" customModule="PayKloud" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mQk-jK-m8v" userLabel="Login Controller" customClass="LoginViewController" customModule="PayKloud" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="89e-HS-vDh"/>
                         <viewControllerLayoutGuide type="bottom" id="2OE-D7-RmW"/>
@@ -224,13 +223,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundGradientNature" translatesAutoresizingMaskIntoConstraints="NO" id="ax5-P8-9YF">
-                                <rect key="frame" x="0.0" y="-14" width="414" height="750"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="8m3-ux-02O">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LbN-0O-YKO">
                                 <rect key="frame" x="24" y="327" width="366" height="101"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="101" id="CcE-ya-OUi"/>
+                                    <constraint firstAttribute="height" constant="101" id="PiF-4b-96C"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="15"/>
                                 <color key="tintColor" red="0.91775695609999997" green="0.96812755520000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -256,7 +255,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PayKloud Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bok-lK-mua">
                                 <rect key="frame" x="24" y="124" width="366" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="gC2-Pr-T7R"/>
+                                    <constraint firstAttribute="height" constant="24" id="fYX-vN-6vp"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -279,36 +278,30 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconLogo" translatesAutoresizingMaskIntoConstraints="NO" id="6jz-uE-JMM">
                                 <rect key="frame" x="186" y="49" width="43" height="43"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="43" id="8eK-8b-QHD"/>
-                                    <constraint firstAttribute="height" constant="43" id="Tpb-n0-OGh"/>
-                                    <constraint firstAttribute="width" constant="43" id="bqf-PH-30v"/>
-                                    <constraint firstAttribute="width" secondItem="6jz-uE-JMM" secondAttribute="height" multiplier="1:1" id="re2-5a-2pJ"/>
+                                    <constraint firstAttribute="height" constant="43" id="M8Z-Gm-PXP"/>
+                                    <constraint firstAttribute="width" constant="43" id="p3F-ud-8yk"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="Bok-lK-mua" firstAttribute="top" secondItem="6jz-uE-JMM" secondAttribute="bottom" constant="32" id="0AL-mg-egl"/>
-                            <constraint firstItem="LbN-0O-YKO" firstAttribute="top" secondItem="qF7-NG-cQ5" secondAttribute="top" constant="327" id="0nf-RR-Mle"/>
-                            <constraint firstItem="LbN-0O-YKO" firstAttribute="top" secondItem="LMB-f3-6uW" secondAttribute="bottom" constant="3" id="23f-Mk-hKj"/>
-                            <constraint firstItem="WyH-bl-UI1" firstAttribute="leading" secondItem="qF7-NG-cQ5" secondAttribute="leadingMargin" id="73C-BT-Xym"/>
-                            <constraint firstItem="LMB-f3-6uW" firstAttribute="centerX" secondItem="LbN-0O-YKO" secondAttribute="centerX" id="BcJ-6V-Ub1"/>
-                            <constraint firstItem="6jz-uE-JMM" firstAttribute="top" secondItem="89e-HS-vDh" secondAttribute="bottom" constant="49" id="EPO-zT-mTB"/>
-                            <constraint firstItem="6jz-uE-JMM" firstAttribute="centerX" secondItem="ax5-P8-9YF" secondAttribute="centerX" id="Hoh-6e-1Mq"/>
-                            <constraint firstItem="WyH-bl-UI1" firstAttribute="trailing" secondItem="LMB-f3-6uW" secondAttribute="trailing" id="JEa-ni-ur4"/>
-                            <constraint firstItem="LMB-f3-6uW" firstAttribute="leading" secondItem="mQA-21-eKo" secondAttribute="leading" id="JgW-Ay-Lvz"/>
-                            <constraint firstItem="LbN-0O-YKO" firstAttribute="leading" secondItem="Bok-lK-mua" secondAttribute="leading" id="M5O-o7-XQF"/>
-                            <constraint firstItem="Bok-lK-mua" firstAttribute="leading" secondItem="qF7-NG-cQ5" secondAttribute="leadingMargin" constant="4" id="Pyp-H0-WbM"/>
-                            <constraint firstItem="6jz-uE-JMM" firstAttribute="centerX" secondItem="Bok-lK-mua" secondAttribute="centerX" id="VfZ-yo-PMU"/>
-                            <constraint firstItem="LbN-0O-YKO" firstAttribute="trailing" secondItem="Bok-lK-mua" secondAttribute="trailing" id="WTe-u8-6tD"/>
-                            <constraint firstAttribute="trailing" secondItem="ax5-P8-9YF" secondAttribute="trailing" id="XYb-yo-pq7"/>
-                            <constraint firstItem="LMB-f3-6uW" firstAttribute="top" secondItem="WyH-bl-UI1" secondAttribute="bottom" constant="30" id="Y4g-eH-vwG"/>
-                            <constraint firstItem="ax5-P8-9YF" firstAttribute="leading" secondItem="qF7-NG-cQ5" secondAttribute="leading" id="d5G-Sa-FHY"/>
-                            <constraint firstItem="ax5-P8-9YF" firstAttribute="top" secondItem="qF7-NG-cQ5" secondAttribute="topMargin" constant="-14" id="f4s-RM-OQY"/>
-                            <constraint firstItem="LMB-f3-6uW" firstAttribute="trailing" secondItem="mQA-21-eKo" secondAttribute="trailing" id="lSG-W9-ZYe"/>
-                            <constraint firstItem="LMB-f3-6uW" firstAttribute="leading" secondItem="WyH-bl-UI1" secondAttribute="leading" id="q7P-X9-t1h"/>
-                            <constraint firstAttribute="bottom" secondItem="mQA-21-eKo" secondAttribute="bottom" constant="20" symbolic="YES" id="wPW-W6-dEs"/>
-                            <constraint firstItem="ax5-P8-9YF" firstAttribute="bottom" secondItem="2OE-D7-RmW" secondAttribute="top" id="zQR-SF-1eI"/>
+                            <constraint firstItem="Bok-lK-mua" firstAttribute="trailing" secondItem="LbN-0O-YKO" secondAttribute="trailing" id="4dS-ba-1ul"/>
+                            <constraint firstItem="WyH-bl-UI1" firstAttribute="top" secondItem="Bok-lK-mua" secondAttribute="bottom" constant="86" id="8tu-uz-r3w"/>
+                            <constraint firstItem="Bok-lK-mua" firstAttribute="leading" secondItem="LbN-0O-YKO" secondAttribute="leading" id="9aG-LB-VPI"/>
+                            <constraint firstItem="Bok-lK-mua" firstAttribute="leading" secondItem="qF7-NG-cQ5" secondAttribute="leadingMargin" constant="4" id="DOF-51-9vA"/>
+                            <constraint firstItem="6jz-uE-JMM" firstAttribute="centerX" secondItem="Bok-lK-mua" secondAttribute="centerX" id="GXo-8Y-Caw"/>
+                            <constraint firstItem="LMB-f3-6uW" firstAttribute="top" secondItem="WyH-bl-UI1" secondAttribute="bottom" constant="30" id="J3d-t6-bvh"/>
+                            <constraint firstItem="LMB-f3-6uW" firstAttribute="trailing" secondItem="qF7-NG-cQ5" secondAttribute="trailingMargin" id="MQd-8c-Cvi"/>
+                            <constraint firstItem="Bok-lK-mua" firstAttribute="top" secondItem="6jz-uE-JMM" secondAttribute="bottom" constant="32" id="O98-Fg-T0B"/>
+                            <constraint firstItem="mQA-21-eKo" firstAttribute="leading" secondItem="LMB-f3-6uW" secondAttribute="leading" id="P4V-EO-FuI"/>
+                            <constraint firstItem="WyH-bl-UI1" firstAttribute="trailing" secondItem="LMB-f3-6uW" secondAttribute="trailing" id="YbG-DT-zJA"/>
+                            <constraint firstItem="6jz-uE-JMM" firstAttribute="top" secondItem="89e-HS-vDh" secondAttribute="bottom" constant="49" id="eRX-1r-Mcb"/>
+                            <constraint firstItem="LMB-f3-6uW" firstAttribute="trailing" secondItem="mQA-21-eKo" secondAttribute="trailing" id="euK-WF-Ce9"/>
+                            <constraint firstAttribute="bottom" secondItem="mQA-21-eKo" secondAttribute="bottom" constant="20" symbolic="YES" id="kD4-tb-blK"/>
+                            <constraint firstItem="LMB-f3-6uW" firstAttribute="leading" secondItem="WyH-bl-UI1" secondAttribute="leading" id="mO2-gO-K2M"/>
+                            <constraint firstItem="LbN-0O-YKO" firstAttribute="centerX" secondItem="LMB-f3-6uW" secondAttribute="centerX" id="rsT-1m-OeK"/>
+                            <constraint firstItem="LbN-0O-YKO" firstAttribute="top" secondItem="LMB-f3-6uW" secondAttribute="bottom" constant="3" id="s7y-k5-PLn"/>
+                            <constraint firstItem="WyH-bl-UI1" firstAttribute="leading" secondItem="qF7-NG-cQ5" secondAttribute="leadingMargin" id="ukv-dU-dzE"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -327,7 +320,7 @@
         <!--Signup Controller-->
         <scene sceneID="hpf-KC-Tep">
             <objects>
-                <viewController id="kbr-IE-nwq" userLabel="Signup Controller" customClass="SignupViewController" customModule="PayKloud" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignupViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kbr-IE-nwq" userLabel="Signup Controller" customClass="SignupViewController" customModule="PayKloud" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pHj-hT-RKZ"/>
                         <viewControllerLayoutGuide type="bottom" id="2Jg-Vu-DA7"/>
@@ -336,7 +329,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundGradientNature" translatesAutoresizingMaskIntoConstraints="NO" id="zvr-pM-YfP">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="zvr-pM-YfP">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Create a new account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FvR-R5-fzc">
@@ -515,7 +508,7 @@
                     <nil name="viewControllers"/>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="fxJ-La-7Fr"/>
-                        <segue destination="mQk-jK-m8v" kind="show" id="rU0-4E-4jX"/>
+                        <segue destination="mQk-jK-m8v" kind="show" identifier="authView" id="rU0-4E-4jX"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MK5-71-VQP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -575,14 +568,14 @@
     </scenes>
     <resources>
         <image name="Background" width="320" height="568"/>
-        <image name="BackgroundGradientNature" width="512" height="512"/>
+        <image name="BackgroundGradient" width="200" height="500"/>
         <image name="IconLogo" width="250" height="250"/>
         <image name="IconMenu" width="32" height="32"/>
         <image name="IconUser" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="oZC-Wz-8AM"/>
         <segue reference="fxJ-La-7Fr"/>
+        <segue reference="oZC-Wz-8AM"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>

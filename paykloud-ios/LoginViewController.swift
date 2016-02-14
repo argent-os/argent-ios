@@ -10,15 +10,15 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import SVProgressHUD
+import VideoSplashKit
 
 var userData:JSON? // init user data, declare globally
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController  {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,6 @@ class LoginViewController: UIViewController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
         
-        // Do any additional setup after loading the view.
     }
     
     //Calls this function when the tap is recognized.
@@ -47,7 +46,7 @@ class LoginViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        self.emailTextField.keyboardType = UIKeyboardType.EmailAddress
+        self.emailTextField?.keyboardType = UIKeyboardType.EmailAddress
     }
     
     @IBAction func loginButtonTapped(sender: AnyObject) {
@@ -142,6 +141,4 @@ class LoginViewController: UIViewController {
         self.presentViewController(displayAlert, animated: true, completion: nil);
     }
     
-
-
 }

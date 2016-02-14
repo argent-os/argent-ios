@@ -20,7 +20,6 @@ class SignupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //Looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
@@ -40,7 +39,8 @@ class SignupViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        self.emailTextField.keyboardType = UIKeyboardType.EmailAddress
+        print("view did appear")
+        self.emailTextField?.keyboardType = UIKeyboardType.EmailAddress
     }
     
     @IBAction func registerButtonTapped(sender: AnyObject) {
@@ -52,13 +52,13 @@ class SignupViewController: UIViewController {
         // check for empty fields
         if(username!.isEmpty || email!.isEmpty || password!.isEmpty || repeatPassword!.isEmpty) {
             // display alert message
-            displayAlertMessage("All fields are required");
+            displayErrorAlertMessage("All fields are required");
             return;
         }
         
         if(password != repeatPassword) {
             // display alert
-            displayAlertMessage("Passwords do not match");
+            displayErrorAlertMessage("Passwords do not match");
             return;
         }
         
@@ -106,8 +106,8 @@ class SignupViewController: UIViewController {
     }
 
     
-    func displayAlertMessage(alertMessage:String) {
-        let displayAlert = UIAlertController(title: "Alert", message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
+    func displayErrorAlertMessage(alertMessage:String) {
+        let displayAlert = UIAlertController(title: "Error", message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
         let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
         displayAlert.addAction(okAction);
         self.presentViewController(displayAlert, animated: true, completion: nil);

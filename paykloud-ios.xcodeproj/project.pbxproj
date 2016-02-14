@@ -15,6 +15,8 @@
 		306D6DC01C7008DA00467C41 /* Nunito-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 306D6DB81C7008DA00467C41 /* Nunito-Medium.ttf */; };
 		306D6DC11C7008DA00467C41 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 306D6DB91C7008DA00467C41 /* Nunito-Regular.ttf */; };
 		306D6DC21C7008DA00467C41 /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 306D6DBA1C7008DA00467C41 /* Nunito-SemiBold.ttf */; };
+		30975C671C7040E300D2BDAA /* nyc.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 30975C661C7040E300D2BDAA /* nyc.mp4 */; };
+		3099CB6F1C70D69D000CEDE2 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3099CB6E1C70D69D000CEDE2 /* Auth.storyboard */; };
 		30BECBDA1C6E9FF200B8A088 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBCC1C6E9FF200B8A088 /* AppDelegate.swift */; };
 		30BECBDB1C6E9FF200B8A088 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBCD1C6E9FF200B8A088 /* Extensions.swift */; };
 		30BECBDC1C6E9FF200B8A088 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBCE1C6E9FF200B8A088 /* HomeViewController.swift */; };
@@ -34,6 +36,7 @@
 		30BECBFF1C6EA6EC00B8A088 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30BECBFE1C6EA6EC00B8A088 /* Assets.xcassets */; };
 		30BECC011C6F71B500B8A088 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECC001C6F71B500B8A088 /* ProfileViewController.swift */; };
 		30BECC031C6F778B00B8A088 /* Gravatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECC021C6F778B00B8A088 /* Gravatar.swift */; };
+		30F077E01C70510300DC53E8 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F077DF1C70510300DC53E8 /* AuthViewController.swift */; };
 		8E723A7E4D0FB354304689B7 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1AC01881780C6537201E7C5 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +67,8 @@
 		306D6DB91C7008DA00467C41 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
 		306D6DBA1C7008DA00467C41 /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-SemiBold.ttf"; sourceTree = "<group>"; };
 		30852D781C6E9ADF00CDCAA2 /* PayKloud.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = PayKloud.entitlements; path = "paykloud-ios/PayKloud.entitlements"; sourceTree = SOURCE_ROOT; };
+		30975C661C7040E300D2BDAA /* nyc.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = nyc.mp4; path = "paykloud-ios/videos/nyc.mp4"; sourceTree = SOURCE_ROOT; };
+		3099CB6E1C70D69D000CEDE2 /* Auth.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Auth.storyboard; path = "paykloud-ios/Auth.storyboard"; sourceTree = SOURCE_ROOT; };
 		30BECBCC1C6E9FF200B8A088 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "paykloud-ios/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
 		30BECBCD1C6E9FF200B8A088 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = "paykloud-ios/Extensions.swift"; sourceTree = SOURCE_ROOT; };
 		30BECBCE1C6E9FF200B8A088 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = "paykloud-ios/HomeViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -86,6 +91,7 @@
 		30BECBFE1C6EA6EC00B8A088 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "paykloud-ios/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		30BECC001C6F71B500B8A088 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = "paykloud-ios/ProfileViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30BECC021C6F778B00B8A088 /* Gravatar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Gravatar.swift; path = "paykloud-ios/Gravatar.swift"; sourceTree = SOURCE_ROOT; };
+		30F077DF1C70510300DC53E8 /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = SOURCE_ROOT; };
 		30FB540A1C6A58B40004A538 /* PayKloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PayKloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB541E1C6A58B40004A538 /* paykloud-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "paykloud-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB54291C6A58B40004A538 /* paykloud-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "paykloud-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +130,7 @@
 		306D6DB11C7008D200467C41 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				30975C631C7040B500D2BDAA /* videos */,
 				306D6DB21C7008DA00467C41 /* fonts */,
 			);
 			name = Resources;
@@ -145,6 +152,14 @@
 			path = "paykloud-ios/fonts";
 			sourceTree = SOURCE_ROOT;
 		};
+		30975C631C7040B500D2BDAA /* videos */ = {
+			isa = PBXGroup;
+			children = (
+				30975C661C7040E300D2BDAA /* nyc.mp4 */,
+			);
+			name = videos;
+			sourceTree = "<group>";
+		};
 		30BECC041C6F92C200B8A088 /* StarButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,6 +175,7 @@
 			children = (
 				30BECBD81C6E9FF200B8A088 /* SignupViewController.swift */,
 				30BECBD11C6E9FF200B8A088 /* LoginViewController.swift */,
+				30F077DF1C70510300DC53E8 /* AuthViewController.swift */,
 			);
 			name = Auth;
 			sourceTree = "<group>";
@@ -204,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				30BECBE91C6EA02800B8A088 /* Main.storyboard */,
+				3099CB6E1C70D69D000CEDE2 /* Auth.storyboard */,
 				30BECBCF1C6E9FF200B8A088 /* LaunchScreen.storyboard */,
 			);
 			name = Storyboards;
@@ -418,8 +435,10 @@
 				306D6DC11C7008DA00467C41 /* Nunito-Regular.ttf in Resources */,
 				306D6DBE1C7008DA00467C41 /* Nunito-ExtraLight.ttf in Resources */,
 				306D6DBC1C7008DA00467C41 /* Nunito-Bold.ttf in Resources */,
+				30975C671C7040E300D2BDAA /* nyc.mp4 in Resources */,
 				306D6DC21C7008DA00467C41 /* Nunito-SemiBold.ttf in Resources */,
 				306D6DBD1C7008DA00467C41 /* Nunito-ExtraBold.ttf in Resources */,
+				3099CB6F1C70D69D000CEDE2 /* Auth.storyboard in Resources */,
 				306D6DBF1C7008DA00467C41 /* Nunito-Light.ttf in Resources */,
 				306D6DBB1C7008DA00467C41 /* Nunito-Black.ttf in Resources */,
 				306D6DC01C7008DA00467C41 /* Nunito-Medium.ttf in Resources */,
@@ -495,6 +514,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30F077E01C70510300DC53E8 /* AuthViewController.swift in Sources */,
 				30BECBE01C6E9FF200B8A088 /* Logs.swift in Sources */,
 				30BECC031C6F778B00B8A088 /* Gravatar.swift in Sources */,
 				30BECBDC1C6E9FF200B8A088 /* HomeViewController.swift in Sources */,

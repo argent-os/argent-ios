@@ -201,7 +201,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, CardIOPayment
         let userLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("userLoggedIn");
         if(!userLoggedIn) {
             // check if user logged in, if not send to login
-            self.performSegueWithIdentifier("loginView", sender: self)
+            self.performSegueWithIdentifier("authView", sender: self)
             SVProgressHUD.dismiss()
         } else {
             //print(userData)
