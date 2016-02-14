@@ -4,6 +4,11 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Nunito-Light.ttf">
+            <string>Nunito-Light</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
@@ -17,14 +22,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundLaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="871-ss-L2d">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundGradient" translatesAutoresizingMaskIntoConstraints="NO" id="871-ss-L2d">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PayKloud" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="309-zl-cE3">
+                                <rect key="frame" x="205" y="259" width="190" height="81"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="190" id="W9D-b5-3bH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="36"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="309-zl-cE3" firstAttribute="centerY" secondItem="871-ss-L2d" secondAttribute="centerY" id="6a7-3W-Af4"/>
                             <constraint firstAttribute="trailing" secondItem="871-ss-L2d" secondAttribute="trailing" id="7jG-hQ-cSL"/>
+                            <constraint firstItem="309-zl-cE3" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="239" id="98n-1T-akt"/>
                             <constraint firstItem="871-ss-L2d" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="KVl-yv-oO8"/>
+                            <constraint firstItem="309-zl-cE3" firstAttribute="centerX" secondItem="871-ss-L2d" secondAttribute="centerX" id="NYi-Ud-vcq"/>
                             <constraint firstItem="871-ss-L2d" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="z7b-E3-5nq"/>
                             <constraint firstItem="871-ss-L2d" firstAttribute="bottom" secondItem="xb3-aO-Qok" secondAttribute="top" id="zfC-ve-CzC"/>
                         </constraints>
@@ -36,6 +53,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="BackgroundLaunchScreen" width="512" height="512"/>
+        <image name="BackgroundGradient" width="200" height="500"/>
     </resources>
 </document>

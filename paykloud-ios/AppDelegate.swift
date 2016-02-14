@@ -13,7 +13,7 @@ let merchantID = "merchant.com.paykloud"
 
 // DEV
 // let firebaseUrl = Firebase(url:"https://demosandbox.firebaseio.com/api/v1")
-// let apiUrl = "http://localhost:5001"
+// let apiUrl = "http://dev.timekloud.io"
 
 // PROD
 let firebaseUrl = Firebase(url:"https://timekloud.firebaseio.com/api/v1")
