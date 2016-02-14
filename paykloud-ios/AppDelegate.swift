@@ -17,7 +17,7 @@ let merchantID = "merchant.com.paykloud"
 
 // PROD
 let firebaseUrl = Firebase(url:"https://timekloud.firebaseio.com/api/v1")
-let apiUrl = "http://dev.timekloud.io"
+let apiUrl = "http://localhost:5001"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

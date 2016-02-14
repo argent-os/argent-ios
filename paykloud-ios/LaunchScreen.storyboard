@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,34 +17,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="871-ss-L2d">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundLaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="871-ss-L2d">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="  Copyright © 2016 PayKloud. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="obG-Y5-kRd">
-                                <rect key="frame" x="20" y="559" width="560" height="24"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                <color key="textColor" name="gridColor" catalog="System" colorSpace="catalog"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="PayKloud" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="GJd-Yh-RWb">
-                                <rect key="frame" x="20" y="180" width="560" height="50"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="36"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="obG-Y5-kRd" secondAttribute="centerX" id="5cz-MP-9tL"/>
-                            <constraint firstItem="871-ss-L2d" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="68N-ES-GJo"/>
-                            <constraint firstItem="871-ss-L2d" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="Fpe-30-ssi"/>
-                            <constraint firstAttribute="centerX" secondItem="GJd-Yh-RWb" secondAttribute="centerX" id="Q3B-4B-g5h"/>
-                            <constraint firstItem="obG-Y5-kRd" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="20" symbolic="YES" id="SfN-ll-jLj"/>
-                            <constraint firstAttribute="bottom" secondItem="obG-Y5-kRd" secondAttribute="bottom" constant="20" id="Y44-ml-fuU"/>
-                            <constraint firstItem="871-ss-L2d" firstAttribute="bottom" secondItem="xb3-aO-Qok" secondAttribute="top" id="aQF-Ng-rB0"/>
-                            <constraint firstItem="GJd-Yh-RWb" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="bottom" multiplier="1/3" constant="1" id="moa-c2-u7t"/>
-                            <constraint firstItem="GJd-Yh-RWb" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="20" symbolic="YES" id="x7j-FC-K8j"/>
-                            <constraint firstItem="871-ss-L2d" firstAttribute="centerX" secondItem="obG-Y5-kRd" secondAttribute="centerX" id="yjN-Aj-LhD"/>
+                            <constraint firstAttribute="trailing" secondItem="871-ss-L2d" secondAttribute="trailing" id="7jG-hQ-cSL"/>
+                            <constraint firstItem="871-ss-L2d" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="KVl-yv-oO8"/>
+                            <constraint firstItem="871-ss-L2d" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="z7b-E3-5nq"/>
+                            <constraint firstItem="871-ss-L2d" firstAttribute="bottom" secondItem="xb3-aO-Qok" secondAttribute="top" id="zfC-ve-CzC"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -55,6 +36,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Background" width="320" height="568"/>
+        <image name="BackgroundLaunchScreen" width="512" height="512"/>
     </resources>
 </document>

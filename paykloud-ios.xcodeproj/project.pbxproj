@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		306D6DBB1C7008DA00467C41 /* Nunito-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 306D6DB31C7008DA00467C41 /* Nunito-Black.ttf */; };
+		306D6DBC1C7008DA00467C41 /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 306D6DB41C7008DA00467C41 /* Nunito-Bold.ttf */; };
+		306D6DBD1C7008DA00467C41 /* Nunito-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 306D6DB51C7008DA00467C41 /* Nunito-ExtraBold.ttf */; };
+		306D6DBE1C7008DA00467C41 /* Nunito-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 306D6DB61C7008DA00467C41 /* Nunito-ExtraLight.ttf */; };
+		306D6DBF1C7008DA00467C41 /* Nunito-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 306D6DB71C7008DA00467C41 /* Nunito-Light.ttf */; };
+		306D6DC01C7008DA00467C41 /* Nunito-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 306D6DB81C7008DA00467C41 /* Nunito-Medium.ttf */; };
+		306D6DC11C7008DA00467C41 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 306D6DB91C7008DA00467C41 /* Nunito-Regular.ttf */; };
+		306D6DC21C7008DA00467C41 /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 306D6DBA1C7008DA00467C41 /* Nunito-SemiBold.ttf */; };
 		30BECBDA1C6E9FF200B8A088 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBCC1C6E9FF200B8A088 /* AppDelegate.swift */; };
 		30BECBDB1C6E9FF200B8A088 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBCD1C6E9FF200B8A088 /* Extensions.swift */; };
 		30BECBDC1C6E9FF200B8A088 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBCE1C6E9FF200B8A088 /* HomeViewController.swift */; };
@@ -47,6 +55,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		306D6DB31C7008DA00467C41 /* Nunito-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Black.ttf"; sourceTree = "<group>"; };
+		306D6DB41C7008DA00467C41 /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
+		306D6DB51C7008DA00467C41 /* Nunito-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-ExtraBold.ttf"; sourceTree = "<group>"; };
+		306D6DB61C7008DA00467C41 /* Nunito-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-ExtraLight.ttf"; sourceTree = "<group>"; };
+		306D6DB71C7008DA00467C41 /* Nunito-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Light.ttf"; sourceTree = "<group>"; };
+		306D6DB81C7008DA00467C41 /* Nunito-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Medium.ttf"; sourceTree = "<group>"; };
+		306D6DB91C7008DA00467C41 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
+		306D6DBA1C7008DA00467C41 /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-SemiBold.ttf"; sourceTree = "<group>"; };
 		30852D781C6E9ADF00CDCAA2 /* PayKloud.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = PayKloud.entitlements; path = "paykloud-ios/PayKloud.entitlements"; sourceTree = SOURCE_ROOT; };
 		30BECBCC1C6E9FF200B8A088 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "paykloud-ios/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
 		30BECBCD1C6E9FF200B8A088 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = "paykloud-ios/Extensions.swift"; sourceTree = SOURCE_ROOT; };
@@ -105,6 +121,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		306D6DB11C7008D200467C41 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				306D6DB21C7008DA00467C41 /* fonts */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		306D6DB21C7008DA00467C41 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				306D6DB31C7008DA00467C41 /* Nunito-Black.ttf */,
+				306D6DB41C7008DA00467C41 /* Nunito-Bold.ttf */,
+				306D6DB51C7008DA00467C41 /* Nunito-ExtraBold.ttf */,
+				306D6DB61C7008DA00467C41 /* Nunito-ExtraLight.ttf */,
+				306D6DB71C7008DA00467C41 /* Nunito-Light.ttf */,
+				306D6DB81C7008DA00467C41 /* Nunito-Medium.ttf */,
+				306D6DB91C7008DA00467C41 /* Nunito-Regular.ttf */,
+				306D6DBA1C7008DA00467C41 /* Nunito-SemiBold.ttf */,
+			);
+			name = fonts;
+			path = "paykloud-ios/fonts";
+			sourceTree = SOURCE_ROOT;
+		};
 		30BECC041C6F92C200B8A088 /* StarButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +245,7 @@
 			children = (
 				30852D781C6E9ADF00CDCAA2 /* PayKloud.entitlements */,
 				30BECBCC1C6E9FF200B8A088 /* AppDelegate.swift */,
+				306D6DB11C7008D200467C41 /* Resources */,
 				30BECC081C6F934A00B8A088 /* Root */,
 				30BECC061C6F92EF00B8A088 /* Auth */,
 				30BECC071C6F932400B8A088 /* MainScreens */,
@@ -371,9 +412,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30BECBEB1C6EA02800B8A088 /* Main.storyboard in Resources */,
 				30BECBFF1C6EA6EC00B8A088 /* Assets.xcassets in Resources */,
+				30BECBEB1C6EA02800B8A088 /* Main.storyboard in Resources */,
 				30BECBDD1C6E9FF200B8A088 /* LaunchScreen.storyboard in Resources */,
+				306D6DC11C7008DA00467C41 /* Nunito-Regular.ttf in Resources */,
+				306D6DBE1C7008DA00467C41 /* Nunito-ExtraLight.ttf in Resources */,
+				306D6DBC1C7008DA00467C41 /* Nunito-Bold.ttf in Resources */,
+				306D6DC21C7008DA00467C41 /* Nunito-SemiBold.ttf in Resources */,
+				306D6DBD1C7008DA00467C41 /* Nunito-ExtraBold.ttf in Resources */,
+				306D6DBF1C7008DA00467C41 /* Nunito-Light.ttf in Resources */,
+				306D6DBB1C7008DA00467C41 /* Nunito-Black.ttf in Resources */,
+				306D6DC01C7008DA00467C41 /* Nunito-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
