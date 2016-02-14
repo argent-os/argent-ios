@@ -14,7 +14,7 @@ class AuthViewController: VideoSplashViewController  {
         super.viewDidLoad()
        
         let storyboard = UIStoryboard(name: "Auth", bundle: nil)
-        var vc = storyboard.instantiateViewControllerWithIdentifier("authViewController")
+        let vc = storyboard.instantiateViewControllerWithIdentifier("authViewController")
         self.navigationController?.pushViewController(vc, animated: true)
         print(storyboard)
         print(vc)
@@ -43,14 +43,14 @@ class AuthViewController: VideoSplashViewController  {
         imageView.frame.origin.x = (self.view.bounds.size.width - imageView.frame.size.width) / 2.0 // centered left to right.
         view.addSubview(imageView)
 
-        var btn1 = UIButton(frame: CGRect(x: 0, y: screenHeight*0.9, width: screenWidth/2, height: 42.0))
+        let btn1 = UIButton(frame: CGRect(x: 0, y: screenHeight*0.9, width: screenWidth/2, height: 42.0))
         btn1.setImage(UIImage(named: "ButtonLogin"), forState: .Normal)
         btn1.layer.cornerRadius = 4
         btn1.layer.masksToBounds = true
         btn1.addTarget(self, action: "login:", forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(btn1)
         
-        var btn2 = UIButton(frame: CGRect(x: screenWidth*0.5, y: screenHeight*0.9, width: screenWidth/2, height: 42.0))
+        let btn2 = UIButton(frame: CGRect(x: screenWidth*0.5, y: screenHeight*0.9, width: screenWidth/2, height: 42.0))
         btn2.setImage(UIImage(named: "ButtonSignup"), forState: .Normal)
         btn2.layer.cornerRadius = 4
         btn2.layer.masksToBounds = true

@@ -24,7 +24,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, CardIOPayment
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) 
         cell.textLabel?.text = logs[indexPath.row].task
 //        cell.detailTextLabel?.text = logs[indexPath.row].dateStart.toString()
         return cell
