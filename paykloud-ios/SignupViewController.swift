@@ -131,17 +131,20 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         let password = passwordTextField.text;
         let repeatPassword = repeatPasswordTextField.text
 
-        
+        SVProgressHUD.show()
+
         // check for empty fields
         if(username!.isEmpty || email!.isEmpty || password!.isEmpty || repeatPassword!.isEmpty) {
             // display alert message
             displayErrorAlertMessage("All fields are required");
+            SVProgressHUD.dismiss()
             return;
         }
         
         if(password != repeatPassword) {
             // display alert
             displayErrorAlertMessage("Passwords do not match");
+            SVProgressHUD.dismiss()
             return;
         }
         
@@ -149,6 +152,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         if(!isValidEmail(email!)) {
             // display alert
             displayErrorAlertMessage("Email is not valid");
+            SVProgressHUD.dismiss()
             return;
         }
 
@@ -164,15 +168,15 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                 //print(response.data) // server data
                 //print(response.result) // result of response serialization
                 
-                SVProgressHUD.show()
                 if(response.response?.statusCode == 200) {
                     // Login is successful
                     NSUserDefaults.standardUserDefaults().setBool(true,forKey:"userLoggedIn");
                     NSUserDefaults.standardUserDefaults().synchronize();
-                    
+                    SVProgressHUD.show()
+
                     // go to main view
                     self.performSegueWithIdentifier("loginView", sender: self);
-                    
+
                 }
                 
                 switch response.result {
@@ -182,15 +186,14 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                          print("Response: \(json)")
                         // assign userData to self, access globally
                         print("register success")
-                        SVProgressHUD.dismiss()
                     }
                 case .Failure(let error):
                     print(error)
-                    SVProgressHUD.dismiss()
                 }
         }
 
-        
+        dismissKeyboard()
+        SVProgressHUD.show()
         displaySuccessAlertMessage("Registration Successful!  You can now login.")
         self.performSegueWithIdentifier("loginView", sender: self);
 
@@ -229,6 +232,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             // Not found, so remove keyboard.
             self.registerButtonTapped(self)
             textField.resignFirstResponder()
+            dismissKeyboard()
             return true
         }
         
