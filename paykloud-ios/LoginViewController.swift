@@ -11,18 +11,64 @@ import Alamofire
 import SwiftyJSON
 import SVProgressHUD
 import VideoSplashKit
+import TextFieldEffects
+import UIColor_Hex_Swift
 
 var userData:JSON? // init user data, declare globally
 
-class LoginViewController: UIViewController  {
-
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+class LoginViewController: UIViewController, UITextFieldDelegate  {
+    
     @IBOutlet weak var loginButton: UIButton!
 
+    let emailTextField = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
+    let passwordTextField = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Inherit UITextField Delegate, this is used for next and go on keyboard
+        emailTextField.delegate = self;
+        passwordTextField.delegate = self;
+        
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
+        
+        // Tags are 4 and 5 due to signup view textfields taking values 0-3
+        emailTextField.tag = 4
+        emailTextField.borderActiveColor = UIColor(rgba: "#FFF")
+        emailTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
+        emailTextField.backgroundColor = UIColor.clearColor()
+        emailTextField.placeholder = "Email"
+        emailTextField.placeholderColor = UIColor.whiteColor()
+        emailTextField.autocapitalizationType = UITextAutocapitalizationType.None
+        emailTextField.autocorrectionType = UITextAutocorrectionType.No
+        emailTextField.keyboardType = UIKeyboardType.EmailAddress
+        emailTextField.returnKeyType = UIReturnKeyType.Next
+        emailTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
+        emailTextField.textColor = UIColor.whiteColor()
+        emailTextField.frame.origin.y = screenHeight*0.25 // 25 down from the top
+        emailTextField.frame.origin.x = (self.view.bounds.size.width - emailTextField.frame.size.width) / 2.0
+        emailTextField.returnKeyType = UIReturnKeyType.Next
+        view.addSubview(emailTextField)
+        
+        passwordTextField.tag = 5
+        passwordTextField.borderActiveColor = UIColor(rgba: "#FFF")
+        passwordTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
+        passwordTextField.backgroundColor = UIColor.clearColor()
+        passwordTextField.placeholder = "Password"
+        passwordTextField.placeholderColor = UIColor.whiteColor()
+        passwordTextField.autocapitalizationType = UITextAutocapitalizationType.None
+        emailTextField.autocorrectionType = UITextAutocorrectionType.No
+        passwordTextField.textColor = UIColor.whiteColor()
+        passwordTextField.returnKeyType = UIReturnKeyType.Next
+        passwordTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
+        passwordTextField.secureTextEntry = true
+        passwordTextField.frame.origin.y = screenHeight*0.35 // 25 down from the top
+        passwordTextField.frame.origin.x = (self.view.bounds.size.width - passwordTextField.frame.size.width) / 2.0
+        passwordTextField.returnKeyType = UIReturnKeyType.Go
+        view.addSubview(passwordTextField)
+        
         // Dismiss loader
         SVProgressHUD.dismiss()
         
@@ -44,11 +90,7 @@ class LoginViewController: UIViewController  {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    override func viewDidAppear(animated: Bool) {
-        self.emailTextField?.keyboardType = UIKeyboardType.EmailAddress
-    }
-    
+
     @IBAction func loginButtonTapped(sender: AnyObject) {
         let email = emailTextField.text;
         let password = passwordTextField.text;
@@ -60,6 +102,9 @@ class LoginViewController: UIViewController  {
             return;
         } else if(password!.isEmpty) {
             displayAlertMessage("Password not entered");
+            return;
+        } else if(!isValidEmail(email!)) {
+            displayAlertMessage("Email is not valid");
             return;
         }
         
@@ -93,7 +138,8 @@ class LoginViewController: UIViewController  {
                         userData = json
                         
                         //print(json)
-                        
+                        self.dismissKeyboard()
+
                         print("login was pressed")
                         
                         // Get the firebase token from server response
@@ -148,6 +194,41 @@ class LoginViewController: UIViewController  {
         let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
         displayAlert.addAction(okAction);
         self.presentViewController(displayAlert, animated: true, completion: nil);
+    }
+    
+    // Allow use of next and join on keyboard
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        let nextTag: Int = textField.tag + 1
+        
+        print(nextTag)
+        let nextResponder: UIResponder? = textField.superview?.superview?.viewWithTag(nextTag)
+        
+        if let nextR = nextResponder
+        {
+            // Found next responder, so set it.
+            nextR.becomeFirstResponder()
+        }
+        else
+        {
+            // Not found, so remove keyboard.
+            self.loginButtonTapped(self)
+            textField.resignFirstResponder()
+            dismissKeyboard()
+            return true
+        }
+        
+        return false
+        
+    }
+    
+    // Check for valid email
+    func isValidEmail(emailStr:String) -> Bool {
+        // println("validate calendar: \(testStr)")
+        let emailRegEx = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluateWithObject(emailStr)
     }
     
 }

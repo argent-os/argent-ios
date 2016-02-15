@@ -16,7 +16,7 @@ import UIColor_Hex_Swift
 class SignupViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var backgroundImageView: UIImageView!
-    let screenWidth = UIScreen.mainScreen().bounds.width
+
     let usernameTextField  = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
     let emailTextField = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
     let passwordTextField = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
@@ -68,8 +68,8 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         emailTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
         emailTextField.textColor = UIColor.whiteColor()
         emailTextField.frame.origin.y = screenHeight*0.35 // 25 down from the top
-        emailTextField.frame.origin.x = (self.view.bounds.size.width - usernameTextField.frame.size.width) / 2.0
-        repeatPasswordTextField.returnKeyType = UIReturnKeyType.Next
+        emailTextField.frame.origin.x = (self.view.bounds.size.width - emailTextField.frame.size.width) / 2.0
+        emailTextField.returnKeyType = UIReturnKeyType.Next
         view.addSubview(emailTextField)
         
         passwordTextField.tag = 2
@@ -85,8 +85,8 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
         passwordTextField.secureTextEntry = true
         passwordTextField.frame.origin.y = screenHeight*0.45 // 25 down from the top
-        passwordTextField.frame.origin.x = (self.view.bounds.size.width - usernameTextField.frame.size.width) / 2.0
-        repeatPasswordTextField.returnKeyType = UIReturnKeyType.Next
+        passwordTextField.frame.origin.x = (self.view.bounds.size.width - passwordTextField.frame.size.width) / 2.0
+        passwordTextField.returnKeyType = UIReturnKeyType.Next
         view.addSubview(passwordTextField)
         
         repeatPasswordTextField.tag = 3
@@ -102,7 +102,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         repeatPasswordTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
         repeatPasswordTextField.secureTextEntry = true
         repeatPasswordTextField.frame.origin.y = screenHeight*0.55 // 25 down from the top
-        repeatPasswordTextField.frame.origin.x = (self.view.bounds.size.width - usernameTextField.frame.size.width) / 2.0
+        repeatPasswordTextField.frame.origin.x = (self.view.bounds.size.width - repeatPasswordTextField.frame.size.width) / 2.0
         repeatPasswordTextField.returnKeyType = UIReturnKeyType.Join
         view.addSubview(repeatPasswordTextField)
         
