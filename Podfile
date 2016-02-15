@@ -11,3 +11,5 @@ pod 'Firebase', '>= 2.5.0'
 pod 'CardIO'
 pod 'Stripe'
 pod 'VideoSplashKit'
+pod "TextFieldEffects"
+pod 'UIColor_Hex_Swift', '~> 1.8'

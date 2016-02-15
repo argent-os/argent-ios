@@ -9,10 +9,10 @@
 import VideoSplashKit
 
 class AuthViewController: VideoSplashViewController  {
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         let storyboard = UIStoryboard(name: "Auth", bundle: nil)
         let vc = storyboard.instantiateViewControllerWithIdentifier("authViewController")
         self.navigationController?.pushViewController(vc, animated: true)
@@ -74,7 +74,7 @@ class AuthViewController: VideoSplashViewController  {
     {
         let viewController:SignupViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SignupViewController") as! SignupViewController
         
-        self.presentViewController(viewController, animated: false, completion: nil)
+        self.presentViewController(viewController, animated: true, completion: nil)
         
     }
     
@@ -82,7 +82,7 @@ class AuthViewController: VideoSplashViewController  {
     {
         let viewController:LoginViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
         
-        self.presentViewController(viewController, animated: false, completion: nil)
+        self.presentViewController(viewController, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

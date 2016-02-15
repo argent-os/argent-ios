@@ -13,11 +13,11 @@ let merchantID = "merchant.com.paykloud"
 
 // DEV
 // let firebaseUrl = Firebase(url:"https://demosandbox.firebaseio.com/api/v1")
-// let apiUrl = "http://dev.timekloud.io"
+ let apiUrl = "http://localhost:5001"
 
 // PROD
 let firebaseUrl = Firebase(url:"https://timekloud.firebaseio.com/api/v1")
-let apiUrl = "http://localhost:5001"
+//let apiUrl = "http://dev.timekloud.io"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // Assign the init view controller of the app
     var viewController = AuthViewController()
-
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // Globally dark keyboard

@@ -10,16 +10,103 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import SVProgressHUD
+import TextFieldEffects
+import UIColor_Hex_Swift
 
-class SignupViewController: UIViewController {
-
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var repeatPasswordTextField: UITextField!
-    @IBOutlet weak var usernameTextField: UITextField!
+class SignupViewController: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    let screenWidth = UIScreen.mainScreen().bounds.width
+    let usernameTextField  = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
+    let emailTextField = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
+    let passwordTextField = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
+    let repeatPasswordTextField = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
+
+    
+    @IBOutlet weak var blurView: UIView!
     override func viewDidLoad() {
+        // Inherit UITextField Delegate, this is used for next and join on keyboard
+        self.usernameTextField.delegate = self;
+        self.emailTextField.delegate = self;
+        self.passwordTextField.delegate = self;
+        self.repeatPasswordTextField.delegate = self;
+
+        
         super.viewDidLoad()
+        
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
+        
+        usernameTextField.tag = 0
+        usernameTextField.borderActiveColor = UIColor(rgba: "#FFF")
+        usernameTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
+        usernameTextField.backgroundColor = UIColor.clearColor()
+        usernameTextField.placeholder = "Username"
+        usernameTextField.placeholderColor = UIColor.whiteColor()
+        usernameTextField.textColor = UIColor.whiteColor()
+        usernameTextField.autocapitalizationType = UITextAutocapitalizationType.None
+        usernameTextField.autocorrectionType = UITextAutocorrectionType.No
+        usernameTextField.keyboardType = UIKeyboardType.Default
+        usernameTextField.returnKeyType = UIReturnKeyType.Next
+        usernameTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
+        usernameTextField.frame.origin.y = screenHeight*0.25 // 25 down from the top
+        usernameTextField.frame.origin.x = (self.view.bounds.size.width - usernameTextField.frame.size.width) / 2.0
+        repeatPasswordTextField.returnKeyType = UIReturnKeyType.Next
+        view.addSubview(usernameTextField)
+        
+        emailTextField.tag = 1
+        emailTextField.borderActiveColor = UIColor(rgba: "#FFF")
+        emailTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
+        emailTextField.backgroundColor = UIColor.clearColor()
+        emailTextField.placeholder = "Email"
+        emailTextField.placeholderColor = UIColor.whiteColor()
+        emailTextField.autocapitalizationType = UITextAutocapitalizationType.None
+        emailTextField.autocorrectionType = UITextAutocorrectionType.No
+        emailTextField.keyboardType = UIKeyboardType.EmailAddress
+        emailTextField.returnKeyType = UIReturnKeyType.Next
+        emailTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
+        emailTextField.textColor = UIColor.whiteColor()
+        emailTextField.frame.origin.y = screenHeight*0.35 // 25 down from the top
+        emailTextField.frame.origin.x = (self.view.bounds.size.width - usernameTextField.frame.size.width) / 2.0
+        repeatPasswordTextField.returnKeyType = UIReturnKeyType.Next
+        view.addSubview(emailTextField)
+        
+        passwordTextField.tag = 2
+        passwordTextField.borderActiveColor = UIColor(rgba: "#FFF")
+        passwordTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
+        passwordTextField.backgroundColor = UIColor.clearColor()
+        passwordTextField.placeholder = "Password"
+        passwordTextField.placeholderColor = UIColor.whiteColor()
+        passwordTextField.autocapitalizationType = UITextAutocapitalizationType.None
+        emailTextField.autocorrectionType = UITextAutocorrectionType.No
+        passwordTextField.textColor = UIColor.whiteColor()
+        passwordTextField.returnKeyType = UIReturnKeyType.Next
+        passwordTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
+        passwordTextField.secureTextEntry = true
+        passwordTextField.frame.origin.y = screenHeight*0.45 // 25 down from the top
+        passwordTextField.frame.origin.x = (self.view.bounds.size.width - usernameTextField.frame.size.width) / 2.0
+        repeatPasswordTextField.returnKeyType = UIReturnKeyType.Next
+        view.addSubview(passwordTextField)
+        
+        repeatPasswordTextField.tag = 3
+        repeatPasswordTextField.borderActiveColor = UIColor(rgba: "#FFF")
+        repeatPasswordTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
+        repeatPasswordTextField.backgroundColor = UIColor.clearColor()
+        repeatPasswordTextField.placeholder = "Repeat Password"
+        repeatPasswordTextField.placeholderColor = UIColor.whiteColor()
+        repeatPasswordTextField.autocapitalizationType = UITextAutocapitalizationType.None
+        emailTextField.autocorrectionType = UITextAutocorrectionType.No
+        repeatPasswordTextField.textColor = UIColor.whiteColor()
+        repeatPasswordTextField.returnKeyType = UIReturnKeyType.Next
+        repeatPasswordTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
+        repeatPasswordTextField.secureTextEntry = true
+        repeatPasswordTextField.frame.origin.y = screenHeight*0.55 // 25 down from the top
+        repeatPasswordTextField.frame.origin.x = (self.view.bounds.size.width - usernameTextField.frame.size.width) / 2.0
+        repeatPasswordTextField.returnKeyType = UIReturnKeyType.Join
+        view.addSubview(repeatPasswordTextField)
+        
+        
         //Looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
@@ -38,16 +125,12 @@ class SignupViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidAppear(animated: Bool) {
-        print("view did appear")
-        self.emailTextField?.keyboardType = UIKeyboardType.EmailAddress
-    }
-    
     @IBAction func registerButtonTapped(sender: AnyObject) {
-        let username = usernameTextField.text;
-        let email = emailTextField.text;
+        let username = usernameTextField.text
+        let email = emailTextField.text
         let password = passwordTextField.text;
-        let repeatPassword = repeatPasswordTextField.text;
+        let repeatPassword = repeatPasswordTextField.text
+
         
         // check for empty fields
         if(username!.isEmpty || email!.isEmpty || password!.isEmpty || repeatPassword!.isEmpty) {
@@ -62,6 +145,12 @@ class SignupViewController: UIViewController {
             return;
         }
         
+        
+        if(!isValidEmail(email!)) {
+            // display alert
+            displayErrorAlertMessage("Email is not valid");
+            return;
+        }
 
         Alamofire.request(.POST, apiUrl + "/v1/register", parameters: [
             "username":username!,
@@ -103,6 +192,8 @@ class SignupViewController: UIViewController {
 
         
         displaySuccessAlertMessage("Registration Successful!  You can now login.")
+        self.performSegueWithIdentifier("loginView", sender: self);
+
     }
 
     
@@ -118,6 +209,40 @@ class SignupViewController: UIViewController {
         let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
         displayAlert.addAction(okAction);
         self.presentViewController(displayAlert, animated: true, completion: nil);
+    }
+    
+    // Allow use of next and join on keyboard
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        let nextTag: Int = textField.tag + 1
+        
+        print(nextTag)
+        let nextResponder: UIResponder? = textField.superview?.superview?.viewWithTag(nextTag)
+        
+        if let nextR = nextResponder
+        {
+            // Found next responder, so set it.
+            nextR.becomeFirstResponder()
+        }
+        else
+        {
+            // Not found, so remove keyboard.
+            self.registerButtonTapped(self)
+            textField.resignFirstResponder()
+            return true
+        }
+        
+        return false
+        
+    }
+    
+    // Check for valid email
+    func isValidEmail(emailStr:String) -> Bool {
+        // println("validate calendar: \(testStr)")
+        let emailRegEx = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluateWithObject(emailStr)
     }
     
     /*

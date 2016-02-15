@@ -22,7 +22,7 @@ class LoginViewController: UIViewController  {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Dismiss loader
         SVProgressHUD.dismiss()
         
@@ -103,6 +103,8 @@ class LoginViewController: UIViewController  {
                         firebaseUrl.authWithCustomToken(AUTH_TOKEN, withCompletionBlock: { error, authData in
                             if error != nil {
                                 print("Login failed! \(error)")
+                                self.displayErrorAlertMessage("Failed to login, please check email and password are correct");
+
                             } else {
                                 print("Login succeeded! \(authData)")
                             }
@@ -111,7 +113,7 @@ class LoginViewController: UIViewController  {
                     }
                 case .Failure(let error):
                     print(error)
-
+                    self.displayErrorAlertMessage("Failed to login, please check email and password are correct");
                 }
         }
         
@@ -136,6 +138,13 @@ class LoginViewController: UIViewController  {
     
     func displayAlertMessage(alertMessage:String) {
         let displayAlert = UIAlertController(title: "Alert", message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
+        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
+        displayAlert.addAction(okAction);
+        self.presentViewController(displayAlert, animated: true, completion: nil);
+    }
+    
+    func displayErrorAlertMessage(alertMessage:String) {
+        let displayAlert = UIAlertController(title: "Error", message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
         let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
         displayAlert.addAction(okAction);
         self.presentViewController(displayAlert, animated: true, completion: nil);

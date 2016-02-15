@@ -6,13 +6,12 @@
 //  Copyright (c) 2014 miguelicious. All rights reserved.
 //
 
-
 import UIKit
 
 class RootViewController: RESideMenu, RESideMenuDelegate {
     
     var window: UIWindow?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
