@@ -53,7 +53,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         
         // Add target and listen to changes in terms toggle
         switchTermsAndConditions.addTarget(self, action: "toggle:", forControlEvents: UIControlEvents.ValueChanged)
-        
+        switchTermsAndConditions.tintColor = UIColor(rgba: "#FFF6") // color with alpha
         // Border radius on uiview
         view.layer.cornerRadius = 5
         view.layer.masksToBounds = true
@@ -188,6 +188,13 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             return;
         }
         
+        if(acceptStatus == nil || acceptStatus?.boolValue == nil || acceptStatus?.boolValue == false) {
+            // display alert
+            displayErrorAlertMessage("Terms of Service and Privacy Policy were not accepted, could not create account");
+            SVProgressHUD.dismiss()
+            self.dismissKeyboard()
+            return;
+        }
         
         if(!isValidEmail(email!)) {
             // display alert
@@ -197,46 +204,69 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             return;
         }
 
-        // Set keychain username and password for PayKloud
-        
-        
-        Alamofire.request(.POST, apiUrl + "/v1/register", parameters: [
-            "username":username!,
-            "email":email!,
-            "password":password!
-            ],
-            encoding:.JSON)
-            .responseJSON { response in
-                //print(response.request) // original URL request
-                //print(response.response?.statusCode) // URL response
-                //print(response.data) // server data
-                //print(response.result) // result of response serialization
+        // Set WIFI IP immediately on load using completion handler
+        print("about to get wifi")
+        getWifiAddress { (addr, error) in
+            print("inside get wifi")
+            print(self.acceptStatus)
+            if addr != nil && self.acceptStatus == true {
+                print(addr)
+                let calcDate = NSDate().timeIntervalSince1970
+                var date: String = "\(calcDate)"
                 
-                if(response.response?.statusCode == 200) {
-                    // Login is successful
-                    NSUserDefaults.standardUserDefaults().setBool(true,forKey:"userLoggedIn");
-                    NSUserDefaults.standardUserDefaults().synchronize();
-                    SVProgressHUD.show()
-
-                    // go to main view
-                    self.performSegueWithIdentifier("loginView", sender: self);
-
+                var tosContent: [String: AnyObject] = [ "ip": addr!, "date": date ] //also works with [ "model" : NSNull()]
+                var tosJSON: [String: [String: AnyObject]] = [ "data" : tosContent ]
+                
+                let nsDict = tosJSON as NSDictionary //no error message
+                
+                let parameters : [String : AnyObject] = [
+                    "username":username!,
+                    "email":email!,
+                    "tos_acceptance" : nsDict,
+                    "password":password!
+                ]
+                Alamofire.request(.POST, apiUrl + "/v1/register", parameters: parameters, encoding:.JSON)
+                    .responseJSON { response in
+                        //print(response.request) // original URL request
+                        //print(response.response?.statusCode) // URL response
+                        //print(response.data) // server data
+                        //print(response.result) // result of response serialization
+                        
+                        if(response.response?.statusCode == 200) {
+                            // Login is successful
+                            NSUserDefaults.standardUserDefaults().setBool(true,forKey:"userLoggedIn");
+                            NSUserDefaults.standardUserDefaults().synchronize();
+                            SVProgressHUD.show()
+                            
+                            // go to main view
+                            self.performSegueWithIdentifier("loginView", sender: self);
+                            
+                        }
+                        
+                        switch response.result {
+                        case .Success:
+                            if let value = response.result.value {
+                                let json = JSON(value)
+                                print("Response: \(json)")
+                                // assign userData to self, access globally
+                                print("register success")
+                            }
+                        case .Failure(let error):
+                            self.dismissKeyboard()
+                            print(error)
+                        }
                 }
                 
-                switch response.result {
-                case .Success:
-                    if let value = response.result.value {
-                        let json = JSON(value)
-                         print("Response: \(json)")
-                        // assign userData to self, access globally
-                        print("register success")
-                    }
-                case .Failure(let error):
-                    self.dismissKeyboard()
-                    print(error)
-                }
+            } else {
+                self.displayErrorAlertMessage("Registration Error, please check your network connection or date/time settings.")
+            }
+
         }
+        
 
+        // TODO: Set keychain username and password for PayKloud
+
+        
         dismissKeyboard()
         SVProgressHUD.show()
         displaySuccessAlertMessage("Registration Successful!  You can now login.")
@@ -319,6 +349,36 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         emailTextField.inputAccessoryView=doneToolbar
         passwordTextField.inputAccessoryView=doneToolbar
         repeatPasswordTextField.inputAccessoryView=doneToolbar
+    }
+    
+    
+    // Return IP address of WiFi interface (en0) as a String, or `nil`
+    // Used for accepting terms of service
+    func getWifiAddress(completionHandler: (String?, NSError?) -> ()) -> () {
+        var address : String?
+        
+        Alamofire.request(.GET, "https://api.ipify.org").responseString { response in
+            //print(response.request) // original URL request
+            print(response.response?.statusCode) // URL response
+            print(response.data) // server data
+            print(response.result) // result of response serialization
+            
+            switch response.result {
+            case .Success:
+                if let value = response.result.value {
+                    let response = value
+                    print("SUCCESS! Response: \(response)")
+                    let address = response
+                    completionHandler(address, nil)
+                }
+            case .Failure(let error):
+                completionHandler(nil, error)
+                print("failed to get IP")
+                print(error)
+            }
+            
+        }
+        print("end of func")
     }
     
     // MARK: - Navigation

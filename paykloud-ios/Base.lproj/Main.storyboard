@@ -221,7 +221,7 @@
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mQA-21-eKo">
                                 <rect key="frame" x="20" y="683" width="374" height="33"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                <state key="normal" title="New to PayKloud? Sign Up">
+                                <state key="normal" title="New to PayKloud? Sign up">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -684,10 +684,10 @@ and privacy policy agreement, click to view</string>
         <image name="IconUser" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mAE-1a-1Fc"/>
-        <segue reference="kna-4P-EIA"/>
+        <segue reference="IHo-CA-PFu"/>
         <segue reference="oZC-Wz-8AM"/>
         <segue reference="fxJ-La-7Fr"/>
+        <segue reference="kna-4P-EIA"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>

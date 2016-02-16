@@ -11,12 +11,18 @@
 
 #import "Pods/RESideMenu/RESideMenu/RESideMenu.h"
 #import "Pods/SVProgressHUD/SVProgressHUD/SVProgressHUD.h"
-#import "CardIO.h"
 
+// Card IO
+#import "CardIO.h"
 @import AudioToolbox;
 @import AVFoundation;
 @import CoreMedia;
 @import CoreVideo;
 @import MobileCoreServices;
+
+// Used for IP location of device
+#include <arpa/inet.h>
+#include <sys/socket.h>
+#include <ifaddrs.h>
 
 #endif /* ObjC_Bridging_Header_h */
