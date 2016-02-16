@@ -18,6 +18,7 @@ import MZFormSheetPresentationController
 
 class SignupViewController: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var switchTermsAndConditions: UISwitch!
     @IBOutlet weak var backgroundImageView: UIImageView!
     let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
     
@@ -26,9 +27,33 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     let passwordTextField = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
     let repeatPasswordTextField = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
 
+    // Initialize accept status as optional variable
+    var acceptStatus:Bool?
+    func toggle(sender: UISwitch) -> Bool {
+        if switchTermsAndConditions.on {
+            acceptStatus = true
+            return acceptStatus!
+        } else if !switchTermsAndConditions.on {
+            acceptStatus = false
+            return acceptStatus!
+        }
+        // print("function ended")
+        return true
+    }
+    
+    @IBAction func switchAcceptDeclineAction() {
+        toggle(switchTermsAndConditions)
+    }
+    
     @IBOutlet weak var blurView: UIView!
     override func viewDidLoad() {
-
+        
+        // Add done button to keyboards
+        addDoneButtonOnKeyboard()
+        
+        // Add target and listen to changes in terms toggle
+        switchTermsAndConditions.addTarget(self, action: "toggle:", forControlEvents: UIControlEvents.ValueChanged)
+        
         // Border radius on uiview
         view.layer.cornerRadius = 5
         view.layer.masksToBounds = true
@@ -45,6 +70,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
+        // Programatically set the input fields
         usernameTextField.tag = 0
         usernameTextField.borderActiveColor = UIColor(rgba: "#FFF")
         usernameTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
@@ -125,6 +151,11 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        // nil
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -263,13 +294,42 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         return emailTest.evaluateWithObject(emailStr)
     }
     
+    @IBAction func doneButtonAction() {
+        dismissKeyboard()
+    }
     
-     //MARK: - Navigation
+    // Add done toolbar
+    func addDoneButtonOnKeyboard()
+    {
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, screenWidth, 50))
+        doneToolbar.barStyle = UIBarStyle.BlackTranslucent
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: Selector("doneButtonAction"))
+        
+        var items: [UIBarButtonItem]? = [UIBarButtonItem]()
+        items?.append(flexSpace)
+        items?.append(done)
+        
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        usernameTextField.inputAccessoryView=doneToolbar
+        emailTextField.inputAccessoryView=doneToolbar
+        passwordTextField.inputAccessoryView=doneToolbar
+        repeatPasswordTextField.inputAccessoryView=doneToolbar
+    }
+    
+    // MARK: - Navigation
 
-     //In a storyboard-based application, you will often want to do a little preparation before navigation
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    // Set up modal view for terms and privacy
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
             if identifier == "presentModal" {
+                
+                // Initialize and style the terms and conditions modal
                 let presentationSegue = segue as! MZFormSheetPresentationViewControllerSegue
                 presentationSegue.formSheetPresentationController.presentationController?.shouldApplyBackgroundBlurEffect = true
                 presentationSegue.formSheetPresentationController.presentationController?.shouldUseMotionEffect = true
@@ -277,8 +337,13 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                 presentationSegue.formSheetPresentationController.presentationController?.containerView?.backgroundColor = UIColor.blackColor()
                 presentationSegue.formSheetPresentationController.presentationController?.containerView?.sizeToFit()
                 presentationSegue.formSheetPresentationController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
-//                presentationSegue.formSheetPresentationController.interactivePanGestureDissmisalDirection = MZFormSheetPanGestureDismissDirection.All
+            
+                
+                //presentationSegue.formSheetPresentationController.interactivePanGestureDissmisalDirection = .All
 
+                presentationSegue.formSheetPresentationController.presentationController?.shouldDismissOnBackgroundViewTap = true
+
+                
                 // Blur will be applied to all MZFormSheetPresentationControllers by default
                 MZFormSheetPresentationController.appearance().shouldApplyBackgroundBlurEffect = true
                 
@@ -287,15 +352,17 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                 
                 let navigationController = presentationSegue.formSheetPresentationController.contentViewController as! UINavigationController
                 
+                presentationSegue.formSheetPresentationController.interactivePanGestureDissmisalDirection = .All;
+                
                 let presentedViewController = navigationController.viewControllers.first as! PresentedTableViewController
                 // This will set to only one instance
-                presentedViewController.textFieldBecomeFirstResponder = true
+//                presentedViewController.textFieldBecomeFirstResponder = true
+                let x = presentedViewController.acceptStatus = acceptStatus
+//                print("segue accept status", acceptStatus)
                 presentedViewController.passingString1 = "Terms and Conditions"
                 presentedViewController.passingString2 = "Privacy Policy"
             }
         }
-        
     }
-
 }
 
