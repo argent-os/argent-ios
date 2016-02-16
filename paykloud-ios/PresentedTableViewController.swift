@@ -8,27 +8,36 @@
 
 import UIKit
 
-class PresentedTableViewController: UINavigationController {
+class PresentedTableViewController: UIViewController {
     
-    @IBOutlet weak var textField: UITextField!
+
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var switchAgreement: UISwitch!
     var textFieldBecomeFirstResponder: Bool = false
-    var passingString: String?
+    var passingString1: String?
+    var passingString2: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // This will set to only one instance
+        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .Plain, target: self, action: Selector("close"))
         
-        if let text = self.passingString {
-            
-            //self.textField.text = text;
+        if let text1 = self.passingString1 {
+            print(text1)
+            // self.textField.text = text;
+        }
+        if let text2 = self.passingString2 {
+            print(text2)
+            // self.textField.text = text;
         }
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         if textFieldBecomeFirstResponder {
-            //self.textField.becomeFirstResponder()
+//            self.textField.becomeFirstResponder()
         }
     }
     

@@ -272,10 +272,26 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             if identifier == "presentModal" {
                 let presentationSegue = segue as! MZFormSheetPresentationViewControllerSegue
                 presentationSegue.formSheetPresentationController.presentationController?.shouldApplyBackgroundBlurEffect = true
+                presentationSegue.formSheetPresentationController.presentationController?.shouldUseMotionEffect = true
+                presentationSegue.formSheetPresentationController.presentationController?.contentViewSize = CGSizeMake(300, 250)
+                presentationSegue.formSheetPresentationController.presentationController?.containerView?.backgroundColor = UIColor.blackColor()
+                presentationSegue.formSheetPresentationController.presentationController?.containerView?.sizeToFit()
+                presentationSegue.formSheetPresentationController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
+//                presentationSegue.formSheetPresentationController.interactivePanGestureDissmisalDirection = MZFormSheetPanGestureDismissDirection.All
+
+                // Blur will be applied to all MZFormSheetPresentationControllers by default
+                MZFormSheetPresentationController.appearance().shouldApplyBackgroundBlurEffect = true
+                
+                presentationSegue.formSheetPresentationController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.Fade
+                presentationSegue.formSheetPresentationController.contentViewCornerRadius = 8
+                
                 let navigationController = presentationSegue.formSheetPresentationController.contentViewController as! UINavigationController
+                
                 let presentedViewController = navigationController.viewControllers.first as! PresentedTableViewController
+                // This will set to only one instance
                 presentedViewController.textFieldBecomeFirstResponder = true
-                presentedViewController.passingString = "PASSED DATA"
+                presentedViewController.passingString1 = "Terms and Conditions"
+                presentedViewController.passingString2 = "Privacy Policy"
             }
         }
         
