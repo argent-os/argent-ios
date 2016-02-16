@@ -7,30 +7,37 @@
 //
 
 import UIKit
+import QuartzCore
 import Alamofire
 import SwiftyJSON
 import SVProgressHUD
 import TextFieldEffects
 import UIColor_Hex_Swift
+import MZAppearance
+import MZFormSheetPresentationController
 
 class SignupViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var backgroundImageView: UIImageView!
-
+    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+    
     let usernameTextField  = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
     let emailTextField = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
     let passwordTextField = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
     let repeatPasswordTextField = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
 
-    
     @IBOutlet weak var blurView: UIView!
     override func viewDidLoad() {
-        // Inherit UITextField Delegate, this is used for next and join on keyboard
-        self.usernameTextField.delegate = self;
-        self.emailTextField.delegate = self;
-        self.passwordTextField.delegate = self;
-        self.repeatPasswordTextField.delegate = self;
 
+        // Border radius on uiview
+        view.layer.cornerRadius = 5
+        view.layer.masksToBounds = true
+        
+        // Inherit UITextField Delegate, this is used for next and join on keyboard
+        self.usernameTextField.delegate = self
+        self.emailTextField.delegate = self
+        self.passwordTextField.delegate = self
+        self.repeatPasswordTextField.delegate = self
         
         super.viewDidLoad()
         
@@ -138,6 +145,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             // display alert message
             displayErrorAlertMessage("All fields are required");
             SVProgressHUD.dismiss()
+            self.dismissKeyboard()
             return;
         }
         
@@ -145,6 +153,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             // display alert
             displayErrorAlertMessage("Passwords do not match");
             SVProgressHUD.dismiss()
+            self.dismissKeyboard()
             return;
         }
         
@@ -153,9 +162,13 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             // display alert
             displayErrorAlertMessage("Email is not valid");
             SVProgressHUD.dismiss()
+            self.dismissKeyboard()
             return;
         }
 
+        // Set keychain username and password for PayKloud
+        
+        
         Alamofire.request(.POST, apiUrl + "/v1/register", parameters: [
             "username":username!,
             "email":email!,
@@ -188,6 +201,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                         print("register success")
                     }
                 case .Failure(let error):
+                    self.dismissKeyboard()
                     print(error)
                 }
         }
@@ -249,14 +263,23 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         return emailTest.evaluateWithObject(emailStr)
     }
     
-    /*
-    // MARK: - Navigation
+    
+     //MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+     //In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let identifier = segue.identifier {
+            if identifier == "presentModal" {
+                let presentationSegue = segue as! MZFormSheetPresentationViewControllerSegue
+                presentationSegue.formSheetPresentationController.presentationController?.shouldApplyBackgroundBlurEffect = true
+                let navigationController = presentationSegue.formSheetPresentationController.contentViewController as! UINavigationController
+                let presentedViewController = navigationController.viewControllers.first as! PresentedTableViewController
+                presentedViewController.textFieldBecomeFirstResponder = true
+                presentedViewController.passingString = "PASSED DATA"
+            }
+        }
+        
     }
-    */
 
 }
+

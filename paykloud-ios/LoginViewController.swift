@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 import Alamofire
 import SwiftyJSON
 import SVProgressHUD
@@ -26,6 +27,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Border radius on uiview
+        view.layer.cornerRadius = 5
+        view.layer.masksToBounds = true
+        
         // Inherit UITextField Delegate, this is used for next and go on keyboard
         emailTextField.delegate = self;
         passwordTextField.delegate = self;
@@ -39,7 +44,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         emailTextField.borderActiveColor = UIColor(rgba: "#FFF")
         emailTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
         emailTextField.backgroundColor = UIColor.clearColor()
-        emailTextField.placeholder = "Email"
+        emailTextField.placeholder = "Username or Email"
         emailTextField.placeholderColor = UIColor.whiteColor()
         emailTextField.autocapitalizationType = UITextAutocapitalizationType.None
         emailTextField.autocorrectionType = UITextAutocorrectionType.No
@@ -92,8 +97,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
     }
 
     @IBAction func loginButtonTapped(sender: AnyObject) {
-        let email = emailTextField.text;
-        let password = passwordTextField.text;
+        let email = emailTextField.text
+        let username = emailTextField.text
+        let password = passwordTextField.text
         
         // check for empty fields
         if(email!.isEmpty) {
@@ -103,12 +109,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         } else if(password!.isEmpty) {
             displayAlertMessage("Password not entered");
             return;
-        } else if(!isValidEmail(email!)) {
-            displayAlertMessage("Email is not valid");
-            return;
         }
         
         Alamofire.request(.POST, apiUrl + "/v1/login", parameters: [
+            "username": username!,
             "email":email!,
             "password":password!
             ],
@@ -159,7 +163,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
                     }
                 case .Failure(let error):
                     print(error)
-                    self.displayErrorAlertMessage("Failed to login, please check email and password are correct");
+                    self.displayErrorAlertMessage("Failed to login, please check username/email and password are correct");
                 }
         }
         
@@ -220,15 +224,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         
         return false
         
-    }
-    
-    // Check for valid email
-    func isValidEmail(emailStr:String) -> Bool {
-        // println("validate calendar: \(testStr)")
-        let emailRegEx = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
-        
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailTest.evaluateWithObject(emailStr)
     }
     
 }

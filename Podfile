@@ -13,3 +13,5 @@ pod 'Stripe'
 pod 'VideoSplashKit'
 pod "TextFieldEffects"
 pod 'UIColor_Hex_Swift', '~> 1.8'
+pod 'SwiftyKey'
+pod 'MZFormSheetPresentationController'

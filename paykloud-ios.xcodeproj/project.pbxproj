@@ -15,6 +15,8 @@
 		306D6DC01C7008DA00467C41 /* Nunito-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 306D6DB81C7008DA00467C41 /* Nunito-Medium.ttf */; };
 		306D6DC11C7008DA00467C41 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 306D6DB91C7008DA00467C41 /* Nunito-Regular.ttf */; };
 		306D6DC21C7008DA00467C41 /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 306D6DBA1C7008DA00467C41 /* Nunito-SemiBold.ttf */; };
+		307265381C72B95200D2AF61 /* countries in Resources */ = {isa = PBXBuildFile; fileRef = 307265371C72B95200D2AF61 /* countries */; };
+		3072653B1C72D88F00D2AF61 /* PresentedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072653A1C72D88F00D2AF61 /* PresentedTableViewController.swift */; };
 		30975C671C7040E300D2BDAA /* nyc.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 30975C661C7040E300D2BDAA /* nyc.mp4 */; };
 		3099CB6F1C70D69D000CEDE2 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3099CB6E1C70D69D000CEDE2 /* Auth.storyboard */; };
 		30BECBDA1C6E9FF200B8A088 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBCC1C6E9FF200B8A088 /* AppDelegate.swift */; };
@@ -66,6 +68,8 @@
 		306D6DB81C7008DA00467C41 /* Nunito-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Medium.ttf"; sourceTree = "<group>"; };
 		306D6DB91C7008DA00467C41 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
 		306D6DBA1C7008DA00467C41 /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-SemiBold.ttf"; sourceTree = "<group>"; };
+		307265371C72B95200D2AF61 /* countries */ = {isa = PBXFileReference; lastKnownFileType = folder; name = countries; path = "paykloud-ios/countries"; sourceTree = SOURCE_ROOT; };
+		3072653A1C72D88F00D2AF61 /* PresentedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PresentedTableViewController.swift; path = "paykloud-ios/PresentedTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30852D781C6E9ADF00CDCAA2 /* PayKloud.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = PayKloud.entitlements; path = "paykloud-ios/PayKloud.entitlements"; sourceTree = SOURCE_ROOT; };
 		30975C661C7040E300D2BDAA /* nyc.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = nyc.mp4; path = "paykloud-ios/videos/nyc.mp4"; sourceTree = SOURCE_ROOT; };
 		3099CB6E1C70D69D000CEDE2 /* Auth.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Auth.storyboard; path = "paykloud-ios/Auth.storyboard"; sourceTree = SOURCE_ROOT; };
@@ -152,6 +156,14 @@
 			path = "paykloud-ios/fonts";
 			sourceTree = SOURCE_ROOT;
 		};
+		307265391C72B95900D2AF61 /* CountryPicker */ = {
+			isa = PBXGroup;
+			children = (
+				307265371C72B95200D2AF61 /* countries */,
+			);
+			name = CountryPicker;
+			sourceTree = "<group>";
+		};
 		30975C631C7040B500D2BDAA /* videos */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +187,7 @@
 			children = (
 				30BECBD81C6E9FF200B8A088 /* SignupViewController.swift */,
 				30BECBD11C6E9FF200B8A088 /* LoginViewController.swift */,
+				3072653A1C72D88F00D2AF61 /* PresentedTableViewController.swift */,
 				30F077DF1C70510300DC53E8 /* AuthViewController.swift */,
 			);
 			name = Auth;
@@ -229,6 +242,7 @@
 		30BECC0C1C6F93AF00B8A088 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				307265391C72B95900D2AF61 /* CountryPicker */,
 				30BECC041C6F92C200B8A088 /* StarButton */,
 			);
 			name = UI;
@@ -440,6 +454,7 @@
 				306D6DBD1C7008DA00467C41 /* Nunito-ExtraBold.ttf in Resources */,
 				3099CB6F1C70D69D000CEDE2 /* Auth.storyboard in Resources */,
 				306D6DBF1C7008DA00467C41 /* Nunito-Light.ttf in Resources */,
+				307265381C72B95200D2AF61 /* countries in Resources */,
 				306D6DBB1C7008DA00467C41 /* Nunito-Black.ttf in Resources */,
 				306D6DC01C7008DA00467C41 /* Nunito-Medium.ttf in Resources */,
 			);
@@ -520,6 +535,7 @@
 				30BECBDC1C6E9FF200B8A088 /* HomeViewController.swift in Sources */,
 				30BECBE31C6E9FF200B8A088 /* PaymentViewController.swift in Sources */,
 				30BECBDE1C6E9FF200B8A088 /* LeftMenuViewController.swift in Sources */,
+				3072653B1C72D88F00D2AF61 /* PresentedTableViewController.swift in Sources */,
 				30BECBE71C6E9FF200B8A088 /* StarButton.swift in Sources */,
 				30BECBE11C6E9FF200B8A088 /* Paths.swift in Sources */,
 				30BECBE51C6E9FF200B8A088 /* SettingsViewController.swift in Sources */,

@@ -12,12 +12,12 @@ import Firebase
 let merchantID = "merchant.com.paykloud"
 
 // DEV
-// let firebaseUrl = Firebase(url:"https://demosandbox.firebaseio.com/api/v1")
-// let apiUrl = "http://localhost:5001"
+ let firebaseUrl = Firebase(url:"https://demosandbox.firebaseio.com/api/v1")
+ let apiUrl = "http://localhost:5001"
 
 // PROD
-let firebaseUrl = Firebase(url:"https://timekloud.firebaseio.com/api/v1")
-let apiUrl = "http://dev.timekloud.io"
+//let firebaseUrl = Firebase(url:"https://paykloud.firebaseio.com/api/v1")
+//let apiUrl = "http://api.paykloud.com"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -32,11 +32,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Globally dark keyboard
         UITextField.appearance().keyboardAppearance = .Dark
         
+        // UPDATE TO LIVE BEFORE RELEASING PROD
         // Enable Stripe DEV
-        // Stripe.setDefaultPublishableKey("pk_test_6MOTlPN5JrNS5dIN4DUeKFDA")
+         Stripe.setDefaultPublishableKey("pk_test_6MOTlPN5JrNS5dIN4DUeKFDA")
 
-        // Enable STripe PROD
-        Stripe.setDefaultPublishableKey("pk_live_9kfmn7pMRPKAYSpcf1Fmn266")
+        // Enable Stripe PROD
+//        Stripe.setDefaultPublishableKey("pk_live_9kfmn7pMRPKAYSpcf1Fmn266")
 
         // Enable push notifications
         if #available(iOS 8.0, *) {
