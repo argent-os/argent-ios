@@ -29,7 +29,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
 
     // Initialize accept status as optional variable
     var acceptStatus:Bool?
-    func toggle(sender: UISwitch) -> Bool {
+    func toggle(sender: AnyObject) -> Bool {
         if switchTermsAndConditions.on {
             acceptStatus = true
             return acceptStatus!
@@ -37,7 +37,6 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             acceptStatus = false
             return acceptStatus!
         }
-        // print("function ended")
         return true
     }
     
@@ -45,11 +44,17 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         toggle(switchTermsAndConditions)
     }
     
+    @IBAction func acceptTermsAndConditions() {
+        switchTermsAndConditions.on = true
+        acceptStatus = true
+    }
+    
     @IBOutlet weak var blurView: UIView!
     override func viewDidLoad() {
         
         // Add done button to keyboards
-        addDoneButtonOnKeyboard()
+        addCloseButtonKeyBoard()
+        addAcceptTermsButtonOnKeyboard()
         
         // Add target and listen to changes in terms toggle
         switchTermsAndConditions.addTarget(self, action: "toggle:", forControlEvents: UIControlEvents.ValueChanged)
@@ -205,12 +210,8 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         }
 
         // Set WIFI IP immediately on load using completion handler
-        print("about to get wifi")
         getWifiAddress { (addr, error) in
-            print("inside get wifi")
-            print(self.acceptStatus)
             if addr != nil && self.acceptStatus == true {
-                print(addr)
                 let calcDate = NSDate().timeIntervalSince1970
                 var date: String = "\(calcDate)"
                 
@@ -247,13 +248,14 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                         case .Success:
                             if let value = response.result.value {
                                 let json = JSON(value)
-                                print("Response: \(json)")
+                                // potentially use completionHandler/closure in future
+                                // print("Response: \(json)")
                                 // assign userData to self, access globally
-                                print("register success")
+                                // print("register success")
                             }
                         case .Failure(let error):
                             self.dismissKeyboard()
-                            print(error)
+                            // print(error)
                         }
                 }
                 
@@ -294,7 +296,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         
         let nextTag: Int = textField.tag + 1
         
-        print(nextTag)
+        // print(nextTag)
         let nextResponder: UIResponder? = textField.superview?.superview?.viewWithTag(nextTag)
         
         if let nextR = nextResponder
@@ -324,31 +326,57 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         return emailTest.evaluateWithObject(emailStr)
     }
     
-    @IBAction func doneButtonAction() {
+    // Toolbar accept terms and conditions
+    @IBAction func acceptTermsButtonAction() {
+        acceptTermsAndConditions()
+        dismissKeyboard()
+    }
+    
+    // Toolbar close input keyboard
+    @IBAction func addCloseButtonAction() {
         dismissKeyboard()
     }
     
     // Add done toolbar
-    func addDoneButtonOnKeyboard()
+    func addAcceptTermsButtonOnKeyboard()
     {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
-        let doneToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, screenWidth, 50))
-        doneToolbar.barStyle = UIBarStyle.BlackTranslucent
+        let termsToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, screenWidth, 50))
+        termsToolbar.barStyle = UIBarStyle.BlackTranslucent
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: Selector("doneButtonAction"))
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Accept Terms of Use & Privacy Policy", style: UIBarButtonItemStyle.Done, target: self, action: Selector("acceptTermsButtonAction"))
         
         var items: [UIBarButtonItem]? = [UIBarButtonItem]()
         items?.append(flexSpace)
         items?.append(done)
         
-        doneToolbar.items = items
-        doneToolbar.sizeToFit()
-        usernameTextField.inputAccessoryView=doneToolbar
-        emailTextField.inputAccessoryView=doneToolbar
-        passwordTextField.inputAccessoryView=doneToolbar
-        repeatPasswordTextField.inputAccessoryView=doneToolbar
+        termsToolbar.items = items
+        termsToolbar.sizeToFit()
+        repeatPasswordTextField.inputAccessoryView=termsToolbar
+    }
+    
+    // Add done toolbar
+    func addCloseButtonKeyBoard()
+    {
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let closeToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, screenWidth, 50))
+        closeToolbar.barStyle = UIBarStyle.BlackTranslucent
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Close", style: UIBarButtonItemStyle.Done, target: self, action: Selector("addCloseButtonAction"))
+        
+        var items: [UIBarButtonItem]? = [UIBarButtonItem]()
+        items?.append(flexSpace)
+        items?.append(done)
+        
+        closeToolbar.items = items
+        closeToolbar.sizeToFit()
+        usernameTextField.inputAccessoryView=closeToolbar
+        emailTextField.inputAccessoryView=closeToolbar
+        passwordTextField.inputAccessoryView=closeToolbar
     }
     
     
@@ -358,27 +386,27 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         var address : String?
         
         Alamofire.request(.GET, "https://api.ipify.org").responseString { response in
-            //print(response.request) // original URL request
-            print(response.response?.statusCode) // URL response
-            print(response.data) // server data
-            print(response.result) // result of response serialization
+            // print(response.request) // original URL request
+            // print(response.response?.statusCode) // URL response
+            // print(response.data) // server data
+            // print(response.result) // result of response serialization
             
             switch response.result {
             case .Success:
                 if let value = response.result.value {
                     let response = value
-                    print("SUCCESS! Response: \(response)")
+                    // print("SUCCESS! Response: \(response)")
                     let address = response
                     completionHandler(address, nil)
                 }
             case .Failure(let error):
                 completionHandler(nil, error)
-                print("failed to get IP")
-                print(error)
+                // print("failed to get IP")
+                // print(error)
             }
             
         }
-        print("end of func")
+        // print("end of func")
     }
     
     // MARK: - Navigation
@@ -397,28 +425,17 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                 presentationSegue.formSheetPresentationController.presentationController?.containerView?.backgroundColor = UIColor.blackColor()
                 presentationSegue.formSheetPresentationController.presentationController?.containerView?.sizeToFit()
                 presentationSegue.formSheetPresentationController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
-            
-                
-                //presentationSegue.formSheetPresentationController.interactivePanGestureDissmisalDirection = .All
-
                 presentationSegue.formSheetPresentationController.presentationController?.shouldDismissOnBackgroundViewTap = true
+                presentationSegue.formSheetPresentationController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.Fade
+                presentationSegue.formSheetPresentationController.contentViewCornerRadius = 8
+                presentationSegue.formSheetPresentationController.interactivePanGestureDissmisalDirection = .All;
 
-                
                 // Blur will be applied to all MZFormSheetPresentationControllers by default
                 MZFormSheetPresentationController.appearance().shouldApplyBackgroundBlurEffect = true
                 
-                presentationSegue.formSheetPresentationController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.Fade
-                presentationSegue.formSheetPresentationController.contentViewCornerRadius = 8
-                
                 let navigationController = presentationSegue.formSheetPresentationController.contentViewController as! UINavigationController
                 
-                presentationSegue.formSheetPresentationController.interactivePanGestureDissmisalDirection = .All;
-                
                 let presentedViewController = navigationController.viewControllers.first as! PresentedTableViewController
-                // This will set to only one instance
-//                presentedViewController.textFieldBecomeFirstResponder = true
-                let x = presentedViewController.acceptStatus = acceptStatus
-//                print("segue accept status", acceptStatus)
                 presentedViewController.passingString1 = "Terms and Conditions"
                 presentedViewController.passingString2 = "Privacy Policy"
             }
