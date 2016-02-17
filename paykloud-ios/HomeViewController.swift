@@ -207,15 +207,22 @@ class HomeViewController: UIViewController, UITableViewDataSource, CardIOPayment
     override func viewDidAppear(animated: Bool) {
         SVProgressHUD.dismiss()
         
+        // Check for user logged in key
         let userLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("userLoggedIn");
         if(!userLoggedIn) {
             // check if user logged in, if not send to login
+            print("not logged in")
             self.performSegueWithIdentifier("authView", sender: self)
             SVProgressHUD.dismiss()
         } else {
             //print(userData)
+            print("logged in")
+            // Check user local data in json format, prevent re-retrieviing data from the server
+            
+            // Otherwise if no local data exists get the user data after logging in
             if(userData?["user"].stringValue != nil) {
-                // Attach a closure to read the data at our posts reference
+                print("user data is not nil")
+                // Attach a closure to read the data at our user reference
                 firebaseUrl.childByAppendingPath("/users/" + userData!["user"]["username"].stringValue + "/logs").observeEventType(.Value, withBlock: { snapshot in
                         //print(snapshot.value)
                         print(snapshot.childrenCount) // I got the expected number of items

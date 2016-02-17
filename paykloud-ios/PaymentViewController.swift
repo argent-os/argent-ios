@@ -16,7 +16,7 @@ class PaymentViewController: UIViewController, STPPaymentCardTextFieldDelegate {
     let paymentTextField = STPPaymentCardTextField()
     var saveButton: UIButton! = nil;
     
-    // This function is called before the segue
+    // This function is called before the segue, use this to make sure the view controller is properly returned to the root view controller
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if(segue.identifier == "homeView") {

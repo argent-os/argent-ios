@@ -12,9 +12,14 @@ import PasscodeLock
 
 let merchantID = "merchant.com.paykloud"
 
+// Get Local IP address by looking by using ifconfig command at terminal and looking below the 'inet' value
+// Make sure the physical device is connected to the same wifi network
+// Add exception for your IP address in info.plist file so regular http requests can be made
+// To perform the above, right click 'add row' and make that row a dictionary value, set NSExceptionAllowsInsecureHTTPLoads to YES
+// In case this doesnt work, make sure NSTransportSecurity has the sub-item Allow Arbitrary Loads set to YES
 // DEV
  let firebaseUrl = Firebase(url:"https://demosandbox.firebaseio.com/api/v1")
- let apiUrl = "http://localhost:5001"
+ let apiUrl = "http://192.168.1.182:5001"
 
 // PROD
 //let firebaseUrl = Firebase(url:"https://paykloud.firebaseio.com/api/v1")

@@ -106,4 +106,14 @@ class PasscodeSettingsViewController: UIViewController {
         
         testTextField.resignFirstResponder()
     }
+    
+    
+    // This function is called before the segue, use this to make sure the view controller is properly returned to the root view controller
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if(segue.identifier == "homeView") {
+            let rootViewController = (self.storyboard?.instantiateViewControllerWithIdentifier("RootViewController"))! as UIViewController
+            self.presentViewController(rootViewController, animated: true, completion: nil)
+        }
+    }
 }
