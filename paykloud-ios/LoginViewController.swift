@@ -27,6 +27,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Add close button to keyboards
+        addCloseButtonKeyBoard()
+
         // Border radius on uiview
         view.layer.cornerRadius = 5
         view.layer.masksToBounds = true
@@ -104,7 +107,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         // check for empty fields
         if(email!.isEmpty) {
             // display alert message
-            displayAlertMessage("Email not entered");
+            displayAlertMessage("Username/Email not entered");
             return;
         } else if(password!.isEmpty) {
             displayAlertMessage("Password not entered");
@@ -143,8 +146,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
                         
                         //print(json)
                         self.dismissKeyboard()
-
-                        print("login was pressed")
                         
                         // Get the firebase token from server response
                         let AUTH_TOKEN = json["auth"]["token"].stringValue
@@ -152,11 +153,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
                         // Auth to firebase
                         firebaseUrl.authWithCustomToken(AUTH_TOKEN, withCompletionBlock: { error, authData in
                             if error != nil {
-                                print("Login failed! \(error)")
+                                // print("Login failed! \(error)")
                                 self.displayErrorAlertMessage("Failed to login, please check email and password are correct");
 
                             } else {
-                                print("Login succeeded! \(authData)")
+                                // print("Login succeeded! \(authData)")
                             }
                         })
 
@@ -200,12 +201,38 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         self.presentViewController(displayAlert, animated: true, completion: nil);
     }
     
+    
+    // Toolbar close input keyboard
+    @IBAction func addCloseButtonAction() {
+        dismissKeyboard()
+    }
+    
+    // Add done toolbar
+    func addCloseButtonKeyBoard()
+    {
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let closeToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, screenWidth, 50))
+        closeToolbar.barStyle = UIBarStyle.BlackTranslucent
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Close", style: UIBarButtonItemStyle.Done, target: self, action: Selector("addCloseButtonAction"))
+        
+        var items: [UIBarButtonItem]? = [UIBarButtonItem]()
+        items?.append(flexSpace)
+        items?.append(done)
+        
+        closeToolbar.items = items
+        closeToolbar.sizeToFit()
+        emailTextField.inputAccessoryView=closeToolbar
+        passwordTextField.inputAccessoryView=closeToolbar
+    }
+    
     // Allow use of next and join on keyboard
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
         let nextTag: Int = textField.tag + 1
         
-        print(nextTag)
         let nextResponder: UIResponder? = textField.superview?.superview?.viewWithTag(nextTag)
         
         if let nextR = nextResponder

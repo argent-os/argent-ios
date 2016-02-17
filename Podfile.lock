@@ -6,6 +6,7 @@ PODS:
   - MZFormSheetPresentationController (2.2.2):
     - MZAppearance
   - Neon (0.0.3)
+  - PasscodeLock (1.0.2)
   - RESideMenu (4.0.7)
   - Stripe (6.2.0):
     - Stripe/Core (= 6.2.0)
@@ -23,6 +24,7 @@ DEPENDENCIES:
   - Firebase (>= 2.5.0)
   - MZFormSheetPresentationController
   - Neon (~> 0.0.3)
+  - PasscodeLock (~> 1.0.1)
   - RESideMenu (~> 4.0.7)
   - Stripe
   - SVProgressHUD
@@ -48,6 +50,7 @@ SPEC CHECKSUMS:
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   MZFormSheetPresentationController: 8772f845dd3c64a0d9fe545a997d72201db3fe39
   Neon: 589d3d217d326abe09726bf81add106cff685bf2
+  PasscodeLock: 4ae42c094224a01de3773fcd69ae33886394d959
   RESideMenu: f24c508404b49c667344c54aba7e590883533958
   Stripe: 275524137e6c4cc1058f6d32ece248adf30a21f9
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1

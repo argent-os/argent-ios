@@ -41,9 +41,15 @@ class HomeViewController: UIViewController, UITableViewDataSource, CardIOPayment
         return blurView
     }()
 
+    // In order to add a button, such as a ui view, add the referencing iboutlet and then delete it, replacing it with the lazy loaded variable button type you see below
     lazy var scanCardButton: UIButton = {
         let scanCardButton = UIButton()
         return scanCardButton
+    }()
+    
+    lazy var passcodeLockButton: UIButton = {
+        let passcodeLockButton = UIButton()
+        return passcodeLockButton
     }()
     
     lazy var applePayButton: UIButton = {
@@ -147,6 +153,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, CardIOPayment
         self.view.addSubview(button)
         self.view.addSubview(scanCardButton)
         self.view.addSubview(applePayButton)
+        self.view.addSubview(passcodeLockButton)
     }
     
     // STRIPE PAYMENT AUTH FINISHED
@@ -185,8 +192,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, CardIOPayment
         button.anchorToEdge(.Bottom, padding: 10, width: 30, height: 30)
         
         scanCardButton.anchorToEdge(.Bottom, padding: 10, width: 30, height: 30)
-
+        
         applePayButton.anchorToEdge(.Bottom, padding: 10, width: 30, height: 30)
+
+        passcodeLockButton.anchorToEdge(.Bottom, padding: 10, width: 30, height: 30)
 
         usernameViewText.align(.UnderCentered, relativeTo: avatarImageView, padding: 0, width: 300, height: 30)
 

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3064E8A41C742A110073E00B /* PasscodeLockConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3064E8A11C742A110073E00B /* PasscodeLockConfiguration.swift */; };
+		3064E8A51C742A110073E00B /* PasscodeSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3064E8A21C742A110073E00B /* PasscodeSettingsViewController.swift */; };
+		3064E8A61C742A110073E00B /* UserDefaultsPasscodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3064E8A31C742A110073E00B /* UserDefaultsPasscodeRepository.swift */; };
 		306D6DBB1C7008DA00467C41 /* Nunito-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 306D6DB31C7008DA00467C41 /* Nunito-Black.ttf */; };
 		306D6DBC1C7008DA00467C41 /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 306D6DB41C7008DA00467C41 /* Nunito-Bold.ttf */; };
 		306D6DBD1C7008DA00467C41 /* Nunito-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 306D6DB51C7008DA00467C41 /* Nunito-ExtraBold.ttf */; };
@@ -61,6 +64,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3064E8A11C742A110073E00B /* PasscodeLockConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PasscodeLockConfiguration.swift; path = "paykloud-ios/passcode/PasscodeLockConfiguration.swift"; sourceTree = SOURCE_ROOT; };
+		3064E8A21C742A110073E00B /* PasscodeSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PasscodeSettingsViewController.swift; path = "paykloud-ios/passcode/PasscodeSettingsViewController.swift"; sourceTree = SOURCE_ROOT; };
+		3064E8A31C742A110073E00B /* UserDefaultsPasscodeRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDefaultsPasscodeRepository.swift; path = "paykloud-ios/passcode/UserDefaultsPasscodeRepository.swift"; sourceTree = SOURCE_ROOT; };
 		306D6DB31C7008DA00467C41 /* Nunito-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Black.ttf"; sourceTree = "<group>"; };
 		306D6DB41C7008DA00467C41 /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
 		306D6DB51C7008DA00467C41 /* Nunito-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -133,6 +139,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3064E8A01C742A040073E00B /* Passcode */ = {
+			isa = PBXGroup;
+			children = (
+				3064E8A11C742A110073E00B /* PasscodeLockConfiguration.swift */,
+				3064E8A21C742A110073E00B /* PasscodeSettingsViewController.swift */,
+				3064E8A31C742A110073E00B /* UserDefaultsPasscodeRepository.swift */,
+			);
+			name = Passcode;
+			sourceTree = "<group>";
+		};
+		3064E8A71C74D06D0073E00B /* xib */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = xib;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		306D6DB11C7008D200467C41 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +211,7 @@
 		30BECC061C6F92EF00B8A088 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				3064E8A01C742A040073E00B /* Passcode */,
 				30BECBD81C6E9FF200B8A088 /* SignupViewController.swift */,
 				30BECBD11C6E9FF200B8A088 /* LoginViewController.swift */,
 				3072653A1C72D88F00D2AF61 /* PresentedTableViewController.swift */,
@@ -286,6 +311,7 @@
 				30BECC091C6F935200B8A088 /* MainMenu */,
 				30BECC0C1C6F93AF00B8A088 /* UI */,
 				30BECC0B1C6F939800B8A088 /* Storyboards */,
+				3064E8A71C74D06D0073E00B /* xib */,
 				30BECC0A1C6F936E00B8A088 /* Modules */,
 				30BECBE81C6EA00F00B8A088 /* Info.plist */,
 				30BECBFE1C6EA6EC00B8A088 /* Assets.xcassets */,
@@ -532,9 +558,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3064E8A61C742A110073E00B /* UserDefaultsPasscodeRepository.swift in Sources */,
 				30F077E01C70510300DC53E8 /* AuthViewController.swift in Sources */,
 				30BECBE01C6E9FF200B8A088 /* Logs.swift in Sources */,
 				30BECC031C6F778B00B8A088 /* Gravatar.swift in Sources */,
+				3064E8A51C742A110073E00B /* PasscodeSettingsViewController.swift in Sources */,
 				30BECBDC1C6E9FF200B8A088 /* HomeViewController.swift in Sources */,
 				30BECBE31C6E9FF200B8A088 /* PaymentViewController.swift in Sources */,
 				30BECBDE1C6E9FF200B8A088 /* LeftMenuViewController.swift in Sources */,
@@ -545,6 +573,7 @@
 				30BECBDA1C6E9FF200B8A088 /* AppDelegate.swift in Sources */,
 				30BECBDF1C6E9FF200B8A088 /* LoginViewController.swift in Sources */,
 				30BECBE41C6E9FF200B8A088 /* RootViewController.swift in Sources */,
+				3064E8A41C742A110073E00B /* PasscodeLockConfiguration.swift in Sources */,
 				3072653D1C73B63200D2AF61 /* TermsViewController.swift in Sources */,
 				30BECC011C6F71B500B8A088 /* ProfileViewController.swift in Sources */,
 				30BECBE61C6E9FF200B8A088 /* SignupViewController.swift in Sources */,

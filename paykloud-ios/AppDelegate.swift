@@ -8,6 +8,7 @@
 import UIKit
 import Stripe
 import Firebase
+import PasscodeLock
 
 let merchantID = "merchant.com.paykloud"
 
@@ -27,8 +28,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Assign the init view controller of the app
     var viewController = AuthViewController()
     
+    lazy var passcodeLockPresenter: PasscodeLockPresenter = {
+        
+        let configuration = PasscodeLockConfiguration()
+        let presenter = PasscodeLockPresenter(mainWindow: self.window, configuration: configuration)
+        return presenter
+    }()
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        // Display PasscodeLock on Launch
+        print("display pklock")
+        
+        passcodeLockPresenter.presentPasscodeLock()
+
         // Globally dark keyboard
         UITextField.appearance().keyboardAppearance = .Dark
         
