@@ -9,8 +9,10 @@ import UIKit
 import Stripe
 import Firebase
 import PasscodeLock
+import SwiftyJSON
 
 let merchantID = "merchant.com.paykloud"
+var userData:JSON? // init user data, declare globally, needs SwiftyJSON
 
 // Get Local IP address by looking by using ifconfig command at terminal and looking below the 'inet' value
 // Make sure the physical device is connected to the same wifi network
@@ -43,9 +45,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // Display PasscodeLock on Launch
-        print("display pklock")
-        
-        passcodeLockPresenter.presentPasscodeLock()
+        if(userData != nil) {
+            passcodeLockPresenter.presentPasscodeLock()
+        }
 
         // Globally dark keyboard
         UITextField.appearance().keyboardAppearance = .Dark

@@ -523,7 +523,7 @@ and privacy policy agreement, click to view</string>
                                 </state>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="nHM-mZ-B3d" appends="YES" id="0W6-cW-hri"/>
-                                    <segue destination="9Tv-aA-a5O" kind="show" identifier="termsView" customClass="MZFormSheetPresentationViewControllerSegue" id="fEJ-lR-z9I"/>
+                                    <segue destination="9Tv-aA-a5O" kind="presentation" identifier="termsView" customClass="MZFormSheetPresentationViewControllerSegue" modalTransitionStyle="crossDissolve" id="fEJ-lR-z9I"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F2N-Ys-I1P">
@@ -535,7 +535,7 @@ and privacy policy agreement, click to view</string>
                                     <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="WbP-sg-rEk" kind="show" identifier="privacyView" id="7cu-FP-MoG"/>
+                                    <segue destination="WbP-sg-rEk" kind="presentation" identifier="privacyView" customClass="MZFormSheetPresentationViewControllerSegue" modalTransitionStyle="crossDissolve" id="7cu-FP-MoG"/>
                                 </connections>
                             </button>
                         </subviews>

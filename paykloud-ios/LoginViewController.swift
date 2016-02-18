@@ -15,7 +15,6 @@ import VideoSplashKit
 import TextFieldEffects
 import UIColor_Hex_Swift
 
-var userData:JSON? // init user data, declare globally
 
 class LoginViewController: UIViewController, UITextFieldDelegate  {
     
@@ -126,6 +125,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
                 //print(response.data) // server data
                 //print(response.result) // result of response serialization
                 
+                print("login pressed")
                 if(response.response?.statusCode == 200) {
                     // Login is successful
                     NSUserDefaults.standardUserDefaults().setBool(true,forKey:"userLoggedIn");

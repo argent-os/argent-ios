@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 import MZFormSheetPresentationController
 
 class PresentedTableViewController: UIViewController {
@@ -58,16 +59,22 @@ class PresentedTableViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
             if identifier == "termsView" {
-                print("in terms view")
-                UIApplication.sharedApplication().openURL(NSURL(string: "http://www.google.com")!)
-                self.dismissViewControllerAnimated(true, completion: nil)
-                
+                if #available(iOS 9.0, *) {
+                    let svc = SFSafariViewController(URL: NSURL(string: "http://www.google.com")!, entersReaderIfAvailable: true)
+                    self.presentViewController(svc, animated: true, completion: nil)
+                } else {
+                    UIApplication.sharedApplication().openURL(NSURL(string: "http://www.google.com")!)
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
             }
             if identifier == "privacyView" {
-                print("in privacy view")
-                UIApplication.sharedApplication().openURL(NSURL(string: "http://www.google.com")!)
-                self.dismissViewControllerAnimated(true, completion: nil)
-                
+                if #available(iOS 9.0, *) {
+                    let svc = SFSafariViewController(URL: NSURL(string: "http://www.google.com")!, entersReaderIfAvailable: true)
+                    self.presentViewController(svc, animated: true, completion: nil)
+                } else {
+                    UIApplication.sharedApplication().openURL(NSURL(string: "http://www.google.com")!)
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
             }
         }
     }
