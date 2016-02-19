@@ -180,10 +180,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         case 2?:
             // Signup button pressed
             print("signup pressed")
+        case 3?:
+            // New signup button pressed
+            print("new signup pressed")
         default:
             // Sent root view controller (default is login) otherwise send to register page
             let rootViewController = (self.storyboard?.instantiateViewControllerWithIdentifier("RootViewController"))! as UIViewController
             self.presentViewController(rootViewController, animated: true, completion: nil)
+            print("neither login or signup pressed")
         }
     }
     

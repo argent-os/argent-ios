@@ -1,9 +1,9 @@
 PODS:
   - Alamofire (3.2.0)
   - CardIO (5.3.1)
-  - Firebase (2.5.0)
+  - Firebase (2.5.1)
   - MZAppearance (1.1.6)
-  - MZFormSheetPresentationController (2.2.2):
+  - MZFormSheetPresentationController (2.3.0):
     - MZAppearance
   - Neon (0.0.3)
   - PasscodeLock (1.0.2)
@@ -11,7 +11,7 @@ PODS:
   - Stripe (6.2.0):
     - Stripe/Core (= 6.2.0)
   - Stripe/Core (6.2.0)
-  - SVProgressHUD (1.1.3)
+  - SVProgressHUD (2.0-beta8)
   - SwiftyJSON (2.3.2)
   - SwiftyKey (1.0.0)
   - TextFieldEffects (1.1.0)
@@ -20,19 +20,19 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 3.0)
-  - CardIO
+  - CardIO (~> 5.3.1)
   - Firebase (>= 2.5.0)
-  - MZFormSheetPresentationController
+  - MZFormSheetPresentationController (~> 2.3.0)
   - Neon (~> 0.0.3)
   - PasscodeLock (~> 1.0.1)
   - RESideMenu (~> 4.0.7)
-  - Stripe
-  - SVProgressHUD
+  - Stripe (~> 6.2.0)
+  - SVProgressHUD (~> 2.0-beta8)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
-  - SwiftyKey
-  - TextFieldEffects
+  - SwiftyKey (~> 1.0.0)
+  - TextFieldEffects (~> 1.1.0)
   - UIColor_Hex_Swift (~> 1.8)
-  - VideoSplashKit
+  - VideoSplashKit (~> 1.1.0)
 
 EXTERNAL SOURCES:
   SwiftyJSON:
@@ -46,14 +46,14 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
   CardIO: a299efcd0348c3b256a1da53f22951319c3855a2
-  Firebase: 744617c0733b45198f9486ebd5cac64ec2d10d79
+  Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
-  MZFormSheetPresentationController: 8772f845dd3c64a0d9fe545a997d72201db3fe39
+  MZFormSheetPresentationController: 076391ba3f6474b4ef75eaaef2380991524d8be4
   Neon: 589d3d217d326abe09726bf81add106cff685bf2
   PasscodeLock: 4ae42c094224a01de3773fcd69ae33886394d959
   RESideMenu: f24c508404b49c667344c54aba7e590883533958
   Stripe: 275524137e6c4cc1058f6d32ece248adf30a21f9
-  SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
+  SVProgressHUD: 6e48a1dda09ce3b58adc41d013baed3a8e8980ff
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   SwiftyKey: 5abfd3ba4215c00173bf6fe0813accef45956f38
   TextFieldEffects: 8e43fea8836e97be80fc4db27a1596c9e98a26ba

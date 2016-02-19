@@ -42,7 +42,8 @@
 		30BECBFF1C6EA6EC00B8A088 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30BECBFE1C6EA6EC00B8A088 /* Assets.xcassets */; };
 		30BECC011C6F71B500B8A088 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECC001C6F71B500B8A088 /* ProfileViewController.swift */; };
 		30BECC031C6F778B00B8A088 /* Gravatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECC021C6F778B00B8A088 /* Gravatar.swift */; };
-		30F077E01C70510300DC53E8 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F077DF1C70510300DC53E8 /* AuthViewController.swift */; };
+		30D7B7311C77883500B64B7F /* SignupViewControllerOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D7B7301C77883500B64B7F /* SignupViewControllerOne.swift */; };
+		30D7B7331C77884600B64B7F /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D7B7321C77884600B64B7F /* AuthViewController.swift */; };
 		8E723A7E4D0FB354304689B7 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1AC01881780C6537201E7C5 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -103,7 +104,8 @@
 		30BECBFE1C6EA6EC00B8A088 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "paykloud-ios/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		30BECC001C6F71B500B8A088 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = "paykloud-ios/ProfileViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30BECC021C6F778B00B8A088 /* Gravatar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Gravatar.swift; path = "paykloud-ios/Gravatar.swift"; sourceTree = SOURCE_ROOT; };
-		30F077DF1C70510300DC53E8 /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = SOURCE_ROOT; };
+		30D7B7301C77883500B64B7F /* SignupViewControllerOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewControllerOne.swift; path = "paykloud-ios/SignupViewControllerOne.swift"; sourceTree = SOURCE_ROOT; };
+		30D7B7321C77884600B64B7F /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthViewController.swift; path = "paykloud-ios/AuthViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30FB540A1C6A58B40004A538 /* PayKloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PayKloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB541E1C6A58B40004A538 /* paykloud-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "paykloud-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB54291C6A58B40004A538 /* paykloud-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "paykloud-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -211,17 +213,18 @@
 		30BECC061C6F92EF00B8A088 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				30D7B72F1C77880200B64B7F /* Signup */,
 				3064E8A01C742A040073E00B /* Passcode */,
 				30BECBD81C6E9FF200B8A088 /* SignupViewController.swift */,
 				30BECBD11C6E9FF200B8A088 /* LoginViewController.swift */,
 				3072653A1C72D88F00D2AF61 /* PresentedTableViewController.swift */,
 				3072653C1C73B63200D2AF61 /* TermsViewController.swift */,
-				30F077DF1C70510300DC53E8 /* AuthViewController.swift */,
+				30D7B7321C77884600B64B7F /* AuthViewController.swift */,
 			);
 			name = Auth;
 			sourceTree = "<group>";
 		};
-		30BECC071C6F932400B8A088 /* MainScreens */ = {
+		30BECC071C6F932400B8A088 /* Main */ = {
 			isa = PBXGroup;
 			children = (
 				30BECBCE1C6E9FF200B8A088 /* HomeViewController.swift */,
@@ -229,7 +232,7 @@
 				30BECC001C6F71B500B8A088 /* ProfileViewController.swift */,
 				30BECBD51C6E9FF200B8A088 /* PaymentViewController.swift */,
 			);
-			name = MainScreens;
+			name = Main;
 			sourceTree = "<group>";
 		};
 		30BECC081C6F934A00B8A088 /* Root */ = {
@@ -240,12 +243,12 @@
 			name = Root;
 			sourceTree = "<group>";
 		};
-		30BECC091C6F935200B8A088 /* MainMenu */ = {
+		30BECC091C6F935200B8A088 /* Nav */ = {
 			isa = PBXGroup;
 			children = (
 				30BECBD01C6E9FF200B8A088 /* LeftMenuViewController.swift */,
 			);
-			name = MainMenu;
+			name = Nav;
 			sourceTree = "<group>";
 		};
 		30BECC0A1C6F936E00B8A088 /* Modules */ = {
@@ -267,13 +270,21 @@
 			name = Storyboards;
 			sourceTree = "<group>";
 		};
-		30BECC0C1C6F93AF00B8A088 /* UI */ = {
+		30BECC0C1C6F93AF00B8A088 /* Add-ons */ = {
 			isa = PBXGroup;
 			children = (
 				307265391C72B95900D2AF61 /* CountryPicker */,
 				30BECC041C6F92C200B8A088 /* StarButton */,
 			);
-			name = UI;
+			name = "Add-ons";
+			sourceTree = "<group>";
+		};
+		30D7B72F1C77880200B64B7F /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				30D7B7301C77883500B64B7F /* SignupViewControllerOne.swift */,
+			);
+			name = Signup;
 			sourceTree = "<group>";
 		};
 		30FB54011C6A58B40004A538 = {
@@ -307,9 +318,9 @@
 				306D6DB11C7008D200467C41 /* Resources */,
 				30BECC081C6F934A00B8A088 /* Root */,
 				30BECC061C6F92EF00B8A088 /* Auth */,
-				30BECC071C6F932400B8A088 /* MainScreens */,
-				30BECC091C6F935200B8A088 /* MainMenu */,
-				30BECC0C1C6F93AF00B8A088 /* UI */,
+				30BECC071C6F932400B8A088 /* Main */,
+				30BECC091C6F935200B8A088 /* Nav */,
+				30BECC0C1C6F93AF00B8A088 /* Add-ons */,
 				30BECC0B1C6F939800B8A088 /* Storyboards */,
 				3064E8A71C74D06D0073E00B /* xib */,
 				30BECC0A1C6F936E00B8A088 /* Modules */,
@@ -558,8 +569,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30D7B7331C77884600B64B7F /* AuthViewController.swift in Sources */,
 				3064E8A61C742A110073E00B /* UserDefaultsPasscodeRepository.swift in Sources */,
-				30F077E01C70510300DC53E8 /* AuthViewController.swift in Sources */,
 				30BECBE01C6E9FF200B8A088 /* Logs.swift in Sources */,
 				30BECC031C6F778B00B8A088 /* Gravatar.swift in Sources */,
 				3064E8A51C742A110073E00B /* PasscodeSettingsViewController.swift in Sources */,
@@ -571,6 +582,7 @@
 				30BECBE11C6E9FF200B8A088 /* Paths.swift in Sources */,
 				30BECBE51C6E9FF200B8A088 /* SettingsViewController.swift in Sources */,
 				30BECBDA1C6E9FF200B8A088 /* AppDelegate.swift in Sources */,
+				30D7B7311C77883500B64B7F /* SignupViewControllerOne.swift in Sources */,
 				30BECBDF1C6E9FF200B8A088 /* LoginViewController.swift in Sources */,
 				30BECBE41C6E9FF200B8A088 /* RootViewController.swift in Sources */,
 				3064E8A41C742A110073E00B /* PasscodeLockConfiguration.swift in Sources */,
