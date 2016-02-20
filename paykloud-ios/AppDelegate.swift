@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         // Globally dark keyboard
-        UITextField.appearance().keyboardAppearance = .Dark
+        UITextField.appearance().keyboardAppearance = .Light
         
         // UPDATE TO LIVE BEFORE RELEASING PROD
         // Enable Stripe DEV

@@ -120,8 +120,6 @@ Nunito-Medium.ttf
 Nunito-Regular.ttf
 Nunito-SemiBold.ttf</string>
 	</array>
-	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleLightContent</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -136,6 +134,6 @@ Nunito-SemiBold.ttf</string>
 	<key>UIApplicationExitsOnSuspend</key>
 	<true/>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
+	<true/>
 </dict>
 </plist>

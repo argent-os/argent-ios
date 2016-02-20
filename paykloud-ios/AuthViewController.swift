@@ -28,7 +28,7 @@ class AuthViewController: VideoSplashViewController  {
         self.videoFrame = view.frame
         self.fillMode = .ResizeAspectFill
         self.alwaysRepeat = true
-        self.sound = true
+        self.sound = false
         self.startTime = 0
         self.duration = 10
         self.alpha = 0.5

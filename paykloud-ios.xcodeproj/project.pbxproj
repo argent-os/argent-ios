@@ -44,6 +44,7 @@
 		30BECC031C6F778B00B8A088 /* Gravatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECC021C6F778B00B8A088 /* Gravatar.swift */; };
 		30D7B7311C77883500B64B7F /* SignupViewControllerOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D7B7301C77883500B64B7F /* SignupViewControllerOne.swift */; };
 		30D7B7331C77884600B64B7F /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D7B7321C77884600B64B7F /* AuthViewController.swift */; };
+		30D7B7351C78F96500B64B7F /* SignupViewControllerTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D7B7341C78F96500B64B7F /* SignupViewControllerTwo.swift */; };
 		8E723A7E4D0FB354304689B7 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1AC01881780C6537201E7C5 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -106,6 +107,7 @@
 		30BECC021C6F778B00B8A088 /* Gravatar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Gravatar.swift; path = "paykloud-ios/Gravatar.swift"; sourceTree = SOURCE_ROOT; };
 		30D7B7301C77883500B64B7F /* SignupViewControllerOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewControllerOne.swift; path = "paykloud-ios/SignupViewControllerOne.swift"; sourceTree = SOURCE_ROOT; };
 		30D7B7321C77884600B64B7F /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthViewController.swift; path = "paykloud-ios/AuthViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30D7B7341C78F96500B64B7F /* SignupViewControllerTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewControllerTwo.swift; path = "paykloud-ios/SignupViewControllerTwo.swift"; sourceTree = SOURCE_ROOT; };
 		30FB540A1C6A58B40004A538 /* PayKloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PayKloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB541E1C6A58B40004A538 /* paykloud-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "paykloud-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB54291C6A58B40004A538 /* paykloud-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "paykloud-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -283,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				30D7B7301C77883500B64B7F /* SignupViewControllerOne.swift */,
+				30D7B7341C78F96500B64B7F /* SignupViewControllerTwo.swift */,
 			);
 			name = Signup;
 			sourceTree = "<group>";
@@ -570,6 +573,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30D7B7331C77884600B64B7F /* AuthViewController.swift in Sources */,
+				30D7B7351C78F96500B64B7F /* SignupViewControllerTwo.swift in Sources */,
 				3064E8A61C742A110073E00B /* UserDefaultsPasscodeRepository.swift in Sources */,
 				30BECBE01C6E9FF200B8A088 /* Logs.swift in Sources */,
 				30BECC031C6F778B00B8A088 /* Gravatar.swift in Sources */,

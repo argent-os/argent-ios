@@ -15,20 +15,36 @@ import VideoSplashKit
 import TextFieldEffects
 import UIColor_Hex_Swift
 
-
+var alreadyAdjusted:Bool = false
 class LoginViewController: UIViewController, UITextFieldDelegate  {
     
     @IBOutlet weak var loginButton: UIButton!
-
+    @IBOutlet weak var signupButton: UIButton!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
     let emailTextField = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
     let passwordTextField = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
+    
+    // Set up initial view height adjustment to false
+    var adjustingHeightBool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Focuses view controller on first name text input
+        if(alreadyAdjusted==false) {
+            emailTextField.becomeFirstResponder()
+        } else {
+            
+        }
+        
         // Add close button to keyboards
         addCloseButtonKeyBoard()
 
+        loginButton.layer.cornerRadius = 5
+        loginButton.clipsToBounds = true
+        loginButton.backgroundColor = UIColor(rgba: "#1e63ef")
+            
         // Border radius on uiview
         view.layer.cornerRadius = 5
         view.layer.masksToBounds = true
@@ -43,35 +59,37 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         
         // Tags are 4 and 5 due to signup view textfields taking values 0-3
         emailTextField.tag = 4
+        emailTextField.textAlignment = NSTextAlignment.Center
         emailTextField.borderActiveColor = UIColor(rgba: "#FFF")
         emailTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
         emailTextField.backgroundColor = UIColor.clearColor()
         emailTextField.placeholder = "Username or Email"
-        emailTextField.placeholderColor = UIColor.whiteColor()
+        emailTextField.placeholderColor = UIColor.grayColor()
         emailTextField.autocapitalizationType = UITextAutocapitalizationType.None
         emailTextField.autocorrectionType = UITextAutocorrectionType.No
         emailTextField.keyboardType = UIKeyboardType.EmailAddress
         emailTextField.returnKeyType = UIReturnKeyType.Next
         emailTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
-        emailTextField.textColor = UIColor.whiteColor()
-        emailTextField.frame.origin.y = screenHeight*0.25 // 25 down from the top
+        emailTextField.textColor = UIColor.grayColor()
+        emailTextField.frame.origin.y = screenHeight*0.20 // 25 down from the top
         emailTextField.frame.origin.x = (self.view.bounds.size.width - emailTextField.frame.size.width) / 2.0
         emailTextField.returnKeyType = UIReturnKeyType.Next
         view.addSubview(emailTextField)
         
         passwordTextField.tag = 5
+        passwordTextField.textAlignment = NSTextAlignment.Center
         passwordTextField.borderActiveColor = UIColor(rgba: "#FFF")
         passwordTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
         passwordTextField.backgroundColor = UIColor.clearColor()
         passwordTextField.placeholder = "Password"
-        passwordTextField.placeholderColor = UIColor.whiteColor()
+        passwordTextField.placeholderColor = UIColor.grayColor()
         passwordTextField.autocapitalizationType = UITextAutocapitalizationType.None
         emailTextField.autocorrectionType = UITextAutocorrectionType.No
-        passwordTextField.textColor = UIColor.whiteColor()
+        passwordTextField.textColor = UIColor.grayColor()
         passwordTextField.returnKeyType = UIReturnKeyType.Next
         passwordTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
         passwordTextField.secureTextEntry = true
-        passwordTextField.frame.origin.y = screenHeight*0.35 // 25 down from the top
+        passwordTextField.frame.origin.y = screenHeight*0.30 // 25 down from the top
         passwordTextField.frame.origin.x = (self.view.bounds.size.width - passwordTextField.frame.size.width) / 2.0
         passwordTextField.returnKeyType = UIReturnKeyType.Go
         view.addSubview(passwordTextField)
@@ -84,6 +102,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         //Looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
+        
+        // Set up auto align keyboard with ui button
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
         
     }
     
@@ -125,7 +148,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
                 //print(response.data) // server data
                 //print(response.result) // result of response serialization
                 
-                print("login pressed")
+                //print("login pressed")
                 if(response.response?.statusCode == 200) {
                     // Login is successful
                     NSUserDefaults.standardUserDefaults().setBool(true,forKey:"userLoggedIn");
@@ -217,7 +240,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let closeToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, screenWidth, 50))
-        closeToolbar.barStyle = UIBarStyle.BlackTranslucent
+        closeToolbar.barStyle = UIBarStyle.Default
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Close", style: UIBarButtonItemStyle.Done, target: self, action: Selector("addCloseButtonAction"))
@@ -255,6 +278,40 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         
         return false
         
+    }
+    
+    // Adjusts keyboard height to view
+    func adjustingHeight(show:Bool, notification:NSNotification) {
+        if(alreadyAdjusted == false) {
+            // Check if already adjusted height
+            var userInfo = notification.userInfo!
+            let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
+            let animationDurarion = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval
+            let changeInHeight = (CGRectGetHeight(keyboardFrame) - 5) * (show ? 1 : -1)
+            UIView.animateWithDuration(animationDurarion, animations: { () -> Void in
+                self.bottomConstraint.constant += changeInHeight
+            })
+            // Already adjusted height so make it true so it doesn't continue adjusting everytime a label is focused
+            alreadyAdjusted = true
+        }
+    }
+
+    
+    func keyboardWillShow(notification:NSNotification) {
+        adjustingHeight(true, notification: notification)
+    }
+    
+    func keyboardWillHide(notification:NSNotification) {
+        adjustingHeight(false, notification: notification)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
 }
