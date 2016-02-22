@@ -320,9 +320,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <connections>
-                                    <segue destination="kbr-IE-nwq" kind="presentation" identifier="signupView" id="IHo-CA-PFu"/>
-                                </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LbN-0O-YKO">
                                 <rect key="frame" x="20" y="635" width="374" height="40"/>
@@ -649,122 +646,6 @@
             </objects>
             <point key="canvasLocation" x="4275" y="125"/>
         </scene>
-        <!--Signup Controller-->
-        <scene sceneID="hpf-KC-Tep">
-            <objects>
-                <viewController storyboardIdentifier="SignupViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kbr-IE-nwq" userLabel="Signup Controller" customClass="SignupViewController" customModule="PayKloud" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="pHj-hT-RKZ"/>
-                        <viewControllerLayoutGuide type="bottom" id="2Jg-Vu-DA7"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="tDw-yk-xHs">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundGradient" translatesAutoresizingMaskIntoConstraints="NO" id="zvr-pM-YfP">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a new account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FvR-R5-fzc">
-                                <rect key="frame" x="24" y="124" width="366" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="22" id="cC1-W9-LsH"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WsB-Nv-GGi">
-                                <rect key="frame" x="20" y="684" width="374" height="33"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                <state key="normal" title="Have an account? Sign in">
-                                    <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="mQk-jK-m8v" kind="show" identifier="loginView" id="oZC-Wz-8AM"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconUser" translatesAutoresizingMaskIntoConstraints="NO" id="Gi5-ap-PKq">
-                                <rect key="frame" x="187" y="58" width="40" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="VXf-Ur-dTG"/>
-                                    <constraint firstAttribute="width" constant="40" id="ppr-HL-4wy"/>
-                                </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="ckx-8a-EeA">
-                                <rect key="frame" x="44" y="518" width="289" height="55"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="9b8-wn-ak3"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="11"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal">
-                                    <string key="title">I agree to PayKloud's terms of service 
-and privacy policy agreement, click to view</string>
-                                </state>
-                                <connections>
-                                    <segue destination="Ap6-KX-vg6" kind="presentation" identifier="presentModal" customClass="MZFormSheetPresentationViewControllerSegue" id="kna-4P-EIA"/>
-                                </connections>
-                            </button>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ACL-mv-dNC">
-                                <rect key="frame" x="316" y="530" width="51" height="31"/>
-                                <connections>
-                                    <action selector="switchAcceptDeclineAction" destination="kbr-IE-nwq" eventType="valueChanged" id="nDO-VR-dUu"/>
-                                </connections>
-                            </switch>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QpL-RH-Z9f">
-                                <rect key="frame" x="24" y="606" width="366" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="KJ2-lh-2ZX"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Sign Up">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="registerButtonTapped:" destination="kbr-IE-nwq" eventType="touchUpInside" id="RGp-HC-Swa"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="zvr-pM-YfP" firstAttribute="leading" secondItem="tDw-yk-xHs" secondAttribute="leading" id="4S9-b6-a5T"/>
-                            <constraint firstItem="FvR-R5-fzc" firstAttribute="centerX" secondItem="zvr-pM-YfP" secondAttribute="centerX" id="4yQ-GG-3lv"/>
-                            <constraint firstItem="WsB-Nv-GGi" firstAttribute="trailing" secondItem="tDw-yk-xHs" secondAttribute="trailingMargin" id="Fa4-Fh-B2K"/>
-                            <constraint firstItem="ckx-8a-EeA" firstAttribute="leading" secondItem="tDw-yk-xHs" secondAttribute="leadingMargin" constant="24" id="GeG-Wm-YtH"/>
-                            <constraint firstItem="zvr-pM-YfP" firstAttribute="top" secondItem="tDw-yk-xHs" secondAttribute="top" id="JsO-St-FoX"/>
-                            <constraint firstItem="Gi5-ap-PKq" firstAttribute="centerX" secondItem="FvR-R5-fzc" secondAttribute="centerX" id="O3H-Jd-2J4"/>
-                            <constraint firstItem="WsB-Nv-GGi" firstAttribute="top" secondItem="QpL-RH-Z9f" secondAttribute="bottom" constant="48" id="OTX-3m-fMN"/>
-                            <constraint firstItem="WsB-Nv-GGi" firstAttribute="leading" secondItem="tDw-yk-xHs" secondAttribute="leadingMargin" id="WGU-GU-4Eb"/>
-                            <constraint firstItem="Gi5-ap-PKq" firstAttribute="top" secondItem="tDw-yk-xHs" secondAttribute="topMargin" constant="58" id="Zoa-7Q-NBV"/>
-                            <constraint firstItem="2Jg-Vu-DA7" firstAttribute="top" secondItem="WsB-Nv-GGi" secondAttribute="bottom" constant="19" id="eoh-h7-7dO"/>
-                            <constraint firstItem="ckx-8a-EeA" firstAttribute="centerY" secondItem="ACL-mv-dNC" secondAttribute="centerY" id="gFP-cU-JZe"/>
-                            <constraint firstItem="QpL-RH-Z9f" firstAttribute="leading" secondItem="FvR-R5-fzc" secondAttribute="leading" id="hEN-7v-1ON"/>
-                            <constraint firstItem="QpL-RH-Z9f" firstAttribute="top" secondItem="ckx-8a-EeA" secondAttribute="bottom" constant="33" id="had-1l-4km"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ACL-mv-dNC" secondAttribute="trailing" constant="29" id="iSc-Wp-iAs"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ckx-8a-EeA" secondAttribute="trailing" constant="61" id="jiA-du-ZdR"/>
-                            <constraint firstItem="FvR-R5-fzc" firstAttribute="leading" secondItem="tDw-yk-xHs" secondAttribute="leadingMargin" constant="4" id="loc-Gi-YIs"/>
-                            <constraint firstItem="QpL-RH-Z9f" firstAttribute="trailing" secondItem="FvR-R5-fzc" secondAttribute="trailing" id="qyz-k8-kWR"/>
-                            <constraint firstItem="FvR-R5-fzc" firstAttribute="top" secondItem="Gi5-ap-PKq" secondAttribute="bottom" constant="26" id="tov-IS-fAF"/>
-                            <constraint firstItem="QpL-RH-Z9f" firstAttribute="centerX" secondItem="WsB-Nv-GGi" secondAttribute="centerX" id="yxJ-hX-SfA"/>
-                            <constraint firstItem="zvr-pM-YfP" firstAttribute="bottom" secondItem="2Jg-Vu-DA7" secondAttribute="top" id="z2V-hc-s0g"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="naY-2v-R87"/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
-                    <connections>
-                        <outlet property="backgroundImageView" destination="zvr-pM-YfP" id="j1v-dh-B90"/>
-                        <outlet property="switchTermsAndConditions" destination="ACL-mv-dNC" id="4dj-tS-7xy"/>
-                        <segue destination="Ap6-KX-vg6" kind="presentation" identifier="presentModal" customClass="MZFormSheetPresentationViewControllerSegue" id="wpF-Rt-wRw"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LxM-4d-Nfw" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1897" y="-777"/>
-        </scene>
         <!--Presented Table View Controller-->
         <scene sceneID="47j-AC-0ac">
             <objects>
@@ -852,7 +733,7 @@ and privacy policy agreement, click to view</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IoR-ae-cVu" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="nHM-mZ-B3d"/>
             </objects>
-            <point key="canvasLocation" x="3409" y="-762"/>
+            <point key="canvasLocation" x="4053" y="-972"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="azN-ee-JRw">
@@ -937,12 +818,11 @@ and privacy policy agreement, click to view</string>
                     <nil name="viewControllers"/>
                     <connections>
                         <segue destination="FIx-Rp-27k" kind="relationship" relationship="rootViewController" id="d11-ij-Vzw"/>
-                        <segue destination="kbr-IE-nwq" kind="show" identifier="signupView" id="mAE-1a-1Fc"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EHZ-Up-KdW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2597" y="-762"/>
+            <point key="canvasLocation" x="3473" y="-904"/>
         </scene>
         <!--Terms View Controller-->
         <scene sceneID="cna-dF-Dvl">
@@ -973,7 +853,7 @@ and privacy policy agreement, click to view</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bv3-oX-STF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4018" y="-1652"/>
+            <point key="canvasLocation" x="4650" y="-1648"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="k9d-4O-LPw">
@@ -1013,7 +893,7 @@ and privacy policy agreement, click to view</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XOK-yA-Dcd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4070" y="-834"/>
+            <point key="canvasLocation" x="4650" y="-818"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cVB-p7-9GW">
@@ -1040,12 +920,9 @@ and privacy policy agreement, click to view</string>
         <image name="IconLogoDark" width="250" height="250"/>
         <image name="IconMenu" width="32" height="32"/>
         <image name="IconPaper" width="128" height="128"/>
-        <image name="IconUser" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="CNn-4s-Hqn"/>
-        <segue reference="YIg-Dp-HpF"/>
-        <segue reference="IHo-CA-PFu"/>
+        <segue reference="LbW-Hg-Jfu"/>
         <segue reference="lP4-jZ-Bio"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

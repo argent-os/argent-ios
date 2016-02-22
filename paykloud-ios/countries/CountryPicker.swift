@@ -57,14 +57,14 @@ class CountryPicker: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSource 
         
         for code in NSLocale.ISOCountryCodes() {
             let countryName = NSLocale.currentLocale().displayNameForKey(NSLocaleCountryCode, value: code)
-            
-            let phoneNumberUtil = NBPhoneNumberUtil.sharedInstance()
-            let phoneCode: String? = "+\(phoneNumberUtil.getCountryCodeForRegion(code))"
-            
-            if phoneCode != "+0" {
-                let country = Country(code: code, name: countryName, phoneCode: phoneCode)
-                countries.append(country)
-            }
+//            
+//            let phoneNumberUtil = NBPhoneNumberUtil.sharedInstance()
+//            let phoneCode: String? = "+\(phoneNumberUtil.getCountryCodeForRegion(code))"
+//            
+//            if phoneCode != "+0" {
+//                let country = Country(code: code, name: countryName, phoneCode: phoneCode)
+//                countries.append(country)
+//            }
         }
         
         countries = countries.sort({ $0.name < $1.name })

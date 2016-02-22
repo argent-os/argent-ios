@@ -34,6 +34,9 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
     let userPhoneNumber = NSUserDefaults.standardUserDefaults().stringForKey("userPhoneNumber")!
     let userPassword = KeychainSwift().get("userPassword")!
     
+    // Set the locale
+    let countryCode = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
+    
     // Initialize accept status as optional variable
     var acceptStatus:Bool?
     func toggle(sender: AnyObject) -> Bool {
@@ -73,6 +76,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
         print("user email", userEmail)
         print("user phone", userPhoneNumber)
         print("user password", userPassword)
+        print(countryCode)
 
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
@@ -127,6 +131,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
                     "first_name":self.userFirstName,
                     "last_name":self.userLastName,
                     "username":self.userUsername,
+                    "country":self.countryCode,
                     "email":self.userEmail,
                     "phone_number":self.userPhoneNumber,
                     "tos_acceptance" : nsDict,

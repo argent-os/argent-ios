@@ -18,7 +18,6 @@
 		306D6DC01C7008DA00467C41 /* Nunito-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 306D6DB81C7008DA00467C41 /* Nunito-Medium.ttf */; };
 		306D6DC11C7008DA00467C41 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 306D6DB91C7008DA00467C41 /* Nunito-Regular.ttf */; };
 		306D6DC21C7008DA00467C41 /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 306D6DBA1C7008DA00467C41 /* Nunito-SemiBold.ttf */; };
-		307265381C72B95200D2AF61 /* countries in Resources */ = {isa = PBXBuildFile; fileRef = 307265371C72B95200D2AF61 /* countries */; };
 		3072653B1C72D88F00D2AF61 /* PresentedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072653A1C72D88F00D2AF61 /* PresentedTableViewController.swift */; };
 		3072653D1C73B63200D2AF61 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072653C1C73B63200D2AF61 /* TermsViewController.swift */; };
 		30975C671C7040E300D2BDAA /* nyc.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 30975C661C7040E300D2BDAA /* nyc.mp4 */; };
@@ -26,6 +25,9 @@
 		30B9E7CD1C7B519200C04530 /* Timeout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B9E7CC1C7B519100C04530 /* Timeout.swift */; };
 		30B9E7CF1C7B52F100C04530 /* SignupViewControllerThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B9E7CE1C7B52F100C04530 /* SignupViewControllerThree.swift */; };
 		30B9E7D11C7B554300C04530 /* SignupViewControllerFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B9E7D01C7B554300C04530 /* SignupViewControllerFour.swift */; };
+		30B9E7D71C7B928100C04530 /* CountryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B9E7D41C7B928100C04530 /* CountryPicker.swift */; };
+		30B9E7D81C7B928100C04530 /* CountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B9E7D51C7B928100C04530 /* CountryView.swift */; };
+		30B9E7D91C7B928100C04530 /* CountryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30B9E7D61C7B928100C04530 /* CountryView.xib */; };
 		30BECBDA1C6E9FF200B8A088 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBCC1C6E9FF200B8A088 /* AppDelegate.swift */; };
 		30BECBDB1C6E9FF200B8A088 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBCD1C6E9FF200B8A088 /* Extensions.swift */; };
 		30BECBDC1C6E9FF200B8A088 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBCE1C6E9FF200B8A088 /* HomeViewController.swift */; };
@@ -80,7 +82,6 @@
 		306D6DB81C7008DA00467C41 /* Nunito-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Medium.ttf"; sourceTree = "<group>"; };
 		306D6DB91C7008DA00467C41 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
 		306D6DBA1C7008DA00467C41 /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-SemiBold.ttf"; sourceTree = "<group>"; };
-		307265371C72B95200D2AF61 /* countries */ = {isa = PBXFileReference; lastKnownFileType = folder; name = countries; path = "paykloud-ios/countries"; sourceTree = SOURCE_ROOT; };
 		3072653A1C72D88F00D2AF61 /* PresentedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PresentedTableViewController.swift; path = "paykloud-ios/PresentedTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		3072653C1C73B63200D2AF61 /* TermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TermsViewController.swift; path = "paykloud-ios/TermsViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30852D781C6E9ADF00CDCAA2 /* PayKloud.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = PayKloud.entitlements; path = "paykloud-ios/PayKloud.entitlements"; sourceTree = SOURCE_ROOT; };
@@ -89,6 +90,9 @@
 		30B9E7CC1C7B519100C04530 /* Timeout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Timeout.swift; path = "paykloud-ios/Timeout.swift"; sourceTree = SOURCE_ROOT; };
 		30B9E7CE1C7B52F100C04530 /* SignupViewControllerThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewControllerThree.swift; path = "paykloud-ios/SignupViewControllerThree.swift"; sourceTree = SOURCE_ROOT; };
 		30B9E7D01C7B554300C04530 /* SignupViewControllerFour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewControllerFour.swift; sourceTree = SOURCE_ROOT; };
+		30B9E7D41C7B928100C04530 /* CountryPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountryPicker.swift; path = "paykloud-ios/countries/CountryPicker.swift"; sourceTree = SOURCE_ROOT; };
+		30B9E7D51C7B928100C04530 /* CountryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountryView.swift; path = "paykloud-ios/countries/CountryView.swift"; sourceTree = SOURCE_ROOT; };
+		30B9E7D61C7B928100C04530 /* CountryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CountryView.xib; path = "paykloud-ios/countries/CountryView.xib"; sourceTree = SOURCE_ROOT; };
 		30BECBCC1C6E9FF200B8A088 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "paykloud-ios/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
 		30BECBCD1C6E9FF200B8A088 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = "paykloud-ios/Extensions.swift"; sourceTree = SOURCE_ROOT; };
 		30BECBCE1C6E9FF200B8A088 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = "paykloud-ios/HomeViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -195,7 +199,9 @@
 		307265391C72B95900D2AF61 /* CountryPicker */ = {
 			isa = PBXGroup;
 			children = (
-				307265371C72B95200D2AF61 /* countries */,
+				30B9E7D41C7B928100C04530 /* CountryPicker.swift */,
+				30B9E7D51C7B928100C04530 /* CountryView.swift */,
+				30B9E7D61C7B928100C04530 /* CountryView.xib */,
 			);
 			name = CountryPicker;
 			sourceTree = "<group>";
@@ -496,6 +502,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30BECBFF1C6EA6EC00B8A088 /* Assets.xcassets in Resources */,
+				30B9E7D91C7B928100C04530 /* CountryView.xib in Resources */,
 				30BECBEB1C6EA02800B8A088 /* Main.storyboard in Resources */,
 				30BECBDD1C6E9FF200B8A088 /* LaunchScreen.storyboard in Resources */,
 				306D6DC11C7008DA00467C41 /* Nunito-Regular.ttf in Resources */,
@@ -506,7 +513,6 @@
 				306D6DBD1C7008DA00467C41 /* Nunito-ExtraBold.ttf in Resources */,
 				3099CB6F1C70D69D000CEDE2 /* Auth.storyboard in Resources */,
 				306D6DBF1C7008DA00467C41 /* Nunito-Light.ttf in Resources */,
-				307265381C72B95200D2AF61 /* countries in Resources */,
 				306D6DBB1C7008DA00467C41 /* Nunito-Black.ttf in Resources */,
 				306D6DC01C7008DA00467C41 /* Nunito-Medium.ttf in Resources */,
 			);
@@ -587,6 +593,7 @@
 				3064E8A61C742A110073E00B /* UserDefaultsPasscodeRepository.swift in Sources */,
 				30BECBE01C6E9FF200B8A088 /* Logs.swift in Sources */,
 				30BECC031C6F778B00B8A088 /* Gravatar.swift in Sources */,
+				30B9E7D71C7B928100C04530 /* CountryPicker.swift in Sources */,
 				3064E8A51C742A110073E00B /* PasscodeSettingsViewController.swift in Sources */,
 				30BECBDC1C6E9FF200B8A088 /* HomeViewController.swift in Sources */,
 				30B9E7CF1C7B52F100C04530 /* SignupViewControllerThree.swift in Sources */,
@@ -598,6 +605,7 @@
 				30BECBE51C6E9FF200B8A088 /* SettingsViewController.swift in Sources */,
 				30B9E7CD1C7B519200C04530 /* Timeout.swift in Sources */,
 				30BECBDA1C6E9FF200B8A088 /* AppDelegate.swift in Sources */,
+				30B9E7D81C7B928100C04530 /* CountryView.swift in Sources */,
 				30D7B7311C77883500B64B7F /* SignupViewControllerOne.swift in Sources */,
 				30BECBDF1C6E9FF200B8A088 /* LoginViewController.swift in Sources */,
 				30BECBE41C6E9FF200B8A088 /* RootViewController.swift in Sources */,
