@@ -59,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          Stripe.setDefaultPublishableKey("pk_test_6MOTlPN5JrNS5dIN4DUeKFDA")
 
         // Enable Stripe PROD
-//        Stripe.setDefaultPublishableKey("pk_live_9kfmn7pMRPKAYSpcf1Fmn266")
+        // Stripe.setDefaultPublishableKey("pk_live_9kfmn7pMRPKAYSpcf1Fmn266")
 
         // Enable push notifications
         if #available(iOS 8.0, *) {

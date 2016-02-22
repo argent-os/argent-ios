@@ -25,6 +25,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
     let emailTextField = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
     let passwordTextField = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
     
+
+
     // Set up initial view height adjustment to false
     var adjustingHeightBool = false
     
@@ -34,8 +36,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         // Focuses view controller on first name text input
         if(alreadyAdjusted==false) {
             emailTextField.becomeFirstResponder()
-        } else {
-            
+        } else if let userUsername = NSUserDefaults.standardUserDefaults().stringForKey("userUsername") {
+            emailTextField.text = userUsername
+            passwordTextField.becomeFirstResponder()
         }
         
         // Add close button to keyboards
