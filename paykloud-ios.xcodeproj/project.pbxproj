@@ -23,6 +23,9 @@
 		3072653D1C73B63200D2AF61 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072653C1C73B63200D2AF61 /* TermsViewController.swift */; };
 		30975C671C7040E300D2BDAA /* nyc.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 30975C661C7040E300D2BDAA /* nyc.mp4 */; };
 		3099CB6F1C70D69D000CEDE2 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3099CB6E1C70D69D000CEDE2 /* Auth.storyboard */; };
+		30B9E7CD1C7B519200C04530 /* Timeout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B9E7CC1C7B519100C04530 /* Timeout.swift */; };
+		30B9E7CF1C7B52F100C04530 /* SignupViewControllerThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B9E7CE1C7B52F100C04530 /* SignupViewControllerThree.swift */; };
+		30B9E7D11C7B554300C04530 /* SignupViewControllerFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B9E7D01C7B554300C04530 /* SignupViewControllerFour.swift */; };
 		30BECBDA1C6E9FF200B8A088 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBCC1C6E9FF200B8A088 /* AppDelegate.swift */; };
 		30BECBDB1C6E9FF200B8A088 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBCD1C6E9FF200B8A088 /* Extensions.swift */; };
 		30BECBDC1C6E9FF200B8A088 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBCE1C6E9FF200B8A088 /* HomeViewController.swift */; };
@@ -83,6 +86,9 @@
 		30852D781C6E9ADF00CDCAA2 /* PayKloud.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = PayKloud.entitlements; path = "paykloud-ios/PayKloud.entitlements"; sourceTree = SOURCE_ROOT; };
 		30975C661C7040E300D2BDAA /* nyc.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = nyc.mp4; path = "paykloud-ios/videos/nyc.mp4"; sourceTree = SOURCE_ROOT; };
 		3099CB6E1C70D69D000CEDE2 /* Auth.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Auth.storyboard; path = "paykloud-ios/Auth.storyboard"; sourceTree = SOURCE_ROOT; };
+		30B9E7CC1C7B519100C04530 /* Timeout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Timeout.swift; path = "paykloud-ios/Timeout.swift"; sourceTree = SOURCE_ROOT; };
+		30B9E7CE1C7B52F100C04530 /* SignupViewControllerThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewControllerThree.swift; path = "paykloud-ios/SignupViewControllerThree.swift"; sourceTree = SOURCE_ROOT; };
+		30B9E7D01C7B554300C04530 /* SignupViewControllerFour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewControllerFour.swift; sourceTree = SOURCE_ROOT; };
 		30BECBCC1C6E9FF200B8A088 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "paykloud-ios/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
 		30BECBCD1C6E9FF200B8A088 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = "paykloud-ios/Extensions.swift"; sourceTree = SOURCE_ROOT; };
 		30BECBCE1C6E9FF200B8A088 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = "paykloud-ios/HomeViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -257,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				30BECBD21C6E9FF200B8A088 /* Logs.swift */,
+				30B9E7CC1C7B519100C04530 /* Timeout.swift */,
 				30BECC021C6F778B00B8A088 /* Gravatar.swift */,
 			);
 			name = Modules;
@@ -286,6 +293,8 @@
 			children = (
 				30D7B7301C77883500B64B7F /* SignupViewControllerOne.swift */,
 				30D7B7341C78F96500B64B7F /* SignupViewControllerTwo.swift */,
+				30B9E7CE1C7B52F100C04530 /* SignupViewControllerThree.swift */,
+				30B9E7D01C7B554300C04530 /* SignupViewControllerFour.swift */,
 			);
 			name = Signup;
 			sourceTree = "<group>";
@@ -572,6 +581,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30B9E7D11C7B554300C04530 /* SignupViewControllerFour.swift in Sources */,
 				30D7B7331C77884600B64B7F /* AuthViewController.swift in Sources */,
 				30D7B7351C78F96500B64B7F /* SignupViewControllerTwo.swift in Sources */,
 				3064E8A61C742A110073E00B /* UserDefaultsPasscodeRepository.swift in Sources */,
@@ -579,12 +589,14 @@
 				30BECC031C6F778B00B8A088 /* Gravatar.swift in Sources */,
 				3064E8A51C742A110073E00B /* PasscodeSettingsViewController.swift in Sources */,
 				30BECBDC1C6E9FF200B8A088 /* HomeViewController.swift in Sources */,
+				30B9E7CF1C7B52F100C04530 /* SignupViewControllerThree.swift in Sources */,
 				30BECBE31C6E9FF200B8A088 /* PaymentViewController.swift in Sources */,
 				30BECBDE1C6E9FF200B8A088 /* LeftMenuViewController.swift in Sources */,
 				3072653B1C72D88F00D2AF61 /* PresentedTableViewController.swift in Sources */,
 				30BECBE71C6E9FF200B8A088 /* StarButton.swift in Sources */,
 				30BECBE11C6E9FF200B8A088 /* Paths.swift in Sources */,
 				30BECBE51C6E9FF200B8A088 /* SettingsViewController.swift in Sources */,
+				30B9E7CD1C7B519200C04530 /* Timeout.swift in Sources */,
 				30BECBDA1C6E9FF200B8A088 /* AppDelegate.swift in Sources */,
 				30D7B7311C77883500B64B7F /* SignupViewControllerOne.swift in Sources */,
 				30BECBDF1C6E9FF200B8A088 /* LoginViewController.swift in Sources */,

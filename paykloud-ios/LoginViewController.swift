@@ -43,7 +43,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
 
         loginButton.layer.cornerRadius = 5
         loginButton.clipsToBounds = true
-        loginButton.backgroundColor = UIColor(rgba: "#1e63ef")
+        loginButton.backgroundColor = UIColor(rgba: "#1aa8f6")
             
         // Border radius on uiview
         view.layer.cornerRadius = 5

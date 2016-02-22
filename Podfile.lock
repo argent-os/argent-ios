@@ -2,6 +2,7 @@ PODS:
   - Alamofire (3.2.0)
   - CardIO (5.3.1)
   - Firebase (2.5.1)
+  - KeychainSwift (3.0.11)
   - MZAppearance (1.1.6)
   - MZFormSheetPresentationController (2.3.0):
     - MZAppearance
@@ -13,7 +14,6 @@ PODS:
   - Stripe/Core (6.2.0)
   - SVProgressHUD (2.0-beta8)
   - SwiftyJSON (2.3.2)
-  - SwiftyKey (1.0.0)
   - TextFieldEffects (1.1.0)
   - UIColor_Hex_Swift (1.9)
   - VideoSplashKit (1.1.0)
@@ -22,6 +22,7 @@ DEPENDENCIES:
   - Alamofire (~> 3.0)
   - CardIO (~> 5.3.1)
   - Firebase (>= 2.5.0)
+  - KeychainSwift (~> 3.0)
   - MZFormSheetPresentationController (~> 2.3.0)
   - Neon (~> 0.0.3)
   - PasscodeLock (~> 1.0.1)
@@ -29,7 +30,6 @@ DEPENDENCIES:
   - Stripe (~> 6.2.0)
   - SVProgressHUD (~> 2.0-beta8)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
-  - SwiftyKey (~> 1.0.0)
   - TextFieldEffects (~> 1.1.0)
   - UIColor_Hex_Swift (~> 1.8)
   - VideoSplashKit (~> 1.1.0)
@@ -47,6 +47,7 @@ SPEC CHECKSUMS:
   Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
   CardIO: a299efcd0348c3b256a1da53f22951319c3855a2
   Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
+  KeychainSwift: 0a4214c910423543a42b0f30f25987d46178b6a5
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   MZFormSheetPresentationController: 076391ba3f6474b4ef75eaaef2380991524d8be4
   Neon: 589d3d217d326abe09726bf81add106cff685bf2
@@ -55,7 +56,6 @@ SPEC CHECKSUMS:
   Stripe: 275524137e6c4cc1058f6d32ece248adf30a21f9
   SVProgressHUD: 6e48a1dda09ce3b58adc41d013baed3a8e8980ff
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
-  SwiftyKey: 5abfd3ba4215c00173bf6fe0813accef45956f38
   TextFieldEffects: 8e43fea8836e97be80fc4db27a1596c9e98a26ba
   UIColor_Hex_Swift: 2ee747c0fed8b72b2135ef474b80a6921e489daa
   VideoSplashKit: 0aa63d0bb37c5bd357de3e6a2a13dea5acad4d66

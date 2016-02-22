@@ -21,8 +21,10 @@ var userData:JSON? // init user data, declare globally, needs SwiftyJSON
 // In case this doesnt work, make sure NSTransportSecurity has the sub-item Allow Arbitrary Loads set to YES
 // DEV
  let firebaseUrl = Firebase(url:"https://demosandbox.firebaseio.com/api/v1")
+// let apiUrl = "http://localhost:5001"
 // let apiUrl = "http://192.168.1.182:5001"
-let apiUrl = "http://192.168.1.232:5001"
+ let apiUrl = "http://192.168.1.232:5001"
+
 // PROD
 //let firebaseUrl = Firebase(url:"https://paykloud.firebaseio.com/api/v1")
 //let apiUrl = "http://api.paykloud.com"

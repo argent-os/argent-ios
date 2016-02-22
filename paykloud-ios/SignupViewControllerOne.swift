@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import TextFieldEffects
 import UIColor_Hex_Swift
+import SVProgressHUD
 
 class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
 
@@ -21,16 +22,24 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
     let lastNameTextField  = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
     
     // Height not adjusted button bool value
-    var alreadyAdjusted:Bool = false
+    var alreadyAdjustedVC1:Bool = false
     
     override func viewDidAppear(animated: Bool) {
         // Focuses view controller on first name text input
         firstNameTextField.becomeFirstResponder()
+        
+        self.continueButton.enabled = false
+        // Allow continue to be clicked
+        Timeout(0.3) {
+            SVProgressHUD.dismiss()
+            self.continueButton.enabled = true
+        }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        SVProgressHUD.show()
+
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
@@ -40,10 +49,11 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
         self.lastNameTextField.delegate = self
         
         continueButton.layer.cornerRadius = 5
-        continueButton.backgroundColor = UIColor(rgba: "#1e63ef")
+        continueButton.backgroundColor = UIColor(rgba: "#1aa8f6")
 
         // Programatically set the input fields
         firstNameTextField.tag = 89
+        firstNameTextField.textAlignment = NSTextAlignment.Center
         firstNameTextField.borderActiveColor = UIColor(rgba: "#FFF")
         firstNameTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
         firstNameTextField.backgroundColor = UIColor.clearColor()
@@ -61,6 +71,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
         view.addSubview(firstNameTextField)
         
         lastNameTextField.tag = 90
+        lastNameTextField.textAlignment = NSTextAlignment.Center
         lastNameTextField.borderActiveColor = UIColor(rgba: "#FFF")
         lastNameTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
         lastNameTextField.backgroundColor = UIColor.clearColor()
@@ -104,7 +115,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
     // Adjusts keyboard height to view
     func adjustingHeight(show:Bool, notification:NSNotification) {
         // Check if already adjusted height
-        if(alreadyAdjusted == false) {
+        if(alreadyAdjustedVC1 == false) {
             var userInfo = notification.userInfo!
             let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
             let animationDurarion = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval
@@ -113,7 +124,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
                 self.bottomConstraint.constant += changeInHeight
             })
             // Already adjusted height so make it true so it doesn't continue adjusting everytime a label is focused
-            alreadyAdjusted = true
+            alreadyAdjustedVC1 = true
         }
     }
 
@@ -142,6 +153,30 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
             return true
         }
         return false
+    }
+    
+    func displayErrorAlertMessage(alertMessage:String) {
+        let displayAlert = UIAlertController(title: "Error", message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
+        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
+        displayAlert.addAction(okAction);
+        self.presentViewController(displayAlert, animated: true, completion: nil);
+    }
+    
+    // VALIDATION
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "VC2") {
+            if(firstNameTextField.text?.characters.count < 1) {
+                displayErrorAlertMessage("First name cannot be empty")
+            }
+            if(lastNameTextField.text?.characters.count < 1) {
+                displayErrorAlertMessage("Last name cannot be empty")
+            } else {
+                NSUserDefaults.standardUserDefaults().setValue(firstNameTextField.text!, forKey: "userFirstName")
+                NSUserDefaults.standardUserDefaults().setValue(lastNameTextField.text!, forKey: "userLastName")
+                NSUserDefaults.standardUserDefaults().synchronize();
+                
+            }
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {

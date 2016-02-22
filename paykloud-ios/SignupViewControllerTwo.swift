@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import TextFieldEffects
 import UIColor_Hex_Swift
+import SVProgressHUD
 
 class SignupViewControllerTwo: UIViewController, UITextFieldDelegate {
     
@@ -22,11 +23,24 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate {
     let phoneNumberTextField  = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
     
     // Height not adjusted button bool value
-    var adjustingHeightBool = false
+    var alreadyAdjustedVC2:Bool = false
+    
+    override func viewDidAppear(animated: Bool) {
+        // Focuses view controller on first name text input
+        usernameTextField.becomeFirstResponder()
+
+        self.continueButton.enabled = false
+        // Allow continue to be clicked
+        Timeout(0.3) {
+            SVProgressHUD.dismiss()
+            self.continueButton.enabled = true
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        SVProgressHUD.show()
+
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
@@ -37,10 +51,11 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate {
         self.phoneNumberTextField.delegate = self
         
         continueButton.layer.cornerRadius = 5
-        continueButton.backgroundColor = UIColor(rgba: "#1e63ef")
+        continueButton.backgroundColor = UIColor(rgba: "#1aa8f6")
 
         // Programatically set the input fields
         usernameTextField.tag = 123
+        usernameTextField.textAlignment = NSTextAlignment.Center
         usernameTextField.borderActiveColor = UIColor(rgba: "#FFF")
         usernameTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
         usernameTextField.backgroundColor = UIColor.clearColor()
@@ -58,6 +73,7 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate {
         view.addSubview(usernameTextField)
         
         emailTextField.tag = 124
+        emailTextField.textAlignment = NSTextAlignment.Center
         emailTextField.borderActiveColor = UIColor(rgba: "#FFF")
         emailTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
         emailTextField.backgroundColor = UIColor.clearColor()
@@ -75,10 +91,11 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate {
         view.addSubview(emailTextField)
         
         phoneNumberTextField.tag = 125
+        phoneNumberTextField.textAlignment = NSTextAlignment.Center
         phoneNumberTextField.borderActiveColor = UIColor(rgba: "#FFF")
         phoneNumberTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
         phoneNumberTextField.backgroundColor = UIColor.clearColor()
-        phoneNumberTextField.placeholder = "Phone Number"
+        phoneNumberTextField.placeholder = "Phone Number (US Only)"
         phoneNumberTextField.placeholderColor = UIColor.grayColor()
         phoneNumberTextField.textColor = UIColor.grayColor()
         phoneNumberTextField.autocapitalizationType = UITextAutocapitalizationType.None
@@ -113,7 +130,7 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate {
     // Adjusts keyboard height to view
     func adjustingHeight(show:Bool, notification:NSNotification) {
         // Check if already adjusted height
-        if(adjustingHeightBool == false) {
+        if(alreadyAdjustedVC2 == false) {
             var userInfo = notification.userInfo!
             let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
             let animationDurarion = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval
@@ -122,12 +139,11 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate {
                 self.bottomConstraint.constant += changeInHeight
             })
             // Already adjusted height so make it true so it doesn't continue adjusting everytime a label is focused
-            adjustingHeightBool = true
+            alreadyAdjustedVC2 = true
         }
     }
     
     func keyboardWillShow(notification:NSNotification) {
-        print("keyboard will show")
         adjustingHeight(true, notification: notification)
     }
     
@@ -163,6 +179,7 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate {
         return false
     }
     
+    // Format phone number input textfield
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if(textField == phoneNumberTextField) {
             let newString = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
@@ -209,16 +226,35 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate {
 
     }
     
+    func displayErrorAlertMessage(alertMessage:String) {
+        let displayAlert = UIAlertController(title: "Error", message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
+        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
+        displayAlert.addAction(okAction);
+        self.presentViewController(displayAlert, animated: true, completion: nil);
+    }
+    
+    // VALIDATION
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Username, email, and phone validation
+        if(!isValidEmail(emailTextField.text!)) {
+            displayErrorAlertMessage("Email is not valid")
+        } else if(emailTextField.text?.characters.count < 1 || usernameTextField.text?.characters.count < 1) {
+            displayErrorAlertMessage("Username and email fields cannot be empty")
+        } else {
+            NSUserDefaults.standardUserDefaults().setValue(usernameTextField.text!, forKey: "userUsername")
+            NSUserDefaults.standardUserDefaults().setValue(emailTextField.text!, forKey: "userEmail")
+            NSUserDefaults.standardUserDefaults().setValue(phoneNumberTextField.text!, forKey: "userPhoneNumber")
+            NSUserDefaults.standardUserDefaults().synchronize();
+        }
+    }
+    
     override func viewWillDisappear(animated: Bool) {
-        print("view will disappear")
-        
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        print("touches began, ending editing")
-                self.view.endEditing(true)
+        self.view.endEditing(true)
     }
     
 }
