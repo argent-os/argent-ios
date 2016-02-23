@@ -198,20 +198,20 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
             {
                 dobMonth = decimalStr.substringWithRange(NSMakeRange(index, 2))
                 formattedString.appendFormat("%@/", dobMonth)
-                print("dob month", dobMonth)
+//                print("dob month", dobMonth)
                 index += 2
             }
             if length - index > 2
             {
                 dobDay = decimalStr.substringWithRange(NSMakeRange(index, 2))
                 formattedString.appendFormat("%@/", dobDay)
-                print("dob day", dobDay)
+//                print("dob day", dobDay)
                 index += 2
             }
             if length - index >= 4
             {
                 dobYear = decimalStr.substringWithRange(NSMakeRange(index, 4))
-                print("dob year", dobYear)
+//                print("dob year", dobYear)
             }
             
             let remainder = decimalStr.substringFromIndex(index)

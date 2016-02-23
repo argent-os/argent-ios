@@ -179,6 +179,19 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate {
         return false
     }
     
+    func isOnlyNumeral(phoneNumber: String) -> Bool {
+        var isValid = true
+        let name = phoneNumber as NSString
+        let nameSet = NSCharacterSet(charactersInString: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLKMNOPQRSTUVWXYZ- ")
+        let set = nameSet.invertedSet
+        let range = name.rangeOfCharacterFromSet(set)
+        let isInvalidName = range.location != NSNotFound
+        if(isInvalidName) {
+            isValid = false
+        }
+        return true
+    }
+    
     // Format phone number input textfield
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if(textField == phoneNumberTextField) {
@@ -240,6 +253,8 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate {
             displayErrorAlertMessage("Email is not valid")
         } else if(emailTextField.text?.characters.count < 1 || usernameTextField.text?.characters.count < 1) {
             displayErrorAlertMessage("Username and email fields cannot be empty")
+        } else if(!isOnlyNumeral(phoneNumberTextField.text!) || (phoneNumberTextField.text?.characters.count > 0 && phoneNumberTextField.text?.characters.count < 14)) {
+            displayErrorAlertMessage("Phone number not valid")
         } else {
             NSUserDefaults.standardUserDefaults().setValue(usernameTextField.text!, forKey: "userUsername")
             NSUserDefaults.standardUserDefaults().setValue(emailTextField.text!, forKey: "userEmail")

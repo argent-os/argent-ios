@@ -167,6 +167,12 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate {
         return false
     }
     
+    // Checks for password to have at least one uppercase, at least a number, and a minimum length of 6 characters + a maximum of 15.
+    func isValidPassword(candidate: String) -> Bool {
+        let passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{6,15}$"
+        return NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluateWithObject(candidate)
+    }
+    
     // VALIDATION
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(passwordTextField.text != repeatPasswordTextField.text) {
@@ -177,8 +183,8 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate {
             // display alert
             displayErrorAlertMessage("Password cannot be empty");
             return;
-        } else if(passwordTextField.text?.characters.count < 8) {
-            displayErrorAlertMessage("Password length must be longer than 8 characters");
+        } else if(!isValidPassword(passwordTextField.text!)) {
+            displayErrorAlertMessage("Password must contain at least 1 capital letter and 1 number, be longer than 6 characters and cannot be more than 15 characters in length");
         } else {
             keychain.set(passwordTextField.text!, forKey: "userPassword")
         }
