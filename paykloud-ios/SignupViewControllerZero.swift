@@ -28,8 +28,8 @@ class SignupViewControllerZero: UIViewController {
         let screenHeight = screen.size.height
         
         
-        // Close button to return to login
-        let closeButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: .Plain, target: self, action: "returnToLogin")
+        // Close button to return to auth view
+        let closeButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: .Plain, target: self, action: "goToAuth")
         navigationItem.leftBarButtonItem = closeButton
         closeButton.tintColor = UIColor.grayColor()
         title = ""
@@ -43,9 +43,12 @@ class SignupViewControllerZero: UIViewController {
         
     }
     
-    // Return to login func
-    func returnToLogin() {
-        self.performSegueWithIdentifier("loginView", sender: self);
+    // Return to auth view func
+    func goToAuth() {
+        // Normally identifiers are started with capital letters, exception being authViewController, make sure UIStoryboard name is Auth, not Main
+        let viewController:AuthViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateViewControllerWithIdentifier("authViewController") as! AuthViewController
+        
+        self.presentViewController(viewController, animated: true, completion: nil)
     }
     
     // VALIDATION

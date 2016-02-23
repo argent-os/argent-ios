@@ -81,7 +81,7 @@ class AuthViewController: VideoSplashViewController  {
     // Set the ID in the storyboard in order to enable transition!
     func signup(sender:AnyObject!)
     {
-        let viewController:SignupViewControllerZero = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SignupViewControllerZero") as! SignupViewControllerZero
+        let viewController:UINavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SignupNavigationController") as! UINavigationController
         
         self.presentViewController(viewController, animated: true, completion: nil)
         

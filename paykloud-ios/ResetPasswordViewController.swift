@@ -1,5 +1,5 @@
 //
-//  LoginViewController.swift
+//  ResetPasswordViewController.swift
 //  paykloud-ios
 //
 //  Created by Sinan Ulkuatam on 2/9/16.
@@ -15,38 +15,41 @@ import VideoSplashKit
 import TextFieldEffects
 import UIColor_Hex_Swift
 
-class LoginViewController: UIViewController, UITextFieldDelegate  {
+class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
     
     @IBOutlet weak var closeButton: UIButton!
-    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     let emailTextField = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
-    let passwordTextField = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
     
     // Set up initial view height adjustment to false
-    var alreadyAdjusted:Bool = false
+    var alreadyAdjustedResetPass = false
+    var adjustCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Focuses view controller on first name text input
-        if(alreadyAdjusted==false) {
+        if(alreadyAdjustedResetPass==false) {
             emailTextField.becomeFirstResponder()
         } else if let userUsername = NSUserDefaults.standardUserDefaults().stringForKey("userUsername") {
             emailTextField.text = userUsername
-            passwordTextField.becomeFirstResponder()
+            emailTextField.becomeFirstResponder()
         }
         
         // Add action to close button to return to auth view
-        closeButton.addTarget(self, action: "goToAuth:", forControlEvents: UIControlEvents.TouchUpInside)
+        closeButton.addTarget(self, action: "goToLogin:", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        // Add action to reset button to execute function
+        resetButton.addTarget(self, action: "resetButtonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
         
         // Add close button to keyboards
         // addCloseButtonKeyBoard()
-
-        loginButton.layer.cornerRadius = 5
-        loginButton.clipsToBounds = true
-        loginButton.backgroundColor = UIColor(rgba: "#1aa8f6")
+        
+        resetButton.layer.cornerRadius = 5
+        resetButton.clipsToBounds = true
+        resetButton.backgroundColor = UIColor(rgba: "#1aa8f6")
         
         // Border radius on uiview
         view.layer.cornerRadius = 5
@@ -54,14 +57,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         
         // Inherit UITextField Delegate, this is used for next and go on keyboard
         emailTextField.delegate = self;
-        passwordTextField.delegate = self;
         
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
         // Tags are 4 and 5 due to signup view textfields taking values 0-3
-        emailTextField.tag = 4
+        emailTextField.tag = 328
         emailTextField.textAlignment = NSTextAlignment.Center
         emailTextField.borderActiveColor = UIColor(rgba: "#FFF")
         emailTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
@@ -78,24 +80,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         emailTextField.frame.origin.x = (self.view.bounds.size.width - emailTextField.frame.size.width) / 2.0
         emailTextField.returnKeyType = UIReturnKeyType.Next
         view.addSubview(emailTextField)
-        
-        passwordTextField.tag = 5
-        passwordTextField.textAlignment = NSTextAlignment.Center
-        passwordTextField.borderActiveColor = UIColor(rgba: "#FFF")
-        passwordTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
-        passwordTextField.backgroundColor = UIColor.clearColor()
-        passwordTextField.placeholder = "Password"
-        passwordTextField.placeholderColor = UIColor.grayColor()
-        passwordTextField.autocapitalizationType = UITextAutocapitalizationType.None
-        emailTextField.autocorrectionType = UITextAutocorrectionType.No
-        passwordTextField.textColor = UIColor.grayColor()
-        passwordTextField.returnKeyType = UIReturnKeyType.Next
-        passwordTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
-        passwordTextField.secureTextEntry = true
-        passwordTextField.frame.origin.y = screenHeight*0.40 // 25 down from the top
-        passwordTextField.frame.origin.x = (self.view.bounds.size.width - passwordTextField.frame.size.width) / 2.0
-        passwordTextField.returnKeyType = UIReturnKeyType.Go
-        view.addSubview(passwordTextField)
         
         // Dismiss loader
         SVProgressHUD.dismiss()
@@ -120,39 +104,31 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
     }
     
     // Set the ID in the storyboard in order to enable transition!
-    func goToAuth(sender:AnyObject!)
+    func goToLogin(sender:AnyObject!)
     {
-        // Normally identifiers are started with capital letters, exception being authViewController, make sure UIStoryboard name is Auth, not Main
-        let viewController:AuthViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateViewControllerWithIdentifier("authViewController") as! AuthViewController
-        
-        self.presentViewController(viewController, animated: true, completion: nil)
+        self.performSegueWithIdentifier("loginView", sender: self)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    @IBAction func loginButtonTapped(sender: AnyObject) {
+    
+    @IBAction func resetButtonTapped(sender: AnyObject) {
         let email = emailTextField.text
         let username = emailTextField.text
-        let password = passwordTextField.text
         SVProgressHUD.show()
-
+        
         // check for empty fields
         if(email!.isEmpty) {
             // display alert message
             displayAlertMessage("Username/Email not entered");
             return;
-        } else if(password!.isEmpty) {
-            displayAlertMessage("Password not entered");
-            return;
         }
         
-        Alamofire.request(.POST, apiUrl + "/v1/login", parameters: [
+        Alamofire.request(.POST, apiUrl + "/v1/remindpassword", parameters: [
             "username": username!,
-            "email":email!,
-            "password":password!
+            "email":email!
             ],
             encoding:.JSON)
             .responseJSON { response in
@@ -163,70 +139,32 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
                 
                 //print("login pressed")
                 if(response.response?.statusCode == 200) {
-                    // Login is successful
-                    NSUserDefaults.standardUserDefaults().setBool(true,forKey:"userLoggedIn");
-                    NSUserDefaults.standardUserDefaults().synchronize();
-                    SVProgressHUD.dismiss()
-
-                    // go to main view
-                    self.performSegueWithIdentifier("homeView", sender: self);
+                    SVProgressHUD.showSuccessWithStatus("Password reset link sent!")
                 } else {
-                    SVProgressHUD.dismiss()
+                    SVProgressHUD.showErrorWithStatus("An error occured")
                 }
-
+                
                 switch response.result {
                 case .Success:
                     if let value = response.result.value {
                         let json = JSON(value)
-                        // print("User Data: \(userData)")                        
+                        // print("User Data: \(userData)")
                         // assign userData to self, access globally
                         userData = json
                         
-                        //print(json)
+                        print(json)
                         self.dismissKeyboard()
                         
-                        // Get the firebase token from server response
-                        let AUTH_TOKEN = json["auth"]["token"].stringValue
-                        
-                        // Auth to firebase
-                        firebaseUrl.authWithCustomToken(AUTH_TOKEN, withCompletionBlock: { error, authData in
-                            if error != nil {
-                                // print("Login failed! \(error)")
-                                self.displayErrorAlertMessage("Failed to login, please check email and password are correct");
-
-                            } else {
-                                // print("Login succeeded! \(authData)")
-                            }
-                        })
-
                     }
                 case .Failure(let error):
                     print(error)
-                    self.displayErrorAlertMessage("Failed to login, please check username/email and password are correct");
+                    self.displayErrorAlertMessage("Failed to remind password, please check username/email is correct");
                 }
         }
         
     }
-
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // IMPORTANT: This allows the rootViewController to be prepared upon login when preparing for segue (transition) to the HomeViewController
-        // Without this the side nav menu will not work!
-        switch sender?.tag {
-        case 1?:
-            // Login button pressed
-            print("logging in")
-        case 2?:
-            // Signup button pressed
-            print("signup pressed")
-        case 3?:
-            // New signup button pressed
-            print("new signup pressed")
-        default:
-            // Sent root view controller (default is login) otherwise send to register page
-            let rootViewController = (self.storyboard?.instantiateViewControllerWithIdentifier("RootViewController"))! as UIViewController
-            self.presentViewController(rootViewController, animated: true, completion: nil)
-            print("neither login or signup pressed")
-        }
     }
     
     func displayAlertMessage(alertMessage:String) {
@@ -267,38 +205,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         closeToolbar.items = items
         closeToolbar.sizeToFit()
         emailTextField.inputAccessoryView=closeToolbar
-        passwordTextField.inputAccessoryView=closeToolbar
-    }
-    
-    // Allow use of next and join on keyboard
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        
-        let nextTag: Int = textField.tag + 1
-        
-        let nextResponder: UIResponder? = textField.superview?.superview?.viewWithTag(nextTag)
-        
-        if let nextR = nextResponder
-        {
-            // Found next responder, so set it.
-            nextR.becomeFirstResponder()
-        }
-        else
-        {
-            // Not found, so remove keyboard.
-            SVProgressHUD.showWithStatus("Logging in")
-            self.loginButtonTapped(self)
-            textField.resignFirstResponder()
-            dismissKeyboard()
-            return true
-        }
-        
-        return false
-        
     }
     
     // Adjusts keyboard height to view
     func adjustingHeight(show:Bool, notification:NSNotification) {
-        if(alreadyAdjusted == false) {
+        if(alreadyAdjustedResetPass == false && adjustCount == 0) {
             // Check if already adjusted height
             var userInfo = notification.userInfo!
             let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
@@ -306,18 +217,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
             let changeInHeight = (CGRectGetHeight(keyboardFrame) - 5) * (show ? 1 : -1)
             UIView.animateWithDuration(animationDurarion, animations: { () -> Void in
                 self.bottomConstraint.constant += changeInHeight
-                print(self.bottomConstraint.constant)
                 if(self.bottomConstraint.constant < 0) {
-                    print("negative constant, adding more")
                     self.bottomConstraint.constant += (-1 * (2*changeInHeight))
-                    print("new val", self.bottomConstraint.constant)
                 }
             })
             // Already adjusted height so make it true so it doesn't continue adjusting everytime a label is focused
-            alreadyAdjusted = true
+            adjustCount++
+            alreadyAdjustedResetPass = true
         }
     }
-
+    
     
     func keyboardWillShow(notification:NSNotification) {
         adjustingHeight(true, notification: notification)

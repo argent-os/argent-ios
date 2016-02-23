@@ -29,6 +29,7 @@
 		30B9E7D81C7B928100C04530 /* CountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B9E7D51C7B928100C04530 /* CountryView.swift */; };
 		30B9E7D91C7B928100C04530 /* CountryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30B9E7D61C7B928100C04530 /* CountryView.xib */; };
 		30B9E7DB1C7BC9FB00C04530 /* SignupViewControllerZero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B9E7DA1C7BC9FB00C04530 /* SignupViewControllerZero.swift */; };
+		30B9E7DD1C7C9B0F00C04530 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B9E7DC1C7C9B0F00C04530 /* ResetPasswordViewController.swift */; };
 		30BECBDA1C6E9FF200B8A088 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBCC1C6E9FF200B8A088 /* AppDelegate.swift */; };
 		30BECBDB1C6E9FF200B8A088 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBCD1C6E9FF200B8A088 /* Extensions.swift */; };
 		30BECBDC1C6E9FF200B8A088 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBCE1C6E9FF200B8A088 /* HomeViewController.swift */; };
@@ -94,6 +95,7 @@
 		30B9E7D51C7B928100C04530 /* CountryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountryView.swift; path = "paykloud-ios/countries/CountryView.swift"; sourceTree = SOURCE_ROOT; };
 		30B9E7D61C7B928100C04530 /* CountryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CountryView.xib; path = "paykloud-ios/countries/CountryView.xib"; sourceTree = SOURCE_ROOT; };
 		30B9E7DA1C7BC9FB00C04530 /* SignupViewControllerZero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewControllerZero.swift; path = "paykloud-ios/SignupViewControllerZero.swift"; sourceTree = SOURCE_ROOT; };
+		30B9E7DC1C7C9B0F00C04530 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResetPasswordViewController.swift; path = "paykloud-ios/ResetPasswordViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30BECBCC1C6E9FF200B8A088 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "paykloud-ios/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
 		30BECBCD1C6E9FF200B8A088 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = "paykloud-ios/Extensions.swift"; sourceTree = SOURCE_ROOT; };
 		30BECBCE1C6E9FF200B8A088 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = "paykloud-ios/HomeViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -230,6 +232,7 @@
 				30D7B72F1C77880200B64B7F /* Signup */,
 				3064E8A01C742A040073E00B /* Passcode */,
 				30BECBD11C6E9FF200B8A088 /* LoginViewController.swift */,
+				30B9E7DC1C7C9B0F00C04530 /* ResetPasswordViewController.swift */,
 				3072653A1C72D88F00D2AF61 /* PresentedTableViewController.swift */,
 				3072653C1C73B63200D2AF61 /* TermsViewController.swift */,
 				30D7B7321C77884600B64B7F /* AuthViewController.swift */,
@@ -614,6 +617,7 @@
 				3072653D1C73B63200D2AF61 /* TermsViewController.swift in Sources */,
 				30BECC011C6F71B500B8A088 /* ProfileViewController.swift in Sources */,
 				30BECBDB1C6E9FF200B8A088 /* Extensions.swift in Sources */,
+				30B9E7DD1C7C9B0F00C04530 /* ResetPasswordViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
