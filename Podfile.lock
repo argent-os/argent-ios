@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (3.2.0)
+  - BEMCheckBox (1.0.0)
   - CardIO (5.3.1)
   - Firebase (2.5.1)
   - KeychainSwift (3.0.11)
@@ -20,6 +21,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 3.0)
+  - BEMCheckBox (~> 1.0.0)
   - CardIO (~> 5.3.1)
   - Firebase (>= 2.5.0)
   - KeychainSwift (~> 3.0)
@@ -45,6 +47,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
+  BEMCheckBox: d6698c8b8aee8c9157d169f7c34bab3bd09fee11
   CardIO: a299efcd0348c3b256a1da53f22951319c3855a2
   Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
   KeychainSwift: 0a4214c910423543a42b0f30f25987d46178b6a5

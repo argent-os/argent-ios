@@ -1,10 +1,3 @@
-//
-//  SignupViewControllerOne.swift
-//  paykloud-ios
-//
-//  Created by Sinan Ulkuatam on 2/19/16.
-//  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
-//
 
 import Foundation
 import UIKit
@@ -14,6 +7,7 @@ import SVProgressHUD
 import KeychainSwift
 import TextFieldEffects
 import UIColor_Hex_Swift
+import BEMCheckBox
 import MZAppearance
 import MZFormSheetPresentationController
 
@@ -23,9 +17,10 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var finishButton: UIButton!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var switchTermsAndConditions: UISwitch!
     let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
     
+    var switchTermsAndPrivacy: BEMCheckBox = BEMCheckBox(frame: CGRectMake(0, 0, 50, 50))
+
     // Keychain
     let userFirstName = NSUserDefaults.standardUserDefaults().stringForKey("userFirstName")!
     let userLastName = NSUserDefaults.standardUserDefaults().objectForKey("userLastName")!
@@ -40,26 +35,9 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
     // Set the locale
     let countryCode = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
     
-    // Initialize accept status as optional variable
-    var acceptStatus:Bool?
-    func toggle(sender: AnyObject) -> Bool {
-        if switchTermsAndConditions.on {
-            acceptStatus = true
-            return acceptStatus!
-        } else if !switchTermsAndConditions.on {
-            acceptStatus = false
-            return acceptStatus!
-        }
-        return true
-    }
-    
-    @IBAction func switchAcceptDeclineAction() {
-        toggle(switchTermsAndConditions)
-    }
-    
     override func viewDidAppear(animated: Bool) {
         // Focuses view controller on first name text input
-//        textField.becomeFirstResponder()
+        //        textField.becomeFirstResponder()
         
         self.finishButton.enabled = false
         // Allow continue to be clicked
@@ -73,23 +51,27 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         SVProgressHUD.show()
         
-//        print("user first name", userFirstName)
-//        print("user last name", userLastName)
-//        print("user username", userUsername)
-//        print("user email", userEmail)
-//        print("user phone", userPhoneNumber)
-//        print(countryCode)
-
+        //        print("user first name", userFirstName)
+        //        print("user last name", userLastName)
+        //        print("user username", userUsername)
+        //        print("user email", userEmail)
+        //        print("user phone", userPhoneNumber)
+        //        print(countryCode)
+        
+        
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-        // Inherit UITextField Delegate, this is used for next and join on keyboard
-//        self.uiswitch.delegate = self
-        
-        // Add target and listen to changes in terms toggle
-        switchTermsAndConditions.addTarget(self, action: "toggle:", forControlEvents: UIControlEvents.ValueChanged)
-        
+        // Set checkbox animation
+        switchTermsAndPrivacy.onAnimationType = BEMAnimationType.OneStroke
+        switchTermsAndPrivacy.offAnimationType = BEMAnimationType.OneStroke
+        switchTermsAndPrivacy.onCheckColor = UIColor(rgba: "#1aa8f6")
+        switchTermsAndPrivacy.onTintColor = UIColor(rgba: "#1aa8f6")
+        switchTermsAndPrivacy.frame.origin.y = screenHeight*0.63 // 75 down from the top
+        switchTermsAndPrivacy.frame.origin.x = (self.view.bounds.size.width - switchTermsAndPrivacy.frame.size.width) / 2.0
+        self.view!.addSubview(switchTermsAndPrivacy)
+
         finishButton.layer.cornerRadius = 5
         finishButton.backgroundColor = UIColor(rgba: "#1aa8f6")
         
@@ -109,7 +91,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
         
         SVProgressHUD.show()
         
-        if(acceptStatus == nil || acceptStatus?.boolValue == nil || acceptStatus?.boolValue == false) {
+        if(self.switchTermsAndPrivacy.on.boolValue == false) {
             // Display error if terms of service and privacy policy not accepted
             displayErrorAlertMessage("Terms of Service and Privacy Policy were not accepted, could not create account");
             SVProgressHUD.dismiss()
@@ -118,7 +100,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
         
         // Set WIFI IP immediately on load using completion handler
         getWifiAddress { (addr, error) in
-            if addr != nil && self.acceptStatus == true {
+            if addr != nil && self.switchTermsAndPrivacy.on == true {
                 let calcDate = NSDate().timeIntervalSince1970
                 var date: String = "\(calcDate)"
                 
@@ -129,7 +111,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
                 var dobContent: [String: AnyObject] = [ "day": Int(self.userDobDay)!, "month": Int(self.userDobMonth)!, "year": Int(self.userDobYear)!] //also works with [ "model" : NSNull()]
                 var dobJSON: [String: [String: AnyObject]] = [ "data" : dobContent ]
                 let dobNSDict = dobJSON as NSDictionary //no error message
-
+                
                 let userPassword = KeychainSwift().get("userPassword")!
                 print(self.userFirstName)
                 print(self.userLastName)
@@ -168,9 +150,9 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
                             if let value = response.result.value {
                                 let json = JSON(value)
                                 // potentially use completionHandler/closure in future
-                                 print("Response: \(json)")
+                                print("Response: \(json)")
                                 // assign userData to self, access globally
-                                 print("register success")
+                                print("register success")
                             }
                         case .Failure(let error):
                             break
@@ -272,6 +254,6 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
             }
         }
     }
-
+    
     
 }

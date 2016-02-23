@@ -25,4 +25,7 @@
 #include <sys/socket.h>
 #include <ifaddrs.h>
 
+// Used for custom check ui
+#import "Pods/BEMCheckBox/classes/BEMCheckBox.h"
+
 #endif /* ObjC_Bridging_Header_h */
