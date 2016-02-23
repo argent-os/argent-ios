@@ -32,7 +32,10 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
     let userUsername = NSUserDefaults.standardUserDefaults().stringForKey("userUsername")!
     let userEmail = NSUserDefaults.standardUserDefaults().objectForKey("userEmail")!
     let userPhoneNumber = NSUserDefaults.standardUserDefaults().stringForKey("userPhoneNumber")!
-    let userPassword = KeychainSwift().get("userPassword")!
+    let userLegalEntityType = NSUserDefaults.standardUserDefaults().stringForKey("userLegalEntityType")!
+    let userDobDay = NSUserDefaults.standardUserDefaults().stringForKey("userDobDay")!
+    let userDobMonth = NSUserDefaults.standardUserDefaults().stringForKey("userDobMonth")!
+    let userDobYear = NSUserDefaults.standardUserDefaults().stringForKey("userDobYear")!
     
     // Set the locale
     let countryCode = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
@@ -70,13 +73,12 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         SVProgressHUD.show()
         
-        print("user first name", userFirstName)
-        print("user last name", userLastName)
-        print("user username", userUsername)
-        print("user email", userEmail)
-        print("user phone", userPhoneNumber)
-        print("user password", userPassword)
-        print(countryCode)
+//        print("user first name", userFirstName)
+//        print("user last name", userLastName)
+//        print("user username", userUsername)
+//        print("user email", userEmail)
+//        print("user phone", userPhoneNumber)
+//        print(countryCode)
 
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
@@ -122,20 +124,26 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
                 
                 var tosContent: [String: AnyObject] = [ "ip": addr!, "date": date ] //also works with [ "model" : NSNull()]
                 var tosJSON: [String: [String: AnyObject]] = [ "data" : tosContent ]
+                let tosNSDict = tosJSON as NSDictionary //no error message
                 
-                let nsDict = tosJSON as NSDictionary //no error message
-                
-                print("about to set parameters, heres example: ", self.userFirstName)
-                
+                var dobContent: [String: AnyObject] = [ "day": Int(self.userDobDay)!, "month": Int(self.userDobMonth)!, "year": Int(self.userDobYear)!] //also works with [ "model" : NSNull()]
+                var dobJSON: [String: [String: AnyObject]] = [ "data" : dobContent ]
+                let dobNSDict = dobJSON as NSDictionary //no error message
+
+                let userPassword = KeychainSwift().get("userPassword")!
+                print(self.userFirstName)
+                print(self.userLastName)
                 let parameters : [String : AnyObject] = [
-                    "first_name":self.userFirstName,
-                    "last_name":self.userLastName,
+                    "firstname":self.userFirstName,
+                    "lastname":self.userLastName,
                     "username":self.userUsername,
                     "country":self.countryCode,
                     "email":self.userEmail,
                     "phone_number":self.userPhoneNumber,
-                    "tos_acceptance" : nsDict,
-                    "password":self.userPassword
+                    "tos_acceptance" : tosNSDict,
+                    "dob" : dobNSDict,
+                    "legal_entity_type": self.userLegalEntityType,
+                    "password":userPassword
                 ]
                 Alamofire.request(.POST, apiUrl + "/v1/register", parameters: parameters, encoding:.JSON)
                     .responseJSON { response in

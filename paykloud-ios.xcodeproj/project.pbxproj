@@ -28,6 +28,7 @@
 		30B9E7D71C7B928100C04530 /* CountryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B9E7D41C7B928100C04530 /* CountryPicker.swift */; };
 		30B9E7D81C7B928100C04530 /* CountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B9E7D51C7B928100C04530 /* CountryView.swift */; };
 		30B9E7D91C7B928100C04530 /* CountryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30B9E7D61C7B928100C04530 /* CountryView.xib */; };
+		30B9E7DB1C7BC9FB00C04530 /* SignupViewControllerZero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B9E7DA1C7BC9FB00C04530 /* SignupViewControllerZero.swift */; };
 		30BECBDA1C6E9FF200B8A088 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBCC1C6E9FF200B8A088 /* AppDelegate.swift */; };
 		30BECBDB1C6E9FF200B8A088 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBCD1C6E9FF200B8A088 /* Extensions.swift */; };
 		30BECBDC1C6E9FF200B8A088 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBCE1C6E9FF200B8A088 /* HomeViewController.swift */; };
@@ -39,7 +40,6 @@
 		30BECBE31C6E9FF200B8A088 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBD51C6E9FF200B8A088 /* PaymentViewController.swift */; };
 		30BECBE41C6E9FF200B8A088 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBD61C6E9FF200B8A088 /* RootViewController.swift */; };
 		30BECBE51C6E9FF200B8A088 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBD71C6E9FF200B8A088 /* SettingsViewController.swift */; };
-		30BECBE61C6E9FF200B8A088 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBD81C6E9FF200B8A088 /* SignupViewController.swift */; };
 		30BECBE71C6E9FF200B8A088 /* StarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBD91C6E9FF200B8A088 /* StarButton.swift */; };
 		30BECBEB1C6EA02800B8A088 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30BECBE91C6EA02800B8A088 /* Main.storyboard */; };
 		30BECBF91C6EA5C600B8A088 /* paykloud_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBF81C6EA5C600B8A088 /* paykloud_iosTests.swift */; };
@@ -93,6 +93,7 @@
 		30B9E7D41C7B928100C04530 /* CountryPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountryPicker.swift; path = "paykloud-ios/countries/CountryPicker.swift"; sourceTree = SOURCE_ROOT; };
 		30B9E7D51C7B928100C04530 /* CountryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountryView.swift; path = "paykloud-ios/countries/CountryView.swift"; sourceTree = SOURCE_ROOT; };
 		30B9E7D61C7B928100C04530 /* CountryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CountryView.xib; path = "paykloud-ios/countries/CountryView.xib"; sourceTree = SOURCE_ROOT; };
+		30B9E7DA1C7BC9FB00C04530 /* SignupViewControllerZero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewControllerZero.swift; path = "paykloud-ios/SignupViewControllerZero.swift"; sourceTree = SOURCE_ROOT; };
 		30BECBCC1C6E9FF200B8A088 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "paykloud-ios/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
 		30BECBCD1C6E9FF200B8A088 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = "paykloud-ios/Extensions.swift"; sourceTree = SOURCE_ROOT; };
 		30BECBCE1C6E9FF200B8A088 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = "paykloud-ios/HomeViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -104,7 +105,6 @@
 		30BECBD51C6E9FF200B8A088 /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentViewController.swift; path = "paykloud-ios/PaymentViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30BECBD61C6E9FF200B8A088 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootViewController.swift; path = "paykloud-ios/RootViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30BECBD71C6E9FF200B8A088 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = "paykloud-ios/SettingsViewController.swift"; sourceTree = SOURCE_ROOT; };
-		30BECBD81C6E9FF200B8A088 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewController.swift; path = "paykloud-ios/SignupViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30BECBD91C6E9FF200B8A088 /* StarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StarButton.swift; path = "paykloud-ios/StarButton.swift"; sourceTree = SOURCE_ROOT; };
 		30BECBE81C6EA00F00B8A088 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "paykloud-ios/Info.plist"; sourceTree = SOURCE_ROOT; };
 		30BECBEA1C6EA02800B8A088 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "paykloud-ios/Base.lproj/Main.storyboard"; sourceTree = SOURCE_ROOT; };
@@ -229,7 +229,6 @@
 			children = (
 				30D7B72F1C77880200B64B7F /* Signup */,
 				3064E8A01C742A040073E00B /* Passcode */,
-				30BECBD81C6E9FF200B8A088 /* SignupViewController.swift */,
 				30BECBD11C6E9FF200B8A088 /* LoginViewController.swift */,
 				3072653A1C72D88F00D2AF61 /* PresentedTableViewController.swift */,
 				3072653C1C73B63200D2AF61 /* TermsViewController.swift */,
@@ -297,6 +296,7 @@
 		30D7B72F1C77880200B64B7F /* Signup */ = {
 			isa = PBXGroup;
 			children = (
+				30B9E7DA1C7BC9FB00C04530 /* SignupViewControllerZero.swift */,
 				30D7B7301C77883500B64B7F /* SignupViewControllerOne.swift */,
 				30D7B7341C78F96500B64B7F /* SignupViewControllerTwo.swift */,
 				30B9E7CE1C7B52F100C04530 /* SignupViewControllerThree.swift */,
@@ -605,6 +605,7 @@
 				30BECBE51C6E9FF200B8A088 /* SettingsViewController.swift in Sources */,
 				30B9E7CD1C7B519200C04530 /* Timeout.swift in Sources */,
 				30BECBDA1C6E9FF200B8A088 /* AppDelegate.swift in Sources */,
+				30B9E7DB1C7BC9FB00C04530 /* SignupViewControllerZero.swift in Sources */,
 				30B9E7D81C7B928100C04530 /* CountryView.swift in Sources */,
 				30D7B7311C77883500B64B7F /* SignupViewControllerOne.swift in Sources */,
 				30BECBDF1C6E9FF200B8A088 /* LoginViewController.swift in Sources */,
@@ -612,7 +613,6 @@
 				3064E8A41C742A110073E00B /* PasscodeLockConfiguration.swift in Sources */,
 				3072653D1C73B63200D2AF61 /* TermsViewController.swift in Sources */,
 				30BECC011C6F71B500B8A088 /* ProfileViewController.swift in Sources */,
-				30BECBE61C6E9FF200B8A088 /* SignupViewController.swift in Sources */,
 				30BECBDB1C6E9FF200B8A088 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

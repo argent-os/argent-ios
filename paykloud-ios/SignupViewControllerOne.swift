@@ -20,6 +20,11 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
     
     let firstNameTextField  = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
     let lastNameTextField  = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
+    let dobTextField  = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
+    
+    var dobDay:String = ""
+    var dobMonth:String = ""
+    var dobYear:String = ""
     
     // Height not adjusted button bool value
     var alreadyAdjustedVC1:Bool = false
@@ -44,9 +49,14 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
+        // Tint back button to gray
+        self.navigationController?.navigationBar.tintColor = UIColor.grayColor()
+        title = ""
+        
         // Inherit UITextField Delegate, this is used for next and join on keyboard
         self.firstNameTextField.delegate = self
         self.lastNameTextField.delegate = self
+        self.dobTextField.delegate = self
         
         continueButton.layer.cornerRadius = 5
         continueButton.backgroundColor = UIColor(rgba: "#1aa8f6")
@@ -88,12 +98,20 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
         lastNameTextField.returnKeyType = UIReturnKeyType.Next
         view.addSubview(lastNameTextField)
 
-        // Close button to return to login
-        let closeButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: .Plain, target: self, action: "returnToLogin")
-        navigationItem.leftBarButtonItem = closeButton
-        closeButton.tintColor = UIColor.grayColor()
-        title = ""
-
+        dobTextField.tag = 91
+        dobTextField.textAlignment = NSTextAlignment.Center
+        dobTextField.borderActiveColor = UIColor(rgba: "#FFF")
+        dobTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
+        dobTextField.backgroundColor = UIColor.clearColor()
+        dobTextField.placeholder = "Date of Birth - MM/DD/YYYY"
+        dobTextField.keyboardType = UIKeyboardType.NumberPad
+        dobTextField.placeholderColor = UIColor.grayColor()
+        dobTextField.textColor = UIColor.grayColor()
+        dobTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
+        dobTextField.frame.origin.y = screenHeight*0.40 // 25 down from the top
+        dobTextField.frame.origin.x = (self.view.bounds.size.width - dobTextField.frame.size.width) / 2.0
+        view.addSubview(dobTextField)
+        
         // Transparent navigation bar
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -105,11 +123,6 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
         
         // Do any additional setup after loading the view, typically from a nib.
 
-    }
-    
-    // Return to login func
-    func returnToLogin() {
-        self.performSegueWithIdentifier("loginView", sender: self);
     }
     
     // Adjusts keyboard height to view
@@ -162,17 +175,75 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
         self.presentViewController(displayAlert, animated: true, completion: nil);
     }
     
+    // Format dob number input textfield
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if(textField == dobTextField) {
+            let newString = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
+            let components = newString.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet)
+            
+            let decimalString : String = components.joinWithSeparator("")
+            let length = decimalString.characters.count
+            let decimalStr = decimalString as NSString
+            
+            if length == 0 || length > 8 || length > 11
+            {
+                let newLength = (textField.text! as NSString).length + (string as NSString).length - range.length as Int
+                
+                return (newLength > 8) ? false : true
+            }
+            var index = 0 as Int
+            let formattedString = NSMutableString()
+            
+            if (length - index) > 2
+            {
+                dobMonth = decimalStr.substringWithRange(NSMakeRange(index, 2))
+                formattedString.appendFormat("%@/", dobMonth)
+                print("dob month", dobMonth)
+                index += 2
+            }
+            if length - index > 2
+            {
+                dobDay = decimalStr.substringWithRange(NSMakeRange(index, 2))
+                formattedString.appendFormat("%@/", dobDay)
+                print("dob day", dobDay)
+                index += 2
+            }
+            if length - index >= 4
+            {
+                dobYear = decimalStr.substringWithRange(NSMakeRange(index, 4))
+                print("dob year", dobYear)
+            }
+            
+            let remainder = decimalStr.substringFromIndex(index)
+            formattedString.appendString(remainder)
+            textField.text = formattedString as String
+            return false
+        }
+        return true
+        
+    }
+    
     // VALIDATION
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "VC2") {
             if(firstNameTextField.text?.characters.count < 1) {
                 displayErrorAlertMessage("First name cannot be empty")
-            }
-            if(lastNameTextField.text?.characters.count < 1) {
+            } else if(lastNameTextField.text?.characters.count < 1) {
                 displayErrorAlertMessage("Last name cannot be empty")
+            } else if(Int(dobMonth) > 12 || Int(dobMonth) == 0 || Int(dobDay) == 0 || Int(dobDay) > 31 || Int(dobYear) > 2006 || Int(dobYear) < 1914) {
+                displayErrorAlertMessage("Month cannot be greater than 12 or equal to zero. Day cannot be greater than 31 or equal to zero, year cannot be less than 1914 or greater than 2006")
+            } else if(Int(dobMonth)! == 02 && Int(dobDay)! > 29 && (Int(dobYear)! % 4) == 0 ) {
+                displayErrorAlertMessage("Leap years do not have more than 29 days")
+            } else if(Int(dobMonth)! == 02 && Int(dobDay)! > 28 && (Int(dobYear)! % 4) != 0 ) {
+                displayErrorAlertMessage("Invalid entry, not a leap year")
+            } else if((Int(dobMonth) == 02 && Int(dobDay) > 30) || (Int(dobMonth) == 04 && Int(dobDay) > 30) || (Int(dobMonth) == 06 && Int(dobDay) > 30) || (Int(dobMonth) == 09 && Int(dobDay) > 30) || (Int(dobMonth) == 11 && Int(dobDay) > 30)) {
+                displayErrorAlertMessage("The entered month does not have 31 days")
             } else {
                 NSUserDefaults.standardUserDefaults().setValue(firstNameTextField.text!, forKey: "userFirstName")
                 NSUserDefaults.standardUserDefaults().setValue(lastNameTextField.text!, forKey: "userLastName")
+                NSUserDefaults.standardUserDefaults().setValue(dobDay, forKey: "userDobDay")
+                NSUserDefaults.standardUserDefaults().setValue(dobMonth, forKey: "userDobMonth")
+                NSUserDefaults.standardUserDefaults().setValue(dobYear, forKey: "userDobYear")
                 NSUserDefaults.standardUserDefaults().synchronize();
                 
             }

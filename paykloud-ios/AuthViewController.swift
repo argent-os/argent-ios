@@ -21,8 +21,8 @@ class AuthViewController: VideoSplashViewController  {
         let storyboard = UIStoryboard(name: "Auth", bundle: nil)
         let vc = storyboard.instantiateViewControllerWithIdentifier("authViewController")
         self.navigationController?.pushViewController(vc, animated: true)
-        print(storyboard)
-        print(vc)
+//        print(storyboard)
+//        print(vc)
 
         let url = NSURL.fileURLWithPath(NSBundle.mainBundle().pathForResource("nyc", ofType: "mp4")!)
         self.videoFrame = view.frame
@@ -78,14 +78,16 @@ class AuthViewController: VideoSplashViewController  {
         
     }
 
+    // Set the ID in the storyboard in order to enable transition!
     func signup(sender:AnyObject!)
     {
-        let viewController:SignupViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SignupViewController") as! SignupViewController
+        let viewController:SignupViewControllerZero = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SignupViewControllerZero") as! SignupViewControllerZero
         
         self.presentViewController(viewController, animated: true, completion: nil)
         
     }
     
+    // Set the ID in the storyboard in order to enable transition!
     func login(sender:AnyObject!)
     {
         let viewController:LoginViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
