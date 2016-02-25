@@ -8,12 +8,14 @@ PODS:
   - MZFormSheetPresentationController (2.3.0):
     - MZAppearance
   - Neon (0.0.3)
+  - Pages (0.6.3)
   - PasscodeLock (1.0.2)
   - RESideMenu (4.0.7)
   - Stripe (6.2.0):
     - Stripe/Core (= 6.2.0)
   - Stripe/Core (6.2.0)
   - SVProgressHUD (2.0-beta8)
+  - SwiftGifOrigin (1.5.2)
   - SwiftyJSON (2.3.2)
   - TextFieldEffects (1.1.0)
   - UIColor_Hex_Swift (1.9)
@@ -27,10 +29,12 @@ DEPENDENCIES:
   - KeychainSwift (~> 3.0)
   - MZFormSheetPresentationController (~> 2.3.0)
   - Neon (~> 0.0.3)
+  - Pages (~> 0.6.3)
   - PasscodeLock (~> 1.0.1)
   - RESideMenu (~> 4.0.7)
   - Stripe (~> 6.2.0)
   - SVProgressHUD (~> 2.0-beta8)
+  - SwiftGifOrigin (~> 1.5.2)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
   - TextFieldEffects (~> 1.1.0)
   - UIColor_Hex_Swift (~> 1.8)
@@ -54,10 +58,12 @@ SPEC CHECKSUMS:
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   MZFormSheetPresentationController: 076391ba3f6474b4ef75eaaef2380991524d8be4
   Neon: 589d3d217d326abe09726bf81add106cff685bf2
+  Pages: 71e80bc64040f1176297c327d080d80b7e74b38c
   PasscodeLock: 4ae42c094224a01de3773fcd69ae33886394d959
   RESideMenu: f24c508404b49c667344c54aba7e590883533958
   Stripe: 275524137e6c4cc1058f6d32ece248adf30a21f9
   SVProgressHUD: 6e48a1dda09ce3b58adc41d013baed3a8e8980ff
+  SwiftGifOrigin: a7671a6a68a2769e118c7da5bcc7c480798907b5
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   TextFieldEffects: 8e43fea8836e97be80fc4db27a1596c9e98a26ba
   UIColor_Hex_Swift: 2ee747c0fed8b72b2135ef474b80a6921e489daa

@@ -73,8 +73,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window!.rootViewController = viewController
-        self.window!.backgroundColor = UIColor.blackColor()
+        // Global background color
+        self.window!.backgroundColor = UIColor.whiteColor()
         self.window!.makeKeyAndVisible()
+        self.window!.makeKeyWindow()
         
         return true
     }

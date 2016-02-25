@@ -16,6 +16,9 @@ class SignupViewControllerZero: UIViewController {
     @IBOutlet weak var continueButton: UIButton!
     
     override func viewDidAppear(animated: Bool) {
+        // Clear NSUserDefaults
+        let appDomain = NSBundle.mainBundle().bundleIdentifier!
+        NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain)
         SVProgressHUD.dismiss()
     }
     

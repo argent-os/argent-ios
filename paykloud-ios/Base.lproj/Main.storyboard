@@ -18,8 +18,12 @@
             <string>Nunito-Regular</string>
             <string>Nunito-Regular</string>
             <string>Nunito-Regular</string>
+            <string>Nunito-Regular</string>
+            <string>Nunito-Regular</string>
+            <string>Nunito-Regular</string>
         </mutableArray>
         <mutableArray key="Nunito-SemiBold.ttf">
+            <string>Nunito-SemiBold</string>
             <string>Nunito-SemiBold</string>
         </mutableArray>
     </customFonts>
@@ -508,7 +512,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="wXL-5j-ILB"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Continue (1/4)"/>
                                 <connections>
@@ -559,7 +563,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="SnN-iM-215"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Continue (2/4)"/>
                                 <connections>
@@ -614,7 +618,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="5WJ-Lf-RqN"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Continue (3/4)"/>
                                 <connections>
@@ -669,9 +673,9 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="6cx-4C-gjb"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Finish (4/4)"/>
+                                <state key="normal" title="Finish"/>
                                 <connections>
                                     <action selector="finishButtonTapped:" destination="fbh-X8-wcE" eventType="touchUpInside" id="KLD-dn-Psf"/>
                                 </connections>

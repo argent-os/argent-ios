@@ -27,8 +27,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
     // Set up initial view height adjustment to false
     var alreadyAdjusted:Bool = false
     
+    override func viewDidAppear(animated: Bool) {
+        SVProgressHUD.dismiss()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        SVProgressHUD.show()
 
         // Focuses view controller on first name text input
         if(alreadyAdjusted==false) {

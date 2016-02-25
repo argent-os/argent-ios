@@ -8,6 +8,7 @@
         <!--Auth View Controller-->
         <scene sceneID="a1j-Kp-KyN">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e9O-Mk-e3d" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="authViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ojW-tX-SfZ" customClass="AuthViewController" customModule="PayKloud" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fU3-wt-lna"/>
@@ -16,12 +17,20 @@
                     <view key="view" contentMode="scaleToFill" id="Nfm-Fg-MAB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="0Gt-Nw-AO9">
+                                <rect key="frame" x="188" y="679" width="39" height="37"/>
+                            </pageControl>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0Gt-Nw-AO9" firstAttribute="centerX" secondItem="Nfm-Fg-MAB" secondAttribute="centerX" id="NWq-VS-bWq"/>
+                            <constraint firstAttribute="bottom" secondItem="0Gt-Nw-AO9" secondAttribute="bottom" constant="20" symbolic="YES" id="WaE-4o-cId"/>
+                        </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="e9O-Mk-e3d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="230" y="239"/>
         </scene>
