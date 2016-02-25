@@ -46,11 +46,14 @@ class SignupViewControllerZero: UIViewController {
         
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    
     // Return to auth view func
     func goToAuth() {
         // Normally identifiers are started with capital letters, exception being authViewController, make sure UIStoryboard name is Auth, not Main
         let viewController:AuthViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateViewControllerWithIdentifier("authViewController") as! AuthViewController
-        
         self.presentViewController(viewController, animated: true, completion: nil)
     }
     

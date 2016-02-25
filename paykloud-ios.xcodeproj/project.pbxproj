@@ -10,6 +10,11 @@
 		3064E8A41C742A110073E00B /* PasscodeLockConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3064E8A11C742A110073E00B /* PasscodeLockConfiguration.swift */; };
 		3064E8A51C742A110073E00B /* PasscodeSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3064E8A21C742A110073E00B /* PasscodeSettingsViewController.swift */; };
 		3064E8A61C742A110073E00B /* UserDefaultsPasscodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3064E8A31C742A110073E00B /* UserDefaultsPasscodeRepository.swift */; };
+		3067D9E91C7F705E00C1418E /* KolodaBackgroundAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3067D9E81C7F705E00C1418E /* KolodaBackgroundAnimationViewController.swift */; };
+		3067D9F01C7F716E00C1418E /* KolodaCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3067D9EE1C7F716E00C1418E /* KolodaCustomView.swift */; };
+		3067D9F11C7F716E00C1418E /* KolodaOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3067D9EF1C7F716E00C1418E /* KolodaOverlayView.swift */; };
+		3067D9F71C7F766D00C1418E /* KolodaCustomOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3067D9F61C7F766D00C1418E /* KolodaCustomOverlayView.xib */; };
+		3067D9FB1C7F7B6800C1418E /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3067D9FA1C7F7B6800C1418E /* OverlayView.xib */; };
 		306D6DBB1C7008DA00467C41 /* Nunito-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 306D6DB31C7008DA00467C41 /* Nunito-Black.ttf */; };
 		306D6DBC1C7008DA00467C41 /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 306D6DB41C7008DA00467C41 /* Nunito-Bold.ttf */; };
 		306D6DBD1C7008DA00467C41 /* Nunito-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 306D6DB51C7008DA00467C41 /* Nunito-ExtraBold.ttf */; };
@@ -21,6 +26,9 @@
 		3072653B1C72D88F00D2AF61 /* PresentedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072653A1C72D88F00D2AF61 /* PresentedTableViewController.swift */; };
 		3072653D1C73B63200D2AF61 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072653C1C73B63200D2AF61 /* TermsViewController.swift */; };
 		307C6A201C7D40A500723E39 /* SignupViewControllerFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307C6A1F1C7D40A500723E39 /* SignupViewControllerFour.swift */; };
+		307C6A221C7E91A100723E39 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C6A211C7E91A100723E39 /* StoreKit.framework */; };
+		307C6A241C7E91AA00723E39 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C6A231C7E91AA00723E39 /* PassKit.framework */; };
+		307C6A261C7F62B000723E39 /* SlidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307C6A251C7F62B000723E39 /* SlidesViewController.swift */; };
 		30975C671C7040E300D2BDAA /* nyc.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 30975C661C7040E300D2BDAA /* nyc.mp4 */; };
 		3099CB6F1C70D69D000CEDE2 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3099CB6E1C70D69D000CEDE2 /* Auth.storyboard */; };
 		30B9E7CD1C7B519200C04530 /* Timeout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B9E7CC1C7B519100C04530 /* Timeout.swift */; };
@@ -75,6 +83,11 @@
 		3064E8A11C742A110073E00B /* PasscodeLockConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PasscodeLockConfiguration.swift; path = "paykloud-ios/passcode/PasscodeLockConfiguration.swift"; sourceTree = SOURCE_ROOT; };
 		3064E8A21C742A110073E00B /* PasscodeSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PasscodeSettingsViewController.swift; path = "paykloud-ios/passcode/PasscodeSettingsViewController.swift"; sourceTree = SOURCE_ROOT; };
 		3064E8A31C742A110073E00B /* UserDefaultsPasscodeRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDefaultsPasscodeRepository.swift; path = "paykloud-ios/passcode/UserDefaultsPasscodeRepository.swift"; sourceTree = SOURCE_ROOT; };
+		3067D9E81C7F705E00C1418E /* KolodaBackgroundAnimationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KolodaBackgroundAnimationViewController.swift; path = "paykloud-ios/KolodaBackgroundAnimationViewController.swift"; sourceTree = SOURCE_ROOT; };
+		3067D9EE1C7F716E00C1418E /* KolodaCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KolodaCustomView.swift; path = "paykloud-ios/KolodaCustomView.swift"; sourceTree = SOURCE_ROOT; };
+		3067D9EF1C7F716E00C1418E /* KolodaOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KolodaOverlayView.swift; path = "paykloud-ios/KolodaOverlayView.swift"; sourceTree = SOURCE_ROOT; };
+		3067D9F61C7F766D00C1418E /* KolodaCustomOverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KolodaCustomOverlayView.xib; path = "paykloud-ios/KolodaCustomOverlayView.xib"; sourceTree = SOURCE_ROOT; };
+		3067D9FA1C7F7B6800C1418E /* OverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OverlayView.xib; path = "paykloud-ios/OverlayView.xib"; sourceTree = SOURCE_ROOT; };
 		306D6DB31C7008DA00467C41 /* Nunito-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Black.ttf"; sourceTree = "<group>"; };
 		306D6DB41C7008DA00467C41 /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
 		306D6DB51C7008DA00467C41 /* Nunito-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -86,6 +99,9 @@
 		3072653A1C72D88F00D2AF61 /* PresentedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PresentedTableViewController.swift; path = "paykloud-ios/PresentedTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		3072653C1C73B63200D2AF61 /* TermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TermsViewController.swift; path = "paykloud-ios/TermsViewController.swift"; sourceTree = SOURCE_ROOT; };
 		307C6A1F1C7D40A500723E39 /* SignupViewControllerFour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewControllerFour.swift; path = "paykloud-ios/SignupViewControllerFour.swift"; sourceTree = SOURCE_ROOT; };
+		307C6A211C7E91A100723E39 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		307C6A231C7E91AA00723E39 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
+		307C6A251C7F62B000723E39 /* SlidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SlidesViewController.swift; path = "paykloud-ios/SlidesViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30852D781C6E9ADF00CDCAA2 /* PayKloud.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = PayKloud.entitlements; path = "paykloud-ios/PayKloud.entitlements"; sourceTree = SOURCE_ROOT; };
 		30975C661C7040E300D2BDAA /* nyc.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = nyc.mp4; path = "paykloud-ios/videos/nyc.mp4"; sourceTree = SOURCE_ROOT; };
 		3099CB6E1C70D69D000CEDE2 /* Auth.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Auth.storyboard; path = "paykloud-ios/Auth.storyboard"; sourceTree = SOURCE_ROOT; };
@@ -134,7 +150,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				307C6A241C7E91AA00723E39 /* PassKit.framework in Frameworks */,
 				8E723A7E4D0FB354304689B7 /* Pods.framework in Frameworks */,
+				307C6A221C7E91A100723E39 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +254,12 @@
 				3072653A1C72D88F00D2AF61 /* PresentedTableViewController.swift */,
 				3072653C1C73B63200D2AF61 /* TermsViewController.swift */,
 				30D7B7321C77884600B64B7F /* AuthViewController.swift */,
+				3067D9EE1C7F716E00C1418E /* KolodaCustomView.swift */,
+				3067D9EF1C7F716E00C1418E /* KolodaOverlayView.swift */,
+				3067D9E81C7F705E00C1418E /* KolodaBackgroundAnimationViewController.swift */,
+				3067D9FA1C7F7B6800C1418E /* OverlayView.xib */,
+				3067D9F61C7F766D00C1418E /* KolodaCustomOverlayView.xib */,
+				307C6A251C7F62B000723E39 /* SlidesViewController.swift */,
 			);
 			name = Auth;
 			sourceTree = "<group>";
@@ -384,6 +408,8 @@
 		8B9765A98BF669E54968EFD0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				307C6A231C7E91AA00723E39 /* PassKit.framework */,
+				307C6A211C7E91A100723E39 /* StoreKit.framework */,
 				A1AC01881780C6537201E7C5 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -462,10 +488,16 @@
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 95ZGR52Q89;
 						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
 							com.apple.OMC = {
 								enabled = 1;
 							};
 							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.Wallet = {
 								enabled = 1;
 							};
 						};
@@ -506,15 +538,17 @@
 			files = (
 				30BECBFF1C6EA6EC00B8A088 /* Assets.xcassets in Resources */,
 				30B9E7D91C7B928100C04530 /* CountryView.xib in Resources */,
-				30BECBEB1C6EA02800B8A088 /* Main.storyboard in Resources */,
 				30BECBDD1C6E9FF200B8A088 /* LaunchScreen.storyboard in Resources */,
+				3099CB6F1C70D69D000CEDE2 /* Auth.storyboard in Resources */,
+				3067D9F71C7F766D00C1418E /* KolodaCustomOverlayView.xib in Resources */,
+				3067D9FB1C7F7B6800C1418E /* OverlayView.xib in Resources */,
+				30BECBEB1C6EA02800B8A088 /* Main.storyboard in Resources */,
 				306D6DC11C7008DA00467C41 /* Nunito-Regular.ttf in Resources */,
 				306D6DBE1C7008DA00467C41 /* Nunito-ExtraLight.ttf in Resources */,
 				306D6DBC1C7008DA00467C41 /* Nunito-Bold.ttf in Resources */,
 				30975C671C7040E300D2BDAA /* nyc.mp4 in Resources */,
 				306D6DC21C7008DA00467C41 /* Nunito-SemiBold.ttf in Resources */,
 				306D6DBD1C7008DA00467C41 /* Nunito-ExtraBold.ttf in Resources */,
-				3099CB6F1C70D69D000CEDE2 /* Auth.storyboard in Resources */,
 				306D6DBF1C7008DA00467C41 /* Nunito-Light.ttf in Resources */,
 				306D6DBB1C7008DA00467C41 /* Nunito-Black.ttf in Resources */,
 				306D6DC01C7008DA00467C41 /* Nunito-Medium.ttf in Resources */,
@@ -594,8 +628,10 @@
 				30D7B7351C78F96500B64B7F /* SignupViewControllerTwo.swift in Sources */,
 				3064E8A61C742A110073E00B /* UserDefaultsPasscodeRepository.swift in Sources */,
 				30BECBE01C6E9FF200B8A088 /* Logs.swift in Sources */,
+				3067D9F11C7F716E00C1418E /* KolodaOverlayView.swift in Sources */,
 				30BECC031C6F778B00B8A088 /* Gravatar.swift in Sources */,
 				30B9E7D71C7B928100C04530 /* CountryPicker.swift in Sources */,
+				3067D9F01C7F716E00C1418E /* KolodaCustomView.swift in Sources */,
 				3064E8A51C742A110073E00B /* PasscodeSettingsViewController.swift in Sources */,
 				30BECBDC1C6E9FF200B8A088 /* HomeViewController.swift in Sources */,
 				30B9E7CF1C7B52F100C04530 /* SignupViewControllerThree.swift in Sources */,
@@ -607,6 +643,8 @@
 				30BECBE51C6E9FF200B8A088 /* SettingsViewController.swift in Sources */,
 				30B9E7CD1C7B519200C04530 /* Timeout.swift in Sources */,
 				30BECBDA1C6E9FF200B8A088 /* AppDelegate.swift in Sources */,
+				307C6A261C7F62B000723E39 /* SlidesViewController.swift in Sources */,
+				3067D9E91C7F705E00C1418E /* KolodaBackgroundAnimationViewController.swift in Sources */,
 				30B9E7DB1C7BC9FB00C04530 /* SignupViewControllerZero.swift in Sources */,
 				30B9E7D81C7B928100C04530 /* CountryView.swift in Sources */,
 				30D7B7311C77883500B64B7F /* SignupViewControllerOne.swift in Sources */,

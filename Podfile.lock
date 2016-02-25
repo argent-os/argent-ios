@@ -2,14 +2,17 @@ PODS:
   - Alamofire (3.2.0)
   - BEMCheckBox (1.0.0)
   - CardIO (5.3.1)
+  - CWStatusBarNotification (2.3.4)
   - Firebase (2.5.1)
   - KeychainSwift (3.0.11)
+  - Koloda (2.0.10):
+    - pop (~> 1.0)
   - MZAppearance (1.1.6)
   - MZFormSheetPresentationController (2.3.0):
     - MZAppearance
   - Neon (0.0.3)
-  - Pages (0.6.3)
   - PasscodeLock (1.0.2)
+  - pop (1.0.9)
   - RESideMenu (4.0.7)
   - Stripe (6.2.0):
     - Stripe/Core (= 6.2.0)
@@ -25,11 +28,12 @@ DEPENDENCIES:
   - Alamofire (~> 3.0)
   - BEMCheckBox (~> 1.0.0)
   - CardIO (~> 5.3.1)
+  - CWStatusBarNotification (~> 2.3.4)
   - Firebase (>= 2.5.0)
   - KeychainSwift (~> 3.0)
+  - Koloda (~> 2.0.10)
   - MZFormSheetPresentationController (~> 2.3.0)
   - Neon (~> 0.0.3)
-  - Pages (~> 0.6.3)
   - PasscodeLock (~> 1.0.1)
   - RESideMenu (~> 4.0.7)
   - Stripe (~> 6.2.0)
@@ -53,13 +57,15 @@ SPEC CHECKSUMS:
   Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
   BEMCheckBox: d6698c8b8aee8c9157d169f7c34bab3bd09fee11
   CardIO: a299efcd0348c3b256a1da53f22951319c3855a2
+  CWStatusBarNotification: 3fec41edcb0ae3677d9febfcb9632d8bdf52294c
   Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
   KeychainSwift: 0a4214c910423543a42b0f30f25987d46178b6a5
+  Koloda: 10f747feeff5e425061f78e5ce17208783e34a99
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   MZFormSheetPresentationController: 076391ba3f6474b4ef75eaaef2380991524d8be4
   Neon: 589d3d217d326abe09726bf81add106cff685bf2
-  Pages: 71e80bc64040f1176297c327d080d80b7e74b38c
   PasscodeLock: 4ae42c094224a01de3773fcd69ae33886394d959
+  pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   RESideMenu: f24c508404b49c667344c54aba7e590883533958
   Stripe: 275524137e6c4cc1058f6d32ece248adf30a21f9
   SVProgressHUD: 6e48a1dda09ce3b58adc41d013baed3a8e8980ff

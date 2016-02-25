@@ -130,7 +130,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
     {
         // Normally identifiers are started with capital letters, exception being authViewController, make sure UIStoryboard name is Auth, not Main
         let viewController:AuthViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateViewControllerWithIdentifier("authViewController") as! AuthViewController
-        
         self.presentViewController(viewController, animated: true, completion: nil)
     }
 
@@ -334,8 +333,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
     }
     
     override func viewWillDisappear(animated: Bool) {
+        dismissKeyboard()
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+        super.viewWillDisappear(animated)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

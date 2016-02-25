@@ -27,8 +27,15 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
     var alreadyAdjustedResetPass = false
     var adjustCount = 0
     
+    override func viewDidAppear(animated: Bool) {
+        // Dismiss loader
+        SVProgressHUD.dismiss()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Dismiss loader
+        SVProgressHUD.dismiss()
         
         // Focuses view controller on first name text input
         if(alreadyAdjustedResetPass==false) {
@@ -80,9 +87,6 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
         emailTextField.frame.origin.x = (self.view.bounds.size.width - emailTextField.frame.size.width) / 2.0
         emailTextField.returnKeyType = UIReturnKeyType.Next
         view.addSubview(emailTextField)
-        
-        // Dismiss loader
-        SVProgressHUD.dismiss()
         
         // Do any additional setup after loading the view.
         
