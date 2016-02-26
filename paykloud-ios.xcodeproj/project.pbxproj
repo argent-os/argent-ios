@@ -28,7 +28,6 @@
 		307C6A201C7D40A500723E39 /* SignupViewControllerFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307C6A1F1C7D40A500723E39 /* SignupViewControllerFour.swift */; };
 		307C6A221C7E91A100723E39 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C6A211C7E91A100723E39 /* StoreKit.framework */; };
 		307C6A241C7E91AA00723E39 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C6A231C7E91AA00723E39 /* PassKit.framework */; };
-		307C6A261C7F62B000723E39 /* SlidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307C6A251C7F62B000723E39 /* SlidesViewController.swift */; };
 		30975C671C7040E300D2BDAA /* nyc.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 30975C661C7040E300D2BDAA /* nyc.mp4 */; };
 		3099CB6F1C70D69D000CEDE2 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3099CB6E1C70D69D000CEDE2 /* Auth.storyboard */; };
 		30B9E7CD1C7B519200C04530 /* Timeout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B9E7CC1C7B519100C04530 /* Timeout.swift */; };
@@ -101,7 +100,6 @@
 		307C6A1F1C7D40A500723E39 /* SignupViewControllerFour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewControllerFour.swift; path = "paykloud-ios/SignupViewControllerFour.swift"; sourceTree = SOURCE_ROOT; };
 		307C6A211C7E91A100723E39 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		307C6A231C7E91AA00723E39 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
-		307C6A251C7F62B000723E39 /* SlidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SlidesViewController.swift; path = "paykloud-ios/SlidesViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30852D781C6E9ADF00CDCAA2 /* PayKloud.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = PayKloud.entitlements; path = "paykloud-ios/PayKloud.entitlements"; sourceTree = SOURCE_ROOT; };
 		30975C661C7040E300D2BDAA /* nyc.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = nyc.mp4; path = "paykloud-ios/videos/nyc.mp4"; sourceTree = SOURCE_ROOT; };
 		3099CB6E1C70D69D000CEDE2 /* Auth.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Auth.storyboard; path = "paykloud-ios/Auth.storyboard"; sourceTree = SOURCE_ROOT; };
@@ -259,7 +257,6 @@
 				3067D9E81C7F705E00C1418E /* KolodaBackgroundAnimationViewController.swift */,
 				3067D9FA1C7F7B6800C1418E /* OverlayView.xib */,
 				3067D9F61C7F766D00C1418E /* KolodaCustomOverlayView.xib */,
-				307C6A251C7F62B000723E39 /* SlidesViewController.swift */,
 			);
 			name = Auth;
 			sourceTree = "<group>";
@@ -643,7 +640,6 @@
 				30BECBE51C6E9FF200B8A088 /* SettingsViewController.swift in Sources */,
 				30B9E7CD1C7B519200C04530 /* Timeout.swift in Sources */,
 				30BECBDA1C6E9FF200B8A088 /* AppDelegate.swift in Sources */,
-				307C6A261C7F62B000723E39 /* SlidesViewController.swift in Sources */,
 				3067D9E91C7F705E00C1418E /* KolodaBackgroundAnimationViewController.swift in Sources */,
 				30B9E7DB1C7BC9FB00C04530 /* SignupViewControllerZero.swift in Sources */,
 				30B9E7D81C7B928100C04530 /* CountryView.swift in Sources */,
