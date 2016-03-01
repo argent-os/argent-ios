@@ -10,6 +10,7 @@ import Stripe
 import Firebase
 import PasscodeLock
 import SwiftyJSON
+import KeychainSwift
 
 let merchantID = "merchant.com.paykloud"
 var userData:JSON? // init user data, declare globally, needs SwiftyJSON
@@ -24,11 +25,12 @@ var userData:JSON? // init user data, declare globally, needs SwiftyJSON
 // let apiUrl = "http://localhost:5001"
 // let apiUrl = "http://192.168.1.182:5001"
  let apiUrl = "http://192.168.1.232:5001"
-
+// let apiUrl = "http://paykloud-api-dev.us-east-1.elasticbeanstalk.com"
 // PROD
 //let firebaseUrl = Firebase(url:"https://paykloud.firebaseio.com/api/v1")
 //let apiUrl = "http://api.paykloud.com"
 
+// For push notifications make sure to delete and re-install app, fix this bug later
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -81,6 +83,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    // Get device token for push notification
+    func application( application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData ) {
+        
+        var characterSet: NSCharacterSet = NSCharacterSet( charactersInString: "<>" )
+        
+        var deviceTokenString: String = ( deviceToken.description as NSString )
+            .stringByTrimmingCharactersInSet( characterSet )
+            .stringByReplacingOccurrencesOfString( " ", withString: "" ) as String
+        
+        KeychainSwift().set(deviceTokenString, forKey: "user_device_token_ios")
+        
+        print( deviceTokenString )
+        
+    }
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -105,5 +122,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+}
+// Fixes Push notification bug: _handleNonLaunchSpecificActions
+extension UIApplication {
+    func _handleNonLaunchSpecificActions(arg1: AnyObject, forScene arg2: AnyObject, withTransitionContext arg3: AnyObject, completion completionHandler: () -> Void) {
+        //catching handleNonLaunchSpecificActions:forScene exception on app close
+    }
 }
 

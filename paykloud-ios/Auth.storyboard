@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Nunito-ExtraLight.ttf">
@@ -61,21 +62,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ycz-B2-SpB">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>
                                 <subviews>
-                                    <button opaque="NO" alpha="0.5" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dVb-1V-eVG">
-                                        <rect key="frame" x="15" y="40" width="21" height="22"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="21" id="hfq-58-bo7"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <color key="tintColor" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" image="IconClose">
-                                            <color key="titleColor" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="ojW-tX-SfZ" kind="presentation" id="Cfo-jH-Fbn"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jg8-XG-VvV">
                                         <rect key="frame" x="284" y="40" width="21" height="22"/>
                                         <color key="tintColor" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -94,19 +80,33 @@
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" alpha="0.5" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dVb-1V-eVG">
+                                        <rect key="frame" x="8" y="33" width="34" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="34" id="MI2-77-LDA"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="tintColor" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" image="IconClose">
+                                            <color key="titleColor" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="ojW-tX-SfZ" kind="presentation" id="Cfo-jH-Fbn"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="HWg-0g-9Qs" secondAttribute="bottom" constant="11" id="1YI-NF-APD"/>
                                     <constraint firstItem="HWg-0g-9Qs" firstAttribute="top" secondItem="jg8-XG-VvV" secondAttribute="top" id="7zR-3Y-Rne"/>
                                     <constraint firstAttribute="trailing" secondItem="jg8-XG-VvV" secondAttribute="trailing" constant="15" id="Cg8-BW-rPb"/>
-                                    <constraint firstItem="HWg-0g-9Qs" firstAttribute="centerY" secondItem="dVb-1V-eVG" secondAttribute="centerY" id="H7n-hB-iQT"/>
-                                    <constraint firstItem="HWg-0g-9Qs" firstAttribute="leading" secondItem="dVb-1V-eVG" secondAttribute="trailing" constant="36" id="Kng-KX-Zng"/>
+                                    <constraint firstAttribute="bottom" secondItem="dVb-1V-eVG" secondAttribute="bottom" constant="6" id="CoT-KF-CMh"/>
+                                    <constraint firstItem="dVb-1V-eVG" firstAttribute="top" secondItem="Ycz-B2-SpB" secondAttribute="top" constant="33" id="IBE-WJ-VAD"/>
+                                    <constraint firstItem="dVb-1V-eVG" firstAttribute="centerY" secondItem="jg8-XG-VvV" secondAttribute="centerY" id="IJB-PT-taw"/>
                                     <constraint firstItem="HWg-0g-9Qs" firstAttribute="centerX" secondItem="Ycz-B2-SpB" secondAttribute="centerX" id="L75-e6-awz"/>
                                     <constraint firstItem="jg8-XG-VvV" firstAttribute="leading" secondItem="HWg-0g-9Qs" secondAttribute="trailing" constant="36" id="NVX-Tz-oMK"/>
-                                    <constraint firstItem="dVb-1V-eVG" firstAttribute="bottom" secondItem="jg8-XG-VvV" secondAttribute="bottom" id="eIc-Zl-DsW"/>
-                                    <constraint firstItem="dVb-1V-eVG" firstAttribute="top" secondItem="HWg-0g-9Qs" secondAttribute="top" id="o6A-eV-dZF"/>
-                                    <constraint firstItem="dVb-1V-eVG" firstAttribute="top" secondItem="Ycz-B2-SpB" secondAttribute="top" constant="40" id="rE5-wW-ZZR"/>
-                                    <constraint firstItem="dVb-1V-eVG" firstAttribute="leading" secondItem="Ycz-B2-SpB" secondAttribute="leading" constant="15" id="s5O-f5-Q0Y"/>
+                                    <constraint firstItem="dVb-1V-eVG" firstAttribute="leading" secondItem="Ycz-B2-SpB" secondAttribute="leadingMargin" id="XRC-of-5M9"/>
+                                    <constraint firstItem="HWg-0g-9Qs" firstAttribute="leading" secondItem="dVb-1V-eVG" secondAttribute="trailing" constant="30" id="u1z-yM-gwg"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lFs-5J-kjv">

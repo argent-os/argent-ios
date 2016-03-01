@@ -166,7 +166,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
                 //print(response.data) // server data
                 //print(response.result) // result of response serialization
                 
-                //print("login pressed")
+                // go to main view
+                print("login pressed")
                 if(response.response?.statusCode == 200) {
                     // Login is successful
                     NSUserDefaults.standardUserDefaults().setBool(true,forKey:"userLoggedIn");
@@ -191,18 +192,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
                         self.dismissKeyboard()
                         
                         // Get the firebase token from server response
-                        let AUTH_TOKEN = json["auth"]["token"].stringValue
-                        
-                        // Auth to firebase
-                        firebaseUrl.authWithCustomToken(AUTH_TOKEN, withCompletionBlock: { error, authData in
-                            if error != nil {
-                                // print("Login failed! \(error)")
-                                self.displayErrorAlertMessage("Failed to login, please check email and password are correct");
-
-                            } else {
-                                // print("Login succeeded! \(authData)")
-                            }
-                        })
+//                        let AUTH_TOKEN = json["auth"]["token"].stringValue
+//                        
+//                        // Auth to firebase
+//                        firebaseUrl.authWithCustomToken(AUTH_TOKEN, withCompletionBlock: { error, authData in
+//                            if error != nil {
+//                                // print("Login failed! \(error)")
+//                                self.displayErrorAlertMessage("Failed to login, please check email and password are correct");
+//
+//                            } else {
+//                                // print("Login succeeded! \(authData)")
+//                            }
+//                        })
 
                     }
                 case .Failure(let error):

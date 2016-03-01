@@ -239,6 +239,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
             } else if((Int(dobMonth) == 02 && Int(dobDay) > 30) || (Int(dobMonth) == 04 && Int(dobDay) > 30) || (Int(dobMonth) == 06 && Int(dobDay) > 30) || (Int(dobMonth) == 09 && Int(dobDay) > 30) || (Int(dobMonth) == 11 && Int(dobDay) > 30)) {
                 displayErrorAlertMessage("The entered month does not have 31 days")
             } else {
+                print(firstNameTextField.text!)
                 NSUserDefaults.standardUserDefaults().setValue(firstNameTextField.text!, forKey: "userFirstName")
                 NSUserDefaults.standardUserDefaults().setValue(lastNameTextField.text!, forKey: "userLastName")
                 NSUserDefaults.standardUserDefaults().setValue(dobDay, forKey: "userDobDay")

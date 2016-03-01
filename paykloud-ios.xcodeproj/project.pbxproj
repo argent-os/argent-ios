@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3013DCE31C81F9FE00268DAD /* chime.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3013DCE21C81F9FE00268DAD /* chime.caf */; };
+		3013DCE71C81FFA100268DAD /* chime2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3013DCE61C81FFA100268DAD /* chime2.caf */; };
+		3013DCE91C8375C300268DAD /* ocra.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3013DCE81C8375C300268DAD /* ocra.ttf */; };
+		3013DCEF1C85161100268DAD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3013DCEE1C85161100268DAD /* User.swift */; };
+		3013DCF11C85D7B600268DAD /* cashregister.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3013DCF01C85D7B600268DAD /* cashregister.caf */; };
 		3064E8A41C742A110073E00B /* PasscodeLockConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3064E8A11C742A110073E00B /* PasscodeLockConfiguration.swift */; };
 		3064E8A51C742A110073E00B /* PasscodeSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3064E8A21C742A110073E00B /* PasscodeSettingsViewController.swift */; };
 		3064E8A61C742A110073E00B /* UserDefaultsPasscodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3064E8A31C742A110073E00B /* UserDefaultsPasscodeRepository.swift */; };
@@ -79,6 +84,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3013DCE21C81F9FE00268DAD /* chime.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = chime.caf; sourceTree = "<group>"; };
+		3013DCE61C81FFA100268DAD /* chime2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = chime2.caf; sourceTree = "<group>"; };
+		3013DCE81C8375C300268DAD /* ocra.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ocra.ttf; sourceTree = "<group>"; };
+		3013DCEE1C85161100268DAD /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = "paykloud-ios/User.swift"; sourceTree = SOURCE_ROOT; };
+		3013DCF01C85D7B600268DAD /* cashregister.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = cashregister.caf; sourceTree = "<group>"; };
 		3064E8A11C742A110073E00B /* PasscodeLockConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PasscodeLockConfiguration.swift; path = "paykloud-ios/passcode/PasscodeLockConfiguration.swift"; sourceTree = SOURCE_ROOT; };
 		3064E8A21C742A110073E00B /* PasscodeSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PasscodeSettingsViewController.swift; path = "paykloud-ios/passcode/PasscodeSettingsViewController.swift"; sourceTree = SOURCE_ROOT; };
 		3064E8A31C742A110073E00B /* UserDefaultsPasscodeRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDefaultsPasscodeRepository.swift; path = "paykloud-ios/passcode/UserDefaultsPasscodeRepository.swift"; sourceTree = SOURCE_ROOT; };
@@ -171,6 +181,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3013DCE11C81F9FE00268DAD /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				3013DCE21C81F9FE00268DAD /* chime.caf */,
+				3013DCE61C81FFA100268DAD /* chime2.caf */,
+				3013DCF01C85D7B600268DAD /* cashregister.caf */,
+			);
+			name = sounds;
+			path = "paykloud-ios/sounds";
+			sourceTree = SOURCE_ROOT;
+		};
+		3013DCEA1C8515A300268DAD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3013DCED1C85160500268DAD /* User */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		3013DCED1C85160500268DAD /* User */ = {
+			isa = PBXGroup;
+			children = (
+				3013DCEE1C85161100268DAD /* User.swift */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
 		3064E8A01C742A040073E00B /* Passcode */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +229,7 @@
 		306D6DB11C7008D200467C41 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3013DCE11C81F9FE00268DAD /* sounds */,
 				30975C631C7040B500D2BDAA /* videos */,
 				306D6DB21C7008DA00467C41 /* fonts */,
 			);
@@ -201,6 +239,7 @@
 		306D6DB21C7008DA00467C41 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				3013DCE81C8375C300268DAD /* ocra.ttf */,
 				306D6DB31C7008DA00467C41 /* Nunito-Black.ttf */,
 				306D6DB41C7008DA00467C41 /* Nunito-Bold.ttf */,
 				306D6DB51C7008DA00467C41 /* Nunito-ExtraBold.ttf */,
@@ -361,6 +400,7 @@
 				30BECC081C6F934A00B8A088 /* Root */,
 				30BECC061C6F92EF00B8A088 /* Auth */,
 				30BECC071C6F932400B8A088 /* Main */,
+				3013DCEA1C8515A300268DAD /* Models */,
 				30BECC091C6F935200B8A088 /* Nav */,
 				30BECC0C1C6F93AF00B8A088 /* Add-ons */,
 				30BECC0B1C6F939800B8A088 /* Storyboards */,
@@ -535,11 +575,14 @@
 			files = (
 				30BECBFF1C6EA6EC00B8A088 /* Assets.xcassets in Resources */,
 				30B9E7D91C7B928100C04530 /* CountryView.xib in Resources */,
+				3013DCE71C81FFA100268DAD /* chime2.caf in Resources */,
 				30BECBDD1C6E9FF200B8A088 /* LaunchScreen.storyboard in Resources */,
 				3099CB6F1C70D69D000CEDE2 /* Auth.storyboard in Resources */,
 				3067D9F71C7F766D00C1418E /* KolodaCustomOverlayView.xib in Resources */,
 				3067D9FB1C7F7B6800C1418E /* OverlayView.xib in Resources */,
 				30BECBEB1C6EA02800B8A088 /* Main.storyboard in Resources */,
+				3013DCF11C85D7B600268DAD /* cashregister.caf in Resources */,
+				3013DCE91C8375C300268DAD /* ocra.ttf in Resources */,
 				306D6DC11C7008DA00467C41 /* Nunito-Regular.ttf in Resources */,
 				306D6DBE1C7008DA00467C41 /* Nunito-ExtraLight.ttf in Resources */,
 				306D6DBC1C7008DA00467C41 /* Nunito-Bold.ttf in Resources */,
@@ -549,6 +592,7 @@
 				306D6DBF1C7008DA00467C41 /* Nunito-Light.ttf in Resources */,
 				306D6DBB1C7008DA00467C41 /* Nunito-Black.ttf in Resources */,
 				306D6DC01C7008DA00467C41 /* Nunito-Medium.ttf in Resources */,
+				3013DCE31C81F9FE00268DAD /* chime.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -652,6 +696,7 @@
 				30BECC011C6F71B500B8A088 /* ProfileViewController.swift in Sources */,
 				30BECBDB1C6E9FF200B8A088 /* Extensions.swift in Sources */,
 				30B9E7DD1C7C9B0F00C04530 /* ResetPasswordViewController.swift in Sources */,
+				3013DCEF1C85161100268DAD /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

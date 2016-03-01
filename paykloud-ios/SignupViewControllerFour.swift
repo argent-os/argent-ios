@@ -113,11 +113,17 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
                 let dobNSDict = dobJSON as NSDictionary //no error message
                 
                 let userPassword = KeychainSwift().get("userPassword")!
-                print(self.userFirstName)
-                print(self.userLastName)
+                var userDeviceToken: String {
+                    if let userDeviceToken = KeychainSwift().get("user_device_token_ios") {
+                        return userDeviceToken
+                    }
+                    return ""
+                }
+//                print(self.userFirstName)
+//                print(self.userLastName)
                 let parameters : [String : AnyObject] = [
-                    "firstname":self.userFirstName,
-                    "lastname":self.userLastName,
+                    "first_name":self.userFirstName,
+                    "last_name":self.userLastName,
                     "username":self.userUsername,
                     "country":self.countryCode,
                     "email":self.userEmail,
@@ -125,7 +131,8 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
                     "tos_acceptance" : tosNSDict,
                     "dob" : dobNSDict,
                     "legal_entity_type": self.userLegalEntityType,
-                    "password":userPassword
+                    "password":userPassword,
+                    "device_token_ios": userDeviceToken
                 ]
                 Alamofire.request(.POST, apiUrl + "/v1/register", parameters: parameters, encoding:.JSON)
                     .responseJSON { response in

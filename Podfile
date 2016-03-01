@@ -4,6 +4,9 @@ use_frameworks!
 
 pod 'RESideMenu', '~> 4.0.7'
 pod 'Alamofire', '~> 3.0'
+pod 'AlamoArgo', '~> 0.5.3'
+pod 'Runes', '~> 3.2.0'
+pod 'Argo', '~> 2.2.0'
 pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 pod 'SVProgressHUD', '~> 2.0-beta8'
 pod 'Neon', '~> 0.0.3'
@@ -20,7 +23,10 @@ pod 'BEMCheckBox', '~> 1.0.0'
 pod 'SwiftGifOrigin', '~> 1.5.2'
 pod 'CWStatusBarNotification', '~> 2.3.4'
 pod 'Koloda', '~> 2.0.10'
+pod 'SnapKit', '~> 0.19.1'
+pod 'MXParallaxHeader', '~> 0.4.3'
 
+pod "LiquidFloatingActionButton", :git => 'https://github.com/yoavlt/LiquidFloatingActionButton', :branch => 'swift-2.0'
 
 post_install do |installer|
     `find Pods -regex 'Pods/pop.*\\.h' -print0 | xargs -0 sed -i '' 's/\\(<\\)pop\\/\\(.*\\)\\(>\\)/\\"\\2\\"/'`
