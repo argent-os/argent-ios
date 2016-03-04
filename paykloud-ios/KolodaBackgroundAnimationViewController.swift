@@ -21,6 +21,11 @@ class BackgroundAnimationViewController: UIViewController {
     
     @IBOutlet weak var kolodaView: CustomKolodaView!
     
+    //Changing Status Bar
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.Default
+    }
+    
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()

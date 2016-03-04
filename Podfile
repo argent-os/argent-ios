@@ -25,8 +25,9 @@ pod 'CWStatusBarNotification', '~> 2.3.4'
 pod 'Koloda', '~> 2.0.10'
 pod 'SnapKit', '~> 0.19.1'
 pod 'MXParallaxHeader', '~> 0.4.3'
-
-pod "LiquidFloatingActionButton", :git => 'https://github.com/yoavlt/LiquidFloatingActionButton', :branch => 'swift-2.0'
+pod 'Gecco', '~> 0.2.0'
+pod 'VENCalculatorInputView', '~> 1.5'
+pod 'LiquidFloatingActionButton', :git => 'https://github.com/yoavlt/LiquidFloatingActionButton', :branch => 'swift-2.0'
 
 post_install do |installer|
     `find Pods -regex 'Pods/pop.*\\.h' -print0 | xargs -0 sed -i '' 's/\\(<\\)pop\\/\\(.*\\)\\(>\\)/\\"\\2\\"/'`

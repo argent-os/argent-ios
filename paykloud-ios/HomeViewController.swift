@@ -33,7 +33,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, CardIOPayment
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) 
         cell.textLabel?.text = logs[indexPath.row].task
-//        cell.detailTextLabel?.text = logs[indexPath.row].dateStart.toString()
+        // cell.detailTextLabel?.text = logs[indexPath.row].dateStart.toString()
         return cell
     }
     
@@ -234,7 +234,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, CardIOPayment
         self.navigationController?.navigationBar
             .addSubview(mainSegment)
         
-        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Compose, target: self, action: nil), animated: true)
+        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Compose, target: self, action: Selector("chargeButtonTapped:")), animated: true)
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
         
         // Blur View
@@ -325,7 +325,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, CardIOPayment
             self.presentViewController(viewController, animated: true, completion: nil)
             SVProgressHUD.dismiss()
         } else {
-            print(userData)
+//            print(userData)
             print("logged in")
             SVProgressHUD.dismiss()
             layoutFrames()
@@ -347,8 +347,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, CardIOPayment
                         if let value = response.result.value {
                             let response = JSON(value)
                             let bal = response["pending"][0]["amount"]
-                            let formattedBal = formatter.stringFromNumber(Int(bal.stringValue)!/100) // e.g. "$123.44"
-                            self.accountBalanceTextLabel.text = formattedBal
+                            var formattedBal: String {
+                                if let formattedBal = formatter.stringFromNumber(Int(bal.stringValue)!/100) {
+                                    self.accountBalanceTextLabel.text = formattedBal
+                                    return formattedBal
+                                }
+                                return ""
+                            }
                         }
                 }
                 usernameViewText.text = userData?["user"]["username"].stringValue
@@ -376,6 +381,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, CardIOPayment
             }
 
         }
+    }
+    
+    // Charge View
+    @IBAction func chargeButtonTapped(sender: AnyObject) {
+        SVProgressHUD.show()
+        // go to charge view
+        self.performSegueWithIdentifier("chargeView", sender: self);
     }
     
     // LOGOUT

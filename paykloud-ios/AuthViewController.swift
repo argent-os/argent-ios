@@ -9,8 +9,11 @@
 import VideoSplashKit
 import QuartzCore
 import SVProgressHUD
+import Gecco
 
-class AuthViewController: VideoSplashViewController  {
+class AuthViewController: UIViewController  {
+    
+    var spotlightViewController: SpotlightViewController?
     
     override func viewDidAppear(animated: Bool) {
         SVProgressHUD.dismiss()
@@ -24,11 +27,16 @@ class AuthViewController: VideoSplashViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Border radius on uiview
-        view.layer.backgroundColor = UIColor.whiteColor().CGColor
         view.layer.cornerRadius = 0
         view.layer.masksToBounds = true
+        
+        showSpotlight()
+
+        // Set background image
+        var backgroundView: UIImageView = UIImageView(image: UIImage(named: "BackgroundMountain2"))
+        backgroundView.frame = self.view.bounds
+        self.view!.addSubview(backgroundView)
         
         // screen width and height:
         let screen = UIScreen.mainScreen().bounds
@@ -38,26 +46,14 @@ class AuthViewController: VideoSplashViewController  {
         let storyboard = UIStoryboard(name: "Auth", bundle: nil)
         let vc = storyboard.instantiateViewControllerWithIdentifier("authViewController")
         self.navigationController?.pushViewController(vc, animated: true)
-        //        print(storyboard)
-        //        print(vc)
         
-//        let url = NSURL.fileURLWithPath(NSBundle.mainBundle().pathForResource("nyc", ofType: "mp4")!)
-//        self.videoFrame = view.frame
-//        self.fillMode = .ResizeAspectFill
-//        self.alwaysRepeat = true
-//        self.sound = false
-//        self.startTime = 0
-//        self.duration = 10
-//        self.alpha = 0.5
-//        self.backgroundColor = UIColor.blackColor()
-//        self.contentURL = url
         
         // UI
         let loginButton = UIButton(frame: CGRect(x: 0, y: screenHeight*0.91, width: screenWidth/2, height: 60.0))
         loginButton.backgroundColor = UIColor(rgba: "#1aa8f6")
         loginButton.tintColor = UIColor(rgba: "#fff")
         loginButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
-        loginButton.titleLabel?.font = UIFont(name: "Nunito", size: 16)
+        loginButton.titleLabel?.font = UIFont(name: "Nunito-SemiBold", size: 16)
         loginButton.setTitle("Log in", forState: .Normal)
         loginButton.layer.cornerRadius = 0
         loginButton.layer.masksToBounds = true
@@ -65,10 +61,10 @@ class AuthViewController: VideoSplashViewController  {
         view.addSubview(loginButton)
         
         let signupButton = UIButton(frame: CGRect(x: screenWidth*0.5, y: screenHeight*0.91, width: screenWidth/2, height: 60.0))
-        signupButton.backgroundColor = UIColor.clearColor()
+        signupButton.backgroundColor = UIColor.whiteColor()
         signupButton.setTitle("Sign up", forState: .Normal)
         signupButton.setTitleColor(UIColor(rgba: "#1aa8f6"), forState: .Normal)
-        signupButton.titleLabel?.font = UIFont(name: "Nunito", size: 16)
+        signupButton.titleLabel?.font = UIFont(name: "Nunito-SemiBold", size: 16)
         signupButton.layer.cornerRadius = 0
         signupButton.layer.borderWidth = 1
         signupButton.layer.borderColor = UIColor(rgba: "#1aa8f6").CGColor
@@ -76,12 +72,12 @@ class AuthViewController: VideoSplashViewController  {
         signupButton.addTarget(self, action: "signup:", forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(signupButton)
         
-        let imageName = "IconLogoColor"
+        let imageName = "IconLogo"
         let image = UIImage(named: imageName)
         let imageView = UIImageView(image: image!)
         imageView.tag = 7577
         imageView.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
-        imageView.frame.origin.y = screenHeight*0.34 // 18 down from the top
+        imageView.frame.origin.y = screenHeight*0.14 // 14 down from the top
         imageView.frame.origin.x = (self.view.bounds.size.width - imageView.frame.size.width) / 2.0 // centered left to right.
         view.addSubview(imageView)
         
@@ -93,9 +89,9 @@ class AuthViewController: VideoSplashViewController  {
         text.tag = 7578
         text.frame.origin.y = screenHeight*0.40 // 20 down from the top
         text.textAlignment = NSTextAlignment.Center
-        text.textColor = UIColor.darkGrayColor()
+        text.textColor = UIColor.whiteColor()
         text.attributedText = attributedString
-        text.font = UIFont(name: "Nunito-SemiBold", size: 14)
+        text.font = UIFont(name: "Nunito-ExtraBold", size: 14)
         view.addSubview(text)
         
         let attributedString1 = NSMutableAttributedString(string: "Tap to view app features.")
@@ -104,8 +100,8 @@ class AuthViewController: VideoSplashViewController  {
         button.frame.origin.y = screenHeight*0.44 // 20 down from the top
         button.backgroundColor = UIColor.clearColor()
         button.setTitle("Tap to view app features.", forState: .Normal)
-        button.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
-        button.titleLabel?.font = UIFont(name: "Nunito", size: 14)
+        button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        button.titleLabel?.font = UIFont(name: "Nunito-SemiBold", size: 14)
         button.addTarget(self, action: "goToTutorial:", forControlEvents: UIControlEvents.TouchUpInside)
 //        button.textAlignment = NSTextAlignment.Center
 //        button.textColor = UIColor(rgba: "#1aa8f6")
@@ -114,6 +110,11 @@ class AuthViewController: VideoSplashViewController  {
         
     }
     
+    //Changing Status Bar
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+
     // Set the ID in the storyboard in order to enable transition!
     func signup(sender:AnyObject!)
     {
@@ -135,6 +136,12 @@ class AuthViewController: VideoSplashViewController  {
         let viewController:LoginViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
         
         self.presentViewController(viewController, animated: true, completion: nil)
+    }
+
+    func showSpotlight() {
+        let spotlightViewController = SpotlightViewController()
+        presentViewController(spotlightViewController, animated: true, completion: nil)
+        spotlightViewController.spotlightView.appear(Spotlight.Oval(center: CGPointMake(100, 100), diameter: 100))
     }
     
     override func didReceiveMemoryWarning() {

@@ -8,6 +8,7 @@ PODS:
   - CardIO (5.3.1)
   - CWStatusBarNotification (2.3.4)
   - Firebase (2.5.1)
+  - Gecco (0.2.0)
   - KeychainSwift (3.0.11)
   - Koloda (2.0.10):
     - pop (~> 1.0)
@@ -30,6 +31,7 @@ PODS:
   - SwiftyJSON (2.3.2)
   - TextFieldEffects (1.1.0)
   - UIColor_Hex_Swift (1.9)
+  - VENCalculatorInputView (1.5.4)
   - VideoSplashKit (1.1.0)
 
 DEPENDENCIES:
@@ -40,6 +42,7 @@ DEPENDENCIES:
   - CardIO (~> 5.3.1)
   - CWStatusBarNotification (~> 2.3.4)
   - Firebase (>= 2.5.0)
+  - Gecco (~> 0.2.0)
   - KeychainSwift (~> 3.0)
   - Koloda (~> 2.0.10)
   - LiquidFloatingActionButton (from `https://github.com/yoavlt/LiquidFloatingActionButton`,
@@ -57,6 +60,7 @@ DEPENDENCIES:
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
   - TextFieldEffects (~> 1.1.0)
   - UIColor_Hex_Swift (~> 1.8)
+  - VENCalculatorInputView (~> 1.5)
   - VideoSplashKit (~> 1.1.0)
 
 EXTERNAL SOURCES:
@@ -82,6 +86,7 @@ SPEC CHECKSUMS:
   CardIO: a299efcd0348c3b256a1da53f22951319c3855a2
   CWStatusBarNotification: 3fec41edcb0ae3677d9febfcb9632d8bdf52294c
   Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
+  Gecco: 27ab0f43da3f8e844771cf641992afdd1ea09c62
   KeychainSwift: 0a4214c910423543a42b0f30f25987d46178b6a5
   Koloda: 10f747feeff5e425061f78e5ce17208783e34a99
   LiquidFloatingActionButton: dcdae1e59eb07eccbf60c027001a4d6731c345c9
@@ -100,6 +105,7 @@ SPEC CHECKSUMS:
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   TextFieldEffects: 8e43fea8836e97be80fc4db27a1596c9e98a26ba
   UIColor_Hex_Swift: 2ee747c0fed8b72b2135ef474b80a6921e489daa
+  VENCalculatorInputView: 988fa681ba6bb9b1f067842493bb622e80cc8da2
   VideoSplashKit: 0aa63d0bb37c5bd357de3e6a2a13dea5acad4d66
 
 COCOAPODS: 0.39.0

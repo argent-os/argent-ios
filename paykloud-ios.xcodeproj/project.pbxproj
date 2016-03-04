@@ -28,6 +28,7 @@
 		306D6DC01C7008DA00467C41 /* Nunito-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 306D6DB81C7008DA00467C41 /* Nunito-Medium.ttf */; };
 		306D6DC11C7008DA00467C41 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 306D6DB91C7008DA00467C41 /* Nunito-Regular.ttf */; };
 		306D6DC21C7008DA00467C41 /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 306D6DBA1C7008DA00467C41 /* Nunito-SemiBold.ttf */; };
+		30718AD91C891CF500CB0EEB /* ChargeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30718AD81C891CF500CB0EEB /* ChargeViewController.swift */; };
 		3072653B1C72D88F00D2AF61 /* PresentedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072653A1C72D88F00D2AF61 /* PresentedTableViewController.swift */; };
 		3072653D1C73B63200D2AF61 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072653C1C73B63200D2AF61 /* TermsViewController.swift */; };
 		307C6A201C7D40A500723E39 /* SignupViewControllerFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307C6A1F1C7D40A500723E39 /* SignupViewControllerFour.swift */; };
@@ -105,6 +106,7 @@
 		306D6DB81C7008DA00467C41 /* Nunito-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Medium.ttf"; sourceTree = "<group>"; };
 		306D6DB91C7008DA00467C41 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
 		306D6DBA1C7008DA00467C41 /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-SemiBold.ttf"; sourceTree = "<group>"; };
+		30718AD81C891CF500CB0EEB /* ChargeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChargeViewController.swift; path = "paykloud-ios/ChargeViewController.swift"; sourceTree = SOURCE_ROOT; };
 		3072653A1C72D88F00D2AF61 /* PresentedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PresentedTableViewController.swift; path = "paykloud-ios/PresentedTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		3072653C1C73B63200D2AF61 /* TermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TermsViewController.swift; path = "paykloud-ios/TermsViewController.swift"; sourceTree = SOURCE_ROOT; };
 		307C6A1F1C7D40A500723E39 /* SignupViewControllerFour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewControllerFour.swift; path = "paykloud-ios/SignupViewControllerFour.swift"; sourceTree = SOURCE_ROOT; };
@@ -304,6 +306,7 @@
 			isa = PBXGroup;
 			children = (
 				30BECBCE1C6E9FF200B8A088 /* HomeViewController.swift */,
+				30718AD81C891CF500CB0EEB /* ChargeViewController.swift */,
 				30BECBD71C6E9FF200B8A088 /* SettingsViewController.swift */,
 				30BECC001C6F71B500B8A088 /* ProfileViewController.swift */,
 				30BECBD51C6E9FF200B8A088 /* PaymentViewController.swift */,
@@ -693,6 +696,7 @@
 				30BECBE41C6E9FF200B8A088 /* RootViewController.swift in Sources */,
 				3064E8A41C742A110073E00B /* PasscodeLockConfiguration.swift in Sources */,
 				3072653D1C73B63200D2AF61 /* TermsViewController.swift in Sources */,
+				30718AD91C891CF500CB0EEB /* ChargeViewController.swift in Sources */,
 				30BECC011C6F71B500B8A088 /* ProfileViewController.swift in Sources */,
 				30BECBDB1C6E9FF200B8A088 /* Extensions.swift in Sources */,
 				30B9E7DD1C7C9B0F00C04530 /* ResetPasswordViewController.swift in Sources */,
