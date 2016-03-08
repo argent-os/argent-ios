@@ -52,9 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barStyle = .Black
 
         // Display PasscodeLock on Launch
-//        if(userData != nil) {
-            passcodeLockPresenter.presentPasscodeLock()
-//        }
+        passcodeLockPresenter.presentPasscodeLock()
 
         // Customize SVProgressHUD
         SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.Custom)

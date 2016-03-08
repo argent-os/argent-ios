@@ -121,7 +121,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
     @IBAction func resetButtonTapped(sender: AnyObject) {
         let email = emailTextField.text
         let username = emailTextField.text
-        SVProgressHUD.show()
+        SVProgressHUD.showInfoWithStatus("Sending reset link...", maskType: SVProgressHUDMaskType.Gradient)
         
         // check for empty fields
         if(email!.isEmpty) {
