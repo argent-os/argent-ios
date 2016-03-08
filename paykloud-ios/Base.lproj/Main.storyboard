@@ -124,7 +124,7 @@
                                             <constraint firstAttribute="width" constant="49" id="xnP-Z4-f6p"/>
                                         </constraints>
                                         <connections>
-                                            <action selector="passcodeSwitchValueChange:" destination="Wgs-dC-FHb" eventType="valueChanged" id="OO5-Kd-p2j"/>
+                                            <action selector="passcodeSwitchValueChange:" destination="Wgs-dC-FHb" eventType="valueChanged" id="VWE-0R-uyd"/>
                                         </connections>
                                     </switch>
                                 </subviews>
@@ -200,7 +200,7 @@ for older iOS versions</string>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="changePasscodeButton" destination="FEn-Bp-Q0E" id="4IX-PG-LkB"/>
-                        <outlet property="passcodeSwitch" destination="WsJ-UR-NwF" id="QWM-GQ-5yj"/>
+                        <outlet property="passcodeSwitch" destination="WsJ-UR-NwF" id="ghy-Kc-1qx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3oG-ZH-bY9" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -73,11 +73,12 @@ class PasscodeSettingsViewController: UIViewController {
             passcodeVC = PasscodeLockViewController(state: .SetPasscode, configuration: configuration)
             
         } else {
-            
+        
             passcodeVC = PasscodeLockViewController(state: .RemovePasscode, configuration: configuration)
             
             passcodeVC.successCallback = { lock in
-                
+                self.passcodeSwitch.on = !self.passcodeSwitch.on
+                self.changePasscodeButton.hidden = true
                 lock.repository.deletePasscode()
             }
         }
@@ -85,7 +86,7 @@ class PasscodeSettingsViewController: UIViewController {
         presentViewController(passcodeVC, animated: true, completion: nil)
     }
     
-    @IBAction func changePasscodeButtonTap(sender: UIButton) {
+    @IBAction func changePasscodeButtonTap(sender: AnyObject) {
         
         let repo = UserDefaultsPasscodeRepository()
         let config = PasscodeLockConfiguration(repository: repo)
@@ -93,16 +94,6 @@ class PasscodeSettingsViewController: UIViewController {
         let passcodeLock = PasscodeLockViewController(state: .ChangePasscode, configuration: config)
         
         presentViewController(passcodeLock, animated: true, completion: nil)
-    }
-    
-    @IBAction func testAlertButtonTap(sender: UIButton) {
-        
-        let alertVC = UIAlertController(title: "Test", message: "", preferredStyle: .Alert)
-        
-        alertVC.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
-        
-        presentViewController(alertVC, animated: true, completion: nil)
-        
     }
     
     //Changing Status Bar
