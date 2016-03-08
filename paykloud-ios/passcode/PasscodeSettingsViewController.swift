@@ -10,11 +10,11 @@ import UIKit
 import PasscodeLock
 
 class PasscodeSettingsViewController: UIViewController {
-    
+
+    @IBOutlet weak var blueLabel: UILabel!
+    @IBOutlet weak var superView: UIView!
     @IBOutlet weak var passcodeSwitch: UISwitch!
     @IBOutlet weak var changePasscodeButton: UIButton!
-    @IBOutlet weak var testTextField: UITextField!
-    @IBOutlet weak var testActivityButton: UIButton!
     
     private let configuration: PasscodeLockConfigurationType
     
@@ -38,7 +38,20 @@ class PasscodeSettingsViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        view.backgroundColor = UIColor.whiteColor()
+        
         updatePasscodeView()
+    }
+    
+    override func viewDidLoad() {
+        passcodeSwitch.onTintColor = UIColor(rgba: "#1f62f1")
+        
+        self.navigationController!.navigationBar.tintColor = UIColor.darkGrayColor()
+
+        changePasscodeButton.layer.cornerRadius = 5
+        changePasscodeButton.clipsToBounds = true
+        changePasscodeButton.backgroundColor = UIColor(rgba: "#ffffff")
+        
     }
     
     func updatePasscodeView() {
@@ -51,7 +64,7 @@ class PasscodeSettingsViewController: UIViewController {
     
     // MARK: - Actions
     
-    @IBAction func passcodeSwitchValueChange(sender: UISwitch) {
+    @IBAction func passcodeSwitchValueChange(sender: AnyObject) {
         
         let passcodeVC: PasscodeLockViewController
         
@@ -68,7 +81,7 @@ class PasscodeSettingsViewController: UIViewController {
                 lock.repository.deletePasscode()
             }
         }
-        
+
         presentViewController(passcodeVC, animated: true, completion: nil)
     }
     
@@ -92,22 +105,11 @@ class PasscodeSettingsViewController: UIViewController {
         
     }
     
-    @IBAction func testActivityButtonTap(sender: UIButton) {
-        
-        let activityVC = UIActivityViewController(activityItems: ["Test"], applicationActivities: nil)
-        
-        activityVC.popoverPresentationController?.sourceView = testActivityButton
-        activityVC.popoverPresentationController?.sourceRect = CGRectMake(10, 20, 0, 0)
-        
-        presentViewController(activityVC, animated: true, completion: nil)
+    //Changing Status Bar
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
-    
-    @IBAction func dismissKeyboard() {
-        
-        testTextField.resignFirstResponder()
-    }
-    
-    
+
     // This function is called before the segue, use this to make sure the view controller is properly returned to the root view controller
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         

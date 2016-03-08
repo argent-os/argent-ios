@@ -24,10 +24,13 @@ pod 'SwiftGifOrigin', '~> 1.5.2'
 pod 'CWStatusBarNotification', '~> 2.3.4'
 pod 'Koloda', '~> 2.0.10'
 pod 'SnapKit', '~> 0.19.1'
-pod 'MXParallaxHeader', '~> 0.4.3'
 pod 'Gecco', '~> 0.2.0'
 pod 'VENCalculatorInputView', '~> 1.5'
-pod 'LiquidFloatingActionButton', :git => 'https://github.com/yoavlt/LiquidFloatingActionButton', :branch => 'swift-2.0'
+pod 'RAMAnimatedTabBarController', '~> 1.2.1'
+pod 'RAMReel', '~> 1.0.6'
+pod 'DZNEmptyDataSet', '~> 1.7.3'
+pod 'IOStickyHeader', '~> 0.3.0' 
+pod 'AMViralSwitch'
 
 post_install do |installer|
     `find Pods -regex 'Pods/pop.*\\.h' -print0 | xargs -0 sed -i '' 's/\\(<\\)pop\\/\\(.*\\)\\(>\\)/\\"\\2\\"/'`

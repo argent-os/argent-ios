@@ -28,6 +28,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
     var alreadyAdjusted:Bool = false
     
     override func viewDidAppear(animated: Bool) {
+        userData = nil
+        NSUserDefaults.standardUserDefaults().setBool(false,forKey:"userLoggedIn");
+        NSUserDefaults.standardUserDefaults().synchronize();
         SVProgressHUD.dismiss()
     }
     
@@ -144,6 +147,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         let password = passwordTextField.text
         SVProgressHUD.show()
 
+        print("login button tapped")
+        
         // check for empty fields
         if(email!.isEmpty) {
             // display alert message
@@ -169,13 +174,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
                 // go to main view
                 print("login pressed")
                 if(response.response?.statusCode == 200) {
-                    // Login is successful
-                    NSUserDefaults.standardUserDefaults().setBool(true,forKey:"userLoggedIn");
-                    NSUserDefaults.standardUserDefaults().synchronize();
-                    SVProgressHUD.dismiss()
-
-                    // go to main view
-                    self.performSegueWithIdentifier("homeView", sender: self);
+                    print("green light")
                 } else {
                     SVProgressHUD.dismiss()
                 }
@@ -188,22 +187,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
                         // assign userData to self, access globally
                         userData = json
                         
+                        let token = userData!["token"].stringValue
+                        // Login is successful
+                        NSUserDefaults.standardUserDefaults().setBool(true,forKey:"userLoggedIn")
+                        print("is user logged in", NSUserDefaults.standardUserDefaults().boolForKey("userLoggedIn"))
+                        NSUserDefaults.standardUserDefaults().setValue(token, forKey: "userAccessToken")
+                        NSUserDefaults.standardUserDefaults().synchronize()
+                        print("user token is", NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken"))
+                        SVProgressHUD.dismiss()
+                        
+                        // go to main view
+                        self.performSegueWithIdentifier("homeView", sender: self);
+                        
                         //print(json)
                         self.dismissKeyboard()
-                        
-                        // Get the firebase token from server response
-//                        let AUTH_TOKEN = json["auth"]["token"].stringValue
-//                        
-//                        // Auth to firebase
-//                        firebaseUrl.authWithCustomToken(AUTH_TOKEN, withCompletionBlock: { error, authData in
-//                            if error != nil {
-//                                // print("Login failed! \(error)")
-//                                self.displayErrorAlertMessage("Failed to login, please check email and password are correct");
-//
-//                            } else {
-//                                // print("Login succeeded! \(authData)")
-//                            }
-//                        })
 
                     }
                 case .Failure(let error):
@@ -231,7 +228,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
             // Sent root view controller (default is login) otherwise send to register page
             let rootViewController = (self.storyboard?.instantiateViewControllerWithIdentifier("RootViewController"))! as UIViewController
             self.presentViewController(rootViewController, animated: true, completion: nil)
-            print("neither login or signup pressed")
+            print("sending root view controller")
         }
     }
     
@@ -345,3 +342,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
     }
     
 }
+
+class HTTPManager: Alamofire.Manager {
+    static let sharedManager: HTTPManager = {
+        //let configuration = Timberjack.defaultSessionConfiguration()
+        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        configuration.HTTPAdditionalHeaders = Alamofire.Manager.defaultHTTPHeaders
+        let serverTrustPolicies: [String: ServerTrustPolicy] = [
+            "192.168.1.182:": .DisableEvaluation
+        ]
+        var policy: ServerTrustPolicy = ServerTrustPolicy.DisableEvaluation
+        let manager = HTTPManager(configuration: configuration,serverTrustPolicyManager: ServerTrustPolicyManager(policies: serverTrustPolicies))
+        return manager
+    }()
+}
+
+

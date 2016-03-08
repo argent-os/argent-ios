@@ -15,13 +15,10 @@ import Neon
 import Firebase
 import SwiftyJSON
 import Stripe
-import MXParallaxHeader
-import LiquidFloatingActionButton
+//import MXParallaxHeader
 
-class HomeViewController: UIViewController, UITableViewDataSource, CardIOPaymentViewControllerDelegate, LiquidFloatingActionButtonDataSource, LiquidFloatingActionButtonDelegate {
+class HomeViewController: UIViewController, UITableViewDataSource, CardIOPaymentViewControllerDelegate {
     
-    var cells: [LiquidFloatingCell] = []
-    var floatingActionButton: LiquidFloatingActionButton!
     
     // INIT TABLE
     var logs = [Log]()
@@ -39,16 +36,16 @@ class HomeViewController: UIViewController, UITableViewDataSource, CardIOPayment
     
     // INIT UI
     var button: StarButton! = nil
-    @IBOutlet weak var logsTable: UITableView!    
     @IBOutlet weak var userImage: UIImageView?
     @IBOutlet weak var username: UILabel!
-    @IBOutlet weak var accountBalanceTextLabel: UILabel!
-    
-    lazy var blurView: UIVisualEffectView = {
-        let blurView = UIVisualEffectView()
-        return blurView
-    }()
+//    @IBOutlet weak var accountBalanceTextLabel: UILabel!
 
+    
+//    lazy var blurView: UIVisualEffectView = {
+//        let blurView = UIVisualEffectView()
+//        return blurView
+//    }()
+    
     // In order to add a button, such as a ui view, add the referencing iboutlet and then delete it, replacing it with the lazy loaded variable button type you see below
     lazy var scanCardButton: UIButton = {
         let scanCardButton = UIButton()
@@ -74,7 +71,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, CardIOPayment
     let usernameViewText : UILabel = UILabel()
     let view2 : UILabel = UILabel()
     
-    @IBOutlet weak var resultLabel: UILabel!
+//    @IBOutlet weak var resultLabel: UILabel!
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -90,7 +87,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, CardIOPayment
     }
     
     func userDidCancelPaymentViewController(paymentViewController: CardIOPaymentViewController!) {
-        resultLabel.text = "Card not entered"
+//        resultLabel.text = "Card not entered"
         paymentViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -105,32 +102,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, CardIOPayment
         if let info = cardInfo {
             let str = NSString(format: "Received card info.\n Number: %@\n expiry: %02lu/%lu\n cvv: %@.", info.redactedCardNumber, info.expiryMonth, info.expiryYear, info.cvv)
             print(str)
-            resultLabel.text = str as String
+//            resultLabel.text = str as String
         }
         paymentViewController?.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    
-    func numberOfCells(liquidFloatingActionButton: LiquidFloatingActionButton) -> Int {
-        return cells.count
-    }
-    
-    func cellForIndex(index: Int) -> LiquidFloatingCell {
-        return cells[index]
-    }
-    
-    func liquidFloatingActionButton(liquidFloatingActionButton: LiquidFloatingActionButton, didSelectItemAtIndex index: Int) {
-        if(index == 0) {
-            print("index 0 tapped")
-        } else if(index == 1) {
-            print("index 1 tapped")
-        } else if(index == 2) {
-            // Show Card View
-            scanCard(LiquidFloatingActionButton)
-            print("index 2 tapped")
-        }
-//        print("did Tapped! \(index)")
-        liquidFloatingActionButton.close()
     }
     
     // VIEW DID LOAD
@@ -143,16 +117,17 @@ class HomeViewController: UIViewController, UITableViewDataSource, CardIOPayment
         SVProgressHUD.show()
         
         // Header
-        var headerView: UIImageView = UIImageView()
-        headerView.image = UIImage(named: "Background")
-        headerView.contentMode = .ScaleAspectFill
-        var scrollView: UIScrollView = UIScrollView()
-        scrollView.parallaxHeader.view = headerView
-        scrollView.parallaxHeader.height = 150
-        scrollView.parallaxHeader.mode = MXParallaxHeaderMode.Fill
-        scrollView.parallaxHeader.minimumHeight = 20
+//        var headerView: UIImageView = UIImageView()
+//        headerView.image = UIImage(named: "Background")
+//        headerView.contentMode = .ScaleAspectFill
+//        var scrollView: UIScrollView = UIScrollView()
+//        scrollView.parallaxHeader.view = headerView
+//        scrollView.parallaxHeader.height = 150
+//        scrollView.parallaxHeader.mode = MXParallaxHeaderMode.Fill
+//        scrollView.parallaxHeader.minimumHeight = 20
 
-        
+//        scanCard({sender})
+
         // Load CardIO
         CardIOUtilities.preload()
         
@@ -182,38 +157,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, CardIOPayment
         avatarImageView.layer.borderColor = UIColor.blackColor().CGColor
         avatarImageView.clipsToBounds = true
         
-        
-        // Liquid Floating Button
-        // self.view.backgroundColor = UIColor(red: 55 / 255.0, green: 55 / 255.0, blue: 55 / 255.0, alpha: 1.0)
-        // Do any additional setup after loading the view, typically from a nib.
-        let createButton: (CGRect, LiquidFloatingActionButtonAnimateStyle) -> LiquidFloatingActionButton = { (frame, style) in
-            let floatingActionButton = LiquidFloatingActionButton(frame: frame)
-            floatingActionButton.animateStyle = style
-            floatingActionButton.dataSource = self
-            floatingActionButton.delegate = self
-            return floatingActionButton
-        }
-        
-        let cellFactory: (String) -> LiquidFloatingCell = { (icon) in
-            return LiquidFloatingCell(icon: UIImage(named: icon)!)
-        }
-        
-        cells.append(cellFactory("ic_like"))
-        cells.append(cellFactory("ic_skip"))
-        cells.append(cellFactory("ic_koloda"))
-        
-        let floatingFrame = CGRect(x: self.view.frame.width - 56 - 16, y: self.view.frame.height - 56 - 56, width: 56, height: 56)
-        let bottomRightButton = createButton(floatingFrame, .Up)
-        bottomRightButton.color = UIColor(rgba: "#1a8ef5")
-        
-        let floatingFrame2 = CGRect(x: 16, y: 16, width: 56, height: 56)
-        // let topLeftButton = createButton(floatingFrame2, .Down)
-        
-        containerView.addSubview(bottomRightButton)
-        containerView.bringSubviewToFront(bottomRightButton)
-        
-        // self.view.addSubview(topLeftButton)
-        
         // Transparent navigation bar
         // self.navigationController?.navigationBar.barTintColor = UIColor(rgba: "#1a8ef5")
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
@@ -226,19 +169,19 @@ class HomeViewController: UIViewController, UITableViewDataSource, CardIOPayment
         ]
         
         // For creating segment control in navigation bar
-        var mainSegment: UISegmentedControl = UISegmentedControl(items: ["Available", "Pending"])
-        self.navigationItem.titleView = mainSegment
-        mainSegment.selectedSegmentIndex = 0
-        mainSegment.tintColor = UIColor.whiteColor()
-        mainSegment.addTarget(self, action: "mainSegmentControl:", forControlEvents: .ValueChanged)
-        self.navigationController?.navigationBar
-            .addSubview(mainSegment)
+//        var mainSegment: UISegmentedControl = UISegmentedControl(items: ["Available", "Pending"])
+//        self.navigationItem.titleView = mainSegment
+//        mainSegment.selectedSegmentIndex = 0
+//        mainSegment.tintColor = UIColor.whiteColor()
+//        mainSegment.addTarget(self, action: "mainSegmentControl:", forControlEvents: .ValueChanged)
+//        self.navigationController?.navigationBar
+//            .addSubview(mainSegment)
         
         self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Compose, target: self, action: Selector("chargeButtonTapped:")), animated: true)
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
         
         // Blur View
-        blurView.addSubview(avatarImageView)
+//        blurView.addSubview(avatarImageView)
         
         // Configure fancy button
         self.button = StarButton(frame: CGRectMake(133, 133, 54, 54))
@@ -251,7 +194,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, CardIOPayment
     
     //Changing Status Bar
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+        return UIStatusBarStyle.Default
     }
 
     func mainSegmentControl(segment: UISegmentedControl) {
@@ -292,7 +235,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, CardIOPayment
         // BE SURE ALL UI ELEMENTS ARE ANCHORED ON THE PAGE, OTHERWISE FUNCTIONS WILL NOT EXECUTE
         // Adjust blurview size on storyboard below ui image view
         let blurViewHeight : CGFloat = view.height * 0.43
-        blurView.anchorAndFillEdge(.Top, xPad: 0, yPad: 0, otherSize: blurViewHeight)
+//        blurView.anchorAndFillEdge(.Top, xPad: 0, yPad: 0, otherSize: blurViewHeight)
         
         let avatarSize = CGFloat(1.0 * 75)
         
@@ -319,14 +262,18 @@ class HomeViewController: UIViewController, UITableViewDataSource, CardIOPayment
         let userLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("userLoggedIn");
         if(!userLoggedIn) {
             // check if user logged in, if not send to login
-            print("not logged in")
+            print("user not logged in")
             // Normally identifiers are started with capital letters, exception being authViewController, make sure UIStoryboard name is Auth, not Main
             let viewController:AuthViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateViewControllerWithIdentifier("authViewController") as! AuthViewController
             self.presentViewController(viewController, animated: true, completion: nil)
             SVProgressHUD.dismiss()
         } else {
-//            print(userData)
-            print("logged in")
+
+            if userData != nil {
+                print("user data exists")
+            }
+            
+            print("user logged in, displaying home view")
             SVProgressHUD.dismiss()
             layoutFrames()
             // Check user local data in json format, prevent re-retrieviing data from the server
@@ -334,51 +281,61 @@ class HomeViewController: UIViewController, UITableViewDataSource, CardIOPayment
             let formatter = NSNumberFormatter()
             formatter.numberStyle = .CurrencyStyle
             formatter.locale = NSLocale.currentLocale() // This is the default
-
-            // Otherwise if no local data exists get the user data after logging in
-            if(userData?["user"].stringValue != nil) {
+            
+            if userData == nil, let userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken") {
                 let headers = [
-                    "Authorization": "Bearer " + (userData?["user"]["stripeToken"].stringValue)!,
+                    "Authorization": "Bearer " + (userAccessToken as! String),
                     "Content-Type": "application/x-www-form-urlencoded"
                 ]
-                
-                Alamofire.request(.GET, "https://api.stripe.com/v1/balance", headers: headers)
+                Alamofire.request(.GET, apiUrl + "/v1/profile", headers: headers)
+                    .validate()
                     .responseJSON { response in
-                        if let value = response.result.value {
-                            let response = JSON(value)
-                            let bal = response["pending"][0]["amount"]
-                            var formattedBal: String {
-                                if let formattedBal = formatter.stringFromNumber(Int(bal.stringValue)!/100) {
-                                    self.accountBalanceTextLabel.text = formattedBal
-                                    return formattedBal
-                                }
-                                return ""
+                        switch response.result {
+                        case .Success:
+                            print("success")
+                            if let value = response.result.value {
+                                userData = JSON(value)
+                                print("got user data")
                             }
+                        case .Failure(let error):
+                            self.logout()
+                            print(error)
                         }
-                }
-                usernameViewText.text = userData?["user"]["username"].stringValue
+                    }
             }
-            if(userData?["user"]["username"].stringValue != nil) {
-                usernameViewText.text = userData?["user"]["username"].stringValue
-            }
-            if(userData?["user"]["picture"]["secureUrl"].stringValue != nil) {
-                let userPicture = userData?["user"]["picture"]["secureUrl"].stringValue
-                let pictureUrl = NSURL(string: userPicture!)
-                let data = NSData(contentsOfURL: pictureUrl!) //make sure your image in this url does exist, otherwise unwrap in a if let check
-                if(data != nil) {
-                    self.avatarImageView.image = UIImage(data: data!)
-                    //self.avatarImageView.layer.cornerRadius = 4;
-                    self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width / 2;
-                    avatarImageView.layer.borderWidth = 2.0
-                    //self.avatarImageView.clipsToBounds = YES;
-                    SVProgressHUD.dismiss()
-                } else {
-                    self.avatarImageView.image = UIImage(named:"IconUser")
-                    // self.avatarImageView.image = UIImageView.setGravatar(Gravatar)
-                    SVProgressHUD.dismiss()
-                }
-                //print(userData)
-            }
+        
+            
+            // Otherwise if no local data exists get the user data after logging in
+            // if(userData?["user"].stringValue != nil) {
+            //    let headers = [
+            //        "Authorization": "Bearer " + (userData?["user"]["stripeToken"].stringValue)!,
+            //        "Content-Type": "application/x-www-form-urlencoded"
+            //    ]
+            //    
+            //
+            //    usernameViewText.text = userData?["user"]["username"].stringValue
+            // }
+            // if(userData?["user"]["username"].stringValue != nil) {
+            //    usernameViewText.text = userData?["user"]["username"].stringValue
+            // }
+            // if(userData?["user"]["picture"]["secureUrl"].stringValue != nil) {
+            //    let userPicture = userData?["user"]["picture"]["secureUrl"].stringValue
+            //    let pictureUrl = NSURL(string: userPicture!)
+            //    let data = NSData(contentsOfURL: pictureUrl!) //make sure your image in this url does exist, otherwise unwrap in a if let check
+            //    if(data != nil) {
+            //        self.avatarImageView.image = UIImage(data: data!)
+            //        //self.avatarImageView.layer.cornerRadius = 4;
+            //        self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width / 2;
+            //        avatarImageView.layer.borderWidth = 2.0
+            //        //self.avatarImageView.clipsToBounds = YES;
+            //        SVProgressHUD.dismiss()
+            //    } else {
+            //        self.avatarImageView.image = UIImage(named:"IconUser")
+            //        // self.avatarImageView.image = UIImageView.setGravatar(Gravatar)
+            //        SVProgressHUD.dismiss()
+            //    }
+            //    //print(userData)
+            // }
 
         }
     }
@@ -391,10 +348,25 @@ class HomeViewController: UIViewController, UITableViewDataSource, CardIOPayment
     }
     
     // LOGOUT
+    func logout() {
+        NSUserDefaults.standardUserDefaults().setValue("", forKey: "userAccessToken")
+        NSUserDefaults.standardUserDefaults().synchronize();
+        userData = nil
+        print("logging out")
+        print(userData)
+//        print(NSUserDefaults.valueForKey("userLoggedIn"))
+        SVProgressHUD.show()
+        // go to login view
+        self.performSegueWithIdentifier("loginView", sender: self);
+    }
+    
     @IBAction func logoutButtonTapped(sender: AnyObject) {
-        
         NSUserDefaults.standardUserDefaults().setBool(false,forKey:"userLoggedIn");
         NSUserDefaults.standardUserDefaults().synchronize();
+        userData = nil
+        print("logging out")
+        print(userData)
+        print(NSUserDefaults.valueForKey("userLoggedIn"))
         SVProgressHUD.show()
         // go to login view
         self.performSegueWithIdentifier("loginView", sender: self);
@@ -402,32 +374,3 @@ class HomeViewController: UIViewController, UITableViewDataSource, CardIOPayment
     }
     
 }
-
-public class CustomCell : LiquidFloatingCell {
-    var name: String = "sample"
-    
-    init(icon: UIImage, name: String) {
-        self.name = name
-        super.init(icon: icon)
-    }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    public override func setupView(view: UIView) {
-        super.setupView(view)
-        let label = UILabel()
-        label.text = name
-        label.textColor = UIColor.redColor()
-        label.font = UIFont(name: "Helvetica-Neue", size: 12)
-        addSubview(label)
-        label.snp_makeConstraints { make in
-            make.left.equalTo(self).offset(-80)
-            make.width.equalTo(75)
-            make.top.height.equalTo(self)
-        }
-    }
-}
-
-

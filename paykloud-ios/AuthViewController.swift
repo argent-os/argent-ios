@@ -16,6 +16,7 @@ class AuthViewController: UIViewController  {
     var spotlightViewController: SpotlightViewController?
     
     override func viewDidAppear(animated: Bool) {
+
         SVProgressHUD.dismiss()
     }
     
@@ -34,7 +35,7 @@ class AuthViewController: UIViewController  {
         showSpotlight()
 
         // Set background image
-        var backgroundView: UIImageView = UIImageView(image: UIImage(named: "BackgroundMountain2"))
+        var backgroundView: UIImageView = UIImageView(image: UIImage(named: "BackgroundGradient"))
         backgroundView.frame = self.view.bounds
         self.view!.addSubview(backgroundView)
         
@@ -50,7 +51,7 @@ class AuthViewController: UIViewController  {
         
         // UI
         let loginButton = UIButton(frame: CGRect(x: 0, y: screenHeight*0.91, width: screenWidth/2, height: 60.0))
-        loginButton.backgroundColor = UIColor(rgba: "#1aa8f6")
+        loginButton.backgroundColor = UIColor(rgba: "#1f62f1")
         loginButton.tintColor = UIColor(rgba: "#fff")
         loginButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
         loginButton.titleLabel?.font = UIFont(name: "Nunito-SemiBold", size: 16)
@@ -63,11 +64,11 @@ class AuthViewController: UIViewController  {
         let signupButton = UIButton(frame: CGRect(x: screenWidth*0.5, y: screenHeight*0.91, width: screenWidth/2, height: 60.0))
         signupButton.backgroundColor = UIColor.whiteColor()
         signupButton.setTitle("Sign up", forState: .Normal)
-        signupButton.setTitleColor(UIColor(rgba: "#1aa8f6"), forState: .Normal)
+        signupButton.setTitleColor(UIColor(rgba: "#1f62f1"), forState: .Normal)
         signupButton.titleLabel?.font = UIFont(name: "Nunito-SemiBold", size: 16)
         signupButton.layer.cornerRadius = 0
         signupButton.layer.borderWidth = 1
-        signupButton.layer.borderColor = UIColor(rgba: "#1aa8f6").CGColor
+        signupButton.layer.borderColor = UIColor(rgba: "#ffffff").CGColor
         signupButton.layer.masksToBounds = true
         signupButton.addTarget(self, action: "signup:", forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(signupButton)

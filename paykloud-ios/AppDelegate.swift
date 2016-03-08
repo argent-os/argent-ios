@@ -11,6 +11,7 @@ import Firebase
 import PasscodeLock
 import SwiftyJSON
 import KeychainSwift
+import SVProgressHUD
 
 let merchantID = "merchant.com.paykloud"
 var userData:JSON? // init user data, declare globally, needs SwiftyJSON
@@ -23,8 +24,8 @@ var userData:JSON? // init user data, declare globally, needs SwiftyJSON
 // DEV
  let firebaseUrl = Firebase(url:"https://demosandbox.firebaseio.com/api/v1")
 // let apiUrl = "http://localhost:5001"
-// let apiUrl = "http://192.168.1.182:5001"
- let apiUrl = "http://192.168.1.232:5001"
+ let apiUrl = "http://192.168.1.182:5001"
+// let apiUrl = "http://192.168.1.232:5001"
 // let apiUrl = "http://paykloud-api-dev-v1.us-east-1.elasticbeanstalk.com"
 // PROD
 //let firebaseUrl = Firebase(url:"https://paykloud.firebaseio.com/api/v1")
@@ -48,11 +49,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        // Display PasscodeLock on Launch
-        if(userData != nil) {
-            passcodeLockPresenter.presentPasscodeLock()
-        }
+        UINavigationBar.appearance().barStyle = .Black
 
+        // Display PasscodeLock on Launch
+//        if(userData != nil) {
+            passcodeLockPresenter.presentPasscodeLock()
+//        }
+
+        // Customize SVProgressHUD
+        SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.Custom)
+        SVProgressHUD.setRingThickness(4.0)
+        SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.Flat)
+        SVProgressHUD.setForegroundColor(UIColor(rgba: "#ffffff"))
+        SVProgressHUD.setBackgroundColor(UIColor(rgba:"#1aa8f6"))
+        
         // Globally dark keyboard
         UITextField.appearance().keyboardAppearance = .Light
         

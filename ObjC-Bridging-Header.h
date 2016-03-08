@@ -20,12 +20,12 @@
 @import CoreVideo;
 @import MobileCoreServices;
 
-// Used for IP location of device
+// Used for IP location of Device
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <ifaddrs.h>
 
-// Used for custom check ui
+// Used for Custom Checkbox UI
 #import "Pods/BEMCheckBox/classes/BEMCheckBox.h"
 
 #endif /* ObjC_Bridging_Header_h */

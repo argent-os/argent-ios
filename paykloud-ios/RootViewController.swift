@@ -19,7 +19,7 @@ class RootViewController: RESideMenu, RESideMenuDelegate {
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+        return UIStatusBarStyle.Default
     }
     
     override func awakeFromNib() {
