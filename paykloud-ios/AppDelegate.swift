@@ -47,6 +47,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return presenter
     }()
     
+//    // Hiding Status Bar
+//    override public func prefersStatusBarHidden() -> Bool {
+//        return true
+//    }
+
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         UINavigationBar.appearance().barStyle = .Black

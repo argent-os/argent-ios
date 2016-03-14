@@ -146,10 +146,12 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
                             NSUserDefaults.standardUserDefaults().setBool(true,forKey:"userLoggedIn");
                             NSUserDefaults.standardUserDefaults().synchronize();
                             
-                            print("got the 200 success")
+                            print("response 200 success")
                             // go to main view
                             self.performSegueWithIdentifier("loginView", sender: self);
-                            
+                        } else {
+                            self.displayErrorAlertMessage("Registration Error, username or email already taken.")
+                            print("failed to signup")
                         }
                         
                         switch response.result {
@@ -160,10 +162,12 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
                                 print("Response: \(json)")
                                 // assign userData to self, access globally
                                 print("register success")
+                                self.displaySuccessAlertMessage("Registration Successful!  You can now login.")
                             }
                         case .Failure(let error):
-                            break
                             print("failed to signup", error)
+                            self.displayErrorAlertMessage("Registration Error, username or email already taken.")
+                            break
                         }
                 }
                 
@@ -175,11 +179,9 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
         }
         
         
-        // TODO: Set keychain username and password for PayKloud
+        // TODO: Set keychain username and password
         
         SVProgressHUD.dismiss()
-        displaySuccessAlertMessage("Registration Successful!  You can now login.")
-        
     }
     
     func displayErrorAlertMessage(alertMessage:String) {

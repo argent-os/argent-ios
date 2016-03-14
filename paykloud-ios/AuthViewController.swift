@@ -35,7 +35,8 @@ class AuthViewController: UIViewController  {
         showSpotlight()
 
         // Set background image
-        var backgroundView: UIImageView = UIImageView(image: UIImage(named: "BackgroundGradient"))
+        var backgroundView: UIImageView = UIImageView(image: UIImage(named: "BackgroundGradientCity"))
+        backgroundView.contentMode = UIViewContentMode.ScaleAspectFill
         backgroundView.frame = self.view.bounds
         self.view!.addSubview(backgroundView)
         

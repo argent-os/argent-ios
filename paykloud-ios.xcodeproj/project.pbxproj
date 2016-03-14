@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30128DE01C8FAC82009E2EA7 /* RAMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30128DDF1C8FAC82009E2EA7 /* RAMViewController.swift */; };
+		30128DE21C8FACAB009E2EA7 /* WordReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30128DE11C8FACAB009E2EA7 /* WordReader.swift */; };
+		30128DE41C8FACDC009E2EA7 /* data.txt in Resources */ = {isa = PBXBuildFile; fileRef = 30128DE31C8FACDC009E2EA7 /* data.txt */; };
 		3013DCE31C81F9FE00268DAD /* chime.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3013DCE21C81F9FE00268DAD /* chime.caf */; };
 		3013DCE71C81FFA100268DAD /* chime2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3013DCE61C81FFA100268DAD /* chime2.caf */; };
 		3013DCE91C8375C300268DAD /* ocra.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3013DCE81C8375C300268DAD /* ocra.ttf */; };
@@ -88,6 +91,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		30128DDF1C8FAC82009E2EA7 /* RAMViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RAMViewController.swift; path = "paykloud-ios/RAMViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30128DE11C8FACAB009E2EA7 /* WordReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WordReader.swift; path = "paykloud-ios/WordReader.swift"; sourceTree = SOURCE_ROOT; };
+		30128DE31C8FACDC009E2EA7 /* data.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data.txt; sourceTree = SOURCE_ROOT; };
 		3013DCE21C81F9FE00268DAD /* chime.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = chime.caf; sourceTree = "<group>"; };
 		3013DCE61C81FFA100268DAD /* chime2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = chime2.caf; sourceTree = "<group>"; };
 		3013DCE81C8375C300268DAD /* ocra.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ocra.ttf; sourceTree = "<group>"; };
@@ -189,6 +195,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		30128DDE1C8FAC6E009E2EA7 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				30128DDF1C8FAC82009E2EA7 /* RAMViewController.swift */,
+				30128DE11C8FACAB009E2EA7 /* WordReader.swift */,
+				30128DE31C8FACDC009E2EA7 /* data.txt */,
+			);
+			name = Subviews;
+			sourceTree = "<group>";
+		};
 		3013DCE11C81F9FE00268DAD /* sounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,6 +275,7 @@
 				30718AE51C8E111100CB0EEB /* NotificationViewController.swift */,
 				30718AE71C8E111800CB0EEB /* SearchViewController.swift */,
 				30718AE91C8E111E00CB0EEB /* RecurringViewController.swift */,
+				30128DDE1C8FAC6E009E2EA7 /* Subviews */,
 			);
 			name = Tabs;
 			sourceTree = "<group>";
@@ -599,6 +616,7 @@
 				30718AFB1C8E47BA00CB0EEB /* PasscodeLockView.xib in Resources */,
 				30BECBDD1C6E9FF200B8A088 /* LaunchScreen.storyboard in Resources */,
 				3099CB6F1C70D69D000CEDE2 /* Auth.storyboard in Resources */,
+				30128DE41C8FACDC009E2EA7 /* data.txt in Resources */,
 				3067D9F71C7F766D00C1418E /* KolodaCustomOverlayView.xib in Resources */,
 				3067D9FB1C7F7B6800C1418E /* OverlayView.xib in Resources */,
 				30BECBEB1C6EA02800B8A088 /* Main.storyboard in Resources */,
@@ -695,6 +713,8 @@
 				30718AF31C8E37A600CB0EEB /* PasscodeSettingsViewController.swift in Sources */,
 				30718AE41C8E110700CB0EEB /* ProfileViewController.swift in Sources */,
 				30718AF51C8E37C000CB0EEB /* PasscodeLockConfiguration.swift in Sources */,
+				30128DE21C8FACAB009E2EA7 /* WordReader.swift in Sources */,
+				30128DE01C8FAC82009E2EA7 /* RAMViewController.swift in Sources */,
 				30B9E7D71C7B928100C04530 /* CountryPicker.swift in Sources */,
 				3067D9F01C7F716E00C1418E /* KolodaCustomView.swift in Sources */,
 				30BECBDC1C6E9FF200B8A088 /* HomeViewController.swift in Sources */,

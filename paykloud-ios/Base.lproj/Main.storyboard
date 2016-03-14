@@ -69,6 +69,36 @@
             </objects>
             <point key="canvasLocation" x="-210" y="-1780"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="Tuh-Rd-n3m">
+            <objects>
+                <viewController id="AFA-aJ-4ra" customClass="RAMViewController" customModule="PayKloud" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="p32-VF-idn"/>
+                        <viewControllerLayoutGuide type="bottom" id="2g8-KX-nyy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8HK-7d-xU9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y5U-hS-wEU">
+                                <rect key="frame" x="20" y="676" width="374" height="40"/>
+                                <color key="backgroundColor" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Return"/>
+                                <connections>
+                                    <segue destination="xKn-SW-jVQ" kind="presentation" id="yYO-el-kBv"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZZb-69-afC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="313" y="-2571"/>
+        </scene>
         <!--Recurring-->
         <scene sceneID="P4n-Qg-XKO">
             <objects>
@@ -80,6 +110,17 @@
                     <view key="view" contentMode="scaleToFill" id="hSJ-Wb-nFg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4bg-1q-3vN">
+                                <rect key="frame" x="0.0" y="162" width="414" height="117"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Add Recurring Billing"/>
+                                <connections>
+                                    <segue destination="AFA-aJ-4ra" kind="presentation" id="OhP-O1-Jrf"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Recurring" image="ic_recur" id="MaG-7O-iwJ" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
@@ -639,7 +680,7 @@ for older iOS versions</string>
                                     <action selector="loginButtonTapped:" destination="mQk-jK-m8v" eventType="touchUpInside" id="rZX-zg-6Dr"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconLogoColor" translatesAutoresizingMaskIntoConstraints="NO" id="6jz-uE-JMM">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconLogoDark" translatesAutoresizingMaskIntoConstraints="NO" id="6jz-uE-JMM">
                                 <rect key="frame" x="186" y="100" width="43" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="F66-KG-xyZ"/>
@@ -767,6 +808,7 @@ for older iOS versions</string>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bg9-V6-XbJ"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <segue destination="mQk-jK-m8v" kind="presentation" identifier="loginView" id="WA2-vu-RC9"/>
@@ -834,6 +876,7 @@ for older iOS versions</string>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="beP-qD-3LN"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="bottomConstraint" destination="3x0-r3-VUg" id="cJ8-eV-sIJ"/>
@@ -890,6 +933,7 @@ for older iOS versions</string>
                             <constraint firstItem="E9V-L5-PSh" firstAttribute="leading" secondItem="Vn1-4r-DJ0" secondAttribute="leadingMargin" id="xtl-hl-aoN"/>
                         </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="bottomConstraint" destination="c6Y-mx-zie" id="Lcy-PL-nCH"/>
@@ -945,6 +989,7 @@ for older iOS versions</string>
                             <constraint firstItem="owJ-Qv-qVV" firstAttribute="leading" secondItem="wDy-sn-7Cl" secondAttribute="leadingMargin" id="yDP-Ol-TpP"/>
                         </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="bottomConstraint" destination="7kl-kU-GUx" id="Udp-aE-GBI"/>
@@ -1020,6 +1065,7 @@ policy agreement, click here to view</string>
                             <constraint firstItem="ctz-YB-bw9" firstAttribute="leading" secondItem="JLM-hc-ngQ" secondAttribute="leadingMargin" id="ucr-Np-h3M"/>
                         </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="finishButton" destination="a2O-vf-Wtj" id="fuQ-Fx-8Vc"/>
@@ -1341,6 +1387,7 @@ policy agreement, click here to view</string>
             <objects>
                 <navigationController storyboardIdentifier="SignupNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="amc-nP-wlG" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aBe-y1-J66">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1398,7 +1445,7 @@ policy agreement, click here to view</string>
     <resources>
         <image name="BackgroundGradient" width="200" height="500"/>
         <image name="IconClose" width="24" height="24"/>
-        <image name="IconLogoColor" width="250" height="250"/>
+        <image name="IconLogoDark" width="250" height="250"/>
         <image name="IconMenu" width="32" height="32"/>
         <image name="IconPaper" width="128" height="128"/>
         <image name="IconPerson" width="128" height="117"/>
@@ -1411,9 +1458,10 @@ policy agreement, click here to view</string>
         <image name="ic_user" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="p5T-vf-nwm"/>
         <segue reference="fxJ-La-7Fr"/>
-        <segue reference="NZL-lW-Wpq"/>
+        <segue reference="CNn-4s-Hqn"/>
+        <segue reference="p5T-vf-nwm"/>
+        <segue reference="yYO-el-kBv"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>

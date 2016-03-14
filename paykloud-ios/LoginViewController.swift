@@ -174,8 +174,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
                 // go to main view
                 print("login pressed")
                 if(response.response?.statusCode == 200) {
+                    NSUserDefaults.standardUserDefaults().setBool(true,forKey:"userLoggedIn")
+                    NSUserDefaults.standardUserDefaults().synchronize()
                     print("green light")
                 } else {
+                    print("red light")
+                    self.displayErrorAlertMessage("Failed to login, please check username/email and password are correct");
                     SVProgressHUD.dismiss()
                 }
 
@@ -188,8 +192,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
                         userData = json
                         
                         let token = userData!["token"].stringValue
+                        print("token is", token)
+                        print(userData)
                         // Login is successful
-                        NSUserDefaults.standardUserDefaults().setBool(true,forKey:"userLoggedIn")
                         print("is user logged in", NSUserDefaults.standardUserDefaults().boolForKey("userLoggedIn"))
                         NSUserDefaults.standardUserDefaults().setValue(token, forKey: "userAccessToken")
                         NSUserDefaults.standardUserDefaults().synchronize()

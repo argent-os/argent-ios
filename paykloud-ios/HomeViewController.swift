@@ -281,8 +281,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, CardIOPayment
             let formatter = NSNumberFormatter()
             formatter.numberStyle = .CurrencyStyle
             formatter.locale = NSLocale.currentLocale() // This is the default
-            
-            if userData == nil, let userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken") {
+            let userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
+            print("user token is", userAccessToken)
+            if userData == nil && userAccessToken != nil {
                 let headers = [
                     "Authorization": "Bearer " + (userAccessToken as! String),
                     "Content-Type": "application/x-www-form-urlencoded"
