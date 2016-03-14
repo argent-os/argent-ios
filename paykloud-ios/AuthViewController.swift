@@ -35,7 +35,7 @@ class AuthViewController: UIViewController  {
         showSpotlight()
 
         // Set background image
-        var backgroundView: UIImageView = UIImageView(image: UIImage(named: "BackgroundGradientCity"))
+        var backgroundView: UIImageView = UIImageView(image: UIImage(named: "BackgroundGradientInverse"))
         backgroundView.contentMode = UIViewContentMode.ScaleAspectFill
         backgroundView.frame = self.view.bounds
         self.view!.addSubview(backgroundView)
@@ -52,7 +52,7 @@ class AuthViewController: UIViewController  {
         
         // UI
         let loginButton = UIButton(frame: CGRect(x: 0, y: screenHeight*0.91, width: screenWidth/2, height: 60.0))
-        loginButton.backgroundColor = UIColor(rgba: "#1f62f1")
+        loginButton.backgroundColor = UIColor(rgba: "#1796fa")
         loginButton.tintColor = UIColor(rgba: "#fff")
         loginButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
         loginButton.titleLabel?.font = UIFont(name: "Nunito-SemiBold", size: 16)
@@ -65,7 +65,7 @@ class AuthViewController: UIViewController  {
         let signupButton = UIButton(frame: CGRect(x: screenWidth*0.5, y: screenHeight*0.91, width: screenWidth/2, height: 60.0))
         signupButton.backgroundColor = UIColor.whiteColor()
         signupButton.setTitle("Sign up", forState: .Normal)
-        signupButton.setTitleColor(UIColor(rgba: "#1f62f1"), forState: .Normal)
+        signupButton.setTitleColor(UIColor(rgba: "#1796fa"), forState: .Normal)
         signupButton.titleLabel?.font = UIFont(name: "Nunito-SemiBold", size: 16)
         signupButton.layer.cornerRadius = 0
         signupButton.layer.borderWidth = 1

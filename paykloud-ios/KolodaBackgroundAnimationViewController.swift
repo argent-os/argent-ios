@@ -119,7 +119,7 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
             imageViewBackground.contentMode = UIViewContentMode.ScaleAspectFit
             imgView.addSubview(imageViewBackground)
             // Create string
-            let attributedHeaderString = NSMutableAttributedString(string: "Eazy Peazy")
+            let attributedHeaderString = NSMutableAttributedString(string: "Recurring Billing")
             let header = UILabel(frame: paddedFrame)
             header.frame.origin.y = height*0.35 // 20 down from the top
             header.lineBreakMode = .ByWordWrapping // or NSLineBreakMode.ByWordWrapping
@@ -153,7 +153,7 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
             imageViewBackground.contentMode = UIViewContentMode.ScaleAspectFit
             imgView.addSubview(imageViewBackground)
             // Create string
-            let attributedHeaderString = NSMutableAttributedString(string: "Lemon Squeezy")
+            let attributedHeaderString = NSMutableAttributedString(string: "Smart Notifications")
             let header = UILabel(frame: paddedFrame)
             header.frame.origin.y = height*0.35 // 20 down from the top
             header.lineBreakMode = .ByWordWrapping // or NSLineBreakMode.ByWordWrapping
@@ -187,7 +187,7 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
             imageViewBackground.contentMode = UIViewContentMode.ScaleAspectFit
             imgView.addSubview(imageViewBackground)
             // Create string
-            let attributedHeaderString = NSMutableAttributedString(string: "Super App")
+            let attributedHeaderString = NSMutableAttributedString(string: "PCI DSS Compliant")
             let header = UILabel(frame: paddedFrame)
             header.frame.origin.y = height*0.35 // 20 down from the top
             header.lineBreakMode = .ByWordWrapping // or NSLineBreakMode.ByWordWrapping
@@ -221,7 +221,7 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
             imageViewBackground.contentMode = UIViewContentMode.ScaleAspectFit
             imgView.addSubview(imageViewBackground)
             // Create string
-            let attributedHeaderString = NSMutableAttributedString(string: "Wow Factor")
+            let attributedHeaderString = NSMutableAttributedString(string: "Intelligent Security")
             let header = UILabel(frame: paddedFrame)
             header.frame.origin.y = height*0.35 // 20 down from the top
             header.lineBreakMode = .ByWordWrapping // or NSLineBreakMode.ByWordWrapping
@@ -255,7 +255,7 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
             imageViewBackground.contentMode = UIViewContentMode.ScaleAspectFit
             imgView.addSubview(imageViewBackground)
             // Create string
-            let attributedHeaderString = NSMutableAttributedString(string: "Fantastic Stuff")
+            let attributedHeaderString = NSMutableAttributedString(string: "ACH Payments")
             let header = UILabel(frame: paddedFrame)
             header.frame.origin.y = height*0.35 // 20 down from the top
             header.lineBreakMode = .ByWordWrapping // or NSLineBreakMode.ByWordWrapping

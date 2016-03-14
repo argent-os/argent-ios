@@ -31,6 +31,8 @@ var userData:JSON? // init user data, declare globally, needs SwiftyJSON
 //let firebaseUrl = Firebase(url:"https://paykloud.firebaseio.com/api/v1")
 //let apiUrl = "http://api.paykloud.com"
 
+let stripeApiUrl = "https://api.stripe.com"
+
 // For push notifications make sure to delete and re-install app, fix this bug later
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

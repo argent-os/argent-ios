@@ -16,7 +16,8 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
     // WHEN NAVIGATING TO A NAVIGATION CONTROLLER USE SEGUE SHOW NOT MODAL!
     @IBOutlet weak var finishButton: UIButton!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
-    
+    @IBOutlet weak var agreementButton: UIButton!
+
     let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
     
     var switchTermsAndPrivacy: BEMCheckBox = BEMCheckBox(frame: CGRectMake(0, 0, 50, 50))
@@ -51,6 +52,8 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         SVProgressHUD.show()
         
+        agreementButton.titleLabel?.textAlignment = NSTextAlignment.Center
+
         //        print("user first name", userFirstName)
         //        print("user last name", userLastName)
         //        print("user username", userUsername)
@@ -119,8 +122,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
                     }
                     return ""
                 }
-//                print(self.userFirstName)
-//                print(self.userLastName)
+
                 let parameters : [String : AnyObject] = [
                     "first_name":self.userFirstName,
                     "last_name":self.userLastName,

@@ -70,6 +70,7 @@
 		30D7B7311C77883500B64B7F /* SignupViewControllerOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D7B7301C77883500B64B7F /* SignupViewControllerOne.swift */; };
 		30D7B7331C77884600B64B7F /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D7B7321C77884600B64B7F /* AuthViewController.swift */; };
 		30D7B7351C78F96500B64B7F /* SignupViewControllerTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D7B7341C78F96500B64B7F /* SignupViewControllerTwo.swift */; };
+		30F714321C973800001AF6EC /* RecurringBillingPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F714311C973800001AF6EC /* RecurringBillingPlanViewController.swift */; };
 		8E723A7E4D0FB354304689B7 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1AC01881780C6537201E7C5 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -158,6 +159,7 @@
 		30D7B7301C77883500B64B7F /* SignupViewControllerOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewControllerOne.swift; path = "paykloud-ios/SignupViewControllerOne.swift"; sourceTree = SOURCE_ROOT; };
 		30D7B7321C77884600B64B7F /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthViewController.swift; path = "paykloud-ios/AuthViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30D7B7341C78F96500B64B7F /* SignupViewControllerTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewControllerTwo.swift; path = "paykloud-ios/SignupViewControllerTwo.swift"; sourceTree = SOURCE_ROOT; };
+		30F714311C973800001AF6EC /* RecurringBillingPlanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecurringBillingPlanViewController.swift; path = "paykloud-ios/RecurringBillingPlanViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30FB540A1C6A58B40004A538 /* PayKloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PayKloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB541E1C6A58B40004A538 /* paykloud-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "paykloud-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB54291C6A58B40004A538 /* paykloud-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "paykloud-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -198,6 +200,7 @@
 		30128DDE1C8FAC6E009E2EA7 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
+				30F714311C973800001AF6EC /* RecurringBillingPlanViewController.swift */,
 				30128DDF1C8FAC82009E2EA7 /* RAMViewController.swift */,
 				30128DE11C8FACAB009E2EA7 /* WordReader.swift */,
 				30128DE31C8FACDC009E2EA7 /* data.txt */,
@@ -733,6 +736,7 @@
 				30B9E7DB1C7BC9FB00C04530 /* SignupViewControllerZero.swift in Sources */,
 				30B9E7D81C7B928100C04530 /* CountryView.swift in Sources */,
 				30D7B7311C77883500B64B7F /* SignupViewControllerOne.swift in Sources */,
+				30F714321C973800001AF6EC /* RecurringBillingPlanViewController.swift in Sources */,
 				30BECBDF1C6E9FF200B8A088 /* LoginViewController.swift in Sources */,
 				307C6A201C7D40A500723E39 /* SignupViewControllerFour.swift in Sources */,
 				30BECBE41C6E9FF200B8A088 /* RootViewController.swift in Sources */,

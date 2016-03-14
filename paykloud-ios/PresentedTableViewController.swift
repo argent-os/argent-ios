@@ -13,6 +13,7 @@ import MZFormSheetPresentationController
 class PresentedTableViewController: UIViewController {
     
 
+    @IBOutlet weak var stripeButton: UIButton!
     @IBOutlet weak var termsButton: UIButton!
     @IBOutlet weak var privacyButton: UIButton!
     @IBOutlet weak var containerView: UIView!
@@ -26,10 +27,14 @@ class PresentedTableViewController: UIViewController {
         
         termsButton.layer.cornerRadius = 5
         privacyButton.layer.cornerRadius = 5
+        stripeButton.layer.cornerRadius = 5
 
         // This will set to only one instance
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("close"))
+        self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.navigationBar.barTintColor = UIColor.lightGrayColor()
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: UIBarButtonItemStyle.Bordered, target: self, action: Selector("close"))
         
         if let text1 = self.passingString1 {
             //print(text1)
@@ -73,6 +78,15 @@ class PresentedTableViewController: UIViewController {
                     self.presentViewController(svc, animated: true, completion: nil)
                 } else {
                     UIApplication.sharedApplication().openURL(NSURL(string: "http://www.google.com")!)
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
+            }
+            if identifier == "stripeView" {
+                if #available(iOS 9.0, *) {
+                    let svc = SFSafariViewController(URL: NSURL(string: "https://stripe.com/connect/account-terms")!, entersReaderIfAvailable: true)
+                    self.presentViewController(svc, animated: true, completion: nil)
+                } else {
+                    UIApplication.sharedApplication().openURL(NSURL(string: "https://stripe.com/connect/account-terms")!)
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
             }

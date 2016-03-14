@@ -193,7 +193,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
                         
                         let token = userData!["token"].stringValue
                         print("token is", token)
-                        print(userData)
                         // Login is successful
                         print("is user logged in", NSUserDefaults.standardUserDefaults().boolForKey("userLoggedIn"))
                         NSUserDefaults.standardUserDefaults().setValue(token, forKey: "userAccessToken")
