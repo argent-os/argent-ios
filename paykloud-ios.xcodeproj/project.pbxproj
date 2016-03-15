@@ -15,6 +15,7 @@
 		3013DCE91C8375C300268DAD /* ocra.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3013DCE81C8375C300268DAD /* ocra.ttf */; };
 		3013DCEF1C85161100268DAD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3013DCEE1C85161100268DAD /* User.swift */; };
 		3013DCF11C85D7B600268DAD /* cashregister.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3013DCF01C85D7B600268DAD /* cashregister.caf */; };
+		304DDE291C986E5A00962BC4 /* AddCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304DDE281C986E5A00962BC4 /* AddCustomerViewController.swift */; };
 		3067D9E91C7F705E00C1418E /* KolodaBackgroundAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3067D9E81C7F705E00C1418E /* KolodaBackgroundAnimationViewController.swift */; };
 		3067D9F01C7F716E00C1418E /* KolodaCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3067D9EE1C7F716E00C1418E /* KolodaCustomView.swift */; };
 		3067D9F11C7F716E00C1418E /* KolodaOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3067D9EF1C7F716E00C1418E /* KolodaOverlayView.swift */; };
@@ -103,6 +104,7 @@
 		3013DCE81C8375C300268DAD /* ocra.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ocra.ttf; sourceTree = "<group>"; };
 		3013DCEE1C85161100268DAD /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = "paykloud-ios/User.swift"; sourceTree = SOURCE_ROOT; };
 		3013DCF01C85D7B600268DAD /* cashregister.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = cashregister.caf; sourceTree = "<group>"; };
+		304DDE281C986E5A00962BC4 /* AddCustomerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddCustomerViewController.swift; path = "paykloud-ios/AddCustomerViewController.swift"; sourceTree = SOURCE_ROOT; };
 		3067D9E81C7F705E00C1418E /* KolodaBackgroundAnimationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KolodaBackgroundAnimationViewController.swift; path = "paykloud-ios/KolodaBackgroundAnimationViewController.swift"; sourceTree = SOURCE_ROOT; };
 		3067D9EE1C7F716E00C1418E /* KolodaCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KolodaCustomView.swift; path = "paykloud-ios/KolodaCustomView.swift"; sourceTree = SOURCE_ROOT; };
 		3067D9EF1C7F716E00C1418E /* KolodaOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KolodaOverlayView.swift; path = "paykloud-ios/KolodaOverlayView.swift"; sourceTree = SOURCE_ROOT; };
@@ -166,7 +168,7 @@
 		30F714351C9759A9001AF6EC /* SignupIndividualViewControllerOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupIndividualViewControllerOne.swift; path = "paykloud-ios/SignupIndividualViewControllerOne.swift"; sourceTree = SOURCE_ROOT; };
 		30F714391C975A39001AF6EC /* SignupIndividualViewControllerTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupIndividualViewControllerTwo.swift; path = "paykloud-ios/SignupIndividualViewControllerTwo.swift"; sourceTree = SOURCE_ROOT; };
 		30F7143B1C975A64001AF6EC /* SignupIndividualViewControllerThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupIndividualViewControllerThree.swift; path = "paykloud-ios/SignupIndividualViewControllerThree.swift"; sourceTree = SOURCE_ROOT; };
-		30FB540A1C6A58B40004A538 /* PayKloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PayKloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		30FB540A1C6A58B40004A538 /* ProtonPay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProtonPay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB541E1C6A58B40004A538 /* paykloud-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "paykloud-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB54291C6A58B40004A538 /* paykloud-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "paykloud-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB54411C6ABF6A0004A538 /* ObjC-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjC-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				30F714311C973800001AF6EC /* RecurringBillingPlanViewController.swift */,
+				304DDE281C986E5A00962BC4 /* AddCustomerViewController.swift */,
 				30128DDF1C8FAC82009E2EA7 /* RAMViewController.swift */,
 				30128DE11C8FACAB009E2EA7 /* WordReader.swift */,
 				30128DE31C8FACDC009E2EA7 /* data.txt */,
@@ -433,7 +436,7 @@
 		30FB540B1C6A58B40004A538 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				30FB540A1C6A58B40004A538 /* PayKloud.app */,
+				30FB540A1C6A58B40004A538 /* ProtonPay.app */,
 				30FB541E1C6A58B40004A538 /* paykloud-iosTests.xctest */,
 				30FB54291C6A58B40004A538 /* paykloud-iosTests.xctest */,
 			);
@@ -521,7 +524,7 @@
 			);
 			name = "paykloud-ios";
 			productName = "timekloud-ios";
-			productReference = 30FB540A1C6A58B40004A538 /* PayKloud.app */;
+			productReference = 30FB540A1C6A58B40004A538 /* ProtonPay.app */;
 			productType = "com.apple.product-type.application";
 		};
 		30FB541D1C6A58B40004A538 /* paykloud-iosTests */ = {
@@ -752,6 +755,7 @@
 				30BECBDF1C6E9FF200B8A088 /* LoginViewController.swift in Sources */,
 				307C6A201C7D40A500723E39 /* SignupViewControllerFour.swift in Sources */,
 				30BECBE41C6E9FF200B8A088 /* RootViewController.swift in Sources */,
+				304DDE291C986E5A00962BC4 /* AddCustomerViewController.swift in Sources */,
 				3072653D1C73B63200D2AF61 /* TermsViewController.swift in Sources */,
 				30718AD91C891CF500CB0EEB /* ChargeViewController.swift in Sources */,
 				30BECBDB1C6E9FF200B8A088 /* Extensions.swift in Sources */,
@@ -901,7 +905,7 @@
 				INFOPLIST_FILE = "paykloud-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.paykloud.paykloud-ios";
-				PRODUCT_NAME = PayKloud;
+				PRODUCT_NAME = ProtonPay;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -917,7 +921,7 @@
 				INFOPLIST_FILE = "paykloud-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.paykloud.paykloud-ios";
-				PRODUCT_NAME = PayKloud;
+				PRODUCT_NAME = ProtonPay;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;

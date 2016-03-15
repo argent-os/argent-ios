@@ -162,7 +162,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, CardIOPayment
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.translucent = true
-        self.navigationController?.navigationBar.topItem?.title = "PayKloud"
+        self.navigationController?.navigationBar.topItem?.title = " "
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.whiteColor(),
             NSFontAttributeName : UIFont(name: "Nunito-SemiBold", size: 18.0)!
