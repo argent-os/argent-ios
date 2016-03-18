@@ -16,6 +16,10 @@
 		3013DCEF1C85161100268DAD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3013DCEE1C85161100268DAD /* User.swift */; };
 		3013DCF11C85D7B600268DAD /* cashregister.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3013DCF01C85D7B600268DAD /* cashregister.caf */; };
 		304DDE291C986E5A00962BC4 /* AddCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304DDE281C986E5A00962BC4 /* AddCustomerViewController.swift */; };
+		304DDE2C1C9CB21500962BC4 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304DDE2B1C9CB21500962BC4 /* EditProfileViewController.swift */; };
+		304DDE301C9CB33900962BC4 /* ProfileFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 304DDE2D1C9CB33900962BC4 /* ProfileFieldCell.xib */; };
+		304DDE311C9CB33900962BC4 /* ProfileImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 304DDE2E1C9CB33900962BC4 /* ProfileImageCell.xib */; };
+		304DDE321C9CB33900962BC4 /* ProfileLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 304DDE2F1C9CB33900962BC4 /* ProfileLabelCell.xib */; };
 		3067D9E91C7F705E00C1418E /* KolodaBackgroundAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3067D9E81C7F705E00C1418E /* KolodaBackgroundAnimationViewController.swift */; };
 		3067D9F01C7F716E00C1418E /* KolodaCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3067D9EE1C7F716E00C1418E /* KolodaCustomView.swift */; };
 		3067D9F11C7F716E00C1418E /* KolodaOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3067D9EF1C7F716E00C1418E /* KolodaOverlayView.swift */; };
@@ -105,6 +109,10 @@
 		3013DCEE1C85161100268DAD /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = "paykloud-ios/User.swift"; sourceTree = SOURCE_ROOT; };
 		3013DCF01C85D7B600268DAD /* cashregister.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = cashregister.caf; sourceTree = "<group>"; };
 		304DDE281C986E5A00962BC4 /* AddCustomerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddCustomerViewController.swift; path = "paykloud-ios/AddCustomerViewController.swift"; sourceTree = SOURCE_ROOT; };
+		304DDE2B1C9CB21500962BC4 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileViewController.swift; path = "paykloud-ios/Flags.xcassets/EditProfileViewController.swift"; sourceTree = SOURCE_ROOT; };
+		304DDE2D1C9CB33900962BC4 /* ProfileFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileFieldCell.xib; sourceTree = SOURCE_ROOT; };
+		304DDE2E1C9CB33900962BC4 /* ProfileImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileImageCell.xib; sourceTree = SOURCE_ROOT; };
+		304DDE2F1C9CB33900962BC4 /* ProfileLabelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileLabelCell.xib; sourceTree = SOURCE_ROOT; };
 		3067D9E81C7F705E00C1418E /* KolodaBackgroundAnimationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KolodaBackgroundAnimationViewController.swift; path = "paykloud-ios/KolodaBackgroundAnimationViewController.swift"; sourceTree = SOURCE_ROOT; };
 		3067D9EE1C7F716E00C1418E /* KolodaCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KolodaCustomView.swift; path = "paykloud-ios/KolodaCustomView.swift"; sourceTree = SOURCE_ROOT; };
 		3067D9EF1C7F716E00C1418E /* KolodaOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KolodaOverlayView.swift; path = "paykloud-ios/KolodaOverlayView.swift"; sourceTree = SOURCE_ROOT; };
@@ -208,7 +216,11 @@
 		30128DDE1C8FAC6E009E2EA7 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
+				304DDE2D1C9CB33900962BC4 /* ProfileFieldCell.xib */,
+				304DDE2E1C9CB33900962BC4 /* ProfileImageCell.xib */,
+				304DDE2F1C9CB33900962BC4 /* ProfileLabelCell.xib */,
 				30F714311C973800001AF6EC /* RecurringBillingPlanViewController.swift */,
+				304DDE2B1C9CB21500962BC4 /* EditProfileViewController.swift */,
 				304DDE281C986E5A00962BC4 /* AddCustomerViewController.swift */,
 				30128DDF1C8FAC82009E2EA7 /* RAMViewController.swift */,
 				30128DE11C8FACAB009E2EA7 /* WordReader.swift */,
@@ -634,7 +646,10 @@
 				30128DE41C8FACDC009E2EA7 /* data.txt in Resources */,
 				3067D9F71C7F766D00C1418E /* KolodaCustomOverlayView.xib in Resources */,
 				3067D9FB1C7F7B6800C1418E /* OverlayView.xib in Resources */,
+				304DDE321C9CB33900962BC4 /* ProfileLabelCell.xib in Resources */,
+				304DDE311C9CB33900962BC4 /* ProfileImageCell.xib in Resources */,
 				30BECBEB1C6EA02800B8A088 /* Main.storyboard in Resources */,
+				304DDE301C9CB33900962BC4 /* ProfileFieldCell.xib in Resources */,
 				3013DCF11C85D7B600268DAD /* cashregister.caf in Resources */,
 				3013DCE91C8375C300268DAD /* ocra.ttf in Resources */,
 				306D6DC11C7008DA00467C41 /* Nunito-Regular.ttf in Resources */,
@@ -746,6 +761,7 @@
 				30BECBE11C6E9FF200B8A088 /* Paths.swift in Sources */,
 				30718AF71C8E37D800CB0EEB /* UserDefaultsPasscodeRepository.swift in Sources */,
 				30B9E7CD1C7B519200C04530 /* Timeout.swift in Sources */,
+				304DDE2C1C9CB21500962BC4 /* EditProfileViewController.swift in Sources */,
 				30BECBDA1C6E9FF200B8A088 /* AppDelegate.swift in Sources */,
 				3067D9E91C7F705E00C1418E /* KolodaBackgroundAnimationViewController.swift in Sources */,
 				30B9E7DB1C7BC9FB00C04530 /* SignupViewControllerZero.swift in Sources */,
