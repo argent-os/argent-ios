@@ -16,15 +16,26 @@ class AddCustomerViewController: UIViewController {
     @IBOutlet weak var textFieldCustomerDescription: UITextField!
     @IBOutlet weak var buttonAddCustomer: UIButton!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print("view loaded")
+    
+        textFieldCustomerEmail.keyboardType = .EmailAddress
+        //Looks for single or multiple taps.
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
+    }
+    
     @IBAction func addCustomerButtonTapped(sender: AnyObject) {
         
-        print("add plan tapped")
+        print("add customer tapped")
         // Post plan using Alamofire
         let cust_email = textFieldCustomerEmail.text! as String
         let cust_desc = textFieldCustomerDescription.text! as String
         
-        let stripeKey = userData!["stripe"]["secretKey"].stringValue
-        print(stripeKey)
+        let stripeKey = userData!["user"]["stripe"]["secretKey"].stringValue
+        
+        print("stripe key is", stripeKey)
         let headers = [
             "Authorization": "Bearer " + stripeKey,
             "Content-Type": "application/x-www-form-urlencoded"
@@ -64,15 +75,6 @@ class AddCustomerViewController: UIViewController {
                 }
         }
         
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        print("view loaded")
-        
-        //Looks for single or multiple taps.
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-        view.addGestureRecognizer(tap)
     }
 
     //Calls this function when the tap is recognized.

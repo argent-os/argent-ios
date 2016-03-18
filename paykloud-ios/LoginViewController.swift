@@ -82,7 +82,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         emailTextField.keyboardType = UIKeyboardType.EmailAddress
         emailTextField.returnKeyType = UIReturnKeyType.Next
         emailTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
-        emailTextField.textColor = UIColor.grayColor()
+        emailTextField.textColor = UIColor.blackColor()
         emailTextField.frame.origin.y = screenHeight*0.3 // 25 down from the top
         emailTextField.frame.origin.x = (self.view.bounds.size.width - emailTextField.frame.size.width) / 2.0
         emailTextField.returnKeyType = UIReturnKeyType.Next
@@ -97,7 +97,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         passwordTextField.placeholderColor = UIColor.grayColor()
         passwordTextField.autocapitalizationType = UITextAutocapitalizationType.None
         emailTextField.autocorrectionType = UITextAutocorrectionType.No
-        passwordTextField.textColor = UIColor.grayColor()
+        passwordTextField.textColor = UIColor.blackColor()
         passwordTextField.returnKeyType = UIReturnKeyType.Next
         passwordTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
         passwordTextField.secureTextEntry = true

@@ -83,7 +83,7 @@ class AuthViewController: UIViewController  {
         imageView.frame.origin.x = (self.view.bounds.size.width - imageView.frame.size.width) / 2.0 // centered left to right.
         view.addSubview(imageView)
         
-        let attributedString = NSMutableAttributedString(string: "Welcome to PayKloud")
+        let attributedString = NSMutableAttributedString(string: "Welcome to Proton Payments")
         // Set range of string length to exactly 8, the number of characters in PayKloud
         attributedString.addAttribute(NSFontAttributeName, value: "Nunito", range: NSRange(location: 0, length: 15)
         )

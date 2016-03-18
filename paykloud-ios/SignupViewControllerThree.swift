@@ -29,8 +29,6 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate {
     var alreadyAdjustedVC3:Bool = false
     
     override func viewDidAppear(animated: Bool) {
-        // Focuses view controller on first name text input
-        passwordTextField.becomeFirstResponder()
         
         self.continueButton.enabled = false
         // Allow continue to be clicked
@@ -40,12 +38,19 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate {
         }
     }
     
+    //Changing Status Bar
+    override public func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Show progress loader on load
         SVProgressHUD.show()
 
+        // Focuses view controller on first name text input
+        passwordTextField.becomeFirstResponder()
         
         // Set screen bounds
         let screen = UIScreen.mainScreen().bounds

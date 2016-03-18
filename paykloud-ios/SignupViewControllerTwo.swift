@@ -25,6 +25,11 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate {
     // Height not adjusted button bool value
     var alreadyAdjustedVC2:Bool = false
     
+    //Changing Status Bar
+    override public func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     override func viewDidAppear(animated: Bool) {
         // Focuses view controller on first name text input
         usernameTextField.becomeFirstResponder()
@@ -45,6 +50,9 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate {
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
+        // Focuses view controller on first name text input
+        usernameTextField.becomeFirstResponder()
+        
         // Inherit UITextField Delegate, this is used for next and join on keyboard
         self.usernameTextField.delegate = self
         self.emailTextField.delegate = self
@@ -59,7 +67,7 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate {
         usernameTextField.borderActiveColor = UIColor(rgba: "#FFF")
         usernameTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
         usernameTextField.backgroundColor = UIColor.clearColor()
-        usernameTextField.placeholder = "PayKloud Username"
+        usernameTextField.placeholder = "Username"
         usernameTextField.placeholderColor = UIColor.grayColor()
         usernameTextField.textColor = UIColor.grayColor()
         usernameTextField.autocapitalizationType = UITextAutocapitalizationType.None
@@ -107,9 +115,6 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate {
         phoneNumberTextField.frame.origin.x = (self.view.bounds.size.width - phoneNumberTextField.frame.size.width) / 2.0
         phoneNumberTextField.returnKeyType = UIReturnKeyType.Next
         view.addSubview(phoneNumberTextField)
-        
-        // Focuses view controller on first name text input
-        usernameTextField.becomeFirstResponder()
         
         self.navigationController?.navigationBar.tintColor = UIColor.grayColor()
         title = ""

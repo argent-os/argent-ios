@@ -27,11 +27,14 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
     var dobYear:String = ""
     
     // Height not adjusted button bool value
-    var alreadyAdjustedVC1:Bool = false
+    var alreadyAdjustedVC2:Bool = false
+    
+    //Changing Status Bar
+    override public func prefersStatusBarHidden() -> Bool {
+        return true
+    }
     
     override func viewDidAppear(animated: Bool) {
-        // Focuses view controller on first name text input
-        firstNameTextField.becomeFirstResponder()
         
         self.continueButton.enabled = false
         // Allow continue to be clicked
@@ -45,6 +48,9 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         SVProgressHUD.show()
 
+        // Focuses view controller on first name text input
+        firstNameTextField.becomeFirstResponder()
+        
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
@@ -118,7 +124,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
         self.navigationController?.navigationBar.translucent = true
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
-
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -128,7 +134,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
     // Adjusts keyboard height to view
     func adjustingHeight(show:Bool, notification:NSNotification) {
         // Check if already adjusted height
-        if(alreadyAdjustedVC1 == false) {
+        if(alreadyAdjustedVC2 == false) {
             var userInfo = notification.userInfo!
             let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
             let animationDurarion = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval
@@ -137,10 +143,10 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
                 self.bottomConstraint.constant += changeInHeight
             })
             // Already adjusted height so make it true so it doesn't continue adjusting everytime a label is focused
-            alreadyAdjustedVC1 = true
+            alreadyAdjustedVC2 = true
         }
     }
-
+    
     func keyboardWillShow(notification:NSNotification) {
         adjustingHeight(true, notification: notification)
     }

@@ -37,6 +37,11 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
     // Set the locale
     let countryCode = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
     
+    //Changing Status Bar
+    override public func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     override func viewDidAppear(animated: Bool) {
         // Focuses view controller on first name text input
         //        textField.becomeFirstResponder()

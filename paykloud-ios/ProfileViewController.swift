@@ -12,7 +12,7 @@ import SVProgressHUD
 
 class ProfileViewController: UIViewController {
     
-    @IBOutlet weak var avatarImageView: UIImageView!
+//    @IBOutlet weak var avatarImageView: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,10 +22,10 @@ class ProfileViewController: UIViewController {
         self.view.backgroundColor = UIColor.whiteColor()
         
         // Style user avatar
-        avatarImageView.image = UIImage(named: "avatar")
-        avatarImageView.layer.cornerRadius = 1.0
-        avatarImageView.layer.borderColor = UIColor.blackColor().CGColor
-        avatarImageView.clipsToBounds = true
+//        avatarImageView.image = UIImage(named: "avatar")
+//        avatarImageView.layer.cornerRadius = 1.0
+//        avatarImageView.layer.borderColor = UIColor.blackColor().CGColor
+//        avatarImageView.clipsToBounds = true
         
         if(userData?["user"]["picture"]["secureUrl"].stringValue != nil && userData?["user"]["picture"]["secureUrl"].stringValue.containsString("app") != true) {
             let userPicture = userData?["user"]["picture"]["secureUrl"].stringValue
@@ -33,14 +33,14 @@ class ProfileViewController: UIViewController {
             let data = NSData(contentsOfURL: pictureUrl!) //make sure your image in this url does exist, otherwise unwrap in a if let check
             if(data != nil) {
                 print(data)
-                self.avatarImageView.image = UIImage(data: data!)
-                //self.avatarImageView.layer.cornerRadius = 4;
-                self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width / 2;
-                avatarImageView.layer.borderWidth = 2.0
+//                self.avatarImageView.image = UIImage(data: data!)
+//                //self.avatarImageView.layer.cornerRadius = 4;
+//                self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width / 2;
+//                avatarImageView.layer.borderWidth = 2.0
                 //self.avatarImageView.clipsToBounds = YES;
                 SVProgressHUD.dismiss()
             } else {
-                self.avatarImageView.image = UIImage(named:"ic_user")
+//                self.avatarImageView.image = UIImage(named:"ic_user")
                 // self.avatarImageView.image = UIImageView.setGravatar(Gravatar)
                 SVProgressHUD.dismiss()
             }

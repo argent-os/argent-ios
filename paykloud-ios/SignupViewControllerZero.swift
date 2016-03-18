@@ -22,6 +22,11 @@ class SignupViewControllerZero: UIViewController {
         SVProgressHUD.dismiss()
     }
     
+    //Changing Status Bar
+    override public func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         SVProgressHUD.show()
@@ -30,13 +35,20 @@ class SignupViewControllerZero: UIViewController {
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-        
         // Close button to return to auth view
-        let closeButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: .Plain, target: self, action: "goToAuth")
-        navigationItem.leftBarButtonItem = closeButton
-        closeButton.tintColor = UIColor.grayColor()
-        title = ""
-        
+        var backBtn: UIButton = UIButton(type: .Custom)
+        var backBtnImage: UIImage = UIImage(named: "IconCloseColor")!
+        var backBtnImagePressed: UIImage = UIImage(named: "IconClose")!
+        backBtn.setBackgroundImage(backBtnImage, forState: .Normal)
+        backBtn.setBackgroundImage(backBtnImagePressed, forState: .Highlighted)
+        backBtn.addTarget(self, action: "goToAuth", forControlEvents: .TouchUpInside)
+        backBtn.frame = CGRectMake(0, 0, 33, 33)
+        var backButtonView: UIView = UIView(frame: CGRectMake(0, 0, 33, 33))
+        backButtonView.bounds = CGRectOffset(backButtonView.bounds, 7, -7)
+        backButtonView.addSubview(backBtn)
+        var backButton: UIBarButtonItem = UIBarButtonItem(customView: backButtonView)
+        self.navigationItem.leftBarButtonItem = backButton
+
         // Transparent navigation bar
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage()

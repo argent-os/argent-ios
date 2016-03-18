@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "30FB54091C6A58B40004A538"
-               BuildableName = "PayKloud.app"
+               BuildableName = "ProtonPay.app"
                BlueprintName = "paykloud-ios"
                ReferencedContainer = "container:paykloud-ios.xcodeproj">
             </BuildableReference>
@@ -53,7 +53,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "30FB54091C6A58B40004A538"
-            BuildableName = "PayKloud.app"
+            BuildableName = "ProtonPay.app"
             BlueprintName = "paykloud-ios"
             ReferencedContainer = "container:paykloud-ios.xcodeproj">
          </BuildableReference>
@@ -76,7 +76,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "30FB54091C6A58B40004A538"
-            BuildableName = "PayKloud.app"
+            BuildableName = "ProtonPay.app"
             BlueprintName = "paykloud-ios"
             ReferencedContainer = "container:paykloud-ios.xcodeproj">
          </BuildableReference>
@@ -95,7 +95,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "30FB54091C6A58B40004A538"
-            BuildableName = "PayKloud.app"
+            BuildableName = "ProtonPay.app"
             BlueprintName = "paykloud-ios"
             ReferencedContainer = "container:paykloud-ios.xcodeproj">
          </BuildableReference>

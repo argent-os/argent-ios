@@ -35,8 +35,8 @@ class RecurringBillingViewController: UIViewController {
 //        print(textFieldPlanStatementDescription.text!)
         
         print("plan id is", plan_id)
-        let stripeKey = userData!["stripe"]["secretKey"].stringValue
-        print(stripeKey)
+        let stripeKey = userData!["user"]["stripe"]["secretKey"].stringValue
+
         let headers = [
             "Authorization": "Bearer " + stripeKey,
             "Content-Type": "application/x-www-form-urlencoded"

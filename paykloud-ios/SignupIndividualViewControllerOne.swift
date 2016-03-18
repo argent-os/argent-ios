@@ -36,6 +36,11 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate {
         }
     }
     
+    //Changing Status Bar
+    override public func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         SVProgressHUD.show()
@@ -57,7 +62,7 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate {
         usernameTextField.borderActiveColor = UIColor(rgba: "#FFF")
         usernameTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
         usernameTextField.backgroundColor = UIColor.clearColor()
-        usernameTextField.placeholder = "PayKloud Username"
+        usernameTextField.placeholder = "Username"
         usernameTextField.placeholderColor = UIColor.grayColor()
         usernameTextField.textColor = UIColor.grayColor()
         usernameTextField.autocapitalizationType = UITextAutocapitalizationType.None
