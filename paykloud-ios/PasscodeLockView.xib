@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Nunito-ExtraLight.ttf">
+            <string>Nunito-ExtraLight</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PasscodeLockViewController" customModule="ProtonPay" customModuleProvider="target">
+            <connections>
+                <outlet property="cancelButton" destination="M5u-VD-UYC" id="v28-h5-Sw3"/>
+                <outlet property="deleteSignButton" destination="H78-kl-y6L" id="k5Y-0E-L7E"/>
+                <outlet property="placeholdersX" destination="sAx-9q-oqm" id="ZvP-qZ-93Z"/>
+                <outlet property="touchIDButton" destination="0Ph-dj-v7R" id="RRn-Ji-eUX"/>
+                <outlet property="view" destination="iN0-l3-epB" id="4dc-hJ-geg"/>
+                <outletCollection property="placeholders" destination="w14-Kb-Jnf" collectionClass="NSMutableArray" id="En0-AP-6Xd"/>
+                <outletCollection property="placeholders" destination="U7t-aV-fYW" collectionClass="NSMutableArray" id="511-Xn-a5F"/>
+                <outletCollection property="placeholders" destination="d8L-r0-NRS" collectionClass="NSMutableArray" id="t8f-hH-9Re"/>
+                <outletCollection property="placeholders" destination="qf8-Py-ORj" collectionClass="NSMutableArray" id="Foh-UG-af4"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HcN-lo-9Jb" userLabel="Placeholders">
+                    <rect key="frame" x="161" y="156" width="279" height="53"/>
+                    <subviews>
+                        <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w14-Kb-Jnf" userLabel="Placeholder 1" customClass="PasscodeSignPlaceholderView" customModule="PasscodeLock">
+                            <rect key="frame" x="43" y="19" width="16" height="16"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="errorColor">
+                                    <color key="value" red="0.95294117647058818" green="0.4823529411764706" blue="0.4823529411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="activeColor">
+                                    <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="inactiveColor">
+                                    <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U7t-aV-fYW" userLabel="Placeholder 1" customClass="PasscodeSignPlaceholderView" customModule="PasscodeLock">
+                            <rect key="frame" x="103" y="19" width="16" height="16"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="errorColor">
+                                    <color key="value" red="0.95294117649999999" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="activeColor">
+                                    <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="inactiveColor">
+                                    <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d8L-r0-NRS" userLabel="Placeholder 1" customClass="PasscodeSignPlaceholderView" customModule="PasscodeLock">
+                            <rect key="frame" x="158" y="19" width="16" height="16"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="errorColor">
+                                    <color key="value" red="0.95294117649999999" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="activeColor">
+                                    <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="inactiveColor">
+                                    <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qf8-Py-ORj" userLabel="Placeholder 1" customClass="PasscodeSignPlaceholderView" customModule="PasscodeLock">
+                            <rect key="frame" x="220" y="19" width="16" height="16"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="errorColor">
+                                    <color key="value" red="0.95294117649999999" green="0.4823529412" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="activeColor">
+                                    <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="inactiveColor">
+                                    <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="d8L-r0-NRS" firstAttribute="top" secondItem="U7t-aV-fYW" secondAttribute="top" id="8qM-47-SKH"/>
+                        <constraint firstItem="qf8-Py-ORj" firstAttribute="top" secondItem="d8L-r0-NRS" secondAttribute="top" id="EU7-qK-awM"/>
+                        <constraint firstItem="d8L-r0-NRS" firstAttribute="leading" secondItem="U7t-aV-fYW" secondAttribute="trailing" constant="39" id="GT2-iX-7pe"/>
+                        <constraint firstItem="w14-Kb-Jnf" firstAttribute="leading" secondItem="HcN-lo-9Jb" secondAttribute="leading" constant="43" id="h4P-SF-jyZ"/>
+                        <constraint firstItem="qf8-Py-ORj" firstAttribute="leading" secondItem="d8L-r0-NRS" secondAttribute="trailing" constant="46" id="lS9-dB-aQV"/>
+                        <constraint firstItem="U7t-aV-fYW" firstAttribute="leading" secondItem="w14-Kb-Jnf" secondAttribute="trailing" constant="44" id="lxg-5f-5vf"/>
+                        <constraint firstItem="qf8-Py-ORj" firstAttribute="centerY" secondItem="HcN-lo-9Jb" secondAttribute="centerY" id="sAx-9q-oqm"/>
+                        <constraint firstItem="U7t-aV-fYW" firstAttribute="top" secondItem="w14-Kb-Jnf" secondAttribute="top" id="xo0-K9-Fu2"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C9Z-3u-ohd" customClass="PasscodeSignButton" customModule="PasscodeLock">
+                    <rect key="frame" x="270" y="310" width="60" height="60"/>
+                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="30"/>
+                    <state key="normal" title="5">
+                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="highlightBackgroundColor">
+                            <color key="value" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="passcodeSign" value="5"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="passcodeSignButtonTap:" destination="-1" eventType="touchUpInside" id="MdT-sz-gVU"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WDx-aD-wJK" customClass="PasscodeSignButton" customModule="PasscodeLock">
+                    <rect key="frame" x="380" y="310" width="60" height="60"/>
+                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="30"/>
+                    <state key="normal" title="6">
+                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="highlightBackgroundColor">
+                            <color key="value" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="passcodeSign" value="6"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="passcodeSignButtonTap:" destination="-1" eventType="touchUpInside" id="Gh8-TY-9A6"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PbJ-Y8-MMf" customClass="PasscodeSignButton" customModule="PasscodeLock">
+                    <rect key="frame" x="270" y="394" width="60" height="60"/>
+                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="30"/>
+                    <state key="normal" title="8">
+                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="highlightBackgroundColor">
+                            <color key="value" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="passcodeSign" value="8"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="passcodeSignButtonTap:" destination="-1" eventType="touchUpInside" id="JDk-Cb-MWh"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EUD-XB-0CR" customClass="PasscodeSignButton" customModule="PasscodeLock">
+                    <rect key="frame" x="380" y="394" width="60" height="60"/>
+                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="30"/>
+                    <state key="normal" title="9">
+                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="highlightBackgroundColor">
+                            <color key="value" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="passcodeSign" value="9"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="passcodeSignButtonTap:" destination="-1" eventType="touchUpInside" id="aJD-gJ-Fvd"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ph-dj-v7R" userLabel="TouchID Button">
+                    <rect key="frame" x="252" y="557" width="96" height="27"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="96" id="4J5-Te-BSg"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Nunito-ExtraLight" family="Nunito" pointSize="15"/>
+                    <inset key="contentEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                    <state key="normal" title="TouchID">
+                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="touchIDButtonTap:" destination="-1" eventType="touchUpInside" id="MT9-Ev-GsW"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cuq-ue-Jyj" customClass="PasscodeSignButton" customModule="PasscodeLock">
+                    <rect key="frame" x="161" y="224" width="60" height="60"/>
+                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="30"/>
+                    <state key="normal" title="1">
+                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="highlightBackgroundColor">
+                            <color key="value" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="passcodeSign" value="1"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="passcodeSignButtonTap:" destination="-1" eventType="touchUpInside" id="KdD-eG-uGQ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CGh-ph-49t" customClass="PasscodeSignButton" customModule="PasscodeLock">
+                    <rect key="frame" x="270" y="224" width="60" height="60"/>
+                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="30"/>
+                    <state key="normal" title="2">
+                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="highlightBackgroundColor">
+                            <color key="value" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="passcodeSign" value="2"/>
+                    </userDefinedRuntimeAttributes>
+                    <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
+                        <rect key="frame" x="165" y="205" width="70" height="32"/>
+                    </variation>
+                    <connections>
+                        <action selector="passcodeSignButtonTap:" destination="-1" eventType="touchUpInside" id="BNz-Qp-TcT"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pLy-90-g1a" customClass="PasscodeSignButton" customModule="PasscodeLock">
+                    <rect key="frame" x="380" y="224" width="60" height="60"/>
+                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="30"/>
+                    <state key="normal" title="3">
+                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="highlightBackgroundColor">
+                            <color key="value" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="passcodeSign" value="3"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="passcodeSignButtonTap:" destination="-1" eventType="touchUpInside" id="kQR-ai-KbC"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RR4-5o-pli" customClass="PasscodeSignButton" customModule="PasscodeLock">
+                    <rect key="frame" x="161" y="310" width="60" height="60"/>
+                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="30"/>
+                    <state key="normal" title="4">
+                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="highlightBackgroundColor">
+                            <color key="value" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="passcodeSign" value="4"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="passcodeSignButtonTap:" destination="-1" eventType="touchUpInside" id="zM7-Dp-6zV"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RA8-jd-dag" customClass="PasscodeSignButton" customModule="PasscodeLock">
+                    <rect key="frame" x="161" y="394" width="60" height="60"/>
+                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="30"/>
+                    <state key="normal" title="7">
+                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="highlightBackgroundColor">
+                            <color key="value" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="passcodeSign" value="7"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="passcodeSignButtonTap:" destination="-1" eventType="touchUpInside" id="CXU-r8-oI2"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0CR-0R-0Nr" customClass="PasscodeSignButton" customModule="PasscodeLock">
+                    <rect key="frame" x="270" y="483" width="60" height="60"/>
+                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="30"/>
+                    <state key="normal" title="0">
+                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="highlightBackgroundColor">
+                            <color key="value" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="passcodeSign" value="0"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="passcodeSignButtonTap:" destination="-1" eventType="touchUpInside" id="lGc-z4-PyQ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H78-kl-y6L">
+                    <rect key="frame" x="390" y="500" width="41" height="27"/>
+                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="28"/>
+                    <inset key="contentEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                    <state key="normal" title="←"/>
+                    <state key="disabled">
+                        <color key="titleColor" red="0.82801711559295654" green="0.86522608995437622" blue="0.95452922582626343" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="deleteSignButtonTap:" destination="-1" eventType="touchUpInside" id="uXY-lj-GdX"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M5u-VD-UYC">
+                    <rect key="frame" x="179" y="503" width="25" height="19"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="19" id="kGX-eU-miS"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="24"/>
+                    <inset key="contentEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                    <state key="normal" title="X">
+                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="disabled">
+                        <color key="titleColor" red="0.82801711560000002" green="0.86522608999999995" blue="0.95452922579999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="deleteSignButtonTap:" destination="-1" eventType="touchUpInside" id="zdm-3i-jvh"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconLogoColor" translatesAutoresizingMaskIntoConstraints="NO" id="7wZ-oq-6Jm">
+                    <rect key="frame" x="267" y="76" width="67" height="72"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="72" id="1gc-uw-npp"/>
+                        <constraint firstAttribute="width" constant="67" id="Q47-Ty-Yup"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="cuq-ue-Jyj" firstAttribute="leading" secondItem="HcN-lo-9Jb" secondAttribute="leading" id="09L-8h-lWU"/>
+                <constraint firstItem="M5u-VD-UYC" firstAttribute="centerY" secondItem="0CR-0R-0Nr" secondAttribute="centerY" id="0Ye-wY-sRS"/>
+                <constraint firstItem="HcN-lo-9Jb" firstAttribute="trailing" secondItem="pLy-90-g1a" secondAttribute="trailing" id="1Us-vx-1CC"/>
+                <constraint firstItem="RA8-jd-dag" firstAttribute="leading" secondItem="RR4-5o-pli" secondAttribute="leading" id="1ql-fR-9YP"/>
+                <constraint firstItem="0CR-0R-0Nr" firstAttribute="centerY" secondItem="H78-kl-y6L" secondAttribute="centerY" id="5EJ-C4-S4s"/>
+                <constraint firstItem="H78-kl-y6L" firstAttribute="top" secondItem="EUD-XB-0CR" secondAttribute="bottom" constant="46" id="5mw-SA-GG8"/>
+                <constraint firstItem="RR4-5o-pli" firstAttribute="baseline" secondItem="C9Z-3u-ohd" secondAttribute="baseline" id="5nC-jI-RyP"/>
+                <constraint firstItem="WDx-aD-wJK" firstAttribute="leading" secondItem="EUD-XB-0CR" secondAttribute="leading" id="ALQ-On-KM6"/>
+                <constraint firstItem="RR4-5o-pli" firstAttribute="leading" secondItem="cuq-ue-Jyj" secondAttribute="leading" id="BMf-50-Cm9"/>
+                <constraint firstItem="C9Z-3u-ohd" firstAttribute="baseline" secondItem="WDx-aD-wJK" secondAttribute="baseline" id="CTd-jU-40a"/>
+                <constraint firstItem="0CR-0R-0Nr" firstAttribute="trailing" secondItem="PbJ-Y8-MMf" secondAttribute="trailing" id="DJo-Wj-g4J"/>
+                <constraint firstItem="pLy-90-g1a" firstAttribute="baseline" secondItem="CGh-ph-49t" secondAttribute="baseline" id="Dj3-kb-BYL"/>
+                <constraint firstItem="RA8-jd-dag" firstAttribute="trailing" secondItem="RR4-5o-pli" secondAttribute="trailing" id="Jq5-S6-Gku"/>
+                <constraint firstItem="PbJ-Y8-MMf" firstAttribute="trailing" secondItem="C9Z-3u-ohd" secondAttribute="trailing" id="LQI-EJ-M5B"/>
+                <constraint firstItem="CGh-ph-49t" firstAttribute="leading" secondItem="C9Z-3u-ohd" secondAttribute="leading" id="ND3-B9-6mD"/>
+                <constraint firstItem="0CR-0R-0Nr" firstAttribute="leading" secondItem="M5u-VD-UYC" secondAttribute="trailing" constant="66" id="NnD-QD-ORp"/>
+                <constraint firstItem="PbJ-Y8-MMf" firstAttribute="baseline" secondItem="RA8-jd-dag" secondAttribute="baseline" id="PH3-cI-BlF"/>
+                <constraint firstItem="CGh-ph-49t" firstAttribute="centerX" secondItem="HcN-lo-9Jb" secondAttribute="centerX" id="SiM-xH-8VB"/>
+                <constraint firstItem="0CR-0R-0Nr" firstAttribute="leading" secondItem="PbJ-Y8-MMf" secondAttribute="leading" id="WGL-aF-N1K"/>
+                <constraint firstItem="M5u-VD-UYC" firstAttribute="top" secondItem="RA8-jd-dag" secondAttribute="bottom" constant="49" id="YMP-YH-2nK"/>
+                <constraint firstItem="CGh-ph-49t" firstAttribute="leading" secondItem="cuq-ue-Jyj" secondAttribute="trailing" constant="49" id="Zld-Sw-0gU"/>
+                <constraint firstItem="M5u-VD-UYC" firstAttribute="centerX" secondItem="RA8-jd-dag" secondAttribute="centerX" id="a1X-Fq-3jF"/>
+                <constraint firstItem="EUD-XB-0CR" firstAttribute="top" secondItem="PbJ-Y8-MMf" secondAttribute="top" id="aOX-5P-Gr6"/>
+                <constraint firstItem="RA8-jd-dag" firstAttribute="top" secondItem="RR4-5o-pli" secondAttribute="bottom" constant="24" id="bew-e3-AXC"/>
+                <constraint firstItem="PbJ-Y8-MMf" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="dTj-D0-vsP"/>
+                <constraint firstItem="RR4-5o-pli" firstAttribute="top" secondItem="cuq-ue-Jyj" secondAttribute="bottom" constant="26" id="dUF-Y3-Cef"/>
+                <constraint firstItem="HcN-lo-9Jb" firstAttribute="top" secondItem="7wZ-oq-6Jm" secondAttribute="bottom" constant="8" symbolic="YES" id="dqr-uY-Tg3"/>
+                <constraint firstItem="7wZ-oq-6Jm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="76" id="dtZ-pc-5xc"/>
+                <constraint firstItem="PbJ-Y8-MMf" firstAttribute="leading" secondItem="C9Z-3u-ohd" secondAttribute="leading" id="eV1-kb-gYj"/>
+                <constraint firstItem="H78-kl-y6L" firstAttribute="leading" secondItem="0CR-0R-0Nr" secondAttribute="trailing" constant="60" id="i23-DV-w1c"/>
+                <constraint firstItem="0CR-0R-0Nr" firstAttribute="centerX" secondItem="0Ph-dj-v7R" secondAttribute="centerX" id="jgf-e0-ANs"/>
+                <constraint firstItem="RA8-jd-dag" firstAttribute="top" secondItem="PbJ-Y8-MMf" secondAttribute="top" id="mr2-PV-bbT"/>
+                <constraint firstItem="PbJ-Y8-MMf" firstAttribute="baseline" secondItem="EUD-XB-0CR" secondAttribute="firstBaseline" id="nbr-vM-tMd"/>
+                <constraint firstAttribute="bottom" secondItem="0Ph-dj-v7R" secondAttribute="bottom" constant="16" id="nuZ-fr-X4Y"/>
+                <constraint firstItem="7wZ-oq-6Jm" firstAttribute="centerX" secondItem="HcN-lo-9Jb" secondAttribute="centerX" id="nue-EP-IKe"/>
+                <constraint firstItem="EUD-XB-0CR" firstAttribute="centerX" secondItem="H78-kl-y6L" secondAttribute="centerX" id="o2n-p7-6ZD"/>
+                <constraint firstItem="PbJ-Y8-MMf" firstAttribute="baseline" secondItem="RA8-jd-dag" secondAttribute="firstBaseline" id="qOa-8I-7mB"/>
+                <constraint firstItem="pLy-90-g1a" firstAttribute="trailing" secondItem="WDx-aD-wJK" secondAttribute="trailing" id="qhA-Xx-JJJ"/>
+                <constraint firstItem="0Ph-dj-v7R" firstAttribute="top" secondItem="0CR-0R-0Nr" secondAttribute="bottom" constant="14" id="qkg-2Q-a4R"/>
+                <constraint firstItem="EUD-XB-0CR" firstAttribute="trailing" secondItem="WDx-aD-wJK" secondAttribute="trailing" id="vOf-Ho-pWC"/>
+                <constraint firstItem="PbJ-Y8-MMf" firstAttribute="baseline" secondItem="EUD-XB-0CR" secondAttribute="baseline" id="zGU-AV-Dvs"/>
+                <constraint firstItem="CGh-ph-49t" firstAttribute="baseline" secondItem="cuq-ue-Jyj" secondAttribute="baseline" id="zYV-xz-iBM"/>
+                <constraint firstItem="cuq-ue-Jyj" firstAttribute="top" secondItem="HcN-lo-9Jb" secondAttribute="bottom" constant="15" id="zgc-B9-yrK"/>
+            </constraints>
+            <point key="canvasLocation" x="191" y="485"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="IconLogoColor" width="250" height="250"/>
+    </resources>
+</document>

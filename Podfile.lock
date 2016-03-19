@@ -22,7 +22,7 @@ PODS:
   - Neon (0.0.3)
   - PasscodeLock (1.0.2)
   - pop (1.0.9)
-  - RAMAnimatedTabBarController (1.2.1)
+  - RAMAnimatedTabBarController (1.2.2)
   - RAMReel (1.0.6)
   - RESideMenu (4.0.7)
   - Runes (3.2.0)
@@ -76,7 +76,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   SwiftyJSON:
-    :commit: 42bdb102d2624b143c07850ebdc1537d5b6579b6
+    :commit: 2a5b70f06001316d4fb54501edc70b4084705da0
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
@@ -99,7 +99,7 @@ SPEC CHECKSUMS:
   Neon: 589d3d217d326abe09726bf81add106cff685bf2
   PasscodeLock: 4ae42c094224a01de3773fcd69ae33886394d959
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
-  RAMAnimatedTabBarController: eb630b997727d678260dfc2f1f4e45450a74cb7e
+  RAMAnimatedTabBarController: cadbef3162bc7ae86091661273ccec503deb3398
   RAMReel: 7297528d1c5992de3a3b8221e19c28b7edddb145
   RESideMenu: f24c508404b49c667344c54aba7e590883533958
   Runes: ab2f892272d5165f64620f8086578b28cde98a02

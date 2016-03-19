@@ -28,3 +28,5 @@ pkg/*
 
 Pods
 Podfile.lock
+*/Secrets.swift
+paykloud-ios/Secrets.swift

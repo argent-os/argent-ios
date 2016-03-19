@@ -58,6 +58,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UINavigationBar.appearance().barStyle = .Black
 
+        // Initialize Plaid, change to .Production before golive
+        Plaid.initializePlaid(.Testing)
+        
         // Display PasscodeLock on Launch
         passcodeLockPresenter.presentPasscodeLock()
 

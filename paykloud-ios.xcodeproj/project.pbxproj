@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3004D6031C9DB98700499CD0 /* AddBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3004D6021C9DB98700499CD0 /* AddBankViewController.swift */; };
+		3004D6061C9DBE1F00499CD0 /* ConfigureNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3004D6051C9DBE1F00499CD0 /* ConfigureNotificationsViewController.swift */; };
+		3004D60A1C9DC38A00499CD0 /* PasscodeLockView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3004D6091C9DC38A00499CD0 /* PasscodeLockView.xib */; };
 		30128DE01C8FAC82009E2EA7 /* RAMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30128DDF1C8FAC82009E2EA7 /* RAMViewController.swift */; };
 		30128DE21C8FACAB009E2EA7 /* WordReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30128DE11C8FACAB009E2EA7 /* WordReader.swift */; };
 		30128DE41C8FACDC009E2EA7 /* data.txt in Resources */ = {isa = PBXBuildFile; fileRef = 30128DE31C8FACDC009E2EA7 /* data.txt */; };
@@ -17,9 +20,11 @@
 		3013DCF11C85D7B600268DAD /* cashregister.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3013DCF01C85D7B600268DAD /* cashregister.caf */; };
 		304DDE291C986E5A00962BC4 /* AddCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304DDE281C986E5A00962BC4 /* AddCustomerViewController.swift */; };
 		304DDE2C1C9CB21500962BC4 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304DDE2B1C9CB21500962BC4 /* EditProfileViewController.swift */; };
-		304DDE301C9CB33900962BC4 /* ProfileFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 304DDE2D1C9CB33900962BC4 /* ProfileFieldCell.xib */; };
-		304DDE311C9CB33900962BC4 /* ProfileImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 304DDE2E1C9CB33900962BC4 /* ProfileImageCell.xib */; };
-		304DDE321C9CB33900962BC4 /* ProfileLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 304DDE2F1C9CB33900962BC4 /* ProfileLabelCell.xib */; };
+		304DDE341C9CED9700962BC4 /* Plaid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304DDE331C9CED9700962BC4 /* Plaid.swift */; };
+		304DDE3B1C9CEDD900962BC4 /* ProfileFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 304DDE381C9CEDD900962BC4 /* ProfileFieldCell.xib */; };
+		304DDE3C1C9CEDD900962BC4 /* ProfileImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 304DDE391C9CEDD900962BC4 /* ProfileImageCell.xib */; };
+		304DDE3D1C9CEDD900962BC4 /* ProfileLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 304DDE3A1C9CEDD900962BC4 /* ProfileLabelCell.xib */; };
+		304DDE411C9CEFB100962BC4 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304DDE401C9CEFB100962BC4 /* Secrets.swift */; };
 		3067D9E91C7F705E00C1418E /* KolodaBackgroundAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3067D9E81C7F705E00C1418E /* KolodaBackgroundAnimationViewController.swift */; };
 		3067D9F01C7F716E00C1418E /* KolodaCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3067D9EE1C7F716E00C1418E /* KolodaCustomView.swift */; };
 		3067D9F11C7F716E00C1418E /* KolodaOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3067D9EF1C7F716E00C1418E /* KolodaOverlayView.swift */; };
@@ -41,7 +46,6 @@
 		30718AF31C8E37A600CB0EEB /* PasscodeSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30718AF21C8E37A600CB0EEB /* PasscodeSettingsViewController.swift */; };
 		30718AF51C8E37C000CB0EEB /* PasscodeLockConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30718AF41C8E37C000CB0EEB /* PasscodeLockConfiguration.swift */; };
 		30718AF71C8E37D800CB0EEB /* UserDefaultsPasscodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30718AF61C8E37D800CB0EEB /* UserDefaultsPasscodeRepository.swift */; };
-		30718AFB1C8E47BA00CB0EEB /* PasscodeLockView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30718AFA1C8E47BA00CB0EEB /* PasscodeLockView.xib */; };
 		3072653B1C72D88F00D2AF61 /* PresentedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072653A1C72D88F00D2AF61 /* PresentedTableViewController.swift */; };
 		3072653D1C73B63200D2AF61 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072653C1C73B63200D2AF61 /* TermsViewController.swift */; };
 		307C6A201C7D40A500723E39 /* SignupViewControllerFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307C6A1F1C7D40A500723E39 /* SignupViewControllerFour.swift */; };
@@ -75,6 +79,9 @@
 		30D7B7311C77883500B64B7F /* SignupViewControllerOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D7B7301C77883500B64B7F /* SignupViewControllerOne.swift */; };
 		30D7B7331C77884600B64B7F /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D7B7321C77884600B64B7F /* AuthViewController.swift */; };
 		30D7B7351C78F96500B64B7F /* SignupViewControllerTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D7B7341C78F96500B64B7F /* SignupViewControllerTwo.swift */; };
+		30DB9B771C9CF1F700871253 /* BankAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DB9B761C9CF1F700871253 /* BankAccountViewController.swift */; };
+		30DB9B7A1C9CFC3600871253 /* BankTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DB9B791C9CFC3600871253 /* BankTableViewCell.swift */; };
+		30DB9B7C1C9CFD7F00871253 /* BankDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DB9B7B1C9CFD7F00871253 /* BankDetailViewController.swift */; };
 		30F714321C973800001AF6EC /* RecurringBillingPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F714311C973800001AF6EC /* RecurringBillingPlanViewController.swift */; };
 		30F714361C9759A9001AF6EC /* SignupIndividualViewControllerOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F714351C9759A9001AF6EC /* SignupIndividualViewControllerOne.swift */; };
 		30F7143A1C975A39001AF6EC /* SignupIndividualViewControllerTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F714391C975A39001AF6EC /* SignupIndividualViewControllerTwo.swift */; };
@@ -100,6 +107,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3004D6021C9DB98700499CD0 /* AddBankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddBankViewController.swift; path = "paykloud-ios/AddBankViewController.swift"; sourceTree = SOURCE_ROOT; };
+		3004D6051C9DBE1F00499CD0 /* ConfigureNotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigureNotificationsViewController.swift; path = "paykloud-ios/ConfigureNotificationsViewController.swift"; sourceTree = SOURCE_ROOT; };
+		3004D6091C9DC38A00499CD0 /* PasscodeLockView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PasscodeLockView.xib; path = "paykloud-ios/PasscodeLockView.xib"; sourceTree = SOURCE_ROOT; };
 		30128DDF1C8FAC82009E2EA7 /* RAMViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RAMViewController.swift; path = "paykloud-ios/RAMViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30128DE11C8FACAB009E2EA7 /* WordReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WordReader.swift; path = "paykloud-ios/WordReader.swift"; sourceTree = SOURCE_ROOT; };
 		30128DE31C8FACDC009E2EA7 /* data.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data.txt; sourceTree = SOURCE_ROOT; };
@@ -110,9 +120,11 @@
 		3013DCF01C85D7B600268DAD /* cashregister.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = cashregister.caf; sourceTree = "<group>"; };
 		304DDE281C986E5A00962BC4 /* AddCustomerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddCustomerViewController.swift; path = "paykloud-ios/AddCustomerViewController.swift"; sourceTree = SOURCE_ROOT; };
 		304DDE2B1C9CB21500962BC4 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileViewController.swift; path = "paykloud-ios/Flags.xcassets/EditProfileViewController.swift"; sourceTree = SOURCE_ROOT; };
-		304DDE2D1C9CB33900962BC4 /* ProfileFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileFieldCell.xib; sourceTree = SOURCE_ROOT; };
-		304DDE2E1C9CB33900962BC4 /* ProfileImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileImageCell.xib; sourceTree = SOURCE_ROOT; };
-		304DDE2F1C9CB33900962BC4 /* ProfileLabelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileLabelCell.xib; sourceTree = SOURCE_ROOT; };
+		304DDE331C9CED9700962BC4 /* Plaid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Plaid.swift; path = "paykloud-ios/Plaid.swift"; sourceTree = SOURCE_ROOT; };
+		304DDE381C9CEDD900962BC4 /* ProfileFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileFieldCell.xib; path = "paykloud-ios/ProfileFieldCell.xib"; sourceTree = SOURCE_ROOT; };
+		304DDE391C9CEDD900962BC4 /* ProfileImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileImageCell.xib; path = "paykloud-ios/ProfileImageCell.xib"; sourceTree = SOURCE_ROOT; };
+		304DDE3A1C9CEDD900962BC4 /* ProfileLabelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileLabelCell.xib; path = "paykloud-ios/ProfileLabelCell.xib"; sourceTree = SOURCE_ROOT; };
+		304DDE401C9CEFB100962BC4 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Secrets.swift; path = "paykloud-ios/Secrets.swift"; sourceTree = SOURCE_ROOT; };
 		3067D9E81C7F705E00C1418E /* KolodaBackgroundAnimationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KolodaBackgroundAnimationViewController.swift; path = "paykloud-ios/KolodaBackgroundAnimationViewController.swift"; sourceTree = SOURCE_ROOT; };
 		3067D9EE1C7F716E00C1418E /* KolodaCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KolodaCustomView.swift; path = "paykloud-ios/KolodaCustomView.swift"; sourceTree = SOURCE_ROOT; };
 		3067D9EF1C7F716E00C1418E /* KolodaOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KolodaOverlayView.swift; path = "paykloud-ios/KolodaOverlayView.swift"; sourceTree = SOURCE_ROOT; };
@@ -134,7 +146,6 @@
 		30718AF21C8E37A600CB0EEB /* PasscodeSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PasscodeSettingsViewController.swift; path = "paykloud-ios/passcode/PasscodeSettingsViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30718AF41C8E37C000CB0EEB /* PasscodeLockConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PasscodeLockConfiguration.swift; path = "paykloud-ios/passcode/PasscodeLockConfiguration.swift"; sourceTree = SOURCE_ROOT; };
 		30718AF61C8E37D800CB0EEB /* UserDefaultsPasscodeRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDefaultsPasscodeRepository.swift; path = "paykloud-ios/passcode/UserDefaultsPasscodeRepository.swift"; sourceTree = SOURCE_ROOT; };
-		30718AFA1C8E47BA00CB0EEB /* PasscodeLockView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PasscodeLockView.xib; path = Pods/PasscodeLock/PasscodeLock/Views/PasscodeLockView.xib; sourceTree = SOURCE_ROOT; };
 		3072653A1C72D88F00D2AF61 /* PresentedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PresentedTableViewController.swift; path = "paykloud-ios/PresentedTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		3072653C1C73B63200D2AF61 /* TermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TermsViewController.swift; path = "paykloud-ios/TermsViewController.swift"; sourceTree = SOURCE_ROOT; };
 		307C6A1F1C7D40A500723E39 /* SignupViewControllerFour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewControllerFour.swift; path = "paykloud-ios/SignupViewControllerFour.swift"; sourceTree = SOURCE_ROOT; };
@@ -172,6 +183,9 @@
 		30D7B7301C77883500B64B7F /* SignupViewControllerOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewControllerOne.swift; path = "paykloud-ios/SignupViewControllerOne.swift"; sourceTree = SOURCE_ROOT; };
 		30D7B7321C77884600B64B7F /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthViewController.swift; path = "paykloud-ios/AuthViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30D7B7341C78F96500B64B7F /* SignupViewControllerTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewControllerTwo.swift; path = "paykloud-ios/SignupViewControllerTwo.swift"; sourceTree = SOURCE_ROOT; };
+		30DB9B761C9CF1F700871253 /* BankAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankAccountViewController.swift; path = "paykloud-ios/BankAccountViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30DB9B791C9CFC3600871253 /* BankTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankTableViewCell.swift; path = "paykloud-ios/BankTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		30DB9B7B1C9CFD7F00871253 /* BankDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankDetailViewController.swift; path = "paykloud-ios/BankDetailViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30F714311C973800001AF6EC /* RecurringBillingPlanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecurringBillingPlanViewController.swift; path = "paykloud-ios/RecurringBillingPlanViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30F714351C9759A9001AF6EC /* SignupIndividualViewControllerOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupIndividualViewControllerOne.swift; path = "paykloud-ios/SignupIndividualViewControllerOne.swift"; sourceTree = SOURCE_ROOT; };
 		30F714391C975A39001AF6EC /* SignupIndividualViewControllerTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupIndividualViewControllerTwo.swift; path = "paykloud-ios/SignupIndividualViewControllerTwo.swift"; sourceTree = SOURCE_ROOT; };
@@ -213,14 +227,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3004D6041C9DBE1300499CD0 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				3004D6051C9DBE1F00499CD0 /* ConfigureNotificationsViewController.swift */,
+			);
+			name = Notifications;
+			sourceTree = "<group>";
+		};
 		30128DDE1C8FAC6E009E2EA7 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
-				304DDE2D1C9CB33900962BC4 /* ProfileFieldCell.xib */,
-				304DDE2E1C9CB33900962BC4 /* ProfileImageCell.xib */,
-				304DDE2F1C9CB33900962BC4 /* ProfileLabelCell.xib */,
+				30DB9B751C9CF1E000871253 /* Profile */,
 				30F714311C973800001AF6EC /* RecurringBillingPlanViewController.swift */,
-				304DDE2B1C9CB21500962BC4 /* EditProfileViewController.swift */,
 				304DDE281C986E5A00962BC4 /* AddCustomerViewController.swift */,
 				30128DDF1C8FAC82009E2EA7 /* RAMViewController.swift */,
 				30128DE11C8FACAB009E2EA7 /* WordReader.swift */,
@@ -254,6 +273,22 @@
 				3013DCEE1C85161100268DAD /* User.swift */,
 			);
 			name = User;
+			sourceTree = "<group>";
+		};
+		304DDE351C9CEDA500962BC4 /* Integrations */ = {
+			isa = PBXGroup;
+			children = (
+				304DDE331C9CED9700962BC4 /* Plaid.swift */,
+			);
+			name = Integrations;
+			sourceTree = "<group>";
+		};
+		304DDE421C9CF05300962BC4 /* Secrets */ = {
+			isa = PBXGroup;
+			children = (
+				304DDE401C9CEFB100962BC4 /* Secrets.swift */,
+			);
+			name = Secrets;
 			sourceTree = "<group>";
 		};
 		3064E8A71C74D06D0073E00B /* xib */ = {
@@ -307,7 +342,7 @@
 		30718AEB1C8E32E100CB0EEB /* Lock */ = {
 			isa = PBXGroup;
 			children = (
-				30718AFA1C8E47BA00CB0EEB /* PasscodeLockView.xib */,
+				3004D6091C9DC38A00499CD0 /* PasscodeLockView.xib */,
 				30718AF41C8E37C000CB0EEB /* PasscodeLockConfiguration.swift */,
 				30718AF61C8E37D800CB0EEB /* UserDefaultsPasscodeRepository.swift */,
 				30718AF21C8E37A600CB0EEB /* PasscodeSettingsViewController.swift */,
@@ -432,6 +467,30 @@
 			name = Signup;
 			sourceTree = "<group>";
 		};
+		30DB9B751C9CF1E000871253 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				304DDE381C9CEDD900962BC4 /* ProfileFieldCell.xib */,
+				304DDE391C9CEDD900962BC4 /* ProfileImageCell.xib */,
+				304DDE3A1C9CEDD900962BC4 /* ProfileLabelCell.xib */,
+				304DDE2B1C9CB21500962BC4 /* EditProfileViewController.swift */,
+				3004D6041C9DBE1300499CD0 /* Notifications */,
+				30DB9B781C9CFC2300871253 /* Bank */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		30DB9B781C9CFC2300871253 /* Bank */ = {
+			isa = PBXGroup;
+			children = (
+				3004D6021C9DB98700499CD0 /* AddBankViewController.swift */,
+				30DB9B761C9CF1F700871253 /* BankAccountViewController.swift */,
+				30DB9B7B1C9CFD7F00871253 /* BankDetailViewController.swift */,
+				30DB9B791C9CFC3600871253 /* BankTableViewCell.swift */,
+			);
+			name = Bank;
+			sourceTree = "<group>";
+		};
 		30FB54011C6A58B40004A538 = {
 			isa = PBXGroup;
 			children = (
@@ -466,6 +525,8 @@
 				30BECC071C6F932400B8A088 /* Main */,
 				3013DCEA1C8515A300268DAD /* Models */,
 				30BECC091C6F935200B8A088 /* Nav */,
+				304DDE351C9CEDA500962BC4 /* Integrations */,
+				304DDE421C9CF05300962BC4 /* Secrets */,
 				30BECC0C1C6F93AF00B8A088 /* Add-ons */,
 				30BECC0B1C6F939800B8A088 /* Storyboards */,
 				3064E8A71C74D06D0073E00B /* xib */,
@@ -640,26 +701,26 @@
 				30BECBFF1C6EA6EC00B8A088 /* Assets.xcassets in Resources */,
 				30B9E7D91C7B928100C04530 /* CountryView.xib in Resources */,
 				3013DCE71C81FFA100268DAD /* chime2.caf in Resources */,
-				30718AFB1C8E47BA00CB0EEB /* PasscodeLockView.xib in Resources */,
 				30BECBDD1C6E9FF200B8A088 /* LaunchScreen.storyboard in Resources */,
 				3099CB6F1C70D69D000CEDE2 /* Auth.storyboard in Resources */,
 				30128DE41C8FACDC009E2EA7 /* data.txt in Resources */,
 				3067D9F71C7F766D00C1418E /* KolodaCustomOverlayView.xib in Resources */,
+				304DDE3B1C9CEDD900962BC4 /* ProfileFieldCell.xib in Resources */,
 				3067D9FB1C7F7B6800C1418E /* OverlayView.xib in Resources */,
-				304DDE321C9CB33900962BC4 /* ProfileLabelCell.xib in Resources */,
-				304DDE311C9CB33900962BC4 /* ProfileImageCell.xib in Resources */,
 				30BECBEB1C6EA02800B8A088 /* Main.storyboard in Resources */,
-				304DDE301C9CB33900962BC4 /* ProfileFieldCell.xib in Resources */,
 				3013DCF11C85D7B600268DAD /* cashregister.caf in Resources */,
 				3013DCE91C8375C300268DAD /* ocra.ttf in Resources */,
 				306D6DC11C7008DA00467C41 /* Nunito-Regular.ttf in Resources */,
 				306D6DBE1C7008DA00467C41 /* Nunito-ExtraLight.ttf in Resources */,
+				304DDE3C1C9CEDD900962BC4 /* ProfileImageCell.xib in Resources */,
 				306D6DBC1C7008DA00467C41 /* Nunito-Bold.ttf in Resources */,
 				30975C671C7040E300D2BDAA /* nyc.mp4 in Resources */,
 				306D6DC21C7008DA00467C41 /* Nunito-SemiBold.ttf in Resources */,
+				304DDE3D1C9CEDD900962BC4 /* ProfileLabelCell.xib in Resources */,
 				306D6DBD1C7008DA00467C41 /* Nunito-ExtraBold.ttf in Resources */,
 				306D6DBF1C7008DA00467C41 /* Nunito-Light.ttf in Resources */,
 				306D6DBB1C7008DA00467C41 /* Nunito-Black.ttf in Resources */,
+				3004D60A1C9DC38A00499CD0 /* PasscodeLockView.xib in Resources */,
 				306D6DC01C7008DA00467C41 /* Nunito-Medium.ttf in Resources */,
 				3013DCE31C81F9FE00268DAD /* chime.caf in Resources */,
 			);
@@ -735,6 +796,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30D7B7331C77884600B64B7F /* AuthViewController.swift in Sources */,
+				304DDE411C9CEFB100962BC4 /* Secrets.swift in Sources */,
 				30D7B7351C78F96500B64B7F /* SignupViewControllerTwo.swift in Sources */,
 				30BECBE01C6E9FF200B8A088 /* Logs.swift in Sources */,
 				30718AEA1C8E111E00CB0EEB /* RecurringViewController.swift in Sources */,
@@ -760,8 +822,11 @@
 				30BECBE71C6E9FF200B8A088 /* StarButton.swift in Sources */,
 				30BECBE11C6E9FF200B8A088 /* Paths.swift in Sources */,
 				30718AF71C8E37D800CB0EEB /* UserDefaultsPasscodeRepository.swift in Sources */,
+				3004D6031C9DB98700499CD0 /* AddBankViewController.swift in Sources */,
 				30B9E7CD1C7B519200C04530 /* Timeout.swift in Sources */,
 				304DDE2C1C9CB21500962BC4 /* EditProfileViewController.swift in Sources */,
+				304DDE341C9CED9700962BC4 /* Plaid.swift in Sources */,
+				3004D6061C9DBE1F00499CD0 /* ConfigureNotificationsViewController.swift in Sources */,
 				30BECBDA1C6E9FF200B8A088 /* AppDelegate.swift in Sources */,
 				3067D9E91C7F705E00C1418E /* KolodaBackgroundAnimationViewController.swift in Sources */,
 				30B9E7DB1C7BC9FB00C04530 /* SignupViewControllerZero.swift in Sources */,
@@ -769,9 +834,12 @@
 				30D7B7311C77883500B64B7F /* SignupViewControllerOne.swift in Sources */,
 				30F714321C973800001AF6EC /* RecurringBillingPlanViewController.swift in Sources */,
 				30BECBDF1C6E9FF200B8A088 /* LoginViewController.swift in Sources */,
+				30DB9B7A1C9CFC3600871253 /* BankTableViewCell.swift in Sources */,
 				307C6A201C7D40A500723E39 /* SignupViewControllerFour.swift in Sources */,
+				30DB9B7C1C9CFD7F00871253 /* BankDetailViewController.swift in Sources */,
 				30BECBE41C6E9FF200B8A088 /* RootViewController.swift in Sources */,
 				304DDE291C986E5A00962BC4 /* AddCustomerViewController.swift in Sources */,
+				30DB9B771C9CF1F700871253 /* BankAccountViewController.swift in Sources */,
 				3072653D1C73B63200D2AF61 /* TermsViewController.swift in Sources */,
 				30718AD91C891CF500CB0EEB /* ChargeViewController.swift in Sources */,
 				30BECBDB1C6E9FF200B8A088 /* Extensions.swift in Sources */,
