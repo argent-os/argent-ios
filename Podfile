@@ -32,6 +32,7 @@ pod 'DZNEmptyDataSet', '~> 1.7.3'
 pod 'IOStickyHeader', '~> 0.3.0' 
 pod 'AMViralSwitch'
 pod 'Former'
+pod 'KMPlaceholderTextView', '~> 1.1.2' 
 
 post_install do |installer|
     `find Pods -regex 'Pods/pop.*\\.h' -print0 | xargs -0 sed -i '' 's/\\(<\\)pop\\/\\(.*\\)\\(>\\)/\\"\\2\\"/'`

@@ -14,6 +14,7 @@ PODS:
   - Gecco (0.2.0)
   - IOStickyHeader (0.3.0)
   - KeychainSwift (3.0.11)
+  - KMPlaceholderTextView (1.1.2)
   - Koloda (2.0.10):
     - pop (~> 1.0)
   - MZAppearance (1.1.6)
@@ -52,6 +53,7 @@ DEPENDENCIES:
   - Gecco (~> 0.2.0)
   - IOStickyHeader (~> 0.3.0)
   - KeychainSwift (~> 3.0)
+  - KMPlaceholderTextView (~> 1.1.2)
   - Koloda (~> 2.0.10)
   - MZFormSheetPresentationController (~> 2.3.0)
   - Neon (~> 0.0.3)
@@ -93,6 +95,7 @@ SPEC CHECKSUMS:
   Gecco: 27ab0f43da3f8e844771cf641992afdd1ea09c62
   IOStickyHeader: 4550b071f8f3df73a361a3152aab8e5a3bae1ea8
   KeychainSwift: 0a4214c910423543a42b0f30f25987d46178b6a5
+  KMPlaceholderTextView: 13bbd53116b5d468da9dc145c8f74fa38f0c1070
   Koloda: 10f747feeff5e425061f78e5ce17208783e34a99
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   MZFormSheetPresentationController: 076391ba3f6474b4ef75eaaef2380991524d8be4

@@ -49,6 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return presenter
     }()
     
+
 //    // Hiding Status Bar
 //    override public func prefersStatusBarHidden() -> Bool {
 //        return true
@@ -58,6 +59,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UINavigationBar.appearance().barStyle = .Black
 
+        // Globally set toolbar
+        UIToolbar.appearance().barTintColor = UIColor(rgba: "#1796fa")
+        
+        if let font = UIFont(name: "Nunito-SemiBold", size: 15) {
+            UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: font,NSForegroundColorAttributeName:UIColor.whiteColor()], forState: UIControlState.Normal)
+            
+        }
+        
         // Initialize Plaid, change to .Production before golive
         Plaid.initializePlaid(.Testing)
         
