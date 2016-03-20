@@ -11,9 +11,27 @@ import SafariServices
 
 class ProfileMenuViewController: UITableViewController {
     
+    @IBOutlet weak var shareCell: UITableViewCell!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Add action to share cell to return to activity menu
+        shareCell.targetForAction("share:", withSender: self)
+        
         print("loaded profile menu")
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print("selected cell \(indexPath.row)")
+        if(tableView.cellForRowAtIndexPath(indexPath)!.tag == 865) {
+            print("it worked")
+            let activityViewController  = UIActivityViewController(
+                activityItems: ["Check out this app" as NSString],
+                applicationActivities: nil)
+            
+            presentViewController(activityViewController, animated: true, completion: nil)
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
