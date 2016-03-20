@@ -126,7 +126,7 @@ final class EditProfileViewController: FormViewController {
         let moreRow = SwitchRowFormer<FormSwitchCell>() {
             $0.titleLabel.text = "Add more information ?"
 //            $0.titleLabel.textColor = .formerColor()
-            $0.titleLabel.font = .boldSystemFontOfSize(15)
+            $0.titleLabel.font = .systemFontOfSize(15)
 //            $0.switchButton.onTintColor = .formerSubColor()
             }.configure {
                 $0.switched = Profile.sharedInstance.moreInformation

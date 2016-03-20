@@ -58,6 +58,12 @@
             <string>Nunito-Regular</string>
             <string>Nunito-Regular</string>
             <string>Nunito-Regular</string>
+            <string>Nunito-Regular</string>
+            <string>Nunito-Regular</string>
+            <string>Nunito-Regular</string>
+            <string>Nunito-Regular</string>
+            <string>Nunito-Regular</string>
+            <string>Nunito-Regular</string>
         </mutableArray>
         <mutableArray key="Nunito-SemiBold.ttf">
             <string>Nunito-SemiBold</string>
@@ -434,8 +440,8 @@ support request</string>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Application" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dEL-a3-N9P">
                                                     <rect key="frame" x="15" y="0.0" width="364" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="16"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -451,8 +457,8 @@ support request</string>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Banking" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gU0-ya-vRc">
                                                     <rect key="frame" x="15" y="0.0" width="364" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="16"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -468,8 +474,8 @@ support request</string>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bqR-kb-C0e">
                                                     <rect key="frame" x="15" y="0.0" width="364" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="16"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -485,8 +491,8 @@ support request</string>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Suggestions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5Xf-Sb-W48">
                                                     <rect key="frame" x="15" y="0.0" width="364" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="16"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -502,8 +508,8 @@ support request</string>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Other" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JrO-gU-QYZ">
                                                     <rect key="frame" x="15" y="0.0" width="364" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="16"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1199,10 +1205,10 @@ support request</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EG7-xI-0r0">
-                                <rect key="frame" x="20" y="229" width="374" height="40"/>
+                                <rect key="frame" x="0.0" y="676" width="414" height="60"/>
                                 <color key="backgroundColor" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="qRD-ni-5XH"/>
+                                    <constraint firstAttribute="height" constant="60" id="zdf-i9-hxR"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -1211,45 +1217,59 @@ support request</string>
                                     <segue destination="JyA-ys-IVe" kind="show" id="SFz-vc-0MB"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IOF-7m-KYZ">
-                                <rect key="frame" x="20" y="695" width="374" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="NGl-1c-DYS"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconBank" translatesAutoresizingMaskIntoConstraints="NO" id="rDk-Tr-KCz">
-                                <rect key="frame" x="20" y="49" width="374" height="117"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="117" id="Eyu-Gb-L9d"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IdL-hy-SC1">
                                 <rect key="frame" x="20" y="20" width="374" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="xFf-bX-mTm"/>
+                                    <constraint firstAttribute="height" constant="21" id="mJ1-8Y-LV9"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconBank" translatesAutoresizingMaskIntoConstraints="NO" id="KoB-Hd-4HP">
+                                <rect key="frame" x="143" y="198" width="128" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="qLA-Oo-hSn"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Bank Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Use-cp-lh2">
+                                <rect key="frame" x="20" y="343" width="374" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="mhM-rT-voB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="18"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ut-Ju-5YB">
+                                <rect key="frame" x="10" y="390" width="395" height="62"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="62" id="chg-RI-qjV"/>
+                                </constraints>
+                                <string key="text">Select from a list of authorized banks.
+We currently support 14 US
+institutions</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="rDk-Tr-KCz" firstAttribute="trailing" secondItem="IdL-hy-SC1" secondAttribute="trailing" id="5MM-qc-y5y"/>
-                            <constraint firstItem="IdL-hy-SC1" firstAttribute="trailing" secondItem="Tlu-lx-Uxm" secondAttribute="trailingMargin" id="5uK-Yw-jUN"/>
-                            <constraint firstItem="rDk-Tr-KCz" firstAttribute="trailing" secondItem="EG7-xI-0r0" secondAttribute="trailing" id="7Di-7X-2WD"/>
-                            <constraint firstItem="IdL-hy-SC1" firstAttribute="leading" secondItem="Tlu-lx-Uxm" secondAttribute="leadingMargin" id="7VS-8s-RlE"/>
-                            <constraint firstItem="EG7-xI-0r0" firstAttribute="trailing" secondItem="IOF-7m-KYZ" secondAttribute="trailing" id="Bro-Uy-Ilr"/>
-                            <constraint firstItem="rDk-Tr-KCz" firstAttribute="leading" secondItem="EG7-xI-0r0" secondAttribute="leading" id="CeM-Zm-eY0"/>
-                            <constraint firstAttribute="bottom" secondItem="IOF-7m-KYZ" secondAttribute="bottom" constant="20" symbolic="YES" id="Od2-8f-UNo"/>
-                            <constraint firstItem="IdL-hy-SC1" firstAttribute="leading" secondItem="rDk-Tr-KCz" secondAttribute="leading" id="Ru4-LH-CjQ"/>
-                            <constraint firstItem="IOF-7m-KYZ" firstAttribute="leading" secondItem="EG7-xI-0r0" secondAttribute="leading" id="d1k-Qw-i2g"/>
-                            <constraint firstItem="IdL-hy-SC1" firstAttribute="top" secondItem="fzi-cR-AQR" secondAttribute="bottom" id="dH2-iv-jch"/>
-                            <constraint firstItem="EG7-xI-0r0" firstAttribute="top" secondItem="rDk-Tr-KCz" secondAttribute="bottom" constant="63" id="tuR-I4-rdQ"/>
-                            <constraint firstItem="rDk-Tr-KCz" firstAttribute="top" secondItem="IdL-hy-SC1" secondAttribute="bottom" constant="8" symbolic="YES" id="xQp-ex-ipH"/>
+                            <constraint firstItem="Use-cp-lh2" firstAttribute="top" secondItem="KoB-Hd-4HP" secondAttribute="bottom" constant="17" id="03j-e2-Ilb"/>
+                            <constraint firstItem="Use-cp-lh2" firstAttribute="centerX" secondItem="KoB-Hd-4HP" secondAttribute="centerX" id="Cii-4F-zXZ"/>
+                            <constraint firstItem="6Ut-Ju-5YB" firstAttribute="top" secondItem="Use-cp-lh2" secondAttribute="bottom" constant="8" symbolic="YES" id="F9M-tw-nhK"/>
+                            <constraint firstItem="EG7-xI-0r0" firstAttribute="centerX" secondItem="6Ut-Ju-5YB" secondAttribute="centerX" id="Jrc-oQ-y45"/>
+                            <constraint firstItem="KoB-Hd-4HP" firstAttribute="top" secondItem="Tlu-lx-Uxm" secondAttribute="top" constant="198" id="Vdb-Hp-mHL"/>
+                            <constraint firstItem="6Ut-Ju-5YB" firstAttribute="leading" secondItem="Tlu-lx-Uxm" secondAttribute="leadingMargin" constant="-10" id="XPP-Ix-5nu"/>
+                            <constraint firstItem="Use-cp-lh2" firstAttribute="trailing" secondItem="IdL-hy-SC1" secondAttribute="trailing" id="Xig-jX-yDc"/>
+                            <constraint firstItem="EG7-xI-0r0" firstAttribute="leading" secondItem="Tlu-lx-Uxm" secondAttribute="leading" id="dd1-LL-O12"/>
+                            <constraint firstItem="6Ut-Ju-5YB" firstAttribute="centerX" secondItem="Use-cp-lh2" secondAttribute="centerX" id="eMO-ND-8A8"/>
+                            <constraint firstItem="IdL-hy-SC1" firstAttribute="leading" secondItem="Use-cp-lh2" secondAttribute="leading" id="fIP-R9-SHG"/>
+                            <constraint firstItem="IdL-hy-SC1" firstAttribute="top" secondItem="fzi-cR-AQR" secondAttribute="bottom" id="nQ2-vA-NHh"/>
+                            <constraint firstItem="EG7-xI-0r0" firstAttribute="bottom" secondItem="9ft-C6-5ts" secondAttribute="top" id="qkp-TJ-UTb"/>
+                            <constraint firstItem="IdL-hy-SC1" firstAttribute="leading" secondItem="Tlu-lx-Uxm" secondAttribute="leadingMargin" id="txW-gl-BCB"/>
+                            <constraint firstAttribute="trailing" secondItem="EG7-xI-0r0" secondAttribute="trailing" id="z7D-3c-s5E"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
@@ -2647,21 +2667,21 @@ Click here to view more</string>
             <objects>
                 <tableViewController storyboardIdentifier="MainTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JyA-ys-IVe" customClass="MainTableViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="dgB-FO-eVy">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" restorationIdentifier="mainCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="mainCell" rowHeight="220" id="hrL-CJ-jEE" customClass="MainTableViewCell" customModule="ProtonPay" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="600" height="220"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="220"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hrL-CJ-jEE" id="gX7-7V-Yyh">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="219.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="219.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dxk-qH-8pb">
+                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dxk-qH-8pb">
                                             <rect key="frame" x="20" y="15" width="560" height="190"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Wt-Kc-fLg">
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Wt-Kc-fLg">
                                                     <rect key="frame" x="0.0" y="0.0" width="560" height="182"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
@@ -2710,11 +2730,11 @@ Click here to view more</string>
                         <viewControllerLayoutGuide type="bottom" id="rW3-Ab-NGB"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="0fk-wo-aw0">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yX9-45-coU">
-                                <rect key="frame" x="20" y="559" width="560" height="21"/>
+                                <rect key="frame" x="20" y="695" width="374" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="e14-Cn-o9g"/>
                                 </constraints>
@@ -2728,7 +2748,7 @@ Click here to view more</string>
                                     <constraint firstAttribute="height" constant="32" id="AO0-zF-QP9"/>
                                     <constraint firstAttribute="width" constant="32" id="F7o-lb-ddJ"/>
                                 </constraints>
-                                <state key="normal" image="IconClose"/>
+                                <state key="normal" image="IconCloseLight"/>
                                 <connections>
                                     <segue destination="JyA-ys-IVe" kind="presentation" identifier="bankListView" id="I8t-RJ-Sgi"/>
                                 </connections>
@@ -2747,6 +2767,25 @@ Click here to view more</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EYn-Ls-vjQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4055" y="-4453"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="HnQ-d4-VjE">
+            <objects>
+                <viewController id="eFF-P3-oKQ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2en-zU-YP4"/>
+                        <viewControllerLayoutGuide type="bottom" id="6xJ-Lz-xdx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5sH-cP-3eF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AuV-Lx-gub" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4596" y="-4136"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="ht7-o5-pHb">
@@ -2786,6 +2825,82 @@ Click here to view more</string>
             </objects>
             <point key="canvasLocation" x="3629" y="-2682"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="MDM-4L-y5O">
+            <objects>
+                <viewController id="qgD-6b-gZc" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wCj-ol-WGg"/>
+                        <viewControllerLayoutGuide type="bottom" id="PEi-FW-yFe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pxn-xk-DAL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hxt-D7-43b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4596" y="-3328"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="hSs-yh-Z3j">
+            <objects>
+                <viewController id="rru-jj-nAg" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JF0-N0-nZc"/>
+                        <viewControllerLayoutGuide type="bottom" id="H8A-aC-NQV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="A19-29-zWe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6lm-Ch-NbB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4596" y="-4960"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="adr-MP-J9C">
+            <objects>
+                <viewController id="HX8-p1-sYT" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DP8-oc-t3w"/>
+                        <viewControllerLayoutGuide type="bottom" id="jBz-Sn-ebQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cXv-bG-YPA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OAz-UU-5tm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4596" y="-2506"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="stN-CH-fxY">
+            <objects>
+                <viewController id="Bib-wA-Sli" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ojw-U2-T2e"/>
+                        <viewControllerLayoutGuide type="bottom" id="al4-um-Ago"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rbe-Fx-ILZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2YE-pB-iBB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4596" y="-1688"/>
+        </scene>
     </scenes>
     <resources>
         <image name="BackgroundGradientInverse" width="200" height="500"/>
@@ -2793,6 +2908,7 @@ Click here to view more</string>
         <image name="IconBroken" width="128" height="119"/>
         <image name="IconClose" width="24" height="24"/>
         <image name="IconCloseColor" width="24" height="24"/>
+        <image name="IconCloseLight" width="24" height="24"/>
         <image name="IconLightBulb" width="118" height="128"/>
         <image name="IconLogoDark" width="250" height="250"/>
         <image name="IconMenu" width="32" height="32"/>
@@ -2807,11 +2923,11 @@ Click here to view more</string>
         <image name="ic_user" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="I8t-RJ-Sgi"/>
-        <segue reference="ELV-h3-jGr"/>
-        <segue reference="aks-Yo-Spb"/>
+        <segue reference="SFz-vc-0MB"/>
         <segue reference="3gU-qs-BJW"/>
         <segue reference="KrE-LG-a0f"/>
+        <segue reference="ELV-h3-jGr"/>
+        <segue reference="aks-Yo-Spb"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>
