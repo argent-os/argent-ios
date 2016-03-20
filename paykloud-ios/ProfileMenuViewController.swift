@@ -25,11 +25,10 @@ class ProfileMenuViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("selected cell \(indexPath.row)")
         if(tableView.cellForRowAtIndexPath(indexPath)!.tag == 865) {
-            print("it worked")
             let activityViewController  = UIActivityViewController(
-                activityItems: ["Check out this app" as NSString],
+                activityItems: ["Check out this app!  http://www.protonpayments.com/home" as NSString],
                 applicationActivities: nil)
-            
+        activityViewController.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList]
             presentViewController(activityViewController, animated: true, completion: nil)
         }
     }
