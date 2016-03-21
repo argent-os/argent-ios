@@ -10,6 +10,7 @@ import UIColor_Hex_Swift
 import BEMCheckBox
 import MZAppearance
 import MZFormSheetPresentationController
+import SIAlertView
 
 class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
     
@@ -194,10 +195,10 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
     }
     
     func displayErrorAlertMessage(alertMessage:String) {
-        let displayAlert = UIAlertController(title: "Error", message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
-        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
-        displayAlert.addAction(okAction);
-        self.presentViewController(displayAlert, animated: true, completion: nil);
+        var alertView: SIAlertView = SIAlertView(title: "Error", andMessage: alertMessage)
+        alertView.addButtonWithTitle("Ok", type: SIAlertViewButtonType.Default, handler: nil)
+        alertView.transitionStyle = SIAlertViewTransitionStyle.DropDown
+        alertView.show()
     }
     
     func goToLogin() {
@@ -205,12 +206,12 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
     }
     
     func displaySuccessAlertMessage(alertMessage:String) {
-        let displayAlert = UIAlertController(title: "Success", message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
-        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { action in
+        var alertView: SIAlertView = SIAlertView(title: "Success", andMessage: alertMessage)
+        alertView.addButtonWithTitle("Let's go!", type: SIAlertViewButtonType.Default, handler: { action in
             self.goToLogin()
         })
-        displayAlert.addAction(okAction);
-        self.presentViewController(displayAlert, animated: true, completion: nil);
+        alertView.transitionStyle = SIAlertViewTransitionStyle.DropDown
+        alertView.show()
     }
     
     // Return IP address of WiFi interface (en0) as a String, or `nil`

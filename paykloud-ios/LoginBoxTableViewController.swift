@@ -200,13 +200,11 @@ class LoginBoxTableViewController: UITableViewController {
     }
     
     func displayAlertMessage(alertMessage:String) {
-        
         var alertView: SIAlertView = SIAlertView(title: "Alert", andMessage: alertMessage)
         alertView.addButtonWithTitle("Ok", type: SIAlertViewButtonType.Default, handler: nil)
 //        alertView.addButtonWithTitle("Button2", type: SIAlertViewButtonType.Destructive, handler: nil)
         alertView.transitionStyle = SIAlertViewTransitionStyle.DropDown
         alertView.show()
-
     }
     
     func displayErrorAlertMessage(alertMessage:String) {

@@ -11,6 +11,7 @@ import UIKit
 import TextFieldEffects
 import UIColor_Hex_Swift
 import SVProgressHUD
+import SIAlertView
 
 class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate {
     
@@ -182,24 +183,29 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate {
     }
     
     func displayErrorAlertMessage(alertMessage:String) {
-        let displayAlert = UIAlertController(title: "Error", message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
-        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
-        displayAlert.addAction(okAction);
-        self.presentViewController(displayAlert, animated: true, completion: nil);
+        var alertView: SIAlertView = SIAlertView(title: "Error", andMessage: alertMessage)
+        alertView.addButtonWithTitle("Ok", type: SIAlertViewButtonType.Default, handler: nil)
+        alertView.transitionStyle = SIAlertViewTransitionStyle.DropDown
+        alertView.show()
     }
     
     // VALIDATION
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Username, email, and phone validation
-        if(!isValidEmail(emailTextField.text!)) {
-            displayErrorAlertMessage("Email is not valid")
-        } else if(emailTextField.text?.characters.count < 1 || usernameTextField.text?.characters.count < 1) {
-            displayErrorAlertMessage("Username and email fields cannot be empty")
-        } else {
-            NSUserDefaults.standardUserDefaults().setValue(usernameTextField.text!, forKey: "userUsername")
-            NSUserDefaults.standardUserDefaults().setValue(emailTextField.text!, forKey: "userEmail")
-            NSUserDefaults.standardUserDefaults().synchronize();
+    override func shouldPerformSegueWithIdentifier(identifier: String!, sender: AnyObject!) -> Bool {
+        if(identifier == "VC2") {
+            // Username, email, and phone validation
+            if(!isValidEmail(emailTextField.text!)) {
+                displayErrorAlertMessage("Email is not valid")
+                return false
+            } else if(emailTextField.text?.characters.count < 1 || usernameTextField.text?.characters.count < 1) {
+                displayErrorAlertMessage("Username and email fields cannot be empty")
+                return false
+            } else {
+                NSUserDefaults.standardUserDefaults().setValue(usernameTextField.text!, forKey: "userUsername")
+                NSUserDefaults.standardUserDefaults().setValue(emailTextField.text!, forKey: "userEmail")
+                NSUserDefaults.standardUserDefaults().synchronize();
+            }
         }
+        return true
     }
     
     override func viewWillDisappear(animated: Bool) {

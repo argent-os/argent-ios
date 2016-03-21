@@ -12,6 +12,7 @@ import TextFieldEffects
 import UIColor_Hex_Swift
 import SVProgressHUD
 import KeychainSwift
+import SIAlertView
 
 class SignupIndividualViewControllerTwo: UIViewController, UITextFieldDelegate {
     
@@ -127,10 +128,10 @@ class SignupIndividualViewControllerTwo: UIViewController, UITextFieldDelegate {
     }
     
     func displayErrorAlertMessage(alertMessage:String) {
-        let displayAlert = UIAlertController(title: "Error", message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
-        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
-        displayAlert.addAction(okAction);
-        self.presentViewController(displayAlert, animated: true, completion: nil);
+        var alertView: SIAlertView = SIAlertView(title: "Error", andMessage: alertMessage)
+        alertView.addButtonWithTitle("Ok", type: SIAlertViewButtonType.Default, handler: nil)
+        alertView.transitionStyle = SIAlertViewTransitionStyle.DropDown
+        alertView.show()
     }
     
     // Adjusts keyboard height to view
@@ -183,20 +184,24 @@ class SignupIndividualViewControllerTwo: UIViewController, UITextFieldDelegate {
     }
     
     // VALIDATION
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if(passwordTextField.text != repeatPasswordTextField.text) {
-            // display alert
-            displayErrorAlertMessage("Passwords do not match");
-            return;
-        } else if(passwordTextField.text == "" || repeatPasswordTextField.text == "") {
-            // display alert
-            displayErrorAlertMessage("Password cannot be empty");
-            return;
-        } else if(!isValidPassword(passwordTextField.text!)) {
-            displayErrorAlertMessage("Password must contain at least 1 capital letter and 1 number, be longer than 6 characters and cannot be more than 15 characters in length");
-        } else {
-            keychain.set(passwordTextField.text!, forKey: "userPassword")
+    override func shouldPerformSegueWithIdentifier(identifier: String!, sender: AnyObject!) -> Bool {
+        if(identifier == "finishView") {
+            if(passwordTextField.text != repeatPasswordTextField.text) {
+                // display alert
+                displayErrorAlertMessage("Passwords do not match");
+                return false
+            } else if(passwordTextField.text == "" || repeatPasswordTextField.text == "") {
+                // display alert
+                displayErrorAlertMessage("Password cannot be empty");
+                return false
+            } else if(!isValidPassword(passwordTextField.text!)) {
+                displayErrorAlertMessage("Password must contain at least 1 capital letter and 1 number, be longer than 6 characters and cannot be more than 15 characters in length");
+                return false
+            } else {
+                keychain.set(passwordTextField.text!, forKey: "userPassword")
+            }
         }
+        return true
     }
     
     override func viewWillDisappear(animated: Bool) {
