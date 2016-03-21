@@ -16,7 +16,6 @@ import UIColor_Hex_Swift
 class LoginViewController: UIViewController, UITextFieldDelegate  {
     
     @IBOutlet weak var closeButton: UIButton!
-    
     @IBOutlet weak var loginBox: UIView!
     
     let emailTextField = UITextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
@@ -42,22 +41,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         // Add action to close button to return to auth view
         closeButton.addTarget(self, action: "goToAuth:", forControlEvents: UIControlEvents.TouchUpInside)
         
-        // Login box radius
+        // Login box, set height of container to match embedded tableview
+        var containerFrame: CGRect = self.loginBox.frame
+        loginBox.frame = containerFrame
         loginBox.layer.cornerRadius = 5
         loginBox.layer.borderColor = UIColor(rgba: "#0b265a").CGColor
         loginBox.layer.borderWidth = 1
         loginBox.layer.masksToBounds = true
 
-        // Set height of container to match embedded tableview
-        var containerFrame: CGRect = self.loginBox.frame
-//        containerFrame.size.height = self.loginBox.subviews.lastObject().contentSize().height
-        self.loginBox.frame = containerFrame
-        // Set content height of scrollview according to container
-//        var scrollFrame: CGRect = self.cardTabScrollView.frame
-//        scrollFrame.size.height = containerFrame.origin.y + containerFrame.size.height
-//        //  + height of any other subviews below the container
-//        self.cardTabScrollView.contentSize = scrollFrame.size
-        
         // Border radius on uiview
         view.layer.cornerRadius = 0
         view.layer.masksToBounds = true

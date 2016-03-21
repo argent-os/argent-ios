@@ -42,8 +42,10 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
     }
     
     override func viewDidAppear(animated: Bool) {
-        // Focuses view controller on first name text input
-        //        textField.becomeFirstResponder()
+
+        var stepButton = UIBarButtonItem(title: "4/4", style: UIBarButtonItemStyle.Plain, target: nil, action: "")
+        navigationItem.rightBarButtonItem = stepButton
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.darkGrayColor()
         
         self.finishButton.enabled = false
         // Allow continue to be clicked

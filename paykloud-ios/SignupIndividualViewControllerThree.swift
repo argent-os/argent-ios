@@ -42,9 +42,10 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
         return true
     }
     
-    override func viewDidAppear(animated: Bool) {
-        // Focuses view controller on first name text input
-        //        textField.becomeFirstResponder()
+    override func viewDidAppear(animated: Bool) {        
+        var stepButton = UIBarButtonItem(title: "3/3", style: UIBarButtonItemStyle.Plain, target: nil, action: "")
+        navigationItem.rightBarButtonItem = stepButton
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.darkGrayColor()
         
         self.finishButton.enabled = false
         // Allow continue to be clicked

@@ -32,6 +32,10 @@ class SignupIndividualViewControllerTwo: UIViewController, UITextFieldDelegate {
         // Focuses view controller on first name text input
         passwordTextField.becomeFirstResponder()
         
+        var stepButton = UIBarButtonItem(title: "2/3", style: UIBarButtonItemStyle.Plain, target: nil, action: "")
+        navigationItem.rightBarButtonItem = stepButton
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.darkGrayColor()
+        
         self.continueButton.enabled = false
         // Allow continue to be clicked
         Timeout(0.3) {

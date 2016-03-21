@@ -30,7 +30,8 @@ class SignupViewControllerZero: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         SVProgressHUD.show()
-        
+        UITextField.appearance().keyboardAppearance = .Light
+
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height

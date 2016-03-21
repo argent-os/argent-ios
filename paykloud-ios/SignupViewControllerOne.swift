@@ -36,6 +36,10 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(animated: Bool) {
         
+        var stepButton = UIBarButtonItem(title: "1/4", style: UIBarButtonItemStyle.Plain, target: nil, action: "")
+        navigationItem.rightBarButtonItem = stepButton
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.darkGrayColor()
+        
         self.continueButton.enabled = false
         // Allow continue to be clicked
         Timeout(0.3) {
