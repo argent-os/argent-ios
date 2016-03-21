@@ -61,7 +61,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
         resetButton.setTitleColor(UIColor(rgba: "#1796fa"), forState: UIControlState.Normal)
         
         // Border radius on uiview
-        view.layer.cornerRadius = 5
+        view.layer.cornerRadius = 0
         view.layer.masksToBounds = true
         
         // Inherit UITextField Delegate, this is used for next and go on keyboard

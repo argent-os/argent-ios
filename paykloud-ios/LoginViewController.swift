@@ -48,6 +48,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         loginBox.layer.borderWidth = 1
         loginBox.layer.masksToBounds = true
 
+        // Set height of container to match embedded tableview
+        var containerFrame: CGRect = self.loginBox.frame
+//        containerFrame.size.height = self.loginBox.subviews.lastObject().contentSize().height
+        self.loginBox.frame = containerFrame
+        // Set content height of scrollview according to container
+//        var scrollFrame: CGRect = self.cardTabScrollView.frame
+//        scrollFrame.size.height = containerFrame.origin.y + containerFrame.size.height
+//        //  + height of any other subviews below the container
+//        self.cardTabScrollView.contentSize = scrollFrame.size
+        
         // Border radius on uiview
         view.layer.cornerRadius = 0
         view.layer.masksToBounds = true
