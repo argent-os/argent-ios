@@ -59,6 +59,8 @@
 		308AC9B41C9E01540040EF3C /* FormerInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308AC9B31C9E01540040EF3C /* FormerInputAccessoryView.swift */; };
 		308AC9B61C9ED4F50040EF3C /* SupportMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308AC9B51C9ED4F50040EF3C /* SupportMessageViewController.swift */; };
 		308AC9B91C9F79970040EF3C /* CreditCardAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308AC9B81C9F79970040EF3C /* CreditCardAccountViewController.swift */; };
+		308AC9BC1C9FAAF50040EF3C /* JSSAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308AC9BB1C9FAAF50040EF3C /* JSSAlertView.swift */; };
+		308AC9BE1CA029EA0040EF3C /* LoginBoxTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308AC9BD1CA029EA0040EF3C /* LoginBoxTableViewController.swift */; };
 		30975C671C7040E300D2BDAA /* nyc.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 30975C661C7040E300D2BDAA /* nyc.mp4 */; };
 		3099CB6F1C70D69D000CEDE2 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3099CB6E1C70D69D000CEDE2 /* Auth.storyboard */; };
 		30B9E7CD1C7B519200C04530 /* Timeout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B9E7CC1C7B519100C04530 /* Timeout.swift */; };
@@ -168,6 +170,8 @@
 		308AC9B31C9E01540040EF3C /* FormerInputAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormerInputAccessoryView.swift; path = "paykloud-ios/FormerInputAccessoryView.swift"; sourceTree = SOURCE_ROOT; };
 		308AC9B51C9ED4F50040EF3C /* SupportMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupportMessageViewController.swift; path = "paykloud-ios/SupportMessageViewController.swift"; sourceTree = SOURCE_ROOT; };
 		308AC9B81C9F79970040EF3C /* CreditCardAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreditCardAccountViewController.swift; path = "paykloud-ios/CreditCardAccountViewController.swift"; sourceTree = SOURCE_ROOT; };
+		308AC9BB1C9FAAF50040EF3C /* JSSAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSSAlertView.swift; path = "paykloud-ios/JSSAlertView.swift"; sourceTree = SOURCE_ROOT; };
+		308AC9BD1CA029EA0040EF3C /* LoginBoxTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginBoxTableViewController.swift; path = "paykloud-ios/LoginBoxTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30975C661C7040E300D2BDAA /* nyc.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = nyc.mp4; path = "paykloud-ios/videos/nyc.mp4"; sourceTree = SOURCE_ROOT; };
 		3099CB6E1C70D69D000CEDE2 /* Auth.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Auth.storyboard; path = "paykloud-ios/Auth.storyboard"; sourceTree = SOURCE_ROOT; };
 		30B9E7CC1C7B519100C04530 /* Timeout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Timeout.swift; path = "paykloud-ios/Timeout.swift"; sourceTree = SOURCE_ROOT; };
@@ -408,6 +412,14 @@
 			name = Card;
 			sourceTree = "<group>";
 		};
+		308AC9BA1C9FAAEA0040EF3C /* AlertView */ = {
+			isa = PBXGroup;
+			children = (
+				308AC9BB1C9FAAF50040EF3C /* JSSAlertView.swift */,
+			);
+			name = AlertView;
+			sourceTree = "<group>";
+		};
 		30975C631C7040B500D2BDAA /* videos */ = {
 			isa = PBXGroup;
 			children = (
@@ -432,6 +444,7 @@
 				30718AEB1C8E32E100CB0EEB /* Lock */,
 				30D7B72F1C77880200B64B7F /* Signup */,
 				30BECBD11C6E9FF200B8A088 /* LoginViewController.swift */,
+				308AC9BD1CA029EA0040EF3C /* LoginBoxTableViewController.swift */,
 				30D7B7321C77884600B64B7F /* AuthViewController.swift */,
 				30B9E7DC1C7C9B0F00C04530 /* ResetPasswordViewController.swift */,
 				3072653A1C72D88F00D2AF61 /* PresentedTableViewController.swift */,
@@ -494,6 +507,7 @@
 		30BECC0C1C6F93AF00B8A088 /* Add-ons */ = {
 			isa = PBXGroup;
 			children = (
+				308AC9BA1C9FAAEA0040EF3C /* AlertView */,
 				307265391C72B95900D2AF61 /* CountryPicker */,
 				30BECC041C6F92C200B8A088 /* StarButton */,
 			);
@@ -848,12 +862,14 @@
 				30D7B7351C78F96500B64B7F /* SignupViewControllerTwo.swift in Sources */,
 				30BECBE01C6E9FF200B8A088 /* Logs.swift in Sources */,
 				30718AEA1C8E111E00CB0EEB /* RecurringViewController.swift in Sources */,
+				308AC9BE1CA029EA0040EF3C /* LoginBoxTableViewController.swift in Sources */,
 				3067D9F11C7F716E00C1418E /* KolodaOverlayView.swift in Sources */,
 				30F7143C1C975A64001AF6EC /* SignupIndividualViewControllerThree.swift in Sources */,
 				30BECC031C6F778B00B8A088 /* Gravatar.swift in Sources */,
 				30718AF31C8E37A600CB0EEB /* PasscodeSettingsViewController.swift in Sources */,
 				30718AE41C8E110700CB0EEB /* ProfileViewController.swift in Sources */,
 				30718AF51C8E37C000CB0EEB /* PasscodeLockConfiguration.swift in Sources */,
+				308AC9BC1C9FAAF50040EF3C /* JSSAlertView.swift in Sources */,
 				30128DE21C8FACAB009E2EA7 /* WordReader.swift in Sources */,
 				308AC9B01C9E00500040EF3C /* ProfileLabelCell.swift in Sources */,
 				30128DE01C8FAC82009E2EA7 /* RAMViewController.swift in Sources */,

@@ -83,8 +83,6 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         
         super.viewDidLoad()
         
-        SVProgressHUD.show()
-        
         // Header
 //        var headerView: UIImageView = UIImageView()
 //        headerView.image = UIImage(named: "Background")
@@ -189,6 +187,8 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     
     // VIEW DID APPEAR
     override func viewDidAppear(animated: Bool) {
+        
+        SVProgressHUD.dismiss()
         
         // Check for user logged in key
         let userLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("userLoggedIn");

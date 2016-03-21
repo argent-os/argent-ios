@@ -23,17 +23,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mia-SS-fsO" customClass="SpotlightView" customModule="Gecco">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mia-SS-fsO" customClass="SpotlightView" customModule="Gecco">
                                 <rect key="frame" x="87" y="62" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="mia-SS-fsO" firstAttribute="top" secondItem="fU3-wt-lna" secondAttribute="bottom" constant="42" id="3d1-gm-VAf"/>
-                            <constraint firstItem="mia-SS-fsO" firstAttribute="centerX" secondItem="Nfm-Fg-MAB" secondAttribute="centerX" id="7R0-Co-iDS"/>
-                            <constraint firstItem="yK1-a1-oUv" firstAttribute="top" secondItem="mia-SS-fsO" secondAttribute="bottom" constant="546" id="Fey-C8-VTT"/>
-                            <constraint firstItem="mia-SS-fsO" firstAttribute="leading" secondItem="Nfm-Fg-MAB" secondAttribute="leadingMargin" constant="67" id="wgP-pZ-R8k"/>
+                            <constraint firstItem="mia-SS-fsO" firstAttribute="top" secondItem="fU3-wt-lna" secondAttribute="bottom" constant="42" id="PxZ-Is-uTX"/>
+                            <constraint firstItem="mia-SS-fsO" firstAttribute="leading" secondItem="Nfm-Fg-MAB" secondAttribute="leadingMargin" constant="67" id="zvY-3q-1AK"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>

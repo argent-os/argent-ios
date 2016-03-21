@@ -27,8 +27,6 @@ class SupportMessageViewController: UIViewController {
     // Add send toolbar
     func addSendOnKeyboard()
     {
-        
-
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let sendToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, screenWidth, 50))

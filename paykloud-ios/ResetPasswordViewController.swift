@@ -56,7 +56,9 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
         
         resetButton.layer.cornerRadius = 5
         resetButton.clipsToBounds = true
-        resetButton.backgroundColor = UIColor(rgba: "#1aa8f6")
+        resetButton.backgroundColor = UIColor(rgba: "#FFF")
+        resetButton.layer.borderWidth = 1
+        resetButton.setTitleColor(UIColor(rgba: "#1796fa"), forState: UIControlState.Normal)
         
         // Border radius on uiview
         view.layer.cornerRadius = 5
@@ -72,17 +74,17 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
         // Tags are 4 and 5 due to signup view textfields taking values 0-3
         emailTextField.tag = 328
         emailTextField.textAlignment = NSTextAlignment.Center
-        emailTextField.borderActiveColor = UIColor(rgba: "#FFF")
-        emailTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
+        emailTextField.borderActiveColor = UIColor(rgba: "#FFF7")
+        emailTextField.borderInactiveColor = UIColor(rgba: "#FFF4") // color with alpha
         emailTextField.backgroundColor = UIColor.clearColor()
         emailTextField.placeholder = "Username or Email"
-        emailTextField.placeholderColor = UIColor.grayColor()
+        emailTextField.placeholderColor = UIColor.whiteColor()
         emailTextField.autocapitalizationType = UITextAutocapitalizationType.None
         emailTextField.autocorrectionType = UITextAutocorrectionType.No
         emailTextField.keyboardType = UIKeyboardType.EmailAddress
         emailTextField.returnKeyType = UIReturnKeyType.Next
         emailTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
-        emailTextField.textColor = UIColor.grayColor()
+        emailTextField.textColor = UIColor.whiteColor()
         emailTextField.frame.origin.y = screenHeight*0.3 // 25 down from the top
         emailTextField.frame.origin.x = (self.view.bounds.size.width - emailTextField.frame.size.width) / 2.0
         emailTextField.returnKeyType = UIReturnKeyType.Next
@@ -209,6 +211,11 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
         closeToolbar.items = items
         closeToolbar.sizeToFit()
         emailTextField.inputAccessoryView=closeToolbar
+    }
+    
+    //Changing Status Bar
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
     
     // Adjusts keyboard height to view
