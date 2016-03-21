@@ -20,8 +20,8 @@ class LoginBoxTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Add close button to keyboards
-        addLoginToKeyboard()
+        // Add button to keyboard
+        addToolbarButton()
         
         usernameTextField.becomeFirstResponder()
 
@@ -50,7 +50,7 @@ class LoginBoxTableViewController: UITableViewController {
     }
     
     // Add send toolbar
-    func addLoginToKeyboard()
+    func addToolbarButton()
     {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width

@@ -18,47 +18,28 @@ import UIColor_Hex_Swift
 class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
     
     @IBOutlet weak var closeButton: UIButton!
-    @IBOutlet weak var resetButton: UIButton!
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     let emailTextField = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
-    
-    // Set up initial view height adjustment to false
-    var alreadyAdjustedResetPass = false
-    var adjustCount = 0
     
     override func viewDidAppear(animated: Bool) {
         // Dismiss loader
         SVProgressHUD.dismiss()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Dismiss loader
         SVProgressHUD.dismiss()
         
+        // Add button to keyboard
+        addToolbarButton()
+        
         // Focuses view controller on first name text input
-        if(alreadyAdjustedResetPass==false) {
-            emailTextField.becomeFirstResponder()
-        } else if let userUsername = NSUserDefaults.standardUserDefaults().stringForKey("userUsername") {
-            emailTextField.text = userUsername
-            emailTextField.becomeFirstResponder()
-        }
+        emailTextField.becomeFirstResponder()
         
         // Add action to close button to return to auth view
         closeButton.addTarget(self, action: "goToLogin:", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        // Add action to reset button to execute function
-        resetButton.addTarget(self, action: "resetButtonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        // Add close button to keyboards
-        // addCloseButtonKeyBoard()
-        
-        resetButton.layer.cornerRadius = 5
-        resetButton.clipsToBounds = true
-        resetButton.backgroundColor = UIColor(rgba: "#FFF")
-        resetButton.layer.borderWidth = 1
-        resetButton.setTitleColor(UIColor(rgba: "#1796fa"), forState: UIControlState.Normal)
         
         // Border radius on uiview
         view.layer.cornerRadius = 0
@@ -95,12 +76,27 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
         //Looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
+    }
+    
+    // Add send toolbar
+    func addToolbarButton()
+    {
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let sendToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, screenWidth, 50))
+        // sendToolbar.barStyle = UIBarStyle.Default
         
-        // Set up auto align keyboard with ui button
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Reset Password", style: UIBarButtonItemStyle.Done, target: self, action: Selector("resetButtonTapped:"))
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+        var items: [UIBarButtonItem]? = [UIBarButtonItem]()
+        items?.append(flexSpace)
+        items?.append(done)
+        items?.append(flexSpace)
         
+        sendToolbar.items = items
+        sendToolbar.sizeToFit()
+        emailTextField.inputAccessoryView=sendToolbar
     }
     
     //Calls this function when the tap is recognized.
@@ -216,40 +212,6 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
     //Changing Status Bar
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
-    }
-    
-    // Adjusts keyboard height to view
-    func adjustingHeight(show:Bool, notification:NSNotification) {
-        if(alreadyAdjustedResetPass == false && adjustCount == 0) {
-            // Check if already adjusted height
-            var userInfo = notification.userInfo!
-            let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
-            let animationDurarion = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval
-            let changeInHeight = (CGRectGetHeight(keyboardFrame) - 5) * (show ? 1 : -1)
-            UIView.animateWithDuration(animationDurarion, animations: { () -> Void in
-                self.bottomConstraint.constant += changeInHeight
-                if(self.bottomConstraint.constant < 0) {
-                    self.bottomConstraint.constant += (-1 * (2*changeInHeight))
-                }
-            })
-            // Already adjusted height so make it true so it doesn't continue adjusting everytime a label is focused
-            adjustCount++
-            alreadyAdjustedResetPass = true
-        }
-    }
-    
-    
-    func keyboardWillShow(notification:NSNotification) {
-        adjustingHeight(true, notification: notification)
-    }
-    
-    func keyboardWillHide(notification:NSNotification) {
-        adjustingHeight(false, notification: notification)
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
