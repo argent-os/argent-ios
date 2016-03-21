@@ -83,8 +83,8 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
         switchTermsAndPrivacy.frame.origin.x = (self.view.bounds.size.width - switchTermsAndPrivacy.frame.size.width) / 2.0
         self.view!.addSubview(switchTermsAndPrivacy)
 
-        finishButton.layer.cornerRadius = 5
-        finishButton.backgroundColor = UIColor(rgba: "#1aa8f6")
+        finishButton.layer.cornerRadius = 0
+        finishButton.backgroundColor = UIColor(rgba: "#38a4f9")
         
         self.navigationController?.navigationBar.tintColor = UIColor.grayColor()
         title = ""

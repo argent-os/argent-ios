@@ -17,7 +17,6 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate {
     
     // WHEN NAVIGATING TO A NAVIGATION CONTROLLER USE SEGUE SHOW NOT MODAL!
     @IBOutlet weak var continueButton: UIButton!
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     let usernameTextField  = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
     let emailTextField  = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
@@ -50,6 +49,8 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         SVProgressHUD.show()
         
+        addToolbarButton()
+        
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
@@ -58,8 +59,9 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate {
         self.usernameTextField.delegate = self
         self.emailTextField.delegate = self
         
-        continueButton.layer.cornerRadius = 5
-        continueButton.backgroundColor = UIColor(rgba: "#1aa8f6")
+        continueButton.layer.cornerRadius = 0
+        continueButton.backgroundColor = UIColor(rgba: "#38a4f9")
+        continueButton.backgroundColor = UIColor(rgba: "#38a4f9")
         
         // Programatically set the input fields
         usernameTextField.tag = 123
@@ -109,36 +111,34 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.translucent = true
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
-        
         // Do any additional setup after loading the view, typically from a nib.
         
     }
-    
-    // Adjusts keyboard height to view
-    func adjustingHeight(show:Bool, notification:NSNotification) {
-        // Check if already adjusted height
-        if(alreadyAdjustedVC2 == false) {
-            var userInfo = notification.userInfo!
-            let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
-            let animationDurarion = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval
-            let changeInHeight = (CGRectGetHeight(keyboardFrame) + 2) * (show ? 1 : -1)
-            UIView.animateWithDuration(animationDurarion, animations: { () -> Void in
-                self.bottomConstraint.constant += changeInHeight
-            })
-            // Already adjusted height so make it true so it doesn't continue adjusting everytime a label is focused
-            alreadyAdjustedVC2 = true
-        }
+
+    // Add send toolbar
+    func addToolbarButton()
+    {
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let sendToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, screenWidth, 50))
+        // sendToolbar.barStyle = UIBarStyle.Default
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Continue", style: UIBarButtonItemStyle.Done, target: self, action: Selector("nextStep:"))
+        
+        var items: [UIBarButtonItem]? = [UIBarButtonItem]()
+        items?.append(flexSpace)
+        items?.append(done)
+        items?.append(flexSpace)
+        
+        sendToolbar.items = items
+        sendToolbar.sizeToFit()
+        usernameTextField.inputAccessoryView=sendToolbar
+        emailTextField.inputAccessoryView=sendToolbar
     }
     
-    func keyboardWillShow(notification:NSNotification) {
-        adjustingHeight(true, notification: notification)
-    }
-    
-    func keyboardWillHide(notification:NSNotification) {
-        adjustingHeight(false, notification: notification)
+    func nextStep(sender: AnyObject) {
+        shouldPerformSegueWithIdentifier("VC2", sender: sender)
     }
     
     // Check for valid email
@@ -206,11 +206,6 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate {
             }
         }
         return true
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
