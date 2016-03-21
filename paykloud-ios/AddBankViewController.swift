@@ -19,6 +19,6 @@ class AddBankViewController: UIViewController {
 
         addBankButton.layer.cornerRadius = 0
         addBankButton.clipsToBounds = true
-        addBankButton.backgroundColor = UIColor(rgba: "#1aa8f6")
+        addBankButton.backgroundColor = UIColor(rgba: "#1796fa")
     }
 }

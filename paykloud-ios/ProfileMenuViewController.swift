@@ -31,6 +31,28 @@ class ProfileMenuViewController: UITableViewController {
         activityViewController.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList]
             presentViewController(activityViewController, animated: true, completion: nil)
         }
+        if(tableView.cellForRowAtIndexPath(indexPath)!.tag == 534) {
+            // 1
+            let optionMenu = UIAlertController(title: nil, message: "Are you sure you want to logout?", preferredStyle: .ActionSheet)
+            // 2
+            let logoutAction = UIAlertAction(title: "Logout", style: .Destructive, handler: {
+                (alert: UIAlertAction!) -> Void in
+                NSUserDefaults.standardUserDefaults().setBool(false,forKey:"userLoggedIn");
+                NSUserDefaults.standardUserDefaults().synchronize();
+                // go to login view
+                self.performSegueWithIdentifier("loginView", sender: self);
+            })
+            //
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
+                (alert: UIAlertAction!) -> Void in
+                print("Cancelled")
+            })
+            // 4
+            optionMenu.addAction(logoutAction)
+            optionMenu.addAction(cancelAction)
+            // 5
+            self.presentViewController(optionMenu, animated: true, completion: nil)
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

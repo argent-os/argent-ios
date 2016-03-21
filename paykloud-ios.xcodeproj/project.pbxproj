@@ -58,6 +58,7 @@
 		308AC9B21C9E00A30040EF3C /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308AC9B11C9E00A30040EF3C /* Profile.swift */; };
 		308AC9B41C9E01540040EF3C /* FormerInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308AC9B31C9E01540040EF3C /* FormerInputAccessoryView.swift */; };
 		308AC9B61C9ED4F50040EF3C /* SupportMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308AC9B51C9ED4F50040EF3C /* SupportMessageViewController.swift */; };
+		308AC9B91C9F79970040EF3C /* CreditCardAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308AC9B81C9F79970040EF3C /* CreditCardAccountViewController.swift */; };
 		30975C671C7040E300D2BDAA /* nyc.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 30975C661C7040E300D2BDAA /* nyc.mp4 */; };
 		3099CB6F1C70D69D000CEDE2 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3099CB6E1C70D69D000CEDE2 /* Auth.storyboard */; };
 		30B9E7CD1C7B519200C04530 /* Timeout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B9E7CC1C7B519100C04530 /* Timeout.swift */; };
@@ -166,6 +167,7 @@
 		308AC9B11C9E00A30040EF3C /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Profile.swift; path = "paykloud-ios/Profile.swift"; sourceTree = SOURCE_ROOT; };
 		308AC9B31C9E01540040EF3C /* FormerInputAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormerInputAccessoryView.swift; path = "paykloud-ios/FormerInputAccessoryView.swift"; sourceTree = SOURCE_ROOT; };
 		308AC9B51C9ED4F50040EF3C /* SupportMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupportMessageViewController.swift; path = "paykloud-ios/SupportMessageViewController.swift"; sourceTree = SOURCE_ROOT; };
+		308AC9B81C9F79970040EF3C /* CreditCardAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreditCardAccountViewController.swift; path = "paykloud-ios/CreditCardAccountViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30975C661C7040E300D2BDAA /* nyc.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = nyc.mp4; path = "paykloud-ios/videos/nyc.mp4"; sourceTree = SOURCE_ROOT; };
 		3099CB6E1C70D69D000CEDE2 /* Auth.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Auth.storyboard; path = "paykloud-ios/Auth.storyboard"; sourceTree = SOURCE_ROOT; };
 		30B9E7CC1C7B519100C04530 /* Timeout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Timeout.swift; path = "paykloud-ios/Timeout.swift"; sourceTree = SOURCE_ROOT; };
@@ -398,6 +400,14 @@
 			name = Support;
 			sourceTree = "<group>";
 		};
+		308AC9B71C9F79830040EF3C /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				308AC9B81C9F79970040EF3C /* CreditCardAccountViewController.swift */,
+			);
+			name = Card;
+			sourceTree = "<group>";
+		};
 		30975C631C7040B500D2BDAA /* videos */ = {
 			isa = PBXGroup;
 			children = (
@@ -509,6 +519,7 @@
 			isa = PBXGroup;
 			children = (
 				3004D60C1C9DF14200499CD0 /* ProfileMenuViewController.swift */,
+				308AC9B71C9F79830040EF3C /* Card */,
 				308AC9A81C9DFA0B0040EF3C /* Support */,
 				3004D60B1C9DF13200499CD0 /* Edit */,
 				3004D6041C9DBE1300499CD0 /* Notifications */,
@@ -854,6 +865,7 @@
 				30BECBDC1C6E9FF200B8A088 /* HomeViewController.swift in Sources */,
 				30B9E7CF1C7B52F100C04530 /* SignupViewControllerThree.swift in Sources */,
 				30718AE61C8E111100CB0EEB /* NotificationViewController.swift in Sources */,
+				308AC9B91C9F79970040EF3C /* CreditCardAccountViewController.swift in Sources */,
 				30BECBE31C6E9FF200B8A088 /* PaymentViewController.swift in Sources */,
 				30F7143A1C975A39001AF6EC /* SignupIndividualViewControllerTwo.swift in Sources */,
 				308AC9B41C9E01540040EF3C /* FormerInputAccessoryView.swift in Sources */,

@@ -9,7 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PasscodeLockViewController" customModule="ProtonPay" customModuleProvider="target">
             <connections>
-                <outlet property="cancelButton" destination="M5u-VD-UYC" id="v28-h5-Sw3"/>
+                <outlet property="cancelButton" destination="M5u-VD-UYC" id="V0Y-A0-ulh"/>
                 <outlet property="deleteSignButton" destination="H78-kl-y6L" id="k5Y-0E-L7E"/>
                 <outlet property="placeholdersX" destination="sVs-Rv-7Hf" id="dGf-p7-XF3"/>
                 <outlet property="touchIDButton" destination="0Ph-dj-v7R" id="RRn-Ji-eUX"/>
@@ -391,7 +391,7 @@
                         <color key="titleColor" red="0.82801711560000002" green="0.86522608999999995" blue="0.95452922579999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
-                        <action selector="deleteSignButtonTap:" destination="-1" eventType="touchUpInside" id="zdm-3i-jvh"/>
+                        <action selector="cancelButtonTap:" destination="-1" eventType="touchUpInside" id="Ud2-mz-m8t"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ph-dj-v7R" userLabel="TouchID Button">
