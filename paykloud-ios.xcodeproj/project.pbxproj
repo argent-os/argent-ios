@@ -59,7 +59,6 @@
 		308AC9B41C9E01540040EF3C /* FormerInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308AC9B31C9E01540040EF3C /* FormerInputAccessoryView.swift */; };
 		308AC9B61C9ED4F50040EF3C /* SupportMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308AC9B51C9ED4F50040EF3C /* SupportMessageViewController.swift */; };
 		308AC9B91C9F79970040EF3C /* CreditCardAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308AC9B81C9F79970040EF3C /* CreditCardAccountViewController.swift */; };
-		308AC9BC1C9FAAF50040EF3C /* JSSAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308AC9BB1C9FAAF50040EF3C /* JSSAlertView.swift */; };
 		308AC9BE1CA029EA0040EF3C /* LoginBoxTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308AC9BD1CA029EA0040EF3C /* LoginBoxTableViewController.swift */; };
 		30975C671C7040E300D2BDAA /* nyc.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 30975C661C7040E300D2BDAA /* nyc.mp4 */; };
 		3099CB6F1C70D69D000CEDE2 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3099CB6E1C70D69D000CEDE2 /* Auth.storyboard */; };
@@ -170,7 +169,6 @@
 		308AC9B31C9E01540040EF3C /* FormerInputAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormerInputAccessoryView.swift; path = "paykloud-ios/FormerInputAccessoryView.swift"; sourceTree = SOURCE_ROOT; };
 		308AC9B51C9ED4F50040EF3C /* SupportMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupportMessageViewController.swift; path = "paykloud-ios/SupportMessageViewController.swift"; sourceTree = SOURCE_ROOT; };
 		308AC9B81C9F79970040EF3C /* CreditCardAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreditCardAccountViewController.swift; path = "paykloud-ios/CreditCardAccountViewController.swift"; sourceTree = SOURCE_ROOT; };
-		308AC9BB1C9FAAF50040EF3C /* JSSAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSSAlertView.swift; path = "paykloud-ios/JSSAlertView.swift"; sourceTree = SOURCE_ROOT; };
 		308AC9BD1CA029EA0040EF3C /* LoginBoxTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginBoxTableViewController.swift; path = "paykloud-ios/LoginBoxTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30975C661C7040E300D2BDAA /* nyc.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = nyc.mp4; path = "paykloud-ios/videos/nyc.mp4"; sourceTree = SOURCE_ROOT; };
 		3099CB6E1C70D69D000CEDE2 /* Auth.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Auth.storyboard; path = "paykloud-ios/Auth.storyboard"; sourceTree = SOURCE_ROOT; };
@@ -412,14 +410,6 @@
 			name = Card;
 			sourceTree = "<group>";
 		};
-		308AC9BA1C9FAAEA0040EF3C /* AlertView */ = {
-			isa = PBXGroup;
-			children = (
-				308AC9BB1C9FAAF50040EF3C /* JSSAlertView.swift */,
-			);
-			name = AlertView;
-			sourceTree = "<group>";
-		};
 		30975C631C7040B500D2BDAA /* videos */ = {
 			isa = PBXGroup;
 			children = (
@@ -507,7 +497,6 @@
 		30BECC0C1C6F93AF00B8A088 /* Add-ons */ = {
 			isa = PBXGroup;
 			children = (
-				308AC9BA1C9FAAEA0040EF3C /* AlertView */,
 				307265391C72B95900D2AF61 /* CountryPicker */,
 				30BECC041C6F92C200B8A088 /* StarButton */,
 			);
@@ -869,7 +858,6 @@
 				30718AF31C8E37A600CB0EEB /* PasscodeSettingsViewController.swift in Sources */,
 				30718AE41C8E110700CB0EEB /* ProfileViewController.swift in Sources */,
 				30718AF51C8E37C000CB0EEB /* PasscodeLockConfiguration.swift in Sources */,
-				308AC9BC1C9FAAF50040EF3C /* JSSAlertView.swift in Sources */,
 				30128DE21C8FACAB009E2EA7 /* WordReader.swift in Sources */,
 				308AC9B01C9E00500040EF3C /* ProfileLabelCell.swift in Sources */,
 				30128DE01C8FAC82009E2EA7 /* RAMViewController.swift in Sources */,

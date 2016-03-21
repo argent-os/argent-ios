@@ -1638,7 +1638,7 @@ institutions</string>
                         </connections>
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="w3e-6C-5LA" userLabel="nav">
-                        <barButtonItem key="leftBarButtonItem" image="D152E41C-D3BE-424E-9EA5-B6D215E180A0" id="J68-gC-0HZ">
+                        <barButtonItem key="leftBarButtonItem" image="76097CBD-55F2-4EA2-ABD9-CAE4D7D84712" id="J68-gC-0HZ">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="presentLeftMenuViewController:" destination="BYZ-38-t0r" id="YOj-Vw-dth"/>
@@ -2540,7 +2540,7 @@ Click here to view more</string>
                                     <segue destination="Ap6-KX-vg6" kind="presentation" identifier="presentModal" customClass="MZFormSheetPresentationViewControllerSegue" id="YIg-Dp-HpF"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Accept Terms &amp; Privacy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctz-YB-bw9">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accept Terms &amp; Privacy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctz-YB-bw9">
                                 <rect key="frame" x="20" y="64" width="374" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="ewK-o6-fkO"/>
@@ -3128,10 +3128,7 @@ Click here to view more</string>
         </scene>
     </scenes>
     <resources>
-        <image name="BackgroundGradientInverse" width="200" height="500"/>
-        <image name="ComponentBackgroundOne" width="131" height="59"/>
-        <image name="ComponentBackgroundTwo" width="131" height="59"/>
-        <image name="D152E41C-D3BE-424E-9EA5-B6D215E180A0" width="32" height="32">
+        <image name="76097CBD-55F2-4EA2-ABD9-CAE4D7D84712" width="32" height="32">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -3250,6 +3247,9 @@ AKsArQCyALUAtwC5ALsAvQDCANkA2wDdGX8ZhBmPGZgZqxmvGboZwxnIGdAZ0xnYGecZ6xnyGfoaBxoM
 Gg4aEBoVGh0aIBolGi0aMBpCGkUaSgAAAAAAAAIBAAAAAAAAAEEAAAAAAAAAAAAAAAAAABpMA
 </mutableData>
         </image>
+        <image name="BackgroundGradientInverse" width="200" height="500"/>
+        <image name="ComponentBackgroundOne" width="131" height="59"/>
+        <image name="ComponentBackgroundTwo" width="131" height="59"/>
         <image name="IconBank" width="128" height="121"/>
         <image name="IconBroken" width="128" height="119"/>
         <image name="IconClose" width="24" height="24"/>

@@ -27,6 +27,7 @@ PODS:
   - RAMReel (1.0.6)
   - RESideMenu (4.0.7)
   - Runes (3.2.0)
+  - SIAlertView (1.3)
   - SnapKit (0.19.1)
   - Stripe (6.2.0):
     - Stripe/Core (= 6.2.0)
@@ -62,6 +63,7 @@ DEPENDENCIES:
   - RAMReel (~> 1.0.6)
   - RESideMenu (~> 4.0.7)
   - Runes (~> 3.2.0)
+  - SIAlertView
   - SnapKit (~> 0.19.1)
   - Stripe (~> 6.2.0)
   - SVProgressHUD (~> 2.0-beta8)
@@ -106,6 +108,7 @@ SPEC CHECKSUMS:
   RAMReel: 7297528d1c5992de3a3b8221e19c28b7edddb145
   RESideMenu: f24c508404b49c667344c54aba7e590883533958
   Runes: ab2f892272d5165f64620f8086578b28cde98a02
+  SIAlertView: 20c794b55eaf44d888773ea51647cf8907723919
   SnapKit: eff58d6e3451bf2f482db2eccf86aecf371dc62d
   Stripe: 275524137e6c4cc1058f6d32ece248adf30a21f9
   SVProgressHUD: 6e48a1dda09ce3b58adc41d013baed3a8e8980ff

@@ -10,6 +10,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 import SVProgressHUD
+import SIAlertView
 
 class LoginBoxTableViewController: UITableViewController {
     
@@ -199,16 +200,20 @@ class LoginBoxTableViewController: UITableViewController {
     }
     
     func displayAlertMessage(alertMessage:String) {
-        let displayAlert = UIAlertController(title: "Error", message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
-        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
-        displayAlert.addAction(okAction);
-        self.presentViewController(displayAlert, animated: true, completion: nil)
+        
+        var alertView: SIAlertView = SIAlertView(title: "Alert", andMessage: alertMessage)
+        alertView.addButtonWithTitle("Ok", type: SIAlertViewButtonType.Default, handler: nil)
+//        alertView.addButtonWithTitle("Button2", type: SIAlertViewButtonType.Destructive, handler: nil)
+        alertView.transitionStyle = SIAlertViewTransitionStyle.DropDown
+        alertView.show()
+
     }
     
     func displayErrorAlertMessage(alertMessage:String) {
-        let displayAlert = UIAlertController(title: "Error", message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
-        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
-        displayAlert.addAction(okAction);
-        self.presentViewController(displayAlert, animated: true, completion: nil);
+        var alertView: SIAlertView = SIAlertView(title: "Error", andMessage: alertMessage)
+        alertView.addButtonWithTitle("Ok", type: SIAlertViewButtonType.Default, handler: nil)
+        //        alertView.addButtonWithTitle("Button2", type: SIAlertViewButtonType.Destructive, handler: nil)
+        alertView.transitionStyle = SIAlertViewTransitionStyle.DropDown
+        alertView.show()
     }
 }

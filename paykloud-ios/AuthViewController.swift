@@ -19,11 +19,6 @@ class AuthViewController: UIViewController  {
 
         SVProgressHUD.dismiss()
     }
-    
-    
-    @IBAction func basicAlertButtonPress() {
-        JSSAlertView().show(self, title: "Boring and basic, but with a multi-line title")
-    }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "tutorialView") {
