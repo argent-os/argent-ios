@@ -25,10 +25,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
     var dobDay:String = ""
     var dobMonth:String = ""
     var dobYear:String = ""
-    
-    // Height not adjusted button bool value
-    var alreadyAdjustedVC2:Bool = false
-    
+
     //Changing Status Bar
     override public func prefersStatusBarHidden() -> Bool {
         return true
@@ -159,7 +156,11 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
     }
     
     func nextStep(sender: AnyObject) {
-        shouldPerformSegueWithIdentifier("VC2", sender: sender)
+        // Function for toolbar button
+        var x = performValidation()
+        if x == true {
+            self.performSegueWithIdentifier("VC2", sender: sender)
+        }
     }
     
     // Allow use of next and join on keyboard
@@ -236,6 +237,39 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
         
     }
     
+    func performValidation() -> Bool {
+        if(firstNameTextField.text?.characters.count < 1) {
+            displayErrorAlertMessage("First name cannot be empty")
+            return false
+        } else if(lastNameTextField.text?.characters.count < 1) {
+            displayErrorAlertMessage("Last name cannot be empty")
+            return false
+        } else if(dobMonth == "" || dobDay == "" || dobYear == "") {
+            displayErrorAlertMessage("Date of birth cannot be empty")
+            return false
+        } else if(Int(dobMonth) > 12 || Int(dobMonth) == 0 || Int(dobDay) == 0 || Int(dobDay) > 31 || Int(dobYear) > 2006 || Int(dobYear) < 1914) {
+            displayErrorAlertMessage("Month cannot be greater than 12 or equal to zero. Day cannot be greater than 31 or equal to zero, year cannot be less than 1914 or greater than 2006")
+            return false
+        } else if(Int(dobMonth)! == 02 && Int(dobDay)! > 29 && (Int(dobYear)! % 4) == 0 ) {
+            displayErrorAlertMessage("Leap years do not have more than 29 days")
+            return false
+        } else if(Int(dobMonth)! == 02 && Int(dobDay)! > 28 && (Int(dobYear)! % 4) != 0 ) {
+            displayErrorAlertMessage("Invalid entry, not a leap year")
+            return false
+        } else if((Int(dobMonth) == 02 && Int(dobDay) > 30) || (Int(dobMonth) == 04 && Int(dobDay) > 30) || (Int(dobMonth) == 06 && Int(dobDay) > 30) || (Int(dobMonth) == 09 && Int(dobDay) > 30) || (Int(dobMonth) == 11 && Int(dobDay) > 30)) {
+            displayErrorAlertMessage("The entered month does not have 31 days")
+            return false
+        } else {
+            NSUserDefaults.standardUserDefaults().setValue(firstNameTextField.text!, forKey: "userFirstName")
+            NSUserDefaults.standardUserDefaults().setValue(lastNameTextField.text!, forKey: "userLastName")
+            NSUserDefaults.standardUserDefaults().setValue(dobDay, forKey: "userDobDay")
+            NSUserDefaults.standardUserDefaults().setValue(dobMonth, forKey: "userDobMonth")
+            NSUserDefaults.standardUserDefaults().setValue(dobYear, forKey: "userDobYear")
+            NSUserDefaults.standardUserDefaults().synchronize();
+        }
+        return true
+    }
+    
     // VALIDATION
     override func shouldPerformSegueWithIdentifier(identifier: String!, sender: AnyObject!) -> Bool {
         if(identifier == "VC2") {
@@ -244,6 +278,9 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
                 return false
             } else if(lastNameTextField.text?.characters.count < 1) {
                 displayErrorAlertMessage("Last name cannot be empty")
+                return false
+            } else if(dobMonth == "" || dobDay == "" || dobYear == "") {
+                displayErrorAlertMessage("Date of birth cannot be empty")
                 return false
             } else if(Int(dobMonth) > 12 || Int(dobMonth) == 0 || Int(dobDay) == 0 || Int(dobDay) > 31 || Int(dobYear) > 2006 || Int(dobYear) < 1914) {
                 displayErrorAlertMessage("Month cannot be greater than 12 or equal to zero. Day cannot be greater than 31 or equal to zero, year cannot be less than 1914 or greater than 2006")
@@ -258,14 +295,12 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
                 displayErrorAlertMessage("The entered month does not have 31 days")
                 return false
             } else {
-                print(firstNameTextField.text!)
                 NSUserDefaults.standardUserDefaults().setValue(firstNameTextField.text!, forKey: "userFirstName")
                 NSUserDefaults.standardUserDefaults().setValue(lastNameTextField.text!, forKey: "userLastName")
                 NSUserDefaults.standardUserDefaults().setValue(dobDay, forKey: "userDobDay")
                 NSUserDefaults.standardUserDefaults().setValue(dobMonth, forKey: "userDobMonth")
                 NSUserDefaults.standardUserDefaults().setValue(dobYear, forKey: "userDobYear")
                 NSUserDefaults.standardUserDefaults().synchronize();
-                return true
             }
         }
         return true

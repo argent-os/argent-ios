@@ -724,7 +724,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 30FB54051C6A58B40004A538 /* Build configuration list for PBXProject "paykloud-ios" */;
+			buildConfigurationList = 30FB54051C6A58B40004A538 /* Build configuration list for PBXProject "protonpay-ios" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1123,7 +1123,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		30FB54051C6A58B40004A538 /* Build configuration list for PBXProject "paykloud-ios" */ = {
+		30FB54051C6A58B40004A538 /* Build configuration list for PBXProject "protonpay-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				30FB54301C6A58B50004A538 /* Debug */,

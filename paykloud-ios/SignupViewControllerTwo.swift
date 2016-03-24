@@ -158,7 +158,10 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate {
     }
     
     func nextStep(sender: AnyObject) {
-        shouldPerformSegueWithIdentifier("VC2", sender: sender)
+        var x = performValidation()
+        if x == true {
+            self.performSegueWithIdentifier("VC3", sender: sender)
+        }
     }
     
     // Check for valid email
@@ -256,6 +259,26 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate {
         alertView.show()
     }
     
+    func performValidation() -> Bool {
+        // Username, email, and phone validation
+        if(!isValidEmail(emailTextField.text!)) {
+            displayErrorAlertMessage("Email is not valid")
+            return false
+        } else if(emailTextField.text?.characters.count < 1 || usernameTextField.text?.characters.count < 1) {
+            displayErrorAlertMessage("Username and email fields cannot be empty")
+            return false
+        } else if(!isOnlyNumeral(phoneNumberTextField.text!) || (phoneNumberTextField.text?.characters.count > 0 && phoneNumberTextField.text?.characters.count < 14)) {
+            displayErrorAlertMessage("Phone number not valid")
+            return false
+        } else {
+            NSUserDefaults.standardUserDefaults().setValue(usernameTextField.text!, forKey: "userUsername")
+            NSUserDefaults.standardUserDefaults().setValue(emailTextField.text!, forKey: "userEmail")
+            NSUserDefaults.standardUserDefaults().setValue(phoneNumberTextField.text!, forKey: "userPhoneNumber")
+            NSUserDefaults.standardUserDefaults().synchronize();
+        }
+        return true
+    }
+    
     // VALIDATION
     override func shouldPerformSegueWithIdentifier(identifier: String!, sender: AnyObject!) -> Bool {
         if(identifier == "VC3") {
@@ -275,6 +298,7 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate {
                 NSUserDefaults.standardUserDefaults().setValue(phoneNumberTextField.text!, forKey: "userPhoneNumber")
                 NSUserDefaults.standardUserDefaults().synchronize();
             }
+            return true
         }
         return true
     }

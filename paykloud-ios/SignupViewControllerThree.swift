@@ -25,9 +25,6 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate {
     // Keychain
     let keychain = KeychainSwift()
     
-    // Height not adjusted button bool value
-    var alreadyAdjustedVC3:Bool = false
-    
     override func viewDidAppear(animated: Bool) {
         
         var stepButton = UIBarButtonItem(title: "3/4", style: UIBarButtonItemStyle.Plain, target: nil, action: "")
@@ -147,7 +144,10 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate {
     }
     
     func nextStep(sender: AnyObject) {
-        shouldPerformSegueWithIdentifier("VC2", sender: sender)
+        var x = performValidation()
+        if x == true {
+            performSegueWithIdentifier("finishView", sender: sender)
+        }
     }
     
     func displayErrorAlertMessage(alertMessage:String) {
@@ -182,6 +182,23 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate {
         return NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluateWithObject(candidate)
     }
     
+    func performValidation() -> Bool {
+        if(passwordTextField.text != repeatPasswordTextField.text) {
+            // display alert
+            displayErrorAlertMessage("Passwords do not match");
+            return false
+        } else if(passwordTextField.text == "" || repeatPasswordTextField.text == "") {
+            // display alert
+            displayErrorAlertMessage("Password cannot be empty");
+            return false
+        } else if(!isValidPassword(passwordTextField.text!)) {
+            displayErrorAlertMessage("Password must contain at least 1 capital letter and 1 number, be longer than 6 characters and cannot be more than 15 characters in length");
+            return false
+        } else {
+            keychain.set(passwordTextField.text!, forKey: "userPassword")
+        }
+        return true
+    }
     // VALIDATION
     override func shouldPerformSegueWithIdentifier(identifier: String!, sender: AnyObject!) -> Bool {
         if(identifier == "finishView") {

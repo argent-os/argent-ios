@@ -138,7 +138,10 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate {
     }
     
     func nextStep(sender: AnyObject) {
-        shouldPerformSegueWithIdentifier("VC2", sender: sender)
+        var x = performValidation()
+        if x == true {
+            performSegueWithIdentifier("VC2", sender: sender)
+        }
     }
     
     // Check for valid email
@@ -189,6 +192,22 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate {
         alertView.show()
     }
     
+    func performValidation() -> Bool {
+        // Username, email, and phone validation
+        if(!isValidEmail(emailTextField.text!)) {
+            displayErrorAlertMessage("Email is not valid")
+            return false
+        } else if(emailTextField.text?.characters.count < 1 || usernameTextField.text?.characters.count < 1) {
+            displayErrorAlertMessage("Username and email fields cannot be empty")
+            return false
+        } else {
+            NSUserDefaults.standardUserDefaults().setValue(usernameTextField.text!, forKey: "userUsername")
+            NSUserDefaults.standardUserDefaults().setValue(emailTextField.text!, forKey: "userEmail")
+            NSUserDefaults.standardUserDefaults().synchronize();
+        }
+        return true
+    }
+    
     // VALIDATION
     override func shouldPerformSegueWithIdentifier(identifier: String!, sender: AnyObject!) -> Bool {
         if(identifier == "VC2") {
@@ -204,6 +223,7 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate {
                 NSUserDefaults.standardUserDefaults().setValue(emailTextField.text!, forKey: "userEmail")
                 NSUserDefaults.standardUserDefaults().synchronize();
             }
+            return true
         }
         return true
     }
