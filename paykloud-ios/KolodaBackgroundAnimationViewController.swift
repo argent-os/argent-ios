@@ -65,7 +65,7 @@ extension BackgroundAnimationViewController: KolodaViewDelegate {
     }
     
     func koloda(koloda: KolodaView, didSelectCardAtIndex index: UInt) {
-//        UIApplication.sharedApplication().openURL(NSURL(string: "http://paykloud.com/")!)
+//        UIApplication.sharedApplication().openURL(NSURL(string: "http://www.protonpayments.com")!)
     }
     
     func koloda(kolodaShouldApplyAppearAnimation koloda: KolodaView) -> Bool {

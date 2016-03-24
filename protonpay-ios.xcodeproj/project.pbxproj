@@ -209,8 +209,8 @@
 		30F714391C975A39001AF6EC /* SignupIndividualViewControllerTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupIndividualViewControllerTwo.swift; path = "paykloud-ios/SignupIndividualViewControllerTwo.swift"; sourceTree = SOURCE_ROOT; };
 		30F7143B1C975A64001AF6EC /* SignupIndividualViewControllerThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupIndividualViewControllerThree.swift; path = "paykloud-ios/SignupIndividualViewControllerThree.swift"; sourceTree = SOURCE_ROOT; };
 		30FB540A1C6A58B40004A538 /* ProtonPay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProtonPay.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		30FB541E1C6A58B40004A538 /* paykloud-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "paykloud-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		30FB54291C6A58B40004A538 /* paykloud-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "paykloud-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		30FB541E1C6A58B40004A538 /* protonpay-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "protonpay-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		30FB54291C6A58B40004A538 /* protonpay-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "protonpay-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB54411C6ABF6A0004A538 /* ObjC-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjC-Bridging-Header.h"; sourceTree = "<group>"; };
 		72852BFA7077A9B4E42196D9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A1AC01881780C6537201E7C5 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -559,8 +559,8 @@
 			isa = PBXGroup;
 			children = (
 				30FB540A1C6A58B40004A538 /* ProtonPay.app */,
-				30FB541E1C6A58B40004A538 /* paykloud-iosTests.xctest */,
-				30FB54291C6A58B40004A538 /* paykloud-iosTests.xctest */,
+				30FB541E1C6A58B40004A538 /* protonpay-iosTests.xctest */,
+				30FB54291C6A58B40004A538 /* protonpay-iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -631,9 +631,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		30FB54091C6A58B40004A538 /* paykloud-ios */ = {
+		30FB54091C6A58B40004A538 /* protonpay-ios */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 30FB54321C6A58B50004A538 /* Build configuration list for PBXNativeTarget "paykloud-ios" */;
+			buildConfigurationList = 30FB54321C6A58B50004A538 /* Build configuration list for PBXNativeTarget "protonpay-ios" */;
 			buildPhases = (
 				12CCEAF27A81A4F36AB2087C /* Check Pods Manifest.lock */,
 				30FB54061C6A58B40004A538 /* Sources */,
@@ -646,14 +646,14 @@
 			);
 			dependencies = (
 			);
-			name = "paykloud-ios";
+			name = "protonpay-ios";
 			productName = "timekloud-ios";
 			productReference = 30FB540A1C6A58B40004A538 /* ProtonPay.app */;
 			productType = "com.apple.product-type.application";
 		};
-		30FB541D1C6A58B40004A538 /* paykloud-iosTests */ = {
+		30FB541D1C6A58B40004A538 /* protonpay-iosTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 30FB54351C6A58B50004A538 /* Build configuration list for PBXNativeTarget "paykloud-iosTests" */;
+			buildConfigurationList = 30FB54351C6A58B50004A538 /* Build configuration list for PBXNativeTarget "protonpay-iosTests" */;
 			buildPhases = (
 				30FB541A1C6A58B40004A538 /* Sources */,
 				30FB541B1C6A58B40004A538 /* Frameworks */,
@@ -664,14 +664,14 @@
 			dependencies = (
 				30FB54201C6A58B40004A538 /* PBXTargetDependency */,
 			);
-			name = "paykloud-iosTests";
+			name = "protonpay-iosTests";
 			productName = "timekloud-iosTests";
-			productReference = 30FB541E1C6A58B40004A538 /* paykloud-iosTests.xctest */;
+			productReference = 30FB541E1C6A58B40004A538 /* protonpay-iosTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		30FB54281C6A58B40004A538 /* paykloud-iosUITests */ = {
+		30FB54281C6A58B40004A538 /* protonpay-iosUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 30FB54381C6A58B50004A538 /* Build configuration list for PBXNativeTarget "paykloud-iosUITests" */;
+			buildConfigurationList = 30FB54381C6A58B50004A538 /* Build configuration list for PBXNativeTarget "protonpay-iosUITests" */;
 			buildPhases = (
 				30FB54251C6A58B40004A538 /* Sources */,
 				30FB54261C6A58B40004A538 /* Frameworks */,
@@ -682,9 +682,9 @@
 			dependencies = (
 				30FB542B1C6A58B40004A538 /* PBXTargetDependency */,
 			);
-			name = "paykloud-iosUITests";
+			name = "protonpay-iosUITests";
 			productName = "timekloud-iosUITests";
-			productReference = 30FB54291C6A58B40004A538 /* paykloud-iosTests.xctest */;
+			productReference = 30FB54291C6A58B40004A538 /* protonpay-iosTests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -724,7 +724,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 30FB54051C6A58B40004A538 /* Build configuration list for PBXProject "paykloud-ios" */;
+			buildConfigurationList = 30FB54051C6A58B40004A538 /* Build configuration list for PBXProject "protonpay-ios" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -737,9 +737,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				30FB54091C6A58B40004A538 /* paykloud-ios */,
-				30FB541D1C6A58B40004A538 /* paykloud-iosTests */,
-				30FB54281C6A58B40004A538 /* paykloud-iosUITests */,
+				30FB54091C6A58B40004A538 /* protonpay-ios */,
+				30FB541D1C6A58B40004A538 /* protonpay-iosTests */,
+				30FB54281C6A58B40004A538 /* protonpay-iosUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -929,12 +929,12 @@
 /* Begin PBXTargetDependency section */
 		30FB54201C6A58B40004A538 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 30FB54091C6A58B40004A538 /* paykloud-ios */;
+			target = 30FB54091C6A58B40004A538 /* protonpay-ios */;
 			targetProxy = 30FB541F1C6A58B40004A538 /* PBXContainerItemProxy */;
 		};
 		30FB542B1C6A58B40004A538 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 30FB54091C6A58B40004A538 /* paykloud-ios */;
+			target = 30FB54091C6A58B40004A538 /* protonpay-ios */;
 			targetProxy = 30FB542A1C6A58B40004A538 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1077,7 +1077,7 @@
 				INFOPLIST_FILE = "paykloud-iosTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.paykloud.paykloud-iosTests";
-				PRODUCT_NAME = "paykloud-iosTests";
+				PRODUCT_NAME = "protonpay-iosTests";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -1089,7 +1089,7 @@
 				INFOPLIST_FILE = "paykloud-iosTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.paykloud.paykloud-iosTests";
-				PRODUCT_NAME = "paykloud-iosTests";
+				PRODUCT_NAME = "protonpay-iosTests";
 			};
 			name = Release;
 		};
@@ -1100,7 +1100,7 @@
 				INFOPLIST_FILE = "paykloud-iosUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.paykloud.paykloud-iosUITests";
-				PRODUCT_NAME = "paykloud-iosTests";
+				PRODUCT_NAME = "protonpay-iosTests";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_TARGET_NAME = "paykloud-ios";
 				USES_XCTRUNNER = YES;
@@ -1114,7 +1114,7 @@
 				INFOPLIST_FILE = "paykloud-iosUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.paykloud.paykloud-iosUITests";
-				PRODUCT_NAME = "paykloud-iosTests";
+				PRODUCT_NAME = "protonpay-iosTests";
 				TEST_TARGET_NAME = "paykloud-ios";
 				USES_XCTRUNNER = YES;
 			};
@@ -1123,7 +1123,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		30FB54051C6A58B40004A538 /* Build configuration list for PBXProject "paykloud-ios" */ = {
+		30FB54051C6A58B40004A538 /* Build configuration list for PBXProject "protonpay-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				30FB54301C6A58B50004A538 /* Debug */,
@@ -1132,7 +1132,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		30FB54321C6A58B50004A538 /* Build configuration list for PBXNativeTarget "paykloud-ios" */ = {
+		30FB54321C6A58B50004A538 /* Build configuration list for PBXNativeTarget "protonpay-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				30FB54331C6A58B50004A538 /* Debug */,
@@ -1141,7 +1141,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		30FB54351C6A58B50004A538 /* Build configuration list for PBXNativeTarget "paykloud-iosTests" */ = {
+		30FB54351C6A58B50004A538 /* Build configuration list for PBXNativeTarget "protonpay-iosTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				30FB54361C6A58B50004A538 /* Debug */,
@@ -1150,7 +1150,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		30FB54381C6A58B50004A538 /* Build configuration list for PBXNativeTarget "paykloud-iosUITests" */ = {
+		30FB54381C6A58B50004A538 /* Build configuration list for PBXNativeTarget "protonpay-iosUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				30FB54391C6A58B50004A538 /* Debug */,

@@ -1,15 +1,15 @@
 //
-//  paykloud_iosTests.swift
-//  paykloud-iosTests
+//  protonpay_iosTests.swift
+//  protonpay-iosTests
 //
 //  Created by Sinan Ulkuatam on 2/9/16.
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
 //
 
 import XCTest
-@testable import paykloud_ios
+@testable import protonpay_ios
 
-class paykloud_iosTests: XCTestCase {
+class protonpay_iosTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

@@ -1,6 +1,6 @@
 //
 //  InitializeAuth.swift
-//  paykloud-ios
+//  protonpay-ios
 //
 //  Created by Sinan Ulkuatam on 2/9/16.
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
@@ -84,7 +84,7 @@ class AuthViewController: UIViewController  {
         view.addSubview(imageView)
         
         let attributedString = NSMutableAttributedString(string: "Welcome to Proton Payments")
-        // Set range of string length to exactly 8, the number of characters in PayKloud
+        // Set range of string length to exactly 8, the number of characters
         attributedString.addAttribute(NSFontAttributeName, value: "Nunito", range: NSRange(location: 0, length: 15)
         )
         let text = UILabel(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 100.0))

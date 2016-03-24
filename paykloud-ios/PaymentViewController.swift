@@ -1,6 +1,6 @@
 //
 //  PaymentViewController.swift
-//  paykloud-ios
+//  protonpay-ios
 //
 //  Created by Sinan Ulkuatam on 2/12/16.
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
@@ -101,7 +101,7 @@ class PaymentViewController: UIViewController, STPPaymentCardTextFieldDelegate {
     }
     
     func createBackendChargeWithToken(token: STPToken!, completion: PKPaymentAuthorizationStatus -> ()) {
-        // SEND REQUEST TO PAYKLOUD API ENDPOINT TO EXCHANGE STRIPE TOKEN
+        // SEND REQUEST TO PROTON PAYMENTS API ENDPOINT TO EXCHANGE STRIPE TOKEN
         let url = NSURL(string: apiUrl + "/auth/token")!
         let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "POST"

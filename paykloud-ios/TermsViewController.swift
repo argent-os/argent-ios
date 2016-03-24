@@ -1,6 +1,6 @@
 //
 //  TermsViewController.swift
-//  paykloud-ios
+//  protonpay-ios
 //
 //  Created by Sinan Ulkuatam on 2/16/16.
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.

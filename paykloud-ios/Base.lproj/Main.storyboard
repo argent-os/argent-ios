@@ -1339,7 +1339,7 @@ support request</string>
                                     <constraint firstAttribute="height" constant="21" id="VZM-El-Ckm"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconCreditCard" translatesAutoresizingMaskIntoConstraints="NO" id="VY2-dK-8hX">
@@ -1424,7 +1424,7 @@ We support both debit and credit.</string>
                                     <constraint firstAttribute="height" constant="21" id="mJ1-8Y-LV9"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconBank" translatesAutoresizingMaskIntoConstraints="NO" id="KoB-Hd-4HP">
@@ -1604,7 +1604,7 @@ institutions</string>
                                     <constraint firstAttribute="height" constant="21" id="aBe-0Y-Z7F"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -1627,7 +1627,7 @@ institutions</string>
                         </connections>
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="w3e-6C-5LA" userLabel="nav">
-                        <barButtonItem key="leftBarButtonItem" image="23996367-97A6-4272-9F40-352FB3442BE4" id="J68-gC-0HZ">
+                        <barButtonItem key="leftBarButtonItem" image="C306E5F6-06B7-4C05-A794-7112D3A5393B" id="J68-gC-0HZ">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="presentLeftMenuViewController:" destination="BYZ-38-t0r" id="YOj-Vw-dth"/>
@@ -1935,13 +1935,13 @@ institutions</string>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qxj-YF-MXj">
                                 <rect key="frame" x="20" y="277" width="374" height="451"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekf-LC-JMC">
                                 <rect key="frame" x="366" y="176" width="28" height="88"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="sXZ-ma-wgZ">
@@ -1956,7 +1956,7 @@ institutions</string>
                                     <constraint firstAttribute="height" constant="88" id="mZK-sw-fr4"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconLogo" translatesAutoresizingMaskIntoConstraints="NO" id="drh-Jt-Uwa">
@@ -2312,7 +2312,7 @@ institutions</string>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
                                     <string key="title">By checking the circle below I agree to 
-PayKloud's terms of service and privacy
+Proton Payments terms of service and privacy
 policy agreement and the Stripe 
 connected account agreement.
 Click here to view more</string>
@@ -2511,7 +2511,7 @@ Click here to view more</string>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
                                     <string key="title">By checking the circle below I agree to 
-PayKloud's terms of service and privacy
+Proton Payments terms of service and privacy
 policy agreement and the Stripe 
 connected account agreement.
 Click here to view more</string>
@@ -2878,7 +2878,7 @@ Click here to view more</string>
                                     <constraint firstAttribute="height" constant="21" id="257-gT-pDL"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -3053,7 +3053,7 @@ Click here to view more</string>
                                     <constraint firstAttribute="height" constant="21" id="e14-Cn-o9g"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfm-tu-C0v">
@@ -3122,7 +3122,8 @@ Click here to view more</string>
         </scene>
     </scenes>
     <resources>
-        <image name="23996367-97A6-4272-9F40-352FB3442BE4" width="32" height="32">
+        <image name="BackgroundGradientInverse" width="200" height="500"/>
+        <image name="C306E5F6-06B7-4C05-A794-7112D3A5393B" width="32" height="32">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -3241,7 +3242,6 @@ AKsArQCyALUAtwC5ALsAvQDCANkA2wDdGX8ZhBmPGZgZqxmvGboZwxnIGdAZ0xnYGecZ6xnyGfoaBxoM
 Gg4aEBoVGh0aIBolGi0aMBpCGkUaSgAAAAAAAAIBAAAAAAAAAEEAAAAAAAAAAAAAAAAAABpMA
 </mutableData>
         </image>
-        <image name="BackgroundGradientInverse" width="200" height="500"/>
         <image name="ComponentBackgroundOne" width="131" height="59"/>
         <image name="ComponentBackgroundTwo" width="131" height="59"/>
         <image name="IconBank" width="128" height="121"/>
