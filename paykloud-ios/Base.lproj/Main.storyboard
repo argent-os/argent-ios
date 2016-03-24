@@ -1627,7 +1627,7 @@ institutions</string>
                         </connections>
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="w3e-6C-5LA" userLabel="nav">
-                        <barButtonItem key="leftBarButtonItem" image="C306E5F6-06B7-4C05-A794-7112D3A5393B" id="J68-gC-0HZ">
+                        <barButtonItem key="leftBarButtonItem" image="4FF3FE9C-0F75-4040-ABC5-DC41BF315351" id="J68-gC-0HZ">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="presentLeftMenuViewController:" destination="BYZ-38-t0r" id="YOj-Vw-dth"/>
@@ -3122,8 +3122,7 @@ Click here to view more</string>
         </scene>
     </scenes>
     <resources>
-        <image name="BackgroundGradientInverse" width="200" height="500"/>
-        <image name="C306E5F6-06B7-4C05-A794-7112D3A5393B" width="32" height="32">
+        <image name="4FF3FE9C-0F75-4040-ABC5-DC41BF315351" width="32" height="32">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -3242,6 +3241,7 @@ AKsArQCyALUAtwC5ALsAvQDCANkA2wDdGX8ZhBmPGZgZqxmvGboZwxnIGdAZ0xnYGecZ6xnyGfoaBxoM
 Gg4aEBoVGh0aIBolGi0aMBpCGkUaSgAAAAAAAAIBAAAAAAAAAEEAAAAAAAAAAAAAAAAAABpMA
 </mutableData>
         </image>
+        <image name="BackgroundGradientInverse" width="200" height="500"/>
         <image name="ComponentBackgroundOne" width="131" height="59"/>
         <image name="ComponentBackgroundTwo" width="131" height="59"/>
         <image name="IconBank" width="128" height="121"/>
