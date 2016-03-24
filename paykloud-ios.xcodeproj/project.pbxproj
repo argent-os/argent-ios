@@ -24,7 +24,6 @@
 		304DDE3B1C9CEDD900962BC4 /* ProfileFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 304DDE381C9CEDD900962BC4 /* ProfileFieldCell.xib */; };
 		304DDE3C1C9CEDD900962BC4 /* ProfileImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 304DDE391C9CEDD900962BC4 /* ProfileImageCell.xib */; };
 		304DDE3D1C9CEDD900962BC4 /* ProfileLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 304DDE3A1C9CEDD900962BC4 /* ProfileLabelCell.xib */; };
-		304DDE411C9CEFB100962BC4 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304DDE401C9CEFB100962BC4 /* Secrets.swift */; };
 		3067D9E91C7F705E00C1418E /* KolodaBackgroundAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3067D9E81C7F705E00C1418E /* KolodaBackgroundAnimationViewController.swift */; };
 		3067D9F01C7F716E00C1418E /* KolodaCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3067D9EE1C7F716E00C1418E /* KolodaCustomView.swift */; };
 		3067D9F11C7F716E00C1418E /* KolodaOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3067D9EF1C7F716E00C1418E /* KolodaOverlayView.swift */; };
@@ -85,6 +84,7 @@
 		30BECBFB1C6EA5D100B8A088 /* paykloud_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECBFA1C6EA5D100B8A088 /* paykloud_iosTests.swift */; };
 		30BECBFF1C6EA6EC00B8A088 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30BECBFE1C6EA6EC00B8A088 /* Assets.xcassets */; };
 		30BECC031C6F778B00B8A088 /* Gravatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BECC021C6F778B00B8A088 /* Gravatar.swift */; };
+		30C2DA531CA38E7A003AFD8B /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DA521CA38E7A003AFD8B /* Secrets.swift */; };
 		30D7B7311C77883500B64B7F /* SignupViewControllerOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D7B7301C77883500B64B7F /* SignupViewControllerOne.swift */; };
 		30D7B7331C77884600B64B7F /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D7B7321C77884600B64B7F /* AuthViewController.swift */; };
 		30D7B7351C78F96500B64B7F /* SignupViewControllerTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D7B7341C78F96500B64B7F /* SignupViewControllerTwo.swift */; };
@@ -133,7 +133,6 @@
 		304DDE381C9CEDD900962BC4 /* ProfileFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileFieldCell.xib; path = "paykloud-ios/ProfileFieldCell.xib"; sourceTree = SOURCE_ROOT; };
 		304DDE391C9CEDD900962BC4 /* ProfileImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileImageCell.xib; path = "paykloud-ios/ProfileImageCell.xib"; sourceTree = SOURCE_ROOT; };
 		304DDE3A1C9CEDD900962BC4 /* ProfileLabelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileLabelCell.xib; path = "paykloud-ios/ProfileLabelCell.xib"; sourceTree = SOURCE_ROOT; };
-		304DDE401C9CEFB100962BC4 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Secrets.swift; path = "paykloud-ios/Secrets.swift"; sourceTree = SOURCE_ROOT; };
 		3067D9E81C7F705E00C1418E /* KolodaBackgroundAnimationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KolodaBackgroundAnimationViewController.swift; path = "paykloud-ios/KolodaBackgroundAnimationViewController.swift"; sourceTree = SOURCE_ROOT; };
 		3067D9EE1C7F716E00C1418E /* KolodaCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KolodaCustomView.swift; path = "paykloud-ios/KolodaCustomView.swift"; sourceTree = SOURCE_ROOT; };
 		3067D9EF1C7F716E00C1418E /* KolodaOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KolodaOverlayView.swift; path = "paykloud-ios/KolodaOverlayView.swift"; sourceTree = SOURCE_ROOT; };
@@ -198,6 +197,7 @@
 		30BECBFA1C6EA5D100B8A088 /* paykloud_iosTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = paykloud_iosTests.swift; path = "paykloud-iosTests/paykloud_iosTests.swift"; sourceTree = SOURCE_ROOT; };
 		30BECBFE1C6EA6EC00B8A088 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "paykloud-ios/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		30BECC021C6F778B00B8A088 /* Gravatar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Gravatar.swift; path = "paykloud-ios/Gravatar.swift"; sourceTree = SOURCE_ROOT; };
+		30C2DA521CA38E7A003AFD8B /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Secrets.swift; path = "paykloud-ios/Secrets.swift"; sourceTree = SOURCE_ROOT; };
 		30D7B7301C77883500B64B7F /* SignupViewControllerOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewControllerOne.swift; path = "paykloud-ios/SignupViewControllerOne.swift"; sourceTree = SOURCE_ROOT; };
 		30D7B7321C77884600B64B7F /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthViewController.swift; path = "paykloud-ios/AuthViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30D7B7341C78F96500B64B7F /* SignupViewControllerTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewControllerTwo.swift; path = "paykloud-ios/SignupViewControllerTwo.swift"; sourceTree = SOURCE_ROOT; };
@@ -319,7 +319,7 @@
 		304DDE421C9CF05300962BC4 /* Secrets */ = {
 			isa = PBXGroup;
 			children = (
-				304DDE401C9CEFB100962BC4 /* Secrets.swift */,
+				30C2DA521CA38E7A003AFD8B /* Secrets.swift */,
 			);
 			name = Secrets;
 			sourceTree = "<group>";
@@ -724,7 +724,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 30FB54051C6A58B40004A538 /* Build configuration list for PBXProject "protonpay-ios" */;
+			buildConfigurationList = 30FB54051C6A58B40004A538 /* Build configuration list for PBXProject "paykloud-ios" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -846,7 +846,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				30D7B7331C77884600B64B7F /* AuthViewController.swift in Sources */,
-				304DDE411C9CEFB100962BC4 /* Secrets.swift in Sources */,
 				308AC9B61C9ED4F50040EF3C /* SupportMessageViewController.swift in Sources */,
 				30D7B7351C78F96500B64B7F /* SignupViewControllerTwo.swift in Sources */,
 				30BECBE01C6E9FF200B8A088 /* Logs.swift in Sources */,
@@ -896,6 +895,7 @@
 				30BECBDF1C6E9FF200B8A088 /* LoginViewController.swift in Sources */,
 				30DB9B7A1C9CFC3600871253 /* BankTableViewCell.swift in Sources */,
 				307C6A201C7D40A500723E39 /* SignupViewControllerFour.swift in Sources */,
+				30C2DA531CA38E7A003AFD8B /* Secrets.swift in Sources */,
 				30DB9B7C1C9CFD7F00871253 /* BankDetailViewController.swift in Sources */,
 				30BECBE41C6E9FF200B8A088 /* RootViewController.swift in Sources */,
 				304DDE291C986E5A00962BC4 /* AddCustomerViewController.swift in Sources */,
@@ -1123,7 +1123,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		30FB54051C6A58B40004A538 /* Build configuration list for PBXProject "protonpay-ios" */ = {
+		30FB54051C6A58B40004A538 /* Build configuration list for PBXProject "paykloud-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				30FB54301C6A58B50004A538 /* Debug */,

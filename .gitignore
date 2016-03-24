@@ -28,5 +28,6 @@ pkg/*
 
 Pods
 Podfile.lock
-*/Secrets.swift
+# Ignore secrets file before releasing production / regen api keys
+# */Secrets.swift
 paykloud-ios/Secrets.swift
