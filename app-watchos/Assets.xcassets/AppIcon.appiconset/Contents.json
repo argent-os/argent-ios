@@ -1,0 +1,70 @@
+{
+  "images" : [
+    {
+      "size" : "24x24",
+      "role" : "notificationCenter",
+      "subtype" : "38mm",
+      "filename" : "Icon38mm@2x.png",
+      "idiom" : "watch",
+      "scale" : "2x"
+    },
+    {
+      "size" : "27.5x27.5",
+      "role" : "notificationCenter",
+      "subtype" : "42mm",
+      "filename" : "Icon42mm@2x.png",
+      "idiom" : "watch",
+      "scale" : "2x"
+    },
+    {
+      "size" : "29x29",
+      "role" : "companionSettings",
+      "filename" : "IconSettings@2x.png",
+      "idiom" : "watch",
+      "scale" : "2x"
+    },
+    {
+      "size" : "29x29",
+      "role" : "companionSettings",
+      "filename" : "IconSettings@3x.png",
+      "idiom" : "watch",
+      "scale" : "3x"
+    },
+    {
+      "size" : "40x40",
+      "role" : "appLauncher",
+      "subtype" : "38mm",
+      "filename" : "IconLauncher@2x.png",
+      "idiom" : "watch",
+      "scale" : "2x"
+    },
+    {
+      "size" : "44x44",
+      "role" : "longLook",
+      "subtype" : "42mm",
+      "filename" : "LongLook@2x.png",
+      "idiom" : "watch",
+      "scale" : "2x"
+    },
+    {
+      "size" : "86x86",
+      "role" : "quickLook",
+      "subtype" : "38mm",
+      "filename" : "IconQuickLook38mm@2x.png",
+      "idiom" : "watch",
+      "scale" : "2x"
+    },
+    {
+      "size" : "98x98",
+      "role" : "quickLook",
+      "subtype" : "42mm",
+      "filename" : "IconQuickLook42mm@2x.png",
+      "idiom" : "watch",
+      "scale" : "2x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

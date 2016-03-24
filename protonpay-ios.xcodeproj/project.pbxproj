@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		307C6A221C7E91A100723E39 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C6A211C7E91A100723E39 /* StoreKit.framework */; };
 		307C6A241C7E91AA00723E39 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C6A231C7E91AA00723E39 /* PassKit.framework */; };
+		30AF67391CA498A3006B83DA /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AF67381CA498A3006B83DA /* PassKit.framework */; };
 		30C2DA551CA43655003AFD8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA541CA43655003AFD8B /* Assets.xcassets */; };
 		30C2DA591CA43665003AFD8B /* PayKloud.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA581CA43665003AFD8B /* PayKloud.entitlements */; };
 		30C2DA5B1CA4366C003AFD8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DA5A1CA4366C003AFD8B /* AppDelegate.swift */; };
@@ -98,10 +99,34 @@
 		30C2DB1D1CA43A05003AFD8B /* paykloud_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DB1C1CA43A05003AFD8B /* paykloud_iosUITests.swift */; };
 		30C2DB1F1CA43A51003AFD8B /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DB1E1CA43A51003AFD8B /* EditProfileViewController.swift */; };
 		30C2DB221CA43B62003AFD8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DB201CA43B62003AFD8B /* Main.storyboard */; };
+		30DB595E1CA46CB0007FEE1E /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DB595C1CA46CB0007FEE1E /* Interface.storyboard */; };
+		30DB59601CA46CB0007FEE1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30DB595F1CA46CB0007FEE1E /* Assets.xcassets */; };
+		30DB59671CA46CB0007FEE1E /* app-watchos Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 30DB59661CA46CB0007FEE1E /* app-watchos Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		30DB596E1CA46CB0007FEE1E /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DB596D1CA46CB0007FEE1E /* InterfaceController.swift */; };
+		30DB59701CA46CB0007FEE1E /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DB596F1CA46CB0007FEE1E /* ExtensionDelegate.swift */; };
+		30DB59721CA46CB0007FEE1E /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DB59711CA46CB0007FEE1E /* NotificationController.swift */; };
+		30DB59741CA46CB0007FEE1E /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DB59731CA46CB0007FEE1E /* GlanceController.swift */; };
+		30DB59761CA46CB0007FEE1E /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DB59751CA46CB0007FEE1E /* ComplicationController.swift */; };
+		30DB59781CA46CB0007FEE1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30DB59771CA46CB0007FEE1E /* Assets.xcassets */; };
+		30DB597C1CA46CB0007FEE1E /* app-watchos.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 30DB595A1CA46CB0007FEE1E /* app-watchos.app */; };
 		8F63169BF370478C9A6CC8F5 /* Pods_protonpay_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50E88D0ADD61BCA3EBD43D33 /* Pods_protonpay_ios.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		30DB59681CA46CB0007FEE1E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 30FB54021C6A58B40004A538 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 30DB59651CA46CB0007FEE1E;
+			remoteInfo = "app-watchos Extension";
+		};
+		30DB597A1CA46CB0007FEE1E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 30FB54021C6A58B40004A538 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 30DB59591CA46CB0007FEE1E;
+			remoteInfo = "app-watchos";
+		};
 		30FB541F1C6A58B40004A538 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 30FB54021C6A58B40004A538 /* Project object */;
@@ -118,10 +143,38 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		300B66F31CA45F6F00E24AF1 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				30DB597C1CA46CB0007FEE1E /* app-watchos.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30DB59821CA46CB0007FEE1E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				30DB59671CA46CB0007FEE1E /* app-watchos Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		09792DCB26D2F1A099596766 /* Pods-protonpay-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-protonpay-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-protonpay-ios/Pods-protonpay-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		300B66F61CA4635800E24AF1 /* RESideMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RESideMenu.framework; path = "Pods/../build/Debug-iphoneos/RESideMenu.framework"; sourceTree = "<group>"; };
 		307C6A211C7E91A100723E39 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		307C6A231C7E91AA00723E39 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
+		30AF67371CA498A2006B83DA /* app-watchos Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "app-watchos Extension.entitlements"; sourceTree = "<group>"; };
+		30AF67381CA498A3006B83DA /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.2.sdk/System/Library/Frameworks/PassKit.framework; sourceTree = DEVELOPER_DIR; };
 		30C2DA541CA43655003AFD8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "app-ios/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		30C2DA561CA4365D003AFD8B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "app-ios/Info.plist"; sourceTree = SOURCE_ROOT; };
 		30C2DA581CA43665003AFD8B /* PayKloud.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = PayKloud.entitlements; path = "app-ios/PayKloud.entitlements"; sourceTree = SOURCE_ROOT; };
@@ -212,18 +265,39 @@
 		30C2DB1C1CA43A05003AFD8B /* paykloud_iosUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = paykloud_iosUITests.swift; path = "app-iosUITests/paykloud_iosUITests.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DB1E1CA43A51003AFD8B /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileViewController.swift; path = "app-ios/EditProfileViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DB211CA43B62003AFD8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "app-ios/Base.lproj/Main.storyboard"; sourceTree = SOURCE_ROOT; };
+		30DB595A1CA46CB0007FEE1E /* app-watchos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "app-watchos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		30DB595D1CA46CB0007FEE1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		30DB595F1CA46CB0007FEE1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		30DB59611CA46CB0007FEE1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30DB59661CA46CB0007FEE1E /* app-watchos Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "app-watchos Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		30DB596C1CA46CB0007FEE1E /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		30DB596D1CA46CB0007FEE1E /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		30DB596F1CA46CB0007FEE1E /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		30DB59711CA46CB0007FEE1E /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		30DB59731CA46CB0007FEE1E /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
+		30DB59751CA46CB0007FEE1E /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		30DB59771CA46CB0007FEE1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		30DB59791CA46CB0007FEE1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30DB59841CA46DCC007FEE1E /* ObjC-Bridging-Header-WatchOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjC-Bridging-Header-WatchOS.h"; sourceTree = "<group>"; };
+		30DB59851CA472D0007FEE1E /* app-watchos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "app-watchos.entitlements"; sourceTree = "<group>"; };
 		30FB540A1C6A58B40004A538 /* ProtonPay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProtonPay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB541E1C6A58B40004A538 /* protonpay-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "protonpay-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB54291C6A58B40004A538 /* protonpay-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "protonpay-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB54411C6ABF6A0004A538 /* ObjC-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjC-Bridging-Header.h"; sourceTree = "<group>"; };
 		50E88D0ADD61BCA3EBD43D33 /* Pods_protonpay_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_protonpay_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		72852BFA7077A9B4E42196D9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		95B7423ECA345B8C4ECD5933 /* Pods-protonpay-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-protonpay-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-protonpay-ios/Pods-protonpay-ios.release.xcconfig"; sourceTree = "<group>"; };
 		A1AC01881780C6537201E7C5 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E0548BB1437D038D9B3DF873 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		30DB59631CA46CB0007FEE1E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30AF67391CA498A3006B83DA /* PassKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		30FB54071C6A58B40004A538 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -525,6 +599,41 @@
 			name = Signup;
 			sourceTree = "<group>";
 		};
+		30DB595B1CA46CB0007FEE1E /* app-watchos */ = {
+			isa = PBXGroup;
+			children = (
+				30DB59851CA472D0007FEE1E /* app-watchos.entitlements */,
+				30DB595C1CA46CB0007FEE1E /* Interface.storyboard */,
+				30DB595F1CA46CB0007FEE1E /* Assets.xcassets */,
+				30DB59611CA46CB0007FEE1E /* Info.plist */,
+			);
+			path = "app-watchos";
+			sourceTree = "<group>";
+		};
+		30DB596A1CA46CB0007FEE1E /* app-watchos Extension */ = {
+			isa = PBXGroup;
+			children = (
+				30AF67371CA498A2006B83DA /* app-watchos Extension.entitlements */,
+				30DB596D1CA46CB0007FEE1E /* InterfaceController.swift */,
+				30DB596F1CA46CB0007FEE1E /* ExtensionDelegate.swift */,
+				30DB59711CA46CB0007FEE1E /* NotificationController.swift */,
+				30DB59731CA46CB0007FEE1E /* GlanceController.swift */,
+				30DB59751CA46CB0007FEE1E /* ComplicationController.swift */,
+				30DB59771CA46CB0007FEE1E /* Assets.xcassets */,
+				30DB59791CA46CB0007FEE1E /* Info.plist */,
+				30DB596B1CA46CB0007FEE1E /* Supporting Files */,
+			);
+			path = "app-watchos Extension";
+			sourceTree = "<group>";
+		};
+		30DB596B1CA46CB0007FEE1E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				30DB596C1CA46CB0007FEE1E /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		30DB9B751C9CF1E000871253 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -553,9 +662,12 @@
 			isa = PBXGroup;
 			children = (
 				30FB54411C6ABF6A0004A538 /* ObjC-Bridging-Header.h */,
+				30DB59841CA46DCC007FEE1E /* ObjC-Bridging-Header-WatchOS.h */,
 				30FB540C1C6A58B40004A538 /* app-ios */,
 				30FB54211C6A58B40004A538 /* app-iosTests */,
 				30FB542C1C6A58B50004A538 /* app-iosUITests */,
+				30DB595B1CA46CB0007FEE1E /* app-watchos */,
+				30DB596A1CA46CB0007FEE1E /* app-watchos Extension */,
 				30FB540B1C6A58B40004A538 /* Products */,
 				725FEE2455E80C94BBA37597 /* Pods */,
 				8B9765A98BF669E54968EFD0 /* Frameworks */,
@@ -568,6 +680,8 @@
 				30FB540A1C6A58B40004A538 /* ProtonPay.app */,
 				30FB541E1C6A58B40004A538 /* protonpay-iosTests.xctest */,
 				30FB54291C6A58B40004A538 /* protonpay-iosTests.xctest */,
+				30DB595A1CA46CB0007FEE1E /* app-watchos.app */,
+				30DB59661CA46CB0007FEE1E /* app-watchos Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -619,8 +733,6 @@
 		725FEE2455E80C94BBA37597 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				72852BFA7077A9B4E42196D9 /* Pods.debug.xcconfig */,
-				E0548BB1437D038D9B3DF873 /* Pods.release.xcconfig */,
 				09792DCB26D2F1A099596766 /* Pods-protonpay-ios.debug.xcconfig */,
 				95B7423ECA345B8C4ECD5933 /* Pods-protonpay-ios.release.xcconfig */,
 			);
@@ -630,6 +742,8 @@
 		8B9765A98BF669E54968EFD0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				30AF67381CA498A3006B83DA /* PassKit.framework */,
+				300B66F61CA4635800E24AF1 /* RESideMenu.framework */,
 				307C6A231C7E91AA00723E39 /* PassKit.framework */,
 				307C6A211C7E91A100723E39 /* StoreKit.framework */,
 				A1AC01881780C6537201E7C5 /* Pods.framework */,
@@ -641,6 +755,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		30DB59591CA46CB0007FEE1E /* app-watchos */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30DB59831CA46CB0007FEE1E /* Build configuration list for PBXNativeTarget "app-watchos" */;
+			buildPhases = (
+				30DB59581CA46CB0007FEE1E /* Resources */,
+				30DB59821CA46CB0007FEE1E /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				30DB59691CA46CB0007FEE1E /* PBXTargetDependency */,
+			);
+			name = "app-watchos";
+			productName = "app-watchos";
+			productReference = 30DB595A1CA46CB0007FEE1E /* app-watchos.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		30DB59651CA46CB0007FEE1E /* app-watchos Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30DB59811CA46CB0007FEE1E /* Build configuration list for PBXNativeTarget "app-watchos Extension" */;
+			buildPhases = (
+				30DB59621CA46CB0007FEE1E /* Sources */,
+				30DB59631CA46CB0007FEE1E /* Frameworks */,
+				30DB59641CA46CB0007FEE1E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "app-watchos Extension";
+			productName = "app-watchos Extension";
+			productReference = 30DB59661CA46CB0007FEE1E /* app-watchos Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 		30FB54091C6A58B40004A538 /* protonpay-ios */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 30FB54321C6A58B50004A538 /* Build configuration list for PBXNativeTarget "protonpay-ios" */;
@@ -651,10 +799,12 @@
 				30FB54081C6A58B40004A538 /* Resources */,
 				1B628A2396EE3DB44E45FD78 /* Embed Pods Frameworks */,
 				545614C87EF7766B953CD8F4 /* Copy Pods Resources */,
+				300B66F31CA45F6F00E24AF1 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				30DB597B1CA46CB0007FEE1E /* PBXTargetDependency */,
 			);
 			name = "protonpay-ios";
 			productName = "timekloud-ios";
@@ -703,10 +853,43 @@
 		30FB54021C6A58B40004A538 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Sinan Ulkuatam";
 				TargetAttributes = {
+					30DB59591CA46CB0007FEE1E = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 95ZGR52Q89;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					30DB59651CA46CB0007FEE1E = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 95ZGR52Q89;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.OMC = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
+							com.apple.Wallet = {
+								enabled = 1;
+							};
+						};
+					};
 					30FB54091C6A58B40004A538 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 95ZGR52Q89;
@@ -750,11 +933,30 @@
 				30FB54091C6A58B40004A538 /* protonpay-ios */,
 				30FB541D1C6A58B40004A538 /* protonpay-iosTests */,
 				30FB54281C6A58B40004A538 /* protonpay-iosUITests */,
+				30DB59591CA46CB0007FEE1E /* app-watchos */,
+				30DB59651CA46CB0007FEE1E /* app-watchos Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		30DB59581CA46CB0007FEE1E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30DB59601CA46CB0007FEE1E /* Assets.xcassets in Resources */,
+				30DB595E1CA46CB0007FEE1E /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30DB59641CA46CB0007FEE1E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30DB59781CA46CB0007FEE1E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		30FB54081C6A58B40004A538 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -854,6 +1056,18 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		30DB59621CA46CB0007FEE1E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30DB59721CA46CB0007FEE1E /* NotificationController.swift in Sources */,
+				30DB59701CA46CB0007FEE1E /* ExtensionDelegate.swift in Sources */,
+				30DB59761CA46CB0007FEE1E /* ComplicationController.swift in Sources */,
+				30DB596E1CA46CB0007FEE1E /* InterfaceController.swift in Sources */,
+				30DB59741CA46CB0007FEE1E /* GlanceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		30FB54061C6A58B40004A538 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -940,6 +1154,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		30DB59691CA46CB0007FEE1E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 30DB59651CA46CB0007FEE1E /* app-watchos Extension */;
+			targetProxy = 30DB59681CA46CB0007FEE1E /* PBXContainerItemProxy */;
+		};
+		30DB597B1CA46CB0007FEE1E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 30DB59591CA46CB0007FEE1E /* app-watchos */;
+			targetProxy = 30DB597A1CA46CB0007FEE1E /* PBXContainerItemProxy */;
+		};
 		30FB54201C6A58B40004A538 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 30FB54091C6A58B40004A538 /* protonpay-ios */;
@@ -961,9 +1185,101 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
+		30DB595C1CA46CB0007FEE1E /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				30DB595D1CA46CB0007FEE1E /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		30DB597D1CA46CB0007FEE1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_ENTITLEMENTS = "app-watchos/app-watchos.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = app_watchos_Extension;
+				INFOPLIST_FILE = "app-watchos/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.protonpayments.app.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Debug;
+		};
+		30DB597E1CA46CB0007FEE1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_ENTITLEMENTS = "app-watchos/app-watchos.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = app_watchos_Extension;
+				INFOPLIST_FILE = "app-watchos/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.protonpayments.app.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Release;
+		};
+		30DB597F1CA46CB0007FEE1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_ENTITLEMENTS = "app-watchos Extension/app-watchos Extension.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "app-watchos Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.protonpayments.app.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Debug;
+		};
+		30DB59801CA46CB0007FEE1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_ENTITLEMENTS = "app-watchos Extension/app-watchos Extension.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "app-watchos Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.protonpayments.app.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Release;
+		};
 		30FB54301C6A58B50004A538 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1005,7 +1321,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = PayKloud;
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "ObjC-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "ObjC-Bridging-Header-WatchOS.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1045,7 +1361,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = PayKloud;
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "ObjC-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "ObjC-Bridging-Header-WatchOS.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1061,9 +1377,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "app-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.protonpayments.protonpay-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = com.protonpayments.app;
 				PRODUCT_NAME = ProtonPay;
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ObjC-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -1077,9 +1394,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "app-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.protonpayments.protonpay-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = com.protonpayments.app;
 				PRODUCT_NAME = ProtonPay;
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ObjC-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -1136,6 +1454,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		30DB59811CA46CB0007FEE1E /* Build configuration list for PBXNativeTarget "app-watchos Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30DB597F1CA46CB0007FEE1E /* Debug */,
+				30DB59801CA46CB0007FEE1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		30DB59831CA46CB0007FEE1E /* Build configuration list for PBXNativeTarget "app-watchos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30DB597D1CA46CB0007FEE1E /* Debug */,
+				30DB597E1CA46CB0007FEE1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		30FB54051C6A58B40004A538 /* Build configuration list for PBXProject "protonpay-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

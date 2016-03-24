@@ -1,6 +1,7 @@
 platform :ios, '8.0'
 use_frameworks!
-# link_with 'protonpay-watchos', 'ProtonPay WatchKit Extension'
+
+link_with 'app-watchos', 'app-watchos Extension'
 
 def shared_pods
 	pod 'Alamofire', '~> 3.2.1'
@@ -53,4 +54,13 @@ end
 target 'protonpay-iosUITests' do
 
 end
+
+target 'app-watchos' do
+  platform :watchos, '2.0'
+end
+
+target 'app-watchos Extension' do
+  platform :watchos, '2.0'
+end
+
 

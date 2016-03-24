@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MFa-oS-byB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MFa-oS-byB">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -1626,7 +1627,7 @@ institutions</string>
                         </connections>
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="w3e-6C-5LA" userLabel="nav">
-                        <barButtonItem key="leftBarButtonItem" image="821DAC0D-9904-43CB-8A0C-05CAEFA2991E" id="J68-gC-0HZ">
+                        <barButtonItem key="leftBarButtonItem" image="4B75E564-71EE-486B-B2CE-BC8C885E2BAE" id="J68-gC-0HZ">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="presentLeftMenuViewController:" destination="BYZ-38-t0r" id="YOj-Vw-dth"/>
@@ -3121,7 +3122,7 @@ Click here to view more</string>
         </scene>
     </scenes>
     <resources>
-        <image name="821DAC0D-9904-43CB-8A0C-05CAEFA2991E" width="32" height="32">
+        <image name="4B75E564-71EE-486B-B2CE-BC8C885E2BAE" width="32" height="32">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
