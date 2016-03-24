@@ -1,40 +1,56 @@
-source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 use_frameworks!
+# link_with 'protonpay-watchos', 'ProtonPay WatchKit Extension'
 
-pod 'RESideMenu', '~> 4.0.7'
-pod 'Alamofire', '~> 3.0'
-pod 'AlamoArgo', '~> 0.5.3'
-pod 'Runes', '~> 3.2.0'
-pod 'Argo', '~> 2.2.0'
-pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
-pod 'SVProgressHUD', '~> 2.0-beta8'
-pod 'Neon', '~> 0.0.3'
-pod 'Firebase', '>= 2.5.0'
-pod 'CardIO', '~> 5.3.1'
-pod 'Stripe', '~> 6.2.0'
-pod 'VideoSplashKit', '~> 1.1.0'
-pod 'TextFieldEffects', '~> 1.1.0'
-pod 'UIColor_Hex_Swift', '~> 1.8'
-pod 'KeychainSwift', '~> 3.0'
-pod 'MZFormSheetPresentationController', '~> 2.3.0'
-pod 'PasscodeLock', '~> 1.0.1'
-pod 'BEMCheckBox', '~> 1.0.0'
-pod 'SwiftGifOrigin', '~> 1.5.2'
-pod 'CWStatusBarNotification', '~> 2.3.4'
-pod 'Koloda', '~> 2.0.10'
-pod 'SnapKit', '~> 0.19.1'
-pod 'Gecco', '~> 0.2.0'
-pod 'VENCalculatorInputView', '~> 1.5'
-pod 'RAMAnimatedTabBarController', '~> 1.2.1'
-pod 'RAMReel', '~> 1.0.6'
-pod 'DZNEmptyDataSet', '~> 1.7.3'
-pod 'IOStickyHeader', '~> 0.3.0' 
-pod 'AMViralSwitch'
-pod 'Former'
-pod 'KMPlaceholderTextView', '~> 1.1.2' 
-pod 'SIAlertView'
-
-post_install do |installer|
-    `find Pods -regex 'Pods/pop.*\\.h' -print0 | xargs -0 sed -i '' 's/\\(<\\)pop\\/\\(.*\\)\\(>\\)/\\"\\2\\"/'`
+def shared_pods
+	pod 'Alamofire', '~> 3.2.1'
+#	pod 'AlamoArgo', '~> 0.5.3'	
+#	pod 'Argo', '~> 2.2.0'	
 end
+
+target 'protonpay-ios' do
+	platform :ios, '8.0'
+	shared_pods
+	pod 'RESideMenu'
+	pod 'Runes'
+	pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
+	pod 'SVProgressHUD'
+	pod 'Neon'
+	pod 'Firebase'
+	pod 'CardIO'
+	pod 'Stripe'
+	pod 'VideoSplashKit'
+	pod 'TextFieldEffects'
+	pod 'UIColor_Hex_Swift'
+	pod 'KeychainSwift'
+	pod 'MZFormSheetPresentationController'
+	pod 'PasscodeLock'
+	pod 'BEMCheckBox'
+	pod 'SwiftGifOrigin'
+	pod 'CWStatusBarNotification'
+	pod 'Koloda'
+	pod 'SnapKit'
+	pod 'Gecco'
+	pod 'VENCalculatorInputView'
+	pod 'RAMAnimatedTabBarController'
+	pod 'RAMReel'
+	pod 'DZNEmptyDataSet'
+	pod 'IOStickyHeader'
+	pod 'AMViralSwitch'
+	pod 'Former'
+	pod 'KMPlaceholderTextView', '~> 1.1.2' 
+	pod 'SIAlertView'
+
+	post_install do |installer|
+    	`find Pods -regex 'Pods/pop.*\\.h' -print0 | xargs -0 sed -i '' 's/\\(<\\)pop\\/\\(.*\\)\\(>\\)/\\"\\2\\"/'`
+    end
+end
+
+target 'protonpay-iosTests' do
+
+end
+
+target 'protonpay-iosUITests' do
+
+end
+

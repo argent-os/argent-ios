@@ -10,7 +10,6 @@
 		307C6A221C7E91A100723E39 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C6A211C7E91A100723E39 /* StoreKit.framework */; };
 		307C6A241C7E91AA00723E39 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C6A231C7E91AA00723E39 /* PassKit.framework */; };
 		30C2DA551CA43655003AFD8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA541CA43655003AFD8B /* Assets.xcassets */; };
-		30C2DA571CA4365D003AFD8B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA561CA4365D003AFD8B /* Info.plist */; };
 		30C2DA591CA43665003AFD8B /* PayKloud.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA581CA43665003AFD8B /* PayKloud.entitlements */; };
 		30C2DA5B1CA4366C003AFD8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DA5A1CA4366C003AFD8B /* AppDelegate.swift */; };
 		30C2DA751CA436B8003AFD8B /* cashregister.caf in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA721CA436B8003AFD8B /* cashregister.caf */; };
@@ -99,7 +98,7 @@
 		30C2DB1D1CA43A05003AFD8B /* paykloud_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DB1C1CA43A05003AFD8B /* paykloud_iosUITests.swift */; };
 		30C2DB1F1CA43A51003AFD8B /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DB1E1CA43A51003AFD8B /* EditProfileViewController.swift */; };
 		30C2DB221CA43B62003AFD8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DB201CA43B62003AFD8B /* Main.storyboard */; };
-		8E723A7E4D0FB354304689B7 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1AC01881780C6537201E7C5 /* Pods.framework */; };
+		8F63169BF370478C9A6CC8F5 /* Pods_protonpay_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50E88D0ADD61BCA3EBD43D33 /* Pods_protonpay_ios.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +119,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		09792DCB26D2F1A099596766 /* Pods-protonpay-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-protonpay-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-protonpay-ios/Pods-protonpay-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		307C6A211C7E91A100723E39 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		307C6A231C7E91AA00723E39 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		30C2DA541CA43655003AFD8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "app-ios/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
@@ -216,7 +216,9 @@
 		30FB541E1C6A58B40004A538 /* protonpay-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "protonpay-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB54291C6A58B40004A538 /* protonpay-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "protonpay-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB54411C6ABF6A0004A538 /* ObjC-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjC-Bridging-Header.h"; sourceTree = "<group>"; };
+		50E88D0ADD61BCA3EBD43D33 /* Pods_protonpay_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_protonpay_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72852BFA7077A9B4E42196D9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		95B7423ECA345B8C4ECD5933 /* Pods-protonpay-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-protonpay-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-protonpay-ios/Pods-protonpay-ios.release.xcconfig"; sourceTree = "<group>"; };
 		A1AC01881780C6537201E7C5 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0548BB1437D038D9B3DF873 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -227,8 +229,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				307C6A241C7E91AA00723E39 /* PassKit.framework in Frameworks */,
-				8E723A7E4D0FB354304689B7 /* Pods.framework in Frameworks */,
 				307C6A221C7E91A100723E39 /* StoreKit.framework in Frameworks */,
+				8F63169BF370478C9A6CC8F5 /* Pods_protonpay_ios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -619,6 +621,8 @@
 			children = (
 				72852BFA7077A9B4E42196D9 /* Pods.debug.xcconfig */,
 				E0548BB1437D038D9B3DF873 /* Pods.release.xcconfig */,
+				09792DCB26D2F1A099596766 /* Pods-protonpay-ios.debug.xcconfig */,
+				95B7423ECA345B8C4ECD5933 /* Pods-protonpay-ios.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -629,6 +633,7 @@
 				307C6A231C7E91AA00723E39 /* PassKit.framework */,
 				307C6A211C7E91A100723E39 /* StoreKit.framework */,
 				A1AC01881780C6537201E7C5 /* Pods.framework */,
+				50E88D0ADD61BCA3EBD43D33 /* Pods_protonpay_ios.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -780,7 +785,6 @@
 				30C2DA871CA436CC003AFD8B /* Nunito-ExtraBold.ttf in Resources */,
 				30C2DADF1CA438BE003AFD8B /* ProfileImageCell.xib in Resources */,
 				30C2DB0F1CA439D2003AFD8B /* LaunchScreen.storyboard in Resources */,
-				30C2DA571CA4365D003AFD8B /* Info.plist in Resources */,
 				30C2DA551CA43655003AFD8B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -829,7 +833,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-protonpay-ios/Pods-protonpay-ios-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		545614C87EF7766B953CD8F4 /* Copy Pods Resources */ = {
@@ -844,7 +848,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-protonpay-ios/Pods-protonpay-ios-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1049,7 +1053,7 @@
 		};
 		30FB54331C6A58B50004A538 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 72852BFA7077A9B4E42196D9 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 09792DCB26D2F1A099596766 /* Pods-protonpay-ios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "app-ios/PayKloud.entitlements";
@@ -1065,7 +1069,7 @@
 		};
 		30FB54341C6A58B50004A538 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E0548BB1437D038D9B3DF873 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 95B7423ECA345B8C4ECD5933 /* Pods-protonpay-ios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "app-ios/PayKloud.entitlements";
