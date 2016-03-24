@@ -1048,7 +1048,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "paykloud-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.paykloud.paykloud-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.protonpayments.protonpay-ios";
 				PRODUCT_NAME = ProtonPay;
 				PROVISIONING_PROFILE = "";
 			};
@@ -1064,7 +1064,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "paykloud-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.paykloud.paykloud-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.protonpayments.protonpay-ios";
 				PRODUCT_NAME = ProtonPay;
 				PROVISIONING_PROFILE = "";
 			};
