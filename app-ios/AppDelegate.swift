@@ -49,12 +49,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return presenter
     }()
     
-
 //    // Hiding Status Bar
 //    override public func prefersStatusBarHidden() -> Bool {
 //        return true
 //    }
 
+    // 3D Touch
+    func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: Bool -> Void) {
+        if shortcutItem.type == "com.protonpayments.app.add-customer" {
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let addCustomerVC = sb.instantiateViewControllerWithIdentifier("AddCustomerViewController")
+            let root = UIApplication.sharedApplication().keyWindow?.rootViewController
+            root!.presentViewController(addCustomerVC, animated: false, completion: { () -> Void in
+                completionHandler(true)
+            })
+        }
+        if shortcutItem.type == "com.protonpayments.app.add-plan" {
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let recurringBillingVC = sb.instantiateViewControllerWithIdentifier("RecurringBillingViewController")
+            let root = UIApplication.sharedApplication().keyWindow?.rootViewController
+            root!.presentViewController(recurringBillingVC, animated: false, completion: { () -> Void in
+                completionHandler(true)
+            })
+        }
+        if shortcutItem.type == "com.protonpayments.app.make-payment" {
+            print("sending to add customer view controller")
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let chargeVC = sb.instantiateViewControllerWithIdentifier("ChargeViewController")
+            let root = UIApplication.sharedApplication().keyWindow?.rootViewController
+            root!.presentViewController(chargeVC, animated: false, completion: { () -> Void in
+                completionHandler(true)
+            })
+        }
+
+    }
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         UINavigationBar.appearance().barStyle = .Black
@@ -115,7 +144,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         var characterSet: NSCharacterSet = NSCharacterSet( charactersInString: "<>" )
         
-        var deviceTokenString: String = ( deviceToken.description as NSString )
+        let deviceTokenString: String = ( deviceToken.description as NSString )
             .stringByTrimmingCharactersInSet( characterSet )
             .stringByReplacingOccurrencesOfString( " ", withString: "" ) as String
         

@@ -75,7 +75,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
         // Do any additional setup after loading the view.
         
         //Looks for single or multiple taps.
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ResetPasswordViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
     
@@ -88,7 +88,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
         // sendToolbar.barStyle = UIBarStyle.Default
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Reset Password", style: UIBarButtonItemStyle.Done, target: self, action: Selector("resetButtonTapped:"))
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Reset Password", style: UIBarButtonItemStyle.Done, target: self, action: #selector(ResetPasswordViewController.resetButtonTapped(_:)))
         
         var items: [UIBarButtonItem]? = [UIBarButtonItem]()
         items?.append(flexSpace)
@@ -120,7 +120,9 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
     @IBAction func resetButtonTapped(sender: AnyObject) {
         let email = emailTextField.text
         let username = emailTextField.text
-        SVProgressHUD.showInfoWithStatus("Sending reset link...", maskType: SVProgressHUDMaskType.Gradient)
+        
+        SVProgressHUD.showInfoWithStatus("Sending reset link...")
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Gradient)
         
         // check for empty fields
         if(email!.isEmpty) {
@@ -171,14 +173,14 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
     }
     
     func displayAlertMessage(alertMessage:String) {
-        var alertView: SIAlertView = SIAlertView(title: "Alert", andMessage: alertMessage)
+        let alertView: SIAlertView = SIAlertView(title: "Alert", andMessage: alertMessage)
         alertView.addButtonWithTitle("Ok", type: SIAlertViewButtonType.Default, handler: nil)
         alertView.transitionStyle = SIAlertViewTransitionStyle.DropDown
         alertView.show()
     }
     
     func displayErrorAlertMessage(alertMessage:String) {
-        var alertView: SIAlertView = SIAlertView(title: "Error", andMessage: alertMessage)
+        let alertView: SIAlertView = SIAlertView(title: "Error", andMessage: alertMessage)
         alertView.addButtonWithTitle("Ok", type: SIAlertViewButtonType.Default, handler: nil)
         alertView.transitionStyle = SIAlertViewTransitionStyle.DropDown
         alertView.show()
@@ -199,7 +201,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
         closeToolbar.barStyle = UIBarStyle.Default
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Close", style: UIBarButtonItemStyle.Done, target: self, action: Selector("addCloseButtonAction"))
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Close", style: UIBarButtonItemStyle.Done, target: self, action: #selector(ResetPasswordViewController.addCloseButtonAction))
         
         var items: [UIBarButtonItem]? = [UIBarButtonItem]()
         items?.append(flexSpace)

@@ -33,9 +33,9 @@ class ChargeViewController: UIViewController, VENCalculatorInputViewDelegate {
         navigationBar.translucent = true
         
         // Set up auto align keyboard with ui button
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChargeViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChargeViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -62,7 +62,7 @@ class ChargeViewController: UIViewController, VENCalculatorInputViewDelegate {
     func textField(textField: VENCalculatorInputTextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         print("executing")
         // Construct the text that will be in the field if this change is accepted
-        var oldText = textField.text! as NSString
+        let oldText = textField.text! as NSString
         var newText = oldText.stringByReplacingCharactersInRange(range, withString: string)
         
         var newTextString = String(newText)
@@ -78,7 +78,7 @@ class ChargeViewController: UIViewController, VENCalculatorInputViewDelegate {
         let formatter = NSNumberFormatter()
         formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
         formatter.locale = NSLocale(localeIdentifier: "en_US")
-        var numberFromField = Double(digitText)!/100
+        let numberFromField = Double(digitText)!/100
         newText = formatter.stringFromNumber(numberFromField)!
         
         print(newText)

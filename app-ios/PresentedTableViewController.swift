@@ -34,16 +34,7 @@ class PresentedTableViewController: UIViewController {
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.barTintColor = UIColor.lightGrayColor()
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: UIBarButtonItemStyle.Bordered, target: self, action: Selector("close"))
-        
-        if let text1 = self.passingString1 {
-            //print(text1)
-            // self.textField.text = text;
-        }
-        if let text2 = self.passingString2 {
-            //print(text2)
-            // self.textField.text = text;
-        }
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PresentedTableViewController.close))
     }
     
     override func viewDidAppear(animated: Bool) {

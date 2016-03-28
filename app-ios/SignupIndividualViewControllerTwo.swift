@@ -32,7 +32,7 @@ class SignupIndividualViewControllerTwo: UIViewController, UITextFieldDelegate {
         // Focuses view controller on first name text input
         passwordTextField.becomeFirstResponder()
         
-        var stepButton = UIBarButtonItem(title: "2/3", style: UIBarButtonItemStyle.Plain, target: nil, action: "")
+        var stepButton = UIBarButtonItem(title: "2/3", style: UIBarButtonItemStyle.Plain, target: nil, action: Selector(""))
         navigationItem.rightBarButtonItem = stepButton
         navigationItem.rightBarButtonItem?.tintColor = UIColor.darkGrayColor()
         
@@ -203,7 +203,7 @@ class SignupIndividualViewControllerTwo: UIViewController, UITextFieldDelegate {
     }
     
     // VALIDATION
-    override func shouldPerformSegueWithIdentifier(identifier: String!, sender: AnyObject!) -> Bool {
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject!) -> Bool {
         if(identifier == "finishView") {
             if(passwordTextField.text != repeatPasswordTextField.text) {
                 // display alert

@@ -44,7 +44,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(animated: Bool) {
 
-        var stepButton = UIBarButtonItem(title: "4/4", style: UIBarButtonItemStyle.Plain, target: nil, action: "")
+        let stepButton = UIBarButtonItem(title: "4/4", style: UIBarButtonItemStyle.Plain, target: nil, action: Selector(""))
         navigationItem.rightBarButtonItem = stepButton
         navigationItem.rightBarButtonItem?.tintColor = UIColor.darkGrayColor()
         
@@ -71,7 +71,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
         
         
         let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
+        _ = screen.size.width
         let screenHeight = screen.size.height
         
         // Set checkbox animation
@@ -195,7 +195,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
     }
     
     func displayErrorAlertMessage(alertMessage:String) {
-        var alertView: SIAlertView = SIAlertView(title: "Error", andMessage: alertMessage)
+        let alertView: SIAlertView = SIAlertView(title: "Error", andMessage: alertMessage)
         alertView.addButtonWithTitle("Ok", type: SIAlertViewButtonType.Default, handler: nil)
         alertView.transitionStyle = SIAlertViewTransitionStyle.DropDown
         alertView.show()
@@ -206,7 +206,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
     }
     
     func displaySuccessAlertMessage(alertMessage:String) {
-        var alertView: SIAlertView = SIAlertView(title: "Success", andMessage: alertMessage)
+        let alertView: SIAlertView = SIAlertView(title: "Success", andMessage: alertMessage)
         alertView.addButtonWithTitle("Let's go!", type: SIAlertViewButtonType.Default, handler: { action in
             self.goToLogin()
         })
@@ -217,7 +217,6 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
     // Return IP address of WiFi interface (en0) as a String, or `nil`
     // Used for accepting terms of service
     func getWifiAddress(completionHandler: (String?, NSError?) -> ()) -> () {
-        var address : String?
         
         Alamofire.request(.GET, "https://api.ipify.org").responseString { response in
             // print(response.request) // original URL request

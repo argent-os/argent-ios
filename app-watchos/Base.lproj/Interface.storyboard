@@ -1,34 +1,144 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="6724" systemVersion="14A389" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3735"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="10032"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Nunito-Regular.ttf">
+            <string>Nunito-Regular</string>
+            <string>Nunito-Regular</string>
+            <string>Nunito-Regular</string>
+            <string>Nunito-Regular</string>
+            <string>Nunito-Regular</string>
+            <string>Nunito-Regular</string>
+            <string>Nunito-Regular</string>
+            <string>Nunito-Regular</string>
+            <string>Nunito-Regular</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
-        <!--Interface Controller-->
+        <!--ProtonPay-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModuleProvider="target"/>
+                <controller title="ProtonPay" animationDuration="3" alwaysBounce="YES" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="app_watchos" customModuleProvider="target">
+                    <items>
+                        <button width="1" alignment="left" title="Account" id="OIJ-6n-cbh">
+                            <fontDescription key="font" name="Nunito-Regular" family="Nunito" pointSize="14"/>
+                            <connections>
+                                <segue destination="mjv-ec-GMi" kind="push" id="cam-9m-zrR"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="Settings" id="QZD-VB-Gf9">
+                            <fontDescription key="font" name="Nunito-Regular" family="Nunito" pointSize="14"/>
+                            <connections>
+                                <segue destination="bA3-Iq-Bf8" kind="push" id="Vqf-bo-Nbf"/>
+                            </connections>
+                        </button>
+                        <button alignment="left" id="kx8-Up-ixe">
+                            <group key="contentGroup" width="1" height="22" alignment="left" alpha="0.65000000000000002" animationDuration="1" layout="vertical" id="i7l-cF-vYi">
+                                <items>
+                                    <label width="1" height="55" alignment="center" verticalAlignment="center" text="Deep press for menu" textAlignment="center" baselineAdjustment="alignCenters" id="QUa-zS-x4N">
+                                        <fontDescription key="font" name="Nunito-Regular" family="Nunito" pointSize="10"/>
+                                    </label>
+                                </items>
+                            </group>
+                        </button>
+                    </items>
+                    <menu key="menu" id="46B-El-P8f">
+                        <items>
+                            <menuItem title="Add Customer" icon="add" id="heR-n7-cRj"/>
+                            <menuItem title="Add Plan" icon="accept" id="DV6-jd-znP"/>
+                        </items>
+                    </menu>
+                </controller>
             </objects>
-            <point key="canvasLocation" x="235" y="347"/>
+            <point key="canvasLocation" x="235" y="205.5"/>
+        </scene>
+        <!--Account-->
+        <scene sceneID="g7b-pU-sCG">
+            <objects>
+                <controller title="Account" animationDuration="1" alwaysBounce="YES" id="mjv-ec-GMi">
+                    <items>
+                        <label width="1" height="33.5" alignment="center" alpha="0.90000000000000002" text="Pending Balance" textAlignment="center" baselineAdjustment="alignCenters" id="DaF-zP-4ls">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="font" name="Nunito-Regular" family="Nunito" pointSize="14"/>
+                        </label>
+                        <label width="1" height="23.5" alignment="center" text="$32,940.00" textAlignment="center" id="yjh-QU-Shp">
+                            <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="font" name="Nunito-Regular" family="Nunito" pointSize="14"/>
+                        </label>
+                        <label width="1" height="33.5" alignment="center" alpha="0.90000000000000002" text="Available Balance" textAlignment="center" baselineAdjustment="alignCenters" id="tD3-qm-c6x">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="font" name="Nunito-Regular" family="Nunito" pointSize="14"/>
+                        </label>
+                        <label width="1" height="23.5" alignment="center" text="$234,048.00" textAlignment="center" id="yOR-wC-dvj">
+                            <color key="textColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="font" name="Nunito-Regular" family="Nunito" pointSize="14"/>
+                        </label>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="545" y="75.5"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="yGY-BI-R1b">
+            <objects>
+                <controller title="Settings" animationDuration="1" alwaysBounce="YES" id="bA3-Iq-Bf8">
+                    <items>
+                        <switch width="1" alignment="left" value="YES" title="Notifications" id="jry-xt-LsC">
+                            <fontDescription key="font" name="Nunito-Regular" family="Nunito" pointSize="10"/>
+                        </switch>
+                        <switch width="1" alignment="left" value="YES" title="Share crash data" id="Md2-nY-zPy">
+                            <fontDescription key="font" name="Nunito-Regular" family="Nunito" pointSize="10"/>
+                        </switch>
+                    </items>
+                    <menu key="menu" id="nr7-Mk-2aF">
+                        <items>
+                            <menuItem title="Menu Item" id="YUa-wm-AGh"/>
+                        </items>
+                    </menu>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="545" y="474"/>
         </scene>
         <!--Glance Interface Controller-->
         <scene sceneID="BOz-TT-tkC">
             <objects>
-                <glanceController spacing="0.0" id="0uZ-2p-rRc" customClass="GlanceController" customModuleProvider="target">
+                <glanceController spacing="0.0" topTemplateType="groupLeftLarge" bottomTemplateType="groupBody1Body1Footer" id="0uZ-2p-rRc" customClass="GlanceController" customModule="app_watchos" customModuleProvider="target">
                     <items>
-                        <group alignment="left" id="t8f-Gd-c4y"/>
-                        <group alignment="left" id="uCw-4Q-Ouw"/>
+                        <group alignment="left" id="IkT-gv-cue">
+                            <items>
+                                <imageView width="136" height="1" alignment="center" verticalAlignment="center" image="IconLogoColor" animationDuration="3" id="z0I-QO-IfU"/>
+                            </items>
+                        </group>
+                        <label alignment="left" baselineAdjustment="alignCenters" id="oLH-sq-bGi">
+                            <color key="textColor" red="0.50196081400000003" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </label>
+                        <label alignment="left" id="cWG-hd-pWF"/>
+                        <label alignment="left" id="wbg-yl-APc"/>
+                        <group alignment="left" spacing="4" id="uCw-4Q-Ouw">
+                            <items>
+                                <label width="136" height="56.5" alignment="center" text="Account Balance" textAlignment="center" baselineAdjustment="alignCenters" id="W0n-jb-j5z"/>
+                            </items>
+                        </group>
+                        <label alignment="left" text="Available" id="Ljp-gL-pKJ">
+                            <color key="textColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                        </label>
+                        <label alignment="left" text="$211,048.49" id="SB5-RF-quk">
+                            <color key="textColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                        </label>
+                        <label alignment="left" id="TwD-75-LS3"/>
                     </items>
                     <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="14"/>
                 </glanceController>
             </objects>
-            <point key="canvasLocation" x="235" y="672"/>
+            <point key="canvasLocation" x="235" y="645"/>
         </scene>
-        <!--Static Notification Interface Controller-->
+        <!--BackgroundCard-->
         <scene sceneID="AEw-b0-oYE">
             <objects>
-                <notificationController id="YCC-NB-fut">
+                <notificationController backgroundImage="BackgroundCard" animationDuration="2" id="YCC-NB-fut">
                     <items>
                         <label alignment="left" text="Alert Label" id="XkS-y5-khE"/>
                     </items>
@@ -39,14 +149,14 @@
                     </connections>
                 </notificationController>
             </objects>
-            <point key="canvasLocation" x="235" y="1001"/>
+            <point key="canvasLocation" x="235" y="962"/>
         </scene>
-        <!--Notification Controller-->
+        <!--BackgroundCard-->
         <scene sceneID="KIl-fV-djm">
             <objects>
-                <controller id="gdX-wl-uQE" customClass="NotificationController" customModuleProvider="target"/>
+                <controller backgroundImage="BackgroundCard" animationDuration="2" id="gdX-wl-uQE" customClass="NotificationController" customModule="app_watchos" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="553" y="1001"/>
+            <point key="canvasLocation" x="552" y="962"/>
         </scene>
     </scenes>
 </document>

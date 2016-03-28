@@ -25,6 +25,7 @@ PODS:
   - Runes (3.2.0)
   - SIAlertView (1.3)
   - SnapKit (0.19.1)
+  - STKWebKitViewController (0.5.0)
   - Stripe (6.2.0):
     - Stripe/Core (= 6.2.0)
   - Stripe/Core (6.2.0)
@@ -59,6 +60,7 @@ DEPENDENCIES:
   - Runes
   - SIAlertView
   - SnapKit
+  - STKWebKitViewController
   - Stripe
   - SVProgressHUD
   - SwiftGifOrigin
@@ -102,6 +104,7 @@ SPEC CHECKSUMS:
   Runes: ab2f892272d5165f64620f8086578b28cde98a02
   SIAlertView: 20c794b55eaf44d888773ea51647cf8907723919
   SnapKit: eff58d6e3451bf2f482db2eccf86aecf371dc62d
+  STKWebKitViewController: 1371f39e5f697de11aa091064eeed6eb515a2511
   Stripe: 275524137e6c4cc1058f6d32ece248adf30a21f9
   SVProgressHUD: e9e7c893686a20da55a28015ed384d9425e15479
   SwiftGifOrigin: 893ebcceabe215a00b607328b5322b4e228347e5

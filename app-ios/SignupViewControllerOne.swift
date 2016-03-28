@@ -27,7 +27,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
     var dobYear:String = ""
 
     //Changing Status Bar
-    override public func prefersStatusBarHidden() -> Bool {
+    override internal func prefersStatusBarHidden() -> Bool {
         return true
     }
     
@@ -35,7 +35,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
         
         firstNameTextField.becomeFirstResponder()
 
-        var stepButton = UIBarButtonItem(title: "1/4", style: UIBarButtonItemStyle.Plain, target: nil, action: "")
+        let stepButton = UIBarButtonItem(title: "1/4", style: UIBarButtonItemStyle.Plain, target: nil, action: Selector(""))
         navigationItem.rightBarButtonItem = stepButton
         navigationItem.rightBarButtonItem?.tintColor = UIColor.darkGrayColor()
         
@@ -57,7 +57,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
         firstNameTextField.becomeFirstResponder()
         
         let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
+        _ = screen.size.width
         let screenHeight = screen.size.height
         
         // Tint back button to gray
@@ -141,7 +141,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
         // sendToolbar.barStyle = UIBarStyle.Default
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Continue", style: UIBarButtonItemStyle.Done, target: self, action: Selector("nextStep:"))
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Continue", style: UIBarButtonItemStyle.Done, target: self, action: #selector(SignupViewControllerOne.nextStep(_:)))
         
         var items: [UIBarButtonItem]? = [UIBarButtonItem]()
         items?.append(flexSpace)
@@ -157,7 +157,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
     
     func nextStep(sender: AnyObject) {
         // Function for toolbar button
-        var x = performValidation()
+        let x = performValidation()
         if x == true {
             self.performSegueWithIdentifier("VC2", sender: sender)
         }
@@ -183,7 +183,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
     }
     
     func displayErrorAlertMessage(alertMessage:String) {
-        var alertView: SIAlertView = SIAlertView(title: "Error", andMessage: alertMessage)
+        let alertView: SIAlertView = SIAlertView(title: "Error", andMessage: alertMessage)
         alertView.addButtonWithTitle("Ok", type: SIAlertViewButtonType.Default, handler: nil)
         alertView.transitionStyle = SIAlertViewTransitionStyle.DropDown
         alertView.show()
@@ -271,7 +271,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
     }
     
     // VALIDATION
-    override func shouldPerformSegueWithIdentifier(identifier: String!, sender: AnyObject!) -> Bool {
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject!) -> Bool {
         if(identifier == "VC2") {
             if(firstNameTextField.text?.characters.count < 1) {
                 displayErrorAlertMessage("First name cannot be empty")

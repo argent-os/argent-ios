@@ -27,7 +27,7 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(animated: Bool) {
         
-        var stepButton = UIBarButtonItem(title: "3/4", style: UIBarButtonItemStyle.Plain, target: nil, action: "")
+        let stepButton = UIBarButtonItem(title: "3/4", style: UIBarButtonItemStyle.Plain, target: nil, action: Selector(""))
         navigationItem.rightBarButtonItem = stepButton
         navigationItem.rightBarButtonItem?.tintColor = UIColor.darkGrayColor()
         
@@ -40,7 +40,7 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate {
     }
     
     //Changing Status Bar
-    override public func prefersStatusBarHidden() -> Bool {
+    override internal func prefersStatusBarHidden() -> Bool {
         return true
     }
     
@@ -57,7 +57,7 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate {
         
         // Set screen bounds
         let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
+        _ = screen.size.width
         let screenHeight = screen.size.height
         
         // Inherit UITextField Delegate, this is used for next and join on keyboard
@@ -130,7 +130,7 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate {
         // sendToolbar.barStyle = UIBarStyle.Default
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Continue", style: UIBarButtonItemStyle.Done, target: self, action: Selector("nextStep:"))
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Continue", style: UIBarButtonItemStyle.Done, target: self, action: #selector(SignupViewControllerThree.nextStep(_:)))
         
         var items: [UIBarButtonItem]? = [UIBarButtonItem]()
         items?.append(flexSpace)
@@ -144,14 +144,14 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate {
     }
     
     func nextStep(sender: AnyObject) {
-        var x = performValidation()
+        let x = performValidation()
         if x == true {
             performSegueWithIdentifier("finishView", sender: sender)
         }
     }
     
     func displayErrorAlertMessage(alertMessage:String) {
-        var alertView: SIAlertView = SIAlertView(title: "Error", andMessage: alertMessage)
+        let alertView: SIAlertView = SIAlertView(title: "Error", andMessage: alertMessage)
         alertView.addButtonWithTitle("Ok", type: SIAlertViewButtonType.Default, handler: nil)
         alertView.transitionStyle = SIAlertViewTransitionStyle.DropDown
         alertView.show()
@@ -200,7 +200,7 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate {
         return true
     }
     // VALIDATION
-    override func shouldPerformSegueWithIdentifier(identifier: String!, sender: AnyObject!) -> Bool {
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject!) -> Bool {
         if(identifier == "finishView") {
             if(passwordTextField.text != repeatPasswordTextField.text) {
                 // display alert

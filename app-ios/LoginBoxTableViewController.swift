@@ -59,7 +59,7 @@ class LoginBoxTableViewController: UITableViewController {
         // sendToolbar.barStyle = UIBarStyle.Default
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Login", style: UIBarButtonItemStyle.Done, target: self, action: Selector("loginButtonTapped:"))
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Login", style: UIBarButtonItemStyle.Done, target: self, action: #selector(LoginBoxTableViewController.loginButtonTapped(_:)))
         
         var items: [UIBarButtonItem]? = [UIBarButtonItem]()
         items?.append(flexSpace)
@@ -76,6 +76,8 @@ class LoginBoxTableViewController: UITableViewController {
         let email = usernameTextField.text
         let username = usernameTextField.text
         let password = passwordTextField.text
+        
+        SVProgressHUD.show()
         
         print("login button tapped")
         
@@ -208,7 +210,7 @@ class LoginBoxTableViewController: UITableViewController {
     }
     
     func displayErrorAlertMessage(alertMessage:String) {
-        var alertView: SIAlertView = SIAlertView(title: "Error", andMessage: alertMessage)
+        let alertView: SIAlertView = SIAlertView(title: "Error", andMessage: alertMessage)
         alertView.addButtonWithTitle("Ok", type: SIAlertViewButtonType.Default, handler: nil)
         //        alertView.addButtonWithTitle("Button2", type: SIAlertViewButtonType.Destructive, handler: nil)
         alertView.transitionStyle = SIAlertViewTransitionStyle.DropDown

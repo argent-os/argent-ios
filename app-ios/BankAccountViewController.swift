@@ -66,7 +66,7 @@ class MainTableViewController: UITableViewController {
             // let destination = (self.storyboard?.instantiateViewControllerWithIdentifier("DetailViewController"))! as! DetailViewController
 
             let destination = segue.destinationViewController as! DetailViewController
-            destination.color = element.objectForKey("color") as! UIColor
+            destination.color = element.objectForKey("color") as? UIColor
             print("color setting", destination.color!)
 
             // destination.element = element as! NSDictionary

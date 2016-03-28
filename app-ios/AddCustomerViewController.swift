@@ -47,7 +47,7 @@ final class AddCustomerViewController: FormViewController {
         addCustomerButton.layer.cornerRadius = 0
         addCustomerButton.layer.masksToBounds = true
         addCustomerButton.clipsToBounds = true
-        addCustomerButton.addTarget(self, action: "addCustomerButtonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
+        addCustomerButton.addTarget(self, action: #selector(AddCustomerViewController.addCustomerButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(addCustomerButton)
         
         self.navigationItem.title = "Add Customer"

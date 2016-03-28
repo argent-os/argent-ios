@@ -23,7 +23,7 @@ class SignupViewControllerZero: UIViewController {
     }
     
     //Changing Status Bar
-    override public func prefersStatusBarHidden() -> Bool {
+    override internal func prefersStatusBarHidden() -> Bool {
         return true
     }
 
@@ -33,21 +33,21 @@ class SignupViewControllerZero: UIViewController {
         UITextField.appearance().keyboardAppearance = .Light
 
         let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
-        let screenHeight = screen.size.height
+        _ = screen.size.width
+        _ = screen.size.height
         
         // Close button to return to auth view
-        var backBtn: UIButton = UIButton(type: .Custom)
-        var backBtnImage: UIImage = UIImage(named: "IconCloseColor")!
-        var backBtnImagePressed: UIImage = UIImage(named: "IconClose")!
+        let backBtn: UIButton = UIButton(type: .Custom)
+        let backBtnImage: UIImage = UIImage(named: "IconCloseColor")!
+        let backBtnImagePressed: UIImage = UIImage(named: "IconClose")!
         backBtn.setBackgroundImage(backBtnImage, forState: .Normal)
         backBtn.setBackgroundImage(backBtnImagePressed, forState: .Highlighted)
-        backBtn.addTarget(self, action: "goToAuth", forControlEvents: .TouchUpInside)
+        backBtn.addTarget(self, action: #selector(SignupViewControllerZero.goToAuth), forControlEvents: .TouchUpInside)
         backBtn.frame = CGRectMake(0, 0, 33, 33)
-        var backButtonView: UIView = UIView(frame: CGRectMake(0, 0, 33, 33))
+        let backButtonView: UIView = UIView(frame: CGRectMake(0, 0, 33, 33))
         backButtonView.bounds = CGRectOffset(backButtonView.bounds, 7, -7)
         backButtonView.addSubview(backBtn)
-        var backButton: UIBarButtonItem = UIBarButtonItem(customView: backButtonView)
+        let backButton: UIBarButtonItem = UIBarButtonItem(customView: backButtonView)
         self.navigationItem.leftBarButtonItem = backButton
 
         // Transparent navigation bar

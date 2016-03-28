@@ -152,7 +152,7 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         
         // Configure fancy button
         self.button = StarButton(frame: CGRectMake(133, 133, 54, 54))
-        self.button.addTarget(self, action: "favorite:", forControlEvents:.TouchUpInside)
+        self.button.addTarget(self, action: #selector(HomeViewController.favorite(_:)), forControlEvents:.TouchUpInside)
         // self.view.addSubview(button)
         self.view.addSubview(scanCardButton)
         self.view.addSubview(applePayButton)
@@ -255,7 +255,7 @@ class HomeViewController: UIViewController, UITableViewDataSource {
 //        print(NSUserDefaults.valueForKey("userLoggedIn"))
         SVProgressHUD.show()
         // go to login view
-        self.performSegueWithIdentifier("loginView", sender: self);
+        //self.performSegueWithIdentifier("loginView", sender: self);
     }
     
     @IBAction func logoutButtonTapped(sender: AnyObject) {

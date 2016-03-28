@@ -16,14 +16,13 @@ class AuthViewController: UIViewController  {
     var spotlightViewController: SpotlightViewController?
     
     override func viewDidAppear(animated: Bool) {
-
         SVProgressHUD.dismiss()
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if(segue.identifier == "tutorialView") {
-            
-        }
+//        if(segue.identifier == "tutorialView") {
+//            
+//        }
     }
     
     override func viewDidLoad() {
@@ -35,7 +34,7 @@ class AuthViewController: UIViewController  {
         showSpotlight()
 
         // Set background image
-        var backgroundView: UIImageView = UIImageView(image: UIImage(named: "BackgroundGradientInverse"))
+        let backgroundView: UIImageView = UIImageView(image: UIImage(named: "BackgroundGradientInverse"))
         backgroundView.contentMode = UIViewContentMode.ScaleAspectFill
         backgroundView.frame = self.view.bounds
         self.view!.addSubview(backgroundView)
@@ -59,7 +58,7 @@ class AuthViewController: UIViewController  {
         loginButton.setTitle("Log in", forState: .Normal)
         loginButton.layer.cornerRadius = 0
         loginButton.layer.masksToBounds = true
-        loginButton.addTarget(self, action: "login:", forControlEvents: UIControlEvents.TouchUpInside)
+        loginButton.addTarget(self, action: #selector(AuthViewController.login(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(loginButton)
         
         let signupButton = UIButton(frame: CGRect(x: screenWidth*0.5, y: screenHeight*0.91, width: screenWidth/2, height: 60.0))
@@ -71,7 +70,7 @@ class AuthViewController: UIViewController  {
         signupButton.layer.borderWidth = 1
         signupButton.layer.borderColor = UIColor(rgba: "#ffffff").CGColor
         signupButton.layer.masksToBounds = true
-        signupButton.addTarget(self, action: "signup:", forControlEvents: UIControlEvents.TouchUpInside)
+        signupButton.addTarget(self, action: #selector(AuthViewController.signup(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(signupButton)
         
         let imageName = "IconLogo"
@@ -96,7 +95,7 @@ class AuthViewController: UIViewController  {
         text.font = UIFont(name: "Nunito-ExtraBold", size: 14)
         view.addSubview(text)
         
-        let attributedString1 = NSMutableAttributedString(string: "Tap to view app features.")
+        _ = NSMutableAttributedString(string: "Tap to view app features.")
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 100.0))
         button.tag = 7579
         button.frame.origin.y = screenHeight*0.44 // 20 down from the top
@@ -104,7 +103,7 @@ class AuthViewController: UIViewController  {
         button.setTitle("Tap to view app features.", forState: .Normal)
         button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         button.titleLabel?.font = UIFont(name: "Nunito-SemiBold", size: 14)
-        button.addTarget(self, action: "goToTutorial:", forControlEvents: UIControlEvents.TouchUpInside)
+        button.addTarget(self, action: #selector(AuthViewController.goToTutorial(_:)), forControlEvents: UIControlEvents.TouchUpInside)
 //        button.textAlignment = NSTextAlignment.Center
 //        button.textColor = UIColor(rgba: "#1aa8f6")
 //        button.font = UIFont (name: "Nunito", size: 14)
@@ -149,30 +148,6 @@ class AuthViewController: UIViewController  {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func resizeImage(image: UIImage, newSize: CGSize) -> (UIImage) {
-        let newRect = CGRectIntegral(CGRectMake(0,0, newSize.width, newSize.height))
-        let imageRef = image.CGImage
-        
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 0)
-        let context = UIGraphicsGetCurrentContext()
-        
-        // Set the quality level to use when rescaling
-        CGContextSetInterpolationQuality(context, CGInterpolationQuality.High)
-        let flipVertical = CGAffineTransformMake(1, 0, 0, -1, 0, newSize.height)
-        
-        CGContextConcatCTM(context, flipVertical)
-        // Draw into the context; this scales the image
-        CGContextDrawImage(context, newRect, imageRef)
-        
-        let newImageRef = CGBitmapContextCreateImage(context)! as CGImage
-        let newImage = UIImage(CGImage: newImageRef)
-        
-        // Get the resized image from the context and a UIImage
-        UIGraphicsEndImageContext()
-        
-        return newImage
     }
     
 }

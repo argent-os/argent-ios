@@ -16,7 +16,7 @@ class SupportMessageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController!.navigationBar.tintColor = UIColor.darkGrayColor()
+        // self.navigationController!.navigationBar.tintColor = UIColor.darkGrayColor()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -33,7 +33,7 @@ class SupportMessageViewController: UIViewController {
         // sendToolbar.barStyle = UIBarStyle.Default
 
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Send", style: UIBarButtonItemStyle.Done, target: self, action: Selector("sendMessageAction"))
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Send", style: UIBarButtonItemStyle.Done, target: self, action: #selector(SupportMessageViewController.sendMessageAction))
 
         var items: [UIBarButtonItem]? = [UIBarButtonItem]()
         items?.append(flexSpace)

@@ -57,33 +57,33 @@ class ProfileMenuViewController: UITableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
-            if identifier == "termsView" {
-                if #available(iOS 9.0, *) {
-                    let svc = SFSafariViewController(URL: NSURL(string: "http://www.protonpayments.com/home")!, entersReaderIfAvailable: true)
-                    self.presentViewController(svc, animated: true, completion: nil)
-                } else {
-                    UIApplication.sharedApplication().openURL(NSURL(string: "http://www.protonpayments.com/home")!)
-                    self.dismissViewControllerAnimated(true, completion: nil)
-                }
-            }
-            if identifier == "privacyView" {
-                if #available(iOS 9.0, *) {
-                    let svc = SFSafariViewController(URL: NSURL(string: "http://www.protonpayments.com/home")!, entersReaderIfAvailable: true)
-                    self.presentViewController(svc, animated: true, completion: nil)
-                } else {
-                    UIApplication.sharedApplication().openURL(NSURL(string: "http://www.protonpayments.com/home")!)
-                    self.dismissViewControllerAnimated(true, completion: nil)
-                }
-            }
-            if identifier == "supportView" {
-                if #available(iOS 9.0, *) {
-                    let svc = SFSafariViewController(URL: NSURL(string: "http://www.protonpayments.com/home")!, entersReaderIfAvailable: true)
-                    self.presentViewController(svc, animated: true, completion: nil)
-                } else {
-                    UIApplication.sharedApplication().openURL(NSURL(string: "http://www.protonpayments.com/home")!)
-                    self.dismissViewControllerAnimated(true, completion: nil)
-                }
-            }
+//            if identifier == "termsView" {
+//                if #available(iOS 9.0, *) {
+//                    let svc = SFSafariViewController(URL: NSURL(string: "http://www.protonpayments.com/home")!, entersReaderIfAvailable: true)
+//                    self.presentViewController(svc, animated: true, completion: nil)
+//                } else {
+//                    UIApplication.sharedApplication().openURL(NSURL(string: "http://www.protonpayments.com/home")!)
+//                    self.dismissViewControllerAnimated(true, completion: nil)
+//                }
+//            }
+//            if identifier == "privacyView" {
+//                if #available(iOS 9.0, *) {
+//                    let svc = SFSafariViewController(URL: NSURL(string: "http://www.protonpayments.com/home")!, entersReaderIfAvailable: true)
+//                    self.presentViewController(svc, animated: true, completion: nil)
+//                } else {
+//                    UIApplication.sharedApplication().openURL(NSURL(string: "http://www.protonpayments.com/home")!)
+//                    self.dismissViewControllerAnimated(true, completion: nil)
+//                }
+//            }
+//            if identifier == "supportView" {
+//                if #available(iOS 9.0, *) {
+//                    let svc = SFSafariViewController(URL: NSURL(string: "http://www.protonpayments.com/home")!, entersReaderIfAvailable: true)
+//                    self.presentViewController(svc, animated: true, completion: nil)
+//                } else {
+//                    UIApplication.sharedApplication().openURL(NSURL(string: "http://www.protonpayments.com/home")!)
+//                    self.dismissViewControllerAnimated(true, completion: nil)
+//                }
+//            }
         }
     }
     

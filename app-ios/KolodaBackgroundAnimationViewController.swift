@@ -110,7 +110,7 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
     func koloda(koloda: KolodaView, viewForCardAtIndex index: UInt) -> UIView {
 //         return UIImageView(image: UIImage(named: "cards_\(index + 1)"))
         if(index == 0) {
-            var imgView = UIImageView(image: UIImage(named: "BackgroundCard"))
+            let imgView = UIImageView(image: UIImage(named: "BackgroundCard"))
             // Add the image
             let imageViewBackground = UIImageView(frame: paddedFrameImage)
             imageViewBackground.image = UIImage(named: "IconPhoneRecurLight")
@@ -144,7 +144,7 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
             imgView.addSubview(text)
             return imgView
         } else if(index == 1) {
-            var imgView = UIImageView(image: UIImage(named: "BackgroundCard"))
+            let imgView = UIImageView(image: UIImage(named: "BackgroundCard"))
             // Add the image
             let imageViewBackground = UIImageView(frame: paddedFrameImage)
             imageViewBackground.image = UIImage(named: "IconNotifyLight")
@@ -178,7 +178,7 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
             imgView.addSubview(text)
             return imgView
         } else if(index == 2) {
-            var imgView = UIImageView(image: UIImage(named: "BackgroundCard"))
+            let imgView = UIImageView(image: UIImage(named: "BackgroundCard"))
             // Add the image
             let imageViewBackground = UIImageView(frame: paddedFrameImage)
             imageViewBackground.image = UIImage(named: "IconCreditCardLight")
@@ -212,7 +212,7 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
             imgView.addSubview(text)
             return imgView
         } else if(index == 3) {
-            var imgView = UIImageView(image: UIImage(named: "BackgroundCard"))
+            let imgView = UIImageView(image: UIImage(named: "BackgroundCard"))
             // Add the image
             let imageViewBackground = UIImageView(frame: paddedFrameImage)
             imageViewBackground.image = UIImage(named: "IconTouchSecureLight")
@@ -246,7 +246,7 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
             imgView.addSubview(text)
             return imgView
         } else if(index == 4) {
-            var imgView = UIImageView(image: UIImage(named: "BackgroundCard"))
+            let imgView = UIImageView(image: UIImage(named: "BackgroundCard"))
             // Add the image
             let imageViewBackground = UIImageView(frame: paddedFrameImage)
             imageViewBackground.image = UIImage(named: "IconSafeLight")

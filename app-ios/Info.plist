@@ -148,6 +148,39 @@ Nunito-SemiBold.ttf</string>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemType</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).make-payment</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Make a Payment</string>
+			<key>UIApplicationShortcutItemSubtitle</key>
+			<string></string>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>ic_pay_3d</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemType</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).add-plan</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Add Billing Plan</string>
+			<key>UIApplicationShortcutItemSubtitle</key>
+			<string></string>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>ic_recur_3d</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemType</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).add-customer</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Add Customer</string>
+			<key>UIApplicationShortcutItemSubtitle</key>
+			<string></string>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>ic_add_3d</string>
+		</dict>
+	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

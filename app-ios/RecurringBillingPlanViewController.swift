@@ -47,7 +47,7 @@ final class RecurringBillingViewController: FormViewController {
         addPlanButton.layer.cornerRadius = 0
         addPlanButton.layer.masksToBounds = true
         addPlanButton.clipsToBounds = true
-        addPlanButton.addTarget(self, action: "addPlanButtonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
+        addPlanButton.addTarget(self, action: #selector(RecurringBillingViewController.addPlanButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(addPlanButton)
         
         self.navigationItem.title = "Add Plan"

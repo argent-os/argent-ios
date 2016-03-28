@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		307C6A221C7E91A100723E39 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C6A211C7E91A100723E39 /* StoreKit.framework */; };
 		307C6A241C7E91AA00723E39 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C6A231C7E91AA00723E39 /* PassKit.framework */; };
+		309E43BE1CA8ADF900279D97 /* WebTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E43BD1CA8ADF900279D97 /* WebTermsViewController.swift */; };
+		309E43C21CA8AE0B00279D97 /* WebSupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E43C11CA8AE0B00279D97 /* WebSupportViewController.swift */; };
+		309E43C41CA8AE1800279D97 /* WebPrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E43C31CA8AE1800279D97 /* WebPrivacyViewController.swift */; };
 		30AF67391CA498A3006B83DA /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AF67381CA498A3006B83DA /* PassKit.framework */; };
 		30C2DA551CA43655003AFD8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA541CA43655003AFD8B /* Assets.xcassets */; };
 		30C2DA591CA43665003AFD8B /* PayKloud.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA581CA43665003AFD8B /* PayKloud.entitlements */; };
@@ -173,6 +176,9 @@
 		300B66F61CA4635800E24AF1 /* RESideMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RESideMenu.framework; path = "Pods/../build/Debug-iphoneos/RESideMenu.framework"; sourceTree = "<group>"; };
 		307C6A211C7E91A100723E39 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		307C6A231C7E91AA00723E39 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
+		309E43BD1CA8ADF900279D97 /* WebTermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebTermsViewController.swift; path = "app-ios/WebTermsViewController.swift"; sourceTree = SOURCE_ROOT; };
+		309E43C11CA8AE0B00279D97 /* WebSupportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebSupportViewController.swift; path = "app-ios/WebSupportViewController.swift"; sourceTree = SOURCE_ROOT; };
+		309E43C31CA8AE1800279D97 /* WebPrivacyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebPrivacyViewController.swift; path = "app-ios/WebPrivacyViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30AF67371CA498A2006B83DA /* app-watchos Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "app-watchos Extension.entitlements"; sourceTree = "<group>"; };
 		30AF67381CA498A3006B83DA /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.2.sdk/System/Library/Frameworks/PassKit.framework; sourceTree = DEVELOPER_DIR; };
 		30C2DA541CA43655003AFD8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "app-ios/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
@@ -462,6 +468,16 @@
 			name = Card;
 			sourceTree = "<group>";
 		};
+		309E43BC1CA8ADDE00279D97 /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				309E43BD1CA8ADF900279D97 /* WebTermsViewController.swift */,
+				309E43C31CA8AE1800279D97 /* WebPrivacyViewController.swift */,
+				309E43C11CA8AE0B00279D97 /* WebSupportViewController.swift */,
+			);
+			name = Web;
+			sourceTree = "<group>";
+		};
 		30BECC041C6F92C200B8A088 /* StarButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -638,6 +654,7 @@
 			isa = PBXGroup;
 			children = (
 				30C2DACA1CA4385C003AFD8B /* ProfileMenuViewController.swift */,
+				309E43BC1CA8ADDE00279D97 /* Web */,
 				308AC9B71C9F79830040EF3C /* Card */,
 				308AC9A81C9DFA0B0040EF3C /* Support */,
 				3004D60B1C9DF13200499CD0 /* Edit */,
@@ -1076,6 +1093,7 @@
 				30C2DA9A1CA4373E003AFD8B /* LoginBoxTableViewController.swift in Sources */,
 				30C2DAFD1CA43984003AFD8B /* Plaid.swift in Sources */,
 				30C2DA951CA4372D003AFD8B /* PasscodeLockConfiguration.swift in Sources */,
+				309E43C41CA8AE1800279D97 /* WebPrivacyViewController.swift in Sources */,
 				30C2DA971CA4372D003AFD8B /* UserDefaultsPasscodeRepository.swift in Sources */,
 				30C2DAF31CA4395D003AFD8B /* WordReader.swift in Sources */,
 				30C2DABC1CA437CB003AFD8B /* KolodaOverlayView.swift in Sources */,
@@ -1112,6 +1130,7 @@
 				30C2DAFB1CA4397C003AFD8B /* LeftMenuViewController.swift in Sources */,
 				30C2DAE31CA43926003AFD8B /* ConfigureNotificationsViewController.swift in Sources */,
 				30C2DAEA1CA43934003AFD8B /* BankDetailViewController.swift in Sources */,
+				309E43C21CA8AE0B00279D97 /* WebSupportViewController.swift in Sources */,
 				30C2DACD1CA43862003AFD8B /* CreditCardAccountViewController.swift in Sources */,
 				30C2DAED1CA43946003AFD8B /* RecurringBillingPlanViewController.swift in Sources */,
 				30C2DAAF1CA4379F003AFD8B /* ResetPasswordViewController.swift in Sources */,
@@ -1133,6 +1152,7 @@
 				30C2DAA51CA4374F003AFD8B /* SignupIndividualViewControllerThree.swift in Sources */,
 				30C2DB171CA439F4003AFD8B /* paykloud_iosTests.swift in Sources */,
 				30C2DAC31CA4383B003AFD8B /* NotificationViewController.swift in Sources */,
+				309E43BE1CA8ADF900279D97 /* WebTermsViewController.swift in Sources */,
 				30C2DB1F1CA43A51003AFD8B /* EditProfileViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
