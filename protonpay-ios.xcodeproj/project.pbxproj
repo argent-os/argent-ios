@@ -7,11 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30162DB81CA9F97D00438842 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30162DB71CA9F97D00438842 /* Repository.swift */; };
+		30162DBA1CA9FB2C00438842 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30162DB91CA9FB2C00438842 /* Stock.swift */; };
 		307C6A221C7E91A100723E39 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C6A211C7E91A100723E39 /* StoreKit.framework */; };
 		307C6A241C7E91AA00723E39 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C6A231C7E91AA00723E39 /* PassKit.framework */; };
 		309E43BE1CA8ADF900279D97 /* WebTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E43BD1CA8ADF900279D97 /* WebTermsViewController.swift */; };
 		309E43C21CA8AE0B00279D97 /* WebSupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E43C11CA8AE0B00279D97 /* WebSupportViewController.swift */; };
 		309E43C41CA8AE1800279D97 /* WebPrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E43C31CA8AE1800279D97 /* WebPrivacyViewController.swift */; };
+		309E43C71CA9CF6C00279D97 /* MenuTabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E43C61CA9CF6C00279D97 /* MenuTabButton.swift */; };
+		309E43CB1CA9CFED00279D97 /* bloom.caf in Resources */ = {isa = PBXBuildFile; fileRef = 309E43C81CA9CFED00279D97 /* bloom.caf */; };
+		309E43CC1CA9CFED00279D97 /* fold.caf in Resources */ = {isa = PBXBuildFile; fileRef = 309E43C91CA9CFED00279D97 /* fold.caf */; };
+		309E43CD1CA9CFED00279D97 /* selected.caf in Resources */ = {isa = PBXBuildFile; fileRef = 309E43CA1CA9CFED00279D97 /* selected.caf */; };
 		30AF67391CA498A3006B83DA /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AF67381CA498A3006B83DA /* PassKit.framework */; };
 		30C2DA551CA43655003AFD8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA541CA43655003AFD8B /* Assets.xcassets */; };
 		30C2DA591CA43665003AFD8B /* PayKloud.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA581CA43665003AFD8B /* PayKloud.entitlements */; };
@@ -174,11 +180,17 @@
 /* Begin PBXFileReference section */
 		09792DCB26D2F1A099596766 /* Pods-protonpay-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-protonpay-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-protonpay-ios/Pods-protonpay-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		300B66F61CA4635800E24AF1 /* RESideMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RESideMenu.framework; path = "Pods/../build/Debug-iphoneos/RESideMenu.framework"; sourceTree = "<group>"; };
+		30162DB71CA9F97D00438842 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Repository.swift; path = "app-ios/Repository.swift"; sourceTree = SOURCE_ROOT; };
+		30162DB91CA9FB2C00438842 /* Stock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stock.swift; path = "app-ios/Stock.swift"; sourceTree = SOURCE_ROOT; };
 		307C6A211C7E91A100723E39 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		307C6A231C7E91AA00723E39 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		309E43BD1CA8ADF900279D97 /* WebTermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebTermsViewController.swift; path = "app-ios/WebTermsViewController.swift"; sourceTree = SOURCE_ROOT; };
 		309E43C11CA8AE0B00279D97 /* WebSupportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebSupportViewController.swift; path = "app-ios/WebSupportViewController.swift"; sourceTree = SOURCE_ROOT; };
 		309E43C31CA8AE1800279D97 /* WebPrivacyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebPrivacyViewController.swift; path = "app-ios/WebPrivacyViewController.swift"; sourceTree = SOURCE_ROOT; };
+		309E43C61CA9CF6C00279D97 /* MenuTabButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuTabButton.swift; path = "app-ios/MenuTabButton.swift"; sourceTree = SOURCE_ROOT; };
+		309E43C81CA9CFED00279D97 /* bloom.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = bloom.caf; sourceTree = "<group>"; };
+		309E43C91CA9CFED00279D97 /* fold.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fold.caf; sourceTree = "<group>"; };
+		309E43CA1CA9CFED00279D97 /* selected.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = selected.caf; sourceTree = "<group>"; };
 		30AF67371CA498A2006B83DA /* app-watchos Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "app-watchos Extension.entitlements"; sourceTree = "<group>"; };
 		30AF67381CA498A3006B83DA /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.2.sdk/System/Library/Frameworks/PassKit.framework; sourceTree = DEVELOPER_DIR; };
 		30C2DA541CA43655003AFD8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "app-ios/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
@@ -370,17 +382,11 @@
 		3013DCEA1C8515A300268DAD /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				3013DCED1C85160500268DAD /* User */,
+				30C2DAF81CA43975003AFD8B /* User.swift */,
+				30162DB71CA9F97D00438842 /* Repository.swift */,
+				30162DB91CA9FB2C00438842 /* Stock.swift */,
 			);
 			name = Models;
-			sourceTree = "<group>";
-		};
-		3013DCED1C85160500268DAD /* User */ = {
-			isa = PBXGroup;
-			children = (
-				30C2DAF81CA43975003AFD8B /* User.swift */,
-			);
-			name = User;
 			sourceTree = "<group>";
 		};
 		304DDE351C9CEDA500962BC4 /* Integrations */ = {
@@ -478,6 +484,14 @@
 			name = Web;
 			sourceTree = "<group>";
 		};
+		309E43C51CA9CF5600279D97 /* MenuTabButton */ = {
+			isa = PBXGroup;
+			children = (
+				309E43C61CA9CF6C00279D97 /* MenuTabButton.swift */,
+			);
+			name = MenuTabButton;
+			sourceTree = "<group>";
+		};
 		30BECC041C6F92C200B8A088 /* StarButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -557,6 +571,7 @@
 		30BECC0C1C6F93AF00B8A088 /* Add-ons */ = {
 			isa = PBXGroup;
 			children = (
+				309E43C51CA9CF5600279D97 /* MenuTabButton */,
 				307265391C72B95900D2AF61 /* CountryPicker */,
 				30BECC041C6F92C200B8A088 /* StarButton */,
 			);
@@ -569,6 +584,9 @@
 				30C2DA721CA436B8003AFD8B /* cashregister.caf */,
 				30C2DA731CA436B8003AFD8B /* chime.caf */,
 				30C2DA741CA436B8003AFD8B /* chime2.caf */,
+				309E43C81CA9CFED00279D97 /* bloom.caf */,
+				309E43C91CA9CFED00279D97 /* fold.caf */,
+				309E43CA1CA9CFED00279D97 /* selected.caf */,
 			);
 			name = sounds;
 			path = "app-ios/sounds";
@@ -980,6 +998,7 @@
 			files = (
 				30C2DB0D1CA439CC003AFD8B /* Auth.storyboard in Resources */,
 				30C2DA8D1CA436CC003AFD8B /* ocra.ttf in Resources */,
+				309E43CB1CA9CFED00279D97 /* bloom.caf in Resources */,
 				30C2DA8B1CA436CC003AFD8B /* Nunito-Regular.ttf in Resources */,
 				30C2DA911CA436E6003AFD8B /* PasscodeLockView.xib in Resources */,
 				30C2DB051CA439AB003AFD8B /* CountryView.xib in Resources */,
@@ -997,10 +1016,12 @@
 				30C2DA851CA436CC003AFD8B /* Nunito-Black.ttf in Resources */,
 				30C2DABD1CA437CB003AFD8B /* OverlayView.xib in Resources */,
 				30C2DA761CA436B8003AFD8B /* chime.caf in Resources */,
+				309E43CC1CA9CFED00279D97 /* fold.caf in Resources */,
 				30C2DADD1CA438B8003AFD8B /* ProfileLabelCell.xib in Resources */,
 				30C2DB1B1CA43A00003AFD8B /* Info.plist in Resources */,
 				30C2DB191CA439FA003AFD8B /* Info.plist in Resources */,
 				30C2DA8A1CA436CC003AFD8B /* Nunito-Medium.ttf in Resources */,
+				309E43CD1CA9CFED00279D97 /* selected.caf in Resources */,
 				30C2DA871CA436CC003AFD8B /* Nunito-ExtraBold.ttf in Resources */,
 				30C2DADF1CA438BE003AFD8B /* ProfileImageCell.xib in Resources */,
 				30C2DB0F1CA439D2003AFD8B /* LaunchScreen.storyboard in Resources */,
@@ -1091,6 +1112,7 @@
 			files = (
 				30C2DAFF1CA4398C003AFD8B /* Secrets.swift in Sources */,
 				30C2DA9A1CA4373E003AFD8B /* LoginBoxTableViewController.swift in Sources */,
+				309E43C71CA9CF6C00279D97 /* MenuTabButton.swift in Sources */,
 				30C2DAFD1CA43984003AFD8B /* Plaid.swift in Sources */,
 				30C2DA951CA4372D003AFD8B /* PasscodeLockConfiguration.swift in Sources */,
 				309E43C41CA8AE1800279D97 /* WebPrivacyViewController.swift in Sources */,
@@ -1106,6 +1128,7 @@
 				30C2DAC11CA43836003AFD8B /* ProfileViewController.swift in Sources */,
 				30C2DAEF1CA43951003AFD8B /* AddCustomerViewController.swift in Sources */,
 				30C2DAD01CA4386A003AFD8B /* SupportMenuViewController.swift in Sources */,
+				30162DBA1CA9FB2C00438842 /* Stock.swift in Sources */,
 				30C2DB1D1CA43A05003AFD8B /* paykloud_iosUITests.swift in Sources */,
 				30C2DADB1CA438A5003AFD8B /* ProfileLabelCell.swift in Sources */,
 				30C2DAA41CA4374F003AFD8B /* SignupIndividualViewControllerOne.swift in Sources */,
@@ -1150,6 +1173,7 @@
 				30C2DAA61CA4374F003AFD8B /* SignupIndividualViewControllerTwo.swift in Sources */,
 				30C2DB071CA439B6003AFD8B /* Extensions.swift in Sources */,
 				30C2DAA51CA4374F003AFD8B /* SignupIndividualViewControllerThree.swift in Sources */,
+				30162DB81CA9F97D00438842 /* Repository.swift in Sources */,
 				30C2DB171CA439F4003AFD8B /* paykloud_iosTests.swift in Sources */,
 				30C2DAC31CA4383B003AFD8B /* NotificationViewController.swift in Sources */,
 				309E43BE1CA8ADF900279D97 /* WebTermsViewController.swift in Sources */,

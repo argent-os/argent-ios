@@ -255,7 +255,12 @@ class HomeViewController: UIViewController, UITableViewDataSource {
 //        print(NSUserDefaults.valueForKey("userLoggedIn"))
         SVProgressHUD.show()
         // go to login view
-        //self.performSegueWithIdentifier("loginView", sender: self);
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let loginVC = sb.instantiateViewControllerWithIdentifier("LoginViewController")
+        let root = UIApplication.sharedApplication().keyWindow?.rootViewController
+        root!.presentViewController(loginVC, animated: false, completion: { () -> Void in
+            print("success logout")
+        })
     }
     
     @IBAction func logoutButtonTapped(sender: AnyObject) {
