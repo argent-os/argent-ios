@@ -53,11 +53,13 @@ class AccountInterfaceController: WKInterfaceController, WCSessionDelegate {
                         case .Success:
                             if let value = response.result.value {
                                 let json = JSON(value)
-                                self.availableBalanceLabel.setText(json["available"][0]["amount"].stringValue)
-                                self.pendingBalanceLabel.setText(json["pending"][0]["amount"].stringValue)
-                                print(json["pending"][0]["amount"].stringValue)
-                                print(json["available"])
-                                print(json)
+                                let formatter = NSNumberFormatter()
+                                formatter.numberStyle = .CurrencyStyle
+                                // formatter.locale = NSLocale.currentLocale() // This is the default
+                                let availableNum = formatter.stringFromNumber(Float(json["available"][0]["amount"].stringValue)!/100)
+                                let pendingNum = formatter.stringFromNumber(Float(json["pending"][0]["amount"].stringValue)!/100)
+                                self.availableBalanceLabel.setText(availableNum)
+                                self.pendingBalanceLabel.setText(pendingNum)
                             }
                         case .Failure(let error):
                             print(error)
