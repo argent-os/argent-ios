@@ -11,8 +11,9 @@ import Alamofire
 import SwiftyJSON
 import SVProgressHUD
 import SIAlertView
+import WatchConnectivity
 
-class LoginBoxTableViewController: UITableViewController {
+class LoginBoxTableViewController: UITableViewController, WCSessionDelegate {
     
     @IBOutlet weak var usernameCell: UITableViewCell!
     @IBOutlet weak var usernameTextField: UITextField!
@@ -131,6 +132,27 @@ class LoginBoxTableViewController: UITableViewController {
                         // print("User Data: \(userData)")
                         // assign userData to self, access globally
                         userData = json
+                        
+                        // Send access token and Stripe key to Apple Watch
+                        if WCSession.isSupported() { //makes sure it's not an iPad or iPod
+                            let watchSession = WCSession.defaultSession()
+                            watchSession.delegate = self
+                            watchSession.activateSession()
+                            if watchSession.paired && watchSession.watchAppInstalled {
+                                do {
+                                    try watchSession.updateApplicationContext(
+                                        [
+                                            "user_token": userData!["token"].stringValue,
+                                            "stripe_key": userData!["user"]["stripe"]["secretKey"].stringValue,
+                                            "account_id": userData!["user"]["stripe"]["accountId"].stringValue
+                                        ]
+                                    )
+                                    print("setting watch data")
+                                } catch let error as NSError {
+                                    print(error.description)
+                                }
+                            }
+                        }
                         
                         let token = userData!["token"].stringValue
                         print("token is", token)

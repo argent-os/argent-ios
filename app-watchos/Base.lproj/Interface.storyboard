@@ -58,13 +58,13 @@
         <!--Account-->
         <scene sceneID="g7b-pU-sCG">
             <objects>
-                <controller title="Account" animationDuration="1" alwaysBounce="YES" id="mjv-ec-GMi">
+                <controller title="Account" animationDuration="1" alwaysBounce="YES" id="mjv-ec-GMi" customClass="AccountInterfaceController" customModule="app_watchos_Extension">
                     <items>
                         <label width="1" height="33.5" alignment="center" alpha="0.90000000000000002" text="Pending Balance" textAlignment="center" baselineAdjustment="alignCenters" id="DaF-zP-4ls">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="font" name="Nunito-Regular" family="Nunito" pointSize="14"/>
                         </label>
-                        <label width="1" height="23.5" alignment="center" text="$32,940.00" textAlignment="center" id="yjh-QU-Shp">
+                        <label width="1" height="23.5" alignment="center" text="$0.00" textAlignment="center" id="yjh-QU-Shp">
                             <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="font" name="Nunito-Regular" family="Nunito" pointSize="14"/>
                         </label>
@@ -72,11 +72,15 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="font" name="Nunito-Regular" family="Nunito" pointSize="14"/>
                         </label>
-                        <label width="1" height="23.5" alignment="center" text="$234,048.00" textAlignment="center" id="yOR-wC-dvj">
+                        <label width="1" height="23.5" alignment="center" text="$0.00" textAlignment="center" id="yOR-wC-dvj">
                             <color key="textColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="font" name="Nunito-Regular" family="Nunito" pointSize="14"/>
                         </label>
                     </items>
+                    <connections>
+                        <outlet property="availableBalanceLabel" destination="yOR-wC-dvj" id="TMs-Wq-04X"/>
+                        <outlet property="pendingBalanceLabel" destination="yjh-QU-Shp" id="H5r-aj-uKC"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="545" y="75.5"/>
@@ -84,7 +88,7 @@
         <!--Settings-->
         <scene sceneID="yGY-BI-R1b">
             <objects>
-                <controller title="Settings" animationDuration="1" alwaysBounce="YES" id="bA3-Iq-Bf8">
+                <controller title="Settings" animationDuration="1" alwaysBounce="YES" id="bA3-Iq-Bf8" customClass="SettingsInterfaceController" customModule="app_watchos_Extension">
                     <items>
                         <switch width="1" alignment="left" value="YES" title="Notifications" id="jry-xt-LsC">
                             <fontDescription key="font" name="Nunito-Regular" family="Nunito" pointSize="10"/>
@@ -125,7 +129,7 @@
                         <label alignment="left" text="Available" id="Ljp-gL-pKJ">
                             <color key="textColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
-                        <label alignment="left" text="$211,048.49" id="SB5-RF-quk">
+                        <label alignment="left" text="$0.00" id="SB5-RF-quk">
                             <color key="textColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
                         <label alignment="left" id="TwD-75-LS3"/>

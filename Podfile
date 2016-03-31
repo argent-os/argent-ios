@@ -5,6 +5,7 @@ link_with 'app-watchos', 'app-watchos Extension'
 
 def shared_pods
 	pod 'Alamofire', '~> 3.2.1'
+	pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'	
 #	pod 'AlamoArgo', '~> 0.5.3'	
 #	pod 'Argo', '~> 2.2.0'	
 end
@@ -63,6 +64,7 @@ end
 
 target 'app-watchos Extension' do
   platform :watchos, '2.0'
+  shared_pods
 end
 
 

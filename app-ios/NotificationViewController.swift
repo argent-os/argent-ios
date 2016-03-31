@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import SVProgressHUD
 
 enum StockType {
     case Tech
@@ -28,6 +29,8 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        SVProgressHUD.showInfoWithStatus("Retrieving notifications")
         
         self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         self.dateFormatter.timeStyle = NSDateFormatterStyle.LongStyle
@@ -87,9 +90,10 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
             self.refreshControl.attributedTitle = NSAttributedString(string: updateString)
             if self.refreshControl.refreshing
             {
+                SVProgressHUD.dismiss()
                 self.refreshControl.endRefreshing()
             }
-            
+            SVProgressHUD.dismiss()
             self.tableView?.reloadData()
         })
     }

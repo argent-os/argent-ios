@@ -7,8 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		30162DB81CA9F97D00438842 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30162DB71CA9F97D00438842 /* Repository.swift */; };
+		278F38ABFB35EDAA24E7A2BC /* Pods_app_watchos_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6959C28B834901781B0C0FCC /* Pods_app_watchos_Extension.framework */; };
 		30162DBA1CA9FB2C00438842 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30162DB91CA9FB2C00438842 /* Stock.swift */; };
+		304468F01CAA0BFC008CAE7D /* notify.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468ED1CAA0BFC008CAE7D /* notify.caf */; };
+		304468F11CAA0BFC008CAE7D /* pop.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468EE1CAA0BFC008CAE7D /* pop.caf */; };
+		304468F21CAA0BFC008CAE7D /* tone.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468EF1CAA0BFC008CAE7D /* tone.caf */; };
+		306999031CAA125C0003B0A6 /* soft.caf in Resources */ = {isa = PBXBuildFile; fileRef = 306999021CAA125C0003B0A6 /* soft.caf */; };
+		306999051CACD0710003B0A6 /* AccountInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306999041CACD0710003B0A6 /* AccountInterfaceController.swift */; };
+		306999071CACD0890003B0A6 /* SettingsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306999061CACD0890003B0A6 /* SettingsInterfaceController.swift */; };
+		3069990B1CACD6240003B0A6 /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3069990A1CACD6240003B0A6 /* Root.swift */; };
 		307C6A221C7E91A100723E39 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C6A211C7E91A100723E39 /* StoreKit.framework */; };
 		307C6A241C7E91AA00723E39 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C6A231C7E91AA00723E39 /* PassKit.framework */; };
 		309E43BE1CA8ADF900279D97 /* WebTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E43BD1CA8ADF900279D97 /* WebTermsViewController.swift */; };
@@ -179,9 +186,16 @@
 
 /* Begin PBXFileReference section */
 		09792DCB26D2F1A099596766 /* Pods-protonpay-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-protonpay-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-protonpay-ios/Pods-protonpay-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		2B614FB4245DEA1791296CAF /* Pods-app-watchos Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-watchos Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-app-watchos Extension/Pods-app-watchos Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		300B66F61CA4635800E24AF1 /* RESideMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RESideMenu.framework; path = "Pods/../build/Debug-iphoneos/RESideMenu.framework"; sourceTree = "<group>"; };
-		30162DB71CA9F97D00438842 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Repository.swift; path = "app-ios/Repository.swift"; sourceTree = SOURCE_ROOT; };
 		30162DB91CA9FB2C00438842 /* Stock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stock.swift; path = "app-ios/Stock.swift"; sourceTree = SOURCE_ROOT; };
+		304468ED1CAA0BFC008CAE7D /* notify.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = notify.caf; sourceTree = "<group>"; };
+		304468EE1CAA0BFC008CAE7D /* pop.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pop.caf; sourceTree = "<group>"; };
+		304468EF1CAA0BFC008CAE7D /* tone.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tone.caf; sourceTree = "<group>"; };
+		306999021CAA125C0003B0A6 /* soft.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = soft.caf; sourceTree = "<group>"; };
+		306999041CACD0710003B0A6 /* AccountInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInterfaceController.swift; sourceTree = "<group>"; };
+		306999061CACD0890003B0A6 /* SettingsInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsInterfaceController.swift; sourceTree = "<group>"; };
+		3069990A1CACD6240003B0A6 /* Root.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
 		307C6A211C7E91A100723E39 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		307C6A231C7E91AA00723E39 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		309E43BD1CA8ADF900279D97 /* WebTermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebTermsViewController.swift; path = "app-ios/WebTermsViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -303,6 +317,8 @@
 		30FB54291C6A58B40004A538 /* protonpay-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "protonpay-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB54411C6ABF6A0004A538 /* ObjC-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjC-Bridging-Header.h"; sourceTree = "<group>"; };
 		50E88D0ADD61BCA3EBD43D33 /* Pods_protonpay_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_protonpay_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5278C9B083E72E91DE8D539E /* Pods-app-watchos Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-watchos Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-app-watchos Extension/Pods-app-watchos Extension.release.xcconfig"; sourceTree = "<group>"; };
+		6959C28B834901781B0C0FCC /* Pods_app_watchos_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_app_watchos_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B7423ECA345B8C4ECD5933 /* Pods-protonpay-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-protonpay-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-protonpay-ios/Pods-protonpay-ios.release.xcconfig"; sourceTree = "<group>"; };
 		A1AC01881780C6537201E7C5 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -313,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30AF67391CA498A3006B83DA /* PassKit.framework in Frameworks */,
+				278F38ABFB35EDAA24E7A2BC /* Pods_app_watchos_Extension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,7 +400,6 @@
 			isa = PBXGroup;
 			children = (
 				30C2DAF81CA43975003AFD8B /* User.swift */,
-				30162DB71CA9F97D00438842 /* Repository.swift */,
 				30162DB91CA9FB2C00438842 /* Stock.swift */,
 			);
 			name = Models;
@@ -581,6 +597,10 @@
 		30C2DA711CA436B8003AFD8B /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				304468ED1CAA0BFC008CAE7D /* notify.caf */,
+				306999021CAA125C0003B0A6 /* soft.caf */,
+				304468EE1CAA0BFC008CAE7D /* pop.caf */,
+				304468EF1CAA0BFC008CAE7D /* tone.caf */,
 				30C2DA721CA436B8003AFD8B /* cashregister.caf */,
 				30C2DA731CA436B8003AFD8B /* chime.caf */,
 				30C2DA741CA436B8003AFD8B /* chime2.caf */,
@@ -648,7 +668,10 @@
 			isa = PBXGroup;
 			children = (
 				30AF67371CA498A2006B83DA /* app-watchos Extension.entitlements */,
+				3069990A1CACD6240003B0A6 /* Root.swift */,
 				30DB596D1CA46CB0007FEE1E /* InterfaceController.swift */,
+				306999041CACD0710003B0A6 /* AccountInterfaceController.swift */,
+				306999061CACD0890003B0A6 /* SettingsInterfaceController.swift */,
 				30DB596F1CA46CB0007FEE1E /* ExtensionDelegate.swift */,
 				30DB59711CA46CB0007FEE1E /* NotificationController.swift */,
 				30DB59731CA46CB0007FEE1E /* GlanceController.swift */,
@@ -770,6 +793,8 @@
 			children = (
 				09792DCB26D2F1A099596766 /* Pods-protonpay-ios.debug.xcconfig */,
 				95B7423ECA345B8C4ECD5933 /* Pods-protonpay-ios.release.xcconfig */,
+				2B614FB4245DEA1791296CAF /* Pods-app-watchos Extension.debug.xcconfig */,
+				5278C9B083E72E91DE8D539E /* Pods-app-watchos Extension.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -783,6 +808,7 @@
 				307C6A211C7E91A100723E39 /* StoreKit.framework */,
 				A1AC01881780C6537201E7C5 /* Pods.framework */,
 				50E88D0ADD61BCA3EBD43D33 /* Pods_protonpay_ios.framework */,
+				6959C28B834901781B0C0FCC /* Pods_app_watchos_Extension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -811,9 +837,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 30DB59811CA46CB0007FEE1E /* Build configuration list for PBXNativeTarget "app-watchos Extension" */;
 			buildPhases = (
+				E6CDF062A55837110D6CA9ED /* Check Pods Manifest.lock */,
 				30DB59621CA46CB0007FEE1E /* Sources */,
 				30DB59631CA46CB0007FEE1E /* Frameworks */,
 				30DB59641CA46CB0007FEE1E /* Resources */,
+				2A09595038F09F5C700B67C2 /* Embed Pods Frameworks */,
+				5AB62954282A9E43F5CCE80A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -998,17 +1027,21 @@
 			files = (
 				30C2DB0D1CA439CC003AFD8B /* Auth.storyboard in Resources */,
 				30C2DA8D1CA436CC003AFD8B /* ocra.ttf in Resources */,
+				306999031CAA125C0003B0A6 /* soft.caf in Resources */,
 				309E43CB1CA9CFED00279D97 /* bloom.caf in Resources */,
 				30C2DA8B1CA436CC003AFD8B /* Nunito-Regular.ttf in Resources */,
 				30C2DA911CA436E6003AFD8B /* PasscodeLockView.xib in Resources */,
 				30C2DB051CA439AB003AFD8B /* CountryView.xib in Resources */,
+				304468F21CAA0BFC008CAE7D /* tone.caf in Resources */,
 				30C2DA591CA43665003AFD8B /* PayKloud.entitlements in Resources */,
 				30C2DAD71CA43898003AFD8B /* ProfileFieldCell.xib in Resources */,
 				30C2DB221CA43B62003AFD8B /* Main.storyboard in Resources */,
 				30C2DA771CA436B8003AFD8B /* chime2.caf in Resources */,
 				30C2DA891CA436CC003AFD8B /* Nunito-Light.ttf in Resources */,
+				304468F01CAA0BFC008CAE7D /* notify.caf in Resources */,
 				30C2DA881CA436CC003AFD8B /* Nunito-ExtraLight.ttf in Resources */,
 				30C2DA7A1CA436C3003AFD8B /* nyc.mp4 in Resources */,
+				304468F11CAA0BFC008CAE7D /* pop.caf in Resources */,
 				30C2DA861CA436CC003AFD8B /* Nunito-Bold.ttf in Resources */,
 				30C2DABA1CA437CB003AFD8B /* KolodaCustomOverlayView.xib in Resources */,
 				30C2DA751CA436B8003AFD8B /* cashregister.caf in Resources */,
@@ -1076,6 +1109,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-protonpay-ios/Pods-protonpay-ios-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		2A09595038F09F5C700B67C2 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-app-watchos Extension/Pods-app-watchos Extension-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		545614C87EF7766B953CD8F4 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1091,6 +1139,36 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-protonpay-ios/Pods-protonpay-ios-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		5AB62954282A9E43F5CCE80A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-app-watchos Extension/Pods-app-watchos Extension-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E6CDF062A55837110D6CA9ED /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1098,10 +1176,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				306999051CACD0710003B0A6 /* AccountInterfaceController.swift in Sources */,
+				3069990B1CACD6240003B0A6 /* Root.swift in Sources */,
 				30DB59721CA46CB0007FEE1E /* NotificationController.swift in Sources */,
 				30DB59701CA46CB0007FEE1E /* ExtensionDelegate.swift in Sources */,
 				30DB59761CA46CB0007FEE1E /* ComplicationController.swift in Sources */,
 				30DB596E1CA46CB0007FEE1E /* InterfaceController.swift in Sources */,
+				306999071CACD0890003B0A6 /* SettingsInterfaceController.swift in Sources */,
 				30DB59741CA46CB0007FEE1E /* GlanceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1173,7 +1254,6 @@
 				30C2DAA61CA4374F003AFD8B /* SignupIndividualViewControllerTwo.swift in Sources */,
 				30C2DB071CA439B6003AFD8B /* Extensions.swift in Sources */,
 				30C2DAA51CA4374F003AFD8B /* SignupIndividualViewControllerThree.swift in Sources */,
-				30162DB81CA9F97D00438842 /* Repository.swift in Sources */,
 				30C2DB171CA439F4003AFD8B /* paykloud_iosTests.swift in Sources */,
 				30C2DAC31CA4383B003AFD8B /* NotificationViewController.swift in Sources */,
 				309E43BE1CA8ADF900279D97 /* WebTermsViewController.swift in Sources */,
@@ -1286,6 +1366,7 @@
 		};
 		30DB597F1CA46CB0007FEE1E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2B614FB4245DEA1791296CAF /* Pods-app-watchos Extension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1306,6 +1387,7 @@
 		};
 		30DB59801CA46CB0007FEE1E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5278C9B083E72E91DE8D539E /* Pods-app-watchos Extension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CLANG_ANALYZER_NONNULL = YES;

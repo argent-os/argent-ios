@@ -1723,7 +1723,7 @@ institutions</string>
                         </connections>
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="w3e-6C-5LA" userLabel="nav">
-                        <barButtonItem key="leftBarButtonItem" image="D2A5DC71-4B0A-4443-944C-865F374F73EC" id="J68-gC-0HZ">
+                        <barButtonItem key="leftBarButtonItem" image="EB11A851-4430-4088-B489-579248CCE57F" id="J68-gC-0HZ">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="presentLeftMenuViewController:" destination="BYZ-38-t0r" id="YOj-Vw-dth"/>
@@ -3290,7 +3290,7 @@ Click here to view more</string>
         <image name="BackgroundGradientInverse" width="200" height="500"/>
         <image name="ComponentBackgroundOne" width="131" height="59"/>
         <image name="ComponentBackgroundTwo" width="131" height="59"/>
-        <image name="D2A5DC71-4B0A-4443-944C-865F374F73EC" width="32" height="32">
+        <image name="EB11A851-4430-4088-B489-579248CCE57F" width="32" height="32">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

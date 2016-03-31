@@ -28,6 +28,11 @@
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>http://proton-api-dev.us-east-1.elasticbeanstalk.com/</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
 			<key>192.168.1.182</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
@@ -52,11 +57,6 @@
 				<true/>
 			</dict>
 			<key>localhost</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-			</dict>
-			<key>paykloud-api-dev.us-east-1.elasticbeanstalk.com</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
