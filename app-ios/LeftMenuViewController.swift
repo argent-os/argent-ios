@@ -15,7 +15,7 @@ class LeftMenuViewController: UIViewController,UITableViewDelegate,UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView = UITableView()
-        self.tableView.frame = CGRectMake(0, (self.view.frame.size.height-54*5)/2.0, self.view.frame.size.width  , 54 * 5)
+        self.tableView.frame = CGRectMake(0, 10, self.view.frame.size.width  , 54 * 5)
         tableView.autoresizingMask = [UIViewAutoresizing.FlexibleTopMargin, UIViewAutoresizing.FlexibleBottomMargin, UIViewAutoresizing.FlexibleWidth]
         tableView.delegate = self;
         tableView.dataSource = self;
@@ -43,11 +43,24 @@ class LeftMenuViewController: UIViewController,UITableViewDelegate,UITableViewDa
             sideMenuViewController?.hideMenuViewController()
             break;
         case 1:
-            // Load the profile controller directly
-            sideMenuViewController?.contentViewController = ProfileViewController()
+            // Load the root view when returning home
+            let rootViewController = (self.storyboard?.instantiateViewControllerWithIdentifier("RootViewController"))! as UIViewController
+            sideMenuViewController?.contentViewController = rootViewController
             sideMenuViewController?.hideMenuViewController()
             break;
         case 2:
+            // Load the root view when returning home
+            let rootViewController = (self.storyboard?.instantiateViewControllerWithIdentifier("RootViewController"))! as UIViewController
+            sideMenuViewController?.contentViewController = rootViewController
+            sideMenuViewController?.hideMenuViewController()
+            break;
+        case 3:
+            // Load the root view when returning home
+            let rootViewController = (self.storyboard?.instantiateViewControllerWithIdentifier("RootViewController"))! as UIViewController
+            sideMenuViewController?.contentViewController = rootViewController
+            sideMenuViewController?.hideMenuViewController()
+            break;
+        case 4:
             // 1
             let optionMenu = UIAlertController(title: nil, message: "Are you sure you want to logout?", preferredStyle: .ActionSheet)
             // 2
@@ -81,12 +94,12 @@ class LeftMenuViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 54
+        return 55
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return number of rows in side menu
-        return 3
+        return 5
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -97,8 +110,8 @@ class LeftMenuViewController: UIViewController,UITableViewDelegate,UITableViewDa
         let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "cell")
         cell.backgroundColor = UIColor.clearColor()
         cell.textLabel?.textColor = UIColor.whiteColor()
-        var titles = ["Home", "Profile", "Log Out"]
-        var images = ["IconHome", "IconProfile", "IconEmpty"];
+        var titles = ["", "", "", "Return Home", "Log Out"]
+        var images = ["IconLogo", "IconEmpty", "IconEmpty", "IconHome", "IconEmpty"];
         cell.textLabel?.text = titles[indexPath.row]
         cell.imageView?.image = UIImage(named: images[indexPath.row])
         

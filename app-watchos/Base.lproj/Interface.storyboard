@@ -126,7 +126,7 @@
                                 <label width="136" height="56.5" alignment="center" text="Account Balance" textAlignment="center" baselineAdjustment="alignCenters" id="W0n-jb-j5z"/>
                             </items>
                         </group>
-                        <label alignment="left" text="Available" id="Ljp-gL-pKJ">
+                        <label alignment="left" text="Pending" id="Ljp-gL-pKJ">
                             <color key="textColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
                         <label alignment="left" text="$0.00" id="SB5-RF-quk">
@@ -135,6 +135,9 @@
                         <label alignment="left" id="TwD-75-LS3"/>
                     </items>
                     <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="14"/>
+                    <connections>
+                        <outlet property="balanceLabel" destination="SB5-RF-quk" id="kmU-gt-y86"/>
+                    </connections>
                 </glanceController>
             </objects>
             <point key="canvasLocation" x="235" y="645"/>

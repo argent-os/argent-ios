@@ -17,6 +17,12 @@ import Stripe
 
 class HomeViewController: UIViewController, UITableViewDataSource {
     
+    @IBOutlet weak var navigationBar: UINavigationItem!
+    
+    //Changing Status Bar
+//    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+//        return UIStatusBarStyle.LightContent
+//    }
     
     // INIT TABLE
     var logs = [Log]()
@@ -79,6 +85,20 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     // VIEW DID LOAD
     override func viewDidLoad() {
         // Programatically setup left navigation button
+        // Create a navigation item with a title
+        
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 70))
+        navBar.barTintColor = UIColor(rgba: "#FFF")
+        navBar.titleTextAttributes = [
+            NSForegroundColorAttributeName : UIColor.darkGrayColor(),
+            NSFontAttributeName : UIFont(name: "Nunito", size: 20)!
+        ]
+        self.view.addSubview(navBar);
+        let navItem = UINavigationItem(title: "Balance");
+        navBar.setItems([navItem], animated: false);
+        
         // navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Left", style: .Plain, target: self, action: "presentLeftMenuViewController")
         
         super.viewDidLoad()
@@ -159,11 +179,6 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         self.view.addSubview(passcodeLockButton)
     }
     
-    //Changing Status Bar
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.Default
-    }
-
     func mainSegmentControl(segment: UISegmentedControl) {
         if segment.selectedSegmentIndex == 0 {
             print("0 selected")

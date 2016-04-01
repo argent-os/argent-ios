@@ -43,6 +43,7 @@ target 'protonpay-ios' do
 	pod 'KMPlaceholderTextView'
 	pod 'SIAlertView'
 	pod 'DCPathButton'
+	pod 'SFDraggableDialogView'
 	#pod 'DOFavoriteButton'
 
 	post_install do |installer|

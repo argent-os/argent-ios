@@ -21,7 +21,7 @@ class AccountInterfaceController: WKInterfaceController, WCSessionDelegate {
     func session(session: WCSession, didReceiveApplicationContext applicationContext: [String : AnyObject]) {
         print("\(applicationContext)")
         dispatch_async(dispatch_get_main_queue(), {
-            print("upadte ui")
+            print("update ui")
             //update UI here
             // Get data using Alamofire, data passed from login
             // let accountId = applicationContext["account_id"]!.stringValue
@@ -68,6 +68,7 @@ class AccountInterfaceController: WKInterfaceController, WCSessionDelegate {
             }
         })
     }
+    
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         // Configure interface objects here.
