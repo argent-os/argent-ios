@@ -5,8 +5,8 @@ PODS:
   - CardIO (5.3.1)
   - CWStatusBarNotification (2.3.4)
   - DCPathButton (2.1.3)
+  - DGRunkeeperSwitch (1.1.1)
   - DZNEmptyDataSet (1.7.3)
-  - Firebase (2.5.1)
   - Former (1.3.0)
   - Gecco (0.2.0)
   - IOStickyHeader (0.3.0)
@@ -17,7 +17,6 @@ PODS:
   - MZAppearance (1.1.6)
   - MZFormSheetPresentationController (2.3.2):
     - MZAppearance
-  - Neon (0.0.3)
   - PasscodeLock (1.0.2)
   - pop (1.0.9)
   - RAMAnimatedTabBarController (1.2.2)
@@ -46,8 +45,8 @@ DEPENDENCIES:
   - CardIO
   - CWStatusBarNotification
   - DCPathButton
+  - DGRunkeeperSwitch
   - DZNEmptyDataSet
-  - Firebase
   - Former
   - Gecco
   - IOStickyHeader
@@ -55,7 +54,6 @@ DEPENDENCIES:
   - KMPlaceholderTextView
   - Koloda
   - MZFormSheetPresentationController
-  - Neon
   - PasscodeLock
   - RAMAnimatedTabBarController
   - RAMReel
@@ -90,8 +88,8 @@ SPEC CHECKSUMS:
   CardIO: a299efcd0348c3b256a1da53f22951319c3855a2
   CWStatusBarNotification: 3fec41edcb0ae3677d9febfcb9632d8bdf52294c
   DCPathButton: 431bb93072e8d25bd0de0eaa0373e39d896a38e3
+  DGRunkeeperSwitch: da12f199532a99958a1e87ec0a5af61efdba11ec
   DZNEmptyDataSet: dd7cca17c1d07dfa78956859b1e70a52505678ef
-  Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
   Former: 7380ef3b9bdb3bf43d9f0fe99e369987d3068705
   Gecco: 27ab0f43da3f8e844771cf641992afdd1ea09c62
   IOStickyHeader: 4550b071f8f3df73a361a3152aab8e5a3bae1ea8
@@ -100,7 +98,6 @@ SPEC CHECKSUMS:
   Koloda: 10f747feeff5e425061f78e5ce17208783e34a99
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   MZFormSheetPresentationController: bba52eb65feb3b70ae83ed28fd20991802d4adeb
-  Neon: 589d3d217d326abe09726bf81add106cff685bf2
   PasscodeLock: 4ae42c094224a01de3773fcd69ae33886394d959
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   RAMAnimatedTabBarController: cadbef3162bc7ae86091661273ccec503deb3398

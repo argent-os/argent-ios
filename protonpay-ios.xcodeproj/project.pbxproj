@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		278F38ABFB35EDAA24E7A2BC /* Pods_app_watchos_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6959C28B834901781B0C0FCC /* Pods_app_watchos_Extension.framework */; };
 		30162DBA1CA9FB2C00438842 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30162DB91CA9FB2C00438842 /* Stock.swift */; };
+		302010C81CAEAE0E007D5E7E /* BalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302010C71CAEAE0E007D5E7E /* BalanceViewController.swift */; };
 		304468F01CAA0BFC008CAE7D /* notify.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468ED1CAA0BFC008CAE7D /* notify.caf */; };
 		304468F11CAA0BFC008CAE7D /* pop.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468EE1CAA0BFC008CAE7D /* pop.caf */; };
 		304468F21CAA0BFC008CAE7D /* tone.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468EF1CAA0BFC008CAE7D /* tone.caf */; };
@@ -189,6 +190,7 @@
 		2B614FB4245DEA1791296CAF /* Pods-app-watchos Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-watchos Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-app-watchos Extension/Pods-app-watchos Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		300B66F61CA4635800E24AF1 /* RESideMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RESideMenu.framework; path = "Pods/../build/Debug-iphoneos/RESideMenu.framework"; sourceTree = "<group>"; };
 		30162DB91CA9FB2C00438842 /* Stock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stock.swift; path = "app-ios/Stock.swift"; sourceTree = SOURCE_ROOT; };
+		302010C71CAEAE0E007D5E7E /* BalanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BalanceViewController.swift; path = "app-ios/BalanceViewController.swift"; sourceTree = SOURCE_ROOT; };
 		304468ED1CAA0BFC008CAE7D /* notify.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = notify.caf; sourceTree = "<group>"; };
 		304468EE1CAA0BFC008CAE7D /* pop.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pop.caf; sourceTree = "<group>"; };
 		304468EF1CAA0BFC008CAE7D /* tone.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tone.caf; sourceTree = "<group>"; };
@@ -387,6 +389,7 @@
 		30128DDE1C8FAC6E009E2EA7 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
+				302010C61CAEAE04007D5E7E /* Balance */,
 				30DB9B751C9CF1E000871253 /* Profile */,
 				30C2DAEC1CA43946003AFD8B /* RecurringBillingPlanViewController.swift */,
 				30C2DAEE1CA43951003AFD8B /* AddCustomerViewController.swift */,
@@ -403,6 +406,14 @@
 				30162DB91CA9FB2C00438842 /* Stock.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		302010C61CAEAE04007D5E7E /* Balance */ = {
+			isa = PBXGroup;
+			children = (
+				302010C71CAEAE0E007D5E7E /* BalanceViewController.swift */,
+			);
+			name = Balance;
 			sourceTree = "<group>";
 		};
 		304DDE351C9CEDA500962BC4 /* Integrations */ = {
@@ -1214,6 +1225,7 @@
 				30C2DADB1CA438A5003AFD8B /* ProfileLabelCell.swift in Sources */,
 				30C2DAA41CA4374F003AFD8B /* SignupIndividualViewControllerOne.swift in Sources */,
 				30C2DAD31CA43881003AFD8B /* Profile.swift in Sources */,
+				302010C81CAEAE0E007D5E7E /* BalanceViewController.swift in Sources */,
 				30C2DB091CA439BC003AFD8B /* StarButton.swift in Sources */,
 				30C2DB041CA439AB003AFD8B /* CountryView.swift in Sources */,
 				30C2DAAB1CA4374F003AFD8B /* SignupViewControllerZero.swift in Sources */,

@@ -43,6 +43,7 @@ target 'protonpay-ios' do
 	pod 'DCPathButton'
 	pod 'SFDraggableDialogView'
 	pod 'UICountingLabel'
+	pod 'DGRunkeeperSwitch'
 	#pod 'DOFavoriteButton'
 
 	post_install do |installer|
