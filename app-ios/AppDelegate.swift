@@ -7,7 +7,6 @@
 
 import UIKit
 import Stripe
-import Firebase
 import PasscodeLock
 import SwiftyJSON
 import KeychainSwift
@@ -22,13 +21,12 @@ var userData:JSON? // init user data, declare globally, needs SwiftyJSON
 // To perform the above, right click 'add row' and make that row a dictionary value, set NSExceptionAllowsInsecureHTTPLoads to YES
 // In case this doesnt work, make sure NSTransportSecurity has the sub-item Allow Arbitrary Loads set to YES
 // DEV
- let firebaseUrl = Firebase(url:"https://demosandbox.firebaseio.com/api/v1")
+
 // let apiUrl = "http://localhost:5001"
 // let apiUrl = "http://192.168.1.182:5001"
 // let apiUrl = "http://192.168.1.232:5001"
  let apiUrl = "http://proton-api-dev.us-east-1.elasticbeanstalk.com"
 // PROD
-//let firebaseUrl = Firebase(url:"https://paykloud.firebaseio.com/api/v1")
 //let apiUrl = "http://api.protonpayments.com"
 
 let stripeApiUrl = "https://api.stripe.com"

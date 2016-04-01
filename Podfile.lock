@@ -35,6 +35,7 @@ PODS:
   - SwiftyJSON (2.3.2)
   - TextFieldEffects (1.2.0)
   - UIColor_Hex_Swift (2.1)
+  - UICountingLabel (1.4.0)
   - VENCalculatorInputView (1.5.4)
   - VideoSplashKit (1.1.0)
 
@@ -69,6 +70,7 @@ DEPENDENCIES:
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
   - TextFieldEffects
   - UIColor_Hex_Swift
+  - UICountingLabel
   - VENCalculatorInputView
   - VideoSplashKit
 
@@ -114,6 +116,7 @@ SPEC CHECKSUMS:
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   TextFieldEffects: bc4fd3bd557321bd61a0762f3f50965477a36f62
   UIColor_Hex_Swift: e91dc51f6bf252ec7bf74c8704ceedeeb7640c1c
+  UICountingLabel: ed5ce5b6d5ef278ff40d99cfa49577a30ab0c87b
   VENCalculatorInputView: 988fa681ba6bb9b1f067842493bb622e80cc8da2
   VideoSplashKit: 0aa63d0bb37c5bd357de3e6a2a13dea5acad4d66
 

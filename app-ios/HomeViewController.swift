@@ -13,11 +13,13 @@ import Alamofire
 import SVProgressHUD
 import SwiftyJSON
 import Stripe
+import UICountingLabel
 //import MXParallaxHeader
 
 class HomeViewController: UIViewController, UITableViewDataSource {
     
     @IBOutlet weak var navigationBar: UINavigationItem!
+    @IBOutlet weak var balanceLabel: UICountingLabel!
     
     //Changing Status Bar
 //    override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -37,45 +39,6 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         // cell.detailTextLabel?.text = logs[indexPath.row].dateStart.toString()
         return cell
     }
-    
-    // INIT UI
-    var button: StarButton! = nil
-    @IBOutlet weak var userImage: UIImageView?
-    @IBOutlet weak var username: UILabel!
-//    @IBOutlet weak var accountBalanceTextLabel: UILabel!
-
-    
-//    lazy var blurView: UIVisualEffectView = {
-//        let blurView = UIVisualEffectView()
-//        return blurView
-//    }()
-    
-    // In order to add a button, such as a ui view, add the referencing iboutlet and then delete it, replacing it with the lazy loaded variable button type you see below
-    lazy var scanCardButton: UIButton = {
-        let scanCardButton = UIButton()
-        return scanCardButton
-    }()
-    
-    lazy var passcodeLockButton: UIButton = {
-        let passcodeLockButton = UIButton()
-        return passcodeLockButton
-    }()
-    
-    lazy var applePayButton: UIButton = {
-        let applePayButton = UIButton()
-        return applePayButton
-    }()
-
-
-    // SET UP NEON VIEWS
-    let containerView : UIView = UIView()
-    let anchorView : UIView = UIView()
-    let avatarImageView : UIImageView = UIImageView()
-    let view0 : UILabel = UILabel()
-    let usernameViewText : UILabel = UILabel()
-    let view2 : UILabel = UILabel()
-    
-//    @IBOutlet weak var resultLabel: UILabel!
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -118,32 +81,6 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         // Load CardIO
         CardIOUtilities.preload()
         
-        // Set up container
-        containerView.clipsToBounds = true
-        containerView.backgroundColor = UIColor.clearColor()
-        view.addSubview(containerView)
-        
-        anchorView.backgroundColor = UIColor.clearColor()
-        containerView.addSubview(anchorView)
-        
-        view0.backgroundColor = UIColor.blueColor()
-        containerView.addSubview(view0)
-        
-        // Welcome text
-        usernameViewText.backgroundColor = UIColor.clearColor()
-        //        usernameViewText.text = "Welcome"
-        usernameViewText.font = UIFont.boldSystemFontOfSize(20)
-        usernameViewText.font = UIFont (name: "Avenir-Light", size: 30)
-        usernameViewText.textColor = UIColor.blackColor()
-        usernameViewText.textAlignment = .Center;
-        //        containerView.addSubview(usernameViewText)
-        
-        // Style user avatar
-        avatarImageView.image = UIImage(named: "avatar")
-        avatarImageView.layer.cornerRadius = 1.0
-        avatarImageView.layer.borderColor = UIColor.blackColor().CGColor
-        avatarImageView.clipsToBounds = true
-        
         // Transparent navigation bar
         // self.navigationController?.navigationBar.barTintColor = UIColor(rgba: "#1a8ef5")
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
@@ -155,28 +92,9 @@ class HomeViewController: UIViewController, UITableViewDataSource {
             NSFontAttributeName : UIFont(name: "Nunito-SemiBold", size: 18.0)!
         ]
         
-        // For creating segment control in navigation bar
-//        var mainSegment: UISegmentedControl = UISegmentedControl(items: ["Available", "Pending"])
-//        self.navigationItem.titleView = mainSegment
-//        mainSegment.selectedSegmentIndex = 0
-//        mainSegment.tintColor = UIColor.whiteColor()
-//        mainSegment.addTarget(self, action: "mainSegmentControl:", forControlEvents: .ValueChanged)
-//        self.navigationController?.navigationBar
-//            .addSubview(mainSegment)
-        
         self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Compose, target: self, action: Selector("chargeButtonTapped:")), animated: true)
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
-        
-        // Blur View
-//        blurView.addSubview(avatarImageView)
-        
-        // Configure fancy button
-        self.button = StarButton(frame: CGRectMake(133, 133, 54, 54))
-        self.button.addTarget(self, action: #selector(HomeViewController.favorite(_:)), forControlEvents:.TouchUpInside)
-        // self.view.addSubview(button)
-        self.view.addSubview(scanCardButton)
-        self.view.addSubview(applePayButton)
-        self.view.addSubview(passcodeLockButton)
+
     }
     
     func mainSegmentControl(segment: UISegmentedControl) {
@@ -204,7 +122,7 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     override func viewDidAppear(animated: Bool) {
         
         SVProgressHUD.dismiss()
-        
+
         // Check for user logged in key
         let userLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("userLoggedIn");
         if(!userLoggedIn) {
@@ -218,6 +136,34 @@ class HomeViewController: UIViewController, UITableViewDataSource {
 
             if userData != nil {
                 print("user data exists")
+            }
+            
+            // Get stripe balance on appear
+            // Set account balance label
+            getStripeBalance() { responseObject, error in
+                // use responseObject and error here
+                // print("responseObject = \(responseObject); error = \(error)")
+                let formatter = NSNumberFormatter()
+                formatter.numberStyle = .CurrencyStyle
+                formatter.locale = NSLocale.currentLocale() // This is the default
+                if responseObject?["pending"][0]["amount"].stringValue != nil {
+                    let amt = responseObject?["pending"][0]["amount"].stringValue
+                    print(amt)
+                    if(amt == nil || amt == "") {
+                        return
+                    } else {
+                        self.balanceLabel.countFrom(0, to: CGFloat(Float(amt!)!)/100)
+                        self.balanceLabel.format = "%.2f"
+                        self.balanceLabel.animationDuration = 3.0
+                        self.balanceLabel.countFromZeroTo(CGFloat(Float(amt!)!)/100)
+                        self.balanceLabel.method = UILabelCountingMethod.EaseInOut
+                        self.balanceLabel.completionBlock = {
+                            let balanceNum = formatter.stringFromNumber(Float(amt!)!/100)
+                            self.balanceLabel.text = balanceNum
+                        }
+                    }
+                }
+                return
             }
             
             print("user logged in, displaying home view")
@@ -248,6 +194,48 @@ class HomeViewController: UIViewController, UITableViewDataSource {
                             self.logout()
                             print(error)
                         }
+                    }
+            }
+        }
+    }
+
+    func getStripeBalance(completionHandler: (JSON?, NSError?) -> ()) {
+        makeStripeCall("/v1/balance", completionHandler: completionHandler)
+    }
+    
+    func makeStripeCall(endpoint: String, completionHandler: (JSON?, NSError?) -> ()) {
+
+        if let stripeKey = userData?["user"]["stripe"]["secretKey"].stringValue {
+            let headers = [
+                "Authorization": "Bearer " + (stripeKey ),
+                "Content-Type": "application/x-www-form-urlencoded"
+            ]
+            
+            Alamofire.request(.GET, stripeApiUrl + endpoint,
+                encoding:.URL,
+                headers: headers)
+                .responseJSON { response in
+                    print(response.request) // original URL request
+                    print(response.response?.statusCode) // URL response
+                    print(response.data) // server data
+                    print(response.result) // result of response serialization
+                    
+                    // go to main view
+                    if(response.response?.statusCode == 200) {
+                        print("green light")
+                    } else {
+                        print("red light")
+                    }
+                    
+                    switch response.result {
+                    case .Success:
+                        if let value = response.result.value {
+                            let json = JSON(value)
+                            completionHandler(json, nil)
+                        }
+                    case .Failure(let error):
+                        print(error)
+                        completionHandler(nil, error)
                     }
             }
         }
