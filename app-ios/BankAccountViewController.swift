@@ -85,7 +85,9 @@ class MainTableViewController: UITableViewController {
 
             let destination = segue.destinationViewController as! DetailViewController
             destination.color = element.objectForKey("background_color") as? UIColor
+            destination.logo = element.objectForKey("bank_logo") as? String
             print("color setting", destination.color!)
+            print("logo setting", destination.logo!)
 
             // destination.element = element as! NSDictionary
             

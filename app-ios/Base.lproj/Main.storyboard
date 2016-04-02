@@ -190,7 +190,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nmm-kP-9VO">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nmm-kP-9VO">
                                 <rect key="frame" x="20" y="72" width="374" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="izF-dZ-QUY"/>
@@ -3390,7 +3390,10 @@ Click here to view more</string>
                                 <connections>
                                     <outlet property="background" destination="dxk-qH-8pb" id="i4j-XP-N4o"/>
                                     <outlet property="header" destination="9Wt-Kc-fLg" id="HmC-Z4-cPY"/>
-                                    <segue destination="JEu-27-Q04" kind="presentation" identifier="viewDetail" id="X13-up-BqW"/>
+                                    <segue destination="JEu-27-Q04" kind="showDetail" identifier="viewDetail" action="showViewController:sender:" id="X13-up-BqW">
+                                        <segue key="commit" inheritsFrom="parent" id="DF6-e5-MLE"/>
+                                        <segue key="preview" inheritsFrom="commit" id="U04-d1-B8G"/>
+                                    </segue>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -3425,30 +3428,15 @@ Click here to view more</string>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfm-tu-C0v">
-                                <rect key="frame" x="20" y="28" width="32" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="32" id="AO0-zF-QP9"/>
-                                    <constraint firstAttribute="width" constant="32" id="F7o-lb-ddJ"/>
-                                </constraints>
-                                <state key="normal" image="IconCloseLight"/>
-                                <connections>
-                                    <segue destination="JyA-ys-IVe" kind="presentation" identifier="bankListView" id="I8t-RJ-Sgi">
-                                        <segue key="commit" inheritsFrom="parent" id="4ZP-z2-Vkv"/>
-                                        <segue key="preview" inheritsFrom="commit" id="OAx-wK-TkX"/>
-                                    </segue>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="yX9-45-coU" firstAttribute="trailing" secondItem="0fk-wo-aw0" secondAttribute="trailingMargin" id="6Q0-rg-odJ"/>
                             <constraint firstItem="yX9-45-coU" firstAttribute="leading" secondItem="0fk-wo-aw0" secondAttribute="leadingMargin" id="T2k-HU-TiQ"/>
                             <constraint firstAttribute="bottom" secondItem="yX9-45-coU" secondAttribute="bottom" constant="20" symbolic="YES" id="fme-2f-XmO"/>
-                            <constraint firstItem="cfm-tu-C0v" firstAttribute="top" secondItem="YeP-JC-IoR" secondAttribute="bottom" constant="8" symbolic="YES" id="ukW-b8-sdA"/>
-                            <constraint firstItem="yX9-45-coU" firstAttribute="leading" secondItem="cfm-tu-C0v" secondAttribute="leading" id="yzg-Zw-kIu"/>
                         </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EYn-Ls-vjQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3521,6 +3509,10 @@ Click here to view more</string>
         <scene sceneID="1oI-1I-Kuw">
             <objects>
                 <viewController id="pdy-hm-C0C" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mcz-VY-kxs"/>
+                        <viewControllerLayoutGuide type="bottom" id="7ba-xM-onF"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Bfr-Al-RcS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3555,36 +3547,37 @@ Click here to view more</string>
         <image name="ic_user" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="igQ-zk-tCm"/>
-        <segue reference="m3z-fp-Nlm"/>
-        <segue reference="gUR-9D-JWE"/>
-        <segue reference="j8y-vP-2EI"/>
+        <segue reference="fxJ-La-7Fr"/>
+        <segue reference="mwT-xt-Ez4"/>
+        <segue reference="HS7-dW-Hxr"/>
+        <segue reference="eyR-QB-Omx"/>
+        <segue reference="Xln-0K-kRS"/>
+        <segue reference="Oy0-WL-Zfz"/>
+        <segue reference="C2X-hN-Ktf"/>
+        <segue reference="JgX-xV-v5e"/>
+        <segue reference="zQh-Po-kj4"/>
+        <segue reference="5Ke-wX-bmY"/>
+        <segue reference="dKP-gn-jL5"/>
+        <segue reference="wgV-xY-MTp"/>
+        <segue reference="y2B-og-1xc"/>
+        <segue reference="X13-up-BqW"/>
+        <segue reference="xTl-cs-ajG"/>
+        <segue reference="UFB-DJ-qrH"/>
+        <segue reference="zMt-NT-I29"/>
+        <segue reference="iZp-dq-021"/>
+        <segue reference="vfk-cG-eDy"/>
+        <segue reference="aSf-Dh-oaH"/>
         <segue reference="agi-3I-cSC"/>
+        <segue reference="j8y-vP-2EI"/>
+        <segue reference="gUR-9D-JWE"/>
+        <segue reference="m3z-fp-Nlm"/>
+        <segue reference="igQ-zk-tCm"/>
         <segue reference="VI5-hp-Gm2"/>
         <segue reference="ipn-3I-3vc"/>
         <segue reference="YIg-Dp-HpF"/>
-        <segue reference="fEJ-lR-z9I"/>
         <segue reference="7cu-FP-MoG"/>
         <segue reference="Bc6-jW-uiV"/>
-        <segue reference="A1R-09-1HJ"/>
-        <segue reference="UFB-DJ-qrH"/>
-        <segue reference="fxJ-La-7Fr"/>
-        <segue reference="Oy0-WL-Zfz"/>
-        <segue reference="Xln-0K-kRS"/>
-        <segue reference="dKP-gn-jL5"/>
-        <segue reference="5Ke-wX-bmY"/>
-        <segue reference="JgX-xV-v5e"/>
-        <segue reference="eyR-QB-Omx"/>
-        <segue reference="HS7-dW-Hxr"/>
-        <segue reference="C2X-hN-Ktf"/>
-        <segue reference="zQh-Po-kj4"/>
-        <segue reference="wgV-xY-MTp"/>
-        <segue reference="iZp-dq-021"/>
-        <segue reference="zMt-NT-I29"/>
-        <segue reference="vfk-cG-eDy"/>
-        <segue reference="aSf-Dh-oaH"/>
-        <segue reference="xTl-cs-ajG"/>
-        <segue reference="I8t-RJ-Sgi"/>
+        <segue reference="fEJ-lR-z9I"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>
