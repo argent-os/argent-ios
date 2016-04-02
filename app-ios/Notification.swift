@@ -18,14 +18,14 @@ class NotificationItem {
     let uid: String
     
     required init(id: String, text: String, date: String, uid: String) {
-        self.id = text
+        self.id = id
         self.text = text
-        self.date = text
-        self.uid = text
+        self.date = date
+        self.uid = uid
     }
     
     class func endpointForNotifications() -> String {
-        let endpoint = "http://192.168.1.232:5001/v1/notification/"
+        let endpoint = apiUrl + "/v1/notification/"
         return endpoint
     }
     

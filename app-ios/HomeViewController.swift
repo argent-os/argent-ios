@@ -135,7 +135,7 @@ class HomeViewController: UIViewController {
 //                            balanceVC.availableBalanceLabel.text = pendingBalanceNum
 //                        }
                         
-                        balanceVC.pendingBalanceLabel.countFrom(0, to: CGFloat(Float(pendingAmt!)!)/100)
+                        balanceVC.pendingBalanceLabel.countFrom((CGFloat(Float(pendingAmt!)!)/100)-100, to: CGFloat(Float(pendingAmt!)!)/100)
                         balanceVC.pendingBalanceLabel.format = "%.2f"
                         balanceVC.pendingBalanceLabel.animationDuration = 3.0
                         balanceVC.pendingBalanceLabel.countFromZeroTo(CGFloat(Float(pendingAmt!)!)/100)

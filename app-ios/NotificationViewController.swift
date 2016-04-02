@@ -36,6 +36,12 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         self.loadNotificationItems()
     }
     
+    private func formatDate(date:NSDate) -> String {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = NSDateFormatterStyle.LongStyle
+        return dateFormatter.stringFromDate(date)
+    }
+    
     func loadNotificationItems() {
         NotificationItem.getNotificationList({ (items, error) in
             if error != nil
@@ -60,6 +66,23 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         })
     }
     
+    func timeStringFromUnixTime(unixTime: Double) -> String {
+        let date = NSDate(timeIntervalSince1970: unixTime)
+        let dateFormatter = NSDateFormatter()
+        
+        // Returns date formatted as 12 hour time.
+        dateFormatter.dateFormat = "hh:mm a"
+        return dateFormatter.stringFromDate(date)
+    }
+    
+    func dayStringFromTime(unixTime: Double) -> String {
+        let dateFormatter = NSDateFormatter()
+        let date = NSDate(timeIntervalSince1970: unixTime)
+        dateFormatter.locale = NSLocale(localeIdentifier: NSLocale.currentLocale().localeIdentifier)
+        dateFormatter.dateFormat = "EEEE"
+        return dateFormatter.stringFromDate(date)
+    }
+    
     func refresh(sender:AnyObject)
     {
         self.loadNotificationItems()
@@ -74,14 +97,13 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         let item = self.itemsArray?[indexPath.row]
         cell.textLabel?.text = ""
         cell.detailTextLabel?.text = ""
-        print(item)
-        if let text = item?.text, date = item?.date
+        if let text = item?.text
         {
-            cell.textLabel?.text = text + " on date " + date
+            cell.textLabel?.text = "event: " + text
         }
-        if let id = item?.id, uid = item?.uid
+        if let date = item?.date, uid = item?.uid
         {
-            cell.detailTextLabel?.text = "id: " + id + " / uid " + uid
+            cell.detailTextLabel?.text = "on date: " + date + " / uid " + uid
         }
         return cell
     }
