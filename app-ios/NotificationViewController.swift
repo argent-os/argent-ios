@@ -11,18 +11,10 @@ import Alamofire
 import SwiftyJSON
 import SVProgressHUD
 
-//enum StockType {
-//    case Tech
-//    case Cars
-//    case Telecom
-//}
-
 class NotificationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var itemsArray:Array<NotificationItem>?
     @IBOutlet var tableView: UITableView?
-    
-//    var stockType: StockType = .Tech
     
     var refreshControl = UIRefreshControl()
     var dateFormatter = NSDateFormatter()
@@ -44,37 +36,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         self.loadNotificationItems()
     }
     
-//    func symbolsStringForCurrentStockType() -> Array<String>
-//    {
-//        switch self.stockType {
-//        case .Tech:
-//            return ["AAPL", "GOOG", "YHOO"]
-//        case .Cars:
-//            return ["GM", "F"]
-//        case .Telecom:
-//            return ["T", "VZ", "CMCSA"]
-//        }
-//    }
-
-//    @IBAction func stockTypeSegmentedControlValueChanged(sender: UISegmentedControl)
-//    {
-//        switch sender.selectedSegmentIndex {
-//        case 0:
-//            self.stockType = .Tech
-//        case 1:
-//            self.stockType = .Cars
-//        case 2:
-//            self.stockType = .Telecom
-//        default:
-//            print("Segment index out of known range, do you need to add to the enum or switch statement?")
-//        }
-//        
-//        // load data for our new symbols
-//        refresh(sender)
-//    }
-    
     func loadNotificationItems() {
-//        let symbols = symbolsStringForCurrentStockType()
         NotificationItem.getNotificationList({ (items, error) in
             if error != nil
             {

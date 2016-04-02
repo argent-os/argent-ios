@@ -32,8 +32,6 @@ class NotificationItem {
     class func getNotificationList(completionHandler: ([NotificationItem]?, NSError?) -> Void) {
         Alamofire.request(.GET, self.endpointForNotifications())
             .responseNotificationsItemsArray { response in
-                print(response)
-                print("inside completion handler callback")
                 completionHandler(response.result.value, response.result.error)
         }
     }
@@ -54,7 +52,6 @@ extension Alamofire.Request {
             switch result {
             case .Success(let value):
                 let json = JSON(value)
-                print(json)
                 guard json.error == nil else {
                     print(json.error!)
                     return .Failure(json.error!)
@@ -62,15 +59,12 @@ extension Alamofire.Request {
                 
                 var itemsArray = [NotificationItem]()
                 let notifications = json.arrayValue
-                print(notifications)
                 for jsonItem in notifications {
                     let text = jsonItem["text"].stringValue
                     let id = jsonItem["_id"].stringValue
                     let uid = jsonItem["user_id"].stringValue
                     let date = jsonItem["date"].stringValue
                     let item = NotificationItem(id: id, text: text, date: date, uid: uid)
-                    print(text)
-                    print(item)
                     itemsArray.append(item)
                 }
                 
