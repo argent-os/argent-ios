@@ -17,6 +17,8 @@ class CreditCardAccountViewController: UIViewController, CardIOPaymentViewContro
     @IBAction func scanCard(sender: AnyObject) {
         let cardIOVC = CardIOPaymentViewController(paymentDelegate: self)
         cardIOVC.hideCardIOLogo = true
+        cardIOVC.allowFreelyRotatingCardGuide = true
+        cardIOVC.guideColor = UIColor(rgba: "#1796fa")
         cardIOVC.modalPresentationStyle = .FormSheet
         presentViewController(cardIOVC, animated: true, completion: nil)
     }

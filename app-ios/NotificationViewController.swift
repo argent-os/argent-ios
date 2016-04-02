@@ -30,7 +30,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         self.refreshControl.backgroundColor = UIColor.clearColor()
         
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl.addTarget(self, action: #selector(NotificationsViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         self.tableView?.addSubview(refreshControl)
         
         self.loadNotificationItems()
