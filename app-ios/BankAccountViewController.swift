@@ -20,10 +20,19 @@ class MainTableViewController: UITableViewController {
         self.navigationItem.title = "Link Bank Account"
         
         self.elements = [
-            ["color": UIColor(red: 25/255.0, green: 181/255.0, blue: 254/255.0, alpha: 1.0)],
-            ["color": UIColor(red: 54/255.0, green: 215/255.0, blue: 183/255.0, alpha: 1.0)],
-            ["color": UIColor(red: 210/255.0, green: 77/255.0, blue: 87/255.0, alpha: 1.0)],
-            ["color": UIColor(red: 236/255.0, green: 236/255.0, blue: 236/255.0, alpha: 1.0)]
+            ["background_color": UIColor(rgba: "#11A0DD"), "bank_name": "amex", "bank_logo": "bank_amex"],
+            ["background_color": UIColor(rgba: "#D4001A"), "bank_name": "bofa", "bank_logo": "bank_bofa"],
+            ["background_color": UIColor(rgba: "#003C70"), "bank_name": "capone", "bank_logo": "bank_capone"],
+            ["background_color": UIColor(rgba: "#0f5ba7"), "bank_name": "chase", "bank_logo": "bank_chase"],
+            ["background_color": UIColor(rgba: "#000066"), "bank_name": "citi", "bank_logo": "bank_citi"],
+            ["background_color": UIColor(rgba: "#04427e"), "bank_name": "navy", "bank_logo": "bank_navy"],
+            ["background_color": UIColor(rgba: "#f48024"), "bank_name": "pnc", "bank_logo": "bank_pnc"],
+            ["background_color": UIColor(rgba: "#009fdf"), "bank_name": "schwab", "bank_logo": "bank_schwab"],
+            ["background_color": UIColor(rgba: "#f36b2b"), "bank_name": "suntrust", "bank_logo": "bank_suntrust"],
+            ["background_color": UIColor(rgba: "#2db357"), "bank_name": "td", "bank_logo": "bank_td"],
+            ["background_color": UIColor(rgba: "#0c2074"), "bank_name": "us", "bank_logo": "bank_us"],
+            ["background_color": UIColor(rgba: "#00365b"), "bank_name": "usaa", "bank_logo": "bank_usaa"],
+            ["background_color": UIColor(rgba: "#bb0826"), "bank_name": "wells", "bank_logo": "bank_wells"]
         ]
         
     }
@@ -43,10 +52,19 @@ class MainTableViewController: UITableViewController {
 
         let cell = tableView.dequeueReusableCellWithIdentifier("mainCell", forIndexPath: indexPath) as! MainTableViewCell
         
-        cell.background.layer.cornerRadius = 10;
-        cell.header.layer.cornerRadius = 10;
+        let width = UIScreen.mainScreen().bounds.size.width
+        let height = UIScreen.mainScreen().bounds.size.height
+        
+        cell.background.layer.cornerRadius = 0
+        cell.background.backgroundColor = UIColor.clearColor()
+        cell.header.backgroundColor = UIColor.clearColor()
+        cell.header.layer.cornerRadius = 0
         cell.background.clipsToBounds = true
-        cell.header.backgroundColor = self.elements.objectAtIndex(indexPath.row).objectForKey("color") as? UIColor
+        
+        // pass in the background image as a parameter here from self.elements above
+        cell.contentView.backgroundColor = self.elements.objectAtIndex(indexPath.row).objectForKey("background_color") as? UIColor
+//        cell.imageView!.frame = CGRectMake(0, 0, width, height)
+        cell.imageView!.image = UIImage(named: self.elements.objectAtIndex(indexPath.row).objectForKey("bank_logo") as! String)
         
         return cell
     }
@@ -66,7 +84,7 @@ class MainTableViewController: UITableViewController {
             // let destination = (self.storyboard?.instantiateViewControllerWithIdentifier("DetailViewController"))! as! DetailViewController
 
             let destination = segue.destinationViewController as! DetailViewController
-            destination.color = element.objectForKey("color") as? UIColor
+            destination.color = element.objectForKey("background_color") as? UIColor
             print("color setting", destination.color!)
 
             // destination.element = element as! NSDictionary

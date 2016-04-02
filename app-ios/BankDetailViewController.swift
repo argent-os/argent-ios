@@ -25,6 +25,11 @@ class DetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    //Changing Status Bar
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "bankListView") {
             print("going to bank list view")

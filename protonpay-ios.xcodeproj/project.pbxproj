@@ -11,6 +11,10 @@
 		30162DBA1CA9FB2C00438842 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30162DB91CA9FB2C00438842 /* Stock.swift */; };
 		302010C81CAEAE0E007D5E7E /* BalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302010C71CAEAE0E007D5E7E /* BalanceViewController.swift */; };
 		302010CA1CAF3B05007D5E7E /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302010C91CAF3B05007D5E7E /* Notification.swift */; };
+		302010D11CB016ED007D5E7E /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 302010D01CB016ED007D5E7E /* NotificationCenter.framework */; };
+		302010D41CB016ED007D5E7E /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302010D31CB016ED007D5E7E /* TodayViewController.swift */; };
+		302010D71CB016ED007D5E7E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 302010D51CB016ED007D5E7E /* MainInterface.storyboard */; };
+		302010DB1CB016ED007D5E7E /* Proton Payments.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 302010CF1CB016ED007D5E7E /* Proton Payments.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		304468F01CAA0BFC008CAE7D /* notify.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468ED1CAA0BFC008CAE7D /* notify.caf */; };
 		304468F11CAA0BFC008CAE7D /* pop.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468EE1CAA0BFC008CAE7D /* pop.caf */; };
 		304468F21CAA0BFC008CAE7D /* tone.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468EF1CAA0BFC008CAE7D /* tone.caf */; };
@@ -131,6 +135,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		302010D91CB016ED007D5E7E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 30FB54021C6A58B40004A538 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 302010CE1CB016ED007D5E7E;
+			remoteInfo = "app-notificationcenter";
+		};
 		30DB59681CA46CB0007FEE1E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 30FB54021C6A58B40004A538 /* Project object */;
@@ -173,6 +184,17 @@
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		302010DF1CB016ED007D5E7E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				302010DB1CB016ED007D5E7E /* Proton Payments.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		30DB59821CA46CB0007FEE1E /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -193,6 +215,11 @@
 		30162DB91CA9FB2C00438842 /* Stock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stock.swift; path = "app-ios/Stock.swift"; sourceTree = SOURCE_ROOT; };
 		302010C71CAEAE0E007D5E7E /* BalanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BalanceViewController.swift; path = "app-ios/BalanceViewController.swift"; sourceTree = SOURCE_ROOT; };
 		302010C91CAF3B05007D5E7E /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Notification.swift; path = "app-ios/Notification.swift"; sourceTree = SOURCE_ROOT; };
+		302010CF1CB016ED007D5E7E /* Proton Payments.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Proton Payments.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		302010D01CB016ED007D5E7E /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		302010D31CB016ED007D5E7E /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		302010D61CB016ED007D5E7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		302010D81CB016ED007D5E7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		304468ED1CAA0BFC008CAE7D /* notify.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = notify.caf; sourceTree = "<group>"; };
 		304468EE1CAA0BFC008CAE7D /* pop.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pop.caf; sourceTree = "<group>"; };
 		304468EF1CAA0BFC008CAE7D /* tone.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tone.caf; sourceTree = "<group>"; };
@@ -328,6 +355,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		302010CC1CB016ED007D5E7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				302010D11CB016ED007D5E7E /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		30DB59631CA46CB0007FEE1E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -417,6 +452,16 @@
 				302010C71CAEAE0E007D5E7E /* BalanceViewController.swift */,
 			);
 			name = Balance;
+			sourceTree = "<group>";
+		};
+		302010D21CB016ED007D5E7E /* app-notificationcenter */ = {
+			isa = PBXGroup;
+			children = (
+				302010D31CB016ED007D5E7E /* TodayViewController.swift */,
+				302010D51CB016ED007D5E7E /* MainInterface.storyboard */,
+				302010D81CB016ED007D5E7E /* Info.plist */,
+			);
+			path = "app-notificationcenter";
 			sourceTree = "<group>";
 		};
 		304DDE351C9CEDA500962BC4 /* Integrations */ = {
@@ -740,6 +785,7 @@
 				30FB542C1C6A58B50004A538 /* app-iosUITests */,
 				30DB595B1CA46CB0007FEE1E /* app-watchos */,
 				30DB596A1CA46CB0007FEE1E /* app-watchos Extension */,
+				302010D21CB016ED007D5E7E /* app-notificationcenter */,
 				30FB540B1C6A58B40004A538 /* Products */,
 				725FEE2455E80C94BBA37597 /* Pods */,
 				8B9765A98BF669E54968EFD0 /* Frameworks */,
@@ -754,6 +800,7 @@
 				30FB54291C6A58B40004A538 /* protonpay-iosTests.xctest */,
 				30DB595A1CA46CB0007FEE1E /* app-watchos.app */,
 				30DB59661CA46CB0007FEE1E /* app-watchos Extension.appex */,
+				302010CF1CB016ED007D5E7E /* Proton Payments.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -823,6 +870,7 @@
 				A1AC01881780C6537201E7C5 /* Pods.framework */,
 				50E88D0ADD61BCA3EBD43D33 /* Pods_protonpay_ios.framework */,
 				6959C28B834901781B0C0FCC /* Pods_app_watchos_Extension.framework */,
+				302010D01CB016ED007D5E7E /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -830,6 +878,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		302010CE1CB016ED007D5E7E /* Proton Payments */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 302010DC1CB016ED007D5E7E /* Build configuration list for PBXNativeTarget "Proton Payments" */;
+			buildPhases = (
+				302010CB1CB016ED007D5E7E /* Sources */,
+				302010CC1CB016ED007D5E7E /* Frameworks */,
+				302010CD1CB016ED007D5E7E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Proton Payments";
+			productName = "app-notificationcenter";
+			productReference = 302010CF1CB016ED007D5E7E /* Proton Payments.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		30DB59591CA46CB0007FEE1E /* app-watchos */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 30DB59831CA46CB0007FEE1E /* Build configuration list for PBXNativeTarget "app-watchos" */;
@@ -878,11 +943,13 @@
 				1B628A2396EE3DB44E45FD78 /* Embed Pods Frameworks */,
 				545614C87EF7766B953CD8F4 /* Copy Pods Resources */,
 				300B66F31CA45F6F00E24AF1 /* Embed Watch Content */,
+				302010DF1CB016ED007D5E7E /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				30DB597B1CA46CB0007FEE1E /* PBXTargetDependency */,
+				302010DA1CB016ED007D5E7E /* PBXTargetDependency */,
 			);
 			name = "protonpay-ios";
 			productName = "timekloud-ios";
@@ -935,6 +1002,10 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Sinan Ulkuatam";
 				TargetAttributes = {
+					302010CE1CB016ED007D5E7E = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 95ZGR52Q89;
+					};
 					30DB59591CA46CB0007FEE1E = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 95ZGR52Q89;
@@ -1013,11 +1084,20 @@
 				30FB54281C6A58B40004A538 /* protonpay-iosUITests */,
 				30DB59591CA46CB0007FEE1E /* app-watchos */,
 				30DB59651CA46CB0007FEE1E /* app-watchos Extension */,
+				302010CE1CB016ED007D5E7E /* Proton Payments */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		302010CD1CB016ED007D5E7E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				302010D71CB016ED007D5E7E /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		30DB59581CA46CB0007FEE1E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1186,6 +1266,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		302010CB1CB016ED007D5E7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				302010D41CB016ED007D5E7E /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		30DB59621CA46CB0007FEE1E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1294,6 +1382,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		302010DA1CB016ED007D5E7E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 302010CE1CB016ED007D5E7E /* Proton Payments */;
+			targetProxy = 302010D91CB016ED007D5E7E /* PBXContainerItemProxy */;
+		};
 		30DB59691CA46CB0007FEE1E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 30DB59651CA46CB0007FEE1E /* app-watchos Extension */;
@@ -1317,6 +1410,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		302010D51CB016ED007D5E7E /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				302010D61CB016ED007D5E7E /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		30C2DB201CA43B62003AFD8B /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1336,6 +1437,36 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		302010DD1CB016ED007D5E7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "app-notificationcenter/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.protonpayments.app.app-notificationcenter";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		302010DE1CB016ED007D5E7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "app-notificationcenter/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.protonpayments.app.app-notificationcenter";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		30DB597D1CA46CB0007FEE1E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1517,6 +1648,7 @@
 				CODE_SIGN_ENTITLEMENTS = "app-ios/PayKloud.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "app-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.protonpayments.app;
@@ -1534,6 +1666,7 @@
 				CODE_SIGN_ENTITLEMENTS = "app-ios/PayKloud.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "app-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.protonpayments.app;
@@ -1596,6 +1729,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		302010DC1CB016ED007D5E7E /* Build configuration list for PBXNativeTarget "Proton Payments" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				302010DD1CB016ED007D5E7E /* Debug */,
+				302010DE1CB016ED007D5E7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		30DB59811CA46CB0007FEE1E /* Build configuration list for PBXNativeTarget "app-watchos Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

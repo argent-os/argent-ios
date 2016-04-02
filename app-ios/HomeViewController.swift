@@ -122,6 +122,8 @@ class HomeViewController: UIViewController {
                 if responseObject?["pending"][0]["amount"].stringValue != nil {
                     let pendingAmt = responseObject?["pending"][0]["amount"].stringValue
                     let availableAmt = responseObject?["available"][0]["amount"].stringValue
+                    NSNotificationCenter.defaultCenter().postNotificationName("balance", object: nil, userInfo: ["available_bal":availableAmt!,"pending_bal":pendingAmt!])
+
                     if(pendingAmt == nil || pendingAmt == "" || availableAmt == nil || availableAmt == "") {
                         return
                     } else {
