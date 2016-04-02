@@ -36,12 +36,6 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         self.loadNotificationItems()
     }
     
-    private func formatDate(date:NSDate) -> String {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = NSDateFormatterStyle.LongStyle
-        return dateFormatter.stringFromDate(date)
-    }
-    
     func loadNotificationItems() {
         NotificationItem.getNotificationList({ (items, error) in
             if error != nil
@@ -103,7 +97,14 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         }
         if let date = item?.date, uid = item?.uid
         {
-            cell.detailTextLabel?.text = "on date: " + date + " / uid " + uid
+            if(!date.isEmpty || date != "") {
+                let converted_date = NSDate(timeIntervalSince1970: Double(date)!)
+                dateFormatter.timeStyle = .MediumStyle
+                let formatted_date = dateFormatter.stringFromDate(converted_date)
+                cell.detailTextLabel?.text = String(formatted_date) + " / uid " + uid
+            } else {
+                print("no date")
+            }
         }
         return cell
     }
