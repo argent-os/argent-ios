@@ -10,6 +10,7 @@
 		278F38ABFB35EDAA24E7A2BC /* Pods_app_watchos_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6959C28B834901781B0C0FCC /* Pods_app_watchos_Extension.framework */; };
 		30162DBA1CA9FB2C00438842 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30162DB91CA9FB2C00438842 /* Stock.swift */; };
 		302010C81CAEAE0E007D5E7E /* BalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302010C71CAEAE0E007D5E7E /* BalanceViewController.swift */; };
+		302010CA1CAF3B05007D5E7E /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302010C91CAF3B05007D5E7E /* Notification.swift */; };
 		304468F01CAA0BFC008CAE7D /* notify.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468ED1CAA0BFC008CAE7D /* notify.caf */; };
 		304468F11CAA0BFC008CAE7D /* pop.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468EE1CAA0BFC008CAE7D /* pop.caf */; };
 		304468F21CAA0BFC008CAE7D /* tone.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468EF1CAA0BFC008CAE7D /* tone.caf */; };
@@ -191,6 +192,7 @@
 		300B66F61CA4635800E24AF1 /* RESideMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RESideMenu.framework; path = "Pods/../build/Debug-iphoneos/RESideMenu.framework"; sourceTree = "<group>"; };
 		30162DB91CA9FB2C00438842 /* Stock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stock.swift; path = "app-ios/Stock.swift"; sourceTree = SOURCE_ROOT; };
 		302010C71CAEAE0E007D5E7E /* BalanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BalanceViewController.swift; path = "app-ios/BalanceViewController.swift"; sourceTree = SOURCE_ROOT; };
+		302010C91CAF3B05007D5E7E /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Notification.swift; path = "app-ios/Notification.swift"; sourceTree = SOURCE_ROOT; };
 		304468ED1CAA0BFC008CAE7D /* notify.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = notify.caf; sourceTree = "<group>"; };
 		304468EE1CAA0BFC008CAE7D /* pop.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pop.caf; sourceTree = "<group>"; };
 		304468EF1CAA0BFC008CAE7D /* tone.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tone.caf; sourceTree = "<group>"; };
@@ -404,6 +406,7 @@
 			children = (
 				30C2DAF81CA43975003AFD8B /* User.swift */,
 				30162DB91CA9FB2C00438842 /* Stock.swift */,
+				302010C91CAF3B05007D5E7E /* Notification.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1228,6 +1231,7 @@
 				302010C81CAEAE0E007D5E7E /* BalanceViewController.swift in Sources */,
 				30C2DB091CA439BC003AFD8B /* StarButton.swift in Sources */,
 				30C2DB041CA439AB003AFD8B /* CountryView.swift in Sources */,
+				302010CA1CAF3B05007D5E7E /* Notification.swift in Sources */,
 				30C2DAAB1CA4374F003AFD8B /* SignupViewControllerZero.swift in Sources */,
 				30C2DAF51CA43967003AFD8B /* ChargeViewController.swift in Sources */,
 				30C2DABB1CA437CB003AFD8B /* KolodaCustomView.swift in Sources */,
