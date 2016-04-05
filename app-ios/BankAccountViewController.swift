@@ -17,25 +17,31 @@ class MainTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "Link Bank Account"
+        self.navigationItem.title = "Bank"
         
+        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
+
         self.elements = [
-            ["background_color": UIColor(rgba: "#11A0DD"), "bank_name": "amex", "bank_logo": "bank_amex"],
-            ["background_color": UIColor(rgba: "#D4001A"), "bank_name": "bofa", "bank_logo": "bank_bofa"],
-            ["background_color": UIColor(rgba: "#003C70"), "bank_name": "capone360", "bank_logo": "bank_capone"],
-            ["background_color": UIColor(rgba: "#0f5ba7"), "bank_name": "chase", "bank_logo": "bank_chase"],
-            ["background_color": UIColor(rgba: "#000066"), "bank_name": "citi", "bank_logo": "bank_citi"],
-            ["background_color": UIColor(rgba: "#6ec260"), "bank_name": "fidelity", "bank_logo": "bank_fidelity"],
-            ["background_color": UIColor(rgba: "#04427e"), "bank_name": "nfcu", "bank_logo": "bank_navy"],
-            ["background_color": UIColor(rgba: "#f48024"), "bank_name": "pnc", "bank_logo": "bank_pnc"],
-            ["background_color": UIColor(rgba: "#009fdf"), "bank_name": "schwab", "bank_logo": "bank_schwab"],
-            ["background_color": UIColor(rgba: "#f36b2b"), "bank_name": "suntrust", "bank_logo": "bank_suntrust"],
-            ["background_color": UIColor(rgba: "#2db357"), "bank_name": "td", "bank_logo": "bank_td"],
-            ["background_color": UIColor(rgba: "#0c2074"), "bank_name": "us", "bank_logo": "bank_us"],
-            ["background_color": UIColor(rgba: "#00365b"), "bank_name": "usaa", "bank_logo": "bank_usaa"],
-            ["background_color": UIColor(rgba: "#bb0826"), "bank_name": "wells", "bank_logo": "bank_wells"]
+            ["background_color": UIColor(rgba: "#11A0DD"), "bank_name": "American Express", "bank_logo": "bank_amex"],
+            ["background_color": UIColor(rgba: "#D4001A"), "bank_name": "Bank of America", "bank_logo": "bank_bofa"],
+            ["background_color": UIColor(rgba: "#003C70"), "bank_name": "Capital One", "bank_logo": "bank_capone"],
+            ["background_color": UIColor(rgba: "#0f5ba7"), "bank_name": "Chase", "bank_logo": "bank_chase"],
+            ["background_color": UIColor(rgba: "#000066"), "bank_name": "Citi", "bank_logo": "bank_citi"],
+            ["background_color": UIColor(rgba: "#6ec260"), "bank_name": "Fidelity", "bank_logo": "bank_fidelity"],
+            ["background_color": UIColor(rgba: "#04427e"), "bank_name": "Navy Federal", "bank_logo": "bank_navy"],
+            ["background_color": UIColor(rgba: "#f48024"), "bank_name": "PNC", "bank_logo": "bank_pnc"],
+            ["background_color": UIColor(rgba: "#009fdf"), "bank_name": "Charles Schwab", "bank_logo": "bank_schwab"],
+            ["background_color": UIColor(rgba: "#f36b2b"), "bank_name": "SunTrust", "bank_logo": "bank_suntrust"],
+            ["background_color": UIColor(rgba: "#2db357"), "bank_name": "TD Bank", "bank_logo": "bank_td"],
+            ["background_color": UIColor(rgba: "#0c2074"), "bank_name": "US Bank", "bank_logo": "bank_us"],
+            ["background_color": UIColor(rgba: "#00365b"), "bank_name": "USAA", "bank_logo": "bank_usaa"],
+            ["background_color": UIColor(rgba: "#bb0826"), "bank_name": "Wells Fargo", "bank_logo": "bank_wells"]
         ]
         
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
     
     // MARK: - Table view data source

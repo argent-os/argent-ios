@@ -13,7 +13,7 @@ import JGProgressHUD
 import SIAlertView
 import WatchConnectivity
 
-class LoginBoxTableViewController: UITableViewController, WCSessionDelegate {
+class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var usernameCell: UITableViewCell!
     @IBOutlet weak var usernameTextField: UITextField!
@@ -25,17 +25,20 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate {
         // Add button to keyboard
         addToolbarButton()
         
+        self.usernameTextField.delegate = self
+        self.passwordTextField.delegate = self
+        
         usernameTextField.becomeFirstResponder()
 
         usernameCell.layer.borderColor = UIColor.redColor().CGColor
         
-        usernameTextField.tag = 4
+        usernameTextField.tag = 8389
         let str = NSAttributedString(string: "Username or Email", attributes: [NSForegroundColorAttributeName:UIColor(rgba: "#333a")])
         usernameTextField.attributedPlaceholder = str
         usernameTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
         usernameTextField.textRectForBounds(CGRectMake(0, 0, 0, 0))
         
-        passwordTextField.tag = 5
+        passwordTextField.tag = 8390
         let str2 = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName:UIColor(rgba: "#333a")])
         passwordTextField.attributedPlaceholder = str2
         passwordTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
@@ -78,7 +81,7 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate {
         let username = usernameTextField.text
         let password = passwordTextField.text
         
-        var HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
         HUD.textLabel.text = "Logging in"
         HUD.showInView(self.view!)
         HUD.dismissAfterDelay(0.3)
@@ -226,7 +229,7 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate {
     }
     
     func displayAlertMessage(alertMessage:String) {
-        var alertView: SIAlertView = SIAlertView(title: "Alert", andMessage: alertMessage)
+        let alertView: SIAlertView = SIAlertView(title: "Alert", andMessage: alertMessage)
         alertView.addButtonWithTitle("Ok", type: SIAlertViewButtonType.Default, handler: nil)
 //        alertView.addButtonWithTitle("Button2", type: SIAlertViewButtonType.Destructive, handler: nil)
         alertView.transitionStyle = SIAlertViewTransitionStyle.DropDown

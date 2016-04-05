@@ -19,9 +19,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var loginBox: UIView!
     
-    let emailTextField = UITextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
-    let passwordTextField = UITextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
-    
     // Set up initial view height adjustment to false
     var alreadyAdjusted:Bool = false
     

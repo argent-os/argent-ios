@@ -205,8 +205,8 @@
                                     </segue>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ImW-P1-e1r">
-                                <rect key="frame" x="20" y="367" width="374" height="148"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ImW-P1-e1r">
+                                <rect key="frame" x="20" y="318" width="374" height="148"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="148" id="Z2l-kD-rvn"/>
                                 </constraints>
@@ -594,7 +594,7 @@ support request</string>
                                 <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Message"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Enter support message here..."/>
                                 </userDefinedRuntimeAttributes>
                             </textView>
                         </subviews>
@@ -2150,6 +2150,7 @@ institutions</string>
                             <constraint firstItem="QDc-jK-TQi" firstAttribute="leading" secondItem="id2-UZ-xNx" secondAttribute="leading" id="qLK-e8-gHA"/>
                         </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <segue destination="mQk-jK-m8v" kind="presentation" identifier="loginView" id="NZL-lW-Wpq"/>
@@ -2157,7 +2158,7 @@ institutions</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qTl-eh-Tsd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1302" y="1231"/>
+            <point key="canvasLocation" x="1189" y="1231"/>
         </scene>
         <!--Login Box Table View Controller-->
         <scene sceneID="VTT-x8-ndO">
@@ -3068,6 +3069,7 @@ Click here to view more</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.15544999540000001" green="0.57850367049999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="menuPrefersStatusBarHidden" value="YES"/>
@@ -3078,7 +3080,7 @@ Click here to view more</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="slW-jw-on5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="689" y="1299"/>
+            <point key="canvasLocation" x="599" y="1299"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1dh-ah-XiZ">
@@ -3268,6 +3270,7 @@ Click here to view more</string>
                             <constraint firstItem="AJj-z0-qeS" firstAttribute="top" secondItem="RfJ-9a-IFG" secondAttribute="bottom" constant="8" symbolic="YES" id="l97-70-gdI"/>
                         </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="closeButton" destination="TlV-xV-E6e" id="x2y-xA-pce"/>
@@ -3390,7 +3393,7 @@ Click here to view more</string>
                                 <connections>
                                     <outlet property="background" destination="dxk-qH-8pb" id="i4j-XP-N4o"/>
                                     <outlet property="header" destination="9Wt-Kc-fLg" id="HmC-Z4-cPY"/>
-                                    <segue destination="JEu-27-Q04" kind="showDetail" identifier="viewDetail" action="showViewController:sender:" id="X13-up-BqW"/>
+                                    <segue destination="JEu-27-Q04" kind="presentation" identifier="viewDetail" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="X13-up-BqW"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -3407,7 +3410,7 @@ Click here to view more</string>
         <!--Detail View Controller-->
         <scene sceneID="geL-7h-LEv">
             <objects>
-                <viewController storyboardIdentifier="DetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JEu-27-Q04" customClass="DetailViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" definesPresentationContext="YES" providesPresentationContextTransitionStyle="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JEu-27-Q04" customClass="DetailViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YeP-JC-IoR"/>
                         <viewControllerLayoutGuide type="bottom" id="rW3-Ab-NGB"/>
@@ -3419,18 +3422,42 @@ Click here to view more</string>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yX9-45-coU">
                                 <rect key="frame" x="20" y="559" width="560" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="e14-Cn-o9g"/>
+                                    <constraint firstAttribute="height" constant="21" id="ZJu-h0-zAt"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wS1-1e-1Rt">
+                                <rect key="frame" x="20" y="20" width="560" height="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="igv-X6-j6J">
+                                <rect key="frame" x="20" y="28" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="9v3-bR-IJL"/>
+                                    <constraint firstAttribute="width" constant="25" id="jcM-ZT-bf5"/>
+                                </constraints>
+                                <state key="normal" image="ic_close_light"/>
+                                <connections>
+                                    <action selector="cancel:" destination="JEu-27-Q04" eventType="touchUpInside" id="3X4-gn-W18"/>
+                                    <action selector="done:" destination="JEu-27-Q04" eventType="touchUpInside" id="jMT-PO-lgF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="yX9-45-coU" firstAttribute="trailing" secondItem="0fk-wo-aw0" secondAttribute="trailingMargin" id="6Q0-rg-odJ"/>
-                            <constraint firstItem="yX9-45-coU" firstAttribute="leading" secondItem="0fk-wo-aw0" secondAttribute="leadingMargin" id="T2k-HU-TiQ"/>
-                            <constraint firstAttribute="bottom" secondItem="yX9-45-coU" secondAttribute="bottom" constant="20" symbolic="YES" id="fme-2f-XmO"/>
+                            <constraint firstItem="wS1-1e-1Rt" firstAttribute="top" secondItem="YeP-JC-IoR" secondAttribute="bottom" id="3QR-zh-FLu"/>
+                            <constraint firstItem="igv-X6-j6J" firstAttribute="leading" secondItem="yX9-45-coU" secondAttribute="leading" id="9x0-18-bpZ"/>
+                            <constraint firstItem="wS1-1e-1Rt" firstAttribute="leading" secondItem="0fk-wo-aw0" secondAttribute="leadingMargin" id="FMr-zc-mSP"/>
+                            <constraint firstItem="wS1-1e-1Rt" firstAttribute="baseline" secondItem="igv-X6-j6J" secondAttribute="firstBaseline" id="Qhs-L7-JpX"/>
+                            <constraint firstItem="wS1-1e-1Rt" firstAttribute="leading" secondItem="igv-X6-j6J" secondAttribute="leading" id="Te9-Mq-61I"/>
+                            <constraint firstItem="igv-X6-j6J" firstAttribute="top" secondItem="YeP-JC-IoR" secondAttribute="bottom" constant="8" symbolic="YES" id="Y1J-lX-HFF"/>
+                            <constraint firstAttribute="bottom" secondItem="yX9-45-coU" secondAttribute="bottom" constant="20" symbolic="YES" id="fWx-Z4-Oia"/>
+                            <constraint firstItem="wS1-1e-1Rt" firstAttribute="trailing" secondItem="yX9-45-coU" secondAttribute="trailing" id="guQ-hD-Dh8"/>
+                            <constraint firstItem="wS1-1e-1Rt" firstAttribute="trailing" secondItem="0fk-wo-aw0" secondAttribute="trailingMargin" id="lmf-AJ-btV"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -3544,36 +3571,36 @@ Click here to view more</string>
         <image name="ic_user" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fxJ-La-7Fr"/>
-        <segue reference="mwT-xt-Ez4"/>
-        <segue reference="HS7-dW-Hxr"/>
         <segue reference="eyR-QB-Omx"/>
-        <segue reference="Xln-0K-kRS"/>
-        <segue reference="Oy0-WL-Zfz"/>
+        <segue reference="fxJ-La-7Fr"/>
+        <segue reference="dtT-zy-VVd"/>
+        <segue reference="xTl-cs-ajG"/>
+        <segue reference="YDb-8b-gnI"/>
+        <segue reference="Pl7-8K-ZTA"/>
+        <segue reference="wTc-2l-6Jt"/>
+        <segue reference="aSf-Dh-oaH"/>
+        <segue reference="vfk-cG-eDy"/>
+        <segue reference="HS7-dW-Hxr"/>
         <segue reference="C2X-hN-Ktf"/>
-        <segue reference="JgX-xV-v5e"/>
-        <segue reference="zQh-Po-kj4"/>
+        <segue reference="Oy0-WL-Zfz"/>
         <segue reference="5Ke-wX-bmY"/>
         <segue reference="dKP-gn-jL5"/>
-        <segue reference="wgV-xY-MTp"/>
+        <segue reference="zQh-Po-kj4"/>
+        <segue reference="JgX-xV-v5e"/>
+        <segue reference="Xln-0K-kRS"/>
         <segue reference="y2B-og-1xc"/>
-        <segue reference="xTl-cs-ajG"/>
-        <segue reference="UFB-DJ-qrH"/>
-        <segue reference="zMt-NT-I29"/>
-        <segue reference="iZp-dq-021"/>
-        <segue reference="vfk-cG-eDy"/>
-        <segue reference="aSf-Dh-oaH"/>
+        <segue reference="wgV-xY-MTp"/>
+        <segue reference="ipn-3I-3vc"/>
+        <segue reference="VI5-hp-Gm2"/>
         <segue reference="agi-3I-cSC"/>
         <segue reference="j8y-vP-2EI"/>
         <segue reference="gUR-9D-JWE"/>
         <segue reference="m3z-fp-Nlm"/>
         <segue reference="igQ-zk-tCm"/>
-        <segue reference="VI5-hp-Gm2"/>
-        <segue reference="ipn-3I-3vc"/>
-        <segue reference="YIg-Dp-HpF"/>
+        <segue reference="aks-Yo-Spb"/>
+        <segue reference="fEJ-lR-z9I"/>
         <segue reference="7cu-FP-MoG"/>
         <segue reference="Bc6-jW-uiV"/>
-        <segue reference="fEJ-lR-z9I"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>

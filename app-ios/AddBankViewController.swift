@@ -15,10 +15,14 @@ class AddBankViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.navigationController!.navigationBar.tintColor = UIColor.darkGrayColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
 
         addBankButton.layer.cornerRadius = 0
         addBankButton.clipsToBounds = true
         addBankButton.backgroundColor = UIColor(rgba: "#1796fa")
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
 }

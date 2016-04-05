@@ -17,9 +17,14 @@ class ProfileMenuViewController: UITableViewController {
         super.viewDidLoad()
         
         // Add action to share cell to return to activity menu
-        shareCell.targetForAction("share:", withSender: self)
+        shareCell.targetForAction(Selector("share:"), withSender: self)
         
         print("loaded profile menu")
+    }
+    
+    //Changing Status Bar
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

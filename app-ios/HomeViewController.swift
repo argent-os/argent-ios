@@ -91,7 +91,7 @@ class HomeViewController: UIViewController {
             NSFontAttributeName : UIFont(name: "Nunito-SemiBold", size: 18.0)!
         ]
         
-        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Compose, target: self, action: Selector("chargeButtonTapped:")), animated: true)
+        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Compose, target: self, action: #selector(HomeViewController.chargeButtonTapped(_:))), animated: true)
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
 
     }

@@ -23,8 +23,8 @@ var userData:JSON? // init user data, declare globally, needs SwiftyJSON
 
 // let apiUrl = "http://localhost:5001"
 // let apiUrl = "http://192.168.1.182:5001"
- let apiUrl = "http://192.168.1.232:5001"
-// let apiUrl = "http://proton-api-dev.us-east-1.elasticbeanstalk.com"
+// let apiUrl = "http://192.168.1.232:5001"
+ let apiUrl = "http://proton-api-dev.us-east-1.elasticbeanstalk.com"
 // PROD
 //let apiUrl = "http://api.protonpayments.com"
 
@@ -45,11 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let presenter = PasscodeLockPresenter(mainWindow: self.window, configuration: configuration)
         return presenter
     }()
-    
-//    // Hiding Status Bar
-//    override public func prefersStatusBarHidden() -> Bool {
-//        return true
-//    }
 
     // 3D Touch
     func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: Bool -> Void) {
@@ -132,7 +127,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Get device token for push notification
     func application( application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData ) {
         
-        var characterSet: NSCharacterSet = NSCharacterSet( charactersInString: "<>" )
+        let characterSet: NSCharacterSet = NSCharacterSet( charactersInString: "<>" )
         
         let deviceTokenString: String = ( deviceToken.description as NSString )
             .stringByTrimmingCharactersInSet( characterSet )

@@ -13,7 +13,7 @@ import Alamofire
 import SwiftyJSON
 import JGProgressHUD
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UITextFieldDelegate {
     
     var color: UIColor?
     var logo: String?
@@ -61,11 +61,32 @@ class DetailViewController: UIViewController {
         return institution
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
+    @IBAction func cancel(sender: AnyObject) {
+        if((self.presentingViewController) != nil){
+            self.dismissViewControllerAnimated(true, completion: nil)
+            print("cancel")
+        }
+    }
+    
+    @IBAction func done(sender: AnyObject) {
+        if((self.presentingViewController) != nil){
+            self.dismissViewControllerAnimated(true, completion: nil)
+            print("done")
+        }    
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         idTextField.becomeFirstResponder()
-    
+        
+        self.idTextField.delegate = self
+        self.passwordTextField.delegate = self
+        
         // Dark keyboard for view
         UITextField.appearance().keyboardAppearance = .Dark
         
@@ -78,20 +99,27 @@ class DetailViewController: UIViewController {
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
+        setNeedsStatusBarAppearanceUpdate()
+        UIStatusBarStyle.LightContent
+        self.navigationController?.navigationBar.tintColor = UIColor.lightGrayColor()
+
         print("bank is ", bankName)
         
         let bankLogo = logo
         let bankImage = UIImage(named: bankLogo!)
         let bankLogoImageView = UIImageView(image: bankImage!)
         
-        bankLogoImageView.frame.origin.y = screenHeight*0.10 // 10 down from the top
+        bankLogoImageView.frame = CGRectMake(0, 0, screenWidth, 100)
+        bankLogoImageView.contentMode = .ScaleAspectFit
+        bankLogoImageView.frame.origin.y = screenHeight*0.08 // 10 down from the top
         bankLogoImageView.frame.origin.x = (self.view.bounds.size.width - screenWidth) / 2.0
+
         view.addSubview(bankLogoImageView)
         
         // Programatically set the input fields
-        idTextField.tag = 89
+        idTextField.tag = 4443
         idTextField.textAlignment = NSTextAlignment.Center
-        idTextField.borderActiveColor = UIColor(rgba: "#FFF8")
+        idTextField.borderActiveColor = UIColor(rgba: "#FFF4")
         idTextField.borderInactiveColor = UIColor(rgba: "#FFF9") // color with alpha
         idTextField.backgroundColor = UIColor.clearColor()
         idTextField.placeholder = "Bank Account Username"
@@ -107,9 +135,9 @@ class DetailViewController: UIViewController {
         idTextField.returnKeyType = UIReturnKeyType.Next
         view.addSubview(idTextField)
         
-        passwordTextField.tag = 90
+        passwordTextField.tag = 4444
         passwordTextField.textAlignment = NSTextAlignment.Center
-        passwordTextField.borderActiveColor = UIColor(rgba: "#FFF8")
+        passwordTextField.borderActiveColor = UIColor(rgba: "#FFF4")
         passwordTextField.borderInactiveColor = UIColor(rgba: "#FFF9") // color with alpha
         passwordTextField.backgroundColor = UIColor.clearColor()
         passwordTextField.placeholder = "Password"
@@ -119,21 +147,15 @@ class DetailViewController: UIViewController {
         passwordTextField.autocorrectionType = UITextAutocorrectionType.No
         passwordTextField.keyboardType = UIKeyboardType.Default
         passwordTextField.secureTextEntry = true
-        passwordTextField.returnKeyType = UIReturnKeyType.Next
         passwordTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
         passwordTextField.frame.origin.y = screenHeight*0.35 // 25 down from the top
         passwordTextField.frame.origin.x = (self.view.bounds.size.width - passwordTextField.frame.size.width) / 2.0
-        passwordTextField.returnKeyType = UIReturnKeyType.Next
+        passwordTextField.returnKeyType = UIReturnKeyType.Go
         view.addSubview(passwordTextField)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    //Changing Status Bar
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -180,6 +202,7 @@ class DetailViewController: UIViewController {
         if idTextField.text != "" || passwordTextField.text != "" {
             let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
             HUD.showInView(self.view!)
+            HUD.backgroundColor = UIColor(white: 0.0, alpha: 0.4)
             HUD.textLabel.text = "Authenticating to " + bankName!
             HUD.dismissAfterDelay(1)
             PS_addUser(.Connect, username: idTextField.text!, password: passwordTextField.text!, pin: "", institution: institution, completion: { (response, accessToken, mfaType, mfa, accounts, transactions, error) in
@@ -238,7 +261,7 @@ class DetailViewController: UIViewController {
                 case .Success:
                     print("success")
                     if let value = response.result.value {
-                        let data = JSON(value)
+                        _ = JSON(value)
                         print("posted user data")
 //                        print(data)
                     }
@@ -263,6 +286,7 @@ class DetailViewController: UIViewController {
         {
             // Not found, so remove keyboard.
             textField.resignFirstResponder()
+            login(self)
             return true
         }
         return false
