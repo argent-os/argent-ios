@@ -392,7 +392,7 @@ func institutionToString(institution: Institution) -> String {
         case .fidelity:
             return "fidelity"
         case .navy:
-            return "nfcu"
+            return "navy"
         case .pnc:
             return "pnc"
         case .schwab:
@@ -400,7 +400,7 @@ func institutionToString(institution: Institution) -> String {
         case .suntrust:
             return "suntrust"
         case .tdbank:
-            return "td"
+            return "tdbank"
         case .us:
             return "us"
         case .usaa:

@@ -18,6 +18,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
     var color: UIColor?
     var logo: String?
     var bankName: String?
+    var longBankName: String?
     var bankLogoImage: UIImage? = nil
     let idTextField = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
     let passwordTextField  = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
@@ -96,7 +97,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
         UIStatusBarStyle.LightContent
         self.navigationController?.navigationBar.tintColor = UIColor.lightGrayColor()
 
-        print("bank is ", bankName)
+        print("bank is ", longBankName)
         
         let bankLogo = logo
         let bankImage = UIImage(named: bankLogo!)
@@ -115,7 +116,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
         idTextField.borderActiveColor = UIColor(rgba: "#FFF4")
         idTextField.borderInactiveColor = UIColor(rgba: "#FFF9") // color with alpha
         idTextField.backgroundColor = UIColor.clearColor()
-        idTextField.placeholder = bankName! + " Username"
+        idTextField.placeholder = longBankName! + " Username"
         idTextField.placeholderColor = UIColor.whiteColor()
         idTextField.textColor = UIColor.whiteColor()
         idTextField.autocapitalizationType = UITextAutocapitalizationType.None
@@ -196,7 +197,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
             let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
             HUD.showInView(self.view!)
             HUD.backgroundColor = UIColor(white: 0.0, alpha: 0.4)
-            HUD.textLabel.text = "Authenticating to " + bankName!
+            HUD.textLabel.text = "Authenticating to " + longBankName!
             HUD.dismissAfterDelay(1)
             PS_addUser(.Connect, username: idTextField.text!, password: passwordTextField.text!, pin: "", institution: institution, completion: { (response, accessToken, mfaType, mfa, accounts, transactions, error) in
                     print("success")
