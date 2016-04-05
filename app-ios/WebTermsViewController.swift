@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import WebKit
-import SVProgressHUD
+import JGProgressHUD
 
 class WebTermsViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
     
@@ -44,7 +44,11 @@ class WebTermsViewController: UIViewController, WKNavigationDelegate, WKUIDelega
 //                print("\(previewAction.title) triggered from `DetailViewController` for item: \(item)")
                 if title == "Copy Link" {
                     UIPasteboard.generalPasteboard().string = "http://www.protonpayments.com/terms"
-                    SVProgressHUD.showSuccessWithStatus("Link Copied!")
+                    let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+                    HUD.showInView(self.view!)
+                    HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
+                    HUD.textLabel.text = "Link Copied!"
+                    HUD.dismissAfterDelay(0.5)
                 }
                 if title == "Share" {
                     let activityViewController  = UIActivityViewController(

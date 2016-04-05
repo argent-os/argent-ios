@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import WebKit
-import SVProgressHUD
+import JGProgressHUD
 
 class WebPrivacyViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
     
@@ -43,9 +43,15 @@ class WebPrivacyViewController: UIViewController, WKNavigationDelegate, WKUIDele
                 //                guard let detailViewController = viewController as? DetailViewController,
                 //                    item = detailViewController.detailItemTitle else { return }
                 //                print("\(previewAction.title) triggered from `DetailViewController` for item: \(item)")
+
                 if title == "Copy Link" {
+                    let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+                    HUD.showInView(self.view!)
+                    HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
+                    HUD.textLabel.text = "Link Copied!"
+                    HUD.dismissAfterDelay(0.5)
                     UIPasteboard.generalPasteboard().string = "http://www.protonpayments.com/privacy"
-                    SVProgressHUD.showSuccessWithStatus("Link Copied!")
+
                 }
                 if title == "Share" {
                     let activityViewController  = UIActivityViewController(

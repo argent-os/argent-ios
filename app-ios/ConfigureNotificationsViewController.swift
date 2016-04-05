@@ -10,7 +10,6 @@ import Alamofire
 import SwiftyJSON
 import UIKit
 import Former
-import SVProgressHUD
 
 final class ConfigureNotificationsViewController: FormViewController {
     

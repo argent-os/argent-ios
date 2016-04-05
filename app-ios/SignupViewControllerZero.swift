@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import SVProgressHUD
+import JGProgressHUD
 
 class SignupViewControllerZero: UIViewController {
     
@@ -19,7 +19,6 @@ class SignupViewControllerZero: UIViewController {
         // Clear NSUserDefaults
         let appDomain = NSBundle.mainBundle().bundleIdentifier!
         NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain)
-        SVProgressHUD.dismiss()
     }
     
     //Changing Status Bar
@@ -29,7 +28,11 @@ class SignupViewControllerZero: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        SVProgressHUD.show()
+
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        HUD.showInView(self.view!)
+        HUD.dismissAfterDelay(0.5)
+        
         UITextField.appearance().keyboardAppearance = .Light
 
         let screen = UIScreen.mainScreen().bounds

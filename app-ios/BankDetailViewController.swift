@@ -11,6 +11,7 @@ import TextFieldEffects
 import SIAlertView
 import Alamofire
 import SwiftyJSON
+import JGProgressHUD
 
 class DetailViewController: UIViewController {
     
@@ -177,6 +178,10 @@ class DetailViewController: UIViewController {
         let institution = getInstitution(bankName!)
         print(institution)
         if idTextField.text != "" || passwordTextField.text != "" {
+            let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+            HUD.showInView(self.view!)
+            HUD.textLabel.text = "Authenticating to " + bankName!
+            HUD.dismissAfterDelay(1)
             PS_addUser(.Connect, username: idTextField.text!, password: passwordTextField.text!, pin: "", institution: institution, completion: { (response, accessToken, mfaType, mfa, accounts, transactions, error) in
                     print("success")
                     print(accessToken)
@@ -187,7 +192,16 @@ class DetailViewController: UIViewController {
                     // print(response!)
                     // print(transactions!)
                     print(accounts)
-                    print(error)
+                    HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
+                    HUD.textLabel.text = "Bank connected!"
+                    HUD.dismissAfterDelay(2)
+                    print("error is", error)
+                    if(error != nil) {
+                        print(error)
+                        HUD.indicatorView = JGProgressHUDErrorIndicatorView()
+                        HUD.textLabel.text = "Could not connect to bank"
+                        HUD.dismissAfterDelay(2)
+                    }
             })
         }
     }
@@ -226,7 +240,7 @@ class DetailViewController: UIViewController {
                     if let value = response.result.value {
                         let data = JSON(value)
                         print("posted user data")
-                        print(data)
+//                        print(data)
                     }
                 case .Failure(let error):
                     print(error)

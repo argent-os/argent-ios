@@ -12,6 +12,7 @@ import Alamofire
 import SwiftyJSON
 import TextFieldEffects
 import UIColor_Hex_Swift
+import JGProgressHUD
 
 class LoginViewController: UIViewController, UITextFieldDelegate  {
     
@@ -28,14 +29,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         userData = nil
         NSUserDefaults.standardUserDefaults().setBool(false,forKey:"userLoggedIn");
         NSUserDefaults.standardUserDefaults().synchronize();
-//        SVProgressHUD.dismiss()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        SVProgressHUD.show()
-
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        HUD.showInView(self.view!)
+        HUD.dismissAfterDelay(0.3)
+        
         UITextField.appearance().keyboardAppearance = .Dark
         
         // Add action to close button to return to auth view
@@ -52,10 +54,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         // Border radius on uiview
         view.layer.cornerRadius = 0
         view.layer.masksToBounds = true
-        
-        // Dismiss loader
-//        SVProgressHUD.dismiss()
-        
+                
         // Do any additional setup after loading the view.
         
         //Looks for single or multiple taps.

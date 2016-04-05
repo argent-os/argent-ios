@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import SVProgressHUD
+import JGProgressHUD
 
 class NotificationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -22,7 +22,10 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        SVProgressHUD.showInfoWithStatus("Retrieving notifications")
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        HUD.showInView(self.view!)
+        HUD.textLabel.text = "Loading Notifications"
+        HUD.dismissAfterDelay(0.7)
         
         self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         self.dateFormatter.timeStyle = NSDateFormatterStyle.LongStyle
@@ -52,10 +55,8 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
             self.refreshControl.attributedTitle = NSAttributedString(string: updateString)
             if self.refreshControl.refreshing
             {
-                SVProgressHUD.dismiss()
                 self.refreshControl.endRefreshing()
             }
-            SVProgressHUD.dismiss()
             self.tableView?.reloadData()
         })
     }

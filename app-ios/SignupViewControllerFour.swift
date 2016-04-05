@@ -3,9 +3,9 @@ import Foundation
 import UIKit
 import Alamofire
 import SwiftyJSON
-import SVProgressHUD
 import KeychainSwift
 import TextFieldEffects
+import JGProgressHUD
 import UIColor_Hex_Swift
 import BEMCheckBox
 import MZAppearance
@@ -38,7 +38,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
     let countryCode = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
     
     //Changing Status Bar
-    override public func prefersStatusBarHidden() -> Bool {
+    override internal func prefersStatusBarHidden() -> Bool {
         return true
     }
     
@@ -51,14 +51,16 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
         self.finishButton.enabled = false
         // Allow continue to be clicked
         Timeout(0.3) {
-            SVProgressHUD.dismiss()
             self.finishButton.enabled = true
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SVProgressHUD.show()
+
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        HUD.showInView(self.view!)
+        HUD.dismissAfterDelay(0.5)
         
         agreementButton.titleLabel?.textAlignment = NSTextAlignment.Center
 
@@ -100,12 +102,13 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
     
     @IBAction func finishButtonTapped(sender: AnyObject) {
         
-        SVProgressHUD.show()
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        HUD.showInView(self.view!)
+        HUD.dismissAfterDelay(1)
         
         if(self.switchTermsAndPrivacy.on.boolValue == false) {
             // Display error if terms of service and privacy policy not accepted
             displayErrorAlertMessage("Terms of Service and Privacy Policy were not accepted, could not create account");
-            SVProgressHUD.dismiss()
             return;
         }
         
@@ -182,7 +185,6 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
                 }
                 
             } else {
-                SVProgressHUD.dismiss()
                 self.displayErrorAlertMessage("Registration Error, please check your network connection or date/time settings.")
             }
             
@@ -191,7 +193,6 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
         
         // TODO: Set keychain username and password
         
-        SVProgressHUD.dismiss()
     }
     
     func displayErrorAlertMessage(alertMessage:String) {

@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 import UIKit
 import Former
-import SVProgressHUD
+import JGProgressHUD
 
 final class RecurringBillingViewController: FormViewController {
     
@@ -137,7 +137,10 @@ final class RecurringBillingViewController: FormViewController {
     
     func addPlanButtonTapped(sender: AnyObject) {
         
-        SVProgressHUD.show()
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        HUD.showInView(self.view!)
+        HUD.textLabel.text = "Creating Plan"
+        HUD.dismissAfterDelay(0.5)
         
         print("add plan tapped")
         // Post plan using Alamofire
@@ -184,14 +187,16 @@ final class RecurringBillingViewController: FormViewController {
                 switch response.result {
                 case .Success:
                     if let value = response.result.value {
-                        SVProgressHUD.showSuccessWithStatus("Plan added!")
+
+                        HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
+
                         let json = JSON(value)
                         print(json)
                         self.dismissKeyboard()
                         
                     }
                 case .Failure(let error):
-                    SVProgressHUD.showErrorWithStatus("Error adding plan")
+                    HUD.indicatorView = JGProgressHUDErrorIndicatorView()
                     print(error)
                 }
         }

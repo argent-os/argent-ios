@@ -9,9 +9,9 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import JGProgressHUD
 import UIKit
 import Former
-import SVProgressHUD
 
 final class AddCustomerViewController: FormViewController {
     
@@ -96,7 +96,10 @@ final class AddCustomerViewController: FormViewController {
     
     func addCustomerButtonTapped(sender: AnyObject) {
         
-        SVProgressHUD.show()
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        HUD.showInView(self.view!)
+        HUD.textLabel.text = "Adding Customer"
+        HUD.dismissAfterDelay(1)
         
         print(dic)
         
@@ -137,14 +140,14 @@ final class AddCustomerViewController: FormViewController {
                 switch response.result {
                 case .Success:
                     if let value = response.result.value {
-                        SVProgressHUD.showSuccessWithStatus("Customer Added!")
+                        HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
                         let json = JSON(value)
                         print(json)
                         self.dismissKeyboard()
                         
                     }
                 case .Failure(let error):
-                    SVProgressHUD.showErrorWithStatus("Error Adding Customer")
+                    HUD.indicatorView = JGProgressHUDErrorIndicatorView()
                     print(error)
                 }
         }

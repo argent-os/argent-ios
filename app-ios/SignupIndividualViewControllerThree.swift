@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Alamofire
 import SwiftyJSON
-import SVProgressHUD
+import JGProgressHUD
 import KeychainSwift
 import TextFieldEffects
 import UIColor_Hex_Swift
@@ -51,14 +51,16 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
         self.finishButton.enabled = false
         // Allow continue to be clicked
         Timeout(0.3) {
-            SVProgressHUD.dismiss()
             self.finishButton.enabled = true
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SVProgressHUD.show()
+
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        HUD.showInView(self.view!)
+        HUD.dismissAfterDelay(0.5)
         
         agreementButton.titleLabel?.textAlignment = NSTextAlignment.Center
         
@@ -100,12 +102,13 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
     
     @IBAction func finishButtonTapped(sender: AnyObject) {
         
-        SVProgressHUD.show()
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        HUD.showInView(self.view!)
+        HUD.dismissAfterDelay(1)
         
         if(self.switchTermsAndPrivacy.on.boolValue == false) {
             // Display error if terms of service and privacy policy not accepted
             displayErrorAlertMessage("Terms of Service and Privacy Policy were not accepted, could not create account");
-            SVProgressHUD.dismiss()
             return;
         }
         
@@ -174,16 +177,10 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
                 }
                 
             } else {
-                SVProgressHUD.dismiss()
                 self.displayErrorAlertMessage("Registration Error, please check your network connection or date/time settings.")
             }
-            
         }
-        
-        
         // TODO: Set keychain username and password
-        
-        SVProgressHUD.dismiss()
     }
     
     func displayErrorAlertMessage(alertMessage:String) {

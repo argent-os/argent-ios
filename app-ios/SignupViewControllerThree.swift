@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import TextFieldEffects
 import UIColor_Hex_Swift
-import SVProgressHUD
+import JGProgressHUD
 import KeychainSwift
 import SIAlertView
 
@@ -34,7 +34,6 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate {
         self.continueButton.enabled = false
         // Allow continue to be clicked
         Timeout(0.3) {
-            SVProgressHUD.dismiss()
             self.continueButton.enabled = true
         }
     }
@@ -46,10 +45,12 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Show progress loader on load
-        SVProgressHUD.show()
 
+        // Show progress loader on load
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        HUD.showInView(self.view!)
+        HUD.dismissAfterDelay(0.5)
+        
         addToolbarButton()
         
         // Focuses view controller on first name text input

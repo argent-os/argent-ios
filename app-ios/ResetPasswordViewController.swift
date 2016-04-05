@@ -10,7 +10,7 @@ import UIKit
 import QuartzCore
 import Alamofire
 import SwiftyJSON
-import SVProgressHUD
+import JGProgressHUD
 import VideoSplashKit
 import TextFieldEffects
 import UIColor_Hex_Swift
@@ -24,14 +24,12 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
     
     override func viewDidAppear(animated: Bool) {
         // Dismiss loader
-        SVProgressHUD.dismiss()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Dismiss loader
-        SVProgressHUD.dismiss()
         
         // Add button to keyboard
         addToolbarButton()
@@ -121,8 +119,10 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
         let email = emailTextField.text
         let username = emailTextField.text
         
-        SVProgressHUD.showInfoWithStatus("Sending reset link...")
-        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Gradient)
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        HUD.showInView(self.view!)
+        HUD.textLabel.text = "Sending reset link..."
+        HUD.dismissAfterDelay(0.5)
         
         // check for empty fields
         if(email!.isEmpty) {
@@ -144,9 +144,9 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
                 
                 //print("login pressed")
                 if(response.response?.statusCode == 200) {
-                    SVProgressHUD.showSuccessWithStatus("Password reset link sent!")
+                    HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
                 } else {
-                    SVProgressHUD.showErrorWithStatus("An error occured")
+                    HUD.indicatorView = JGProgressHUDErrorIndicatorView()
                 }
                 
                 switch response.result {

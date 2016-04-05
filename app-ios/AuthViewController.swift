@@ -8,7 +8,8 @@
 
 import VideoSplashKit
 import QuartzCore
-import SVProgressHUD
+import JGProgressHUD
+import JGProgressHUD
 import Gecco
 
 class AuthViewController: UIViewController  {
@@ -16,7 +17,7 @@ class AuthViewController: UIViewController  {
     var spotlightViewController: SpotlightViewController?
     
     override func viewDidAppear(animated: Bool) {
-        SVProgressHUD.dismiss()
+
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

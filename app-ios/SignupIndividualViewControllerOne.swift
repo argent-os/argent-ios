@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import TextFieldEffects
 import UIColor_Hex_Swift
-import SVProgressHUD
+import JGProgressHUD
 import SIAlertView
 
 class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate {
@@ -35,7 +35,6 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate {
         self.continueButton.enabled = false
         // Allow continue to be clicked
         Timeout(0.3) {
-            SVProgressHUD.dismiss()
             self.continueButton.enabled = true
         }
     }
@@ -47,7 +46,10 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SVProgressHUD.show()
+
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        HUD.showInView(self.view!)
+        HUD.dismissAfterDelay(0.5)
         
         addToolbarButton()
         

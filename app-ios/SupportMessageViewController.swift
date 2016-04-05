@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SVProgressHUD
+import JGProgressHUD
 
 class SupportMessageViewController: UIViewController {
     
@@ -46,12 +46,18 @@ class SupportMessageViewController: UIViewController {
     }
     
     @IBAction func sendMessageAction() {
-        SVProgressHUD.showInfoWithStatus("Sending support request")
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        HUD.showInView(self.view!)
+        HUD.dismissAfterDelay(0.5)
         sendMessage()
     }
     
     func sendMessage() {
-        SVProgressHUD.showSuccessWithStatus("Request sent!")
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        HUD.showInView(self.view!)
+        HUD.textLabel.text = "Message sent!"
+        HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
+        HUD.dismissAfterDelay(2.5)
         print("message sent")
     }
 }

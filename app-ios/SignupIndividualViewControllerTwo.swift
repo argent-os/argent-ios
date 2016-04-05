@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import TextFieldEffects
 import UIColor_Hex_Swift
-import SVProgressHUD
+import JGProgressHUD
 import KeychainSwift
 import SIAlertView
 
@@ -39,7 +39,6 @@ class SignupIndividualViewControllerTwo: UIViewController, UITextFieldDelegate {
         self.continueButton.enabled = false
         // Allow continue to be clicked
         Timeout(0.3) {
-            SVProgressHUD.dismiss()
             self.continueButton.enabled = true
         }
     }
@@ -53,7 +52,9 @@ class SignupIndividualViewControllerTwo: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         // Show progress loader on load
-        SVProgressHUD.show()
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        HUD.showInView(self.view!)
+        HUD.dismissAfterDelay(0.5)
         
         addToolbarButton()
         

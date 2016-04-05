@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
-import SVProgressHUD
+import JGProgressHUD
 import SIAlertView
 import WatchConnectivity
 
@@ -78,7 +78,10 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate {
         let username = usernameTextField.text
         let password = passwordTextField.text
         
-        SVProgressHUD.show()
+        var HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        HUD.textLabel.text = "Logging in"
+        HUD.showInView(self.view!)
+        HUD.dismissAfterDelay(0.3)
         
         print("login button tapped")
         
@@ -86,11 +89,9 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate {
         if(email!.isEmpty) {
             // display alert message
             displayAlertMessage("Username/Email not entered");
-            //            SVProgressHUD.dismiss()
             return;
         } else if(password!.isEmpty) {
             displayAlertMessage("Password not entered");
-            //            SVProgressHUD.dismiss()
             return;
         }
         
@@ -104,8 +105,11 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate {
                 print(totalBytesWritten)
                 print(totalBytesExpectedToWrite)
                 
-                SVProgressHUD.showProgress(Float(totalBytesExpectedToWrite), status: "Logging in", maskType: SVProgressHUDMaskType.Black)
-
+                let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+                HUD.showInView(self.view!)
+                HUD.textLabel.text = "Logging in"
+                HUD.dismissAfterDelay(0.3)
+                
                 // This closure is NOT called on the main queue for performance
                 // reasons. To update your ui, dispatch to the main queue.
                 dispatch_async(dispatch_get_main_queue()) {
@@ -122,7 +126,6 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate {
                 } else {
                     print("red light")
                     self.displayErrorAlertMessage("Failed to login, please check username/email and password are correct");
-                    //                    SVProgressHUD.dismiss()
                 }
                 
                 switch response.result {
@@ -161,7 +164,6 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate {
                         NSUserDefaults.standardUserDefaults().setValue(token, forKey: "userAccessToken")
                         NSUserDefaults.standardUserDefaults().synchronize()
                         print("user token is", NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken"))
-                        //                        SVProgressHUD.dismiss()
                         
                         // go to main view
                         self.performSegueWithIdentifier("homeView", sender: self);

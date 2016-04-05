@@ -10,7 +10,6 @@
 #define ObjC_Bridging_Header_h
 
 #import "Pods/RESideMenu/RESideMenu/RESideMenu.h"
-#import "Pods/SVProgressHUD/SVProgressHUD/SVProgressHUD.h"
 
 // Card IO
 #import "CardIO.h"

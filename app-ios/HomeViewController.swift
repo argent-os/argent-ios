@@ -10,7 +10,7 @@
 import UIKit
 import SnapKit
 import Alamofire
-import SVProgressHUD
+import JGProgressHUD
 import SwiftyJSON
 import Stripe
 import UICountingLabel
@@ -48,6 +48,10 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         // Programatically setup left navigation button
         // Create a navigation item with a title
+        
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        HUD.showInView(self.view!)
+        HUD.dismissAfterDelay(0.3)
         
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
@@ -95,8 +99,6 @@ class HomeViewController: UIViewController {
     // VIEW DID APPEAR
     override func viewDidAppear(animated: Bool) {
         
-        SVProgressHUD.dismiss()
-
         // Check for user logged in key
         let userLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("userLoggedIn");
         if(!userLoggedIn) {
@@ -105,7 +107,6 @@ class HomeViewController: UIViewController {
             // Normally identifiers are started with capital letters, exception being authViewController, make sure UIStoryboard name is Auth, not Main
             let viewController:AuthViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateViewControllerWithIdentifier("authViewController") as! AuthViewController
             self.presentViewController(viewController, animated: true, completion: nil)
-            SVProgressHUD.dismiss()
         } else {
 
             if userData != nil {
@@ -154,7 +155,6 @@ class HomeViewController: UIViewController {
             }
             
             print("user logged in, displaying home view")
-            SVProgressHUD.dismiss()
             // Check user local data in json format, prevent re-retrieviing data from the server
 
             let formatter = NSNumberFormatter()
@@ -229,7 +229,6 @@ class HomeViewController: UIViewController {
     
     // Charge View
     @IBAction func chargeButtonTapped(sender: AnyObject) {
-        SVProgressHUD.show()
         // go to charge view
         self.performSegueWithIdentifier("chargeView", sender: self);
     }
@@ -242,7 +241,12 @@ class HomeViewController: UIViewController {
         print("logging out")
         print(userData)
 //        print(NSUserDefaults.valueForKey("userLoggedIn"))
-        SVProgressHUD.show()
+        
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        HUD.textLabel.text = "Logging out"
+        HUD.showInView(self.view!)
+        HUD.dismissAfterDelay(0.3)
+        
         // go to login view
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let loginVC = sb.instantiateViewControllerWithIdentifier("LoginViewController")
@@ -259,7 +263,12 @@ class HomeViewController: UIViewController {
         print("logging out")
         print(userData)
         print(NSUserDefaults.valueForKey("userLoggedIn"))
-        SVProgressHUD.show()
+
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        HUD.textLabel.text = "Logging out"
+        HUD.showInView(self.view!)
+        HUD.dismissAfterDelay(0.3)
+        
         // go to login view
         self.performSegueWithIdentifier("loginView", sender: self);
         

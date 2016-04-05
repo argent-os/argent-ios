@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import SVProgressHUD
+import JGProgressHUD
 
 class ProfileViewController: UIViewController {
     
@@ -38,11 +38,9 @@ class ProfileViewController: UIViewController {
 //                self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width / 2;
 //                avatarImageView.layer.borderWidth = 2.0
                 //self.avatarImageView.clipsToBounds = YES;
-                SVProgressHUD.dismiss()
             } else {
 //                self.avatarImageView.image = UIImage(named:"ic_user")
                 // self.avatarImageView.image = UIImageView.setGravatar(Gravatar)
-                SVProgressHUD.dismiss()
             }
             //print(userData)
         }

@@ -10,7 +10,6 @@ import Stripe
 import PasscodeLock
 import SwiftyJSON
 import KeychainSwift
-import SVProgressHUD
 
 let merchantID = "merchant.com.paykloud"
 var userData:JSON? // init user data, declare globally, needs SwiftyJSON
@@ -99,13 +98,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Display PasscodeLock on Launch
         passcodeLockPresenter.presentPasscodeLock()
-
-        // Customize SVProgressHUD
-        SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.Custom)
-        SVProgressHUD.setRingThickness(4.0)
-        SVProgressHUD.setDefaultAnimationType(SVProgressHUDAnimationType.Flat)
-        SVProgressHUD.setForegroundColor(UIColor(rgba: "#ffffff"))
-        SVProgressHUD.setBackgroundColor(UIColor(rgba:"#1796fa"))
         
         // Globally dark keyboard
         UITextField.appearance().keyboardAppearance = .Light

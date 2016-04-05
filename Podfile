@@ -16,7 +16,6 @@ target 'protonpay-ios' do
 	pod 'RESideMenu'
 	pod 'Runes'
 	pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
-	pod 'SVProgressHUD'
 	pod 'CardIO'
 	pod 'Stripe'
 	pod 'VideoSplashKit'
@@ -44,6 +43,7 @@ target 'protonpay-ios' do
 	pod 'SFDraggableDialogView'
 	pod 'UICountingLabel'
 	pod 'DGRunkeeperSwitch'
+	pod 'JGProgressHUD'	
 	#pod 'DOFavoriteButton'
 
 	post_install do |installer|
