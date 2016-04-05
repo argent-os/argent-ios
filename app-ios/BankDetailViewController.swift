@@ -20,13 +20,46 @@ class DetailViewController: UIViewController {
     var bankLogoImage: UIImage? = nil
     let idTextField = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
     let passwordTextField  = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
-    
-    private enum Institution: String
-    {
-        case amex
-        case bofa
-    }
 
+    func getInstitution(bankString: String) -> Institution {
+        var institution: Institution {
+            switch bankString {
+            case "amex":
+                return Institution.amex
+            case "bofa":
+                return .bofa
+            case "capone360":
+                return .capone360
+            case "chase":
+                return .chase
+            case "citi":
+                return .citi
+            case "fidelity":
+                return .fidelity
+            case "ncfu":
+                return .navy
+            case "pnc":
+                return .pnc
+            case "schwab":
+                return .schwab
+            case "suntrust":
+                return .suntrust
+            case "td":
+                return .tdbank
+            case "us":
+                return .us
+            case "usaa":
+                return .usaa
+            case "wells":
+                return .wells
+            default:
+                return .none
+            }
+        }
+        // Return institution enum
+        return institution
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,6 +76,8 @@ class DetailViewController: UIViewController {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
+        
+        print("bank is ", bankName)
         
         let bankLogo = logo
         let bankImage = UIImage(named: bankLogo!)
@@ -138,9 +173,11 @@ class DetailViewController: UIViewController {
     func login(sender: AnyObject) {
         // Function for toolbar button
         print("logging in")
-//        let institutionEnum = Institution(rawValue: bankName!)!
+ 
+        let institution = getInstitution(bankName!)
+        print(institution)
         if idTextField.text != "" || passwordTextField.text != "" {
-            PS_addUser(.Connect, username: idTextField.text!, password: passwordTextField.text!, pin: "", institution: .bofa, completion: { (response, accessToken, mfaType, mfa, accounts, transactions, error) in
+            PS_addUser(.Connect, username: idTextField.text!, password: passwordTextField.text!, pin: "", institution: institution, completion: { (response, accessToken, mfaType, mfa, accounts, transactions, error) in
                     print("success")
                     print(accessToken)
                     self.updateUserToken(accessToken)

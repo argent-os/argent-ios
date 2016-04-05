@@ -53,6 +53,7 @@ public enum Institution {
     case us
     case usaa
     case wells
+    case none
 }
 
 public struct Account {
@@ -406,6 +407,8 @@ func institutionToString(institution: Institution) -> String {
             return "usaa"
         case .wells:
             return "wells"
+        case .none:
+            return "none"
         }
     }
     return institutionStr

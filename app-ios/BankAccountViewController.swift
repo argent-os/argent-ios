@@ -22,10 +22,11 @@ class MainTableViewController: UITableViewController {
         self.elements = [
             ["background_color": UIColor(rgba: "#11A0DD"), "bank_name": "amex", "bank_logo": "bank_amex"],
             ["background_color": UIColor(rgba: "#D4001A"), "bank_name": "bofa", "bank_logo": "bank_bofa"],
-            ["background_color": UIColor(rgba: "#003C70"), "bank_name": "capone", "bank_logo": "bank_capone"],
+            ["background_color": UIColor(rgba: "#003C70"), "bank_name": "capone360", "bank_logo": "bank_capone"],
             ["background_color": UIColor(rgba: "#0f5ba7"), "bank_name": "chase", "bank_logo": "bank_chase"],
             ["background_color": UIColor(rgba: "#000066"), "bank_name": "citi", "bank_logo": "bank_citi"],
-            ["background_color": UIColor(rgba: "#04427e"), "bank_name": "navy", "bank_logo": "bank_navy"],
+            ["background_color": UIColor(rgba: "#6ec260"), "bank_name": "fidelity", "bank_logo": "bank_fidelity"],
+            ["background_color": UIColor(rgba: "#04427e"), "bank_name": "nfcu", "bank_logo": "bank_navy"],
             ["background_color": UIColor(rgba: "#f48024"), "bank_name": "pnc", "bank_logo": "bank_pnc"],
             ["background_color": UIColor(rgba: "#009fdf"), "bank_name": "schwab", "bank_logo": "bank_schwab"],
             ["background_color": UIColor(rgba: "#f36b2b"), "bank_name": "suntrust", "bank_logo": "bank_suntrust"],
@@ -86,8 +87,10 @@ class MainTableViewController: UITableViewController {
             let destination = segue.destinationViewController as! DetailViewController
             destination.color = element.objectForKey("background_color") as? UIColor
             destination.logo = element.objectForKey("bank_logo") as? String
+            destination.bankName = element.objectForKey("bank_name") as? String
             print("color setting", destination.color!)
             print("logo setting", destination.logo!)
+            print("bank setting", destination.bankName!)
 
             // destination.element = element as! NSDictionary
             
