@@ -3443,7 +3443,6 @@ Click here to view more</string>
                                 <state key="normal" image="ic_close_light"/>
                                 <connections>
                                     <action selector="cancel:" destination="JEu-27-Q04" eventType="touchUpInside" id="3X4-gn-W18"/>
-                                    <action selector="done:" destination="JEu-27-Q04" eventType="touchUpInside" id="jMT-PO-lgF"/>
                                 </connections>
                             </button>
                         </subviews>

@@ -72,13 +72,6 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    @IBAction func done(sender: AnyObject) {
-        if((self.presentingViewController) != nil){
-            self.dismissViewControllerAnimated(true, completion: nil)
-            print("done")
-        }    
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -122,7 +115,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
         idTextField.borderActiveColor = UIColor(rgba: "#FFF4")
         idTextField.borderInactiveColor = UIColor(rgba: "#FFF9") // color with alpha
         idTextField.backgroundColor = UIColor.clearColor()
-        idTextField.placeholder = "Bank Account Username"
+        idTextField.placeholder = bankName! + " Username"
         idTextField.placeholderColor = UIColor.whiteColor()
         idTextField.textColor = UIColor.whiteColor()
         idTextField.autocapitalizationType = UITextAutocapitalizationType.None
@@ -180,7 +173,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
         // sendToolbar.barStyle = UIBarStyle.Default
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Connect to Bank", style: UIBarButtonItemStyle.Done, target: self, action: #selector(DetailViewController.login(_:)))
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Connect", style: UIBarButtonItemStyle.Done, target: self, action: #selector(DetailViewController.login(_:)))
         
         var items: [UIBarButtonItem]? = [UIBarButtonItem]()
         items?.append(flexSpace)

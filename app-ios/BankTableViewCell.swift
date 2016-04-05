@@ -21,5 +21,15 @@ class MainTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    // Here you can customize the appearance of your cell
+    override func layoutSubviews() {
+        let width = UIScreen.mainScreen().bounds.size.width
+        let height = UIScreen.mainScreen().bounds.size.height
+        
+        super.layoutSubviews()
+        // Customize imageView like you need
+        self.imageView?.frame = CGRectMake(0,0,width,180)
+        self.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+    }
 }
 

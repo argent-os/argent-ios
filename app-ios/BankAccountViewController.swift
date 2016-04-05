@@ -17,8 +17,7 @@ class MainTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "Bank"
-        
+        self.navigationItem.title = "Select a Bank"
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
 
         self.elements = [
@@ -56,23 +55,31 @@ class MainTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("mainCell", forIndexPath: indexPath) as! MainTableViewCell
+        cell.imageView?.image = nil
         
         let width = UIScreen.mainScreen().bounds.size.width
         let height = UIScreen.mainScreen().bounds.size.height
         
-        cell.background.layer.cornerRadius = 0
-        cell.background.backgroundColor = UIColor.clearColor()
-        cell.header.backgroundColor = UIColor.clearColor()
-        cell.header.layer.cornerRadius = 0
-        cell.background.clipsToBounds = true
+        // cell.header.layer.cornerRadius = 10
+        // cell.header.backgroundColor = UIColor.clearColor()
+        // cell.background.layer.cornerRadius = 10        
+        // cell.background.backgroundColor = UIColor.clearColor()
+        // cell.background.clipsToBounds = true
         
         // pass in the background image as a parameter here from self.elements above
-        cell.contentView.backgroundColor = self.elements.objectAtIndex(indexPath.row).objectForKey("background_color") as? UIColor
-//        cell.imageView!.frame = CGRectMake(0, 0, width, height)
-        cell.imageView!.image = UIImage(named: self.elements.objectAtIndex(indexPath.row).objectForKey("bank_logo") as! String)
+        // cell.header.backgroundColor = self.elements.objectAtIndex(indexPath.row).objectForKey("background_color") as? UIColor
+        // cell.background.backgroundColor = self.elements.objectAtIndex(indexPath.row).objectForKey("background_color") as? UIColor
+        // cell.contentView.backgroundColor = self.elements.objectAtIndex(indexPath.row).objectForKey("background_color") as? UIColor
         
+        cell.center = CGPoint(x: cell.frame.width / 2.0, y: height / 2.0)
+        let img: UIImage = UIImage(named: self.elements.objectAtIndex(indexPath.row).objectForKey("bank_logo") as! String)!
+        cell.imageView!.image = img
+        cell.imageView!.contentMode = .ScaleAspectFill
+        cell.imageView!.backgroundColor = self.elements.objectAtIndex(indexPath.row).objectForKey("background_color") as? UIColor
+        cell.imageView!.frame = CGRectMake(width, (cell.frame.size.height-30)/2, 30, 30)
+
         return cell
     }
     
@@ -88,8 +95,6 @@ class MainTableViewController: UITableViewController {
             self.lastSelected = self.tableView.indexPathForSelectedRow
             let element = self.elements.objectAtIndex(self.tableView.indexPathForSelectedRow!.row)
 
-            // let destination = (self.storyboard?.instantiateViewControllerWithIdentifier("DetailViewController"))! as! DetailViewController
-
             let destination = segue.destinationViewController as! DetailViewController
             destination.color = element.objectForKey("background_color") as? UIColor
             destination.logo = element.objectForKey("bank_logo") as? String
@@ -97,8 +102,6 @@ class MainTableViewController: UITableViewController {
             print("color setting", destination.color!)
             print("logo setting", destination.logo!)
             print("bank setting", destination.bankName!)
-
-            // destination.element = element as! NSDictionary
             
         }
     }
