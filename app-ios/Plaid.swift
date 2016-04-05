@@ -202,6 +202,7 @@ func PS_addUser(userType: Type, username: String, password: String, pin: String?
                 }
             } else {
                 //Handle invalid cred login
+                print("invalid login")
             }
             
         } catch {

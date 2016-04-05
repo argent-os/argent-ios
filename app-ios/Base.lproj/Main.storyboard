@@ -3390,10 +3390,7 @@ Click here to view more</string>
                                 <connections>
                                     <outlet property="background" destination="dxk-qH-8pb" id="i4j-XP-N4o"/>
                                     <outlet property="header" destination="9Wt-Kc-fLg" id="HmC-Z4-cPY"/>
-                                    <segue destination="JEu-27-Q04" kind="showDetail" identifier="viewDetail" action="showViewController:sender:" id="X13-up-BqW">
-                                        <segue key="commit" inheritsFrom="parent" id="DF6-e5-MLE"/>
-                                        <segue key="preview" inheritsFrom="commit" id="U04-d1-B8G"/>
-                                    </segue>
+                                    <segue destination="JEu-27-Q04" kind="showDetail" identifier="viewDetail" action="showViewController:sender:" id="X13-up-BqW"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -3560,7 +3557,6 @@ Click here to view more</string>
         <segue reference="dKP-gn-jL5"/>
         <segue reference="wgV-xY-MTp"/>
         <segue reference="y2B-og-1xc"/>
-        <segue reference="X13-up-BqW"/>
         <segue reference="xTl-cs-ajG"/>
         <segue reference="UFB-DJ-qrH"/>
         <segue reference="zMt-NT-I29"/>

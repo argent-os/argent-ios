@@ -9,20 +9,32 @@
 import UIKit
 import TextFieldEffects
 import SIAlertView
+import Alamofire
+import SwiftyJSON
 
 class DetailViewController: UIViewController {
     
     var color: UIColor?
     var logo: String?
+    var bankName: String?
     var bankLogoImage: UIImage? = nil
     let idTextField = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
     let passwordTextField  = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
     
+    private enum Institution: String
+    {
+        case amex
+        case bofa
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         idTextField.becomeFirstResponder()
     
+        // Dark keyboard for view
+        UITextField.appearance().keyboardAppearance = .Dark
+        
         print("color is", color)
         view.backgroundColor = color
         
@@ -46,10 +58,10 @@ class DetailViewController: UIViewController {
         idTextField.borderActiveColor = UIColor(rgba: "#FFF8")
         idTextField.borderInactiveColor = UIColor(rgba: "#FFF9") // color with alpha
         idTextField.backgroundColor = UIColor.clearColor()
-        idTextField.placeholder = "Bank Account ID"
+        idTextField.placeholder = "Bank Account Username"
         idTextField.placeholderColor = UIColor.whiteColor()
         idTextField.textColor = UIColor.whiteColor()
-        idTextField.autocapitalizationType = UITextAutocapitalizationType.Words
+        idTextField.autocapitalizationType = UITextAutocapitalizationType.None
         idTextField.autocorrectionType = UITextAutocorrectionType.No
         idTextField.keyboardType = UIKeyboardType.EmailAddress
         idTextField.returnKeyType = UIReturnKeyType.Next
@@ -101,15 +113,6 @@ class DetailViewController: UIViewController {
         self.view.endEditing(true)
     }
     
-    
-    func nextStep(sender: AnyObject) {
-        // Function for toolbar button
-        let x = performValidation()
-        if x == true {
-            self.performSegueWithIdentifier("VC2", sender: sender)
-        }
-    }
-    
     // Add send toolbar
     func addToolbarButton()
     {
@@ -135,12 +138,66 @@ class DetailViewController: UIViewController {
     func login(sender: AnyObject) {
         // Function for toolbar button
         print("logging in")
-//        let x = performValidation()
-//        if x == true {
-//            self.performSegueWithIdentifier("authBank", sender: sender)
-//        }
+//        let institutionEnum = Institution(rawValue: bankName!)!
+        if idTextField.text != "" || passwordTextField.text != "" {
+            PS_addUser(.Connect, username: idTextField.text!, password: passwordTextField.text!, pin: "", institution: .bofa, completion: { (response, accessToken, mfaType, mfa, accounts, transactions, error) in
+                    print("success")
+                    print(accessToken)
+                    self.updateUserToken(accessToken)
+                    // post the accesstoken to the user api
+                    // print(mfaType)
+                    // print(mfa)
+                    // print(response!)
+                    // print(transactions!)
+                    print(accounts)
+                    print(error)
+            })
+        }
     }
     
+    func updateUserToken(token: String) {
+        print("updating user token")
+        if userAccessToken != nil {
+            print("current auth token for proton", userAccessToken!)
+            print("access token not null, setting headers")
+            
+            let plaidObj = [ "access_token" : token ]
+            let plaidNSDict = plaidObj as NSDictionary //no error message
+ 
+            let parameters : [String : AnyObject] = [
+                "user" : (userData?.rawValue)!,
+                "plaid" : plaidNSDict
+            ]
+            
+            let headers = [
+                "Authorization": "Bearer " + (userAccessToken as! String),
+                "Content-Type": "application/json"
+            ]
+
+            let endpoint = apiUrl + "/v1/profile"
+            
+            print(endpoint)
+            print(parameters)
+            print(headers)
+            
+            // Encoding as .JSON with header application/json
+            Alamofire.request(.PUT, endpoint, parameters: parameters, encoding: .JSON, headers: headers)
+            .responseJSON { response in
+                switch response.result {
+                case .Success:
+                    print("success")
+                    if let value = response.result.value {
+                        let data = JSON(value)
+                        print("posted user data")
+                        print(data)
+                    }
+                case .Failure(let error):
+                    print(error)
+                }
+            }
+        }
+    }
+
     // Allow use of next and join on keyboard
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         let nextTag: Int = textField.tag + 1
@@ -167,15 +224,6 @@ class DetailViewController: UIViewController {
         alertView.show()
     }
     
-    func performValidation() -> Bool {
-        if(idTextField.text?.characters.count < 1) {
-            displayErrorAlertMessage("First name cannot be empty")
-            return false
-        } else if(passwordTextField.text?.characters.count < 1) {
-            displayErrorAlertMessage("Last name cannot be empty")
-            return false
-        }
-        return true
-    }
+
 
 }

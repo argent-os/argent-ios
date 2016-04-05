@@ -17,6 +17,8 @@ import UICountingLabel
 import DGRunkeeperSwitch
 //import MXParallaxHeader
 
+let userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
+
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -158,7 +160,6 @@ class HomeViewController: UIViewController {
             let formatter = NSNumberFormatter()
             formatter.numberStyle = .CurrencyStyle
             formatter.locale = NSLocale.currentLocale() // This is the default
-            let userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
             print("user token is", userAccessToken)
             if userData == nil && userAccessToken != nil {
                 let headers = [
