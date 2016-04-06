@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		278F38ABFB35EDAA24E7A2BC /* Pods_app_watchos_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6959C28B834901781B0C0FCC /* Pods_app_watchos_Extension.framework */; };
+		300E422B1CB47428004316CF /* BankListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E422A1CB47428004316CF /* BankListViewController.swift */; };
 		30162DBA1CA9FB2C00438842 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30162DB91CA9FB2C00438842 /* Stock.swift */; };
 		302010C81CAEAE0E007D5E7E /* BalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302010C71CAEAE0E007D5E7E /* BalanceViewController.swift */; };
 		302010CA1CAF3B05007D5E7E /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302010C91CAF3B05007D5E7E /* Notification.swift */; };
@@ -212,6 +213,7 @@
 		09792DCB26D2F1A099596766 /* Pods-protonpay-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-protonpay-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-protonpay-ios/Pods-protonpay-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		2B614FB4245DEA1791296CAF /* Pods-app-watchos Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-watchos Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-app-watchos Extension/Pods-app-watchos Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		300B66F61CA4635800E24AF1 /* RESideMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RESideMenu.framework; path = "Pods/../build/Debug-iphoneos/RESideMenu.framework"; sourceTree = "<group>"; };
+		300E422A1CB47428004316CF /* BankListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankListViewController.swift; path = "app-ios/BankListViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30162DB91CA9FB2C00438842 /* Stock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stock.swift; path = "app-ios/Stock.swift"; sourceTree = SOURCE_ROOT; };
 		302010C71CAEAE0E007D5E7E /* BalanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BalanceViewController.swift; path = "app-ios/BalanceViewController.swift"; sourceTree = SOURCE_ROOT; };
 		302010C91CAF3B05007D5E7E /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Notification.swift; path = "app-ios/Notification.swift"; sourceTree = SOURCE_ROOT; };
@@ -768,6 +770,7 @@
 			isa = PBXGroup;
 			children = (
 				30C2DAE41CA4392E003AFD8B /* AddBankViewController.swift */,
+				300E422A1CB47428004316CF /* BankListViewController.swift */,
 				30C2DAE61CA43934003AFD8B /* BankAccountViewController.swift */,
 				30C2DAE71CA43934003AFD8B /* BankDetailViewController.swift */,
 				30C2DAE81CA43934003AFD8B /* BankTableViewCell.swift */,
@@ -1329,6 +1332,7 @@
 				30C2DB131CA439E1003AFD8B /* Timeout.swift in Sources */,
 				30C2DACB1CA4385C003AFD8B /* ProfileMenuViewController.swift in Sources */,
 				30C2DAB31CA437B2003AFD8B /* TermsViewController.swift in Sources */,
+				300E422B1CB47428004316CF /* BankListViewController.swift in Sources */,
 				30C2DAD51CA43892003AFD8B /* ProfileFieldCell.swift in Sources */,
 				30C2DAF11CA43957003AFD8B /* RAMViewController.swift in Sources */,
 				30C2DAB11CA437A9003AFD8B /* PresentedTableViewController.swift in Sources */,
@@ -1736,6 +1740,7 @@
 				302010DE1CB016ED007D5E7E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		30DB59811CA46CB0007FEE1E /* Build configuration list for PBXNativeTarget "app-watchos Extension" */ = {
 			isa = XCConfigurationList;

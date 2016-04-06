@@ -13,6 +13,8 @@
             <string>Nunito-Light</string>
             <string>Nunito-Light</string>
             <string>Nunito-Light</string>
+            <string>Nunito-Light</string>
+            <string>Nunito-Light</string>
         </mutableArray>
         <mutableArray key="Nunito-Regular.ttf">
             <string>Nunito-Regular</string>
@@ -1459,6 +1461,43 @@ We support both debit and credit.</string>
             </objects>
             <point key="canvasLocation" x="3257" y="-5310"/>
         </scene>
+        <!--Bank List View Controller-->
+        <scene sceneID="tXp-ev-vyP">
+            <objects>
+                <tableViewController id="eN1-Lu-Bbs" customClass="BankListViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="W0T-js-4L6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="Nz2-48-Dvq" rowHeight="102" style="IBUITableViewCellStyleDefault" id="rGt-iW-a35">
+                                <rect key="frame" x="0.0" y="28" width="600" height="102"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rGt-iW-a35" id="Be3-va-KmL">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="101.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Connected Banks" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Nz2-48-Dvq">
+                                            <rect key="frame" x="15" y="0.0" width="570" height="101.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="16"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="eN1-Lu-Bbs" id="Ehs-V2-pzV"/>
+                            <outlet property="delegate" destination="eN1-Lu-Bbs" id="iNf-cx-JLG"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E52-ZM-ca0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4038" y="-5250"/>
+        </scene>
         <!--Add Bank View Controller-->
         <scene sceneID="EQ3-MU-4dQ">
             <objects>
@@ -1475,7 +1514,7 @@ We support both debit and credit.</string>
                                 <rect key="frame" x="0.0" y="676" width="414" height="60"/>
                                 <color key="backgroundColor" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="zdf-i9-hxR"/>
+                                    <constraint firstAttribute="height" constant="60" id="bcI-cc-Ags"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -1490,7 +1529,7 @@ We support both debit and credit.</string>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IdL-hy-SC1">
                                 <rect key="frame" x="20" y="20" width="374" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="mJ1-8Y-LV9"/>
+                                    <constraint firstAttribute="height" constant="21" id="iHu-h3-J2R"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1499,13 +1538,13 @@ We support both debit and credit.</string>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconBank" translatesAutoresizingMaskIntoConstraints="NO" id="KoB-Hd-4HP">
                                 <rect key="frame" x="143" y="198" width="128" height="128"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="qLA-Oo-hSn"/>
+                                    <constraint firstAttribute="height" constant="128" id="LAj-9v-Eey"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Bank Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Use-cp-lh2">
                                 <rect key="frame" x="20" y="343" width="374" height="39"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="39" id="mhM-rT-voB"/>
+                                    <constraint firstAttribute="height" constant="39" id="2dO-50-vgf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="18"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -1514,7 +1553,7 @@ We support both debit and credit.</string>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ut-Ju-5YB">
                                 <rect key="frame" x="10" y="390" width="395" height="62"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="62" id="chg-RI-qjV"/>
+                                    <constraint firstAttribute="height" constant="62" id="VuK-PD-IyD"/>
                                 </constraints>
                                 <string key="text">Select from a list of authorized banks.
 We currently support 14 US
@@ -1523,23 +1562,62 @@ institutions</string>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V5M-sE-Rv5">
+                                <rect key="frame" x="20" y="460" width="374" height="148"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="148" id="jIF-wN-zmt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OUz-h7-oqM">
+                                <rect key="frame" x="20" y="28" width="374" height="162"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RqW-Mf-mvz">
+                                <rect key="frame" x="0.0" y="616" width="414" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="fph-Du-h1S"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="16"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <state key="normal" title="View Connected Accounts">
+                                    <color key="titleColor" red="0.1166342063" green="0.4340515821" blue="0.7503004808" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="eN1-Lu-Bbs" kind="show" id="XYf-3i-NGH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Use-cp-lh2" firstAttribute="top" secondItem="KoB-Hd-4HP" secondAttribute="bottom" constant="17" id="03j-e2-Ilb"/>
-                            <constraint firstItem="Use-cp-lh2" firstAttribute="centerX" secondItem="KoB-Hd-4HP" secondAttribute="centerX" id="Cii-4F-zXZ"/>
-                            <constraint firstItem="6Ut-Ju-5YB" firstAttribute="top" secondItem="Use-cp-lh2" secondAttribute="bottom" constant="8" symbolic="YES" id="F9M-tw-nhK"/>
-                            <constraint firstItem="EG7-xI-0r0" firstAttribute="centerX" secondItem="6Ut-Ju-5YB" secondAttribute="centerX" id="Jrc-oQ-y45"/>
-                            <constraint firstItem="KoB-Hd-4HP" firstAttribute="top" secondItem="Tlu-lx-Uxm" secondAttribute="top" constant="198" id="Vdb-Hp-mHL"/>
-                            <constraint firstItem="6Ut-Ju-5YB" firstAttribute="leading" secondItem="Tlu-lx-Uxm" secondAttribute="leadingMargin" constant="-10" id="XPP-Ix-5nu"/>
-                            <constraint firstItem="Use-cp-lh2" firstAttribute="trailing" secondItem="IdL-hy-SC1" secondAttribute="trailing" id="Xig-jX-yDc"/>
-                            <constraint firstItem="EG7-xI-0r0" firstAttribute="leading" secondItem="Tlu-lx-Uxm" secondAttribute="leading" id="dd1-LL-O12"/>
-                            <constraint firstItem="6Ut-Ju-5YB" firstAttribute="centerX" secondItem="Use-cp-lh2" secondAttribute="centerX" id="eMO-ND-8A8"/>
-                            <constraint firstItem="IdL-hy-SC1" firstAttribute="leading" secondItem="Use-cp-lh2" secondAttribute="leading" id="fIP-R9-SHG"/>
-                            <constraint firstItem="IdL-hy-SC1" firstAttribute="top" secondItem="fzi-cR-AQR" secondAttribute="bottom" id="nQ2-vA-NHh"/>
-                            <constraint firstItem="EG7-xI-0r0" firstAttribute="bottom" secondItem="9ft-C6-5ts" secondAttribute="top" id="qkp-TJ-UTb"/>
-                            <constraint firstItem="IdL-hy-SC1" firstAttribute="leading" secondItem="Tlu-lx-Uxm" secondAttribute="leadingMargin" id="txW-gl-BCB"/>
-                            <constraint firstAttribute="trailing" secondItem="EG7-xI-0r0" secondAttribute="trailing" id="z7D-3c-s5E"/>
+                            <constraint firstItem="RqW-Mf-mvz" firstAttribute="top" secondItem="V5M-sE-Rv5" secondAttribute="bottom" constant="8" symbolic="YES" id="2Ti-uM-Yky"/>
+                            <constraint firstItem="OUz-h7-oqM" firstAttribute="top" secondItem="fzi-cR-AQR" secondAttribute="bottom" constant="8" symbolic="YES" id="4kZ-b6-KcA"/>
+                            <constraint firstItem="IdL-hy-SC1" firstAttribute="top" secondItem="fzi-cR-AQR" secondAttribute="bottom" id="7dU-ii-nGp"/>
+                            <constraint firstAttribute="trailing" secondItem="RqW-Mf-mvz" secondAttribute="trailing" id="Dc9-di-Up9"/>
+                            <constraint firstItem="RqW-Mf-mvz" firstAttribute="trailing" secondItem="EG7-xI-0r0" secondAttribute="trailing" id="Gyb-UH-3Kd"/>
+                            <constraint firstItem="RqW-Mf-mvz" firstAttribute="leading" secondItem="Tlu-lx-Uxm" secondAttribute="leading" id="J5f-CX-ctq"/>
+                            <constraint firstItem="Use-cp-lh2" firstAttribute="trailing" secondItem="V5M-sE-Rv5" secondAttribute="trailing" id="KNg-To-I8q"/>
+                            <constraint firstItem="KoB-Hd-4HP" firstAttribute="centerX" secondItem="Use-cp-lh2" secondAttribute="centerX" id="L2L-3k-l3O"/>
+                            <constraint firstItem="EG7-xI-0r0" firstAttribute="top" secondItem="RqW-Mf-mvz" secondAttribute="bottom" id="Pqk-wA-kPv"/>
+                            <constraint firstItem="IdL-hy-SC1" firstAttribute="leading" secondItem="OUz-h7-oqM" secondAttribute="leading" id="R9U-Uz-J6k"/>
+                            <constraint firstItem="Use-cp-lh2" firstAttribute="centerX" secondItem="6Ut-Ju-5YB" secondAttribute="centerX" id="TCQ-35-hg6"/>
+                            <constraint firstItem="OUz-h7-oqM" firstAttribute="leading" secondItem="Use-cp-lh2" secondAttribute="leading" id="V4B-RQ-B2N"/>
+                            <constraint firstItem="Use-cp-lh2" firstAttribute="leading" secondItem="V5M-sE-Rv5" secondAttribute="leading" id="Xdk-PV-yBB"/>
+                            <constraint firstItem="KoB-Hd-4HP" firstAttribute="top" secondItem="OUz-h7-oqM" secondAttribute="bottom" constant="8" symbolic="YES" id="eXa-nY-zxX"/>
+                            <constraint firstItem="V5M-sE-Rv5" firstAttribute="top" secondItem="6Ut-Ju-5YB" secondAttribute="bottom" constant="8" symbolic="YES" id="fOG-9J-TC3"/>
+                            <constraint firstItem="Use-cp-lh2" firstAttribute="top" secondItem="KoB-Hd-4HP" secondAttribute="bottom" constant="17" id="g9q-7s-nwR"/>
+                            <constraint firstItem="6Ut-Ju-5YB" firstAttribute="top" secondItem="Use-cp-lh2" secondAttribute="bottom" constant="8" symbolic="YES" id="j8H-s4-EA2"/>
+                            <constraint firstItem="RqW-Mf-mvz" firstAttribute="leading" secondItem="EG7-xI-0r0" secondAttribute="leading" id="kTe-QU-73z"/>
+                            <constraint firstItem="OUz-h7-oqM" firstAttribute="trailing" secondItem="Use-cp-lh2" secondAttribute="trailing" id="kgO-L2-Y6T"/>
+                            <constraint firstItem="EG7-xI-0r0" firstAttribute="bottom" secondItem="9ft-C6-5ts" secondAttribute="top" id="l6W-nD-cns"/>
+                            <constraint firstItem="6Ut-Ju-5YB" firstAttribute="leading" secondItem="Tlu-lx-Uxm" secondAttribute="leadingMargin" constant="-10" id="ouB-bg-kV6"/>
+                            <constraint firstItem="IdL-hy-SC1" firstAttribute="trailing" secondItem="OUz-h7-oqM" secondAttribute="trailing" id="uGw-ZR-VwI"/>
+                            <constraint firstItem="V5M-sE-Rv5" firstAttribute="centerX" secondItem="RqW-Mf-mvz" secondAttribute="centerX" id="uzB-tv-YdG"/>
+                            <constraint firstItem="IdL-hy-SC1" firstAttribute="leading" secondItem="Tlu-lx-Uxm" secondAttribute="leadingMargin" id="z4y-Vp-tNe"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
@@ -1549,7 +1627,7 @@ institutions</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bTC-Jk-cIE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2651" y="-4385"/>
+            <point key="canvasLocation" x="3257" y="-4385"/>
         </scene>
         <!--Notifications-->
         <scene sceneID="jQl-QQ-Qt4">
@@ -3405,7 +3483,7 @@ Click here to view more</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D5Z-pc-FV2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3257" y="-4453"/>
+            <point key="canvasLocation" x="4031" y="-4453"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="geL-7h-LEv">
@@ -3463,7 +3541,7 @@ Click here to view more</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EYn-Ls-vjQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4055" y="-4453"/>
+            <point key="canvasLocation" x="4751" y="-4453"/>
         </scene>
         <!--Web Privacy View Controller-->
         <scene sceneID="ht7-o5-pHb">
@@ -3570,36 +3648,36 @@ Click here to view more</string>
         <image name="ic_user" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="eyR-QB-Omx"/>
+        <segue reference="mwT-xt-Ez4"/>
         <segue reference="fxJ-La-7Fr"/>
-        <segue reference="dtT-zy-VVd"/>
+        <segue reference="Xln-0K-kRS"/>
+        <segue reference="Oy0-WL-Zfz"/>
+        <segue reference="eyR-QB-Omx"/>
+        <segue reference="zQh-Po-kj4"/>
+        <segue reference="dKP-gn-jL5"/>
+        <segue reference="JgX-xV-v5e"/>
+        <segue reference="C2X-hN-Ktf"/>
+        <segue reference="HS7-dW-Hxr"/>
+        <segue reference="5Ke-wX-bmY"/>
+        <segue reference="SFz-vc-0MB"/>
+        <segue reference="wgV-xY-MTp"/>
         <segue reference="xTl-cs-ajG"/>
         <segue reference="YDb-8b-gnI"/>
-        <segue reference="Pl7-8K-ZTA"/>
         <segue reference="wTc-2l-6Jt"/>
+        <segue reference="Pl7-8K-ZTA"/>
         <segue reference="aSf-Dh-oaH"/>
         <segue reference="vfk-cG-eDy"/>
-        <segue reference="HS7-dW-Hxr"/>
-        <segue reference="C2X-hN-Ktf"/>
-        <segue reference="Oy0-WL-Zfz"/>
-        <segue reference="5Ke-wX-bmY"/>
-        <segue reference="dKP-gn-jL5"/>
-        <segue reference="zQh-Po-kj4"/>
-        <segue reference="JgX-xV-v5e"/>
-        <segue reference="Xln-0K-kRS"/>
-        <segue reference="y2B-og-1xc"/>
-        <segue reference="wgV-xY-MTp"/>
-        <segue reference="ipn-3I-3vc"/>
-        <segue reference="VI5-hp-Gm2"/>
-        <segue reference="agi-3I-cSC"/>
-        <segue reference="j8y-vP-2EI"/>
-        <segue reference="gUR-9D-JWE"/>
-        <segue reference="m3z-fp-Nlm"/>
-        <segue reference="igQ-zk-tCm"/>
-        <segue reference="aks-Yo-Spb"/>
-        <segue reference="fEJ-lR-z9I"/>
-        <segue reference="7cu-FP-MoG"/>
         <segue reference="Bc6-jW-uiV"/>
+        <segue reference="aks-Yo-Spb"/>
+        <segue reference="igQ-zk-tCm"/>
+        <segue reference="m3z-fp-Nlm"/>
+        <segue reference="gUR-9D-JWE"/>
+        <segue reference="j8y-vP-2EI"/>
+        <segue reference="agi-3I-cSC"/>
+        <segue reference="VI5-hp-Gm2"/>
+        <segue reference="ipn-3I-3vc"/>
+        <segue reference="7cu-FP-MoG"/>
+        <segue reference="fEJ-lR-z9I"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>
