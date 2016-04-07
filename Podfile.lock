@@ -24,6 +24,7 @@ PODS:
   - RAMReel (1.0.6)
   - RESideMenu (4.0.7)
   - Runes (3.2.0)
+  - SESlideTableViewCell (0.7.0)
   - SFDraggableDialogView (1.1.4)
   - SIAlertView (1.3)
   - SnapKit (0.20.0)
@@ -60,6 +61,7 @@ DEPENDENCIES:
   - RAMReel
   - RESideMenu
   - Runes
+  - SESlideTableViewCell
   - SFDraggableDialogView
   - SIAlertView
   - SnapKit
@@ -105,6 +107,7 @@ SPEC CHECKSUMS:
   RAMReel: 7297528d1c5992de3a3b8221e19c28b7edddb145
   RESideMenu: f24c508404b49c667344c54aba7e590883533958
   Runes: ab2f892272d5165f64620f8086578b28cde98a02
+  SESlideTableViewCell: 1487a6aedc84b480a888fc33b8d1c58fa5026f99
   SFDraggableDialogView: cfe9b80b5fff19f7e0fda86dcabee8b03a4c3b44
   SIAlertView: 20c794b55eaf44d888773ea51647cf8907723919
   SnapKit: 5fce3c1bbbf1fbd31de9aa92f33eb9fa03f15650

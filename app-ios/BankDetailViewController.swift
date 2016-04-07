@@ -175,7 +175,13 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Connect", style: UIBarButtonItemStyle.Done, target: self, action: #selector(DetailViewController.login(_:)))
-        
+        done.tintColor = UIColor.whiteColor()
+        UIToolbar.appearance().barTintColor = UIColor.whiteColor()
+        done.setTitleTextAttributes([
+            NSFontAttributeName : UIFont(name: "Nunito-SemiBold", size: 15.0)!,
+            NSForegroundColorAttributeName : color!
+            ], forState: .Normal)
+
         var items: [UIBarButtonItem]? = [UIBarButtonItem]()
         items?.append(flexSpace)
         items?.append(done)
@@ -257,7 +263,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
                     if let value = response.result.value {
                         _ = JSON(value)
                         print("posted user data")
-//                        print(data)
+                        // print(data)
                     }
                 case .Failure(let error):
                     print(error)
@@ -292,7 +298,4 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
         alertView.transitionStyle = SIAlertViewTransitionStyle.DropDown
         alertView.show()
     }
-    
-
-
 }

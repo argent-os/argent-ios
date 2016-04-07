@@ -44,6 +44,7 @@ target 'protonpay-ios' do
 	pod 'UICountingLabel'
 	pod 'DGRunkeeperSwitch'
 	pod 'JGProgressHUD'	
+	pod 'SESlideTableViewCell'
 	#pod 'DOFavoriteButton'
 
 	post_install do |installer|
