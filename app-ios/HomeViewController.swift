@@ -193,7 +193,7 @@ class HomeViewController: UIViewController {
 
         if let stripeKey = userData?["user"]["stripe"]["secretKey"].stringValue {
             let headers = [
-                "Authorization": "Bearer " + (stripeKey ),
+                "Authorization": "Bearer " + (stripeKey),
                 "Content-Type": "application/x-www-form-urlencoded"
             ]
             

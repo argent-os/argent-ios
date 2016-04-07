@@ -1452,6 +1452,9 @@ We support both debit and credit.</string>
                                 <state key="normal" title="View Connected Cards">
                                     <color key="titleColor" red="0.1166342063" green="0.4340515821" blue="0.7503004808" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="ze7-fd-T6m" kind="show" id="ED5-S6-tjb"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3655,6 +3658,52 @@ Click here to view more</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x7p-gC-Eh1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4038" y="-5272"/>
+        </scene>
+        <!--Credit Card List View Controller-->
+        <scene sceneID="zXr-bK-lSX">
+            <objects>
+                <tableViewController id="ze7-fd-T6m" customClass="CreditCardListViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="saC-EN-jq4">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="connectedBankCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="connectedCreditCardCell" textLabel="nTD-t3-72v" detailTextLabel="wVx-bC-nwr" rowHeight="220" style="IBUITableViewCellStyleSubtitle" id="F7G-oK-EW1" customClass="SESlideTableViewCell">
+                                <rect key="frame" x="0.0" y="28" width="600" height="220"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="F7G-oK-EW1" id="vv1-5e-F4e">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="219.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nTD-t3-72v">
+                                            <rect key="frame" x="15" y="94" width="31.5" height="19.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wVx-bC-nwr">
+                                            <rect key="frame" x="15" y="113.5" width="40.5" height="13.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ze7-fd-T6m" id="m9l-Zt-rJr"/>
+                            <outlet property="delegate" destination="ze7-fd-T6m" id="H61-2S-IFl"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZqR-yM-jEp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3859" y="-5719"/>
         </scene>
     </scenes>
     <resources>

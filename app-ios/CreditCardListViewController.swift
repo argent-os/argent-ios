@@ -1,8 +1,8 @@
 //
-//  BankConnectedListTableViewController.swift
+//  CreditCardListViewController.swift
 //  protonpay-ios
 //
-//  Created by Sinan Ulkuatam on 4/5/16.
+//  Created by Sinan Ulkuatam on 4/7/16.
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
 //
 
@@ -12,40 +12,40 @@ import SwiftyJSON
 import JGProgressHUD
 import SESlideTableViewCell
 
-class BankConnectedListTableViewController: UITableViewController, SESlideTableViewCellDelegate {
+class CreditCardListViewController: UITableViewController, SESlideTableViewCellDelegate {
     
-    var itemsArray:Array<Bank>?
-    var bankRefreshControl = UIRefreshControl()
+    var itemsArray:Array<Card>?
+    var cardRefreshControl = UIRefreshControl()
     var dateFormatter = NSDateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "Connected Accounts"
+        self.navigationItem.title = "Credit Cards"
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
         
         let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
         HUD.showInView(self.view!)
-        HUD.textLabel.text = "Loading Connected Banks"
+        HUD.textLabel.text = "Loading Credit Cards"
         HUD.dismissAfterDelay(0.7)
         
         self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         self.dateFormatter.timeStyle = NSDateFormatterStyle.LongStyle
         
-        self.bankRefreshControl.backgroundColor = UIColor.clearColor()
+        self.cardRefreshControl.backgroundColor = UIColor.clearColor()
         
-        self.bankRefreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        self.bankRefreshControl.addTarget(self, action: #selector(BankConnectedListTableViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
-        self.tableView?.addSubview(bankRefreshControl)
+        self.cardRefreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.cardRefreshControl.addTarget(self, action: #selector(CreditCardListViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView?.addSubview(cardRefreshControl)
         
-        self.loadBankAccounts()
+        self.loadCreditCards()
     }
     
-    func loadBankAccounts() {
-        Bank.getBankAccounts({ (items, error) in
+    func loadCreditCards() {
+        Card.getCreditCards({ (items, error) in
             if error != nil
             {
-                let alert = UIAlertController(title: "Error", message: "Could not load banks \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
+                let alert = UIAlertController(title: "Error", message: "Could not load credit cards \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
@@ -54,15 +54,15 @@ class BankConnectedListTableViewController: UITableViewController, SESlideTableV
             // update "last updated" title for refresh control
             let now = NSDate()
             let updateString = "Last Updated at " + self.dateFormatter.stringFromDate(now)
-            self.bankRefreshControl.attributedTitle = NSAttributedString(string: updateString)
-            if self.bankRefreshControl.refreshing
+            self.cardRefreshControl.attributedTitle = NSAttributedString(string: updateString)
+            if self.cardRefreshControl.refreshing
             {
-                self.bankRefreshControl.endRefreshing()
+                self.cardRefreshControl.endRefreshing()
             }
             self.tableView?.reloadData()
         })
     }
-
+    
     func timeStringFromUnixTime(unixTime: Double) -> String {
         let date = NSDate(timeIntervalSince1970: unixTime)
         let dateFormatter = NSDateFormatter()
@@ -82,7 +82,7 @@ class BankConnectedListTableViewController: UITableViewController, SESlideTableV
     
     func refresh(sender:AnyObject)
     {
-        self.loadBankAccounts()
+        self.loadCreditCards()
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -104,15 +104,14 @@ class BankConnectedListTableViewController: UITableViewController, SESlideTableV
             let item = self.itemsArray?[indexPath.row]
             cell!.textLabel?.text = ""
             cell!.detailTextLabel?.text = ""
-            if let name = item?.account_name, number = item?.account_number
+            if let brand = item?.brand
             {
-                cell!.textLabel?.text = name
+                cell!.textLabel?.text = brand
             }
-            if let available = item?.account_balance_available, current = item?.account_balance_current, number = item?.account_number
+            if let number = item?.last4
             {
-//                cell!.detailTextLabel?.text = "Current $" + current + " | " + "Available $" + available
-                  cell!.detailTextLabel?.text = "For account ending in " + number
-
+                cell!.detailTextLabel?.text = "For card ending in " + number
+                
             }
         }
         

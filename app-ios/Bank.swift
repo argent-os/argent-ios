@@ -38,51 +38,6 @@ class Bank {
         self.account_balance_available = account_balance_available
     }
     
-//    "response"  =  {
-//    "accounts" : [
-//    {
-//    "_id" : "QPO8Jo8vdDHMepg41PBwckXm4KdK1yUdmXOwK",
-//    "_item" : "KdDjmojBERUKx3JkDd9RuxA5EvejA4SENO4AA",
-//    "numbers" : {
-//    "routing" : "021000021",
-//    "account" : "9900009606",
-//    "wireRouting" : "021000021"
-//    },
-//    "_user" : "eJXpMzpR65FP4RYno6rzuA7OZjd9n3Hna0RYa",
-//    "institution_type" : "fake_institution",
-//    "meta" : {
-//    "name" : "Plaid Savings",
-//    "number" : "9606"
-//    },
-//    "subtype" : "savings",
-//    "type" : "depository",
-//    "balance" : {
-//    "current" : 1274.93,
-//    "available" : 1203.42
-//    }
-//    },
-//    {
-//    "_id" : "nban4wnPKEtnmEpaKzbYFYQvA7D7pnCaeDBMy",
-//    "_item" : "KdDjmojBERUKx3JkDd9RuxA5EvejA4SENO4AA",
-//    "numbers" : {
-//    "routing" : "021000021",
-//    "account" : "9900001702",
-//    "wireRouting" : "021000021"
-//    },
-//    "_user" : "eJXpMzpR65FP4RYno6rzuA7OZjd9n3Hna0RYa",
-//    "institution_type" : "fake_institution",
-//    "meta" : {
-//    "name" : "Plaid Checking",
-//    "number" : "1702"
-//    },
-//    "subtype" : "checking",
-//    "type" : "depository",
-//    "balance" : {
-//    "current" : 1253.32,
-//    "available" : 1081.78
-//    }
-//    },
-    
     class func getBankAccounts(completionHandler: ([Bank]?, NSError?) -> Void) {
         // request to api to get account data as json, put in list and table
         // curl -X GET -i -H "Content-Type: application/json" -d '{"access_token": "test_bofa"}' http://192.168.1.232:5001/v1/plaid/auth

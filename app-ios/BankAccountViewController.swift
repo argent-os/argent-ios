@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SWTableViewCell
 
 var emitColor:UIColor!
 
