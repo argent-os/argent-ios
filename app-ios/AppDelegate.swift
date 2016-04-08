@@ -28,6 +28,7 @@ var userData:JSON? // init user data, declare globally, needs SwiftyJSON
 // PROD
 //let apiUrl = "http://api.protonpayments.com"
 
+// Global Stripe base API url
 let stripeApiUrl = "https://api.stripe.com"
 
 // For push notifications make sure to delete and re-install app, fix this bug later
@@ -133,10 +134,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .stringByTrimmingCharactersInSet( characterSet )
             .stringByReplacingOccurrencesOfString( " ", withString: "" ) as String
         
-        KeychainSwift().set(deviceTokenString, forKey: "user_device_token_ios")
-        
+        KeychainSwift().set(deviceTokenString, forKey: "deviceToken")
         print( deviceTokenString )
-        
     }
     
     func applicationWillResignActive(application: UIApplication) {

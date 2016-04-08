@@ -31,6 +31,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NSUserDefaults.standardUserDefaults().setValue("", forKey: "userAccessToken")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        
         let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
         HUD.showInView(self.view!)
         HUD.dismissAfterDelay(0.3)

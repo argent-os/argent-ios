@@ -64,6 +64,11 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Login", style: UIBarButtonItemStyle.Done, target: self, action: #selector(LoginBoxTableViewController.loginButtonTapped(_:)))
+        UIToolbar.appearance().barTintColor = UIColor.whiteColor()
+        done.setTitleTextAttributes([
+            NSFontAttributeName : UIFont(name: "Nunito-SemiBold", size: 15.0)!,
+            NSForegroundColorAttributeName : UIColor(rgba: "#1796fa")
+            ], forState: .Normal)
         
         var items: [UIBarButtonItem]? = [UIBarButtonItem]()
         items?.append(flexSpace)
