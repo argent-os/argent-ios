@@ -61,6 +61,8 @@ class CreditCardAccountViewController: UIViewController, CardIOPaymentViewContro
                     "accountId": accountId
                 ]
 
+                // print(userData)
+                print(parameters)
                 let endpoint = apiUrl + "/v1/stripe/account/cards/";
                 
                 Alamofire.request(.POST, endpoint, parameters: parameters, encoding: .JSON, headers: headers)

@@ -10,42 +10,6 @@ import Foundation
 import SwiftyJSON
 import Alamofire
 
-//{
-//    "object": "list",
-//    "data": [
-//    {
-//    "id": "card_17xkxpHutWdwjKPe7Yp6jBXt",
-//    "object": "card",
-//    "account": "acct_17phAdHutWdwjKPe",
-//    "address_city": null,
-//    "address_country": null,
-//    "address_line1": null,
-//    "address_line1_check": null,
-//    "address_line2": null,
-//    "address_state": null,
-//    "address_zip": null,
-//    "address_zip_check": null,
-//    "brand": "Visa",
-//    "country": "US",
-//    "currency": "usd",
-//    "cvc_check": "pass",
-//    "default_for_currency": true,
-//    "dynamic_last4": null,
-//    "exp_month": 12,
-//    "exp_year": 2019,
-//    "fingerprint": "Ri6okvyQJFHAZMz2",
-//    "funding": "debit",
-//    "last4": "5556",
-//    "metadata": {},
-//    "name": null,
-//    "tokenization_method": null
-//    }
-//    ],
-//    "has_more": false,
-//    "url": "/v1/accounts/acct_17phAdHutWdwjKPe/external_accounts"
-//}
-
-
 class Card {
     
     let brand: String
