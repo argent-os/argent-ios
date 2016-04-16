@@ -157,7 +157,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cGr-Gv-9gd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-314" y="-2663"/>
+            <point key="canvasLocation" x="-521" y="-1828"/>
         </scene>
         <!--Recurring Billing View Controller-->
         <scene sceneID="IfJ-jG-LJ2">
@@ -176,84 +176,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="isA-Ko-UWX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="249" y="-2663"/>
-        </scene>
-        <!--Recurring-->
-        <scene sceneID="P4n-Qg-XKO">
-            <objects>
-                <viewController id="xKn-SW-jVQ" customClass="RecurringViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="SDc-BR-mpw"/>
-                        <viewControllerLayoutGuide type="bottom" id="wlk-H7-b6i"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="hSJ-Wb-nFg">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nmm-kP-9VO">
-                                <rect key="frame" x="20" y="72" width="374" height="150"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="izF-dZ-QUY"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="18"/>
-                                <color key="tintColor" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Add Recurring Billing Plan" backgroundImage="ComponentBackgroundOne"/>
-                                <connections>
-                                    <segue destination="SDr-Sd-KOe" kind="show" id="aSf-Dh-oaH">
-                                        <segue key="commit" inheritsFrom="parent" id="970-lO-vYF"/>
-                                        <segue key="preview" inheritsFrom="commit" id="lw8-te-kLd"/>
-                                    </segue>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ImW-P1-e1r">
-                                <rect key="frame" x="20" y="318" width="374" height="148"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="148" id="Z2l-kD-rvn"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="18"/>
-                                <color key="tintColor" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="  Add Customer" backgroundImage="ComponentBackgroundTwo">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="pzK-yB-ekt" kind="show" identifier="addCustomerView" id="vfk-cG-eDy">
-                                        <segue key="commit" inheritsFrom="parent" id="2Ig-p7-0gT"/>
-                                        <segue key="preview" inheritsFrom="commit" id="pwe-YM-llW"/>
-                                    </segue>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="ImW-P1-e1r" firstAttribute="trailing" secondItem="nmm-kP-9VO" secondAttribute="trailing" id="5d1-d9-dSW"/>
-                            <constraint firstItem="ImW-P1-e1r" firstAttribute="leading" secondItem="nmm-kP-9VO" secondAttribute="leading" id="I9n-gO-VZN"/>
-                            <constraint firstItem="ImW-P1-e1r" firstAttribute="trailing" secondItem="hSJ-Wb-nFg" secondAttribute="trailingMargin" id="NQm-n3-d50"/>
-                            <constraint firstItem="wlk-H7-b6i" firstAttribute="top" secondItem="ImW-P1-e1r" secondAttribute="bottom" constant="221" id="Om9-L7-KYa"/>
-                            <constraint firstItem="nmm-kP-9VO" firstAttribute="top" secondItem="SDc-BR-mpw" secondAttribute="bottom" constant="8" symbolic="YES" id="S98-hE-VUo"/>
-                            <constraint firstItem="ImW-P1-e1r" firstAttribute="leading" secondItem="hSJ-Wb-nFg" secondAttribute="leadingMargin" id="pP9-u4-ROB"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Recurring" image="ic_recur" selectedImage="IconLightBulb" id="cD3-5b-K8z" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
-                        <connections>
-                            <outlet property="animation" destination="Zn6-tx-bSz" id="JI5-1B-QSx"/>
-                        </connections>
-                    </tabBarItem>
-                    <navigationItem key="navigationItem" id="n7j-sz-qgf"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mwL-DM-KQ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="Zn6-tx-bSz" customClass="RAMBounceAnimation" customModule="RAMAnimatedTabBarController">
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="color" keyPath="iconSelectedColor">
-                            <color key="value" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="duration">
-                            <real key="value" value="1"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </customObject>
-            </objects>
-            <point key="canvasLocation" x="249" y="-1780"/>
+            <point key="canvasLocation" x="11" y="-1828"/>
         </scene>
         <!--Passcode Settings View Controller-->
         <scene sceneID="ONW-xd-G0k">
@@ -1717,17 +1640,6 @@ institutions</string>
         <!--Home Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <customObject id="6CM-U6-Q2n" customClass="RAMBounceAnimation" customModule="RAMAnimatedTabBarController">
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="color" keyPath="iconSelectedColor">
-                            <color key="value" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="duration">
-                            <real key="value" value="1"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </customObject>
                 <viewController title="Home View Controller" id="BYZ-38-t0r" userLabel="Home Controller" customClass="HomeViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
@@ -1751,10 +1663,22 @@ institutions</string>
                     <connections>
                         <outlet property="navigationBar" destination="w3e-6C-5LA" id="1lw-XX-p0y"/>
                         <segue destination="mQk-jK-m8v" kind="presentation" identifier="loginView" id="A1R-09-1HJ"/>
-                        <segue destination="xKn-SW-jVQ" kind="show" identifier="recurringView" id="xjb-Ei-6f2"/>
                         <segue destination="4oC-TM-jI5" kind="show" identifier="chargeView" id="OG8-Lf-YEC"/>
+                        <segue destination="pzK-yB-ekt" kind="show" identifier="addCustomerView" id="PrX-Yu-xbB"/>
+                        <segue destination="SDr-Sd-KOe" kind="show" identifier="addPlanView" id="kpf-dT-hyx"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <customObject id="6CM-U6-Q2n" customClass="RAMBounceAnimation" customModule="RAMAnimatedTabBarController">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="iconSelectedColor">
+                            <color key="value" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="duration">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="-314" y="-772"/>
         </scene>
@@ -3033,30 +2957,6 @@ Click here to view more</string>
             </objects>
             <point key="canvasLocation" x="866" y="-772"/>
         </scene>
-        <!--Recurring-->
-        <scene sceneID="sfP-U2-uOX">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="d6Y-TV-Vvq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Recurring" image="ic_recur" id="MaG-7O-iwJ" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
-                        <connections>
-                            <outlet property="animation" destination="Zn6-tx-bSz" id="ySN-Jc-CVO"/>
-                        </connections>
-                    </tabBarItem>
-                    <toolbarItems/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DYj-cq-z9I">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="xKn-SW-jVQ" kind="relationship" relationship="rootViewController" id="ELV-h3-jGr"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="48L-o9-ehd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-314" y="-1780"/>
-        </scene>
         <!--Main Table View Controller-->
         <scene sceneID="DxD-GN-HcO">
             <objects>
@@ -3384,13 +3284,10 @@ Click here to view more</string>
     </scenes>
     <resources>
         <image name="BackgroundGradientInverse" width="200" height="500"/>
-        <image name="ComponentBackgroundOne" width="131" height="59"/>
-        <image name="ComponentBackgroundTwo" width="131" height="59"/>
         <image name="IconBank" width="128" height="121"/>
         <image name="IconBroken" width="128" height="119"/>
         <image name="IconCloseLight" width="24" height="24"/>
         <image name="IconCreditCard" width="128" height="93"/>
-        <image name="IconLightBulb" width="118" height="128"/>
         <image name="IconLogo" width="250" height="250"/>
         <image name="IconPerson" width="128" height="117"/>
         <image name="IconStore" width="128" height="128"/>
@@ -3399,40 +3296,36 @@ Click here to view more</string>
         <image name="ic_close_light" width="22" height="22"/>
         <image name="ic_key_light" width="86" height="86"/>
         <image name="ic_notify" width="30" height="30"/>
-        <image name="ic_recur" width="30" height="30"/>
         <image name="ic_search" width="30" height="30"/>
         <image name="ic_user" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="7cu-FP-MoG"/>
+        <segue reference="aks-Yo-Spb"/>
+        <segue reference="igQ-zk-tCm"/>
         <segue reference="m3z-fp-Nlm"/>
         <segue reference="gUR-9D-JWE"/>
         <segue reference="j8y-vP-2EI"/>
         <segue reference="agi-3I-cSC"/>
         <segue reference="VI5-hp-Gm2"/>
         <segue reference="ipn-3I-3vc"/>
-        <segue reference="igQ-zk-tCm"/>
-        <segue reference="aks-Yo-Spb"/>
         <segue reference="fEJ-lR-z9I"/>
-        <segue reference="7cu-FP-MoG"/>
         <segue reference="Bc6-jW-uiV"/>
+        <segue reference="UFB-DJ-qrH"/>
         <segue reference="fxJ-La-7Fr"/>
         <segue reference="A1R-09-1HJ"/>
-        <segue reference="YDb-8b-gnI"/>
-        <segue reference="xjb-Ei-6f2"/>
-        <segue reference="aSf-Dh-oaH"/>
-        <segue reference="vfk-cG-eDy"/>
         <segue reference="xTl-cs-ajG"/>
-        <segue reference="JgX-xV-v5e"/>
-        <segue reference="Xln-0K-kRS"/>
-        <segue reference="Oy0-WL-Zfz"/>
         <segue reference="eyR-QB-Omx"/>
+        <segue reference="JgX-xV-v5e"/>
+        <segue reference="Oy0-WL-Zfz"/>
         <segue reference="HS7-dW-Hxr"/>
-        <segue reference="dKP-gn-jL5"/>
         <segue reference="C2X-hN-Ktf"/>
-        <segue reference="5Ke-wX-bmY"/>
+        <segue reference="dKP-gn-jL5"/>
+        <segue reference="Xln-0K-kRS"/>
         <segue reference="zQh-Po-kj4"/>
-        <segue reference="SFz-vc-0MB"/>
+        <segue reference="5Ke-wX-bmY"/>
         <segue reference="wgV-xY-MTp"/>
+        <segue reference="SFz-vc-0MB"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>

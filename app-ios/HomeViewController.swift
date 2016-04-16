@@ -25,7 +25,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     var cells: [LiquidFloatingCell] = []
     var floatingActionButton: LiquidFloatingActionButton!
     
-    var arrayOfValues: Array<AnyObject> = [5,4,2,3,1]
+    var arrayOfValues: Array<AnyObject> = [5234,4323,2212,3321,1123]
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var switchBal: DGRunkeeperSwitch?
@@ -61,9 +61,13 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-        let frame = CGRectMake(0, 150, screenWidth, screenHeight-150)
+        let frame = CGRectMake(0, 160, screenWidth, screenHeight-160)
         let graph: BEMSimpleLineGraphView = BEMSimpleLineGraphView(frame: frame)
         graph.dataSource = self
+        graph.colorTop = UIColor.whiteColor()
+        graph.colorBottom = UIColor.whiteColor()
+        graph.colorLine = UIColor(rgba: "#157efb")
+        graph.colorPoint = UIColor(rgba: "#157efb")
         graph.delegate = self
         graph.displayDotsWhileAnimating = true
         graph.enablePopUpReport = true
@@ -77,7 +81,12 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             floatingActionButton.animateStyle = style
             floatingActionButton.dataSource = self
             floatingActionButton.delegate = self
-            floatingActionButton.color = UIColor(rgba: "#55acee")
+            floatingActionButton.color = UIColor(rgba: "#157efb")
+            if(floatingActionButton.isOpening) {
+                self.addBlurView()
+            } else if(floatingActionButton.isClosed) {
+//                removeBlurView()
+            }
             return floatingActionButton
         }
 
@@ -86,21 +95,28 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             return cell
         }
         cells.append(customCellFactory("ic_like", "Create Charge", "chargeView"))
-        cells.append(customCellFactory("ic_card_from_bg", "Add Plan", "recurringView"))
-        cells.append(customCellFactory("ic_skip", "Add Customer", "recurringView"))
+        cells.append(customCellFactory("ic_card_from_bg", "Add Plan", "addPlanView"))
+        cells.append(customCellFactory("ic_skip", "Add Customer", "addCustomerView"))
         let floatingFrame = CGRect(x: self.view.frame.width - 56 - 16, y: self.view.frame.height - 116 - 16, width: 56, height: 56)
         let bottomRightButton = createButton(floatingFrame, .Up)
         self.view.addSubview(bottomRightButton)
+        
+        let mainSegment: UISegmentedControl = UISegmentedControl(items: ["2W", "1M", "3M", "1Y", "5Y"])
+        mainSegment.frame = CGRect(x: 15.0, y: 140.0, width: view.bounds.width - 30.0, height: 30.0)
+        mainSegment.selectedSegmentIndex = 1
+        mainSegment.removeBorders()
+        mainSegment.addTarget(self, action: #selector(HomeViewController.mainSegmentControl(_:)), forControlEvents: .ValueChanged)
+        self.view!.addSubview(mainSegment)
         
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 70))
         navBar.barTintColor = UIColor(rgba: "#FFF")
         navBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor(rgba: "#157efb"),
-            NSFontAttributeName : UIFont(name: "Nunito-ExtraLight", size: 20)!
+            NSFontAttributeName : UIFont(name: "Nunito-Regular", size: 20)!
         ]
         
         self.view.addSubview(navBar)
-        let navItem = UINavigationItem(title: "Account Balance History")
+        let navItem = UINavigationItem(title: "Account Balance")
         navBar.setItems([navItem], animated: true);
         
         let runkeeperSwitch = DGRunkeeperSwitch(leftTitle: "Pending", rightTitle: "Available")
@@ -130,12 +146,43 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 
     }
     
+    func mainSegmentControl(segment: UISegmentedControl) {
+        if segment.selectedSegmentIndex == 0 {
+            // action for the first button (Current or Default)
+        }
+        else if segment.selectedSegmentIndex == 1 {
+            // action for the second button
+        }
+        else if segment.selectedSegmentIndex == 2 {
+            // action for the third button
+        }
+        else if segment.selectedSegmentIndex == 3 {
+            // action for the fourth button
+        }
+        
+    }
+    
     func chargeTapped(sender: AnyObject) {
         
     }
     
     func recurringTapped(sender: AnyObject) {
         
+    }
+    
+    func addBlurView(){
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.frame = CGRectMake(0, 0, 600, 100)
+        
+        blurView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.insertSubview(blurView, aboveSubview: self.view)
+        
+        let topConstraint = NSLayoutConstraint(item: self.view, attribute: .Top, relatedBy: .Equal, toItem: blurView, attribute: .Top, multiplier: 1.0, constant: 0.0)
+        let bottomConstraint = NSLayoutConstraint(item: self.view, attribute: .Bottom, relatedBy: .Equal, toItem: blurView, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
+        let leftConstraint = NSLayoutConstraint(item: self.view, attribute: .Left, relatedBy: .Equal, toItem: blurView, attribute: .Left, multiplier: 1.0, constant: 0.0)
+        let rightConstraint = NSLayoutConstraint(item: self.view, attribute: .Right, relatedBy: .Equal, toItem: blurView, attribute: .Right, multiplier: 1.0, constant: 0.0)
+        self.view.addConstraints([topConstraint, rightConstraint, leftConstraint, bottomConstraint])
     }
     
     // VIEW DID APPEAR
@@ -343,10 +390,10 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             self.performSegueWithIdentifier("chargeView", sender: self)
         }
         if index == 1 {
-            self.performSegueWithIdentifier("recurringView", sender: self)
+            self.performSegueWithIdentifier("addPlanView", sender: self)
         }
         if index == 2 {
-            self.performSegueWithIdentifier("recurringView", sender: self)
+            self.performSegueWithIdentifier("addCustomerView", sender: self)
         }
         liquidFloatingActionButton.close()
     }
@@ -371,13 +418,55 @@ public class CustomCell : LiquidFloatingCell {
         super.setupView(view)
         let label = UILabel()
         label.text = name
-        label.textColor = UIColor.whiteColor()
-        label.font = UIFont(name: "Helvetica-Neue", size: 12)
+        label.textAlignment = .Right
+        label.textColor = UIColor(rgba: "#157efb")
+        label.font = UIFont(name: "Nunito", size: 12)
         addSubview(label)
         label.snp_makeConstraints { make in
-            make.left.equalTo(self).offset(-80)
-            make.width.equalTo(75)
+            make.left.equalTo(self).offset(-120)
+            make.width.equalTo(100)
             make.top.height.equalTo(self)
         }
     }
+}
+
+extension UISegmentedControl {
+    func removeBorders() {
+        setTitleTextAttributes(
+            [NSForegroundColorAttributeName : UIColor(rgba: "#157efb"),
+                NSFontAttributeName : UIFont(name: "Nunito-Regular", size: 12)!],
+            forState: .Normal)
+        setTitleTextAttributes(
+            [NSForegroundColorAttributeName : UIColor(rgba: "#004790"),
+            NSFontAttributeName : UIFont(name: "Nunito-SemiBold", size: 18)!],
+            forState: .Selected)
+        setBackgroundImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forState: .Normal, barMetrics: .Default)
+        setBackgroundImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forState: .Selected, barMetrics: .Default)
+        setDividerImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forLeftSegmentState: .Normal, rightSegmentState: .Normal, barMetrics: .Default)
+    }
+    
+    // create a 1x1 image with this color
+    private func imageWithColor(color: UIColor, source: String) -> UIImage {
+        let rect = CGRectMake(10.0, 0.0, 100.0, 1.0)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()
+        CGContextSetFillColorWithColor(context, color.CGColor);
+        CGContextFillRect(context, rect);
+        let image = UIImage(named: source)
+        UIGraphicsEndImageContext();
+        return image!
+    }
+}
+
+public func makeRoundedImage(image: UIImage, radius: Float) -> UIImage {
+    let imageLayer: CALayer = CALayer()
+    imageLayer.frame = CGRectMake(0, 0, image.size.width, image.size.height)
+    imageLayer.contents = (image.CGImage as! AnyObject)
+    imageLayer.masksToBounds = true
+    imageLayer.cornerRadius = CGFloat(radius)
+    UIGraphicsBeginImageContext(image.size)
+    imageLayer.renderInContext(UIGraphicsGetCurrentContext()!)
+    let roundedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    return roundedImage
 }
