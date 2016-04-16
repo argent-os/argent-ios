@@ -91,19 +91,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" misplaced="YES" placeholder="Search " translatesAutoresizingMaskIntoConstraints="NO" id="Mju-hx-caT">
-                                <rect key="frame" x="0.0" y="64" width="414" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="a1M-TW-bLs" id="5f3-Dj-Dmw"/>
-                                </connections>
-                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="40" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wya-1N-F6M">
+                                <rect key="frame" x="0.0" y="20" width="414" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="idCell" rowHeight="40" id="pjs-Yf-QKC">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="40"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pjs-Yf-QKC" id="Mew-C2-2ej">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Mju-hx-caT" firstAttribute="top" secondItem="ZfZ-Cp-qpX" secondAttribute="bottom" id="FTY-Tc-Cr3"/>
-                            <constraint firstItem="Mju-hx-caT" firstAttribute="leading" secondItem="cSm-7L-nrJ" secondAttribute="leading" id="lYS-ot-EXm"/>
-                            <constraint firstAttribute="trailing" secondItem="Mju-hx-caT" secondAttribute="trailing" id="taL-Vw-4cm"/>
+                            <constraint firstItem="Wya-1N-F6M" firstAttribute="bottom" secondItem="Dnd-V9-CML" secondAttribute="top" id="7dH-Fh-b0J"/>
+                            <constraint firstAttribute="trailing" secondItem="Wya-1N-F6M" secondAttribute="trailing" id="bIP-fy-VEa"/>
+                            <constraint firstItem="Wya-1N-F6M" firstAttribute="leading" secondItem="cSm-7L-nrJ" secondAttribute="leading" id="nue-CE-k49"/>
+                            <constraint firstItem="Wya-1N-F6M" firstAttribute="top" secondItem="ZfZ-Cp-qpX" secondAttribute="bottom" id="xWQ-1f-4La"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Search" image="ic_search" id="U4p-ue-j3d" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
@@ -115,6 +123,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="b3j-hU-muC" id="Nr5-LI-kzK"/>
+                        <outlet property="tblSearchResults" destination="Wya-1N-F6M" id="QdH-3Q-fnl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdn-59-Bnh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -131,7 +140,6 @@
                 <searchDisplayController id="b3j-hU-muC">
                     <connections>
                         <outlet property="delegate" destination="a1M-TW-bLs" id="OM9-Cd-uc9"/>
-                        <outlet property="searchBar" destination="Mju-hx-caT" id="Tnr-tO-RkL"/>
                         <outlet property="searchContentsController" destination="a1M-TW-bLs" id="v0j-FA-VQy"/>
                         <outlet property="searchResultsDataSource" destination="a1M-TW-bLs" id="mSI-Mj-Fqp"/>
                         <outlet property="searchResultsDelegate" destination="a1M-TW-bLs" id="wYg-qk-9bd"/>

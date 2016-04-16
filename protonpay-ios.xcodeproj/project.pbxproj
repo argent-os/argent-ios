@@ -41,6 +41,8 @@
 		309E43CC1CA9CFED00279D97 /* fold.caf in Resources */ = {isa = PBXBuildFile; fileRef = 309E43C91CA9CFED00279D97 /* fold.caf */; };
 		309E43CD1CA9CFED00279D97 /* selected.caf in Resources */ = {isa = PBXBuildFile; fileRef = 309E43CA1CA9CFED00279D97 /* selected.caf */; };
 		30AF67391CA498A3006B83DA /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AF67381CA498A3006B83DA /* PassKit.framework */; };
+		30B5768D1CC303F8005BCA5A /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B5768A1CC303F8005BCA5A /* SearchController.swift */; };
+		30B576911CC3045E005BCA5A /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B576901CC3045E005BCA5A /* SearchBar.swift */; };
 		30C2DA551CA43655003AFD8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA541CA43655003AFD8B /* Assets.xcassets */; };
 		30C2DA591CA43665003AFD8B /* PayKloud.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA581CA43665003AFD8B /* PayKloud.entitlements */; };
 		30C2DA5B1CA4366C003AFD8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DA5A1CA4366C003AFD8B /* AppDelegate.swift */; };
@@ -256,6 +258,8 @@
 		309E43CA1CA9CFED00279D97 /* selected.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = selected.caf; sourceTree = "<group>"; };
 		30AF67371CA498A2006B83DA /* app-watchos Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "app-watchos Extension.entitlements"; sourceTree = "<group>"; };
 		30AF67381CA498A3006B83DA /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.2.sdk/System/Library/Frameworks/PassKit.framework; sourceTree = DEVELOPER_DIR; };
+		30B5768A1CC303F8005BCA5A /* SearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchController.swift; path = "app-ios/SearchController.swift"; sourceTree = SOURCE_ROOT; };
+		30B576901CC3045E005BCA5A /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchBar.swift; path = "app-ios/SearchBar.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DA541CA43655003AFD8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "app-ios/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		30C2DA561CA4365D003AFD8B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "app-ios/Info.plist"; sourceTree = SOURCE_ROOT; };
 		30C2DA581CA43665003AFD8B /* PayKloud.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = PayKloud.entitlements; path = "app-ios/PayKloud.entitlements"; sourceTree = SOURCE_ROOT; };
@@ -444,6 +448,7 @@
 		30128DDE1C8FAC6E009E2EA7 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
+				30B576891CC30388005BCA5A /* Search */,
 				309E15911CBC29FB00EA95E4 /* Charge */,
 				302010C61CAEAE04007D5E7E /* Balance */,
 				30DB9B751C9CF1E000871253 /* Profile */,
@@ -599,6 +604,15 @@
 				309E43C61CA9CF6C00279D97 /* MenuTabButton.swift */,
 			);
 			name = MenuTabButton;
+			sourceTree = "<group>";
+		};
+		30B576891CC30388005BCA5A /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				30B576901CC3045E005BCA5A /* SearchBar.swift */,
+				30B5768A1CC303F8005BCA5A /* SearchController.swift */,
+			);
+			name = Search;
 			sourceTree = "<group>";
 		};
 		30BECC041C6F92C200B8A088 /* StarButton */ = {
@@ -1384,6 +1398,7 @@
 				30C2DACD1CA43862003AFD8B /* CreditCardAccountViewController.swift in Sources */,
 				30C2DAED1CA43946003AFD8B /* RecurringBillingPlanViewController.swift in Sources */,
 				30C2DAAF1CA4379F003AFD8B /* ResetPasswordViewController.swift in Sources */,
+				30B5768D1CC303F8005BCA5A /* SearchController.swift in Sources */,
 				30C2DAD91CA4389E003AFD8B /* ProfileImageCell.swift in Sources */,
 				30C2DA9B1CA4373E003AFD8B /* LoginViewController.swift in Sources */,
 				30C2DAAA1CA4374F003AFD8B /* SignupViewControllerTwo.swift in Sources */,
@@ -1402,6 +1417,7 @@
 				30C2DAA61CA4374F003AFD8B /* SignupIndividualViewControllerTwo.swift in Sources */,
 				30C2DB071CA439B6003AFD8B /* Extensions.swift in Sources */,
 				30C2DAA51CA4374F003AFD8B /* SignupIndividualViewControllerThree.swift in Sources */,
+				30B576911CC3045E005BCA5A /* SearchBar.swift in Sources */,
 				30C2DB171CA439F4003AFD8B /* paykloud_iosTests.swift in Sources */,
 				30C2DAC31CA4383B003AFD8B /* NotificationViewController.swift in Sources */,
 				309E43BE1CA8ADF900279D97 /* WebTermsViewController.swift in Sources */,

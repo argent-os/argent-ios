@@ -36,6 +36,19 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         self.refreshControl.addTarget(self, action: #selector(NotificationsViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         self.tableView?.addSubview(refreshControl)
         
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        
+        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 15, width: screenWidth, height: 50))
+        navBar.barTintColor = UIColor(rgba: "#FFF")
+        navBar.titleTextAttributes = [
+            NSForegroundColorAttributeName : UIColor.darkGrayColor(),
+            NSFontAttributeName : UIFont(name: "Nunito-Regular", size: 20)!
+        ]
+        self.view.addSubview(navBar);
+        let navItem = UINavigationItem(title: "Notifications");
+        navBar.setItems([navItem], animated: true);
+        
         self.loadNotificationItems()
     }
     
