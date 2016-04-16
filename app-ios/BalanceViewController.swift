@@ -11,9 +11,13 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import UICountingLabel
+import BEMSimpleLineGraph
 
 class BalanceViewController: UIViewController {
+
     
+    @IBOutlet weak var pendingAmountGraph: BEMSimpleLineGraphView!
+    @IBOutlet weak var availableAmountGraph: BEMSimpleLineGraphView!
     @IBOutlet weak var availableBalanceLabel: UICountingLabel!
     @IBOutlet weak var pendingBalanceLabel: UICountingLabel!
     
@@ -26,10 +30,17 @@ class BalanceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        var myGraph: BEMSimpleLineGraphView = BEMSimpleLineGraphView(frame: CGRectMake(0, 0, 320, 200))
+//        myGraph.dataSource = self
+//        myGraph.delegate = self
+//        self.view!.addSubview(myGraph)
+        
     }
     
     // VIEW DID APPEAR
     override func viewDidAppear(animated: Bool) {
         
     }
+    
+
 }

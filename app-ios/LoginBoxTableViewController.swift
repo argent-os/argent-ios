@@ -153,6 +153,7 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
                                 do {
                                     try watchSession.updateApplicationContext(
                                         [
+                                            // TODO: Make secret key call from API, find user by ID
                                             "user_token": userData!["token"].stringValue,
                                             "stripe_key": userData!["user"]["stripe"]["secretKey"].stringValue,
                                             "account_id": userData!["user"]["stripe"]["accountId"].stringValue
@@ -186,6 +187,15 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
                 }
         }
         
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        UIToolbar.appearance().barTintColor = UIColor(rgba: "#1796fa")
+        UIToolbar.appearance().backgroundColor = UIColor(rgba: "#1796fa")
+        if let font = UIFont(name: "Nunito-SemiBold", size: 15) {
+            UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: font,NSForegroundColorAttributeName:UIColor.whiteColor()], forState: UIControlState.Normal)
+            
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

@@ -1,4 +1,3 @@
-
 //
 //  ViewController.swift
 //  protonpay-ios
@@ -15,27 +14,32 @@ import SwiftyJSON
 import Stripe
 import UICountingLabel
 import DGRunkeeperSwitch
+import BEMSimpleLineGraph
+import LiquidFloatingActionButton
 //import MXParallaxHeader
 
 let userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpleLineGraphDataSource,  LiquidFloatingActionButtonDataSource, LiquidFloatingActionButtonDelegate  {
+    
+    var cells: [LiquidFloatingCell] = []
+    var floatingActionButton: LiquidFloatingActionButton!
+    
+    var arrayOfValues: Array<AnyObject> = [5,4,2,3,1]
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var switchBal: DGRunkeeperSwitch?
-    @IBOutlet weak var pendingBalanceView: UIView!
-    @IBOutlet weak var availableBalanceView: UIView!
     @IBOutlet weak var navigationBar: UINavigationItem!
     //@IBOutlet weak var balanceLabel: UICountingLabel!
     
     @IBAction func indexChanged(sender: DGRunkeeperSwitch) {
         if(sender.selectedIndex == 0) {
-            pendingBalanceView.hidden = false
-            availableBalanceView.hidden = true
+//            pendingBalanceView.hidden = false
+//            availableBalanceView.hidden = true
         }
         if(sender.selectedIndex == 1) {
-            pendingBalanceView.hidden = true
-            availableBalanceView.hidden = false
+//            pendingBalanceView.hidden = true
+//            availableBalanceView.hidden = false
         }
     }
 
@@ -55,15 +59,49 @@ class HomeViewController: UIViewController {
         
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
+        
+        let frame = CGRectMake(0, 150, screenWidth, screenHeight-150)
+        let graph: BEMSimpleLineGraphView = BEMSimpleLineGraphView(frame: frame)
+        graph.dataSource = self
+        graph.delegate = self
+        graph.displayDotsWhileAnimating = true
+        graph.enablePopUpReport = true
+        graph.enableTouchReport = true
+        graph.enableBezierCurve = true
+        graph.layer.masksToBounds = true
+        self.view!.addSubview(graph)
+
+        let createButton: (CGRect, LiquidFloatingActionButtonAnimateStyle) -> LiquidFloatingActionButton = { (frame, style) in
+            let floatingActionButton = LiquidFloatingActionButton(frame: frame)
+            floatingActionButton.animateStyle = style
+            floatingActionButton.dataSource = self
+            floatingActionButton.delegate = self
+            floatingActionButton.color = UIColor(rgba: "#55acee")
+            return floatingActionButton
+        }
+
+        let customCellFactory: (String, String, String) -> LiquidFloatingCell = { (iconName, description, segue) in
+            let cell = CustomCell(icon: UIImage(named: iconName)!, name: description, segue: segue)
+            return cell
+        }
+        cells.append(customCellFactory("ic_like", "Create Charge", "chargeView"))
+        cells.append(customCellFactory("ic_card_from_bg", "Add Plan", "recurringView"))
+        cells.append(customCellFactory("ic_skip", "Add Customer", "recurringView"))
+        let floatingFrame = CGRect(x: self.view.frame.width - 56 - 16, y: self.view.frame.height - 116 - 16, width: 56, height: 56)
+        let bottomRightButton = createButton(floatingFrame, .Up)
+        self.view.addSubview(bottomRightButton)
+        
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 70))
         navBar.barTintColor = UIColor(rgba: "#FFF")
         navBar.titleTextAttributes = [
-            NSForegroundColorAttributeName : UIColor.darkGrayColor(),
-            NSFontAttributeName : UIFont(name: "Nunito", size: 20)!
+            NSForegroundColorAttributeName : UIColor(rgba: "#157efb"),
+            NSFontAttributeName : UIFont(name: "Nunito-ExtraLight", size: 20)!
         ]
-        self.view.addSubview(navBar);
-        let navItem = UINavigationItem(title: "Balance");
-        navBar.setItems([navItem], animated: false);
+        
+        self.view.addSubview(navBar)
+        let navItem = UINavigationItem(title: "Account Balance History")
+        navBar.setItems([navItem], animated: true);
         
         let runkeeperSwitch = DGRunkeeperSwitch(leftTitle: "Pending", rightTitle: "Available")
         runkeeperSwitch.backgroundColor = UIColor(rgba: "#157efb")
@@ -85,20 +123,26 @@ class HomeViewController: UIViewController {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.translucent = true
-        self.navigationController?.navigationBar.topItem?.title = " "
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSForegroundColorAttributeName : UIColor.whiteColor(),
+            NSForegroundColorAttributeName : UIColor(rgba: "#157efb"),
             NSFontAttributeName : UIFont(name: "Nunito-SemiBold", size: 18.0)!
         ]
-        
-        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Compose, target: self, action: #selector(HomeViewController.chargeButtonTapped(_:))), animated: true)
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
 
+    }
+    
+    func chargeTapped(sender: AnyObject) {
+        
+    }
+    
+    func recurringTapped(sender: AnyObject) {
+        
     }
     
     // VIEW DID APPEAR
     override func viewDidAppear(animated: Bool) {
         
+        UITextField.appearance().keyboardAppearance = .Light
+
         // Check for user logged in key
         let userLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("userLoggedIn");
         if(!userLoggedIn) {
@@ -113,7 +157,7 @@ class HomeViewController: UIViewController {
                 print("user data exists")
             }
             
-            let balanceVC = self.childViewControllers[0] as! BalanceViewController
+//            let balanceVC = self.childViewControllers[0] as! BalanceViewController
             // Get stripe balance on appear
             // Set account balance label
             getStripeBalance() { responseObject, error in
@@ -140,15 +184,15 @@ class HomeViewController: UIViewController {
 //                            balanceVC.availableBalanceLabel.text = pendingBalanceNum
 //                        }
                         
-                        balanceVC.pendingBalanceLabel.countFrom((CGFloat(Float(pendingAmt!)!)/100)-100, to: CGFloat(Float(pendingAmt!)!)/100)
-                        balanceVC.pendingBalanceLabel.format = "%.2f"
-                        balanceVC.pendingBalanceLabel.animationDuration = 3.0
-                        balanceVC.pendingBalanceLabel.countFromZeroTo(CGFloat(Float(pendingAmt!)!)/100)
-                        balanceVC.pendingBalanceLabel.method = UILabelCountingMethod.EaseInOut
-                        balanceVC.pendingBalanceLabel.completionBlock = {
-                            let availableBalanceNum = formatter.stringFromNumber(Float(pendingAmt!)!/100)
-                            balanceVC.pendingBalanceLabel.text = availableBalanceNum
-                        }
+//                        balanceVC.pendingBalanceLabel.countFrom((CGFloat(Float(pendingAmt!)!)/100)-100, to: CGFloat(Float(pendingAmt!)!)/100)
+//                        balanceVC.pendingBalanceLabel.format = "%.2f"
+//                        balanceVC.pendingBalanceLabel.animationDuration = 3.0
+//                        balanceVC.pendingBalanceLabel.countFromZeroTo(CGFloat(Float(pendingAmt!)!)/100)
+//                        balanceVC.pendingBalanceLabel.method = UILabelCountingMethod.EaseInOut
+//                        balanceVC.pendingBalanceLabel.completionBlock = {
+//                            let availableBalanceNum = formatter.stringFromNumber(Float(pendingAmt!)!/100)
+//                            balanceVC.pendingBalanceLabel.text = availableBalanceNum
+//                        }
                     }
                 }
                 return
@@ -191,6 +235,7 @@ class HomeViewController: UIViewController {
     
     func makeStripeCall(endpoint: String, completionHandler: (JSON?, NSError?) -> ()) {
 
+        // TODO: Make secret key call from API, find user by ID
         if let stripeKey = userData?["user"]["stripe"]["secretKey"].stringValue {
             let headers = [
                 "Authorization": "Bearer " + (stripeKey),
@@ -274,4 +319,65 @@ class HomeViewController: UIViewController {
         
     }
     
+    // BEM Graph Delegate Methods
+    func numberOfPointsInLineGraph(graph: BEMSimpleLineGraphView) -> Int {
+        return Int(self.arrayOfValues.count)
+    }
+    
+    func lineGraph(graph: BEMSimpleLineGraphView, valueForPointAtIndex index: Int) -> CGFloat {
+        return CGFloat(self.arrayOfValues[index] as! NSNumber)
+    }
+    
+    // Liquid Floating Button Delegate
+    func numberOfCells(liquidFloatingActionButton: LiquidFloatingActionButton) -> Int {
+        return cells.count
+    }
+    
+    func cellForIndex(index: Int) -> LiquidFloatingCell {
+        return cells[index]
+    }
+    
+    func liquidFloatingActionButton(liquidFloatingActionButton: LiquidFloatingActionButton, didSelectItemAtIndex index: Int) {
+        print("did Tapped! \(index)")
+        if index == 0 {
+            self.performSegueWithIdentifier("chargeView", sender: self)
+        }
+        if index == 1 {
+            self.performSegueWithIdentifier("recurringView", sender: self)
+        }
+        if index == 2 {
+            self.performSegueWithIdentifier("recurringView", sender: self)
+        }
+        liquidFloatingActionButton.close()
+    }
+    
+}
+
+public class CustomCell : LiquidFloatingCell {
+    var name: String = "sample"
+    var segue: String = "sampleSegue"
+    
+    init(icon: UIImage, name: String, segue: String) {
+        self.name = name
+        self.segue = segue
+        super.init(icon: icon)
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    public override func setupView(view: UIView) {
+        super.setupView(view)
+        let label = UILabel()
+        label.text = name
+        label.textColor = UIColor.whiteColor()
+        label.font = UIFont(name: "Helvetica-Neue", size: 12)
+        addSubview(label)
+        label.snp_makeConstraints { make in
+            make.left.equalTo(self).offset(-80)
+            make.width.equalTo(75)
+            make.top.height.equalTo(self)
+        }
+    }
 }

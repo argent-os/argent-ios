@@ -153,6 +153,8 @@ final class RecurringBillingViewController: FormViewController {
         let plan_statement_desc = dic["planStatementDescriptionKey"]
         
         print("plan id is", plan_id)
+        
+        // TODO: Make secret key call from API, find user by ID
         let stripeKey = userData!["user"]["stripe"]["secretKey"].stringValue
         
         let headers = [

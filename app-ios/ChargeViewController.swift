@@ -6,41 +6,110 @@
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
 //
 
+import UIKit
 import Foundation
 import VENCalculatorInputView
+import DGRunkeeperSwitch
 
 class ChargeViewController: UIViewController, VENCalculatorInputViewDelegate {
     
+    @IBOutlet weak var switchBal: DGRunkeeperSwitch?
     
-    @IBOutlet weak var navigationBar: UINavigationBar!
-    @IBOutlet weak var calculateButton: UIButton!
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var chargeInputView: VENCalculatorInputTextField!
-    // Set up initial view height adjustment to false
-    var alreadyAdjusted:Bool = false
+    let chargeInputView = UITextField()
+
+    let currencyFormatter = NSNumberFormatter()
 
     var currentString = ""
     
+    @IBAction func indexChanged(sender: DGRunkeeperSwitch) {
+        if(sender.selectedIndex == 0) {
+            NSUserDefaults.standardUserDefaults().setValue("pay", forKey: "chargeType")
+            print("pay selected")
+        }
+        if(sender.selectedIndex == 1) {
+            NSUserDefaults.standardUserDefaults().setValue("request", forKey: "chargeType")
+            print("request selected")
+        }
+    }
+    
+    func textFieldDidChange(textField: UITextField) {
+        let text = textField.text!.stringByReplacingOccurrencesOfString(currencyFormatter.currencySymbol, withString: "").stringByReplacingOccurrencesOfString(currencyFormatter.groupingSeparator, withString: "").stringByReplacingOccurrencesOfString(currencyFormatter.decimalSeparator, withString: "")
+        textField.text = currencyFormatter.stringFromNumber((text as NSString).doubleValue / 100.0)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        addChargeToolbarButton()
         
-        calculateButton.layer.cornerRadius = 5
-        calculateButton.layer.masksToBounds = true
+        let width = UIScreen.mainScreen().bounds.size.width
+        let height = UIScreen.mainScreen().bounds.size.height
+    
+        chargeInputView.addTarget(self, action: #selector(ChargeViewController.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
+        chargeInputView.frame = CGRect(x: 0, y: height*0.28, width: width, height: 80)
+        chargeInputView.textAlignment = .Center
+        chargeInputView.font = chargeInputView.font!.fontWithSize(36)
+        chargeInputView.textColor = UIColor(rgba: "#1EBC61")
+        chargeInputView.placeholder = "Enter Amount"
+        chargeInputView.keyboardType = UIKeyboardType.NumberPad
+        chargeInputView.backgroundColor = UIColor.clearColor()
+        chargeInputView.becomeFirstResponder()
+        self.view.addSubview(chargeInputView)
         
+        let sendToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, width, 50))
+        // sendToolbar.barStyle = UIBarStyle.Default
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.Done, target: self, action: #selector(ChargeViewController.nextStep(_:)))
+        done.tintColor = UIColor.whiteColor()
+        UIToolbar.appearance().barTintColor = UIColor(rgba: "#157efb")
+        done.setTitleTextAttributes([
+            NSFontAttributeName : UIFont(name: "Nunito-SemiBold", size: 15.0)!,
+            NSForegroundColorAttributeName : UIColor(rgba: "#fff")
+            ], forState: .Normal)
+        
+        var items: [UIBarButtonItem]? = [UIBarButtonItem]()
+        items?.append(flexSpace)
+        items?.append(done)
+        items?.append(flexSpace)
+        
+        sendToolbar.items = items
+        sendToolbar.sizeToFit()
+        chargeInputView.inputAccessoryView=sendToolbar
+        
+        currencyFormatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        currencyFormatter.currencyCode = NSLocale.currentLocale().displayNameForKey(NSLocaleCurrencySymbol, value: NSLocaleCurrencyCode)
+
         // Transparent navigation bar
-        navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-        navigationBar.shadowImage = UIImage()
-        navigationBar.translucent = true
+        self.navigationController!.navigationBar.tintColor = UIColor.darkGrayColor()
+        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController!.navigationBar.shadowImage = UIImage()
+        self.navigationController!.navigationBar.translucent = true
+        self.navigationController!.navigationBar.hidden = true
+        self.navigationController!.navigationBar.sendSubviewToBack(self.navigationController!.navigationBar)
         
-        // Set up auto align keyboard with ui button
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChargeViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChargeViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        // UISwitch
+        let runkeeperSwitch = DGRunkeeperSwitch(leftTitle: "Pay", rightTitle: "Request")
+        runkeeperSwitch.backgroundColor = UIColor(rgba: "#157efb")
+        runkeeperSwitch.selectedBackgroundColor = .whiteColor()
+        runkeeperSwitch.titleColor = .whiteColor()
+        runkeeperSwitch.selectedTitleColor = UIColor(rgba: "#157efb")
+        runkeeperSwitch.titleFont = UIFont(name: "Nunito-SemiBold", size: 13.0)
+        runkeeperSwitch.frame = CGRect(x: 50.0, y: 28.0, width: view.bounds.width - 100.0, height: 30.0)
+//        runkeeperSwitch.addTarget(self, action: #selector(HomeViewController.indexChanged(_:)), forControlEvents: .ValueChanged)
+        runkeeperSwitch.autoresizingMask = [.FlexibleWidth]
+        self.view.addSubview(runkeeperSwitch)
+        self.view.bringSubviewToFront(runkeeperSwitch)
+        if(runkeeperSwitch.selectedIndex == 0) {
+            NSUserDefaults.standardUserDefaults().setValue("pay", forKey: "chargeType")
+        } else {
+            NSUserDefaults.standardUserDefaults().setValue("request", forKey: "chargeType")
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(true)
         chargeInputView.becomeFirstResponder()
+        super.viewDidAppear(true)
     }
     
     func calculatorInputView(inputView: VENCalculatorInputView, didTapKey key: String) {
@@ -56,6 +125,50 @@ class ChargeViewController: UIViewController, VENCalculatorInputViewDelegate {
     //Changing Status Bar
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
+    }
+    
+    func nextStep(sender: AnyObject) {
+        // Function for toolbar button
+        self.performSegueWithIdentifier("selectCustomerView", sender: sender)
+    }
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "selectCustomerView" {
+//            let destination = segue.destinationViewController as! ChargeCustomerSearchController
+//            destination.chargeAmount = chargeInputView.text!
+//            print("charge amount is", destination.chargeAmount)
+        }
+    }
+    
+    // Add send toolbar
+    func addChargeToolbarButton()
+    {
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let sendToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, screenWidth, 50))
+        // sendToolbar.barStyle = UIBarStyle.Default
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Create Charge", style: UIBarButtonItemStyle.Done, target: self, action: #selector(ChargeViewController.createCharge(_:)))
+        done.tintColor = UIColor.whiteColor()
+        UIToolbar.appearance().barTintColor = UIColor(rgba: "#157efb")
+        done.setTitleTextAttributes([
+            NSFontAttributeName : UIFont(name: "Nunito-SemiBold", size: 15.0)!,
+            NSForegroundColorAttributeName : UIColor(rgba: "#fff")
+            ], forState: .Normal)
+        
+        var items: [UIBarButtonItem]? = [UIBarButtonItem]()
+        items?.append(flexSpace)
+        items?.append(done)
+        items?.append(flexSpace)
+        
+        sendToolbar.items = items
+        sendToolbar.sizeToFit()
+    }
+    
+    func createCharge(sender: AnyObject) {
+        
     }
     
     //Textfield delegates
@@ -93,41 +206,9 @@ class ChargeViewController: UIViewController, VENCalculatorInputViewDelegate {
         view.endEditing(true)
     }
     
-    // Adjusts keyboard height to view
-    func adjustingHeight(show:Bool, notification:NSNotification) {
-        if(alreadyAdjusted == false) {
-            // Check if already adjusted height
-            var userInfo = notification.userInfo!
-            let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
-            let animationDurarion = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval
-            let changeInHeight = (CGRectGetHeight(keyboardFrame) - 5) * (show ? 1 : -1)
-            UIView.animateWithDuration(animationDurarion, animations: { () -> Void in
-                self.bottomConstraint.constant += changeInHeight
-                print(self.bottomConstraint.constant)
-                if(self.bottomConstraint.constant < 0) {
-                    print("negative constant, adding more")
-                    self.bottomConstraint.constant += (-1 * (2*changeInHeight))
-                    print("new val", self.bottomConstraint.constant)
-                }
-            })
-            // Already adjusted height so make it true so it doesn't continue adjusting everytime a label is focused
-            alreadyAdjusted = true
-        }
-    }
-    
-    
-    func keyboardWillShow(notification:NSNotification) {
-        adjustingHeight(true, notification: notification)
-    }
-    
-    func keyboardWillHide(notification:NSNotification) {
-        adjustingHeight(false, notification: notification)
-    }
-    
     override func viewWillDisappear(animated: Bool) {
         dismissKeyboard()
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+        self.navigationController!.navigationBar.hidden = false
         super.viewWillDisappear(animated)
     }
     

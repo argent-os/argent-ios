@@ -34,7 +34,13 @@ class SupportMessageViewController: UIViewController {
 
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Send", style: UIBarButtonItemStyle.Done, target: self, action: #selector(SupportMessageViewController.sendMessageAction))
-
+        UIToolbar.appearance().barTintColor = UIColor(rgba: "#1796fa")
+        UIToolbar.appearance().backgroundColor = UIColor(rgba: "#1796fa")
+        if let font = UIFont(name: "Nunito-SemiBold", size: 15) {
+            UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: font,NSForegroundColorAttributeName:UIColor.whiteColor()], forState: UIControlState.Normal)
+            
+        }
+        
         var items: [UIBarButtonItem]? = [UIBarButtonItem]()
         items?.append(flexSpace)
         items?.append(done)
@@ -46,14 +52,14 @@ class SupportMessageViewController: UIViewController {
     }
     
     @IBAction func sendMessageAction() {
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
         HUD.showInView(self.view!)
         HUD.dismissAfterDelay(0.5)
         sendMessage()
     }
     
     func sendMessage() {
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
         HUD.showInView(self.view!)
         HUD.textLabel.text = "Message sent!"
         HUD.indicatorView = JGProgressHUDSuccessIndicatorView()

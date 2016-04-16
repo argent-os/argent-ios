@@ -5,6 +5,7 @@ link_with 'app-watchos', 'app-watchos Extension'
 
 def shared_pods
 	pod 'Alamofire', '~> 3.2.1'
+	pod 'Money'
 	pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'	
 #	pod 'AlamoArgo', '~> 0.5.3'	
 #	pod 'Argo', '~> 2.2.0'	
@@ -25,6 +26,7 @@ target 'protonpay-ios' do
 	pod 'MZFormSheetPresentationController'
 	pod 'PasscodeLock'
 	pod 'BEMCheckBox'
+	pod 'BEMSimpleLineGraph'
 	pod 'SwiftGifOrigin'
 	pod 'CWStatusBarNotification'
 	pod 'Koloda'
@@ -45,6 +47,9 @@ target 'protonpay-ios' do
 	pod 'DGRunkeeperSwitch'
 	pod 'JGProgressHUD'	
 	pod 'SESlideTableViewCell'
+	pod 'JVFloatLabeledTextField'
+	pod 'ZLSwipeableViewSwift'
+	pod "LiquidFloatingActionButton", :git => 'https://github.com/yoavlt/LiquidFloatingActionButton', :branch => 'swift-2.0'
 	#pod 'DOFavoriteButton'
 
 	post_install do |installer|

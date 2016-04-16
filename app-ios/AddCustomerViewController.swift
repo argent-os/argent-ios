@@ -108,6 +108,7 @@ final class AddCustomerViewController: FormViewController {
         let cust_email = dic["customerEmailKey"]
         let cust_desc = dic["customerDescriptionKey"]
         
+        // TODO: Make secret key call from API, find user by ID
         let stripeKey = userData!["user"]["stripe"]["secretKey"].stringValue
         
         print("stripe key is", stripeKey)

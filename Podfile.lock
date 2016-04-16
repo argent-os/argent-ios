@@ -1,8 +1,9 @@
 PODS:
   - Alamofire (3.2.1)
   - AMViralSwitch (1.0.0)
-  - BEMCheckBox (1.2.0)
-  - CardIO (5.3.1)
+  - BEMCheckBox (1.2.1)
+  - BEMSimpleLineGraph (4.1)
+  - CardIO (5.3.2)
   - CWStatusBarNotification (2.3.4)
   - DCPathButton (2.1.3)
   - DGRunkeeperSwitch (1.1.1)
@@ -11,17 +12,21 @@ PODS:
   - Gecco (0.2.0)
   - IOStickyHeader (0.3.0)
   - JGProgressHUD (1.3.1)
-  - KeychainSwift (3.0.11)
+  - JVFloatLabeledTextField (1.1.0)
+  - KeychainSwift (3.0.13)
   - KMPlaceholderTextView (1.2.0)
-  - Koloda (2.0.10):
+  - Koloda (3.0.0):
     - pop (~> 1.0)
+  - LiquidFloatingActionButton (0.1.1)
+  - Money (1.7.0):
+    - ValueCoding
   - MZAppearance (1.1.6)
   - MZFormSheetPresentationController (2.3.2):
     - MZAppearance
   - PasscodeLock (1.0.2)
   - pop (1.0.9)
-  - RAMAnimatedTabBarController (1.2.2)
-  - RAMReel (1.0.6)
+  - RAMAnimatedTabBarController (1.3.0)
+  - RAMReel (1.1.1)
   - RESideMenu (4.0.7)
   - Runes (3.2.0)
   - SESlideTableViewCell (0.7.0)
@@ -36,13 +41,16 @@ PODS:
   - TextFieldEffects (1.2.0)
   - UIColor_Hex_Swift (2.1)
   - UICountingLabel (1.4.0)
+  - ValueCoding (1.3.0)
   - VENCalculatorInputView (1.5.4)
   - VideoSplashKit (1.1.0)
+  - ZLSwipeableViewSwift (0.0.6)
 
 DEPENDENCIES:
   - Alamofire (~> 3.2.1)
   - AMViralSwitch
   - BEMCheckBox
+  - BEMSimpleLineGraph
   - CardIO
   - CWStatusBarNotification
   - DCPathButton
@@ -52,9 +60,13 @@ DEPENDENCIES:
   - Gecco
   - IOStickyHeader
   - JGProgressHUD
+  - JVFloatLabeledTextField
   - KeychainSwift
   - KMPlaceholderTextView
   - Koloda
+  - LiquidFloatingActionButton (from `https://github.com/yoavlt/LiquidFloatingActionButton`,
+    branch `swift-2.0`)
+  - Money
   - MZFormSheetPresentationController
   - PasscodeLock
   - RAMAnimatedTabBarController
@@ -73,12 +85,19 @@ DEPENDENCIES:
   - UICountingLabel
   - VENCalculatorInputView
   - VideoSplashKit
+  - ZLSwipeableViewSwift
 
 EXTERNAL SOURCES:
+  LiquidFloatingActionButton:
+    :branch: swift-2.0
+    :git: https://github.com/yoavlt/LiquidFloatingActionButton
   SwiftyJSON:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
+  LiquidFloatingActionButton:
+    :commit: 25de77f23df84e0a0981193abecced8afc2ed9c7
+    :git: https://github.com/yoavlt/LiquidFloatingActionButton
   SwiftyJSON:
     :commit: 2a5b70f06001316d4fb54501edc70b4084705da0
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
@@ -86,8 +105,9 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
   AMViralSwitch: caf07a95aed2055fc7bd93657166f747095174d6
-  BEMCheckBox: fcfbbf42cf23d38fbb605c72f63db9ae82d6acd3
-  CardIO: a299efcd0348c3b256a1da53f22951319c3855a2
+  BEMCheckBox: 264b8b72aa92adbfefa265cc58a0cdb86b207b9f
+  BEMSimpleLineGraph: 44fd451f27f8e9cf96f2da5bea27603093576dd1
+  CardIO: 92c45caef0d986c4a303a7afba0c9b76ff2b1f6e
   CWStatusBarNotification: 3fec41edcb0ae3677d9febfcb9632d8bdf52294c
   DCPathButton: 431bb93072e8d25bd0de0eaa0373e39d896a38e3
   DGRunkeeperSwitch: da12f199532a99958a1e87ec0a5af61efdba11ec
@@ -96,15 +116,18 @@ SPEC CHECKSUMS:
   Gecco: 27ab0f43da3f8e844771cf641992afdd1ea09c62
   IOStickyHeader: 4550b071f8f3df73a361a3152aab8e5a3bae1ea8
   JGProgressHUD: 153053a21d81208cb5f659691996bcefce6a9885
-  KeychainSwift: 0a4214c910423543a42b0f30f25987d46178b6a5
+  JVFloatLabeledTextField: ea4a3d8387ddd43724c472bb2b8ab39b79af05d4
+  KeychainSwift: 3bda518adb1ab386da0a9a1de93b561ee2c9322b
   KMPlaceholderTextView: cae8ee889bd38d20587eee6b2623b8218f31b8f5
-  Koloda: 10f747feeff5e425061f78e5ce17208783e34a99
+  Koloda: 315aa5d2ef4138df90c42ee77c18af0727528e6a
+  LiquidFloatingActionButton: dcdae1e59eb07eccbf60c027001a4d6731c345c9
+  Money: f46c3c8fcaf7afa35f2ee3edaeba58335fd5b669
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   MZFormSheetPresentationController: bba52eb65feb3b70ae83ed28fd20991802d4adeb
   PasscodeLock: 4ae42c094224a01de3773fcd69ae33886394d959
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
-  RAMAnimatedTabBarController: cadbef3162bc7ae86091661273ccec503deb3398
-  RAMReel: 7297528d1c5992de3a3b8221e19c28b7edddb145
+  RAMAnimatedTabBarController: f491635c52bfaeaceff6fe74b0d1a5c8cdfa353f
+  RAMReel: 86234b0c2e6be3cf9edfe1854efa72aa5c55d8d1
   RESideMenu: f24c508404b49c667344c54aba7e590883533958
   Runes: ab2f892272d5165f64620f8086578b28cde98a02
   SESlideTableViewCell: 1487a6aedc84b480a888fc33b8d1c58fa5026f99
@@ -117,7 +140,9 @@ SPEC CHECKSUMS:
   TextFieldEffects: bc4fd3bd557321bd61a0762f3f50965477a36f62
   UIColor_Hex_Swift: e91dc51f6bf252ec7bf74c8704ceedeeb7640c1c
   UICountingLabel: ed5ce5b6d5ef278ff40d99cfa49577a30ab0c87b
+  ValueCoding: 9c9ed6ecdb9cc37f1a8d3fd9f5756953caf5a869
   VENCalculatorInputView: 988fa681ba6bb9b1f067842493bb622e80cc8da2
   VideoSplashKit: 0aa63d0bb37c5bd357de3e6a2a13dea5acad4d66
+  ZLSwipeableViewSwift: f252438a48d20b1687eba0083762be4c13448da2
 
 COCOAPODS: 0.39.0

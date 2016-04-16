@@ -61,7 +61,7 @@ class BackgroundAnimationViewController: UIViewController {
 extension BackgroundAnimationViewController: KolodaViewDelegate {
     func koloda(kolodaDidRunOutOfCards koloda: KolodaView) {
         //Example: reloading
-        kolodaView.resetCurrentCardNumber()
+        kolodaView.resetCurrentCardIndex()
     }
     
     func koloda(koloda: KolodaView, didSelectCardAtIndex index: UInt) {
@@ -103,10 +103,15 @@ var paddedFrameImage: CGRect = UIEdgeInsetsInsetRect(initialFrameImage, contentI
 //MARK: KolodaViewDataSource
 extension BackgroundAnimationViewController: KolodaViewDataSource {
     
-    func koloda(kolodaNumberOfCards koloda:KolodaView) -> UInt {
+    func kolodaNumberOfCards(koloda: KolodaView) -> UInt {
         return numberOfCards
     }
     
+    func koloda(koloda: KolodaView, viewForCardOverlayAtIndex index: UInt) -> OverlayView? {
+        return NSBundle.mainBundle().loadNibNamed("KolodaCustomOverlayView",
+                                                  owner: self, options: nil)[0] as? OverlayView
+    }
+
     func koloda(koloda: KolodaView, viewForCardAtIndex index: UInt) -> UIView {
 //         return UIImageView(image: UIImage(named: "cards_\(index + 1)"))
         if(index == 0) {
@@ -281,10 +286,5 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
             return imgView
         }
         return UIImageView(image: UIImage(named: "cards_\(index + 1)"))
-    }
-    
-    func koloda(koloda: KolodaView, viewForCardOverlayAtIndex index: UInt) -> OverlayView? {
-        return NSBundle.mainBundle().loadNibNamed("KolodaCustomOverlayView",
-            owner: self, options: nil)[0] as? OverlayView
     }
 }

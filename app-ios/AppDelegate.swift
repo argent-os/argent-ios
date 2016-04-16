@@ -5,6 +5,7 @@
 //  Created by Sinan Ulkuatam on 2/9/16.
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
 
+import Foundation
 import UIKit
 import Stripe
 import PasscodeLock
@@ -23,8 +24,8 @@ var userData:JSON? // init user data, declare globally, needs SwiftyJSON
 
 // let apiUrl = "http://localhost:5001"
 // let apiUrl = "http://192.168.1.182:5001"
- let apiUrl = "http://192.168.1.232:5001"
-// let apiUrl = "http://proton-api-dev.us-east-1.elasticbeanstalk.com"
+// let apiUrl = "http://192.168.1.232:5001"
+ let apiUrl = "http://proton-api-dev.us-east-1.elasticbeanstalk.com"
 // PROD
 //let apiUrl = "http://api.protonpayments.com"
 
@@ -83,6 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Globally set toolbar
         UIToolbar.appearance().barTintColor = UIColor(rgba: "#1796fa")
+        UIToolbar.appearance().backgroundColor = UIColor(rgba: "#1796fa")
         
         if let font = UIFont(name: "Nunito-SemiBold", size: 15) {
             UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: font,NSForegroundColorAttributeName:UIColor.whiteColor()], forState: UIControlState.Normal)
