@@ -43,7 +43,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         ]
         self.view.addSubview(navBar);
         let navItem = UINavigationItem(title: "Search");
-        navBar.setItems([navItem], animated: true);
+        navBar.setItems([navItem], animated: false);
         
         // Uncomment the following line to enable the default search controller.
         configureSearchController()

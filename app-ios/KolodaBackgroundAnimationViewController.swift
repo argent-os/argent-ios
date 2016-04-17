@@ -53,7 +53,8 @@ class BackgroundAnimationViewController: UIViewController {
     }
     
     @IBAction func undoButtonTapped() {
-        kolodaView?.revertAction()
+        kolodaView.resetCurrentCardIndex()
+//        kolodaView?.revertAction()
     }
 }
 

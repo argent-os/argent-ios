@@ -12,7 +12,7 @@ import JGProgressHUD
 
 class ProfileViewController: UIViewController {
     
-//    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var avatarImageView: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,11 +21,25 @@ class ProfileViewController: UIViewController {
         print("loaded profile")
         self.view.backgroundColor = UIColor.whiteColor()
         
+        
         // Style user avatar
 //        avatarImageView.image = UIImage(named: "avatar")
 //        avatarImageView.layer.cornerRadius = 1.0
 //        avatarImageView.layer.borderColor = UIColor.blackColor().CGColor
 //        avatarImageView.clipsToBounds = true
+        
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        
+        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 65))
+        navBar.barTintColor = UIColor(rgba: "#FFF")
+        navBar.titleTextAttributes = [
+            NSForegroundColorAttributeName : UIColor.darkGrayColor(),
+            NSFontAttributeName : UIFont(name: "Nunito-Regular", size: 20)!
+        ]
+        self.view.addSubview(navBar);
+        let navItem = UINavigationItem(title: "Account");
+        navBar.setItems([navItem], animated: false);
         
         if(userData?["user"]["picture"]["secureUrl"].stringValue != nil && userData?["user"]["picture"]["secureUrl"].stringValue.containsString("app") != true) {
             let userPicture = userData?["user"]["picture"]["secureUrl"].stringValue
@@ -45,6 +59,10 @@ class ProfileViewController: UIViewController {
             //print(userData)
         }
         
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
     
     override func didReceiveMemoryWarning() {

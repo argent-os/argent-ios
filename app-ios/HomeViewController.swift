@@ -25,6 +25,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     var cells: [LiquidFloatingCell] = []
     var floatingActionButton: LiquidFloatingActionButton!
     
+    @IBOutlet weak var blurView: UIVisualEffectView!
     var arrayOfValues: Array<AnyObject> = [5234,4323,2212,3321,1123]
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -82,14 +83,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             floatingActionButton.dataSource = self
             floatingActionButton.delegate = self
             floatingActionButton.color = UIColor(rgba: "#157efb")
-            if(floatingActionButton.isOpening) {
-                self.addBlurView()
-            } else if(floatingActionButton.isClosed) {
-//                removeBlurView()
-            }
             return floatingActionButton
         }
-
+        
         let customCellFactory: (String, String, String) -> LiquidFloatingCell = { (iconName, description, segue) in
             let cell = CustomCell(icon: UIImage(named: iconName)!, name: description, segue: segue)
             return cell
@@ -99,6 +95,16 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         cells.append(customCellFactory("ic_skip", "Add Customer", "addCustomerView"))
         let floatingFrame = CGRect(x: self.view.frame.width - 56 - 16, y: self.view.frame.height - 116 - 16, width: 56, height: 56)
         let bottomRightButton = createButton(floatingFrame, .Up)
+        print(bottomRightButton.isOpening.boolValue)
+        print(bottomRightButton.isClosed.boolValue)
+
+        if(bottomRightButton.isOpening.boolValue) {
+            print("adding blurview")
+            self.addBlurView()
+        } else if(bottomRightButton.isClosed.boolValue) {
+            print("button is closed")
+            //                removeBlurView()
+        }
         self.view.addSubview(bottomRightButton)
         
         let mainSegment: UISegmentedControl = UISegmentedControl(items: ["2W", "1M", "3M", "1Y", "5Y"])
@@ -108,7 +114,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         mainSegment.addTarget(self, action: #selector(HomeViewController.mainSegmentControl(_:)), forControlEvents: .ValueChanged)
         self.view!.addSubview(mainSegment)
         
-        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 70))
+        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 15, width: screenWidth, height: 50))
         navBar.barTintColor = UIColor(rgba: "#FFF")
         navBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor(rgba: "#157efb"),
@@ -125,7 +131,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         runkeeperSwitch.titleColor = .whiteColor()
         runkeeperSwitch.selectedTitleColor = UIColor(rgba: "#157efb")
         runkeeperSwitch.titleFont = UIFont(name: "Nunito-SemiBold", size: 13.0)
-        runkeeperSwitch.frame = CGRect(x: 50.0, y: 80.0, width: view.bounds.width - 100.0, height: 30.0)
+        runkeeperSwitch.frame = CGRect(x: 50.0, y: 78.0, width: view.bounds.width - 100.0, height: 30.0)
         runkeeperSwitch.addTarget(self, action: #selector(HomeViewController.indexChanged(_:)), forControlEvents: .ValueChanged)
         runkeeperSwitch.autoresizingMask = [.FlexibleWidth]
         view.addSubview(runkeeperSwitch)
@@ -171,18 +177,15 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     }
     
     func addBlurView(){
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
         let blurView = UIVisualEffectView(effect: blurEffect)
-        blurView.frame = CGRectMake(0, 0, 600, 100)
+        blurView.frame = CGRectMake(0, 0, screenWidth, screenHeight)
         
         blurView.translatesAutoresizingMaskIntoConstraints = false
         self.view.insertSubview(blurView, aboveSubview: self.view)
-        
-        let topConstraint = NSLayoutConstraint(item: self.view, attribute: .Top, relatedBy: .Equal, toItem: blurView, attribute: .Top, multiplier: 1.0, constant: 0.0)
-        let bottomConstraint = NSLayoutConstraint(item: self.view, attribute: .Bottom, relatedBy: .Equal, toItem: blurView, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
-        let leftConstraint = NSLayoutConstraint(item: self.view, attribute: .Left, relatedBy: .Equal, toItem: blurView, attribute: .Left, multiplier: 1.0, constant: 0.0)
-        let rightConstraint = NSLayoutConstraint(item: self.view, attribute: .Right, relatedBy: .Equal, toItem: blurView, attribute: .Right, multiplier: 1.0, constant: 0.0)
-        self.view.addConstraints([topConstraint, rightConstraint, leftConstraint, bottomConstraint])
     }
     
     // VIEW DID APPEAR
@@ -419,8 +422,8 @@ public class CustomCell : LiquidFloatingCell {
         let label = UILabel()
         label.text = name
         label.textAlignment = .Right
-        label.textColor = UIColor(rgba: "#157efb")
-        label.font = UIFont(name: "Nunito", size: 12)
+        label.textColor = UIColor(rgba: "#004790")
+        label.font = UIFont(name: "Nunito-Regular", size: 12)
         addSubview(label)
         label.snp_makeConstraints { make in
             make.left.equalTo(self).offset(-120)

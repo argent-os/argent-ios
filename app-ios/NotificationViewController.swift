@@ -47,7 +47,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         ]
         self.view.addSubview(navBar);
         let navItem = UINavigationItem(title: "Notifications");
-        navBar.setItems([navItem], animated: true);
+        navBar.setItems([navItem], animated: false);
         
         self.loadNotificationItems()
     }

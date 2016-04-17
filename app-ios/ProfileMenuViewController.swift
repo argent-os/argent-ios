@@ -23,8 +23,8 @@ class ProfileMenuViewController: UITableViewController {
     }
     
     //Changing Status Bar
-    override func prefersStatusBarHidden() -> Bool {
-        return true
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
