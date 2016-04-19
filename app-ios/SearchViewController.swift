@@ -8,14 +8,16 @@
 
 import UIKit
 import JGProgressHUD
+import Alamofire
+import SwiftyJSON
 
 class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate, SearchControllerDelegate {
     
     @IBOutlet weak var tblSearchResults: UITableView!
     
-    var dataArray = [String]()
+    var dataArray = [User]()
     
-    var filteredArray = [String]()
+    var filteredArray = [User]()
     
     var shouldShowSearchResults = false
     
@@ -30,7 +32,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tblSearchResults.delegate = self
         tblSearchResults.dataSource = self
         
-//        loadListOfCountries()
+        loadUserAccounts()
         
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
@@ -79,10 +81,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let cell = tableView.dequeueReusableCellWithIdentifier("idCell", forIndexPath: indexPath)
         
         if shouldShowSearchResults {
-            cell.textLabel?.text = filteredArray[indexPath.row]
+            // After filtering
+            cell.textLabel?.text = String(filteredArray[indexPath.row].username)
         }
         else {
-            cell.textLabel?.text = dataArray[indexPath.row]
+            // Default loaded array
+            cell.textLabel?.text = String(dataArray[indexPath.row].username)
         }
         
         return cell
@@ -96,20 +100,21 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // MARK: Custom functions
     
-    func loadListOfCountries() {
-        // Specify the path to the countries list file.
-        let pathToFile = NSBundle.mainBundle().pathForResource("countries", ofType: "txt")
-        
-        if let path = pathToFile {
-            // Load the file contents as a string.
-            let countriesString = try! String(contentsOfFile: path, encoding: NSUTF8StringEncoding)
+    func loadUserAccounts() {
+        User.getUserAccounts({ (items, error) in
+            if error != nil
+            {
+                let alert = UIAlertController(title: "Error", message: "Could not load banks \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+            self.dataArray = items!
             
-            // Append the countries from the string to the dataArray array by breaking them using the line change character.
-            dataArray = countriesString.componentsSeparatedByString("\n")
+            // update "last updated" title for refresh control
+            let now = NSDate()
             
-            // Reload the tableview.
-            tblSearchResults.reloadData()
-        }
+            self.tblSearchResults.reloadData()
+        })
     }
     
     func configureSearchController() {
@@ -146,7 +151,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         sendToolbar.items = items
         sendToolbar.sizeToFit()
-        searchController.searchBar.inputAccessoryView=sendToolbar
+        // Uncomment to add toolbar to search
+        // searchController.searchBar.inputAccessoryView=sendToolbar
     }
     
     func createCharge(sender:AnyObject) {
@@ -203,10 +209,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         // Filter the data array and get only those countries that match the search text.
-        filteredArray = dataArray.filter({ (country) -> Bool in
-            let countryText:NSString = country
-            
-            return (countryText.rangeOfString(searchString, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
+        filteredArray = dataArray.filter({ (user) -> Bool in
+            let userStr: NSString = user.username
+            return (userStr.rangeOfString(searchString, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
         })
         
         // Reload the tableview.
@@ -238,10 +243,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func didChangeSearchText(searchText: String) {
         // Filter the data array and get only those countries that match the search text.
-        filteredArray = dataArray.filter({ (country) -> Bool in
-            let countryText: NSString = country
-            
-            return (countryText.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
+        filteredArray = dataArray.filter({ (user) -> Bool in
+            let userStr: NSString = user.username
+            return (userStr.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
         })
         
         // Reload the tableview.
