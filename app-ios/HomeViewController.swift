@@ -118,7 +118,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         navBar.barTintColor = UIColor(rgba: "#FFF")
         navBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor(rgba: "#157efb"),
-            NSFontAttributeName : UIFont(name: "Nunito-Regular", size: 20)!
+            NSFontAttributeName : UIFont(name: "Nunito-Regular", size: 18)!
         ]
         
         self.view.addSubview(navBar)

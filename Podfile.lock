@@ -21,12 +21,11 @@ PODS:
   - Money (1.7.0):
     - ValueCoding
   - MZAppearance (1.1.6)
-  - MZFormSheetPresentationController (2.3.2):
+  - MZFormSheetPresentationController (2.4.0):
     - MZAppearance
   - PasscodeLock (1.0.2)
   - pop (1.0.9)
-  - RAMAnimatedTabBarController (1.3.0)
-  - RAMReel (1.1.1)
+  - RAMAnimatedTabBarController (1.3.1)
   - RESideMenu (4.0.7)
   - Runes (3.2.0)
   - SESlideTableViewCell (0.7.0)
@@ -70,7 +69,6 @@ DEPENDENCIES:
   - MZFormSheetPresentationController
   - PasscodeLock
   - RAMAnimatedTabBarController
-  - RAMReel
   - RESideMenu
   - Runes
   - SESlideTableViewCell
@@ -123,11 +121,10 @@ SPEC CHECKSUMS:
   LiquidFloatingActionButton: dcdae1e59eb07eccbf60c027001a4d6731c345c9
   Money: f46c3c8fcaf7afa35f2ee3edaeba58335fd5b669
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
-  MZFormSheetPresentationController: bba52eb65feb3b70ae83ed28fd20991802d4adeb
+  MZFormSheetPresentationController: 3b9b6d76adc9f81c2defd0bb59e0f3dc2431e41e
   PasscodeLock: 4ae42c094224a01de3773fcd69ae33886394d959
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
-  RAMAnimatedTabBarController: f491635c52bfaeaceff6fe74b0d1a5c8cdfa353f
-  RAMReel: 86234b0c2e6be3cf9edfe1854efa72aa5c55d8d1
+  RAMAnimatedTabBarController: 71478294be88a5b870064c7980880caeb9ce2655
   RESideMenu: f24c508404b49c667344c54aba7e590883533958
   Runes: ab2f892272d5165f64620f8086578b28cde98a02
   SESlideTableViewCell: 1487a6aedc84b480a888fc33b8d1c58fa5026f99

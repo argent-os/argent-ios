@@ -43,7 +43,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         navBar.barTintColor = UIColor(rgba: "#FFF")
         navBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.darkGrayColor(),
-            NSFontAttributeName : UIFont(name: "Nunito-Regular", size: 20)!
+            NSFontAttributeName : UIFont(name: "Nunito-Regular", size: 18)!
         ]
         self.view.addSubview(navBar);
         let navItem = UINavigationItem(title: "Notifications");

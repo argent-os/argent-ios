@@ -37,11 +37,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         
-        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 15, width: screenWidth, height: 50))
-        navBar.barTintColor = UIColor(rgba: "#FFF")
+        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 65))
+        navBar.barTintColor = UIColor.protonBlue()
+        navBar.tintColor = UIColor.whiteColor()
+        navBar.translucent = false
         navBar.titleTextAttributes = [
-            NSForegroundColorAttributeName : UIColor.darkGrayColor(),
-            NSFontAttributeName : UIFont(name: "Nunito-Regular", size: 20)!
+            NSForegroundColorAttributeName : UIColor.whiteColor(),
+            NSFontAttributeName : UIFont(name: "Nunito-Light", size: 18)!
         ]
         self.view.addSubview(navBar);
         let navItem = UINavigationItem(title: "Search");
@@ -59,6 +61,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Dispose of any resources that can be recreated.
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
     
     // MARK: UITableView Delegate and Datasource functions
     
@@ -122,9 +127,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.placeholder = "Enter a username or email"
         searchController.searchBar.delegate = self
         searchController.searchBar.sizeToFit()
+        // Setup the Scope Bar
+        searchController.searchBar.scopeButtonTitles = ["Username", "Email"]
         
         // Place the search bar view to the tableview headerview.
         tblSearchResults.tableHeaderView = searchController.searchBar
@@ -136,7 +143,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // sendToolbar.barStyle = UIBarStyle.Default
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Add Filters", style: UIBarButtonItemStyle.Done, target: self, action: #selector(SearchViewController.createCharge(_:)))
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Add Filters", style: UIBarButtonItemStyle.Done, target: self, action: nil)
         done.tintColor = UIColor.whiteColor()
         UIToolbar.appearance().barTintColor = UIColor(rgba: "#157efb")
         done.setTitleTextAttributes([
@@ -153,18 +160,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         sendToolbar.sizeToFit()
         // Uncomment to add toolbar to search
         // searchController.searchBar.inputAccessoryView=sendToolbar
-    }
-    
-    func createCharge(sender:AnyObject) {
-        let HUD: JGProgressHUD = JGProgressHUD(style: JGProgressHUDStyle.ExtraLight)
-        HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
-        HUD.textLabel.text = "Charge success"
-        HUD.showInView(self.view!)
-        HUD.dismissAfterDelay(3.0)
-        Timeout(0.5) {
-            let rootViewController = (self.storyboard?.instantiateViewControllerWithIdentifier("RootViewController"))! as UIViewController
-            self.presentViewController(rootViewController, animated: true, completion: nil)
-        }
     }
     
     func configureCustomSearchController() {
@@ -252,5 +247,39 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tblSearchResults.reloadData()
     }
     
+    func filterContentForSearchText(searchText: String, scope: String = "Username") {
+        filteredArray = filteredArray.filter({( user : User) -> Bool in
+            let categoryMatch = (scope == "Username") || (user.username == scope)
+            return categoryMatch && user.username.lowercaseString.containsString(searchText.lowercaseString)
+        })
+        tblSearchResults.reloadData()
+    }
+    
+    // MARK: - UISearchBar Delegate
+    func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
+    }
+    
+    // MARK: - Segues
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print("preparing for segue")
+        if segue.identifier == "customerDetailView" {
+            print("segue identified")
+            print(segue.identifier)
+            if let indexPath = tblSearchResults.indexPathForSelectedRow {
+                print("inside indexpathforselectedrow")
+                let user: User
+                if searchController.active && searchController.searchBar.text != "" {
+                    user = filteredArray[indexPath.row]
+                } else {
+                    user = dataArray[indexPath.row]
+                }
+                let controller = segue.destinationViewController as! SearchDetailViewController
+                controller.detailUser = user
+                controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
+                controller.navigationItem.leftItemsSupplementBackButton = true
+            }
+        }
+    }
 }
 

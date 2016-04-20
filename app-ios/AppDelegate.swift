@@ -24,8 +24,8 @@ var userData:JSON? // init user data, declare globally, needs SwiftyJSON
 
 // let apiUrl = "http://localhost:5001"
 // let apiUrl = "http://192.168.1.182:5001"
- let apiUrl = "http://192.168.1.232:5001"
-// let apiUrl = "http://proton-api-dev.us-east-1.elasticbeanstalk.com"
+// let apiUrl = "http://192.168.1.232:5001"
+ let apiUrl = "http://proton-api-dev.us-east-1.elasticbeanstalk.com"
 // PROD
 //let apiUrl = "http://api.protonpayments.com"
 
@@ -107,6 +107,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Enable Stripe PROD
         // Stripe.setDefaultPublishableKey("pk_live_9kfmn7pMRPKAYSpcf1Fmn266")
 
+        // Search Bar UI
+        UISearchBar.appearance().barTintColor = UIColor.protonDarkBlue()
+        UISearchBar.appearance().tintColor = UIColor.whiteColor()
+//        UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).tintColor = UIColor.protonDarkBlue()
+        
         // Enable push notifications
         if #available(iOS 8.0, *) {
             let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
@@ -172,3 +177,11 @@ extension UIApplication {
     }
 }
 
+extension UIColor {
+    static func protonBlue() -> UIColor {
+        return UIColor(rgba: "#157efb")
+    }
+    static func protonDarkBlue() -> UIColor {
+        return UIColor(rgba: "#0465d9")
+    }
+}

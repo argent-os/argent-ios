@@ -34,7 +34,6 @@ target 'protonpay-ios' do
 	pod 'Gecco'
 	pod 'VENCalculatorInputView'
 	pod 'RAMAnimatedTabBarController'
-	pod 'RAMReel'
 	pod 'DZNEmptyDataSet'
 	pod 'IOStickyHeader'
 	pod 'AMViralSwitch'

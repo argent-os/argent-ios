@@ -71,6 +71,8 @@
             <string>Nunito-Regular</string>
             <string>Nunito-Regular</string>
             <string>Nunito-Regular</string>
+            <string>Nunito-Regular</string>
+            <string>Nunito-Regular</string>
         </mutableArray>
         <mutableArray key="Nunito-SemiBold.ttf">
             <string>Nunito-SemiBold</string>
@@ -78,6 +80,84 @@
         </mutableArray>
     </customFonts>
     <scenes>
+        <!--Search Detail View Controller-->
+        <scene sceneID="nbc-3q-s01">
+            <objects>
+                <viewController id="E96-37-Kd7" customClass="SearchDetailViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dT7-HM-UP6"/>
+                        <viewControllerLayoutGuide type="bottom" id="HLl-tB-D5j"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6nZ-kW-z7i">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="FXh-hu-a05">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ueD-b1-YlQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="0.0"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dwz-6N-uqw">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="128" id="lnL-9B-KoP"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xmy-gk-6RB" userLabel="Username Label">
+                                        <rect key="frame" x="0.0" y="128" width="600" height="0.0"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3NZ-HE-4fI">
+                                        <rect key="frame" x="0.0" y="128" width="600" height="348"/>
+                                        <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
+                                        <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K3A-xJ-FXD">
+                                        <rect key="frame" x="0.0" y="476" width="600" height="60"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="5Me-Qx-C56"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="15"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="Subscribe to user"/>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="3NZ-HE-4fI" firstAttribute="top" secondItem="Xmy-gk-6RB" secondAttribute="top" id="RPT-Yh-o7f"/>
+                                    <constraint firstItem="K3A-xJ-FXD" firstAttribute="top" secondItem="3NZ-HE-4fI" secondAttribute="bottom" id="VNb-aP-J3Y"/>
+                                    <constraint firstItem="Xmy-gk-6RB" firstAttribute="bottom" secondItem="dwz-6N-uqw" secondAttribute="bottom" id="oZM-gM-RGE"/>
+                                    <constraint firstItem="ueD-b1-YlQ" firstAttribute="top" secondItem="dwz-6N-uqw" secondAttribute="top" id="qbx-80-dmb"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="FXh-hu-a05" secondAttribute="trailing" id="I4V-gK-b8Y"/>
+                            <constraint firstItem="FXh-hu-a05" firstAttribute="bottom" secondItem="HLl-tB-D5j" secondAttribute="top" id="TjY-94-pVS"/>
+                            <constraint firstItem="FXh-hu-a05" firstAttribute="top" secondItem="dT7-HM-UP6" secondAttribute="bottom" id="XH5-Rn-Ab6"/>
+                            <constraint firstItem="FXh-hu-a05" firstAttribute="leading" secondItem="6nZ-kW-z7i" secondAttribute="leading" id="lGB-Ek-XSD"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="DI1-gg-00S"/>
+                    <connections>
+                        <outlet property="emailLabel" destination="3NZ-HE-4fI" id="ohr-Z7-PO4"/>
+                        <outlet property="stacks" destination="FXh-hu-a05" id="sCe-g9-YsK"/>
+                        <outlet property="userImageView" destination="dwz-6N-uqw" id="7R9-Ha-enh"/>
+                        <outlet property="usernameLabel" destination="3NZ-HE-4fI" id="VrR-X6-HPd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Il-oJ-wuJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1219" y="-2524"/>
+        </scene>
         <!--Search-->
         <scene sceneID="SMU-V6-kh5">
             <objects>
@@ -101,6 +181,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="39.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="E96-37-Kd7" kind="show" identifier="customerDetailView" id="q4R-jw-ebX"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -183,7 +266,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="isA-Ko-UWX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="11" y="-1828"/>
+            <point key="canvasLocation" x="11" y="-1786"/>
         </scene>
         <!--Passcode Settings View Controller-->
         <scene sceneID="ONW-xd-G0k">
@@ -577,7 +660,7 @@ support request</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2tV-oq-9Hw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2651" y="-2682"/>
+            <point key="canvasLocation" x="3463" y="-2682"/>
         </scene>
         <!--Profile-->
         <scene sceneID="pCQ-kF-NQE">
@@ -626,7 +709,7 @@ support request</string>
                     </userDefinedRuntimeAttributes>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="1468" y="-1780"/>
+            <point key="canvasLocation" x="2280" y="-1780"/>
         </scene>
         <!--Profile Menu View Controller-->
         <scene sceneID="8pv-XZ-CS6">
@@ -1633,7 +1716,7 @@ institutions</string>
                 </customObject>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bbk-5t-bPb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2022" y="-1780"/>
+            <point key="canvasLocation" x="2834" y="-1780"/>
         </scene>
         <!--Home Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -3101,7 +3184,7 @@ Click here to view more</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aRz-oq-SFm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3125" y="-2682"/>
+            <point key="canvasLocation" x="3937" y="-2682"/>
         </scene>
         <!--Web Support View Controller-->
         <scene sceneID="cth-hO-h0n">
@@ -3133,7 +3216,7 @@ Click here to view more</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P4s-8I-ZEe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3629" y="-2682"/>
+            <point key="canvasLocation" x="4441" y="-2682"/>
         </scene>
         <!--Bank Connected List Table View Controller-->
         <scene sceneID="TZc-Mr-fZs">
@@ -3279,6 +3362,24 @@ Click here to view more</string>
             </objects>
             <point key="canvasLocation" x="-707" y="274"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Qhl-RR-Oyq">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6yw-NC-1RW" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lc8-il-8Z6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="E96-37-Kd7" kind="relationship" relationship="rootViewController" id="zsk-4D-roF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9BM-aM-pfh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="511" y="-2524"/>
+        </scene>
     </scenes>
     <resources>
         <image name="BackgroundGradientInverse" width="200" height="500"/>
@@ -3298,32 +3399,33 @@ Click here to view more</string>
         <image name="ic_user" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7cu-FP-MoG"/>
-        <segue reference="aks-Yo-Spb"/>
-        <segue reference="igQ-zk-tCm"/>
-        <segue reference="m3z-fp-Nlm"/>
         <segue reference="gUR-9D-JWE"/>
         <segue reference="j8y-vP-2EI"/>
+        <segue reference="m3z-fp-Nlm"/>
+        <segue reference="igQ-zk-tCm"/>
+        <segue reference="aks-Yo-Spb"/>
+        <segue reference="7cu-FP-MoG"/>
+        <segue reference="Bc6-jW-uiV"/>
+        <segue reference="fEJ-lR-z9I"/>
         <segue reference="agi-3I-cSC"/>
         <segue reference="VI5-hp-Gm2"/>
         <segue reference="ipn-3I-3vc"/>
-        <segue reference="fEJ-lR-z9I"/>
-        <segue reference="Bc6-jW-uiV"/>
-        <segue reference="UFB-DJ-qrH"/>
+        <segue reference="eyR-QB-Omx"/>
         <segue reference="fxJ-La-7Fr"/>
         <segue reference="A1R-09-1HJ"/>
+        <segue reference="UFB-DJ-qrH"/>
         <segue reference="xTl-cs-ajG"/>
-        <segue reference="eyR-QB-Omx"/>
-        <segue reference="JgX-xV-v5e"/>
-        <segue reference="Oy0-WL-Zfz"/>
-        <segue reference="HS7-dW-Hxr"/>
         <segue reference="C2X-hN-Ktf"/>
-        <segue reference="dKP-gn-jL5"/>
-        <segue reference="Xln-0K-kRS"/>
+        <segue reference="JgX-xV-v5e"/>
+        <segue reference="HS7-dW-Hxr"/>
         <segue reference="zQh-Po-kj4"/>
+        <segue reference="Xln-0K-kRS"/>
+        <segue reference="Oy0-WL-Zfz"/>
         <segue reference="5Ke-wX-bmY"/>
-        <segue reference="wgV-xY-MTp"/>
+        <segue reference="dKP-gn-jL5"/>
         <segue reference="SFz-vc-0MB"/>
+        <segue reference="wgV-xY-MTp"/>
+        <segue reference="zsk-4D-roF"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>
