@@ -56,6 +56,7 @@ class SearchDetailViewController: UIViewController {
             self.navigationController?.view.backgroundColor = UIColor.clearColor()
             self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
             self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
+            self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
             let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: width, height: 65))
             navBar.translucent = true
             navBar.backgroundColor = UIColor.clearColor()
@@ -79,6 +80,30 @@ class SearchDetailViewController: UIViewController {
             self.view.addSubview(blurImageView)
             blurImageView.addSubview(visualEffectView)
             self.view.sendSubviewToBack(blurImageView)
+            
+            // Button
+            let inviteButton = UIButton(frame: CGRect(x: 10, y: 265, width: (width/2)-20, height: 48.0))
+            inviteButton.backgroundColor = UIColor.protonDarkBlue()
+            inviteButton.tintColor = UIColor(rgba: "#fff")
+            inviteButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
+            inviteButton.titleLabel?.font = UIFont(name: "Nunito-Regular", size: 14)
+            inviteButton.setTitle("Invite Customer", forState: .Normal)
+            inviteButton.layer.cornerRadius = 5
+            inviteButton.layer.masksToBounds = true
+            inviteButton.addTarget(self, action: #selector(AuthViewController.login(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            view.addSubview(inviteButton)
+            
+            // Button
+            let subscribeButton = UIButton(frame: CGRect(x: width*0.5+10, y: 265, width: (width/2)-20, height: 48.0))
+            subscribeButton.backgroundColor = UIColor.protonBlue()
+            subscribeButton.setTitle("Subscribe", forState: .Normal)
+            subscribeButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+            subscribeButton.titleLabel?.font = UIFont(name: "Nunito-Regular", size: 14)
+            subscribeButton.layer.cornerRadius = 5
+            subscribeButton.layer.borderColor = UIColor(rgba: "#ffffff").CGColor
+            subscribeButton.layer.masksToBounds = true
+            subscribeButton.addTarget(self, action: #selector(AuthViewController.signup(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            view.addSubview(subscribeButton)
         }
     }
     

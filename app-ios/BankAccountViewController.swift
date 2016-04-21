@@ -18,6 +18,7 @@ class MainTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        self.view.backgroundColor = UIColor(rgba: "#f5f7fa")
         self.navigationItem.title = "Select a Bank"
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
 
@@ -63,22 +64,22 @@ class MainTableViewController: UITableViewController {
         let width = UIScreen.mainScreen().bounds.size.width
         let height = UIScreen.mainScreen().bounds.size.height
         
-        // cell.header.layer.cornerRadius = 10
-        // cell.header.backgroundColor = UIColor.clearColor()
-        // cell.background.layer.cornerRadius = 10        
-        // cell.background.backgroundColor = UIColor.clearColor()
-        // cell.background.clipsToBounds = true
+        cell.header.layer.cornerRadius = 10
+//        cell.header.backgroundColor = UIColor(rgba: "#f5f7fa")
+        cell.background.layer.cornerRadius = 10
+//        cell.background.backgroundColor = UIColor(rgba: "#333")
+        cell.background.clipsToBounds = true
         
         // pass in the background image as a parameter here from self.elements above
-        // cell.header.backgroundColor = self.elements.objectAtIndex(indexPath.row).objectForKey("background_color") as? UIColor
-        // cell.background.backgroundColor = self.elements.objectAtIndex(indexPath.row).objectForKey("background_color") as? UIColor
-        // cell.contentView.backgroundColor = self.elements.objectAtIndex(indexPath.row).objectForKey("background_color") as? UIColor
+         cell.header.backgroundColor = self.elements.objectAtIndex(indexPath.row).objectForKey("background_color") as? UIColor
+        //         cell.background.backgroundColor = self.elements.objectAtIndex(indexPath.row).objectForKey("background_color") as? UIColor
+//         cell.contentView.backgroundColor = self.elements.objectAtIndex(indexPath.row).objectForKey("background_color") as? UIColor
         
         cell.center = CGPoint(x: cell.frame.width / 2.0, y: height / 2.0)
         let img: UIImage = UIImage(named: self.elements.objectAtIndex(indexPath.row).objectForKey("bank_logo") as! String)!
         cell.imageView!.image = img
         cell.imageView!.contentMode = .ScaleAspectFit
-        cell.imageView!.backgroundColor = self.elements.objectAtIndex(indexPath.row).objectForKey("background_color") as? UIColor
+//        cell.imageView!.backgroundColor = self.elements.objectAtIndex(indexPath.row).objectForKey("background_color") as? UIColor
         cell.imageView!.frame = CGRectMake(width, (cell.frame.size.height-30)/2, 30, 30)
 
         return cell

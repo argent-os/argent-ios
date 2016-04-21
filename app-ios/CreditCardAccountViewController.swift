@@ -17,6 +17,7 @@ class CreditCardAccountViewController: UIViewController, CardIOPaymentViewContro
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addCardButton.layer.cornerRadius = 5
         addCardButton.backgroundColor = UIColor.protonBlue()
     }
     // CARD IO

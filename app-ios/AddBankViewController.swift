@@ -17,7 +17,7 @@ class AddBankViewController: UIViewController {
         
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
 
-        addBankButton.layer.cornerRadius = 0
+        addBankButton.layer.cornerRadius = 5
         addBankButton.clipsToBounds = true
         addBankButton.backgroundColor = UIColor.protonBlue()
     }
