@@ -47,7 +47,7 @@ class User {
                         let data = JSON(value)
                         var userItemsArray = [User]()
                         let accounts = data["users"].arrayValue
-                        print(data["users"].arrayValue)
+                        // print(data["users"].arrayValue)
                         for jsonItem in accounts {
                             let username = jsonItem["username"].stringValue
                             let email = jsonItem["email"].stringValue

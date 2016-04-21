@@ -90,7 +90,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if shouldShowSearchResults {
             // After filtering
             let pic = filteredArray[indexPath.row].picture
-            print(pic)
             if pic != "" {
                 let imageView: UIImageView = UIImageView(frame: CGRectMake(10, 15, 30, 30))
                 imageView.backgroundColor = UIColor.clearColor()
@@ -115,8 +114,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             // Default loaded array
             let pic = dataArray[indexPath.row].picture
             print("data is")
-            print(dataArray[indexPath.row].picture)
-            print(pic)
             if pic != "" {
                 let imageView: UIImageView = UIImageView(frame: CGRectMake(10, 15, 30, 30))
                 imageView.backgroundColor = UIColor.clearColor()
@@ -186,7 +183,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Add Filters", style: UIBarButtonItemStyle.Done, target: self, action: nil)
         done.tintColor = UIColor.whiteColor()
-        UIToolbar.appearance().barTintColor = UIColor(rgba: "#157efb")
+        UIToolbar.appearance().barTintColor = UIColor.protonBlue()
         done.setTitleTextAttributes([
             NSFontAttributeName : UIFont(name: "Nunito-SemiBold", size: 15.0)!,
             NSForegroundColorAttributeName : UIColor(rgba: "#fff")
@@ -244,6 +241,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return
         }
         
+        let searchBar = searchController.searchBar
+        let scope = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
+        filterContentForSearchText(searchController.searchBar.text!, scope: scope)
+        
         // Filter the data array and get only those countries that match the search text.
         filteredArray = dataArray.filter({ (user) -> Bool in
             let userStr: NSString = user.username
@@ -288,10 +289,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tblSearchResults.reloadData()
     }
     
-    func filterContentForSearchText(searchText: String, scope: String = "Username") {
+    func filterContentForSearchText(searchText: String, scope: String) {
         filteredArray = filteredArray.filter({( user : User) -> Bool in
-            let categoryMatch = (scope == "Username") || (user.username == scope)
-            return categoryMatch && user.username.lowercaseString.containsString(searchText.lowercaseString)
+            let categoryMatch = (scope == "Username") || (scope == "Email")
+            return categoryMatch && (user.username.lowercaseString.containsString(searchText.lowercaseString)) || (user.email.lowercaseString.containsString(searchText.lowercaseString))
         })
         tblSearchResults.reloadData()
     }

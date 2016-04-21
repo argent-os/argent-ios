@@ -117,13 +117,13 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 15, width: screenWidth, height: 50))
         navBar.barTintColor = UIColor(rgba: "#FFF")
         navBar.titleTextAttributes = [
-            NSForegroundColorAttributeName : UIColor(rgba: "#157efb"),
+            NSForegroundColorAttributeName : UIColor.protonBlue(),
             NSFontAttributeName : UIFont(name: "Nunito-Regular", size: 18)!
         ]
         
         self.view.addSubview(navBar)
         let navItem = UINavigationItem(title: "Account Balance")
-        navBar.setItems([navItem], animated: true);
+        navBar.setItems([navItem], animated: true)
         
         let runkeeperSwitch = DGRunkeeperSwitch(leftTitle: "Pending", rightTitle: "Available")
         runkeeperSwitch.backgroundColor = UIColor(rgba: "#157efb")

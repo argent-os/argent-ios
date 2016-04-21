@@ -72,7 +72,6 @@
             <string>Nunito-Regular</string>
             <string>Nunito-Regular</string>
             <string>Nunito-Regular</string>
-            <string>Nunito-Regular</string>
         </mutableArray>
         <mutableArray key="Nunito-SemiBold.ttf">
             <string>Nunito-SemiBold</string>
@@ -89,70 +88,50 @@
                         <viewControllerLayoutGuide type="bottom" id="HLl-tB-D5j"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6nZ-kW-z7i">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="FXh-hu-a05">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ueD-b1-YlQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="0.0"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dwz-6N-uqw">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="128"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="128" id="lnL-9B-KoP"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xmy-gk-6RB" userLabel="Username Label">
-                                        <rect key="frame" x="0.0" y="128" width="600" height="0.0"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3NZ-HE-4fI">
-                                        <rect key="frame" x="0.0" y="128" width="600" height="348"/>
-                                        <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
-                                        <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K3A-xJ-FXD">
-                                        <rect key="frame" x="0.0" y="476" width="600" height="60"/>
-                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="5Me-Qx-C56"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="15"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <state key="normal" title="Subscribe to user"/>
-                                    </button>
-                                </subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ueD-b1-YlQ">
+                                <rect key="frame" x="20" y="275" width="580" height="50"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K3A-xJ-FXD">
+                                <rect key="frame" x="0.0" y="476" width="600" height="60"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="3NZ-HE-4fI" firstAttribute="top" secondItem="Xmy-gk-6RB" secondAttribute="top" id="RPT-Yh-o7f"/>
-                                    <constraint firstItem="K3A-xJ-FXD" firstAttribute="top" secondItem="3NZ-HE-4fI" secondAttribute="bottom" id="VNb-aP-J3Y"/>
-                                    <constraint firstItem="Xmy-gk-6RB" firstAttribute="bottom" secondItem="dwz-6N-uqw" secondAttribute="bottom" id="oZM-gM-RGE"/>
-                                    <constraint firstItem="ueD-b1-YlQ" firstAttribute="top" secondItem="dwz-6N-uqw" secondAttribute="top" id="qbx-80-dmb"/>
+                                    <constraint firstAttribute="height" constant="60" id="LZ5-Wd-d4H"/>
                                 </constraints>
-                            </stackView>
+                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="15"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Subscribe to user"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iXX-OB-6Uh">
+                                <rect key="frame" x="20" y="72" width="560" height="460"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="FXh-hu-a05" secondAttribute="trailing" id="I4V-gK-b8Y"/>
-                            <constraint firstItem="FXh-hu-a05" firstAttribute="bottom" secondItem="HLl-tB-D5j" secondAttribute="top" id="TjY-94-pVS"/>
-                            <constraint firstItem="FXh-hu-a05" firstAttribute="top" secondItem="dT7-HM-UP6" secondAttribute="bottom" id="XH5-Rn-Ab6"/>
-                            <constraint firstItem="FXh-hu-a05" firstAttribute="leading" secondItem="6nZ-kW-z7i" secondAttribute="leading" id="lGB-Ek-XSD"/>
+                            <constraint firstItem="ueD-b1-YlQ" firstAttribute="centerY" secondItem="6nZ-kW-z7i" secondAttribute="centerY" id="4KX-8D-qwC"/>
+                            <constraint firstItem="iXX-OB-6Uh" firstAttribute="leading" secondItem="ueD-b1-YlQ" secondAttribute="leading" id="4aw-XK-Z09"/>
+                            <constraint firstItem="K3A-xJ-FXD" firstAttribute="top" secondItem="iXX-OB-6Uh" secondAttribute="bottom" constant="8" symbolic="YES" id="IJd-YO-vDp"/>
+                            <constraint firstItem="K3A-xJ-FXD" firstAttribute="bottom" secondItem="HLl-tB-D5j" secondAttribute="top" id="NWb-EK-2jB"/>
+                            <constraint firstItem="ueD-b1-YlQ" firstAttribute="top" secondItem="dT7-HM-UP6" secondAttribute="bottom" constant="211" id="Prg-OL-u45"/>
+                            <constraint firstAttribute="trailing" secondItem="ueD-b1-YlQ" secondAttribute="trailing" id="QeO-ct-uic"/>
+                            <constraint firstItem="iXX-OB-6Uh" firstAttribute="centerX" secondItem="K3A-xJ-FXD" secondAttribute="centerX" id="WU3-DY-0ts"/>
+                            <constraint firstItem="iXX-OB-6Uh" firstAttribute="top" secondItem="dT7-HM-UP6" secondAttribute="bottom" constant="8" symbolic="YES" id="Zlc-YM-osz"/>
+                            <constraint firstItem="ueD-b1-YlQ" firstAttribute="trailing" secondItem="K3A-xJ-FXD" secondAttribute="trailing" id="e2C-i7-xCR"/>
+                            <constraint firstItem="K3A-xJ-FXD" firstAttribute="leading" secondItem="6nZ-kW-z7i" secondAttribute="leading" id="emi-6M-PQz"/>
+                            <constraint firstItem="iXX-OB-6Uh" firstAttribute="leading" secondItem="6nZ-kW-z7i" secondAttribute="leadingMargin" id="u4y-x2-Ocp"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="DI1-gg-00S"/>
-                    <connections>
-                        <outlet property="emailLabel" destination="3NZ-HE-4fI" id="ohr-Z7-PO4"/>
-                        <outlet property="stacks" destination="FXh-hu-a05" id="sCe-g9-YsK"/>
-                        <outlet property="userImageView" destination="dwz-6N-uqw" id="7R9-Ha-enh"/>
-                        <outlet property="usernameLabel" destination="3NZ-HE-4fI" id="VrR-X6-HPd"/>
-                    </connections>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Il-oJ-wuJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

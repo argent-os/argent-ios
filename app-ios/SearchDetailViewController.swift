@@ -12,9 +12,9 @@ class SearchDetailViewController: UIViewController {
     
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var stacks: UIStackView!
-    
+    let lbl:UILabel = UILabel()
+
     var detailUser: User? {
         didSet {
             configureView()
@@ -23,15 +23,62 @@ class SearchDetailViewController: UIViewController {
     
     func configureView() {
         if let detailUser = detailUser {
-              print("inside detail user")
-            if let usernameLabel = usernameLabel, userImageView = userImageView {
-                // Set to specific user fields later
+            if let usernameLabel = usernameLabel {
                 usernameLabel.text = detailUser.username
-                emailLabel.text = detailUser.email
-//                userImageView.image = UIImage(named: detailUser.username)
-                userImageView.image = UIImage(named: "IconPerson")
-                title = detailUser.username
             }
+            if let emailLabel = emailLabel {
+                emailLabel.text = detailUser.email
+            }
+            
+            // Email textfield
+            lbl.text = detailUser.email
+            lbl.frame = CGRectMake(0, 160, width, 110)
+            lbl.textAlignment = .Center
+            lbl.textColor = UIColor.whiteColor()
+            lbl.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
+            self.view.addSubview(lbl)
+
+            // User image
+            let img: UIImage = UIImage(data: NSData(contentsOfURL: NSURL(string: detailUser.picture)!)!)!
+            let userImageView: UIImageView = UIImageView(frame: CGRectMake(width / 2, 0, 90, 90))
+            userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
+            userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 135)
+            userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+            userImageView.layer.cornerRadius = userImageView.frame.size.height/2
+            userImageView.layer.masksToBounds = true
+            userImageView.clipsToBounds = true
+            userImageView.image = img
+            userImageView.layer.borderWidth = 2
+            userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
+            self.view.addSubview(userImageView)
+            
+            // Title
+            self.navigationController?.view.backgroundColor = UIColor.clearColor()
+            self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+            self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
+            let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: width, height: 65))
+            navBar.translucent = true
+            navBar.backgroundColor = UIColor.clearColor()
+            navBar.shadowImage = UIImage()
+            navBar.titleTextAttributes = [
+                NSForegroundColorAttributeName : UIColor.whiteColor(),
+                NSFontAttributeName : UIFont(name: "Nunito-Regular", size: 18)!
+            ]
+            self.view.addSubview(navBar)
+            let navItem = UINavigationItem(title: "@"+detailUser.username)
+            navBar.setItems([navItem], animated: true)
+
+            // Blurview
+            let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
+            visualEffectView.frame = CGRectMake(0, 0, width, 250)
+            let blurImageView: UIImageView = UIImageView(frame: CGRectMake(0, 0, width, 250))
+            blurImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
+            blurImageView.layer.masksToBounds = true
+            blurImageView.clipsToBounds = true
+            blurImageView.image = img
+            self.view.addSubview(blurImageView)
+            blurImageView.addSubview(visualEffectView)
+            self.view.sendSubviewToBack(blurImageView)
         }
     }
     
