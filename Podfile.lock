@@ -28,6 +28,9 @@ PODS:
   - RAMAnimatedTabBarController (1.3.1)
   - RESideMenu (4.0.7)
   - Runes (3.2.0)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
   - SESlideTableViewCell (0.7.0)
   - SFDraggableDialogView (1.1.4)
   - SIAlertView (1.3)
@@ -71,6 +74,7 @@ DEPENDENCIES:
   - RAMAnimatedTabBarController
   - RESideMenu
   - Runes
+  - SDWebImage
   - SESlideTableViewCell
   - SFDraggableDialogView
   - SIAlertView
@@ -127,6 +131,7 @@ SPEC CHECKSUMS:
   RAMAnimatedTabBarController: 71478294be88a5b870064c7980880caeb9ce2655
   RESideMenu: f24c508404b49c667344c54aba7e590883533958
   Runes: ab2f892272d5165f64620f8086578b28cde98a02
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SESlideTableViewCell: 1487a6aedc84b480a888fc33b8d1c58fa5026f99
   SFDraggableDialogView: cfe9b80b5fff19f7e0fda86dcabee8b03a4c3b44
   SIAlertView: 20c794b55eaf44d888773ea51647cf8907723919

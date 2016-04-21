@@ -156,7 +156,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Il-oJ-wuJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1219" y="-2524"/>
+            <point key="canvasLocation" x="1219" y="-2566"/>
         </scene>
         <!--Search-->
         <scene sceneID="SMU-V6-kh5">
@@ -266,7 +266,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="isA-Ko-UWX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="11" y="-1786"/>
+            <point key="canvasLocation" x="-25" y="-1828"/>
         </scene>
         <!--Passcode Settings View Controller-->
         <scene sceneID="ONW-xd-G0k">
@@ -1392,7 +1392,7 @@ support request</string>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v5e-er-BuK">
                                 <rect key="frame" x="0.0" y="676" width="414" height="60"/>
-                                <color key="backgroundColor" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="nd9-zN-msT"/>
                                 </constraints>
@@ -1452,7 +1452,7 @@ We support both debit and credit.</string>
                                 <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <state key="normal" title="View Connected Cards">
-                                    <color key="titleColor" red="0.1166342063" green="0.4340515821" blue="0.7503004808" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="ze7-fd-T6m" kind="show" id="ED5-S6-tjb"/>
@@ -1485,6 +1485,9 @@ We support both debit and credit.</string>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="addCardButton" destination="v5e-er-BuK" id="HhS-ij-WSa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wnm-O9-sTH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1504,7 +1507,7 @@ We support both debit and credit.</string>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EG7-xI-0r0">
                                 <rect key="frame" x="0.0" y="676" width="414" height="60"/>
-                                <color key="backgroundColor" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="bcI-cc-Ags"/>
                                 </constraints>
@@ -1577,7 +1580,7 @@ institutions</string>
                                 <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <state key="normal" title="View Connected Accounts">
-                                    <color key="titleColor" red="0.1166342063" green="0.4340515821" blue="0.7503004808" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="i0h-r8-yZv" kind="show" id="J4W-JV-iIs"/>
@@ -1731,7 +1734,7 @@ institutions</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="ic_badge" selectedImage="ic_badge" id="RW7-a0-lvA" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                    <tabBarItem key="tabBarItem" title="Home" image="ic_home" selectedImage="ic_home" id="RW7-a0-lvA" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
                         <connections>
                             <outlet property="animation" destination="6CM-U6-Q2n" id="IUP-vP-TrY"/>
                         </connections>
@@ -2747,7 +2750,7 @@ Click here to view more</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IoR-ae-cVu" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="nHM-mZ-B3d"/>
             </objects>
-            <point key="canvasLocation" x="5677" y="-972"/>
+            <point key="canvasLocation" x="5677" y="-904"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="azN-ee-JRw">
@@ -3047,7 +3050,7 @@ Click here to view more</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="mainCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="mainCell" rowHeight="220" id="hrL-CJ-jEE" customClass="MainTableViewCell" customModule="ProtonPay" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="mainCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="mainCell" rowHeight="220" id="hrL-CJ-jEE" customClass="BankTableViewCell" customModule="ProtonPay" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="220"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hrL-CJ-jEE" id="gX7-7V-Yyh">
@@ -3095,7 +3098,7 @@ Click here to view more</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D5Z-pc-FV2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4031" y="-4453"/>
+            <point key="canvasLocation" x="4030" y="-4390"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="geL-7h-LEv">
@@ -3153,7 +3156,7 @@ Click here to view more</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EYn-Ls-vjQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4751" y="-4453"/>
+            <point key="canvasLocation" x="4793" y="-4390"/>
         </scene>
         <!--Web Privacy View Controller-->
         <scene sceneID="ht7-o5-pHb">
@@ -3262,7 +3265,7 @@ Click here to view more</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x7p-gC-Eh1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4038" y="-5272"/>
+            <point key="canvasLocation" x="4141" y="-5076"/>
         </scene>
         <!--Credit Card List View Controller-->
         <scene sceneID="zXr-bK-lSX">
@@ -3308,7 +3311,7 @@ Click here to view more</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZqR-yM-jEp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3859" y="-5719"/>
+            <point key="canvasLocation" x="3867" y="-5763"/>
         </scene>
         <!--Charge Customer View Controller-->
         <scene sceneID="cDG-Bj-YJP">
@@ -3378,7 +3381,7 @@ Click here to view more</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9BM-aM-pfh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="511" y="-2524"/>
+            <point key="canvasLocation" x="513" y="-2630"/>
         </scene>
     </scenes>
     <resources>
@@ -3391,8 +3394,8 @@ Click here to view more</string>
         <image name="IconPerson" width="128" height="117"/>
         <image name="IconStore" width="128" height="128"/>
         <image name="IconTouchSecure" width="98" height="128"/>
-        <image name="ic_badge" width="30" height="30"/>
         <image name="ic_close_light" width="22" height="22"/>
+        <image name="ic_home" width="30" height="30"/>
         <image name="ic_key_light" width="86" height="86"/>
         <image name="ic_notify" width="30" height="30"/>
         <image name="ic_search" width="30" height="30"/>

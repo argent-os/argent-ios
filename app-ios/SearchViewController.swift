@@ -85,12 +85,56 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("idCell", forIndexPath: indexPath)
         
+        cell.imageView?.image = nil
+
         if shouldShowSearchResults {
             // After filtering
+            let pic = filteredArray[indexPath.row].picture
+            print(pic)
+            if pic != "" {
+                let imageView: UIImageView = UIImageView(frame: CGRectMake(10, 15, 30, 30))
+                imageView.backgroundColor = UIColor.clearColor()
+                imageView.layer.cornerRadius = 15
+                imageView.layer.masksToBounds = true
+                let img: UIImage = UIImage(data: NSData(contentsOfURL: NSURL(string: pic)!)!)!
+                imageView.image = img
+                cell.contentView.addSubview(imageView)
+            } else {
+                let imageView: UIImageView = UIImageView(frame: CGRectMake(10, 15, 30, 30))
+                imageView.backgroundColor = UIColor.clearColor()
+                imageView.layer.cornerRadius = 15
+                imageView.layer.masksToBounds = true
+                imageView.image = UIImage(named: "ProtonLogo")
+                cell.contentView.addSubview(imageView)
+            }
+            cell.indentationWidth = 5; // The amount each indentation will move the text
+            cell.indentationLevel = 7;  // The number of times you indent the text
             cell.textLabel?.text = String(filteredArray[indexPath.row].username)
         }
         else {
             // Default loaded array
+            let pic = dataArray[indexPath.row].picture
+            print("data is")
+            print(dataArray[indexPath.row].picture)
+            print(pic)
+            if pic != "" {
+                let imageView: UIImageView = UIImageView(frame: CGRectMake(10, 15, 30, 30))
+                imageView.backgroundColor = UIColor.clearColor()
+                imageView.layer.cornerRadius = 15
+                imageView.layer.masksToBounds = true
+                let img: UIImage = UIImage(data: NSData(contentsOfURL: NSURL(string: pic)!)!)!
+                imageView.image = img
+                cell.contentView.addSubview(imageView)
+            } else {
+                let imageView: UIImageView = UIImageView(frame: CGRectMake(10, 15, 30, 30))
+                imageView.backgroundColor = UIColor.clearColor()
+                imageView.layer.cornerRadius = 15
+                imageView.layer.masksToBounds = true
+                imageView.image = UIImage(named: "ProtonLogo")
+                cell.contentView.addSubview(imageView)
+            }
+            cell.indentationWidth = 5; // The amount each indentation will move the text
+            cell.indentationLevel = 7;  // The number of times you indent the text
             cell.textLabel?.text = String(dataArray[indexPath.row].username)
         }
         
@@ -109,14 +153,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         User.getUserAccounts({ (items, error) in
             if error != nil
             {
-                let alert = UIAlertController(title: "Error", message: "Could not load banks \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
+                let alert = UIAlertController(title: "Error", message: "Could not load user accounts \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
             self.dataArray = items!
-            
-            // update "last updated" title for refresh control
-            let now = NSDate()
             
             self.tblSearchResults.reloadData()
         })

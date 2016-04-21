@@ -1,5 +1,5 @@
 //
-//  MainTableViewCell.swift
+//  BankTableViewCell.swift
 //  Example
 //
 //  Created by Mathias Carignani on 5/19/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainTableViewCell: UITableViewCell {
+class BankTableViewCell: UITableViewCell {
     
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var header: UIView!

@@ -19,7 +19,7 @@ class AddBankViewController: UIViewController {
 
         addBankButton.layer.cornerRadius = 0
         addBankButton.clipsToBounds = true
-        addBankButton.backgroundColor = UIColor(rgba: "#1796fa")
+        addBankButton.backgroundColor = UIColor.protonBlue()
     }
     
     override func prefersStatusBarHidden() -> Bool {

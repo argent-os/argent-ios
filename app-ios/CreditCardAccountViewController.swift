@@ -12,8 +12,12 @@ import SwiftyJSON
 
 class CreditCardAccountViewController: UIViewController, CardIOPaymentViewControllerDelegate {
     
+    @IBOutlet weak var addCardButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        addCardButton.backgroundColor = UIColor.protonBlue()
     }
     // CARD IO
     @IBAction func scanCard(sender: AnyObject) {
@@ -21,7 +25,7 @@ class CreditCardAccountViewController: UIViewController, CardIOPaymentViewContro
         cardIOVC.hideCardIOLogo = true
         cardIOVC.collectPostalCode = true
         cardIOVC.allowFreelyRotatingCardGuide = true
-        cardIOVC.guideColor = UIColor(rgba: "#1796fa")
+        cardIOVC.guideColor = UIColor.protonBlue()
         cardIOVC.modalPresentationStyle = .FormSheet
         presentViewController(cardIOVC, animated: true, completion: nil)
     }

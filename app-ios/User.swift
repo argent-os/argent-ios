@@ -17,13 +17,15 @@ class User {
     let first_name: String
     let last_name: String
     let cust_id: String
+    let picture: String
     
-    required init(username: String, email: String, first_name: String, last_name: String, cust_id: String) {
+    required init(username: String, email: String, first_name: String, last_name: String, cust_id: String, picture: String) {
         self.username = username
         self.email = email
         self.first_name = first_name
         self.last_name = last_name
         self.cust_id = cust_id
+        self.picture = picture
     }
     
     class func getUserAccounts(completionHandler: ([User]?, NSError?) -> Void) {
@@ -52,7 +54,8 @@ class User {
                             let first_name = jsonItem["first_name"].stringValue
                             let last_name = jsonItem["last_name"].stringValue
                             let cust_id = jsonItem["cust_id"].stringValue
-                            let item = User(username: username, email: email, first_name: first_name, last_name: last_name, cust_id: cust_id)
+                            let picture = jsonItem["picture"].stringValue
+                            let item = User(username: username, email: email, first_name: first_name, last_name: last_name, cust_id: cust_id, picture: picture)
                             userItemsArray.append(item)
                         }
                         completionHandler(userItemsArray, response.result.error)

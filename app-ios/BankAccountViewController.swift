@@ -57,7 +57,7 @@ class MainTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("mainCell", forIndexPath: indexPath) as! MainTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("mainCell", forIndexPath: indexPath) as! BankTableViewCell
         cell.imageView?.image = nil
         
         let width = UIScreen.mainScreen().bounds.size.width
