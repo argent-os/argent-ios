@@ -13,7 +13,7 @@ import Alamofire
 import SwiftyJSON
 import JGProgressHUD
 
-class DetailViewController: UIViewController, UITextFieldDelegate {
+class BankDetailViewController: UIViewController, UITextFieldDelegate {
     
     var color: UIColor?
     var logo: String?
@@ -174,7 +174,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
         // sendToolbar.barStyle = UIBarStyle.Default
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Connect", style: UIBarButtonItemStyle.Done, target: self, action: #selector(DetailViewController.login(_:)))
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Connect", style: UIBarButtonItemStyle.Done, target: self, action: #selector(BankDetailViewController.login(_:)))
         done.tintColor = UIColor.whiteColor()
         UIToolbar.appearance().barTintColor = UIColor.whiteColor()
         done.setTitleTextAttributes([

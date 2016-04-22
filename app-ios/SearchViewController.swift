@@ -10,6 +10,7 @@ import UIKit
 import JGProgressHUD
 import Alamofire
 import SwiftyJSON
+import JGProgressHUD
 
 class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate, SearchControllerDelegate {
     
@@ -24,6 +25,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var searchController: UISearchController!
     
     var customSearchController: SearchController!
+    
+    var searchedText:String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,13 +110,18 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 cell.contentView.addSubview(imageView)
             }
             cell.indentationWidth = 5; // The amount each indentation will move the text
-            cell.indentationLevel = 7;  // The number of times you indent the text
-            cell.textLabel?.text = String(filteredArray[indexPath.row].username)
+            cell.indentationLevel = 8;  // The number of times you indent the text
+            cell.textLabel?.text = "@" + String(filteredArray[indexPath.row].username)
+            cell.textLabel?.textColor = UIColor.darkGrayColor()
+            cell.textLabel?.font = UIFont.systemFontOfSize(14)
+            cell.detailTextLabel?.font = UIFont.systemFontOfSize(12)
+            cell.detailTextLabel?.text = String(filteredArray[indexPath.row].first_name) + " " + String(filteredArray[indexPath.row].last_name)
+            cell.selectionStyle = UITableViewCellSelectionStyle.Default
+            cell.detailTextLabel?.textColor = UIColor.lightGrayColor()
         }
         else {
             // Default loaded array
             let pic = dataArray[indexPath.row].picture
-            print("data is")
             if pic != "" {
                 let imageView: UIImageView = UIImageView(frame: CGRectMake(10, 15, 30, 30))
                 imageView.backgroundColor = UIColor.clearColor()
@@ -131,13 +139,18 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 cell.contentView.addSubview(imageView)
             }
             cell.indentationWidth = 5; // The amount each indentation will move the text
-            cell.indentationLevel = 7;  // The number of times you indent the text
-            cell.textLabel?.text = String(dataArray[indexPath.row].username)
+            cell.indentationLevel = 8;  // The number of times you indent the text
+            cell.textLabel?.text = "@" + String(dataArray[indexPath.row].username)
+            cell.textLabel?.textColor = UIColor.darkGrayColor()
+            cell.textLabel?.font = UIFont.systemFontOfSize(14)
+            cell.detailTextLabel?.font = UIFont.systemFontOfSize(12)
+            cell.detailTextLabel?.text = String(dataArray[indexPath.row].first_name) + " " + String(dataArray[indexPath.row].last_name)
+            cell.selectionStyle = UITableViewCellSelectionStyle.Default
+            cell.detailTextLabel?.textColor = UIColor.lightGrayColor()
         }
         
         return cell
     }
-    
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 60.0
@@ -147,6 +160,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: Custom functions
     
     func loadUserAccounts() {
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
+        HUD.textLabel.text = "Loading Users"
+        HUD.showInView(self.view!)
         User.getUserAccounts({ (items, error) in
             if error != nil
             {
@@ -156,6 +172,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             self.dataArray = items!
             
+            HUD.textLabel.text = "Users loaded"
+            HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
+            HUD.dismissAfterDelay(0.1)
+
             self.tblSearchResults.reloadData()
         })
     }
@@ -165,11 +185,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Enter a username or email"
+        searchController.searchBar.placeholder = "Enter search"
         searchController.searchBar.delegate = self
         searchController.searchBar.sizeToFit()
         // Setup the Scope Bar
-        searchController.searchBar.scopeButtonTitles = ["Username", "Email"]
+        searchController.searchBar.scopeButtonTitles = ["Username", "Email", "Name"]
         
         // Place the search bar view to the tableview headerview.
         tblSearchResults.tableHeaderView = searchController.searchBar
@@ -247,8 +267,30 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         // Filter the data array and get only those countries that match the search text.
         filteredArray = dataArray.filter({ (user) -> Bool in
-            let userStr: NSString = user.username
-            return (userStr.rangeOfString(searchString, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
+            if(scope == "Username") {
+                print("username filtered")
+                let userStr: NSString = user.username
+                searchedText = userStr as String
+                print(userStr)
+                print((userStr.rangeOfString(searchString, options: NSStringCompareOptions.CaseInsensitiveSearch).location))
+                return (userStr.rangeOfString(searchString, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
+            } else if(scope == "Email") {
+                print("email filtered")
+                let userStr: NSString = user.email
+                searchedText = userStr as String
+                print(userStr)
+                print((userStr.rangeOfString(searchString, options: NSStringCompareOptions.CaseInsensitiveSearch).location))
+                return (userStr.rangeOfString(searchString, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
+            } else if(scope == "Name") {
+                print("name filtered")
+                let userStr: NSString = user.first_name + " " + user.last_name
+                searchedText = userStr as String
+                print(userStr)
+                print((userStr.rangeOfString(searchString, options: NSStringCompareOptions.CaseInsensitiveSearch).location))
+                return (userStr.rangeOfString(searchString, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
+            }
+            
+            return (user.username.lowercaseString.containsString(searchString.lowercaseString)) || (user.email.lowercaseString.containsString(searchString.lowercaseString))
         })
         
         // Reload the tableview.
@@ -277,7 +319,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tblSearchResults.reloadData()
     }
     
-    
+    // Search here
     func didChangeSearchText(searchText: String) {
         // Filter the data array and get only those countries that match the search text.
         filteredArray = dataArray.filter({ (user) -> Bool in
@@ -291,8 +333,32 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func filterContentForSearchText(searchText: String, scope: String) {
         filteredArray = filteredArray.filter({( user : User) -> Bool in
-            let categoryMatch = (scope == "Username") || (scope == "Email")
-            return categoryMatch && (user.username.lowercaseString.containsString(searchText.lowercaseString)) || (user.email.lowercaseString.containsString(searchText.lowercaseString))
+            let categoryMatch = (scope == "Username") || (scope == "Email") || (scope == "Name")
+            print("filtering used")
+            if(scope == "Username") {
+                print("username filtered")
+                let userStr: NSString = user.username
+                searchedText = userStr as String
+                print(userStr)
+                print((userStr.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch).location))
+                return (userStr.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
+            } else if(scope == "Email") {
+                print("email filtered")
+                let userStr: NSString = user.email
+                searchedText = userStr as String
+                print(userStr)
+                print((userStr.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch).location))
+                return (userStr.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
+            } else if(scope == "Name") {
+                print("name filtered")
+                let userStr: NSString = user.first_name + " " + user.last_name
+                searchedText = userStr as String
+                print(userStr)
+                print((userStr.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch).location))
+                return (userStr.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
+            }
+
+            return (user.username.lowercaseString.containsString(searchText.lowercaseString)) || (user.email.lowercaseString.containsString(searchText.lowercaseString))
         })
         tblSearchResults.reloadData()
     }

@@ -47,7 +47,7 @@ target 'protonpay-ios' do
 	pod 'JGProgressHUD'	
 	pod 'SESlideTableViewCell'
 	pod 'JVFloatLabeledTextField'
-	pod 'ZLSwipeableViewSwift'
+	pod 'RNGridMenu'
 	pod "LiquidFloatingActionButton", :git => 'https://github.com/yoavlt/LiquidFloatingActionButton', :branch => 'swift-2.0'
 	#pod 'DOFavoriteButton'
 

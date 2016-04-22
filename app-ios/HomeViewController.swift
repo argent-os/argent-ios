@@ -54,7 +54,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         // Programatically setup left navigation button
         // Create a navigation item with a title
         
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
         HUD.showInView(self.view!)
         HUD.dismissAfterDelay(0.3)
         
@@ -337,7 +337,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         print(userData)
 //        print(NSUserDefaults.valueForKey("userLoggedIn"))
         
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
         HUD.textLabel.text = "Logging out"
         HUD.showInView(self.view!)
         HUD.dismissAfterDelay(0.3)
@@ -359,7 +359,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         print(userData)
         print(NSUserDefaults.valueForKey("userLoggedIn"))
 
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
         HUD.textLabel.text = "Logging out"
         HUD.showInView(self.view!)
         HUD.dismissAfterDelay(0.3)

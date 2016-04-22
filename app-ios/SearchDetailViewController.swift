@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import Foundation
+import MessageUI
 
-class SearchDetailViewController: UIViewController {
+class SearchDetailViewController: UIViewController, MFMailComposeViewControllerDelegate {
     
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
@@ -31,7 +33,7 @@ class SearchDetailViewController: UIViewController {
             }
             
             // Email textfield
-            lbl.text = detailUser.email
+            lbl.text = detailUser.first_name + " " + detailUser.last_name
             lbl.frame = CGRectMake(0, 160, width, 110)
             lbl.textAlignment = .Center
             lbl.textColor = UIColor.whiteColor()
@@ -94,7 +96,7 @@ class SearchDetailViewController: UIViewController {
             view.addSubview(inviteButton)
             
             // Button
-            let subscribeButton = UIButton(frame: CGRect(x: width*0.5+10, y: 265, width: (width/2)-20, height: 48.0))
+            let subscribeButton = UIButton(frame: CGRect(x: width*0.5+10, y: 265, width: (width/2)-20, height: 50.0))
             subscribeButton.backgroundColor = UIColor.protonBlue()
             subscribeButton.setTitle("Subscribe", forState: .Normal)
             subscribeButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
@@ -104,6 +106,22 @@ class SearchDetailViewController: UIViewController {
             subscribeButton.layer.masksToBounds = true
             subscribeButton.addTarget(self, action: #selector(AuthViewController.signup(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             view.addSubview(subscribeButton)
+            
+            // Email Button
+            let emailButton = UIButton(frame: CGRect(x: width*0.5+10, y: 265, width: (width/2)-20, height: 50.0))
+            emailButton.backgroundColor = UIColor.whiteColor()
+            emailButton.setTitle("Message User", forState: .Normal)
+            emailButton.setTitleColor(UIColor.protonBlue(), forState: .Normal)
+//            emailButton.setBackgroundImage(UIImage(named: "IconPerson"), forState: .Normal)
+            emailButton.titleLabel?.font = UIFont(name: "Nunito-Regular", size: 14)
+            emailButton.layer.cornerRadius = 5
+            emailButton.layer.borderColor = UIColor.protonBlue().CGColor
+            emailButton.layer.borderWidth = 1
+            emailButton.layer.masksToBounds = true
+            var y_co: CGFloat = self.view.frame.size.height - 60.0
+            emailButton.frame = CGRectMake(10, y_co, width-20, 50.0)
+            emailButton.addTarget(self, action: #selector(SearchDetailViewController.sendEmailButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            view.addSubview(emailButton)
         }
     }
     
@@ -116,5 +134,34 @@ class SearchDetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    @IBAction func sendEmailButtonTapped(sender: AnyObject) {
+        let mailComposeViewController = configuredMailComposeViewController()
+        if MFMailComposeViewController.canSendMail() {
+            self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+        } else {
+            self.showSendMailErrorAlert()
+        }
+    }
+    
+    func configuredMailComposeViewController() -> MFMailComposeViewController {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
+        
+        mailComposerVC.setToRecipients([(detailUser?.email)!])
+        mailComposerVC.setSubject("Message from Proton Payments User")
+        mailComposerVC.setMessageBody("Hello!", isHTML: false)
+        
+        return mailComposerVC
+    }
+    
+    func showSendMailErrorAlert() {
+        let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", delegate: self, cancelButtonTitle: "OK")
+        sendMailErrorAlert.show()
+    }
+    
+    // MARK: MFMailComposeViewControllerDelegate Method
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
 }
 

@@ -64,16 +64,16 @@ class MainTableViewController: UITableViewController {
         let width = UIScreen.mainScreen().bounds.size.width
         let height = UIScreen.mainScreen().bounds.size.height
         
-        cell.header.layer.cornerRadius = 10
+//        cell.header.layer.cornerRadius = 10
 //        cell.header.backgroundColor = UIColor(rgba: "#f5f7fa")
-        cell.background.layer.cornerRadius = 10
+//        cell.background.layer.cornerRadius = 10
 //        cell.background.backgroundColor = UIColor(rgba: "#333")
-        cell.background.clipsToBounds = true
+//        cell.background.clipsToBounds = true
         
         // pass in the background image as a parameter here from self.elements above
          cell.header.backgroundColor = self.elements.objectAtIndex(indexPath.row).objectForKey("background_color") as? UIColor
-        //         cell.background.backgroundColor = self.elements.objectAtIndex(indexPath.row).objectForKey("background_color") as? UIColor
-//         cell.contentView.backgroundColor = self.elements.objectAtIndex(indexPath.row).objectForKey("background_color") as? UIColor
+         cell.background.backgroundColor = self.elements.objectAtIndex(indexPath.row).objectForKey("background_color") as? UIColor
+         cell.contentView.backgroundColor = self.elements.objectAtIndex(indexPath.row).objectForKey("background_color") as? UIColor
         
         cell.center = CGPoint(x: cell.frame.width / 2.0, y: height / 2.0)
         let img: UIImage = UIImage(named: self.elements.objectAtIndex(indexPath.row).objectForKey("bank_logo") as! String)!
@@ -97,7 +97,7 @@ class MainTableViewController: UITableViewController {
             self.lastSelected = self.tableView.indexPathForSelectedRow
             let element = self.elements.objectAtIndex(self.tableView.indexPathForSelectedRow!.row)
 
-            let destination = segue.destinationViewController as! DetailViewController
+            let destination = segue.destinationViewController as! BankDetailViewController
             destination.color = element.objectForKey("background_color") as? UIColor
             destination.logo = element.objectForKey("bank_logo") as? String
             destination.bankName = element.objectForKey("bank_name") as? String

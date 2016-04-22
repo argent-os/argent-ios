@@ -22,11 +22,6 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
-        HUD.showInView(self.view!)
-        HUD.textLabel.text = "Loading Notifications"
-        HUD.dismissAfterDelay(0.7)
-        
         self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         self.dateFormatter.timeStyle = NSDateFormatterStyle.LongStyle
         
@@ -53,6 +48,9 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func loadNotificationItems() {
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
+        HUD.showInView(self.view!)
+        HUD.textLabel.text = "Loading Notifications"
         NotificationItem.getNotificationList({ (items, error) in
             if error != nil
             {
@@ -70,6 +68,9 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
             {
                 self.refreshControl.endRefreshing()
             }
+            HUD.textLabel.text = "Notifications loaded"
+            HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
+            HUD.dismissAfterDelay(0.5)
             self.tableView?.reloadData()
         })
     }
