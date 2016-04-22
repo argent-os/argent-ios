@@ -86,8 +86,8 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
         let username = usernameTextField.text
         let password = passwordTextField.text
         
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
-        HUD.textLabel.text = "Logging in"
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
+//        HUD.textLabel.text = "Logging in"
         HUD.showInView(self.view!)
         HUD.dismissAfterDelay(0.3)
         
@@ -115,7 +115,7 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
                 
                 let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
                 HUD.showInView(self.view!)
-                HUD.textLabel.text = "Logging in"
+//                HUD.textLabel.text = "Logging in"
                 HUD.dismissAfterDelay(0.3)
                 
                 // This closure is NOT called on the main queue for performance

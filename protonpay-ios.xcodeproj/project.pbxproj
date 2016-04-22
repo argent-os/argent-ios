@@ -29,6 +29,7 @@
 		3069990B1CACD6240003B0A6 /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3069990A1CACD6240003B0A6 /* Root.swift */; };
 		307C6A221C7E91A100723E39 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C6A211C7E91A100723E39 /* StoreKit.framework */; };
 		307C6A241C7E91AA00723E39 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C6A231C7E91AA00723E39 /* PassKit.framework */; };
+		308A348A1CCA803200AAF66F /* Stripe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A34891CCA803200AAF66F /* Stripe.swift */; };
 		309E15931CBC2A0E00EA95E4 /* ChargeCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E15921CBC2A0E00EA95E4 /* ChargeCustomerViewController.swift */; };
 		309E15951CBE9A1600EA95E4 /* ChargeCustomerSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E15941CBE9A1600EA95E4 /* ChargeCustomerSearchController.swift */; };
 		309E15971CBE9A5600EA95E4 /* ChargeCustomerCustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E15961CBE9A5600EA95E4 /* ChargeCustomerCustomSearchBar.swift */; };
@@ -108,10 +109,7 @@
 		30C2DAEB1CA43934003AFD8B /* BankTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAE81CA43934003AFD8B /* BankTableViewCell.swift */; };
 		30C2DAED1CA43946003AFD8B /* RecurringBillingPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAEC1CA43946003AFD8B /* RecurringBillingPlanViewController.swift */; };
 		30C2DAEF1CA43951003AFD8B /* AddCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAEE1CA43951003AFD8B /* AddCustomerViewController.swift */; };
-		30C2DAF11CA43957003AFD8B /* RAMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAF01CA43957003AFD8B /* RAMViewController.swift */; };
-		30C2DAF31CA4395D003AFD8B /* WordReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAF21CA4395D003AFD8B /* WordReader.swift */; };
 		30C2DAF51CA43967003AFD8B /* ChargeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAF41CA43967003AFD8B /* ChargeViewController.swift */; };
-		30C2DAF71CA4396D003AFD8B /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAF61CA4396D003AFD8B /* PaymentViewController.swift */; };
 		30C2DAF91CA43975003AFD8B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAF81CA43975003AFD8B /* User.swift */; };
 		30C2DAFB1CA4397C003AFD8B /* LeftMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAFA1CA4397C003AFD8B /* LeftMenuViewController.swift */; };
 		30C2DAFD1CA43984003AFD8B /* Plaid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAFC1CA43984003AFD8B /* Plaid.swift */; };
@@ -143,6 +141,7 @@
 		30DB59761CA46CB0007FEE1E /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DB59751CA46CB0007FEE1E /* ComplicationController.swift */; };
 		30DB59781CA46CB0007FEE1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30DB59771CA46CB0007FEE1E /* Assets.xcassets */; };
 		30DB597C1CA46CB0007FEE1E /* app-watchos.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 30DB595A1CA46CB0007FEE1E /* app-watchos.app */; };
+		30F480D61CCAE5FF00DD1E60 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F480D51CCAE5FF00DD1E60 /* PaymentViewController.swift */; };
 		8F63169BF370478C9A6CC8F5 /* Pods_protonpay_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50E88D0ADD61BCA3EBD43D33 /* Pods_protonpay_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -246,6 +245,7 @@
 		3069990A1CACD6240003B0A6 /* Root.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
 		307C6A211C7E91A100723E39 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		307C6A231C7E91AA00723E39 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
+		308A34891CCA803200AAF66F /* Stripe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stripe.swift; path = "app-ios/Stripe.swift"; sourceTree = SOURCE_ROOT; };
 		309E15921CBC2A0E00EA95E4 /* ChargeCustomerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChargeCustomerViewController.swift; path = "app-ios/ChargeCustomerViewController.swift"; sourceTree = SOURCE_ROOT; };
 		309E15941CBE9A1600EA95E4 /* ChargeCustomerSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChargeCustomerSearchController.swift; path = "app-ios/ChargeCustomerSearchController.swift"; sourceTree = SOURCE_ROOT; };
 		309E15961CBE9A5600EA95E4 /* ChargeCustomerCustomSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChargeCustomerCustomSearchBar.swift; path = "app-ios/ChargeCustomerCustomSearchBar.swift"; sourceTree = SOURCE_ROOT; };
@@ -327,10 +327,7 @@
 		30C2DAE81CA43934003AFD8B /* BankTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankTableViewCell.swift; path = "app-ios/BankTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAEC1CA43946003AFD8B /* RecurringBillingPlanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecurringBillingPlanViewController.swift; path = "app-ios/RecurringBillingPlanViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAEE1CA43951003AFD8B /* AddCustomerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddCustomerViewController.swift; path = "app-ios/AddCustomerViewController.swift"; sourceTree = SOURCE_ROOT; };
-		30C2DAF01CA43957003AFD8B /* RAMViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RAMViewController.swift; path = "app-ios/RAMViewController.swift"; sourceTree = SOURCE_ROOT; };
-		30C2DAF21CA4395D003AFD8B /* WordReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WordReader.swift; path = "app-ios/WordReader.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAF41CA43967003AFD8B /* ChargeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChargeViewController.swift; path = "app-ios/ChargeViewController.swift"; sourceTree = SOURCE_ROOT; };
-		30C2DAF61CA4396D003AFD8B /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentViewController.swift; path = "app-ios/PaymentViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAF81CA43975003AFD8B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = "app-ios/User.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAFA1CA4397C003AFD8B /* LeftMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LeftMenuViewController.swift; path = "app-ios/LeftMenuViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAFC1CA43984003AFD8B /* Plaid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Plaid.swift; path = "app-ios/Plaid.swift"; sourceTree = SOURCE_ROOT; };
@@ -367,6 +364,7 @@
 		30DB59791CA46CB0007FEE1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30DB59841CA46DCC007FEE1E /* ObjC-Bridging-Header-WatchOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjC-Bridging-Header-WatchOS.h"; sourceTree = "<group>"; };
 		30DB59851CA472D0007FEE1E /* app-watchos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "app-watchos.entitlements"; sourceTree = "<group>"; };
+		30F480D51CCAE5FF00DD1E60 /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentViewController.swift; path = "app-ios/PaymentViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30FB540A1C6A58B40004A538 /* ProtonPay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProtonPay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB541E1C6A58B40004A538 /* protonpay-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "protonpay-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB54291C6A58B40004A538 /* protonpay-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "protonpay-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -456,8 +454,6 @@
 				30DB9B751C9CF1E000871253 /* Profile */,
 				30C2DAEC1CA43946003AFD8B /* RecurringBillingPlanViewController.swift */,
 				30C2DAEE1CA43951003AFD8B /* AddCustomerViewController.swift */,
-				30C2DAF01CA43957003AFD8B /* RAMViewController.swift */,
-				30C2DAF21CA4395D003AFD8B /* WordReader.swift */,
 			);
 			name = Subviews;
 			sourceTree = "<group>";
@@ -470,6 +466,7 @@
 				302010C91CAF3B05007D5E7E /* Notification.swift */,
 				300E422C1CB56E10004316CF /* Bank.swift */,
 				300E42321CB71362004316CF /* Card.swift */,
+				308A34891CCA803200AAF66F /* Stripe.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -614,6 +611,7 @@
 				30B576901CC3045E005BCA5A /* SearchBar.swift */,
 				30B5768A1CC303F8005BCA5A /* SearchController.swift */,
 				30B576921CC7D1CE005BCA5A /* SearchDetailViewController.swift */,
+				30F480D51CCAE5FF00DD1E60 /* PaymentViewController.swift */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -652,7 +650,6 @@
 			isa = PBXGroup;
 			children = (
 				30718ADA1C8DF57100CB0EEB /* Tabs */,
-				30C2DAF61CA4396D003AFD8B /* PaymentViewController.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -1354,7 +1351,6 @@
 				309E43C41CA8AE1800279D97 /* WebPrivacyViewController.swift in Sources */,
 				30B576931CC7D1CF005BCA5A /* SearchDetailViewController.swift in Sources */,
 				30C2DA971CA4372D003AFD8B /* UserDefaultsPasscodeRepository.swift in Sources */,
-				30C2DAF31CA4395D003AFD8B /* WordReader.swift in Sources */,
 				30C2DABC1CA437CB003AFD8B /* KolodaOverlayView.swift in Sources */,
 				30C2DAC91CA43853003AFD8B /* RecurringViewController.swift in Sources */,
 				30C2DAAD1CA43795003AFD8B /* AuthViewController.swift in Sources */,
@@ -1387,7 +1383,6 @@
 				309E15951CBE9A1600EA95E4 /* ChargeCustomerSearchController.swift in Sources */,
 				300E422B1CB47428004316CF /* BankConnectedListTableViewController.swift in Sources */,
 				30C2DAD51CA43892003AFD8B /* ProfileFieldCell.swift in Sources */,
-				30C2DAF11CA43957003AFD8B /* RAMViewController.swift in Sources */,
 				30C2DAB11CA437A9003AFD8B /* PresentedTableViewController.swift in Sources */,
 				30C2DAE11CA43909003AFD8B /* FormerInputAccessoryView.swift in Sources */,
 				30C2DB0B1CA439C1003AFD8B /* Paths.swift in Sources */,
@@ -1415,14 +1410,15 @@
 				30C2DAEB1CA43934003AFD8B /* BankTableViewCell.swift in Sources */,
 				30C2DA8F1CA436D9003AFD8B /* RootViewController.swift in Sources */,
 				30C2DB111CA439DC003AFD8B /* Logs.swift in Sources */,
+				30F480D61CCAE5FF00DD1E60 /* PaymentViewController.swift in Sources */,
 				30C2DAD11CA4386A003AFD8B /* SupportMessageViewController.swift in Sources */,
 				30C2DAE91CA43934003AFD8B /* BankAccountViewController.swift in Sources */,
-				30C2DAF71CA4396D003AFD8B /* PaymentViewController.swift in Sources */,
 				30C2DAA61CA4374F003AFD8B /* SignupIndividualViewControllerTwo.swift in Sources */,
 				30C2DB071CA439B6003AFD8B /* Extensions.swift in Sources */,
 				30C2DAA51CA4374F003AFD8B /* SignupIndividualViewControllerThree.swift in Sources */,
 				30B576911CC3045E005BCA5A /* SearchBar.swift in Sources */,
 				30C2DB171CA439F4003AFD8B /* paykloud_iosTests.swift in Sources */,
+				308A348A1CCA803200AAF66F /* Stripe.swift in Sources */,
 				30C2DAC31CA4383B003AFD8B /* NotificationViewController.swift in Sources */,
 				309E43BE1CA8ADF900279D97 /* WebTermsViewController.swift in Sources */,
 				30C2DB1F1CA43A51003AFD8B /* EditProfileViewController.swift in Sources */,

@@ -26,7 +26,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     var floatingActionButton: LiquidFloatingActionButton!
     
     @IBOutlet weak var blurView: UIVisualEffectView!
-    var arrayOfValues: Array<AnyObject> = [5234,4323,2212,3321,1123]
+    var arrayOfValues: Array<AnyObject> = []
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var switchBal: DGRunkeeperSwitch?
