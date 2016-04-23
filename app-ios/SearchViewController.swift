@@ -161,7 +161,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func loadUserAccounts() {
         let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
-        HUD.textLabel.text = "Loading Users"
         HUD.showInView(self.view!)
         User.getUserAccounts({ (items, error) in
             if error != nil
@@ -172,9 +171,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             self.dataArray = items!
             
-            HUD.textLabel.text = "Users loaded"
-            HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
-            HUD.dismissAfterDelay(0.1)
+            HUD.dismiss()
 
             self.tblSearchResults.reloadData()
         })

@@ -26,7 +26,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     var floatingActionButton: LiquidFloatingActionButton!
     
     @IBOutlet weak var blurView: UIVisualEffectView!
-    var arrayOfValues: Array<AnyObject> = []
+    var arrayOfValues: Array<AnyObject> = [3,30,50,40,80]
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var switchBal: DGRunkeeperSwitch?
@@ -67,9 +67,10 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         graph.dataSource = self
         graph.colorTop = UIColor.whiteColor()
         graph.colorBottom = UIColor.whiteColor()
-        graph.colorLine = UIColor(rgba: "#157efb")
-        graph.colorPoint = UIColor(rgba: "#157efb")
+        graph.colorLine = UIColor.protonDarkBlue()
+        graph.colorPoint = UIColor.protonBlue()
         graph.delegate = self
+        graph.widthLine = 2
         graph.displayDotsWhileAnimating = true
         graph.enablePopUpReport = true
         graph.enableTouchReport = true
@@ -82,7 +83,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             floatingActionButton.animateStyle = style
             floatingActionButton.dataSource = self
             floatingActionButton.delegate = self
-            floatingActionButton.color = UIColor(rgba: "#157efb")
+            floatingActionButton.color = UIColor.protonBlue()
             return floatingActionButton
         }
         
@@ -90,9 +91,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             let cell = CustomCell(icon: UIImage(named: iconName)!, name: description, segue: segue)
             return cell
         }
-        cells.append(customCellFactory("ic_like", "Create Charge", "chargeView"))
-        cells.append(customCellFactory("ic_card_from_bg", "Add Plan", "addPlanView"))
-        cells.append(customCellFactory("ic_skip", "Add Customer", "addCustomerView"))
+        cells.append(customCellFactory("IconEmpty", "Create Charge", "chargeView"))
+        cells.append(customCellFactory("IconEmpty", "Add Plan", "addPlanView"))
+        cells.append(customCellFactory("IconEmpty", "Add Customer", "addCustomerView"))
         let floatingFrame = CGRect(x: self.view.frame.width - 56 - 16, y: self.view.frame.height - 116 - 16, width: 56, height: 56)
         let bottomRightButton = createButton(floatingFrame, .Up)
         print(bottomRightButton.isOpening.boolValue)

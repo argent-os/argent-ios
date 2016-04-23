@@ -50,7 +50,6 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
     func loadNotificationItems() {
         let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
         HUD.showInView(self.view!)
-        HUD.textLabel.text = "Loading Notifications"
         NotificationItem.getNotificationList({ (items, error) in
             if error != nil
             {
@@ -68,9 +67,8 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
             {
                 self.refreshControl.endRefreshing()
             }
-            HUD.textLabel.text = "Notifications loaded"
-            HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
-            HUD.dismissAfterDelay(0.5)
+            HUD.dismiss()
+
             self.tableView?.reloadData()
         })
     }

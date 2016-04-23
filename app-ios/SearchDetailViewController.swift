@@ -10,6 +10,9 @@ import UIKit
 import Foundation
 import MessageUI
 import Stripe
+import JGProgressHUD
+import Alamofire
+import SwiftyJSON
 
 class SearchDetailViewController: UIViewController, MFMailComposeViewControllerDelegate, STPPaymentCardTextFieldDelegate, PKPaymentAuthorizationViewControllerDelegate {
     
@@ -126,7 +129,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             inviteButton.backgroundColor = UIColor.protonDarkBlue()
             inviteButton.tintColor = UIColor(rgba: "#fff")
             inviteButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
-            inviteButton.titleLabel?.font = UIFont(name: "Nunito-Regular", size: 14)
+            inviteButton.titleLabel?.font = UIFont(name: "Helvetica", size: 14)
             inviteButton.setTitle(" Apple Pay", forState: .Normal)
             inviteButton.layer.cornerRadius = 5
             inviteButton.layer.masksToBounds = true
@@ -138,7 +141,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             subscribeButton.backgroundColor = UIColor.protonBlue()
             subscribeButton.setTitle("Become Customer", forState: .Normal)
             subscribeButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-            subscribeButton.titleLabel?.font = UIFont(name: "Nunito-Regular", size: 14)
+            subscribeButton.titleLabel?.font = UIFont(name: "Helvetica", size: 14)
             subscribeButton.layer.cornerRadius = 5
             subscribeButton.layer.borderColor = UIColor(rgba: "#ffffff").CGColor
             subscribeButton.layer.masksToBounds = true
@@ -217,8 +220,9 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             paymentController.delegate = self
             presentViewController(paymentController, animated: true, completion: nil)
         } else {
+            let paymentController = PaymentViewController()
+            presentViewController(paymentController, animated: true, completion: nil)
             // Show the user your own credit card form (see options 2 or 3)
-
         }
     }
     
@@ -245,6 +249,11 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
     
     // STRIPE FUNCTIONS
     func paymentAuthorizationViewController(controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, completion: (PKPaymentAuthorizationStatus) -> Void) {
+        let HUD: JGProgressHUD = JGProgressHUD()
+        HUD.showInView(self.view!)
+        HUD.textLabel.text = "Payment success"
+        HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
+        HUD.dismissAfterDelay(1)
         /*
          We'll implement this method below in 'Creating a single-use token'.
          Note that we've also been given a block that takes a
@@ -255,6 +264,8 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
          */
         handlePaymentAuthorizationWithPayment(payment) { (PKPaymentAuthorizationStatus) -> () in
             print(PKPaymentAuthorizationStatus)
+            print(payment)
+            controller.dismissViewControllerAnimated(true, completion: nil)
         }
     }
     
@@ -275,32 +286,57 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
     
     func createBackendChargeWithToken(token: STPToken!, completion: PKPaymentAuthorizationStatus -> ()) {
         // SEND REQUEST TO PROTON PAYMENTS API ENDPOINT TO EXCHANGE STRIPE TOKEN
-        let url = NSURL(string: apiUrl + "/auth/token")!
-        let request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "POST"
-        let body = "stripeToken=(token.tokenId)"
-        request.HTTPBody = body.dataUsingEncoding(NSUTF8StringEncoding)
-        let configuration = NSURLSessionConfiguration.ephemeralSessionConfiguration()
-        let session = NSURLSession(configuration: configuration)
-        let task = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
-            if error != nil {
-                completion(PKPaymentAuthorizationStatus.Failure)
-            }
-            else {
-                completion(PKPaymentAuthorizationStatus.Success)
-            }
+        
+        let url = apiUrl + "/v1/stripe/charge"
+        
+        let headers = [
+            "Authorization": "Bearer " + String(userAccessToken),
+            "Content-Type": "application/json"
+        ]
+        let parameters : [String : AnyObject] = [
+            "token": String(token) ?? "",
+        ]
+        
+        // for invalid character 0 be sure the content type is application/json and enconding is .JSON
+        Alamofire.request(.POST, url,
+            parameters: parameters,
+            encoding:.JSON,
+            headers: headers)
+            .responseJSON { response in
+                print(response.request) // original URL request
+                print(response.response?.statusCode) // URL response
+                print(response.data) // server data
+                print(response.result) // result of response serialization
+                
+                // go to main view
+                if(response.response?.statusCode == 200) {
+                    print("green light")
+                } else {
+                    print("red light")
+                }
+                
+                switch response.result {
+                case .Success:
+                    if let value = response.result.value {
+                        let json = JSON(value)
+                        print("succes in payment authorization")
+                        print(PKPaymentAuthorizationStatus.Success)
+                        completion(PKPaymentAuthorizationStatus.Success)
+                        print(json)
+                    }
+                case .Failure(let error):
+                    print("error occured")
+                    print(PKPaymentAuthorizationStatus.Failure)
+                    completion(PKPaymentAuthorizationStatus.Failure)
+                    print(error)
+                }
         }
-        task.resume()
     }
     
     func paymentAuthorizationViewControllerDidFinish(controller: PKPaymentAuthorizationViewController) {
         print("payment auth finished")
         dismissViewControllerAnimated(true, completion: nil)
         controller.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func cancel(sender: AnyObject) {
-        self.presentingViewController!.dismissViewControllerAnimated(true, completion: { _ in })
     }
 }
 
