@@ -69,8 +69,8 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
                 
                 // Blurview
                 let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
-                visualEffectView.frame = CGRectMake(0, 0, width, 250)
-                let blurImageView: UIImageView = UIImageView(frame: CGRectMake(0, 0, width, 250))
+                visualEffectView.frame = CGRectMake(0, 0, width, 330)
+                let blurImageView: UIImageView = UIImageView(frame: CGRectMake(0, 0, width, 330))
                 blurImageView.contentMode = .ScaleAspectFill
                 blurImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
                 blurImageView.layer.masksToBounds = true
@@ -95,8 +95,8 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
                 
                 // Blurview
                 let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
-                visualEffectView.frame = CGRectMake(0, 0, width, 250)
-                let blurImageView: UIImageView = UIImageView(frame: CGRectMake(0, 0, width, 250))
+                visualEffectView.frame = CGRectMake(0, 0, width, 330)
+                let blurImageView: UIImageView = UIImageView(frame: CGRectMake(0, 0, width, 330))
                 blurImageView.contentMode = .ScaleAspectFill
                 blurImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
                 blurImageView.layer.masksToBounds = true
@@ -126,7 +126,9 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             
             // Button
             let inviteButton = UIButton(frame: CGRect(x: 10, y: 265, width: (width/2)-20, height: 48.0))
-            inviteButton.backgroundColor = UIColor.protonDarkBlue()
+            inviteButton.backgroundColor = UIColor.clearColor()
+            inviteButton.layer.borderColor = UIColor.whiteColor().CGColor
+            inviteButton.layer.borderWidth = 1
             inviteButton.tintColor = UIColor(rgba: "#fff")
             inviteButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
             inviteButton.titleLabel?.font = UIFont(name: "Helvetica", size: 14)
@@ -138,7 +140,9 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             
             // Button
             let subscribeButton = UIButton(frame: CGRect(x: width*0.5+10, y: 265, width: (width/2)-20, height: 50.0))
-            subscribeButton.backgroundColor = UIColor.protonBlue()
+            subscribeButton.backgroundColor = UIColor.clearColor()
+            subscribeButton.layer.borderColor = UIColor.whiteColor().CGColor
+            subscribeButton.layer.borderWidth = 1
             subscribeButton.setTitle("Become Customer", forState: .Normal)
             subscribeButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
             subscribeButton.titleLabel?.font = UIFont(name: "Helvetica", size: 14)
@@ -287,7 +291,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
     func createBackendChargeWithToken(token: STPToken!, completion: PKPaymentAuthorizationStatus -> ()) {
         // SEND REQUEST TO PROTON PAYMENTS API ENDPOINT TO EXCHANGE STRIPE TOKEN
         
-        let url = apiUrl + "/v1/stripe/charge"
+        let url = apiUrl + "/v1/stripe/charge/create"
         
         let headers = [
             "Authorization": "Bearer " + String(userAccessToken),
@@ -295,6 +299,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
         ]
         let parameters : [String : AnyObject] = [
             "token": String(token) ?? "",
+            "delegatedUser": (detailUser?.username)!
         ]
         
         // for invalid character 0 be sure the content type is application/json and enconding is .JSON
@@ -319,7 +324,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
                 case .Success:
                     if let value = response.result.value {
                         let json = JSON(value)
-                        print("succes in payment authorization")
+                        print("success in payment authorization")
                         print(PKPaymentAuthorizationStatus.Success)
                         completion(PKPaymentAuthorizationStatus.Success)
                         print(json)
