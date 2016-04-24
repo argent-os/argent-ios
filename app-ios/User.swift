@@ -34,29 +34,31 @@ class User {
         // print(userAccessToken)
 
         let parameters : [String : AnyObject] = [:]
+        
         let headers = [
             "Authorization": "Bearer " + (userAccessToken as! String),
-            "Content-Type": "application/json"
+            "Content-Type": "application/x-www-form-urlencoded"
         ]
         
         let endpoint = apiUrl + "/v1/profile"
         
-        Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .JSON, headers: headers)
+        Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
             .responseJSON { response in
                 switch response.result {
                 case .Success:
                     print("success")
                     if let value = response.result.value {
                         let data = JSON(value)
+                        print("got user object in model")
                         print(data)
-                        let profile = data["user"]
+                        let profile = data
                         // print(data["profile"].arrayValue)
                             let username = profile["username"].stringValue
                             let email = profile["email"].stringValue
                             let first_name = profile["first_name"].stringValue
                             let last_name = profile["last_name"].stringValue
                             let cust_id = profile["cust_id"].stringValue
-                            let picture = profile["picture"].stringValue
+                            let picture = profile["picture"]["secureUrl"].stringValue
                             let item = User(username: username, email: email, first_name: first_name, last_name: last_name, cust_id: cust_id, picture: picture)
                             completionHandler(item, response.result.error)
                     }

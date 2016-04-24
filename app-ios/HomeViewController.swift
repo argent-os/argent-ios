@@ -50,7 +50,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     override func viewDidLoad() {
         
         let img: UIImage = UIImage(named: "Proton")!
-        let protonImageView: UIImageView = UIImageView(frame: CGRectMake(0, 28, 60, 60))
+        let protonImageView: UIImageView = UIImageView(frame: CGRectMake(0, 24, 40, 40))
         protonImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
         protonImageView.center = CGPointMake(self.view.bounds.size.width / 2, 65)
         protonImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
@@ -58,7 +58,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         protonImageView.layer.masksToBounds = true
         protonImageView.clipsToBounds = true
         protonImageView.image = img
-        protonImageView.layer.borderWidth = 3
+        protonImageView.layer.borderWidth = 2
         protonImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
         self.view.addSubview(protonImageView)
         
@@ -75,35 +75,41 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 //        blurImageView.addSubview(visualEffectView)
         self.view.sendSubviewToBack(blurImageView)
         
-        // Get the user profile
-        loadUserProfile()
-        
-        //                                    let img: UIImage = UIImage(data: NSData(contentsOfURL: NSURL(string: pic!)!)!)!
-        //                                    let userImageView: UIImageView = UIImageView(frame: CGRectMake(0, 28, 60, 60))
-        //                                    userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-        //                                    userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 65)
-        //                                    userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
-        //                                    userImageView.layer.cornerRadius = userImageView.frame.size.height/2
-        //                                    userImageView.layer.masksToBounds = true
-        //                                    userImageView.clipsToBounds = true
-        //                                    userImageView.image = img
-        //                                    userImageView.layer.borderWidth = 3
-        //                                    userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
-        //                                    self.view.addSubview(userImageView)
-        //                                    self.view.bringSubviewToFront(userImageView)
-        //
-        //                                    // Blurview
-        //                                    let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
-        //                                    visualEffectView.frame = CGRectMake(0, 0, width, height)
-        //                                    let blurImageView: UIImageView = UIImageView(frame: CGRectMake(0, 0, width, height))
-        //                                    blurImageView.contentMode = .ScaleAspectFill
-        //                                    blurImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-        //                                    blurImageView.layer.masksToBounds = true
-        //                                    blurImageView.clipsToBounds = true
-        //                                    blurImageView.image = img
-        //                                    self.view.addSubview(blurImageView)
-        //                                    blurImageView.addSubview(visualEffectView)
-        //                                    self.view.sendSubviewToBack(blurImageView)
+        // Get the user profile with completion handler
+        loadUserProfile{ (user, error) in
+            print("got user in completion handler")
+            print(user)
+            let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
+            print(img)
+            if img != "" {
+                let userImageView: UIImageView = UIImageView(frame: CGRectMake(0, 24, 40, 40))
+                userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
+                userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 65)
+                userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+                userImageView.layer.cornerRadius = userImageView.frame.size.height/2
+                userImageView.layer.masksToBounds = true
+                userImageView.clipsToBounds = true
+                userImageView.image = img
+                userImageView.layer.borderWidth = 2
+                userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
+                self.view.addSubview(userImageView)
+                self.view.bringSubviewToFront(userImageView)
+            }
+            
+            // Customizable background view later in future
+            // // Blurview
+            // let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
+            // visualEffectView.frame = CGRectMake(0, 0, width, height)
+            // let blurImageView: UIImageView = UIImageView(frame: CGRectMake(0, 0, width, height))
+            // blurImageView.contentMode = .ScaleAspectFill
+            // blurImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
+            // blurImageView.layer.masksToBounds = true
+            // blurImageView.clipsToBounds = true
+            // blurImageView.image = img
+            // self.view.addSubview(blurImageView)
+            // blurImageView.addSubview(visualEffectView)
+            // self.view.sendSubviewToBack(blurImageView)
+        }
         
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
@@ -158,7 +164,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         runkeeperSwitch.titleColor = UIColor.protonBlue()
         runkeeperSwitch.selectedTitleColor = UIColor.whiteColor()
         runkeeperSwitch.titleFont = UIFont(name: "Nunito-SemiBold", size: 13.0)
-        runkeeperSwitch.frame = CGRect(x: 50.0, y: 120.0, width: view.bounds.width - 100.0, height: 30.0)
+        runkeeperSwitch.frame = CGRect(x: 50.0, y: 111.0, width: view.bounds.width - 100.0, height: 30.0)
         runkeeperSwitch.addTarget(self, action: #selector(HomeViewController.indexChanged(_:)), forControlEvents: .ValueChanged)
         runkeeperSwitch.autoresizingMask = [.FlexibleWidth]
         view.addSubview(runkeeperSwitch)
@@ -195,7 +201,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         
     }
     
-    func loadUserProfile() {
+    func loadUserProfile(completionHandler: (User?, NSError?) -> ()) {
         User.getProfile({ (item, error) in
             if error != nil
             {
@@ -206,6 +212,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             print("got user")
             print(item)
             self.user = item!
+            completionHandler(item!, error)
         })
     }
     
