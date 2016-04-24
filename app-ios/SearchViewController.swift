@@ -28,12 +28,21 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var searchedText:String = ""
     
+    var refreshControl = UIRefreshControl()
+    
+    var dateFormatter = NSDateFormatter()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         tblSearchResults.delegate = self
         tblSearchResults.dataSource = self
+        
+        self.refreshControl.backgroundColor = UIColor.clearColor()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: #selector(NotificationsViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        self.tblSearchResults?.addSubview(refreshControl)
         
         loadUserAccounts()
         
@@ -173,6 +182,15 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             HUD.dismiss()
 
+            // update "last updated" title for refresh control
+            let now = NSDate()
+            let updateString = "Last Updated at " + self.dateFormatter.stringFromDate(now)
+            self.refreshControl.attributedTitle = NSAttributedString(string: updateString)
+            if self.refreshControl.refreshing
+            {
+                self.refreshControl.endRefreshing()
+            }
+            
             self.tblSearchResults.reloadData()
         })
     }
@@ -316,6 +334,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tblSearchResults.reloadData()
     }
     
+    // Refresh
+    func refresh(sender:AnyObject)
+    {
+        self.loadUserAccounts()
+    }
+    
     // Search here
     func didChangeSearchText(searchText: String) {
         // Filter the data array and get only those countries that match the search text.
@@ -364,6 +388,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
     }
+    
     
     // MARK: - Segues
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

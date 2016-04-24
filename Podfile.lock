@@ -4,6 +4,7 @@ PODS:
   - BEMCheckBox (1.2.1)
   - BEMSimpleLineGraph (4.1)
   - CardIO (5.3.2)
+  - CircleMenu (1.0.0)
   - CWStatusBarNotification (2.3.4)
   - DCPathButton (2.1.3)
   - DGRunkeeperSwitch (1.1.1)
@@ -27,7 +28,6 @@ PODS:
   - pop (1.0.9)
   - RAMAnimatedTabBarController (1.3.1)
   - RESideMenu (4.0.7)
-  - RNGridMenu (0.1.3)
   - Runes (3.2.0)
   - SESlideTableViewCell (0.7.0)
   - SFDraggableDialogView (1.1.4)
@@ -51,6 +51,7 @@ DEPENDENCIES:
   - BEMCheckBox
   - BEMSimpleLineGraph
   - CardIO
+  - CircleMenu
   - CWStatusBarNotification
   - DCPathButton
   - DGRunkeeperSwitch
@@ -70,7 +71,6 @@ DEPENDENCIES:
   - PasscodeLock
   - RAMAnimatedTabBarController
   - RESideMenu
-  - RNGridMenu
   - Runes
   - SESlideTableViewCell
   - SFDraggableDialogView
@@ -106,6 +106,7 @@ SPEC CHECKSUMS:
   BEMCheckBox: 264b8b72aa92adbfefa265cc58a0cdb86b207b9f
   BEMSimpleLineGraph: 44fd451f27f8e9cf96f2da5bea27603093576dd1
   CardIO: 92c45caef0d986c4a303a7afba0c9b76ff2b1f6e
+  CircleMenu: d67d88395705c20c23806632987288b39fbfc690
   CWStatusBarNotification: 3fec41edcb0ae3677d9febfcb9632d8bdf52294c
   DCPathButton: 431bb93072e8d25bd0de0eaa0373e39d896a38e3
   DGRunkeeperSwitch: da12f199532a99958a1e87ec0a5af61efdba11ec
@@ -126,7 +127,6 @@ SPEC CHECKSUMS:
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   RAMAnimatedTabBarController: 71478294be88a5b870064c7980880caeb9ce2655
   RESideMenu: f24c508404b49c667344c54aba7e590883533958
-  RNGridMenu: c58db81f87b5473936bb1b675dc3e947c409b51d
   Runes: ab2f892272d5165f64620f8086578b28cde98a02
   SESlideTableViewCell: 1487a6aedc84b480a888fc33b8d1c58fa5026f99
   SFDraggableDialogView: cfe9b80b5fff19f7e0fda86dcabee8b03a4c3b44

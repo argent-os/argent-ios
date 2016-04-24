@@ -111,12 +111,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="40" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wya-1N-F6M">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="40" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wya-1N-F6M">
                                 <rect key="frame" x="0.0" y="20" width="414" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="idCell" focusStyle="custom" rowHeight="40" id="pjs-Yf-QKC">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="40"/>
+                                        <rect key="frame" x="0.0" y="92" width="414" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pjs-Yf-QKC" id="Mew-C2-2ej">
                                             <rect key="frame" x="0.0" y="0.0" width="381" height="39.5"/>
@@ -154,7 +154,7 @@
                 <customObject id="5og-XN-6KF" customClass="RAMBounceAnimation" customModule="RAMAnimatedTabBarController">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="iconSelectedColor">
-                            <color key="value" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="duration">
                             <real key="value" value="1"/>
@@ -189,7 +189,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cGr-Gv-9gd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-929" y="-2372"/>
+            <point key="canvasLocation" x="-1225" y="-1848"/>
         </scene>
         <!--Recurring Billing View Controller-->
         <scene sceneID="IfJ-jG-LJ2">
@@ -208,7 +208,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="isA-Ko-UWX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-289" y="-2356"/>
+            <point key="canvasLocation" x="-723" y="-1769"/>
         </scene>
         <!--Passcode Settings View Controller-->
         <scene sceneID="ONW-xd-G0k">
@@ -646,7 +646,7 @@ support request</string>
                             <real key="value" value="1"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="iconSelectedColor">
-                            <color key="value" red="0.16470588235294117" green="0.62745098039215685" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </customObject>
@@ -1655,13 +1655,52 @@ institutions</string>
                             <real key="value" value="1"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="iconSelectedColor">
-                            <color key="value" red="0.1647058824" green="0.62745098040000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </customObject>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bbk-5t-bPb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2834" y="-1780"/>
+        </scene>
+        <!--Proton View Controller-->
+        <scene sceneID="cuD-tq-Zje">
+            <objects>
+                <viewController id="uI0-ut-YXN" customClass="ProtonViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uhz-kd-xkO"/>
+                        <viewControllerLayoutGuide type="bottom" id="Mv2-J1-WVg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Wlq-Lz-if3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="ic_proton_outline" selectedImage="ic_proton_outline" id="Wbg-GP-L9N" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                        <connections>
+                            <outlet property="animation" destination="3hQ-60-KjM" id="8bZ-Ly-VmP"/>
+                        </connections>
+                    </tabBarItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <connections>
+                        <segue destination="4oC-TM-jI5" kind="show" identifier="chargeView" id="uG4-vF-WlK"/>
+                        <segue destination="SDr-Sd-KOe" kind="show" identifier="addPlanView" id="E98-FC-SfF"/>
+                        <segue destination="pzK-yB-ekt" kind="show" identifier="addCustomerView" id="o5e-Ut-781"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="97T-hV-39n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="3hQ-60-KjM" customClass="RAMBounceAnimation" customModule="RAMAnimatedTabBarController">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="duration">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="iconSelectedColor">
+                            <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </customObject>
+            </objects>
+            <point key="canvasLocation" x="-1318" y="-511"/>
         </scene>
         <!--Home Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -1689,7 +1728,6 @@ institutions</string>
                     <connections>
                         <outlet property="navigationBar" destination="w3e-6C-5LA" id="1lw-XX-p0y"/>
                         <segue destination="mQk-jK-m8v" kind="presentation" identifier="loginView" id="A1R-09-1HJ"/>
-                        <segue destination="4oC-TM-jI5" kind="show" identifier="chargeView" id="OG8-Lf-YEC"/>
                         <segue destination="pzK-yB-ekt" kind="show" identifier="addCustomerView" id="PrX-Yu-xbB"/>
                         <segue destination="SDr-Sd-KOe" kind="show" identifier="addPlanView" id="kpf-dT-hyx"/>
                     </connections>
@@ -1698,7 +1736,7 @@ institutions</string>
                 <customObject id="6CM-U6-Q2n" customClass="RAMBounceAnimation" customModule="RAMAnimatedTabBarController">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="iconSelectedColor">
-                            <color key="value" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="duration">
                             <real key="value" value="1"/>
@@ -1717,7 +1755,7 @@ institutions</string>
                         <viewControllerLayoutGuide type="bottom" id="buS-2c-LKz"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="JaV-yX-yXF">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1729,7 +1767,7 @@ institutions</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TQ5-Tm-vUL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-186" y="274"/>
+            <point key="canvasLocation" x="-692" y="-944"/>
         </scene>
         <!--Left Menu View Controller-->
         <scene sceneID="JIm-2k-XGJ">
@@ -2922,6 +2960,7 @@ Click here to view more</string>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="UFB-DJ-qrH"/>
                         <segue destination="a1M-TW-bLs" kind="relationship" relationship="viewControllers" id="Ua5-Do-cmZ"/>
+                        <segue destination="uI0-ut-YXN" kind="relationship" relationship="viewControllers" id="m0d-gd-RWW"/>
                         <segue destination="D1r-HM-gkI" kind="relationship" relationship="viewControllers" id="FmW-X6-6Aa"/>
                         <segue destination="QT1-zk-YMS" kind="relationship" relationship="viewControllers" id="ZGI-bE-yuI"/>
                     </connections>
@@ -3211,15 +3250,15 @@ Click here to view more</string>
                         <viewControllerLayoutGuide type="bottom" id="j28-KU-mNU"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="sqS-RP-JEc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="awt-hT-DzB">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="idCell" textLabel="eDw-mh-d6X" rowHeight="60" style="IBUITableViewCellStyleDefault" id="bP2-Kq-CYW">
-                                        <rect key="frame" x="0.0" y="22" width="414" height="60"/>
+                                        <rect key="frame" x="0.0" y="86" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bP2-Kq-CYW" id="VLj-O3-6lY">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
@@ -3288,14 +3327,17 @@ Click here to view more</string>
         <image name="ic_home" width="30" height="30"/>
         <image name="ic_key_light" width="86" height="86"/>
         <image name="ic_notify" width="30" height="30"/>
+        <image name="ic_proton_outline" width="30" height="30"/>
         <image name="ic_search" width="30" height="30"/>
         <image name="ic_user" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Xln-0K-kRS"/>
-        <segue reference="A1R-09-1HJ"/>
-        <segue reference="UFB-DJ-qrH"/>
+        <segue reference="NZL-lW-Wpq"/>
         <segue reference="xTl-cs-ajG"/>
+        <segue reference="UFB-DJ-qrH"/>
+        <segue reference="E98-FC-SfF"/>
+        <segue reference="o5e-Ut-781"/>
         <segue reference="dKP-gn-jL5"/>
         <segue reference="Oy0-WL-Zfz"/>
         <segue reference="HS7-dW-Hxr"/>

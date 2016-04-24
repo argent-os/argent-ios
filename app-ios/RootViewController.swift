@@ -17,11 +17,7 @@ class RootViewController: RESideMenu, RESideMenuDelegate {
 
         // Do any additional setup after loading the view.
     }
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.Default
-    }
-    
+
     override func awakeFromNib() {
         
         self.contentViewShadowColor = UIColor.blackColor();

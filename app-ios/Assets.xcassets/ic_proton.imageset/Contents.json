@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "IconMenu~universal@1x.png"
+      "filename" : "ic_proton~universal@1x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "IconMenu~universal@2x.png"
+      "filename" : "ic_proton~universal@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "IconMenu~universal@3x.png"
+      "filename" : "ic_proton~universal@3x.png"
     }
   ],
   "info" : {

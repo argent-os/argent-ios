@@ -113,11 +113,6 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
                 print(totalBytesWritten)
                 print(totalBytesExpectedToWrite)
                 
-                let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
-                HUD.showInView(self.view!)
-//                HUD.textLabel.text = "Logging in"
-                HUD.dismissAfterDelay(0.3)
-                
                 // This closure is NOT called on the main queue for performance
                 // reasons. To update your ui, dispatch to the main queue.
                 dispatch_async(dispatch_get_main_queue()) {

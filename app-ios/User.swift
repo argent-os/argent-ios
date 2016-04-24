@@ -28,6 +28,44 @@ class User {
         self.picture = picture
     }
     
+    class func getProfile(completionHandler: (User?, NSError?) -> Void) {
+        // request to api to get account data as json, put in list and table
+        // curl -X GET -i -H "Content-Type: application/json" -d '{"access_token": ""}' http://192.168.1.232:5001/v1/users/list
+        // print(userAccessToken)
+
+        let parameters : [String : AnyObject] = [:]
+        let headers = [
+            "Authorization": "Bearer " + (userAccessToken as! String),
+            "Content-Type": "application/json"
+        ]
+        
+        let endpoint = apiUrl + "/v1/profile"
+        
+        Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .JSON, headers: headers)
+            .responseJSON { response in
+                switch response.result {
+                case .Success:
+                    print("success")
+                    if let value = response.result.value {
+                        let data = JSON(value)
+                        print(data)
+                        let profile = data["user"]
+                        // print(data["profile"].arrayValue)
+                            let username = profile["username"].stringValue
+                            let email = profile["email"].stringValue
+                            let first_name = profile["first_name"].stringValue
+                            let last_name = profile["last_name"].stringValue
+                            let cust_id = profile["cust_id"].stringValue
+                            let picture = profile["picture"].stringValue
+                            let item = User(username: username, email: email, first_name: first_name, last_name: last_name, cust_id: cust_id, picture: picture)
+                            completionHandler(item, response.result.error)
+                    }
+                case .Failure(let error):
+                    print(error)
+                }
+        }
+    }
+    
     class func getUserAccounts(completionHandler: ([User]?, NSError?) -> Void) {
         // request to api to get account data as json, put in list and table
         // curl -X GET -i -H "Content-Type: application/json" -d '{"access_token": ""}' http://192.168.1.232:5001/v1/users/list

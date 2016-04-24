@@ -122,4 +122,8 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         return cell
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.Default
+    }
+    
 }

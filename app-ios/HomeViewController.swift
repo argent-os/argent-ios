@@ -15,18 +15,15 @@ import Stripe
 import UICountingLabel
 import DGRunkeeperSwitch
 import BEMSimpleLineGraph
-import LiquidFloatingActionButton
 //import MXParallaxHeader
 
 let userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
 
-class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpleLineGraphDataSource,  LiquidFloatingActionButtonDataSource, LiquidFloatingActionButtonDelegate  {
-    
-    var cells: [LiquidFloatingCell] = []
-    var floatingActionButton: LiquidFloatingActionButton!
+class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpleLineGraphDataSource  {
     
     @IBOutlet weak var blurView: UIVisualEffectView!
     var arrayOfValues: Array<AnyObject> = [3,30,50,40,80]
+    var user = User(username: "", email: "", first_name: "", last_name: "", cust_id: "", picture: "")
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var switchBal: DGRunkeeperSwitch?
@@ -51,12 +48,62 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     // VIEW DID LOAD
     override func viewDidLoad() {
-        // Programatically setup left navigation button
-        // Create a navigation item with a title
         
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
-        HUD.showInView(self.view!)
-        HUD.dismissAfterDelay(0.3)
+        let img: UIImage = UIImage(named: "Proton")!
+        let protonImageView: UIImageView = UIImageView(frame: CGRectMake(0, 28, 60, 60))
+        protonImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
+        protonImageView.center = CGPointMake(self.view.bounds.size.width / 2, 65)
+        protonImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+        protonImageView.layer.cornerRadius = protonImageView.frame.size.height/2
+        protonImageView.layer.masksToBounds = true
+        protonImageView.clipsToBounds = true
+        protonImageView.image = img
+        protonImageView.layer.borderWidth = 3
+        protonImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
+        self.view.addSubview(protonImageView)
+        
+        // Blurview
+        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
+        visualEffectView.frame = CGRectMake(0, 0, width, height)
+        let blurImageView: UIImageView = UIImageView(frame: CGRectMake(0, 0, width, height))
+        blurImageView.contentMode = .ScaleAspectFill
+        blurImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
+        blurImageView.layer.masksToBounds = true
+        blurImageView.clipsToBounds = true
+        blurImageView.image = UIImage(named: "BackgroundGradientInverse")
+        self.view.addSubview(blurImageView)
+//        blurImageView.addSubview(visualEffectView)
+        self.view.sendSubviewToBack(blurImageView)
+        
+        // Get the user profile
+        loadUserProfile()
+        
+        //                                    let img: UIImage = UIImage(data: NSData(contentsOfURL: NSURL(string: pic!)!)!)!
+        //                                    let userImageView: UIImageView = UIImageView(frame: CGRectMake(0, 28, 60, 60))
+        //                                    userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
+        //                                    userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 65)
+        //                                    userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+        //                                    userImageView.layer.cornerRadius = userImageView.frame.size.height/2
+        //                                    userImageView.layer.masksToBounds = true
+        //                                    userImageView.clipsToBounds = true
+        //                                    userImageView.image = img
+        //                                    userImageView.layer.borderWidth = 3
+        //                                    userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
+        //                                    self.view.addSubview(userImageView)
+        //                                    self.view.bringSubviewToFront(userImageView)
+        //
+        //                                    // Blurview
+        //                                    let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
+        //                                    visualEffectView.frame = CGRectMake(0, 0, width, height)
+        //                                    let blurImageView: UIImageView = UIImageView(frame: CGRectMake(0, 0, width, height))
+        //                                    blurImageView.contentMode = .ScaleAspectFill
+        //                                    blurImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
+        //                                    blurImageView.layer.masksToBounds = true
+        //                                    blurImageView.clipsToBounds = true
+        //                                    blurImageView.image = img
+        //                                    self.view.addSubview(blurImageView)
+        //                                    blurImageView.addSubview(visualEffectView)
+        //                                    self.view.sendSubviewToBack(blurImageView)
         
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
@@ -65,74 +112,53 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         let frame = CGRectMake(0, 160, screenWidth, screenHeight-160)
         let graph: BEMSimpleLineGraphView = BEMSimpleLineGraphView(frame: frame)
         graph.dataSource = self
-        graph.colorTop = UIColor.whiteColor()
-        graph.colorBottom = UIColor.whiteColor()
-        graph.colorLine = UIColor.protonDarkBlue()
-        graph.colorPoint = UIColor.protonBlue()
+        graph.colorTop = UIColor.clearColor()
+        graph.colorBottom = UIColor.clearColor()
+        graph.colorLine = UIColor.whiteColor()
+        graph.colorPoint = UIColor.whiteColor()
+        graph.colorBackgroundPopUplabel = UIColor.whiteColor()
         graph.delegate = self
         graph.widthLine = 2
         graph.displayDotsWhileAnimating = true
         graph.enablePopUpReport = true
         graph.enableTouchReport = true
         graph.enableBezierCurve = true
+        graph.colorTouchInputLine = UIColor.whiteColor()
         graph.layer.masksToBounds = true
         self.view!.addSubview(graph)
-
-        let createButton: (CGRect, LiquidFloatingActionButtonAnimateStyle) -> LiquidFloatingActionButton = { (frame, style) in
-            let floatingActionButton = LiquidFloatingActionButton(frame: frame)
-            floatingActionButton.animateStyle = style
-            floatingActionButton.dataSource = self
-            floatingActionButton.delegate = self
-            floatingActionButton.color = UIColor.protonBlue()
-            return floatingActionButton
-        }
         
-        let customCellFactory: (String, String, String) -> LiquidFloatingCell = { (iconName, description, segue) in
-            let cell = CustomCell(icon: UIImage(named: iconName)!, name: description, segue: segue)
-            return cell
-        }
-        cells.append(customCellFactory("IconEmpty", "Create Charge", "chargeView"))
-        cells.append(customCellFactory("IconEmpty", "Add Plan", "addPlanView"))
-        cells.append(customCellFactory("IconEmpty", "Add Customer", "addCustomerView"))
-        let floatingFrame = CGRect(x: self.view.frame.width - 56 - 16, y: self.view.frame.height - 116 - 16, width: 56, height: 56)
-        let bottomRightButton = createButton(floatingFrame, .Up)
-        print(bottomRightButton.isOpening.boolValue)
-        print(bottomRightButton.isClosed.boolValue)
-
-        if(bottomRightButton.isOpening.boolValue) {
-            print("adding blurview")
-            self.addBlurView()
-        } else if(bottomRightButton.isClosed.boolValue) {
-            print("button is closed")
-            //                removeBlurView()
-        }
-        self.view.addSubview(bottomRightButton)
-        
-        let mainSegment: UISegmentedControl = UISegmentedControl(items: ["2W", "1M", "3M", "1Y", "5Y"])
-        mainSegment.frame = CGRect(x: 15.0, y: 140.0, width: view.bounds.width - 30.0, height: 30.0)
-        mainSegment.selectedSegmentIndex = 1
+        let mainSegment: UISegmentedControl = UISegmentedControl(items: ["1M", "3M", "6M", "1Y", "5Y"])
+        mainSegment.frame = CGRect(x: 15.0, y: 175.0, width: view.bounds.width - 30.0, height: 30.0)
+//        var y_co: CGFloat = self.view.frame.size.height - 100.0
+//        mainSegment.frame = CGRectMake(10, y_co, width-20, 50.0)
+        mainSegment.selectedSegmentIndex = 2
         mainSegment.removeBorders()
         mainSegment.addTarget(self, action: #selector(HomeViewController.mainSegmentControl(_:)), forControlEvents: .ValueChanged)
         self.view!.addSubview(mainSegment)
         
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 15, width: screenWidth, height: 50))
-        navBar.barTintColor = UIColor(rgba: "#FFF")
+        navBar.barTintColor = UIColor.clearColor()
+        navBar.translucent = true
+        navBar.tintColor = UIColor.whiteColor()
+        navBar.backgroundColor = UIColor.clearColor()
+        navBar.shadowImage = UIImage()
+        navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navBar.titleTextAttributes = [
-            NSForegroundColorAttributeName : UIColor.protonBlue(),
+            NSForegroundColorAttributeName : UIColor.whiteColor(),
             NSFontAttributeName : UIFont(name: "Helvetica", size: 18)!
         ]
         
         self.view.addSubview(navBar)
-        let navItem = UINavigationItem(title: "Account Balance")
+        let navItem = UINavigationItem(title: "")
         navBar.setItems([navItem], animated: true)
         
-        let runkeeperSwitch = DGRunkeeperSwitch(leftTitle: "Pending", rightTitle: "Available")
-        runkeeperSwitch.backgroundColor = UIColor(rgba: "#157efb")
-        runkeeperSwitch.selectedBackgroundColor = .whiteColor()
-        runkeeperSwitch.titleColor = .whiteColor()
-        runkeeperSwitch.selectedTitleColor = UIColor(rgba: "#157efb")
+        let runkeeperSwitch = DGRunkeeperSwitch(leftTitle: "Balance", rightTitle: "Customers")
+        runkeeperSwitch.backgroundColor = UIColor.whiteColor()
+        runkeeperSwitch.selectedBackgroundColor = UIColor.protonBlue()
+        runkeeperSwitch.titleColor = UIColor.protonBlue()
+        runkeeperSwitch.selectedTitleColor = UIColor.whiteColor()
         runkeeperSwitch.titleFont = UIFont(name: "Nunito-SemiBold", size: 13.0)
-        runkeeperSwitch.frame = CGRect(x: 50.0, y: 78.0, width: view.bounds.width - 100.0, height: 30.0)
+        runkeeperSwitch.frame = CGRect(x: 50.0, y: 120.0, width: view.bounds.width - 100.0, height: 30.0)
         runkeeperSwitch.addTarget(self, action: #selector(HomeViewController.indexChanged(_:)), forControlEvents: .ValueChanged)
         runkeeperSwitch.autoresizingMask = [.FlexibleWidth]
         view.addSubview(runkeeperSwitch)
@@ -169,24 +195,23 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         
     }
     
-    func chargeTapped(sender: AnyObject) {
-        
+    func loadUserProfile() {
+        User.getProfile({ (item, error) in
+            if error != nil
+            {
+                let alert = UIAlertController(title: "Error", message: "Could not load profile \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+            print("got user")
+            print(item)
+            self.user = item!
+        })
     }
     
-    func recurringTapped(sender: AnyObject) {
-        
-    }
-    
-    func addBlurView(){
-        let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
-        let screenHeight = screen.size.height
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
-        let blurView = UIVisualEffectView(effect: blurEffect)
-        blurView.frame = CGRectMake(0, 0, screenWidth, screenHeight)
-        
-        blurView.translatesAutoresizingMaskIntoConstraints = false
-        self.view.insertSubview(blurView, aboveSubview: self.view)
+    //Changing Status Bar
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
     
     // VIEW DID APPEAR
@@ -252,31 +277,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             print("user logged in, displaying home view")
             // Check user local data in json format, prevent re-retrieviing data from the server
 
-            let formatter = NSNumberFormatter()
-            formatter.numberStyle = .CurrencyStyle
-            formatter.locale = NSLocale.currentLocale() // This is the default
-            print("user token is", userAccessToken)
-            if userData == nil && userAccessToken != nil {
-                let headers = [
-                    "Authorization": "Bearer " + (userAccessToken as! String),
-                    "Content-Type": "application/x-www-form-urlencoded"
-                ]
-                Alamofire.request(.GET, apiUrl + "/v1/profile", headers: headers)
-                    .validate()
-                    .responseJSON { response in
-                        switch response.result {
-                        case .Success:
-                            print("success")
-                            if let value = response.result.value {
-                                userData = JSON(value)
-                                print("got user data")
-                            }
-                        case .Failure(let error):
-                            self.logout()
-                            print(error)
-                        }
-                    }
-            }
         }
     }
 
@@ -379,69 +379,28 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         return CGFloat(self.arrayOfValues[index] as! NSNumber)
     }
     
-    // Liquid Floating Button Delegate
-    func numberOfCells(liquidFloatingActionButton: LiquidFloatingActionButton) -> Int {
-        return cells.count
-    }
-    
-    func cellForIndex(index: Int) -> LiquidFloatingCell {
-        return cells[index]
-    }
-    
-    func liquidFloatingActionButton(liquidFloatingActionButton: LiquidFloatingActionButton, didSelectItemAtIndex index: Int) {
-        print("did Tapped! \(index)")
-        if index == 0 {
-            self.performSegueWithIdentifier("chargeView", sender: self)
-        }
-        if index == 1 {
-            self.performSegueWithIdentifier("addPlanView", sender: self)
-        }
-        if index == 2 {
-            self.performSegueWithIdentifier("addCustomerView", sender: self)
-        }
-        liquidFloatingActionButton.close()
-    }
-    
-}
-
-public class CustomCell : LiquidFloatingCell {
-    var name: String = "sample"
-    var segue: String = "sampleSegue"
-    
-    init(icon: UIImage, name: String, segue: String) {
-        self.name = name
-        self.segue = segue
-        super.init(icon: icon)
-    }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    public override func setupView(view: UIView) {
-        super.setupView(view)
-        let label = UILabel()
-        label.text = name
-        label.textAlignment = .Right
-        label.textColor = UIColor(rgba: "#004790")
-        label.font = UIFont(name: "Nunito-Regular", size: 12)
-        addSubview(label)
-        label.snp_makeConstraints { make in
-            make.left.equalTo(self).offset(-120)
-            make.width.equalTo(100)
-            make.top.height.equalTo(self)
-        }
+    func overrideRAMTabBar() {
+        // createConstraints(icon, container: container, size: itemImage.size, yOffset: -5)
+        // if let itemImage = item.image {
+        //    if 2 == index { // selected first elemet
+        //        var size = CGSize(width: 40, height: 40)
+        //        createConstraints(icon, container: container, size: size, yOffset: 0)
+        //    } else {
+        //        createConstraints(icon, container: container, size: itemImage.size, yOffset: -5)
+        //
+        //    }
+        // }
     }
 }
 
 extension UISegmentedControl {
     func removeBorders() {
         setTitleTextAttributes(
-            [NSForegroundColorAttributeName : UIColor(rgba: "#157efb"),
+            [NSForegroundColorAttributeName : UIColor.whiteColor(),
                 NSFontAttributeName : UIFont(name: "Nunito-Regular", size: 12)!],
             forState: .Normal)
         setTitleTextAttributes(
-            [NSForegroundColorAttributeName : UIColor(rgba: "#004790"),
+            [NSForegroundColorAttributeName : UIColor.whiteColor(),
             NSFontAttributeName : UIFont(name: "Nunito-SemiBold", size: 18)!],
             forState: .Selected)
         setBackgroundImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forState: .Normal, barMetrics: .Default)

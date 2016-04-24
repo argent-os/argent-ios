@@ -89,7 +89,7 @@
 		30C2DAC11CA43836003AFD8B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAC01CA43836003AFD8B /* ProfileViewController.swift */; };
 		30C2DAC31CA4383B003AFD8B /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAC21CA4383B003AFD8B /* NotificationViewController.swift */; };
 		30C2DAC51CA43841003AFD8B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAC41CA43841003AFD8B /* SearchViewController.swift */; };
-		30C2DAC91CA43853003AFD8B /* RecurringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAC81CA43853003AFD8B /* RecurringViewController.swift */; };
+		30C2DAC91CA43853003AFD8B /* ProtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAC81CA43853003AFD8B /* ProtonViewController.swift */; };
 		30C2DACB1CA4385C003AFD8B /* ProfileMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DACA1CA4385C003AFD8B /* ProfileMenuViewController.swift */; };
 		30C2DACD1CA43862003AFD8B /* CreditCardAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DACC1CA43862003AFD8B /* CreditCardAccountViewController.swift */; };
 		30C2DAD01CA4386A003AFD8B /* SupportMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DACE1CA4386A003AFD8B /* SupportMenuViewController.swift */; };
@@ -141,6 +141,7 @@
 		30DB59761CA46CB0007FEE1E /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DB59751CA46CB0007FEE1E /* ComplicationController.swift */; };
 		30DB59781CA46CB0007FEE1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30DB59771CA46CB0007FEE1E /* Assets.xcassets */; };
 		30DB597C1CA46CB0007FEE1E /* app-watchos.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 30DB595A1CA46CB0007FEE1E /* app-watchos.app */; };
+		30EB3C6E1CCCFAD80010F130 /* RAMTabBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EB3C6D1CCCFAD80010F130 /* RAMTabBarExtension.swift */; };
 		30F480D61CCAE5FF00DD1E60 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F480D51CCAE5FF00DD1E60 /* PaymentViewController.swift */; };
 		8F63169BF370478C9A6CC8F5 /* Pods_protonpay_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50E88D0ADD61BCA3EBD43D33 /* Pods_protonpay_ios.framework */; };
 /* End PBXBuildFile section */
@@ -307,7 +308,7 @@
 		30C2DAC01CA43836003AFD8B /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = "app-ios/ProfileViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAC21CA4383B003AFD8B /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationViewController.swift; path = "app-ios/NotificationViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAC41CA43841003AFD8B /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchViewController.swift; path = "app-ios/SearchViewController.swift"; sourceTree = SOURCE_ROOT; };
-		30C2DAC81CA43853003AFD8B /* RecurringViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecurringViewController.swift; path = "app-ios/RecurringViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30C2DAC81CA43853003AFD8B /* ProtonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProtonViewController.swift; path = "app-ios/ProtonViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DACA1CA4385C003AFD8B /* ProfileMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileMenuViewController.swift; path = "app-ios/ProfileMenuViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DACC1CA43862003AFD8B /* CreditCardAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreditCardAccountViewController.swift; path = "app-ios/CreditCardAccountViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DACE1CA4386A003AFD8B /* SupportMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupportMenuViewController.swift; path = "app-ios/SupportMenuViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -364,6 +365,7 @@
 		30DB59791CA46CB0007FEE1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30DB59841CA46DCC007FEE1E /* ObjC-Bridging-Header-WatchOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjC-Bridging-Header-WatchOS.h"; sourceTree = "<group>"; };
 		30DB59851CA472D0007FEE1E /* app-watchos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "app-watchos.entitlements"; sourceTree = "<group>"; };
+		30EB3C6D1CCCFAD80010F130 /* RAMTabBarExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RAMTabBarExtension.swift; path = "app-ios/RAMTabBarExtension.swift"; sourceTree = SOURCE_ROOT; };
 		30F480D51CCAE5FF00DD1E60 /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentViewController.swift; path = "app-ios/PaymentViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30FB540A1C6A58B40004A538 /* ProtonPay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProtonPay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB541E1C6A58B40004A538 /* protonpay-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "protonpay-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -530,7 +532,7 @@
 				30C2DAC01CA43836003AFD8B /* ProfileViewController.swift */,
 				30C2DAC21CA4383B003AFD8B /* NotificationViewController.swift */,
 				30C2DAC41CA43841003AFD8B /* SearchViewController.swift */,
-				30C2DAC81CA43853003AFD8B /* RecurringViewController.swift */,
+				30C2DAC81CA43853003AFD8B /* ProtonViewController.swift */,
 				30128DDE1C8FAC6E009E2EA7 /* Subviews */,
 			);
 			name = Tabs;
@@ -666,6 +668,7 @@
 			isa = PBXGroup;
 			children = (
 				30C2DAFA1CA4397C003AFD8B /* LeftMenuViewController.swift */,
+				30EB3C6D1CCCFAD80010F130 /* RAMTabBarExtension.swift */,
 			);
 			name = Nav;
 			sourceTree = "<group>";
@@ -1352,7 +1355,7 @@
 				30B576931CC7D1CF005BCA5A /* SearchDetailViewController.swift in Sources */,
 				30C2DA971CA4372D003AFD8B /* UserDefaultsPasscodeRepository.swift in Sources */,
 				30C2DABC1CA437CB003AFD8B /* KolodaOverlayView.swift in Sources */,
-				30C2DAC91CA43853003AFD8B /* RecurringViewController.swift in Sources */,
+				30C2DAC91CA43853003AFD8B /* ProtonViewController.swift in Sources */,
 				30C2DAAD1CA43795003AFD8B /* AuthViewController.swift in Sources */,
 				30C2DB031CA439AB003AFD8B /* CountryPicker.swift in Sources */,
 				30C2DAC51CA43841003AFD8B /* SearchViewController.swift in Sources */,
@@ -1387,6 +1390,7 @@
 				30C2DAE11CA43909003AFD8B /* FormerInputAccessoryView.swift in Sources */,
 				30C2DB0B1CA439C1003AFD8B /* Paths.swift in Sources */,
 				30C2DAA91CA4374F003AFD8B /* SignupViewControllerThree.swift in Sources */,
+				30EB3C6E1CCCFAD80010F130 /* RAMTabBarExtension.swift in Sources */,
 				30C2DAFB1CA4397C003AFD8B /* LeftMenuViewController.swift in Sources */,
 				300E42331CB71362004316CF /* Card.swift in Sources */,
 				309E15931CBC2A0E00EA95E4 /* ChargeCustomerViewController.swift in Sources */,
