@@ -30,7 +30,7 @@ class ProtonViewController: UIViewController, LiquidFloatingActionButtonDataSour
         ("ic_proton", UIColor(red:0.22, green:0.74, blue:0, alpha:1)),
         ("ic_proton", UIColor(red:0.96, green:0.23, blue:0.21, alpha:1)),
         ("ic_proton", UIColor(red:0.51, green:0.15, blue:1, alpha:1)),
-        ("ic_proton", UIColor(red:1, green:0.28, blue:0.1, alpha:1)),
+        ("ic_proton", UIColor(red:0.11, green:0.8, blue:0.9, alpha:1)),
         ("ic_proton", UIColor(red:0.4, green:0.8, blue:0.1, alpha:1)),
     ]
     
@@ -50,7 +50,6 @@ class ProtonViewController: UIViewController, LiquidFloatingActionButtonDataSour
         button.center = self.view.center
         button.layer.cornerRadius = button.frame.size.width / 2.0
         view.addSubview(button)
-        button.sendActionsForControlEvents(.TouchUpInside)
 
         // TODO: create segues to chargeView, addPlanView
         
@@ -87,6 +86,9 @@ class ProtonViewController: UIViewController, LiquidFloatingActionButtonDataSour
     }
     
     override func viewDidAppear(animated: Bool) {
+        if(Int(button.state.rawValue) == 0) {
+            button.sendActionsForControlEvents(.TouchUpInside)
+        }
     }
     
     func addBlurView(){
