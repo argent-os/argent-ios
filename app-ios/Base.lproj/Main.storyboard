@@ -1893,7 +1893,7 @@ institutions</string>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconLogo" translatesAutoresizingMaskIntoConstraints="NO" id="drh-Jt-Uwa">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconProtonWhite" translatesAutoresizingMaskIntoConstraints="NO" id="drh-Jt-Uwa">
                                 <rect key="frame" x="160" y="61" width="94" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="0oa-i9-paH"/>
@@ -3277,8 +3277,8 @@ Click here to view more</string>
         <image name="IconBroken" width="128" height="119"/>
         <image name="IconCloseLight" width="24" height="24"/>
         <image name="IconCreditCard" width="128" height="93"/>
-        <image name="IconLogo" width="250" height="250"/>
         <image name="IconPerson" width="128" height="117"/>
+        <image name="IconProtonWhite" width="342" height="342"/>
         <image name="IconStore" width="128" height="128"/>
         <image name="IconTouchSecure" width="98" height="128"/>
         <image name="ic_close_light" width="22" height="22"/>

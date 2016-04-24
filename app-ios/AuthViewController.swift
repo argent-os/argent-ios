@@ -74,7 +74,7 @@ class AuthViewController: UIViewController  {
         signupButton.addTarget(self, action: #selector(AuthViewController.signup(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(signupButton)
         
-        let imageName = "IconLogo"
+        let imageName = "IconProtonWhite"
         let image = UIImage(named: imageName)
         let imageView = UIImageView(image: image!)
         imageView.tag = 7577

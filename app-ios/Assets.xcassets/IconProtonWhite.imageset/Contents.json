@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "BackgroundLaunchScreen~universal@1x.png"
+      "filename" : "IconProtonWhite~universal@1x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "BackgroundLaunchScreen~universal@2x.png"
+      "filename" : "IconProtonWhite~universal@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "BackgroundLaunchScreen~universal@3x.png"
+      "filename" : "IconProtonWhite~universal@3x.png"
     }
   ],
   "info" : {

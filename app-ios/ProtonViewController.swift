@@ -20,17 +20,18 @@ class ProtonViewController: UIViewController, LiquidFloatingActionButtonDataSour
         frame: CGRect(x: 0, y: 0, width: 70, height: 70),
         normalIcon:"IconMenu",
         selectedIcon:"IconCloseLight",
-        buttonsCount: 5,
+        buttonsCount: 6,
         duration: 0.5,
-        distance: 130)
+        distance: 140)
     
     let colors = [UIColor.redColor(), UIColor.grayColor(), UIColor.greenColor(), UIColor.purpleColor()]
     let items: [(icon: String, color: UIColor)] = [
-        ("ic_like", UIColor(red:0.19, green:0.57, blue:1, alpha:1)),
-        ("ic_like", UIColor(red:0.22, green:0.74, blue:0, alpha:1)),
-        ("ic_like", UIColor(red:0.96, green:0.23, blue:0.21, alpha:1)),
-        ("ic_like", UIColor(red:0.51, green:0.15, blue:1, alpha:1)),
-        ("ic_like", UIColor(red:0.11, green:0.8, blue:0.9, alpha:1)),
+        ("ic_proton_outline_white", UIColor.protonBlue()),
+        ("ic_proton_outline_white", UIColor.protonBlue()),
+        ("ic_proton_outline_white", UIColor.protonBlue()),
+        ("ic_proton_outline_white", UIColor.protonBlue()),
+        ("ic_proton_outline_white", UIColor.protonBlue()),
+        ("ic_proton_outline_white", UIColor.protonBlue()),
     ]
     
     override func viewDidLoad() {
@@ -44,7 +45,7 @@ class ProtonViewController: UIViewController, LiquidFloatingActionButtonDataSour
         let screenHeight = screen.size.height
         
 //        button.setBackgroundImage(UIImage(named: "BackgroundGradientInverse"), forState: .Normal)
-        button.backgroundColor = UIColor.protonBlue()
+        button.backgroundColor = UIColor.protonDarkBlue()
         button.delegate = self
         button.center = self.view.center
         button.layer.cornerRadius = button.frame.size.width / 2.0
