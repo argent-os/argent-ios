@@ -50,7 +50,8 @@ class ProtonViewController: UIViewController, LiquidFloatingActionButtonDataSour
         button.center = self.view.center
         button.layer.cornerRadius = button.frame.size.width / 2.0
         view.addSubview(button)
-        
+        button.sendActionsForControlEvents(.TouchUpInside)
+
         // TODO: create segues to chargeView, addPlanView
         
         let createButton: (CGRect, LiquidFloatingActionButtonAnimateStyle) -> LiquidFloatingActionButton = { (frame, style) in
@@ -86,7 +87,6 @@ class ProtonViewController: UIViewController, LiquidFloatingActionButtonDataSour
     }
     
     override func viewDidAppear(animated: Bool) {
-        button.sendActionsForControlEvents(.TouchUpInside)
     }
     
     func addBlurView(){
