@@ -29,11 +29,16 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
         }
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
     func configureView() {
         
         paymentTextField.frame = CGRectMake(15, 15, CGRectGetWidth(self.view.frame) - 30, 44)
         paymentTextField.delegate = self
-        view.addSubview(paymentTextField)
+        // adds a manual credit card entry textfield
+        // self.view.addSubview(paymentTextField)
         
         if let detailUser = detailUser {
             if let usernameLabel = usernameLabel {
@@ -63,12 +68,12 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
                 userImageView.layer.masksToBounds = true
                 userImageView.clipsToBounds = true
                 userImageView.image = img
-                userImageView.layer.borderWidth = 2
+                userImageView.layer.borderWidth = 3
                 userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
                 self.view.addSubview(userImageView)
                 
                 // Blurview
-                let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
+                let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
                 visualEffectView.frame = CGRectMake(0, 0, width, 330)
                 let blurImageView: UIImageView = UIImageView(frame: CGRectMake(0, 0, width, 330))
                 blurImageView.contentMode = .ScaleAspectFill
@@ -80,7 +85,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
                 blurImageView.addSubview(visualEffectView)
                 self.view.sendSubviewToBack(blurImageView)
             } else {
-                let img: UIImage = UIImage(named: "ProtonLogo")!
+                let img: UIImage = UIImage(named: "Proton")!
                 let userImageView: UIImageView = UIImageView(frame: CGRectMake(width / 2, 0, 90, 90))
                 userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
                 userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 135)
@@ -89,19 +94,19 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
                 userImageView.layer.masksToBounds = true
                 userImageView.clipsToBounds = true
                 userImageView.image = img
-                userImageView.layer.borderWidth = 0
+                userImageView.layer.borderWidth = 3
                 userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
                 self.view.addSubview(userImageView)
                 
                 // Blurview
-                let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
+                let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
                 visualEffectView.frame = CGRectMake(0, 0, width, 330)
                 let blurImageView: UIImageView = UIImageView(frame: CGRectMake(0, 0, width, 330))
                 blurImageView.contentMode = .ScaleAspectFill
                 blurImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
                 blurImageView.layer.masksToBounds = true
                 blurImageView.clipsToBounds = true
-                blurImageView.image = img
+                blurImageView.image = UIImage(named: "BackgroundGradientNature")
                 self.view.addSubview(blurImageView)
                 blurImageView.addSubview(visualEffectView)
                 self.view.sendSubviewToBack(blurImageView)
@@ -112,16 +117,20 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
             self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
             self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+            self.navigationController?.navigationBar.barStyle = .BlackTranslucent
             let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: width, height: 65))
             navBar.translucent = true
+            navBar.tintColor = UIColor.whiteColor()
             navBar.backgroundColor = UIColor.clearColor()
             navBar.shadowImage = UIImage()
+            navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
             navBar.titleTextAttributes = [
                 NSForegroundColorAttributeName : UIColor.whiteColor(),
                 NSFontAttributeName : UIFont(name: "Nunito-Regular", size: 18)!
             ]
             self.view.addSubview(navBar)
             let navItem = UINavigationItem(title: "@"+detailUser.username)
+            navItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
             navBar.setItems([navItem], animated: true)
             
             // Button
@@ -225,7 +234,8 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             presentViewController(paymentController, animated: true, completion: nil)
         } else {
             let paymentController = PaymentViewController()
-            presentViewController(paymentController, animated: true, completion: nil)
+            // Below displays manual credit card entry forms
+            // presentViewController(paymentController, animated: true, completion: nil)
             // Show the user your own credit card form (see options 2 or 3)
         }
     }

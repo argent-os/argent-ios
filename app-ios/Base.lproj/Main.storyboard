@@ -87,7 +87,7 @@
                         <viewControllerLayoutGuide type="bottom" id="HLl-tB-D5j"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6nZ-kW-z7i">
-                        <rect key="frame" x="0.0" y="64" width="414" height="623"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -142,6 +142,7 @@
                             <outlet property="animation" destination="5og-XN-6KF" id="t1q-Mn-7Zh"/>
                         </connections>
                     </tabBarItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
@@ -1716,7 +1717,7 @@ institutions</string>
                         <viewControllerLayoutGuide type="bottom" id="buS-2c-LKz"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="JaV-yX-yXF">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1729,59 +1730,6 @@ institutions</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TQ5-Tm-vUL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-186" y="274"/>
-        </scene>
-        <!--Payment View Controller-->
-        <scene sceneID="8aA-rZ-fC8">
-            <objects>
-                <viewController id="hID-a6-EEA" customClass="PaymentViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="atA-AY-Lhh"/>
-                        <viewControllerLayoutGuide type="bottom" id="dB8-uG-iPJ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="pGM-xI-HLb">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P3I-fk-7ml">
-                                <rect key="frame" x="24" y="669" width="366" height="47"/>
-                                <color key="backgroundColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="47" id="o4K-KJ-Dr5"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                <state key="normal" title="Return">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="FFu-uW-Oqz" kind="show" identifier="homeView" id="3gU-qs-BJW"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4iM-Qn-75Y">
-                                <rect key="frame" x="128" y="248" width="159" height="239"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Press to  Pay">
-                                    <color key="titleColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
-                                </state>
-                                <connections>
-                                    <action selector="showPayModal" destination="hID-a6-EEA" eventType="touchUpInside" id="oET-Nv-Nkn"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="4iM-Qn-75Y" firstAttribute="centerY" secondItem="pGM-xI-HLb" secondAttribute="centerY" id="G0O-gb-Ufy"/>
-                            <constraint firstAttribute="bottom" secondItem="P3I-fk-7ml" secondAttribute="bottom" constant="20" symbolic="YES" id="IOu-LV-ZiP"/>
-                            <constraint firstItem="4iM-Qn-75Y" firstAttribute="centerX" secondItem="P3I-fk-7ml" secondAttribute="centerX" id="ZHJ-Ly-i6u"/>
-                            <constraint firstItem="P3I-fk-7ml" firstAttribute="leading" secondItem="pGM-xI-HLb" secondAttribute="leadingMargin" constant="4" id="e8w-YH-Ypw"/>
-                            <constraint firstItem="4iM-Qn-75Y" firstAttribute="top" secondItem="atA-AY-Lhh" secondAttribute="bottom" constant="228" id="lSe-Dj-RcI"/>
-                            <constraint firstItem="4iM-Qn-75Y" firstAttribute="centerX" secondItem="pGM-xI-HLb" secondAttribute="centerX" id="m7C-0E-Z2w"/>
-                        </constraints>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MPf-JL-sUS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-236" y="1299"/>
         </scene>
         <!--Left Menu View Controller-->
         <scene sceneID="JIm-2k-XGJ">
@@ -3263,11 +3211,11 @@ Click here to view more</string>
                         <viewControllerLayoutGuide type="bottom" id="j28-KU-mNU"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="sqS-RP-JEc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="awt-hT-DzB">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="idCell" textLabel="eDw-mh-d6X" rowHeight="60" style="IBUITableViewCellStyleDefault" id="bP2-Kq-CYW">
@@ -3311,6 +3259,7 @@ Click here to view more</string>
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6yw-NC-1RW" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lc8-il-8Z6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -3343,33 +3292,32 @@ Click here to view more</string>
         <image name="ic_user" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="igQ-zk-tCm"/>
-        <segue reference="m3z-fp-Nlm"/>
-        <segue reference="gUR-9D-JWE"/>
-        <segue reference="j8y-vP-2EI"/>
-        <segue reference="agi-3I-cSC"/>
-        <segue reference="VI5-hp-Gm2"/>
-        <segue reference="ipn-3I-3vc"/>
-        <segue reference="aks-Yo-Spb"/>
-        <segue reference="fEJ-lR-z9I"/>
-        <segue reference="Bc6-jW-uiV"/>
-        <segue reference="7cu-FP-MoG"/>
-        <segue reference="HS7-dW-Hxr"/>
-        <segue reference="3gU-qs-BJW"/>
-        <segue reference="UFB-DJ-qrH"/>
-        <segue reference="q4R-jw-ebX"/>
+        <segue reference="Xln-0K-kRS"/>
         <segue reference="A1R-09-1HJ"/>
+        <segue reference="UFB-DJ-qrH"/>
         <segue reference="xTl-cs-ajG"/>
-        <segue reference="C2X-hN-Ktf"/>
         <segue reference="dKP-gn-jL5"/>
         <segue reference="Oy0-WL-Zfz"/>
-        <segue reference="zQh-Po-kj4"/>
-        <segue reference="Xln-0K-kRS"/>
-        <segue reference="5Ke-wX-bmY"/>
-        <segue reference="JgX-xV-v5e"/>
+        <segue reference="HS7-dW-Hxr"/>
         <segue reference="eyR-QB-Omx"/>
-        <segue reference="SFz-vc-0MB"/>
+        <segue reference="C2X-hN-Ktf"/>
+        <segue reference="JgX-xV-v5e"/>
+        <segue reference="5Ke-wX-bmY"/>
+        <segue reference="zQh-Po-kj4"/>
         <segue reference="wgV-xY-MTp"/>
+        <segue reference="SFz-vc-0MB"/>
+        <segue reference="agi-3I-cSC"/>
+        <segue reference="j8y-vP-2EI"/>
+        <segue reference="gUR-9D-JWE"/>
+        <segue reference="m3z-fp-Nlm"/>
+        <segue reference="igQ-zk-tCm"/>
+        <segue reference="aks-Yo-Spb"/>
+        <segue reference="fEJ-lR-z9I"/>
+        <segue reference="7cu-FP-MoG"/>
+        <segue reference="Bc6-jW-uiV"/>
+        <segue reference="VI5-hp-Gm2"/>
+        <segue reference="ipn-3I-3vc"/>
+        <segue reference="zsk-4D-roF"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>

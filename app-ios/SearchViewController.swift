@@ -46,7 +46,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         navBar.translucent = false
         navBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "Nunito-Light", size: 18)!
+            NSFontAttributeName : UIFont(name: "Helvetica", size: 18)!
         ]
         self.view.addSubview(navBar);
         let navItem = UINavigationItem(title: "Search");
