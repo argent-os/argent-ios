@@ -17,6 +17,8 @@ class WebSupportViewController: UIViewController {
     override func loadView() {
         super.loadView()
         
+        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
+
         self.webView = WKWebView()
         self.view = self.webView!
     }

@@ -39,7 +39,8 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
         _ = screen.size.width
         _ = screen.size.height
 
-        self.navigationItem.title = "Configure Notifications"
+        self.navigationItem.title = "Notifications"
+        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.darkGrayColor()]
         
         // Create RowFomers

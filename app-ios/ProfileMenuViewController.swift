@@ -22,9 +22,14 @@ class ProfileMenuViewController: UITableViewController {
         print("loaded profile menu")
     }
     
+    override func viewDidAppear(animated: Bool) {
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+        UIStatusBarStyle.Default
+    }
+    
     //Changing Status Bar
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+        return UIStatusBarStyle.Default
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

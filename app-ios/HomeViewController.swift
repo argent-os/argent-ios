@@ -213,11 +213,13 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
-    
+
     // VIEW DID APPEAR
     override func viewDidAppear(animated: Bool) {
         
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
         UITextField.appearance().keyboardAppearance = .Light
+        UIStatusBarStyle.LightContent
 
         // Check for user logged in key
         let userLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("userLoggedIn");

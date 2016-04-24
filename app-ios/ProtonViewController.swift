@@ -26,12 +26,11 @@ class ProtonViewController: UIViewController, LiquidFloatingActionButtonDataSour
     
     let colors = [UIColor.redColor(), UIColor.grayColor(), UIColor.greenColor(), UIColor.purpleColor()]
     let items: [(icon: String, color: UIColor)] = [
-        ("ic_proton", UIColor(red:0.19, green:0.57, blue:1, alpha:1)),
-        ("ic_proton", UIColor(red:0.22, green:0.74, blue:0, alpha:1)),
-        ("ic_proton", UIColor(red:0.96, green:0.23, blue:0.21, alpha:1)),
-        ("ic_proton", UIColor(red:0.51, green:0.15, blue:1, alpha:1)),
-        ("ic_proton", UIColor(red:0.11, green:0.8, blue:0.9, alpha:1)),
-        ("ic_proton", UIColor(red:0.4, green:0.8, blue:0.1, alpha:1)),
+        ("ic_like", UIColor(red:0.19, green:0.57, blue:1, alpha:1)),
+        ("ic_like", UIColor(red:0.22, green:0.74, blue:0, alpha:1)),
+        ("ic_like", UIColor(red:0.96, green:0.23, blue:0.21, alpha:1)),
+        ("ic_like", UIColor(red:0.51, green:0.15, blue:1, alpha:1)),
+        ("ic_like", UIColor(red:0.11, green:0.8, blue:0.9, alpha:1)),
     ]
     
     override func viewDidLoad() {
@@ -86,6 +85,8 @@ class ProtonViewController: UIViewController, LiquidFloatingActionButtonDataSour
     }
     
     override func viewDidAppear(animated: Bool) {
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+        UIStatusBarStyle.Default
         if(Int(button.state.rawValue) == 0) {
             button.sendActionsForControlEvents(.TouchUpInside)
         }

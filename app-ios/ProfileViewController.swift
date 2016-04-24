@@ -14,6 +14,11 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var avatarImageView: UIImageView!
 
+    override func viewDidAppear(animated: Bool) {
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+        UIStatusBarStyle.Default
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Profile"

@@ -68,6 +68,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //        configureCustomSearchController()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        // Set nav back button white
+        UIStatusBarStyle.LightContent
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

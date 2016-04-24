@@ -14,6 +14,7 @@ final class EditProfileViewController: FormViewController {
     // MARK: Public
     
     override func viewDidLoad() {
+        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
         super.viewDidLoad()
         configure()
     }

@@ -19,6 +19,8 @@ class WebPrivacyViewController: UIViewController, WKNavigationDelegate, WKUIDele
     override func loadView() {
         super.loadView()
         
+        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
+
         self.webView = WKWebView()
         self.webView?.UIDelegate = self
         self.webView?.contentMode = UIViewContentMode.ScaleToFill
