@@ -16,6 +16,14 @@ class ProtonViewController: UIViewController, LiquidFloatingActionButtonDataSour
     var cells: [LiquidFloatingCell] = []
     var floatingActionButton: LiquidFloatingActionButton!
     
+    let button = CircleMenu(
+        frame: CGRect(x: 0, y: 0, width: 70, height: 70),
+        normalIcon:"IconMenu",
+        selectedIcon:"IconCloseLight",
+        buttonsCount: 5,
+        duration: 0.5,
+        distance: 130)
+    
     let colors = [UIColor.redColor(), UIColor.grayColor(), UIColor.greenColor(), UIColor.purpleColor()]
     let items: [(icon: String, color: UIColor)] = [
         ("ic_proton", UIColor(red:0.19, green:0.57, blue:1, alpha:1)),
@@ -36,14 +44,6 @@ class ProtonViewController: UIViewController, LiquidFloatingActionButtonDataSour
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-        // add button
-        let button = CircleMenu(
-            frame: CGRect(x: 0, y: 0, width: 70, height: 70),
-                    normalIcon:"IconMenu",
-                    selectedIcon:"IconCloseLight",
-                    buttonsCount: 5,
-                    duration: 0.5,
-                    distance: 130)
 //        button.setBackgroundImage(UIImage(named: "BackgroundGradientInverse"), forState: .Normal)
         button.backgroundColor = UIColor.protonBlue()
         button.delegate = self
@@ -83,6 +83,10 @@ class ProtonViewController: UIViewController, LiquidFloatingActionButtonDataSour
         }
 //        self.view.addSubview(bottomRightButton)
         
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        button.sendActionsForControlEvents(.TouchUpInside)
     }
     
     func addBlurView(){
