@@ -15,17 +15,7 @@ import Gecco
 class AuthViewController: UIViewController  {
     
     var spotlightViewController: SpotlightViewController?
-    
-    override func viewDidAppear(animated: Bool) {
 
-    }
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if(segue.identifier == "tutorialView") {
-//            
-//        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Border radius on uiview
@@ -150,5 +140,9 @@ class AuthViewController: UIViewController  {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
+    override func viewDidAppear(animated: Bool) {
+        
+    }
+
 }

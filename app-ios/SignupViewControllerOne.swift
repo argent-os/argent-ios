@@ -49,7 +49,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
         HUD.showInView(self.view!)
         HUD.dismissAfterDelay(0.5)
         
@@ -77,7 +77,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
         // Programatically set the input fields
         firstNameTextField.tag = 89
         firstNameTextField.textAlignment = NSTextAlignment.Center
-        firstNameTextField.borderActiveColor = UIColor(rgba: "#FFF")
+        firstNameTextField.borderActiveColor = UIColor.clearColor()
         firstNameTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
         firstNameTextField.backgroundColor = UIColor.clearColor()
         firstNameTextField.placeholder = "First Name"
@@ -95,7 +95,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
         
         lastNameTextField.tag = 90
         lastNameTextField.textAlignment = NSTextAlignment.Center
-        lastNameTextField.borderActiveColor = UIColor(rgba: "#FFF")
+        lastNameTextField.borderActiveColor = UIColor.clearColor()
         lastNameTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
         lastNameTextField.backgroundColor = UIColor.clearColor()
         lastNameTextField.placeholder = "Last Name"
@@ -113,7 +113,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
 
         dobTextField.tag = 91
         dobTextField.textAlignment = NSTextAlignment.Center
-        dobTextField.borderActiveColor = UIColor(rgba: "#FFF")
+        dobTextField.borderActiveColor = UIColor.clearColor()
         dobTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
         dobTextField.backgroundColor = UIColor.clearColor()
         dobTextField.placeholder = "Date of Birth - MM/DD/YYYY"
@@ -187,7 +187,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
     func displayErrorAlertMessage(alertMessage:String) {
         let alertView: SIAlertView = SIAlertView(title: "Error", andMessage: alertMessage)
         alertView.addButtonWithTitle("Ok", type: SIAlertViewButtonType.Default, handler: nil)
-        alertView.transitionStyle = SIAlertViewTransitionStyle.DropDown
+        alertView.transitionStyle = SIAlertViewTransitionStyle.Bounce
         alertView.show()
     }
     

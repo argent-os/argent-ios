@@ -48,7 +48,7 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
         HUD.showInView(self.view!)
         HUD.dismissAfterDelay(0.5)
         
@@ -72,7 +72,7 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate {
         // Programatically set the input fields
         usernameTextField.tag = 123
         usernameTextField.textAlignment = NSTextAlignment.Center
-        usernameTextField.borderActiveColor = UIColor(rgba: "#FFF")
+        usernameTextField.borderActiveColor = UIColor.clearColor()
         usernameTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
         usernameTextField.backgroundColor = UIColor.clearColor()
         usernameTextField.placeholder = "Username"
@@ -90,7 +90,7 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate {
         
         emailTextField.tag = 124
         emailTextField.textAlignment = NSTextAlignment.Center
-        emailTextField.borderActiveColor = UIColor(rgba: "#FFF")
+        emailTextField.borderActiveColor = UIColor.clearColor()
         emailTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
         emailTextField.backgroundColor = UIColor.clearColor()
         emailTextField.placeholder = "Email Address"
@@ -108,7 +108,7 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate {
         
         phoneNumberTextField.tag = 125
         phoneNumberTextField.textAlignment = NSTextAlignment.Center
-        phoneNumberTextField.borderActiveColor = UIColor(rgba: "#FFF")
+        phoneNumberTextField.borderActiveColor = UIColor.clearColor()
         phoneNumberTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
         phoneNumberTextField.backgroundColor = UIColor.clearColor()
         phoneNumberTextField.placeholder = "Phone Number (US Only)"
@@ -257,7 +257,7 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate {
     func displayErrorAlertMessage(alertMessage:String) {
         let alertView: SIAlertView = SIAlertView(title: "Error", andMessage: alertMessage)
         alertView.addButtonWithTitle("Ok", type: SIAlertViewButtonType.Default, handler: nil)
-        alertView.transitionStyle = SIAlertViewTransitionStyle.DropDown
+        alertView.transitionStyle = SIAlertViewTransitionStyle.Bounce
         alertView.show()
     }
     

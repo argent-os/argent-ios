@@ -58,7 +58,7 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
         HUD.showInView(self.view!)
         HUD.dismissAfterDelay(0.5)
         
@@ -102,9 +102,9 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
     
     @IBAction func finishButtonTapped(sender: AnyObject) {
         
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        print("finish button tapped")
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
         HUD.showInView(self.view!)
-        HUD.dismissAfterDelay(1)
         
         if(self.switchTermsAndPrivacy.on.boolValue == false) {
             // Display error if terms of service and privacy policy not accepted
@@ -130,6 +130,9 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
                     return ""
                 }
                 
+                var iosContent: [String: AnyObject] = [ "push_state": true, "device_token": userDeviceToken ] //also works with [ "model" : NSNull()]
+                let iosNSDict = iosContent as NSDictionary //no error message
+                
                 let parameters : [String : AnyObject] = [
                     "username":self.userUsername,
                     "country":self.countryCode,
@@ -137,7 +140,7 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
                     "tos_acceptance" : tosNSDict,
                     "legal_entity_type": self.userLegalEntityType,
                     "password":userPassword,
-                    "device_token_ios": userDeviceToken
+                    "ios": iosNSDict
                 ]
                 Alamofire.request(.POST, apiUrl + "/v1/register", parameters: parameters, encoding:.JSON)
                     .responseJSON { response in
@@ -147,15 +150,17 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
                         //print(response.result) // result of response serialization
                         
                         if(response.response?.statusCode == 200) {
-                            // Login is successful
-                            NSUserDefaults.standardUserDefaults().setBool(true,forKey:"userLoggedIn");
-                            NSUserDefaults.standardUserDefaults().synchronize();
-                            
+                            print("register success")
+                            HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
+                            HUD.dismissAfterDelay(3)
                             print("response 200 success")
                             // go to main view
-                            self.performSegueWithIdentifier("loginView", sender: self);
+                            Timeout(2) {
+                                self.performSegueWithIdentifier("loginView", sender: self)
+                            }
                         } else {
-                            self.displayErrorAlertMessage("Registration Error, username or email already taken.")
+                            HUD.indicatorView = JGProgressHUDErrorIndicatorView()
+                            HUD.dismissAfterDelay(3)
                             print("failed to signup")
                         }
                         
@@ -164,20 +169,27 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
                             if let value = response.result.value {
                                 let json = JSON(value)
                                 // potentially use completionHandler/closure in future
-                                print("Response: \(json)")
+                                // print("Response: \(json)")
+                                let msg = json["message"].stringValue
+                                if msg != "" {
+                                    HUD.textLabel.text = String(json["message"])
+                                }
                                 // assign userData to self, access globally
-                                print("register success")
-                                self.displaySuccessAlertMessage("Registration Successful!  You can now login.")
                             }
                         case .Failure(let error):
                             print("failed to signup", error)
-                            self.displayErrorAlertMessage("Registration Error, username or email already taken.")
+                            HUD.indicatorView = JGProgressHUDErrorIndicatorView()
+                            print(error.userInfo[NSUnderlyingErrorKey]?.localizedDescription)
+                            HUD.textLabel.text = error.userInfo[NSUnderlyingErrorKey]?.localizedDescription
+                            HUD.dismissAfterDelay(3)
                             break
                         }
                 }
                 
             } else {
-                self.displayErrorAlertMessage("Registration Error, please check your network connection or date/time settings.")
+                HUD.indicatorView = JGProgressHUDErrorIndicatorView()
+                HUD.textLabel.text = "Registration Error, please check your network connection or date/time settings are correct."
+                HUD.dismissAfterDelay(10)
             }
         }
         // TODO: Set keychain username and password
@@ -186,23 +198,20 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
     func displayErrorAlertMessage(alertMessage:String) {
         let alertView: SIAlertView = SIAlertView(title: "Error", andMessage: alertMessage)
         alertView.addButtonWithTitle("Ok", type: SIAlertViewButtonType.Default, handler: nil)
-        alertView.transitionStyle = SIAlertViewTransitionStyle.DropDown
+        alertView.transitionStyle = SIAlertViewTransitionStyle.Bounce
+        alertView.show()
+    }
+    
+    func displayDefaultErrorAlertMessage(alertMessage:String) {
+        let alertView: UIAlertView = UIAlertView(title: "Error", message: alertMessage, delegate: self, cancelButtonTitle: nil)
+        alertView.addButtonWithTitle("OK")
         alertView.show()
     }
     
     func goToLogin() {
         self.performSegueWithIdentifier("loginView", sender: self);
     }
-    
-    func displaySuccessAlertMessage(alertMessage:String) {
-        let alertView: SIAlertView = SIAlertView(title: "Success", andMessage: alertMessage)
-        alertView.addButtonWithTitle("Let's go!", type: SIAlertViewButtonType.Default, handler: { action in
-            self.goToLogin()
-        })
-        alertView.transitionStyle = SIAlertViewTransitionStyle.DropDown
-        alertView.show()
-    }
-    
+
     // Return IP address of WiFi interface (en0) as a String, or `nil`
     // Used for accepting terms of service
     func getWifiAddress(completionHandler: (String?, NSError?) -> ()) -> () {

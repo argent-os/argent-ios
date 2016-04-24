@@ -47,7 +47,7 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
         HUD.showInView(self.view!)
         HUD.dismissAfterDelay(0.5)
         
@@ -68,7 +68,7 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate {
         // Programatically set the input fields
         usernameTextField.tag = 123
         usernameTextField.textAlignment = NSTextAlignment.Center
-        usernameTextField.borderActiveColor = UIColor(rgba: "#FFF")
+        usernameTextField.borderActiveColor = UIColor.clearColor()
         usernameTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
         usernameTextField.backgroundColor = UIColor.clearColor()
         usernameTextField.placeholder = "Username"
@@ -86,8 +86,9 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate {
         
         emailTextField.tag = 124
         emailTextField.textAlignment = NSTextAlignment.Center
-        emailTextField.borderActiveColor = UIColor(rgba: "#FFF")
+        emailTextField.borderActiveColor = UIColor.clearColor()
         emailTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
+        emailTextField.font = UIFont(name: "Helvetica", size: 16)
         emailTextField.backgroundColor = UIColor.clearColor()
         emailTextField.placeholder = "Email Address"
         emailTextField.placeholderColor = UIColor.grayColor()
@@ -190,7 +191,7 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate {
     func displayErrorAlertMessage(alertMessage:String) {
         let alertView: SIAlertView = SIAlertView(title: "Error", andMessage: alertMessage)
         alertView.addButtonWithTitle("Ok", type: SIAlertViewButtonType.Default, handler: nil)
-        alertView.transitionStyle = SIAlertViewTransitionStyle.DropDown
+        alertView.transitionStyle = SIAlertViewTransitionStyle.Bounce
         alertView.show()
     }
     

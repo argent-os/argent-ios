@@ -47,7 +47,7 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
 
         // Show progress loader on load
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
         HUD.showInView(self.view!)
         HUD.dismissAfterDelay(0.5)
         
@@ -71,7 +71,7 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate {
         // Programatically set the input fields
         passwordTextField.tag = 234
         passwordTextField.textAlignment = NSTextAlignment.Center
-        passwordTextField.borderActiveColor = UIColor(rgba: "#FFF")
+        passwordTextField.borderActiveColor = UIColor.clearColor()
         passwordTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
         passwordTextField.backgroundColor = UIColor.clearColor()
         passwordTextField.placeholder = "Password"
@@ -90,7 +90,7 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate {
         
         repeatPasswordTextField.tag = 235
         repeatPasswordTextField.textAlignment = NSTextAlignment.Center
-        repeatPasswordTextField.borderActiveColor = UIColor(rgba: "#FFF")
+        repeatPasswordTextField.borderActiveColor = UIColor.clearColor()
         repeatPasswordTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
         repeatPasswordTextField.backgroundColor = UIColor.clearColor()
         repeatPasswordTextField.placeholder = "Repeat Password"
@@ -154,7 +154,7 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate {
     func displayErrorAlertMessage(alertMessage:String) {
         let alertView: SIAlertView = SIAlertView(title: "Error", andMessage: alertMessage)
         alertView.addButtonWithTitle("Ok", type: SIAlertViewButtonType.Default, handler: nil)
-        alertView.transitionStyle = SIAlertViewTransitionStyle.DropDown
+        alertView.transitionStyle = SIAlertViewTransitionStyle.Bounce
         alertView.show()
     }
     

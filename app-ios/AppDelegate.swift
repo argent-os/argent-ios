@@ -24,8 +24,8 @@ var userData:JSON? // init user data, declare globally, needs SwiftyJSON
 
 // let apiUrl = "http://localhost:5001"
 // let apiUrl = "http://192.168.1.182:5001"
-// let apiUrl = "http://192.168.1.232:5001"
- let apiUrl = "http://proton-api-dev.us-east-1.elasticbeanstalk.com"
+ let apiUrl = "http://192.168.1.232:5001"
+// let apiUrl = "http://proton-api-dev.us-east-1.elasticbeanstalk.com"
 // PROD
 //let apiUrl = "http://api.protonpayments.com"
 
@@ -88,7 +88,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let font = UIFont(name: "Nunito-SemiBold", size: 15) {
             UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: font,NSForegroundColorAttributeName:UIColor.whiteColor()], forState: UIControlState.Normal)
-            
         }
         
         // Initialize Plaid, change to .Production before golive

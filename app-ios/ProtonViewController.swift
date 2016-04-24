@@ -139,9 +139,11 @@ class ProtonViewController: UIViewController, LiquidFloatingActionButtonDataSour
     
     func circleMenu(circleMenu: CircleMenu, willDisplay button: CircleMenuButton, atIndex: Int) {
         button.backgroundColor = items[atIndex].color
+        button.layer.borderColor = UIColor.protonDarkBlue().CGColor
+        button.layer.borderWidth = 2
         button.setImage(UIImage(imageLiteral: items[atIndex].icon), forState: .Normal)
         
-        // set highlited image
+        // set highlighted image
         let highlightedImage  = UIImage(imageLiteral: items[atIndex].icon).imageWithRenderingMode(.AlwaysTemplate)
         button.setImage(highlightedImage, forState: .Highlighted)
         button.tintColor = UIColor.init(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0.3)

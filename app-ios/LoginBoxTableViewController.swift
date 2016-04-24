@@ -96,10 +96,10 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
         // check for empty fields
         if(email!.isEmpty) {
             // display alert message
-            displayAlertMessage("Username/Email not entered");
+            displayErrorAlertMessage("Username/Email not entered");
             return;
         } else if(password!.isEmpty) {
-            displayAlertMessage("Password not entered");
+            displayErrorAlertMessage("Password not entered");
             return;
         }
         
@@ -128,7 +128,7 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
                     print("green light")
                 } else {
                     print("red light")
-                    self.displayErrorAlertMessage("Failed to login, please check username/email and password are correct");
+                    self.displayDefaultErrorAlertMessage("Failed to login, please check username/email and password are correct");
                 }
                 
                 switch response.result {
@@ -178,7 +178,7 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
                     }
                 case .Failure(let error):
                     print(error)
-                    self.displayErrorAlertMessage("Failed to login, please check username/email and password are correct");
+                    self.displayDefaultErrorAlertMessage("Failed to login, please check username/email and password are correct");
                 }
         }
         
@@ -238,11 +238,17 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
         view.endEditing(true)
     }
     
+    func displayDefaultErrorAlertMessage(alertMessage:String) {
+        let alertView: UIAlertView = UIAlertView(title: "Error", message: alertMessage, delegate: self, cancelButtonTitle: nil)
+        alertView.addButtonWithTitle("OK")
+        alertView.show()
+    }
+    
     func displayAlertMessage(alertMessage:String) {
         let alertView: SIAlertView = SIAlertView(title: "Alert", andMessage: alertMessage)
         alertView.addButtonWithTitle("Ok", type: SIAlertViewButtonType.Default, handler: nil)
 //        alertView.addButtonWithTitle("Button2", type: SIAlertViewButtonType.Destructive, handler: nil)
-        alertView.transitionStyle = SIAlertViewTransitionStyle.DropDown
+        alertView.transitionStyle = SIAlertViewTransitionStyle.Bounce
         alertView.show()
     }
     
@@ -250,7 +256,7 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
         let alertView: SIAlertView = SIAlertView(title: "Error", andMessage: alertMessage)
         alertView.addButtonWithTitle("Ok", type: SIAlertViewButtonType.Default, handler: nil)
         //        alertView.addButtonWithTitle("Button2", type: SIAlertViewButtonType.Destructive, handler: nil)
-        alertView.transitionStyle = SIAlertViewTransitionStyle.DropDown
+        alertView.transitionStyle = SIAlertViewTransitionStyle.Bounce
         alertView.show()
     }
 }
