@@ -17,9 +17,16 @@ class CreditCardAccountViewController: UIViewController, CardIOPaymentViewContro
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
+
         addCardButton.layer.cornerRadius = 5
         addCardButton.backgroundColor = UIColor.protonBlue()
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
+    }
+    
     // CARD IO
     @IBAction func scanCard(sender: AnyObject) {
         let cardIOVC = CardIOPaymentViewController(paymentDelegate: self)

@@ -20,8 +20,8 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
     var dateFormatter = NSDateFormatter()
     
     override func viewDidAppear(animated: Bool) {
-        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
-        UIStatusBarStyle.Default
+        self.navigationController!.navigationBar.tintColor = UIColor.darkGrayColor()
+        self.childViewControllerForStatusBarStyle()?.setNeedsStatusBarAppearanceUpdate()
     }
     
     override func viewDidLoad() {

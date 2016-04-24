@@ -418,10 +418,7 @@ support request</string>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="SQo-ce-IG2" kind="show" id="S3j-7C-j9i">
-                                                <segue key="commit" inheritsFrom="parent" id="YhP-nH-BNq"/>
-                                                <segue key="preview" inheritsFrom="commit" id="gm2-EJ-QCY"/>
-                                            </segue>
+                                            <segue destination="SQo-ce-IG2" kind="show" id="S3j-7C-j9i"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="gU0-ya-vRc" style="IBUITableViewCellStyleDefault" id="B8C-Gf-LmD">
@@ -441,10 +438,7 @@ support request</string>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="SQo-ce-IG2" kind="show" id="GfY-d3-W00">
-                                                <segue key="commit" inheritsFrom="parent" id="7Ei-iZ-DFZ"/>
-                                                <segue key="preview" inheritsFrom="commit" id="qAN-1I-Vw5"/>
-                                            </segue>
+                                            <segue destination="SQo-ce-IG2" kind="show" id="GfY-d3-W00"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="bqR-kb-C0e" style="IBUITableViewCellStyleDefault" id="D92-h3-IGV">
@@ -464,10 +458,7 @@ support request</string>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="SQo-ce-IG2" kind="show" id="ZC1-zR-SIM">
-                                                <segue key="commit" inheritsFrom="parent" id="nfg-jJ-AXM"/>
-                                                <segue key="preview" inheritsFrom="commit" id="eKP-Oy-Kpt"/>
-                                            </segue>
+                                            <segue destination="SQo-ce-IG2" kind="show" id="ZC1-zR-SIM"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="5Xf-Sb-W48" style="IBUITableViewCellStyleDefault" id="5Be-R1-hdF">
@@ -487,10 +478,7 @@ support request</string>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="SQo-ce-IG2" kind="show" id="elP-yi-yJN">
-                                                <segue key="commit" inheritsFrom="parent" id="HvB-OF-qHE"/>
-                                                <segue key="preview" inheritsFrom="commit" id="3OP-Cf-M0d"/>
-                                            </segue>
+                                            <segue destination="SQo-ce-IG2" kind="show" id="elP-yi-yJN"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="JrO-gU-QYZ" style="IBUITableViewCellStyleDefault" id="Oqg-40-e6s">
@@ -510,10 +498,7 @@ support request</string>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="SQo-ce-IG2" kind="show" id="wgV-xY-MTp">
-                                                <segue key="commit" inheritsFrom="parent" id="65H-LF-CRM"/>
-                                                <segue key="preview" inheritsFrom="commit" id="paQ-dW-Mul"/>
-                                            </segue>
+                                            <segue destination="SQo-ce-IG2" kind="show" id="wgV-xY-MTp"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -728,10 +713,7 @@ support request</string>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="Wgs-dC-FHb" kind="show" id="5Ke-wX-bmY">
-                                                <segue key="commit" inheritsFrom="parent" id="lr1-xP-ILv"/>
-                                                <segue key="preview" inheritsFrom="commit" id="f7A-DE-uut"/>
-                                            </segue>
+                                            <segue destination="Wgs-dC-FHb" kind="show" id="5Ke-wX-bmY"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" focusStyle="custom" id="0WQ-2O-ohv">
@@ -790,10 +772,7 @@ support request</string>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="TLv-6n-mxk" kind="show" id="Oy0-WL-Zfz">
-                                                <segue key="commit" inheritsFrom="parent" id="eXR-QL-Nmz"/>
-                                                <segue key="preview" inheritsFrom="commit" id="f05-5M-DCv"/>
-                                            </segue>
+                                            <segue destination="TLv-6n-mxk" kind="show" id="Oy0-WL-Zfz"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="jZ6-iY-RNE">
@@ -852,10 +831,7 @@ support request</string>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="uGb-UG-pwn" kind="show" id="dKP-gn-jL5">
-                                                <segue key="commit" inheritsFrom="parent" id="w2q-Ku-ewh"/>
-                                                <segue key="preview" inheritsFrom="commit" id="x2o-tR-5I6"/>
-                                            </segue>
+                                            <segue destination="uGb-UG-pwn" kind="show" id="dKP-gn-jL5"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="60R-Bp-h5a" detailTextLabel="sZ6-Xr-Iqi" style="IBUITableViewCellStyleValue1" id="NJm-7W-Pf3">
@@ -882,10 +858,7 @@ support request</string>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="a2y-cu-MBE" kind="show" id="Xln-0K-kRS">
-                                                <segue key="commit" inheritsFrom="parent" id="edx-i4-qih"/>
-                                                <segue key="preview" inheritsFrom="commit" id="pvT-nU-FcV"/>
-                                            </segue>
+                                            <segue destination="a2y-cu-MBE" kind="show" id="Xln-0K-kRS"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="dXU-nT-5jg" detailTextLabel="NZT-Nb-AJo" style="IBUITableViewCellStyleValue1" id="bN9-Os-WaP">
@@ -968,10 +941,7 @@ support request</string>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="eNm-VK-5pP" kind="show" identifier="supportView" id="C2X-hN-Ktf">
-                                                <segue key="commit" inheritsFrom="parent" id="k8G-50-0cb"/>
-                                                <segue key="preview" inheritsFrom="commit" id="BX2-V1-sEg"/>
-                                            </segue>
+                                            <segue destination="eNm-VK-5pP" kind="show" identifier="supportView" id="C2X-hN-Ktf"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="9Wg-bu-lYz" detailTextLabel="0qv-rh-DoV" style="IBUITableViewCellStyleValue1" id="Tn1-Eb-87u">
@@ -998,10 +968,7 @@ support request</string>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="xwC-9C-flp" kind="show" id="eyR-QB-Omx">
-                                                <segue key="commit" inheritsFrom="parent" id="SKz-RX-2gN"/>
-                                                <segue key="preview" inheritsFrom="commit" id="mKY-0x-uZd"/>
-                                            </segue>
+                                            <segue destination="xwC-9C-flp" kind="show" id="eyR-QB-Omx"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Y4m-7x-oLT">
@@ -1060,10 +1027,7 @@ support request</string>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="f3U-uQ-HRj" kind="show" identifier="termsView" id="HS7-dW-Hxr">
-                                                <segue key="commit" inheritsFrom="parent" id="r7w-3S-hFR"/>
-                                                <segue key="preview" inheritsFrom="commit" id="2Ok-9d-gxl"/>
-                                            </segue>
+                                            <segue destination="f3U-uQ-HRj" kind="show" identifier="termsView" id="HS7-dW-Hxr"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="fUD-eM-piw" detailTextLabel="0K0-Nf-TMM" style="IBUITableViewCellStyleValue1" id="9hf-eW-or7">
@@ -1090,10 +1054,7 @@ support request</string>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="RwR-mH-qAM" kind="show" identifier="privacyView" id="JgX-xV-v5e">
-                                                <segue key="commit" inheritsFrom="parent" id="9HD-At-qEO"/>
-                                                <segue key="preview" inheritsFrom="commit" id="rPI-22-iS7"/>
-                                            </segue>
+                                            <segue destination="RwR-mH-qAM" kind="show" identifier="privacyView" id="JgX-xV-v5e"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="czg-3x-s5I">
@@ -1152,10 +1113,7 @@ support request</string>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="dyH-2H-rBl" kind="show" id="zQh-Po-kj4">
-                                                <segue key="commit" inheritsFrom="parent" id="uIn-6C-w80"/>
-                                                <segue key="preview" inheritsFrom="commit" id="Cu9-c0-pI6"/>
-                                            </segue>
+                                            <segue destination="dyH-2H-rBl" kind="show" id="zQh-Po-kj4"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" tag="534" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="ZJe-bC-57i" detailTextLabel="aUE-1a-oH3" style="IBUITableViewCellStyleValue1" id="ucs-9V-dL4">
@@ -1755,7 +1713,7 @@ institutions</string>
                         <viewControllerLayoutGuide type="bottom" id="buS-2c-LKz"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="JaV-yX-yXF">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -3250,15 +3208,15 @@ Click here to view more</string>
                         <viewControllerLayoutGuide type="bottom" id="j28-KU-mNU"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="sqS-RP-JEc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="awt-hT-DzB">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="idCell" textLabel="eDw-mh-d6X" rowHeight="60" style="IBUITableViewCellStyleDefault" id="bP2-Kq-CYW">
-                                        <rect key="frame" x="0.0" y="86" width="414" height="60"/>
+                                        <rect key="frame" x="0.0" y="22" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bP2-Kq-CYW" id="VLj-O3-6lY">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
@@ -3332,21 +3290,12 @@ Click here to view more</string>
         <image name="ic_user" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Xln-0K-kRS"/>
-        <segue reference="NZL-lW-Wpq"/>
+        <segue reference="mwT-xt-Ez4"/>
         <segue reference="xTl-cs-ajG"/>
         <segue reference="UFB-DJ-qrH"/>
         <segue reference="E98-FC-SfF"/>
         <segue reference="o5e-Ut-781"/>
-        <segue reference="dKP-gn-jL5"/>
-        <segue reference="Oy0-WL-Zfz"/>
-        <segue reference="HS7-dW-Hxr"/>
-        <segue reference="eyR-QB-Omx"/>
-        <segue reference="C2X-hN-Ktf"/>
-        <segue reference="JgX-xV-v5e"/>
-        <segue reference="5Ke-wX-bmY"/>
-        <segue reference="zQh-Po-kj4"/>
-        <segue reference="wgV-xY-MTp"/>
+        <segue reference="GfY-d3-W00"/>
         <segue reference="SFz-vc-0MB"/>
         <segue reference="agi-3I-cSC"/>
         <segue reference="j8y-vP-2EI"/>
