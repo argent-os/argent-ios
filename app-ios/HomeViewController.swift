@@ -19,7 +19,10 @@ import BEMSimpleLineGraph
 
 let userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
 
-class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpleLineGraphDataSource  {
+class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpleLineGraphDataSource, UITableViewDelegate, UITableViewDataSource  {
+    
+    var itemsArray:Array<History>?
+    var tableView:UITableView = UITableView()
     
     @IBOutlet weak var blurView: UIVisualEffectView!
     var arrayOfValues: Array<AnyObject> = [3,30,50,40,80]
@@ -50,9 +53,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     override func viewDidLoad() {
         
         let img: UIImage = UIImage(named: "Proton")!
-        let protonImageView: UIImageView = UIImageView(frame: CGRectMake(0, 24, 40, 40))
+        let protonImageView: UIImageView = UIImageView(frame: CGRectMake(20, 31, 40, 40))
         protonImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-        protonImageView.center = CGPointMake(self.view.bounds.size.width / 2, 65)
+//        protonImageView.center = CGPointMake(self.view.bounds.size.width / 2, 65)
         protonImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
         protonImageView.layer.cornerRadius = protonImageView.frame.size.height/2
         protonImageView.layer.masksToBounds = true
@@ -82,9 +85,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
             print(img)
             if img != "" {
-                let userImageView: UIImageView = UIImageView(frame: CGRectMake(0, 24, 40, 40))
+                let userImageView: UIImageView = UIImageView(frame: CGRectMake(20, 31, 40, 40))
                 userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-                userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 65)
+//                userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 65)
                 userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
                 userImageView.layer.cornerRadius = userImageView.frame.size.height/2
                 userImageView.layer.masksToBounds = true
@@ -115,16 +118,16 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-        let frame = CGRectMake(0, 160, screenWidth, screenHeight-160)
+        let frame = CGRectMake(0, 100, screenWidth, 260)
         let graph: BEMSimpleLineGraphView = BEMSimpleLineGraphView(frame: frame)
         graph.dataSource = self
         graph.colorTop = UIColor.clearColor()
-        graph.colorBottom = UIColor.clearColor()
-        graph.colorLine = UIColor.whiteColor()
+        graph.colorBottom = UIColor.protonDarkBlue()
+        graph.colorLine = UIColor(rgba: "#0003")
         graph.colorPoint = UIColor.whiteColor()
         graph.colorBackgroundPopUplabel = UIColor.whiteColor()
         graph.delegate = self
-        graph.widthLine = 2
+        graph.widthLine = 3
         graph.displayDotsWhileAnimating = true
         graph.enablePopUpReport = true
         graph.enableTouchReport = true
@@ -134,7 +137,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         self.view!.addSubview(graph)
         
         let mainSegment: UISegmentedControl = UISegmentedControl(items: ["1M", "3M", "6M", "1Y", "5Y"])
-        mainSegment.frame = CGRect(x: 15.0, y: 175.0, width: view.bounds.width - 30.0, height: 30.0)
+        mainSegment.frame = CGRect(x: 15.0, y: 300.0, width: view.bounds.width - 30.0, height: 30.0)
 //        var y_co: CGFloat = self.view.frame.size.height - 100.0
 //        mainSegment.frame = CGRectMake(10, y_co, width-20, 50.0)
         mainSegment.selectedSegmentIndex = 2
@@ -153,21 +156,47 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             NSForegroundColorAttributeName : UIColor.whiteColor(),
             NSFontAttributeName : UIFont(name: "Helvetica", size: 18)!
         ]
-        
         self.view.addSubview(navBar)
+        self.view.sendSubviewToBack(navBar)
         let navItem = UINavigationItem(title: "")
         navBar.setItems([navItem], animated: true)
         
         let runkeeperSwitch = DGRunkeeperSwitch(leftTitle: "Balance", rightTitle: "Customers")
-        runkeeperSwitch.backgroundColor = UIColor.whiteColor()
-        runkeeperSwitch.selectedBackgroundColor = UIColor.protonBlue()
-        runkeeperSwitch.titleColor = UIColor.protonBlue()
-        runkeeperSwitch.selectedTitleColor = UIColor.whiteColor()
+        runkeeperSwitch.backgroundColor = UIColor.clearColor()
+        runkeeperSwitch.selectedBackgroundColor = UIColor.whiteColor()
+        runkeeperSwitch.titleColor = UIColor.whiteColor()
+        runkeeperSwitch.selectedTitleColor = UIColor.protonBlue()
         runkeeperSwitch.titleFont = UIFont(name: "Nunito-SemiBold", size: 13.0)
-        runkeeperSwitch.frame = CGRect(x: 50.0, y: 111.0, width: view.bounds.width - 100.0, height: 30.0)
+        runkeeperSwitch.frame = CGRect(x: view.bounds.width - 205.0, y: 35, width: 200, height: 30.0)
+        //autoresizing so it stays at top right (flexible left and flexible bottom margin)
+        runkeeperSwitch.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
+        runkeeperSwitch.bringSubviewToFront(runkeeperSwitch)
         runkeeperSwitch.addTarget(self, action: #selector(HomeViewController.indexChanged(_:)), forControlEvents: .ValueChanged)
-        runkeeperSwitch.autoresizingMask = [.FlexibleWidth]
         view.addSubview(runkeeperSwitch)
+        
+        tableView.frame = CGRect(x: 0, y: 340, width: width, height: height-100)
+        self.view.addSubview(tableView)
+
+        let lblAccount:UILabel = UILabel()
+        lblAccount.tintColor = UIColor.whiteColor()
+        lblAccount.frame = CGRectMake(20, 81, 200, 40)
+        let str = NSAttributedString(string: "$10,125", attributes:
+            [
+                NSFontAttributeName: UIFont(name: "Nunito-Regular", size: 18)!,
+                NSForegroundColorAttributeName:UIColor(rgba: "#fff")
+            ])
+        lblAccount.attributedText = str
+        self.view.addSubview(lblAccount)
+        
+        let lblDescription:UILabel = UILabel()
+        lblDescription.frame = CGRectMake(20, 106, 200, 40)
+        let str2 = NSAttributedString(string: "Available Balance", attributes:
+            [
+                NSFontAttributeName: UIFont(name: "Nunito-Regular", size: 12)!,
+                NSForegroundColorAttributeName:UIColor(rgba: "#fffa")
+            ])
+        lblDescription.attributedText = str2
+        self.view.addSubview(lblDescription)
         
         // navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Left", style: .Plain, target: self, action: "presentLeftMenuViewController")
         
@@ -400,6 +429,34 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         //    }
         // }
     }
+    
+    // TableView Delegate
+    
+    func refresh(sender:AnyObject)
+    {
+//        self.loadAccountHistory()
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.itemsArray?.count ?? 0
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        let item = self.itemsArray?[indexPath.row]
+        cell.textLabel?.text = ""
+        cell.detailTextLabel?.text = "$1,129.32"
+        if let text = item?.amount
+        {
+            cell.textLabel?.text = "Amount $" + text
+        }
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 100.0
+    }
+    
 }
 
 extension UISegmentedControl {
@@ -428,17 +485,4 @@ extension UISegmentedControl {
         UIGraphicsEndImageContext();
         return image!
     }
-}
-
-public func makeRoundedImage(image: UIImage, radius: Float) -> UIImage {
-    let imageLayer: CALayer = CALayer()
-    imageLayer.frame = CGRectMake(0, 0, image.size.width, image.size.height)
-    imageLayer.contents = (image.CGImage as! AnyObject)
-    imageLayer.masksToBounds = true
-    imageLayer.cornerRadius = CGFloat(radius)
-    UIGraphicsBeginImageContext(image.size)
-    imageLayer.renderInContext(UIGraphicsGetCurrentContext()!)
-    let roundedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
-    UIGraphicsEndImageContext()
-    return roundedImage
 }

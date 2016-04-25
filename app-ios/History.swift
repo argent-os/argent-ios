@@ -1,5 +1,5 @@
 //
-//  Stripe.swift
+//  History.swift
 //  protonpay-ios
 //
 //  Created by Sinan Ulkuatam on 4/22/16.
@@ -12,10 +12,10 @@ import Alamofire
 
 class History {
     
-    let history: String
+    let amount: String
     
-    required init(history: String) {
-        self.history = history
+    required init(amount: String) {
+        self.amount = amount
     }
     
     class func getAccountHistory(completionHandler: ([History]?, NSError?) -> Void) {
@@ -47,9 +47,8 @@ class History {
                         let accountHistories = data["data"].arrayValue
                         print(data["data"].arrayValue)
                         for jsonItem in accountHistories {
-                            let history = jsonItem["amount"].stringValue
-                            
-                            let item = History(history: history)
+                            let amount = jsonItem["amount"].stringValue
+                            let item = History(amount: amount)
                             stripeItemsArray.append(item)
                         }
                         completionHandler(stripeItemsArray, response.result.error)

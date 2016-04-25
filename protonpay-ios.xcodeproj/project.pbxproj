@@ -29,7 +29,7 @@
 		3069990B1CACD6240003B0A6 /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3069990A1CACD6240003B0A6 /* Root.swift */; };
 		307C6A221C7E91A100723E39 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C6A211C7E91A100723E39 /* StoreKit.framework */; };
 		307C6A241C7E91AA00723E39 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C6A231C7E91AA00723E39 /* PassKit.framework */; };
-		308A348A1CCA803200AAF66F /* Stripe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A34891CCA803200AAF66F /* Stripe.swift */; };
+		308A348A1CCA803200AAF66F /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A34891CCA803200AAF66F /* History.swift */; };
 		309E15931CBC2A0E00EA95E4 /* ChargeCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E15921CBC2A0E00EA95E4 /* ChargeCustomerViewController.swift */; };
 		309E15951CBE9A1600EA95E4 /* ChargeCustomerSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E15941CBE9A1600EA95E4 /* ChargeCustomerSearchController.swift */; };
 		309E15971CBE9A5600EA95E4 /* ChargeCustomerCustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E15961CBE9A5600EA95E4 /* ChargeCustomerCustomSearchBar.swift */; };
@@ -246,7 +246,7 @@
 		3069990A1CACD6240003B0A6 /* Root.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
 		307C6A211C7E91A100723E39 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		307C6A231C7E91AA00723E39 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
-		308A34891CCA803200AAF66F /* Stripe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stripe.swift; path = "app-ios/Stripe.swift"; sourceTree = SOURCE_ROOT; };
+		308A34891CCA803200AAF66F /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = History.swift; path = "app-ios/History.swift"; sourceTree = SOURCE_ROOT; };
 		309E15921CBC2A0E00EA95E4 /* ChargeCustomerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChargeCustomerViewController.swift; path = "app-ios/ChargeCustomerViewController.swift"; sourceTree = SOURCE_ROOT; };
 		309E15941CBE9A1600EA95E4 /* ChargeCustomerSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChargeCustomerSearchController.swift; path = "app-ios/ChargeCustomerSearchController.swift"; sourceTree = SOURCE_ROOT; };
 		309E15961CBE9A5600EA95E4 /* ChargeCustomerCustomSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChargeCustomerCustomSearchBar.swift; path = "app-ios/ChargeCustomerCustomSearchBar.swift"; sourceTree = SOURCE_ROOT; };
@@ -468,7 +468,7 @@
 				302010C91CAF3B05007D5E7E /* Notification.swift */,
 				300E422C1CB56E10004316CF /* Bank.swift */,
 				300E42321CB71362004316CF /* Card.swift */,
-				308A34891CCA803200AAF66F /* Stripe.swift */,
+				308A34891CCA803200AAF66F /* History.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1422,7 +1422,7 @@
 				30C2DAA51CA4374F003AFD8B /* SignupIndividualViewControllerThree.swift in Sources */,
 				30B576911CC3045E005BCA5A /* SearchBar.swift in Sources */,
 				30C2DB171CA439F4003AFD8B /* paykloud_iosTests.swift in Sources */,
-				308A348A1CCA803200AAF66F /* Stripe.swift in Sources */,
+				308A348A1CCA803200AAF66F /* History.swift in Sources */,
 				30C2DAC31CA4383B003AFD8B /* NotificationViewController.swift in Sources */,
 				309E43BE1CA8ADF900279D97 /* WebTermsViewController.swift in Sources */,
 				30C2DB1F1CA43A51003AFD8B /* EditProfileViewController.swift in Sources */,
