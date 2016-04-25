@@ -11,7 +11,7 @@ import UIKit
 import TextFieldEffects
 import UIColor_Hex_Swift
 import JGProgressHUD
-import SIAlertView
+import JSSAlertView
 
 class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate {
     
@@ -189,10 +189,17 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate {
     }
     
     func displayErrorAlertMessage(alertMessage:String) {
-        let alertView: SIAlertView = SIAlertView(title: "Error", andMessage: alertMessage)
-        alertView.addButtonWithTitle("Ok", type: SIAlertViewButtonType.Default, handler: nil)
-        alertView.transitionStyle = SIAlertViewTransitionStyle.Bounce
-        alertView.show()
+        let customIcon:UIImage = UIImage(named: "ic_close_light")! // your custom icon UIImage
+        let customColor:UIColor = UIColor.protonBlue() // base color for the alert
+        let alertView = JSSAlertView().show(
+            self,
+            title: "",
+            text: alertMessage,
+            buttonText: "",
+            noButtons: true,
+            color: customColor,
+            iconImage: customIcon)
+        alertView.setTextTheme(.Light) // can be .Light or .Dark
     }
     
     func performValidation() -> Bool {

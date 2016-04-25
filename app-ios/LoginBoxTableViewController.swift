@@ -10,7 +10,6 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 import JGProgressHUD
-import SIAlertView
 import WatchConnectivity
 
 class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UITextFieldDelegate {
@@ -96,7 +95,7 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
         // check for empty fields
         if(email!.isEmpty) {
             // display alert message
-            displayErrorAlertMessage("Username/Email not entered");
+            displayErrorAlertMessage("Username or Email not entered");
             return;
         } else if(password!.isEmpty) {
             displayErrorAlertMessage("Password not entered");
@@ -239,24 +238,20 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
     }
     
     func displayDefaultErrorAlertMessage(alertMessage:String) {
-        let alertView: UIAlertView = UIAlertView(title: "Error", message: alertMessage, delegate: self, cancelButtonTitle: nil)
-        alertView.addButtonWithTitle("OK")
-        alertView.show()
+        let alertView: UIAlertController = UIAlertController(title: "Error", message: alertMessage, preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+        self.presentViewController(alertView, animated: true, completion: nil)
     }
     
     func displayAlertMessage(alertMessage:String) {
-        let alertView: SIAlertView = SIAlertView(title: "Alert", andMessage: alertMessage)
-        alertView.addButtonWithTitle("Ok", type: SIAlertViewButtonType.Default, handler: nil)
-//        alertView.addButtonWithTitle("Button2", type: SIAlertViewButtonType.Destructive, handler: nil)
-        alertView.transitionStyle = SIAlertViewTransitionStyle.Bounce
-        alertView.show()
+        let alertView: UIAlertController = UIAlertController(title: "Error", message: alertMessage, preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+        self.presentViewController(alertView, animated: true, completion: nil)
     }
     
     func displayErrorAlertMessage(alertMessage:String) {
-        let alertView: SIAlertView = SIAlertView(title: "Error", andMessage: alertMessage)
-        alertView.addButtonWithTitle("Ok", type: SIAlertViewButtonType.Default, handler: nil)
-        //        alertView.addButtonWithTitle("Button2", type: SIAlertViewButtonType.Destructive, handler: nil)
-        alertView.transitionStyle = SIAlertViewTransitionStyle.Bounce
-        alertView.show()
+        let alertView: UIAlertController = UIAlertController(title: "Error", message: alertMessage, preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+        self.presentViewController(alertView, animated: true, completion: nil)
     }
 }

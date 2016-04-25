@@ -41,23 +41,25 @@ class AuthViewController: UIViewController  {
         
         
         // UI
-        let loginButton = UIButton(frame: CGRect(x: 0, y: screenHeight*0.91, width: screenWidth/2, height: 60.0))
-        loginButton.backgroundColor = UIColor(rgba: "#1796fa")
+        let loginButton = UIButton(frame: CGRect(x: 10, y: screenHeight-60-10, width: screenWidth/2-20, height: 60.0))
+        loginButton.backgroundColor = UIColor.protonLightBlue()
         loginButton.tintColor = UIColor(rgba: "#fff")
         loginButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
         loginButton.titleLabel?.font = UIFont(name: "Nunito-SemiBold", size: 16)
         loginButton.setTitle("Log in", forState: .Normal)
-        loginButton.layer.cornerRadius = 0
+        loginButton.layer.cornerRadius = 5
+        loginButton.layer.borderWidth = 1
+        loginButton.layer.borderColor = UIColor.protonDarkBlue().CGColor
         loginButton.layer.masksToBounds = true
         loginButton.addTarget(self, action: #selector(AuthViewController.login(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(loginButton)
         
-        let signupButton = UIButton(frame: CGRect(x: screenWidth*0.5, y: screenHeight*0.91, width: screenWidth/2, height: 60.0))
+        let signupButton = UIButton(frame: CGRect(x: screenWidth*0.5+10, y: screenHeight-60-10, width: screenWidth/2-20, height: 60.0))
         signupButton.backgroundColor = UIColor.whiteColor()
         signupButton.setTitle("Sign up", forState: .Normal)
         signupButton.setTitleColor(UIColor(rgba: "#1796fa"), forState: .Normal)
         signupButton.titleLabel?.font = UIFont(name: "Nunito-SemiBold", size: 16)
-        signupButton.layer.cornerRadius = 0
+        signupButton.layer.cornerRadius = 5
         signupButton.layer.borderWidth = 1
         signupButton.layer.borderColor = UIColor(rgba: "#ffffff").CGColor
         signupButton.layer.masksToBounds = true

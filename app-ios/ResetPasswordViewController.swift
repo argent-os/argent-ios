@@ -14,7 +14,7 @@ import JGProgressHUD
 import VideoSplashKit
 import TextFieldEffects
 import UIColor_Hex_Swift
-import SIAlertView
+import JSSAlertView
 
 class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
     
@@ -173,17 +173,31 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
     }
     
     func displayAlertMessage(alertMessage:String) {
-        let alertView: SIAlertView = SIAlertView(title: "Alert", andMessage: alertMessage)
-        alertView.addButtonWithTitle("Ok", type: SIAlertViewButtonType.Default, handler: nil)
-        alertView.transitionStyle = SIAlertViewTransitionStyle.DropDown
-        alertView.show()
+        let customIcon:UIImage = UIImage(named: "ic_close_light")! // your custom icon UIImage
+        let customColor:UIColor = UIColor.protonBlue() // base color for the alert
+        let alertView = JSSAlertView().show(
+            self,
+            title: "",
+            text: alertMessage,
+            buttonText: "",
+            noButtons: true,
+            color: customColor,
+            iconImage: customIcon)
+        alertView.setTextTheme(.Light) // can be .Light or .Dark
     }
     
     func displayErrorAlertMessage(alertMessage:String) {
-        let alertView: SIAlertView = SIAlertView(title: "Error", andMessage: alertMessage)
-        alertView.addButtonWithTitle("Ok", type: SIAlertViewButtonType.Default, handler: nil)
-        alertView.transitionStyle = SIAlertViewTransitionStyle.DropDown
-        alertView.show()
+        let customIcon:UIImage = UIImage(named: "ic_close_light")! // your custom icon UIImage
+        let customColor:UIColor = UIColor.protonBlue() // base color for the alert
+        let alertView = JSSAlertView().show(
+            self,
+            title: "",
+            text: alertMessage,
+            buttonText: "",
+            noButtons: true,
+            color: customColor,
+            iconImage: customIcon)
+        alertView.setTextTheme(.Light) // can be .Light or .Dark
     }
     
     

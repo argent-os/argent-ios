@@ -33,7 +33,7 @@
 		309E15931CBC2A0E00EA95E4 /* ChargeCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E15921CBC2A0E00EA95E4 /* ChargeCustomerViewController.swift */; };
 		309E15951CBE9A1600EA95E4 /* ChargeCustomerSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E15941CBE9A1600EA95E4 /* ChargeCustomerSearchController.swift */; };
 		309E15971CBE9A5600EA95E4 /* ChargeCustomerCustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E15961CBE9A5600EA95E4 /* ChargeCustomerCustomSearchBar.swift */; };
-		309E15991CBE9AAF00EA95E4 /* countries.txt in Resources */ = {isa = PBXBuildFile; fileRef = 309E15981CBE9AAF00EA95E4 /* countries.txt */; };
+		309E15991CBE9AAF00EA95E4 /* users.txt in Resources */ = {isa = PBXBuildFile; fileRef = 309E15981CBE9AAF00EA95E4 /* users.txt */; };
 		309E43BE1CA8ADF900279D97 /* WebTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E43BD1CA8ADF900279D97 /* WebTermsViewController.swift */; };
 		309E43C21CA8AE0B00279D97 /* WebSupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E43C11CA8AE0B00279D97 /* WebSupportViewController.swift */; };
 		309E43C41CA8AE1800279D97 /* WebPrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E43C31CA8AE1800279D97 /* WebPrivacyViewController.swift */; };
@@ -250,7 +250,7 @@
 		309E15921CBC2A0E00EA95E4 /* ChargeCustomerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChargeCustomerViewController.swift; path = "app-ios/ChargeCustomerViewController.swift"; sourceTree = SOURCE_ROOT; };
 		309E15941CBE9A1600EA95E4 /* ChargeCustomerSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChargeCustomerSearchController.swift; path = "app-ios/ChargeCustomerSearchController.swift"; sourceTree = SOURCE_ROOT; };
 		309E15961CBE9A5600EA95E4 /* ChargeCustomerCustomSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChargeCustomerCustomSearchBar.swift; path = "app-ios/ChargeCustomerCustomSearchBar.swift"; sourceTree = SOURCE_ROOT; };
-		309E15981CBE9AAF00EA95E4 /* countries.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = countries.txt; path = "app-ios/countries.txt"; sourceTree = SOURCE_ROOT; };
+		309E15981CBE9AAF00EA95E4 /* users.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = users.txt; path = "app-ios/users.txt"; sourceTree = SOURCE_ROOT; };
 		309E43BD1CA8ADF900279D97 /* WebTermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebTermsViewController.swift; path = "app-ios/WebTermsViewController.swift"; sourceTree = SOURCE_ROOT; };
 		309E43C11CA8AE0B00279D97 /* WebSupportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebSupportViewController.swift; path = "app-ios/WebSupportViewController.swift"; sourceTree = SOURCE_ROOT; };
 		309E43C31CA8AE1800279D97 /* WebPrivacyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebPrivacyViewController.swift; path = "app-ios/WebPrivacyViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -584,7 +584,7 @@
 				309E15921CBC2A0E00EA95E4 /* ChargeCustomerViewController.swift */,
 				309E15941CBE9A1600EA95E4 /* ChargeCustomerSearchController.swift */,
 				309E15961CBE9A5600EA95E4 /* ChargeCustomerCustomSearchBar.swift */,
-				309E15981CBE9AAF00EA95E4 /* countries.txt */,
+				309E15981CBE9AAF00EA95E4 /* users.txt */,
 			);
 			name = Charge;
 			sourceTree = "<group>";
@@ -1199,7 +1199,7 @@
 				30C2DADD1CA438B8003AFD8B /* ProfileLabelCell.xib in Resources */,
 				30C2DB1B1CA43A00003AFD8B /* Info.plist in Resources */,
 				30C2DB191CA439FA003AFD8B /* Info.plist in Resources */,
-				309E15991CBE9AAF00EA95E4 /* countries.txt in Resources */,
+				309E15991CBE9AAF00EA95E4 /* users.txt in Resources */,
 				30C2DA8A1CA436CC003AFD8B /* Nunito-Medium.ttf in Resources */,
 				309E43CD1CA9CFED00279D97 /* selected.caf in Resources */,
 				30C2DA871CA436CC003AFD8B /* Nunito-ExtraBold.ttf in Resources */,

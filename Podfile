@@ -39,7 +39,6 @@ target 'protonpay-ios' do
 	pod 'AMViralSwitch'
 	pod 'Former'
 	pod 'KMPlaceholderTextView'
-	pod 'SIAlertView'
 	pod 'DCPathButton'
 	pod 'SFDraggableDialogView'
 	pod 'UICountingLabel'
@@ -49,6 +48,7 @@ target 'protonpay-ios' do
 	pod 'JVFloatLabeledTextField'
 	pod 'CircleMenu'
 	pod 'SKSplashView'
+	pod 'JSSAlertView'
 	pod "LiquidFloatingActionButton", :git => 'https://github.com/yoavlt/LiquidFloatingActionButton', :branch => 'swift-2.0'
 	#pod 'DOFavoriteButton'
 

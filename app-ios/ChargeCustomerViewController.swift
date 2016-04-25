@@ -101,7 +101,7 @@ class ChargeCustomerViewController: UIViewController, UITableViewDelegate, UITab
     
     func loadListOfCountries() {
         // Specify the path to the countries list file.
-        let pathToFile = NSBundle.mainBundle().pathForResource("countries", ofType: "txt")
+        let pathToFile = NSBundle.mainBundle().pathForResource("users", ofType: "txt")
         
         if let path = pathToFile {
             // Load the file contents as a string.

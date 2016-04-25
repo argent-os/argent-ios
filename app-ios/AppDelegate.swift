@@ -11,6 +11,7 @@ import Stripe
 import PasscodeLock
 import SwiftyJSON
 import KeychainSwift
+import SIAlertView
 
 let merchantID = "merchant.com.protonpayments.app"
 var userData:JSON? // init user data, declare globally, needs SwiftyJSON
@@ -127,7 +128,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window!.backgroundColor = UIColor.whiteColor()
         self.window!.makeKeyAndVisible()
         self.window!.makeKeyWindow()
-        
+
         return true
     }
 
@@ -182,5 +183,8 @@ extension UIColor {
     }
     static func protonDarkBlue() -> UIColor {
         return UIColor(rgba: "#0465d9")
+    }
+    static func protonLightBlue() -> UIColor {
+        return UIColor(rgba: "#3dbffe")
     }
 }

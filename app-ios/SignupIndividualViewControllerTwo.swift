@@ -12,7 +12,7 @@ import TextFieldEffects
 import UIColor_Hex_Swift
 import JGProgressHUD
 import KeychainSwift
-import SIAlertView
+import JSSAlertView
 
 class SignupIndividualViewControllerTwo: UIViewController, UITextFieldDelegate {
     
@@ -154,10 +154,17 @@ class SignupIndividualViewControllerTwo: UIViewController, UITextFieldDelegate {
     }
     
     func displayErrorAlertMessage(alertMessage:String) {
-        var alertView: SIAlertView = SIAlertView(title: "Error", andMessage: alertMessage)
-        alertView.addButtonWithTitle("Ok", type: SIAlertViewButtonType.Default, handler: nil)
-        alertView.transitionStyle = SIAlertViewTransitionStyle.Bounce
-        alertView.show()
+        let customIcon:UIImage = UIImage(named: "ic_close_light")! // your custom icon UIImage
+        let customColor:UIColor = UIColor.protonBlue() // base color for the alert
+        let alertView = JSSAlertView().show(
+            self,
+            title: "",
+            text: alertMessage,
+            buttonText: "",
+            noButtons: true,
+            color: customColor,
+            iconImage: customIcon)
+        alertView.setTextTheme(.Light) // can be .Light or .Dark
     }
     
     // Allow use of next and join on keyboard
