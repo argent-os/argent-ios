@@ -27,7 +27,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     @IBOutlet weak var blurView: UIVisualEffectView!
     var arrayOfValues: Array<AnyObject> = [3,30,50,40,80]
     var user = User(username: "", email: "", first_name: "", last_name: "", cust_id: "", picture: "")
-    
+    let runkeeperSwitch = DGRunkeeperSwitch(leftTitle: "Balance", rightTitle: "Customers")
+
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var switchBal: DGRunkeeperSwitch?
     @IBOutlet weak var navigationBar: UINavigationItem!
@@ -161,18 +162,16 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         let navItem = UINavigationItem(title: "")
         navBar.setItems([navItem], animated: true)
         
-        let runkeeperSwitch = DGRunkeeperSwitch(leftTitle: "Balance", rightTitle: "Customers")
         runkeeperSwitch.backgroundColor = UIColor.clearColor()
         runkeeperSwitch.selectedBackgroundColor = UIColor.whiteColor()
         runkeeperSwitch.titleColor = UIColor.whiteColor()
         runkeeperSwitch.selectedTitleColor = UIColor.protonBlue()
         runkeeperSwitch.titleFont = UIFont(name: "Nunito-SemiBold", size: 13.0)
-        runkeeperSwitch.frame = CGRect(x: view.bounds.width - 205.0, y: 35, width: 200, height: 30.0)
+        runkeeperSwitch.frame = CGRect(x: view.bounds.width - 205.0, y: 15, width: 200, height: 30.0)
         //autoresizing so it stays at top right (flexible left and flexible bottom margin)
         runkeeperSwitch.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
         runkeeperSwitch.bringSubviewToFront(runkeeperSwitch)
         runkeeperSwitch.addTarget(self, action: #selector(HomeViewController.indexChanged(_:)), forControlEvents: .ValueChanged)
-        view.addSubview(runkeeperSwitch)
         
         tableView.frame = CGRect(x: 0, y: 340, width: width, height: height-100)
         self.view.addSubview(tableView)
@@ -214,6 +213,12 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        runkeeperSwitch.removeFromSuperview()
+    }
+    
+    
+    
     func mainSegmentControl(segment: UISegmentedControl) {
         if segment.selectedSegmentIndex == 0 {
             // action for the first button (Current or Default)
@@ -253,6 +258,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     // VIEW DID APPEAR
     override func viewDidAppear(animated: Bool) {
         
+        self.navigationController!.navigationBar.addSubview(runkeeperSwitch)
         self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
         UITextField.appearance().keyboardAppearance = .Light
         UIStatusBarStyle.LightContent
