@@ -21,7 +21,7 @@ let userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAcc
 
 class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpleLineGraphDataSource, UITableViewDelegate, UITableViewDataSource  {
     
-    var itemsArray:Array<History>?
+    var accountHistoryArray:Array<History>?
     var tableView:UITableView = UITableView()
     
     @IBOutlet weak var blurView: UIVisualEffectView!
@@ -78,42 +78,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         self.view.addSubview(blurImageView)
 //        blurImageView.addSubview(visualEffectView)
         self.view.sendSubviewToBack(blurImageView)
-        
-        // Get the user profile with completion handler
-        loadUserProfile{ (user, error) in
-            print("got user in completion handler")
-            print(user)
-            let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
-            print(img)
-            if img != "" {
-                let userImageView: UIImageView = UIImageView(frame: CGRectMake(20, 31, 40, 40))
-                userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-//                userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 65)
-                userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
-                userImageView.layer.cornerRadius = userImageView.frame.size.height/2
-                userImageView.layer.masksToBounds = true
-                userImageView.clipsToBounds = true
-                userImageView.image = img
-                userImageView.layer.borderWidth = 2
-                userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
-                self.view.addSubview(userImageView)
-                self.view.bringSubviewToFront(userImageView)
-            }
-            
-            // Customizable background view later in future
-            // // Blurview
-            // let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
-            // visualEffectView.frame = CGRectMake(0, 0, width, height)
-            // let blurImageView: UIImageView = UIImageView(frame: CGRectMake(0, 0, width, height))
-            // blurImageView.contentMode = .ScaleAspectFill
-            // blurImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-            // blurImageView.layer.masksToBounds = true
-            // blurImageView.clipsToBounds = true
-            // blurImageView.image = img
-            // self.view.addSubview(blurImageView)
-            // blurImageView.addSubview(visualEffectView)
-            // self.view.sendSubviewToBack(blurImageView)
-        }
         
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
@@ -174,6 +138,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         runkeeperSwitch.addTarget(self, action: #selector(HomeViewController.indexChanged(_:)), forControlEvents: .ValueChanged)
         
         tableView.frame = CGRect(x: 0, y: 340, width: width, height: height-100)
+        tableView.delegate = self
+        tableView.dataSource = self
         self.view.addSubview(tableView)
 
         let lblAccount:UILabel = UILabel()
@@ -235,21 +201,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         
     }
     
-    func loadUserProfile(completionHandler: (User?, NSError?) -> ()) {
-        User.getProfile({ (item, error) in
-            if error != nil
-            {
-                let alert = UIAlertController(title: "Error", message: "Could not load profile \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
-            }
-            print("got user")
-            print(item)
-            self.user = item!
-            completionHandler(item!, error)
-        })
-    }
-    
     //Changing Status Bar
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
@@ -264,6 +215,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         UIStatusBarStyle.LightContent
 
         // Check for user logged in key
+        print("user access token")
+        print(userAccessToken)
         let userLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("userLoggedIn");
         if(!userLoggedIn) {
             // check if user logged in, if not send to login
@@ -275,10 +228,45 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 
             if userData != nil {
                 print("user data exists")
+            } else {
+                print("user not logged in, user data nil.")
+                // RETRIEVE USER DATA IF NIL WITH CURRENT TOKEN
+//                let viewController:AuthViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateViewControllerWithIdentifier("authViewController") as! AuthViewController
+//                self.presentViewController(viewController, animated: true, completion: nil)
             }
             
-//            let balanceVC = self.childViewControllers[0] as! BalanceViewController
-            // Get stripe balance on appear
+            // Get user account history
+            loadAccountHistory { (historyArr, error) in
+                if error != nil {
+                    print(error)
+                }
+                print(historyArr)
+            }
+            
+            // Get the user profile with completion handler
+            loadUserProfile { (user, error) in
+                print("got user in completion handler")
+                print(user)
+                //            let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
+                let img = UIImage(named: "Proton")
+                print(img)
+                if img != "" {
+                    let userImageView: UIImageView = UIImageView(frame: CGRectMake(20, 31, 40, 40))
+                    userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
+                    //                userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 65)
+                    userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+                    userImageView.layer.cornerRadius = userImageView.frame.size.height/2
+                    userImageView.layer.masksToBounds = true
+                    userImageView.clipsToBounds = true
+                    userImageView.image = img
+                    userImageView.layer.borderWidth = 2
+                    userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
+                    self.view.addSubview(userImageView)
+                    self.view.bringSubviewToFront(userImageView)
+                }
+            }
+        
+            
             // Set account balance label
             getStripeBalance() { responseObject, error in
                 // use responseObject and error here
@@ -319,11 +307,40 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             }
             
             print("user logged in, displaying home view")
-            // Check user local data in json format, prevent re-retrieviing data from the server
 
         }
     }
 
+    func loadAccountHistory(completionHandler: ([History]?, NSError?) -> ()) {
+        History.getAccountHistory({ (items, error) in
+            if error != nil {
+                let alert = UIAlertController(title: "Error", message: "Could not load history \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+            print("got history")
+            print(items)
+            self.accountHistoryArray = items
+            completionHandler(items!, error)
+            self.tableView.reloadData()
+        })
+    }
+    
+    func loadUserProfile(completionHandler: (User?, NSError?) -> ()) {
+        //        User.getProfile({ (item, error) in
+        //            if error != nil
+        //            {
+        //                let alert = UIAlertController(title: "Error", message: "Could not load profile \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
+        //                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        //                self.presentViewController(alert, animated: true, completion: nil)
+        //            }
+        //            print("got user")
+        //            print(item)
+        //            self.user = item!
+        //            completionHandler(item!, error)
+        //        })
+    }
+    
     func getStripeBalance(completionHandler: (JSON?, NSError?) -> ()) {
         makeStripeCall("/v1/balance", completionHandler: completionHandler)
     }
@@ -379,7 +396,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         NSUserDefaults.standardUserDefaults().synchronize();
         userData = nil
         print("logging out")
-        print(userData)
+//        print(userData)
 //        print(NSUserDefaults.valueForKey("userLoggedIn"))
         
         let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
@@ -401,7 +418,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         NSUserDefaults.standardUserDefaults().synchronize();
         userData = nil
         print("logging out")
-        print(userData)
+//        print(userData)
         print(NSUserDefaults.valueForKey("userLoggedIn"))
 
         let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
@@ -440,21 +457,26 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     func refresh(sender:AnyObject)
     {
-//        self.loadAccountHistory()
+//        self.loadAccountHistory(nil)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.itemsArray?.count ?? 0
+        return self.accountHistoryArray?.count ?? 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-        let item = self.itemsArray?[indexPath.row]
+        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        var CellIdentifier: String = "Cell"
+        let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath)
+
+        let item = self.accountHistoryArray?[indexPath.row]
+        print("got data for account cells")
+        print(item)
         cell.textLabel?.text = ""
-        cell.detailTextLabel?.text = "$1,129.32"
+        cell.detailTextLabel?.text = ""
         if let text = item?.amount
         {
-            cell.textLabel?.text = "Amount $" + text
+            cell.textLabel?.text = "$" + String(format: "%.2f", Double(text)!/100)
         }
         return cell
     }

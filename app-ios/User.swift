@@ -30,7 +30,7 @@ class User {
     
     class func getProfile(completionHandler: (User?, NSError?) -> Void) {
         // request to api to get account data as json, put in list and table
-        // curl -X GET -i -H "Content-Type: application/json" -d '{"access_token": ""}' http://192.168.1.232:5001/v1/users/list
+        // curl -X GET -i -H "Content-Type: application/json" -d '{"access_token": ""}' http://192.168.1.232:5001/v1/profile
         // print(userAccessToken)
 
         let parameters : [String : AnyObject] = [:]
@@ -50,7 +50,6 @@ class User {
                     if let value = response.result.value {
                         let data = JSON(value)
                         print("got user object in model")
-                        print(data)
                         let profile = data
                         // print(data["profile"].arrayValue)
                             let username = profile["username"].stringValue
