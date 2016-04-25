@@ -26,12 +26,12 @@ class ProtonViewController: UIViewController, LiquidFloatingActionButtonDataSour
     
     let colors = [UIColor.redColor(), UIColor.grayColor(), UIColor.greenColor(), UIColor.purpleColor()]
     let items: [(icon: String, color: UIColor)] = [
-        ("ic_proton_outline_white", UIColor.whiteColor()),
-        ("ic_proton_outline_white", UIColor.whiteColor()),
-        ("ic_proton_outline_white", UIColor.whiteColor()),
-        ("ic_proton_outline_white", UIColor.whiteColor()),
-        ("ic_proton_outline_white", UIColor.whiteColor()),
-        ("ic_proton_outline_white", UIColor.whiteColor()),
+        ("ic_repeat_light", UIColor.whiteColor()),
+        ("ic_paper_plane_light", UIColor.whiteColor()),
+        ("ic_paper_light", UIColor.whiteColor()),
+        ("ic_link_light", UIColor.whiteColor()),
+        ("ic_coinbag_light", UIColor.whiteColor()),
+        ("ic_card_light", UIColor.whiteColor()),
     ]
     
     override func viewDidLoad() {
