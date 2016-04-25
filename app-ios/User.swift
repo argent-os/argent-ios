@@ -31,7 +31,7 @@ class User {
     class func getProfile(completionHandler: (User?, NSError?) -> Void) {
         // request to api to get account data as json, put in list and table
         // curl -X GET -i -H "Content-Type: application/json" -d '{"access_token": ""}' http://192.168.1.232:5001/v1/profile
-        // print(userAccessToken)
+         print("getting user profile in model")
 
         let parameters : [String : AnyObject] = [:]
         

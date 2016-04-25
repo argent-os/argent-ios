@@ -26,29 +26,43 @@ class ProtonViewController: UIViewController, LiquidFloatingActionButtonDataSour
     
     let colors = [UIColor.redColor(), UIColor.grayColor(), UIColor.greenColor(), UIColor.purpleColor()]
     let items: [(icon: String, color: UIColor)] = [
-        ("ic_proton_outline_white", UIColor.protonBlue()),
-        ("ic_proton_outline_white", UIColor.protonBlue()),
-        ("ic_proton_outline_white", UIColor.protonBlue()),
-        ("ic_proton_outline_white", UIColor.protonBlue()),
-        ("ic_proton_outline_white", UIColor.protonBlue()),
-        ("ic_proton_outline_white", UIColor.protonBlue()),
+        ("ic_proton_outline_white", UIColor.whiteColor()),
+        ("ic_proton_outline_white", UIColor.whiteColor()),
+        ("ic_proton_outline_white", UIColor.whiteColor()),
+        ("ic_proton_outline_white", UIColor.whiteColor()),
+        ("ic_proton_outline_white", UIColor.whiteColor()),
+        ("ic_proton_outline_white", UIColor.whiteColor()),
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("loaded proton")
-        self.view.backgroundColor = UIColor.whiteColor()
+        
+        // Blurview
+        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
+        visualEffectView.frame = CGRectMake(0, 0, width, height)
+        let blurImageView: UIImageView = UIImageView(frame: CGRectMake(0, 0, width, height))
+        blurImageView.contentMode = .ScaleAspectFill
+        blurImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
+        blurImageView.layer.masksToBounds = true
+        blurImageView.clipsToBounds = true
+        blurImageView.image = UIImage(named: "BackgroundGradientInverse")
+        self.view.addSubview(blurImageView)
+        // adds blur
+        blurImageView.addSubview(visualEffectView)
+        self.view.sendSubviewToBack(blurImageView)
         
         // screen width and height:
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-//        button.setBackgroundImage(UIImage(named: "BackgroundGradientInverse"), forState: .Normal)
-        button.backgroundColor = UIColor.protonDarkBlue()
+        button.backgroundColor = UIColor.clearColor()
         button.delegate = self
         button.center = self.view.center
         button.layer.cornerRadius = button.frame.size.width / 2.0
+        button.layer.borderColor = UIColor.whiteColor().CGColor
+        button.layer.borderWidth = 1
         view.addSubview(button)
 
         // TODO: create segues to chargeView, addPlanView
@@ -100,7 +114,6 @@ class ProtonViewController: UIViewController, LiquidFloatingActionButtonDataSour
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
         let blurView = UIVisualEffectView(effect: blurEffect)
         blurView.frame = CGRectMake(0, 0, screenWidth, screenHeight)
-        
         blurView.translatesAutoresizingMaskIntoConstraints = false
         self.view.insertSubview(blurView, aboveSubview: self.view)
     }
@@ -138,11 +151,12 @@ class ProtonViewController: UIViewController, LiquidFloatingActionButtonDataSour
     // MARK: <CircleMenuDelegate>
     
     func circleMenu(circleMenu: CircleMenu, willDisplay button: CircleMenuButton, atIndex: Int) {
-        button.backgroundColor = items[atIndex].color
-        button.layer.borderColor = UIColor.protonDarkBlue().CGColor
-        button.layer.borderWidth = 2
+        //        button.backgroundColor = items[atIndex].color
+        button.backgroundColor = UIColor.clearColor()
+        button.layer.borderColor = UIColor.whiteColor().CGColor
+        button.layer.borderWidth = 1
         button.setImage(UIImage(imageLiteral: items[atIndex].icon), forState: .Normal)
-        
+
         // set highlighted image
         let highlightedImage  = UIImage(imageLiteral: items[atIndex].icon).imageWithRenderingMode(.AlwaysTemplate)
         button.setImage(highlightedImage, forState: .Highlighted)
@@ -151,10 +165,12 @@ class ProtonViewController: UIViewController, LiquidFloatingActionButtonDataSour
     
     func circleMenu(circleMenu: CircleMenu, buttonWillSelected button: CircleMenuButton, atIndex: Int) {
         print("button will selected: \(atIndex)")
+        button.backgroundColor = items[atIndex].color
     }
     
     func circleMenu(circleMenu: CircleMenu, buttonDidSelected button: CircleMenuButton, atIndex: Int) {
         print("button did selected: \(atIndex)")
+        button.backgroundColor = items[atIndex].color
     }
     
     // Statusbar

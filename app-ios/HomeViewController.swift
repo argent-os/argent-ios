@@ -95,6 +95,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         graph.widthLine = 3
         graph.displayDotsWhileAnimating = true
         graph.enablePopUpReport = true
+        graph.noDataLabelColor = UIColor.whiteColor()
         graph.enableTouchReport = true
         graph.enableBezierCurve = true
         graph.colorTouchInputLine = UIColor.whiteColor()
@@ -228,44 +229,42 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 
             if userData != nil {
                 print("user data exists")
+                // Get user account history
+                loadAccountHistory { (historyArr, error) in
+                    if error != nil {
+                        print(error)
+                    }
+                    print(historyArr)
+                }
+                
+                // Get the user profile with completion handler
+                loadUserProfile { (user, error) in
+                    print("got user in completion handler")
+                    print(user)
+                    let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
+                    //                let img = UIImage(named: "Proton")
+                    print(img)
+                    if img != "" {
+                        let userImageView: UIImageView = UIImageView(frame: CGRectMake(20, 31, 40, 40))
+                        userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
+                        //                userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 65)
+                        userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+                        userImageView.layer.cornerRadius = userImageView.frame.size.height/2
+                        userImageView.layer.masksToBounds = true
+                        userImageView.clipsToBounds = true
+                        userImageView.image = img
+                        userImageView.layer.borderWidth = 2
+                        userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
+                        self.view.addSubview(userImageView)
+                        self.view.bringSubviewToFront(userImageView)
+                    }
+                }
             } else {
                 print("user not logged in, user data nil.")
                 // RETRIEVE USER DATA IF NIL WITH CURRENT TOKEN
 //                let viewController:AuthViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateViewControllerWithIdentifier("authViewController") as! AuthViewController
 //                self.presentViewController(viewController, animated: true, completion: nil)
             }
-            
-            // Get user account history
-            loadAccountHistory { (historyArr, error) in
-                if error != nil {
-                    print(error)
-                }
-                print(historyArr)
-            }
-            
-            // Get the user profile with completion handler
-            loadUserProfile { (user, error) in
-                print("got user in completion handler")
-                print(user)
-                //            let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
-                let img = UIImage(named: "Proton")
-                print(img)
-                if img != "" {
-                    let userImageView: UIImageView = UIImageView(frame: CGRectMake(20, 31, 40, 40))
-                    userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-                    //                userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 65)
-                    userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
-                    userImageView.layer.cornerRadius = userImageView.frame.size.height/2
-                    userImageView.layer.masksToBounds = true
-                    userImageView.clipsToBounds = true
-                    userImageView.image = img
-                    userImageView.layer.borderWidth = 2
-                    userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
-                    self.view.addSubview(userImageView)
-                    self.view.bringSubviewToFront(userImageView)
-                }
-            }
-        
             
             // Set account balance label
             getStripeBalance() { responseObject, error in
@@ -482,7 +481,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 100.0
+        return 80.0
     }
     
 }
