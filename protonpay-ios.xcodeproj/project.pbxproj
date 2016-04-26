@@ -44,7 +44,6 @@
 		309E43BE1CA8ADF900279D97 /* WebTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E43BD1CA8ADF900279D97 /* WebTermsViewController.swift */; };
 		309E43C21CA8AE0B00279D97 /* WebSupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E43C11CA8AE0B00279D97 /* WebSupportViewController.swift */; };
 		309E43C41CA8AE1800279D97 /* WebPrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E43C31CA8AE1800279D97 /* WebPrivacyViewController.swift */; };
-		309E43C71CA9CF6C00279D97 /* MenuTabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E43C61CA9CF6C00279D97 /* MenuTabButton.swift */; };
 		309E43CB1CA9CFED00279D97 /* bloom.caf in Resources */ = {isa = PBXBuildFile; fileRef = 309E43C81CA9CFED00279D97 /* bloom.caf */; };
 		309E43CC1CA9CFED00279D97 /* fold.caf in Resources */ = {isa = PBXBuildFile; fileRef = 309E43C91CA9CFED00279D97 /* fold.caf */; };
 		309E43CD1CA9CFED00279D97 /* selected.caf in Resources */ = {isa = PBXBuildFile; fileRef = 309E43CA1CA9CFED00279D97 /* selected.caf */; };
@@ -259,7 +258,6 @@
 		309E43BD1CA8ADF900279D97 /* WebTermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebTermsViewController.swift; path = "app-ios/WebTermsViewController.swift"; sourceTree = SOURCE_ROOT; };
 		309E43C11CA8AE0B00279D97 /* WebSupportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebSupportViewController.swift; path = "app-ios/WebSupportViewController.swift"; sourceTree = SOURCE_ROOT; };
 		309E43C31CA8AE1800279D97 /* WebPrivacyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebPrivacyViewController.swift; path = "app-ios/WebPrivacyViewController.swift"; sourceTree = SOURCE_ROOT; };
-		309E43C61CA9CF6C00279D97 /* MenuTabButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuTabButton.swift; path = "app-ios/MenuTabButton.swift"; sourceTree = SOURCE_ROOT; };
 		309E43C81CA9CFED00279D97 /* bloom.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = bloom.caf; sourceTree = "<group>"; };
 		309E43C91CA9CFED00279D97 /* fold.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fold.caf; sourceTree = "<group>"; };
 		309E43CA1CA9CFED00279D97 /* selected.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = selected.caf; sourceTree = "<group>"; };
@@ -592,14 +590,6 @@
 			name = Web;
 			sourceTree = "<group>";
 		};
-		309E43C51CA9CF5600279D97 /* MenuTabButton */ = {
-			isa = PBXGroup;
-			children = (
-				309E43C61CA9CF6C00279D97 /* MenuTabButton.swift */,
-			);
-			name = MenuTabButton;
-			sourceTree = "<group>";
-		};
 		30B576891CC30388005BCA5A /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -720,7 +710,6 @@
 		30BECC0C1C6F93AF00B8A088 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				309E43C51CA9CF5600279D97 /* MenuTabButton */,
 				307265391C72B95900D2AF61 /* CountryPicker */,
 				30BECC041C6F92C200B8A088 /* StarButton */,
 			);
@@ -1357,7 +1346,6 @@
 				30C2DAFF1CA4398C003AFD8B /* Secrets.swift in Sources */,
 				30C2DA9A1CA4373E003AFD8B /* LoginBoxTableViewController.swift in Sources */,
 				30BB07021CCFE7D20051C9E7 /* BrowserViewController.swift in Sources */,
-				309E43C71CA9CF6C00279D97 /* MenuTabButton.swift in Sources */,
 				30C2DAFD1CA43984003AFD8B /* Plaid.swift in Sources */,
 				30C2DA951CA4372D003AFD8B /* PasscodeLockConfiguration.swift in Sources */,
 				309E43C41CA8AE1800279D97 /* WebPrivacyViewController.swift in Sources */,

@@ -100,7 +100,7 @@
                     <items>
                         <group alignment="left" id="IkT-gv-cue">
                             <items>
-                                <imageView width="136" height="1" alignment="center" verticalAlignment="center" image="IconLogoColor" animationDuration="3" id="z0I-QO-IfU"/>
+                                <imageView width="136" height="1" alignment="center" verticalAlignment="center" image="ic_proton_outline_white_large" animationDuration="3" id="z0I-QO-IfU"/>
                             </items>
                         </group>
                         <label alignment="left" baselineAdjustment="alignCenters" id="oLH-sq-bGi">

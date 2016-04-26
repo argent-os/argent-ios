@@ -8,10 +8,9 @@
 
 import UIKit
 import Foundation
-import VENCalculatorInputView
 import DGRunkeeperSwitch
 
-class ChargeViewController: UIViewController, VENCalculatorInputViewDelegate {
+class ChargeViewController: UIViewController {
     
     @IBOutlet weak var switchBal: DGRunkeeperSwitch?
     
@@ -112,16 +111,6 @@ class ChargeViewController: UIViewController, VENCalculatorInputViewDelegate {
         super.viewDidAppear(true)
     }
     
-    func calculatorInputView(inputView: VENCalculatorInputView, didTapKey key: String) {
-        print("Just tapped key: %@", key)
-        // Handle the input. Something like [myTextField insertText:key];
-    }
-
-    func calculatorInputViewDidTapBackspace(calculatorInputView: VENCalculatorInputView) {
-        print("Just tapped backspace.")
-        // Handle the backspace. Something like [myTextField deleteBackward];
-    }
-    
     //Changing Status Bar
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
@@ -169,35 +158,6 @@ class ChargeViewController: UIViewController, VENCalculatorInputViewDelegate {
     
     func createCharge(sender: AnyObject) {
         
-    }
-    
-    //Textfield delegates
-    func textField(textField: VENCalculatorInputTextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        print("executing")
-        // Construct the text that will be in the field if this change is accepted
-        let oldText = textField.text! as NSString
-        var newText = oldText.stringByReplacingCharactersInRange(range, withString: string)
-        
-        var newTextString = String(newText)
-        
-        let digits = NSCharacterSet.decimalDigitCharacterSet()
-        var digitText = ""
-        for c in newTextString.unicodeScalars {
-            if digits.longCharacterIsMember(c.value) {
-                digitText.append(c)
-            }
-        }
-        
-        let formatter = NSNumberFormatter()
-        formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
-        formatter.locale = NSLocale(localeIdentifier: "en_US")
-        let numberFromField = Double(digitText)!/100
-        newText = formatter.stringFromNumber(numberFromField)!
-        
-        print(newText)
-        textField.text = newText
-        
-        return false
     }
     
     //Calls this function when the tap is recognized.

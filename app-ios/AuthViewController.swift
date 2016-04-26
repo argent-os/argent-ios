@@ -6,7 +6,6 @@
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
 //
 
-import VideoSplashKit
 import QuartzCore
 import JGProgressHUD
 import JGProgressHUD

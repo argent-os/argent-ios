@@ -11,7 +11,6 @@ import QuartzCore
 import Alamofire
 import SwiftyJSON
 import JGProgressHUD
-import VideoSplashKit
 import TextFieldEffects
 import UIColor_Hex_Swift
 import JSSAlertView
@@ -38,7 +37,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
         emailTextField.becomeFirstResponder()
         
         // Add action to close button to return to auth view
-        closeButton.addTarget(self, action: "goToLogin:", forControlEvents: UIControlEvents.TouchUpInside)
+        closeButton.addTarget(self, action: #selector(ResetPasswordViewController.goToLogin(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         // Border radius on uiview
         view.layer.cornerRadius = 0
@@ -48,7 +47,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
         emailTextField.delegate = self;
         
         let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
+        _ = screen.size.width
         let screenHeight = screen.size.height
         
         // Tags are 4 and 5 due to signup view textfields taking values 0-3
