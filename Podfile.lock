@@ -1,4 +1,5 @@
 PODS:
+  - Advance (0.9.1)
   - Alamofire (3.2.1)
   - AMViralSwitch (1.0.0)
   - BEMCheckBox (1.2.1)
@@ -9,7 +10,7 @@ PODS:
   - CWStatusBarNotification (2.3.4)
   - DCPathButton (2.1.3)
   - DGRunkeeperSwitch (1.1.1)
-  - DZNEmptyDataSet (1.7.3)
+  - DZNEmptyDataSet (1.8)
   - FlagKit (1.0.7)
   - Former (1.3.0)
   - Gecco (0.2.0)
@@ -49,6 +50,7 @@ PODS:
   - VideoSplashKit (1.1.0)
 
 DEPENDENCIES:
+  - Advance
   - Alamofire (~> 3.2.1)
   - AMViralSwitch
   - BEMCheckBox
@@ -107,6 +109,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
+  Advance: 58f115c484cded634ffe529fcf6d39e741de1a44
   Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
   AMViralSwitch: caf07a95aed2055fc7bd93657166f747095174d6
   BEMCheckBox: 264b8b72aa92adbfefa265cc58a0cdb86b207b9f
@@ -117,7 +120,7 @@ SPEC CHECKSUMS:
   CWStatusBarNotification: 3fec41edcb0ae3677d9febfcb9632d8bdf52294c
   DCPathButton: 431bb93072e8d25bd0de0eaa0373e39d896a38e3
   DGRunkeeperSwitch: da12f199532a99958a1e87ec0a5af61efdba11ec
-  DZNEmptyDataSet: dd7cca17c1d07dfa78956859b1e70a52505678ef
+  DZNEmptyDataSet: d2351b2e8daefa40433ef292e246e21f6be31a7b
   FlagKit: dffc62b4c5db33043c89bbda0bda897077d521e5
   Former: 7380ef3b9bdb3bf43d9f0fe99e369987d3068705
   Gecco: 27ab0f43da3f8e844771cf641992afdd1ea09c62

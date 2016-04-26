@@ -96,7 +96,7 @@ class AuthViewController: UIViewController  {
         button.setTitle("Tap to view app features.", forState: .Normal)
         button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         button.titleLabel?.font = UIFont(name: "Avenir-Light", size: 14)
-        button.addTarget(self, action: #selector(AuthViewController.goToTutorial(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        button.addTarget(self, action: #selector(self.goToTutorial(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(button)
         
     }
@@ -112,11 +112,10 @@ class AuthViewController: UIViewController  {
         let viewController:UINavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SignupNavigationController") as! UINavigationController
         
         self.presentViewController(viewController, animated: true, completion: nil)
-        
     }
     
     func goToTutorial(sender: AnyObject!) {
-        let viewController:BackgroundAnimationViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateViewControllerWithIdentifier("BackgroundAnimationViewController") as! BackgroundAnimationViewController
+        let viewController:BrowserViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateViewControllerWithIdentifier("BrowserViewController") as! BrowserViewController
         
         self.presentViewController(viewController, animated: true, completion: nil)
     }

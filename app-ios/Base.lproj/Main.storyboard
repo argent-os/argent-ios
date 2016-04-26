@@ -1644,7 +1644,7 @@ institutions</string>
                         <viewControllerLayoutGuide type="bottom" id="buS-2c-LKz"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="JaV-yX-yXF">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -3166,15 +3166,15 @@ Click here to view more</string>
                         <viewControllerLayoutGuide type="bottom" id="j28-KU-mNU"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="sqS-RP-JEc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="awt-hT-DzB">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="idCell" textLabel="eDw-mh-d6X" rowHeight="60" style="IBUITableViewCellStyleDefault" id="bP2-Kq-CYW">
-                                        <rect key="frame" x="0.0" y="22" width="414" height="60"/>
+                                        <rect key="frame" x="0.0" y="86" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bP2-Kq-CYW" id="VLj-O3-6lY">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
@@ -3247,23 +3247,23 @@ Click here to view more</string>
         <image name="ic_user" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aks-Yo-Spb"/>
-        <segue reference="igQ-zk-tCm"/>
-        <segue reference="m3z-fp-Nlm"/>
+        <segue reference="WA2-vu-RC9"/>
         <segue reference="exE-qz-Ig3"/>
         <segue reference="agi-3I-cSC"/>
         <segue reference="VI5-hp-Gm2"/>
         <segue reference="ipn-3I-3vc"/>
-        <segue reference="Bc6-jW-uiV"/>
+        <segue reference="m3z-fp-Nlm"/>
+        <segue reference="igQ-zk-tCm"/>
+        <segue reference="aks-Yo-Spb"/>
         <segue reference="fEJ-lR-z9I"/>
         <segue reference="7cu-FP-MoG"/>
-        <segue reference="mwT-xt-Ez4"/>
+        <segue reference="Bc6-jW-uiV"/>
         <segue reference="xTl-cs-ajG"/>
         <segue reference="UFB-DJ-qrH"/>
-        <segue reference="o5e-Ut-781"/>
         <segue reference="E98-FC-SfF"/>
-        <segue reference="SFz-vc-0MB"/>
+        <segue reference="o5e-Ut-781"/>
         <segue reference="GfY-d3-W00"/>
+        <segue reference="SFz-vc-0MB"/>
         <segue reference="zsk-4D-roF"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

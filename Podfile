@@ -51,6 +51,7 @@ target 'protonpay-ios' do
 	pod 'JSSAlertView'
 	pod 'CountryPicker'
 	pod 'FlagKit'
+	pod 'Advance'
 	pod "LiquidFloatingActionButton", :git => 'https://github.com/yoavlt/LiquidFloatingActionButton', :branch => 'swift-2.0'
 	#pod 'DOFavoriteButton'
 

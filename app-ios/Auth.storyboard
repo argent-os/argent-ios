@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ojW-tX-SfZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
     </dependencies>
     <scenes>
         <!--Auth View Controller-->
@@ -18,14 +17,27 @@
                     <view key="view" contentMode="scaleToFill" id="Nfm-Fg-MAB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eqs-cd-zMb">
+                                <rect key="frame" x="20" y="471" width="374" height="81"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Eqs-cd-zMb" firstAttribute="top" secondItem="fU3-wt-lna" secondAttribute="bottom" constant="407" id="AVe-zx-4Xu"/>
+                            <constraint firstItem="yK1-a1-oUv" firstAttribute="top" secondItem="Eqs-cd-zMb" secondAttribute="bottom" constant="184" id="bDL-Rl-ESi"/>
+                            <constraint firstItem="Eqs-cd-zMb" firstAttribute="trailing" secondItem="Nfm-Fg-MAB" secondAttribute="trailingMargin" id="hJ0-wZ-YpL"/>
+                            <constraint firstItem="Eqs-cd-zMb" firstAttribute="leading" secondItem="Nfm-Fg-MAB" secondAttribute="leadingMargin" id="sP1-Ck-7PG"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="fgy-ZG-yJs"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e9O-Mk-e3d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="230" y="239"/>
+            <point key="canvasLocation" x="900" y="155"/>
         </scene>
         <!--Background Animation View Controller-->
         <scene sceneID="Tzl-PZ-ig6">
@@ -78,12 +90,6 @@
                                             <color key="titleColor" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <connections>
-                                            <segue destination="ojW-tX-SfZ" kind="presentation" id="Cfo-jH-Fbn">
-                                                <segue key="commit" inheritsFrom="parent" id="Bdy-NZ-fVY"/>
-                                                <segue key="preview" inheritsFrom="commit" id="3sT-Oo-Bm9"/>
-                                            </segue>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -144,15 +150,85 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yd5-80-mNJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="708" y="155"/>
+            <point key="canvasLocation" x="1370" y="71"/>
+        </scene>
+        <!--Browser View Controller-->
+        <scene sceneID="1me-ul-a0e">
+            <objects>
+                <viewController storyboardIdentifier="BrowserViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fwY-tb-OHg" customClass="BrowserViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cgp-Tz-219"/>
+                        <viewControllerLayoutGuide type="bottom" id="yxL-Pn-aNe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LUa-t4-8jW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V3s-vz-l1H">
+                                <rect key="frame" x="58" y="42" width="336" height="674"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pKf-YP-qug">
+                                <rect key="frame" x="20" y="75" width="30" height="641"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pWE-L2-kAP">
+                                <rect key="frame" x="20" y="20" width="374" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="zf4-8b-srV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lah-Ts-PBM">
+                                <rect key="frame" x="20" y="37" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="dEe-GK-LQp"/>
+                                    <constraint firstAttribute="height" constant="30" id="qei-lH-y7N"/>
+                                </constraints>
+                                <state key="normal" image="ic_close_light"/>
+                                <connections>
+                                    <segue destination="ojW-tX-SfZ" kind="presentation" id="Vq7-FW-qIG"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pWE-L2-kAP" firstAttribute="leading" secondItem="Lah-Ts-PBM" secondAttribute="leading" id="5Zc-Ge-t2l"/>
+                            <constraint firstItem="Lah-Ts-PBM" firstAttribute="top" secondItem="pWE-L2-kAP" secondAttribute="bottom" constant="3" id="F97-jw-60U"/>
+                            <constraint firstItem="V3s-vz-l1H" firstAttribute="leading" secondItem="Lah-Ts-PBM" secondAttribute="trailing" constant="8" symbolic="YES" id="Nb3-V6-7jo"/>
+                            <constraint firstItem="Lah-Ts-PBM" firstAttribute="leading" secondItem="pKf-YP-qug" secondAttribute="leading" id="Oe9-N6-AZJ"/>
+                            <constraint firstItem="pWE-L2-kAP" firstAttribute="trailing" secondItem="V3s-vz-l1H" secondAttribute="trailing" id="PiM-RU-B9g"/>
+                            <constraint firstItem="pWE-L2-kAP" firstAttribute="top" secondItem="cgp-Tz-219" secondAttribute="bottom" id="WcK-UY-u7B"/>
+                            <constraint firstAttribute="bottom" secondItem="pKf-YP-qug" secondAttribute="bottom" constant="20" symbolic="YES" id="Y9O-zQ-Hrh"/>
+                            <constraint firstItem="pWE-L2-kAP" firstAttribute="trailing" secondItem="LUa-t4-8jW" secondAttribute="trailingMargin" id="bzY-iR-4lj"/>
+                            <constraint firstItem="pWE-L2-kAP" firstAttribute="leading" secondItem="LUa-t4-8jW" secondAttribute="leadingMargin" id="hJ1-8M-57L"/>
+                            <constraint firstItem="V3s-vz-l1H" firstAttribute="leading" secondItem="pKf-YP-qug" secondAttribute="trailing" constant="8" symbolic="YES" id="hJl-fd-5ps"/>
+                            <constraint firstItem="pKf-YP-qug" firstAttribute="baseline" secondItem="V3s-vz-l1H" secondAttribute="baseline" id="ifn-gt-PDk"/>
+                            <constraint firstItem="V3s-vz-l1H" firstAttribute="top" secondItem="pWE-L2-kAP" secondAttribute="bottom" constant="8" symbolic="YES" id="jo2-G9-khQ"/>
+                            <constraint firstItem="pKf-YP-qug" firstAttribute="top" secondItem="Lah-Ts-PBM" secondAttribute="bottom" constant="8" symbolic="YES" id="wkC-se-MVb"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="raP-TF-Zcg"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="closeButton" destination="Lah-Ts-PBM" id="LwC-QK-SOB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ygt-fJ-cEa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="900" y="1000"/>
         </scene>
     </scenes>
     <resources>
         <image name="IconCloseColor" width="24" height="24"/>
         <image name="IconSwipe" width="145" height="206"/>
         <image name="IconUndo" width="21" height="21"/>
+        <image name="ic_close_light" width="22" height="22"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="Cfo-jH-Fbn"/>
-    </inferredMetricsTieBreakers>
 </document>

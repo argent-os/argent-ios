@@ -86,6 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIToolbar.appearance().barTintColor = UIColor.protonBlue()
         UIToolbar.appearance().backgroundColor = UIColor.protonBlue()
         
+        // Toolbar Keyboard UI
         if let font = UIFont(name: "Avenir-Book", size: 15) {
             UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: font,NSForegroundColorAttributeName:UIColor.whiteColor()], forState: UIControlState.Normal)
         }
@@ -109,7 +110,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Search Bar UI
         UISearchBar.appearance().barTintColor = UIColor.protonDarkBlue()
         UISearchBar.appearance().tintColor = UIColor.whiteColor()
-//        UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).tintColor = UIColor.protonDarkBlue()
+        // UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).tintColor = UIColor.protonDarkBlue()
         
         // Enable push notifications
         if #available(iOS 8.0, *) {
@@ -120,7 +121,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let settings = UIRemoteNotificationType.Alert.union(UIRemoteNotificationType.Badge).union(UIRemoteNotificationType.Sound)
             UIApplication.sharedApplication().registerForRemoteNotificationTypes(settings)
         }
-
+        
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window!.rootViewController = viewController
         // Global background color

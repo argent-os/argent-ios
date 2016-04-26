@@ -29,6 +29,10 @@
 		3069990B1CACD6240003B0A6 /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3069990A1CACD6240003B0A6 /* Root.swift */; };
 		307C6A221C7E91A100723E39 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C6A211C7E91A100723E39 /* StoreKit.framework */; };
 		307C6A241C7E91AA00723E39 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C6A231C7E91AA00723E39 /* PassKit.framework */; };
+		30831F551CD0138E00D5D0F4 /* ActivityViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30831F541CD0138E00D5D0F4 /* ActivityViewController2.swift */; };
+		30831F571CD013A300D5D0F4 /* ActivityViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30831F561CD013A300D5D0F4 /* ActivityViewController3.swift */; };
+		30831F591CD013B000D5D0F4 /* ActivityViewController4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30831F581CD013B000D5D0F4 /* ActivityViewController4.swift */; };
+		30831F5B1CD0148E00D5D0F4 /* ActivityView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30831F5A1CD0148E00D5D0F4 /* ActivityView2.swift */; };
 		308A348A1CCA803200AAF66F /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A34891CCA803200AAF66F /* History.swift */; };
 		309C8CCA1CCEEE8C0073159C /* SignupCountryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309C8CC91CCEEE8C0073159C /* SignupCountryPickerViewController.swift */; };
 		309E15931CBC2A0E00EA95E4 /* ChargeCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E15921CBC2A0E00EA95E4 /* ChargeCustomerViewController.swift */; };
@@ -47,6 +51,22 @@
 		30B576911CC3045E005BCA5A /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B576901CC3045E005BCA5A /* SearchBar.swift */; };
 		30B576931CC7D1CF005BCA5A /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B576921CC7D1CE005BCA5A /* SearchDetailViewController.swift */; };
 		30BB06E21CCEFC260051C9E7 /* CountryPicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30BB06E11CCEFC260051C9E7 /* CountryPicker.bundle */; };
+		30BB06F41CCFDED20051C9E7 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB06F31CCFDED20051C9E7 /* TutorialViewController.swift */; };
+		30BB07011CCFE7D20051C9E7 /* BrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB06FE1CCFE7D20051C9E7 /* BrowserView.swift */; };
+		30BB07021CCFE7D20051C9E7 /* BrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB06FF1CCFE7D20051C9E7 /* BrowserViewController.swift */; };
+		30BB07031CCFE7D20051C9E7 /* CoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB07001CCFE7D20051C9E7 /* CoverView.swift */; };
+		30BB07271CCFEBCE0051C9E7 /* GravityFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB07241CCFEBCE0051C9E7 /* GravityFunction.swift */; };
+		30BB07281CCFEBCE0051C9E7 /* GravityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB07251CCFEBCE0051C9E7 /* GravityViewController.swift */; };
+		30BB07291CCFEBCE0051C9E7 /* GravitySimulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB07261CCFEBCE0051C9E7 /* GravitySimulation.swift */; };
+		30BB072C1CCFEBD90051C9E7 /* ActivityView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB072A1CCFEBD90051C9E7 /* ActivityView1.swift */; };
+		30BB072D1CCFEBD90051C9E7 /* ActivityViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB072B1CCFEBD90051C9E7 /* ActivityViewController1.swift */; };
+		30BB07311CCFEBE50051C9E7 /* SpringConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB072E1CCFEBE50051C9E7 /* SpringConfigurationView.swift */; };
+		30BB07321CCFEBE50051C9E7 /* SpringsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB072F1CCFEBE50051C9E7 /* SpringsViewController.swift */; };
+		30BB07331CCFEBE50051C9E7 /* SpringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB07301CCFEBE50051C9E7 /* SpringView.swift */; };
+		30BB07381CCFEC140051C9E7 /* DirectManipulationGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB07341CCFEC140051C9E7 /* DirectManipulationGestureRecognizer.swift */; };
+		30BB07391CCFEC140051C9E7 /* GesturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB07351CCFEC140051C9E7 /* GesturesViewController.swift */; };
+		30BB073A1CCFEC140051C9E7 /* GestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB07361CCFEC140051C9E7 /* GestureView.swift */; };
+		30BB073B1CCFEC140051C9E7 /* SimpleTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB07371CCFEC140051C9E7 /* SimpleTransform.swift */; };
 		30C2DA551CA43655003AFD8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA541CA43655003AFD8B /* Assets.xcassets */; };
 		30C2DA591CA43665003AFD8B /* PayKloud.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA581CA43665003AFD8B /* PayKloud.entitlements */; };
 		30C2DA5B1CA4366C003AFD8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DA5A1CA4366C003AFD8B /* AppDelegate.swift */; };
@@ -237,6 +257,10 @@
 		3069990A1CACD6240003B0A6 /* Root.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
 		307C6A211C7E91A100723E39 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		307C6A231C7E91AA00723E39 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
+		30831F541CD0138E00D5D0F4 /* ActivityViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityViewController2.swift; path = "app-ios/ActivityViewController2.swift"; sourceTree = SOURCE_ROOT; };
+		30831F561CD013A300D5D0F4 /* ActivityViewController3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityViewController3.swift; path = "app-ios/ActivityViewController3.swift"; sourceTree = SOURCE_ROOT; };
+		30831F581CD013B000D5D0F4 /* ActivityViewController4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityViewController4.swift; path = "app-ios/ActivityViewController4.swift"; sourceTree = SOURCE_ROOT; };
+		30831F5A1CD0148E00D5D0F4 /* ActivityView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityView2.swift; path = "app-ios/ActivityView2.swift"; sourceTree = SOURCE_ROOT; };
 		308A34891CCA803200AAF66F /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = History.swift; path = "app-ios/History.swift"; sourceTree = SOURCE_ROOT; };
 		309C8CC91CCEEE8C0073159C /* SignupCountryPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupCountryPickerViewController.swift; path = "app-ios/SignupCountryPickerViewController.swift"; sourceTree = SOURCE_ROOT; };
 		309E15921CBC2A0E00EA95E4 /* ChargeCustomerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChargeCustomerViewController.swift; path = "app-ios/ChargeCustomerViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -256,6 +280,22 @@
 		30B576901CC3045E005BCA5A /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchBar.swift; path = "app-ios/SearchBar.swift"; sourceTree = SOURCE_ROOT; };
 		30B576921CC7D1CE005BCA5A /* SearchDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchDetailViewController.swift; path = "app-ios/SearchDetailViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30BB06E11CCEFC260051C9E7 /* CountryPicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CountryPicker.bundle; sourceTree = SOURCE_ROOT; };
+		30BB06F31CCFDED20051C9E7 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialViewController.swift; path = "app-ios/TutorialViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30BB06FE1CCFE7D20051C9E7 /* BrowserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrowserView.swift; path = "app-ios/BrowserView.swift"; sourceTree = SOURCE_ROOT; };
+		30BB06FF1CCFE7D20051C9E7 /* BrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrowserViewController.swift; path = "app-ios/BrowserViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30BB07001CCFE7D20051C9E7 /* CoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoverView.swift; path = "app-ios/CoverView.swift"; sourceTree = SOURCE_ROOT; };
+		30BB07241CCFEBCE0051C9E7 /* GravityFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GravityFunction.swift; path = "app-ios/GravityFunction.swift"; sourceTree = SOURCE_ROOT; };
+		30BB07251CCFEBCE0051C9E7 /* GravityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GravityViewController.swift; path = "app-ios/GravityViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30BB07261CCFEBCE0051C9E7 /* GravitySimulation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GravitySimulation.swift; path = "app-ios/GravitySimulation.swift"; sourceTree = SOURCE_ROOT; };
+		30BB072A1CCFEBD90051C9E7 /* ActivityView1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityView1.swift; path = "app-ios/ActivityView1.swift"; sourceTree = SOURCE_ROOT; };
+		30BB072B1CCFEBD90051C9E7 /* ActivityViewController1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityViewController1.swift; path = "app-ios/ActivityViewController1.swift"; sourceTree = SOURCE_ROOT; };
+		30BB072E1CCFEBE50051C9E7 /* SpringConfigurationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpringConfigurationView.swift; path = "app-ios/SpringConfigurationView.swift"; sourceTree = SOURCE_ROOT; };
+		30BB072F1CCFEBE50051C9E7 /* SpringsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpringsViewController.swift; path = "app-ios/SpringsViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30BB07301CCFEBE50051C9E7 /* SpringView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpringView.swift; path = "app-ios/SpringView.swift"; sourceTree = SOURCE_ROOT; };
+		30BB07341CCFEC140051C9E7 /* DirectManipulationGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectManipulationGestureRecognizer.swift; path = "app-ios/DirectManipulationGestureRecognizer.swift"; sourceTree = SOURCE_ROOT; };
+		30BB07351CCFEC140051C9E7 /* GesturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GesturesViewController.swift; path = "app-ios/GesturesViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30BB07361CCFEC140051C9E7 /* GestureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GestureView.swift; path = "app-ios/GestureView.swift"; sourceTree = SOURCE_ROOT; };
+		30BB07371CCFEC140051C9E7 /* SimpleTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleTransform.swift; path = "app-ios/SimpleTransform.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DA541CA43655003AFD8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "app-ios/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		30C2DA561CA4365D003AFD8B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "app-ios/Info.plist"; sourceTree = SOURCE_ROOT; };
 		30C2DA581CA43665003AFD8B /* PayKloud.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = PayKloud.entitlements; path = "app-ios/PayKloud.entitlements"; sourceTree = SOURCE_ROOT; };
@@ -605,6 +645,65 @@
 			name = Bundles;
 			sourceTree = "<group>";
 		};
+		30BB06F51CCFE6E00051C9E7 /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				30BB07201CCFEB4C0051C9E7 /* Gravity */,
+				30BB07211CCFEB7B0051C9E7 /* Activity */,
+				30BB07231CCFEB8C0051C9E7 /* Springs */,
+				30BB07221CCFEB860051C9E7 /* Gestures */,
+				30BB06F31CCFDED20051C9E7 /* TutorialViewController.swift */,
+				30BB06FE1CCFE7D20051C9E7 /* BrowserView.swift */,
+				30BB06FF1CCFE7D20051C9E7 /* BrowserViewController.swift */,
+				30BB07001CCFE7D20051C9E7 /* CoverView.swift */,
+			);
+			name = Tutorial;
+			sourceTree = "<group>";
+		};
+		30BB07201CCFEB4C0051C9E7 /* Gravity */ = {
+			isa = PBXGroup;
+			children = (
+				30BB07241CCFEBCE0051C9E7 /* GravityFunction.swift */,
+				30BB07251CCFEBCE0051C9E7 /* GravityViewController.swift */,
+				30BB07261CCFEBCE0051C9E7 /* GravitySimulation.swift */,
+			);
+			name = Gravity;
+			sourceTree = "<group>";
+		};
+		30BB07211CCFEB7B0051C9E7 /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				30BB072A1CCFEBD90051C9E7 /* ActivityView1.swift */,
+				30831F5A1CD0148E00D5D0F4 /* ActivityView2.swift */,
+				30BB072B1CCFEBD90051C9E7 /* ActivityViewController1.swift */,
+				30831F541CD0138E00D5D0F4 /* ActivityViewController2.swift */,
+				30831F561CD013A300D5D0F4 /* ActivityViewController3.swift */,
+				30831F581CD013B000D5D0F4 /* ActivityViewController4.swift */,
+			);
+			name = Activity;
+			sourceTree = "<group>";
+		};
+		30BB07221CCFEB860051C9E7 /* Gestures */ = {
+			isa = PBXGroup;
+			children = (
+				30BB07341CCFEC140051C9E7 /* DirectManipulationGestureRecognizer.swift */,
+				30BB07351CCFEC140051C9E7 /* GesturesViewController.swift */,
+				30BB07361CCFEC140051C9E7 /* GestureView.swift */,
+				30BB07371CCFEC140051C9E7 /* SimpleTransform.swift */,
+			);
+			name = Gestures;
+			sourceTree = "<group>";
+		};
+		30BB07231CCFEB8C0051C9E7 /* Springs */ = {
+			isa = PBXGroup;
+			children = (
+				30BB072E1CCFEBE50051C9E7 /* SpringConfigurationView.swift */,
+				30BB072F1CCFEBE50051C9E7 /* SpringsViewController.swift */,
+				30BB07301CCFEBE50051C9E7 /* SpringView.swift */,
+			);
+			name = Springs;
+			sourceTree = "<group>";
+		};
 		30BECC041C6F92C200B8A088 /* StarButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -618,6 +717,7 @@
 		30BECC061C6F92EF00B8A088 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				30BB06F51CCFE6E00051C9E7 /* Tutorial */,
 				30718AEB1C8E32E100CB0EEB /* Lock */,
 				30D7B72F1C77880200B64B7F /* Signup */,
 				30C2DA981CA4373E003AFD8B /* LoginBoxTableViewController.swift */,
@@ -1319,20 +1419,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30BB07271CCFEBCE0051C9E7 /* GravityFunction.swift in Sources */,
 				30C2DAFF1CA4398C003AFD8B /* Secrets.swift in Sources */,
 				30C2DA9A1CA4373E003AFD8B /* LoginBoxTableViewController.swift in Sources */,
+				30BB07021CCFE7D20051C9E7 /* BrowserViewController.swift in Sources */,
 				309E43C71CA9CF6C00279D97 /* MenuTabButton.swift in Sources */,
 				30C2DAFD1CA43984003AFD8B /* Plaid.swift in Sources */,
 				30C2DA951CA4372D003AFD8B /* PasscodeLockConfiguration.swift in Sources */,
 				309E43C41CA8AE1800279D97 /* WebPrivacyViewController.swift in Sources */,
 				30B576931CC7D1CF005BCA5A /* SearchDetailViewController.swift in Sources */,
+				30BB07291CCFEBCE0051C9E7 /* GravitySimulation.swift in Sources */,
 				30C2DA971CA4372D003AFD8B /* UserDefaultsPasscodeRepository.swift in Sources */,
+				30BB07321CCFEBE50051C9E7 /* SpringsViewController.swift in Sources */,
 				30C2DABC1CA437CB003AFD8B /* KolodaOverlayView.swift in Sources */,
 				30C2DAC91CA43853003AFD8B /* ProtonViewController.swift in Sources */,
 				30C2DAAD1CA43795003AFD8B /* AuthViewController.swift in Sources */,
 				30C2DAC51CA43841003AFD8B /* SearchViewController.swift in Sources */,
 				30C2DA5B1CA4366C003AFD8B /* AppDelegate.swift in Sources */,
 				300E42311CB7123E004316CF /* CreditCardListViewController.swift in Sources */,
+				30BB072C1CCFEBD90051C9E7 /* ActivityView1.swift in Sources */,
 				30C2DAE51CA4392E003AFD8B /* AddBankViewController.swift in Sources */,
 				30C2DAC11CA43836003AFD8B /* ProfileViewController.swift in Sources */,
 				30C2DAEF1CA43951003AFD8B /* AddCustomerViewController.swift in Sources */,
@@ -1341,47 +1446,61 @@
 				30C2DB1D1CA43A05003AFD8B /* paykloud_iosUITests.swift in Sources */,
 				30C2DADB1CA438A5003AFD8B /* ProfileLabelCell.swift in Sources */,
 				30C2DAA41CA4374F003AFD8B /* SignupIndividualViewControllerOne.swift in Sources */,
+				30BB07011CCFE7D20051C9E7 /* BrowserView.swift in Sources */,
+				30831F591CD013B000D5D0F4 /* ActivityViewController4.swift in Sources */,
 				30C2DAD31CA43881003AFD8B /* Profile.swift in Sources */,
 				302010C81CAEAE0E007D5E7E /* BalanceViewController.swift in Sources */,
 				30C2DB091CA439BC003AFD8B /* StarButton.swift in Sources */,
+				30831F571CD013A300D5D0F4 /* ActivityViewController3.swift in Sources */,
+				30BB07381CCFEC140051C9E7 /* DirectManipulationGestureRecognizer.swift in Sources */,
 				309C8CCA1CCEEE8C0073159C /* SignupCountryPickerViewController.swift in Sources */,
 				302010CA1CAF3B05007D5E7E /* Notification.swift in Sources */,
+				30831F5B1CD0148E00D5D0F4 /* ActivityView2.swift in Sources */,
 				30C2DAAB1CA4374F003AFD8B /* SignupViewControllerZero.swift in Sources */,
 				30C2DAF51CA43967003AFD8B /* ChargeViewController.swift in Sources */,
 				30C2DABB1CA437CB003AFD8B /* KolodaCustomView.swift in Sources */,
 				30C2DAA81CA4374F003AFD8B /* SignupViewControllerOne.swift in Sources */,
 				30C2DABF1CA43823003AFD8B /* HomeViewController.swift in Sources */,
+				30BB07331CCFEBE50051C9E7 /* SpringView.swift in Sources */,
 				30C2DAA71CA4374F003AFD8B /* SignupViewControllerFour.swift in Sources */,
 				30C2DB131CA439E1003AFD8B /* Timeout.swift in Sources */,
 				30C2DACB1CA4385C003AFD8B /* ProfileMenuViewController.swift in Sources */,
 				30C2DAB31CA437B2003AFD8B /* TermsViewController.swift in Sources */,
 				309E15951CBE9A1600EA95E4 /* ChargeCustomerSearchController.swift in Sources */,
 				300E422B1CB47428004316CF /* BankConnectedListTableViewController.swift in Sources */,
+				30BB072D1CCFEBD90051C9E7 /* ActivityViewController1.swift in Sources */,
 				30C2DAD51CA43892003AFD8B /* ProfileFieldCell.swift in Sources */,
 				30C2DAB11CA437A9003AFD8B /* PresentedTableViewController.swift in Sources */,
 				30C2DAE11CA43909003AFD8B /* FormerInputAccessoryView.swift in Sources */,
 				30C2DB0B1CA439C1003AFD8B /* Paths.swift in Sources */,
+				30BB06F41CCFDED20051C9E7 /* TutorialViewController.swift in Sources */,
 				30C2DAA91CA4374F003AFD8B /* SignupViewControllerThree.swift in Sources */,
 				30EB3C6E1CCCFAD80010F130 /* RAMTabBarExtension.swift in Sources */,
 				30C2DAFB1CA4397C003AFD8B /* LeftMenuViewController.swift in Sources */,
+				30BB07031CCFE7D20051C9E7 /* CoverView.swift in Sources */,
 				300E42331CB71362004316CF /* Card.swift in Sources */,
 				309E15931CBC2A0E00EA95E4 /* ChargeCustomerViewController.swift in Sources */,
+				30BB073B1CCFEC140051C9E7 /* SimpleTransform.swift in Sources */,
 				30C2DAE31CA43926003AFD8B /* ConfigureNotificationsViewController.swift in Sources */,
+				30BB07391CCFEC140051C9E7 /* GesturesViewController.swift in Sources */,
 				309E15971CBE9A5600EA95E4 /* ChargeCustomerCustomSearchBar.swift in Sources */,
 				30C2DAEA1CA43934003AFD8B /* BankDetailViewController.swift in Sources */,
 				309E43C21CA8AE0B00279D97 /* WebSupportViewController.swift in Sources */,
 				30C2DACD1CA43862003AFD8B /* CreditCardAccountViewController.swift in Sources */,
 				30C2DAED1CA43946003AFD8B /* RecurringBillingPlanViewController.swift in Sources */,
 				30C2DAAF1CA4379F003AFD8B /* ResetPasswordViewController.swift in Sources */,
+				30BB073A1CCFEC140051C9E7 /* GestureView.swift in Sources */,
 				30B5768D1CC303F8005BCA5A /* SearchController.swift in Sources */,
 				30C2DAD91CA4389E003AFD8B /* ProfileImageCell.swift in Sources */,
 				30C2DA9B1CA4373E003AFD8B /* LoginViewController.swift in Sources */,
 				30C2DAAA1CA4374F003AFD8B /* SignupViewControllerTwo.swift in Sources */,
+				30BB07311CCFEBE50051C9E7 /* SpringConfigurationView.swift in Sources */,
 				30C2DAF91CA43975003AFD8B /* User.swift in Sources */,
 				30C2DB151CA439E6003AFD8B /* Gravatar.swift in Sources */,
 				300E422D1CB56E10004316CF /* Bank.swift in Sources */,
 				30C2DA961CA4372D003AFD8B /* PasscodeSettingsViewController.swift in Sources */,
 				30C2DAB91CA437CB003AFD8B /* KolodaBackgroundAnimationViewController.swift in Sources */,
+				30BB07281CCFEBCE0051C9E7 /* GravityViewController.swift in Sources */,
 				300E422F1CB57206004316CF /* BankConnectedTableViewCell.swift in Sources */,
 				30C2DAEB1CA43934003AFD8B /* BankTableViewCell.swift in Sources */,
 				30C2DA8F1CA436D9003AFD8B /* RootViewController.swift in Sources */,
@@ -1389,6 +1508,7 @@
 				30F480D61CCAE5FF00DD1E60 /* PaymentViewController.swift in Sources */,
 				30C2DAD11CA4386A003AFD8B /* SupportMessageViewController.swift in Sources */,
 				30C2DAE91CA43934003AFD8B /* BankAccountViewController.swift in Sources */,
+				30831F551CD0138E00D5D0F4 /* ActivityViewController2.swift in Sources */,
 				30C2DAA61CA4374F003AFD8B /* SignupIndividualViewControllerTwo.swift in Sources */,
 				30C2DB071CA439B6003AFD8B /* Extensions.swift in Sources */,
 				30C2DAA51CA4374F003AFD8B /* SignupIndividualViewControllerThree.swift in Sources */,
