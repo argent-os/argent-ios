@@ -52,29 +52,6 @@
             <string>Nunito-Regular</string>
             <string>Nunito-Regular</string>
             <string>Nunito-Regular</string>
-            <string>Nunito-Regular</string>
-            <string>Nunito-Regular</string>
-            <string>Nunito-Regular</string>
-            <string>Nunito-Regular</string>
-            <string>Nunito-Regular</string>
-            <string>Nunito-Regular</string>
-            <string>Nunito-Regular</string>
-            <string>Nunito-Regular</string>
-            <string>Nunito-Regular</string>
-            <string>Nunito-Regular</string>
-            <string>Nunito-Regular</string>
-            <string>Nunito-Regular</string>
-            <string>Nunito-Regular</string>
-            <string>Nunito-Regular</string>
-            <string>Nunito-Regular</string>
-            <string>Nunito-Regular</string>
-            <string>Nunito-Regular</string>
-            <string>Nunito-Regular</string>
-            <string>Nunito-Regular</string>
-        </mutableArray>
-        <mutableArray key="Nunito-SemiBold.ttf">
-            <string>Nunito-SemiBold</string>
-            <string>Nunito-SemiBold</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -1713,7 +1690,7 @@ institutions</string>
                         <viewControllerLayoutGuide type="bottom" id="buS-2c-LKz"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="JaV-yX-yXF">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1964,10 +1941,7 @@ institutions</string>
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="xpa-9P-y7e" kind="show" identifier="individualSegue" id="gUR-9D-JWE">
-                                        <segue key="commit" inheritsFrom="parent" id="QV5-a5-fZY"/>
-                                        <segue key="preview" inheritsFrom="commit" id="FbP-sk-4SG"/>
-                                    </segue>
+                                    <segue destination="Xax-ri-GcP" kind="show" identifier="individualSegue" id="exE-qz-Ig3"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's get started" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kqy-of-qdM">
@@ -1995,17 +1969,7 @@ institutions</string>
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="ian-zS-qrA" kind="show" identifier="companySegue" id="j8y-vP-2EI">
-                                        <segue key="commit" inheritsFrom="parent" id="xvw-V9-wTk"/>
-                                        <segue key="preview" inheritsFrom="commit" id="cc7-8u-hBf"/>
-                                    </segue>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xrs-Xf-vMz">
-                                <rect key="frame" x="156" y="686" width="102" height="30"/>
-                                <state key="normal" title="Select Country"/>
-                                <connections>
-                                    <segue destination="Xax-ri-GcP" kind="show" id="xeQ-fk-a3y"/>
+                                    <segue destination="Xax-ri-GcP" kind="show" identifier="companySegue" id="HvL-NX-xgs"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -2016,7 +1980,6 @@ institutions</string>
                             <constraint firstItem="Kqy-of-qdM" firstAttribute="leading" secondItem="xww-7z-wXr" secondAttribute="leadingMargin" id="7OD-7g-vVV"/>
                             <constraint firstItem="Kqy-of-qdM" firstAttribute="trailing" secondItem="xww-7z-wXr" secondAttribute="trailingMargin" id="BX4-Tn-y5L"/>
                             <constraint firstItem="VC4-pY-Utw" firstAttribute="trailing" secondItem="v6x-xJ-i0c" secondAttribute="trailing" id="HGo-Xk-wxh"/>
-                            <constraint firstAttribute="bottom" secondItem="Xrs-Xf-vMz" secondAttribute="bottom" constant="20" symbolic="YES" id="Iws-6z-YPV"/>
                             <constraint firstItem="Kqy-of-qdM" firstAttribute="leading" secondItem="VC4-pY-Utw" secondAttribute="leading" id="QIE-rT-h1o"/>
                             <constraint firstItem="Kqy-of-qdM" firstAttribute="trailing" secondItem="VC4-pY-Utw" secondAttribute="trailing" id="Qjq-oC-ffT"/>
                             <constraint firstItem="VC4-pY-Utw" firstAttribute="leading" secondItem="v6x-xJ-i0c" secondAttribute="leading" id="Qrn-uq-bRs"/>
@@ -2024,7 +1987,6 @@ institutions</string>
                             <constraint firstItem="v6x-xJ-i0c" firstAttribute="trailing" secondItem="3Eh-m3-t8k" secondAttribute="trailing" id="Wjc-ah-kbA"/>
                             <constraint firstItem="Kqy-of-qdM" firstAttribute="top" secondItem="xww-7z-wXr" secondAttribute="topMargin" constant="48" id="dar-NF-bV8"/>
                             <constraint firstItem="v6x-xJ-i0c" firstAttribute="top" secondItem="VC4-pY-Utw" secondAttribute="bottom" constant="8" symbolic="YES" id="g57-ER-35D"/>
-                            <constraint firstItem="3Eh-m3-t8k" firstAttribute="centerX" secondItem="Xrs-Xf-vMz" secondAttribute="centerX" id="vdy-9V-xRX"/>
                             <constraint firstItem="3Eh-m3-t8k" firstAttribute="top" secondItem="v6x-xJ-i0c" secondAttribute="bottom" constant="8" symbolic="YES" id="wCv-O8-Uo3"/>
                         </constraints>
                     </view>
@@ -2052,10 +2014,14 @@ institutions</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="xpa-9P-y7e" kind="show" identifier="VC1i" id="pwA-UY-2qu"/>
+                        <segue destination="ian-zS-qrA" kind="show" identifier="VC1c" id="sc3-xx-vZL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2GU-eu-MNX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2696" y="922"/>
+            <point key="canvasLocation" x="2796" y="1055"/>
         </scene>
         <!--Signup View Controller One-->
         <scene sceneID="M28-gk-vJA">
@@ -2074,7 +2040,7 @@ institutions</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="Sff-P8-bkE"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="18"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2083,17 +2049,17 @@ institutions</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="734-eE-COF"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="12"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="12"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJn-kf-2xS">
                                 <rect key="frame" x="0.0" y="686" width="414" height="50"/>
-                                <color key="backgroundColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="GJM-VV-OMW"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Continue"/>
                                 <connections>
@@ -2143,11 +2109,11 @@ institutions</string>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ikb-GO-UZZ">
                                 <rect key="frame" x="0.0" y="686" width="414" height="50"/>
-                                <color key="backgroundColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="NfP-LV-54d"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Continue"/>
                                 <connections>
@@ -2162,7 +2128,7 @@ institutions</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="3vS-vq-aOt"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="18"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2171,7 +2137,7 @@ institutions</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="qwe-VH-6Oz"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="12"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="12"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2212,11 +2178,11 @@ institutions</string>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="upg-A6-V8U">
                                 <rect key="frame" x="0.0" y="686" width="414" height="50"/>
-                                <color key="backgroundColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="aEG-sJ-psP"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Continue"/>
                                 <connections>
@@ -2231,7 +2197,7 @@ institutions</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="Jp0-GX-mWv"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="18"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2240,7 +2206,7 @@ institutions</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="abY-hS-AGP"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="12"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="12"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2284,7 +2250,7 @@ institutions</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="123" id="yYe-lA-e1F"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
                                     <string key="title">By checking the circle below I agree to 
@@ -2306,17 +2272,17 @@ Click here to view more</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="QQs-lE-wGh"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="18"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6B3-5H-VNK">
                                 <rect key="frame" x="0.0" y="686" width="414" height="50"/>
-                                <color key="backgroundColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="SGJ-ee-uCW"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Finish"/>
                                 <connections>
@@ -2362,11 +2328,11 @@ Click here to view more</string>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E9V-L5-PSh">
                                 <rect key="frame" x="0.0" y="686" width="414" height="50"/>
-                                <color key="backgroundColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Tx0-RU-5pp"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Continue"/>
                                 <connections>
@@ -2381,7 +2347,7 @@ Click here to view more</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="bef-SJ-hb7"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="18"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2420,11 +2386,11 @@ Click here to view more</string>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jUx-aL-hXm">
                                 <rect key="frame" x="0.0" y="686" width="414" height="50"/>
-                                <color key="backgroundColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="ZIE-V3-jft"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Continue"/>
                                 <connections>
@@ -2439,7 +2405,7 @@ Click here to view more</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="zuz-2r-vq8"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="18"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2448,7 +2414,7 @@ Click here to view more</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="h3W-Io-SJW"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="12"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="12"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2493,7 +2459,7 @@ Click here to view more</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="123" id="04B-SF-gwO"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
                                     <string key="title">By checking the circle below I agree to 
@@ -2515,17 +2481,17 @@ Click here to view more</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="uOp-BT-IHY"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="18"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a2O-vf-Wtj">
                                 <rect key="frame" x="0.0" y="686" width="414" height="50"/>
-                                <color key="backgroundColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="8Qy-bY-xca"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Finish"/>
                                 <connections>
@@ -2626,7 +2592,7 @@ Click here to view more</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="HO9-06-niX"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="18"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2858,7 +2824,7 @@ Click here to view more</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="snm-15-Afh"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2867,7 +2833,7 @@ Click here to view more</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="t15-FH-lUT"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="0.64886853448275861" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -3236,15 +3202,15 @@ Click here to view more</string>
                         <viewControllerLayoutGuide type="bottom" id="j28-KU-mNU"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="sqS-RP-JEc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="awt-hT-DzB">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="idCell" textLabel="eDw-mh-d6X" rowHeight="60" style="IBUITableViewCellStyleDefault" id="bP2-Kq-CYW">
-                                        <rect key="frame" x="0.0" y="86" width="414" height="60"/>
+                                        <rect key="frame" x="0.0" y="22" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bP2-Kq-CYW" id="VLj-O3-6lY">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
@@ -3318,24 +3284,23 @@ Click here to view more</string>
         <image name="ic_user" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aks-Yo-Spb"/>
-        <segue reference="igQ-zk-tCm"/>
-        <segue reference="m3z-fp-Nlm"/>
-        <segue reference="gUR-9D-JWE"/>
-        <segue reference="WA2-vu-RC9"/>
-        <segue reference="j8y-vP-2EI"/>
-        <segue reference="xTl-cs-ajG"/>
-        <segue reference="UFB-DJ-qrH"/>
-        <segue reference="SFz-vc-0MB"/>
-        <segue reference="GfY-d3-W00"/>
-        <segue reference="o5e-Ut-781"/>
-        <segue reference="E98-FC-SfF"/>
-        <segue reference="agi-3I-cSC"/>
-        <segue reference="VI5-hp-Gm2"/>
+        <segue reference="YIg-Dp-HpF"/>
         <segue reference="ipn-3I-3vc"/>
+        <segue reference="VI5-hp-Gm2"/>
+        <segue reference="agi-3I-cSC"/>
+        <segue reference="exE-qz-Ig3"/>
+        <segue reference="m3z-fp-Nlm"/>
+        <segue reference="igQ-zk-tCm"/>
         <segue reference="Bc6-jW-uiV"/>
         <segue reference="fEJ-lR-z9I"/>
         <segue reference="7cu-FP-MoG"/>
+        <segue reference="dtT-zy-VVd"/>
+        <segue reference="xTl-cs-ajG"/>
+        <segue reference="UFB-DJ-qrH"/>
+        <segue reference="o5e-Ut-781"/>
+        <segue reference="E98-FC-SfF"/>
+        <segue reference="SFz-vc-0MB"/>
+        <segue reference="GfY-d3-W00"/>
         <segue reference="zsk-4D-roF"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

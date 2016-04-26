@@ -753,8 +753,8 @@
 		30D7B72F1C77880200B64B7F /* Signup */ = {
 			isa = PBXGroup;
 			children = (
-				309C8CC91CCEEE8C0073159C /* SignupCountryPickerViewController.swift */,
 				30C2DAA31CA4374F003AFD8B /* SignupViewControllerZero.swift */,
+				309C8CC91CCEEE8C0073159C /* SignupCountryPickerViewController.swift */,
 				30C2DAA01CA4374F003AFD8B /* SignupViewControllerOne.swift */,
 				30C2DAA21CA4374F003AFD8B /* SignupViewControllerTwo.swift */,
 				30C2DAA11CA4374F003AFD8B /* SignupViewControllerThree.swift */,

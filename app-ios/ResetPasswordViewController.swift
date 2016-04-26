@@ -54,6 +54,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
         // Tags are 4 and 5 due to signup view textfields taking values 0-3
         emailTextField.tag = 328
         emailTextField.textAlignment = NSTextAlignment.Center
+        emailTextField.font = UIFont(name: "Avenir", size: 15)
         emailTextField.borderActiveColor = UIColor(rgba: "#FFF7")
         emailTextField.borderInactiveColor = UIColor(rgba: "#FFF4") // color with alpha
         emailTextField.backgroundColor = UIColor.clearColor()
@@ -87,6 +88,13 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Reset Password", style: UIBarButtonItemStyle.Done, target: self, action: #selector(ResetPasswordViewController.resetButtonTapped(_:)))
+        
+        UIToolbar.appearance().barTintColor = UIColor.whiteColor()
+
+        done.setTitleTextAttributes([
+            NSFontAttributeName : UIFont(name: "Avenir-Light", size: 15.0)!,
+            NSForegroundColorAttributeName : UIColor.protonBlue()
+            ], forState: .Normal)
         
         var items: [UIBarButtonItem]? = [UIBarButtonItem]()
         items?.append(flexSpace)
@@ -198,37 +206,6 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
             color: customColor,
             iconImage: customIcon)
         alertView.setTextTheme(.Light) // can be .Light or .Dark
-    }
-    
-    
-    // Toolbar close input keyboard
-    @IBAction func addCloseButtonAction() {
-        dismissKeyboard()
-    }
-    
-    // Add close button to ui keyboard toolbar
-    func addCloseButtonKeyBoard()
-    {
-        let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
-        let closeToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, screenWidth, 50))
-        closeToolbar.barStyle = UIBarStyle.Default
-        
-        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Close", style: UIBarButtonItemStyle.Done, target: self, action: #selector(ResetPasswordViewController.addCloseButtonAction))
-        UIToolbar.appearance().barTintColor = UIColor.whiteColor()
-        done.setTitleTextAttributes([
-            NSFontAttributeName : UIFont(name: "Nunito-SemiBold", size: 15.0)!,
-            NSForegroundColorAttributeName : UIColor(rgba: "#1796fa")
-            ], forState: .Normal)
-        
-        var items: [UIBarButtonItem]? = [UIBarButtonItem]()
-        items?.append(flexSpace)
-        items?.append(done)
-        
-        closeToolbar.items = items
-        closeToolbar.sizeToFit()
-        emailTextField.inputAccessoryView=closeToolbar
     }
     
     //Changing Status Bar

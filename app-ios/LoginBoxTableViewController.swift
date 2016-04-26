@@ -63,11 +63,13 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Login", style: UIBarButtonItemStyle.Done, target: self, action: #selector(LoginBoxTableViewController.loginButtonTapped(_:)))
+        
         UIToolbar.appearance().barTintColor = UIColor.whiteColor()
+
         done.setTitleTextAttributes([
-            NSFontAttributeName : UIFont(name: "Nunito-SemiBold", size: 15.0)!,
-            NSForegroundColorAttributeName : UIColor(rgba: "#1796fa")
-            ], forState: .Normal)
+                    NSFontAttributeName : UIFont(name: "Avenir-Light", size: 15.0)!,
+                    NSForegroundColorAttributeName : UIColor.protonBlue()
+                    ], forState: .Normal)
         
         var items: [UIBarButtonItem]? = [UIBarButtonItem]()
         items?.append(flexSpace)
@@ -184,12 +186,12 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
     }
     
     override func viewWillDisappear(animated: Bool) {
-        UIToolbar.appearance().barTintColor = UIColor(rgba: "#1796fa")
-        UIToolbar.appearance().backgroundColor = UIColor(rgba: "#1796fa")
-        if let font = UIFont(name: "Nunito-SemiBold", size: 15) {
-            UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: font,NSForegroundColorAttributeName:UIColor.whiteColor()], forState: UIControlState.Normal)
-            
-        }
+//        UIToolbar.appearance().barTintColor = UIColor(rgba: "#1796fa")
+//        UIToolbar.appearance().backgroundColor = UIColor(rgba: "#1796fa")
+//        if let font = UIFont(name: "Nunito-SemiBold", size: 15) {
+//            UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: font,NSForegroundColorAttributeName:UIColor.whiteColor()], forState: UIControlState.Normal)
+//            
+//        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

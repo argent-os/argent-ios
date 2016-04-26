@@ -33,9 +33,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
     let userDobDay = NSUserDefaults.standardUserDefaults().stringForKey("userDobDay")!
     let userDobMonth = NSUserDefaults.standardUserDefaults().stringForKey("userDobMonth")!
     let userDobYear = NSUserDefaults.standardUserDefaults().stringForKey("userDobYear")!
-    
-    // Set the locale
-    let countryCode = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
+    let userCountry = NSUserDefaults.standardUserDefaults().stringForKey("userCountry")!
     
     //Changing Status Bar
     override internal func prefersStatusBarHidden() -> Bool {
@@ -69,7 +67,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
         //        print("user username", userUsername)
         //        print("user email", userEmail)
         //        print("user phone", userPhoneNumber)
-        //        print(countryCode)
+        //        print(userCountry)
         
         
         let screen = UIScreen.mainScreen().bounds
@@ -86,7 +84,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
         self.view!.addSubview(switchTermsAndPrivacy)
 
         finishButton.layer.cornerRadius = 0
-        finishButton.backgroundColor = UIColor(rgba: "#38a4f9")
+        finishButton.backgroundColor = UIColor.protonBlue()
         
         self.navigationController?.navigationBar.tintColor = UIColor.grayColor()
         title = ""
@@ -138,7 +136,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
                     "first_name":self.userFirstName,
                     "last_name":self.userLastName,
                     "username":self.userUsername,
-                    "country":self.countryCode,
+                    "country":self.userCountry,
                     "email":self.userEmail,
                     "phone_number":self.userPhoneNumber,
                     "tos_acceptance" : tosNSDict,

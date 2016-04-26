@@ -10,9 +10,7 @@ import Foundation
 import CountryPicker
 import FlagKit
 
-class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate {
-    
-    let textField:UITextField = UITextField()
+class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate, UITextFieldDelegate {
     
     let codeLabel:UILabel = UILabel()
 
@@ -27,18 +25,39 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("country picker view loaded")
         
-        self.view.addSubview(textField)
         addToolbarButton()
         
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
+        // Set default country code
+        let countryCode = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
+        NSUserDefaults.standardUserDefaults().setValue(countryCode, forKey: "userCountry")
+
+        flagImg.image = UIImage(flagImageWithCountryCode: NSLocale.autoupdatingCurrentLocale().objectForKey(NSLocaleCountryCode) as! String)
+        flagImg.layer.cornerRadius = 10
+        flagImg.layer.masksToBounds = true
+        flagImg.contentMode = .ScaleAspectFit
+        flagImg.frame = CGRect(x: screenWidth/2-25, y: screenHeight*0.22, width: 50, height: 50)
+        self.view.addSubview(flagImg)
+        
+        let countryName: String = NSLocale.systemLocale().displayNameForKey(NSLocaleCountryCode, value: countryCode)!
+        codeLabel.tintColor = UIColor.grayColor()
+        codeLabel.frame = CGRect(x: 0, y: screenHeight*0.30, width: screenWidth, height: 50)
+        codeLabel.textAlignment = .Center
+        let str = NSAttributedString(string: countryName, attributes:
+            [
+                NSFontAttributeName: UIFont(name: "Nunito-ExtraLight", size: 24)!,
+                NSForegroundColorAttributeName:UIColor.darkGrayColor()
+            ])
+        codeLabel.attributedText = str
+        self.view.addSubview(codeLabel)
+        
         countryPicker.selectedLocale = NSLocale.currentLocale()
         countryPicker.delegate = self
-        countryPicker.frame = CGRect(x: 0, y: screenHeight-270, width: screenWidth, height: 300)
+        countryPicker.frame = CGRect(x: 0, y: screenHeight-280, width: screenWidth, height: 300)
         self.view.addSubview(countryPicker)
         
         self.navigationController?.view.backgroundColor = UIColor.clearColor()
@@ -52,44 +71,55 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate 
         navBar.shadowImage = UIImage()
         navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont(name: "Nunito-Regular", size: 18)!,
+            NSFontAttributeName: UIFont(name: "Avenir-Light", size: 16)!,
             NSForegroundColorAttributeName:UIColor.lightGrayColor()
         ]
         self.view.addSubview(navBar)
         let navItem = UINavigationItem(title: "Select a Country")
         navItem.leftBarButtonItem?.tintColor = UIColor.darkGrayColor()
         navBar.setItems([navItem], animated: true)
-        
-        
     }
     
     // Add send toolbar
     func addToolbarButton()
     {
-        countryPicker.backgroundColor = .whiteColor()
-        countryPicker.showsSelectionIndicator = true
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
         
+        countryPicker.backgroundColor = UIColor.clearColor()
+        countryPicker.showsSelectionIndicator = true
+        self.view.sendSubviewToBack(countryPicker)
+        countryPicker.sendSubviewToBack(countryPicker)
+
         let toolBar = UIToolbar()
+        toolBar.frame = CGRect(x: 0, y: screenHeight-310, width: screenWidth, height: 40)
         toolBar.barStyle = UIBarStyle.Default
         toolBar.translucent = true
         toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
         toolBar.sizeToFit()
         
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Continue", style: UIBarButtonItemStyle.Done, target: self, action: #selector(SignupViewControllerOne.nextStep(_:)))
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: "donePicker")
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: "donePicker")
-        
-        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        let next: UIBarButtonItem = UIBarButtonItem(title: "Continue", style: UIBarButtonItemStyle.Done, target: self, action: #selector(SignupCountryPickerViewController.nextStep(_:)))
+
+        toolBar.setItems([flexSpace, next, flexSpace], animated: false)
         toolBar.userInteractionEnabled = true
         
-        textField.inputView = countryPicker
-        textField.inputAccessoryView = toolBar
-
+        self.view.addSubview(toolBar)
+        self.view.superview?.bringSubviewToFront(toolBar)
+        self.view.superview?.sendSubviewToBack(countryPicker)
+        self.view.bringSubviewToFront(toolBar)
     }
     
-    override func viewDidAppear(animated: Bool) {
-        flagImg.image = UIImage(flagImageWithCountryCode: NSLocale.autoupdatingCurrentLocale().objectForKey(NSLocaleCountryCode) as! String)
+    func nextStep(sender: AnyObject) {
+        // Function for toolbar button
+        print("going to next step")
+        let entity = NSUserDefaults.standardUserDefaults().stringForKey("userLegalEntityType")!
+        if entity == "individual" {
+            self.performSegueWithIdentifier("VC1i", sender: sender)
+        } else {
+            self.performSegueWithIdentifier("VC1c", sender: sender)
+        }
     }
     
     func countryPicker(picker: CountryPicker, didSelectCountryWithName name: String, code: String) {
@@ -97,9 +127,9 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate 
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-        print(name)
-        print(code)
-        
+        // Update country code to picked country
+        NSUserDefaults.standardUserDefaults().setValue(code, forKey: "userCountry")
+
         // prevent re-adding image
         flagImg.removeFromSuperview()
         flagImg.layer.cornerRadius = 10

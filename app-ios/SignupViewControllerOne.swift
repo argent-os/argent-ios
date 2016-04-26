@@ -72,11 +72,12 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
         self.dobTextField.delegate = self
         
         continueButton.layer.cornerRadius = 0
-        continueButton.backgroundColor = UIColor(rgba: "#38a4f9")
+        continueButton.backgroundColor = UIColor.protonBlue()
         
         // Programatically set the input fields
         firstNameTextField.tag = 89
         firstNameTextField.textAlignment = NSTextAlignment.Center
+        firstNameTextField.font = UIFont(name: "Avenir-Light", size: 15)
         firstNameTextField.borderActiveColor = UIColor.clearColor()
         firstNameTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
         firstNameTextField.backgroundColor = UIColor.clearColor()
@@ -95,6 +96,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
         
         lastNameTextField.tag = 90
         lastNameTextField.textAlignment = NSTextAlignment.Center
+        lastNameTextField.font = UIFont(name: "Avenir-Light", size: 15)
         lastNameTextField.borderActiveColor = UIColor.clearColor()
         lastNameTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
         lastNameTextField.backgroundColor = UIColor.clearColor()
@@ -113,6 +115,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
 
         dobTextField.tag = 91
         dobTextField.textAlignment = NSTextAlignment.Center
+        dobTextField.font = UIFont(name: "Avenir-Light", size: 15)
         dobTextField.borderActiveColor = UIColor.clearColor()
         dobTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
         dobTextField.backgroundColor = UIColor.clearColor()

@@ -66,11 +66,12 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate {
         self.repeatPasswordTextField.delegate = self
         
         continueButton.layer.cornerRadius = 0
-        continueButton.backgroundColor = UIColor(rgba: "#38a4f9")
+        continueButton.backgroundColor = UIColor.protonBlue()
         
         // Programatically set the input fields
         passwordTextField.tag = 234
         passwordTextField.textAlignment = NSTextAlignment.Center
+        passwordTextField.font = UIFont(name: "Avenir-Light", size: 15)
         passwordTextField.borderActiveColor = UIColor.clearColor()
         passwordTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
         passwordTextField.backgroundColor = UIColor.clearColor()
@@ -90,6 +91,7 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate {
         
         repeatPasswordTextField.tag = 235
         repeatPasswordTextField.textAlignment = NSTextAlignment.Center
+        repeatPasswordTextField.font = UIFont(name: "Avenir-Light", size: 15)
         repeatPasswordTextField.borderActiveColor = UIColor.clearColor()
         repeatPasswordTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
         repeatPasswordTextField.backgroundColor = UIColor.clearColor()

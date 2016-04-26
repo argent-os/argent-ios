@@ -62,12 +62,12 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate {
         self.emailTextField.delegate = self
         
         continueButton.layer.cornerRadius = 0
-        continueButton.backgroundColor = UIColor(rgba: "#38a4f9")
-        continueButton.backgroundColor = UIColor(rgba: "#38a4f9")
+        continueButton.backgroundColor = UIColor.protonBlue()
         
         // Programatically set the input fields
         usernameTextField.tag = 123
         usernameTextField.textAlignment = NSTextAlignment.Center
+        usernameTextField.font = UIFont(name: "Avenir-Light", size: 15)
         usernameTextField.borderActiveColor = UIColor.clearColor()
         usernameTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
         usernameTextField.backgroundColor = UIColor.clearColor()
@@ -86,6 +86,7 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate {
         
         emailTextField.tag = 124
         emailTextField.textAlignment = NSTextAlignment.Center
+        emailTextField.font = UIFont(name: "Avenir-Light", size: 15)
         emailTextField.borderActiveColor = UIColor.clearColor()
         emailTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
         emailTextField.font = UIFont(name: "Helvetica", size: 16)
