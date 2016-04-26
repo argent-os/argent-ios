@@ -27,4 +27,7 @@
 // Used for Custom Checkbox UI
 #import "Pods/BEMCheckBox/classes/BEMCheckBox.h"
 
+// Country picker
+#import "Pods/CountryPicker/CountryPicker/CountryPicker.h"
+
 #endif /* ObjC_Bridging_Header_h */

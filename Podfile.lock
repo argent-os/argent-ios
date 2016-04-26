@@ -5,6 +5,7 @@ PODS:
   - BEMSimpleLineGraph (4.1)
   - CardIO (5.3.2)
   - CircleMenu (1.0.0)
+  - CountryPicker (1.2.3)
   - CWStatusBarNotification (2.3.4)
   - DCPathButton (2.1.3)
   - DGRunkeeperSwitch (1.1.1)
@@ -53,6 +54,7 @@ DEPENDENCIES:
   - BEMSimpleLineGraph
   - CardIO
   - CircleMenu
+  - CountryPicker
   - CWStatusBarNotification
   - DCPathButton
   - DGRunkeeperSwitch
@@ -109,6 +111,7 @@ SPEC CHECKSUMS:
   BEMSimpleLineGraph: 44fd451f27f8e9cf96f2da5bea27603093576dd1
   CardIO: 92c45caef0d986c4a303a7afba0c9b76ff2b1f6e
   CircleMenu: d67d88395705c20c23806632987288b39fbfc690
+  CountryPicker: 6f166e2f1cc250f07eba4c587fbe1c0efc21049b
   CWStatusBarNotification: 3fec41edcb0ae3677d9febfcb9632d8bdf52294c
   DCPathButton: 431bb93072e8d25bd0de0eaa0373e39d896a38e3
   DGRunkeeperSwitch: da12f199532a99958a1e87ec0a5af61efdba11ec

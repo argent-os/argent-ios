@@ -11,7 +11,6 @@ import Stripe
 import PasscodeLock
 import SwiftyJSON
 import KeychainSwift
-import SIAlertView
 
 let merchantID = "merchant.com.protonpayments.app"
 var userData:JSON? // init user data, declare globally, needs SwiftyJSON
@@ -168,7 +167,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
+    
+    // Error solution for dyld_sim`dyld_fatal_error nop
+    // Delete ~/Library/Caches/com.apple.dt.Xcode*
+    // Delete ~/Library/Developer/Xcode/DerivedData
+    // Clean and Build
 }
 // Fixes Push notification bug: _handleNonLaunchSpecificActions
 extension UIApplication {

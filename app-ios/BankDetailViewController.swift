@@ -8,10 +8,10 @@
 
 import UIKit
 import TextFieldEffects
-import SIAlertView
 import Alamofire
 import SwiftyJSON
 import JGProgressHUD
+import JSSAlertView
 
 class BankDetailViewController: UIViewController, UITextFieldDelegate {
     
@@ -293,9 +293,16 @@ class BankDetailViewController: UIViewController, UITextFieldDelegate {
     }
     
     func displayErrorAlertMessage(alertMessage:String) {
-        let alertView: SIAlertView = SIAlertView(title: "Error", andMessage: alertMessage)
-        alertView.addButtonWithTitle("Ok", type: SIAlertViewButtonType.Default, handler: nil)
-        alertView.transitionStyle = SIAlertViewTransitionStyle.DropDown
-        alertView.show()
+        let customIcon:UIImage = UIImage(named: "ic_close_light")! // your custom icon UIImage
+        let customColor:UIColor = UIColor.protonBlue() // base color for the alert
+        let alertView = JSSAlertView().show(
+            self,
+            title: "",
+            text: alertMessage,
+            buttonText: "",
+            noButtons: true,
+            color: customColor,
+            iconImage: customIcon)
+        alertView.setTextTheme(.Light) // can be .Light or .Dark
     }
 }
