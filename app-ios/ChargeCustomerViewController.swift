@@ -42,7 +42,7 @@ class ChargeCustomerViewController: UIViewController, UITableViewDelegate, UITab
         navBar.barTintColor = UIColor(rgba: "#FFF")
         navBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.darkGrayColor(),
-            NSFontAttributeName : UIFont(name: "Nunito-SemiBold", size: 20)!
+            NSFontAttributeName : UIFont(name: "Avenir-Book", size: 20)!
         ]
         self.view.addSubview(navBar);
         let navItem = UINavigationItem(title: "Add Customer");
@@ -138,7 +138,7 @@ class ChargeCustomerViewController: UIViewController, UITableViewDelegate, UITab
         done.tintColor = UIColor.whiteColor()
         UIToolbar.appearance().barTintColor = UIColor(rgba: "#157efb")
         done.setTitleTextAttributes([
-            NSFontAttributeName : UIFont(name: "Nunito-SemiBold", size: 15.0)!,
+            NSFontAttributeName : UIFont(name: "Avenir-Book", size: 15.0)!,
             NSForegroundColorAttributeName : UIColor(rgba: "#fff")
             ], forState: .Normal)
         
@@ -165,7 +165,7 @@ class ChargeCustomerViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func configureCustomSearchController() {
-        customSearchController = ChargeCustomerSearchController(searchResultsController: self, searchBarFrame: CGRectMake(0.0, 0.0, tblSearchResults.frame.size.width, 50.0), searchBarFont: UIFont(name: "Nunito-SemiBold", size: 16.0)!, searchBarTextColor: UIColor.whiteColor(), searchBarTintColor: UIColor.blackColor())
+        customSearchController = ChargeCustomerSearchController(searchResultsController: self, searchBarFrame: CGRectMake(0.0, 0.0, tblSearchResults.frame.size.width, 50.0), searchBarFont: UIFont(name: "Avenir-Book", size: 16.0)!, searchBarTextColor: UIColor.whiteColor(), searchBarTintColor: UIColor.blackColor())
         
         customSearchController.customSearchBar.placeholder = "Search customers"
         tblSearchResults.tableHeaderView = customSearchController.customSearchBar

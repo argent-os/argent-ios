@@ -31,13 +31,13 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
 
         usernameCell.layer.borderColor = UIColor.redColor().CGColor
         
-        usernameTextField.tag = 8389
+        usernameTextField.tag = 63631
         let str = NSAttributedString(string: "Username or Email", attributes: [NSForegroundColorAttributeName:UIColor(rgba: "#333a")])
         usernameTextField.attributedPlaceholder = str
         usernameTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
         usernameTextField.textRectForBounds(CGRectMake(0, 0, 0, 0))
         
-        passwordTextField.tag = 8390
+        passwordTextField.tag = 63632
         let str2 = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName:UIColor(rgba: "#333a")])
         passwordTextField.attributedPlaceholder = str2
         passwordTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
@@ -188,7 +188,7 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
     override func viewWillDisappear(animated: Bool) {
 //        UIToolbar.appearance().barTintColor = UIColor(rgba: "#1796fa")
 //        UIToolbar.appearance().backgroundColor = UIColor(rgba: "#1796fa")
-//        if let font = UIFont(name: "Nunito-SemiBold", size: 15) {
+//        if let font = UIFont(name: "Avenir-Book", size: 15) {
 //            UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: font,NSForegroundColorAttributeName:UIColor.whiteColor()], forState: UIControlState.Normal)
 //            
 //        }
@@ -218,6 +218,7 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
     // Allow use of next and join on keyboard
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         let nextTag: Int = textField.tag + 1
+        print(nextTag)
         let nextResponder: UIResponder? = textField.superview?.superview?.viewWithTag(nextTag)
         if let nextR = nextResponder
         {
@@ -227,7 +228,6 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
             // Not found, so remove keyboard.
             self.loginButtonTapped(self)
             textField.resignFirstResponder()
-            dismissKeyboard()
             return true
         }
         return false

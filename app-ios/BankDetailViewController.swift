@@ -178,7 +178,7 @@ class BankDetailViewController: UIViewController, UITextFieldDelegate {
         done.tintColor = UIColor.whiteColor()
         UIToolbar.appearance().barTintColor = UIColor.whiteColor()
         done.setTitleTextAttributes([
-            NSFontAttributeName : UIFont(name: "Nunito-SemiBold", size: 15.0)!,
+            NSFontAttributeName : UIFont(name: "Avenir-Book", size: 15.0)!,
             NSForegroundColorAttributeName : color!
             ], forState: .Normal)
 

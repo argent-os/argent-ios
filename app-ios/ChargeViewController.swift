@@ -64,7 +64,7 @@ class ChargeViewController: UIViewController, VENCalculatorInputViewDelegate {
         done.tintColor = UIColor.whiteColor()
         UIToolbar.appearance().barTintColor = UIColor(rgba: "#157efb")
         done.setTitleTextAttributes([
-            NSFontAttributeName : UIFont(name: "Nunito-SemiBold", size: 15.0)!,
+            NSFontAttributeName : UIFont(name: "Avenir-Book", size: 15.0)!,
             NSForegroundColorAttributeName : UIColor(rgba: "#fff")
             ], forState: .Normal)
         
@@ -94,7 +94,7 @@ class ChargeViewController: UIViewController, VENCalculatorInputViewDelegate {
         runkeeperSwitch.selectedBackgroundColor = .whiteColor()
         runkeeperSwitch.titleColor = .whiteColor()
         runkeeperSwitch.selectedTitleColor = UIColor(rgba: "#157efb")
-        runkeeperSwitch.titleFont = UIFont(name: "Nunito-SemiBold", size: 13.0)
+        runkeeperSwitch.titleFont = UIFont(name: "Avenir-Book", size: 13.0)
         runkeeperSwitch.frame = CGRect(x: 50.0, y: 28.0, width: view.bounds.width - 100.0, height: 30.0)
 //        runkeeperSwitch.addTarget(self, action: #selector(HomeViewController.indexChanged(_:)), forControlEvents: .ValueChanged)
         runkeeperSwitch.autoresizingMask = [.FlexibleWidth]
@@ -154,7 +154,7 @@ class ChargeViewController: UIViewController, VENCalculatorInputViewDelegate {
         done.tintColor = UIColor.whiteColor()
         UIToolbar.appearance().barTintColor = UIColor(rgba: "#157efb")
         done.setTitleTextAttributes([
-            NSFontAttributeName : UIFont(name: "Nunito-SemiBold", size: 15.0)!,
+            NSFontAttributeName : UIFont(name: "Avenir-Book", size: 15.0)!,
             NSForegroundColorAttributeName : UIColor(rgba: "#fff")
             ], forState: .Normal)
         

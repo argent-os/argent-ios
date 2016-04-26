@@ -45,7 +45,7 @@ class AuthViewController: UIViewController  {
         loginButton.backgroundColor = UIColor.protonLightBlue()
         loginButton.tintColor = UIColor(rgba: "#fff")
         loginButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
-        loginButton.titleLabel?.font = UIFont(name: "Nunito-SemiBold", size: 16)
+        loginButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
         loginButton.setTitle("Log in", forState: .Normal)
         loginButton.layer.cornerRadius = 5
         loginButton.layer.borderWidth = 1
@@ -58,7 +58,7 @@ class AuthViewController: UIViewController  {
         signupButton.backgroundColor = UIColor.whiteColor()
         signupButton.setTitle("Sign up", forState: .Normal)
         signupButton.setTitleColor(UIColor(rgba: "#1796fa"), forState: .Normal)
-        signupButton.titleLabel?.font = UIFont(name: "Nunito-SemiBold", size: 16)
+        signupButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
         signupButton.layer.cornerRadius = 5
         signupButton.layer.borderWidth = 1
         signupButton.layer.borderColor = UIColor(rgba: "#ffffff").CGColor
@@ -77,7 +77,7 @@ class AuthViewController: UIViewController  {
         
         let attributedString = NSMutableAttributedString(string: "Welcome to Proton Payments")
         // Set range of string length to exactly 8, the number of characters
-        attributedString.addAttribute(NSFontAttributeName, value: "Nunito", range: NSRange(location: 0, length: 15)
+        attributedString.addAttribute(NSFontAttributeName, value: "Avenir-Bold", range: NSRange(location: 0, length: 15)
         )
         let text = UILabel(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 100.0))
         text.tag = 7578
@@ -85,7 +85,7 @@ class AuthViewController: UIViewController  {
         text.textAlignment = NSTextAlignment.Center
         text.textColor = UIColor.whiteColor()
         text.attributedText = attributedString
-        text.font = UIFont(name: "Nunito-ExtraBold", size: 14)
+        text.font = UIFont(name: "Avenir-Bold", size: 14)
         view.addSubview(text)
         
         _ = NSMutableAttributedString(string: "Tap to view app features.")
@@ -95,11 +95,8 @@ class AuthViewController: UIViewController  {
         button.backgroundColor = UIColor.clearColor()
         button.setTitle("Tap to view app features.", forState: .Normal)
         button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        button.titleLabel?.font = UIFont(name: "Nunito-SemiBold", size: 14)
+        button.titleLabel?.font = UIFont(name: "Avenir-Light", size: 14)
         button.addTarget(self, action: #selector(AuthViewController.goToTutorial(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-//        button.textAlignment = NSTextAlignment.Center
-//        button.textColor = UIColor(rgba: "#1aa8f6")
-//        button.font = UIFont (name: "Nunito", size: 14)
         view.addSubview(button)
         
     }

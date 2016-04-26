@@ -126,7 +126,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
             navBar.titleTextAttributes = [
                 NSForegroundColorAttributeName : UIColor.whiteColor(),
-                NSFontAttributeName : UIFont(name: "Nunito-Regular", size: 18)!
+                NSFontAttributeName : UIFont(name: "Avenir-Book", size: 18)!
             ]
             self.view.addSubview(navBar)
             let navItem = UINavigationItem(title: "@"+detailUser.username)
@@ -167,7 +167,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             emailButton.setTitle("Send Message", forState: .Normal)
             emailButton.setTitleColor(UIColor.protonBlue(), forState: .Normal)
 //            emailButton.setBackgroundImage(UIImage(named: "IconPerson"), forState: .Normal)
-            emailButton.titleLabel?.font = UIFont(name: "Nunito-Regular", size: 14)
+            emailButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 14)
             emailButton.layer.cornerRadius = 5
             emailButton.layer.borderColor = UIColor.protonBlue().CGColor
             emailButton.layer.borderWidth = 1

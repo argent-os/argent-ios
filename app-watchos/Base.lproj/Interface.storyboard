@@ -4,19 +4,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="10032"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <mutableArray key="Nunito-Regular.ttf">
-            <string>Nunito-Regular</string>
-            <string>Nunito-Regular</string>
-            <string>Nunito-Regular</string>
-            <string>Nunito-Regular</string>
-            <string>Nunito-Regular</string>
-            <string>Nunito-Regular</string>
-            <string>Nunito-Regular</string>
-            <string>Nunito-Regular</string>
-            <string>Nunito-Regular</string>
-        </mutableArray>
-    </customFonts>
     <scenes>
         <!--ProtonPay-->
         <scene sceneID="aou-V4-d1y">
@@ -24,13 +11,13 @@
                 <controller title="ProtonPay" animationDuration="3" alwaysBounce="YES" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="app_watchos" customModuleProvider="target">
                     <items>
                         <button width="1" alignment="left" title="Account" id="OIJ-6n-cbh">
-                            <fontDescription key="font" name="Nunito-Regular" family="Nunito" pointSize="14"/>
+                            <fontDescription key="font" type="system" pointSize="14"/>
                             <connections>
                                 <segue destination="mjv-ec-GMi" kind="push" id="cam-9m-zrR"/>
                             </connections>
                         </button>
                         <button width="1" alignment="left" title="Settings" id="QZD-VB-Gf9">
-                            <fontDescription key="font" name="Nunito-Regular" family="Nunito" pointSize="14"/>
+                            <fontDescription key="font" type="system" pointSize="14"/>
                             <connections>
                                 <segue destination="bA3-Iq-Bf8" kind="push" id="Vqf-bo-Nbf"/>
                             </connections>
@@ -39,7 +26,7 @@
                             <group key="contentGroup" width="1" height="22" alignment="left" alpha="0.65000000000000002" animationDuration="1" layout="vertical" id="i7l-cF-vYi">
                                 <items>
                                     <label width="1" height="55" alignment="center" verticalAlignment="center" text="Deep press for menu" textAlignment="center" baselineAdjustment="alignCenters" id="QUa-zS-x4N">
-                                        <fontDescription key="font" name="Nunito-Regular" family="Nunito" pointSize="10"/>
+                                        <fontDescription key="font" type="system" pointSize="10"/>
                                     </label>
                                 </items>
                             </group>
@@ -62,19 +49,19 @@
                     <items>
                         <label width="1" height="33.5" alignment="center" alpha="0.90000000000000002" text="Pending Balance" textAlignment="center" baselineAdjustment="alignCenters" id="DaF-zP-4ls">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <fontDescription key="font" name="Nunito-Regular" family="Nunito" pointSize="14"/>
+                            <fontDescription key="font" type="system" pointSize="14"/>
                         </label>
                         <label width="1" height="23.5" alignment="center" text="$0.00" textAlignment="center" id="yjh-QU-Shp">
                             <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="font" name="Nunito-Regular" family="Nunito" pointSize="14"/>
+                            <fontDescription key="font" type="system" pointSize="14"/>
                         </label>
                         <label width="1" height="33.5" alignment="center" alpha="0.90000000000000002" text="Available Balance" textAlignment="center" baselineAdjustment="alignCenters" id="tD3-qm-c6x">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <fontDescription key="font" name="Nunito-Regular" family="Nunito" pointSize="14"/>
+                            <fontDescription key="font" type="system" pointSize="14"/>
                         </label>
                         <label width="1" height="23.5" alignment="center" text="$0.00" textAlignment="center" id="yOR-wC-dvj">
                             <color key="textColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="font" name="Nunito-Regular" family="Nunito" pointSize="14"/>
+                            <fontDescription key="font" type="system" pointSize="14"/>
                         </label>
                     </items>
                     <connections>
@@ -91,10 +78,10 @@
                 <controller title="Settings" animationDuration="1" alwaysBounce="YES" id="bA3-Iq-Bf8" customClass="SettingsInterfaceController" customModule="app_watchos_Extension">
                     <items>
                         <switch width="1" alignment="left" value="YES" title="Notifications" id="jry-xt-LsC">
-                            <fontDescription key="font" name="Nunito-Regular" family="Nunito" pointSize="10"/>
+                            <fontDescription key="font" type="system" pointSize="10"/>
                         </switch>
                         <switch width="1" alignment="left" value="YES" title="Share crash data" id="Md2-nY-zPy">
-                            <fontDescription key="font" name="Nunito-Regular" family="Nunito" pointSize="10"/>
+                            <fontDescription key="font" type="system" pointSize="10"/>
                         </switch>
                     </items>
                     <menu key="menu" id="nr7-Mk-2aF">

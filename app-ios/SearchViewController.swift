@@ -226,7 +226,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         done.tintColor = UIColor.whiteColor()
         UIToolbar.appearance().barTintColor = UIColor.protonBlue()
         done.setTitleTextAttributes([
-            NSFontAttributeName : UIFont(name: "Nunito-SemiBold", size: 15.0)!,
+            NSFontAttributeName : UIFont(name: "Avenir-Book", size: 15.0)!,
             NSForegroundColorAttributeName : UIColor(rgba: "#fff")
             ], forState: .Normal)
         
@@ -242,7 +242,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func configureCustomSearchController() {
-        customSearchController = SearchController(searchResultsController: self, searchBarFrame: CGRectMake(0.0, 0.0, tblSearchResults.frame.size.width, 50.0), searchBarFont: UIFont(name: "Nunito-SemiBold", size: 16.0)!, searchBarTextColor: UIColor.whiteColor(), searchBarTintColor: UIColor.blackColor())
+        customSearchController = SearchController(searchResultsController: self, searchBarFrame: CGRectMake(0.0, 0.0, tblSearchResults.frame.size.width, 50.0), searchBarFont: UIFont(name: "Avenir-Book", size: 16.0)!, searchBarTextColor: UIColor.whiteColor(), searchBarTintColor: UIColor.blackColor())
         
         customSearchController.customSearchBar.placeholder = "Search"
         tblSearchResults.tableHeaderView = customSearchController.customSearchBar

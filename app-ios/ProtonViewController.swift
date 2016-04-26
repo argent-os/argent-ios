@@ -201,7 +201,7 @@ public class CustomCell : LiquidFloatingCell {
         label.text = name
         label.textAlignment = .Right
         label.textColor = UIColor(rgba: "#004790")
-        label.font = UIFont(name: "Nunito-Regular", size: 12)
+        label.font = UIFont(name: "Avenir-Book", size: 12)
         addSubview(label)
         label.snp_makeConstraints { make in
             make.left.equalTo(self).offset(-120)

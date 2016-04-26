@@ -54,14 +54,6 @@
 		30C2DA761CA436B8003AFD8B /* chime.caf in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA731CA436B8003AFD8B /* chime.caf */; };
 		30C2DA771CA436B8003AFD8B /* chime2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA741CA436B8003AFD8B /* chime2.caf */; };
 		30C2DA7A1CA436C3003AFD8B /* nyc.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA791CA436C3003AFD8B /* nyc.mp4 */; };
-		30C2DA851CA436CC003AFD8B /* Nunito-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA7C1CA436CC003AFD8B /* Nunito-Black.ttf */; };
-		30C2DA861CA436CC003AFD8B /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA7D1CA436CC003AFD8B /* Nunito-Bold.ttf */; };
-		30C2DA871CA436CC003AFD8B /* Nunito-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA7E1CA436CC003AFD8B /* Nunito-ExtraBold.ttf */; };
-		30C2DA881CA436CC003AFD8B /* Nunito-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA7F1CA436CC003AFD8B /* Nunito-ExtraLight.ttf */; };
-		30C2DA891CA436CC003AFD8B /* Nunito-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA801CA436CC003AFD8B /* Nunito-Light.ttf */; };
-		30C2DA8A1CA436CC003AFD8B /* Nunito-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA811CA436CC003AFD8B /* Nunito-Medium.ttf */; };
-		30C2DA8B1CA436CC003AFD8B /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA821CA436CC003AFD8B /* Nunito-Regular.ttf */; };
-		30C2DA8C1CA436CC003AFD8B /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA831CA436CC003AFD8B /* Nunito-SemiBold.ttf */; };
 		30C2DA8D1CA436CC003AFD8B /* ocra.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA841CA436CC003AFD8B /* ocra.ttf */; };
 		30C2DA8F1CA436D9003AFD8B /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DA8E1CA436D9003AFD8B /* RootViewController.swift */; };
 		30C2DA911CA436E6003AFD8B /* PasscodeLockView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA901CA436E6003AFD8B /* PasscodeLockView.xib */; };
@@ -272,14 +264,6 @@
 		30C2DA731CA436B8003AFD8B /* chime.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = chime.caf; sourceTree = "<group>"; };
 		30C2DA741CA436B8003AFD8B /* chime2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = chime2.caf; sourceTree = "<group>"; };
 		30C2DA791CA436C3003AFD8B /* nyc.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = nyc.mp4; sourceTree = "<group>"; };
-		30C2DA7C1CA436CC003AFD8B /* Nunito-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Black.ttf"; sourceTree = "<group>"; };
-		30C2DA7D1CA436CC003AFD8B /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
-		30C2DA7E1CA436CC003AFD8B /* Nunito-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-ExtraBold.ttf"; sourceTree = "<group>"; };
-		30C2DA7F1CA436CC003AFD8B /* Nunito-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-ExtraLight.ttf"; sourceTree = "<group>"; };
-		30C2DA801CA436CC003AFD8B /* Nunito-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Light.ttf"; sourceTree = "<group>"; };
-		30C2DA811CA436CC003AFD8B /* Nunito-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Medium.ttf"; sourceTree = "<group>"; };
-		30C2DA821CA436CC003AFD8B /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
-		30C2DA831CA436CC003AFD8B /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-SemiBold.ttf"; sourceTree = "<group>"; };
 		30C2DA841CA436CC003AFD8B /* ocra.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ocra.ttf; sourceTree = "<group>"; };
 		30C2DA8E1CA436D9003AFD8B /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootViewController.swift; path = "app-ios/RootViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DA901CA436E6003AFD8B /* PasscodeLockView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PasscodeLockView.xib; path = "app-ios/PasscodeLockView.xib"; sourceTree = SOURCE_ROOT; };
@@ -736,14 +720,6 @@
 		30C2DA7B1CA436CC003AFD8B /* fonts */ = {
 			isa = PBXGroup;
 			children = (
-				30C2DA7C1CA436CC003AFD8B /* Nunito-Black.ttf */,
-				30C2DA7D1CA436CC003AFD8B /* Nunito-Bold.ttf */,
-				30C2DA7E1CA436CC003AFD8B /* Nunito-ExtraBold.ttf */,
-				30C2DA7F1CA436CC003AFD8B /* Nunito-ExtraLight.ttf */,
-				30C2DA801CA436CC003AFD8B /* Nunito-Light.ttf */,
-				30C2DA811CA436CC003AFD8B /* Nunito-Medium.ttf */,
-				30C2DA821CA436CC003AFD8B /* Nunito-Regular.ttf */,
-				30C2DA831CA436CC003AFD8B /* Nunito-SemiBold.ttf */,
 				30C2DA841CA436CC003AFD8B /* ocra.ttf */,
 			);
 			name = fonts;
@@ -1180,23 +1156,17 @@
 				30C2DA8D1CA436CC003AFD8B /* ocra.ttf in Resources */,
 				306999031CAA125C0003B0A6 /* soft.caf in Resources */,
 				309E43CB1CA9CFED00279D97 /* bloom.caf in Resources */,
-				30C2DA8B1CA436CC003AFD8B /* Nunito-Regular.ttf in Resources */,
 				30C2DA911CA436E6003AFD8B /* PasscodeLockView.xib in Resources */,
 				304468F21CAA0BFC008CAE7D /* tone.caf in Resources */,
 				30C2DA591CA43665003AFD8B /* PayKloud.entitlements in Resources */,
 				30C2DAD71CA43898003AFD8B /* ProfileFieldCell.xib in Resources */,
 				30C2DB221CA43B62003AFD8B /* Main.storyboard in Resources */,
 				30C2DA771CA436B8003AFD8B /* chime2.caf in Resources */,
-				30C2DA891CA436CC003AFD8B /* Nunito-Light.ttf in Resources */,
 				304468F01CAA0BFC008CAE7D /* notify.caf in Resources */,
-				30C2DA881CA436CC003AFD8B /* Nunito-ExtraLight.ttf in Resources */,
 				30C2DA7A1CA436C3003AFD8B /* nyc.mp4 in Resources */,
 				304468F11CAA0BFC008CAE7D /* pop.caf in Resources */,
-				30C2DA861CA436CC003AFD8B /* Nunito-Bold.ttf in Resources */,
 				30C2DABA1CA437CB003AFD8B /* KolodaCustomOverlayView.xib in Resources */,
 				30C2DA751CA436B8003AFD8B /* cashregister.caf in Resources */,
-				30C2DA8C1CA436CC003AFD8B /* Nunito-SemiBold.ttf in Resources */,
-				30C2DA851CA436CC003AFD8B /* Nunito-Black.ttf in Resources */,
 				30BB06E21CCEFC260051C9E7 /* CountryPicker.bundle in Resources */,
 				30C2DABD1CA437CB003AFD8B /* OverlayView.xib in Resources */,
 				30C2DA761CA436B8003AFD8B /* chime.caf in Resources */,
@@ -1205,9 +1175,7 @@
 				30C2DB1B1CA43A00003AFD8B /* Info.plist in Resources */,
 				30C2DB191CA439FA003AFD8B /* Info.plist in Resources */,
 				309E15991CBE9AAF00EA95E4 /* users.txt in Resources */,
-				30C2DA8A1CA436CC003AFD8B /* Nunito-Medium.ttf in Resources */,
 				309E43CD1CA9CFED00279D97 /* selected.caf in Resources */,
-				30C2DA871CA436CC003AFD8B /* Nunito-ExtraBold.ttf in Resources */,
 				30C2DADF1CA438BE003AFD8B /* ProfileImageCell.xib in Resources */,
 				30C2DB0F1CA439D2003AFD8B /* LaunchScreen.storyboard in Resources */,
 				30C2DA551CA43655003AFD8B /* Assets.xcassets in Resources */,

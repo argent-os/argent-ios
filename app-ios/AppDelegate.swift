@@ -86,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIToolbar.appearance().barTintColor = UIColor.protonBlue()
         UIToolbar.appearance().backgroundColor = UIColor.protonBlue()
         
-        if let font = UIFont(name: "Nunito-SemiBold", size: 15) {
+        if let font = UIFont(name: "Avenir-Book", size: 15) {
             UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: font,NSForegroundColorAttributeName:UIColor.whiteColor()], forState: UIControlState.Normal)
         }
         

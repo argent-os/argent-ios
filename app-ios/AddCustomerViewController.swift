@@ -42,7 +42,7 @@ final class AddCustomerViewController: FormViewController {
         addCustomerButton.backgroundColor = UIColor(rgba: "#1796fa")
         addCustomerButton.tintColor = UIColor(rgba: "#fff")
         addCustomerButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
-        addCustomerButton.titleLabel?.font = UIFont(name: "Nunito-SemiBold", size: 16)
+        addCustomerButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
         addCustomerButton.setTitle("Add Customer", forState: .Normal)
         addCustomerButton.layer.cornerRadius = 0
         addCustomerButton.layer.masksToBounds = true

@@ -131,7 +131,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         runkeeperSwitch.selectedBackgroundColor = UIColor.whiteColor()
         runkeeperSwitch.titleColor = UIColor.whiteColor()
         runkeeperSwitch.selectedTitleColor = UIColor.protonBlue()
-        runkeeperSwitch.titleFont = UIFont(name: "Nunito-SemiBold", size: 13.0)
+        runkeeperSwitch.titleFont = UIFont(name: "Avenir-Book", size: 12.0)
         runkeeperSwitch.frame = CGRect(x: view.bounds.width - 205.0, y: 15, width: 200, height: 30.0)
         //autoresizing so it stays at top right (flexible left and flexible bottom margin)
         runkeeperSwitch.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
@@ -148,7 +148,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         lblAccount.frame = CGRectMake(20, 81, 200, 40)
         let str = NSAttributedString(string: "$10,125", attributes:
             [
-                NSFontAttributeName: UIFont(name: "Nunito-Regular", size: 18)!,
+                NSFontAttributeName: UIFont(name: "Avenir-Book", size: 18)!,
                 NSForegroundColorAttributeName:UIColor(rgba: "#fff")
             ])
         lblAccount.attributedText = str
@@ -158,7 +158,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         lblDescription.frame = CGRectMake(20, 106, 200, 40)
         let str2 = NSAttributedString(string: "Available Balance", attributes:
             [
-                NSFontAttributeName: UIFont(name: "Nunito-Regular", size: 12)!,
+                NSFontAttributeName: UIFont(name: "Avenir-Book", size: 12)!,
                 NSForegroundColorAttributeName:UIColor(rgba: "#fffa")
             ])
         lblDescription.attributedText = str2
@@ -175,7 +175,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor(rgba: "#157efb"),
-            NSFontAttributeName : UIFont(name: "Nunito-SemiBold", size: 18.0)!
+            NSFontAttributeName : UIFont(name: "Avenir-Light", size: 18.0)!
         ]
 
     }
@@ -490,11 +490,11 @@ extension UISegmentedControl {
     func removeBorders() {
         setTitleTextAttributes(
             [NSForegroundColorAttributeName : UIColor.whiteColor(),
-                NSFontAttributeName : UIFont(name: "Nunito-Regular", size: 12)!],
+                NSFontAttributeName : UIFont(name: "Avenir-Book", size: 12)!],
             forState: .Normal)
         setTitleTextAttributes(
             [NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "Nunito-SemiBold", size: 18)!],
+            NSFontAttributeName : UIFont(name: "Avenir-Light", size: 18)!],
             forState: .Selected)
         setBackgroundImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forState: .Normal, barMetrics: .Default)
         setBackgroundImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forState: .Selected, barMetrics: .Default)

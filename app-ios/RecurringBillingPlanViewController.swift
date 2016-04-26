@@ -42,7 +42,7 @@ final class RecurringBillingViewController: FormViewController {
         addPlanButton.backgroundColor = UIColor(rgba: "#1796fa")
         addPlanButton.tintColor = UIColor(rgba: "#fff")
         addPlanButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
-        addPlanButton.titleLabel?.font = UIFont(name: "Nunito-SemiBold", size: 16)
+        addPlanButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
         addPlanButton.setTitle("Add Plan", forState: .Normal)
         addPlanButton.layer.cornerRadius = 0
         addPlanButton.layer.masksToBounds = true

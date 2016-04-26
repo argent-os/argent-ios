@@ -36,7 +36,7 @@ class SupportMessageViewController: UIViewController {
         let done: UIBarButtonItem = UIBarButtonItem(title: "Send", style: UIBarButtonItemStyle.Done, target: self, action: #selector(SupportMessageViewController.sendMessageAction))
         UIToolbar.appearance().barTintColor = UIColor(rgba: "#1796fa")
         UIToolbar.appearance().backgroundColor = UIColor(rgba: "#1796fa")
-        if let font = UIFont(name: "Nunito-SemiBold", size: 15) {
+        if let font = UIFont(name: "Avenir-Book", size: 15) {
             UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: font,NSForegroundColorAttributeName:UIColor.whiteColor()], forState: UIControlState.Normal)
             
         }

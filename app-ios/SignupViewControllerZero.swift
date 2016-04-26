@@ -35,13 +35,9 @@ class SignupViewControllerZero: UIViewController {
         UIToolbar.appearance().layer.borderColor = UIColor.protonBlue().CGColor
         UIToolbar.appearance().layer.borderWidth = 1
         
-        if let font = UIFont(name: "Nunito-ExtraLight", size: 15) {
+        if let font = UIFont(name: "Avenir-Light", size: 15) {
             UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: font,NSForegroundColorAttributeName:UIColor.protonBlue()], forState: UIControlState.Normal)
         }
-        
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
-        HUD.showInView(self.view!)
-        HUD.dismiss()
         
         UITextField.appearance().keyboardAppearance = .Light
 

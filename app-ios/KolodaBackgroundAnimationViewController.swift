@@ -133,7 +133,7 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
             header.attributedText = attributedHeaderString
             header.textAlignment = NSTextAlignment.Center
             header.textColor = UIColor.whiteColor()
-            header.font = UIFont (name: "Nunito", size: 24)
+            header.font = UIFont (name: "Avenir-Book", size: 24)
             header.font = UIFont.boldSystemFontOfSize(24.0)
             imgView.addSubview(header)
             imgView.bringSubviewToFront(header)
@@ -146,7 +146,7 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
             text.attributedText = attributedString
             text.textAlignment = NSTextAlignment.Center
             text.textColor = UIColor.whiteColor()
-            text.font = UIFont (name: "Nunito", size: 14)
+            text.font = UIFont (name: "Avenir-Book", size: 14)
             imgView.addSubview(text)
             return imgView
         } else if(index == 1) {
@@ -167,7 +167,7 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
             header.attributedText = attributedHeaderString
             header.textAlignment = NSTextAlignment.Center
             header.textColor = UIColor.whiteColor()
-            header.font = UIFont (name: "Nunito", size: 24)
+            header.font = UIFont (name: "Avenir-Book", size: 24)
             header.font = UIFont.boldSystemFontOfSize(24.0)
             imgView.addSubview(header)
             imgView.bringSubviewToFront(header)
@@ -180,7 +180,7 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
             text.attributedText = attributedString
             text.textAlignment = NSTextAlignment.Center
             text.textColor = UIColor.whiteColor()
-            text.font = UIFont (name: "Nunito", size: 14)
+            text.font = UIFont (name: "Avenir-Book", size: 14)
             imgView.addSubview(text)
             return imgView
         } else if(index == 2) {
@@ -201,7 +201,7 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
             header.attributedText = attributedHeaderString
             header.textAlignment = NSTextAlignment.Center
             header.textColor = UIColor.whiteColor()
-            header.font = UIFont (name: "Nunito", size: 24)
+            header.font = UIFont (name: "Avenir-Book", size: 24)
             header.font = UIFont.boldSystemFontOfSize(24.0)
             imgView.addSubview(header)
             imgView.bringSubviewToFront(header)
@@ -214,7 +214,7 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
             text.attributedText = attributedString
             text.textAlignment = NSTextAlignment.Center
             text.textColor = UIColor.whiteColor()
-            text.font = UIFont (name: "Nunito", size: 14)
+            text.font = UIFont (name: "Avenir-Book", size: 14)
             imgView.addSubview(text)
             return imgView
         } else if(index == 3) {
@@ -235,7 +235,7 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
             header.attributedText = attributedHeaderString
             header.textAlignment = NSTextAlignment.Center
             header.textColor = UIColor.whiteColor()
-            header.font = UIFont (name: "Nunito", size: 24)
+            header.font = UIFont (name: "Avenir-Book", size: 24)
             header.font = UIFont.boldSystemFontOfSize(24.0)
             imgView.addSubview(header)
             imgView.bringSubviewToFront(header)
@@ -248,7 +248,7 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
             text.attributedText = attributedString
             text.textAlignment = NSTextAlignment.Center
             text.textColor = UIColor.whiteColor()
-            text.font = UIFont (name: "Nunito", size: 14)
+            text.font = UIFont (name: "Avenir-Book", size: 14)
             imgView.addSubview(text)
             return imgView
         } else if(index == 4) {
@@ -269,7 +269,7 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
             header.attributedText = attributedHeaderString
             header.textAlignment = NSTextAlignment.Center
             header.textColor = UIColor.whiteColor()
-            header.font = UIFont (name: "Nunito", size: 24)
+            header.font = UIFont (name: "Avenir-Book", size: 24)
             header.font = UIFont.boldSystemFontOfSize(24.0)
             imgView.addSubview(header)
             imgView.bringSubviewToFront(header)
@@ -282,7 +282,7 @@ extension BackgroundAnimationViewController: KolodaViewDataSource {
             text.attributedText = attributedString
             text.textAlignment = NSTextAlignment.Center
             text.textColor = UIColor.whiteColor()
-            text.font = UIFont (name: "Nunito", size: 14)
+            text.font = UIFont (name: "Avenir-Book", size: 14)
             imgView.addSubview(text)
             return imgView
         }
