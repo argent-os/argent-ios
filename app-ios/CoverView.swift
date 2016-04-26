@@ -55,7 +55,7 @@ final class CoverView: UIView {
         
         // attribs[NSUnderlineStyleAttributeName] = NSUnderlineStyle.StyleSingle.rawValue
         
-        urlLabel.attributedText = NSAttributedString(string: "Swipe to view tutorial, press to focus", attributes: attribs)
+        urlLabel.attributedText = NSAttributedString(string: "Swipe to view features, tap to focus", attributes: attribs)
         urlLabel.sizeToFit()
         
         super.init(frame: frame)

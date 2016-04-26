@@ -35,6 +35,10 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
     
     func configureView() {
 
+        let screen = UIScreen.mainScreen().bounds
+        let width = screen.size.width
+        let height = screen.size.height
+        
         paymentTextField.frame = CGRectMake(15, 15, CGRectGetWidth(self.view.frame) - 30, 44)
         paymentTextField.delegate = self
         // adds a manual credit card entry textfield

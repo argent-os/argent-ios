@@ -31,6 +31,8 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
+        let width = screen.size.width
+        let height = screen.size.height
         
         // Set default country code
         let countryCode = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String

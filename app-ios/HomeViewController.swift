@@ -53,6 +53,10 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     // VIEW DID LOAD
     override func viewDidLoad() {
         
+        let screen = UIScreen.mainScreen().bounds
+        let width = screen.size.width
+        let height = screen.size.height
+        
         let img: UIImage = UIImage(named: "Proton")!
         let protonImageView: UIImageView = UIImageView(frame: CGRectMake(20, 31, 40, 40))
         protonImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
@@ -79,7 +83,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 //        blurImageView.addSubview(visualEffectView)
         self.view.sendSubviewToBack(blurImageView)
         
-        let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
