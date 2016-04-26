@@ -2002,8 +2002,8 @@ institutions</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xrs-Xf-vMz">
-                                <rect key="frame" x="184" y="686" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                                <rect key="frame" x="156" y="686" width="102" height="30"/>
+                                <state key="normal" title="Select Country"/>
                                 <connections>
                                     <segue destination="Xax-ri-GcP" kind="show" id="xeQ-fk-a3y"/>
                                 </connections>
@@ -2039,10 +2039,10 @@ institutions</string>
             </objects>
             <point key="canvasLocation" x="2796" y="125"/>
         </scene>
-        <!--Country Picker View Controller-->
+        <!--Signup Country Picker View Controller-->
         <scene sceneID="jOW-KT-fJs">
             <objects>
-                <viewController id="Xax-ri-GcP" customClass="CountryPickerViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Xax-ri-GcP" customClass="SignupCountryPickerViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Wz4-Hw-ruO"/>
                         <viewControllerLayoutGuide type="bottom" id="S2V-gg-s6s"/>
@@ -2074,7 +2074,7 @@ institutions</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="Sff-P8-bkE"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="18"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2083,7 +2083,7 @@ institutions</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="734-eE-COF"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="12"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2162,7 +2162,7 @@ institutions</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="3vS-vq-aOt"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="18"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2171,7 +2171,7 @@ institutions</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="qwe-VH-6Oz"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="12"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2231,7 +2231,7 @@ institutions</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="Jp0-GX-mWv"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="18"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2240,7 +2240,7 @@ institutions</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="abY-hS-AGP"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="12"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2306,7 +2306,7 @@ Click here to view more</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="QQs-lE-wGh"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="18"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2381,7 +2381,7 @@ Click here to view more</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="bef-SJ-hb7"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="18"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2439,7 +2439,7 @@ Click here to view more</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="zuz-2r-vq8"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="18"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2448,7 +2448,7 @@ Click here to view more</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="h3W-Io-SJW"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="12"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2515,7 +2515,7 @@ Click here to view more</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="uOp-BT-IHY"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="18"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -3318,24 +3318,24 @@ Click here to view more</string>
         <image name="ic_user" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="E98-FC-SfF"/>
+        <segue reference="aks-Yo-Spb"/>
+        <segue reference="igQ-zk-tCm"/>
+        <segue reference="m3z-fp-Nlm"/>
+        <segue reference="gUR-9D-JWE"/>
         <segue reference="WA2-vu-RC9"/>
         <segue reference="j8y-vP-2EI"/>
-        <segue reference="gUR-9D-JWE"/>
+        <segue reference="xTl-cs-ajG"/>
+        <segue reference="UFB-DJ-qrH"/>
+        <segue reference="SFz-vc-0MB"/>
+        <segue reference="GfY-d3-W00"/>
+        <segue reference="o5e-Ut-781"/>
+        <segue reference="E98-FC-SfF"/>
         <segue reference="agi-3I-cSC"/>
         <segue reference="VI5-hp-Gm2"/>
         <segue reference="ipn-3I-3vc"/>
-        <segue reference="m3z-fp-Nlm"/>
-        <segue reference="igQ-zk-tCm"/>
-        <segue reference="aks-Yo-Spb"/>
         <segue reference="Bc6-jW-uiV"/>
-        <segue reference="7cu-FP-MoG"/>
         <segue reference="fEJ-lR-z9I"/>
-        <segue reference="xTl-cs-ajG"/>
-        <segue reference="UFB-DJ-qrH"/>
-        <segue reference="GfY-d3-W00"/>
-        <segue reference="SFz-vc-0MB"/>
-        <segue reference="o5e-Ut-781"/>
+        <segue reference="7cu-FP-MoG"/>
         <segue reference="zsk-4D-roF"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

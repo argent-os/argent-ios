@@ -172,6 +172,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Delete ~/Library/Caches/com.apple.dt.Xcode*
     // Delete ~/Library/Developer/Xcode/DerivedData
     // Clean and Build
+    // Edit scheme to run automatically, run after launch confirm,, and back to run automatically
+    // http://stackoverflow.com/questions/24878274/getting-dyld-fatal-error-after-updating-to-xcode-6-beta-4-using-swift
 }
 // Fixes Push notification bug: _handleNonLaunchSpecificActions
 extension UIApplication {
@@ -188,6 +190,6 @@ extension UIColor {
         return UIColor(rgba: "#0465d9")
     }
     static func protonLightBlue() -> UIColor {
-        return UIColor(rgba: "#3dbffe")
+        return UIColor(rgba: "#38a1fe")
     }
 }

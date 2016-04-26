@@ -30,7 +30,7 @@
 		307C6A221C7E91A100723E39 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C6A211C7E91A100723E39 /* StoreKit.framework */; };
 		307C6A241C7E91AA00723E39 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C6A231C7E91AA00723E39 /* PassKit.framework */; };
 		308A348A1CCA803200AAF66F /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A34891CCA803200AAF66F /* History.swift */; };
-		309C8CCA1CCEEE8C0073159C /* CountryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309C8CC91CCEEE8C0073159C /* CountryPickerViewController.swift */; };
+		309C8CCA1CCEEE8C0073159C /* SignupCountryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309C8CC91CCEEE8C0073159C /* SignupCountryPickerViewController.swift */; };
 		309E15931CBC2A0E00EA95E4 /* ChargeCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E15921CBC2A0E00EA95E4 /* ChargeCustomerViewController.swift */; };
 		309E15951CBE9A1600EA95E4 /* ChargeCustomerSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E15941CBE9A1600EA95E4 /* ChargeCustomerSearchController.swift */; };
 		309E15971CBE9A5600EA95E4 /* ChargeCustomerCustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E15961CBE9A5600EA95E4 /* ChargeCustomerCustomSearchBar.swift */; };
@@ -46,6 +46,7 @@
 		30B5768D1CC303F8005BCA5A /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B5768A1CC303F8005BCA5A /* SearchController.swift */; };
 		30B576911CC3045E005BCA5A /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B576901CC3045E005BCA5A /* SearchBar.swift */; };
 		30B576931CC7D1CF005BCA5A /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B576921CC7D1CE005BCA5A /* SearchDetailViewController.swift */; };
+		30BB06E21CCEFC260051C9E7 /* CountryPicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30BB06E11CCEFC260051C9E7 /* CountryPicker.bundle */; };
 		30C2DA551CA43655003AFD8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA541CA43655003AFD8B /* Assets.xcassets */; };
 		30C2DA591CA43665003AFD8B /* PayKloud.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA581CA43665003AFD8B /* PayKloud.entitlements */; };
 		30C2DA5B1CA4366C003AFD8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DA5A1CA4366C003AFD8B /* AppDelegate.swift */; };
@@ -115,9 +116,6 @@
 		30C2DAFB1CA4397C003AFD8B /* LeftMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAFA1CA4397C003AFD8B /* LeftMenuViewController.swift */; };
 		30C2DAFD1CA43984003AFD8B /* Plaid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAFC1CA43984003AFD8B /* Plaid.swift */; };
 		30C2DAFF1CA4398C003AFD8B /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAFE1CA4398C003AFD8B /* Secrets.swift */; };
-		30C2DB031CA439AB003AFD8B /* CountryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DB001CA439AB003AFD8B /* CountryPicker.swift */; };
-		30C2DB041CA439AB003AFD8B /* CountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DB011CA439AB003AFD8B /* CountryView.swift */; };
-		30C2DB051CA439AB003AFD8B /* CountryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DB021CA439AB003AFD8B /* CountryView.xib */; };
 		30C2DB071CA439B6003AFD8B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DB061CA439B6003AFD8B /* Extensions.swift */; };
 		30C2DB091CA439BC003AFD8B /* StarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DB081CA439BC003AFD8B /* StarButton.swift */; };
 		30C2DB0B1CA439C1003AFD8B /* Paths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DB0A1CA439C1003AFD8B /* Paths.swift */; };
@@ -248,7 +246,7 @@
 		307C6A211C7E91A100723E39 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		307C6A231C7E91AA00723E39 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		308A34891CCA803200AAF66F /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = History.swift; path = "app-ios/History.swift"; sourceTree = SOURCE_ROOT; };
-		309C8CC91CCEEE8C0073159C /* CountryPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountryPickerViewController.swift; path = "app-ios/CountryPickerViewController.swift"; sourceTree = SOURCE_ROOT; };
+		309C8CC91CCEEE8C0073159C /* SignupCountryPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupCountryPickerViewController.swift; path = "app-ios/SignupCountryPickerViewController.swift"; sourceTree = SOURCE_ROOT; };
 		309E15921CBC2A0E00EA95E4 /* ChargeCustomerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChargeCustomerViewController.swift; path = "app-ios/ChargeCustomerViewController.swift"; sourceTree = SOURCE_ROOT; };
 		309E15941CBE9A1600EA95E4 /* ChargeCustomerSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChargeCustomerSearchController.swift; path = "app-ios/ChargeCustomerSearchController.swift"; sourceTree = SOURCE_ROOT; };
 		309E15961CBE9A5600EA95E4 /* ChargeCustomerCustomSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChargeCustomerCustomSearchBar.swift; path = "app-ios/ChargeCustomerCustomSearchBar.swift"; sourceTree = SOURCE_ROOT; };
@@ -265,6 +263,7 @@
 		30B5768A1CC303F8005BCA5A /* SearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchController.swift; path = "app-ios/SearchController.swift"; sourceTree = SOURCE_ROOT; };
 		30B576901CC3045E005BCA5A /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchBar.swift; path = "app-ios/SearchBar.swift"; sourceTree = SOURCE_ROOT; };
 		30B576921CC7D1CE005BCA5A /* SearchDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchDetailViewController.swift; path = "app-ios/SearchDetailViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30BB06E11CCEFC260051C9E7 /* CountryPicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CountryPicker.bundle; sourceTree = SOURCE_ROOT; };
 		30C2DA541CA43655003AFD8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "app-ios/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		30C2DA561CA4365D003AFD8B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "app-ios/Info.plist"; sourceTree = SOURCE_ROOT; };
 		30C2DA581CA43665003AFD8B /* PayKloud.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = PayKloud.entitlements; path = "app-ios/PayKloud.entitlements"; sourceTree = SOURCE_ROOT; };
@@ -335,9 +334,6 @@
 		30C2DAFA1CA4397C003AFD8B /* LeftMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LeftMenuViewController.swift; path = "app-ios/LeftMenuViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAFC1CA43984003AFD8B /* Plaid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Plaid.swift; path = "app-ios/Plaid.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAFE1CA4398C003AFD8B /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Secrets.swift; path = "app-ios/Secrets.swift"; sourceTree = SOURCE_ROOT; };
-		30C2DB001CA439AB003AFD8B /* CountryPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountryPicker.swift; path = "app-ios/CountryPicker.swift"; sourceTree = SOURCE_ROOT; };
-		30C2DB011CA439AB003AFD8B /* CountryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountryView.swift; path = "app-ios/CountryView.swift"; sourceTree = SOURCE_ROOT; };
-		30C2DB021CA439AB003AFD8B /* CountryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CountryView.xib; path = "app-ios/CountryView.xib"; sourceTree = SOURCE_ROOT; };
 		30C2DB061CA439B6003AFD8B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = "app-ios/Extensions.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DB081CA439BC003AFD8B /* StarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StarButton.swift; path = "app-ios/StarButton.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DB0A1CA439C1003AFD8B /* Paths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Paths.swift; path = "app-ios/Paths.swift"; sourceTree = SOURCE_ROOT; };
@@ -554,9 +550,6 @@
 		307265391C72B95900D2AF61 /* CountryPicker */ = {
 			isa = PBXGroup;
 			children = (
-				30C2DB001CA439AB003AFD8B /* CountryPicker.swift */,
-				30C2DB011CA439AB003AFD8B /* CountryView.swift */,
-				30C2DB021CA439AB003AFD8B /* CountryView.xib */,
 			);
 			name = CountryPicker;
 			sourceTree = "<group>";
@@ -620,6 +613,14 @@
 			name = Search;
 			sourceTree = "<group>";
 		};
+		30BB06E01CCEFC130051C9E7 /* Bundles */ = {
+			isa = PBXGroup;
+			children = (
+				30BB06E11CCEFC260051C9E7 /* CountryPicker.bundle */,
+			);
+			name = Bundles;
+			sourceTree = "<group>";
+		};
 		30BECC041C6F92C200B8A088 /* StarButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -679,7 +680,6 @@
 			isa = PBXGroup;
 			children = (
 				30C2DB101CA439DC003AFD8B /* Logs.swift */,
-				309C8CC91CCEEE8C0073159C /* CountryPickerViewController.swift */,
 				30C2DB121CA439E1003AFD8B /* Timeout.swift */,
 				30C2DB141CA439E6003AFD8B /* Gravatar.swift */,
 			);
@@ -696,14 +696,14 @@
 			name = Storyboards;
 			sourceTree = "<group>";
 		};
-		30BECC0C1C6F93AF00B8A088 /* Add-ons */ = {
+		30BECC0C1C6F93AF00B8A088 /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				309E43C51CA9CF5600279D97 /* MenuTabButton */,
 				307265391C72B95900D2AF61 /* CountryPicker */,
 				30BECC041C6F92C200B8A088 /* StarButton */,
 			);
-			name = "Add-ons";
+			name = UI;
 			sourceTree = "<group>";
 		};
 		30C2DA711CA436B8003AFD8B /* sounds */ = {
@@ -753,6 +753,7 @@
 		30D7B72F1C77880200B64B7F /* Signup */ = {
 			isa = PBXGroup;
 			children = (
+				309C8CC91CCEEE8C0073159C /* SignupCountryPickerViewController.swift */,
 				30C2DAA31CA4374F003AFD8B /* SignupViewControllerZero.swift */,
 				30C2DAA01CA4374F003AFD8B /* SignupViewControllerOne.swift */,
 				30C2DAA21CA4374F003AFD8B /* SignupViewControllerTwo.swift */,
@@ -873,9 +874,10 @@
 				30BECC091C6F935200B8A088 /* Nav */,
 				304DDE351C9CEDA500962BC4 /* Integrations */,
 				304DDE421C9CF05300962BC4 /* Secrets */,
-				30BECC0C1C6F93AF00B8A088 /* Add-ons */,
+				30BECC0C1C6F93AF00B8A088 /* UI */,
 				30BECC0B1C6F939800B8A088 /* Storyboards */,
 				3064E8A71C74D06D0073E00B /* xib */,
+				30BB06E01CCEFC130051C9E7 /* Bundles */,
 				30BECC0A1C6F936E00B8A088 /* Modules */,
 				30C2DA561CA4365D003AFD8B /* Info.plist */,
 				30C2DA541CA43655003AFD8B /* Assets.xcassets */,
@@ -1180,7 +1182,6 @@
 				309E43CB1CA9CFED00279D97 /* bloom.caf in Resources */,
 				30C2DA8B1CA436CC003AFD8B /* Nunito-Regular.ttf in Resources */,
 				30C2DA911CA436E6003AFD8B /* PasscodeLockView.xib in Resources */,
-				30C2DB051CA439AB003AFD8B /* CountryView.xib in Resources */,
 				304468F21CAA0BFC008CAE7D /* tone.caf in Resources */,
 				30C2DA591CA43665003AFD8B /* PayKloud.entitlements in Resources */,
 				30C2DAD71CA43898003AFD8B /* ProfileFieldCell.xib in Resources */,
@@ -1196,6 +1197,7 @@
 				30C2DA751CA436B8003AFD8B /* cashregister.caf in Resources */,
 				30C2DA8C1CA436CC003AFD8B /* Nunito-SemiBold.ttf in Resources */,
 				30C2DA851CA436CC003AFD8B /* Nunito-Black.ttf in Resources */,
+				30BB06E21CCEFC260051C9E7 /* CountryPicker.bundle in Resources */,
 				30C2DABD1CA437CB003AFD8B /* OverlayView.xib in Resources */,
 				30C2DA761CA436B8003AFD8B /* chime.caf in Resources */,
 				309E43CC1CA9CFED00279D97 /* fold.caf in Resources */,
@@ -1360,7 +1362,6 @@
 				30C2DABC1CA437CB003AFD8B /* KolodaOverlayView.swift in Sources */,
 				30C2DAC91CA43853003AFD8B /* ProtonViewController.swift in Sources */,
 				30C2DAAD1CA43795003AFD8B /* AuthViewController.swift in Sources */,
-				30C2DB031CA439AB003AFD8B /* CountryPicker.swift in Sources */,
 				30C2DAC51CA43841003AFD8B /* SearchViewController.swift in Sources */,
 				30C2DA5B1CA4366C003AFD8B /* AppDelegate.swift in Sources */,
 				300E42311CB7123E004316CF /* CreditCardListViewController.swift in Sources */,
@@ -1375,8 +1376,7 @@
 				30C2DAD31CA43881003AFD8B /* Profile.swift in Sources */,
 				302010C81CAEAE0E007D5E7E /* BalanceViewController.swift in Sources */,
 				30C2DB091CA439BC003AFD8B /* StarButton.swift in Sources */,
-				309C8CCA1CCEEE8C0073159C /* CountryPickerViewController.swift in Sources */,
-				30C2DB041CA439AB003AFD8B /* CountryView.swift in Sources */,
+				309C8CCA1CCEEE8C0073159C /* SignupCountryPickerViewController.swift in Sources */,
 				302010CA1CAF3B05007D5E7E /* Notification.swift in Sources */,
 				30C2DAAB1CA4374F003AFD8B /* SignupViewControllerZero.swift in Sources */,
 				30C2DAF51CA43967003AFD8B /* ChargeViewController.swift in Sources */,
