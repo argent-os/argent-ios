@@ -14,7 +14,7 @@ import JGProgressHUD
 import KeychainSwift
 import JSSAlertView
 
-class SignupIndividualViewControllerTwo: UIViewController, UITextFieldDelegate {
+class SignupIndividualViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
     
     // WHEN NAVIGATING TO A NAVIGATION CONTROLLER USE SEGUE SHOW NOT MODAL!
     @IBOutlet weak var continueButton: UIButton!
@@ -34,7 +34,7 @@ class SignupIndividualViewControllerTwo: UIViewController, UITextFieldDelegate {
         
         var stepButton = UIBarButtonItem(title: "2/3", style: UIBarButtonItemStyle.Plain, target: nil, action: Selector(""))
         navigationItem.rightBarButtonItem = stepButton
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.darkGrayColor()
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.lightGrayColor()
         
         self.continueButton.enabled = false
         // Allow continue to be clicked
@@ -63,6 +63,15 @@ class SignupIndividualViewControllerTwo: UIViewController, UITextFieldDelegate {
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
+        let scrollView:UIScrollView = UIScrollView()
+        scrollView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
+        scrollView.delegate = self
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.scrollEnabled = true
+        scrollView.userInteractionEnabled = true
+        scrollView.contentSize = CGSizeMake(screenWidth, 550)
+        self.view!.addSubview(scrollView)
+        
         // Inherit UITextField Delegate, this is used for next and join on keyboard
         self.passwordTextField.delegate = self
         self.repeatPasswordTextField.delegate = self
@@ -89,7 +98,7 @@ class SignupIndividualViewControllerTwo: UIViewController, UITextFieldDelegate {
         passwordTextField.frame.origin.y = screenHeight*0.20 // 25 down from the top
         passwordTextField.frame.origin.x = (self.view.bounds.size.width - passwordTextField.frame.size.width) / 2.0
         passwordTextField.returnKeyType = UIReturnKeyType.Next
-        view.addSubview(passwordTextField)
+        scrollView.addSubview(passwordTextField)
         
         repeatPasswordTextField.tag = 235
         repeatPasswordTextField.textAlignment = NSTextAlignment.Center
@@ -109,7 +118,7 @@ class SignupIndividualViewControllerTwo: UIViewController, UITextFieldDelegate {
         repeatPasswordTextField.frame.origin.y = screenHeight*0.30 // 25 down from the top
         repeatPasswordTextField.frame.origin.x = (self.view.bounds.size.width - repeatPasswordTextField.frame.size.width) / 2.0
         repeatPasswordTextField.returnKeyType = UIReturnKeyType.Next
-        view.addSubview(repeatPasswordTextField)
+        scrollView.addSubview(repeatPasswordTextField)
         
         // Focuses view controller on first name text input
         passwordTextField.becomeFirstResponder()

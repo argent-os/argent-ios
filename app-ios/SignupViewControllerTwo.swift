@@ -13,7 +13,7 @@ import UIColor_Hex_Swift
 import JGProgressHUD
 import JSSAlertView
 
-class SignupViewControllerTwo: UIViewController, UITextFieldDelegate {
+class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
     
     // WHEN NAVIGATING TO A NAVIGATION CONTROLLER USE SEGUE SHOW NOT MODAL!
     @IBOutlet weak var continueButton: UIButton!
@@ -36,7 +36,7 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate {
 
         let stepButton = UIBarButtonItem(title: "2/4", style: UIBarButtonItemStyle.Plain, target: nil, action: Selector(""))
         navigationItem.rightBarButtonItem = stepButton
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.darkGrayColor()
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.lightGrayColor()
         
         self.continueButton.enabled = false
         // Allow continue to be clicked
@@ -55,8 +55,17 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate {
         addToolbarButton()
 
         let screen = UIScreen.mainScreen().bounds
-        _ = screen.size.width
+        let screenWidth = screen.size.width
         let screenHeight = screen.size.height
+        
+        let scrollView:UIScrollView = UIScrollView()
+        scrollView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
+        scrollView.delegate = self
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.scrollEnabled = true
+        scrollView.userInteractionEnabled = true
+        scrollView.contentSize = CGSizeMake(screenWidth, 550)
+        self.view!.addSubview(scrollView)
         
         // Focuses view controller on first name text input
         usernameTextField.becomeFirstResponder()
@@ -87,7 +96,7 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate {
         usernameTextField.frame.origin.y = screenHeight*0.20 // 25 down from the top
         usernameTextField.frame.origin.x = (self.view.bounds.size.width - usernameTextField.frame.size.width) / 2.0
         usernameTextField.returnKeyType = UIReturnKeyType.Next
-        view.addSubview(usernameTextField)
+        scrollView.addSubview(usernameTextField)
         
         emailTextField.tag = 124
         emailTextField.textAlignment = NSTextAlignment.Center
@@ -106,7 +115,7 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate {
         emailTextField.frame.origin.y = screenHeight*0.30 // 25 down from the top
         emailTextField.frame.origin.x = (self.view.bounds.size.width - emailTextField.frame.size.width) / 2.0
         emailTextField.returnKeyType = UIReturnKeyType.Next
-        view.addSubview(emailTextField)
+        scrollView.addSubview(emailTextField)
         
         phoneNumberTextField.tag = 125
         phoneNumberTextField.textAlignment = NSTextAlignment.Center
@@ -125,7 +134,7 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate {
         phoneNumberTextField.frame.origin.y = screenHeight*0.40 // 25 down from the top
         phoneNumberTextField.frame.origin.x = (self.view.bounds.size.width - phoneNumberTextField.frame.size.width) / 2.0
         phoneNumberTextField.returnKeyType = UIReturnKeyType.Next
-        view.addSubview(phoneNumberTextField)
+        scrollView.addSubview(phoneNumberTextField)
         
         self.navigationController?.navigationBar.tintColor = UIColor.grayColor()
         title = ""

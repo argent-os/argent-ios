@@ -44,7 +44,7 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
     override func viewDidAppear(animated: Bool) {        
         let stepButton = UIBarButtonItem(title: "3/3", style: UIBarButtonItemStyle.Plain, target: nil, action: Selector(""))
         navigationItem.rightBarButtonItem = stepButton
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.darkGrayColor()
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.lightGrayColor()
         
         self.finishButton.enabled = false
         // Allow continue to be clicked
@@ -79,7 +79,7 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
         switchTermsAndPrivacy.offAnimationType = BEMAnimationType.OneStroke
         switchTermsAndPrivacy.onCheckColor = UIColor(rgba: "#1aa8f6")
         switchTermsAndPrivacy.onTintColor = UIColor(rgba: "#1aa8f6")
-        switchTermsAndPrivacy.frame.origin.y = screenHeight*0.63 // 75 down from the top
+        switchTermsAndPrivacy.frame.origin.y = screenHeight-250 // 250 from bottom
         switchTermsAndPrivacy.frame.origin.x = (self.view.bounds.size.width - switchTermsAndPrivacy.frame.size.width) / 2.0
         self.view!.addSubview(switchTermsAndPrivacy)
         

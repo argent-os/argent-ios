@@ -13,7 +13,7 @@ import UIColor_Hex_Swift
 import JGProgressHUD
 import JSSAlertView
 
-class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
+class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
 
     // WHEN NAVIGATING TO A NAVIGATION CONTROLLER USE SEGUE SHOW NOT MODAL!
     @IBOutlet weak var continueButton: UIButton!
@@ -25,7 +25,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
     var dobDay:String = ""
     var dobMonth:String = ""
     var dobYear:String = ""
-
+    
     //Changing Status Bar
     override internal func prefersStatusBarHidden() -> Bool {
         return true
@@ -37,7 +37,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
 
         let stepButton = UIBarButtonItem(title: "1/4", style: UIBarButtonItemStyle.Plain, target: nil, action: Selector(""))
         navigationItem.rightBarButtonItem = stepButton
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.darkGrayColor()
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.lightGrayColor()
         
         self.continueButton.enabled = false
         // Allow continue to be clicked
@@ -49,6 +49,19 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
+        
+        let scrollView:UIScrollView = UIScrollView()
+        scrollView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
+        scrollView.delegate = self
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.scrollEnabled = true
+        scrollView.userInteractionEnabled = true
+        scrollView.contentSize = CGSizeMake(screenWidth, 550)
+        self.view!.addSubview(scrollView)
+
         let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
         HUD.showInView(self.view!)
         HUD.dismissAfterDelay(0.5)
@@ -57,10 +70,6 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
         
         // Focuses view controller on first name text input
         firstNameTextField.becomeFirstResponder()
-        
-        let screen = UIScreen.mainScreen().bounds
-        _ = screen.size.width
-        let screenHeight = screen.size.height
         
         // Tint back button to gray
         self.navigationController?.navigationBar.tintColor = UIColor.grayColor()
@@ -92,7 +101,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
         firstNameTextField.frame.origin.y = screenHeight*0.20 // 25 down from the top
         firstNameTextField.frame.origin.x = (self.view.bounds.size.width - firstNameTextField.frame.size.width) / 2.0
         firstNameTextField.returnKeyType = UIReturnKeyType.Next
-        view.addSubview(firstNameTextField)
+        scrollView.addSubview(firstNameTextField)
         
         lastNameTextField.tag = 90
         lastNameTextField.textAlignment = NSTextAlignment.Center
@@ -111,7 +120,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
         lastNameTextField.frame.origin.y = screenHeight*0.30 // 25 down from the top
         lastNameTextField.frame.origin.x = (self.view.bounds.size.width - lastNameTextField.frame.size.width) / 2.0
         lastNameTextField.returnKeyType = UIReturnKeyType.Next
-        view.addSubview(lastNameTextField)
+        scrollView.addSubview(lastNameTextField)
 
         dobTextField.tag = 91
         dobTextField.textAlignment = NSTextAlignment.Center
@@ -126,7 +135,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate {
         dobTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
         dobTextField.frame.origin.y = screenHeight*0.40 // 25 down from the top
         dobTextField.frame.origin.x = (self.view.bounds.size.width - dobTextField.frame.size.width) / 2.0
-        view.addSubview(dobTextField)
+        scrollView.addSubview(dobTextField)
         
         // Transparent navigation bar
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)

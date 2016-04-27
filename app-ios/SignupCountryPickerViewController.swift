@@ -42,12 +42,9 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
         flagImg.layer.cornerRadius = 10
         flagImg.layer.masksToBounds = true
         flagImg.contentMode = .ScaleAspectFit
-        flagImg.frame = CGRect(x: screenWidth/2-25, y: screenHeight*0.22, width: 50, height: 50)
-        self.view.addSubview(flagImg)
         
         let countryName: String = NSLocale.systemLocale().displayNameForKey(NSLocaleCountryCode, value: countryCode)!
         codeLabel.tintColor = UIColor.grayColor()
-        codeLabel.frame = CGRect(x: 0, y: screenHeight*0.30, width: screenWidth, height: 50)
         codeLabel.textAlignment = .Center
         let str = NSAttributedString(string: countryName, attributes:
             [
@@ -55,7 +52,18 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
                 NSForegroundColorAttributeName:UIColor.darkGrayColor()
             ])
         codeLabel.attributedText = str
+        
+        // Check for iPhone 4 size screen
+        if(screenHeight < 500) {
+            flagImg.frame = CGRect(x: screenWidth/2-25, y: screenHeight*0.11, width: 50, height: 50)
+            codeLabel.frame = CGRect(x: 0, y: screenHeight*0.19, width: screenWidth, height: 50)
+        } else {
+            flagImg.frame = CGRect(x: screenWidth/2-25, y: screenHeight*0.22, width: 50, height: 50)
+            codeLabel.frame = CGRect(x: 0, y: screenHeight*0.30, width: screenWidth, height: 50)
+        }
+        
         self.view.addSubview(codeLabel)
+        self.view.addSubview(flagImg)
         
         countryPicker.selectedLocale = NSLocale.currentLocale()
         countryPicker.delegate = self
@@ -139,7 +147,6 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
         flagImg.contentMode = .ScaleAspectFit
         flagImg.image = UIImage(flagImageWithCountryCode: code)
         flagImg.frame = CGRect(x: screenWidth/2-25, y: screenHeight*0.22, width: 50, height: 50)
-        self.view.addSubview(flagImg)
         
         codeLabel.removeFromSuperview()
         codeLabel.text = name
@@ -152,6 +159,17 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
                 NSForegroundColorAttributeName:UIColor.darkGrayColor()
             ])
         codeLabel.attributedText = str
+        
+        // Check for iPhone 4 size screen
+        if(screenHeight < 500) {
+            flagImg.frame = CGRect(x: screenWidth/2-25, y: screenHeight*0.11, width: 50, height: 50)
+            codeLabel.frame = CGRect(x: 0, y: screenHeight*0.19, width: screenWidth, height: 50)
+        } else {
+            flagImg.frame = CGRect(x: screenWidth/2-25, y: screenHeight*0.22, width: 50, height: 50)
+            codeLabel.frame = CGRect(x: 0, y: screenHeight*0.30, width: screenWidth, height: 50)
+        }
+        
+        self.view.addSubview(flagImg)
         self.view.addSubview(codeLabel)
         
     }
