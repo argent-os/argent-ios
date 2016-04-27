@@ -14,12 +14,20 @@ import WatchConnectivity
 
 class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UITextFieldDelegate {
     
-    @IBOutlet weak var usernameCell: UITableViewCell!
+
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
 
+    @IBOutlet var loginTableView: UITableView!
+    @IBOutlet weak var usernameCell: UITableViewCell!
+    @IBOutlet weak var passwordCell: UITableViewCell!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let screen = UIScreen.mainScreen().bounds
+        let width = screen.size.width
+        let height = screen.size.height
         
         // Add button to keyboard
         addToolbarButton()
@@ -28,18 +36,42 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
         self.passwordTextField.delegate = self
         
         usernameTextField.becomeFirstResponder()
-
-        usernameCell.layer.borderColor = UIColor.redColor().CGColor
         
         usernameTextField.tag = 63631
-        let str = NSAttributedString(string: "Username or Email", attributes: [NSForegroundColorAttributeName:UIColor(rgba: "#333a")])
+        let str = NSAttributedString(string: "Username or Email", attributes: [NSForegroundColorAttributeName:UIColor(rgba: "#fff")])
         usernameTextField.attributedPlaceholder = str
         usernameTextField.textRectForBounds(CGRectMake(0, 0, 0, 0))
         
         passwordTextField.tag = 63632
-        let str2 = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName:UIColor(rgba: "#333a")])
+        let str2 = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName:UIColor(rgba: "#fff")])
         passwordTextField.attributedPlaceholder = str2
         passwordTextField.textRectForBounds(CGRectMake(0, 0, 0, 0))
+        
+        
+        // Blurview
+        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+        visualEffectView.frame = CGRectMake(0, 0, width, 330)
+        let blurImageView: UIImageView = UIImageView(frame: CGRectMake(0, 0, width, 330))
+        blurImageView.contentMode = .ScaleAspectFill
+        blurImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
+        blurImageView.layer.masksToBounds = true
+        blurImageView.clipsToBounds = true
+        blurImageView.image = UIImage(named: "BackgroundGradientInverse")
+//        self.view.addSubview(blurImageView)
+//        blurImageView.addSubview(visualEffectView)
+        self.view.sendSubviewToBack(blurImageView)
+        
+        loginTableView.separatorColor = UIColor(rgba: "#fff5")
+        loginTableView.backgroundColor = UIColor(rgba: "#fff1")
+        
+        usernameCell.backgroundColor = UIColor.clearColor()
+        usernameCell.textLabel?.textColor = UIColor.whiteColor()
+
+        UITextField.appearance().tintColor = UIColor.blackColor()
+        UITextView.appearance().tintColor = UIColor.blackColor()
+        
+        passwordCell.backgroundColor = UIColor.clearColor()
+        passwordCell.textLabel?.textColor = UIColor.whiteColor()
     }
     
     func textRectForBounds(bounds: CGRect) -> CGRect {
