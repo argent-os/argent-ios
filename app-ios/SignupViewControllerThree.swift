@@ -80,7 +80,8 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate, UIScroll
         
         continueButton.layer.cornerRadius = 0
         continueButton.backgroundColor = UIColor.protonBlue()
-        
+        scrollView.addSubview(continueButton)
+
         // Programatically set the input fields
         passwordTextField.tag = 234
         passwordTextField.textAlignment = NSTextAlignment.Center

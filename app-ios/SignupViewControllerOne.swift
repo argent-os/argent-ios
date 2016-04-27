@@ -146,6 +146,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         scrollView.addSubview(firstNameTextField)
         scrollView.addSubview(lastNameTextField)
         scrollView.addSubview(dobTextField)
+        scrollView.addSubview(continueButton)
         
         // Transparent navigation bar
         self.navigationController?.view.backgroundColor = UIColor.clearColor()

@@ -81,7 +81,8 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
         
         continueButton.layer.cornerRadius = 0
         continueButton.backgroundColor = UIColor.protonBlue()
-        
+        scrollView.addSubview(continueButton)
+
         // Programatically set the input fields
         usernameTextField.tag = 123
         usernameTextField.textAlignment = NSTextAlignment.Center
