@@ -31,6 +31,10 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
         let stepButton = UIBarButtonItem(title: "1/3", style: UIBarButtonItemStyle.Plain, target: nil, action: Selector(""))
         navigationItem.rightBarButtonItem = stepButton
         navigationItem.rightBarButtonItem?.tintColor = UIColor.lightGrayColor()
+        navigationItem.rightBarButtonItem?.setTitleTextAttributes([
+            NSFontAttributeName: UIFont(name: "Avenir-Light", size: 16)!,
+            NSForegroundColorAttributeName:UIColor.lightGrayColor()
+            ], forState: .Normal)
         
         self.continueButton.enabled = false
         // Allow continue to be clicked
@@ -76,9 +80,9 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
         // Programatically set the input fields
         usernameTextField.tag = 123
         usernameTextField.textAlignment = NSTextAlignment.Center
-        usernameTextField.font = UIFont(name: "Avenir-Light", size: 15)
+        usernameTextField.font = UIFont(name: "Avenir-Light", size: 20)
         usernameTextField.borderActiveColor = UIColor.clearColor()
-        usernameTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
+        usernameTextField.borderInactiveColor = UIColor.clearColor() // color with alpha
         usernameTextField.backgroundColor = UIColor.clearColor()
         usernameTextField.placeholder = "Username"
         usernameTextField.placeholderColor = UIColor.grayColor()
@@ -88,17 +92,15 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
         usernameTextField.keyboardType = UIKeyboardType.Default
         usernameTextField.returnKeyType = UIReturnKeyType.Next
         usernameTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
-        usernameTextField.frame.origin.y = screenHeight*0.20 // 25 down from the top
-        usernameTextField.frame.origin.x = (self.view.bounds.size.width - usernameTextField.frame.size.width) / 2.0
+        usernameTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.20, width: 300, height: 50)
         usernameTextField.returnKeyType = UIReturnKeyType.Next
         scrollView.addSubview(usernameTextField)
         
         emailTextField.tag = 124
         emailTextField.textAlignment = NSTextAlignment.Center
-        emailTextField.font = UIFont(name: "Avenir-Light", size: 15)
+        emailTextField.font = UIFont(name: "Avenir-Light", size: 20)
         emailTextField.borderActiveColor = UIColor.clearColor()
-        emailTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
-        emailTextField.font = UIFont(name: "Helvetica", size: 16)
+        emailTextField.borderInactiveColor = UIColor.clearColor() // color with alpha
         emailTextField.backgroundColor = UIColor.clearColor()
         emailTextField.placeholder = "Email Address"
         emailTextField.placeholderColor = UIColor.grayColor()
@@ -108,8 +110,7 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
         emailTextField.keyboardType = UIKeyboardType.EmailAddress
         emailTextField.returnKeyType = UIReturnKeyType.Next
         emailTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
-        emailTextField.frame.origin.y = screenHeight*0.30 // 25 down from the top
-        emailTextField.frame.origin.x = (self.view.bounds.size.width - emailTextField.frame.size.width) / 2.0
+        emailTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.30, width: 300, height: 50)
         emailTextField.returnKeyType = UIReturnKeyType.Next
         scrollView.addSubview(emailTextField)
         
@@ -120,9 +121,24 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
         title = ""
         
         // Transparent navigation bar
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.view.backgroundColor = UIColor.clearColor()
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
+        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 47))
+        navBar.translucent = true
+        navBar.tintColor = UIColor.whiteColor()
+        navBar.backgroundColor = UIColor.clearColor()
+        navBar.shadowImage = UIImage()
+        navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        navBar.titleTextAttributes = [
+            NSFontAttributeName: UIFont(name: "Avenir-Light", size: 16)!,
+            NSForegroundColorAttributeName:UIColor.darkGrayColor()
+        ]
+        self.view.addSubview(navBar)
+        let navItem = UINavigationItem(title: "Create Your Profile")
+        navItem.leftBarButtonItem?.tintColor = UIColor.darkGrayColor()
+        navBar.setItems([navItem], animated: true)
         
         // Do any additional setup after loading the view, typically from a nib.
         

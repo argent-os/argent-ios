@@ -85,7 +85,7 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
             NSForegroundColorAttributeName:UIColor.lightGrayColor()
         ]
         self.view.addSubview(navBar)
-        let navItem = UINavigationItem(title: "Select a Country")
+        let navItem = UINavigationItem(title: "Select your Country")
         navItem.leftBarButtonItem?.tintColor = UIColor.darkGrayColor()
         navBar.setItems([navItem], animated: true)
     }

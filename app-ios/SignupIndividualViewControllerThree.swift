@@ -45,6 +45,10 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
         let stepButton = UIBarButtonItem(title: "3/3", style: UIBarButtonItemStyle.Plain, target: nil, action: Selector(""))
         navigationItem.rightBarButtonItem = stepButton
         navigationItem.rightBarButtonItem?.tintColor = UIColor.lightGrayColor()
+        navigationItem.rightBarButtonItem?.setTitleTextAttributes([
+            NSFontAttributeName: UIFont(name: "Avenir-Light", size: 16)!,
+            NSForegroundColorAttributeName:UIColor.lightGrayColor()
+            ], forState: .Normal)
         
         self.finishButton.enabled = false
         // Allow continue to be clicked
@@ -71,7 +75,7 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
         
         
         let screen = UIScreen.mainScreen().bounds
-        _ = screen.size.width
+        let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
         // Set checkbox animation
@@ -79,7 +83,7 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
         switchTermsAndPrivacy.offAnimationType = BEMAnimationType.OneStroke
         switchTermsAndPrivacy.onCheckColor = UIColor(rgba: "#1aa8f6")
         switchTermsAndPrivacy.onTintColor = UIColor(rgba: "#1aa8f6")
-        switchTermsAndPrivacy.frame.origin.y = screenHeight-250 // 250 from bottom
+        switchTermsAndPrivacy.frame.origin.y = screenHeight-300 // 250 from bottom
         switchTermsAndPrivacy.frame.origin.x = (self.view.bounds.size.width - switchTermsAndPrivacy.frame.size.width) / 2.0
         self.view!.addSubview(switchTermsAndPrivacy)
         
@@ -90,9 +94,24 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
         title = ""
         
         // Transparent navigation bar
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.view.backgroundColor = UIColor.clearColor()
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
+        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 47))
+        navBar.translucent = true
+        navBar.tintColor = UIColor.whiteColor()
+        navBar.backgroundColor = UIColor.clearColor()
+        navBar.shadowImage = UIImage()
+        navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        navBar.titleTextAttributes = [
+            NSFontAttributeName: UIFont(name: "Avenir-Light", size: 16)!,
+            NSForegroundColorAttributeName:UIColor.darkGrayColor()
+        ]
+        self.view.addSubview(navBar)
+        let navItem = UINavigationItem(title: "Accept Terms & Privacy")
+        navItem.leftBarButtonItem?.tintColor = UIColor.darkGrayColor()
+        navBar.setItems([navItem], animated: true)
         
         // Do any additional setup after loading the view, typically from a nib.
         

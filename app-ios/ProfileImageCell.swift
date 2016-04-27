@@ -20,7 +20,7 @@ final class ProfileImageCell: UITableViewCell, LabelFormableRow {
     override func awakeFromNib() {
         super.awakeFromNib()
 //        titleLabel.textColor = .formerColor()
-//        iconView.backgroundColor = .formerColor()
+        iconView.backgroundColor = UIColor.protonBlue()
         iconView.layer.cornerRadius = CGRectGetHeight(iconView.bounds) / 2
     }
     

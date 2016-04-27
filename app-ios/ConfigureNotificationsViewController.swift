@@ -21,9 +21,6 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = UIColor.whiteColor()
-
         configure()
     }
     
@@ -33,7 +30,7 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
         tableView.contentInset.top = 10
         tableView.contentInset.bottom = 30
         tableView.contentOffset.y = -10
-        
+        tableView.backgroundColor = UIColor.whiteColor()
         // screen width and height:
         let screen = UIScreen.mainScreen().bounds
         _ = screen.size.width
@@ -66,17 +63,17 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
         
         // Create Headers
         
-        let createHeader: (() -> ViewFormer) = {
-            return CustomViewFormer<FormHeaderFooterView>()
+        let createHeader: (String -> ViewFormer) = { text in
+            return LabelViewFormer<FormLabelHeaderView>()
                 .configure {
-                    $0.viewHeight = 20
+                    $0.viewHeight = 40
+                    $0.text = text
             }
         }
         
         // Create SectionFormers
         
-        let titleSection = SectionFormer(rowFormer: pushNotificationsRow)
-            .set(headerViewFormer: createHeader())
+        let titleSection = SectionFormer(rowFormer: pushNotificationsRow).set(headerViewFormer: createHeader("Notifications"))
         former.append(sectionFormer: titleSection)
     }
     

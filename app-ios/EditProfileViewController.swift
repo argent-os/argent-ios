@@ -80,7 +80,8 @@ final class EditProfileViewController: FormViewController {
         title = "Edit Profile"
         tableView.contentInset.top = 40
         tableView.contentInset.bottom = 40
-        
+        tableView.backgroundColor = UIColor.whiteColor()
+
         // Create RowFomers
         
         let nameRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in

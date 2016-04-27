@@ -32,7 +32,7 @@ final class FormerInputAccessoryView: UIToolbar {
     
     private func configure() {
         barTintColor = .whiteColor()
-//        tintColor = .formerSubColor()
+        tintColor = UIColor.protonBlue()
         clipsToBounds = true
         userInteractionEnabled = true
         

@@ -37,6 +37,10 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
         let stepButton = UIBarButtonItem(title: "2/4", style: UIBarButtonItemStyle.Plain, target: nil, action: Selector(""))
         navigationItem.rightBarButtonItem = stepButton
         navigationItem.rightBarButtonItem?.tintColor = UIColor.lightGrayColor()
+        navigationItem.rightBarButtonItem?.setTitleTextAttributes([
+            NSFontAttributeName: UIFont(name: "Avenir-Light", size: 16)!,
+            NSForegroundColorAttributeName:UIColor.lightGrayColor()
+            ], forState: .Normal)
         
         self.continueButton.enabled = false
         // Allow continue to be clicked
@@ -81,7 +85,7 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
         // Programatically set the input fields
         usernameTextField.tag = 123
         usernameTextField.textAlignment = NSTextAlignment.Center
-        usernameTextField.font = UIFont(name: "Avenir-Light", size: 15)
+        usernameTextField.font = UIFont(name: "Avenir-Light", size: 20)
         usernameTextField.borderActiveColor = UIColor.clearColor()
         usernameTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
         usernameTextField.backgroundColor = UIColor.clearColor()
@@ -93,16 +97,15 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
         usernameTextField.keyboardType = UIKeyboardType.Default
         usernameTextField.returnKeyType = UIReturnKeyType.Next
         usernameTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
-        usernameTextField.frame.origin.y = screenHeight*0.20 // 25 down from the top
-        usernameTextField.frame.origin.x = (self.view.bounds.size.width - usernameTextField.frame.size.width) / 2.0
+        usernameTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.20, width: 300, height: 50)
         usernameTextField.returnKeyType = UIReturnKeyType.Next
         scrollView.addSubview(usernameTextField)
         
         emailTextField.tag = 124
         emailTextField.textAlignment = NSTextAlignment.Center
-        emailTextField.font = UIFont(name: "Avenir-Light", size: 15)
+        emailTextField.font = UIFont(name: "Avenir-Light", size: 20)
         emailTextField.borderActiveColor = UIColor.clearColor()
-        emailTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
+        emailTextField.borderInactiveColor = UIColor.clearColor() // color with alpha
         emailTextField.backgroundColor = UIColor.clearColor()
         emailTextField.placeholder = "Email Address"
         emailTextField.placeholderColor = UIColor.grayColor()
@@ -112,16 +115,15 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
         emailTextField.keyboardType = UIKeyboardType.EmailAddress
         emailTextField.returnKeyType = UIReturnKeyType.Next
         emailTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
-        emailTextField.frame.origin.y = screenHeight*0.30 // 25 down from the top
-        emailTextField.frame.origin.x = (self.view.bounds.size.width - emailTextField.frame.size.width) / 2.0
+        emailTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.30, width: 300, height: 50)
         emailTextField.returnKeyType = UIReturnKeyType.Next
         scrollView.addSubview(emailTextField)
         
         phoneNumberTextField.tag = 125
         phoneNumberTextField.textAlignment = NSTextAlignment.Center
-        phoneNumberTextField.font = UIFont(name: "Avenir-Light", size: 15)
+        phoneNumberTextField.font = UIFont(name: "Avenir-Light", size: 20)
         phoneNumberTextField.borderActiveColor = UIColor.clearColor()
-        phoneNumberTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
+        phoneNumberTextField.borderInactiveColor = UIColor.clearColor() // color with alpha
         phoneNumberTextField.backgroundColor = UIColor.clearColor()
         phoneNumberTextField.placeholder = "Phone Number (US Only)"
         phoneNumberTextField.placeholderColor = UIColor.grayColor()
@@ -131,8 +133,7 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
         phoneNumberTextField.keyboardType = UIKeyboardType.NumberPad
         phoneNumberTextField.returnKeyType = UIReturnKeyType.Next
         phoneNumberTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
-        phoneNumberTextField.frame.origin.y = screenHeight*0.40 // 25 down from the top
-        phoneNumberTextField.frame.origin.x = (self.view.bounds.size.width - phoneNumberTextField.frame.size.width) / 2.0
+        phoneNumberTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.40, width: 300, height: 50)
         phoneNumberTextField.returnKeyType = UIReturnKeyType.Next
         scrollView.addSubview(phoneNumberTextField)
         
@@ -140,9 +141,24 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
         title = ""
         
         // Transparent navigation bar
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.view.backgroundColor = UIColor.clearColor()
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
+        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 47))
+        navBar.translucent = true
+        navBar.tintColor = UIColor.whiteColor()
+        navBar.backgroundColor = UIColor.clearColor()
+        navBar.shadowImage = UIImage()
+        navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        navBar.titleTextAttributes = [
+            NSFontAttributeName: UIFont(name: "Avenir-Light", size: 16)!,
+            NSForegroundColorAttributeName:UIColor.darkGrayColor()
+        ]
+        self.view.addSubview(navBar)
+        let navItem = UINavigationItem(title: "Create Your Profile")
+        navItem.leftBarButtonItem?.tintColor = UIColor.darkGrayColor()
+        navBar.setItems([navItem], animated: true)
         
         // Do any additional setup after loading the view, typically from a nib.
         
