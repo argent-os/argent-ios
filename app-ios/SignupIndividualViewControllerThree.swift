@@ -47,7 +47,7 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
         navigationItem.rightBarButtonItem?.tintColor = UIColor.lightGrayColor()
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([
             NSFontAttributeName: UIFont(name: "Avenir-Light", size: 16)!,
-            NSForegroundColorAttributeName:UIColor.lightGrayColor()
+            NSForegroundColorAttributeName:UIColor.darkGrayColor()
             ], forState: .Normal)
         
         self.finishButton.enabled = false

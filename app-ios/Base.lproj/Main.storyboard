@@ -2177,8 +2177,8 @@ institutions</string>
 Proton Payments terms of service and privacy
 policy agreement and the Stripe 
 connected account agreement.
-Click here to view more</string>
-                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+Tap here to view</string>
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="Ap6-KX-vg6" kind="presentation" identifier="presentModal" customClass="MZFormSheetPresentationViewControllerSegue" id="aks-Yo-Spb">
@@ -2360,8 +2360,8 @@ Click here to view more</string>
 Proton Payments terms of service and privacy
 policy agreement and the Stripe 
 connected account agreement.
-Click here to view more</string>
-                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+Tap here to view</string>
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="Ap6-KX-vg6" kind="presentation" identifier="presentModal" customClass="MZFormSheetPresentationViewControllerSegue" id="YIg-Dp-HpF">
@@ -3157,14 +3157,14 @@ Click here to view more</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="fEJ-lR-z9I"/>
-        <segue reference="aks-Yo-Spb"/>
-        <segue reference="igQ-zk-tCm"/>
-        <segue reference="m3z-fp-Nlm"/>
-        <segue reference="HvL-NX-xgs"/>
-        <segue reference="agi-3I-cSC"/>
-        <segue reference="VI5-hp-Gm2"/>
+        <segue reference="YIg-Dp-HpF"/>
         <segue reference="ipn-3I-3vc"/>
-        <segue reference="Ecj-JT-gqY"/>
+        <segue reference="VI5-hp-Gm2"/>
+        <segue reference="agi-3I-cSC"/>
+        <segue reference="HvL-NX-xgs"/>
+        <segue reference="m3z-fp-Nlm"/>
+        <segue reference="igQ-zk-tCm"/>
+        <segue reference="CNn-4s-Hqn"/>
         <segue reference="xTl-cs-ajG"/>
         <segue reference="UFB-DJ-qrH"/>
         <segue reference="E98-FC-SfF"/>

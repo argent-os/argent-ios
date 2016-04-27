@@ -106,7 +106,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
         navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navBar.titleTextAttributes = [
             NSFontAttributeName: UIFont(name: "Avenir-Light", size: 16)!,
-            NSForegroundColorAttributeName:UIColor.lightGrayColor()
+            NSForegroundColorAttributeName:UIColor.darkGrayColor()
         ]
         self.view.addSubview(navBar)
         let navItem = UINavigationItem(title: "Accept Terms & Privacy")
