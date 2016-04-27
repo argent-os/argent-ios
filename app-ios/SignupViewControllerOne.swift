@@ -86,7 +86,8 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         
         continueButton.layer.cornerRadius = 0
         continueButton.backgroundColor = UIColor.protonBlue()
-        
+        scrollView.addSubview(continueButton)
+
         // Programatically set the input fields
         firstNameTextField.tag = 89
         firstNameTextField.textAlignment = NSTextAlignment.Center
@@ -102,7 +103,9 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         firstNameTextField.keyboardType = UIKeyboardType.Default
         firstNameTextField.returnKeyType = UIReturnKeyType.Next
         firstNameTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
+        firstNameTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.13, width: 300, height: 50)
         firstNameTextField.returnKeyType = UIReturnKeyType.Next
+        scrollView.addSubview(firstNameTextField)
         
         lastNameTextField.tag = 90
         lastNameTextField.textAlignment = NSTextAlignment.Center
@@ -118,7 +121,9 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         lastNameTextField.keyboardType = UIKeyboardType.Default
         lastNameTextField.returnKeyType = UIReturnKeyType.Next
         lastNameTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
+        lastNameTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.23, width: 300, height: 50)
         lastNameTextField.returnKeyType = UIReturnKeyType.Next
+        scrollView.addSubview(lastNameTextField)
 
         dobTextField.tag = 91
         dobTextField.textAlignment = NSTextAlignment.Center
@@ -131,22 +136,8 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         dobTextField.placeholderColor = UIColor.grayColor()
         dobTextField.textColor = UIColor.grayColor()
         dobTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
-        
-        // iPhone4 screen size check
-        if(screenHeight < 500) {
-            firstNameTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.12, width: 300, height: 50)
-            lastNameTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.22, width: 300, height: 50)
-            dobTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.32, width: 300, height: 50)
-        } else {
-            firstNameTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.20, width: 300, height: 50)
-            lastNameTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.30, width: 300, height: 50)
-            dobTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.40, width: 300, height: 50)
-        }
-        
-        scrollView.addSubview(firstNameTextField)
-        scrollView.addSubview(lastNameTextField)
+        dobTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.33, width: 300, height: 50)
         scrollView.addSubview(dobTextField)
-        scrollView.addSubview(continueButton)
         
         // Transparent navigation bar
         self.navigationController?.view.backgroundColor = UIColor.clearColor()

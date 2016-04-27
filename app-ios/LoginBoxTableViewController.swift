@@ -34,13 +34,11 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
         usernameTextField.tag = 63631
         let str = NSAttributedString(string: "Username or Email", attributes: [NSForegroundColorAttributeName:UIColor(rgba: "#333a")])
         usernameTextField.attributedPlaceholder = str
-        usernameTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
         usernameTextField.textRectForBounds(CGRectMake(0, 0, 0, 0))
         
         passwordTextField.tag = 63632
         let str2 = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName:UIColor(rgba: "#333a")])
         passwordTextField.attributedPlaceholder = str2
-        passwordTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
         passwordTextField.textRectForBounds(CGRectMake(0, 0, 0, 0))
     }
     

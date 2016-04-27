@@ -1703,37 +1703,50 @@ institutions</string>
                         <sections>
                             <tableViewSection id="rTA-q7-2M2">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="tF7-UZ-FCf">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" id="tF7-UZ-FCf">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tF7-UZ-FCf" id="K0b-Ts-Ds6">
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username or Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cIS-Br-dKu">
-                                                    <rect key="frame" x="8" y="7" width="584" height="30"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username or Email" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cIS-Br-dKu">
+                                                    <rect key="frame" x="8" y="7" width="284" height="30"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" keyboardAppearance="alert" returnKeyType="next"/>
                                                 </textField>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cIS-Br-dKu" firstAttribute="centerY" secondItem="K0b-Ts-Ds6" secondAttribute="centerY" id="LwJ-Yv-MJZ"/>
+                                                <constraint firstItem="cIS-Br-dKu" firstAttribute="leading" secondItem="K0b-Ts-Ds6" secondAttribute="leadingMargin" id="PcD-4R-0X1"/>
+                                                <constraint firstItem="cIS-Br-dKu" firstAttribute="top" secondItem="K0b-Ts-Ds6" secondAttribute="topMargin" constant="-1" id="m44-C1-nrg"/>
+                                                <constraint firstItem="cIS-Br-dKu" firstAttribute="trailing" secondItem="K0b-Ts-Ds6" secondAttribute="trailingMargin" id="p3h-QQ-4Gr"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Euc-ps-ykF">
                                         <rect key="frame" x="0.0" y="44" width="300" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Euc-ps-ykF" id="wMO-GX-3Ba">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Ul-P4-THN">
-                                                    <rect key="frame" x="8" y="7" width="584" height="30"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Ul-P4-THN">
+                                                    <rect key="frame" x="8" y="7" width="284" height="30"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                                 </textField>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="4Ul-P4-THN" firstAttribute="top" secondItem="wMO-GX-3Ba" secondAttribute="topMargin" constant="-1" id="QSq-ZZ-Zz6"/>
+                                                <constraint firstItem="4Ul-P4-THN" firstAttribute="trailing" secondItem="wMO-GX-3Ba" secondAttribute="trailingMargin" id="U1I-Q3-0Yx"/>
+                                                <constraint firstItem="4Ul-P4-THN" firstAttribute="leading" secondItem="wMO-GX-3Ba" secondAttribute="leadingMargin" id="c5R-qv-dzC"/>
+                                                <constraint firstItem="4Ul-P4-THN" firstAttribute="centerY" secondItem="wMO-GX-3Ba" secondAttribute="centerY" id="wrA-dZ-RRf"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
@@ -1785,7 +1798,7 @@ institutions</string>
                                     <constraint firstAttribute="height" constant="28" id="b8P-9f-Ehh"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="ic_key_light">
+                                <state key="normal" backgroundImage="ic_unlock">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -3147,10 +3160,10 @@ Tap here to view</string>
         <image name="IconTouchSecure" width="98" height="128"/>
         <image name="ic_close_light" width="22" height="22"/>
         <image name="ic_home" width="30" height="30"/>
-        <image name="ic_key_light" width="86" height="86"/>
         <image name="ic_notify" width="30" height="30"/>
         <image name="ic_proton_outline" width="30" height="30"/>
         <image name="ic_search" width="30" height="30"/>
+        <image name="ic_unlock" width="86" height="86"/>
         <image name="ic_user" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
@@ -3164,7 +3177,7 @@ Tap here to view</string>
         <segue reference="igQ-zk-tCm"/>
         <segue reference="LbW-Hg-Jfu"/>
         <segue reference="xTl-cs-ajG"/>
-        <segue reference="UFB-DJ-qrH"/>
+        <segue reference="YDb-8b-gnI"/>
         <segue reference="E98-FC-SfF"/>
         <segue reference="o5e-Ut-781"/>
         <segue reference="GfY-d3-W00"/>

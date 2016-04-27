@@ -47,15 +47,15 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
         emailTextField.delegate = self;
         
         let screen = UIScreen.mainScreen().bounds
-        _ = screen.size.width
+        let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
         // Tags are 4 and 5 due to signup view textfields taking values 0-3
         emailTextField.tag = 328
         emailTextField.textAlignment = NSTextAlignment.Center
-        emailTextField.font = UIFont(name: "Avenir", size: 15)
-        emailTextField.borderActiveColor = UIColor(rgba: "#FFF7")
-        emailTextField.borderInactiveColor = UIColor(rgba: "#FFF4") // color with alpha
+        emailTextField.font = UIFont(name: "Avenir", size: 20)
+        emailTextField.borderActiveColor = UIColor.clearColor()
+        emailTextField.borderInactiveColor = UIColor.clearColor() // color with alpha
         emailTextField.backgroundColor = UIColor.clearColor()
         emailTextField.placeholder = "Username or Email"
         emailTextField.placeholderColor = UIColor.whiteColor()
@@ -65,8 +65,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
         emailTextField.returnKeyType = UIReturnKeyType.Next
         emailTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
         emailTextField.textColor = UIColor.whiteColor()
-        emailTextField.frame.origin.y = screenHeight*0.3 // 25 down from the top
-        emailTextField.frame.origin.x = (self.view.bounds.size.width - emailTextField.frame.size.width) / 2.0
+        emailTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.30, width: 300, height: 50)
         emailTextField.returnKeyType = UIReturnKeyType.Next
         view.addSubview(emailTextField)
         
