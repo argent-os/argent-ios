@@ -12,9 +12,9 @@ import Alamofire
 import JGProgressHUD
 import SwiftyJSON
 import Stripe
-import UICountingLabel
 import DGRunkeeperSwitch
 import BEMSimpleLineGraph
+//import UICountingLabel
 //import MXParallaxHeader
 
 let userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
@@ -22,17 +22,26 @@ let userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAcc
 class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpleLineGraphDataSource, UITableViewDelegate, UITableViewDataSource  {
     
     var accountHistoryArray:Array<History>?
+    
     var tableView:UITableView = UITableView()
     
     @IBOutlet weak var blurView: UIVisualEffectView!
+    
     var arrayOfValues: Array<AnyObject> = [3,30,50,40,80]
+    
     var user = User(username: "", email: "", first_name: "", last_name: "", cust_id: "", picture: "")
+    
     let runkeeperSwitch = DGRunkeeperSwitch(leftTitle: "Balance", rightTitle: "Customers")
 
+    let graph: BEMSimpleLineGraphView = BEMSimpleLineGraphView(frame: CGRectMake(0, 100, UIScreen.mainScreen().bounds.size.width, 260))
+
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
     @IBOutlet weak var switchBal: DGRunkeeperSwitch?
+    
     @IBOutlet weak var navigationBar: UINavigationItem!
-    //@IBOutlet weak var balanceLabel: UICountingLabel!
+    
+//    @IBOutlet weak var balanceLabel: UILabel()!
     
     @IBAction func indexChanged(sender: DGRunkeeperSwitch) {
         if(sender.selectedIndex == 0) {
@@ -86,8 +95,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-        let frame = CGRectMake(0, 100, screenWidth, 260)
-        let graph: BEMSimpleLineGraphView = BEMSimpleLineGraphView(frame: frame)
         graph.dataSource = self
         graph.colorTop = UIColor.clearColor()
         graph.colorBottom = UIColor.protonDarkBlue()
@@ -187,22 +194,32 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         runkeeperSwitch.removeFromSuperview()
     }
     
-    
-    
     func mainSegmentControl(segment: UISegmentedControl) {
         if segment.selectedSegmentIndex == 0 {
             // action for the first button (Current or Default)
+            arrayOfValues = [30,20,30,80,30]
+            graph.reloadGraph()
         }
         else if segment.selectedSegmentIndex == 1 {
             // action for the second button
+            arrayOfValues = [20,60,30,50,90]
+            graph.reloadGraph()
         }
         else if segment.selectedSegmentIndex == 2 {
             // action for the third button
+            arrayOfValues = [30,3,20,50,60]
+            graph.reloadGraph()
         }
         else if segment.selectedSegmentIndex == 3 {
             // action for the fourth button
+            arrayOfValues = [100,30,50,10,40]
+            graph.reloadGraph()
         }
-        
+        else if segment.selectedSegmentIndex == 4 {
+            // action for the fourth button
+            arrayOfValues = [10,90,60,50,30]
+            graph.reloadGraph()
+        }
     }
     
     //Changing Status Bar
@@ -442,19 +459,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         return CGFloat(self.arrayOfValues[index] as! NSNumber)
     }
     
-    func overrideRAMTabBar() {
-        // createConstraints(icon, container: container, size: itemImage.size, yOffset: -5)
-        // if let itemImage = item.image {
-        //    if 2 == index { // selected first elemet
-        //        var size = CGSize(width: 40, height: 40)
-        //        createConstraints(icon, container: container, size: size, yOffset: 0)
-        //    } else {
-        //        createConstraints(icon, container: container, size: itemImage.size, yOffset: -5)
-        //
-        //    }
-        // }
-    }
-    
     // TableView Delegate
     
     func refresh(sender:AnyObject)
@@ -469,22 +473,28 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         var CellIdentifier: String = "Cell"
-        let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath)
+//        let cell = tableView.dequeueReusableCellWithIdentifier(, forIndexPath: indexPath)
+        let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: CellIdentifier)
+
 
         let item = self.accountHistoryArray?[indexPath.row]
         print("got data for account cells")
         print(item)
         cell.textLabel?.text = ""
-        cell.detailTextLabel?.text = ""
+        cell.detailTextLabel?.text = "Account credited"
+        cell.detailTextLabel?.textColor = UIColor.lightGrayColor()
         if let text = item?.amount
         {
             cell.textLabel?.text = "$" + String(format: "%.2f", Double(text)!/100)
+            cell.textLabel?.font = UIFont(name: "Avenir-Book", size: 14)
+            cell.textLabel?.textColor = UIColor.darkGrayColor()
+
         }
         return cell
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 80.0
+        return 60.0
     }
     
 }
