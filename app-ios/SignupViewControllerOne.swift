@@ -155,7 +155,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
             NSForegroundColorAttributeName:UIColor.darkGrayColor()
         ]
         self.view.addSubview(navBar)
-        let navItem = UINavigationItem(title: "Basic Profile Information")
+        let navItem = UINavigationItem(title: "Company Representative Information")
         navItem.leftBarButtonItem?.tintColor = UIColor.darkGrayColor()
         navBar.setItems([navItem], animated: true)
         

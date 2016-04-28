@@ -36,23 +36,151 @@ final class EditProfileViewController: FormViewController {
     }()
     
     private lazy var informationSection: SectionFormer = {
-        let nicknameRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
-            $0.titleLabel.text = "Nickname"
+        let ssnRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
+            $0.titleLabel.text = "SSN Last 4"
+            $0.textField.keyboardType = .NumberPad
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
-                $0.placeholder = "Add your nickname"
-                $0.text = Profile.sharedInstance.nickname
+                $0.placeholder = "For transfer volumes of $20,000+"
+                $0.text = Profile.sharedInstance.ssn
             }.onTextChanged {
-                Profile.sharedInstance.nickname = $0
+                Profile.sharedInstance.ssn = $0
         }
-        let locationRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
-            $0.titleLabel.text = "Location"
+        let businessName = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
+            $0.titleLabel.text = "Name"
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
-                $0.placeholder = "Add your location"
-                $0.text = Profile.sharedInstance.location
+                $0.placeholder = "Your business name"
+                $0.text = Profile.sharedInstance.businessName
             }.onTextChanged {
-                Profile.sharedInstance.location = $0
+                Profile.sharedInstance.businessName = $0
+        }
+        let businessAddressRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
+            $0.titleLabel.text = "Address"
+            $0.textField.inputAccessoryView = self?.formerInputAccessoryView
+            }.configure {
+                $0.placeholder = "Your business address"
+                $0.text = Profile.sharedInstance.businessAddressLine1
+            }.onTextChanged {
+                Profile.sharedInstance.businessAddressLine1 = $0
+        }
+        let businessAddressCountryRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
+            $0.titleLabel.text = "Country"
+            $0.textField.inputAccessoryView = self?.formerInputAccessoryView
+            }.configure {
+                $0.placeholder = "Your business country"
+                $0.text = Profile.sharedInstance.businessAddressCountry
+            }.onTextChanged {
+                Profile.sharedInstance.businessAddressCountry = $0
+        }
+        let businessAddressZipRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
+            $0.titleLabel.text = "ZIP"
+            $0.textField.keyboardType = .NumberPad
+            $0.textField.inputAccessoryView = self?.formerInputAccessoryView
+            }.configure {
+                $0.placeholder = "Your business zip"
+                $0.text = Profile.sharedInstance.businessAddressZip
+            }.onTextChanged {
+                Profile.sharedInstance.businessAddressZip = $0
+        }
+        let businessAddressCityRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
+            $0.titleLabel.text = "City"
+            $0.textField.inputAccessoryView = self?.formerInputAccessoryView
+            }.configure {
+                $0.placeholder = "Your business city"
+                $0.text = Profile.sharedInstance.businessAddressCity
+            }.onTextChanged {
+                Profile.sharedInstance.businessAddressCity = $0
+        }
+        let businessAddressStateRow = InlinePickerRowFormer<ProfileLabelCell, String>(instantiateType: .Nib(nibName: "ProfileLabelCell")) {
+            $0.titleLabel.text = "State"
+            }.configure {
+                let businessStates = Profile.sharedInstance.state
+                $0.pickerItems = businessStates.map {
+                    InlinePickerItem(title: $0)
+                }
+                if let businessState = Profile.sharedInstance.businessAddressState {
+                    $0.selectedRow = businessStates.indexOf(businessState) ?? 0
+                }
+            }.onValueChanged {
+                Profile.sharedInstance.businessAddressState = $0.title
+        }
+        let businessTypeRow = InlinePickerRowFormer<ProfileLabelCell, String>(instantiateType: .Nib(nibName: "ProfileLabelCell")) {
+            $0.titleLabel.text = "Type"
+            }.configure {
+                let businessTypes = ["individual", "company"]
+                $0.pickerItems = businessTypes.map {
+                    InlinePickerItem(title: $0)
+                }
+                if let businessType = Profile.sharedInstance.businessType {
+                    $0.selectedRow = businessTypes.indexOf(businessType) ?? 0
+                }
+            }.onValueChanged {
+                Profile.sharedInstance.businessType = $0.title
+        }
+        return SectionFormer(rowFormer: businessName, businessAddressRow, businessAddressCountryRow, businessAddressZipRow, businessAddressCityRow, businessAddressStateRow, businessTypeRow, ssnRow)
+    }()
+    
+    private func configure() {
+        tableView.contentInset.top = 0
+        tableView.contentInset.bottom = 40
+        tableView.backgroundColor = UIColor.whiteColor()
+
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        
+        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 65))
+        navBar.barTintColor = UIColor.protonBlue()
+        navBar.tintColor = UIColor.darkGrayColor()
+        navBar.translucent = false
+        navBar.titleTextAttributes = [
+            NSForegroundColorAttributeName : UIColor.whiteColor(),
+            NSFontAttributeName : UIFont(name: "Helvetica", size: 18)!
+        ]
+        self.view.addSubview(navBar);
+        let navItem = UINavigationItem(title: "Edit Profile");
+        navBar.setItems([navItem], animated: false);
+        
+        // Create RowFomers
+        
+        let firstNameRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
+            $0.titleLabel.text = "First Name"
+            $0.textField.inputAccessoryView = self?.formerInputAccessoryView
+            }.configure {
+                $0.placeholder = "Your first name or company rep first name"
+                $0.text = Profile.sharedInstance.firstName
+            }.onTextChanged {
+                Profile.sharedInstance.firstName = $0
+        }
+        let lastNameRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
+            $0.titleLabel.text = "Last Name"
+            $0.textField.inputAccessoryView = self?.formerInputAccessoryView
+            }.configure {
+                $0.placeholder = "Your last name or company rep last name"
+                $0.text = Profile.sharedInstance.lastName
+            }.onTextChanged {
+                Profile.sharedInstance.lastName = $0
+        }
+        let usernameRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
+            $0.titleLabel.text = "Username"
+            $0.textField.autocapitalizationType = UITextAutocapitalizationType.None
+            $0.textField.autocorrectionType = UITextAutocorrectionType.No
+            $0.textField.inputAccessoryView = self?.formerInputAccessoryView
+            }.configure {
+                $0.placeholder = "Username"
+                $0.text = Profile.sharedInstance.username
+            }.onTextChanged {
+                Profile.sharedInstance.username = $0
+        }
+        let emailRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
+            $0.titleLabel.text = "Email"
+            $0.textField.keyboardType = .EmailAddress
+            $0.textField.inputAccessoryView = self?.formerInputAccessoryView
+            }.configure {
+                $0.placeholder = "Email"
+                $0.text = Profile.sharedInstance.email
+            }.onTextChanged {
+                Profile.sharedInstance.email = $0
         }
         let phoneRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
             $0.titleLabel.text = "Phone"
@@ -64,48 +192,6 @@ final class EditProfileViewController: FormViewController {
             }.onTextChanged {
                 Profile.sharedInstance.phoneNumber = $0
         }
-        let jobRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
-            $0.titleLabel.text = "Job"
-            $0.textField.inputAccessoryView = self?.formerInputAccessoryView
-            }.configure {
-                $0.placeholder = "Add your job"
-                $0.text = Profile.sharedInstance.job
-            }.onTextChanged {
-                Profile.sharedInstance.job = $0
-        }
-        return SectionFormer(rowFormer: nicknameRow, locationRow, phoneRow, jobRow)
-    }()
-    
-    private func configure() {
-        title = "Edit Profile"
-        tableView.contentInset.top = 40
-        tableView.contentInset.bottom = 40
-        tableView.backgroundColor = UIColor.whiteColor()
-
-        // Create RowFomers
-        
-        let nameRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
-            $0.titleLabel.text = "Name"
-            $0.textField.inputAccessoryView = self?.formerInputAccessoryView
-            }.configure {
-                $0.placeholder = "Add your name"
-                $0.text = Profile.sharedInstance.name
-            }.onTextChanged {
-                Profile.sharedInstance.name = $0
-        }
-        let genderRow = InlinePickerRowFormer<ProfileLabelCell, String>(instantiateType: .Nib(nibName: "ProfileLabelCell")) {
-            $0.titleLabel.text = "Gender"
-            }.configure {
-                let genders = ["Male", "Female"]
-                $0.pickerItems = genders.map {
-                    InlinePickerItem(title: $0)
-                }
-                if let gender = Profile.sharedInstance.gender {
-                    $0.selectedRow = genders.indexOf(gender) ?? 0
-                }
-            }.onValueChanged {
-                Profile.sharedInstance.gender = $0.title
-        }
         let birthdayRow = InlineDatePickerRowFormer<ProfileLabelCell>(instantiateType: .Nib(nibName: "ProfileLabelCell")) {
             $0.titleLabel.text = "Birthday"
             }.configure {
@@ -115,18 +201,18 @@ final class EditProfileViewController: FormViewController {
             }.onDateChanged {
                 Profile.sharedInstance.birthDay = $0
         }
-        let introductionRow = TextViewRowFormer<FormTextViewCell>() { [weak self] in
+        let bioRow = TextViewRowFormer<FormTextViewCell>() { [weak self] in
 //            $0.textView.textColor = .formerSubColor()
             $0.textView.font = .systemFontOfSize(15)
             $0.textView.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
-                $0.placeholder = "Add your self-introduction"
+                $0.placeholder = "Add your individual or company bio"
                 $0.text = Profile.sharedInstance.introduction
             }.onTextChanged {
                 Profile.sharedInstance.introduction = $0
         }
         let moreRow = SwitchRowFormer<FormSwitchCell>() {
-            $0.titleLabel.text = "Add more information ?"
+            $0.titleLabel.text = "Enable higher limit transfer volumes?"
 //            $0.titleLabel.textColor = .formerColor()
             $0.titleLabel.font = .systemFontOfSize(15)
 //            $0.switchButton.onTintColor = .formerSubColor()
@@ -151,15 +237,13 @@ final class EditProfileViewController: FormViewController {
         // Create SectionFormers
         
         let imageSection = SectionFormer(rowFormer: imageRow)
-            .set(headerViewFormer: createHeader("Profile Image"))
-        let introductionSection = SectionFormer(rowFormer: introductionRow)
-            .set(headerViewFormer: createHeader("Introduction"))
-        let aboutSection = SectionFormer(rowFormer: nameRow, genderRow, birthdayRow)
-            .set(headerViewFormer: createHeader("About"))
+            .set(headerViewFormer: createHeader("Profile image"))
+        let aboutSection = SectionFormer(rowFormer: firstNameRow, lastNameRow, usernameRow, emailRow, birthdayRow, phoneRow)
+            .set(headerViewFormer: createHeader("Profile information"))
         let moreSection = SectionFormer(rowFormer: moreRow)
-            .set(headerViewFormer: createHeader("More Infomation"))
+            .set(headerViewFormer: createHeader("Additional transfer-enabling security infomation"))
         
-        former.append(sectionFormer: imageSection, introductionSection, aboutSection, moreSection)
+        former.append(sectionFormer: imageSection, aboutSection, moreSection)
             .onCellSelected { [weak self] _ in
                 self?.formerInputAccessoryView.update()
         }

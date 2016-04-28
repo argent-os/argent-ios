@@ -3,6 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -15,29 +17,29 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="naM-Xr-r38">
-                        <rect key="frame" x="15" y="0.0" width="75" height="43.5"/>
+                        <rect key="frame" x="15" y="0.0" width="92" height="44"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="75" id="wAK-iH-XDx"/>
+                            <constraint firstAttribute="width" constant="92" id="rbh-ea-ZxA"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="15"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WbB-r5-lRb">
-                        <rect key="frame" x="100" y="0.0" width="205" height="43.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <rect key="frame" x="115" y="0.0" width="190" height="44"/>
+                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="WbB-r5-lRb" firstAttribute="top" secondItem="PDn-Nk-GCp" secondAttribute="top" id="2zv-qr-Nwy"/>
-                    <constraint firstAttribute="bottom" secondItem="naM-Xr-r38" secondAttribute="bottom" id="DvC-hv-pqX"/>
-                    <constraint firstItem="naM-Xr-r38" firstAttribute="leading" secondItem="PDn-Nk-GCp" secondAttribute="leading" constant="15" id="Y2x-ku-a1j"/>
-                    <constraint firstAttribute="bottom" secondItem="WbB-r5-lRb" secondAttribute="bottom" id="aux-El-HHG"/>
-                    <constraint firstAttribute="trailing" secondItem="WbB-r5-lRb" secondAttribute="trailing" constant="15" id="hhk-GQ-72t"/>
-                    <constraint firstItem="WbB-r5-lRb" firstAttribute="leading" secondItem="naM-Xr-r38" secondAttribute="trailing" constant="10" id="jxe-M9-Wea"/>
-                    <constraint firstItem="naM-Xr-r38" firstAttribute="top" secondItem="PDn-Nk-GCp" secondAttribute="top" id="slB-pr-cqr"/>
+                    <constraint firstItem="naM-Xr-r38" firstAttribute="leading" secondItem="PDn-Nk-GCp" secondAttribute="leadingMargin" constant="7" id="3cB-ch-APo"/>
+                    <constraint firstItem="naM-Xr-r38" firstAttribute="top" secondItem="PDn-Nk-GCp" secondAttribute="top" id="3hu-U8-goO"/>
+                    <constraint firstItem="naM-Xr-r38" firstAttribute="baseline" secondItem="WbB-r5-lRb" secondAttribute="baseline" id="8Vf-kA-QG8"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="WbB-r5-lRb" secondAttribute="trailing" constant="7" id="QA8-1F-uBk"/>
+                    <constraint firstItem="WbB-r5-lRb" firstAttribute="leading" secondItem="naM-Xr-r38" secondAttribute="trailing" constant="8" symbolic="YES" id="duf-Gs-zrU"/>
+                    <constraint firstItem="naM-Xr-r38" firstAttribute="centerY" secondItem="PDn-Nk-GCp" secondAttribute="centerY" id="fXm-9K-zF0"/>
+                    <constraint firstItem="naM-Xr-r38" firstAttribute="firstBaseline" secondItem="WbB-r5-lRb" secondAttribute="firstBaseline" id="xwC-YT-RZO"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

@@ -21,6 +21,8 @@ var userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAcc
 
 class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpleLineGraphDataSource, UITableViewDelegate, UITableViewDataSource  {
 
+    var refreshControl = UIRefreshControl()
+
     var accountHistoryArray:Array<History>?
     
     var tableView:UITableView = UITableView()
@@ -39,7 +41,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 
     let runkeeperSwitch = DGRunkeeperSwitch(leftTitle: "Pending", rightTitle: "Available")
 
-    let graph: BEMSimpleLineGraphView = BEMSimpleLineGraphView(frame: CGRectMake(0, 100, UIScreen.mainScreen().bounds.size.width, 260))
+    let graph: BEMSimpleLineGraphView = BEMSimpleLineGraphView(frame: CGRectMake(0, 100, UIScreen.mainScreen().bounds.size.width, 190))
 
     @IBOutlet weak var blurView: UIVisualEffectView!
 
@@ -131,6 +133,14 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         // IMPORTANT: load new access token on home load, otherwise the old token will be requested to the server
         userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
         
+        self.refreshControl.backgroundColor = UIColor.clearColor()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: #selector(HomeViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControl)
+        
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
+        HUD.showInView(graph)
+        
         // Check for user logged in key
         print("user access token")
         print(userAccessToken)
@@ -148,6 +158,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                     print(error)
                 }
                 print(historyArr)
+                HUD.dismiss()
             }
             
             // Get user profile
@@ -233,7 +244,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         self.view!.addSubview(graph)
         
         let mainSegment: UISegmentedControl = UISegmentedControl(items: ["1M", "3M", "6M", "1Y", "5Y"])
-        mainSegment.frame = CGRect(x: 15.0, y: 300.0, width: view.bounds.width - 30.0, height: 30.0)
+        mainSegment.frame = CGRect(x: 15.0, y: 230.0, width: view.bounds.width - 30.0, height: 30.0)
         //        var y_co: CGFloat = self.view.frame.size.height - 100.0
         //        mainSegment.frame = CGRectMake(10, y_co, width-20, 50.0)
         mainSegment.selectedSegmentIndex = 2
@@ -268,7 +279,19 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         runkeeperSwitch.bringSubviewToFront(runkeeperSwitch)
         runkeeperSwitch.addTarget(self, action: #selector(HomeViewController.indexChanged(_:)), forControlEvents: .ValueChanged)
         
-        tableView.frame = CGRect(x: 0, y: 340, width: width, height: height-340)
+        let headerView: UIView = UIView(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 60))
+        headerView.backgroundColor = UIColor.clearColor()
+
+        let headerViewTitle: UILabel = UILabel()
+        headerViewTitle.frame = CGRect(x: 0, y: 10, width: screenWidth, height: 40)
+        headerViewTitle.text = "Account Activity"
+        headerViewTitle.font = UIFont(name: "Avenir-Light", size: 16)
+        headerViewTitle.textAlignment = .Center
+        headerViewTitle.textColor = UIColor.darkGrayColor()
+        headerView.addSubview(headerViewTitle)
+        
+        tableView.frame = CGRect(x: 0, y: 270, width: width, height: height-315)
+        tableView.tableHeaderView = headerView
         tableView.delegate = self
         tableView.dataSource = self
         self.view.addSubview(tableView)
@@ -523,7 +546,17 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     func refresh(sender:AnyObject)
     {
-//        self.loadAccountHistory(nil)
+        self.loadAccountHistory { (historyArr, error) in
+            print("loading account history")
+            if error != nil {
+                print(error)
+            }
+            print(historyArr)
+            if self.refreshControl.refreshing
+            {
+                self.refreshControl.endRefreshing()
+            }
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

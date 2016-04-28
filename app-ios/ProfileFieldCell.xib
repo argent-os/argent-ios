@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -15,29 +16,29 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4y-2W-3tL">
-                        <rect key="frame" x="15" y="0.0" width="75" height="43.5"/>
+                        <rect key="frame" x="15" y="0.0" width="92" height="44"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="75" id="L7n-Yw-aqh"/>
+                            <constraint firstAttribute="width" constant="92" id="aLo-BV-hBt"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="15"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="15" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aCp-Q1-gsd">
-                        <rect key="frame" x="100" y="0.0" width="205" height="43.5"/>
-                        <nil key="textColor"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <rect key="frame" x="115" y="0.0" width="190" height="44"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="15"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="f4y-2W-3tL" firstAttribute="leading" secondItem="BVv-Cs-Jwp" secondAttribute="leading" constant="15" id="9Ln-CY-AYB"/>
-                    <constraint firstItem="f4y-2W-3tL" firstAttribute="top" secondItem="BVv-Cs-Jwp" secondAttribute="top" id="ApM-wL-dTG"/>
-                    <constraint firstAttribute="bottom" secondItem="f4y-2W-3tL" secondAttribute="bottom" id="BDL-Wr-7bW"/>
-                    <constraint firstAttribute="trailing" secondItem="aCp-Q1-gsd" secondAttribute="trailing" constant="15" id="Hjc-Fp-w8B"/>
-                    <constraint firstItem="aCp-Q1-gsd" firstAttribute="top" secondItem="BVv-Cs-Jwp" secondAttribute="top" id="Jjl-xI-3BR"/>
-                    <constraint firstAttribute="bottom" secondItem="aCp-Q1-gsd" secondAttribute="bottom" id="emy-yS-7NL"/>
-                    <constraint firstItem="aCp-Q1-gsd" firstAttribute="leading" secondItem="f4y-2W-3tL" secondAttribute="trailing" constant="10" id="ncg-Fe-JQj"/>
+                    <constraint firstItem="f4y-2W-3tL" firstAttribute="top" secondItem="BVv-Cs-Jwp" secondAttribute="top" id="2id-lS-m1m"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="aCp-Q1-gsd" secondAttribute="trailing" constant="7" id="Pi3-7t-MnH"/>
+                    <constraint firstItem="f4y-2W-3tL" firstAttribute="top" secondItem="aCp-Q1-gsd" secondAttribute="top" id="d1K-Ve-wph"/>
+                    <constraint firstItem="f4y-2W-3tL" firstAttribute="bottom" secondItem="aCp-Q1-gsd" secondAttribute="bottom" id="mcT-6H-jt4"/>
+                    <constraint firstItem="aCp-Q1-gsd" firstAttribute="leading" secondItem="f4y-2W-3tL" secondAttribute="trailing" constant="8" symbolic="YES" id="shh-QP-rpQ"/>
+                    <constraint firstItem="f4y-2W-3tL" firstAttribute="centerY" secondItem="BVv-Cs-Jwp" secondAttribute="centerY" id="xhh-sj-4cC"/>
+                    <constraint firstItem="f4y-2W-3tL" firstAttribute="leading" secondItem="BVv-Cs-Jwp" secondAttribute="leadingMargin" constant="7" id="y4H-sB-N2S"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
