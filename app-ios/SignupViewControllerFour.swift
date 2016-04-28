@@ -126,6 +126,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
         if(self.switchTermsAndPrivacy.on.boolValue == false) {
             // Display error if terms of service and privacy policy not accepted
             displayDefaultErrorAlertMessage("Terms of Service and Privacy Policy were not accepted, could not create account");
+            HUD.dismiss()
             return;
         }
         

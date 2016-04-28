@@ -126,11 +126,14 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
         if(self.switchTermsAndPrivacy.on.boolValue == false) {
             // Display error if terms of service and privacy policy not accepted
             displayErrorAlertMessage("Terms of Service and Privacy Policy were not accepted, could not create account");
+            HUD.dismiss()
             return;
         }
         
         // Set WIFI IP immediately on load using completion handler
         getWifiAddress { (addr, error) in
+            
+            print("getting wifi addr")
             if addr != nil && self.switchTermsAndPrivacy.on == true {
                 let calcDate = NSDate().timeIntervalSince1970
                 var date: String = "\(calcDate)"
@@ -147,7 +150,7 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
                     return ""
                 }
                 
-                var iosContent: [String: AnyObject] = [ "push_state": true, "device_token": userDeviceToken ] //also works with [ "model" : NSNull()]
+                let iosContent: [String: AnyObject] = [ "push_state": true, "device_token": userDeviceToken ] //also works with [ "model" : NSNull()]
                 let iosNSDict = iosContent as NSDictionary //no error message
                 
                 let parameters : [String : AnyObject] = [
@@ -159,6 +162,8 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
                     "password":userPassword,
                     "ios": iosNSDict
                 ]
+                
+                print("about to post")
                 Alamofire.request(.POST, apiUrl + "/v1/register", parameters: parameters, encoding:.JSON)
                     .responseJSON { response in
                         //print(response.request) // original URL request

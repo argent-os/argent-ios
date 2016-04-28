@@ -35,6 +35,8 @@ class User {
 
         let parameters : [String : AnyObject] = [:]
         
+        print("authorization token is", userAccessToken)
+        
         let headers = [
             "Authorization": "Bearer " + (userAccessToken as! String),
             "Content-Type": "application/x-www-form-urlencoded"
@@ -58,6 +60,7 @@ class User {
                             let last_name = profile["last_name"].stringValue
                             let cust_id = profile["cust_id"].stringValue
                             let picture = profile["picture"]["secureUrl"].stringValue
+                            print("user picture is ", picture)
                             let item = User(username: username, email: email, first_name: first_name, last_name: last_name, cust_id: cust_id, picture: picture)
                             completionHandler(item, response.result.error)
                     }

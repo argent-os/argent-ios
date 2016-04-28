@@ -14,26 +14,34 @@ import SwiftyJSON
 import Stripe
 import DGRunkeeperSwitch
 import BEMSimpleLineGraph
-//import UICountingLabel
+import UICountingLabel
 //import MXParallaxHeader
 
-let userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
+var userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
 
 class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpleLineGraphDataSource, UITableViewDelegate, UITableViewDataSource  {
-    
+
     var accountHistoryArray:Array<History>?
     
     var tableView:UITableView = UITableView()
-    
-    @IBOutlet weak var blurView: UIVisualEffectView!
     
     var arrayOfValues: Array<AnyObject> = [3,30,50,40,80]
     
     var user = User(username: "", email: "", first_name: "", last_name: "", cust_id: "", picture: "")
     
-    let runkeeperSwitch = DGRunkeeperSwitch(leftTitle: "Balance", rightTitle: "Customers")
+    let lblAccountPending:UICountingLabel = UICountingLabel()
+
+    let lblAccountAvailable:UICountingLabel = UICountingLabel()
+
+    let lblAvailableDescription:UILabel = UILabel()
+
+    let lblPendingDescription:UILabel = UILabel()
+
+    let runkeeperSwitch = DGRunkeeperSwitch(leftTitle: "Pending", rightTitle: "Available")
 
     let graph: BEMSimpleLineGraphView = BEMSimpleLineGraphView(frame: CGRectMake(0, 100, UIScreen.mainScreen().bounds.size.width, 260))
+
+    @IBOutlet weak var blurView: UIVisualEffectView!
 
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
@@ -41,16 +49,20 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     @IBOutlet weak var navigationBar: UINavigationItem!
     
-//    @IBOutlet weak var balanceLabel: UILabel()!
-    
     @IBAction func indexChanged(sender: DGRunkeeperSwitch) {
         if(sender.selectedIndex == 0) {
-//            pendingBalanceView.hidden = false
-//            availableBalanceView.hidden = true
+            lblAccountAvailable.removeFromSuperview()
+            lblAvailableDescription.removeFromSuperview()
+            
+            self.view.addSubview(lblAccountPending)
+            self.view.addSubview(lblPendingDescription)
         }
         if(sender.selectedIndex == 1) {
-//            pendingBalanceView.hidden = true
-//            availableBalanceView.hidden = false
+            lblAccountPending.removeFromSuperview()
+            lblPendingDescription.removeFromSuperview()
+            
+            self.view.addSubview(lblAccountAvailable)
+            self.view.addSubview(lblAvailableDescription)
         }
     }
 
@@ -62,6 +74,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     // VIEW DID LOAD
     override func viewDidLoad() {
         
+        // IMPORTANT: load new access token on home load, otherwise the old token will be requested to the server
+        userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
+
         let screen = UIScreen.mainScreen().bounds
         let width = screen.size.width
         let height = screen.size.height
@@ -148,31 +163,47 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         runkeeperSwitch.bringSubviewToFront(runkeeperSwitch)
         runkeeperSwitch.addTarget(self, action: #selector(HomeViewController.indexChanged(_:)), forControlEvents: .ValueChanged)
         
-        tableView.frame = CGRect(x: 0, y: 340, width: width, height: height-100)
+        tableView.frame = CGRect(x: 0, y: 340, width: width, height: height-340)
         tableView.delegate = self
         tableView.dataSource = self
         self.view.addSubview(tableView)
 
-        let lblAccount:UILabel = UILabel()
-        lblAccount.tintColor = UIColor.whiteColor()
-        lblAccount.frame = CGRectMake(20, 81, 200, 40)
-        let str = NSAttributedString(string: "$10,125", attributes:
+        lblAccountAvailable.tintColor = UIColor.whiteColor()
+        lblAccountAvailable.frame = CGRectMake(20, 81, 200, 40)
+        let str0 = NSAttributedString(string: "$0.00", attributes:
             [
                 NSFontAttributeName: UIFont(name: "Avenir-Book", size: 18)!,
                 NSForegroundColorAttributeName:UIColor(rgba: "#fff")
             ])
-        lblAccount.attributedText = str
-        self.view.addSubview(lblAccount)
+        lblAccountAvailable.attributedText = str0
         
-        let lblDescription:UILabel = UILabel()
-        lblDescription.frame = CGRectMake(20, 106, 200, 40)
+        lblAccountPending.tintColor = UIColor.whiteColor()
+        lblAccountPending.frame = CGRectMake(20, 81, 200, 40)
+        let str1 = NSAttributedString(string: "$0.00", attributes:
+            [
+                NSFontAttributeName: UIFont(name: "Avenir-Book", size: 18)!,
+                NSForegroundColorAttributeName:UIColor(rgba: "#fff")
+            ])
+        lblAccountPending.attributedText = str1
+        self.view.addSubview(lblAccountPending)
+        
+        lblAvailableDescription.frame = CGRectMake(20, 106, 200, 40)
         let str2 = NSAttributedString(string: "Available Balance", attributes:
             [
                 NSFontAttributeName: UIFont(name: "Avenir-Book", size: 12)!,
                 NSForegroundColorAttributeName:UIColor(rgba: "#fffa")
             ])
-        lblDescription.attributedText = str2
-        self.view.addSubview(lblDescription)
+        lblAvailableDescription.attributedText = str2
+        // add available label initially
+        
+        lblPendingDescription.frame = CGRectMake(20, 106, 200, 40)
+        let str3 = NSAttributedString(string: "Pending Balance", attributes:
+            [
+                NSFontAttributeName: UIFont(name: "Avenir-Book", size: 12)!,
+                NSForegroundColorAttributeName:UIColor(rgba: "#fffa")
+            ])
+        lblPendingDescription.attributedText = str3
+        self.view.addSubview(lblPendingDescription)
         
         // navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Left", style: .Plain, target: self, action: "presentLeftMenuViewController")
         
@@ -263,7 +294,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                     print(user)
                     let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
                     //                let img = UIImage(named: "Proton")
-                    print(img)
+                    print(user?.picture)
                     if img != "" {
                         let userImageView: UIImageView = UIImageView(frame: CGRectMake(20, 31, 40, 40))
                         userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
@@ -276,7 +307,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                         userImageView.layer.borderWidth = 2
                         userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
                         self.view.addSubview(userImageView)
-                        self.view.bringSubviewToFront(userImageView)
                     }
                 }
             } else {
@@ -296,30 +326,35 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 if responseObject?["pending"][0]["amount"].stringValue != nil {
                     let pendingAmt = responseObject?["pending"][0]["amount"].stringValue
                     let availableAmt = responseObject?["available"][0]["amount"].stringValue
+                    print(responseObject)
+                    print("available amount is")
+                    print(availableAmt)
                     NSNotificationCenter.defaultCenter().postNotificationName("balance", object: nil, userInfo: ["available_bal":availableAmt!,"pending_bal":pendingAmt!])
 
                     if(pendingAmt == nil || pendingAmt == "" || availableAmt == nil || availableAmt == "") {
                         return
                     } else {
-//                        balanceVC.availableBalanceLabel.countFrom(0, to: CGFloat(Float(pendingAmt!)!)/100)
-//                        balanceVC.availableBalanceLabel.format = "%.2f"
-//                        balanceVC.availableBalanceLabel.animationDuration = 3.0
-//                        balanceVC.availableBalanceLabel.countFromZeroTo(CGFloat(Float(pendingAmt!)!)/100)
-//                        balanceVC.availableBalanceLabel.method = UILabelCountingMethod.EaseInOut
-//                        balanceVC.availableBalanceLabel.completionBlock = {
-//                            let pendingBalanceNum = formatter.stringFromNumber(Float(pendingAmt!)!/100)
-//                            balanceVC.availableBalanceLabel.text = pendingBalanceNum
-//                        }
+                        self.lblAccountPending.countFrom(0, to: CGFloat(Float(pendingAmt!)!)/100)
+                        self.lblAccountPending.textColor = UIColor.whiteColor()
+                        self.lblAccountPending.format = "%.2f"
+                        self.lblAccountPending.animationDuration = 2.0
+                        self.lblAccountPending.countFromZeroTo(CGFloat(Float(pendingAmt!)!)/100)
+                        self.lblAccountPending.method = UILabelCountingMethod.EaseInOut
+                        self.lblAccountPending.completionBlock = {
+                            let pendingBalanceNum = formatter.stringFromNumber(Float(pendingAmt!)!/100)
+                            self.lblAccountPending.text = pendingBalanceNum!
+                        }
                         
-//                        balanceVC.pendingBalanceLabel.countFrom((CGFloat(Float(pendingAmt!)!)/100)-100, to: CGFloat(Float(pendingAmt!)!)/100)
-//                        balanceVC.pendingBalanceLabel.format = "%.2f"
-//                        balanceVC.pendingBalanceLabel.animationDuration = 3.0
-//                        balanceVC.pendingBalanceLabel.countFromZeroTo(CGFloat(Float(pendingAmt!)!)/100)
-//                        balanceVC.pendingBalanceLabel.method = UILabelCountingMethod.EaseInOut
-//                        balanceVC.pendingBalanceLabel.completionBlock = {
-//                            let availableBalanceNum = formatter.stringFromNumber(Float(pendingAmt!)!/100)
-//                            balanceVC.pendingBalanceLabel.text = availableBalanceNum
-//                        }
+                        self.lblAccountAvailable.countFrom((CGFloat(Float(availableAmt!)!)/100)-100, to: CGFloat(Float(availableAmt!)!)/100)
+                        self.lblAccountAvailable.textColor = UIColor.whiteColor()
+                        self.lblAccountAvailable.format = "%.2f"
+                        self.lblAccountAvailable.animationDuration = 2.0
+                        self.lblAccountAvailable.countFromZeroTo(CGFloat(Float(availableAmt!)!)/100)
+                        self.lblAccountAvailable.method = UILabelCountingMethod.EaseInOut
+                        self.lblAccountAvailable.completionBlock = {
+                            let availableBalanceNum = formatter.stringFromNumber(Float(availableAmt!)!/100)
+                            self.lblAccountAvailable.text = availableBalanceNum!
+                        }
                     }
                 }
                 return
@@ -346,18 +381,18 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     }
     
     func loadUserProfile(completionHandler: (User?, NSError?) -> ()) {
-        //        User.getProfile({ (item, error) in
-        //            if error != nil
-        //            {
-        //                let alert = UIAlertController(title: "Error", message: "Could not load profile \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
-        //                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-        //                self.presentViewController(alert, animated: true, completion: nil)
-        //            }
-        //            print("got user")
-        //            print(item)
-        //            self.user = item!
-        //            completionHandler(item!, error)
-        //        })
+        User.getProfile({ (item, error) in
+            if error != nil
+            {
+                let alert = UIAlertController(title: "Error", message: "Could not load profile \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+            print("got user")
+            print(item)
+            self.user = item!
+            completionHandler(item!, error)
+        })
     }
     
     func getStripeBalance(completionHandler: (JSON?, NSError?) -> ()) {
@@ -478,8 +513,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 
 
         let item = self.accountHistoryArray?[indexPath.row]
-        print("got data for account cells")
-        print(item)
+//        print("got data for account cells")
+//        print(item)
         cell.textLabel?.text = ""
         cell.detailTextLabel?.text = "Account credited"
         cell.detailTextLabel?.textColor = UIColor.lightGrayColor()

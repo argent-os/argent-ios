@@ -13,7 +13,6 @@ import JGProgressHUD
 import WatchConnectivity
 
 class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UITextFieldDelegate {
-    
 
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -193,12 +192,15 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
                         }
                         
                         let token = userData!["token"].stringValue
+                        // set the user access token
                         print("token is", token)
                         // Login is successful
                         print("is user logged in", NSUserDefaults.standardUserDefaults().boolForKey("userLoggedIn"))
                         NSUserDefaults.standardUserDefaults().setValue(token, forKey: "userAccessToken")
                         NSUserDefaults.standardUserDefaults().synchronize()
                         print("user token is", NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken"))
+                        
+                        print("logged in user is", userData)
                         
                         // go to main view
                         self.performSegueWithIdentifier("homeView", sender: self);
