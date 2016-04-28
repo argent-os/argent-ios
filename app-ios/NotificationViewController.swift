@@ -34,6 +34,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.refreshControl.addTarget(self, action: #selector(NotificationsViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView?.showsVerticalScrollIndicator = false
         self.tableView?.addSubview(refreshControl)
         
         let screen = UIScreen.mainScreen().bounds
@@ -62,7 +63,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
                 alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
-            self.itemsArray = items
+            self.itemsArray = items?.reverse()
             
             // update "last updated" title for refresh control
             let now = NSDate()
@@ -111,7 +112,9 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         cell.detailTextLabel?.text = ""
         if let text = item?.text
         {
-            cell.textLabel?.text = "event: " + text
+            cell.textLabel?.font = UIFont(name: "Avenir", size: 16)
+            cell.textLabel?.textColor = UIColor.darkGrayColor()
+            cell.textLabel?.text = text
         }
         if let date = item?.date, uid = item?.uid
         {
@@ -119,12 +122,18 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
                 let converted_date = NSDate(timeIntervalSince1970: Double(date)!)
                 dateFormatter.timeStyle = .MediumStyle
                 let formatted_date = dateFormatter.stringFromDate(converted_date)
-                cell.detailTextLabel?.text = String(formatted_date) + " / uid " + uid
+                cell.detailTextLabel?.font = UIFont(name: "Avenir", size: 12)
+                cell.detailTextLabel?.textColor = UIColor.lightGrayColor()
+                cell.detailTextLabel?.text = String(formatted_date) //+ " / uid " + uid
             } else {
                 print("no date")
             }
         }
         return cell
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 60.0
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

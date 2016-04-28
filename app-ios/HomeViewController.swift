@@ -283,9 +283,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         headerView.backgroundColor = UIColor.clearColor()
 
         let headerViewTitle: UILabel = UILabel()
-        headerViewTitle.frame = CGRect(x: 0, y: 10, width: screenWidth, height: 40)
+        headerViewTitle.frame = CGRect(x: 0, y: 19, width: screenWidth, height: 40)
         headerViewTitle.text = "Account Activity"
-        headerViewTitle.font = UIFont(name: "Avenir-Light", size: 16)
+        headerViewTitle.font = UIFont(name: "Avenir-Book", size: 16)
         headerViewTitle.textAlignment = .Center
         headerViewTitle.textColor = UIColor.darkGrayColor()
         headerView.addSubview(headerViewTitle)
@@ -294,6 +294,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         tableView.tableHeaderView = headerView
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.showsVerticalScrollIndicator = false
         self.view.addSubview(tableView)
         
         lblAccountAvailable.tintColor = UIColor.whiteColor()
