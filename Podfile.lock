@@ -23,6 +23,7 @@ PODS:
   - MZFormSheetPresentationController (2.4.0):
     - MZAppearance
   - PasscodeLock (1.0.2)
+  - QMBParallaxScrollViewController (0.1)
   - RAMAnimatedTabBarController (1.3.1)
   - RESideMenu (4.0.7)
   - SESlideTableViewCell (0.7.0)
@@ -59,6 +60,7 @@ DEPENDENCIES:
   - Money
   - MZFormSheetPresentationController
   - PasscodeLock
+  - QMBParallaxScrollViewController
   - RAMAnimatedTabBarController
   - RESideMenu
   - SESlideTableViewCell
@@ -102,6 +104,7 @@ SPEC CHECKSUMS:
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   MZFormSheetPresentationController: 3b9b6d76adc9f81c2defd0bb59e0f3dc2431e41e
   PasscodeLock: 4ae42c094224a01de3773fcd69ae33886394d959
+  QMBParallaxScrollViewController: 2da91693da05d0fa0b2d9788d55443d02a5d040c
   RAMAnimatedTabBarController: 71478294be88a5b870064c7980880caeb9ce2655
   RESideMenu: f24c508404b49c667344c54aba7e590883533958
   SESlideTableViewCell: 1487a6aedc84b480a888fc33b8d1c58fa5026f99

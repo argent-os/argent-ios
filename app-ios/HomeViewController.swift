@@ -435,7 +435,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 
         // check for token, get profile id based on token and make the request
         if(userAccessToken != nil) {
-            User.getProfile({ (item, error) in
+            loadUserProfile({ (item, error) in
                 if error != nil {
                     print(error)
                 }

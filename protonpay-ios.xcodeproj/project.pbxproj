@@ -36,6 +36,7 @@
 		30831F611CD01B0E00D5D0F4 /* SimpleTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30831F601CD01B0E00D5D0F4 /* SimpleTransform.swift */; };
 		30831F631CD01B1500D5D0F4 /* DirectManipulationGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30831F621CD01B1500D5D0F4 /* DirectManipulationGestureRecognizer.swift */; };
 		308A348A1CCA803200AAF66F /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A34891CCA803200AAF66F /* History.swift */; };
+		309544F51CD295AE003007B2 /* ParallaxHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309544F41CD295AE003007B2 /* ParallaxHeader.swift */; };
 		309C8CCA1CCEEE8C0073159C /* SignupCountryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309C8CC91CCEEE8C0073159C /* SignupCountryPickerViewController.swift */; };
 		309E15931CBC2A0E00EA95E4 /* ChargeCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E15921CBC2A0E00EA95E4 /* ChargeCustomerViewController.swift */; };
 		309E15951CBE9A1600EA95E4 /* ChargeCustomerSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E15941CBE9A1600EA95E4 /* ChargeCustomerSearchController.swift */; };
@@ -250,6 +251,7 @@
 		30831F601CD01B0E00D5D0F4 /* SimpleTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleTransform.swift; path = "app-ios/SimpleTransform.swift"; sourceTree = SOURCE_ROOT; };
 		30831F621CD01B1500D5D0F4 /* DirectManipulationGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectManipulationGestureRecognizer.swift; path = "app-ios/DirectManipulationGestureRecognizer.swift"; sourceTree = SOURCE_ROOT; };
 		308A34891CCA803200AAF66F /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = History.swift; path = "app-ios/History.swift"; sourceTree = SOURCE_ROOT; };
+		309544F41CD295AE003007B2 /* ParallaxHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParallaxHeader.swift; path = "app-ios/ParallaxHeader.swift"; sourceTree = SOURCE_ROOT; };
 		309C8CC91CCEEE8C0073159C /* SignupCountryPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupCountryPickerViewController.swift; path = "app-ios/SignupCountryPickerViewController.swift"; sourceTree = SOURCE_ROOT; };
 		309E15921CBC2A0E00EA95E4 /* ChargeCustomerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChargeCustomerViewController.swift; path = "app-ios/ChargeCustomerViewController.swift"; sourceTree = SOURCE_ROOT; };
 		309E15941CBE9A1600EA95E4 /* ChargeCustomerSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChargeCustomerSearchController.swift; path = "app-ios/ChargeCustomerSearchController.swift"; sourceTree = SOURCE_ROOT; };
@@ -568,6 +570,14 @@
 			name = Card;
 			sourceTree = "<group>";
 		};
+		309544F31CD2959A003007B2 /* Parallax */ = {
+			isa = PBXGroup;
+			children = (
+				309544F41CD295AE003007B2 /* ParallaxHeader.swift */,
+			);
+			name = Parallax;
+			sourceTree = "<group>";
+		};
 		309E15911CBC29FB00EA95E4 /* Charge */ = {
 			isa = PBXGroup;
 			children = (
@@ -710,6 +720,7 @@
 		30BECC0C1C6F93AF00B8A088 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				309544F31CD2959A003007B2 /* Parallax */,
 				307265391C72B95900D2AF61 /* CountryPicker */,
 				30BECC041C6F92C200B8A088 /* StarButton */,
 			);
@@ -1388,6 +1399,7 @@
 				300E422B1CB47428004316CF /* BankConnectedListTableViewController.swift in Sources */,
 				30BB072D1CCFEBD90051C9E7 /* ActivityViewController1.swift in Sources */,
 				30C2DAD51CA43892003AFD8B /* ProfileFieldCell.swift in Sources */,
+				309544F51CD295AE003007B2 /* ParallaxHeader.swift in Sources */,
 				30C2DAB11CA437A9003AFD8B /* PresentedTableViewController.swift in Sources */,
 				30C2DAE11CA43909003AFD8B /* FormerInputAccessoryView.swift in Sources */,
 				30C2DB0B1CA439C1003AFD8B /* Paths.swift in Sources */,

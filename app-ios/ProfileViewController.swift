@@ -26,7 +26,6 @@ class ProfileViewController: UIViewController {
         print("loaded profile")
         self.view.backgroundColor = UIColor.whiteColor()
         
-        
         // Style user avatar
 //        avatarImageView.image = UIImage(named: "avatar")
 //        avatarImageView.layer.cornerRadius = 1.0
@@ -36,16 +35,41 @@ class ProfileViewController: UIViewController {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         
-        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 65))
-        navBar.barTintColor = UIColor(rgba: "#FFF")
+        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 15, width: screenWidth, height: 50))
+        navBar.barTintColor = UIColor.clearColor()
+        navBar.translucent = true
+        navBar.tintColor = UIColor.whiteColor()
+        navBar.backgroundColor = UIColor.clearColor()
+        navBar.shadowImage = UIImage()
+        navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navBar.titleTextAttributes = [
-            NSForegroundColorAttributeName : UIColor.darkGrayColor(),
+            NSForegroundColorAttributeName : UIColor.whiteColor(),
             NSFontAttributeName : UIFont(name: "Helvetica", size: 18)!
         ]
-        self.view.addSubview(navBar);
-        let navItem = UINavigationItem(title: "Account");
-        navBar.setItems([navItem], animated: false);
+        self.view.addSubview(navBar)
+        self.view.bringSubviewToFront(navBar)
         
+        
+        User.getProfile({ (item, error) in
+            if error != nil
+            {
+                let alert = UIAlertController(title: "Error", message: "Could not load profile \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+            let navItem = UINavigationItem(title: "@"+(item?.username)!)
+            navBar.setItems([navItem], animated: false)
+        })
+        
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSForegroundColorAttributeName : UIColor(rgba: "#157efb"),
+            NSFontAttributeName : UIFont(name: "Avenir-Light", size: 18.0)!
+        ]
+            
         if(userData?["user"]["picture"]["secureUrl"].stringValue != nil && userData?["user"]["picture"]["secureUrl"].stringValue.containsString("app") != true) {
             let userPicture = userData?["user"]["picture"]["secureUrl"].stringValue
             let pictureUrl = NSURL(string: userPicture!)
