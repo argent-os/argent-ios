@@ -25,9 +25,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     var tableView:UITableView = UITableView()
     
-    var arrayOfValues: Array<AnyObject> = [3,30,50,40,80]
+    var arrayOfValues: Array<AnyObject> = [30,10,20,50,60,80]
     
-    var user = User(username: "", email: "", first_name: "", last_name: "", cust_id: "", picture: "")
+    var user = User(id: "", username: "", email: "", first_name: "", last_name: "", cust_id: "", picture: "")
     
     let lblAccountPending:UICountingLabel = UICountingLabel()
 
@@ -73,10 +73,115 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     // VIEW DID LOAD
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        auth()
+        configureView()
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        runkeeperSwitch.removeFromSuperview()
+    }
+    
+    func mainSegmentControl(segment: UISegmentedControl) {
+        if segment.selectedSegmentIndex == 0 {
+            // action for the first button (Current or Default)
+            arrayOfValues = [30,20,30,80]
+            graph.reloadGraph()
+        }
+        else if segment.selectedSegmentIndex == 1 {
+            // action for the second button
+            arrayOfValues = [20,60,30]
+            graph.reloadGraph()
+        }
+        else if segment.selectedSegmentIndex == 2 {
+            // action for the third button
+            arrayOfValues = [30,10,20,50,60,80]
+            graph.reloadGraph()
+        }
+        else if segment.selectedSegmentIndex == 3 {
+            // action for the fourth button
+            arrayOfValues = [10,90,60,50,30,10,90,60,50,30,20,40]
+            graph.reloadGraph()
+        }
+        else if segment.selectedSegmentIndex == 4 {
+            // action for the fourth button
+            arrayOfValues = [10,90,60,50,30]
+            graph.reloadGraph()
+        }
+    }
+    
+    //Changing Status Bar
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+
+    // VIEW DID APPEAR
+    override func viewDidAppear(animated: Bool) {
+        
+        self.navigationController!.navigationBar.addSubview(runkeeperSwitch)
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+        UITextField.appearance().keyboardAppearance = .Light
+        UIStatusBarStyle.LightContent
+
+    }
+    
+    func auth() {
         
         // IMPORTANT: load new access token on home load, otherwise the old token will be requested to the server
         userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
+        
+        // Check for user logged in key
+        print("user access token")
+        print(userAccessToken)
+        
+        if((userAccessToken) != nil) {
+            print("token retrieved! ", userAccessToken)
+            
+            // Get stripe data
+            loadStripe()
+            
+            // Get user account history
+            loadAccountHistory { (historyArr, error) in
+                print("loading account history")
+                if error != nil {
+                    print(error)
+                }
+                print(historyArr)
+            }
+            
+            // Get user profile
+            loadUserProfile { (user, error) in
+                print("got user in completion handler")
+                print(user)
+                let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
+                //                let img = UIImage(named: "Proton")
+                print(user?.picture)
+                if img != "" {
+                    let userImageView: UIImageView = UIImageView(frame: CGRectMake(20, 31, 40, 40))
+                    userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
+                    //                userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 65)
+                    userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+                    userImageView.layer.cornerRadius = userImageView.frame.size.height/2
+                    userImageView.layer.masksToBounds = true
+                    userImageView.clipsToBounds = true
+                    userImageView.image = img
+                    userImageView.layer.borderWidth = 2
+                    userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
+                    self.view.addSubview(userImageView)
+                }
+            }
+        } else {
+            // check if user logged in, if not send to login
+            print("user not logged in")
+            // Normally identifiers are started with capital letters, exception being authViewController, make sure UIStoryboard name is Auth, not Main
+            let viewController:AuthViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateViewControllerWithIdentifier("authViewController") as! AuthViewController
+            self.presentViewController(viewController, animated: true, completion: nil)
+        }
+    }
 
+    func configureView() {
+        
         let screen = UIScreen.mainScreen().bounds
         let width = screen.size.width
         let height = screen.size.height
@@ -84,7 +189,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         let img: UIImage = UIImage(named: "Proton")!
         let protonImageView: UIImageView = UIImageView(frame: CGRectMake(20, 31, 40, 40))
         protonImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-//        protonImageView.center = CGPointMake(self.view.bounds.size.width / 2, 65)
+        //        protonImageView.center = CGPointMake(self.view.bounds.size.width / 2, 65)
         protonImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
         protonImageView.layer.cornerRadius = protonImageView.frame.size.height/2
         protonImageView.layer.masksToBounds = true
@@ -104,7 +209,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         blurImageView.clipsToBounds = true
         blurImageView.image = UIImage(named: "BackgroundGradientInverse")
         self.view.addSubview(blurImageView)
-//        blurImageView.addSubview(visualEffectView)
+        //        blurImageView.addSubview(visualEffectView)
         self.view.sendSubviewToBack(blurImageView)
         
         let screenWidth = screen.size.width
@@ -129,8 +234,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         
         let mainSegment: UISegmentedControl = UISegmentedControl(items: ["1M", "3M", "6M", "1Y", "5Y"])
         mainSegment.frame = CGRect(x: 15.0, y: 300.0, width: view.bounds.width - 30.0, height: 30.0)
-//        var y_co: CGFloat = self.view.frame.size.height - 100.0
-//        mainSegment.frame = CGRectMake(10, y_co, width-20, 50.0)
+        //        var y_co: CGFloat = self.view.frame.size.height - 100.0
+        //        mainSegment.frame = CGRectMake(10, y_co, width-20, 50.0)
         mainSegment.selectedSegmentIndex = 2
         mainSegment.removeBorders()
         mainSegment.addTarget(self, action: #selector(HomeViewController.mainSegmentControl(_:)), forControlEvents: .ValueChanged)
@@ -167,7 +272,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         tableView.delegate = self
         tableView.dataSource = self
         self.view.addSubview(tableView)
-
+        
         lblAccountAvailable.tintColor = UIColor.whiteColor()
         lblAccountAvailable.frame = CGRectMake(20, 81, 200, 40)
         let str0 = NSAttributedString(string: "$0.00", attributes:
@@ -221,151 +326,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 
     }
     
-    override func viewDidDisappear(animated: Bool) {
-        runkeeperSwitch.removeFromSuperview()
-    }
-    
-    func mainSegmentControl(segment: UISegmentedControl) {
-        if segment.selectedSegmentIndex == 0 {
-            // action for the first button (Current or Default)
-            arrayOfValues = [30,20,30,80,30]
-            graph.reloadGraph()
-        }
-        else if segment.selectedSegmentIndex == 1 {
-            // action for the second button
-            arrayOfValues = [20,60,30,50,90]
-            graph.reloadGraph()
-        }
-        else if segment.selectedSegmentIndex == 2 {
-            // action for the third button
-            arrayOfValues = [30,3,20,50,60]
-            graph.reloadGraph()
-        }
-        else if segment.selectedSegmentIndex == 3 {
-            // action for the fourth button
-            arrayOfValues = [100,30,50,10,40]
-            graph.reloadGraph()
-        }
-        else if segment.selectedSegmentIndex == 4 {
-            // action for the fourth button
-            arrayOfValues = [10,90,60,50,30]
-            graph.reloadGraph()
-        }
-    }
-    
-    //Changing Status Bar
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
-    }
-
-    // VIEW DID APPEAR
-    override func viewDidAppear(animated: Bool) {
-        
-        self.navigationController!.navigationBar.addSubview(runkeeperSwitch)
-        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
-        UITextField.appearance().keyboardAppearance = .Light
-        UIStatusBarStyle.LightContent
-
-        // Check for user logged in key
-        print("user access token")
-        print(userAccessToken)
-        let userLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("userLoggedIn");
-        if(!userLoggedIn) {
-            // check if user logged in, if not send to login
-            print("user not logged in")
-            // Normally identifiers are started with capital letters, exception being authViewController, make sure UIStoryboard name is Auth, not Main
-            let viewController:AuthViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateViewControllerWithIdentifier("authViewController") as! AuthViewController
-            self.presentViewController(viewController, animated: true, completion: nil)
-        } else {
-
-            if userData != nil {
-                print("user data exists")
-                // Get user account history
-                loadAccountHistory { (historyArr, error) in
-                    if error != nil {
-                        print(error)
-                    }
-                    print(historyArr)
-                }
-                
-                // Get the user profile with completion handler
-                loadUserProfile { (user, error) in
-                    print("got user in completion handler")
-                    print(user)
-                    let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
-                    //                let img = UIImage(named: "Proton")
-                    print(user?.picture)
-                    if img != "" {
-                        let userImageView: UIImageView = UIImageView(frame: CGRectMake(20, 31, 40, 40))
-                        userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-                        //                userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 65)
-                        userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
-                        userImageView.layer.cornerRadius = userImageView.frame.size.height/2
-                        userImageView.layer.masksToBounds = true
-                        userImageView.clipsToBounds = true
-                        userImageView.image = img
-                        userImageView.layer.borderWidth = 2
-                        userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
-                        self.view.addSubview(userImageView)
-                    }
-                }
-            } else {
-                print("user not logged in, user data nil.")
-                // RETRIEVE USER DATA IF NIL WITH CURRENT TOKEN
-//                let viewController:AuthViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateViewControllerWithIdentifier("authViewController") as! AuthViewController
-//                self.presentViewController(viewController, animated: true, completion: nil)
-            }
-            
-            // Set account balance label
-            getStripeBalance() { responseObject, error in
-                // use responseObject and error here
-                // print("responseObject = \(responseObject); error = \(error)")
-                let formatter = NSNumberFormatter()
-                formatter.numberStyle = .CurrencyStyle
-                formatter.locale = NSLocale.currentLocale() // This is the default
-                if responseObject?["pending"][0]["amount"].stringValue != nil {
-                    let pendingAmt = responseObject?["pending"][0]["amount"].stringValue
-                    let availableAmt = responseObject?["available"][0]["amount"].stringValue
-                    print(responseObject)
-                    print("available amount is")
-                    print(availableAmt)
-                    NSNotificationCenter.defaultCenter().postNotificationName("balance", object: nil, userInfo: ["available_bal":availableAmt!,"pending_bal":pendingAmt!])
-
-                    if(pendingAmt == nil || pendingAmt == "" || availableAmt == nil || availableAmt == "") {
-                        return
-                    } else {
-                        self.lblAccountPending.countFrom(0, to: CGFloat(Float(pendingAmt!)!)/100)
-                        self.lblAccountPending.textColor = UIColor.whiteColor()
-                        self.lblAccountPending.format = "%.2f"
-                        self.lblAccountPending.animationDuration = 2.0
-                        self.lblAccountPending.countFromZeroTo(CGFloat(Float(pendingAmt!)!)/100)
-                        self.lblAccountPending.method = UILabelCountingMethod.EaseInOut
-                        self.lblAccountPending.completionBlock = {
-                            let pendingBalanceNum = formatter.stringFromNumber(Float(pendingAmt!)!/100)
-                            self.lblAccountPending.text = pendingBalanceNum!
-                        }
-                        
-                        self.lblAccountAvailable.countFrom((CGFloat(Float(availableAmt!)!)/100)-100, to: CGFloat(Float(availableAmt!)!)/100)
-                        self.lblAccountAvailable.textColor = UIColor.whiteColor()
-                        self.lblAccountAvailable.format = "%.2f"
-                        self.lblAccountAvailable.animationDuration = 2.0
-                        self.lblAccountAvailable.countFromZeroTo(CGFloat(Float(availableAmt!)!)/100)
-                        self.lblAccountAvailable.method = UILabelCountingMethod.EaseInOut
-                        self.lblAccountAvailable.completionBlock = {
-                            let availableBalanceNum = formatter.stringFromNumber(Float(availableAmt!)!/100)
-                            self.lblAccountAvailable.text = availableBalanceNum!
-                        }
-                    }
-                }
-                return
-            }
-            
-            print("user logged in, displaying home view")
-
-        }
-    }
-
     func loadAccountHistory(completionHandler: ([History]?, NSError?) -> ()) {
+        print("load account history called")
         History.getAccountHistory({ (items, error) in
             if error != nil {
                 let alert = UIAlertController(title: "Error", message: "Could not load history \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
@@ -378,6 +340,52 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             completionHandler(items!, error)
             self.tableView.reloadData()
         })
+    }
+    
+    func loadStripe() {
+        // Set account balance label
+        getStripeBalance() { responseObject, error in
+            // use responseObject and error here
+            // print("responseObject = \(responseObject); error = \(error)")
+            let formatter = NSNumberFormatter()
+            formatter.numberStyle = .CurrencyStyle
+            formatter.locale = NSLocale.currentLocale() // This is the default
+            if responseObject?["balance"]["pending"][0]["amount"].stringValue != nil {
+                let pendingAmt = responseObject?["balance"]["pending"][0]["amount"].stringValue
+                let availableAmt = responseObject?["balance"]["available"][0]["amount"].stringValue
+                print(responseObject)
+                print("available amount is")
+                print(availableAmt)
+                NSNotificationCenter.defaultCenter().postNotificationName("balance", object: nil, userInfo: ["available_bal":availableAmt!,"pending_bal":pendingAmt!])
+                
+                if(pendingAmt == nil || pendingAmt == "" || availableAmt == nil || availableAmt == "") {
+                    return
+                } else {
+                    self.lblAccountPending.countFrom(0, to: CGFloat(Float(pendingAmt!)!)/100)
+                    self.lblAccountPending.textColor = UIColor.whiteColor()
+                    self.lblAccountPending.format = "%.2f"
+                    self.lblAccountPending.animationDuration = 2.0
+                    self.lblAccountPending.countFromZeroTo(CGFloat(Float(pendingAmt!)!)/100)
+                    self.lblAccountPending.method = UILabelCountingMethod.EaseInOut
+                    self.lblAccountPending.completionBlock = {
+                        let pendingBalanceNum = formatter.stringFromNumber(Float(pendingAmt!)!/100)
+                        self.lblAccountPending.text = pendingBalanceNum!
+                    }
+                    
+                    self.lblAccountAvailable.countFrom((CGFloat(Float(availableAmt!)!)/100)-100, to: CGFloat(Float(availableAmt!)!)/100)
+                    self.lblAccountAvailable.textColor = UIColor.whiteColor()
+                    self.lblAccountAvailable.format = "%.2f"
+                    self.lblAccountAvailable.animationDuration = 2.0
+                    self.lblAccountAvailable.countFromZeroTo(CGFloat(Float(availableAmt!)!)/100)
+                    self.lblAccountAvailable.method = UILabelCountingMethod.EaseInOut
+                    self.lblAccountAvailable.completionBlock = {
+                        let availableBalanceNum = formatter.stringFromNumber(Float(availableAmt!)!/100)
+                        self.lblAccountAvailable.text = availableBalanceNum!
+                    }
+                }
+            }
+            return
+        }
     }
     
     func loadUserProfile(completionHandler: (User?, NSError?) -> ()) {
@@ -396,45 +404,62 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     }
     
     func getStripeBalance(completionHandler: (JSON?, NSError?) -> ()) {
-        makeStripeCall("/v1/balance", completionHandler: completionHandler)
+        makeStripeCall("/v1/stripe/balance", completionHandler: completionHandler)
     }
     
     func makeStripeCall(endpoint: String, completionHandler: (JSON?, NSError?) -> ()) {
 
-        // TODO: Make secret key call from API, find user by ID
-        if let stripeKey = userData?["user"]["stripe"]["secretKey"].stringValue {
-            let headers = [
-                "Authorization": "Bearer " + (stripeKey),
-                "Content-Type": "application/x-www-form-urlencoded"
-            ]
-            
-            Alamofire.request(.GET, stripeApiUrl + endpoint,
-                encoding:.URL,
-                headers: headers)
-                .responseJSON { response in
-                    print(response.request) // original URL request
-                    print(response.response?.statusCode) // URL response
-                    print(response.data) // server data
-                    print(response.result) // result of response serialization
+        // check for token, get profile id based on token and make the request
+        if(userAccessToken != nil) {
+            User.getProfile({ (item, error) in
+                if error != nil {
+                    print(error)
+                }
+                print(item)
+                // TODO: Make secret key call from API, find user by ID
+                if let userId = item?.id {
                     
-                    // go to main view
-                    if(response.response?.statusCode == 200) {
-                        print("green light")
-                    } else {
-                        print("red light")
-                    }
+                    let parameters : [String : AnyObject] = [
+                        "userId": userId
+                    ]
                     
-                    switch response.result {
-                    case .Success:
-                        if let value = response.result.value {
-                            let json = JSON(value)
-                            completionHandler(json, nil)
-                        }
-                    case .Failure(let error):
-                        print(error)
-                        completionHandler(nil, error)
+                    print("parameters are", parameters)
+                    
+                    let headers = [
+                        "Authorization": "Bearer " + (userAccessToken as! String),
+                        "Content-Type": "application/json"
+                    ]
+                    
+                    Alamofire.request(.POST, apiUrl + endpoint,
+                        encoding:.JSON,
+                        parameters: parameters,
+                        headers: headers)
+                        .responseJSON { response in
+                            print(response.request) // original URL request
+                            print(response.response?.statusCode) // URL response
+                            print(response.data) // server data
+                            print(response.result) // result of response serialization
+                            
+                            // go to main view
+                            if(response.response?.statusCode == 200) {
+                                print("green light")
+                            } else {
+                                print("red light")
+                            }
+                            
+                            switch response.result {
+                            case .Success:
+                                if let value = response.result.value {
+                                    let json = JSON(value)
+                                    completionHandler(json, nil)
+                                }
+                            case .Failure(let error):
+                                print(error)
+                                completionHandler(nil, error)
+                            }
                     }
-            }
+                }
+            })
         }
     }
     

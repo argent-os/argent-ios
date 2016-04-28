@@ -12,6 +12,7 @@ import Alamofire
 
 class User {
     
+    let id: String
     let username: String
     let email: String
     let first_name: String
@@ -19,7 +20,8 @@ class User {
     let cust_id: String
     let picture: String
     
-    required init(username: String, email: String, first_name: String, last_name: String, cust_id: String, picture: String) {
+    required init(id: String, username: String, email: String, first_name: String, last_name: String, cust_id: String, picture: String) {
+        self.id = id
         self.username = username
         self.email = email
         self.first_name = first_name
@@ -54,6 +56,7 @@ class User {
                         print("got user object in model")
                         let profile = data
                         // print(data["profile"].arrayValue)
+                            let id = profile["_id"].stringValue
                             let username = profile["username"].stringValue
                             let email = profile["email"].stringValue
                             let first_name = profile["first_name"].stringValue
@@ -61,7 +64,7 @@ class User {
                             let cust_id = profile["cust_id"].stringValue
                             let picture = profile["picture"]["secureUrl"].stringValue
                             print("user picture is ", picture)
-                            let item = User(username: username, email: email, first_name: first_name, last_name: last_name, cust_id: cust_id, picture: picture)
+                        let item = User(id: id, username: username, email: email, first_name: first_name, last_name: last_name, cust_id: cust_id, picture: picture)
                             completionHandler(item, response.result.error)
                     }
                 case .Failure(let error):
@@ -91,13 +94,14 @@ class User {
                         let accounts = data["users"].arrayValue
                         // print(data["users"].arrayValue)
                         for jsonItem in accounts {
+                            let id = ""
                             let username = jsonItem["username"].stringValue
                             let email = jsonItem["email"].stringValue
                             let first_name = jsonItem["first_name"].stringValue
                             let last_name = jsonItem["last_name"].stringValue
                             let cust_id = jsonItem["cust_id"].stringValue
                             let picture = jsonItem["picture"].stringValue
-                            let item = User(username: username, email: email, first_name: first_name, last_name: last_name, cust_id: cust_id, picture: picture)
+                            let item = User(id: id, username: username, email: email, first_name: first_name, last_name: last_name, cust_id: cust_id, picture: picture)
                             userItemsArray.append(item)
                         }
                         completionHandler(userItemsArray, response.result.error)
