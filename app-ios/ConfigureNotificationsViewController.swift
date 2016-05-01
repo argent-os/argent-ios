@@ -113,7 +113,7 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
         HUD.position = JGProgressHUDPosition.Center
         HUD.dismissAfterDelay(1, animated: true)
         if let userDeviceToken = KeychainSwift().get("deviceToken") {
-            updateUserDeviceToken(userDeviceToken)
+            updateUserDeviceToken()
             print("push notifications enabled", userDeviceToken)
         }
         // Use below for in-controller registration
@@ -150,13 +150,15 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
 //        // print(userDeviceToken)
 //    }
     
-    func updateUserDeviceToken(token: String) {
+    func updateUserDeviceToken() {
         print("updating user token")
+        
         if userAccessToken != nil {
             print("current auth token for proton", userAccessToken!)
             print("access token not null, setting headers")
             
-            let token = token
+            let token = KeychainSwift().get("deviceToken")
+            
             print("device token is")
             print(token)
             
@@ -165,13 +167,10 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
                 "Content-Type": "application/json"
             ]
             
-            let iosContent: [String: AnyObject] = [ "push_state": true, "device_token" : token ] //also works with [ "model" : NSNull()]
+            let iosContent: [String: AnyObject] = [ "push_state": true, "device_token" : token! ] //also works with [ "model" : NSNull()]
             let iosNSDict = iosContent as NSDictionary //no error message
-            
-            // print(userData?.rawValue)
-            // print(userData?["user"]["username"].rawValue)
+        
             let parameters : [String : AnyObject] = [
-                "user" : (userData?.rawValue)!,
                 "ios" : iosNSDict
             ]
             
@@ -188,7 +187,6 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
                         print("success updated device token")
                         if let value = response.result.value {
                             let data = JSON(value)
-                             print(data)
                         }
                     case .Failure(let error):
                         print(error)
@@ -215,10 +213,7 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
             let iosContent: [String: Bool] = [ "push_state" : state ] //also works with [ "model" : NSNull()]
             let iosNSDict = iosContent as NSDictionary //no error message
             
-            // print(userData?.rawValue)
-            // print(userData?["user"]["username"].rawValue)
             let parameters : [String : AnyObject] = [
-                "user" : (userData?.rawValue)!,
                 "ios" : iosNSDict
             ]
             

@@ -104,7 +104,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let cell = tableView.dequeueReusableCellWithIdentifier("idCell", forIndexPath: indexPath)
         
         cell.imageView?.image = nil
-
+        
         if shouldShowSearchResults {
             // After filtering
             let pic = filteredArray[indexPath.row].picture
@@ -177,6 +177,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func loadUserAccounts() {
         let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
         HUD.showInView(self.view!)
+        HUD.dismissAfterDelay(3.0)
         User.getUserAccounts({ (items, error) in
             if error != nil
             {
