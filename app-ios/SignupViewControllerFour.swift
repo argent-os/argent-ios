@@ -60,7 +60,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
         HUD.showInView(self.view!)
         HUD.dismissAfterDelay(0.5)
         
@@ -120,7 +120,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
     @IBAction func finishButtonTapped(sender: AnyObject) {
         
         print("finish button tapped")
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
         HUD.showInView(self.view!)
         
         if(self.switchTermsAndPrivacy.on.boolValue == false) {

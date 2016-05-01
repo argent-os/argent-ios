@@ -153,7 +153,7 @@ class ChargeCustomerViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func createCharge(sender:AnyObject) {
-        let HUD: JGProgressHUD = JGProgressHUD(style: JGProgressHUDStyle.ExtraLight)
+        let HUD: JGProgressHUD = JGProgressHUD(style: JGProgressHUDStyle.Light)
         HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
         HUD.textLabel.text = "Charge success"
         HUD.showInView(self.view!)

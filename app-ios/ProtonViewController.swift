@@ -36,26 +36,23 @@ class ProtonViewController: UIViewController {
         print("loaded proton")
         
         let screen = UIScreen.mainScreen().bounds
-        let width = screen.size.width
-        let height = screen.size.height
-        
-        // Blurview
-        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
-        visualEffectView.frame = CGRectMake(0, 0, width, height)
-        let blurImageView: UIImageView = UIImageView(frame: CGRectMake(0, 0, width, height))
-        blurImageView.contentMode = .ScaleAspectFill
-        blurImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-        blurImageView.layer.masksToBounds = true
-        blurImageView.clipsToBounds = true
-        blurImageView.image = UIImage(named: "BackgroundGradientInverse")
-        self.view.addSubview(blurImageView)
-        // adds blur
-        blurImageView.addSubview(visualEffectView)
-        self.view.sendSubviewToBack(blurImageView)
-        
-        // screen width and height:
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
+        
+        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
+        visualEffectView.frame = CGRectMake(0, 0, screenWidth, screenHeight)
+        let backgroundImageView = UIImageView(image: UIImage(named: "BackgroundGradientInverse"), highlightedImage: nil)
+        backgroundImageView.frame = CGRectMake(0, 0, screenWidth, screenHeight)
+        backgroundImageView.contentMode = .ScaleAspectFill
+        backgroundImageView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        backgroundImageView.layer.masksToBounds = true
+        backgroundImageView.clipsToBounds = true
+        self.view.addSubview(backgroundImageView)
+//        backgroundImageView.addSubview(visualEffectView)
+        self.view.sendSubviewToBack(backgroundImageView)
+        self.view.addSubview(backgroundImageView)
+        
+//        self.view.backgroundColor = UIColor.protonBlue()
         
         button.backgroundColor = UIColor.clearColor()
         button.delegate = self
@@ -64,6 +61,18 @@ class ProtonViewController: UIViewController {
         button.layer.borderColor = UIColor.whiteColor().CGColor
         button.layer.borderWidth = 1
         view.addSubview(button)
+        
+        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 65))
+        navBar.barTintColor = UIColor(rgba: "#258ff6")
+        navBar.tintColor = UIColor.whiteColor()
+        navBar.translucent = false
+        navBar.titleTextAttributes = [
+            NSForegroundColorAttributeName : UIColor.whiteColor(),
+            NSFontAttributeName : UIFont(name: "Avenir-Book", size: 18)!
+        ]
+        self.view.addSubview(navBar);
+        let navItem = UINavigationItem(title: "Main Menu");
+        navBar.setItems([navItem], animated: false);
         
     }
     

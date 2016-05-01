@@ -116,7 +116,7 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
         let username = usernameTextField.text
         let password = passwordTextField.text
         
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
 //        HUD.textLabel.text = "Logging in"
         HUD.showInView(self.view!)
         HUD.dismissAfterDelay(0.3)

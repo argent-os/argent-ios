@@ -66,7 +66,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         scrollView.contentSize = CGSizeMake(screenWidth, 550)
         self.view!.addSubview(scrollView)
 
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
         HUD.showInView(self.view!)
         HUD.dismissAfterDelay(0.5)
         

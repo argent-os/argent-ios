@@ -82,7 +82,7 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
         getPushState { (val, token, err) in
             // If the user has a device token registered in the API, allow deregistration
             if token != nil {
-                let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
+                let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
                 HUD.showInView(self.view!)
                 HUD.textLabel.text = "Push Notifications are Off"
                 HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
@@ -91,7 +91,7 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
                 self.updateUserNotificationRegistration(false)
             } else {
                 // If a token does not exist but the push value is true (say a user delete the app but configured true to push notifications) then configure the api to deregister but without removing the token
-                let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
+                let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
                 HUD.showInView(self.view!)
                 HUD.textLabel.text = "Push Notifications are Off"
                 HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
@@ -106,7 +106,7 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
     func promptUserToRegisterPushNotifications(sender: AnyObject) {
         // Register for Push Notifications
         print("registering push")
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
         HUD.showInView(self.view!)
         HUD.textLabel.text = "Push Notifications are On"
         HUD.indicatorView = JGProgressHUDSuccessIndicatorView()

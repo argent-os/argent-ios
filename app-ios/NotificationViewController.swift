@@ -10,13 +10,13 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import JGProgressHUD
+import DGElasticPullToRefresh
 
 class NotificationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var itemsArray:Array<NotificationItem>?
     @IBOutlet var tableView: UITableView?
     
-    var refreshControl = UIRefreshControl()
     var dateFormatter = NSDateFormatter()
     
     override func viewDidAppear(animated: Bool) {
@@ -30,21 +30,29 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         self.dateFormatter.timeStyle = NSDateFormatterStyle.LongStyle
         
-        self.refreshControl.backgroundColor = UIColor.clearColor()
-        
-        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        self.refreshControl.addTarget(self, action: #selector(NotificationsViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
-        self.tableView?.showsVerticalScrollIndicator = false
-        self.tableView?.addSubview(refreshControl)
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor.whiteColor()
+        tableView!.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
+                self?.tableView!.dg_stopLoading()
+                self!.loadNotificationItems()
+            })
+        }, loadingView: loadingView)
+        tableView!.dg_setPullToRefreshFillColor(UIColor.protonBlue())
+        tableView!.dg_setPullToRefreshBackgroundColor(tableView!.backgroundColor!)
         
         let screen = UIScreen.mainScreen().bounds
+        
+        
         let screenWidth = screen.size.width
         
-        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 15, width: screenWidth, height: 50))
-        navBar.barTintColor = UIColor(rgba: "#FFF")
+        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 65))
+        navBar.barTintColor = UIColor.protonBlue()
+        navBar.tintColor = UIColor.whiteColor()
+        navBar.translucent = false
         navBar.titleTextAttributes = [
-            NSForegroundColorAttributeName : UIColor.darkGrayColor(),
-            NSFontAttributeName : UIFont(name: "Helvetica", size: 18)!
+            NSForegroundColorAttributeName : UIColor.whiteColor(),
+            NSFontAttributeName : UIFont(name: "Avenir-Book", size: 18)!
         ]
         self.view.addSubview(navBar);
         let navItem = UINavigationItem(title: "Notifications");
@@ -54,7 +62,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func loadNotificationItems() {
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
         HUD.showInView(self.view!)
         NotificationItem.getNotificationList({ (items, error) in
             if error != nil
@@ -65,14 +73,6 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
             }
             self.itemsArray = items?.reverse()
             
-            // update "last updated" title for refresh control
-            let now = NSDate()
-            let updateString = "Last Updated at " + self.dateFormatter.stringFromDate(now)
-            self.refreshControl.attributedTitle = NSAttributedString(string: updateString)
-            if self.refreshControl.refreshing
-            {
-                self.refreshControl.endRefreshing()
-            }
             HUD.dismiss()
 
             self.tableView?.reloadData()

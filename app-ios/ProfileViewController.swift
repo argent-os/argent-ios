@@ -44,7 +44,7 @@ class ProfileViewController: UIViewController {
         navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "Helvetica", size: 18)!
+            NSFontAttributeName : UIFont(name: "Avenir-Black", size: 18)!
         ]
         self.view.addSubview(navBar)
         self.view.bringSubviewToFront(navBar)

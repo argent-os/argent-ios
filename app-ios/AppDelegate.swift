@@ -80,8 +80,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        UINavigationBar.appearance().barStyle = .Black
-
         // Globally set toolbar
         UIToolbar.appearance().barTintColor = UIColor.protonBlue()
         UIToolbar.appearance().backgroundColor = UIColor.protonBlue()
@@ -107,9 +105,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Enable Stripe PROD
         // Stripe.setDefaultPublishableKey("pk_live_9kfmn7pMRPKAYSpcf1Fmn266")
 
+        // Override point for customization after application launch.
+        // Set UINavigationBar
+        UINavigationBar.appearance().barStyle = .Black
+        // Sets background to a blank/empty image
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        // Sets shadow (line below the bar) to a blank image
+        UINavigationBar.appearance().shadowImage = UIImage()
+        // Sets the translucent background color
+        UINavigationBar.appearance().backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+        // Set translucent. (Default value is already true, so this can be removed if desired.)
+        UINavigationBar.appearance().translucent = true
+        
         // Search Bar UI
-        UISearchBar.appearance().barTintColor = UIColor.protonDarkBlue()
+        UISearchBar.appearance().barTintColor = UIColor.protonBlue()
         UISearchBar.appearance().tintColor = UIColor.whiteColor()
+        
         // UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).tintColor = UIColor.protonDarkBlue()
         
         // Enable push notifications
@@ -148,21 +159,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+        // Display PasscodeLock
+        passcodeLockPresenter.presentPasscodeLock()
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         //viewController.pauseVideo()
+        // Display PasscodeLock
+        passcodeLockPresenter.presentPasscodeLock()
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
         //viewController.playVideo()
+        // Display PasscodeLock on enter
+        passcodeLockPresenter.presentPasscodeLock()
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        // Display PasscodeLock on restart
+        passcodeLockPresenter.presentPasscodeLock()
     }
 
     func applicationWillTerminate(application: UIApplication) {
@@ -176,7 +195,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Edit scheme to run automatically, run after launch confirm,, and back to run automatically
     // http://stackoverflow.com/questions/24878274/getting-dyld-fatal-error-after-updating-to-xcode-6-beta-4-using-swift
 }
-// Fixes Push notification bug: _handleNonLaunchSpecificActions
+// Fix Push notification bug: _handleNonLaunchSpecificActions
 extension UIApplication {
     func _handleNonLaunchSpecificActions(arg1: AnyObject, forScene arg2: AnyObject, withTransitionContext arg3: AnyObject, completion completionHandler: () -> Void) {
         //catching handleNonLaunchSpecificActions:forScene exception on app close

@@ -79,7 +79,6 @@ class MainTableViewController: UITableViewController {
         let img: UIImage = UIImage(named: self.elements.objectAtIndex(indexPath.row).objectForKey("bank_logo") as! String)!
         cell.imageView!.image = img
         cell.imageView!.contentMode = .ScaleAspectFit
-//        cell.imageView!.backgroundColor = self.elements.objectAtIndex(indexPath.row).objectForKey("background_color") as? UIColor
         cell.imageView!.frame = CGRectMake(width, (cell.frame.size.height-30)/2, 30, 30)
 
         return cell

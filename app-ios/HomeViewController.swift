@@ -15,13 +15,12 @@ import Stripe
 import DGRunkeeperSwitch
 import BEMSimpleLineGraph
 import UICountingLabel
-//import MXParallaxHeader
+import DGElasticPullToRefresh
+import Gecco
 
 var userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
 
 class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpleLineGraphDataSource, UITableViewDelegate, UITableViewDataSource  {
-
-    var refreshControl = UIRefreshControl()
 
     var accountHistoryArray:Array<History>?
     
@@ -78,7 +77,15 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         super.viewDidLoad()
         
         auth()
+        
         configureView()
+        
+    }
+    
+    func presentTutorial(sender: AnyObject) {
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("TutorialHomeViewController") as! TutorialHomeViewController
+        viewController.alpha = 0.5
+        presentViewController(viewController, animated: true, completion: nil)
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -133,11 +140,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         // IMPORTANT: load new access token on home load, otherwise the old token will be requested to the server
         userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
         
-        self.refreshControl.backgroundColor = UIColor.clearColor()
-        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        self.refreshControl.addTarget(self, action: #selector(HomeViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
-        self.tableView.addSubview(refreshControl)
-        
         let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
         HUD.showInView(graph)
         
@@ -180,8 +182,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                     userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
                     self.view.addSubview(userImageView)
                 } else {
-                    let viewController:AuthViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateViewControllerWithIdentifier("authViewController") as! AuthViewController
-                    self.presentViewController(viewController, animated: true, completion: nil)
+                    
                 }
             }
         } else {
@@ -199,10 +200,17 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         let width = screen.size.width
         let height = screen.size.height
         
+        let tutorialButton:UIButton = UIButton()
+        tutorialButton.frame = CGRect(x: 0, y: 50, width: 200, height: 50)
+        tutorialButton.setTitle("Tutorial", forState: .Normal)
+        tutorialButton.setTitleColor(UIColor.redColor(), forState: .Normal)
+        tutorialButton.addTarget(self, action: #selector(HomeViewController.presentTutorial(_:)), forControlEvents: .TouchUpInside)
+//        self.view.addSubview(tutorialButton)
+//        self.view.bringSubviewToFront(tutorialButton)
+        
         let img: UIImage = UIImage(named: "Proton")!
         let protonImageView: UIImageView = UIImageView(frame: CGRectMake(20, 31, 40, 40))
         protonImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-        //        protonImageView.center = CGPointMake(self.view.bounds.size.width / 2, 65)
         protonImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
         protonImageView.layer.cornerRadius = protonImageView.frame.size.height/2
         protonImageView.layer.masksToBounds = true
@@ -263,7 +271,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "Helvetica", size: 18)!
+            NSFontAttributeName : UIFont(name: "Avenir-Light", size: 18)!
         ]
         self.view.addSubview(navBar)
         self.view.sendSubviewToBack(navBar)
@@ -336,9 +344,18 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         lblPendingDescription.attributedText = str3
         self.view.addSubview(lblPendingDescription)
         
-        // navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Left", style: .Plain, target: self, action: "presentLeftMenuViewController")
-        
-        super.viewDidLoad()
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor.whiteColor()
+        tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
+                self?.tableView.dg_stopLoading()
+                self?.loadAccountHistory({ (_: [History]?, NSError) in
+                    print("reloaded")
+                })
+            })
+            }, loadingView: loadingView)
+        tableView.dg_setPullToRefreshFillColor(graph.colorBottom)
+        tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
         
         // Transparent navigation bar
         // self.navigationController?.navigationBar.barTintColor = UIColor(rgba: "#1a8ef5")
@@ -346,7 +363,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSForegroundColorAttributeName : UIColor(rgba: "#157efb"),
+            NSForegroundColorAttributeName : UIColor.protonBlue(),
             NSFontAttributeName : UIFont(name: "Avenir-Light", size: 18.0)!
         ]
 
@@ -504,7 +521,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 //        print(userData)
 //        print(NSUserDefaults.valueForKey("userLoggedIn"))
         
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
         HUD.textLabel.text = "Logging out"
         HUD.showInView(self.view!)
         HUD.dismissAfterDelay(0.3)
@@ -526,7 +543,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 //        print(userData)
         print(NSUserDefaults.valueForKey("userLoggedIn"))
 
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
         HUD.textLabel.text = "Logging out"
         HUD.showInView(self.view!)
         HUD.dismissAfterDelay(0.3)
@@ -536,7 +553,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         
     }
     
-    // BEM Graph Delegate Methods
+    // MARK: BEM Graph Delegate Methods
     func numberOfPointsInLineGraph(graph: BEMSimpleLineGraphView) -> Int {
         return Int(self.arrayOfValues.count)
     }
@@ -545,23 +562,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         return CGFloat(self.arrayOfValues[index] as! NSNumber)
     }
     
-    // TableView Delegate
-    
-    func refresh(sender:AnyObject)
-    {
-        self.loadAccountHistory { (historyArr, error) in
-            print("loading account history")
-            if error != nil {
-                print(error)
-            }
-            print(historyArr)
-            if self.refreshControl.refreshing
-            {
-                self.refreshControl.endRefreshing()
-            }
-        }
-    }
-    
+    // MARK: TableView Delegate
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.accountHistoryArray?.count ?? 0
     }

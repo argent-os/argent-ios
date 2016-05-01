@@ -52,14 +52,14 @@ class SupportMessageViewController: UIViewController {
     }
     
     @IBAction func sendMessageAction() {
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
         HUD.showInView(self.view!)
         HUD.dismissAfterDelay(0.5)
         sendMessage()
     }
     
     func sendMessage() {
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
         HUD.showInView(self.view!)
         HUD.textLabel.text = "Message sent!"
         HUD.indicatorView = JGProgressHUDSuccessIndicatorView()

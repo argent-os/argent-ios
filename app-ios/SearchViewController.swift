@@ -11,27 +11,28 @@ import JGProgressHUD
 import Alamofire
 import SwiftyJSON
 import JGProgressHUD
+import DGElasticPullToRefresh
 
-class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate, SearchControllerDelegate {
+class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
     
     @IBOutlet weak var tblSearchResults: UITableView!
     
-    var dataArray = [User]()
+    private var dataArray = [User]()
     
-    var filteredArray = [User]()
+    private var filteredArray = [User]()
     
-    var shouldShowSearchResults = false
+    private var shouldShowSearchResults = false
     
-    var searchController: UISearchController!
+    private var searchController: UISearchController!
     
-    var customSearchController: SearchController!
+    private var searchedText:String = ""
     
-    var searchedText:String = ""
+    private var dateFormatter = NSDateFormatter()
     
-    var refreshControl = UIRefreshControl()
+    deinit {
+        tblSearchResults.dg_removePullToRefresh()
+    }
     
-    var dateFormatter = NSDateFormatter()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -39,10 +40,18 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tblSearchResults.delegate = self
         tblSearchResults.dataSource = self
         
-        self.refreshControl.backgroundColor = UIColor.clearColor()
-        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        self.refreshControl.addTarget(self, action: #selector(NotificationsViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
-        self.tblSearchResults?.addSubview(refreshControl)
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor.whiteColor()
+        tblSearchResults.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
+            print("pulled")
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
+                print("stopping loading")
+                self?.tblSearchResults.dg_stopLoading()
+                self?.loadUserAccounts()
+            })
+            }, loadingView: loadingView)
+        tblSearchResults.dg_setPullToRefreshFillColor(UIColor.protonBlue())
+        tblSearchResults.dg_setPullToRefreshBackgroundColor(UIColor.protonDarkBlue())
         
         loadUserAccounts()
         
@@ -61,11 +70,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let navItem = UINavigationItem(title: "Search");
         navBar.setItems([navItem], animated: false);
         
-        // Uncomment the following line to enable the default search controller.
         configureSearchController()
-        
-        // Comment out the next line to disable the customized search controller and search bar and use the default ones. Also, uncomment the above line.
-        //        configureCustomSearchController()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -188,16 +193,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.dataArray = items!
             
             HUD.dismiss()
-
-            // update "last updated" title for refresh control
-            let now = NSDate()
-            let updateString = "Last Updated at " + self.dateFormatter.stringFromDate(now)
-            self.refreshControl.attributedTitle = NSAttributedString(string: updateString)
-            if self.refreshControl.refreshing
-            {
-                self.refreshControl.endRefreshing()
-            }
-            
+                        
             self.tblSearchResults.reloadData()
         })
     }
@@ -206,10 +202,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Initialize and perform a minimum configuration to the search controller.
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Enter search"
         searchController.searchBar.delegate = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search users"
         searchController.searchBar.sizeToFit()
+        searchController.searchBar.translucent = false
         // Setup the Scope Bar
         searchController.searchBar.scopeButtonTitles = ["Username", "Email", "Name"]
         
@@ -240,15 +237,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         sendToolbar.sizeToFit()
         // Uncomment to add toolbar to search
         // searchController.searchBar.inputAccessoryView=sendToolbar
-    }
-    
-    func configureCustomSearchController() {
-        customSearchController = SearchController(searchResultsController: self, searchBarFrame: CGRectMake(0.0, 0.0, tblSearchResults.frame.size.width, 50.0), searchBarFont: UIFont(name: "Avenir-Book", size: 16.0)!, searchBarTextColor: UIColor.whiteColor(), searchBarTintColor: UIColor.blackColor())
-        
-        customSearchController.customSearchBar.placeholder = "Search"
-        tblSearchResults.tableHeaderView = customSearchController.customSearchBar
-        
-        customSearchController.customDelegate = self
     }
     
     
@@ -385,7 +373,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 print((userStr.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch).location))
                 return (userStr.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
             }
-
+            
             return (user.username.lowercaseString.containsString(searchText.lowercaseString)) || (user.email.lowercaseString.containsString(searchText.lowercaseString))
         })
         tblSearchResults.reloadData()
@@ -420,3 +408,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 }
 
+extension UITableView {
+    public override func dg_stopScrollingAnimation() {}
+}

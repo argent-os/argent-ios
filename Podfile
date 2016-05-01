@@ -43,6 +43,7 @@ target 'protonpay-ios' do
 	pod 'CountryPicker'
 	pod 'FlagKit'
 	pod 'Advance'
+	pod 'DGElasticPullToRefresh'
 	#pod 'DOFavoriteButton'
 
 	post_install do |installer|

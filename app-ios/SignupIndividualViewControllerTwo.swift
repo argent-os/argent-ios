@@ -56,7 +56,7 @@ class SignupIndividualViewControllerTwo: UIViewController, UITextFieldDelegate, 
         super.viewDidLoad()
         
         // Show progress loader on load
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
         HUD.showInView(self.view!)
         HUD.dismissAfterDelay(0.5)
         

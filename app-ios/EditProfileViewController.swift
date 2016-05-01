@@ -135,7 +135,7 @@ final class EditProfileViewController: FormViewController {
         navBar.translucent = false
         navBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "Helvetica", size: 18)!
+            NSFontAttributeName : UIFont(name: "Avenir-Light", size: 18)!
         ]
         self.view.addSubview(navBar);
         let navItem = UINavigationItem(title: "Edit Profile");

@@ -23,6 +23,7 @@
 		304468F01CAA0BFC008CAE7D /* notify.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468ED1CAA0BFC008CAE7D /* notify.caf */; };
 		304468F11CAA0BFC008CAE7D /* pop.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468EE1CAA0BFC008CAE7D /* pop.caf */; };
 		304468F21CAA0BFC008CAE7D /* tone.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468EF1CAA0BFC008CAE7D /* tone.caf */; };
+		3064931C1CD6B00500A17B00 /* TutorialHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3064931B1CD6B00500A17B00 /* TutorialHomeViewController.swift */; };
 		306999031CAA125C0003B0A6 /* soft.caf in Resources */ = {isa = PBXBuildFile; fileRef = 306999021CAA125C0003B0A6 /* soft.caf */; };
 		306999051CACD0710003B0A6 /* AccountInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306999041CACD0710003B0A6 /* AccountInterfaceController.swift */; };
 		306999071CACD0890003B0A6 /* SettingsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306999061CACD0890003B0A6 /* SettingsInterfaceController.swift */; };
@@ -49,8 +50,6 @@
 		309E43CC1CA9CFED00279D97 /* fold.caf in Resources */ = {isa = PBXBuildFile; fileRef = 309E43C91CA9CFED00279D97 /* fold.caf */; };
 		309E43CD1CA9CFED00279D97 /* selected.caf in Resources */ = {isa = PBXBuildFile; fileRef = 309E43CA1CA9CFED00279D97 /* selected.caf */; };
 		30AF67391CA498A3006B83DA /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AF67381CA498A3006B83DA /* PassKit.framework */; };
-		30B5768D1CC303F8005BCA5A /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B5768A1CC303F8005BCA5A /* SearchController.swift */; };
-		30B576911CC3045E005BCA5A /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B576901CC3045E005BCA5A /* SearchBar.swift */; };
 		30B576931CC7D1CF005BCA5A /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B576921CC7D1CE005BCA5A /* SearchDetailViewController.swift */; };
 		30BB06E21CCEFC260051C9E7 /* CountryPicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30BB06E11CCEFC260051C9E7 /* CountryPicker.bundle */; };
 		30BB06F41CCFDED20051C9E7 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB06F31CCFDED20051C9E7 /* TutorialViewController.swift */; };
@@ -238,6 +237,7 @@
 		304468ED1CAA0BFC008CAE7D /* notify.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = notify.caf; sourceTree = "<group>"; };
 		304468EE1CAA0BFC008CAE7D /* pop.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pop.caf; sourceTree = "<group>"; };
 		304468EF1CAA0BFC008CAE7D /* tone.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tone.caf; sourceTree = "<group>"; };
+		3064931B1CD6B00500A17B00 /* TutorialHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialHomeViewController.swift; path = "app-ios/TutorialHomeViewController.swift"; sourceTree = SOURCE_ROOT; };
 		306999021CAA125C0003B0A6 /* soft.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = soft.caf; sourceTree = "<group>"; };
 		306999041CACD0710003B0A6 /* AccountInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInterfaceController.swift; sourceTree = "<group>"; };
 		306999061CACD0890003B0A6 /* SettingsInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsInterfaceController.swift; sourceTree = "<group>"; };
@@ -265,8 +265,6 @@
 		309E43CA1CA9CFED00279D97 /* selected.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = selected.caf; sourceTree = "<group>"; };
 		30AF67371CA498A2006B83DA /* app-watchos Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "app-watchos Extension.entitlements"; sourceTree = "<group>"; };
 		30AF67381CA498A3006B83DA /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.2.sdk/System/Library/Frameworks/PassKit.framework; sourceTree = DEVELOPER_DIR; };
-		30B5768A1CC303F8005BCA5A /* SearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchController.swift; path = "app-ios/SearchController.swift"; sourceTree = SOURCE_ROOT; };
-		30B576901CC3045E005BCA5A /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchBar.swift; path = "app-ios/SearchBar.swift"; sourceTree = SOURCE_ROOT; };
 		30B576921CC7D1CE005BCA5A /* SearchDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchDetailViewController.swift; path = "app-ios/SearchDetailViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30BB06E11CCEFC260051C9E7 /* CountryPicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CountryPicker.bundle; sourceTree = SOURCE_ROOT; };
 		30BB06F31CCFDED20051C9E7 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialViewController.swift; path = "app-ios/TutorialViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -503,6 +501,14 @@
 			name = Secrets;
 			sourceTree = "<group>";
 		};
+		3064931A1CD6AFEB00A17B00 /* Tutorials */ = {
+			isa = PBXGroup;
+			children = (
+				3064931B1CD6B00500A17B00 /* TutorialHomeViewController.swift */,
+			);
+			name = Tutorials;
+			sourceTree = "<group>";
+		};
 		3064E8A71C74D06D0073E00B /* xib */ = {
 			isa = PBXGroup;
 			children = (
@@ -603,8 +609,6 @@
 		30B576891CC30388005BCA5A /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				30B576901CC3045E005BCA5A /* SearchBar.swift */,
-				30B5768A1CC303F8005BCA5A /* SearchController.swift */,
 				30B576921CC7D1CE005BCA5A /* SearchDetailViewController.swift */,
 				30F480D51CCAE5FF00DD1E60 /* PaymentViewController.swift */,
 			);
@@ -882,6 +886,7 @@
 				306D6DB11C7008D200467C41 /* Resources */,
 				30BECC081C6F934A00B8A088 /* Root */,
 				30BECC061C6F92EF00B8A088 /* Auth */,
+				3064931A1CD6AFEB00A17B00 /* Tutorials */,
 				30BECC071C6F932400B8A088 /* Main */,
 				3013DCEA1C8515A300268DAD /* Models */,
 				30BECC091C6F935200B8A088 /* Nav */,
@@ -1376,6 +1381,7 @@
 				30162DBA1CA9FB2C00438842 /* Stock.swift in Sources */,
 				30C2DB1D1CA43A05003AFD8B /* paykloud_iosUITests.swift in Sources */,
 				30C2DADB1CA438A5003AFD8B /* ProfileLabelCell.swift in Sources */,
+				3064931C1CD6B00500A17B00 /* TutorialHomeViewController.swift in Sources */,
 				30C2DAA41CA4374F003AFD8B /* SignupIndividualViewControllerOne.swift in Sources */,
 				30BB07011CCFE7D20051C9E7 /* BrowserView.swift in Sources */,
 				30831F591CD013B000D5D0F4 /* ActivityViewController4.swift in Sources */,
@@ -1417,7 +1423,6 @@
 				30C2DACD1CA43862003AFD8B /* CreditCardAccountViewController.swift in Sources */,
 				30C2DAED1CA43946003AFD8B /* RecurringBillingPlanViewController.swift in Sources */,
 				30C2DAAF1CA4379F003AFD8B /* ResetPasswordViewController.swift in Sources */,
-				30B5768D1CC303F8005BCA5A /* SearchController.swift in Sources */,
 				30C2DAD91CA4389E003AFD8B /* ProfileImageCell.swift in Sources */,
 				30C2DA9B1CA4373E003AFD8B /* LoginViewController.swift in Sources */,
 				30C2DAAA1CA4374F003AFD8B /* SignupViewControllerTwo.swift in Sources */,
@@ -1436,7 +1441,6 @@
 				30C2DAA61CA4374F003AFD8B /* SignupIndividualViewControllerTwo.swift in Sources */,
 				30C2DB071CA439B6003AFD8B /* Extensions.swift in Sources */,
 				30C2DAA51CA4374F003AFD8B /* SignupIndividualViewControllerThree.swift in Sources */,
-				30B576911CC3045E005BCA5A /* SearchBar.swift in Sources */,
 				30C2DB171CA439F4003AFD8B /* paykloud_iosTests.swift in Sources */,
 				308A348A1CCA803200AAF66F /* History.swift in Sources */,
 				30C2DAC31CA4383B003AFD8B /* NotificationViewController.swift in Sources */,
