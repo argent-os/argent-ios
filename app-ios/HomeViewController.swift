@@ -165,10 +165,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             loadUserProfile { (user, error) in
                 print("got user in completion handler")
                 print(user)
-                let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
-                //                let img = UIImage(named: "Proton")
-                print(user?.picture)
-                if img != "" {
+                // let img = UIImage(named: "Proton")
+                if user?.picture != nil && user?.picture != "" {
+                    let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
                     let userImageView: UIImageView = UIImageView(frame: CGRectMake(20, 31, 40, 40))
                     userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
                     //                userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 65)
@@ -180,6 +179,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                     userImageView.layer.borderWidth = 2
                     userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
                     self.view.addSubview(userImageView)
+                } else {
+                    let viewController:AuthViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateViewControllerWithIdentifier("authViewController") as! AuthViewController
+                    self.presentViewController(viewController, animated: true, completion: nil)
                 }
             }
         } else {
