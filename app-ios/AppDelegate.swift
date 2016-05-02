@@ -177,6 +177,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    // Error solution for app rename with cocoapods configuration update https://github.com/CocoaPods/CocoaPods/issues/2627
+    // Make sure to quit xcode, delete podfile.lock, pod install, cmd shift k, cmd shift b
+    
     // Error solution for dyld_sim`dyld_fatal_error nop
     // Delete ~/Library/Caches/com.apple.dt.Xcode*
     // Delete ~/Library/Developer/Xcode/DerivedData

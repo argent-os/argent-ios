@@ -29,9 +29,9 @@ PODS:
   - SESlideTableViewCell (0.7.0)
   - SFDraggableDialogView (1.1.4)
   - SnapKit (0.20.0)
-  - Stripe (6.2.0):
-    - Stripe/Core (= 6.2.0)
-  - Stripe/Core (6.2.0)
+  - Stripe (7.0.0):
+    - Stripe/Core (= 7.0.0)
+  - Stripe/Core (7.0.0)
   - SwiftyJSON (2.3.2)
   - TextFieldEffects (1.2.0)
   - UIColor_Hex_Swift (2.1)
@@ -110,7 +110,7 @@ SPEC CHECKSUMS:
   SESlideTableViewCell: 1487a6aedc84b480a888fc33b8d1c58fa5026f99
   SFDraggableDialogView: cfe9b80b5fff19f7e0fda86dcabee8b03a4c3b44
   SnapKit: 5fce3c1bbbf1fbd31de9aa92f33eb9fa03f15650
-  Stripe: 275524137e6c4cc1058f6d32ece248adf30a21f9
+  Stripe: 147bbff1ba7cf3422e4ed14f6e1fbbc72471ce6c
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   TextFieldEffects: bc4fd3bd557321bd61a0762f3f50965477a36f62
   UIColor_Hex_Swift: e91dc51f6bf252ec7bf74c8704ceedeeb7640c1c

@@ -11,7 +11,7 @@ def shared_pods
 #	pod 'Argo', '~> 2.2.0'	
 end
 
-target 'protonpay-ios' do
+target 'app-ios' do
 	platform :ios, '8.0'
 	shared_pods
 	pod 'RESideMenu'
@@ -51,11 +51,11 @@ target 'protonpay-ios' do
     end
 end
 
-target 'protonpay-iosTests' do
+target 'app-iosTests' do
 
 end
 
-target 'protonpay-iosUITests' do
+target 'app-iosUITests' do
 
 end
 
