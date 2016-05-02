@@ -154,7 +154,7 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
         print("updating user token")
         
         if userAccessToken != nil {
-            print("current auth token for proton", userAccessToken!)
+            print("current auth token", userAccessToken!)
             print("access token not null, setting headers")
             
             let token = KeychainSwift().get("deviceToken")
@@ -198,7 +198,7 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
     func updateUserNotificationRegistration(state: Bool) {
         print("updating notification registration state")
         if userAccessToken != nil {
-            print("current auth token for proton", userAccessToken!)
+            print("current auth token", userAccessToken!)
             print("access token not null, setting headers")
             
             let state = String(state.boolValue).toBool()!
@@ -244,7 +244,7 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
     func getPushState(completionHandler: (Bool?, String?, NSError?) -> ()) {
         print("getting push state")
         if userAccessToken != nil {
-            print("current auth token for proton", userAccessToken!)
+            print("current auth token", userAccessToken!)
             print("access token not null, setting headers")
             
             let headers = [

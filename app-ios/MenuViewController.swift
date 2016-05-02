@@ -33,7 +33,6 @@ class MenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("loaded proton")
         
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width

@@ -232,7 +232,7 @@ class BankDetailViewController: UIViewController, UITextFieldDelegate {
     func updateUserToken(token: String) {
         print("updating user token")
         if userAccessToken != nil {
-            print("current auth token for proton", userAccessToken!)
+            print("current auth token", userAccessToken!)
             print("access token not null, setting headers")
             
             let plaidObj = [ "access_token" : token ]

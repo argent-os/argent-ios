@@ -201,16 +201,16 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         let height = screen.size.height
         
         let img: UIImage = UIImage(named: "Proton")!
-        let protonImageView: UIImageView = UIImageView(frame: CGRectMake(20, 31, 40, 40))
-        protonImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-        protonImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
-        protonImageView.layer.cornerRadius = protonImageView.frame.size.height/2
-        protonImageView.layer.masksToBounds = true
-        protonImageView.clipsToBounds = true
-        protonImageView.image = img
-        protonImageView.layer.borderWidth = 2
-        protonImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
-        self.view.addSubview(protonImageView)
+        let logoImageView: UIImageView = UIImageView(frame: CGRectMake(20, 31, 40, 40))
+        logoImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
+        logoImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+        logoImageView.layer.cornerRadius = logoImageView.frame.size.height/2
+        logoImageView.layer.masksToBounds = true
+        logoImageView.clipsToBounds = true
+        logoImageView.image = img
+        logoImageView.layer.borderWidth = 2
+        logoImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
+        self.view.addSubview(logoImageView)
         
         // Blurview
         let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
