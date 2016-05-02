@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:protonpay-ios.xcodeproj">
+      location = "group:/Users/sulkuatam/src/protonpay-ios/argent-ios.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

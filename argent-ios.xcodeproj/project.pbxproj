@@ -362,8 +362,8 @@
 		30EB3C6D1CCCFAD80010F130 /* RAMTabBarExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RAMTabBarExtension.swift; path = "app-ios/RAMTabBarExtension.swift"; sourceTree = SOURCE_ROOT; };
 		30F480D51CCAE5FF00DD1E60 /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentViewController.swift; path = "app-ios/PaymentViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30FB540A1C6A58B40004A538 /* Argent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Argent.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		30FB541E1C6A58B40004A538 /* protonpay-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "protonpay-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		30FB54291C6A58B40004A538 /* protonpay-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "protonpay-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		30FB541E1C6A58B40004A538 /* argent-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "argent-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		30FB54291C6A58B40004A538 /* argent-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "argent-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB54411C6ABF6A0004A538 /* ObjC-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjC-Bridging-Header.h"; sourceTree = "<group>"; };
 		50E88D0ADD61BCA3EBD43D33 /* Pods_protonpay_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_protonpay_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5278C9B083E72E91DE8D539E /* Pods-app-watchos Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-watchos Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-app-watchos Extension/Pods-app-watchos Extension.release.xcconfig"; sourceTree = "<group>"; };
@@ -869,8 +869,8 @@
 			isa = PBXGroup;
 			children = (
 				30FB540A1C6A58B40004A538 /* Argent.app */,
-				30FB541E1C6A58B40004A538 /* protonpay-iosTests.xctest */,
-				30FB54291C6A58B40004A538 /* protonpay-iosTests.xctest */,
+				30FB541E1C6A58B40004A538 /* argent-iosTests.xctest */,
+				30FB54291C6A58B40004A538 /* argent-iosTests.xctest */,
 				30DB595A1CA46CB0007FEE1E /* app-watchos.app */,
 				30DB59661CA46CB0007FEE1E /* app-watchos Extension.appex */,
 				302010CF1CB016ED007D5E7E /* Proton Payments.appex */,
@@ -1007,9 +1007,9 @@
 			productReference = 30DB59661CA46CB0007FEE1E /* app-watchos Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
-		30FB54091C6A58B40004A538 /* protonpay-ios */ = {
+		30FB54091C6A58B40004A538 /* argent-ios */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 30FB54321C6A58B50004A538 /* Build configuration list for PBXNativeTarget "protonpay-ios" */;
+			buildConfigurationList = 30FB54321C6A58B50004A538 /* Build configuration list for PBXNativeTarget "argent-ios" */;
 			buildPhases = (
 				12CCEAF27A81A4F36AB2087C /* Check Pods Manifest.lock */,
 				30FB54061C6A58B40004A538 /* Sources */,
@@ -1026,14 +1026,14 @@
 				30DB597B1CA46CB0007FEE1E /* PBXTargetDependency */,
 				302010DA1CB016ED007D5E7E /* PBXTargetDependency */,
 			);
-			name = "protonpay-ios";
+			name = "argent-ios";
 			productName = "timekloud-ios";
 			productReference = 30FB540A1C6A58B40004A538 /* Argent.app */;
 			productType = "com.apple.product-type.application";
 		};
-		30FB541D1C6A58B40004A538 /* protonpay-iosTests */ = {
+		30FB541D1C6A58B40004A538 /* argent-iosTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 30FB54351C6A58B50004A538 /* Build configuration list for PBXNativeTarget "protonpay-iosTests" */;
+			buildConfigurationList = 30FB54351C6A58B50004A538 /* Build configuration list for PBXNativeTarget "argent-iosTests" */;
 			buildPhases = (
 				30FB541A1C6A58B40004A538 /* Sources */,
 				30FB541B1C6A58B40004A538 /* Frameworks */,
@@ -1044,14 +1044,14 @@
 			dependencies = (
 				30FB54201C6A58B40004A538 /* PBXTargetDependency */,
 			);
-			name = "protonpay-iosTests";
+			name = "argent-iosTests";
 			productName = "timekloud-iosTests";
-			productReference = 30FB541E1C6A58B40004A538 /* protonpay-iosTests.xctest */;
+			productReference = 30FB541E1C6A58B40004A538 /* argent-iosTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		30FB54281C6A58B40004A538 /* protonpay-iosUITests */ = {
+		30FB54281C6A58B40004A538 /* argent-iosUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 30FB54381C6A58B50004A538 /* Build configuration list for PBXNativeTarget "protonpay-iosUITests" */;
+			buildConfigurationList = 30FB54381C6A58B50004A538 /* Build configuration list for PBXNativeTarget "argent-iosUITests" */;
 			buildPhases = (
 				30FB54251C6A58B40004A538 /* Sources */,
 				30FB54261C6A58B40004A538 /* Frameworks */,
@@ -1062,9 +1062,9 @@
 			dependencies = (
 				30FB542B1C6A58B40004A538 /* PBXTargetDependency */,
 			);
-			name = "protonpay-iosUITests";
+			name = "argent-iosUITests";
 			productName = "timekloud-iosUITests";
-			productReference = 30FB54291C6A58B40004A538 /* protonpay-iosTests.xctest */;
+			productReference = 30FB54291C6A58B40004A538 /* argent-iosTests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -1141,7 +1141,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 30FB54051C6A58B40004A538 /* Build configuration list for PBXProject "protonpay-ios" */;
+			buildConfigurationList = 30FB54051C6A58B40004A538 /* Build configuration list for PBXProject "argent-ios" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1154,9 +1154,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				30FB54091C6A58B40004A538 /* protonpay-ios */,
-				30FB541D1C6A58B40004A538 /* protonpay-iosTests */,
-				30FB54281C6A58B40004A538 /* protonpay-iosUITests */,
+				30FB54091C6A58B40004A538 /* argent-ios */,
+				30FB541D1C6A58B40004A538 /* argent-iosTests */,
+				30FB54281C6A58B40004A538 /* argent-iosUITests */,
 				30DB59591CA46CB0007FEE1E /* app-watchos */,
 				30DB59651CA46CB0007FEE1E /* app-watchos Extension */,
 				302010CE1CB016ED007D5E7E /* Proton Payments */,
@@ -1483,12 +1483,12 @@
 		};
 		30FB54201C6A58B40004A538 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 30FB54091C6A58B40004A538 /* protonpay-ios */;
+			target = 30FB54091C6A58B40004A538 /* argent-ios */;
 			targetProxy = 30FB541F1C6A58B40004A538 /* PBXContainerItemProxy */;
 		};
 		30FB542B1C6A58B40004A538 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 30FB54091C6A58B40004A538 /* protonpay-ios */;
+			target = 30FB54091C6A58B40004A538 /* argent-ios */;
 			targetProxy = 30FB542A1C6A58B40004A538 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1676,7 +1676,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = PayKloud;
+				PRODUCT_NAME = Argent;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "ObjC-Bridging-Header-WatchOS.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1716,7 +1716,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = PayKloud;
+				PRODUCT_NAME = Argent;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "ObjC-Bridging-Header-WatchOS.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1767,7 +1767,7 @@
 				INFOPLIST_FILE = "paykloud-iosTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.paykloud.paykloud-iosTests";
-				PRODUCT_NAME = "protonpay-iosTests";
+				PRODUCT_NAME = "argent-iosTests";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -1779,7 +1779,7 @@
 				INFOPLIST_FILE = "paykloud-iosTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.paykloud.paykloud-iosTests";
-				PRODUCT_NAME = "protonpay-iosTests";
+				PRODUCT_NAME = "argent-iosTests";
 			};
 			name = Release;
 		};
@@ -1790,7 +1790,7 @@
 				INFOPLIST_FILE = "paykloud-iosUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.paykloud.paykloud-iosUITests";
-				PRODUCT_NAME = "protonpay-iosTests";
+				PRODUCT_NAME = "argent-iosTests";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_TARGET_NAME = "paykloud-ios";
 				USES_XCTRUNNER = YES;
@@ -1804,7 +1804,7 @@
 				INFOPLIST_FILE = "paykloud-iosUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.paykloud.paykloud-iosUITests";
-				PRODUCT_NAME = "protonpay-iosTests";
+				PRODUCT_NAME = "argent-iosTests";
 				TEST_TARGET_NAME = "paykloud-ios";
 				USES_XCTRUNNER = YES;
 			};
@@ -1840,7 +1840,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		30FB54051C6A58B40004A538 /* Build configuration list for PBXProject "protonpay-ios" */ = {
+		30FB54051C6A58B40004A538 /* Build configuration list for PBXProject "argent-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				30FB54301C6A58B50004A538 /* Debug */,
@@ -1849,7 +1849,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		30FB54321C6A58B50004A538 /* Build configuration list for PBXNativeTarget "protonpay-ios" */ = {
+		30FB54321C6A58B50004A538 /* Build configuration list for PBXNativeTarget "argent-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				30FB54331C6A58B50004A538 /* Debug */,
@@ -1858,7 +1858,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		30FB54351C6A58B50004A538 /* Build configuration list for PBXNativeTarget "protonpay-iosTests" */ = {
+		30FB54351C6A58B50004A538 /* Build configuration list for PBXNativeTarget "argent-iosTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				30FB54361C6A58B50004A538 /* Debug */,
@@ -1867,7 +1867,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		30FB54381C6A58B50004A538 /* Build configuration list for PBXNativeTarget "protonpay-iosUITests" */ = {
+		30FB54381C6A58B50004A538 /* Build configuration list for PBXNativeTarget "argent-iosUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				30FB54391C6A58B50004A538 /* Debug */,
