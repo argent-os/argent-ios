@@ -12,7 +12,7 @@ import PasscodeLock
 import SwiftyJSON
 import KeychainSwift
 
-let merchantID = "merchant.com.protonpayments.app"
+let merchantID = "merchant.com.argentapp.pay"
 var userData:JSON? // init user data, declare globally, needs SwiftyJSON
 
 // Get Local IP address by looking by using ifconfig command at terminal and looking below the 'inet' value
