@@ -113,33 +113,134 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NHd-Qp-YrX">
-                                <rect key="frame" x="180" y="28" width="240" height="128"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="63f-CU-YIb">
+                                <rect key="frame" x="20" y="28" width="560" height="140"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Herro wercoma tutoriar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18P-5H-ze8">
-                                        <rect key="frame" x="31" y="53" width="178" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View account balance history over time" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dU-4Y-PMz">
+                                        <rect key="frame" x="8" y="8" width="544" height="124"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="18P-5H-ze8" firstAttribute="centerX" secondItem="NHd-Qp-YrX" secondAttribute="centerX" id="Ptx-KS-Iyh"/>
-                                    <constraint firstItem="18P-5H-ze8" firstAttribute="centerY" secondItem="NHd-Qp-YrX" secondAttribute="centerY" id="Yvi-pg-Tff"/>
-                                    <constraint firstItem="18P-5H-ze8" firstAttribute="leading" secondItem="NHd-Qp-YrX" secondAttribute="leading" constant="31" id="dT0-lB-kOT"/>
+                                    <constraint firstItem="6dU-4Y-PMz" firstAttribute="trailing" secondItem="63f-CU-YIb" secondAttribute="trailingMargin" id="MpX-bM-NTi"/>
+                                    <constraint firstItem="6dU-4Y-PMz" firstAttribute="top" secondItem="63f-CU-YIb" secondAttribute="topMargin" id="sgQ-KR-dsF"/>
+                                    <constraint firstItem="6dU-4Y-PMz" firstAttribute="leading" secondItem="63f-CU-YIb" secondAttribute="leadingMargin" id="skn-RC-85l"/>
+                                    <constraint firstItem="6dU-4Y-PMz" firstAttribute="bottom" secondItem="63f-CU-YIb" secondAttribute="bottomMargin" id="uda-2G-V3s"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MEK-yp-6E9">
+                                <rect key="frame" x="20" y="28" width="560" height="140"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Touch and drag horizontally on graph to view detailed numbers" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jpG-lk-3ZE">
+                                        <rect key="frame" x="8" y="8" width="544" height="124"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="jpG-lk-3ZE" firstAttribute="leading" secondItem="MEK-yp-6E9" secondAttribute="leadingMargin" id="h2f-fq-BVg"/>
+                                    <constraint firstItem="jpG-lk-3ZE" firstAttribute="top" secondItem="MEK-yp-6E9" secondAttribute="topMargin" id="hqM-PI-VR5"/>
+                                    <constraint firstItem="jpG-lk-3ZE" firstAttribute="bottom" secondItem="MEK-yp-6E9" secondAttribute="bottomMargin" id="pqr-hZ-Mln"/>
+                                    <constraint firstItem="jpG-lk-3ZE" firstAttribute="trailing" secondItem="MEK-yp-6E9" secondAttribute="trailingMargin" id="rM5-bs-JAD"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NHd-Qp-YrX">
+                                <rect key="frame" x="20" y="28" width="560" height="140"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View available and pending balances" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18P-5H-ze8">
+                                        <rect key="frame" x="8" y="8" width="544" height="124"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="18P-5H-ze8" firstAttribute="top" secondItem="NHd-Qp-YrX" secondAttribute="topMargin" id="EaK-kp-tjH"/>
+                                    <constraint firstItem="18P-5H-ze8" firstAttribute="trailing" secondItem="NHd-Qp-YrX" secondAttribute="trailingMargin" id="RJu-se-EGt"/>
+                                    <constraint firstItem="18P-5H-ze8" firstAttribute="leading" secondItem="NHd-Qp-YrX" secondAttribute="leadingMargin" id="uDN-se-jts"/>
+                                    <constraint firstItem="18P-5H-ze8" firstAttribute="bottom" secondItem="NHd-Qp-YrX" secondAttribute="bottomMargin" id="w8N-Li-2Ef"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0n0-gr-Wgw">
+                                <rect key="frame" x="20" y="28" width="560" height="140"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pull to refresh account activity" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Nt-on-lkj">
+                                        <rect key="frame" x="8" y="8" width="544" height="124"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="6Nt-on-lkj" firstAttribute="top" secondItem="0n0-gr-Wgw" secondAttribute="topMargin" id="IF6-RQ-9En"/>
+                                    <constraint firstItem="6Nt-on-lkj" firstAttribute="leading" secondItem="0n0-gr-Wgw" secondAttribute="leadingMargin" id="RbH-tl-Eu4"/>
+                                    <constraint firstItem="6Nt-on-lkj" firstAttribute="trailing" secondItem="0n0-gr-Wgw" secondAttribute="trailingMargin" id="Utj-UU-iIX"/>
+                                    <constraint firstItem="6Nt-on-lkj" firstAttribute="bottom" secondItem="0n0-gr-Wgw" secondAttribute="bottomMargin" id="Wff-0M-bhb"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="On7-KL-1LA">
+                                <rect key="frame" x="20" y="28" width="560" height="140"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe to reveal quick action side menu" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcE-hp-AAB">
+                                        <rect key="frame" x="8" y="8" width="544" height="124"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="fcE-hp-AAB" firstAttribute="leading" secondItem="On7-KL-1LA" secondAttribute="leadingMargin" id="NPH-el-3Rg"/>
+                                    <constraint firstItem="fcE-hp-AAB" firstAttribute="bottom" secondItem="On7-KL-1LA" secondAttribute="bottomMargin" id="T6v-7L-Lkp"/>
+                                    <constraint firstItem="fcE-hp-AAB" firstAttribute="trailing" secondItem="On7-KL-1LA" secondAttribute="trailingMargin" id="WfS-pQ-gra"/>
+                                    <constraint firstItem="fcE-hp-AAB" firstAttribute="top" secondItem="On7-KL-1LA" secondAttribute="topMargin" id="bhR-V3-KJB"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="94Z-00-19D" firstAttribute="top" secondItem="NHd-Qp-YrX" secondAttribute="bottom" constant="444" id="FLk-q9-eAY"/>
-                            <constraint firstItem="NHd-Qp-YrX" firstAttribute="top" secondItem="PV5-J6-Xck" secondAttribute="bottom" constant="8" symbolic="YES" id="YD9-cR-Dpz"/>
-                            <constraint firstItem="NHd-Qp-YrX" firstAttribute="centerX" secondItem="N7y-EK-lOm" secondAttribute="centerX" id="lmh-w0-yyK"/>
+                            <constraint firstItem="NHd-Qp-YrX" firstAttribute="bottom" secondItem="0n0-gr-Wgw" secondAttribute="bottom" id="0RB-yN-ctx"/>
+                            <constraint firstItem="On7-KL-1LA" firstAttribute="bottom" secondItem="NHd-Qp-YrX" secondAttribute="bottom" id="1X9-oM-dhQ"/>
+                            <constraint firstItem="On7-KL-1LA" firstAttribute="top" secondItem="PV5-J6-Xck" secondAttribute="bottom" constant="8" symbolic="YES" id="DyR-5x-vTp"/>
+                            <constraint firstItem="MEK-yp-6E9" firstAttribute="trailing" secondItem="0n0-gr-Wgw" secondAttribute="trailing" id="JPv-Tz-ORT"/>
+                            <constraint firstItem="0n0-gr-Wgw" firstAttribute="trailing" secondItem="63f-CU-YIb" secondAttribute="trailing" id="LIV-a6-HV4"/>
+                            <constraint firstItem="NHd-Qp-YrX" firstAttribute="leading" secondItem="63f-CU-YIb" secondAttribute="leading" id="OgP-hq-qEo"/>
+                            <constraint firstItem="NHd-Qp-YrX" firstAttribute="trailing" secondItem="63f-CU-YIb" secondAttribute="trailing" id="POx-4F-ShH"/>
+                            <constraint firstItem="63f-CU-YIb" firstAttribute="top" secondItem="NHd-Qp-YrX" secondAttribute="top" id="Qm2-qK-g8A"/>
+                            <constraint firstItem="63f-CU-YIb" firstAttribute="top" secondItem="MEK-yp-6E9" secondAttribute="top" id="afE-Ec-Hnp"/>
+                            <constraint firstItem="On7-KL-1LA" firstAttribute="leading" secondItem="N7y-EK-lOm" secondAttribute="leadingMargin" id="dDk-MN-2Lt"/>
+                            <constraint firstItem="On7-KL-1LA" firstAttribute="top" secondItem="0n0-gr-Wgw" secondAttribute="top" id="ekP-14-rQd"/>
+                            <constraint firstItem="63f-CU-YIb" firstAttribute="leading" secondItem="0n0-gr-Wgw" secondAttribute="leading" id="gQd-el-YMO"/>
+                            <constraint firstItem="0n0-gr-Wgw" firstAttribute="bottom" secondItem="63f-CU-YIb" secondAttribute="bottom" id="jM7-Wg-C3P"/>
+                            <constraint firstItem="On7-KL-1LA" firstAttribute="leading" secondItem="0n0-gr-Wgw" secondAttribute="leading" id="jvD-0k-Aao"/>
+                            <constraint firstItem="94Z-00-19D" firstAttribute="top" secondItem="On7-KL-1LA" secondAttribute="bottom" constant="432" id="oHJ-BJ-8ik"/>
+                            <constraint firstItem="63f-CU-YIb" firstAttribute="top" secondItem="0n0-gr-Wgw" secondAttribute="top" id="rDr-X4-pOm"/>
+                            <constraint firstItem="MEK-yp-6E9" firstAttribute="leading" secondItem="On7-KL-1LA" secondAttribute="leading" id="ueq-ir-JO8"/>
+                            <constraint firstItem="NHd-Qp-YrX" firstAttribute="trailing" secondItem="On7-KL-1LA" secondAttribute="trailing" id="uhl-Ub-NXB"/>
+                            <constraint firstItem="NHd-Qp-YrX" firstAttribute="bottom" secondItem="MEK-yp-6E9" secondAttribute="bottom" id="xdb-W2-nA9"/>
+                            <constraint firstItem="MEK-yp-6E9" firstAttribute="trailing" secondItem="N7y-EK-lOm" secondAttribute="trailingMargin" id="zrW-Rp-dhU"/>
                         </constraints>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="600"/>
                     <connections>
                         <outletCollection property="annotationViews" destination="NHd-Qp-YrX" collectionClass="NSMutableArray" id="XjH-ne-pcK"/>
+                        <outletCollection property="annotationViews" destination="MEK-yp-6E9" collectionClass="NSMutableArray" id="QIS-ej-oWk"/>
+                        <outletCollection property="annotationViews" destination="63f-CU-YIb" collectionClass="NSMutableArray" id="CAX-Jg-fMD"/>
+                        <outletCollection property="annotationViews" destination="0n0-gr-Wgw" collectionClass="NSMutableArray" id="Y0L-XD-4Od"/>
+                        <outletCollection property="annotationViews" destination="On7-KL-1LA" collectionClass="NSMutableArray" id="uOj-3X-iS7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j5G-vv-vM2" userLabel="First Responder" sceneMemberID="firstResponder"/>

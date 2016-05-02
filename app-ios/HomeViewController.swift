@@ -200,14 +200,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         let width = screen.size.width
         let height = screen.size.height
         
-        let tutorialButton:UIButton = UIButton()
-        tutorialButton.frame = CGRect(x: 0, y: 50, width: 200, height: 50)
-        tutorialButton.setTitle("Tutorial", forState: .Normal)
-        tutorialButton.setTitleColor(UIColor.redColor(), forState: .Normal)
-        tutorialButton.addTarget(self, action: #selector(HomeViewController.presentTutorial(_:)), forControlEvents: .TouchUpInside)
-//        self.view.addSubview(tutorialButton)
-//        self.view.bringSubviewToFront(tutorialButton)
-        
         let img: UIImage = UIImage(named: "Proton")!
         let protonImageView: UIImageView = UIImageView(frame: CGRectMake(20, 31, 40, 40))
         protonImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
@@ -293,12 +285,21 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         headerView.backgroundColor = UIColor.clearColor()
 
         let headerViewTitle: UILabel = UILabel()
-        headerViewTitle.frame = CGRect(x: 0, y: 19, width: screenWidth, height: 40)
+        headerViewTitle.frame = CGRect(x: 0, y: 15, width: screenWidth, height: 40)
         headerViewTitle.text = "Account Activity"
         headerViewTitle.font = UIFont(name: "Avenir-Book", size: 16)
         headerViewTitle.textAlignment = .Center
         headerViewTitle.textColor = UIColor.darkGrayColor()
         headerView.addSubview(headerViewTitle)
+        
+        let tutorialButton:UIButton = UIButton()
+        tutorialButton.frame = CGRect(x: width-40, y: 24, width: 20, height: 20)
+        tutorialButton.setImage(UIImage(named: "ic_question"), forState: .Normal)
+        tutorialButton.setTitle("Tuts", forState: .Normal)
+        tutorialButton.setTitleColor(UIColor.redColor(), forState: .Normal)
+        tutorialButton.addTarget(self, action: #selector(HomeViewController.presentTutorial(_:)), forControlEvents: .TouchUpInside)
+        headerView.addSubview(tutorialButton)
+        headerView.bringSubviewToFront(tutorialButton)
         
         tableView.frame = CGRect(x: 0, y: 270, width: width, height: height-315)
         tableView.tableHeaderView = headerView

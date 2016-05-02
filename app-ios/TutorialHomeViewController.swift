@@ -27,14 +27,16 @@ class TutorialHomeViewController: SpotlightViewController {
         let screenSize = UIScreen.mainScreen().bounds.size
         switch stepIndex {
         case 0:
-            spotlightView.appear(Spotlight.Oval(center: CGPointMake(screenSize.width - 26, 42), diameter: 50))
+            spotlightView.appear(Spotlight.Oval(center: CGPointMake(screenSize.width - 40, 50), diameter: 50))
         case 1:
-            spotlightView.move(Spotlight.Oval(center: CGPointMake(screenSize.width - 75, 42), diameter: 50))
+            spotlightView.move(Spotlight.Oval(center: CGPointMake(screenSize.width/2, 200), diameter: 50))
         case 2:
-            spotlightView.move(Spotlight.RoundedRect(center: CGPointMake(screenSize.width / 2, 42), size: CGSizeMake(120, 40), cornerRadius: 6), moveType: .Disappear)
+            spotlightView.move(Spotlight.RoundedRect(center: CGPointMake(screenSize.width / 2, 243), size: CGSizeMake(screenSize.width-30, 40), cornerRadius: 6), moveType: .Disappear)
         case 3:
-            spotlightView.move(Spotlight.Oval(center: CGPointMake(screenSize.width / 2, 200), diameter: 220), moveType: .Disappear)
+            spotlightView.move(Spotlight.RoundedRect(center: CGPointMake(screenSize.width / 2, 305), size: CGSizeMake(screenSize.width-100, 40), cornerRadius: 6), moveType: .Disappear)
         case 4:
+            spotlightView.move(Spotlight.Oval(center: CGPointMake(20, screenSize.height/2-20), diameter: 50))
+        case 5:
             dismissViewControllerAnimated(true, completion: nil)
         default:
             break
