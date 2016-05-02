@@ -1,6 +1,6 @@
 //
 //  InitializeAuth.swift
-//  protonpay-ios
+//  argent-ios
 //
 //  Created by Sinan Ulkuatam on 2/9/16.
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
@@ -21,8 +21,6 @@ class AuthViewController: UIViewController  {
         view.layer.cornerRadius = 0
         view.layer.masksToBounds = true
         
-        showSpotlight()
-
         // Set background image
         let backgroundView: UIImageView = UIImageView(image: UIImage(named: "BackgroundGradientInverse"))
         backgroundView.contentMode = UIViewContentMode.ScaleAspectFill
@@ -34,10 +32,9 @@ class AuthViewController: UIViewController  {
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-        let storyboard = UIStoryboard(name: "Auth", bundle: nil)
-        let vc = storyboard.instantiateViewControllerWithIdentifier("authViewController")
-        self.navigationController?.pushViewController(vc, animated: true)
-        
+//        let storyboard = UIStoryboard(name: "Auth", bundle: nil)
+//        let vc = storyboard.instantiateViewControllerWithIdentifier("authViewController")
+//        self.navigationController?.pushViewController(vc, animated: true)
         
         // UI
         let loginButton = UIButton(frame: CGRect(x: 10, y: screenHeight-60-10, width: screenWidth/2-20, height: 60.0))
@@ -65,7 +62,7 @@ class AuthViewController: UIViewController  {
         signupButton.addTarget(self, action: #selector(AuthViewController.signup(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(signupButton)
         
-        let imageName = "IconProtonWhite"
+        let imageName = "IconLogoWhite"
         let image = UIImage(named: imageName)
         let imageView = UIImageView(image: image!)
         imageView.tag = 7577
@@ -74,7 +71,7 @@ class AuthViewController: UIViewController  {
         imageView.frame.origin.x = (self.view.bounds.size.width - imageView.frame.size.width) / 2.0 // centered left to right.
         view.addSubview(imageView)
         
-        let attributedString = NSMutableAttributedString(string: "Welcome to Proton Payments")
+        let attributedString = NSMutableAttributedString(string: "Welcome to Argent")
         // Set range of string length to exactly 8, the number of characters
         attributedString.addAttribute(NSFontAttributeName, value: "Avenir-Bold", range: NSRange(location: 0, length: 15)
         )
@@ -125,12 +122,6 @@ class AuthViewController: UIViewController  {
         let viewController:LoginViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
         
         self.presentViewController(viewController, animated: true, completion: nil)
-    }
-
-    func showSpotlight() {
-        let spotlightViewController = SpotlightViewController()
-        presentViewController(spotlightViewController, animated: true, completion: nil)
-        spotlightViewController.spotlightView.appear(Spotlight.Oval(center: CGPointMake(100, 100), diameter: 100))
     }
     
     override func didReceiveMemoryWarning() {

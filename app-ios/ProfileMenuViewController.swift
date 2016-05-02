@@ -1,6 +1,6 @@
 //
 //  ProfileMenuViewController.swift
-//  protonpay-ios
+//  argent-ios
 //
 //  Created by Sinan Ulkuatam on 3/19/16.
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
@@ -75,7 +75,7 @@ class ProfileMenuViewController: UITableViewController {
         
         if(tableView.cellForRowAtIndexPath(indexPath)!.tag == 865) {
             let activityViewController  = UIActivityViewController(
-                activityItems: ["Check out this app!  http://www.protonpayments.com/home" as NSString],
+                activityItems: ["Check out this app!  http://www.argentapp.com/home" as NSString],
                 applicationActivities: nil)
         activityViewController.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList]
             presentViewController(activityViewController, animated: true, completion: nil)
@@ -106,33 +106,7 @@ class ProfileMenuViewController: UITableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
-//            if identifier == "termsView" {
-//                if #available(iOS 9.0, *) {
-//                    let svc = SFSafariViewController(URL: NSURL(string: "http://www.protonpayments.com/home")!, entersReaderIfAvailable: true)
-//                    self.presentViewController(svc, animated: true, completion: nil)
-//                } else {
-//                    UIApplication.sharedApplication().openURL(NSURL(string: "http://www.protonpayments.com/home")!)
-//                    self.dismissViewControllerAnimated(true, completion: nil)
-//                }
-//            }
-//            if identifier == "privacyView" {
-//                if #available(iOS 9.0, *) {
-//                    let svc = SFSafariViewController(URL: NSURL(string: "http://www.protonpayments.com/home")!, entersReaderIfAvailable: true)
-//                    self.presentViewController(svc, animated: true, completion: nil)
-//                } else {
-//                    UIApplication.sharedApplication().openURL(NSURL(string: "http://www.protonpayments.com/home")!)
-//                    self.dismissViewControllerAnimated(true, completion: nil)
-//                }
-//            }
-//            if identifier == "supportView" {
-//                if #available(iOS 9.0, *) {
-//                    let svc = SFSafariViewController(URL: NSURL(string: "http://www.protonpayments.com/home")!, entersReaderIfAvailable: true)
-//                    self.presentViewController(svc, animated: true, completion: nil)
-//                } else {
-//                    UIApplication.sharedApplication().openURL(NSURL(string: "http://www.protonpayments.com/home")!)
-//                    self.dismissViewControllerAnimated(true, completion: nil)
-//                }
-//            }
+
         }
     }
     

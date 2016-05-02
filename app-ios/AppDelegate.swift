@@ -1,6 +1,6 @@
 
 //  AppDelegate.swift
-//  protonpay-ios
+//  argent-ios
 //
 //  Created by Sinan Ulkuatam on 2/9/16.
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
@@ -27,7 +27,7 @@ var userData:JSON? // init user data, declare globally, needs SwiftyJSON
 // let apiUrl = "http://192.168.1.232:5001"
  let apiUrl = "http://proton-api-dev.us-east-1.elasticbeanstalk.com"
 // PROD
-//let apiUrl = "http://api.protonpayments.com"
+//let apiUrl = "http://api.argentapp.com"
 
 // Global Stripe base API url
 let stripeApiUrl = "https://api.stripe.com"
@@ -42,7 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var viewController = AuthViewController()
     
     lazy var passcodeLockPresenter: PasscodeLockPresenter = {
-        
         let configuration = PasscodeLockConfiguration()
         let presenter = PasscodeLockPresenter(mainWindow: self.window, configuration: configuration)
         return presenter
@@ -50,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // 3D Touch
     func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: Bool -> Void) {
-        if shortcutItem.type == "com.protonpayments.app.add-customer" {
+        if shortcutItem.type == "com.argentapp.ios.add-customer" {
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let addCustomerVC = sb.instantiateViewControllerWithIdentifier("AddCustomerViewController")
             let root = UIApplication.sharedApplication().keyWindow?.rootViewController
@@ -58,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 completionHandler(true)
             })
         }
-        if shortcutItem.type == "com.protonpayments.app.add-plan" {
+        if shortcutItem.type == "com.argentapp.ios.add-plan" {
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let recurringBillingVC = sb.instantiateViewControllerWithIdentifier("RecurringBillingViewController")
             let root = UIApplication.sharedApplication().keyWindow?.rootViewController
@@ -66,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 completionHandler(true)
             })
         }
-        if shortcutItem.type == "com.protonpayments.app.make-payment" {
+        if shortcutItem.type == "com.argentapp.ios.make-payment" {
             print("sending to add customer view controller")
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let chargeVC = sb.instantiateViewControllerWithIdentifier("ChargeViewController")
@@ -75,7 +74,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 completionHandler(true)
             })
         }
-
     }
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -135,6 +133,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window!.rootViewController = viewController
+        
         // Global background color
         self.window!.backgroundColor = UIColor.whiteColor()
         self.window!.makeKeyAndVisible()
@@ -159,25 +158,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-        // Display PasscodeLock
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        //viewController.pauseVideo()
-        // Display PasscodeLock
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-        //viewController.playVideo()
-        // Display PasscodeLock on enter
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        // Display PasscodeLock on restart
     }
 
     func applicationWillTerminate(application: UIApplication) {

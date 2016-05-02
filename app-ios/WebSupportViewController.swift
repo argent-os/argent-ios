@@ -1,6 +1,6 @@
 //
 //  WebSupportViewController.swift
-//  protonpay-ios
+//  argent-ios
 //
 //  Created by Sinan Ulkuatam on 3/27/16.
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
@@ -26,7 +26,7 @@ class WebSupportViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url = NSURL(string:"http://www.protonpayments.com/login")
+        let url = NSURL(string:"http://www.argentapp.com/home")
         let req = NSURLRequest(URL:url!)
         self.webView!.loadRequest(req)
     }

@@ -9,9 +9,7 @@
 import UIKit
 
 class RootViewController: RESideMenu, RESideMenuDelegate {
-    
-    var window: UIWindow?
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -1,6 +1,6 @@
 //
 //  SearchDetailViewController.swift
-//  protonpay-ios
+//  argent-ios
 //
 //  Created by Sinan Ulkuatam on 4/20/16.
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
@@ -89,7 +89,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
                 blurImageView.addSubview(visualEffectView)
                 self.view.sendSubviewToBack(blurImageView)
             } else {
-                let img: UIImage = UIImage(named: "Proton")!
+                let img: UIImage = UIImage(named: "BackgroundMountain2")!
                 let userImageView: UIImageView = UIImageView(frame: CGRectMake(width / 2, 0, 90, 90))
                 userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
                 userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 135)
@@ -110,7 +110,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
                 blurImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
                 blurImageView.layer.masksToBounds = true
                 blurImageView.clipsToBounds = true
-                blurImageView.image = UIImage(named: "BackgroundGradientNature")
+                blurImageView.image = UIImage(named: "BackgroundGradientInverse")
                 self.view.addSubview(blurImageView)
                 blurImageView.addSubview(visualEffectView)
                 self.view.sendSubviewToBack(blurImageView)
@@ -206,7 +206,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
         mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
         
         mailComposerVC.setToRecipients([(detailUser?.email)!])
-        mailComposerVC.setSubject("Message from Proton Payments User")
+        mailComposerVC.setSubject("Message from Argent User")
         mailComposerVC.setMessageBody("Hello!", isHTML: false)
         
         return mailComposerVC
@@ -303,7 +303,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
     }
     
     func createBackendChargeWithToken(token: STPToken!, completion: PKPaymentAuthorizationStatus -> ()) {
-        // SEND REQUEST TO PROTON PAYMENTS API ENDPOINT TO EXCHANGE STRIPE TOKEN
+        // SEND REQUEST TO Argent API ENDPOINT TO EXCHANGE STRIPE TOKEN
         
         let url = apiUrl + "/v1/stripe/charge/create"
         

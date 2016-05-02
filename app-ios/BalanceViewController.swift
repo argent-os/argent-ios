@@ -1,6 +1,6 @@
 //
 //  BalanceViewController.swift
-//  protonpay-ios
+//  argent-ios
 //
 //  Created by Sinan Ulkuatam on 4/1/16.
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  WebPrivacyViewController.swift
-//  protonpay-ios
+//  argent-ios
 //
 //  Created by Sinan Ulkuatam on 3/27/16.
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
@@ -30,7 +30,7 @@ class WebPrivacyViewController: UIViewController, WKNavigationDelegate, WKUIDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url = NSURL(string:"http://www.protonpayments.com/privacy")
+        let url = NSURL(string:"http://www.argentapp.com/privacy")
         let req = NSURLRequest(URL:url!)
         self.webView!.loadRequest(req)
     }
@@ -52,12 +52,12 @@ class WebPrivacyViewController: UIViewController, WKNavigationDelegate, WKUIDele
                     HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
                     HUD.textLabel.text = "Link Copied!"
                     HUD.dismissAfterDelay(0.5)
-                    UIPasteboard.generalPasteboard().string = "http://www.protonpayments.com/privacy"
+                    UIPasteboard.generalPasteboard().string = "http://www.argentapp.com/privacy"
 
                 }
                 if title == "Share" {
                     let activityViewController  = UIActivityViewController(
-                        activityItems: ["Proton Payments Privacy Policy  http://www.protonpayments.com/privacy" as NSString],
+                        activityItems: ["Argent Privacy Policy  http://www.argentapp.com/privacy" as NSString],
                         applicationActivities: nil)
                     activityViewController.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList]
                     self.presentViewController(activityViewController, animated: true, completion: nil)

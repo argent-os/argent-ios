@@ -361,7 +361,7 @@
 		30DB59851CA472D0007FEE1E /* app-watchos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "app-watchos.entitlements"; sourceTree = "<group>"; };
 		30EB3C6D1CCCFAD80010F130 /* RAMTabBarExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RAMTabBarExtension.swift; path = "app-ios/RAMTabBarExtension.swift"; sourceTree = SOURCE_ROOT; };
 		30F480D51CCAE5FF00DD1E60 /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentViewController.swift; path = "app-ios/PaymentViewController.swift"; sourceTree = SOURCE_ROOT; };
-		30FB540A1C6A58B40004A538 /* ProtonPay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProtonPay.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		30FB540A1C6A58B40004A538 /* Argent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Argent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB541E1C6A58B40004A538 /* protonpay-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "protonpay-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB54291C6A58B40004A538 /* protonpay-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "protonpay-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB54411C6ABF6A0004A538 /* ObjC-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjC-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -868,7 +868,7 @@
 		30FB540B1C6A58B40004A538 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				30FB540A1C6A58B40004A538 /* ProtonPay.app */,
+				30FB540A1C6A58B40004A538 /* Argent.app */,
 				30FB541E1C6A58B40004A538 /* protonpay-iosTests.xctest */,
 				30FB54291C6A58B40004A538 /* protonpay-iosTests.xctest */,
 				30DB595A1CA46CB0007FEE1E /* app-watchos.app */,
@@ -1028,7 +1028,7 @@
 			);
 			name = "protonpay-ios";
 			productName = "timekloud-ios";
-			productReference = 30FB540A1C6A58B40004A538 /* ProtonPay.app */;
+			productReference = 30FB540A1C6A58B40004A538 /* Argent.app */;
 			productType = "com.apple.product-type.application";
 		};
 		30FB541D1C6A58B40004A538 /* protonpay-iosTests */ = {
@@ -1736,7 +1736,7 @@
 				INFOPLIST_FILE = "app-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.protonpayments.app;
-				PRODUCT_NAME = ProtonPay;
+				PRODUCT_NAME = Argent;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ObjC-Bridging-Header.h";
 			};
@@ -1754,7 +1754,7 @@
 				INFOPLIST_FILE = "app-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.protonpayments.app;
-				PRODUCT_NAME = ProtonPay;
+				PRODUCT_NAME = Argent;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ObjC-Bridging-Header.h";
 			};

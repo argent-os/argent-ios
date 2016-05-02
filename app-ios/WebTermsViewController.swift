@@ -1,6 +1,6 @@
 //
 //  WebTermsViewController.swift
-//  protonpay-ios
+//  argent-ios
 //
 //  Created by Sinan Ulkuatam on 3/27/16.
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
@@ -29,7 +29,7 @@ class WebTermsViewController: UIViewController, WKNavigationDelegate, WKUIDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url = NSURL(string:"http://www.protonpayments.com/terms")
+        let url = NSURL(string:"http://www.argentapp.com/terms")
         let req = NSURLRequest(URL:url!)
         self.webView!.loadRequest(req)
     }
@@ -45,7 +45,7 @@ class WebTermsViewController: UIViewController, WKNavigationDelegate, WKUIDelega
 //                    item = detailViewController.detailItemTitle else { return }
 //                print("\(previewAction.title) triggered from `DetailViewController` for item: \(item)")
                 if title == "Copy Link" {
-                    UIPasteboard.generalPasteboard().string = "http://www.protonpayments.com/terms"
+                    UIPasteboard.generalPasteboard().string = "http://www.argentapp.com/terms"
                     let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
                     HUD.showInView(self.view!)
                     HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
@@ -54,7 +54,7 @@ class WebTermsViewController: UIViewController, WKNavigationDelegate, WKUIDelega
                 }
                 if title == "Share" {
                     let activityViewController  = UIActivityViewController(
-                        activityItems: ["Proton Payments Terms and Conditions  http://www.protonpayments.com/terms" as NSString],
+                        activityItems: ["Argent Terms and Conditions  http://www.argentapp.com/terms" as NSString],
                         applicationActivities: nil)
                     activityViewController.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList]
                     self.presentViewController(activityViewController, animated: true, completion: nil)

@@ -1,6 +1,6 @@
 //
 //  BankConnectedListTableViewController.swift
-//  protonpay-ios
+//  argent-ios
 //
 //  Created by Sinan Ulkuatam on 4/5/16.
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.

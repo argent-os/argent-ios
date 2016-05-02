@@ -7,7 +7,7 @@
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PasscodeLockViewController" customModule="ProtonPay" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PasscodeLockViewController" customModule="Argent" customModuleProvider="target">
             <connections>
                 <outlet property="cancelButton" destination="M5u-VD-UYC" id="V0Y-A0-ulh"/>
                 <outlet property="deleteSignButton" destination="H78-kl-y6L" id="k5Y-0E-L7E"/>
@@ -203,7 +203,7 @@
                         <action selector="passcodeSignButtonTap:" destination="-1" eventType="touchUpInside" id="aJD-gJ-Fvd"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconProtonWhite" translatesAutoresizingMaskIntoConstraints="NO" id="7wZ-oq-6Jm">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconLogoWhite" translatesAutoresizingMaskIntoConstraints="NO" id="7wZ-oq-6Jm">
                     <rect key="frame" x="267" y="76" width="67" height="72"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="67" id="VWe-a2-bgY"/>
@@ -463,7 +463,7 @@
     </objects>
     <resources>
         <image name="BackgroundGradientInverse" width="200" height="500"/>
-        <image name="IconProtonWhite" width="342" height="342"/>
+        <image name="IconLogoWhite" width="342" height="342"/>
         <image name="ic_fingerprint" width="86" height="86"/>
     </resources>
 </document>

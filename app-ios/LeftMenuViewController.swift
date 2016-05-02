@@ -111,7 +111,7 @@ class LeftMenuViewController: UIViewController,UITableViewDelegate,UITableViewDa
         cell.backgroundColor = UIColor.clearColor()
         cell.textLabel?.textColor = UIColor.whiteColor()
         var titles = ["", "", "", "Return Home", "Log Out"]
-        var images = ["IconProtonWhite", "IconEmpty", "IconEmpty", "IconEmpty", "IconEmpty"];
+        var images = ["IconLogoWhite", "IconEmpty", "IconEmpty", "IconEmpty", "IconEmpty"];
         cell.textLabel?.text = titles[indexPath.row]
         cell.textLabel?.font = UIFont(name: "Avenir-Book", size: 16)
         cell.imageView?.image = UIImage(named: images[indexPath.row])

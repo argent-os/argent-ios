@@ -11,7 +11,7 @@
         <!--Search Detail View Controller-->
         <scene sceneID="nbc-3q-s01">
             <objects>
-                <viewController id="E96-37-Kd7" customClass="SearchDetailViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="E96-37-Kd7" customClass="SearchDetailViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dT7-HM-UP6"/>
                         <viewControllerLayoutGuide type="bottom" id="HLl-tB-D5j"/>
@@ -30,7 +30,7 @@
         <!--Search-->
         <scene sceneID="SMU-V6-kh5">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" id="a1M-TW-bLs" customClass="SearchViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="a1M-TW-bLs" customClass="SearchViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZfZ-Cp-qpX"/>
                         <viewControllerLayoutGuide type="bottom" id="Dnd-V9-CML"/>
@@ -103,7 +103,7 @@
         <!--Tutorial Home View Controller-->
         <scene sceneID="LaJ-OV-HfA">
             <objects>
-                <viewController storyboardIdentifier="TutorialHomeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qaT-Zr-xZT" customClass="TutorialHomeViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TutorialHomeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qaT-Zr-xZT" customClass="TutorialHomeViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PV5-J6-Xck"/>
                         <viewControllerLayoutGuide type="bottom" id="94Z-00-19D"/>
@@ -273,7 +273,7 @@
         <!--Add Customer View Controller-->
         <scene sceneID="VLc-Zy-WhO">
             <objects>
-                <viewController storyboardIdentifier="AddCustomerViewController" id="pzK-yB-ekt" customClass="AddCustomerViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddCustomerViewController" id="pzK-yB-ekt" customClass="AddCustomerViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zd0-Bx-WxN"/>
                         <viewControllerLayoutGuide type="bottom" id="Ufo-7n-xsj"/>
@@ -292,7 +292,7 @@
         <!--Recurring Billing View Controller-->
         <scene sceneID="IfJ-jG-LJ2">
             <objects>
-                <viewController storyboardIdentifier="RecurringBillingViewController" id="SDr-Sd-KOe" customClass="RecurringBillingViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RecurringBillingViewController" id="SDr-Sd-KOe" customClass="RecurringBillingViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jgi-d0-tno"/>
                         <viewControllerLayoutGuide type="bottom" id="9sL-eu-DXM"/>
@@ -311,7 +311,7 @@
         <!--Passcode Settings View Controller-->
         <scene sceneID="ONW-xd-G0k">
             <objects>
-                <viewController id="Wgs-dC-FHb" customClass="PasscodeSettingsViewController" customModule="ProtonPay" sceneMemberID="viewController">
+                <viewController id="Wgs-dC-FHb" customClass="PasscodeSettingsViewController" customModule="Argent" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="N9c-Oy-RjQ"/>
                         <viewControllerLayoutGuide type="bottom" id="8ws-xj-SDk"/>
@@ -376,7 +376,7 @@ for older iOS versions</string>
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="changePasscodeButtonTap:" destination="Wgs-dC-FHb" eventType="touchUpInside" id="5o9-3g-9ZT"/>
+                                    <action selector="changePasscodeButtonTap:" destination="Wgs-dC-FHb" eventType="touchUpInside" id="Hbu-Ng-77s"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -402,7 +402,7 @@ for older iOS versions</string>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
-                        <outlet property="changePasscodeButton" destination="FEn-Bp-Q0E" id="4IX-PG-LkB"/>
+                        <outlet property="changePasscodeButton" destination="FEn-Bp-Q0E" id="fFh-GT-nPa"/>
                         <outlet property="passcodeSwitch" destination="WsJ-UR-NwF" id="ghy-Kc-1qx"/>
                     </connections>
                 </viewController>
@@ -413,7 +413,7 @@ for older iOS versions</string>
         <!--Support Menu View Controller-->
         <scene sceneID="aOm-i4-HeI">
             <objects>
-                <viewController id="xwC-9C-flp" customClass="SupportMenuViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="xwC-9C-flp" customClass="SupportMenuViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Hov-EX-sHw"/>
                         <viewControllerLayoutGuide type="bottom" id="VN3-NS-eke"/>
@@ -614,7 +614,7 @@ support request</string>
         <!--Support Message View Controller-->
         <scene sceneID="x9F-bO-U80">
             <objects>
-                <viewController id="SQo-ce-IG2" customClass="SupportMessageViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="SQo-ce-IG2" customClass="SupportMessageViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JUQ-HZ-sZn"/>
                         <viewControllerLayoutGuide type="bottom" id="r00-7D-k0e"/>
@@ -654,7 +654,7 @@ support request</string>
         <!--Web Terms View Controller-->
         <scene sceneID="yDm-hE-Mge">
             <objects>
-                <viewController id="f3U-uQ-HRj" customClass="WebTermsViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="f3U-uQ-HRj" customClass="WebTermsViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dVW-EF-YBf"/>
                         <viewControllerLayoutGuide type="bottom" id="jNR-gD-6Wc"/>
@@ -688,7 +688,7 @@ support request</string>
         <!--Profile-->
         <scene sceneID="pCQ-kF-NQE">
             <objects>
-                <viewController title="Profile" id="QT1-zk-YMS" customClass="ProfileViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Profile" id="QT1-zk-YMS" customClass="ProfileViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9gY-er-fKy"/>
                         <viewControllerLayoutGuide type="bottom" id="qbv-YN-1RU"/>
@@ -737,7 +737,7 @@ support request</string>
         <!--Profile Menu View Controller-->
         <scene sceneID="8pv-XZ-CS6">
             <objects>
-                <tableViewController id="lTf-cF-Xdq" customClass="ProfileMenuViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="lTf-cF-Xdq" customClass="ProfileMenuViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="MxV-5I-2up">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1331,7 +1331,7 @@ support request</string>
         <!--Configure Notifications View Controller-->
         <scene sceneID="DaJ-Fm-TGu">
             <objects>
-                <viewController id="TLv-6n-mxk" customClass="ConfigureNotificationsViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="TLv-6n-mxk" customClass="ConfigureNotificationsViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VRR-Iv-jlm"/>
                         <viewControllerLayoutGuide type="bottom" id="ety-Cm-TsI"/>
@@ -1350,7 +1350,7 @@ support request</string>
         <!--Edit Profile View Controller-->
         <scene sceneID="5Dl-vB-K6a">
             <objects>
-                <viewController id="dyH-2H-rBl" customClass="EditProfileViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="dyH-2H-rBl" customClass="EditProfileViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eDx-AX-O9n"/>
                         <viewControllerLayoutGuide type="bottom" id="Aa7-CV-e8d"/>
@@ -1369,7 +1369,7 @@ support request</string>
         <!--Credit Card Account View Controller-->
         <scene sceneID="GD7-mf-lhg">
             <objects>
-                <viewController id="uGb-UG-pwn" customClass="CreditCardAccountViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="uGb-UG-pwn" customClass="CreditCardAccountViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9gw-mm-elX"/>
                         <viewControllerLayoutGuide type="bottom" id="x8R-Qz-MHX"/>
@@ -1484,7 +1484,7 @@ We support both debit and credit.</string>
         <!--Add Bank View Controller-->
         <scene sceneID="EQ3-MU-4dQ">
             <objects>
-                <viewController id="a2y-cu-MBE" customClass="AddBankViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="a2y-cu-MBE" customClass="AddBankViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fzi-cR-AQR"/>
                         <viewControllerLayoutGuide type="bottom" id="9ft-C6-5ts"/>
@@ -1615,7 +1615,7 @@ institutions</string>
         <!--Notifications-->
         <scene sceneID="jQl-QQ-Qt4">
             <objects>
-                <viewController id="D1r-HM-gkI" customClass="NotificationsViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="D1r-HM-gkI" customClass="NotificationsViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zeF-hV-Ot7"/>
                         <viewControllerLayoutGuide type="bottom" id="5xt-Ah-NiE"/>
@@ -1712,7 +1712,7 @@ institutions</string>
         <!--Menu-->
         <scene sceneID="cuD-tq-Zje">
             <objects>
-                <viewController id="uI0-ut-YXN" customClass="ProtonViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="uI0-ut-YXN" customClass="ProtonViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uhz-kd-xkO"/>
                         <viewControllerLayoutGuide type="bottom" id="Mv2-J1-WVg"/>
@@ -1751,7 +1751,7 @@ institutions</string>
         <!--Home Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Home View Controller" id="BYZ-38-t0r" userLabel="Home Controller" customClass="HomeViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Home View Controller" id="BYZ-38-t0r" userLabel="Home Controller" customClass="HomeViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -1795,7 +1795,7 @@ institutions</string>
         <!--Charge View Controller-->
         <scene sceneID="C14-pk-fCv">
             <objects>
-                <viewController storyboardIdentifier="ChargeViewController" id="4oC-TM-jI5" customClass="ChargeViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChargeViewController" id="4oC-TM-jI5" customClass="ChargeViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1ir-Kg-9PY"/>
                         <viewControllerLayoutGuide type="bottom" id="buS-2c-LKz"/>
@@ -1818,7 +1818,7 @@ institutions</string>
         <!--Left Menu View Controller-->
         <scene sceneID="JIm-2k-XGJ">
             <objects>
-                <viewController storyboardIdentifier="LeftMenuViewController" wantsFullScreenLayout="YES" id="nmt-ia-mJg" customClass="LeftMenuViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LeftMenuViewController" wantsFullScreenLayout="YES" id="nmt-ia-mJg" customClass="LeftMenuViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CGm-u6-I5g"/>
                         <viewControllerLayoutGuide type="bottom" id="FzU-uL-org"/>
@@ -1853,7 +1853,7 @@ institutions</string>
         <!--Login Box Table View Controller-->
         <scene sceneID="VTT-x8-ndO">
             <objects>
-                <tableViewController id="KGf-0C-kob" customClass="LoginBoxTableViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="KGf-0C-kob" customClass="LoginBoxTableViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="static" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="bgy-lf-zOr">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1933,7 +1933,7 @@ institutions</string>
         <!--Login Controller-->
         <scene sceneID="Dz7-2R-lwm">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mQk-jK-m8v" userLabel="Login Controller" customClass="LoginViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mQk-jK-m8v" userLabel="Login Controller" customClass="LoginViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="89e-HS-vDh"/>
                         <viewControllerLayoutGuide type="bottom" id="2OE-D7-RmW"/>
@@ -1996,7 +1996,7 @@ institutions</string>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconProtonWhite" translatesAutoresizingMaskIntoConstraints="NO" id="drh-Jt-Uwa">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconLogoWhite" translatesAutoresizingMaskIntoConstraints="NO" id="drh-Jt-Uwa">
                                 <rect key="frame" x="160" y="61" width="94" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="0oa-i9-paH"/>
@@ -2048,7 +2048,7 @@ institutions</string>
         <!--Signup View Controller Zero-->
         <scene sceneID="LCa-UW-GzJ">
             <objects>
-                <viewController storyboardIdentifier="SignupViewControllerZero" id="Goe-4L-937" customClass="SignupViewControllerZero" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignupViewControllerZero" id="Goe-4L-937" customClass="SignupViewControllerZero" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GO9-Z1-480"/>
                         <viewControllerLayoutGuide type="bottom" id="rwt-gw-tCf"/>
@@ -2137,7 +2137,7 @@ institutions</string>
         <!--Signup Country Picker View Controller-->
         <scene sceneID="jOW-KT-fJs">
             <objects>
-                <viewController id="Xax-ri-GcP" customClass="SignupCountryPickerViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Xax-ri-GcP" customClass="SignupCountryPickerViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Wz4-Hw-ruO"/>
                         <viewControllerLayoutGuide type="bottom" id="S2V-gg-s6s"/>
@@ -2159,7 +2159,7 @@ institutions</string>
         <!--Signup View Controller One-->
         <scene sceneID="M28-gk-vJA">
             <objects>
-                <viewController id="ian-zS-qrA" customClass="SignupViewControllerOne" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ian-zS-qrA" customClass="SignupViewControllerOne" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4Zx-08-aNF"/>
                         <viewControllerLayoutGuide type="bottom" id="muk-f7-v3L"/>
@@ -2207,7 +2207,7 @@ institutions</string>
         <!--Signup Individual View Controller One-->
         <scene sceneID="IBc-yX-W7p">
             <objects>
-                <viewController id="xpa-9P-y7e" customClass="SignupIndividualViewControllerOne" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="xpa-9P-y7e" customClass="SignupIndividualViewControllerOne" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tBP-XF-AxO"/>
                         <viewControllerLayoutGuide type="bottom" id="4Ck-6p-Rxa"/>
@@ -2252,7 +2252,7 @@ institutions</string>
         <!--Signup Individual View Controller Two-->
         <scene sceneID="D4D-pq-EcV">
             <objects>
-                <viewController id="luy-ev-3hF" customClass="SignupIndividualViewControllerTwo" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="luy-ev-3hF" customClass="SignupIndividualViewControllerTwo" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="83Y-hs-e8Q"/>
                         <viewControllerLayoutGuide type="bottom" id="1Ar-up-DNe"/>
@@ -2309,7 +2309,7 @@ institutions</string>
         <!--Signup Individual View Controller Three-->
         <scene sceneID="zka-hF-bjU">
             <objects>
-                <viewController id="AWU-bB-zu7" customClass="SignupIndividualViewControllerThree" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="AWU-bB-zu7" customClass="SignupIndividualViewControllerThree" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rL2-ka-rOn"/>
                         <viewControllerLayoutGuide type="bottom" id="LlZ-Dh-4dg"/>
@@ -2346,7 +2346,7 @@ institutions</string>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
                                     <string key="title">By checking the circle below I agree to 
-Proton Payments terms of service and privacy
+Argent's terms of service and privacy
 policy agreement and the Stripe 
 connected account agreement.
 Tap here to view</string>
@@ -2388,7 +2388,7 @@ Tap here to view</string>
         <!--Signup View Controller Two-->
         <scene sceneID="ST9-yO-VXw">
             <objects>
-                <viewController id="B6V-1g-eck" customClass="SignupViewControllerTwo" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="B6V-1g-eck" customClass="SignupViewControllerTwo" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="D7Z-Gl-iYk"/>
                         <viewControllerLayoutGuide type="bottom" id="Knz-k4-zBh"/>
@@ -2434,7 +2434,7 @@ Tap here to view</string>
         <!--Signup View Controller Three-->
         <scene sceneID="iGK-zv-qZU">
             <objects>
-                <viewController id="jDG-vC-WlP" customClass="SignupViewControllerThree" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jDG-vC-WlP" customClass="SignupViewControllerThree" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rco-6z-ueE"/>
                         <viewControllerLayoutGuide type="bottom" id="fgJ-IX-Kj6"/>
@@ -2492,7 +2492,7 @@ Tap here to view</string>
         <!--Signup View Controller Four-->
         <scene sceneID="Srn-MZ-Jzm">
             <objects>
-                <viewController id="fbh-X8-wcE" customClass="SignupViewControllerFour" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fbh-X8-wcE" customClass="SignupViewControllerFour" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CSb-8F-a7a"/>
                         <viewControllerLayoutGuide type="bottom" id="n1z-D0-c6C"/>
@@ -2529,7 +2529,7 @@ Tap here to view</string>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
                                     <string key="title">By checking the circle below I agree to 
-Proton Payments terms of service and privacy
+Argent's terms of service and privacy
 policy agreement and the Stripe 
 connected account agreement.
 Tap here to view</string>
@@ -2572,7 +2572,7 @@ Tap here to view</string>
         <!--Presented Table View Controller-->
         <scene sceneID="47j-AC-0ac">
             <objects>
-                <viewController id="FIx-Rp-27k" customClass="PresentedTableViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="FIx-Rp-27k" customClass="PresentedTableViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yTU-5m-Rxj"/>
                         <viewControllerLayoutGuide type="bottom" id="5CS-CI-OXO"/>
@@ -2700,7 +2700,7 @@ Tap here to view</string>
         <!--Root View Controller-->
         <scene sceneID="Hoz-KY-lgl">
             <objects>
-                <viewController storyboardIdentifier="RootViewController" id="MFa-oS-byB" customClass="RootViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RootViewController" id="MFa-oS-byB" customClass="RootViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bUZ-2K-fAV"/>
                         <viewControllerLayoutGuide type="bottom" id="1Pb-vu-iLy"/>
@@ -2844,7 +2844,7 @@ Tap here to view</string>
         <!--Reset Password View Controller-->
         <scene sceneID="ko5-7L-2Oo">
             <objects>
-                <viewController storyboardIdentifier="ResetPasswordViewController" id="aOS-9b-XMb" customClass="ResetPasswordViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ResetPasswordViewController" id="aOS-9b-XMb" customClass="ResetPasswordViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6uq-k2-As0"/>
                         <viewControllerLayoutGuide type="bottom" id="AJj-z0-qeS"/>
@@ -2969,13 +2969,13 @@ Tap here to view</string>
         <!--Main Table View Controller-->
         <scene sceneID="DxD-GN-HcO">
             <objects>
-                <tableViewController storyboardIdentifier="MainTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JyA-ys-IVe" customClass="MainTableViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MainTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JyA-ys-IVe" customClass="MainTableViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="dgB-FO-eVy">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="mainCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="mainCell" rowHeight="220" id="hrL-CJ-jEE" customClass="BankTableViewCell" customModule="ProtonPay" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="mainCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="mainCell" rowHeight="220" id="hrL-CJ-jEE" customClass="BankTableViewCell" customModule="Argent" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="220"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hrL-CJ-jEE" id="gX7-7V-Yyh">
@@ -3028,7 +3028,7 @@ Tap here to view</string>
         <!--Bank Detail View Controller-->
         <scene sceneID="geL-7h-LEv">
             <objects>
-                <viewController storyboardIdentifier="DetailViewController" definesPresentationContext="YES" providesPresentationContextTransitionStyle="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JEu-27-Q04" customClass="BankDetailViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" definesPresentationContext="YES" providesPresentationContextTransitionStyle="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JEu-27-Q04" customClass="BankDetailViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YeP-JC-IoR"/>
                         <viewControllerLayoutGuide type="bottom" id="rW3-Ab-NGB"/>
@@ -3085,7 +3085,7 @@ Tap here to view</string>
         <!--Web Privacy View Controller-->
         <scene sceneID="ht7-o5-pHb">
             <objects>
-                <viewController id="RwR-mH-qAM" customClass="WebPrivacyViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="RwR-mH-qAM" customClass="WebPrivacyViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9eX-wD-yCN"/>
                         <viewControllerLayoutGuide type="bottom" id="va3-HP-ndz"/>
@@ -3116,7 +3116,7 @@ Tap here to view</string>
         <!--Web Support View Controller-->
         <scene sceneID="cth-hO-h0n">
             <objects>
-                <viewController title="Web Support View Controller" id="eNm-VK-5pP" customClass="WebSupportViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Web Support View Controller" id="eNm-VK-5pP" customClass="WebSupportViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="40c-b6-CKD"/>
                         <viewControllerLayoutGuide type="bottom" id="NsU-Dc-Qo1"/>
@@ -3148,7 +3148,7 @@ Tap here to view</string>
         <!--Bank Connected List Table View Controller-->
         <scene sceneID="TZc-Mr-fZs">
             <objects>
-                <tableViewController storyboardIdentifier="BankListViewController" id="i0h-r8-yZv" customClass="BankConnectedListTableViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="BankListViewController" id="i0h-r8-yZv" customClass="BankConnectedListTableViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="p9z-G1-6Kp">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3194,7 +3194,7 @@ Tap here to view</string>
         <!--Credit Card List View Controller-->
         <scene sceneID="zXr-bK-lSX">
             <objects>
-                <tableViewController id="ze7-fd-T6m" customClass="CreditCardListViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="ze7-fd-T6m" customClass="CreditCardListViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="saC-EN-jq4">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3240,7 +3240,7 @@ Tap here to view</string>
         <!--Charge Customer View Controller-->
         <scene sceneID="cDG-Bj-YJP">
             <objects>
-                <viewController id="b89-Uc-gbA" customClass="ChargeCustomerViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="b89-Uc-gbA" customClass="ChargeCustomerViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AXN-Sz-0ha"/>
                         <viewControllerLayoutGuide type="bottom" id="j28-KU-mNU"/>
@@ -3319,8 +3319,8 @@ Tap here to view</string>
         <image name="IconBroken" width="128" height="119"/>
         <image name="IconCloseLight" width="24" height="24"/>
         <image name="IconCreditCard" width="128" height="93"/>
+        <image name="IconLogoWhite" width="342" height="342"/>
         <image name="IconPerson" width="128" height="117"/>
-        <image name="IconProtonWhite" width="342" height="342"/>
         <image name="IconTouchSecure" width="98" height="128"/>
         <image name="ic_close_light" width="22" height="22"/>
         <image name="ic_home" width="30" height="30"/>
@@ -3336,7 +3336,6 @@ Tap here to view</string>
         <segue reference="kpf-dT-hyx"/>
         <segue reference="PrX-Yu-xbB"/>
         <segue reference="xTl-cs-ajG"/>
-        <segue reference="q4R-jw-ebX"/>
         <segue reference="SFz-vc-0MB"/>
         <segue reference="GfY-d3-W00"/>
         <segue reference="agi-3I-cSC"/>
@@ -3349,6 +3348,7 @@ Tap here to view</string>
         <segue reference="Bc6-jW-uiV"/>
         <segue reference="fEJ-lR-z9I"/>
         <segue reference="7cu-FP-MoG"/>
+        <segue reference="zsk-4D-roF"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>

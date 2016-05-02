@@ -36,7 +36,7 @@ class ActivityViewController1: TutorialViewController {
         super.viewDidLoad()
         
         title = "Payments"
-        note = "With Proton Payments you can set up recurring billing for any customer, or pay them with Apple Pay."
+        note = "Set up recurring billing for any customer, or pay them with Apple Pay."
                 
         activityView.flashing = true
         contentView.addSubview(activityView)

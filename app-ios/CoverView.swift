@@ -41,7 +41,7 @@ final class CoverView: UIView {
     }
     
     override init(frame: CGRect) {
-        logoView = UIImageView(image: UIImage(named: "ic_proton_outline_white_large"))
+        logoView = UIImageView(image: UIImage(named: "ic_logo_outline_white_large"))
         logoView.frame = CGRect(x: 0, y: -100, width: 200, height: 200)
         logoView.contentMode = .ScaleAspectFill
         logoView.tintColor = UIColor.whiteColor()

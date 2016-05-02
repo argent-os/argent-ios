@@ -1,6 +1,6 @@
 //
 //  PresentedTableViewController.swift
-//  protonpay-ios
+//  argent-ios
 //
 //  Created by Sinan Ulkuatam on 2/15/16.
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
@@ -56,19 +56,19 @@ class PresentedTableViewController: UIViewController {
         if let identifier = segue.identifier {
             if identifier == "termsView" {
                 if #available(iOS 9.0, *) {
-                    let svc = SFSafariViewController(URL: NSURL(string: "http://www.protonpayments.com/terms")!, entersReaderIfAvailable: true)
+                    let svc = SFSafariViewController(URL: NSURL(string: "http://www.argentapp.com/terms")!, entersReaderIfAvailable: true)
                     self.presentViewController(svc, animated: true, completion: nil)
                 } else {
-                    UIApplication.sharedApplication().openURL(NSURL(string: "http://www.protonpayments.com/terms")!)
+                    UIApplication.sharedApplication().openURL(NSURL(string: "http://www.argentapp.com/terms")!)
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
             }
             if identifier == "privacyView" {
                 if #available(iOS 9.0, *) {
-                    let svc = SFSafariViewController(URL: NSURL(string: "http://www.protonpayments.com/privacy")!, entersReaderIfAvailable: true)
+                    let svc = SFSafariViewController(URL: NSURL(string: "http://www.argentapp.com/privacy")!, entersReaderIfAvailable: true)
                     self.presentViewController(svc, animated: true, completion: nil)
                 } else {
-                    UIApplication.sharedApplication().openURL(NSURL(string: "http://www.protonpayments.com/privacy")!)
+                    UIApplication.sharedApplication().openURL(NSURL(string: "http://www.argentapp.com/privacy")!)
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
             }
