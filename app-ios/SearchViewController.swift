@@ -50,8 +50,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self?.loadUserAccounts()
             })
             }, loadingView: loadingView)
-        tblSearchResults.dg_setPullToRefreshFillColor(UIColor.protonBlue())
-        tblSearchResults.dg_setPullToRefreshBackgroundColor(UIColor.protonDarkBlue())
+        tblSearchResults.dg_setPullToRefreshFillColor(UIColor.mediumBlue())
+        tblSearchResults.dg_setPullToRefreshBackgroundColor(UIColor.darkBlue())
         
         loadUserAccounts()
         
@@ -59,7 +59,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let screenWidth = screen.size.width
         
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 65))
-        navBar.barTintColor = UIColor.protonBlue()
+        navBar.barTintColor = UIColor.mediumBlue()
         navBar.tintColor = UIColor.whiteColor()
         navBar.translucent = false
         navBar.titleTextAttributes = [
@@ -222,7 +222,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Add Filters", style: UIBarButtonItemStyle.Done, target: self, action: nil)
         done.tintColor = UIColor.whiteColor()
-        UIToolbar.appearance().barTintColor = UIColor.protonBlue()
+        UIToolbar.appearance().barTintColor = UIColor.mediumBlue()
         done.setTitleTextAttributes([
             NSFontAttributeName : UIFont(name: "Avenir-Book", size: 15.0)!,
             NSForegroundColorAttributeName : UIColor(rgba: "#fff")

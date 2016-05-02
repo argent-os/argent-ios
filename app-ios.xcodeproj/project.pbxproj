@@ -89,7 +89,7 @@
 		30C2DAC11CA43836003AFD8B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAC01CA43836003AFD8B /* ProfileViewController.swift */; };
 		30C2DAC31CA4383B003AFD8B /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAC21CA4383B003AFD8B /* NotificationViewController.swift */; };
 		30C2DAC51CA43841003AFD8B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAC41CA43841003AFD8B /* SearchViewController.swift */; };
-		30C2DAC91CA43853003AFD8B /* ProtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAC81CA43853003AFD8B /* ProtonViewController.swift */; };
+		30C2DAC91CA43853003AFD8B /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAC81CA43853003AFD8B /* MenuViewController.swift */; };
 		30C2DACB1CA4385C003AFD8B /* ProfileMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DACA1CA4385C003AFD8B /* ProfileMenuViewController.swift */; };
 		30C2DACD1CA43862003AFD8B /* CreditCardAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DACC1CA43862003AFD8B /* CreditCardAccountViewController.swift */; };
 		30C2DAD01CA4386A003AFD8B /* SupportMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DACE1CA4386A003AFD8B /* SupportMenuViewController.swift */; };
@@ -306,7 +306,7 @@
 		30C2DAC01CA43836003AFD8B /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = "app-ios/ProfileViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAC21CA4383B003AFD8B /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationViewController.swift; path = "app-ios/NotificationViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAC41CA43841003AFD8B /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchViewController.swift; path = "app-ios/SearchViewController.swift"; sourceTree = SOURCE_ROOT; };
-		30C2DAC81CA43853003AFD8B /* ProtonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProtonViewController.swift; path = "app-ios/ProtonViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30C2DAC81CA43853003AFD8B /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = "app-ios/MenuViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DACA1CA4385C003AFD8B /* ProfileMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileMenuViewController.swift; path = "app-ios/ProfileMenuViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DACC1CA43862003AFD8B /* CreditCardAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreditCardAccountViewController.swift; path = "app-ios/CreditCardAccountViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DACE1CA4386A003AFD8B /* SupportMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupportMenuViewController.swift; path = "app-ios/SupportMenuViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -538,7 +538,7 @@
 				30C2DAC01CA43836003AFD8B /* ProfileViewController.swift */,
 				30C2DAC21CA4383B003AFD8B /* NotificationViewController.swift */,
 				30C2DAC41CA43841003AFD8B /* SearchViewController.swift */,
-				30C2DAC81CA43853003AFD8B /* ProtonViewController.swift */,
+				30C2DAC81CA43853003AFD8B /* MenuViewController.swift */,
 				30128DDE1C8FAC6E009E2EA7 /* Subviews */,
 			);
 			name = Tabs;
@@ -1375,7 +1375,7 @@
 				309E43C41CA8AE1800279D97 /* WebPrivacyViewController.swift in Sources */,
 				30B576931CC7D1CF005BCA5A /* SearchDetailViewController.swift in Sources */,
 				30C2DA971CA4372D003AFD8B /* UserDefaultsPasscodeRepository.swift in Sources */,
-				30C2DAC91CA43853003AFD8B /* ProtonViewController.swift in Sources */,
+				30C2DAC91CA43853003AFD8B /* MenuViewController.swift in Sources */,
 				30C2DAAD1CA43795003AFD8B /* AuthViewController.swift in Sources */,
 				30C2DAC51CA43841003AFD8B /* SearchViewController.swift in Sources */,
 				30C2DA5B1CA4366C003AFD8B /* AppDelegate.swift in Sources */,

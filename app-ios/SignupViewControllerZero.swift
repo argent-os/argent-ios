@@ -31,11 +31,11 @@ class SignupViewControllerZero: UIViewController {
         // Globally set toolbar
         UIToolbar.appearance().barTintColor = UIColor.whiteColor()
         UIToolbar.appearance().backgroundColor = UIColor.whiteColor()
-        UIToolbar.appearance().layer.borderColor = UIColor.protonBlue().CGColor
+        UIToolbar.appearance().layer.borderColor = UIColor.mediumBlue().CGColor
         UIToolbar.appearance().layer.borderWidth = 1
         
         if let font = UIFont(name: "Avenir-Light", size: 15) {
-            UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: font,NSForegroundColorAttributeName:UIColor.protonBlue()], forState: UIControlState.Normal)
+            UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: font,NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
         }
         
         UITextField.appearance().keyboardAppearance = .Light

@@ -230,7 +230,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         
         graph.dataSource = self
         graph.colorTop = UIColor.clearColor()
-        graph.colorBottom = UIColor.protonDarkBlue()
+        graph.colorBottom = UIColor.darkBlue()
         graph.colorLine = UIColor(rgba: "#0003")
         graph.colorPoint = UIColor.whiteColor()
         graph.colorBackgroundPopUplabel = UIColor.whiteColor()
@@ -273,7 +273,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         runkeeperSwitch.backgroundColor = UIColor.clearColor()
         runkeeperSwitch.selectedBackgroundColor = UIColor.whiteColor()
         runkeeperSwitch.titleColor = UIColor.whiteColor()
-        runkeeperSwitch.selectedTitleColor = UIColor.protonBlue()
+        runkeeperSwitch.selectedTitleColor = UIColor.mediumBlue()
         runkeeperSwitch.titleFont = UIFont(name: "Avenir-Book", size: 12.0)
         runkeeperSwitch.frame = CGRect(x: view.bounds.width - 205.0, y: 15, width: 200, height: 30.0)
         //autoresizing so it stays at top right (flexible left and flexible bottom margin)
@@ -365,7 +365,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSForegroundColorAttributeName : UIColor.protonBlue(),
+            NSForegroundColorAttributeName : UIColor.mediumBlue(),
             NSFontAttributeName : UIFont(name: "Avenir-Light", size: 18.0)!
         ]
 

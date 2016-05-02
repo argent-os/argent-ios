@@ -13,7 +13,9 @@ class LeftMenuViewController: UIViewController,UITableViewDelegate,UITableViewDa
 
     var tableView: UITableView!
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
         tableView = UITableView()
         self.tableView.frame = CGRectMake(0, 10, self.view.frame.size.width  , 54 * 5)
         tableView.autoresizingMask = [UIViewAutoresizing.FlexibleTopMargin, UIViewAutoresizing.FlexibleBottomMargin, UIViewAutoresizing.FlexibleWidth]
@@ -107,6 +109,7 @@ class LeftMenuViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "cell")
         cell.backgroundColor = UIColor.clearColor()
         cell.textLabel?.textColor = UIColor.whiteColor()

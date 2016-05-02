@@ -20,7 +20,7 @@ class CreditCardAccountViewController: UIViewController, CardIOPaymentViewContro
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
 
         addCardButton.layer.cornerRadius = 5
-        addCardButton.backgroundColor = UIColor.protonBlue()
+        addCardButton.backgroundColor = UIColor.mediumBlue()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -33,7 +33,7 @@ class CreditCardAccountViewController: UIViewController, CardIOPaymentViewContro
         cardIOVC.hideCardIOLogo = true
         cardIOVC.collectPostalCode = true
         cardIOVC.allowFreelyRotatingCardGuide = true
-        cardIOVC.guideColor = UIColor.protonBlue()
+        cardIOVC.guideColor = UIColor.mediumBlue()
         cardIOVC.modalPresentationStyle = .FormSheet
         presentViewController(cardIOVC, animated: true, completion: nil)
     }

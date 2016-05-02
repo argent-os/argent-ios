@@ -91,11 +91,11 @@ public final class ActivityView2: UIView {
     }()
     
     private var strokeColor: UIColor {
-        return UIColor.protonDarkBlue().colorWithAlphaComponent(0.6)
+        return UIColor.darkBlue().colorWithAlphaComponent(0.6)
     }
     
     private var flashStrokeColor: UIColor {
-        return UIColor.protonBlue()
+        return UIColor.mediumBlue()
     }
     
     private let lineWidth = CGFloat(1.0)

@@ -97,7 +97,7 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
 
         done.setTitleTextAttributes([
                     NSFontAttributeName : UIFont(name: "Avenir-Light", size: 15.0)!,
-                    NSForegroundColorAttributeName : UIColor.protonBlue()
+                    NSForegroundColorAttributeName : UIColor.mediumBlue()
                     ], forState: .Normal)
         
         var items: [UIBarButtonItem]? = [UIBarButtonItem]()

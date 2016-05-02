@@ -79,8 +79,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // Globally set toolbar
-        UIToolbar.appearance().barTintColor = UIColor.protonBlue()
-        UIToolbar.appearance().backgroundColor = UIColor.protonBlue()
+        UIToolbar.appearance().barTintColor = UIColor.mediumBlue()
+        UIToolbar.appearance().backgroundColor = UIColor.mediumBlue()
         
         // Toolbar Keyboard UI
         if let font = UIFont(name: "Avenir-Book", size: 15) {
@@ -116,10 +116,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().translucent = true
         
         // Search Bar UI
-        UISearchBar.appearance().barTintColor = UIColor.protonBlue()
+        UISearchBar.appearance().barTintColor = UIColor.mediumBlue()
         UISearchBar.appearance().tintColor = UIColor.whiteColor()
         
-        // UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).tintColor = UIColor.protonDarkBlue()
+        // UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).tintColor = UIColor.darkBlue()
         
         // Enable push notifications
         if #available(iOS 8.0, *) {
@@ -195,13 +195,13 @@ extension UIApplication {
 }
 
 extension UIColor {
-    static func protonBlue() -> UIColor {
+    static func mediumBlue() -> UIColor {
         return UIColor(rgba: "#157efb")
     }
-    static func protonDarkBlue() -> UIColor {
+    static func darkBlue() -> UIColor {
         return UIColor(rgba: "#0465d9")
     }
-    static func protonLightBlue() -> UIColor {
+    static func lightBlue() -> UIColor {
         return UIColor(rgba: "#38a1fe")
     }
 }

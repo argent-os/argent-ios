@@ -10,25 +10,25 @@ import Foundation
 import UIKit
 import CircleMenu
 
-class ProtonViewController: UIViewController {
+class MenuViewController: UIViewController {
 
     
     let button = CircleMenu(
         frame: CGRect(x: 0, y: 0, width: 70, height: 70),
         normalIcon:"IconMenu",
         selectedIcon:"IconCloseLight",
-        buttonsCount: 6,
+        buttonsCount: 4,
         duration: 0.5,
-        distance: 140)
+        distance: 125)
     
     let colors = [UIColor.redColor(), UIColor.grayColor(), UIColor.greenColor(), UIColor.purpleColor()]
     let items: [(icon: String, color: UIColor)] = [
         ("ic_repeat_light", UIColor.whiteColor()),
         ("ic_paper_plane_light", UIColor.whiteColor()),
-        ("ic_paper_light", UIColor.whiteColor()),
-        ("ic_link_light", UIColor.whiteColor()),
-        ("ic_coinbag_light", UIColor.whiteColor()),
         ("ic_card_light", UIColor.whiteColor()),
+        ("ic_coinbag_light", UIColor.whiteColor()),
+//        ("ic_link_light", UIColor.whiteColor()),
+//        ("ic_paper_light", UIColor.whiteColor()),
     ]
     
     override func viewDidLoad() {
@@ -52,13 +52,14 @@ class ProtonViewController: UIViewController {
         self.view.sendSubviewToBack(backgroundImageView)
         self.view.addSubview(backgroundImageView)
         
-//        self.view.backgroundColor = UIColor.protonBlue()
+//        self.view.backgroundColor = UIColor.mediumBlue()
         
-        button.backgroundColor = UIColor.clearColor()
+//        button.backgroundColor = UIColor.clearColor()
+        button.backgroundColor = UIColor.darkBlue()
         button.delegate = self
         button.center = self.view.center
         button.layer.cornerRadius = button.frame.size.width / 2.0
-        button.layer.borderColor = UIColor.whiteColor().CGColor
+        button.layer.borderColor = UIColor.lightBlue().CGColor
         button.layer.borderWidth = 1
         view.addSubview(button)
         
@@ -106,8 +107,8 @@ class ProtonViewController: UIViewController {
     
     func circleMenu(circleMenu: CircleMenu, willDisplay button: CircleMenuButton, atIndex: Int) {
         //        button.backgroundColor = items[atIndex].color
-        button.backgroundColor = UIColor.clearColor()
-        button.layer.borderColor = UIColor.whiteColor().CGColor
+        button.backgroundColor = UIColor.darkBlue()
+        button.layer.borderColor = UIColor.lightBlue().CGColor
         button.layer.borderWidth = 1
         button.setImage(UIImage(imageLiteral: items[atIndex].icon), forState: .Normal)
 

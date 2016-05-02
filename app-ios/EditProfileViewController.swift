@@ -130,7 +130,7 @@ final class EditProfileViewController: FormViewController {
         let screenWidth = screen.size.width
         
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 65))
-        navBar.barTintColor = UIColor.protonBlue()
+        navBar.barTintColor = UIColor.mediumBlue()
         navBar.tintColor = UIColor.darkGrayColor()
         navBar.translucent = false
         navBar.titleTextAttributes = [

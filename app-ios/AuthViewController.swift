@@ -38,14 +38,14 @@ class AuthViewController: UIViewController  {
         
         // UI
         let loginButton = UIButton(frame: CGRect(x: 10, y: screenHeight-60-10, width: screenWidth/2-20, height: 60.0))
-        loginButton.backgroundColor = UIColor.protonLightBlue()
+        loginButton.backgroundColor = UIColor.lightBlue()
         loginButton.tintColor = UIColor(rgba: "#fff")
         loginButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
         loginButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
         loginButton.setTitle("Log in", forState: .Normal)
         loginButton.layer.cornerRadius = 5
         loginButton.layer.borderWidth = 1
-        loginButton.layer.borderColor = UIColor.protonDarkBlue().CGColor
+        loginButton.layer.borderColor = UIColor.darkBlue().CGColor
         loginButton.layer.masksToBounds = true
         loginButton.addTarget(self, action: #selector(AuthViewController.login(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(loginButton)

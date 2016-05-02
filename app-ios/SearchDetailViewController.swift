@@ -169,11 +169,11 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             let emailButton = UIButton(frame: CGRect(x: width*0.5+10, y: 265, width: (width/2)-20, height: 50.0))
             emailButton.backgroundColor = UIColor.whiteColor()
             emailButton.setTitle("Send Message", forState: .Normal)
-            emailButton.setTitleColor(UIColor.protonBlue(), forState: .Normal)
+            emailButton.setTitleColor(UIColor.mediumBlue(), forState: .Normal)
 //            emailButton.setBackgroundImage(UIImage(named: "IconPerson"), forState: .Normal)
             emailButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 14)
             emailButton.layer.cornerRadius = 5
-            emailButton.layer.borderColor = UIColor.protonBlue().CGColor
+            emailButton.layer.borderColor = UIColor.mediumBlue().CGColor
             emailButton.layer.borderWidth = 1
             emailButton.layer.masksToBounds = true
             var y_co: CGFloat = self.view.frame.size.height - 60.0

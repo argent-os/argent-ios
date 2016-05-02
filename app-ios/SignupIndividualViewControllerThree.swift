@@ -88,7 +88,7 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
         self.view!.addSubview(switchTermsAndPrivacy)
         
         finishButton.layer.cornerRadius = 0
-        finishButton.backgroundColor = UIColor.protonBlue()
+        finishButton.backgroundColor = UIColor.mediumBlue()
         
         self.navigationController?.navigationBar.tintColor = UIColor.grayColor()
         title = ""
@@ -219,7 +219,7 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
     
     func displayErrorAlertMessage(alertMessage:String) {
         let customIcon:UIImage = UIImage(named: "ic_close_light")! // your custom icon UIImage
-        let customColor:UIColor = UIColor.protonBlue() // base color for the alert
+        let customColor:UIColor = UIColor.mediumBlue() // base color for the alert
         let alertView = JSSAlertView().show(
             self,
             title: "",
@@ -233,7 +233,7 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
     
     func displayDefaultErrorAlertMessage(alertMessage:String) {
         let customIcon:UIImage = UIImage(named: "ic_close_light")! // your custom icon UIImage
-        let customColor:UIColor = UIColor.protonBlue() // base color for the alert
+        let customColor:UIColor = UIColor.mediumBlue() // base color for the alert
         let alertView = JSSAlertView().show(
             self,
             title: "",
