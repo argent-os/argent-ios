@@ -21,26 +21,31 @@ class ProfileMenuViewController: UITableViewController {
         
         self.tableView.tableHeaderView = ParallaxHeaderView.init(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 200));
         
-        User.getProfile({ (item, error) in
+        User.getProfile({ (user, error) in
             if error != nil
             {
                 let alert = UIAlertController(title: "Error", message: "Could not load profile \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
-            let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (item?.picture)!)!)!)!
-            let userImageView: UIImageView = UIImageView(frame: CGRectMake(screenWidth / 2, 0, 90, 90))
-            userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-            userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 120)
-            userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
-            userImageView.layer.cornerRadius = userImageView.frame.size.height/2
-            userImageView.layer.masksToBounds = true
-            userImageView.clipsToBounds = true
-            userImageView.image = img
-            userImageView.layer.borderWidth = 3
-            userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
-            self.tableView.addSubview(userImageView)
-
+            print("got user in completion handler")
+            // let img = UIImage(named: "Proton")
+            if user?.picture != nil && user?.picture != "" {
+                let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
+                let userImageView: UIImageView = UIImageView(frame: CGRectMake(screenWidth / 2, 0, 90, 90))
+                userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
+                userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 120)
+                userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+                userImageView.layer.cornerRadius = userImageView.frame.size.height/2
+                userImageView.layer.masksToBounds = true
+                userImageView.clipsToBounds = true
+                userImageView.image = img
+                userImageView.layer.borderWidth = 3
+                userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
+                self.tableView.addSubview(userImageView)
+            } else {
+                
+            }
         })
         
         

@@ -69,24 +69,6 @@ class ProfileViewController: UIViewController {
             NSForegroundColorAttributeName : UIColor(rgba: "#157efb"),
             NSFontAttributeName : UIFont(name: "Avenir-Light", size: 18.0)!
         ]
-            
-        if(userData?["user"]["picture"]["secureUrl"].stringValue != nil && userData?["user"]["picture"]["secureUrl"].stringValue.containsString("app") != true) {
-            let userPicture = userData?["user"]["picture"]["secureUrl"].stringValue
-            let pictureUrl = NSURL(string: userPicture!)
-            let data = NSData(contentsOfURL: pictureUrl!) //make sure your image in this url does exist, otherwise unwrap in a if let check
-            if(data != nil) {
-                print(data)
-//                self.avatarImageView.image = UIImage(data: data!)
-//                //self.avatarImageView.layer.cornerRadius = 4;
-//                self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width / 2;
-//                avatarImageView.layer.borderWidth = 2.0
-                //self.avatarImageView.clipsToBounds = YES;
-            } else {
-//                self.avatarImageView.image = UIImage(named:"ic_user")
-                // self.avatarImageView.image = UIImageView.setGravatar(Gravatar)
-            }
-            //print(userData)
-        }
         
     }
     

@@ -294,14 +294,14 @@ class BankDetailViewController: UIViewController, UITextFieldDelegate {
     
     func displayErrorAlertMessage(alertMessage:String) {
         let customIcon:UIImage = UIImage(named: "ic_close_light")! // your custom icon UIImage
-        let customColor:UIColor = UIColor.protonBlue() // base color for the alert
+        let customColor:UIColor = color! // base color for the alert
         let alertView = JSSAlertView().show(
             self,
             title: "",
             text: alertMessage,
             buttonText: "",
             noButtons: true,
-            color: customColor,
+            color: color!,
             iconImage: customIcon)
         alertView.setTextTheme(.Light) // can be .Light or .Dark
     }

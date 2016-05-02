@@ -37,22 +37,26 @@ class ParallaxHeaderView: UIView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
         imageView.contentMode = .ScaleAspectFill
-        User.getProfile({ (item, error) in
-            let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (item?.picture)!)!)!)!
-            imageView.image = img
-            
-            // Blurview
-            let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
-            visualEffectView.frame = CGRectMake(0, 0, 600, 500)
-
-            self.containerView.addSubview(imageView)
-            imageView.addSubview(visualEffectView)
-
-            self.containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[imageView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["imageView" : imageView]))
-            self.bottomLayoutConstraint = NSLayoutConstraint(item: imageView, attribute: .Bottom, relatedBy: .Equal, toItem: self.containerView, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
-            self.containerView.addConstraint(self.bottomLayoutConstraint)
-            self.heightLayoutConstraint = NSLayoutConstraint(item: imageView, attribute: .Height, relatedBy: .Equal, toItem: self.containerView, attribute: .Height, multiplier: 1.0, constant: 0.0)
-            self.containerView.addConstraint(self.heightLayoutConstraint)
+        User.getProfile({ (user, error) in
+            if user?.picture != nil && user?.picture != "" {
+                let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
+                imageView.image = img
+                
+                // Blurview
+                let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+                visualEffectView.frame = CGRectMake(0, 0, 600, 500)
+                
+                self.containerView.addSubview(imageView)
+                imageView.addSubview(visualEffectView)
+                
+                self.containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[imageView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["imageView" : imageView]))
+                self.bottomLayoutConstraint = NSLayoutConstraint(item: imageView, attribute: .Bottom, relatedBy: .Equal, toItem: self.containerView, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
+                self.containerView.addConstraint(self.bottomLayoutConstraint)
+                self.heightLayoutConstraint = NSLayoutConstraint(item: imageView, attribute: .Height, relatedBy: .Equal, toItem: self.containerView, attribute: .Height, multiplier: 1.0, constant: 0.0)
+                self.containerView.addConstraint(self.heightLayoutConstraint)
+            } else {
+                
+            }
         })
 
     }

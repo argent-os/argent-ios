@@ -42,6 +42,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         
         // Add action to close button to return to auth view
         closeButton.addTarget(self, action: #selector(LoginViewController.goToAuth(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        closeButton.addTarget(self, action: #selector(LoginViewController.goToAuth(_:)), forControlEvents: UIControlEvents.TouchUpOutside)
         
         // Login box, set height of container to match embedded tableview
         let containerFrame: CGRect = self.loginBox.frame

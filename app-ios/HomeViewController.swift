@@ -293,11 +293,12 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         headerView.addSubview(headerViewTitle)
         
         let tutorialButton:UIButton = UIButton()
-        tutorialButton.frame = CGRect(x: width-40, y: 24, width: 20, height: 20)
+        tutorialButton.frame = CGRect(x: width-40, y: 22, width: 22, height: 22)
         tutorialButton.setImage(UIImage(named: "ic_question"), forState: .Normal)
         tutorialButton.setTitle("Tuts", forState: .Normal)
         tutorialButton.setTitleColor(UIColor.redColor(), forState: .Normal)
         tutorialButton.addTarget(self, action: #selector(HomeViewController.presentTutorial(_:)), forControlEvents: .TouchUpInside)
+        tutorialButton.addTarget(self, action: #selector(HomeViewController.presentTutorial(_:)), forControlEvents: .TouchUpOutside)
         headerView.addSubview(tutorialButton)
         headerView.bringSubviewToFront(tutorialButton)
         

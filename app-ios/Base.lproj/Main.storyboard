@@ -4,7 +4,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
     </dependencies>
@@ -3014,44 +3013,43 @@ Tap here to view</string>
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yX9-45-coU">
-                                <rect key="frame" x="20" y="695" width="374" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="ZJu-h0-zAt"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wS1-1e-1Rt">
+                                <rect key="frame" x="53" y="20" width="527" height="560"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wS1-1e-1Rt">
-                                <rect key="frame" x="20" y="20" width="374" height="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WNc-S3-7SY">
+                                <rect key="frame" x="20" y="61" width="25" height="519"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="igv-X6-j6J">
                                 <rect key="frame" x="20" y="28" width="25" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="9v3-bR-IJL"/>
-                                    <constraint firstAttribute="width" constant="25" id="jcM-ZT-bf5"/>
+                                    <constraint firstAttribute="height" constant="25" id="KNG-MT-bPM"/>
+                                    <constraint firstAttribute="width" constant="25" id="iP3-y5-Rfx"/>
                                 </constraints>
                                 <state key="normal" image="ic_close_light"/>
                                 <connections>
                                     <action selector="cancel:" destination="JEu-27-Q04" eventType="touchUpInside" id="3X4-gn-W18"/>
+                                    <action selector="cancel:" destination="JEu-27-Q04" eventType="touchUpOutside" id="vWS-Yr-0iv"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wS1-1e-1Rt" firstAttribute="top" secondItem="YeP-JC-IoR" secondAttribute="bottom" id="3QR-zh-FLu"/>
-                            <constraint firstItem="igv-X6-j6J" firstAttribute="leading" secondItem="yX9-45-coU" secondAttribute="leading" id="9x0-18-bpZ"/>
-                            <constraint firstItem="wS1-1e-1Rt" firstAttribute="leading" secondItem="0fk-wo-aw0" secondAttribute="leadingMargin" id="FMr-zc-mSP"/>
-                            <constraint firstItem="wS1-1e-1Rt" firstAttribute="baseline" secondItem="igv-X6-j6J" secondAttribute="firstBaseline" id="Qhs-L7-JpX"/>
-                            <constraint firstItem="wS1-1e-1Rt" firstAttribute="leading" secondItem="igv-X6-j6J" secondAttribute="leading" id="Te9-Mq-61I"/>
-                            <constraint firstItem="igv-X6-j6J" firstAttribute="top" secondItem="YeP-JC-IoR" secondAttribute="bottom" constant="8" symbolic="YES" id="Y1J-lX-HFF"/>
-                            <constraint firstAttribute="bottom" secondItem="yX9-45-coU" secondAttribute="bottom" constant="20" symbolic="YES" id="fWx-Z4-Oia"/>
-                            <constraint firstItem="wS1-1e-1Rt" firstAttribute="trailing" secondItem="yX9-45-coU" secondAttribute="trailing" id="guQ-hD-Dh8"/>
-                            <constraint firstItem="wS1-1e-1Rt" firstAttribute="trailing" secondItem="0fk-wo-aw0" secondAttribute="trailingMargin" id="lmf-AJ-btV"/>
+                            <constraint firstAttribute="bottom" secondItem="WNc-S3-7SY" secondAttribute="bottom" constant="20" symbolic="YES" id="3Ms-cR-hun"/>
+                            <constraint firstItem="igv-X6-j6J" firstAttribute="leading" secondItem="0fk-wo-aw0" secondAttribute="leadingMargin" id="5ln-uf-p7g"/>
+                            <constraint firstItem="wS1-1e-1Rt" firstAttribute="leading" secondItem="WNc-S3-7SY" secondAttribute="trailing" constant="8" symbolic="YES" id="6MP-Sc-xkr"/>
+                            <constraint firstItem="igv-X6-j6J" firstAttribute="leading" secondItem="WNc-S3-7SY" secondAttribute="leading" id="EFt-UF-LSB"/>
+                            <constraint firstItem="igv-X6-j6J" firstAttribute="top" secondItem="YeP-JC-IoR" secondAttribute="bottom" constant="8" symbolic="YES" id="IGa-VV-6Z5"/>
+                            <constraint firstItem="wS1-1e-1Rt" firstAttribute="trailing" secondItem="0fk-wo-aw0" secondAttribute="trailingMargin" id="RgQ-qf-ayz"/>
+                            <constraint firstItem="WNc-S3-7SY" firstAttribute="top" secondItem="igv-X6-j6J" secondAttribute="bottom" constant="8" symbolic="YES" id="aFf-in-Z36"/>
+                            <constraint firstItem="wS1-1e-1Rt" firstAttribute="leading" secondItem="igv-X6-j6J" secondAttribute="trailing" constant="8" symbolic="YES" id="anr-S8-F5T"/>
+                            <constraint firstItem="wS1-1e-1Rt" firstAttribute="top" secondItem="YeP-JC-IoR" secondAttribute="bottom" id="qmZ-m2-icM"/>
+                            <constraint firstItem="WNc-S3-7SY" firstAttribute="baseline" secondItem="wS1-1e-1Rt" secondAttribute="baseline" id="tej-73-P0j"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
