@@ -2,16 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "IconCreditCard~universal@1x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "IconCreditCard@2x.png"
+      "filename" : "IconCreditCard~universal@2x.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "IconCreditCard~universal@3x.png"
     }
   ],
   "info" : {

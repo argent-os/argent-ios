@@ -9,7 +9,7 @@
         <!--Auth View Controller-->
         <scene sceneID="a1j-Kp-KyN">
             <objects>
-                <viewController storyboardIdentifier="authViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ojW-tX-SfZ" customClass="AuthViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="authViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ojW-tX-SfZ" customClass="AuthViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fU3-wt-lna"/>
                         <viewControllerLayoutGuide type="bottom" id="yK1-a1-oUv"/>
@@ -42,7 +42,7 @@
         <!--Background Animation View Controller-->
         <scene sceneID="Tzl-PZ-ig6">
             <objects>
-                <viewController storyboardIdentifier="BackgroundAnimationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dh2-Wx-deB" customClass="BackgroundAnimationViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BackgroundAnimationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dh2-Wx-deB" customClass="BackgroundAnimationViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OPM-HU-f7U"/>
                         <viewControllerLayoutGuide type="bottom" id="gMg-MP-KSD"/>
@@ -51,7 +51,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jng-cF-Fd5" customClass="CustomKolodaView" customModule="ProtonPay" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jng-cF-Fd5" customClass="CustomKolodaView" customModule="Argent" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="82" width="320" height="486"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="430-8H-S9o">
@@ -155,7 +155,7 @@
         <!--Browser View Controller-->
         <scene sceneID="1me-ul-a0e">
             <objects>
-                <viewController storyboardIdentifier="BrowserViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fwY-tb-OHg" customClass="BrowserViewController" customModule="ProtonPay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BrowserViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fwY-tb-OHg" customClass="BrowserViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cgp-Tz-219"/>
                         <viewControllerLayoutGuide type="bottom" id="yxL-Pn-aNe"/>

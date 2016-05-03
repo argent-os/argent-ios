@@ -36,8 +36,10 @@ class Card {
     
     class func getCreditCards(completionHandler: ([Card]?, NSError?) -> Void) {
         // request to api to get account data as json, put in list and table
+        
+        // make a call to our API endpoint not directly to Stripe
         let parameters : [String : AnyObject] = [
-            "accountId" : userData!["stripe"]["accountId"].stringValue
+            "accountId" : ""
         ]
         
         let headers = [

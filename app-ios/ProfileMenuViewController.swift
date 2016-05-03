@@ -19,9 +19,7 @@ class ProfileMenuViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureView()
-        
     }
     
     func configureView() {
