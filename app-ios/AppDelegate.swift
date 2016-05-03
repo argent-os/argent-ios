@@ -198,10 +198,10 @@ extension UIApplication {
 
 extension UIColor {
     static func mediumBlue() -> UIColor {
-        return UIColor(rgba: "#157efb")
+        return UIColor(rgba: "#233f8a")
     }
     static func darkBlue() -> UIColor {
-        return UIColor(rgba: "#0465d9")
+        return UIColor(rgba: "#152e6e")
     }
     static func lightBlue() -> UIColor {
         return UIColor(rgba: "#38a1fe")

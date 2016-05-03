@@ -220,7 +220,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         blurImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
         blurImageView.layer.masksToBounds = true
         blurImageView.clipsToBounds = true
-        blurImageView.image = UIImage(named: "BackgroundGradientInverse")
+        blurImageView.backgroundColor = UIColor.mediumBlue()
+//        blurImageView.image = UIImage(named: "BackgroundGradientInverse")
         self.view.addSubview(blurImageView)
         //        blurImageView.addSubview(visualEffectView)
         self.view.sendSubviewToBack(blurImageView)

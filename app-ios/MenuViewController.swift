@@ -40,7 +40,8 @@ class MenuViewController: UIViewController {
         
         let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
         visualEffectView.frame = CGRectMake(0, 0, screenWidth, screenHeight)
-        let backgroundImageView = UIImageView(image: UIImage(named: "BackgroundGradientInverse"), highlightedImage: nil)
+        let backgroundImageView = UIImageView(image: UIImage(), highlightedImage: nil)
+        backgroundImageView.backgroundColor = UIColor.mediumBlue()
         backgroundImageView.frame = CGRectMake(0, 0, screenWidth, screenHeight)
         backgroundImageView.contentMode = .ScaleAspectFill
         backgroundImageView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
@@ -58,12 +59,13 @@ class MenuViewController: UIViewController {
         button.delegate = self
         button.center = self.view.center
         button.layer.cornerRadius = button.frame.size.width / 2.0
-        button.layer.borderColor = UIColor.lightBlue().CGColor
+        button.layer.borderColor = UIColor(rgba: "#fff3").CGColor
         button.layer.borderWidth = 1
         view.addSubview(button)
         
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 65))
-        navBar.barTintColor = UIColor(rgba: "#258ff6")
+//        navBar.barTintColor = UIColor(rgba: "#258ff6")
+        navBar.barTintColor = UIColor.mediumBlue()
         navBar.tintColor = UIColor.whiteColor()
         navBar.translucent = false
         navBar.titleTextAttributes = [
@@ -107,7 +109,7 @@ class MenuViewController: UIViewController {
     func circleMenu(circleMenu: CircleMenu, willDisplay button: CircleMenuButton, atIndex: Int) {
         //        button.backgroundColor = items[atIndex].color
         button.backgroundColor = UIColor.darkBlue()
-        button.layer.borderColor = UIColor.lightBlue().CGColor
+        button.layer.borderColor = UIColor(rgba: "#fff3").CGColor
         button.layer.borderWidth = 1
         button.setImage(UIImage(imageLiteral: items[atIndex].icon), forState: .Normal)
 

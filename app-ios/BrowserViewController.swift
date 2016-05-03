@@ -79,15 +79,15 @@ final class BrowserViewController: UIViewController {
         super.viewDidLoad()
         
         backgroundImageView.contentMode = .ScaleAspectFill
-        backgroundImageView.image = UIImage(named: "BackgroundNY")
+        backgroundImageView.image = UIImage(named: "BackgroundBusiness1")
         view.addSubview(backgroundImageView)
         view.sendSubviewToBack(backgroundImageView)
         
         blurredBackgroundImageView.contentMode = .ScaleAspectFill
-        blurredBackgroundImageView.image = UIImage(named: "BackgroundNY")
+        blurredBackgroundImageView.image = UIImage(named: "BackgroundBusiness1")
         blurredBackgroundImageView.alpha = 0.0
         view.addSubview(blurredBackgroundImageView)
-        view.sendSubviewToBack(blurredBackgroundImageView)
+//        view.sendSubviewToBack(blurredBackgroundImageView)
         
         backgroundDimmingView.backgroundColor = UIColor.blackColor()
         backgroundDimmingView.alpha = 0.3
