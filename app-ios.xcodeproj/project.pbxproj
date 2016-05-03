@@ -445,6 +445,14 @@
 			name = Edit;
 			sourceTree = "<group>";
 		};
+		30113A2C1CD82CA0002BECF0 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				309544F41CD295AE003007B2 /* ParallaxHeader.swift */,
+			);
+			name = Header;
+			sourceTree = "<group>";
+		};
 		30128DDE1C8FAC6E009E2EA7 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
@@ -578,14 +586,6 @@
 				300E42301CB7123E004316CF /* CreditCardListViewController.swift */,
 			);
 			name = Card;
-			sourceTree = "<group>";
-		};
-		309544F31CD2959A003007B2 /* Parallax */ = {
-			isa = PBXGroup;
-			children = (
-				309544F41CD295AE003007B2 /* ParallaxHeader.swift */,
-			);
-			name = Parallax;
 			sourceTree = "<group>";
 		};
 		309E15911CBC29FB00EA95E4 /* Charge */ = {
@@ -728,7 +728,6 @@
 		30BECC0C1C6F93AF00B8A088 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				309544F31CD2959A003007B2 /* Parallax */,
 				307265391C72B95900D2AF61 /* CountryPicker */,
 				30BECC041C6F92C200B8A088 /* StarButton */,
 			);
@@ -829,6 +828,7 @@
 			isa = PBXGroup;
 			children = (
 				30C2DACA1CA4385C003AFD8B /* ProfileMenuViewController.swift */,
+				30113A2C1CD82CA0002BECF0 /* Header */,
 				309E43BC1CA8ADDE00279D97 /* Web */,
 				308AC9B71C9F79830040EF3C /* Card */,
 				308AC9A81C9DFA0B0040EF3C /* Support */,

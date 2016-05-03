@@ -579,6 +579,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         let item = self.accountHistoryArray?[indexPath.row]
 //        print("got data for account cells")
 //        print(item)
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
         cell.textLabel?.text = ""
         cell.detailTextLabel?.text = "Account credited"
         cell.detailTextLabel?.textColor = UIColor.lightGrayColor()

@@ -22,7 +22,7 @@ class AuthViewController: UIViewController  {
         view.layer.masksToBounds = true
         
         // Set background image
-        let backgroundView: UIImageView = UIImageView(image: UIImage(named: "BackgroundGradientInverse"))
+        let backgroundView: UIImageView = UIImageView(image: UIImage(named: "BackgroundBusiness1"))
         backgroundView.contentMode = UIViewContentMode.ScaleAspectFill
         backgroundView.frame = self.view.bounds
         self.view!.addSubview(backgroundView)
@@ -38,14 +38,16 @@ class AuthViewController: UIViewController  {
         
         // UI
         let loginButton = UIButton(frame: CGRect(x: 10, y: screenHeight-60-10, width: screenWidth/2-20, height: 60.0))
-        loginButton.backgroundColor = UIColor.lightBlue()
+        loginButton.backgroundColor = UIColor(rgba: "#0003")
         loginButton.tintColor = UIColor(rgba: "#fff")
         loginButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
+        loginButton.setTitleColor(UIColor(rgba: "#eee"), forState: .Selected)
+        loginButton.setTitleColor(UIColor(rgba: "#eee"), forState: .Focused)
         loginButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
         loginButton.setTitle("Log in", forState: .Normal)
         loginButton.layer.cornerRadius = 5
-        loginButton.layer.borderWidth = 1
-        loginButton.layer.borderColor = UIColor.darkBlue().CGColor
+        loginButton.layer.borderWidth = 2
+        loginButton.layer.borderColor = UIColor(rgba: "#fffa").CGColor
         loginButton.layer.masksToBounds = true
         loginButton.addTarget(self, action: #selector(AuthViewController.login(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(loginButton)
@@ -53,11 +55,13 @@ class AuthViewController: UIViewController  {
         let signupButton = UIButton(frame: CGRect(x: screenWidth*0.5+10, y: screenHeight-60-10, width: screenWidth/2-20, height: 60.0))
         signupButton.backgroundColor = UIColor.whiteColor()
         signupButton.setTitle("Sign up", forState: .Normal)
-        signupButton.setTitleColor(UIColor(rgba: "#1796fa"), forState: .Normal)
+        signupButton.setTitleColor(UIColor.darkGrayColor(), forState: .Normal)
+        signupButton.setTitleColor(UIColor(rgba: "#eee"), forState: .Selected)
+        signupButton.setTitleColor(UIColor(rgba: "#eee"), forState: .Focused)
         signupButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
         signupButton.layer.cornerRadius = 5
-        signupButton.layer.borderWidth = 1
-        signupButton.layer.borderColor = UIColor(rgba: "#ffffff").CGColor
+        signupButton.layer.borderWidth = 2
+        signupButton.layer.borderColor = UIColor(rgba: "#fffa").CGColor
         signupButton.layer.masksToBounds = true
         signupButton.addTarget(self, action: #selector(AuthViewController.signup(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(signupButton)

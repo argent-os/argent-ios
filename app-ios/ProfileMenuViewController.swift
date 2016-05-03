@@ -13,11 +13,27 @@ class ProfileMenuViewController: UITableViewController {
     
     @IBOutlet weak var shareCell: UITableViewCell!
 
+    var customersLabel:UILabel = UILabel()
+    
+    var plansLabel:UILabel = UILabel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureView()
+        
+    }
+    
+    func configureView() {
+        
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
+//        
+//        customersLabel.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+//        customersLabel.textColor = UIColor.whiteColor()
+//        customersLabel.text = "0"
+//        self.tableView.addSubview(customersLabel)
+//        self.tableView.bringSubviewToFront(customersLabel)
         
         self.tableView.tableHeaderView = ParallaxHeaderView.init(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 200));
         
@@ -29,7 +45,6 @@ class ProfileMenuViewController: UITableViewController {
                 self.presentViewController(alert, animated: true, completion: nil)
             }
             print("got user in completion handler")
-            // let img = UIImage(named: "Proton")
             if user?.picture != nil && user?.picture != "" {
                 let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
                 let userImageView: UIImageView = UIImageView(frame: CGRectMake(screenWidth / 2, 0, 90, 90))
@@ -51,8 +66,6 @@ class ProfileMenuViewController: UITableViewController {
         
         // Add action to share cell to return to activity menu
         shareCell.targetForAction(Selector("share:"), withSender: self)
-        
-        print("loaded profile menu")
     }
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {
