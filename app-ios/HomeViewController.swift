@@ -167,7 +167,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             loadUserProfile { (user, error) in
                 print("got user in completion handler")
                 print(user)
-                // let img = UIImage(named: "Proton")
+                // let img = UIImage(named: "Logo")
                 if user?.picture != nil && user?.picture != "" {
                     let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
                     let userImageView: UIImageView = UIImageView(frame: CGRectMake(20, 31, 40, 40))
@@ -200,7 +200,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         let width = screen.size.width
         let height = screen.size.height
         
-        let img: UIImage = UIImage(named: "Proton")!
+        let img: UIImage = UIImage(named: "Logo")!
         let logoImageView: UIImageView = UIImageView(frame: CGRectMake(20, 31, 40, 40))
         logoImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
         logoImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
