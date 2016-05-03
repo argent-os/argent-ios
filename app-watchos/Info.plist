@@ -28,7 +28,7 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
-	<string>com.protonpayments.app</string>
+	<string>com.argentapp.ios</string>
 	<key>WKWatchKitApp</key>
 	<true/>
 </dict>

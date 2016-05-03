@@ -22,6 +22,8 @@ var userData:JSON? // init user data, declare globally, needs SwiftyJSON
 // In case this doesnt work, make sure NSTransportSecurity has the sub-item Allow Arbitrary Loads set to YES
 // DEV
 
+// For provisioning profile naming convention http://stackoverflow.com/questions/20565565/an-app-id-with-identifier-is-not-available-please-enter-a-different-string
+
 // let apiUrl = "http://localhost:5001"
 // let apiUrl = "http://192.168.1.182:5001"
 // let apiUrl = "http://192.168.1.232:5001"

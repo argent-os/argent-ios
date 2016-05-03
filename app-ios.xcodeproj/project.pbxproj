@@ -19,7 +19,7 @@
 		302010D11CB016ED007D5E7E /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 302010D01CB016ED007D5E7E /* NotificationCenter.framework */; };
 		302010D41CB016ED007D5E7E /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302010D31CB016ED007D5E7E /* TodayViewController.swift */; };
 		302010D71CB016ED007D5E7E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 302010D51CB016ED007D5E7E /* MainInterface.storyboard */; };
-		302010DB1CB016ED007D5E7E /* Proton Payments.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 302010CF1CB016ED007D5E7E /* Proton Payments.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		302010DB1CB016ED007D5E7E /* Argent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 302010CF1CB016ED007D5E7E /* Argent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		304468F01CAA0BFC008CAE7D /* notify.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468ED1CAA0BFC008CAE7D /* notify.caf */; };
 		304468F11CAA0BFC008CAE7D /* pop.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468EE1CAA0BFC008CAE7D /* pop.caf */; };
 		304468F21CAA0BFC008CAE7D /* tone.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468EF1CAA0BFC008CAE7D /* tone.caf */; };
@@ -59,7 +59,7 @@
 		30BB072C1CCFEBD90051C9E7 /* ActivityView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB072A1CCFEBD90051C9E7 /* ActivityView1.swift */; };
 		30BB072D1CCFEBD90051C9E7 /* ActivityViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB072B1CCFEBD90051C9E7 /* ActivityViewController1.swift */; };
 		30C2DA551CA43655003AFD8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA541CA43655003AFD8B /* Assets.xcassets */; };
-		30C2DA591CA43665003AFD8B /* PayKloud.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA581CA43665003AFD8B /* PayKloud.entitlements */; };
+		30C2DA591CA43665003AFD8B /* App.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA581CA43665003AFD8B /* App.entitlements */; };
 		30C2DA5B1CA4366C003AFD8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DA5A1CA4366C003AFD8B /* AppDelegate.swift */; };
 		30C2DA751CA436B8003AFD8B /* cashregister.caf in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA721CA436B8003AFD8B /* cashregister.caf */; };
 		30C2DA761CA436B8003AFD8B /* chime.caf in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA731CA436B8003AFD8B /* chime.caf */; };
@@ -199,7 +199,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				302010DB1CB016ED007D5E7E /* Proton Payments.appex in Embed App Extensions */,
+				302010DB1CB016ED007D5E7E /* Argent.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -230,7 +230,7 @@
 		30162DB91CA9FB2C00438842 /* Stock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stock.swift; path = "app-ios/Stock.swift"; sourceTree = SOURCE_ROOT; };
 		302010C71CAEAE0E007D5E7E /* BalanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BalanceViewController.swift; path = "app-ios/BalanceViewController.swift"; sourceTree = SOURCE_ROOT; };
 		302010C91CAF3B05007D5E7E /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Notification.swift; path = "app-ios/Notification.swift"; sourceTree = SOURCE_ROOT; };
-		302010CF1CB016ED007D5E7E /* Proton Payments.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Proton Payments.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		302010CF1CB016ED007D5E7E /* Argent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Argent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		302010D01CB016ED007D5E7E /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		302010D31CB016ED007D5E7E /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		302010D61CB016ED007D5E7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -276,7 +276,7 @@
 		30BB072B1CCFEBD90051C9E7 /* ActivityViewController1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityViewController1.swift; path = "app-ios/ActivityViewController1.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DA541CA43655003AFD8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "app-ios/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		30C2DA561CA4365D003AFD8B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "app-ios/Info.plist"; sourceTree = SOURCE_ROOT; };
-		30C2DA581CA43665003AFD8B /* PayKloud.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = PayKloud.entitlements; path = "app-ios/PayKloud.entitlements"; sourceTree = SOURCE_ROOT; };
+		30C2DA581CA43665003AFD8B /* App.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = App.entitlements; path = "app-ios/App.entitlements"; sourceTree = SOURCE_ROOT; };
 		30C2DA5A1CA4366C003AFD8B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "app-ios/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DA721CA436B8003AFD8B /* cashregister.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = cashregister.caf; sourceTree = "<group>"; };
 		30C2DA731CA436B8003AFD8B /* chime.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = chime.caf; sourceTree = "<group>"; };
@@ -877,7 +877,7 @@
 				30FB54291C6A58B40004A538 /* app-iosTests.xctest */,
 				30DB595A1CA46CB0007FEE1E /* app-watchos.app */,
 				30DB59661CA46CB0007FEE1E /* app-watchos Extension.appex */,
-				302010CF1CB016ED007D5E7E /* Proton Payments.appex */,
+				302010CF1CB016ED007D5E7E /* Argent.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -886,7 +886,7 @@
 			isa = PBXGroup;
 			children = (
 				30C2DA5A1CA4366C003AFD8B /* AppDelegate.swift */,
-				30C2DA581CA43665003AFD8B /* PayKloud.entitlements */,
+				30C2DA581CA43665003AFD8B /* App.entitlements */,
 				306D6DB11C7008D200467C41 /* Resources */,
 				30BECC081C6F934A00B8A088 /* Root */,
 				30BECC061C6F92EF00B8A088 /* Auth */,
@@ -961,9 +961,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		302010CE1CB016ED007D5E7E /* Proton Payments */ = {
+		302010CE1CB016ED007D5E7E /* Argent */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 302010DC1CB016ED007D5E7E /* Build configuration list for PBXNativeTarget "Proton Payments" */;
+			buildConfigurationList = 302010DC1CB016ED007D5E7E /* Build configuration list for PBXNativeTarget "Argent" */;
 			buildPhases = (
 				302010CB1CB016ED007D5E7E /* Sources */,
 				302010CC1CB016ED007D5E7E /* Frameworks */,
@@ -973,9 +973,9 @@
 			);
 			dependencies = (
 			);
-			name = "Proton Payments";
+			name = Argent;
 			productName = "app-notificationcenter";
-			productReference = 302010CF1CB016ED007D5E7E /* Proton Payments.appex */;
+			productReference = 302010CF1CB016ED007D5E7E /* Argent.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 		30DB59591CA46CB0007FEE1E /* app-watchos */ = {
@@ -1167,7 +1167,7 @@
 				30FB54281C6A58B40004A538 /* app-iosUITests */,
 				30DB59591CA46CB0007FEE1E /* app-watchos */,
 				30DB59651CA46CB0007FEE1E /* app-watchos Extension */,
-				302010CE1CB016ED007D5E7E /* Proton Payments */,
+				302010CE1CB016ED007D5E7E /* Argent */,
 			);
 		};
 /* End PBXProject section */
@@ -1208,7 +1208,7 @@
 				309E43CB1CA9CFED00279D97 /* bloom.caf in Resources */,
 				30C2DA911CA436E6003AFD8B /* PasscodeLockView.xib in Resources */,
 				304468F21CAA0BFC008CAE7D /* tone.caf in Resources */,
-				30C2DA591CA43665003AFD8B /* PayKloud.entitlements in Resources */,
+				30C2DA591CA43665003AFD8B /* App.entitlements in Resources */,
 				30C2DAD71CA43898003AFD8B /* ProfileFieldCell.xib in Resources */,
 				30C2DB221CA43B62003AFD8B /* Main.storyboard in Resources */,
 				30C2DA771CA436B8003AFD8B /* chime2.caf in Resources */,
@@ -1476,7 +1476,7 @@
 /* Begin PBXTargetDependency section */
 		302010DA1CB016ED007D5E7E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 302010CE1CB016ED007D5E7E /* Proton Payments */;
+			target = 302010CE1CB016ED007D5E7E /* Argent */;
 			targetProxy = 302010D91CB016ED007D5E7E /* PBXContainerItemProxy */;
 		};
 		30DB59691CA46CB0007FEE1E /* PBXTargetDependency */ = {
@@ -1538,7 +1538,7 @@
 				INFOPLIST_FILE = "app-notificationcenter/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.protonpayments.app.app-notificationcenter";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.argentapp.ios.app-notificationcenter";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -1553,7 +1553,7 @@
 				INFOPLIST_FILE = "app-notificationcenter/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.protonpayments.app.app-notificationcenter";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.argentapp.ios.app-notificationcenter";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -1571,7 +1571,7 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				IBSC_MODULE = app_watchos_Extension;
 				INFOPLIST_FILE = "app-watchos/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = com.protonpayments.app.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.argentapp.ios.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
@@ -1593,7 +1593,7 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				IBSC_MODULE = app_watchos_Extension;
 				INFOPLIST_FILE = "app-watchos/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = com.protonpayments.app.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.argentapp.ios.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
@@ -1614,7 +1614,7 @@
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "app-watchos Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.protonpayments.app.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.argentapp.ios.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
@@ -1635,7 +1635,7 @@
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "app-watchos Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.protonpayments.app.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.argentapp.ios.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
@@ -1737,13 +1737,13 @@
 			baseConfigurationReference = 62BBF354E2FD43232A999EA5 /* Pods-app-ios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "app-ios/PayKloud.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "app-ios/App.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "app-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.protonpayments.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.argentapp.ios;
 				PRODUCT_NAME = Argent;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ObjC-Bridging-Header.h";
@@ -1755,13 +1755,13 @@
 			baseConfigurationReference = 6AC111B16756234AA1FDE27D /* Pods-app-ios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "app-ios/PayKloud.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "app-ios/App.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "app-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.protonpayments.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.argentapp.ios;
 				PRODUCT_NAME = Argent;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ObjC-Bridging-Header.h";
@@ -1772,7 +1772,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = "paykloud-iosTests/Info.plist";
+				INFOPLIST_FILE = "app-iosTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.paykloud.paykloud-iosTests";
 				PRODUCT_NAME = "app-iosTests";
@@ -1784,7 +1784,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = "paykloud-iosTests/Info.plist";
+				INFOPLIST_FILE = "app-iosTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.paykloud.paykloud-iosTests";
 				PRODUCT_NAME = "app-iosTests";
@@ -1795,7 +1795,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = "paykloud-iosUITests/Info.plist";
+				INFOPLIST_FILE = "app-iosUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.paykloud.paykloud-iosUITests";
 				PRODUCT_NAME = "app-iosTests";
@@ -1809,7 +1809,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = "paykloud-iosUITests/Info.plist";
+				INFOPLIST_FILE = "app-iosUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.paykloud.paykloud-iosUITests";
 				PRODUCT_NAME = "app-iosTests";
@@ -1821,7 +1821,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		302010DC1CB016ED007D5E7E /* Build configuration list for PBXNativeTarget "Proton Payments" */ = {
+		302010DC1CB016ED007D5E7E /* Build configuration list for PBXNativeTarget "Argent" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				302010DD1CB016ED007D5E7E /* Debug */,

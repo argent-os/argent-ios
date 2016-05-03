@@ -1,6 +1,6 @@
 //
-//  paykloud_iosUITests.swift
-//  paykloud-iosUITests
+//  app_iosUITests.swift
+//  app-iosUITests
 //
 //  Created by Sinan Ulkuatam on 2/9/16.
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
@@ -8,7 +8,7 @@
 
 //import XCTest
 //
-//class paykloud_iosUITests: XCTestCase {
+//class app_iosUITests: XCTestCase {
 //        
 //    override func setUp() {
 //        super.setUp()
