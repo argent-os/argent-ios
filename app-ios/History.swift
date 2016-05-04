@@ -32,7 +32,7 @@ class History {
                 
                 let parameters : [String : AnyObject] = [
                     "userId": (item?.id)!,
-                    "limit": "10"
+                    "limit": "100"
                 ]
                 
                 let headers = [

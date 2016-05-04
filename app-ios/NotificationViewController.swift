@@ -110,13 +110,13 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         let item = self.itemsArray?[indexPath.row]
         cell.textLabel?.text = ""
         cell.detailTextLabel?.text = ""
-        if let text = item?.text
+        if let text = item?.type
         {
             cell.textLabel?.font = UIFont(name: "Avenir", size: 16)
             cell.textLabel?.textColor = UIColor.darkGrayColor()
             cell.textLabel?.text = text
         }
-        if let date = item?.date, uid = item?.uid
+        if let date = item?.created
         {
             if(!date.isEmpty || date != "") {
                 let converted_date = NSDate(timeIntervalSince1970: Double(date)!)
