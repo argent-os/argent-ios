@@ -77,7 +77,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
                 self.view.addSubview(userImageView)
                 
                 // Blurview
-                let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+                let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
                 visualEffectView.frame = CGRectMake(0, 0, width, 330)
                 let blurImageView: UIImageView = UIImageView(frame: CGRectMake(0, 0, width, 330))
                 blurImageView.contentMode = .ScaleAspectFill

@@ -31,20 +31,21 @@ final class AddCustomerViewController: FormViewController {
         tableView.contentInset.top = 10
         tableView.contentInset.bottom = 30
         tableView.contentOffset.y = -10
-        
+        tableView.backgroundColor = UIColor.whiteColor()
+
         // screen width and height:
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
         // UI
-        let addCustomerButton = UIButton(frame: CGRect(x: 0, y: screenHeight*0.91, width: screenWidth, height: 60.0))
-        addCustomerButton.backgroundColor = UIColor(rgba: "#1796fa")
+        let addCustomerButton = UIButton(frame: CGRect(x: 20, y: screenHeight-80, width: screenWidth-40, height: 60.0))
+        addCustomerButton.backgroundColor = UIColor.mediumBlue()
         addCustomerButton.tintColor = UIColor(rgba: "#fff")
         addCustomerButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
         addCustomerButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
         addCustomerButton.setTitle("Add Customer", forState: .Normal)
-        addCustomerButton.layer.cornerRadius = 0
+        addCustomerButton.layer.cornerRadius = 5
         addCustomerButton.layer.masksToBounds = true
         addCustomerButton.clipsToBounds = true
         addCustomerButton.addTarget(self, action: #selector(AddCustomerViewController.addCustomerButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
@@ -56,13 +57,12 @@ final class AddCustomerViewController: FormViewController {
         // Create RowFomers
         
         let emailRow = TextFieldRowFormer<FormTextFieldCell>() {
-//            $0.textField.textColor = .formerColor()
             $0.textField.font = .systemFontOfSize(15)
             $0.textField.autocapitalizationType = .None
             $0.textField.autocorrectionType = .No
             $0.textField.keyboardType = .EmailAddress
             }.configure {
-                $0.placeholder = "Customer email"
+                $0.placeholder = "Customer Email"
             }.onTextChanged { [weak self] in
                 self?.dic["customerEmailKey"] = $0
         }
@@ -82,14 +82,15 @@ final class AddCustomerViewController: FormViewController {
         let createHeader: (() -> ViewFormer) = {
             return CustomViewFormer<FormHeaderFooterView>()
                 .configure {
-                    $0.viewHeight = 20
+                    $0.viewHeight = 0
             }
         }
         
         // Create SectionFormers
         
+        // TODO: Add paymentRow using Stripe payment textfield adding to view
+        
         let titleSection = SectionFormer(rowFormer: emailRow, descriptionRow)
-            .set(headerViewFormer: createHeader())
         
         former.append(sectionFormer: titleSection)
     }

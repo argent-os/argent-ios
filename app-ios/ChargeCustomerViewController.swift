@@ -136,7 +136,7 @@ class ChargeCustomerViewController: UIViewController, UITableViewDelegate, UITab
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Create Charge", style: UIBarButtonItemStyle.Done, target: self, action: #selector(ChargeViewController.createCharge(_:)))
         done.tintColor = UIColor.whiteColor()
-        UIToolbar.appearance().barTintColor = UIColor(rgba: "#157efb")
+        UIToolbar.appearance().barTintColor = UIColor.mediumBlue()
         done.setTitleTextAttributes([
             NSFontAttributeName : UIFont(name: "Avenir-Book", size: 15.0)!,
             NSForegroundColorAttributeName : UIColor(rgba: "#fff")

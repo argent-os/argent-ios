@@ -66,7 +66,7 @@ class ProfileViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSForegroundColorAttributeName : UIColor(rgba: "#157efb"),
+            NSForegroundColorAttributeName : UIColor.mediumBlue(),
             NSFontAttributeName : UIFont(name: "Avenir-Light", size: 18.0)!
         ]
         

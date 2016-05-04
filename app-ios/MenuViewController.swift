@@ -79,7 +79,7 @@ class MenuViewController: UIViewController, CircleMenuDelegate {
     }
     
     override func viewDidAppear(animated: Bool) {
-        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController!.navigationBar.tintColor = UIColor.mediumBlue()
         UIStatusBarStyle.Default
         button.sendActionsForControlEvents(.TouchUpInside)
         if(Int(button.state.rawValue) == 0) {

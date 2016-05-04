@@ -20,6 +20,8 @@ class ChargeViewController: UIViewController {
 
     var currentString = ""
     
+    let runkeeperSwitch = DGRunkeeperSwitch(leftTitle: "Pay", rightTitle: "Request")
+
     @IBAction func indexChanged(sender: DGRunkeeperSwitch) {
         if(sender.selectedIndex == 0) {
             NSUserDefaults.standardUserDefaults().setValue("pay", forKey: "chargeType")
@@ -61,7 +63,7 @@ class ChargeViewController: UIViewController {
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.Done, target: self, action: #selector(ChargeViewController.nextStep(_:)))
         done.tintColor = UIColor.whiteColor()
-        UIToolbar.appearance().barTintColor = UIColor(rgba: "#157efb")
+        UIToolbar.appearance().barTintColor = UIColor.mediumBlue()
         done.setTitleTextAttributes([
             NSFontAttributeName : UIFont(name: "Avenir-Book", size: 15.0)!,
             NSForegroundColorAttributeName : UIColor(rgba: "#fff")
@@ -84,20 +86,17 @@ class ChargeViewController: UIViewController {
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         self.navigationController!.navigationBar.shadowImage = UIImage()
         self.navigationController!.navigationBar.translucent = true
-        self.navigationController!.navigationBar.hidden = true
         self.navigationController!.navigationBar.sendSubviewToBack(self.navigationController!.navigationBar)
         
         // UISwitch
-        let runkeeperSwitch = DGRunkeeperSwitch(leftTitle: "Pay", rightTitle: "Request")
-        runkeeperSwitch.backgroundColor = UIColor(rgba: "#157efb")
+        runkeeperSwitch.backgroundColor = UIColor.mediumBlue()
         runkeeperSwitch.selectedBackgroundColor = .whiteColor()
         runkeeperSwitch.titleColor = .whiteColor()
-        runkeeperSwitch.selectedTitleColor = UIColor(rgba: "#157efb")
+        runkeeperSwitch.selectedTitleColor = UIColor.mediumBlue()
         runkeeperSwitch.titleFont = UIFont(name: "Avenir-Book", size: 13.0)
-        runkeeperSwitch.frame = CGRect(x: 50.0, y: 28.0, width: view.bounds.width - 100.0, height: 30.0)
+        runkeeperSwitch.frame = CGRect(x: 100.0, y: 15.0, width: view.bounds.width - 200.0, height: 30.0)
 //        runkeeperSwitch.addTarget(self, action: #selector(HomeViewController.indexChanged(_:)), forControlEvents: .ValueChanged)
         runkeeperSwitch.autoresizingMask = [.FlexibleWidth]
-        self.view.addSubview(runkeeperSwitch)
         self.view.bringSubviewToFront(runkeeperSwitch)
         if(runkeeperSwitch.selectedIndex == 0) {
             NSUserDefaults.standardUserDefaults().setValue("pay", forKey: "chargeType")
@@ -108,7 +107,12 @@ class ChargeViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         chargeInputView.becomeFirstResponder()
+        self.navigationController?.navigationBar.addSubview(runkeeperSwitch)
         super.viewDidAppear(true)
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        runkeeperSwitch.removeFromSuperview()
     }
     
     //Changing Status Bar
@@ -141,7 +145,7 @@ class ChargeViewController: UIViewController {
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Create Charge", style: UIBarButtonItemStyle.Done, target: self, action: #selector(ChargeViewController.createCharge(_:)))
         done.tintColor = UIColor.whiteColor()
-        UIToolbar.appearance().barTintColor = UIColor(rgba: "#157efb")
+        UIToolbar.appearance().barTintColor = UIColor.mediumBlue()
         done.setTitleTextAttributes([
             NSFontAttributeName : UIFont(name: "Avenir-Book", size: 15.0)!,
             NSForegroundColorAttributeName : UIColor(rgba: "#fff")

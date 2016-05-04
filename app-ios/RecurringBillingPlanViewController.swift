@@ -31,20 +31,21 @@ final class RecurringBillingViewController: FormViewController {
         tableView.contentInset.top = 10
         tableView.contentInset.bottom = 30
         tableView.contentOffset.y = -10
-        
+        tableView.backgroundColor = UIColor.whiteColor()
+
         // screen width and height:
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
         // UI
-        let addPlanButton = UIButton(frame: CGRect(x: 0, y: screenHeight*0.91, width: screenWidth, height: 60.0))
-        addPlanButton.backgroundColor = UIColor(rgba: "#1796fa")
+        let addPlanButton = UIButton(frame: CGRect(x: 20, y: screenHeight-80, width: screenWidth-40, height: 60.0))
+        addPlanButton.backgroundColor = UIColor.mediumBlue()
         addPlanButton.tintColor = UIColor(rgba: "#fff")
         addPlanButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
         addPlanButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
         addPlanButton.setTitle("Add Plan", forState: .Normal)
-        addPlanButton.layer.cornerRadius = 0
+        addPlanButton.layer.cornerRadius = 5
         addPlanButton.layer.masksToBounds = true
         addPlanButton.clipsToBounds = true
         addPlanButton.addTarget(self, action: #selector(RecurringBillingViewController.addPlanButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
@@ -123,14 +124,13 @@ final class RecurringBillingViewController: FormViewController {
         let createHeader: (() -> ViewFormer) = {
             return CustomViewFormer<FormHeaderFooterView>()
                 .configure {
-                    $0.viewHeight = 20
+                    $0.viewHeight = 0
             }
         }
         
         // Create SectionFormers
         
         let titleSection = SectionFormer(rowFormer: planIdRow, planNameRow, planCurrencyRow, planAmountRow, planIntervalRow, planTrialPeriodRow, planStatementDescriptionRow)
-            .set(headerViewFormer: createHeader())
         
         former.append(sectionFormer: titleSection)
     }

@@ -14,7 +14,6 @@
 		300E42311CB7123E004316CF /* CreditCardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E42301CB7123E004316CF /* CreditCardListViewController.swift */; };
 		300E42331CB71362004316CF /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E42321CB71362004316CF /* Card.swift */; };
 		30162DBA1CA9FB2C00438842 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30162DB91CA9FB2C00438842 /* Stock.swift */; };
-		302010C81CAEAE0E007D5E7E /* BalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302010C71CAEAE0E007D5E7E /* BalanceViewController.swift */; };
 		302010CA1CAF3B05007D5E7E /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302010C91CAF3B05007D5E7E /* Notification.swift */; };
 		302010D11CB016ED007D5E7E /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 302010D01CB016ED007D5E7E /* NotificationCenter.framework */; };
 		302010D41CB016ED007D5E7E /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302010D31CB016ED007D5E7E /* TodayViewController.swift */; };
@@ -30,6 +29,7 @@
 		3069990B1CACD6240003B0A6 /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3069990A1CACD6240003B0A6 /* Root.swift */; };
 		306DF0091CD991CB00864CAE /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306DF0081CD991CB00864CAE /* Customer.swift */; };
 		306DF00B1CD9979400864CAE /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306DF00A1CD9979400864CAE /* Plan.swift */; };
+		306DF00F1CDA68AB00864CAE /* RiskProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306DF00E1CDA68AB00864CAE /* RiskProfileViewController.swift */; };
 		307C6A221C7E91A100723E39 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C6A211C7E91A100723E39 /* StoreKit.framework */; };
 		307C6A241C7E91AA00723E39 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C6A231C7E91AA00723E39 /* PassKit.framework */; };
 		30831F551CD0138E00D5D0F4 /* ActivityViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30831F541CD0138E00D5D0F4 /* ActivityViewController2.swift */; };
@@ -230,7 +230,6 @@
 		300E42301CB7123E004316CF /* CreditCardListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreditCardListViewController.swift; path = "app-ios/CreditCardListViewController.swift"; sourceTree = SOURCE_ROOT; };
 		300E42321CB71362004316CF /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Card.swift; path = "app-ios/Card.swift"; sourceTree = SOURCE_ROOT; };
 		30162DB91CA9FB2C00438842 /* Stock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stock.swift; path = "app-ios/Stock.swift"; sourceTree = SOURCE_ROOT; };
-		302010C71CAEAE0E007D5E7E /* BalanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BalanceViewController.swift; path = "app-ios/BalanceViewController.swift"; sourceTree = SOURCE_ROOT; };
 		302010C91CAF3B05007D5E7E /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Notification.swift; path = "app-ios/Notification.swift"; sourceTree = SOURCE_ROOT; };
 		302010CF1CB016ED007D5E7E /* Argent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Argent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		302010D01CB016ED007D5E7E /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
@@ -247,6 +246,7 @@
 		3069990A1CACD6240003B0A6 /* Root.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
 		306DF0081CD991CB00864CAE /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Customer.swift; path = "app-ios/Customer.swift"; sourceTree = SOURCE_ROOT; };
 		306DF00A1CD9979400864CAE /* Plan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Plan.swift; path = "app-ios/Plan.swift"; sourceTree = SOURCE_ROOT; };
+		306DF00E1CDA68AB00864CAE /* RiskProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RiskProfileViewController.swift; path = "app-ios/RiskProfileViewController.swift"; sourceTree = SOURCE_ROOT; };
 		307C6A211C7E91A100723E39 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		307C6A231C7E91AA00723E39 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		30831F541CD0138E00D5D0F4 /* ActivityViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityViewController2.swift; path = "app-ios/ActivityViewController2.swift"; sourceTree = SOURCE_ROOT; };
@@ -460,12 +460,9 @@
 		30128DDE1C8FAC6E009E2EA7 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
+				306DF00C1CDA482200864CAE /* Menu */,
 				30B576891CC30388005BCA5A /* Search */,
-				309E15911CBC29FB00EA95E4 /* Charge */,
-				302010C61CAEAE04007D5E7E /* Balance */,
 				30DB9B751C9CF1E000871253 /* Profile */,
-				30C2DAEC1CA43946003AFD8B /* RecurringBillingPlanViewController.swift */,
-				30C2DAEE1CA43951003AFD8B /* AddCustomerViewController.swift */,
 			);
 			name = Subviews;
 			sourceTree = "<group>";
@@ -483,14 +480,6 @@
 				306DF00A1CD9979400864CAE /* Plan.swift */,
 			);
 			name = Models;
-			sourceTree = "<group>";
-		};
-		302010C61CAEAE04007D5E7E /* Balance */ = {
-			isa = PBXGroup;
-			children = (
-				302010C71CAEAE0E007D5E7E /* BalanceViewController.swift */,
-			);
-			name = Balance;
 			sourceTree = "<group>";
 		};
 		302010D21CB016ED007D5E7E /* app-notificationcenter */ = {
@@ -543,6 +532,24 @@
 				30C2DA7B1CA436CC003AFD8B /* fonts */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		306DF00C1CDA482200864CAE /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				30C2DAEC1CA43946003AFD8B /* RecurringBillingPlanViewController.swift */,
+				30C2DAEE1CA43951003AFD8B /* AddCustomerViewController.swift */,
+				309E15911CBC29FB00EA95E4 /* Charge */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
+		306DF00D1CDA689100864CAE /* Risk */ = {
+			isa = PBXGroup;
+			children = (
+				306DF00E1CDA68AB00864CAE /* RiskProfileViewController.swift */,
+			);
+			name = Risk;
 			sourceTree = "<group>";
 		};
 		30718ADA1C8DF57100CB0EEB /* Tabs */ = {
@@ -834,6 +841,7 @@
 			isa = PBXGroup;
 			children = (
 				30C2DACA1CA4385C003AFD8B /* ProfileMenuViewController.swift */,
+				306DF00D1CDA689100864CAE /* Risk */,
 				30113A2C1CD82CA0002BECF0 /* Header */,
 				309E43BC1CA8ADDE00279D97 /* Web */,
 				308AC9B71C9F79830040EF3C /* Card */,
@@ -1401,7 +1409,6 @@
 				30BB07011CCFE7D20051C9E7 /* BrowserView.swift in Sources */,
 				30831F591CD013B000D5D0F4 /* ActivityViewController4.swift in Sources */,
 				30C2DAD31CA43881003AFD8B /* Profile.swift in Sources */,
-				302010C81CAEAE0E007D5E7E /* BalanceViewController.swift in Sources */,
 				30C2DB091CA439BC003AFD8B /* StarButton.swift in Sources */,
 				30831F571CD013A300D5D0F4 /* ActivityViewController3.swift in Sources */,
 				30831F611CD01B0E00D5D0F4 /* SimpleTransform.swift in Sources */,
@@ -1459,6 +1466,7 @@
 				30C2DAA51CA4374F003AFD8B /* SignupIndividualViewControllerThree.swift in Sources */,
 				30C2DB171CA439F4003AFD8B /* paykloud_iosTests.swift in Sources */,
 				308A348A1CCA803200AAF66F /* History.swift in Sources */,
+				306DF00F1CDA68AB00864CAE /* RiskProfileViewController.swift in Sources */,
 				30C2DAC31CA4383B003AFD8B /* NotificationViewController.swift in Sources */,
 				309E43BE1CA8ADF900279D97 /* WebTermsViewController.swift in Sources */,
 				30C2DB1F1CA43A51003AFD8B /* EditProfileViewController.swift in Sources */,
