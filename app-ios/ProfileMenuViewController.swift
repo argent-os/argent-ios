@@ -17,6 +17,10 @@ class ProfileMenuViewController: UITableViewController {
     
     var plansLabel:UILabel = UILabel()
     
+    var customersArray = [Customer]()
+
+    var plansArray = [Plan]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
@@ -26,41 +30,47 @@ class ProfileMenuViewController: UITableViewController {
         
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
-//        
-//        customersLabel.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-//        customersLabel.textColor = UIColor.whiteColor()
-//        customersLabel.text = "0"
-//        self.tableView.addSubview(customersLabel)
-//        self.tableView.bringSubviewToFront(customersLabel)
-        
+
         self.tableView.tableHeaderView = ParallaxHeaderView.init(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 200));
         
-        User.getProfile({ (user, error) in
-            if error != nil
-            {
-                let alert = UIAlertController(title: "Error", message: "Could not load profile \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
-            }
-            print("got user in completion handler")
-            if user?.picture != nil && user?.picture != "" {
-                let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
-                let userImageView: UIImageView = UIImageView(frame: CGRectMake(screenWidth / 2, 0, 90, 90))
-                userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-                userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 120)
-                userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
-                userImageView.layer.cornerRadius = userImageView.frame.size.height/2
-                userImageView.layer.masksToBounds = true
-                userImageView.clipsToBounds = true
-                userImageView.image = img
-                userImageView.layer.borderWidth = 3
-                userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
-                self.tableView.addSubview(userImageView)
-            } else {
-                
-            }
-        })
+        let customersLabel = UILabel(frame: CGRectMake(25, 110, 75, 70))
+        customersLabel.textAlignment = NSTextAlignment.Center
+        customersLabel.font = UIFont(name: "Avenir-Light", size: 13)
+        customersLabel.numberOfLines = 0
+        customersLabel.textColor = UIColor(rgba: "#fff")
+        self.tableView.tableHeaderView?.addSubview(customersLabel)
+        self.tableView.tableHeaderView?.bringSubviewToFront(customersLabel)
         
+        let plansLabel = UILabel(frame: CGRectMake(screenWidth-100, 110, 75, 70))
+        plansLabel.textAlignment = NSTextAlignment.Center
+        plansLabel.font = UIFont(name: "Avenir-Light", size: 13)
+        plansLabel.numberOfLines = 0
+        plansLabel.text = "0\nplans"
+        plansLabel.textColor = UIColor(rgba: "#fff")
+        self.tableView.tableHeaderView?.addSubview(plansLabel)
+        self.tableView.tableHeaderView?.bringSubviewToFront(plansLabel)
+        
+        loadCustomerList { (customers: [Customer]?, NSError) in
+            print("got customers")
+            if(customers!.count < 2 && customers!.count > 0) {
+                customersLabel.text = String(customers!.count) + "\ncustomers"
+            } else {
+                customersLabel.text = String(customers!.count) + "\ncustomers"
+            }
+            print(customers)
+        }
+        
+        loadPlanList { (plans: [Plan]?, NSError) in
+            print("got plans")
+            if(plans!.count < 2 && plans!.count > 0) {
+                plansLabel.text = String(plans!.count) + "\nplan"
+            } else {
+                plansLabel.text = String(plans!.count) + "\nplans"
+            }
+            print(plans)
+        }
+        
+        loadProfile()
         
         // Add action to share cell to return to activity menu
         shareCell.targetForAction(Selector("share:"), withSender: self)
@@ -70,6 +80,7 @@ class ProfileMenuViewController: UITableViewController {
         let headerView = self.tableView.tableHeaderView as! ParallaxHeaderView
         headerView.scrollViewDidScroll(scrollView)
     }
+    
     
     override func viewDidAppear(animated: Bool) {
         self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
@@ -119,6 +130,66 @@ class ProfileMenuViewController: UITableViewController {
         if let identifier = segue.identifier {
 
         }
+    }
+    
+    func loadProfile() {
+        
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        
+        User.getProfile({ (user, error) in
+            if error != nil
+            {
+                let alert = UIAlertController(title: "Error", message: "Could not load profile \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+            print("got user in completion handler")
+            if user?.picture != nil && user?.picture != "" {
+                let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
+                let userImageView: UIImageView = UIImageView(frame: CGRectMake(screenWidth / 2, 0, 90, 90))
+                userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
+                userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 120)
+                userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+                userImageView.layer.cornerRadius = userImageView.frame.size.height/2
+                userImageView.layer.masksToBounds = true
+                userImageView.clipsToBounds = true
+                userImageView.image = img
+                userImageView.layer.borderWidth = 3
+                userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
+                self.tableView.addSubview(userImageView)
+            } else {
+                
+            }
+        })
+    }
+    
+    func loadCustomerList(completionHandler: ([Customer]?, NSError?) -> ()) {
+        print("load customer list called")
+        Customer.getCustomerList({ (customers, error) in
+            if error != nil {
+                let alert = UIAlertController(title: "Error", message: "Could not load customers \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+            print("got customers")
+            self.customersArray = customers!
+            completionHandler(customers!, error)
+        })
+    }
+    
+    func loadPlanList(completionHandler: ([Plan]?, NSError?) -> ()) {
+        print("load plan list called")
+        Plan.getPlanList({ (plans, error) in
+            if error != nil {
+                let alert = UIAlertController(title: "Error", message: "Could not load plans \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+            print("got plans")
+            self.plansArray = plans!
+            completionHandler(plans!, error)
+        })
     }
     
 }

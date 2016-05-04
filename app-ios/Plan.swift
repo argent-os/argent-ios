@@ -1,8 +1,8 @@
 //
-//  History.swift
-//  argent-ios
+//  Plan.swift
+//  app-ios
 //
-//  Created by Sinan Ulkuatam on 4/22/16.
+//  Created by Sinan Ulkuatam on 5/3/16.
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
 //
 
@@ -10,31 +10,27 @@ import Foundation
 import SwiftyJSON
 import Alamofire
 
-class NotificationItem {
+class Plan {
     
     let id: String
-    let type: String
-    let created: String
     
-    required init(id: String, type: String, created: String) {
+    required init(id: String) {
         self.id = id
-        self.type = type
-        self.created = created
     }
     
-    class func getNotificationList(completionHandler: ([NotificationItem]?, NSError?) -> Void) {
+    class func getPlanList(completionHandler: ([Plan]?, NSError?) -> Void) {
         // request to api to get data as json, put in list and table
-        print("in get notifications/events")
+        print("in get plan list")
         
         // check for token, get profile id based on token and make the request
         if(userAccessToken != nil) {
-            User.getProfile({ (item, error) in
+            User.getProfile({ (user, error) in
                 if error != nil {
                     print(error)
                 }
                 
                 let parameters : [String : AnyObject] = [
-                    "userId": (item?.id)!,
+                    "userId": (user?.id)!,
                     "limit": "100"
                 ]
                 
@@ -43,32 +39,30 @@ class NotificationItem {
                     "Content-Type": "application/json"
                 ]
                 
-                let endpoint = apiUrl + "/v1/stripe/events"
+                let endpoint = apiUrl + "/v1/stripe/plans/list"
                 
                 Alamofire.request(.POST, endpoint, parameters: parameters, encoding: .JSON, headers: headers)
                     .validate().responseJSON { response in
-                        // print(response)
+                        print(response)
                         switch response.result {
                         case .Success:
                             print("success")
                             if let value = response.result.value {
                                 let data = JSON(value)
-                                print("got stripe events data")
+                                print(data)
+                                print("got plan list data")
                                 // print(data)
-                                var notificationItemsArray = [NotificationItem]()
-                                let events = data["events"]["data"].arrayValue
-                                for event in events {
-                                    let id = event["id"].stringValue
-                                    let type = event["type"].stringValue
-                                    let created = event["created"].stringValue
-                                    print(event)
-                                    let item = NotificationItem(id: id, type: type, created: created)
-                                    notificationItemsArray.append(item)
+                                var plansArray = [Plan]()
+                                let plans = data["plans"]["data"].arrayValue
+                                for plan in plans {
+                                    let id = plan["id"].stringValue
+                                    let item = Plan(id: id)
+                                    plansArray.append(item)
                                 }
-                                completionHandler(notificationItemsArray, response.result.error)
+                                completionHandler(plansArray, response.result.error)
                             }
                         case .Failure(let error):
-                            print("failed to get notifications/events")
+                            print("failed to get plan list")
                             print(error)
                         }
                 }

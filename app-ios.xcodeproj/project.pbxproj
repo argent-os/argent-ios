@@ -28,6 +28,8 @@
 		306999051CACD0710003B0A6 /* AccountInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306999041CACD0710003B0A6 /* AccountInterfaceController.swift */; };
 		306999071CACD0890003B0A6 /* SettingsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306999061CACD0890003B0A6 /* SettingsInterfaceController.swift */; };
 		3069990B1CACD6240003B0A6 /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3069990A1CACD6240003B0A6 /* Root.swift */; };
+		306DF0091CD991CB00864CAE /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306DF0081CD991CB00864CAE /* Customer.swift */; };
+		306DF00B1CD9979400864CAE /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306DF00A1CD9979400864CAE /* Plan.swift */; };
 		307C6A221C7E91A100723E39 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C6A211C7E91A100723E39 /* StoreKit.framework */; };
 		307C6A241C7E91AA00723E39 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C6A231C7E91AA00723E39 /* PassKit.framework */; };
 		30831F551CD0138E00D5D0F4 /* ActivityViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30831F541CD0138E00D5D0F4 /* ActivityViewController2.swift */; };
@@ -243,6 +245,8 @@
 		306999041CACD0710003B0A6 /* AccountInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInterfaceController.swift; sourceTree = "<group>"; };
 		306999061CACD0890003B0A6 /* SettingsInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsInterfaceController.swift; sourceTree = "<group>"; };
 		3069990A1CACD6240003B0A6 /* Root.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
+		306DF0081CD991CB00864CAE /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Customer.swift; path = "app-ios/Customer.swift"; sourceTree = SOURCE_ROOT; };
+		306DF00A1CD9979400864CAE /* Plan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Plan.swift; path = "app-ios/Plan.swift"; sourceTree = SOURCE_ROOT; };
 		307C6A211C7E91A100723E39 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		307C6A231C7E91AA00723E39 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		30831F541CD0138E00D5D0F4 /* ActivityViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityViewController2.swift; path = "app-ios/ActivityViewController2.swift"; sourceTree = SOURCE_ROOT; };
@@ -475,6 +479,8 @@
 				300E422C1CB56E10004316CF /* Bank.swift */,
 				300E42321CB71362004316CF /* Card.swift */,
 				308A34891CCA803200AAF66F /* History.swift */,
+				306DF0081CD991CB00864CAE /* Customer.swift */,
+				306DF00A1CD9979400864CAE /* Plan.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1371,6 +1377,7 @@
 				30C2DA9A1CA4373E003AFD8B /* LoginBoxTableViewController.swift in Sources */,
 				30BB07021CCFE7D20051C9E7 /* BrowserViewController.swift in Sources */,
 				30C2DAFD1CA43984003AFD8B /* Plaid.swift in Sources */,
+				306DF00B1CD9979400864CAE /* Plan.swift in Sources */,
 				30C2DA951CA4372D003AFD8B /* PasscodeLockConfiguration.swift in Sources */,
 				309E43C41CA8AE1800279D97 /* WebPrivacyViewController.swift in Sources */,
 				30B576931CC7D1CF005BCA5A /* SearchDetailViewController.swift in Sources */,
@@ -1418,6 +1425,7 @@
 				30C2DAE11CA43909003AFD8B /* FormerInputAccessoryView.swift in Sources */,
 				30C2DB0B1CA439C1003AFD8B /* Paths.swift in Sources */,
 				30BB06F41CCFDED20051C9E7 /* TutorialViewController.swift in Sources */,
+				306DF0091CD991CB00864CAE /* Customer.swift in Sources */,
 				30C2DAA91CA4374F003AFD8B /* SignupViewControllerThree.swift in Sources */,
 				30EB3C6E1CCCFAD80010F130 /* RAMTabBarExtension.swift in Sources */,
 				30C2DAFB1CA4397C003AFD8B /* LeftMenuViewController.swift in Sources */,
