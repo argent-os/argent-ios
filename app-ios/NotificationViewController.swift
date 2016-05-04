@@ -14,7 +14,7 @@ import DGElasticPullToRefresh
 
 class NotificationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var itemsArray:Array<NotificationItem>?
+    var notificationsArray:Array<NotificationItem>?
     @IBOutlet var tableView: UITableView?
     
     var dateFormatter = NSDateFormatter()
@@ -42,8 +42,6 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         tableView!.dg_setPullToRefreshBackgroundColor(tableView!.backgroundColor!)
         
         let screen = UIScreen.mainScreen().bounds
-        
-        
         let screenWidth = screen.size.width
         
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 65))
@@ -64,14 +62,14 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
     func loadNotificationItems() {
         let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
         HUD.showInView(self.view!)
-        NotificationItem.getNotificationList({ (items, error) in
+        NotificationItem.getNotificationList({ (notifications, error) in
             if error != nil
             {
                 let alert = UIAlertController(title: "Error", message: "Could not load notifications \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
-            self.itemsArray = items?.reverse()
+            self.notificationsArray = notifications
             
             HUD.dismiss()
 
@@ -102,12 +100,12 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.itemsArray?.count ?? 0
+        return self.notificationsArray?.count ?? 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-        let item = self.itemsArray?[indexPath.row]
+        let item = self.notificationsArray?[indexPath.row]
         cell.textLabel?.text = ""
         cell.detailTextLabel?.text = ""
         if let text = item?.type
