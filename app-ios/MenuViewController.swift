@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CircleMenu
 
-class MenuViewController: UIViewController {
+class MenuViewController: UIViewController, CircleMenuDelegate {
 
     
     let button = CircleMenu(
@@ -81,6 +81,7 @@ class MenuViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
         UIStatusBarStyle.Default
+        button.sendActionsForControlEvents(.TouchUpInside)
         if(Int(button.state.rawValue) == 0) {
             button.sendActionsForControlEvents(.TouchUpInside)
         }
@@ -102,10 +103,10 @@ class MenuViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: DELEGATE METHODS
+    // MARK: Delegate Methods
     
-    // MARK: CircleMenuDelegate
-    
+    // MARK: CircleMenu Delegate
+
     func circleMenu(circleMenu: CircleMenu, willDisplay button: CircleMenuButton, atIndex: Int) {
         //        button.backgroundColor = items[atIndex].color
         button.backgroundColor = UIColor.darkBlue()
@@ -127,6 +128,16 @@ class MenuViewController: UIViewController {
     func circleMenu(circleMenu: CircleMenu, buttonDidSelected button: CircleMenuButton, atIndex: Int) {
         print("button did selected: \(atIndex)")
         button.backgroundColor = items[atIndex].color
+        
+        if atIndex == 0 {
+            self.performSegueWithIdentifier("chargeView", sender: self)
+        }
+        if atIndex == 1 {
+            self.performSegueWithIdentifier("addPlanView", sender: self)
+        }
+        if atIndex == 2 {
+            self.performSegueWithIdentifier("addCustomerView", sender: self)
+        }
     }
     
     // Statusbar

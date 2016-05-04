@@ -247,7 +247,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j5G-vv-vM2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-888" y="-2784"/>
+            <point key="canvasLocation" x="-1146" y="-3090"/>
         </scene>
         <!--Add Customer View Controller-->
         <scene sceneID="VLc-Zy-WhO">
@@ -266,7 +266,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cGr-Gv-9gd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1225" y="-1848"/>
+            <point key="canvasLocation" x="-973" y="-2222"/>
         </scene>
         <!--Recurring Billing View Controller-->
         <scene sceneID="IfJ-jG-LJ2">
@@ -285,7 +285,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="isA-Ko-UWX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-723" y="-1769"/>
+            <point key="canvasLocation" x="-461" y="-2222"/>
         </scene>
         <!--Passcode Settings View Controller-->
         <scene sceneID="ONW-xd-G0k">
@@ -1734,7 +1734,7 @@ institutions</string>
                     </userDefinedRuntimeAttributes>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="-1318" y="-511"/>
+            <point key="canvasLocation" x="-1670" y="-1651"/>
         </scene>
         <!--Home Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -3348,9 +3348,9 @@ Tap here to view</string>
         <segue reference="GfY-d3-W00"/>
         <segue reference="A1R-09-1HJ"/>
         <segue reference="YDb-8b-gnI"/>
-        <segue reference="kpf-dT-hyx"/>
-        <segue reference="PrX-Yu-xbB"/>
         <segue reference="xTl-cs-ajG"/>
+        <segue reference="E98-FC-SfF"/>
+        <segue reference="o5e-Ut-781"/>
         <segue reference="q4R-jw-ebX"/>
         <segue reference="SFz-vc-0MB"/>
     </inferredMetricsTieBreakers>

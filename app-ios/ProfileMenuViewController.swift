@@ -38,6 +38,7 @@ class ProfileMenuViewController: UITableViewController {
         customersLabel.font = UIFont(name: "Avenir-Light", size: 13)
         customersLabel.numberOfLines = 0
         customersLabel.textColor = UIColor(rgba: "#fff")
+        customersLabel.text = "0\ncustomers"
         self.tableView.tableHeaderView?.addSubview(customersLabel)
         self.tableView.tableHeaderView?.bringSubviewToFront(customersLabel)
         
@@ -47,6 +48,7 @@ class ProfileMenuViewController: UITableViewController {
         plansLabel.numberOfLines = 0
         plansLabel.text = "0\nplans"
         plansLabel.textColor = UIColor(rgba: "#fff")
+        plansLabel.text = "0\nplans"
         self.tableView.tableHeaderView?.addSubview(plansLabel)
         self.tableView.tableHeaderView?.bringSubviewToFront(plansLabel)
         
