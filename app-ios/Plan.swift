@@ -18,6 +18,71 @@ class Plan {
         self.id = id
     }
     
+    class func createPlan(dic: Dictionary<String, String>) {
+        if(userAccessToken != nil) {
+            User.getProfile({ (user, error) in
+                if error != nil {
+                    print(error)
+                }
+                
+                print("add plan tapped")
+                // Post plan using Alamofire
+                let plan_id = dic["planIdKey"]
+                let plan_name = dic["planNameKey"]
+                let plan_currency = dic["planCurrencyKey"]
+                let plan_amount = dic["planAmountKey"]
+                let plan_interval = dic["planIntervalKey"]
+                let plan_trial_period = dic["planTrialPeriodKey"]
+                let plan_statement_desc = dic["planStatementDescriptionKey"]
+                
+                print("plan id is", plan_id)
+                
+                let headers = [
+                    "Authorization": "Bearer " + (userAccessToken as! String),
+                    "Content-Type": "application/json"
+                ]
+                let parameters : [String : AnyObject] = [
+                    "id": plan_id!,
+                    "amount": plan_amount!,
+                    "interval": plan_interval!,
+                    "name": plan_name!,
+                    "currency": plan_currency!
+                ]
+                
+                let endpoint = apiUrl + "/v1/stripe/" + (user?.id)! + "/plans"
+                
+                Alamofire.request(.POST, endpoint,
+                    parameters: parameters,
+                    encoding:.JSON,
+                    headers: headers)
+                    .responseJSON { response in
+                        print(response.request) // original URL request
+                        print(response.response?.statusCode) // URL response
+                        print(response.data) // server data
+                        print(response.result) // result of response serialization
+                        
+                        // go to main view
+                        if(response.response?.statusCode == 200) {
+                            print("green light")
+                        } else {
+                            print("red light")
+                        }
+                        
+                        switch response.result {
+                        case .Success:
+                            if let value = response.result.value {
+                                let json = JSON(value)
+                                print(json)
+                                
+                            }
+                        case .Failure(let error):
+                            print(error)
+                        }
+                }
+            })
+        }
+    }
+
     class func getPlanList(completionHandler: ([Plan]?, NSError?) -> Void) {
         // request to api to get data as json, put in list and table
         print("in get plan list")

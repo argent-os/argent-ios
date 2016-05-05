@@ -136,75 +136,12 @@ final class RecurringBillingViewController: FormViewController {
     }
     
     func addPlanButtonTapped(sender: AnyObject) {
-        
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
-        HUD.showInView(self.view!)
-        HUD.textLabel.text = "Creating Plan"
-        HUD.dismissAfterDelay(0.5)
-        
-        print("add plan tapped")
-        // Post plan using Alamofire
-        let plan_id = dic["planIdKey"]
-        let plan_name = dic["planNameKey"]
-        let plan_currency = dic["planCurrencyKey"]
-        let plan_amount = dic["planAmountKey"]
-        let plan_interval = dic["planIntervalKey"]
-        let plan_trial_period = dic["planTrialPeriodKey"]
-        let plan_statement_desc = dic["planStatementDescriptionKey"]
-        
-        print("plan id is", plan_id)
-        
-        // TODO: Make secret key call from API, find user by ID
-        let stripeKey = userData!["user"]["stripe"]["secretKey"].stringValue
-        
-        let headers = [
-            "Authorization": "Bearer " + stripeKey,
-            "Content-Type": "application/x-www-form-urlencoded"
-        ]
-        let parameters : [String : AnyObject] = [
-            "id": plan_id!,
-            "amount": plan_amount!,
-            "interval": plan_interval!,
-            "name": plan_name!,
-            "currency": plan_currency!
-        ]
-        
-        Alamofire.request(.POST, stripeApiUrl + "/v1/plans",
-            parameters: parameters,
-            encoding:.URL,
-            headers: headers)
-            .responseJSON { response in
-                print(response.request) // original URL request
-                print(response.response?.statusCode) // URL response
-                print(response.data) // server data
-                print(response.result) // result of response serialization
-                
-                // go to main view
-                if(response.response?.statusCode == 200) {
-                    print("green light")
-                } else {
-                    print("red light")
-                }
-                
-                switch response.result {
-                case .Success:
-                    if let value = response.result.value {
 
-                        HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
-
-                        let json = JSON(value)
-                        print(json)
-                        self.dismissKeyboard()
-                        
-                    }
-                case .Failure(let error):
-                    HUD.indicatorView = JGProgressHUDErrorIndicatorView()
-                    print(error)
-                }
-        }
+        // add plan call
+        
+        Plan.createPlan(dic)
         
     }
-    
     
     //Calls this function when the tap is recognized.
     func dismissKeyboard() {
