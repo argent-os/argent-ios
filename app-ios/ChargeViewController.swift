@@ -11,6 +11,8 @@ import Foundation
 import DGRunkeeperSwitch
 import Stripe
 import JSSAlertView
+import MZFormSheetPresentationController
+import QRCode
 
 class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate {
     
@@ -63,6 +65,25 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate {
         chargeInputView.becomeFirstResponder()
         self.view.addSubview(chargeInputView)
         
+        // Card text
+        paymentTextField.frame = CGRectMake(20, height*0.35, screenWidth - 40, 44)
+        paymentTextField.delegate = self
+        paymentTextField.borderWidth = 1
+        paymentTextField.borderColor = UIColor.lightGrayColor()
+        // adds a manual credit card entry textfield
+        self.view.addSubview(paymentTextField)
+        
+        // Pay with bitcoin button
+        let payBitcoinButton = UIButton(frame: CGRect(x: 20, y: screenHeight*0.42, width: screenWidth-40, height: 60.0))
+        payBitcoinButton.backgroundColor = UIColor.clearColor()
+        payBitcoinButton.tintColor = UIColor.mediumBlue()
+        payBitcoinButton.setTitleColor(UIColor.mediumBlue(), forState: .Normal)
+        payBitcoinButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
+        payBitcoinButton.setTitle("Pay with Bitcoin", forState: .Normal)
+        payBitcoinButton.clipsToBounds = true
+        payBitcoinButton.addTarget(self, action: #selector(ChargeViewController.payWithBitcoin(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        view.addSubview(payBitcoinButton)
+        
         // Pay button
         let payButton = UIButton(frame: CGRect(x: 20, y: screenHeight-80, width: screenWidth-40, height: 60.0))
         payButton.backgroundColor = UIColor.mediumBlue()
@@ -75,14 +96,6 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate {
         payButton.clipsToBounds = true
         payButton.addTarget(self, action: #selector(ChargeViewController.payMerchant(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(payButton)
-        
-        // Card text
-        paymentTextField.frame = CGRectMake(20, height*0.40, screenWidth - 40, 44)
-        paymentTextField.delegate = self
-        paymentTextField.borderWidth = 1
-        paymentTextField.borderColor = UIColor.lightGrayColor()
-        // adds a manual credit card entry textfield
-        self.view.addSubview(paymentTextField)
         
         currencyFormatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
         currencyFormatter.currencyCode = NSLocale.currentLocale().displayNameForKey(NSLocaleCurrencySymbol, value: NSLocaleCurrencyCode)
@@ -141,6 +154,40 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate {
         
         // pay merchant
         showSuccessAlert()
+    }
+    
+    func payWithBitcoin(sender: AnyObject) {
+        let navigationController = self.storyboard!.instantiateViewControllerWithIdentifier("qrFormSheetController") as! UINavigationController
+        let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
+        
+        // Initialize and style the terms and conditions modal
+        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
+        formSheetController.presentationController?.contentViewSize = CGSizeMake(250, 250)
+        formSheetController.presentationController?.shouldUseMotionEffect = true
+        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor()
+        formSheetController.presentationController?.containerView?.sizeToFit()
+        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
+        formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
+        formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.Fade
+        formSheetController.contentViewCornerRadius = 8
+        formSheetController.allowDismissByPanningPresentedView = true
+        formSheetController.interactivePanGestureDismissalDirection = .All;
+        
+        // Blur will be applied to all MZFormSheetPresentationControllers by default
+        MZFormSheetPresentationController.appearance().shouldApplyBackgroundBlurEffect = true
+        
+        let presentedViewController = navigationController.viewControllers.first as! BitcoinUriViewController
+        // get bitcoin receiver through api call, put url in response below
+        presentedViewController.bitcoinUri = "http://www.bitcoin.com"
+        
+        formSheetController.willPresentContentViewControllerHandler = { vc in
+            let navigationController = vc as! UINavigationController
+            let presentedViewController = navigationController.viewControllers.first as! BitcoinUriViewController
+            presentedViewController.view?.layoutIfNeeded()
+        }
+
+        
+        self.presentViewController(formSheetController, animated: true, completion: nil)
     }
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation

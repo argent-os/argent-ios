@@ -44,6 +44,7 @@ target 'app-ios' do
 	pod 'FlagKit'
 	pod 'Advance'
 	pod 'DGElasticPullToRefresh'
+	pod 'QRCode'
 	#pod 'DOFavoriteButton'
 
 	post_install do |installer|
