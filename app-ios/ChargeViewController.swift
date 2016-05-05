@@ -8,15 +8,13 @@
 
 import UIKit
 import Foundation
-import DGRunkeeperSwitch
 import Stripe
 import JSSAlertView
 import MZFormSheetPresentationController
 import QRCode
+import CWStatusBarNotification
 
 class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate {
-    
-    @IBOutlet weak var switchBal: DGRunkeeperSwitch?
     
     let chargeInputView = UITextField()
 
@@ -24,19 +22,10 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate {
 
     var currentString = ""
     
-    let runkeeperSwitch = DGRunkeeperSwitch(leftTitle: "Pay", rightTitle: "Request")
-
     var paymentTextField = STPPaymentCardTextField()
     
-    @IBAction func indexChanged(sender: DGRunkeeperSwitch) {
-        if(sender.selectedIndex == 0) {
-            NSUserDefaults.standardUserDefaults().setValue("pay", forKey: "chargeType")
-        }
-        if(sender.selectedIndex == 1) {
-            NSUserDefaults.standardUserDefaults().setValue("request", forKey: "chargeType")
-        }
-    }
-    
+    let notification = CWStatusBarNotification()
+
     func textFieldDidChange(textField: UITextField) {
         let text = textField.text!.stringByReplacingOccurrencesOfString(currencyFormatter.currencySymbol, withString: "").stringByReplacingOccurrencesOfString(currencyFormatter.groupingSeparator, withString: "").stringByReplacingOccurrencesOfString(currencyFormatter.decimalSeparator, withString: "")
         textField.text = currencyFormatter.stringFromNumber((text as NSString).doubleValue / 100.0)
@@ -72,7 +61,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate {
         payWithCardButton.tintColor = UIColor.mediumBlue()
         payWithCardButton.setTitleColor(UIColor.mediumBlue(), forState: .Normal)
         payWithCardButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
-        payWithCardButton.layer.borderColor = UIColor.mediumBlue().CGColor
+        payWithCardButton.layer.borderColor = UIColor.mediumBlue().colorWithAlphaComponent(0.5).CGColor
         payWithCardButton.layer.borderWidth = 1
         payWithCardButton.layer.cornerRadius = 5
         payWithCardButton.layer.masksToBounds = true
@@ -87,7 +76,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate {
         payWithBitcoinButton.tintColor = UIColor.mediumBlue()
         payWithBitcoinButton.setTitleColor(UIColor.mediumBlue(), forState: .Normal)
         payWithBitcoinButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
-        payWithBitcoinButton.layer.borderColor = UIColor.mediumBlue().CGColor
+        payWithBitcoinButton.layer.borderColor = UIColor.mediumBlue().colorWithAlphaComponent(0.5).CGColor
         payWithBitcoinButton.layer.borderWidth = 1
         payWithBitcoinButton.layer.cornerRadius = 5
         payWithBitcoinButton.layer.masksToBounds = true
@@ -129,32 +118,11 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate {
         self.view.addSubview(navBar);
         let navItem = UINavigationItem(title: "Argent POS");
         navBar.setItems([navItem], animated: false);
-        
-        // UISwitch
-        runkeeperSwitch.backgroundColor = UIColor.mediumBlue()
-        runkeeperSwitch.selectedBackgroundColor = .whiteColor()
-        runkeeperSwitch.titleColor = .whiteColor()
-        runkeeperSwitch.selectedTitleColor = UIColor.mediumBlue()
-        runkeeperSwitch.titleFont = UIFont(name: "Avenir-Book", size: 13.0)
-        runkeeperSwitch.frame = CGRect(x: 100.0, y: 15.0, width: view.bounds.width - 200.0, height: 30.0)
-//        runkeeperSwitch.addTarget(self, action: #selector(HomeViewController.indexChanged(_:)), forControlEvents: .ValueChanged)
-        runkeeperSwitch.autoresizingMask = [.FlexibleWidth]
-//        self.view.bringSubviewToFront(runkeeperSwitch)
-        if(runkeeperSwitch.selectedIndex == 0) {
-            NSUserDefaults.standardUserDefaults().setValue("pay", forKey: "chargeType")
-        } else {
-            NSUserDefaults.standardUserDefaults().setValue("request", forKey: "chargeType")
-        }
     }
     
     override func viewDidAppear(animated: Bool) {
         chargeInputView.becomeFirstResponder()
-//        self.navigationController?.navigationBar.addSubview(runkeeperSwitch)
         super.viewDidAppear(true)
-    }
-    
-    override func viewDidDisappear(animated: Bool) {
-        runkeeperSwitch.removeFromSuperview()
     }
     
     //Changing Status Bar
@@ -165,7 +133,10 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate {
     func payMerchant(sender: AnyObject) {
         // Function for toolbar button
         // pay merchant
-        showSuccessAlert()
+        showStatusNotification()
+        Timeout(3.2) {
+            self.showSuccessAlert()
+        }
         chargeInputView.text = ""
         paymentTextField.clear()
     }
@@ -313,6 +284,21 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate {
             color: customColor,
             iconImage: customIcon)
         alertView.setTextTheme(.Light) // can be .Light or .Dark
+    }
+    
+    func showStatusNotification() {
+        setupNotification()
+        notification.displayNotificationWithMessage("Paying merchant", forDuration: 2.5)
+    }
+    
+    func setupNotification() {
+        let inStyle = CWNotificationAnimationStyle.Top
+        let outStyle = CWNotificationAnimationStyle.Top
+        let notificationStyle = CWNotificationStyle.NavigationBarNotification
+        self.notification.notificationLabelBackgroundColor = UIColor.mediumBlue()
+        self.notification.notificationAnimationInStyle = inStyle
+        self.notification.notificationAnimationOutStyle = outStyle
+        self.notification.notificationStyle = notificationStyle
     }
     
     func paymentCardTextFieldDidChange(textField: STPPaymentCardTextField) {
