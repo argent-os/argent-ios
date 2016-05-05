@@ -281,8 +281,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
          PKPaymentAuthorizationViewController knows when and how to update its UI.
          */
         handlePaymentAuthorizationWithPayment(payment) { (PKPaymentAuthorizationStatus) -> () in
-            print(PKPaymentAuthorizationStatus)
-            print(payment)
+            // close pay modal
             controller.dismissViewControllerAnimated(true, completion: nil)
         }
     }
@@ -322,29 +321,14 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             encoding:.JSON,
             headers: headers)
             .responseJSON { response in
-                print(response.request) // original URL request
-                print(response.response?.statusCode) // URL response
-                print(response.data) // server data
-                print(response.result) // result of response serialization
-                
-                // go to main view
-                if(response.response?.statusCode == 200) {
-                    print("green light")
-                } else {
-                    print("red light")
-                }
-                
                 switch response.result {
                 case .Success:
                     if let value = response.result.value {
                         let json = JSON(value)
-                        print("success in payment authorization")
                         print(PKPaymentAuthorizationStatus.Success)
                         completion(PKPaymentAuthorizationStatus.Success)
-                        print(json)
                     }
                 case .Failure(let error):
-                    print("error occured")
                     print(PKPaymentAuthorizationStatus.Failure)
                     completion(PKPaymentAuthorizationStatus.Failure)
                     print(error)
@@ -353,7 +337,6 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
     }
     
     func paymentAuthorizationViewControllerDidFinish(controller: PKPaymentAuthorizationViewController) {
-        print("payment auth finished")
         dismissViewControllerAnimated(true, completion: nil)
         controller.dismissViewControllerAnimated(true, completion: nil)
     }

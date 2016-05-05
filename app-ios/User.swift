@@ -33,11 +33,8 @@ class User {
     class func getProfile(completionHandler: (User?, NSError?) -> Void) {
         // request to api to get account data as json, put in list and table
         // curl -X GET -i -H "Content-Type: application/json" -d '{"access_token": ""}' http://192.168.1.232:5001/v1/profile
-         print("getting user profile in model")
 
         let parameters : [String : AnyObject] = [:]
-        
-        print("authorization token is", userAccessToken)
         
         let headers = [
             "Authorization": "Bearer " + (userAccessToken as! String),
@@ -50,12 +47,9 @@ class User {
             .responseJSON { response in
                 switch response.result {
                 case .Success:
-                    print("success")
                     if let value = response.result.value {
                         let data = JSON(value)
-                        print("got user object in model")
                         let profile = data
-                        // print(data["profile"].arrayValue)
                             let id = profile["_id"].stringValue
                             let username = profile["username"].stringValue
                             let email = profile["email"].stringValue
@@ -63,7 +57,6 @@ class User {
                             let last_name = profile["last_name"].stringValue
                             let cust_id = profile["cust_id"].stringValue
                             let picture = profile["picture"]["secureUrl"].stringValue
-                            print("user picture is ", picture)
                         let item = User(id: id, username: username, email: email, first_name: first_name, last_name: last_name, cust_id: cust_id, picture: picture)
                             completionHandler(item, response.result.error)
                     }
@@ -87,12 +80,10 @@ class User {
             .responseJSON { response in
                 switch response.result {
                 case .Success:
-                    print("success")
                     if let value = response.result.value {
                         let data = JSON(value)
                         var userItemsArray = [User]()
                         let accounts = data["users"].arrayValue
-                        // print(data["users"].arrayValue)
                         for jsonItem in accounts {
                             let id = ""
                             let username = jsonItem["username"].stringValue

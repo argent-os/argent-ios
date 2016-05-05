@@ -45,16 +45,14 @@ class CreditCardAccountViewController: UIViewController, CardIOPaymentViewContro
     
     func didScanCard(cardInfo: CardIOCreditCardInfo) {
         // The full card number is available as info.cardNumber, but don't log that!
-        print("Received card info. Number: %@, expiry: %02i/%i, cvv: %@.", cardInfo.redactedCardNumber, cardInfo.expiryMonth, cardInfo.expiryYear, cardInfo.cvv);
+        // print("Received card info. Number: %@, expiry: %02i/%i, cvv: %@.", cardInfo.redactedCardNumber, cardInfo.expiryMonth, cardInfo.expiryYear, cardInfo.cvv);
         // Use the card info...
-        // Post to Stripe
+        // Post to Stripe, make API call here
     }
     
     func userDidProvideCreditCardInfo(cardInfo: CardIOCreditCardInfo!, inPaymentViewController paymentViewController: CardIOPaymentViewController!) {
-        print("user did provide info")
         if let info = cardInfo {
             let str = NSString(format: "Received card info.\n Number: %@\n expiry: %02lu/%lu\n cvv: %@.", info.redactedCardNumber, info.expiryMonth, info.expiryYear, info.cvv)
-            print(str)
             // resultLabel.text = str as String
             // Post to Stripe
 
@@ -73,25 +71,10 @@ class CreditCardAccountViewController: UIViewController, CardIOPaymentViewContro
                     "accountId": accountId
                 ]
 
-                // print(userData)
-                print(parameters)
                 let endpoint = apiUrl + "/v1/stripe/account/cards/";
                 
                 Alamofire.request(.POST, endpoint, parameters: parameters, encoding: .JSON, headers: headers)
                     .responseJSON { response in
-                        // print(response)
-                         print(response.request) // original URL request
-                         print(response.response?.statusCode) // URL response
-                         print(response.data) // server data
-                         print(response.result) // result of response serialization
-                        
-                        // go to main view
-                        if(response.response?.statusCode == 200) {
-                            print("green light")
-                        } else {
-                            print("red light")
-                        }
-                        
                         switch response.result {
                         case .Success:
                             if let value = response.result.value {

@@ -145,13 +145,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
         HUD.showInView(graph)
         
-        // Check for user logged in key
-        print("user access token")
-        print(userAccessToken)
-        
         if((userAccessToken) != nil) {
-            print("token retrieved! ", userAccessToken)
-            
             // Get stripe data
             loadStripe({ (balance, err) in
                 
@@ -191,7 +185,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             
             // Get user account history
             loadAccountHistory { (historyArr, error) in
-                print("loading account history")
                 if error != nil {
                     print(error)
                 }
@@ -200,8 +193,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             
             // Get user profile
             loadUserProfile { (user, error) in
-                print("got user in completion handler")
-                print(user)
                 // let img = UIImage(named: "Logo")
                 if user?.picture != nil && user?.picture != "" {
                     let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
@@ -386,9 +377,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         loadingView.tintColor = UIColor.whiteColor()
         tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
-                self?.tableView.dg_stopLoading()
-                self?.loadAccountHistory({ (_: [History]?, NSError) in
-                    print("reloaded")
+                    self?.tableView.dg_stopLoading()
+                    self?.loadAccountHistory({ (_: [History]?, NSError) in
                 })
             })
             }, loadingView: loadingView)
@@ -408,17 +398,14 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     }
     
     func loadAccountHistory(completionHandler: ([History]?, NSError?) -> ()) {
-        print("load account history called")
-        History.getAccountHistory({ (items, error) in
+        History.getAccountHistory({ (transactions, error) in
             if error != nil {
                 let alert = UIAlertController(title: "Error", message: "Could not load history \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
-            print("got history")
-            print(items)
-            self.accountHistoryArray = items
-            completionHandler(items!, error)
+            self.accountHistoryArray = transactions
+            completionHandler(transactions!, error)
             self.tableView.reloadData()
         })
     }
@@ -432,24 +419,21 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
-            print("got balances")
             self.balance = balance!
             completionHandler(balance!, error)
         })
     }
     
     func loadUserProfile(completionHandler: (User?, NSError?) -> ()) {
-        User.getProfile({ (item, error) in
+        User.getProfile({ (user, error) in
             if error != nil
             {
                 let alert = UIAlertController(title: "Error", message: "Could not load profile \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
-            print("got user")
-            print(item)
-            self.user = item!
-            completionHandler(item!, error)
+            self.user = user!
+            completionHandler(user!, error)
         })
     }
 
@@ -469,7 +453,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         let loginVC = sb.instantiateViewControllerWithIdentifier("LoginViewController")
         let root = UIApplication.sharedApplication().keyWindow?.rootViewController
         root!.presentViewController(loginVC, animated: false, completion: { () -> Void in
-            print("success logout")
         })
     }
     
@@ -477,7 +460,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         NSUserDefaults.standardUserDefaults().setBool(false,forKey:"userLoggedIn");
         NSUserDefaults.standardUserDefaults().synchronize();
         userData = nil
-        print(NSUserDefaults.valueForKey("userLoggedIn"))
 
         let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
         HUD.textLabel.text = "Logging out"

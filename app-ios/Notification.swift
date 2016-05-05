@@ -24,7 +24,6 @@ class NotificationItem {
     
     class func getNotificationList(completionHandler: ([NotificationItem]?, NSError?) -> Void) {
         // request to api to get data as json, put in list and table
-        print("in get notifications/events")
         
         // check for token, get profile id based on token and make the request
         if(userAccessToken != nil) {
@@ -47,28 +46,22 @@ class NotificationItem {
                 
                 Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .validate().responseJSON { response in
-                        // print(response)
                         switch response.result {
                         case .Success:
-                            print("success")
                             if let value = response.result.value {
                                 let data = JSON(value)
-                                print("got stripe events data")
-                                // print(data)
                                 var notificationItemsArray = [NotificationItem]()
                                 let events = data["events"]["data"].arrayValue
                                 for event in events {
                                     let id = event["id"].stringValue
                                     let type = event["type"].stringValue
                                     let created = event["created"].stringValue
-                                    print(event)
                                     let item = NotificationItem(id: id, type: type, created: created)
                                     notificationItemsArray.append(item)
                                 }
                                 completionHandler(notificationItemsArray, response.result.error)
                             }
                         case .Failure(let error):
-                            print("failed to get notifications/events")
                             print(error)
                         }
                 }

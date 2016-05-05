@@ -52,21 +52,14 @@ class Card {
                 
                 let endpoint = apiUrl + "/v1/stripe/" + (user?.id)! + "account/cards/"
                 
-                print(parameters)
-                
                 Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .validate().responseJSON { response in
-                        print(response)
                         switch response.result {
                         case .Success:
-                            print("success")
                             if let value = response.result.value {
                                 let data = JSON(value)
-                                print("got credit card data")
-                                // print(data)
                                 var cardItemsArray = [Card]()
                                 let cards = data["cards"]["data"].arrayValue
-                                print(data["cards"]["data"].arrayValue)
                                 for jsonItem in cards {
                                     let brand = jsonItem["brand"].stringValue
                                     let country = jsonItem["country"].stringValue

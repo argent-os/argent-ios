@@ -50,27 +50,9 @@ final class BrowserViewController: UIViewController {
     
     let browserView = BrowserView(frame: CGRect.zero)
     
-    //required init(viewControllers: [TutorialViewController]) {
-    //
-    //    self.viewControllers = viewControllers
-    //
-    //    super.init(nibName: nil, bundle: nil)
-    //
-    //    var cfg = SpringConfiguration()
-    //   cfg.threshold = 0.001
-    //    cfg.tension = 60.0
-    //    cfg.damping = 26.0
-    //    blurSpring.configuration = cfg
-    //}
-    
-    //required init?(coder aDecoder: NSCoder) {
-    //    fatalError("init(coder:) has not been implemented")
-    //}
-    
     // Return to auth view func
     func goToAuth() {
         // Normally identifiers are started with capital letters, exception being authViewController, make sure UIStoryboard name is Auth, not Main
-        print("going to auth")
         let viewController:AuthViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateViewControllerWithIdentifier("authViewController") as! AuthViewController
         self.presentViewController(viewController, animated: true, completion: nil)
     }

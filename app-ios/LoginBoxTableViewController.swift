@@ -117,11 +117,9 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
         let password = passwordTextField.text
         
         let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
-//        HUD.textLabel.text = "Logging in"
+        // HUD.textLabel.text = "Logging in"
         HUD.showInView(self.view!)
         HUD.dismissAfterDelay(0.3)
-        
-        print("login button tapped")
         
         // check for empty fields
         if(email!.isEmpty) {
@@ -140,24 +138,21 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
             ],
             encoding:.JSON)
             .progress { bytesWritten, totalBytesWritten, totalBytesExpectedToWrite in
-                print(totalBytesWritten)
-                print(totalBytesExpectedToWrite)
+                // print(totalBytesWritten)
+                // print(totalBytesExpectedToWrite)
                 
                 // This closure is NOT called on the main queue for performance
                 // reasons. To update your ui, dispatch to the main queue.
                 dispatch_async(dispatch_get_main_queue()) {
-                    print("Total bytes written on main queue: \(totalBytesWritten)")
+                    // print("Total bytes written on main queue: \(totalBytesWritten)")
                 }
             }
             .responseJSON { response in
                 // go to main view
-                print("login pressed")
                 if(response.response?.statusCode == 200) {
                     NSUserDefaults.standardUserDefaults().setBool(true,forKey:"userLoggedIn")
                     NSUserDefaults.standardUserDefaults().synchronize()
-                    print("green light")
                 } else {
-                    print("red light")
                     self.displayDefaultErrorAlertMessage("Failed to login, please check username/email and password are correct");
                 }
                 
@@ -165,8 +160,6 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
                 case .Success:
                     if let value = response.result.value {
                         let json = JSON(value)
-                        // print("User Data: \(userData)")
-                        // assign userData to self, access globally
                         userData = json
                         
                         // Send access token and Stripe key to Apple Watch
@@ -192,20 +185,13 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
                         }
                         
                         let token = userData!["token"].stringValue
-                        // set the user access token
-                        print("token is", token)
-                        // Login is successful
-                        print("is user logged in", NSUserDefaults.standardUserDefaults().boolForKey("userLoggedIn"))
+
                         NSUserDefaults.standardUserDefaults().setValue(token, forKey: "userAccessToken")
                         NSUserDefaults.standardUserDefaults().synchronize()
-                        print("user token is", NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken"))
-                        
-                        print("logged in user is", userData)
                         
                         // go to main view
                         self.performSegueWithIdentifier("homeView", sender: self);
                         
-                        //print(json)
                         self.dismissKeyboard()
                         
                     }
@@ -250,7 +236,6 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
     // Allow use of next and join on keyboard
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         let nextTag: Int = textField.tag + 1
-        print(nextTag)
         let nextResponder: UIResponder? = textField.superview?.superview?.viewWithTag(nextTag)
         if let nextR = nextResponder
         {

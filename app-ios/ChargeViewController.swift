@@ -25,11 +25,9 @@ class ChargeViewController: UIViewController {
     @IBAction func indexChanged(sender: DGRunkeeperSwitch) {
         if(sender.selectedIndex == 0) {
             NSUserDefaults.standardUserDefaults().setValue("pay", forKey: "chargeType")
-            print("pay selected")
         }
         if(sender.selectedIndex == 1) {
             NSUserDefaults.standardUserDefaults().setValue("request", forKey: "chargeType")
-            print("request selected")
         }
     }
     

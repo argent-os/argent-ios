@@ -21,7 +21,6 @@ class GlanceController: WKInterfaceController {
     func session(session: WCSession, didReceiveApplicationContext applicationContext: [String : AnyObject]) {
         print("\(applicationContext)")
         dispatch_async(dispatch_get_main_queue(), {
-            print("update ui")
             //update UI here
             // Get data using Alamofire, data passed from login
             // let accountId = applicationContext["account_id"]!.stringValue

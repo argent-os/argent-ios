@@ -68,7 +68,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         }
         if shortcutItem.type == "com.argentapp.ios.make-payment" {
-            print("sending to add customer view controller")
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let chargeVC = sb.instantiateViewControllerWithIdentifier("ChargeViewController")
             let root = UIApplication.sharedApplication().keyWindow?.rootViewController
@@ -154,7 +153,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .stringByReplacingOccurrencesOfString( " ", withString: "" ) as String
         
         KeychainSwift().set(deviceTokenString, forKey: "deviceToken")
-        print( deviceTokenString )
+        // print( deviceTokenString )
     }
     
     func applicationWillResignActive(application: UIApplication) {

@@ -69,7 +69,6 @@ class BankDetailViewController: UIViewController, UITextFieldDelegate {
     @IBAction func cancel(sender: AnyObject) {
         if((self.presentingViewController) != nil){
             self.dismissViewControllerAnimated(true, completion: nil)
-            print("cancel")
         }
     }
     
@@ -84,7 +83,6 @@ class BankDetailViewController: UIViewController, UITextFieldDelegate {
         // Dark keyboard for view
         UITextField.appearance().keyboardAppearance = .Dark
         
-        print("color is", color)
         view.backgroundColor = color
         
         addToolbarButton()
@@ -96,8 +94,6 @@ class BankDetailViewController: UIViewController, UITextFieldDelegate {
         setNeedsStatusBarAppearanceUpdate()
         UIStatusBarStyle.LightContent
         self.navigationController?.navigationBar.tintColor = UIColor.lightGrayColor()
-
-        print("bank is ", longBankName)
         
         let bankLogo = logo
         let bankImage = UIImage(named: bankLogo!)
@@ -154,7 +150,6 @@ class BankDetailViewController: UIViewController, UITextFieldDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "bankListView") {
-            print("going to bank list view")
             let rootViewController = (self.storyboard?.instantiateViewControllerWithIdentifier("RootViewController"))! as UIViewController
             self.presentViewController(rootViewController, animated: true, completion: nil)
             
@@ -195,10 +190,8 @@ class BankDetailViewController: UIViewController, UITextFieldDelegate {
     
     func login(sender: AnyObject) {
         // Function for toolbar button
-        print("logging in")
  
         let institution = getInstitution(bankName!)
-        print(institution)
         if idTextField.text != "" || passwordTextField.text != "" {
             let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
             HUD.showInView(self.view!)
@@ -206,15 +199,14 @@ class BankDetailViewController: UIViewController, UITextFieldDelegate {
             HUD.textLabel.text = "Authenticating to " + longBankName!
             HUD.dismissAfterDelay(1)
             PS_addUser(.Connect, username: idTextField.text!, password: passwordTextField.text!, pin: "", institution: institution, completion: { (response, accessToken, mfaType, mfa, accounts, transactions, error) in
-                    print("success")
-                    print(accessToken)
                     self.updateUserToken(accessToken)
                     // post the accesstoken to the user api
+                    // print(accessToken)
                     // print(mfaType)
                     // print(mfa)
                     // print(response!)
                     // print(transactions!)
-                    print(accounts)
+                    // print(accounts)
                     HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
                     HUD.textLabel.text = "Bank connected!"
                     HUD.dismissAfterDelay(2)
@@ -230,10 +222,7 @@ class BankDetailViewController: UIViewController, UITextFieldDelegate {
     }
     
     func updateUserToken(token: String) {
-        print("updating user token")
         if userAccessToken != nil {
-            print("current auth token", userAccessToken!)
-            print("access token not null, setting headers")
             
             let plaidObj = [ "access_token" : token ]
             let plaidNSDict = plaidObj as NSDictionary //no error message
@@ -250,10 +239,6 @@ class BankDetailViewController: UIViewController, UITextFieldDelegate {
 
             let endpoint = apiUrl + "/v1/profile"
             
-            print(endpoint)
-            print(parameters)
-            print(headers)
-            
             // Encoding as .JSON with header application/json
             Alamofire.request(.PUT, endpoint, parameters: parameters, encoding: .JSON, headers: headers)
             .responseJSON { response in
@@ -261,9 +246,7 @@ class BankDetailViewController: UIViewController, UITextFieldDelegate {
                 case .Success:
                     print("success")
                     if let value = response.result.value {
-                        _ = JSON(value)
-                        print("posted user data")
-                        // print(data)
+                        let data = JSON(value)
                     }
                 case .Failure(let error):
                     print(error)
@@ -275,7 +258,6 @@ class BankDetailViewController: UIViewController, UITextFieldDelegate {
     // Allow use of next and join on keyboard
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         let nextTag: Int = textField.tag + 1
-        // print(nextTag)
         let nextResponder: UIResponder? = textField.superview?.superview?.viewWithTag(nextTag)
         if let nextR = nextResponder
         {

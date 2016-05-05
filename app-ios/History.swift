@@ -20,7 +20,6 @@ class History {
     
     class func getAccountHistory(completionHandler: ([History]?, NSError?) -> Void) {
         // request to api to get data as json, put in list and table
-        print("in get account history")
         
         // check for token, get profile id based on token and make the request
         if(userAccessToken != nil) {
@@ -43,17 +42,12 @@ class History {
                 
                 Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .validate().responseJSON { response in
-                        // print(response)
                         switch response.result {
                         case .Success:
-                            print("success")
                             if let value = response.result.value {
                                 let data = JSON(value)
-                                print("got stripe account history data")
-                                // print(data)
                                 var historyItemsArray = [History]()
                                 let accountHistories = data["transactions"]["data"].arrayValue
-                                //                             print(data["transactions"]["data"].arrayValue)
                                 for history in accountHistories {
                                     let amount = history["amount"].stringValue
                                     let item = History(amount: amount)
@@ -62,7 +56,6 @@ class History {
                                 completionHandler(historyItemsArray, response.result.error)
                             }
                         case .Failure(let error):
-                            print("failed to get account history")
                             print(error)
                         }
                 }

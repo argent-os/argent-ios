@@ -124,7 +124,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
                 cell.detailTextLabel?.textColor = UIColor.lightGrayColor()
                 cell.detailTextLabel?.text = String(formatted_date) //+ " / uid " + uid
             } else {
-                print("no date")
+
             }
         }
         return cell

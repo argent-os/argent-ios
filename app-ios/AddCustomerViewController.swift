@@ -97,62 +97,7 @@ final class AddCustomerViewController: FormViewController {
     
     func addCustomerButtonTapped(sender: AnyObject) {
         
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
-        HUD.showInView(self.view!)
-        HUD.textLabel.text = "Adding Customer"
-        HUD.dismissAfterDelay(1)
-        
-        print(dic)
-        
-        print("add customer tapped")
-        // Post plan using Alamofire
-        let cust_email = dic["customerEmailKey"]
-        let cust_desc = dic["customerDescriptionKey"]
-        
-        // TODO: Make secret key call from API, find user by ID
-        let stripeKey = userData!["user"]["stripe"]["secretKey"].stringValue
-        
-        print("stripe key is", stripeKey)
-        let headers = [
-            "Authorization": "Bearer " + stripeKey,
-            "Content-Type": "application/x-www-form-urlencoded"
-        ]
-        let parameters : [String : AnyObject] = [
-            "email": cust_email!,
-            "description": cust_desc! ?? "",
-        ]
-        
-        Alamofire.request(.POST, stripeApiUrl + "/v1/customers",
-            parameters: parameters,
-            encoding:.URL,
-            headers: headers)
-            .responseJSON { response in
-                print(response.request) // original URL request
-                print(response.response?.statusCode) // URL response
-                print(response.data) // server data
-                print(response.result) // result of response serialization
-                
-                // go to main view
-                if(response.response?.statusCode == 200) {
-                    print("green light")
-                } else {
-                    print("red light")
-                }
-                
-                switch response.result {
-                case .Success:
-                    if let value = response.result.value {
-                        HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
-                        let json = JSON(value)
-                        print(json)
-                        self.dismissKeyboard()
-                        
-                    }
-                case .Failure(let error):
-                    HUD.indicatorView = JGProgressHUDErrorIndicatorView()
-                    print(error)
-                }
-        }
+        Customer.createCustomer(dic)
         
     }
     

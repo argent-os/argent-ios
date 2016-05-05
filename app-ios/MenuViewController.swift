@@ -121,12 +121,10 @@ class MenuViewController: UIViewController, CircleMenuDelegate {
     }
     
     func circleMenu(circleMenu: CircleMenu, buttonWillSelected button: CircleMenuButton, atIndex: Int) {
-        print("button will selected: \(atIndex)")
         button.backgroundColor = items[atIndex].color
     }
     
     func circleMenu(circleMenu: CircleMenu, buttonDidSelected button: CircleMenuButton, atIndex: Int) {
-        print("button did selected: \(atIndex)")
         button.backgroundColor = items[atIndex].color
         
         if atIndex == 0 {

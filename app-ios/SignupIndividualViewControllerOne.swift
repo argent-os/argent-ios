@@ -176,7 +176,6 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
     
     // Check for valid email
     func isValidEmail(emailStr:String) -> Bool {
-        // println("validate calendar: \(testStr)")
         let emailRegEx = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
         
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
@@ -186,7 +185,6 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
     // Allow use of next and join on keyboard
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         let nextTag: Int = textField.tag + 1
-        // print(nextTag)
         let nextResponder: UIResponder? = textField.superview?.superview?.viewWithTag(nextTag)
         if let nextR = nextResponder
         {

@@ -73,7 +73,6 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
         //        print("user phone", userPhoneNumber)
         //        print(userCountry)
         
-        
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
@@ -119,7 +118,6 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
     
     @IBAction func finishButtonTapped(sender: AnyObject) {
         
-        print("finish button tapped")
         let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
         HUD.showInView(self.view!)
         
@@ -167,17 +165,10 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
                 ]
                 Alamofire.request(.POST, apiUrl + "/v1/register", parameters: parameters, encoding:.JSON)
                     .responseJSON { response in
-                        //print(response.request) // original URL request
-                        //print(response.response?.statusCode) // URL response
-                        //print(response.data) // server data
-                        //print(response.result) // result of response serialization
-                        
                         if(response.response?.statusCode == 200) {
-                            print("register success")
                             HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
                             HUD.dismissAfterDelay(3)
                             HUD.textLabel.text = "Registration success! You can now login."
-                            print("response 200 success")
                             // go to main view
                             Timeout(2) {
                                 self.performSegueWithIdentifier("loginView", sender: self)
@@ -185,7 +176,6 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
                         } else {
                             HUD.indicatorView = JGProgressHUDErrorIndicatorView()
                             HUD.dismissAfterDelay(3)
-                            print("failed to signup")
                         }
                         
                         switch response.result {
@@ -193,7 +183,6 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
                             if let value = response.result.value {
                                 let json = JSON(value)
                                 // potentially use completionHandler/closure in future
-                                print("Response: \(json)")
                                 let msg = json["message"].stringValue
                                 if msg != "" {
                                     HUD.textLabel.text = String(json["message"])
@@ -201,7 +190,6 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
                                 // assign userData to self, access globally
                             }
                         case .Failure(let error):
-                            print("failed to signup", error)
                             HUD.indicatorView = JGProgressHUDErrorIndicatorView()
                             print(error.userInfo[NSUnderlyingErrorKey]?.localizedDescription)
                             HUD.textLabel.text = error.userInfo[NSUnderlyingErrorKey]?.localizedDescription
@@ -259,27 +247,19 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
     func getWifiAddress(completionHandler: (String?, NSError?) -> ()) -> () {
         
         Alamofire.request(.GET, "https://api.ipify.org").responseString { response in
-            // print(response.request) // original URL request
-            // print(response.response?.statusCode) // URL response
-            // print(response.data) // server data
-            // print(response.result) // result of response serialization
-            
             switch response.result {
             case .Success:
                 if let value = response.result.value {
                     let response = value
-                    // print("SUCCESS! Response: \(response)")
                     let address = response
                     completionHandler(address, nil)
                 }
             case .Failure(let error):
                 completionHandler(nil, error)
-                // print("failed to get IP")
-                // print(error)
+                print(error)
             }
             
         }
-        // print("end of func")
     }
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation

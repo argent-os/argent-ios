@@ -15,10 +15,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("loaded nsnotificationcenter")
-    
         let center = NSNotificationCenter.defaultCenter()
-        print(center)
         center.addObserverForName("balance", object: nil, queue: nil) { notification in
             print("\(notification.name): \(notification.userInfo ?? [:])")
             self.pendingAccountBalance.text = notification.userInfo!["pending_bal"]?.stringValue ?? "no data to show"

@@ -16,11 +16,6 @@ class TermsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let text1 = self.passingString1 {
-            print(text1)
-            // self.textField.text = text;
-        }
     }
     
     override func viewDidAppear(animated: Bool) {

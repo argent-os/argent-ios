@@ -43,9 +43,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.tintColor = UIColor.whiteColor()
         tblSearchResults.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
-            print("pulled")
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
-                print("stopping loading")
                 self?.tblSearchResults.dg_stopLoading()
                 self?.loadUserAccounts()
             })
@@ -278,25 +276,16 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Filter the data array and get only those countries that match the search text.
         filteredArray = dataArray.filter({ (user) -> Bool in
             if(scope == "Username") {
-                print("username filtered")
                 let userStr: NSString = user.username
                 searchedText = userStr as String
-                print(userStr)
-                print((userStr.rangeOfString(searchString, options: NSStringCompareOptions.CaseInsensitiveSearch).location))
                 return (userStr.rangeOfString(searchString, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
             } else if(scope == "Email") {
-                print("email filtered")
                 let userStr: NSString = user.email
                 searchedText = userStr as String
-                print(userStr)
-                print((userStr.rangeOfString(searchString, options: NSStringCompareOptions.CaseInsensitiveSearch).location))
                 return (userStr.rangeOfString(searchString, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
             } else if(scope == "Name") {
-                print("name filtered")
                 let userStr: NSString = user.first_name + " " + user.last_name
                 searchedText = userStr as String
-                print(userStr)
-                print((userStr.rangeOfString(searchString, options: NSStringCompareOptions.CaseInsensitiveSearch).location))
                 return (userStr.rangeOfString(searchString, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
             }
             
@@ -350,27 +339,17 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func filterContentForSearchText(searchText: String, scope: String) {
         filteredArray = filteredArray.filter({( user : User) -> Bool in
             let categoryMatch = (scope == "Username") || (scope == "Email") || (scope == "Name")
-            print("filtering used")
             if(scope == "Username") {
-                print("username filtered")
                 let userStr: NSString = user.username
                 searchedText = userStr as String
-                print(userStr)
-                print((userStr.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch).location))
                 return (userStr.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
             } else if(scope == "Email") {
-                print("email filtered")
                 let userStr: NSString = user.email
                 searchedText = userStr as String
-                print(userStr)
-                print((userStr.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch).location))
                 return (userStr.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
             } else if(scope == "Name") {
-                print("name filtered")
                 let userStr: NSString = user.first_name + " " + user.last_name
                 searchedText = userStr as String
-                print(userStr)
-                print((userStr.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch).location))
                 return (userStr.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
             }
             
@@ -387,12 +366,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // MARK: - Segues
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print("preparing for segue")
         if segue.identifier == "customerDetailView" {
-            print("segue identified")
-            print(segue.identifier)
             if let indexPath = tblSearchResults.indexPathForSelectedRow {
-                print("inside indexpathforselectedrow")
                 let user: User
                 if searchController.active && searchController.searchBar.text != "" {
                     user = filteredArray[indexPath.row]

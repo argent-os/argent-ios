@@ -143,12 +143,6 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
             ],
             encoding:.JSON)
             .responseJSON { response in
-                //print(response.request) // original URL request
-                //print(response.response?.statusCode) // URL response
-                //print(response.data) // server data
-                //print(response.result) // result of response serialization
-                
-                //print("login pressed")
                 if(response.response?.statusCode == 200) {
                     HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
                 } else {
@@ -159,11 +153,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
                 case .Success:
                     if let value = response.result.value {
                         let json = JSON(value)
-                        // print("User Data: \(userData)")
-                        // assign userData to self, access globally
                         userData = json
-                        
-                        print(json)
                         self.dismissKeyboard()
                         
                     }

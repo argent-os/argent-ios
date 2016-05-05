@@ -18,10 +18,47 @@ class Customer {
         self.email = email
     }
     
+    class func createCustomer(dic: Dictionary<String, String>) {
+        if(userAccessToken != nil) {
+            User.getProfile({ (user, error) in
+                if error != nil {
+                    print(error)
+                }
+                
+                let headers = [
+                    "Authorization": "Bearer " + (userAccessToken as! String),
+                    "Content-Type": "application/json"
+                ]
+                
+                let cust_email = dic["customerEmailKey"]
+                let cust_desc = dic["customerDescriptionKey"]
+                let parameters : [String : AnyObject] = [
+                    "email": cust_email!,
+                    "description": cust_desc ?? "",
+                ]
+                
+                let endpoint = apiUrl + "/v1/stripe/" + (user?.id)! + "/customers"
+                
+                Alamofire.request(.POST, endpoint,
+                    parameters: parameters,
+                    encoding:.JSON,
+                    headers: headers)
+                    .responseJSON { response in
+                        switch response.result {
+                        case .Success:
+                            if let value = response.result.value {
+                                let json = JSON(value)
+                            }
+                        case .Failure(let error):
+                            print(error)
+                        }
+                }
+            })
+        }
+    }
+    
     class func getCustomerList(completionHandler: ([Customer]?, NSError?) -> Void) {
         // request to api to get data as json, put in list and table
-        print("in get customers list")
-        
         // check for token, get profile id based on token and make the request
         if(userAccessToken != nil) {
             User.getProfile({ (user, error) in
@@ -41,19 +78,12 @@ class Customer {
                 
                 let endpoint = apiUrl + "/v1/stripe/" + user_id! + "/customers"
                 
-                print(endpoint)
-                
                 Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .validate().responseJSON { response in
-                        print(response)
                         switch response.result {
                         case .Success:
-                            print("success")
                             if let value = response.result.value {
                                 let data = JSON(value)
-                                print(data)
-                                print("got customers list data")
-                                // print(data)
                                 var customerArray = [Customer]()
                                 let customers = data["customers"]["data"].arrayValue
                                 for customer in customers {
@@ -64,7 +94,6 @@ class Customer {
                                 completionHandler(customerArray, response.result.error)
                             }
                         case .Failure(let error):
-                            print("failed to get customer list")
                             print(error)
                         }
                 }

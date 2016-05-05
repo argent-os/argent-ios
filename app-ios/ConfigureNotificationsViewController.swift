@@ -50,15 +50,12 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
                 }
             }.onSwitchChanged { on in
                 if(on.boolValue == true) {
-                    print("updating value to ", on)
                     self.updateUserNotificationRegistration(true)
                     self.promptUserToRegisterPushNotifications(self)
                 } else {
-                    print("updating value to ", on)
                     self.updateUserNotificationRegistration(on)
                     self.deregisterPush(self)
                 }
-                print("switched")
         }
         
         // Create Headers
@@ -78,7 +75,6 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
     }
     
     func deregisterPush(sender: AnyObject) {
-        print("deregistering push")
         getPushState { (val, token, err) in
             // If the user has a device token registered in the API, allow deregistration
             if token != nil {
@@ -98,14 +94,13 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
                 HUD.position = JGProgressHUDPosition.Center
                 HUD.dismissAfterDelay(1, animated: true)
                 self.updateUserNotificationRegistration(false)
-                print("no device token found, cannot deregister")
+                // print("no device token found, cannot deregister")
             }
         }
     }
     
     func promptUserToRegisterPushNotifications(sender: AnyObject) {
         // Register for Push Notifications
-        print("registering push")
         let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
         HUD.showInView(self.view!)
         HUD.textLabel.text = "Push Notifications are On"
@@ -114,7 +109,7 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
         HUD.dismissAfterDelay(1, animated: true)
         if let userDeviceToken = KeychainSwift().get("deviceToken") {
             updateUserDeviceToken()
-            print("push notifications enabled", userDeviceToken)
+            // print("push notifications enabled", userDeviceToken)
         }
         // Use below for in-controller registration
         // self.pushNotificationsController = ConfigureNotificationsViewController()
@@ -151,16 +146,10 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
 //    }
     
     func updateUserDeviceToken() {
-        print("updating user token")
         
         if userAccessToken != nil {
-            print("current auth token", userAccessToken!)
-            print("access token not null, setting headers")
-            
+
             let token = KeychainSwift().get("deviceToken")
-            
-            print("device token is")
-            print(token)
             
             let headers = [
                 "Authorization": "Bearer " + (userAccessToken as! String),
@@ -176,15 +165,11 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
             
             let endpoint = apiUrl + "/v1/profile"
             
-            print(endpoint)
-            print(parameters)
-            
             // Encoding as .JSON with header application/json
             Alamofire.request(.PUT, endpoint, parameters: parameters, encoding: .JSON, headers: headers)
                 .responseJSON { response in
                     switch response.result {
                     case .Success:
-                        print("success updated device token")
                         if let value = response.result.value {
                             let data = JSON(value)
                         }
@@ -196,14 +181,9 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
     }
     
     func updateUserNotificationRegistration(state: Bool) {
-        print("updating notification registration state")
         if userAccessToken != nil {
-            print("current auth token", userAccessToken!)
-            print("access token not null, setting headers")
             
             let state = String(state.boolValue).toBool()!
-            print("state for updateUserNotificationRegistration is")
-            print(state)
             
             let headers = [
                 "Authorization": "Bearer " + (userAccessToken as! String),
@@ -219,20 +199,14 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
             
             let endpoint = apiUrl + "/v1/profile"
             
-            print(endpoint)
-            print(parameters)
-            
             // Encoding as .JSON with header application/json
             Alamofire.request(.PUT, endpoint, parameters: parameters, encoding: .JSON, headers: headers)
                 .responseJSON { response in
                     switch response.result {
                     case .Success:
-                        print("successfully updated the push state to:")
                         if let value = response.result.value {
                             var data = JSON(value)
                             var push = data["ios"]["push_state"]
-                            print(push.boolValue)
-                            // print(data)
                         }
                     case .Failure(let error):
                         print(error)
@@ -242,11 +216,8 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
     }
     
     func getPushState(completionHandler: (Bool?, String?, NSError?) -> ()) {
-        print("getting push state")
         if userAccessToken != nil {
-            print("current auth token", userAccessToken!)
-            print("access token not null, setting headers")
-            
+
             let headers = [
                 "Authorization": "Bearer " + (userAccessToken as! String),
                 "Content-Type": "application/x-www-form-urlencoded"
@@ -259,13 +230,10 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
                 .responseJSON { response in
                     switch response.result {
                     case .Success:
-                        print("got the push state and device token")
                         if let value = response.result.value {
                             var data = JSON(value)
                             var push = data["ios"]["push_state"]
                             var device_token = data["ios"]["device_token"]
-                            print(push.boolValue)
-                            print(device_token.stringValue)
                             completionHandler(push.boolValue, device_token.stringValue, nil)
                             // print(data)
                         }

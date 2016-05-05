@@ -53,23 +53,19 @@ class ProfileMenuViewController: UITableViewController {
         self.tableView.tableHeaderView?.bringSubviewToFront(plansLabel)
         
         loadCustomerList { (customers: [Customer]?, NSError) in
-            print("got customers")
             if(customers!.count < 2 && customers!.count > 0) {
                 customersLabel.text = String(customers!.count) + "\ncustomers"
             } else {
                 customersLabel.text = String(customers!.count) + "\ncustomers"
             }
-            print(customers)
         }
         
         loadPlanList { (plans: [Plan]?, NSError) in
-            print("got plans")
             if(plans!.count < 2 && plans!.count > 0) {
                 plansLabel.text = String(plans!.count) + "\nplan"
             } else {
                 plansLabel.text = String(plans!.count) + "\nplans"
             }
-            print(plans)
         }
         
         loadProfile()
@@ -95,8 +91,6 @@ class ProfileMenuViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("selected cell \(indexPath.row)")
-        
         if(tableView.cellForRowAtIndexPath(indexPath)!.tag == 865) {
             let activityViewController  = UIActivityViewController(
                 activityItems: ["Check out this app!  http://www.argentapp.com/home" as NSString],
@@ -118,7 +112,6 @@ class ProfileMenuViewController: UITableViewController {
             //
             let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
                 (alert: UIAlertAction!) -> Void in
-                print("Cancelled")
             })
             // 4
             optionMenu.addAction(logoutAction)
@@ -146,7 +139,6 @@ class ProfileMenuViewController: UITableViewController {
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
-            print("got user in completion handler")
             if user?.picture != nil && user?.picture != "" {
                 let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
                 let userImageView: UIImageView = UIImageView(frame: CGRectMake(screenWidth / 2, 0, 90, 90))
@@ -167,28 +159,24 @@ class ProfileMenuViewController: UITableViewController {
     }
     
     func loadCustomerList(completionHandler: ([Customer]?, NSError?) -> ()) {
-        print("load customer list called")
         Customer.getCustomerList({ (customers, error) in
             if error != nil {
                 let alert = UIAlertController(title: "Error", message: "Could not load customers \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
-            print("got customers")
             self.customersArray = customers!
             completionHandler(customers!, error)
         })
     }
     
     func loadPlanList(completionHandler: ([Plan]?, NSError?) -> ()) {
-        print("load plan list called")
         Plan.getPlanList({ (plans, error) in
             if error != nil {
                 let alert = UIAlertController(title: "Error", message: "Could not load plans \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
-            print("got plans")
             self.plansArray = plans!
             completionHandler(plans!, error)
         })

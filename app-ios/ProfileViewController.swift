@@ -23,7 +23,6 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.title = "Profile"
         navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.darkGrayColor()]
-        print("loaded profile")
         self.view.backgroundColor = UIColor.whiteColor()
         
         // Style user avatar

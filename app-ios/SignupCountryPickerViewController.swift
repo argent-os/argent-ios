@@ -123,7 +123,6 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
     
     func nextStep(sender: AnyObject) {
         // Function for toolbar button
-        print("going to next step")
         let entity = NSUserDefaults.standardUserDefaults().stringForKey("userLegalEntityType")!
         if entity == "individual" {
             self.performSegueWithIdentifier("VC1i", sender: sender)

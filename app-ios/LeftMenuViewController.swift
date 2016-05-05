@@ -76,7 +76,6 @@ class LeftMenuViewController: UIViewController,UITableViewDelegate,UITableViewDa
             //
             let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
                 (alert: UIAlertAction!) -> Void in
-                print("Cancelled")
             })
             // 4
             optionMenu.addAction(logoutAction)

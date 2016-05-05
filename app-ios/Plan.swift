@@ -25,7 +25,6 @@ class Plan {
                     print(error)
                 }
                 
-                print("add plan tapped")
                 // Post plan using Alamofire
                 let plan_id = dic["planIdKey"]
                 let plan_name = dic["planNameKey"]
@@ -34,8 +33,6 @@ class Plan {
                 let plan_interval = dic["planIntervalKey"]
                 let plan_trial_period = dic["planTrialPeriodKey"]
                 let plan_statement_desc = dic["planStatementDescriptionKey"]
-                
-                print("plan id is", plan_id)
                 
                 let headers = [
                     "Authorization": "Bearer " + (userAccessToken as! String),
@@ -56,24 +53,10 @@ class Plan {
                     encoding:.JSON,
                     headers: headers)
                     .responseJSON { response in
-                        print(response.request) // original URL request
-                        print(response.response?.statusCode) // URL response
-                        print(response.data) // server data
-                        print(response.result) // result of response serialization
-                        
-                        // go to main view
-                        if(response.response?.statusCode == 200) {
-                            print("green light")
-                        } else {
-                            print("red light")
-                        }
-                        
                         switch response.result {
                         case .Success:
                             if let value = response.result.value {
                                 let json = JSON(value)
-                                print(json)
-                                
                             }
                         case .Failure(let error):
                             print(error)
@@ -85,7 +68,6 @@ class Plan {
 
     class func getPlanList(completionHandler: ([Plan]?, NSError?) -> Void) {
         // request to api to get data as json, put in list and table
-        print("in get plan list")
         
         // check for token, get profile id based on token and make the request
         if(userAccessToken != nil) {
@@ -110,11 +92,8 @@ class Plan {
                     .validate().responseJSON { response in
                         switch response.result {
                         case .Success:
-                            print("success")
                             if let value = response.result.value {
                                 let data = JSON(value)
-                                print("got plan list data")
-                                // print(data)
                                 var plansArray = [Plan]()
                                 let plans = data["plans"]["data"].arrayValue
                                 for plan in plans {
@@ -125,7 +104,6 @@ class Plan {
                                 completionHandler(plansArray, response.result.error)
                             }
                         case .Failure(let error):
-                            print("failed to get plan list")
                             print(error)
                         }
                 }

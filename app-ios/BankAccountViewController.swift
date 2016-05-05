@@ -101,11 +101,6 @@ class MainTableViewController: UITableViewController {
             destination.logo = element.objectForKey("bank_logo") as? String
             destination.bankName = element.objectForKey("bank_name") as? String
             destination.longBankName = element.objectForKey("long_bank_name") as? String
-            print("color setting", destination.color!)
-            print("logo setting", destination.logo!)
-            print("bank setting", destination.bankName!)
-            print("bank setting", destination.longBankName!)
-            
         }
     }
 }

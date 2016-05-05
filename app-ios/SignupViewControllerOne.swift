@@ -197,7 +197,6 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
     // Allow use of next and join on keyboard
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         let nextTag: Int = textField.tag + 1
-        // print(nextTag)
         let nextResponder: UIResponder? = textField.superview?.superview?.viewWithTag(nextTag)
         if let nextR = nextResponder
         {

@@ -22,7 +22,6 @@ class Balance {
     
     class func getStripeBalance(completionHandler: (Balance?, NSError?) -> Void) {
         // request to api to get data as json, put in list and table
-        print("in get account balance")
         
         // check for token, get profile id based on token and make the request
         if(userAccessToken != nil) {
@@ -43,14 +42,10 @@ class Balance {
                 
                 Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .validate().responseJSON { response in
-                        // print(response)
                         switch response.result {
                         case .Success:
-                            print("success")
                             if let value = response.result.value {
                                 let data = JSON(value)
-                                print("got stripe balance data")
-                                print(data)
                                 let balance = data["balance"]
                                 let pending = balance["pending"][0]["amount"].floatValue
                                 let available = balance["available"][0]["amount"].floatValue
@@ -58,7 +53,6 @@ class Balance {
                                 completionHandler(balanceObject, response.result.error)
                             }
                         case .Failure(let error):
-                            print("failed to get account balance")
                             print(error)
                         }
                 }

@@ -55,17 +55,12 @@ class Bank {
         
         Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
             .responseJSON { response in
-                print(response)
                 switch response.result {
                 case .Success:
-                    print("success")
                     if let value = response.result.value {
                         let data = JSON(value)
-//                        print("got plaid data")
-//                        print(data)
                         var bankItemsArray = [Bank]()
                         let accounts = data["response"]["accounts"].arrayValue
-                        print(data["response"]["accounts"].arrayValue)
                         for jsonItem in accounts {
                             let id = jsonItem["_id"].stringValue
                             let routing = jsonItem["numbers"]["routing"].stringValue
