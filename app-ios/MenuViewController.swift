@@ -1,5 +1,5 @@
 //
-//  RecurringViewController.swift
+//  MenuViewController.swift
 //  argent-ios
 //
 //  Created by Sinan Ulkuatam on 3/7/16.
@@ -13,20 +13,20 @@ import CircleMenu
 class MenuViewController: UIViewController, CircleMenuDelegate {
 
     
-    let button = CircleMenu(
-        frame: CGRect(x: 0, y: 0, width: 70, height: 70),
+    let circleMenuButton = CircleMenu(
+        frame: CGRect(x: 0, y: 0, width: 85, height: 85),
         normalIcon:"IconMenu",
         selectedIcon:"IconCloseLight",
-        buttonsCount: 4,
+        buttonsCount: 3,
         duration: 0.5,
-        distance: 125)
+        distance: 140)
     
     let colors = [UIColor.redColor(), UIColor.grayColor(), UIColor.greenColor(), UIColor.purpleColor()]
     let items: [(icon: String, color: UIColor)] = [
+        ("ic_card_light", UIColor.whiteColor()),        
         ("ic_repeat_light", UIColor.whiteColor()),
         ("ic_paper_plane_light", UIColor.whiteColor()),
-        ("ic_card_light", UIColor.whiteColor()),
-        ("ic_coinbag_light", UIColor.whiteColor()),
+//        ("ic_coinbag_light", UIColor.whiteColor()),
 //        ("ic_link_light", UIColor.whiteColor()),
 //        ("ic_paper_light", UIColor.whiteColor()),
     ]
@@ -54,14 +54,14 @@ class MenuViewController: UIViewController, CircleMenuDelegate {
         
 //        self.view.backgroundColor = UIColor.mediumBlue()
         
-//        button.backgroundColor = UIColor.clearColor()
-        button.backgroundColor = UIColor.darkBlue()
-        button.delegate = self
-        button.center = self.view.center
-        button.layer.cornerRadius = button.frame.size.width / 2.0
-        button.layer.borderColor = UIColor(rgba: "#fff3").CGColor
-        button.layer.borderWidth = 1
-        view.addSubview(button)
+//        circleMenuButton.backgroundColor = UIColor.clearColor()
+        circleMenuButton.backgroundColor = UIColor.darkBlue()
+        circleMenuButton.delegate = self
+        circleMenuButton.center = self.view.center
+        circleMenuButton.layer.cornerRadius = circleMenuButton.frame.size.width / 2.0
+        circleMenuButton.layer.borderColor = UIColor(rgba: "#fff3").CGColor
+        circleMenuButton.layer.borderWidth = 1
+        view.addSubview(circleMenuButton)
         
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 65))
 //        navBar.barTintColor = UIColor(rgba: "#258ff6")
@@ -81,9 +81,9 @@ class MenuViewController: UIViewController, CircleMenuDelegate {
     override func viewDidAppear(animated: Bool) {
         self.navigationController!.navigationBar.tintColor = UIColor.mediumBlue()
         UIStatusBarStyle.Default
-        button.sendActionsForControlEvents(.TouchUpInside)
-        if(Int(button.state.rawValue) == 0) {
-            button.sendActionsForControlEvents(.TouchUpInside)
+        circleMenuButton.sendActionsForControlEvents(.TouchUpInside)
+        if(Int(circleMenuButton.state.rawValue) == 0) {
+            circleMenuButton.sendActionsForControlEvents(.TouchUpInside)
         }
     }
     
@@ -107,25 +107,25 @@ class MenuViewController: UIViewController, CircleMenuDelegate {
     
     // MARK: CircleMenu Delegate
 
-    func circleMenu(circleMenu: CircleMenu, willDisplay button: CircleMenuButton, atIndex: Int) {
-        //        button.backgroundColor = items[atIndex].color
-        button.backgroundColor = UIColor.darkBlue()
-        button.layer.borderColor = UIColor(rgba: "#fff3").CGColor
-        button.layer.borderWidth = 1
-        button.setImage(UIImage(imageLiteral: items[atIndex].icon), forState: .Normal)
+    func circleMenu(circleMenu: CircleMenu, willDisplay circleMenuButton: CircleMenuButton, atIndex: Int) {
+        //        circleMenuButton.backgroundColor = items[atIndex].color
+        circleMenuButton.backgroundColor = UIColor.darkBlue()
+        circleMenuButton.layer.borderColor = UIColor(rgba: "#fff3").CGColor
+        circleMenuButton.layer.borderWidth = 1
+        circleMenuButton.setImage(UIImage(imageLiteral: items[atIndex].icon), forState: .Normal)
 
         // set highlighted image
         let highlightedImage  = UIImage(imageLiteral: items[atIndex].icon).imageWithRenderingMode(.AlwaysTemplate)
-        button.setImage(highlightedImage, forState: .Highlighted)
-        button.tintColor = UIColor.init(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0.3)
+        circleMenuButton.setImage(highlightedImage, forState: .Highlighted)
+        circleMenuButton.tintColor = UIColor.init(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0.3)
     }
     
-    func circleMenu(circleMenu: CircleMenu, buttonWillSelected button: CircleMenuButton, atIndex: Int) {
-        button.backgroundColor = items[atIndex].color
+    func circleMenu(circleMenu: CircleMenu, buttonWillSelected circleMenuButton: CircleMenuButton, atIndex: Int) {
+        circleMenuButton.backgroundColor = items[atIndex].color
     }
     
-    func circleMenu(circleMenu: CircleMenu, buttonDidSelected button: CircleMenuButton, atIndex: Int) {
-        button.backgroundColor = items[atIndex].color
+    func circleMenu(circleMenu: CircleMenu, buttonDidSelected circleMenuButton: CircleMenuButton, atIndex: Int) {
+        circleMenuButton.backgroundColor = items[atIndex].color
         
         if atIndex == 0 {
             self.performSegueWithIdentifier("chargeView", sender: self)

@@ -17,10 +17,15 @@ import SwiftyJSON
 class SearchDetailViewController: UIViewController, MFMailComposeViewControllerDelegate, STPPaymentCardTextFieldDelegate, PKPaymentAuthorizationViewControllerDelegate {
     
     @IBOutlet weak var emailLabel: UILabel!
+    
     @IBOutlet weak var usernameLabel: UILabel!
+    
     @IBOutlet weak var stacks: UIStackView!
+    
     let paymentTextField = STPPaymentCardTextField()
+    
     var saveButton: UIButton! = nil;
+    
     let lbl:UILabel = UILabel()
 
     var detailUser: User? {

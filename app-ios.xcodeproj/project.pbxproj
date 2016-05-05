@@ -41,10 +41,6 @@
 		308A348A1CCA803200AAF66F /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A34891CCA803200AAF66F /* History.swift */; };
 		309544F51CD295AE003007B2 /* ParallaxHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309544F41CD295AE003007B2 /* ParallaxHeader.swift */; };
 		309C8CCA1CCEEE8C0073159C /* SignupCountryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309C8CC91CCEEE8C0073159C /* SignupCountryPickerViewController.swift */; };
-		309E15931CBC2A0E00EA95E4 /* ChargeCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E15921CBC2A0E00EA95E4 /* ChargeCustomerViewController.swift */; };
-		309E15951CBE9A1600EA95E4 /* ChargeCustomerSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E15941CBE9A1600EA95E4 /* ChargeCustomerSearchController.swift */; };
-		309E15971CBE9A5600EA95E4 /* ChargeCustomerCustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E15961CBE9A5600EA95E4 /* ChargeCustomerCustomSearchBar.swift */; };
-		309E15991CBE9AAF00EA95E4 /* users.txt in Resources */ = {isa = PBXBuildFile; fileRef = 309E15981CBE9AAF00EA95E4 /* users.txt */; };
 		309E43BE1CA8ADF900279D97 /* WebTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E43BD1CA8ADF900279D97 /* WebTermsViewController.swift */; };
 		309E43C21CA8AE0B00279D97 /* WebSupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E43C11CA8AE0B00279D97 /* WebSupportViewController.swift */; };
 		309E43C41CA8AE1800279D97 /* WebPrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E43C31CA8AE1800279D97 /* WebPrivacyViewController.swift */; };
@@ -258,10 +254,6 @@
 		308A34891CCA803200AAF66F /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = History.swift; path = "app-ios/History.swift"; sourceTree = SOURCE_ROOT; };
 		309544F41CD295AE003007B2 /* ParallaxHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParallaxHeader.swift; path = "app-ios/ParallaxHeader.swift"; sourceTree = SOURCE_ROOT; };
 		309C8CC91CCEEE8C0073159C /* SignupCountryPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupCountryPickerViewController.swift; path = "app-ios/SignupCountryPickerViewController.swift"; sourceTree = SOURCE_ROOT; };
-		309E15921CBC2A0E00EA95E4 /* ChargeCustomerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChargeCustomerViewController.swift; path = "app-ios/ChargeCustomerViewController.swift"; sourceTree = SOURCE_ROOT; };
-		309E15941CBE9A1600EA95E4 /* ChargeCustomerSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChargeCustomerSearchController.swift; path = "app-ios/ChargeCustomerSearchController.swift"; sourceTree = SOURCE_ROOT; };
-		309E15961CBE9A5600EA95E4 /* ChargeCustomerCustomSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChargeCustomerCustomSearchBar.swift; path = "app-ios/ChargeCustomerCustomSearchBar.swift"; sourceTree = SOURCE_ROOT; };
-		309E15981CBE9AAF00EA95E4 /* users.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = users.txt; path = "app-ios/users.txt"; sourceTree = SOURCE_ROOT; };
 		309E43BD1CA8ADF900279D97 /* WebTermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebTermsViewController.swift; path = "app-ios/WebTermsViewController.swift"; sourceTree = SOURCE_ROOT; };
 		309E43C11CA8AE0B00279D97 /* WebSupportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebSupportViewController.swift; path = "app-ios/WebSupportViewController.swift"; sourceTree = SOURCE_ROOT; };
 		309E43C31CA8AE1800279D97 /* WebPrivacyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebPrivacyViewController.swift; path = "app-ios/WebPrivacyViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -605,10 +597,6 @@
 			isa = PBXGroup;
 			children = (
 				30C2DAF41CA43967003AFD8B /* ChargeViewController.swift */,
-				309E15921CBC2A0E00EA95E4 /* ChargeCustomerViewController.swift */,
-				309E15941CBE9A1600EA95E4 /* ChargeCustomerSearchController.swift */,
-				309E15961CBE9A5600EA95E4 /* ChargeCustomerCustomSearchBar.swift */,
-				309E15981CBE9AAF00EA95E4 /* users.txt */,
 			);
 			name = Charge;
 			sourceTree = "<group>";
@@ -1236,7 +1224,6 @@
 				30C2DADD1CA438B8003AFD8B /* ProfileLabelCell.xib in Resources */,
 				30C2DB1B1CA43A00003AFD8B /* Info.plist in Resources */,
 				30C2DB191CA439FA003AFD8B /* Info.plist in Resources */,
-				309E15991CBE9AAF00EA95E4 /* users.txt in Resources */,
 				309E43CD1CA9CFED00279D97 /* selected.caf in Resources */,
 				30C2DADF1CA438BE003AFD8B /* ProfileImageCell.xib in Resources */,
 				30C2DB0F1CA439D2003AFD8B /* LaunchScreen.storyboard in Resources */,
@@ -1422,7 +1409,6 @@
 				30C2DB131CA439E1003AFD8B /* Timeout.swift in Sources */,
 				30C2DACB1CA4385C003AFD8B /* ProfileMenuViewController.swift in Sources */,
 				30C2DAB31CA437B2003AFD8B /* TermsViewController.swift in Sources */,
-				309E15951CBE9A1600EA95E4 /* ChargeCustomerSearchController.swift in Sources */,
 				300E422B1CB47428004316CF /* BankConnectedListTableViewController.swift in Sources */,
 				30BB072D1CCFEBD90051C9E7 /* ActivityViewController1.swift in Sources */,
 				30C2DAD51CA43892003AFD8B /* ProfileFieldCell.swift in Sources */,
@@ -1437,9 +1423,7 @@
 				30C2DAFB1CA4397C003AFD8B /* LeftMenuViewController.swift in Sources */,
 				30BB07031CCFE7D20051C9E7 /* CoverView.swift in Sources */,
 				300E42331CB71362004316CF /* Card.swift in Sources */,
-				309E15931CBC2A0E00EA95E4 /* ChargeCustomerViewController.swift in Sources */,
 				30C2DAE31CA43926003AFD8B /* ConfigureNotificationsViewController.swift in Sources */,
-				309E15971CBE9A5600EA95E4 /* ChargeCustomerCustomSearchBar.swift in Sources */,
 				30C2DAEA1CA43934003AFD8B /* BankDetailViewController.swift in Sources */,
 				309E43C21CA8AE0B00279D97 /* WebSupportViewController.swift in Sources */,
 				30C2DACD1CA43862003AFD8B /* CreditCardAccountViewController.swift in Sources */,

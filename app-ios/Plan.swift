@@ -12,9 +12,14 @@ import Alamofire
 
 class Plan {
     
+    static let sharedInstance = Plan(id: "", interval: "")
+
+    let interval: Optional<String>
+    
     let id: String
     
-    required init(id: String) {
+    required init(id: String, interval: String) {
+        self.interval = interval
         self.id = id
     }
     
@@ -98,7 +103,7 @@ class Plan {
                                 let plans = data["plans"]["data"].arrayValue
                                 for plan in plans {
                                     let id = plan["id"].stringValue
-                                    let item = Plan(id: id)
+                                    let item = Plan(id: id, interval: "")
                                     plansArray.append(item)
                                 }
                                 completionHandler(plansArray, response.result.error)

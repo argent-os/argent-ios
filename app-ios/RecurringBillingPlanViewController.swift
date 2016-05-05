@@ -57,64 +57,83 @@ final class RecurringBillingViewController: FormViewController {
         // Create RowFomers
         
         let planIdRow = TextFieldRowFormer<FormTextFieldCell>() {
-            //            $0.textField.textColor = .formerColor()
-            $0.textField.font = .systemFontOfSize(15)
+            $0.textField.font = UIFont(name: "Avenir-Book", size: 15)
+            $0.textField.autocorrectionType = .No
+            $0.textField.autocapitalizationType = .None
             }.configure {
-                $0.placeholder = "Plan ID (e.g. gold)"
+                $0.placeholder = "Plan ID (i.e. gold)"
+                $0.rowHeight = 60
             }.onTextChanged { [weak self] in
                 self?.dic["planIdKey"] = $0
         }
         
         let planNameRow = TextFieldRowFormer<FormTextFieldCell>() {
-            //            $0.textField.textColor = .formerColor()
-            $0.textField.font = .systemFontOfSize(15)
+            $0.textField.font = UIFont(name: "Avenir-Book", size: 15)
+            $0.textField.autocorrectionType = .No
+            $0.textField.autocapitalizationType = .Words
             }.configure {
-                $0.placeholder = "Plan Name (e.g. Gold)"
+                $0.placeholder = "Plan Name (i.e. Gold)"
+                $0.rowHeight = 60
             }.onTextChanged { [weak self] in
                 self?.dic["planNameKey"] = $0
         }
         
         let planCurrencyRow = TextFieldRowFormer<FormTextFieldCell>() {
-            //            $0.textField.textColor = .formerColor()
-            $0.textField.font = .systemFontOfSize(15)
+            $0.textField.font = UIFont(name: "Avenir-Book", size: 15)
+            $0.textField.autocorrectionType = .No
+            $0.textField.autocapitalizationType = .None
             }.configure {
                 $0.placeholder = "Currency"
+                $0.rowHeight = 60                
             }.onTextChanged { [weak self] in
                 self?.dic["planCurrencyKey"] = $0
         }
         
         let planAmountRow = TextFieldRowFormer<FormTextFieldCell>() {
-            //            $0.textField.textColor = .formerColor()
-            $0.textField.font = .systemFontOfSize(15)
+            $0.textField.font = UIFont(name: "Avenir-Book", size: 15)
+            $0.textField.autocorrectionType = .No
+            $0.textField.autocapitalizationType = .None
             }.configure {
                 $0.placeholder = "Amount"
+                $0.rowHeight = 60
             }.onTextChanged { [weak self] in
                 self?.dic["planAmountKey"] = $0
         }
         
-        let planIntervalRow = TextFieldRowFormer<FormTextFieldCell>() {
-            //            $0.textField.textColor = .formerColor()
-            $0.textField.font = .systemFontOfSize(15)
+        let planIntervalRow = InlinePickerRowFormer<ProfileLabelCell, String>(instantiateType: .Nib(nibName: "ProfileLabelCell")) {
+            $0.titleLabel.text = "Interval"
+            $0.titleLabel.textColor = UIColor.lightGrayColor()
             }.configure {
-                $0.placeholder = "Interval"
-            }.onTextChanged { [weak self] in
-                self?.dic["planIntervalKey"] = $0
+                let intervals = ["day", "month", "week", "year"]
+                $0.rowHeight = 60
+                $0.pickerItems = intervals.map {
+                    InlinePickerItem(title: $0)
+                }
+                if let invervalAmount = Plan.sharedInstance.interval {
+                    $0.selectedRow = intervals.indexOf(invervalAmount) ?? 0
+                }
+            }.onValueChanged {
+                self.dic["planIntervalKey"] = $0.title
         }
         
         let planTrialPeriodRow = TextFieldRowFormer<FormTextFieldCell>() {
-            //            $0.textField.textColor = .formerColor()
-            $0.textField.font = .systemFontOfSize(15)
+            $0.textField.font = UIFont(name: "Avenir-Book", size: 15)
+            $0.textField.autocorrectionType = .No
+            $0.textField.autocapitalizationType = .None
             }.configure {
-                $0.placeholder = "Trial Period"
+                $0.placeholder = "Trial Period (in days)"
+                $0.rowHeight = 60
             }.onTextChanged { [weak self] in
                 self?.dic["planTrialPeriodKey"] = $0
         }
         
         let planStatementDescriptionRow = TextFieldRowFormer<FormTextFieldCell>() {
-            //            $0.textField.textColor = .formerColor()
             $0.textField.font = .systemFontOfSize(15)
+            $0.textField.autocorrectionType = .No
+            $0.textField.autocapitalizationType = .None
             }.configure {
                 $0.placeholder = "Statement Description"
+                $0.rowHeight = 60
             }.onTextChanged { [weak self] in
                 self?.dic["planStatementDescriptionKey"] = $0
         }
@@ -136,11 +155,7 @@ final class RecurringBillingViewController: FormViewController {
     }
     
     func addPlanButtonTapped(sender: AnyObject) {
-
-        // add plan call
-        
         Plan.createPlan(dic)
-        
     }
     
     //Calls this function when the tap is recognized.

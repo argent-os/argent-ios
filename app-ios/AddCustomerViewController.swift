@@ -12,10 +12,14 @@ import SwiftyJSON
 import JGProgressHUD
 import UIKit
 import Former
+import Stripe
+import JSSAlertView
 
-final class AddCustomerViewController: FormViewController {
+final class AddCustomerViewController: FormViewController, STPPaymentCardTextFieldDelegate {
     
     var dic: Dictionary<String, String> = [:]
+    
+    let paymentTextField = STPPaymentCardTextField()
     
     // MARK: Public
     
@@ -27,16 +31,23 @@ final class AddCustomerViewController: FormViewController {
     // MARK: Private
     
     private func configure() {
-        title = "Add Customer"
-        tableView.contentInset.top = 10
-        tableView.contentInset.bottom = 30
-        tableView.contentOffset.y = -10
-        tableView.backgroundColor = UIColor.whiteColor()
-
+        
         // screen width and height:
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
+        
+        title = "Add Customer"
+        tableView.contentInset.top = 0
+        tableView.contentInset.bottom = 30
+        tableView.contentOffset.y = 0
+        tableView.backgroundColor = UIColor.whiteColor()
+        
+        // Card text
+        paymentTextField.frame = CGRectMake(20, screenHeight*0.4, screenWidth - 40, 44)
+        paymentTextField.delegate = self
+        // adds a manual credit card entry textfield
+        self.view.addSubview(paymentTextField)
         
         // UI
         let addCustomerButton = UIButton(frame: CGRect(x: 20, y: screenHeight-80, width: screenWidth-40, height: 60.0))
@@ -57,22 +68,24 @@ final class AddCustomerViewController: FormViewController {
         // Create RowFomers
         
         let emailRow = TextFieldRowFormer<FormTextFieldCell>() {
-            $0.textField.font = .systemFontOfSize(15)
+            $0.textField.font = UIFont(name: "Avenir-Book", size: 15)
             $0.textField.autocapitalizationType = .None
             $0.textField.autocorrectionType = .No
             $0.textField.keyboardType = .EmailAddress
             }.configure {
                 $0.placeholder = "Customer Email"
+                $0.rowHeight = 60
             }.onTextChanged { [weak self] in
                 self?.dic["customerEmailKey"] = $0
         }
 
-
-        let descriptionRow = TextViewRowFormer<FormTextViewCell>() {
-            $0.textView.font = .systemFontOfSize(15)
+        let descriptionRow = TextFieldRowFormer<FormTextFieldCell>() {
+            $0.textField.font = UIFont(name: "Avenir-Book", size: 15)
+            $0.textField.autocorrectionType = .No
+            $0.textField.autocapitalizationType = .None
             }.configure {
                 $0.placeholder = "Customer Description"
-                $0.rowHeight = 150
+                $0.rowHeight = 60
             }.onTextChanged { [weak self] in
                 self?.dic["customerDescriptionKey"] = $0
         }
@@ -98,12 +111,38 @@ final class AddCustomerViewController: FormViewController {
     func addCustomerButtonTapped(sender: AnyObject) {
         
         Customer.createCustomer(dic)
-        
+        showSuccessAlert()
+    }
+    
+    func showSuccessAlert() {
+        let customIcon:UIImage = UIImage(named: "ic_close_light")! // your custom icon UIImage
+        let customColor:UIColor = UIColor(rgba: "#1EBC61") // base color for the alert
+        let alertView = JSSAlertView().show(
+            self,
+            title: "",
+            text: "Customer " + String(dic["customerEmailKey"]) + " added!",
+            buttonText: "",
+            noButtons: true,
+            color: customColor,
+            iconImage: customIcon)
+        alertView.setTextTheme(.Light) // can be .Light or .Dark
+    }
+    
+    func paymentCardTextFieldDidChange(textField: STPPaymentCardTextField) {
+        if(paymentTextField.isValid) {
+            paymentTextField.endEditing(true)
+        }
     }
     
     //Calls this function when the tap is recognized.
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
+        paymentTextField.endEditing(true)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        dismissKeyboard()
+        super.viewWillDisappear(animated)
     }
 }
