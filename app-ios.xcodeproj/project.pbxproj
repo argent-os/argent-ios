@@ -127,6 +127,7 @@
 		30C2DB1F1CA43A51003AFD8B /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DB1E1CA43A51003AFD8B /* EditProfileViewController.swift */; };
 		30C2DB221CA43B62003AFD8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DB201CA43B62003AFD8B /* Main.storyboard */; };
 		30D526761CDB9814001B41BA /* BitcoinUriViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526751CDB9814001B41BA /* BitcoinUriViewController.swift */; };
+		30D526781CDBB4A0001B41BA /* Bitcoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526771CDBB4A0001B41BA /* Bitcoin.swift */; };
 		30DB595E1CA46CB0007FEE1E /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DB595C1CA46CB0007FEE1E /* Interface.storyboard */; };
 		30DB59601CA46CB0007FEE1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30DB595F1CA46CB0007FEE1E /* Assets.xcassets */; };
 		30DB59671CA46CB0007FEE1E /* app-watchos Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 30DB59661CA46CB0007FEE1E /* app-watchos Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -343,6 +344,7 @@
 		30C2DB1E1CA43A51003AFD8B /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileViewController.swift; path = "app-ios/EditProfileViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DB211CA43B62003AFD8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "app-ios/Base.lproj/Main.storyboard"; sourceTree = SOURCE_ROOT; };
 		30D526751CDB9814001B41BA /* BitcoinUriViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BitcoinUriViewController.swift; path = "app-ios/BitcoinUriViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30D526771CDBB4A0001B41BA /* Bitcoin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bitcoin.swift; path = "app-ios/Bitcoin.swift"; sourceTree = SOURCE_ROOT; };
 		30DB595A1CA46CB0007FEE1E /* app-watchos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "app-watchos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30DB595D1CA46CB0007FEE1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		30DB595F1CA46CB0007FEE1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -472,6 +474,7 @@
 				306DF0081CD991CB00864CAE /* Customer.swift */,
 				306E822F1CDAC36400A43505 /* Balance.swift */,
 				306DF00A1CD9979400864CAE /* Plan.swift */,
+				30D526771CDBB4A0001B41BA /* Bitcoin.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1411,6 +1414,7 @@
 				30C2DABF1CA43823003AFD8B /* HomeViewController.swift in Sources */,
 				30C2DAA71CA4374F003AFD8B /* SignupViewControllerFour.swift in Sources */,
 				30C2DB131CA439E1003AFD8B /* Timeout.swift in Sources */,
+				30D526781CDBB4A0001B41BA /* Bitcoin.swift in Sources */,
 				30C2DACB1CA4385C003AFD8B /* ProfileMenuViewController.swift in Sources */,
 				30C2DAB31CA437B2003AFD8B /* TermsViewController.swift in Sources */,
 				300E422B1CB47428004316CF /* BankConnectedListTableViewController.swift in Sources */,

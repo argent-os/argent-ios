@@ -12,6 +12,7 @@ import SwiftyJSON
 import UIKit
 import Former
 import JGProgressHUD
+import JSSAlertView
 
 final class RecurringBillingViewController: FormViewController {
     
@@ -156,6 +157,22 @@ final class RecurringBillingViewController: FormViewController {
     
     func addPlanButtonTapped(sender: AnyObject) {
         Plan.createPlan(dic)
+        showSuccessAlert()
+    }
+    
+    
+    func showSuccessAlert() {
+        let customIcon:UIImage = UIImage(named: "ic_check_light")! // your custom icon UIImage
+        let customColor:UIColor = UIColor(rgba: "#1EBC61") // base color for the alert
+        let alertView = JSSAlertView().show(
+            self,
+            title: "",
+            text: "Plan " + String(dic["planNameKey"]) + " created!",
+            buttonText: "",
+            noButtons: true,
+            color: customColor,
+            iconImage: customIcon)
+        alertView.setTextTheme(.Light) // can be .Light or .Dark
     }
     
     //Calls this function when the tap is recognized.

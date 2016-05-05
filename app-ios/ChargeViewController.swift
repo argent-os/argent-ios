@@ -54,8 +54,9 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate {
         let width = UIScreen.mainScreen().bounds.size.width
         let height = UIScreen.mainScreen().bounds.size.height
     
+        addDoneToolbar()
         chargeInputView.addTarget(self, action: #selector(ChargeViewController.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
-        chargeInputView.frame = CGRect(x: 0, y: height*0.20, width: width, height: 50)
+        chargeInputView.frame = CGRect(x: 0, y: 90, width: width, height: 50)
         chargeInputView.textAlignment = .Center
         chargeInputView.font = UIFont(name: "Avenir-Light", size: 48)
         chargeInputView.textColor = UIColor.mediumBlue()
@@ -64,25 +65,37 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate {
         chargeInputView.backgroundColor = UIColor.clearColor()
         chargeInputView.becomeFirstResponder()
         self.view.addSubview(chargeInputView)
-        
-        // Card text
-        paymentTextField.frame = CGRectMake(20, height*0.35, screenWidth - 40, 44)
-        paymentTextField.delegate = self
-        paymentTextField.borderWidth = 1
-        paymentTextField.borderColor = UIColor.lightGrayColor()
-        // adds a manual credit card entry textfield
-        self.view.addSubview(paymentTextField)
+
+        // Pay with card button
+        let payWithCardButton = UIButton(frame: CGRect(x: screenWidth/2+10, y: 180, width: screenWidth/2-20-10, height: 60.0))
+        payWithCardButton.backgroundColor = UIColor.clearColor()
+        payWithCardButton.tintColor = UIColor.mediumBlue()
+        payWithCardButton.setTitleColor(UIColor.mediumBlue(), forState: .Normal)
+        payWithCardButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
+        payWithCardButton.layer.borderColor = UIColor.mediumBlue().CGColor
+        payWithCardButton.layer.borderWidth = 1
+        payWithCardButton.layer.cornerRadius = 5
+        payWithCardButton.layer.masksToBounds = true
+        payWithCardButton.setTitle("Pay with Card", forState: .Normal)
+        payWithCardButton.clipsToBounds = true
+        payWithCardButton.addTarget(self, action: #selector(ChargeViewController.payWithCard(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        view.addSubview(payWithCardButton)
         
         // Pay with bitcoin button
-        let payBitcoinButton = UIButton(frame: CGRect(x: 20, y: screenHeight*0.42, width: screenWidth-40, height: 60.0))
-        payBitcoinButton.backgroundColor = UIColor.clearColor()
-        payBitcoinButton.tintColor = UIColor.mediumBlue()
-        payBitcoinButton.setTitleColor(UIColor.mediumBlue(), forState: .Normal)
-        payBitcoinButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
-        payBitcoinButton.setTitle("Pay with Bitcoin", forState: .Normal)
-        payBitcoinButton.clipsToBounds = true
-        payBitcoinButton.addTarget(self, action: #selector(ChargeViewController.payWithBitcoin(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        view.addSubview(payBitcoinButton)
+        let payWithBitcoinButton = UIButton(frame: CGRect(x: 20, y: 180, width: screenWidth/2-20-10, height: 60.0))
+        payWithBitcoinButton.backgroundColor = UIColor.clearColor()
+        payWithBitcoinButton.tintColor = UIColor.mediumBlue()
+        payWithBitcoinButton.setTitleColor(UIColor.mediumBlue(), forState: .Normal)
+        payWithBitcoinButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
+        payWithBitcoinButton.layer.borderColor = UIColor.mediumBlue().CGColor
+        payWithBitcoinButton.layer.borderWidth = 1
+        payWithBitcoinButton.layer.cornerRadius = 5
+        payWithBitcoinButton.layer.masksToBounds = true
+        payWithBitcoinButton.setTitle("Pay with Bitcoin", forState: .Normal)
+        payWithBitcoinButton.clipsToBounds = true
+        payWithBitcoinButton.clipsToBounds = true
+        payWithBitcoinButton.addTarget(self, action: #selector(ChargeViewController.payWithBitcoin(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        view.addSubview(payWithBitcoinButton)
         
         // Pay button
         let payButton = UIButton(frame: CGRect(x: 20, y: screenHeight-80, width: screenWidth-40, height: 60.0))
@@ -151,9 +164,24 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate {
     
     func payMerchant(sender: AnyObject) {
         // Function for toolbar button
-        
         // pay merchant
         showSuccessAlert()
+        chargeInputView.text = ""
+        paymentTextField.clear()
+    }
+    
+    func payWithCard(sender: AnyObject) {
+        // screen width and height:
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
+        // Card text
+        paymentTextField.frame = CGRectMake(20, 260, screenWidth - 40, 44)
+        paymentTextField.delegate = self
+        paymentTextField.borderWidth = 1
+        paymentTextField.borderColor = UIColor.lightGrayColor()
+        // adds a manual credit card entry textfield
+        self.view.addSubview(paymentTextField)
     }
     
     func payWithBitcoin(sender: AnyObject) {
@@ -168,8 +196,8 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate {
         formSheetController.presentationController?.containerView?.sizeToFit()
         formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
-        formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.Fade
-        formSheetController.contentViewCornerRadius = 8
+        formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
+        formSheetController.contentViewCornerRadius = 10
         formSheetController.allowDismissByPanningPresentedView = true
         formSheetController.interactivePanGestureDismissalDirection = .All;
         
@@ -178,16 +206,26 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate {
         
         let presentedViewController = navigationController.viewControllers.first as! BitcoinUriViewController
         // get bitcoin receiver through api call, put url in response below
-        presentedViewController.bitcoinUri = "http://www.bitcoin.com"
         
-        formSheetController.willPresentContentViewControllerHandler = { vc in
-            let navigationController = vc as! UINavigationController
-            let presentedViewController = navigationController.viewControllers.first as! BitcoinUriViewController
-            presentedViewController.view?.layoutIfNeeded()
-        }
+        if chargeInputView.text != "" {
+            var str = chargeInputView.text
+            str?.removeAtIndex(str!.characters.indices.first!) // remove first letter
 
-        
-        self.presentViewController(formSheetController, animated: true, completion: nil)
+            let floatValue = (str! as NSString).floatValue*100
+
+            Bitcoin.createBitcoinReceiver(Int(floatValue)) { (bitcoin, err) in
+                print(bitcoin)
+                presentedViewController.bitcoinUri = bitcoin?.uri ?? ""
+                
+                formSheetController.willPresentContentViewControllerHandler = { vc in
+                    let navigationController = vc as! UINavigationController
+                    let presentedViewController = navigationController.viewControllers.first as! BitcoinUriViewController
+                    presentedViewController.view?.layoutIfNeeded()
+                }
+                
+                self.presentViewController(formSheetController, animated: true, completion: nil)
+            }
+        }
     }
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -229,12 +267,42 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate {
         paymentTextField.inputAccessoryView=sendToolbar
     }
     
+    // Add send toolbar
+    func addDoneToolbar()
+    {
+        // screen width and height:
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
+        
+        let sendToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, screenWidth, 60))
+        // sendToolbar.barStyle = UIBarStyle.Default
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: #selector(ChargeViewController.dismissKeyboard(_:)))
+        done.tintColor = UIColor.whiteColor()
+        UIToolbar.appearance().barTintColor = UIColor.mediumBlue()
+        done.setTitleTextAttributes([
+            NSFontAttributeName : UIFont(name: "Avenir-Book", size: 15.0)!,
+            NSForegroundColorAttributeName : UIColor(rgba: "#fff")
+            ], forState: .Normal)
+        
+        var items: [UIBarButtonItem]? = [UIBarButtonItem]()
+        items?.append(flexSpace)
+        items?.append(done)
+        items?.append(flexSpace)
+        
+        sendToolbar.items = items
+        sendToolbar.sizeToFit()
+        chargeInputView.inputAccessoryView=sendToolbar
+    }
+    
     func createCharge(sender: AnyObject) {
         
     }
     
     func showSuccessAlert() {
-        let customIcon:UIImage = UIImage(named: "ic_close_light")! // your custom icon UIImage
+        let customIcon:UIImage = UIImage(named: "ic_check_light")! // your custom icon UIImage
         let customColor:UIColor = UIColor(rgba: "#1EBC61") // base color for the alert
         let alertView = JSSAlertView().show(
             self,
@@ -254,14 +322,14 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate {
     }
     
     //Calls this function when the tap is recognized.
-    func dismissKeyboard() {
+    func dismissKeyboard(sender: AnyObject) {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         self.view.endEditing(true)
         paymentTextField.endEditing(true)
     }
     
     override func viewWillDisappear(animated: Bool) {
-        dismissKeyboard()
+        dismissKeyboard(self)
         super.viewWillDisappear(animated)
     }
     

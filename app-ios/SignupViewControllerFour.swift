@@ -278,7 +278,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
                 presentationSegue.formSheetPresentationController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
                 presentationSegue.formSheetPresentationController.presentationController?.shouldDismissOnBackgroundViewTap = true
                 presentationSegue.formSheetPresentationController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.Fade
-                presentationSegue.formSheetPresentationController.contentViewCornerRadius = 8
+                presentationSegue.formSheetPresentationController.contentViewCornerRadius = 10
                 presentationSegue.formSheetPresentationController.interactivePanGestureDismissalDirection = .All;
                 presentationSegue.formSheetPresentationController.allowDismissByPanningPresentedView = true
 

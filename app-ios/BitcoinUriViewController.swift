@@ -35,6 +35,7 @@ class BitcoinUriViewController: UIViewController {
             print("got bitcoin uri", bitcoinUri)
             qrCode?.image
             qrCode!.errorCorrection = .High
+            qrCode!.color = CIColor(CGColor: UIColor.mediumBlue().CGColor)
             return qrCode!.image
         }();
         

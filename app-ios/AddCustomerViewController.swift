@@ -115,7 +115,7 @@ final class AddCustomerViewController: FormViewController, STPPaymentCardTextFie
     }
     
     func showSuccessAlert() {
-        let customIcon:UIImage = UIImage(named: "ic_close_light")! // your custom icon UIImage
+        let customIcon:UIImage = UIImage(named: "ic_check_light")! // your custom icon UIImage
         let customColor:UIColor = UIColor(rgba: "#1EBC61") // base color for the alert
         let alertView = JSSAlertView().show(
             self,
