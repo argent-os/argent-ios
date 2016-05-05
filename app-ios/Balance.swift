@@ -1,8 +1,8 @@
 //
-//  Plan.swift
+//  Balance.swift
 //  app-ios
 //
-//  Created by Sinan Ulkuatam on 5/3/16.
+//  Created by Sinan Ulkuatam on 5/4/16.
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
 //
 
@@ -10,21 +10,24 @@ import Foundation
 import SwiftyJSON
 import Alamofire
 
-class Plan {
+class Balance {
     
-    let id: String
+    let pending: Float
+    let available: Float
     
-    required init(id: String) {
-        self.id = id
+    required init(pending: Float, available: Float) {
+        self.pending = pending
+        self.available = available
     }
     
-    class func getPlanList(completionHandler: ([Plan]?, NSError?) -> Void) {
+    class func getStripeBalance(completionHandler: (Balance?, NSError?) -> Void) {
         // request to api to get data as json, put in list and table
-        print("in get plan list")
+        print("in get account balance")
         
         // check for token, get profile id based on token and make the request
         if(userAccessToken != nil) {
             User.getProfile({ (user, error) in
+                // check for token, get profile id based on token and make the request
                 if error != nil {
                     print(error)
                 }
@@ -33,34 +36,29 @@ class Plan {
                 
                 let headers = [
                     "Authorization": "Bearer " + (userAccessToken as! String),
-                    "Content-Type": "application/x-www-form-urlencoded"
+                    "Content-Type": "application/x-www-url-formencoded"
                 ]
                 
-                let limit = "100"
-                let user_id = (user?.id)
-                
-                let endpoint = apiUrl + "/v1/stripe/" + user_id! + "/plans?limit=" + limit
+                let endpoint = apiUrl + "/v1/stripe/" + (user?.id)! + "/balance"
                 
                 Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .validate().responseJSON { response in
+                        // print(response)
                         switch response.result {
                         case .Success:
                             print("success")
                             if let value = response.result.value {
                                 let data = JSON(value)
-                                print("got plan list data")
-                                // print(data)
-                                var plansArray = [Plan]()
-                                let plans = data["plans"]["data"].arrayValue
-                                for plan in plans {
-                                    let id = plan["id"].stringValue
-                                    let item = Plan(id: id)
-                                    plansArray.append(item)
-                                }
-                                completionHandler(plansArray, response.result.error)
+                                print("got stripe balance data")
+                                print(data)
+                                let balance = data["balance"]
+                                let pending = balance["pending"][0]["amount"].floatValue
+                                let available = balance["available"][0]["amount"].floatValue
+                                let balanceObject = Balance.init(pending: pending, available: available)
+                                completionHandler(balanceObject, response.result.error)
                             }
                         case .Failure(let error):
-                            print("failed to get plan list")
+                            print("failed to get account balance")
                             print(error)
                         }
                 }

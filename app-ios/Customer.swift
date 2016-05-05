@@ -29,19 +29,21 @@ class Customer {
                     print(error)
                 }
                 
-                let parameters : [String : AnyObject] = [
-                    "userId": (user?.id)!,
-                    "limit": "100"
-                ]
+                let parameters : [String : AnyObject] = [:]
                 
                 let headers = [
                     "Authorization": "Bearer " + (userAccessToken as! String),
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/x-www-form-urlencoded"
                 ]
                 
-                let endpoint = apiUrl + "/v1/stripe/customers/list"
+                let limit = "100"
+                let user_id = (user?.id)
                 
-                Alamofire.request(.POST, endpoint, parameters: parameters, encoding: .JSON, headers: headers)
+                let endpoint = apiUrl + "/v1/stripe/" + user_id! + "/customers"
+                
+                print(endpoint)
+                
+                Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .validate().responseJSON { response in
                         print(response)
                         switch response.result {

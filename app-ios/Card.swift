@@ -36,53 +36,58 @@ class Card {
     
     class func getCreditCards(completionHandler: ([Card]?, NSError?) -> Void) {
         // request to api to get account data as json, put in list and table
-        
-        // make a call to our API endpoint not directly to Stripe
-        let parameters : [String : AnyObject] = [
-            "accountId" : ""
-        ]
-        
-        let headers = [
-            "Authorization": "Bearer " + (userAccessToken as! String),
-            "Content-Type": "application/json"
-        ]
-        
-        let endpoint = apiUrl + "/v1/stripe/account/cards/list"
-        
-        print(parameters)
-        
-        Alamofire.request(.POST, endpoint, parameters: parameters, encoding: .JSON, headers: headers)
-            .validate().responseJSON { response in
-                print(response)
-                switch response.result {
-                case .Success:
-                    print("success")
-                    if let value = response.result.value {
-                        let data = JSON(value)
-                        print("got credit card data")
-                        // print(data)
-                        var cardItemsArray = [Card]()
-                        let cards = data["cards"]["data"].arrayValue
-                        print(data["cards"]["data"].arrayValue)
-                        for jsonItem in cards {
-                            let brand = jsonItem["brand"].stringValue
-                            let country = jsonItem["country"].stringValue
-                            let currency = jsonItem["currency"].stringValue
-                            let cvc_check = jsonItem["cvc_check"].stringValue
-                            let exp_month = jsonItem["exp_month"].int
-                            let exp_year = jsonItem["exp_year"].int
-                            let fingerprint = jsonItem["fingerprint"].stringValue
-                            let funding = jsonItem["funding"].stringValue
-                            let last4 = jsonItem["last4"].stringValue
-
-                            let item = Card(brand: brand, country: country, currency: currency, cvc_check: cvc_check, exp_month: exp_month!, exp_year: exp_year!, fingerprint: fingerprint, funding: funding, last4: last4)
-                            cardItemsArray.append(item)
-                        }
-                        completionHandler(cardItemsArray, response.result.error)
-                    }
-                case .Failure(let error):
+        // check for token, get profile id based on token and make the request
+        if(userAccessToken != nil) {
+            User.getProfile({ (user, error) in
+                if error != nil {
                     print(error)
                 }
+                // make a call to our API endpoint not directly to Stripe
+                let parameters : [String : AnyObject] = [:]
+                
+                let headers = [
+                    "Authorization": "Bearer " + (userAccessToken as! String),
+                    "Content-Type": "application/x-www-form-urlencoded"
+                ]
+                
+                let endpoint = apiUrl + "/v1/stripe/" + (user?.id)! + "account/cards/"
+                
+                print(parameters)
+                
+                Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
+                    .validate().responseJSON { response in
+                        print(response)
+                        switch response.result {
+                        case .Success:
+                            print("success")
+                            if let value = response.result.value {
+                                let data = JSON(value)
+                                print("got credit card data")
+                                // print(data)
+                                var cardItemsArray = [Card]()
+                                let cards = data["cards"]["data"].arrayValue
+                                print(data["cards"]["data"].arrayValue)
+                                for jsonItem in cards {
+                                    let brand = jsonItem["brand"].stringValue
+                                    let country = jsonItem["country"].stringValue
+                                    let currency = jsonItem["currency"].stringValue
+                                    let cvc_check = jsonItem["cvc_check"].stringValue
+                                    let exp_month = jsonItem["exp_month"].int
+                                    let exp_year = jsonItem["exp_year"].int
+                                    let fingerprint = jsonItem["fingerprint"].stringValue
+                                    let funding = jsonItem["funding"].stringValue
+                                    let last4 = jsonItem["last4"].stringValue
+
+                                    let item = Card(brand: brand, country: country, currency: currency, cvc_check: cvc_check, exp_month: exp_month!, exp_year: exp_year!, fingerprint: fingerprint, funding: funding, last4: last4)
+                                    cardItemsArray.append(item)
+                                }
+                                completionHandler(cardItemsArray, response.result.error)
+                            }
+                        case .Failure(let error):
+                            print(error)
+                        }
+                }
+            })
         }
     }
 }

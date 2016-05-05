@@ -28,24 +28,24 @@ class NotificationItem {
         
         // check for token, get profile id based on token and make the request
         if(userAccessToken != nil) {
-            User.getProfile({ (item, error) in
+            User.getProfile({ (user, error) in
                 if error != nil {
                     print(error)
                 }
                 
-                let parameters : [String : AnyObject] = [
-                    "userId": (item?.id)!,
-                    "limit": "100"
-                ]
+                let parameters : [String : AnyObject] = [:]
                 
                 let headers = [
                     "Authorization": "Bearer " + (userAccessToken as! String),
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/x-www-form-urlencoded"
                 ]
                 
-                let endpoint = apiUrl + "/v1/stripe/events"
+                let limit = "100"
+                let user_id = (user?.id)
                 
-                Alamofire.request(.POST, endpoint, parameters: parameters, encoding: .JSON, headers: headers)
+                let endpoint = apiUrl + "/v1/stripe/" + user_id! + "/events?limit=" + limit
+                
+                Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .validate().responseJSON { response in
                         // print(response)
                         switch response.result {

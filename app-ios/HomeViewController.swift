@@ -24,6 +24,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 
     var accountHistoryArray:Array<History>?
     
+    var balance:Balance = Balance(pending: 0, available: 0)
+    
     var tableView:UITableView = UITableView()
     
     var arrayOfValues: Array<AnyObject> = [30,10,20,50,60,80]
@@ -76,7 +78,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        auth()
+        loadData()
         
         configureView()
         
@@ -135,7 +137,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 
     }
     
-    func auth() {
+    func loadData() {
         
         // IMPORTANT: load new access token on home load, otherwise the old token will be requested to the server
         userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
@@ -151,7 +153,41 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             print("token retrieved! ", userAccessToken)
             
             // Get stripe data
-            loadStripe()
+            loadStripe({ (balance, err) in
+                
+                let pendingBalance = balance.pending
+                let availableBalance = balance.available
+                
+                NSNotificationCenter.defaultCenter().postNotificationName("balance", object: nil, userInfo: ["available_bal":availableBalance,"pending_bal":pendingBalance])
+
+                let formatter = NSNumberFormatter()
+                formatter.numberStyle = .CurrencyStyle
+                formatter.locale = NSLocale.currentLocale() // This is the default
+                
+                if(pendingBalance != 0 && availableBalance != 0) {
+                    self.lblAccountPending.countFrom(0, to: CGFloat(pendingBalance)/100)
+                    self.lblAccountPending.textColor = UIColor.whiteColor()
+                    self.lblAccountPending.format = "%.2f"
+                    self.lblAccountPending.animationDuration = 2.0
+                    self.lblAccountPending.countFromZeroTo(CGFloat(Float(pendingBalance))/100)
+                    self.lblAccountPending.method = UILabelCountingMethod.EaseInOut
+                    self.lblAccountPending.completionBlock = {
+                        let pendingBalanceNum = formatter.stringFromNumber(pendingBalance/100)
+                        self.lblAccountPending.text = pendingBalanceNum
+                    }
+    
+                    self.lblAccountAvailable.countFrom((CGFloat(Float(availableBalance))/100)-100, to: CGFloat(Float(availableBalance))/100)
+                    self.lblAccountAvailable.textColor = UIColor.whiteColor()
+                    self.lblAccountAvailable.format = "%.2f"
+                    self.lblAccountAvailable.animationDuration = 2.0
+                    self.lblAccountAvailable.countFromZeroTo(CGFloat(Float(availableBalance))/100)
+                    self.lblAccountAvailable.method = UILabelCountingMethod.EaseInOut
+                    self.lblAccountAvailable.completionBlock = {
+                        let availableBalanceNum = formatter.stringFromNumber(availableBalance/100)
+                        self.lblAccountAvailable.text = availableBalanceNum
+                    }
+                }
+            })
             
             // Get user account history
             loadAccountHistory { (historyArr, error) in
@@ -159,7 +195,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 if error != nil {
                     print(error)
                 }
-                print(historyArr)
                 HUD.dismiss()
             }
             
@@ -388,50 +423,19 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         })
     }
     
-    func loadStripe() {
+    func loadStripe(completionHandler: (Balance, NSError?) -> ()) {
         // Set account balance label
-        getStripeBalance() { responseObject, error in
-            // use responseObject and error here
-            // print("responseObject = \(responseObject); error = \(error)")
-            let formatter = NSNumberFormatter()
-            formatter.numberStyle = .CurrencyStyle
-            formatter.locale = NSLocale.currentLocale() // This is the default
-            if responseObject?["balance"]["pending"][0]["amount"].stringValue != nil {
-                let pendingAmt = responseObject?["balance"]["pending"][0]["amount"].stringValue
-                let availableAmt = responseObject?["balance"]["available"][0]["amount"].stringValue
-                print(responseObject)
-                print("available amount is")
-                print(availableAmt)
-                NSNotificationCenter.defaultCenter().postNotificationName("balance", object: nil, userInfo: ["available_bal":availableAmt!,"pending_bal":pendingAmt!])
-                
-                if(pendingAmt == nil || pendingAmt == "" || availableAmt == nil || availableAmt == "") {
-                    return
-                } else {
-                    self.lblAccountPending.countFrom(0, to: CGFloat(Float(pendingAmt!)!)/100)
-                    self.lblAccountPending.textColor = UIColor.whiteColor()
-                    self.lblAccountPending.format = "%.2f"
-                    self.lblAccountPending.animationDuration = 2.0
-                    self.lblAccountPending.countFromZeroTo(CGFloat(Float(pendingAmt!)!)/100)
-                    self.lblAccountPending.method = UILabelCountingMethod.EaseInOut
-                    self.lblAccountPending.completionBlock = {
-                        let pendingBalanceNum = formatter.stringFromNumber(Float(pendingAmt!)!/100)
-                        self.lblAccountPending.text = pendingBalanceNum!
-                    }
-                    
-                    self.lblAccountAvailable.countFrom((CGFloat(Float(availableAmt!)!)/100)-100, to: CGFloat(Float(availableAmt!)!)/100)
-                    self.lblAccountAvailable.textColor = UIColor.whiteColor()
-                    self.lblAccountAvailable.format = "%.2f"
-                    self.lblAccountAvailable.animationDuration = 2.0
-                    self.lblAccountAvailable.countFromZeroTo(CGFloat(Float(availableAmt!)!)/100)
-                    self.lblAccountAvailable.method = UILabelCountingMethod.EaseInOut
-                    self.lblAccountAvailable.completionBlock = {
-                        let availableBalanceNum = formatter.stringFromNumber(Float(availableAmt!)!/100)
-                        self.lblAccountAvailable.text = availableBalanceNum!
-                    }
-                }
+        
+        Balance.getStripeBalance({ (balance, error) in
+            if error != nil {
+                let alert = UIAlertController(title: "Error", message: "Could not load history \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
             }
-            return
-        }
+            print("got balances")
+            self.balance = balance!
+            completionHandler(balance!, error)
+        })
     }
     
     func loadUserProfile(completionHandler: (User?, NSError?) -> ()) {
@@ -448,81 +452,12 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             completionHandler(item!, error)
         })
     }
-    
-    func getStripeBalance(completionHandler: (JSON?, NSError?) -> ()) {
-        makeStripeCall("/v1/stripe/balance", completionHandler: completionHandler)
-    }
-    
-    func makeStripeCall(endpoint: String, completionHandler: (JSON?, NSError?) -> ()) {
 
-        // check for token, get profile id based on token and make the request
-        if(userAccessToken != nil) {
-            loadUserProfile({ (item, error) in
-                if error != nil {
-                    print(error)
-                }
-                print(item)
-                // TODO: Make secret key call from API, find user by ID
-                if let userId = item?.id {
-                    
-                    let parameters : [String : AnyObject] = [
-                        "userId": userId
-                    ]
-                    
-                    print("parameters are", parameters)
-                    
-                    let headers = [
-                        "Authorization": "Bearer " + (userAccessToken as! String),
-                        "Content-Type": "application/json"
-                    ]
-                    
-                    Alamofire.request(.POST, apiUrl + endpoint,
-                        encoding:.JSON,
-                        parameters: parameters,
-                        headers: headers)
-                        .responseJSON { response in
-                            print(response.request) // original URL request
-                            print(response.response?.statusCode) // URL response
-                            print(response.data) // server data
-                            print(response.result) // result of response serialization
-                            
-                            // go to main view
-                            if(response.response?.statusCode == 200) {
-                                print("green light")
-                            } else {
-                                print("red light")
-                            }
-                            
-                            switch response.result {
-                            case .Success:
-                                if let value = response.result.value {
-                                    let json = JSON(value)
-                                    completionHandler(json, nil)
-                                }
-                            case .Failure(let error):
-                                print(error)
-                                completionHandler(nil, error)
-                            }
-                    }
-                }
-            })
-        }
-    }
-    
-    // Charge View
-    @IBAction func chargeButtonTapped(sender: AnyObject) {
-        // go to charge view
-        self.performSegueWithIdentifier("chargeView", sender: self);
-    }
-    
     // LOGOUT
     func logout() {
         NSUserDefaults.standardUserDefaults().setValue("", forKey: "userAccessToken")
         NSUserDefaults.standardUserDefaults().synchronize();
         userData = nil
-        print("logging out")
-//        print(userData)
-//        print(NSUserDefaults.valueForKey("userLoggedIn"))
         
         let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
         HUD.textLabel.text = "Logging out"
@@ -542,8 +477,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         NSUserDefaults.standardUserDefaults().setBool(false,forKey:"userLoggedIn");
         NSUserDefaults.standardUserDefaults().synchronize();
         userData = nil
-        print("logging out")
-//        print(userData)
         print(NSUserDefaults.valueForKey("userLoggedIn"))
 
         let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
@@ -573,13 +506,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         var CellIdentifier: String = "Cell"
-//        let cell = tableView.dequeueReusableCellWithIdentifier(, forIndexPath: indexPath)
         let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: CellIdentifier)
 
-
         let item = self.accountHistoryArray?[indexPath.row]
-//        print("got data for account cells")
-//        print(item)
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         cell.textLabel?.text = ""
         cell.detailTextLabel?.text = "Account credited"

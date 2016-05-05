@@ -24,25 +24,24 @@ class History {
         
         // check for token, get profile id based on token and make the request
         if(userAccessToken != nil) {
-            User.getProfile({ (item, error) in
+            User.getProfile({ (user, error) in
                 if error != nil {
                     print(error)
                 }
-                print(item)
                 
-                let parameters : [String : AnyObject] = [
-                    "userId": (item?.id)!,
-                    "limit": "100"
-                ]
+                let parameters : [String : AnyObject] = [:]
                 
                 let headers = [
                     "Authorization": "Bearer " + (userAccessToken as! String),
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/x-www-form-urlencoded"
                 ]
                 
-                let endpoint = apiUrl + "/v1/stripe/history/"
+                let limit = "100"
+                let user_id = (user?.id)
                 
-                Alamofire.request(.POST, endpoint, parameters: parameters, encoding: .JSON, headers: headers)
+                let endpoint = apiUrl + "/v1/stripe/" + user_id! + "/balance/transactions?limit=" + limit
+                
+                Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .validate().responseJSON { response in
                         // print(response)
                         switch response.result {
@@ -55,9 +54,8 @@ class History {
                                 var historyItemsArray = [History]()
                                 let accountHistories = data["transactions"]["data"].arrayValue
                                 //                             print(data["transactions"]["data"].arrayValue)
-                                for jsonItem in accountHistories {
-                                    let amount = jsonItem["amount"].stringValue
-                                    print(amount)
+                                for history in accountHistories {
+                                    let amount = history["amount"].stringValue
                                     let item = History(amount: amount)
                                     historyItemsArray.append(item)
                                 }
