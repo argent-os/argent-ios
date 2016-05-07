@@ -534,8 +534,8 @@
 		306DF00C1CDA482200864CAE /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				30C2DAEC1CA43946003AFD8B /* RecurringBillingPlanViewController.swift */,
-				30C2DAEE1CA43951003AFD8B /* AddCustomerViewController.swift */,
+				30D5267A1CDD8878001B41BA /* Plan */,
+				30D526791CDD8874001B41BA /* Customer */,
 				309E15911CBC29FB00EA95E4 /* Charge */,
 			);
 			name = Menu;
@@ -776,6 +776,22 @@
 			name = fonts;
 			path = "app-ios/fonts";
 			sourceTree = SOURCE_ROOT;
+		};
+		30D526791CDD8874001B41BA /* Customer */ = {
+			isa = PBXGroup;
+			children = (
+				30C2DAEE1CA43951003AFD8B /* AddCustomerViewController.swift */,
+			);
+			name = Customer;
+			sourceTree = "<group>";
+		};
+		30D5267A1CDD8878001B41BA /* Plan */ = {
+			isa = PBXGroup;
+			children = (
+				30C2DAEC1CA43946003AFD8B /* RecurringBillingPlanViewController.swift */,
+			);
+			name = Plan;
+			sourceTree = "<group>";
 		};
 		30D7B72F1C77880200B64B7F /* Signup */ = {
 			isa = PBXGroup;

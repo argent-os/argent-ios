@@ -74,7 +74,7 @@ class ProfileViewController: UIViewController {
             navBar.setItems([navItem], animated: false)
             
             let settingsIcon = UIImageView(frame: CGRectMake(0, 0, 32, 32))
-            settingsIcon.image = UIImage(named: "IconSettings")
+            settingsIcon.image = UIImage(named: "IconSettingsWhite")
             settingsIcon.contentMode = .ScaleAspectFit
             settingsIcon.alpha = 0.5
             settingsIcon.center = CGPointMake(self.view.frame.size.width / 2, 130)

@@ -45,6 +45,7 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
             $0.titleLabel.text = "Push Notifications"
             }.configure() { cell in
                 getPushState { (val, token, error) in
+                    cell.rowHeight = 60
                     cell.switched = (val?.boolValue)!
                     cell.update()
                 }
@@ -63,7 +64,7 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
         let createHeader: (String -> ViewFormer) = { text in
             return LabelViewFormer<FormLabelHeaderView>()
                 .configure {
-                    $0.viewHeight = 40
+                    $0.viewHeight = 0
                     $0.text = text
             }
         }

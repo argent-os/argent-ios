@@ -17,10 +17,13 @@ import BEMSimpleLineGraph
 import UICountingLabel
 import DGElasticPullToRefresh
 import Gecco
+import RAMAnimatedTabBarController
 
 var userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
 
 class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpleLineGraphDataSource, UITableViewDelegate, UITableViewDataSource  {
+
+    var window: UIWindow?
 
     var accountHistoryArray:Array<History>?
     
@@ -40,18 +43,12 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 
     let lblPendingDescription:UILabel = UILabel()
 
-    let runkeeperSwitch = DGRunkeeperSwitch(leftTitle: "Pending", rightTitle: "Available")
+    let balanceSwitch = DGRunkeeperSwitch(leftTitle: "Pending", rightTitle: "Available")
+
+    let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 15, width: UIScreen.mainScreen().bounds.size.width, height: 50))
 
     let graph: BEMSimpleLineGraphView = BEMSimpleLineGraphView(frame: CGRectMake(0, 100, UIScreen.mainScreen().bounds.size.width, 190))
-
-    @IBOutlet weak var blurView: UIVisualEffectView!
-
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
-    
-    @IBOutlet weak var switchBal: DGRunkeeperSwitch?
-    
-    @IBOutlet weak var navigationBar: UINavigationItem!
-    
+        
     @IBAction func indexChanged(sender: DGRunkeeperSwitch) {
         if(sender.selectedIndex == 0) {
             lblAccountAvailable.removeFromSuperview()
@@ -91,10 +88,10 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     }
     
     override func viewDidDisappear(animated: Bool) {
-        runkeeperSwitch.removeFromSuperview()
+        balanceSwitch.removeFromSuperview()
     }
     
-    func mainSegmentControl(segment: UISegmentedControl) {
+    func dateRangeSegmentControl(segment: UISegmentedControl) {
         if segment.selectedSegmentIndex == 0 {
             // action for the first button (Current or Default)
             arrayOfValues = [30,20,30,80]
@@ -130,8 +127,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     // VIEW DID APPEAR
     override func viewDidAppear(animated: Bool) {
         
-//        self.navigationController!.navigationBar.addSubview(runkeeperSwitch)
-//        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+        self.view.addSubview(balanceSwitch)
+        self.view.bringSubviewToFront(balanceSwitch)
         UITextField.appearance().keyboardAppearance = .Light
         UIStatusBarStyle.LightContent
 
@@ -281,16 +278,15 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         graph.layer.masksToBounds = true
         self.view!.addSubview(graph)
         
-        let mainSegment: UISegmentedControl = UISegmentedControl(items: ["1M", "3M", "6M", "1Y", "5Y"])
-        mainSegment.frame = CGRect(x: 15.0, y: 230.0, width: view.bounds.width - 30.0, height: 30.0)
+        let dateRangeSegment: UISegmentedControl = UISegmentedControl(items: ["1M", "3M", "6M", "1Y", "5Y"])
+        dateRangeSegment.frame = CGRect(x: 15.0, y: 230.0, width: view.bounds.width - 30.0, height: 30.0)
         //        var y_co: CGFloat = self.view.frame.size.height - 100.0
-        //        mainSegment.frame = CGRectMake(10, y_co, width-20, 50.0)
-        mainSegment.selectedSegmentIndex = 2
-        mainSegment.removeBorders()
-        mainSegment.addTarget(self, action: #selector(HomeViewController.mainSegmentControl(_:)), forControlEvents: .ValueChanged)
-        self.view!.addSubview(mainSegment)
+        //        dateRangeSegment.frame = CGRectMake(10, y_co, width-20, 50.0)
+        dateRangeSegment.selectedSegmentIndex = 2
+        dateRangeSegment.removeBorders()
+        dateRangeSegment.addTarget(self, action: #selector(HomeViewController.dateRangeSegmentControl(_:)), forControlEvents: .ValueChanged)
+        self.view!.addSubview(dateRangeSegment)
         
-        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 15, width: screenWidth, height: 50))
         navBar.barTintColor = UIColor.clearColor()
         navBar.translucent = true
         navBar.tintColor = UIColor.whiteColor()
@@ -306,16 +302,16 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         let navItem = UINavigationItem(title: "")
         navBar.setItems([navItem], animated: true)
         
-        runkeeperSwitch.backgroundColor = UIColor.clearColor()
-        runkeeperSwitch.selectedBackgroundColor = UIColor.whiteColor()
-        runkeeperSwitch.titleColor = UIColor.whiteColor()
-        runkeeperSwitch.selectedTitleColor = UIColor.mediumBlue()
-        runkeeperSwitch.titleFont = UIFont(name: "Avenir-Book", size: 12.0)
-        runkeeperSwitch.frame = CGRect(x: view.bounds.width - 205.0, y: 15, width: 200, height: 30.0)
+        balanceSwitch.backgroundColor = UIColor.clearColor()
+        balanceSwitch.selectedBackgroundColor = UIColor.whiteColor()
+        balanceSwitch.titleColor = UIColor.whiteColor()
+        balanceSwitch.selectedTitleColor = UIColor.mediumBlue()
+        balanceSwitch.titleFont = UIFont(name: "Avenir-Book", size: 12.0)
+        balanceSwitch.frame = CGRect(x: view.bounds.width - 175.0, y: 30, width: 160, height: 30.0)
         //autoresizing so it stays at top right (flexible left and flexible bottom margin)
-        runkeeperSwitch.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-        runkeeperSwitch.bringSubviewToFront(runkeeperSwitch)
-        runkeeperSwitch.addTarget(self, action: #selector(HomeViewController.indexChanged(_:)), forControlEvents: .ValueChanged)
+        balanceSwitch.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
+        balanceSwitch.bringSubviewToFront(balanceSwitch)
+        balanceSwitch.addTarget(self, action: #selector(HomeViewController.indexChanged(_:)), forControlEvents: .ValueChanged)
         
         let headerView: UIView = UIView(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 60))
         headerView.backgroundColor = UIColor.clearColor()

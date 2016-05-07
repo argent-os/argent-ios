@@ -15,20 +15,57 @@ import Former
 import Stripe
 import JSSAlertView
 
-final class AddCustomerViewController: FormViewController, STPPaymentCardTextFieldDelegate {
+final class AddCustomerViewController: FormViewController, UINavigationBarDelegate {
     
     var dic: Dictionary<String, String> = [:]
-    
-    let paymentTextField = STPPaymentCardTextField()
     
     // MARK: Public
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        setupNav()
     }
     
     // MARK: Private
+    
+    private func setupNav() {
+        let navigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 50)) // Offset by 20 pixels vertically to take the status bar into account
+        
+        navigationBar.backgroundColor = UIColor.whiteColor()
+        navigationBar.tintColor = UIColor.mediumBlue()
+        navigationBar.delegate = self
+        
+        // Create a navigation item with a title
+        let navigationItem = UINavigationItem()
+        navigationItem.title = "Invite Customer"
+
+        // Create left and right button for navigation item
+        let leftButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: UIBarButtonItemStyle.Plain, target: self, action: "returnToMenu:")
+        let font = UIFont(name: "Avenir-Book", size: 14)
+        leftButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+        // Create two buttons for the navigation item
+        navigationItem.leftBarButtonItem = leftButton
+        
+        // Assign the navigation item to the navigation bar
+        navigationBar.titleTextAttributes = [NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.darkGrayColor()]
+        navigationBar.items = [navigationItem]
+        
+        // Make the navigation bar a subview of the current view controller
+        self.view.addSubview(navigationBar)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        // screen width and height:
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
+        
+        tableView.contentInset.top = 10
+        tableView.contentInset.bottom = 30
+        tableView.contentOffset.y = -10
+        tableView.frame = CGRect(x: 0, y: 50, width: screenWidth, height: screenHeight-60)
+    }
     
     private func configure() {
         
@@ -37,17 +74,8 @@ final class AddCustomerViewController: FormViewController, STPPaymentCardTextFie
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-        title = "Add Customer"
-        tableView.contentInset.top = 0
-        tableView.contentInset.bottom = 30
-        tableView.contentOffset.y = 0
+        title = "Invite Customer"
         tableView.backgroundColor = UIColor.whiteColor()
-        
-        // Card text
-        paymentTextField.frame = CGRectMake(20, screenHeight*0.4, screenWidth - 40, 44)
-        paymentTextField.delegate = self
-        // adds a manual credit card entry textfield
-        self.view.addSubview(paymentTextField)
         
         // UI
         let addCustomerButton = UIButton(frame: CGRect(x: 20, y: screenHeight-80, width: screenWidth-40, height: 60.0))
@@ -55,14 +83,14 @@ final class AddCustomerViewController: FormViewController, STPPaymentCardTextFie
         addCustomerButton.tintColor = UIColor(rgba: "#fff")
         addCustomerButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
         addCustomerButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
-        addCustomerButton.setTitle("Add Customer", forState: .Normal)
+        addCustomerButton.setTitle("Invite Customer", forState: .Normal)
         addCustomerButton.layer.cornerRadius = 5
         addCustomerButton.layer.masksToBounds = true
         addCustomerButton.clipsToBounds = true
         addCustomerButton.addTarget(self, action: #selector(AddCustomerViewController.addCustomerButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(addCustomerButton)
         
-        self.navigationItem.title = "Add Customer"
+        self.navigationItem.title = "Invite Customer"
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.darkGrayColor()]
         
         // Create RowFomers
@@ -73,7 +101,7 @@ final class AddCustomerViewController: FormViewController, STPPaymentCardTextFie
             $0.textField.autocorrectionType = .No
             $0.textField.keyboardType = .EmailAddress
             }.configure {
-                $0.placeholder = "Customer Email"
+                $0.placeholder = "Email"
                 $0.rowHeight = 60
             }.onTextChanged { [weak self] in
                 self?.dic["customerEmailKey"] = $0
@@ -84,7 +112,7 @@ final class AddCustomerViewController: FormViewController, STPPaymentCardTextFie
             $0.textField.autocorrectionType = .No
             $0.textField.autocapitalizationType = .None
             }.configure {
-                $0.placeholder = "Customer Description"
+                $0.placeholder = "Attach a note"
                 $0.rowHeight = 60
             }.onTextChanged { [weak self] in
                 self?.dic["customerDescriptionKey"] = $0
@@ -104,7 +132,8 @@ final class AddCustomerViewController: FormViewController, STPPaymentCardTextFie
         // TODO: Add paymentRow using Stripe payment textfield adding to view
         
         let titleSection = SectionFormer(rowFormer: emailRow, descriptionRow)
-        
+            .set(headerViewFormer: createHeader())
+
         former.append(sectionFormer: titleSection)
     }
     
@@ -120,25 +149,22 @@ final class AddCustomerViewController: FormViewController, STPPaymentCardTextFie
         let alertView = JSSAlertView().show(
             self,
             title: "",
-            text: "Customer " + String(dic["customerEmailKey"]) + " added!",
+            text: "Email invite sent to " + String(dic["customerEmailKey"]) + "!",
             buttonText: "",
             noButtons: true,
             color: customColor,
             iconImage: customIcon)
         alertView.setTextTheme(.Light) // can be .Light or .Dark
     }
-    
-    func paymentCardTextFieldDidChange(textField: STPPaymentCardTextField) {
-        if(paymentTextField.isValid) {
-            paymentTextField.endEditing(true)
-        }
+
+    func returnToMenu(sender: AnyObject) {
+        self.view.window!.rootViewController!.dismissViewControllerAnimated(true, completion: { _ in })
     }
     
     //Calls this function when the tap is recognized.
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
-        paymentTextField.endEditing(true)
     }
     
     override func viewWillDisappear(animated: Bool) {

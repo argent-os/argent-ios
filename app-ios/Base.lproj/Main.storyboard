@@ -732,6 +732,7 @@ support request</string>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationLevel="2" indentationWidth="10" textLabel="1JQ-65-9SC" detailTextLabel="c1g-Fk-3FK" style="IBUITableViewCellStyleValue1" id="Bbd-Cw-rDh">
                                         <rect key="frame" x="0.0" y="108" width="1024" height="44"/>
@@ -912,8 +913,8 @@ support request</string>
                                             <rect key="frame" x="0.0" y="0.0" width="810" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Risk Profiling" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WWx-Bz-eBj">
-                                                    <rect key="frame" x="216" y="11" width="91" height="22"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Risk Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WWx-Bz-eBj">
+                                                    <rect key="frame" x="216" y="11" width="77.5" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -1341,7 +1342,7 @@ support request</string>
                         <viewControllerLayoutGuide type="bottom" id="Aa7-CV-e8d"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="2uG-We-evA">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1706,7 +1707,6 @@ institutions</string>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
-                        <outlet property="navigationBar" destination="w3e-6C-5LA" id="1lw-XX-p0y"/>
                         <segue destination="mQk-jK-m8v" kind="presentation" identifier="loginView" id="A1R-09-1HJ"/>
                         <segue destination="pzK-yB-ekt" kind="show" identifier="addCustomerView" id="PrX-Yu-xbB"/>
                         <segue destination="SDr-Sd-KOe" kind="show" identifier="addPlanView" id="kpf-dT-hyx"/>
@@ -3137,7 +3137,7 @@ Tap here to view</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="connectedBankCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="connectedBankCell" textLabel="ktk-Se-MBo" detailTextLabel="6qn-yX-OPC" rowHeight="220" style="IBUITableViewCellStyleSubtitle" id="rA6-th-m9T" customClass="SESlideTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="connectedBankCell" selectionStyle="none" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="connectedBankCell" textLabel="ktk-Se-MBo" detailTextLabel="6qn-yX-OPC" rowHeight="220" style="IBUITableViewCellStyleSubtitle" id="rA6-th-m9T" customClass="SESlideTableViewCell">
                                 <rect key="frame" x="0.0" y="92" width="414" height="220"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rA6-th-m9T" id="ZKA-Zx-AVJ">
@@ -3183,7 +3183,7 @@ Tap here to view</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="connectedBankCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="connectedCreditCardCell" textLabel="nTD-t3-72v" detailTextLabel="wVx-bC-nwr" rowHeight="220" style="IBUITableViewCellStyleSubtitle" id="F7G-oK-EW1" customClass="SESlideTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="connectedBankCell" selectionStyle="none" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="connectedCreditCardCell" textLabel="nTD-t3-72v" detailTextLabel="wVx-bC-nwr" rowHeight="220" style="IBUITableViewCellStyleSubtitle" id="F7G-oK-EW1" customClass="SESlideTableViewCell">
                                 <rect key="frame" x="0.0" y="92" width="414" height="220"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="F7G-oK-EW1" id="vv1-5e-F4e">
@@ -3447,7 +3447,7 @@ risk profiles who have also activated this feature</string>
         <segue reference="jpD-81-9Zm"/>
         <segue reference="PrX-Yu-xbB"/>
         <segue reference="kpf-dT-hyx"/>
-        <segue reference="Bot-Tn-1ZP"/>
+        <segue reference="zQh-Po-kj4"/>
         <segue reference="GfY-d3-W00"/>
         <segue reference="SFz-vc-0MB"/>
     </inferredMetricsTieBreakers>

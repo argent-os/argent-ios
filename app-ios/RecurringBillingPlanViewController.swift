@@ -14,7 +14,7 @@ import Former
 import JGProgressHUD
 import JSSAlertView
 
-final class RecurringBillingViewController: FormViewController {
+final class RecurringBillingViewController: FormViewController, UINavigationBarDelegate {
     
     var dic: Dictionary<String, String> = [:]
     
@@ -23,21 +23,59 @@ final class RecurringBillingViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        setupNav()
     }
     
     // MARK: Private
     
-    private func configure() {
-        title = "Add Customer"
+    private func setupNav() {
+        let navigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 50)) // Offset by 20 pixels vertically to take the status bar into account
+        
+        navigationBar.backgroundColor = UIColor.whiteColor()
+        navigationBar.tintColor = UIColor.mediumBlue()
+        navigationBar.delegate = self
+        
+        // Create a navigation item with a title
+        let navigationItem = UINavigationItem()
+        navigationItem.title = "Add Billing Plan"
+        
+        // Create left and right button for navigation item
+        let leftButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: UIBarButtonItemStyle.Plain, target: self, action: "returnToMenu:")
+        let font = UIFont(name: "Avenir-Book", size: 14)
+        leftButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+        // Create two buttons for the navigation item
+        navigationItem.leftBarButtonItem = leftButton
+        
+        // Assign the navigation item to the navigation bar
+        navigationBar.titleTextAttributes = [NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()]
+        navigationBar.items = [navigationItem]
+        
+        // Make the navigation bar a subview of the current view controller
+        self.view.addSubview(navigationBar)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        // screen width and height:
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
+        
         tableView.contentInset.top = 10
         tableView.contentInset.bottom = 30
         tableView.contentOffset.y = -10
-        tableView.backgroundColor = UIColor.whiteColor()
+        tableView.frame = CGRect(x: 0, y: 50, width: screenWidth, height: screenHeight-60)
+    }
+    
+    private func configure() {
+        title = "Add Plan"
 
         // screen width and height:
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
+        
+        tableView.frame = CGRect(x: 0, y: 100, width: screenWidth, height: screenHeight-60)
+        tableView.backgroundColor = UIColor.whiteColor()
         
         // UI
         let addPlanButton = UIButton(frame: CGRect(x: 20, y: screenHeight-80, width: screenWidth-40, height: 60.0))
@@ -93,6 +131,7 @@ final class RecurringBillingViewController: FormViewController {
         let planAmountRow = TextFieldRowFormer<FormTextFieldCell>() {
             $0.textField.font = UIFont(name: "Avenir-Book", size: 15)
             $0.textField.autocorrectionType = .No
+            $0.textField.keyboardType = .NumberPad
             $0.textField.autocapitalizationType = .None
             }.configure {
                 $0.placeholder = "Amount"
@@ -103,6 +142,7 @@ final class RecurringBillingViewController: FormViewController {
         
         let planIntervalRow = InlinePickerRowFormer<ProfileLabelCell, String>(instantiateType: .Nib(nibName: "ProfileLabelCell")) {
             $0.titleLabel.text = "Interval"
+            $0.titleLabel.font = UIFont(name: "Avenir-Book", size: 15)
             $0.titleLabel.textColor = UIColor.lightGrayColor()
             }.configure {
                 let intervals = ["day", "month", "week", "year"]
@@ -121,6 +161,7 @@ final class RecurringBillingViewController: FormViewController {
             $0.textField.font = UIFont(name: "Avenir-Book", size: 15)
             $0.textField.autocorrectionType = .No
             $0.textField.autocapitalizationType = .None
+            $0.textField.keyboardType = .NumberPad
             }.configure {
                 $0.placeholder = "Trial Period (in days)"
                 $0.rowHeight = 60
@@ -151,7 +192,8 @@ final class RecurringBillingViewController: FormViewController {
         // Create SectionFormers
         
         let titleSection = SectionFormer(rowFormer: planIdRow, planNameRow, planCurrencyRow, planAmountRow, planIntervalRow, planTrialPeriodRow, planStatementDescriptionRow)
-        
+            .set(headerViewFormer: createHeader())
+
         former.append(sectionFormer: titleSection)
     }
     
@@ -160,6 +202,9 @@ final class RecurringBillingViewController: FormViewController {
         showSuccessAlert()
     }
     
+    func returnToMenu(sender: AnyObject) {
+        self.view.window!.rootViewController!.dismissViewControllerAnimated(true, completion: { _ in })
+    }
     
     func showSuccessAlert() {
         let customIcon:UIImage = UIImage(named: "ic_check_light")! // your custom icon UIImage
@@ -167,7 +212,7 @@ final class RecurringBillingViewController: FormViewController {
         let alertView = JSSAlertView().show(
             self,
             title: "",
-            text: "Plan " + String(dic["planNameKey"]) + " created!",
+            text: String(dic["planNameKey"]) + " plan created!",
             buttonText: "",
             noButtons: true,
             color: customColor,

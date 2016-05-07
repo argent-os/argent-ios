@@ -41,6 +41,7 @@ final class EditProfileViewController: FormViewController {
             $0.textField.keyboardType = .NumberPad
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
+                $0.rowHeight = 60
                 $0.placeholder = "For transfer volumes of $20,000+"
                 $0.text = Profile.sharedInstance.ssn
             }.onTextChanged {
@@ -50,6 +51,7 @@ final class EditProfileViewController: FormViewController {
             $0.titleLabel.text = "Name"
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
+                $0.rowHeight = 60
                 $0.placeholder = "Your business name"
                 $0.text = Profile.sharedInstance.businessName
             }.onTextChanged {
@@ -59,6 +61,7 @@ final class EditProfileViewController: FormViewController {
             $0.titleLabel.text = "Address"
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
+                $0.rowHeight = 60
                 $0.placeholder = "Your business address"
                 $0.text = Profile.sharedInstance.businessAddressLine1
             }.onTextChanged {
@@ -68,6 +71,7 @@ final class EditProfileViewController: FormViewController {
             $0.titleLabel.text = "Country"
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
+                $0.rowHeight = 60
                 $0.placeholder = "Your business country"
                 $0.text = Profile.sharedInstance.businessAddressCountry
             }.onTextChanged {
@@ -87,6 +91,7 @@ final class EditProfileViewController: FormViewController {
             $0.titleLabel.text = "City"
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
+                $0.rowHeight = 60
                 $0.placeholder = "Your business city"
                 $0.text = Profile.sharedInstance.businessAddressCity
             }.onTextChanged {
@@ -94,7 +99,10 @@ final class EditProfileViewController: FormViewController {
         }
         let businessAddressStateRow = InlinePickerRowFormer<ProfileLabelCell, String>(instantiateType: .Nib(nibName: "ProfileLabelCell")) {
             $0.titleLabel.text = "State"
+            }.inlineCellSetup {
+                    $0.tintColor = UIColor.darkGrayColor()
             }.configure {
+                $0.rowHeight = 60
                 let businessStates = Profile.sharedInstance.state
                 $0.pickerItems = businessStates.map {
                     InlinePickerItem(title: $0)
@@ -107,7 +115,10 @@ final class EditProfileViewController: FormViewController {
         }
         let businessTypeRow = InlinePickerRowFormer<ProfileLabelCell, String>(instantiateType: .Nib(nibName: "ProfileLabelCell")) {
             $0.titleLabel.text = "Type"
+            }.inlineCellSetup {
+                    $0.tintColor = UIColor.darkGrayColor()
             }.configure {
+                $0.rowHeight = 60
                 let businessTypes = ["individual", "company"]
                 $0.pickerItems = businessTypes.map {
                     InlinePickerItem(title: $0)
@@ -124,6 +135,7 @@ final class EditProfileViewController: FormViewController {
     private func configure() {
         tableView.contentInset.top = 0
         tableView.contentInset.bottom = 40
+        tableView.contentOffset.y = 0
         tableView.backgroundColor = UIColor.whiteColor()
 
         let screen = UIScreen.mainScreen().bounds
@@ -147,6 +159,7 @@ final class EditProfileViewController: FormViewController {
             $0.titleLabel.text = "First Name"
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
+                $0.rowHeight = 60
                 $0.placeholder = "Your first name or company rep first name"
                 $0.text = Profile.sharedInstance.firstName
             }.onTextChanged {
@@ -156,6 +169,7 @@ final class EditProfileViewController: FormViewController {
             $0.titleLabel.text = "Last Name"
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
+                $0.rowHeight = 60
                 $0.placeholder = "Your last name or company rep last name"
                 $0.text = Profile.sharedInstance.lastName
             }.onTextChanged {
@@ -167,6 +181,7 @@ final class EditProfileViewController: FormViewController {
             $0.textField.autocorrectionType = UITextAutocorrectionType.No
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
+                $0.rowHeight = 60
                 $0.placeholder = "Username"
                 $0.text = Profile.sharedInstance.username
             }.onTextChanged {
@@ -177,6 +192,7 @@ final class EditProfileViewController: FormViewController {
             $0.textField.keyboardType = .EmailAddress
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
+                $0.rowHeight = 60
                 $0.placeholder = "Email"
                 $0.text = Profile.sharedInstance.email
             }.onTextChanged {
@@ -187,6 +203,7 @@ final class EditProfileViewController: FormViewController {
             $0.textField.keyboardType = .NumberPad
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
+                $0.rowHeight = 60
                 $0.placeholder = "Add your phone number"
                 $0.text = Profile.sharedInstance.phoneNumber
             }.onTextChanged {
@@ -196,16 +213,19 @@ final class EditProfileViewController: FormViewController {
             $0.titleLabel.text = "Birthday"
             }.configure {
                 $0.date = Profile.sharedInstance.birthDay ?? NSDate()
+                $0.rowHeight = 60
             }.inlineCellSetup {
+                $0.tintColor = UIColor.darkGrayColor()
                 $0.datePicker.datePickerMode = .Date
             }.onDateChanged {
                 Profile.sharedInstance.birthDay = $0
         }
         let bioRow = TextViewRowFormer<FormTextViewCell>() { [weak self] in
 //            $0.textView.textColor = .formerSubColor()
-            $0.textView.font = .systemFontOfSize(15)
+            $0.textView.font = UIFont(name: "Avenir-Light", size: 14)
             $0.textView.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
+                $0.rowHeight = 60
                 $0.placeholder = "Add your individual or company bio"
                 $0.text = Profile.sharedInstance.introduction
             }.onTextChanged {
@@ -213,10 +233,11 @@ final class EditProfileViewController: FormViewController {
         }
         let moreRow = SwitchRowFormer<FormSwitchCell>() {
             $0.titleLabel.text = "Enable higher limit transfer volumes?"
-//            $0.titleLabel.textColor = .formerColor()
-            $0.titleLabel.font = .systemFontOfSize(15)
+            $0.titleLabel.textColor = UIColor.darkGrayColor()
+            $0.titleLabel.font = UIFont(name: "Avenir-Light", size: 14)
 //            $0.switchButton.onTintColor = .formerSubColor()
             }.configure {
+                $0.rowHeight = 60
                 $0.switched = Profile.sharedInstance.moreInformation
                 $0.switchWhenSelected = true
             }.onSwitchChanged { [weak self] in

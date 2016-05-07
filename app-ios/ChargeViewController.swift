@@ -32,9 +32,48 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
     }
     
     override func viewDidLoad() {
-    
         super.viewDidLoad()
+        configure()
+        setupNav()
+    }
     
+    override func viewDidAppear(animated: Bool) {
+        chargeInputView.becomeFirstResponder()
+        super.viewDidAppear(true)
+    }
+    
+    //Changing Status Bar
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
+    private func setupNav() {
+        let navigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 50)) // Offset by 20 pixels vertically to take the status bar into account
+        
+        navigationBar.backgroundColor = UIColor.whiteColor()
+        navigationBar.tintColor = UIColor.mediumBlue()
+        navigationBar.delegate = self
+        
+        // Create a navigation item with a title
+        let navigationItem = UINavigationItem()
+        navigationItem.title = "Argent Payment Terminal"
+        
+        // Create left and right button for navigation item
+        let leftButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: UIBarButtonItemStyle.Plain, target: self, action: "returnToMenu:")
+        let font = UIFont(name: "Avenir-Book", size: 14)
+        leftButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+        // Create two buttons for the navigation item
+        navigationItem.leftBarButtonItem = leftButton
+        
+        // Assign the navigation item to the navigation bar
+        navigationBar.titleTextAttributes = [NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.lightGrayColor()]
+        navigationBar.items = [navigationItem]
+        
+        // Make the navigation bar a subview of the current view controller
+        self.view.addSubview(navigationBar)
+    }
+    
+    func configure() {
         // screen width and height:
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
@@ -52,7 +91,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         chargeInputView.backgroundColor = UIColor.clearColor()
         chargeInputView.becomeFirstResponder()
         self.view.addSubview(chargeInputView)
-
+        
         // Pay with card button
         let payWithCardButton = UIButton(frame: CGRect(x: screenWidth/2+10, y: 180, width: screenWidth/2-20-10, height: 60.0))
         payWithCardButton.backgroundColor = UIColor.clearColor()
@@ -99,40 +138,6 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         
         currencyFormatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
         currencyFormatter.currencyCode = NSLocale.currentLocale().displayNameForKey(NSLocaleCurrencySymbol, value: NSLocaleCurrencyCode)
-
-        let navigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 50)) // Offset by 20 pixels vertically to take the status bar into account
-        
-        navigationBar.backgroundColor = UIColor.whiteColor()
-        navigationBar.tintColor = UIColor.mediumBlue()
-        navigationBar.delegate = self
-        
-        // Create a navigation item with a title
-        let navigationItem = UINavigationItem()
-        navigationItem.title = "Argent POS"
-        
-        // Create left and right button for navigation item
-        let leftButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: UIBarButtonItemStyle.Plain, target: self, action: "returnToMenu:")
-        let font = UIFont(name: "Avenir-Book", size: 14)
-        leftButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
-        // Create two buttons for the navigation item
-        navigationItem.leftBarButtonItem = leftButton
-        
-        // Assign the navigation item to the navigation bar
-        navigationBar.items = [navigationItem]
-        
-        // Make the navigation bar a subview of the current view controller
-        self.view.addSubview(navigationBar)
-
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        chargeInputView.becomeFirstResponder()
-        super.viewDidAppear(true)
-    }
-    
-    //Changing Status Bar
-    override func prefersStatusBarHidden() -> Bool {
-        return true
     }
     
     func payMerchant(sender: AnyObject) {
@@ -290,7 +295,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         let alertView = JSSAlertView().show(
             self,
             title: "",
-            text: "Payment Succeeded! Amount " + chargeInputView.text!,
+            text: "Payment for amount " + chargeInputView.text! + " succeeded!",
             buttonText: "",
             noButtons: true,
             color: customColor,
@@ -301,7 +306,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
     
     func showStatusNotification() {
         setupNotification()
-        notification.displayNotificationWithMessage("Paying merchant", forDuration: 2.5)
+        notification.displayNotificationWithMessage("Paying merchant " + chargeInputView.text!, forDuration: 2.5)
     }
     
     func setupNotification() {
