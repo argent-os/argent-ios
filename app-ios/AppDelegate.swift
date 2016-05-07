@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let presenter = PasscodeLockPresenter(mainWindow: self.window, configuration: configuration)
         return presenter
     }()
-
+    
     // 3D Touch
     func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: Bool -> Void) {
         if shortcutItem.type == "com.argentapp.ios.add-customer" {

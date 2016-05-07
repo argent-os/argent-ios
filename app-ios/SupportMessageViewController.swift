@@ -16,7 +16,7 @@ class SupportMessageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController!.navigationBar.tintColor = UIColor.darkGrayColor()
+        // self.navigationController!.navigationBar.tintColor = UIColor.darkGrayColor()
     }
     
     override func viewWillAppear(animated: Bool) {

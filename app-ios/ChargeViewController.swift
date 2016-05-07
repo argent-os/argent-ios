@@ -14,7 +14,7 @@ import MZFormSheetPresentationController
 import QRCode
 import CWStatusBarNotification
 
-class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate {
+class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, UINavigationBarDelegate {
     
     let chargeInputView = UITextField()
 
@@ -40,12 +40,10 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate {
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-        let width = UIScreen.mainScreen().bounds.size.width
-        let height = UIScreen.mainScreen().bounds.size.height
-    
         addDoneToolbar()
+        
         chargeInputView.addTarget(self, action: #selector(ChargeViewController.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
-        chargeInputView.frame = CGRect(x: 0, y: 90, width: width, height: 50)
+        chargeInputView.frame = CGRect(x: 0, y: 90, width: screenWidth, height: 50)
         chargeInputView.textAlignment = .Center
         chargeInputView.font = UIFont(name: "Avenir-Light", size: 48)
         chargeInputView.textColor = UIColor.mediumBlue()
@@ -102,22 +100,29 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate {
         currencyFormatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
         currencyFormatter.currencyCode = NSLocale.currentLocale().displayNameForKey(NSLocaleCurrencySymbol, value: NSLocaleCurrencyCode)
 
-        // Transparent navigation bar
-        self.navigationController!.navigationBar.tintColor = UIColor.darkGrayColor()
-        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-        self.navigationController!.navigationBar.shadowImage = UIImage()
-        self.navigationController!.navigationBar.translucent = true
-        self.navigationController!.navigationBar.sendSubviewToBack(self.navigationController!.navigationBar)
-        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 1, width: screenWidth, height: 65))
-        navBar.barTintColor = UIColor.whiteColor()
-        navBar.translucent = false
-        navBar.titleTextAttributes = [
-            NSForegroundColorAttributeName : UIColor.lightGrayColor(),
-            NSFontAttributeName : UIFont(name: "Avenir-Book", size: 18)!
-        ]
-        self.view.addSubview(navBar);
-        let navItem = UINavigationItem(title: "Argent POS");
-        navBar.setItems([navItem], animated: false);
+        let navigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 50)) // Offset by 20 pixels vertically to take the status bar into account
+        
+        navigationBar.backgroundColor = UIColor.whiteColor()
+        navigationBar.tintColor = UIColor.mediumBlue()
+        navigationBar.delegate = self
+        
+        // Create a navigation item with a title
+        let navigationItem = UINavigationItem()
+        navigationItem.title = "Argent POS"
+        
+        // Create left and right button for navigation item
+        let leftButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: UIBarButtonItemStyle.Plain, target: self, action: "returnToMenu:")
+        let font = UIFont(name: "Avenir-Book", size: 14)
+        leftButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+        // Create two buttons for the navigation item
+        navigationItem.leftBarButtonItem = leftButton
+        
+        // Assign the navigation item to the navigation bar
+        navigationBar.items = [navigationItem]
+        
+        // Make the navigation bar a subview of the current view controller
+        self.view.addSubview(navigationBar)
+
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -126,8 +131,8 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate {
     }
     
     //Changing Status Bar
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
     
     func payMerchant(sender: AnyObject) {
@@ -137,7 +142,6 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate {
         Timeout(3.2) {
             self.showSuccessAlert()
         }
-        chargeInputView.text = ""
         paymentTextField.clear()
     }
     
@@ -147,7 +151,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate {
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         // Card text
-        paymentTextField.frame = CGRectMake(20, 260, screenWidth - 40, 44)
+        paymentTextField.frame = CGRectMake(20, 260, screenWidth - 40, 60)
         paymentTextField.delegate = self
         paymentTextField.borderWidth = 1
         paymentTextField.borderColor = UIColor.lightGrayColor()
@@ -205,6 +209,10 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate {
 //            let destination = segue.destinationViewController as! ChargeCustomerSearchController
 //            destination.chargeAmount = chargeInputView.text!
 //            print("charge amount is", destination.chargeAmount)
+        }
+        if(segue.identifier == "mainMenuView") {
+            let rootViewController = (self.storyboard?.instantiateViewControllerWithIdentifier("RootViewController"))! as UIViewController
+            self.presentViewController(rootViewController, animated: true, completion: nil)
         }
     }
     
@@ -272,6 +280,10 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate {
         
     }
     
+    func returnToMenu(sender: AnyObject) {
+        self.view.window!.rootViewController!.dismissViewControllerAnimated(true, completion: { _ in })
+    }
+    
     func showSuccessAlert() {
         let customIcon:UIImage = UIImage(named: "ic_check_light")! // your custom icon UIImage
         let customColor:UIColor = UIColor(rgba: "#1EBC61") // base color for the alert
@@ -284,6 +296,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate {
             color: customColor,
             iconImage: customIcon)
         alertView.setTextTheme(.Light) // can be .Light or .Dark
+        chargeInputView.text = ""
     }
     
     func showStatusNotification() {
@@ -322,6 +335,4 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
-
 }

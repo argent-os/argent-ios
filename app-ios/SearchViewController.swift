@@ -15,7 +15,7 @@ import DGElasticPullToRefresh
 
 class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
     
-    @IBOutlet weak var tblSearchResults: UITableView!
+    var tblSearchResults:UITableView = UITableView()
     
     private var dataArray = [User]()
     
@@ -37,8 +37,14 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
+        
         tblSearchResults.delegate = self
         tblSearchResults.dataSource = self
+        tblSearchResults.frame = CGRect(x: 0, y: 63, width: screenWidth, height: screenHeight-63)
+        self.view.addSubview(tblSearchResults)
         
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.tintColor = UIColor.whiteColor()
@@ -52,9 +58,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tblSearchResults.dg_setPullToRefreshBackgroundColor(UIColor.darkBlue())
         
         loadUserAccounts()
-        
-        let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
         
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 65))
         navBar.barTintColor = UIColor.mediumBlue()
@@ -74,7 +77,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidAppear(animated: Bool) {
         // Set nav back button white
         UIStatusBarStyle.LightContent
-        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+        // self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
     }
     
     override func didReceiveMemoryWarning() {
@@ -86,12 +89,16 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return UIStatusBarStyle.LightContent
     }
     
+    
     // MARK: UITableView Delegate and Datasource functions
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.performSegueWithIdentifier("customerDetailView", sender: self)
+    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if shouldShowSearchResults {
@@ -104,7 +111,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("idCell", forIndexPath: indexPath)
+        self.tblSearchResults.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        let CellIdentifier: String = "Cell"
+        let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: CellIdentifier)
         
         cell.imageView?.image = nil
         
@@ -162,9 +171,17 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.textLabel?.textColor = UIColor.darkGrayColor()
             cell.textLabel?.font = UIFont.systemFontOfSize(14)
             cell.detailTextLabel?.font = UIFont.systemFontOfSize(12)
-            cell.detailTextLabel?.text = String(dataArray[indexPath.row].first_name) + " " + String(dataArray[indexPath.row].last_name)
             cell.selectionStyle = UITableViewCellSelectionStyle.Default
             cell.detailTextLabel?.textColor = UIColor.lightGrayColor()
+            
+            let first_name = dataArray[indexPath.row].first_name
+            let last_name = String(dataArray[indexPath.row].last_name)
+            if first_name != "" || last_name != "" {
+                cell.detailTextLabel?.text = first_name + " " + last_name
+            } else {
+                cell.detailTextLabel?.text = String(dataArray[indexPath.row].email)
+
+            }
         }
         
         return cell
@@ -197,6 +214,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func configureSearchController() {
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
         // Initialize and perform a minimum configuration to the search controller.
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
@@ -204,37 +223,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search users"
         searchController.searchBar.sizeToFit()
+        searchController.searchBar.frame = CGRect(x: 0, y: 200, width: screenWidth, height: 60)
         searchController.searchBar.translucent = false
         // Setup the Scope Bar
         searchController.searchBar.scopeButtonTitles = ["Username", "Email", "Name"]
         
         // Place the search bar view to the tableview headerview.
         tblSearchResults.tableHeaderView = searchController.searchBar
-        
-        let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
-        
-        let sendToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, screenWidth, 50))
-        // sendToolbar.barStyle = UIBarStyle.Default
-        
-        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Add Filters", style: UIBarButtonItemStyle.Done, target: self, action: nil)
-        done.tintColor = UIColor.whiteColor()
-        UIToolbar.appearance().barTintColor = UIColor.mediumBlue()
-        done.setTitleTextAttributes([
-            NSFontAttributeName : UIFont(name: "Avenir-Book", size: 15.0)!,
-            NSForegroundColorAttributeName : UIColor(rgba: "#fff")
-            ], forState: .Normal)
-        
-        var items: [UIBarButtonItem]? = [UIBarButtonItem]()
-        items?.append(flexSpace)
-        items?.append(done)
-        items?.append(flexSpace)
-        
-        sendToolbar.items = items
-        sendToolbar.sizeToFit()
-        // Uncomment to add toolbar to search
-        // searchController.searchBar.inputAccessoryView=sendToolbar
     }
     
     
@@ -245,19 +240,16 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tblSearchResults.reloadData()
     }
     
-    
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         shouldShowSearchResults = false
         tblSearchResults.reloadData()
     }
-    
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         if !shouldShowSearchResults {
             shouldShowSearchResults = true
             tblSearchResults.reloadData()
         }
-        
         searchController.searchBar.resignFirstResponder()
     }
     
@@ -304,14 +296,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tblSearchResults.reloadData()
     }
     
-    
     func didTapOnSearchButton() {
         if !shouldShowSearchResults {
             shouldShowSearchResults = true
             tblSearchResults.reloadData()
         }
     }
-    
     
     func didTapOnCancelButton() {
         shouldShowSearchResults = false
@@ -364,7 +354,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     
-    // MARK: - Segues
+    // MARK: - Segues // see tableView Delegate methods for indexPathForSelectedRow selection
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "customerDetailView" {
             if let indexPath = tblSearchResults.indexPathForSelectedRow {

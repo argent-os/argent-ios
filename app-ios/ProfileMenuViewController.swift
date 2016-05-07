@@ -13,14 +13,6 @@ class ProfileMenuViewController: UITableViewController {
     
     @IBOutlet weak var shareCell: UITableViewCell!
 
-    var customersLabel:UILabel = UILabel()
-    
-    var plansLabel:UILabel = UILabel()
-    
-    var customersArray = [Customer]()
-
-    var plansArray = [Plan]()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
@@ -31,42 +23,7 @@ class ProfileMenuViewController: UITableViewController {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
 
-        self.tableView.tableHeaderView = ParallaxHeaderView.init(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 200));
-        
-        let customersLabel = UILabel(frame: CGRectMake(25, 110, 75, 70))
-        customersLabel.textAlignment = NSTextAlignment.Center
-        customersLabel.font = UIFont(name: "Avenir-Light", size: 13)
-        customersLabel.numberOfLines = 0
-        customersLabel.textColor = UIColor(rgba: "#fff")
-        customersLabel.text = "0\ncustomers"
-        self.tableView.tableHeaderView?.addSubview(customersLabel)
-        self.tableView.tableHeaderView?.bringSubviewToFront(customersLabel)
-        
-        let plansLabel = UILabel(frame: CGRectMake(screenWidth-100, 110, 75, 70))
-        plansLabel.textAlignment = NSTextAlignment.Center
-        plansLabel.font = UIFont(name: "Avenir-Light", size: 13)
-        plansLabel.numberOfLines = 0
-        plansLabel.text = "0\nplans"
-        plansLabel.textColor = UIColor(rgba: "#fff")
-        plansLabel.text = "0\nplans"
-        self.tableView.tableHeaderView?.addSubview(plansLabel)
-        self.tableView.tableHeaderView?.bringSubviewToFront(plansLabel)
-        
-        loadCustomerList { (customers: [Customer]?, NSError) in
-            if(customers!.count < 2 && customers!.count > 0) {
-                customersLabel.text = String(customers!.count) + "\ncustomers"
-            } else {
-                customersLabel.text = String(customers!.count) + "\ncustomers"
-            }
-        }
-        
-        loadPlanList { (plans: [Plan]?, NSError) in
-            if(plans!.count < 2 && plans!.count > 0) {
-                plansLabel.text = String(plans!.count) + "\nplan"
-            } else {
-                plansLabel.text = String(plans!.count) + "\nplans"
-            }
-        }
+        self.tableView.tableHeaderView = ParallaxHeaderView.init(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 100));
         
         loadProfile()
         
@@ -81,7 +38,6 @@ class ProfileMenuViewController: UITableViewController {
     
     
     override func viewDidAppear(animated: Bool) {
-        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
         UIStatusBarStyle.Default
     }
     
@@ -121,12 +77,6 @@ class ProfileMenuViewController: UITableViewController {
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let identifier = segue.identifier {
-
-        }
-    }
-    
     func loadProfile() {
         
         let screen = UIScreen.mainScreen().bounds
@@ -150,7 +100,7 @@ class ProfileMenuViewController: UITableViewController {
                 userImageView.clipsToBounds = true
                 userImageView.image = img
                 userImageView.layer.borderWidth = 3
-                userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
+                userImageView.layer.borderColor = UIColor(rgba: "#fff").CGColor
                 self.tableView.addSubview(userImageView)
             } else {
                 
@@ -158,28 +108,5 @@ class ProfileMenuViewController: UITableViewController {
         })
     }
     
-    func loadCustomerList(completionHandler: ([Customer]?, NSError?) -> ()) {
-        Customer.getCustomerList({ (customers, error) in
-            if error != nil {
-                let alert = UIAlertController(title: "Error", message: "Could not load customers \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
-            }
-            self.customersArray = customers!
-            completionHandler(customers!, error)
-        })
-    }
-    
-    func loadPlanList(completionHandler: ([Plan]?, NSError?) -> ()) {
-        Plan.getPlanList({ (plans, error) in
-            if error != nil {
-                let alert = UIAlertController(title: "Error", message: "Could not load plans \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
-            }
-            self.plansArray = plans!
-            completionHandler(plans!, error)
-        })
-    }
     
 }

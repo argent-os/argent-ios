@@ -46,7 +46,7 @@ class PasscodeSettingsViewController: UIViewController {
     override func viewDidLoad() {
         passcodeSwitch.onTintColor = UIColor(rgba: "#1f62f1")
         
-         self.navigationController!.navigationBar.tintColor = UIColor.darkGrayColor()
+        // self.navigationController!.navigationBar.tintColor = UIColor.darkGrayColor()
 
         changePasscodeButton.layer.cornerRadius = 5
         changePasscodeButton.clipsToBounds = true

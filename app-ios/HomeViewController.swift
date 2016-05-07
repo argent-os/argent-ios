@@ -130,8 +130,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     // VIEW DID APPEAR
     override func viewDidAppear(animated: Bool) {
         
-        self.navigationController!.navigationBar.addSubview(runkeeperSwitch)
-        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+//        self.navigationController!.navigationBar.addSubview(runkeeperSwitch)
+//        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
         UITextField.appearance().keyboardAppearance = .Light
         UIStatusBarStyle.LightContent
 
@@ -208,7 +208,19 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                     userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
                     self.view.addSubview(userImageView)
                 } else {
-                    
+                    if(user?.username == nil || user?.username == "") {
+                        // logout on failure to get profile
+                        NSUserDefaults.standardUserDefaults().setValue("", forKey: "userAccessToken")
+                        NSUserDefaults.standardUserDefaults().synchronize();
+                        userData = nil
+                        
+                        // go to login view
+                        let sb = UIStoryboard(name: "Main", bundle: nil)
+                        let loginVC = sb.instantiateViewControllerWithIdentifier("LoginViewController")
+                        let root = UIApplication.sharedApplication().keyWindow?.rootViewController
+                            root!.presentViewController(loginVC, animated: false, completion: { () -> Void in
+                        })
+                    }
                 }
             }
         } else {
@@ -223,8 +235,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     func configureView() {
         
         let screen = UIScreen.mainScreen().bounds
-        let width = screen.size.width
-        let height = screen.size.height
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
         
         let img: UIImage = UIImage(named: "Logo")!
         let logoImageView: UIImageView = UIImageView(frame: CGRectMake(20, 31, 40, 40))
@@ -240,8 +252,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         
         // Blurview
         let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
-        visualEffectView.frame = CGRectMake(0, 0, width, height)
-        let blurImageView: UIImageView = UIImageView(frame: CGRectMake(0, 0, width, height))
+        visualEffectView.frame = CGRectMake(0, 0, screenWidth, screenHeight)
+        let blurImageView: UIImageView = UIImageView(frame: CGRectMake(0, 0, screenWidth, screenHeight))
         blurImageView.contentMode = .ScaleAspectFill
         blurImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
         blurImageView.layer.masksToBounds = true
@@ -251,10 +263,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         self.view.addSubview(blurImageView)
         //        blurImageView.addSubview(visualEffectView)
         self.view.sendSubviewToBack(blurImageView)
-        
-        let screenWidth = screen.size.width
-        let screenHeight = screen.size.height
-        
+
         graph.dataSource = self
         graph.colorTop = UIColor.clearColor()
         graph.colorBottom = UIColor.darkBlue()
@@ -320,7 +329,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         headerView.addSubview(headerViewTitle)
         
         let tutorialButton:UIButton = UIButton()
-        tutorialButton.frame = CGRect(x: width-40, y: 22, width: 22, height: 22)
+        tutorialButton.frame = CGRect(x: screenWidth-40, y: 22, width: 22, height: 22)
         tutorialButton.setImage(UIImage(named: "ic_question"), forState: .Normal)
         tutorialButton.setTitle("Tuts", forState: .Normal)
         tutorialButton.setTitleColor(UIColor.redColor(), forState: .Normal)
@@ -329,7 +338,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         headerView.addSubview(tutorialButton)
         headerView.bringSubviewToFront(tutorialButton)
         
-        tableView.frame = CGRect(x: 0, y: 270, width: width, height: height-315)
+        tableView.frame = CGRect(x: 0, y: 270, width: screenWidth, height: screenHeight-315)
         tableView.tableHeaderView = headerView
         tableView.delegate = self
         tableView.dataSource = self
@@ -442,12 +451,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         NSUserDefaults.standardUserDefaults().setValue("", forKey: "userAccessToken")
         NSUserDefaults.standardUserDefaults().synchronize();
         userData = nil
-        
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
-        HUD.textLabel.text = "Logging out"
-        HUD.showInView(self.view!)
-        HUD.dismissAfterDelay(0.3)
-        
+
         // go to login view
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let loginVC = sb.instantiateViewControllerWithIdentifier("LoginViewController")

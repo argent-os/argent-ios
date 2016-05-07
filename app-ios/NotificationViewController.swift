@@ -15,34 +15,42 @@ import DGElasticPullToRefresh
 class NotificationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var notificationsArray:Array<NotificationItem>?
-    @IBOutlet var tableView: UITableView?
+    
+    var tableView:UITableView = UITableView()
     
     var dateFormatter = NSDateFormatter()
     
     override func viewDidAppear(animated: Bool) {
-        self.navigationController!.navigationBar.tintColor = UIColor.darkGrayColor()
         self.childViewControllerForStatusBarStyle()?.setNeedsStatusBarAppearanceUpdate()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.showsVerticalScrollIndicator = false
+        tableView.frame = CGRect(x: 0, y: 65, width: screenWidth, height: screenHeight-65)
+        self.view.addSubview(tableView)
+        
         self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         self.dateFormatter.timeStyle = NSDateFormatterStyle.LongStyle
         
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.frame = CGRect(x: 0, y: 65, width: screenWidth, height: 100)
         loadingView.tintColor = UIColor.whiteColor()
-        tableView!.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
+        tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
-                self?.tableView!.dg_stopLoading()
+                self?.tableView.dg_stopLoading()
                 self!.loadNotificationItems()
             })
         }, loadingView: loadingView)
-        tableView!.dg_setPullToRefreshFillColor(UIColor.mediumBlue())
-        tableView!.dg_setPullToRefreshBackgroundColor(tableView!.backgroundColor!)
-        
-        let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
+        tableView.dg_setPullToRefreshFillColor(UIColor.mediumBlue())
+        tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
         
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 65))
         navBar.barTintColor = UIColor.mediumBlue()
@@ -73,7 +81,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
             
             HUD.dismiss()
 
-            self.tableView?.reloadData()
+            self.tableView.reloadData()
         })
     }
     
@@ -104,7 +112,10 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        let CellIdentifier: String = "Cell"
+        let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: CellIdentifier)
+        
         let item = self.notificationsArray?[indexPath.row]
         cell.textLabel?.text = ""
         cell.detailTextLabel?.text = ""

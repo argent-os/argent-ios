@@ -79,7 +79,6 @@ class MenuViewController: UIViewController, CircleMenuDelegate {
     }
     
     override func viewDidAppear(animated: Bool) {
-        self.navigationController!.navigationBar.tintColor = UIColor.mediumBlue()
         UIStatusBarStyle.Default
         circleMenuButton.sendActionsForControlEvents(.TouchUpInside)
         if(Int(circleMenuButton.state.rawValue) == 0) {
@@ -141,6 +140,13 @@ class MenuViewController: UIViewController, CircleMenuDelegate {
     // Statusbar
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.Default
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "menuView") {
+            let rootViewController = (self.storyboard?.instantiateViewControllerWithIdentifier("RootViewController"))! as UIViewController
+            self.presentViewController(rootViewController, animated: true, completion: nil)
+        }
     }
     
 }

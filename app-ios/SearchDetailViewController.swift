@@ -14,7 +14,7 @@ import JGProgressHUD
 import Alamofire
 import SwiftyJSON
 
-class SearchDetailViewController: UIViewController, MFMailComposeViewControllerDelegate, STPPaymentCardTextFieldDelegate, PKPaymentAuthorizationViewControllerDelegate {
+class SearchDetailViewController: UIViewController, MFMailComposeViewControllerDelegate, STPPaymentCardTextFieldDelegate, PKPaymentAuthorizationViewControllerDelegate, UINavigationBarDelegate {
     
     @IBOutlet weak var emailLabel: UILabel!
     
@@ -185,6 +185,23 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             emailButton.frame = CGRectMake(10, y_co, width-20, 50.0)
             emailButton.addTarget(self, action: #selector(SearchDetailViewController.sendEmailButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             view.addSubview(emailButton)
+            
+            let navigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 65)) // Offset by 20 pixels vertically to take the status bar into account
+            navigationBar.backgroundColor = UIColor.clearColor()
+            navigationBar.tintColor = UIColor.whiteColor()
+            navigationBar.delegate = self
+            // Create a navigation item with a title
+            let navigationItem = UINavigationItem()
+            // Create left and right button for navigation item
+            let leftButton = UIBarButtonItem(image: UIImage(named: "IconCloseLight"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SearchDetailViewController.returnToMenu(_:)))
+            let font = UIFont(name: "Avenir-Book", size: 14)
+            leftButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+            // Create two buttons for the navigation item
+            navigationItem.leftBarButtonItem = leftButton
+            // Assign the navigation item to the navigation bar
+            navigationBar.items = [navigationItem]
+            // Make the navigation bar a subview of the current view controller
+            self.view.addSubview(navigationBar)
         }
     }
     
@@ -195,6 +212,10 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func returnToMenu(sender: AnyObject) {
+        self.view.window!.rootViewController!.dismissViewControllerAnimated(true, completion: { _ in })
     }
     
     @IBAction func sendEmailButtonTapped(sender: AnyObject) {
