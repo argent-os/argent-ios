@@ -14,6 +14,8 @@ import WatchConnectivity
 
 class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UITextFieldDelegate {
 
+    var window:UIWindow = UIWindow()
+    
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
 
@@ -229,7 +231,8 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
             // Sent root view controller (default is login) otherwise send to register page
             let rootViewController = (self.storyboard?.instantiateViewControllerWithIdentifier("RootViewController"))! as UIViewController
             self.presentViewController(rootViewController, animated: true, completion: nil)
-            print("sending root view controller")
+            self.window.rootViewController = rootViewController
+            // critical: ensures rootViewController is set on login
         }
     }
     

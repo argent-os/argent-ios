@@ -28,7 +28,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import UIKit
 
-class TutorialViewController: UIViewController {
+class FeaturesViewController: UIViewController {
     
     var note: String {
         get { return noteLabel.text ?? "" }

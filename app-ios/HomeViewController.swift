@@ -78,7 +78,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         loadData()
         
         configureView()
-        
+                
     }
     
     func presentTutorial(sender: AnyObject) {

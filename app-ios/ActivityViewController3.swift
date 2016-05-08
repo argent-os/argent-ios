@@ -28,7 +28,7 @@
 
 import UIKit
 
-class ActivityViewController3: TutorialViewController {
+class ActivityViewController3: FeaturesViewController {
     
     let activityView = ActivityView1()
     

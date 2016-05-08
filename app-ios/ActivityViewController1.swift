@@ -28,7 +28,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import UIKit
 
-class ActivityViewController1: TutorialViewController {
+class ActivityViewController1: FeaturesViewController {
     
     let activityView = ActivityView1()
     

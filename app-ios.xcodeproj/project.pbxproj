@@ -50,7 +50,7 @@
 		30AF67391CA498A3006B83DA /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AF67381CA498A3006B83DA /* PassKit.framework */; };
 		30B576931CC7D1CF005BCA5A /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B576921CC7D1CE005BCA5A /* SearchDetailViewController.swift */; };
 		30BB06E21CCEFC260051C9E7 /* CountryPicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30BB06E11CCEFC260051C9E7 /* CountryPicker.bundle */; };
-		30BB06F41CCFDED20051C9E7 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB06F31CCFDED20051C9E7 /* TutorialViewController.swift */; };
+		30BB06F41CCFDED20051C9E7 /* FeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB06F31CCFDED20051C9E7 /* FeaturesViewController.swift */; };
 		30BB07011CCFE7D20051C9E7 /* BrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB06FE1CCFE7D20051C9E7 /* BrowserView.swift */; };
 		30BB07021CCFE7D20051C9E7 /* BrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB06FF1CCFE7D20051C9E7 /* BrowserViewController.swift */; };
 		30BB07031CCFE7D20051C9E7 /* CoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB07001CCFE7D20051C9E7 /* CoverView.swift */; };
@@ -264,7 +264,7 @@
 		30AF67381CA498A3006B83DA /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.2.sdk/System/Library/Frameworks/PassKit.framework; sourceTree = DEVELOPER_DIR; };
 		30B576921CC7D1CE005BCA5A /* SearchDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchDetailViewController.swift; path = "app-ios/SearchDetailViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30BB06E11CCEFC260051C9E7 /* CountryPicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CountryPicker.bundle; sourceTree = SOURCE_ROOT; };
-		30BB06F31CCFDED20051C9E7 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialViewController.swift; path = "app-ios/TutorialViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30BB06F31CCFDED20051C9E7 /* FeaturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeaturesViewController.swift; path = "app-ios/FeaturesViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30BB06FE1CCFE7D20051C9E7 /* BrowserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrowserView.swift; path = "app-ios/BrowserView.swift"; sourceTree = SOURCE_ROOT; };
 		30BB06FF1CCFE7D20051C9E7 /* BrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrowserViewController.swift; path = "app-ios/BrowserViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30BB07001CCFE7D20051C9E7 /* CoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoverView.swift; path = "app-ios/CoverView.swift"; sourceTree = SOURCE_ROOT; };
@@ -626,18 +626,18 @@
 			name = Bundles;
 			sourceTree = "<group>";
 		};
-		30BB06F51CCFE6E00051C9E7 /* Tutorial */ = {
+		30BB06F51CCFE6E00051C9E7 /* Features */ = {
 			isa = PBXGroup;
 			children = (
 				30BB07211CCFEB7B0051C9E7 /* Activity */,
 				30831F621CD01B1500D5D0F4 /* DirectManipulationGestureRecognizer.swift */,
 				30831F601CD01B0E00D5D0F4 /* SimpleTransform.swift */,
-				30BB06F31CCFDED20051C9E7 /* TutorialViewController.swift */,
+				30BB06F31CCFDED20051C9E7 /* FeaturesViewController.swift */,
 				30BB06FE1CCFE7D20051C9E7 /* BrowserView.swift */,
 				30BB06FF1CCFE7D20051C9E7 /* BrowserViewController.swift */,
 				30BB07001CCFE7D20051C9E7 /* CoverView.swift */,
 			);
-			name = Tutorial;
+			name = Features;
 			sourceTree = "<group>";
 		};
 		30BB07211CCFEB7B0051C9E7 /* Activity */ = {
@@ -656,7 +656,7 @@
 		30BECC061C6F92EF00B8A088 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				30BB06F51CCFE6E00051C9E7 /* Tutorial */,
+				30BB06F51CCFE6E00051C9E7 /* Features */,
 				30718AEB1C8E32E100CB0EEB /* Lock */,
 				30D7B72F1C77880200B64B7F /* Signup */,
 				30C2DA981CA4373E003AFD8B /* LoginBoxTableViewController.swift */,
@@ -1401,7 +1401,7 @@
 				309544F51CD295AE003007B2 /* ParallaxHeader.swift in Sources */,
 				30C2DAB11CA437A9003AFD8B /* PresentedTableViewController.swift in Sources */,
 				30C2DAE11CA43909003AFD8B /* FormerInputAccessoryView.swift in Sources */,
-				30BB06F41CCFDED20051C9E7 /* TutorialViewController.swift in Sources */,
+				30BB06F41CCFDED20051C9E7 /* FeaturesViewController.swift in Sources */,
 				306DF0091CD991CB00864CAE /* Customer.swift in Sources */,
 				30D526821CDF7762001B41BA /* ActionData.swift in Sources */,
 				30C2DAA91CA4374F003AFD8B /* SignupViewControllerThree.swift in Sources */,

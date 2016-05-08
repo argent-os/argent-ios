@@ -14,6 +14,7 @@ import Alamofire
 import Stripe
 import SwiftyJSON
 import JGProgressHUD
+import JSSAlertView
 
 class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelegate, PKPaymentAuthorizationViewControllerDelegate, UITextFieldDelegate {
     
@@ -79,7 +80,6 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
     }
     
     override func viewDidAppear(animated: Bool) {
-        print("got it")
         self.view.addSubview(chargeInputView)
         chargeInputView.becomeFirstResponder()
     }
@@ -123,19 +123,16 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
             self.chargeInputView.endEditing(true)
             Timeout(0.5) {
                 self.showApplePayModal(self)
-                print("showing apple pay modal")
             }
         }))
         actionController.addAction(Action("Credit Card", style: .Default, handler: { action in
             Timeout(0.5) {
-                print("showing pay modal")
             }
         }))
         actionController.addSection(ActionSection())
         actionController.addAction(Action("Cancel", style: .Destructive, handler: { action in
         }))
         self.presentViewController(actionController, animated: true, completion: { _ in
-            print("presented modal")
         })
     }
     
@@ -148,22 +145,25 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
             // request will be nil if running on < iOS8
             return
         }
-        print("amount is ")
-        var str = chargeInputView.text
-        str?.removeAtIndex(str!.characters.indices.first!) // remove first letter
-        let floatValue = (str! as NSString).floatValue
-        request.paymentSummaryItems = [
-            PKPaymentSummaryItem(label: (detailUser?.first_name)!, amount: NSDecimalNumber(float: floatValue))
-        ]
-        if (Stripe.canSubmitPaymentRequest(request)) {
-            let paymentController = PKPaymentAuthorizationViewController(paymentRequest: request)
-            paymentController.delegate = self
-            self.presentViewController(paymentController, animated: true, completion: nil)
+        if(chargeInputView.text == "") {
+            showErrorAlert("No amount entered")
         } else {
-            // let paymentController = PaymentViewController()
-            // Below displays manual credit card entry forms
-            // presentViewController(paymentController, animated: true, completion: nil)
-            // Show the user your own credit card form (see options 2 or 3)
+            var str = chargeInputView.text
+            str?.removeAtIndex(str!.characters.indices.first!) // remove first letter
+            let floatValue = (str! as NSString).floatValue
+            request.paymentSummaryItems = [
+                PKPaymentSummaryItem(label: (detailUser?.first_name)!, amount: NSDecimalNumber(float: floatValue))
+            ]
+            if (Stripe.canSubmitPaymentRequest(request)) {
+                let paymentController = PKPaymentAuthorizationViewController(paymentRequest: request)
+                paymentController.delegate = self
+                self.presentViewController(paymentController, animated: true, completion: nil)
+            } else {
+                // let paymentController = PaymentViewController()
+                // Below displays manual credit card entry forms
+                // presentViewController(paymentController, animated: true, completion: nil)
+                // Show the user your own credit card form (see options 2 or 3)
+            }
         }
     }
     
@@ -190,11 +190,6 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
     
     // STRIPE FUNCTIONS
     func paymentAuthorizationViewController(controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, completion: (PKPaymentAuthorizationStatus) -> Void) {
-        let HUD: JGProgressHUD = JGProgressHUD()
-        HUD.showInView(self.view!)
-        HUD.textLabel.text = "Payment success"
-        HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
-        HUD.dismissAfterDelay(1)
         /*
          We'll implement this method below in 'Creating a single-use token'.
          Note that we've also been given a block that takes a
@@ -205,6 +200,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
          */
         handlePaymentAuthorizationWithPayment(payment) { (PKPaymentAuthorizationStatus) -> () in
             // close pay modal
+            self.showSuccessAlert()
             controller.dismissViewControllerAnimated(true, completion: nil)
         }
     }
@@ -264,4 +260,36 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    
+    // MARK: ALERTS
+    
+    func showSuccessAlert() {
+        let customIcon:UIImage = UIImage(named: "ic_check_light")! // your custom icon UIImage
+        let customColor:UIColor = UIColor(rgba: "#1EBC61") // base color for the alert
+        let alertView = JSSAlertView().show(
+            self,
+            title: "",
+            text: "Payment for amount " + chargeInputView.text! + " succeeded!",
+            buttonText: "",
+            noButtons: true,
+            color: customColor,
+            iconImage: customIcon)
+        alertView.setTextTheme(.Light) // can be .Light or .Dark
+        chargeInputView.text = ""
+    }
+    
+    func showErrorAlert(message: String) {
+        let customIcon:UIImage = UIImage(named: "ic_close_light")! // your custom icon UIImage
+        let customColor:UIColor = UIColor(rgba: "#E74C3C") // base color for the alert
+        let alertView = JSSAlertView().show(
+            self,
+            title: "",
+            text: message,
+            buttonText: "",
+            noButtons: true,
+            color: customColor,
+            iconImage: customIcon)
+        alertView.setTextTheme(.Light) // can be .Light or .Dark
+        chargeInputView.text = ""
+    }
 }

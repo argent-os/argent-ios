@@ -30,8 +30,8 @@ import UIKit
 import Advance
 
 private final class DemoItem: BrowserItem {
-    let viewController: TutorialViewController
-    init(viewController: TutorialViewController) {
+    let viewController: FeaturesViewController
+    init(viewController: FeaturesViewController) {
         self.viewController = viewController
         super.init()
     }
@@ -39,7 +39,7 @@ private final class DemoItem: BrowserItem {
 
 final class BrowserViewController: UIViewController {
     
-    var viewControllers: [TutorialViewController] = [ActivityViewController1(), ActivityViewController2(), ActivityViewController3(), ActivityViewController4()]
+    var viewControllers: [FeaturesViewController] = [ActivityViewController1(), ActivityViewController2(), ActivityViewController3(), ActivityViewController4()]
     
     @IBOutlet weak var closeButton: UIButton!
     let backgroundImageView = UIImageView(frame: CGRect.zero)

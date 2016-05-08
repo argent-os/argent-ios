@@ -15,6 +15,7 @@ import Alamofire
 import SwiftyJSON
 import XLActionController
 import MZFormSheetPresentationController
+import AYVibrantButton
 
 class SearchDetailViewController: UIViewController, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UINavigationBarDelegate {
     
@@ -141,32 +142,20 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             let navItem = UINavigationItem(title: "@"+detailUser.username)
             navItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
             navBar.setItems([navItem], animated: true)
-            
+
             // Button
-            let payButton = UIButton(frame: CGRect(x: 10, y: 265, width: (width/2)-20, height: 48.0))
-            payButton.backgroundColor = UIColor.whiteColor()
-            payButton.layer.borderColor = UIColor.whiteColor().CGColor
-            payButton.layer.borderWidth = 1
-            payButton.tintColor = UIColor(rgba: "#333")
-            payButton.setTitleColor(UIColor(rgba: "#333"), forState: .Normal)
-            payButton.titleLabel?.font = UIFont(name: "Helvetica", size: 14)
-            payButton.setTitle("Pay " + detailUser.first_name, forState: .Normal)
-            payButton.layer.cornerRadius = 5
-            payButton.layer.masksToBounds = true
+            let payButton = AYVibrantButton(frame: CGRect(x: 10, y: 265, width: (width/2)-20, height: 50.0), style: AYVibrantButtonStyleFill)
+            payButton.vibrancyEffect = UIVibrancyEffect(forBlurEffect:UIBlurEffect(style: .Dark))
+            payButton.text = "Pay " + detailUser.first_name
+            payButton.font = UIFont(name: "Avenir-Book", size: 14)
             payButton.addTarget(self, action: #selector(SearchDetailViewController.payMerchantModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             view.addSubview(payButton)
             
             // Button
-            let subscribeButton = UIButton(frame: CGRect(x: width*0.5+10, y: 265, width: (width/2)-20, height: 50.0))
-            subscribeButton.backgroundColor = UIColor.clearColor()
-            subscribeButton.layer.borderColor = UIColor.whiteColor().CGColor
-            subscribeButton.layer.borderWidth = 1
-            subscribeButton.setTitle("View Plans", forState: .Normal)
-            subscribeButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-            subscribeButton.titleLabel?.font = UIFont(name: "Helvetica", size: 14)
-            subscribeButton.layer.cornerRadius = 5
-            subscribeButton.layer.borderColor = UIColor(rgba: "#ffffff").CGColor
-            subscribeButton.layer.masksToBounds = true
+            let subscribeButton = AYVibrantButton(frame: CGRect(x: width*0.5+10, y: 265, width: (width/2)-20, height: 50.0), style: AYVibrantButtonStyleInvert)
+            subscribeButton.vibrancyEffect = UIVibrancyEffect(forBlurEffect:UIBlurEffect(style: .Dark))
+            subscribeButton.text = "View Plans"
+            subscribeButton.font = UIFont(name: "Avenir-Book", size: 14)
             subscribeButton.addTarget(self, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
             view.addSubview(subscribeButton)
             
