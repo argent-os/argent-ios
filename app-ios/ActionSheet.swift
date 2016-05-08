@@ -1,5 +1,5 @@
 //
-//  Periscope.swift
+//  ActionSheet.swift
 //  app-ios
 //
 //  Created by Sinan Ulkuatam on 5/8/16.
@@ -7,8 +7,6 @@
 //
 
 import Foundation
-//  Periscope.swift
-//  Periscope ( https://github.com/xmartlabs/XLActionController )
 //
 //  Copyright (c) 2015 Xmartlabs ( http://xmartlabs.com )
 //
@@ -34,7 +32,7 @@ import Foundation
 import Foundation
 import XLActionController
 
-public class PeriscopeCell: ActionCell {
+public class OptionsCell: ActionCell {
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -60,14 +58,14 @@ public class PeriscopeCell: ActionCell {
 }
 
 
-public class PeriscopeSection: Section<String, Void> {
+public class ActionSection: Section<String, Void> {
     public override init() {
         super.init()
         self.data = ()
     }
 }
 
-public class PeriscopeHeader: UICollectionReusableView {
+public class ActionHeader: UICollectionReusableView {
     
     lazy var label: UILabel = {
         let label = UILabel()
@@ -89,7 +87,7 @@ public class PeriscopeHeader: UICollectionReusableView {
     }
 }
 
-public class PeriscopeActionController: ActionController<PeriscopeCell, String, PeriscopeHeader, String, UICollectionReusableView, Void> {
+public class ArgentActionController: ActionController<OptionsCell, String, ActionHeader, String, UICollectionReusableView, Void> {
     
     public override init(nibName nibNameOrNil: String? = nil, bundle nibBundleOrNil: NSBundle? = nil) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -100,7 +98,7 @@ public class PeriscopeActionController: ActionController<PeriscopeCell, String, 
         settings.animation.dismiss.options = .CurveEaseIn
         settings.animation.dismiss.offset = 30
         
-        cellSpec = .NibFile(nibName: "PeriscopeCell", bundle: NSBundle(forClass: PeriscopeCell.self), height: { _ in 60})
+        cellSpec = .NibFile(nibName: "OptionsCell", bundle: NSBundle(forClass: OptionsCell.self), height: { _ in 60})
         sectionHeaderSpec = .CellClass(height: { _ in 5 })
         headerSpec = .CellClass(height: { [weak self] (headerData: String) in
             guard let me = self else { return 0 }

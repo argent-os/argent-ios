@@ -1759,7 +1759,6 @@ institutions</string>
         <!--Bitcoin Uri View Controller-->
         <scene sceneID="bjw-aB-Sd7">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="r3h-nZ-HWH" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="mIu-Xp-mny" customClass="BitcoinUriViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lbP-el-Ogh"/>
@@ -1787,6 +1786,7 @@ institutions</string>
                     <navigationItem key="navigationItem" id="AmT-3d-hmz"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r3h-nZ-HWH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1042" y="-777"/>
         </scene>
@@ -1812,41 +1812,6 @@ institutions</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TQ5-Tm-vUL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2380" y="-1262"/>
-        </scene>
-        <!--Left Menu View Controller-->
-        <scene sceneID="JIm-2k-XGJ">
-            <objects>
-                <viewController storyboardIdentifier="LeftMenuViewController" wantsFullScreenLayout="YES" id="nmt-ia-mJg" customClass="LeftMenuViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="CGm-u6-I5g"/>
-                        <viewControllerLayoutGuide type="bottom" id="FzU-uL-org"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="id2-UZ-xNx">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundGradientInverse" translatesAutoresizingMaskIntoConstraints="NO" id="QDc-jK-TQi">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="QDc-jK-TQi" secondAttribute="trailing" id="G3b-Hm-jDX"/>
-                            <constraint firstItem="QDc-jK-TQi" firstAttribute="top" secondItem="id2-UZ-xNx" secondAttribute="top" id="b1a-kh-7O8"/>
-                            <constraint firstItem="QDc-jK-TQi" firstAttribute="bottom" secondItem="FzU-uL-org" secondAttribute="top" id="lSi-gI-3qr"/>
-                            <constraint firstItem="QDc-jK-TQi" firstAttribute="leading" secondItem="id2-UZ-xNx" secondAttribute="leading" id="qLK-e8-gHA"/>
-                        </constraints>
-                    </view>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <connections>
-                        <segue destination="mQk-jK-m8v" kind="presentation" identifier="loginView" id="NZL-lW-Wpq"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qTl-eh-Tsd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1189" y="1231"/>
         </scene>
         <!--Login Box Table View Controller-->
         <scene sceneID="VTT-x8-ndO">
@@ -2705,33 +2670,7 @@ Tap here to view</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MK5-71-VQP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="303" y="274"/>
-        </scene>
-        <!--Root View Controller-->
-        <scene sceneID="Hoz-KY-lgl">
-            <objects>
-                <viewController id="MFa-oS-byB" customClass="RootViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="bUZ-2K-fAV"/>
-                        <viewControllerLayoutGuide type="bottom" id="1Pb-vu-iLy"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="pbe-qc-r99">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.15544999540000001" green="0.57850367049999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="menuPrefersStatusBarHidden" value="YES"/>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="parallaxEnabled" value="YES"/>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="fadeMenuView" value="YES"/>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="interactivePopGestureRecognizerEnabled" value="YES"/>
-                    </userDefinedRuntimeAttributes>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="slW-jw-on5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="599" y="1299"/>
+            <point key="canvasLocation" x="717" y="106"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1dh-ah-XiZ">
@@ -3401,6 +3340,10 @@ risk profiles who have also activated this feature</string>
         <scene sceneID="B7G-RF-vB8">
             <objects>
                 <viewController id="mU6-zX-zgM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7Nn-da-FUu"/>
+                        <viewControllerLayoutGuide type="bottom" id="RKx-EW-tep"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="nPH-Fw-R3t">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3455,10 +3398,79 @@ risk profiles who have also activated this feature</string>
             </objects>
             <point key="canvasLocation" x="1409" y="-5310"/>
         </scene>
+        <!--Pay Merchant View Controller-->
+        <scene sceneID="KyS-VG-sNw">
+            <objects>
+                <viewController id="1t3-KD-VcM" customClass="PayMerchantViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9WT-5X-pcb"/>
+                        <viewControllerLayoutGuide type="bottom" id="iZi-w5-RTy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wuO-XU-fI3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T4J-th-O04">
+                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                                <connections>
+                                    <segue destination="yZn-LS-IR8" kind="embed" id="UAG-sH-5tO"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="T4J-th-O04" firstAttribute="top" secondItem="9WT-5X-pcb" secondAttribute="bottom" id="Ie9-Rg-kvt"/>
+                            <constraint firstItem="T4J-th-O04" firstAttribute="leading" secondItem="wuO-XU-fI3" secondAttribute="leading" id="Oca-Ut-B74"/>
+                            <constraint firstItem="T4J-th-O04" firstAttribute="bottom" secondItem="iZi-w5-RTy" secondAttribute="top" id="UV3-0a-Xkj"/>
+                            <constraint firstAttribute="trailing" secondItem="T4J-th-O04" secondAttribute="trailing" id="bmw-VS-9FD"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="j9G-Ci-b5f"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ReO-Ko-VK3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="822" y="-3521"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="rdb-1A-hWc">
+            <objects>
+                <navigationController storyboardIdentifier="payMerchantFormSheetController" automaticallyAdjustsScrollViewInsets="NO" id="vmH-H6-fGn" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="KXn-wo-8m5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="1t3-KD-VcM" kind="relationship" relationship="rootViewController" id="6Lm-oc-YG3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mnu-UK-wIp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="186" y="-3589"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="pHU-SX-A4k">
+            <objects>
+                <viewController id="yZn-LS-IR8" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2GX-j6-yLJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="WQM-xo-AAq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RcX-Hc-qHy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pik-Cp-I9c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1363" y="-3553"/>
+        </scene>
     </scenes>
     <resources>
         <image name="BackgroundBusinessBlurDark" width="267" height="440"/>
-        <image name="BackgroundGradientInverse" width="134" height="334"/>
         <image name="IconBank" width="86" height="81"/>
         <image name="IconBroken" width="86" height="80"/>
         <image name="IconCloseLight" width="24" height="24"/>
@@ -3476,26 +3488,26 @@ risk profiles who have also activated this feature</string>
         <image name="ic_user" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HvL-NX-xgs"/>
-        <segue reference="m3z-fp-Nlm"/>
-        <segue reference="igQ-zk-tCm"/>
-        <segue reference="agi-3I-cSC"/>
-        <segue reference="VI5-hp-Gm2"/>
-        <segue reference="ipn-3I-3vc"/>
-        <segue reference="YIg-Dp-HpF"/>
-        <segue reference="7cu-FP-MoG"/>
-        <segue reference="fEJ-lR-z9I"/>
-        <segue reference="Bc6-jW-uiV"/>
-        <segue reference="mwT-xt-Ez4"/>
+        <segue reference="rU0-4E-4jX"/>
         <segue reference="xTl-cs-ajG"/>
         <segue reference="UFB-DJ-qrH"/>
         <segue reference="m0d-gd-RWW"/>
-        <segue reference="jpD-81-9Zm"/>
         <segue reference="PrX-Yu-xbB"/>
         <segue reference="kpf-dT-hyx"/>
+        <segue reference="jpD-81-9Zm"/>
         <segue reference="zQh-Po-kj4"/>
         <segue reference="GfY-d3-W00"/>
         <segue reference="SFz-vc-0MB"/>
+        <segue reference="7cu-FP-MoG"/>
+        <segue reference="YIg-Dp-HpF"/>
+        <segue reference="ipn-3I-3vc"/>
+        <segue reference="VI5-hp-Gm2"/>
+        <segue reference="agi-3I-cSC"/>
+        <segue reference="HvL-NX-xgs"/>
+        <segue reference="m3z-fp-Nlm"/>
+        <segue reference="igQ-zk-tCm"/>
+        <segue reference="Bc6-jW-uiV"/>
+        <segue reference="fEJ-lR-z9I"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>

@@ -89,7 +89,6 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         chargeInputView.placeholder = "$0.00"
         chargeInputView.keyboardType = UIKeyboardType.NumberPad
         chargeInputView.backgroundColor = UIColor.clearColor()
-        chargeInputView.becomeFirstResponder()
         self.view.addSubview(chargeInputView)
         
         // Pay with card button
@@ -219,36 +218,6 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
             let rootViewController = (self.storyboard?.instantiateViewControllerWithIdentifier("RootViewController"))! as UIViewController
             self.presentViewController(rootViewController, animated: true, completion: nil)
         }
-    }
-    
-    // Add send toolbar
-    func addPayMerchantToolbar()
-    {
-        // screen width and height:
-        let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
-        let screenHeight = screen.size.height
-        
-        let sendToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, screenWidth, 60))
-        // sendToolbar.barStyle = UIBarStyle.Default
-        
-        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Pay Merchant", style: UIBarButtonItemStyle.Done, target: self, action: #selector(ChargeViewController.payMerchant(_:)))
-        done.tintColor = UIColor.whiteColor()
-        UIToolbar.appearance().barTintColor = UIColor.mediumBlue()
-        done.setTitleTextAttributes([
-            NSFontAttributeName : UIFont(name: "Avenir-Book", size: 15.0)!,
-            NSForegroundColorAttributeName : UIColor(rgba: "#fff")
-            ], forState: .Normal)
-        
-        var items: [UIBarButtonItem]? = [UIBarButtonItem]()
-        items?.append(flexSpace)
-        items?.append(done)
-        items?.append(flexSpace)
-        
-        sendToolbar.items = items
-        sendToolbar.sizeToFit()
-        paymentTextField.inputAccessoryView=sendToolbar
     }
     
     // Add send toolbar

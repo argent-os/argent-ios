@@ -14,8 +14,9 @@ import JGProgressHUD
 import Alamofire
 import SwiftyJSON
 import XLActionController
+import MZFormSheetPresentationController
 
-class SearchDetailViewController: UIViewController, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, STPPaymentCardTextFieldDelegate, PKPaymentAuthorizationViewControllerDelegate, UINavigationBarDelegate {
+class SearchDetailViewController: UIViewController, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UINavigationBarDelegate {
     
     @IBOutlet weak var emailLabel: UILabel!
     
@@ -45,8 +46,6 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
         let width = screen.size.width
         let height = screen.size.height
         
-        paymentTextField.frame = CGRectMake(15, 15, CGRectGetWidth(self.view.frame) - 30, 44)
-        paymentTextField.delegate = self
         // adds a manual credit card entry textfield
         // self.view.addSubview(paymentTextField)
         
@@ -154,7 +153,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             payButton.setTitle("Pay " + detailUser.first_name, forState: .Normal)
             payButton.layer.cornerRadius = 5
             payButton.layer.masksToBounds = true
-            payButton.addTarget(self, action: #selector(SearchDetailViewController.showPayModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            payButton.addTarget(self, action: #selector(SearchDetailViewController.payMerchantModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             view.addSubview(payButton)
             
             // Button
@@ -168,7 +167,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             subscribeButton.layer.cornerRadius = 5
             subscribeButton.layer.borderColor = UIColor(rgba: "#ffffff").CGColor
             subscribeButton.layer.masksToBounds = true
-            subscribeButton.addTarget(self, action: #selector(SearchDetailViewController.showPayModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            subscribeButton.addTarget(self, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
             view.addSubview(subscribeButton)
             
             let navigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 65)) // Offset by 20 pixels vertically to take the status bar into account
@@ -240,7 +239,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
     }
     
     func showMessageModal(sender: AnyObject) {
-        let actionController = PeriscopeActionController()
+        let actionController = ArgentActionController()
         actionController.headerData = "Contact Method"
         actionController.addAction(Action("Email", style: .Default, handler: { action in
             Timeout(0.2) {
@@ -252,7 +251,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
                 self.sendSMSButtonTapped(self)
             }
         }))
-        actionController.addSection(PeriscopeSection())
+        actionController.addSection(ActionSection())
         actionController.addAction(Action("Cancel", style: .Destructive, handler: { action in
         }))
         self.presentViewController(actionController, animated: true, completion: { _ in
@@ -288,142 +287,39 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    // MARK: STRIPE AND APPLE PAY
-    func showPayModal(sender: AnyObject) {
-        let actionController = PeriscopeActionController()
-        actionController.headerData = "Select Payment Method"
-        actionController.addAction(Action("Apple Pay", style: .Default, handler: { action in
-            Timeout(0.5) {
-                self.showApplePayModal(self)
-                print("showing apple pay modal")
-            }
-        }))
-        actionController.addAction(Action("Credit Card", style: .Default, handler: { action in
-        }))
-        actionController.addSection(PeriscopeSection())
-        actionController.addAction(Action("Cancel", style: .Destructive, handler: { action in
-        }))
-        self.presentViewController(actionController, animated: true, completion: { _ in
-            print("presented modal")
-        })
-    }
     
-    func showApplePayModal(sender: AnyObject) {
-        // STRIPE APPLE PAY
-        guard let request = Stripe.paymentRequestWithMerchantIdentifier(merchantID) else {
-            // request will be nil if running on < iOS8
-            return
-        }
-        request.paymentSummaryItems = [
-            PKPaymentSummaryItem(label: (detailUser?.first_name)!, amount: 10.0)
-        ]
-        if (Stripe.canSubmitPaymentRequest(request)) {
-            let paymentController = PKPaymentAuthorizationViewController(paymentRequest: request)
-            paymentController.delegate = self
-            self.presentViewController(paymentController, animated: true, completion: nil)
-        } else {
-            let paymentController = PaymentViewController()
-            // Below displays manual credit card entry forms
-            // presentViewController(paymentController, animated: true, completion: nil)
-            // Show the user your own credit card form (see options 2 or 3)
-        }
-    }
+    // MARK: PAYMENT MODAL
     
-    func paymentCardTextFieldDidChange(textField: STPPaymentCardTextField) {
-        // Toggle navigation, for example
-        saveButton.enabled = textField.valid
-    }
-    
-    // STRIPE SAVE METHOD
-    @IBAction func save(sender: UIButton) {
-        if let card = paymentTextField.card {
-            STPAPIClient.sharedClient().createTokenWithCard(card) { (token, error) -> Void in
-                if let error = error  {
-                    print(error)
-                }
-                else if let token = token {
-                    self.createBackendChargeWithToken(token) { status in
-                        print(status)
-                    }
-                }
-            }
-        }
-    }
-    
-    // STRIPE FUNCTIONS
-    func paymentAuthorizationViewController(controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, completion: (PKPaymentAuthorizationStatus) -> Void) {
-        let HUD: JGProgressHUD = JGProgressHUD()
-        HUD.showInView(self.view!)
-        HUD.textLabel.text = "Payment success"
-        HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
-        HUD.dismissAfterDelay(1)
-        /*
-         We'll implement this method below in 'Creating a single-use token'.
-         Note that we've also been given a block that takes a
-         PKPaymentAuthorizationStatus. We'll call this function with either
-         PKPaymentAuthorizationStatusSuccess or PKPaymentAuthorizationStatusFailure
-         after all of our asynchronous code is finished executing. This is how the
-         PKPaymentAuthorizationViewController knows when and how to update its UI.
-         */
-        handlePaymentAuthorizationWithPayment(payment) { (PKPaymentAuthorizationStatus) -> () in
-            // close pay modal
-            controller.dismissViewControllerAnimated(true, completion: nil)
-        }
-    }
-    
-    func handlePaymentAuthorizationWithPayment(payment: PKPayment, completion: PKPaymentAuthorizationStatus -> ()) {
-        STPAPIClient.sharedClient().createTokenWithPayment(payment) { (token, error) -> Void in
-            if error != nil {
-                completion(PKPaymentAuthorizationStatus.Failure)
-                return
-            }
-            /*
-             We'll implement this below in "Sending the token to your server".
-             Notice that we're passing the completion block through.
-             See the above comment in didAuthorizePayment to learn why.
-             */
-            self.createBackendChargeWithToken(token, completion: completion)
-        }
-    }
-    
-    func createBackendChargeWithToken(token: STPToken!, completion: PKPaymentAuthorizationStatus -> ()) {
-        // SEND REQUEST TO Argent API ENDPOINT TO EXCHANGE STRIPE TOKEN
+    func payMerchantModal(sender: AnyObject) {
+        let navigationController = self.storyboard!.instantiateViewControllerWithIdentifier("payMerchantFormSheetController") as! UINavigationController
+        let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
         
-        let url = apiUrl + "/v1/stripe/charge/create"
+        // Initialize and style the terms and conditions modal
+        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
+        formSheetController.presentationController?.contentViewSize = CGSizeMake(300, 300)
+        formSheetController.presentationController?.shouldUseMotionEffect = true
+        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor()
+        formSheetController.presentationController?.containerView?.sizeToFit()
+        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
+        formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
+        formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
+        formSheetController.contentViewCornerRadius = 10
+        formSheetController.allowDismissByPanningPresentedView = true
+        formSheetController.interactivePanGestureDismissalDirection = .All;
         
-        let headers = [
-            "Authorization": "Bearer " + String(userAccessToken),
-            "Content-Type": "application/json"
-        ]
-        let parameters : [String : AnyObject] = [
-            "token": String(token) ?? "",
-            "delegatedUser": (detailUser?.username)!
-        ]
+        // Blur will be applied to all MZFormSheetPresentationControllers by default
+        MZFormSheetPresentationController.appearance().shouldApplyBackgroundBlurEffect = true
         
-        // for invalid character 0 be sure the content type is application/json and enconding is .JSON
-        Alamofire.request(.POST, url,
-            parameters: parameters,
-            encoding:.JSON,
-            headers: headers)
-            .responseJSON { response in
-                switch response.result {
-                case .Success:
-                    if let value = response.result.value {
-                        let json = JSON(value)
-                        print(PKPaymentAuthorizationStatus.Success)
-                        completion(PKPaymentAuthorizationStatus.Success)
-                    }
-                case .Failure(let error):
-                    print(PKPaymentAuthorizationStatus.Failure)
-                    completion(PKPaymentAuthorizationStatus.Failure)
-                    print(error)
-                }
-        }
+        let presentedViewController = navigationController.viewControllers.first as! PayMerchantViewController
+
+        // keep passing along user data to modal
+        presentedViewController.detailUser = detailUser
+        presentedViewController.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
+        presentedViewController.navigationItem.leftItemsSupplementBackButton = true
+        
+        // Be sure to update current module on storyboard
+        self.presentViewController(formSheetController, animated: true, completion: nil)
     }
-    
-    func paymentAuthorizationViewControllerDidFinish(controller: PKPaymentAuthorizationViewController) {
-        dismissViewControllerAnimated(true, completion: nil)
-        controller.dismissViewControllerAnimated(true, completion: nil)
-    }
+
 }
 

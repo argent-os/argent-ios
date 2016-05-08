@@ -125,8 +125,9 @@
 		30D526781CDBB4A0001B41BA /* Bitcoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526771CDBB4A0001B41BA /* Bitcoin.swift */; };
 		30D5267D1CDE3736001B41BA /* ConfigurePointOfSaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D5267C1CDE3736001B41BA /* ConfigurePointOfSaleViewController.swift */; };
 		30D526821CDF7762001B41BA /* ActionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526811CDF7762001B41BA /* ActionData.swift */; };
-		30D526841CDF776B001B41BA /* PeriscopeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30D526831CDF776A001B41BA /* PeriscopeCell.xib */; };
-		30D526861CDF8675001B41BA /* Periscope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526851CDF8675001B41BA /* Periscope.swift */; };
+		30D526841CDF776B001B41BA /* OptionsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30D526831CDF776A001B41BA /* OptionsCell.xib */; };
+		30D526861CDF8675001B41BA /* ActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526851CDF8675001B41BA /* ActionSheet.swift */; };
+		30D5268A1CDFAEC3001B41BA /* PayMerchantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526891CDFAEC3001B41BA /* PayMerchantViewController.swift */; };
 		30DB595E1CA46CB0007FEE1E /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DB595C1CA46CB0007FEE1E /* Interface.storyboard */; };
 		30DB59601CA46CB0007FEE1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30DB595F1CA46CB0007FEE1E /* Assets.xcassets */; };
 		30DB59671CA46CB0007FEE1E /* app-watchos Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 30DB59661CA46CB0007FEE1E /* app-watchos Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -340,8 +341,9 @@
 		30D526771CDBB4A0001B41BA /* Bitcoin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bitcoin.swift; path = "app-ios/Bitcoin.swift"; sourceTree = SOURCE_ROOT; };
 		30D5267C1CDE3736001B41BA /* ConfigurePointOfSaleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigurePointOfSaleViewController.swift; path = "app-ios/ConfigurePointOfSaleViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30D526811CDF7762001B41BA /* ActionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActionData.swift; path = "app-ios/ActionData.swift"; sourceTree = SOURCE_ROOT; };
-		30D526831CDF776A001B41BA /* PeriscopeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PeriscopeCell.xib; path = "app-ios/PeriscopeCell.xib"; sourceTree = SOURCE_ROOT; };
-		30D526851CDF8675001B41BA /* Periscope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Periscope.swift; path = "app-ios/Periscope.swift"; sourceTree = SOURCE_ROOT; };
+		30D526831CDF776A001B41BA /* OptionsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OptionsCell.xib; path = "app-ios/OptionsCell.xib"; sourceTree = SOURCE_ROOT; };
+		30D526851CDF8675001B41BA /* ActionSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActionSheet.swift; path = "app-ios/ActionSheet.swift"; sourceTree = SOURCE_ROOT; };
+		30D526891CDFAEC3001B41BA /* PayMerchantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PayMerchantViewController.swift; path = "app-ios/PayMerchantViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30DB595A1CA46CB0007FEE1E /* app-watchos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "app-watchos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30DB595D1CA46CB0007FEE1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		30DB595F1CA46CB0007FEE1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -610,9 +612,10 @@
 			isa = PBXGroup;
 			children = (
 				30B576921CC7D1CE005BCA5A /* SearchDetailViewController.swift */,
-				30D526831CDF776A001B41BA /* PeriscopeCell.xib */,
+				30D526831CDF776A001B41BA /* OptionsCell.xib */,
 				30D526811CDF7762001B41BA /* ActionData.swift */,
-				30D526851CDF8675001B41BA /* Periscope.swift */,
+				30D526851CDF8675001B41BA /* ActionSheet.swift */,
+				30D526891CDFAEC3001B41BA /* PayMerchantViewController.swift */,
 				30F480D51CCAE5FF00DD1E60 /* PaymentViewController.swift */,
 			);
 			name = Search;
@@ -1203,7 +1206,7 @@
 				304468F11CAA0BFC008CAE7D /* pop.caf in Resources */,
 				30C2DA751CA436B8003AFD8B /* cashregister.caf in Resources */,
 				30BB06E21CCEFC260051C9E7 /* CountryPicker.bundle in Resources */,
-				30D526841CDF776B001B41BA /* PeriscopeCell.xib in Resources */,
+				30D526841CDF776B001B41BA /* OptionsCell.xib in Resources */,
 				30C2DA761CA436B8003AFD8B /* chime.caf in Resources */,
 				309E43CC1CA9CFED00279D97 /* fold.caf in Resources */,
 				30C2DADD1CA438B8003AFD8B /* ProfileLabelCell.xib in Resources */,
@@ -1406,6 +1409,7 @@
 				30D526821CDF7762001B41BA /* ActionData.swift in Sources */,
 				30C2DAA91CA4374F003AFD8B /* SignupViewControllerThree.swift in Sources */,
 				30BB07031CCFE7D20051C9E7 /* CoverView.swift in Sources */,
+				30D5268A1CDFAEC3001B41BA /* PayMerchantViewController.swift in Sources */,
 				300E42331CB71362004316CF /* Card.swift in Sources */,
 				30C2DAE31CA43926003AFD8B /* ConfigureNotificationsViewController.swift in Sources */,
 				30C2DAEA1CA43934003AFD8B /* BankDetailViewController.swift in Sources */,
@@ -1434,7 +1438,7 @@
 				308A348A1CCA803200AAF66F /* History.swift in Sources */,
 				306DF00F1CDA68AB00864CAE /* RiskProfileViewController.swift in Sources */,
 				30C2DAC31CA4383B003AFD8B /* NotificationViewController.swift in Sources */,
-				30D526861CDF8675001B41BA /* Periscope.swift in Sources */,
+				30D526861CDF8675001B41BA /* ActionSheet.swift in Sources */,
 				309E43BE1CA8ADF900279D97 /* WebTermsViewController.swift in Sources */,
 				306E82301CDAC36400A43505 /* Balance.swift in Sources */,
 				30C2DB1F1CA43A51003AFD8B /* EditProfileViewController.swift in Sources */,
