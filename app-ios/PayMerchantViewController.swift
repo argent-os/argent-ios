@@ -15,7 +15,7 @@ import Stripe
 import SwiftyJSON
 import JGProgressHUD
 
-class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelegate, PKPaymentAuthorizationViewControllerDelegate {
+class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelegate, PKPaymentAuthorizationViewControllerDelegate, UITextFieldDelegate {
     
     var detailUser: User? {
         didSet {
@@ -24,9 +24,11 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
     
     let currencyFormatter = NSNumberFormatter()
 
-    var chargeInputView = UITextField()
-    
-    var selectPaymentOptionButton:UIButton = UIButton()
+    let chargeInputView = UITextField()
+
+    let merchantLabel = UILabel()
+
+    let selectPaymentOptionButton:UIButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,20 +43,32 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.barTintColor = UIColor.lightGrayColor()
         
-//        chargeInputView.addTarget(self, action: #selector(PayMerchantViewController.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
-        chargeInputView.frame = CGRect(x: 0, y: 40, width: 300, height: 100)
+        merchantLabel.frame = CGRect(x: 0, y: 20, width: 300, height: 20)
+        merchantLabel.text = "Pay " + (detailUser?.first_name)!
+        merchantLabel.textAlignment = .Center
+        merchantLabel.font = UIFont(name: "Avenir-Light", size: 16)
+        merchantLabel.textColor = UIColor.lightGrayColor()
+        self.view.addSubview(merchantLabel)
+        
+        chargeInputView.delegate = self
+        chargeInputView.frame = CGRect(x: 0, y: 70, width: 300, height: 100)
         chargeInputView.textColor = UIColor.mediumBlue()
         chargeInputView.font = UIFont(name: "Avenir-Light", size: 48)
         chargeInputView.textAlignment = .Center
         chargeInputView.keyboardType = .NumberPad
         chargeInputView.placeholder = "$0.00"
-        
+        chargeInputView.addTarget(self, action: #selector(PayMerchantViewController.textField(_:shouldChangeCharactersInRange:replacementString:)), forControlEvents: UIControlEvents.EditingChanged)
+
         selectPaymentOptionButton.frame = CGRect(x: 20, y: 220, width: 260, height: 60)
         selectPaymentOptionButton.layer.borderColor = UIColor.whiteColor().CGColor
         selectPaymentOptionButton.layer.borderWidth = 1
         selectPaymentOptionButton.layer.cornerRadius = 10
         selectPaymentOptionButton.backgroundColor = UIColor.mediumBlue()
-        selectPaymentOptionButton.setTitle("Select Payment Option", forState: .Normal)
+        var attribs: [String: AnyObject] = [:]
+        attribs[NSFontAttributeName] = UIFont(name: "Avenir-Roman", size: 14)
+        attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
+        let str = NSAttributedString(string: "Select Payment Option", attributes: attribs)
+        selectPaymentOptionButton.setAttributedTitle(str, forState: .Normal)
         selectPaymentOptionButton.addTarget(self, action: #selector(PayMerchantViewController.showPayModal(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(selectPaymentOptionButton)
 
@@ -74,9 +88,30 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func textFieldDidChange(textField: UITextField) {
-        let text = textField.text!.stringByReplacingOccurrencesOfString(currencyFormatter.currencySymbol, withString: "").stringByReplacingOccurrencesOfString(currencyFormatter.groupingSeparator, withString: "").stringByReplacingOccurrencesOfString(currencyFormatter.decimalSeparator, withString: "")
-        textField.text = currencyFormatter.stringFromNumber((text as NSString).doubleValue / 100.0)
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        // Construct the text that will be in the field if this change is accepted
+        var oldText = chargeInputView.text! as NSString
+        var newText = oldText.stringByReplacingCharactersInRange(range, withString: string) as NSString!
+        var newTextString = String(newText)
+        
+        let digits = NSCharacterSet.decimalDigitCharacterSet()
+        var digitText = ""
+        for c in newTextString.unicodeScalars {
+            if digits.longCharacterIsMember(c.value) {
+                digitText.append(c)
+            }
+        }
+        
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        formatter.locale = NSLocale(localeIdentifier: "en_US")
+        var numberFromField = (NSString(string: digitText).doubleValue)/100
+        newText = formatter.stringFromNumber(numberFromField)
+        
+        textField.text = String(newText)
+        
+        return false
     }
     
     // MARK: Payment Options Modal
@@ -113,15 +148,19 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
             // request will be nil if running on < iOS8
             return
         }
+        print("amount is ")
+        var str = chargeInputView.text
+        str?.removeAtIndex(str!.characters.indices.first!) // remove first letter
+        let floatValue = (str! as NSString).floatValue
         request.paymentSummaryItems = [
-            PKPaymentSummaryItem(label: (detailUser?.first_name)!, amount: 10.0)
+            PKPaymentSummaryItem(label: (detailUser?.first_name)!, amount: NSDecimalNumber(float: floatValue))
         ]
         if (Stripe.canSubmitPaymentRequest(request)) {
             let paymentController = PKPaymentAuthorizationViewController(paymentRequest: request)
             paymentController.delegate = self
             self.presentViewController(paymentController, animated: true, completion: nil)
         } else {
-            let paymentController = PaymentViewController()
+            // let paymentController = PaymentViewController()
             // Below displays manual credit card entry forms
             // presentViewController(paymentController, animated: true, completion: nil)
             // Show the user your own credit card form (see options 2 or 3)

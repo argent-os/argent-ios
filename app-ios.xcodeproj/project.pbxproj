@@ -138,7 +138,6 @@
 		30DB59761CA46CB0007FEE1E /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DB59751CA46CB0007FEE1E /* ComplicationController.swift */; };
 		30DB59781CA46CB0007FEE1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30DB59771CA46CB0007FEE1E /* Assets.xcassets */; };
 		30DB597C1CA46CB0007FEE1E /* app-watchos.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 30DB595A1CA46CB0007FEE1E /* app-watchos.app */; };
-		30F480D61CCAE5FF00DD1E60 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F480D51CCAE5FF00DD1E60 /* PaymentViewController.swift */; };
 		ADE75F43B0A9DEFF223342BC /* Pods_app_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 996F775E972E0316411A5150 /* Pods_app_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -359,7 +358,6 @@
 		30DB59791CA46CB0007FEE1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30DB59841CA46DCC007FEE1E /* ObjC-Bridging-Header-WatchOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjC-Bridging-Header-WatchOS.h"; sourceTree = "<group>"; };
 		30DB59851CA472D0007FEE1E /* app-watchos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "app-watchos.entitlements"; sourceTree = "<group>"; };
-		30F480D51CCAE5FF00DD1E60 /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentViewController.swift; path = "app-ios/PaymentViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30FB540A1C6A58B40004A538 /* Argent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Argent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB541E1C6A58B40004A538 /* app-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "app-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB54291C6A58B40004A538 /* app-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "app-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -616,7 +614,6 @@
 				30D526811CDF7762001B41BA /* ActionData.swift */,
 				30D526851CDF8675001B41BA /* ActionSheet.swift */,
 				30D526891CDFAEC3001B41BA /* PayMerchantViewController.swift */,
-				30F480D51CCAE5FF00DD1E60 /* PaymentViewController.swift */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -1428,7 +1425,6 @@
 				300E422F1CB57206004316CF /* BankConnectedTableViewCell.swift in Sources */,
 				30C2DAEB1CA43934003AFD8B /* BankTableViewCell.swift in Sources */,
 				30C2DB111CA439DC003AFD8B /* Logs.swift in Sources */,
-				30F480D61CCAE5FF00DD1E60 /* PaymentViewController.swift in Sources */,
 				30C2DAD11CA4386A003AFD8B /* SupportMessageViewController.swift in Sources */,
 				30C2DAE91CA43934003AFD8B /* BankAccountViewController.swift in Sources */,
 				30831F551CD0138E00D5D0F4 /* ActivityViewController2.swift in Sources */,

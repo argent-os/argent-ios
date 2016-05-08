@@ -19,8 +19,6 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
     let chargeInputView = UITextField()
 
     let currencyFormatter = NSNumberFormatter()
-
-    var currentString = ""
     
     var paymentTextField = STPPaymentCardTextField()
     
@@ -210,9 +208,6 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "selectCustomerView" {
-//            let destination = segue.destinationViewController as! ChargeCustomerSearchController
-//            destination.chargeAmount = chargeInputView.text!
-//            print("charge amount is", destination.chargeAmount)
         }
         if(segue.identifier == "mainMenuView") {
             let rootViewController = (self.storyboard?.instantiateViewControllerWithIdentifier("RootViewController"))! as UIViewController
@@ -227,10 +222,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
-        
-        let sendToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, screenWidth, 60))
-        // sendToolbar.barStyle = UIBarStyle.Default
-        
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, screenWidth, 60))
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: #selector(ChargeViewController.dismissKeyboard(_:)))
         done.tintColor = UIColor.whiteColor()
@@ -239,15 +231,13 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
             NSFontAttributeName : UIFont(name: "Avenir-Book", size: 15.0)!,
             NSForegroundColorAttributeName : UIColor(rgba: "#fff")
             ], forState: .Normal)
-        
         var items: [UIBarButtonItem]? = [UIBarButtonItem]()
         items?.append(flexSpace)
         items?.append(done)
         items?.append(flexSpace)
-        
-        sendToolbar.items = items
-        sendToolbar.sizeToFit()
-        chargeInputView.inputAccessoryView=sendToolbar
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        chargeInputView.inputAccessoryView=doneToolbar
     }
     
     func createCharge(sender: AnyObject) {

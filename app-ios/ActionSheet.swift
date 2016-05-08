@@ -93,9 +93,9 @@ public class ArgentActionController: ActionController<OptionsCell, String, Actio
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         settings.behavior.hideOnScrollDown = false
         settings.animation.scale = nil
-        settings.animation.present.duration = 0.6
-        settings.animation.dismiss.duration = 0.5
-        settings.animation.dismiss.options = .CurveEaseIn
+        settings.animation.present.duration = 0.3
+        settings.animation.dismiss.duration = 0.4
+        settings.animation.dismiss.options = .CurveEaseInOut
         settings.animation.dismiss.offset = 30
         
         cellSpec = .NibFile(nibName: "OptionsCell", bundle: NSBundle(forClass: OptionsCell.self), height: { _ in 60})
