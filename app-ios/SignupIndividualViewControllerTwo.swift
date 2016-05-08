@@ -48,7 +48,7 @@ class SignupIndividualViewControllerTwo: UIViewController, UITextFieldDelegate, 
     }
     
     //Changing Status Bar
-    override public func prefersStatusBarHidden() -> Bool {
+    override internal func prefersStatusBarHidden() -> Bool {
         return true
     }
     

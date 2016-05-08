@@ -229,9 +229,13 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
             print("new signup pressed")
         default:
             // Sent root view controller (default is login) otherwise send to register page
-            let rootViewController = (self.storyboard?.instantiateViewControllerWithIdentifier("RootViewController"))! as UIViewController
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let rootViewController = (sb.instantiateViewControllerWithIdentifier("RootViewController")) as UIViewController
             self.presentViewController(rootViewController, animated: true, completion: nil)
+            let root = UIApplication.sharedApplication().keyWindow?.rootViewController
             self.window.rootViewController = rootViewController
+//                root!.presentViewController(rootViewController, animated: false, completion: { () -> Void in
+//                })
             // critical: ensures rootViewController is set on login
         }
     }

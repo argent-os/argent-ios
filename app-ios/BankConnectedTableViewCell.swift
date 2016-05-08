@@ -24,7 +24,7 @@ class BankConnectedTableViewCell: UITableViewCell {
     // Here you can customize the appearance of your cell
     override func layoutSubviews() {
         let width = UIScreen.mainScreen().bounds.size.width
-        let height = UIScreen.mainScreen().bounds.size.height
+        _ = UIScreen.mainScreen().bounds.size.height
         
         super.layoutSubviews()
         // Customize imageView like you need

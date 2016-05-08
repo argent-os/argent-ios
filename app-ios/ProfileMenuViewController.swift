@@ -21,7 +21,7 @@ class ProfileMenuViewController: UITableViewController {
     func configureView() {
         
         let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
+        _ = screen.size.width
 
         self.tableView.tableHeaderView = ParallaxHeaderView.init(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 100));
         

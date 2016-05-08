@@ -35,6 +35,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // CRITICAL: Fixes view searchDetailController
+        definesPresentationContext = true
+
         // Do any additional setup after loading the view, typically from a nib.
         
         let screen = UIScreen.mainScreen().bounds
@@ -141,10 +144,17 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.textLabel?.text = "@" + String(filteredArray[indexPath.row].username)
             cell.textLabel?.textColor = UIColor.darkGrayColor()
             cell.textLabel?.font = UIFont.systemFontOfSize(14)
-            cell.detailTextLabel?.font = UIFont.systemFontOfSize(12)
-            cell.detailTextLabel?.text = String(filteredArray[indexPath.row].first_name) + " " + String(filteredArray[indexPath.row].last_name)
             cell.selectionStyle = UITableViewCellSelectionStyle.Default
+            cell.detailTextLabel?.font = UIFont.systemFontOfSize(12)
             cell.detailTextLabel?.textColor = UIColor.lightGrayColor()
+            
+            let first_name = filteredArray[indexPath.row].first_name
+            let last_name = String(filteredArray[indexPath.row].last_name)
+            if first_name != "" || last_name != "" {
+                cell.detailTextLabel?.text = first_name + " " + last_name
+            } else {
+                cell.detailTextLabel?.text = String(dataArray[indexPath.row].email)
+            }
         }
         else {
             // Default loaded array
@@ -180,7 +190,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 cell.detailTextLabel?.text = first_name + " " + last_name
             } else {
                 cell.detailTextLabel?.text = String(dataArray[indexPath.row].email)
-
             }
         }
         
@@ -237,13 +246,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
         shouldShowSearchResults = true
-        tblSearchResults.contentInset = UIEdgeInsets(top: 45, left: 0, bottom: 0, right: 0)
         tblSearchResults.reloadData()
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         shouldShowSearchResults = false
-        tblSearchResults.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tblSearchResults.reloadData()
     }
     
@@ -330,7 +337,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func filterContentForSearchText(searchText: String, scope: String) {
         filteredArray = filteredArray.filter({( user : User) -> Bool in
-            let categoryMatch = (scope == "Username") || (scope == "Email") || (scope == "Name")
+            _ = (scope == "Username") || (scope == "Email") || (scope == "Name")
             if(scope == "Username") {
                 let userStr: NSString = user.username
                 searchedText = userStr as String

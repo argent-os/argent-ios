@@ -75,10 +75,21 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        definesPresentationContext = true
+
+        configureView()                
+    }
+    
+    // VIEW DID APPEAR
+    override func viewDidAppear(animated: Bool) {
+        
         loadData()
         
-        configureView()
-                
+        self.view.addSubview(balanceSwitch)
+        self.view.bringSubviewToFront(balanceSwitch)
+        UITextField.appearance().keyboardAppearance = .Light
+        UIStatusBarStyle.LightContent
+        
     }
     
     func presentTutorial(sender: AnyObject) {
@@ -123,16 +134,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
-
-    // VIEW DID APPEAR
-    override func viewDidAppear(animated: Bool) {
-        
-        self.view.addSubview(balanceSwitch)
-        self.view.bringSubviewToFront(balanceSwitch)
-        UITextField.appearance().keyboardAppearance = .Light
-        UIStatusBarStyle.LightContent
-
-    }
     
     func loadData() {
         
@@ -141,6 +142,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         
         let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
         HUD.showInView(graph)
+        HUD.dismissAfterDelay(2, animated: true)
         
         if((userAccessToken) != nil) {
             // Get stripe data
@@ -156,11 +158,10 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 formatter.locale = NSLocale.currentLocale() // This is the default
                 
                 if(pendingBalance != 0 && availableBalance != 0) {
-                    self.lblAccountPending.countFrom(0, to: CGFloat(pendingBalance)/100)
+                    self.lblAccountPending.countFrom(CGFloat(pendingBalance)/100-600, to: CGFloat(pendingBalance)/100)
                     self.lblAccountPending.textColor = UIColor.whiteColor()
                     self.lblAccountPending.format = "%.2f"
-                    self.lblAccountPending.animationDuration = 2.0
-                    self.lblAccountPending.countFromZeroTo(CGFloat(Float(pendingBalance))/100)
+                    self.lblAccountPending.animationDuration = 0.5
                     self.lblAccountPending.method = UILabelCountingMethod.EaseInOut
                     self.lblAccountPending.completionBlock = {
                         let pendingBalanceNum = formatter.stringFromNumber(pendingBalance/100)
@@ -170,8 +171,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                     self.lblAccountAvailable.countFrom((CGFloat(Float(availableBalance))/100)-100, to: CGFloat(Float(availableBalance))/100)
                     self.lblAccountAvailable.textColor = UIColor.whiteColor()
                     self.lblAccountAvailable.format = "%.2f"
-                    self.lblAccountAvailable.animationDuration = 2.0
-                    self.lblAccountAvailable.countFromZeroTo(CGFloat(Float(availableBalance))/100)
+                    self.lblAccountAvailable.animationDuration = 1.0
                     self.lblAccountAvailable.method = UILabelCountingMethod.EaseInOut
                     self.lblAccountAvailable.completionBlock = {
                         let availableBalanceNum = formatter.stringFromNumber(availableBalance/100)
@@ -487,7 +487,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        var CellIdentifier: String = "Cell"
+        let CellIdentifier: String = "Cell"
         let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: CellIdentifier)
 
         let item = self.accountHistoryArray?[indexPath.row]

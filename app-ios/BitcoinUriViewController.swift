@@ -23,8 +23,8 @@ class BitcoinUriViewController: UIViewController {
         
         // screen width and height:
         let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
-        let screenHeight = screen.size.height
+        _ = screen.size.width
+        _ = screen.size.height
         
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.barTintColor = UIColor.lightGrayColor()

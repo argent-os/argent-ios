@@ -41,7 +41,7 @@ final class AddCustomerViewController: FormViewController, UINavigationBarDelega
         navigationItem.title = "Invite Customer"
 
         // Create left and right button for navigation item
-        let leftButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: UIBarButtonItemStyle.Plain, target: self, action: "returnToMenu:")
+        let leftButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddCustomerViewController.returnToMenu(_:)))
         let font = UIFont(name: "Avenir-Book", size: 14)
         leftButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
         // Create two buttons for the navigation item

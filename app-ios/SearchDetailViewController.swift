@@ -45,7 +45,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
 
         let screen = UIScreen.mainScreen().bounds
         let width = screen.size.width
-        let height = screen.size.height
+        _ = screen.size.height
         
         // adds a manual credit card entry textfield
         // self.view.addSubview(paymentTextField)

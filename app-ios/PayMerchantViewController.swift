@@ -38,36 +38,36 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         
         // screen width and height:
         let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
-        let screenHeight = screen.size.height
+        _ = screen.size.width
+        _ = screen.size.height
         
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.barTintColor = UIColor.lightGrayColor()
         
-        merchantLabel.frame = CGRect(x: 0, y: 20, width: 300, height: 20)
+        merchantLabel.frame = CGRect(x: 0, y: 35, width: 300, height: 20)
         merchantLabel.text = "Pay " + (detailUser?.first_name)!
         merchantLabel.textAlignment = .Center
-        merchantLabel.font = UIFont(name: "Avenir-Light", size: 16)
+        merchantLabel.font = UIFont(name: "AvenirNext-Regular", size: 14)
         merchantLabel.textColor = UIColor.lightGrayColor()
         self.view.addSubview(merchantLabel)
         
         chargeInputView.delegate = self
-        chargeInputView.frame = CGRect(x: 0, y: 70, width: 300, height: 100)
+        chargeInputView.frame = CGRect(x: 0, y: 75, width: 300, height: 100)
         chargeInputView.textColor = UIColor.mediumBlue()
-        chargeInputView.font = UIFont(name: "Avenir-Light", size: 48)
+        chargeInputView.font = UIFont(name: "AvenirNext-Bold", size: 42)
         chargeInputView.textAlignment = .Center
         chargeInputView.keyboardType = .NumberPad
         chargeInputView.placeholder = "$0.00"
         chargeInputView.addTarget(self, action: #selector(PayMerchantViewController.textField(_:shouldChangeCharactersInRange:replacementString:)), forControlEvents: UIControlEvents.EditingChanged)
 
         selectPaymentOptionButton.frame = CGRect(x: 20, y: 220, width: 260, height: 60)
-        selectPaymentOptionButton.layer.borderColor = UIColor.whiteColor().CGColor
+        selectPaymentOptionButton.layer.borderColor = UIColor.mediumBlue().CGColor
         selectPaymentOptionButton.layer.borderWidth = 1
         selectPaymentOptionButton.layer.cornerRadius = 10
-        selectPaymentOptionButton.backgroundColor = UIColor.mediumBlue()
+        selectPaymentOptionButton.backgroundColor = UIColor.clearColor()
         var attribs: [String: AnyObject] = [:]
         attribs[NSFontAttributeName] = UIFont(name: "Avenir-Roman", size: 14)
-        attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
+        attribs[NSForegroundColorAttributeName] = UIColor.mediumBlue()
         let str = NSAttributedString(string: "Select Payment Option", attributes: attribs)
         selectPaymentOptionButton.setAttributedTitle(str, forState: .Normal)
         selectPaymentOptionButton.addTarget(self, action: #selector(PayMerchantViewController.showPayModal(_:)), forControlEvents: .TouchUpInside)
@@ -91,7 +91,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         
         // Construct the text that will be in the field if this change is accepted
-        var oldText = chargeInputView.text! as NSString
+        let oldText = chargeInputView.text! as NSString
         var newText = oldText.stringByReplacingCharactersInRange(range, withString: string) as NSString!
         var newTextString = String(newText)
         
@@ -106,7 +106,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         let formatter = NSNumberFormatter()
         formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
         formatter.locale = NSLocale(localeIdentifier: "en_US")
-        var numberFromField = (NSString(string: digitText).doubleValue)/100
+        let numberFromField = (NSString(string: digitText).doubleValue)/100
         newText = formatter.stringFromNumber(numberFromField)
         
         textField.text = String(newText)

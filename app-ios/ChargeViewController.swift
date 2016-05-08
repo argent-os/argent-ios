@@ -57,8 +57,8 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         navigationItem.title = "Argent Payment Terminal"
         
         // Create left and right button for navigation item
-        let leftButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: UIBarButtonItemStyle.Plain, target: self, action: "returnToMenu:")
-        let font = UIFont(name: "Avenir-Book", size: 14)
+        let leftButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ChargeViewController.returnToMenu(_:)))
+        let font = UIFont(name: "AvenirNext-Regular", size: 14)
         leftButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
         // Create two buttons for the navigation item
         navigationItem.leftBarButtonItem = leftButton
@@ -82,7 +82,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         chargeInputView.addTarget(self, action: #selector(ChargeViewController.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
         chargeInputView.frame = CGRect(x: 0, y: 90, width: screenWidth, height: 50)
         chargeInputView.textAlignment = .Center
-        chargeInputView.font = UIFont(name: "Avenir-Light", size: 48)
+        chargeInputView.font = UIFont(name: "AvenirNext-Bold", size: 48)
         chargeInputView.textColor = UIColor.mediumBlue()
         chargeInputView.placeholder = "$0.00"
         chargeInputView.keyboardType = UIKeyboardType.NumberPad
@@ -94,7 +94,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         payWithCardButton.backgroundColor = UIColor.clearColor()
         payWithCardButton.tintColor = UIColor.mediumBlue()
         payWithCardButton.setTitleColor(UIColor.mediumBlue(), forState: .Normal)
-        payWithCardButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
+        payWithCardButton.titleLabel?.font = UIFont(name: "AvenirNext-Regular", size: 14)
         payWithCardButton.layer.borderColor = UIColor.mediumBlue().colorWithAlphaComponent(0.5).CGColor
         payWithCardButton.layer.borderWidth = 1
         payWithCardButton.layer.cornerRadius = 5
@@ -109,7 +109,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         payWithBitcoinButton.backgroundColor = UIColor.clearColor()
         payWithBitcoinButton.tintColor = UIColor.mediumBlue()
         payWithBitcoinButton.setTitleColor(UIColor.mediumBlue(), forState: .Normal)
-        payWithBitcoinButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
+        payWithBitcoinButton.titleLabel?.font = UIFont(name: "AvenirNext-Regular", size: 14)
         payWithBitcoinButton.layer.borderColor = UIColor.mediumBlue().colorWithAlphaComponent(0.5).CGColor
         payWithBitcoinButton.layer.borderWidth = 1
         payWithBitcoinButton.layer.cornerRadius = 5
@@ -151,7 +151,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         // screen width and height:
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
-        let screenHeight = screen.size.height
+        _ = screen.size.height
         // Card text
         paymentTextField.frame = CGRectMake(20, 260, screenWidth - 40, 60)
         paymentTextField.delegate = self
@@ -221,7 +221,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         // screen width and height:
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
-        let screenHeight = screen.size.height
+        _ = screen.size.height
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, screenWidth, 60))
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: #selector(ChargeViewController.dismissKeyboard(_:)))

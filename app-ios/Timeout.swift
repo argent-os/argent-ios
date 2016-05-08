@@ -15,7 +15,7 @@ class Timeout: NSObject
         super.init()
         self.callback = callback
         self.timer = NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(delaySeconds),
-            target: self, selector: "invoke", userInfo: nil, repeats: false)
+            target: self, selector: #selector(Timeout.invoke), userInfo: nil, repeats: false)
     }
     
     func invoke()
