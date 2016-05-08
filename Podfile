@@ -14,7 +14,6 @@ end
 target 'app-ios' do
 	platform :ios, '8.0'
 	shared_pods
-	pod 'RESideMenu'
 	pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 	pod 'CardIO'
 	pod 'Stripe'

@@ -64,7 +64,6 @@
 		30C2DA771CA436B8003AFD8B /* chime2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA741CA436B8003AFD8B /* chime2.caf */; };
 		30C2DA7A1CA436C3003AFD8B /* nyc.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA791CA436C3003AFD8B /* nyc.mp4 */; };
 		30C2DA8D1CA436CC003AFD8B /* ocra.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA841CA436CC003AFD8B /* ocra.ttf */; };
-		30C2DA8F1CA436D9003AFD8B /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DA8E1CA436D9003AFD8B /* RootViewController.swift */; };
 		30C2DA911CA436E6003AFD8B /* PasscodeLockView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA901CA436E6003AFD8B /* PasscodeLockView.xib */; };
 		30C2DA951CA4372D003AFD8B /* PasscodeLockConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DA921CA4372D003AFD8B /* PasscodeLockConfiguration.swift */; };
 		30C2DA961CA4372D003AFD8B /* PasscodeSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DA931CA4372D003AFD8B /* PasscodeSettingsViewController.swift */; };
@@ -109,7 +108,6 @@
 		30C2DAEF1CA43951003AFD8B /* AddCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAEE1CA43951003AFD8B /* AddCustomerViewController.swift */; };
 		30C2DAF51CA43967003AFD8B /* ChargeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAF41CA43967003AFD8B /* ChargeViewController.swift */; };
 		30C2DAF91CA43975003AFD8B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAF81CA43975003AFD8B /* User.swift */; };
-		30C2DAFB1CA4397C003AFD8B /* LeftMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAFA1CA4397C003AFD8B /* LeftMenuViewController.swift */; };
 		30C2DAFD1CA43984003AFD8B /* Plaid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAFC1CA43984003AFD8B /* Plaid.swift */; };
 		30C2DAFF1CA4398C003AFD8B /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAFE1CA4398C003AFD8B /* Secrets.swift */; };
 		30C2DB0D1CA439CC003AFD8B /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DB0C1CA439CC003AFD8B /* Auth.storyboard */; };
@@ -139,7 +137,6 @@
 		30DB59761CA46CB0007FEE1E /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DB59751CA46CB0007FEE1E /* ComplicationController.swift */; };
 		30DB59781CA46CB0007FEE1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30DB59771CA46CB0007FEE1E /* Assets.xcassets */; };
 		30DB597C1CA46CB0007FEE1E /* app-watchos.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 30DB595A1CA46CB0007FEE1E /* app-watchos.app */; };
-		30EB3C6E1CCCFAD80010F130 /* RAMTabBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EB3C6D1CCCFAD80010F130 /* RAMTabBarExtension.swift */; };
 		30F480D61CCAE5FF00DD1E60 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F480D51CCAE5FF00DD1E60 /* PaymentViewController.swift */; };
 		ADE75F43B0A9DEFF223342BC /* Pods_app_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 996F775E972E0316411A5150 /* Pods_app_ios.framework */; };
 /* End PBXBuildFile section */
@@ -282,7 +279,6 @@
 		30C2DA741CA436B8003AFD8B /* chime2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = chime2.caf; sourceTree = "<group>"; };
 		30C2DA791CA436C3003AFD8B /* nyc.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = nyc.mp4; sourceTree = "<group>"; };
 		30C2DA841CA436CC003AFD8B /* ocra.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ocra.ttf; sourceTree = "<group>"; };
-		30C2DA8E1CA436D9003AFD8B /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootViewController.swift; path = "app-ios/RootViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DA901CA436E6003AFD8B /* PasscodeLockView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PasscodeLockView.xib; path = "app-ios/PasscodeLockView.xib"; sourceTree = SOURCE_ROOT; };
 		30C2DA921CA4372D003AFD8B /* PasscodeLockConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PasscodeLockConfiguration.swift; path = "app-ios/PasscodeLockConfiguration.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DA931CA4372D003AFD8B /* PasscodeSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PasscodeSettingsViewController.swift; path = "app-ios/PasscodeSettingsViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -327,7 +323,6 @@
 		30C2DAEE1CA43951003AFD8B /* AddCustomerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddCustomerViewController.swift; path = "app-ios/AddCustomerViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAF41CA43967003AFD8B /* ChargeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChargeViewController.swift; path = "app-ios/ChargeViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAF81CA43975003AFD8B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = "app-ios/User.swift"; sourceTree = SOURCE_ROOT; };
-		30C2DAFA1CA4397C003AFD8B /* LeftMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LeftMenuViewController.swift; path = "app-ios/LeftMenuViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAFC1CA43984003AFD8B /* Plaid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Plaid.swift; path = "app-ios/Plaid.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAFE1CA4398C003AFD8B /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Secrets.swift; path = "app-ios/Secrets.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DB0C1CA439CC003AFD8B /* Auth.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Auth.storyboard; path = "app-ios/Auth.storyboard"; sourceTree = SOURCE_ROOT; };
@@ -362,7 +357,6 @@
 		30DB59791CA46CB0007FEE1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30DB59841CA46DCC007FEE1E /* ObjC-Bridging-Header-WatchOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjC-Bridging-Header-WatchOS.h"; sourceTree = "<group>"; };
 		30DB59851CA472D0007FEE1E /* app-watchos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "app-watchos.entitlements"; sourceTree = "<group>"; };
-		30EB3C6D1CCCFAD80010F130 /* RAMTabBarExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RAMTabBarExtension.swift; path = "app-ios/RAMTabBarExtension.swift"; sourceTree = SOURCE_ROOT; };
 		30F480D51CCAE5FF00DD1E60 /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentViewController.swift; path = "app-ios/PaymentViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30FB540A1C6A58B40004A538 /* Argent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Argent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB541E1C6A58B40004A538 /* app-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "app-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -683,23 +677,6 @@
 			name = Main;
 			sourceTree = "<group>";
 		};
-		30BECC081C6F934A00B8A088 /* Root */ = {
-			isa = PBXGroup;
-			children = (
-				30C2DA8E1CA436D9003AFD8B /* RootViewController.swift */,
-			);
-			name = Root;
-			sourceTree = "<group>";
-		};
-		30BECC091C6F935200B8A088 /* Nav */ = {
-			isa = PBXGroup;
-			children = (
-				30C2DAFA1CA4397C003AFD8B /* LeftMenuViewController.swift */,
-				30EB3C6D1CCCFAD80010F130 /* RAMTabBarExtension.swift */,
-			);
-			name = Nav;
-			sourceTree = "<group>";
-		};
 		30BECC0A1C6F936E00B8A088 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -900,12 +877,10 @@
 				30C2DA5A1CA4366C003AFD8B /* AppDelegate.swift */,
 				30C2DA581CA43665003AFD8B /* App.entitlements */,
 				306D6DB11C7008D200467C41 /* Resources */,
-				30BECC081C6F934A00B8A088 /* Root */,
 				30BECC061C6F92EF00B8A088 /* Auth */,
 				3064931A1CD6AFEB00A17B00 /* Tutorials */,
 				30BECC071C6F932400B8A088 /* Main */,
 				3013DCEA1C8515A300268DAD /* Models */,
-				30BECC091C6F935200B8A088 /* Nav */,
 				304DDE351C9CEDA500962BC4 /* Integrations */,
 				304DDE421C9CF05300962BC4 /* Secrets */,
 				30BECC0B1C6F939800B8A088 /* Storyboards */,
@@ -1430,8 +1405,6 @@
 				306DF0091CD991CB00864CAE /* Customer.swift in Sources */,
 				30D526821CDF7762001B41BA /* ActionData.swift in Sources */,
 				30C2DAA91CA4374F003AFD8B /* SignupViewControllerThree.swift in Sources */,
-				30EB3C6E1CCCFAD80010F130 /* RAMTabBarExtension.swift in Sources */,
-				30C2DAFB1CA4397C003AFD8B /* LeftMenuViewController.swift in Sources */,
 				30BB07031CCFE7D20051C9E7 /* CoverView.swift in Sources */,
 				300E42331CB71362004316CF /* Card.swift in Sources */,
 				30C2DAE31CA43926003AFD8B /* ConfigureNotificationsViewController.swift in Sources */,
@@ -1450,7 +1423,6 @@
 				30C2DA961CA4372D003AFD8B /* PasscodeSettingsViewController.swift in Sources */,
 				300E422F1CB57206004316CF /* BankConnectedTableViewCell.swift in Sources */,
 				30C2DAEB1CA43934003AFD8B /* BankTableViewCell.swift in Sources */,
-				30C2DA8F1CA436D9003AFD8B /* RootViewController.swift in Sources */,
 				30C2DB111CA439DC003AFD8B /* Logs.swift in Sources */,
 				30F480D61CCAE5FF00DD1E60 /* PaymentViewController.swift in Sources */,
 				30C2DAD11CA4386A003AFD8B /* SupportMessageViewController.swift in Sources */,

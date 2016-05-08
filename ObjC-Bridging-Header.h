@@ -9,8 +9,6 @@
 #ifndef ObjC_Bridging_Header_h
 #define ObjC_Bridging_Header_h
 
-#import "Pods/RESideMenu/RESideMenu/RESideMenu.h"
-
 // Card IO
 #import "CardIO.h"
 @import AudioToolbox;

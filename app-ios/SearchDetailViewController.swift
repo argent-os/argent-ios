@@ -15,7 +15,7 @@ import Alamofire
 import SwiftyJSON
 import XLActionController
 
-class SearchDetailViewController: UIViewController, MFMailComposeViewControllerDelegate, STPPaymentCardTextFieldDelegate, PKPaymentAuthorizationViewControllerDelegate, UINavigationBarDelegate {
+class SearchDetailViewController: UIViewController, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, STPPaymentCardTextFieldDelegate, PKPaymentAuthorizationViewControllerDelegate, UINavigationBarDelegate {
     
     @IBOutlet weak var emailLabel: UILabel!
     
@@ -183,7 +183,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             leftButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
             // Create two buttons for the navigation item
             navigationItem.leftBarButtonItem = leftButton
-            let rightButton = UIBarButtonItem(image: UIImage(named: "ic_paper_plane_light_flat"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SearchDetailViewController.sendEmailButtonTapped(_:)))
+            let rightButton = UIBarButtonItem(image: UIImage(named: "ic_paper_plane_light_flat"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SearchDetailViewController.showMessageModal(_:)))
             rightButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
             // Create two buttons for the navigation item
             navigationItem.rightBarButtonItem = rightButton
@@ -207,6 +207,8 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
         self.view.window!.rootViewController!.dismissViewControllerAnimated(true, completion: { _ in })
     }
     
+    
+    // MARK: Email Composition
     @IBAction func sendEmailButtonTapped(sender: AnyObject) {
         let mailComposeViewController = configuredMailComposeViewController()
         if MFMailComposeViewController.canSendMail() {
@@ -234,6 +236,55 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
     
     // MARK: MFMailComposeViewControllerDelegate Method
     func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func showMessageModal(sender: AnyObject) {
+        let actionController = PeriscopeActionController()
+        actionController.headerData = "Contact Method"
+        actionController.addAction(Action("Email", style: .Default, handler: { action in
+            Timeout(0.2) {
+                self.sendEmailButtonTapped(self)
+            }
+        }))
+        actionController.addAction(Action("SMS", style: .Default, handler: { action in
+            Timeout(0.2) {
+                self.sendSMSButtonTapped(self)
+            }
+        }))
+        actionController.addSection(PeriscopeSection())
+        actionController.addAction(Action("Cancel", style: .Destructive, handler: { action in
+        }))
+        self.presentViewController(actionController, animated: true, completion: { _ in
+        })
+    }
+    
+    // MARK: SMS Composition
+    @IBAction func sendSMSButtonTapped(sender: AnyObject) {
+        let smsComposeViewController = configuredSMSViewController()
+        if !MFMessageComposeViewController.canSendText() {
+            print("SMS services are not available")
+        } else {
+            self.presentViewController(smsComposeViewController, animated: true, completion: nil)
+        }
+    }
+    
+    func configuredSMSViewController() -> MFMessageComposeViewController {
+        let composeSMSVC = MFMessageComposeViewController()
+        composeSMSVC.messageComposeDelegate = self
+        
+        // Configure the fields of the interface.
+        composeSMSVC.recipients = ([(detailUser?.email)!])
+        composeSMSVC.body = "Hello from Argent!"
+        
+        return composeSMSVC
+    }
+    
+    func messageComposeViewController(controller: MFMessageComposeViewController,
+                                      didFinishWithResult result: MessageComposeResult) {
+        // Check the result or perform other tasks.
+        
+        // Dismiss the mail compose view controller.
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
