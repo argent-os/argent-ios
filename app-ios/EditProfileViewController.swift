@@ -48,11 +48,11 @@ final class EditProfileViewController: FormViewController {
                 Profile.sharedInstance.ssn = $0
         }
         let businessName = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
-            $0.titleLabel.text = "Name"
+            $0.titleLabel.text = "Business Name"
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
                 $0.rowHeight = 60
-                $0.placeholder = "Your business name"
+                $0.placeholder = ""
                 $0.text = Profile.sharedInstance.businessName
             }.onTextChanged {
                 Profile.sharedInstance.businessName = $0
@@ -62,7 +62,7 @@ final class EditProfileViewController: FormViewController {
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
                 $0.rowHeight = 60
-                $0.placeholder = "Your business address"
+                $0.placeholder = ""
                 $0.text = Profile.sharedInstance.businessAddressLine1
             }.onTextChanged {
                 Profile.sharedInstance.businessAddressLine1 = $0
@@ -72,7 +72,7 @@ final class EditProfileViewController: FormViewController {
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
                 $0.rowHeight = 60
-                $0.placeholder = "Your business country"
+                $0.placeholder = ""
                 $0.text = Profile.sharedInstance.businessAddressCountry
             }.onTextChanged {
                 Profile.sharedInstance.businessAddressCountry = $0
@@ -82,7 +82,7 @@ final class EditProfileViewController: FormViewController {
             $0.textField.keyboardType = .NumberPad
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
-                $0.placeholder = "Your business zip"
+                $0.placeholder = ""
                 $0.text = Profile.sharedInstance.businessAddressZip
             }.onTextChanged {
                 Profile.sharedInstance.businessAddressZip = $0
@@ -92,7 +92,7 @@ final class EditProfileViewController: FormViewController {
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
                 $0.rowHeight = 60
-                $0.placeholder = "Your business city"
+                $0.placeholder = ""
                 $0.text = Profile.sharedInstance.businessAddressCity
             }.onTextChanged {
                 Profile.sharedInstance.businessAddressCity = $0
@@ -133,9 +133,10 @@ final class EditProfileViewController: FormViewController {
     }()
     
     private func configure() {
+        tableView.frame = CGRect(x: 0, y: 80, width: self.view.bounds.width, height: self.view.bounds.height-80)
         tableView.contentInset.top = 0
         tableView.contentInset.bottom = 40
-        tableView.contentOffset.y = 0
+        tableView.contentOffset.y = 20
         tableView.backgroundColor = UIColor.whiteColor()
 
         let screen = UIScreen.mainScreen().bounds
@@ -160,7 +161,7 @@ final class EditProfileViewController: FormViewController {
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
                 $0.rowHeight = 60
-                $0.placeholder = "Your first name or company rep first name"
+                $0.placeholder = ""
                 $0.text = Profile.sharedInstance.firstName
             }.onTextChanged {
                 Profile.sharedInstance.firstName = $0
@@ -170,7 +171,7 @@ final class EditProfileViewController: FormViewController {
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
                 $0.rowHeight = 60
-                $0.placeholder = "Your last name or company rep last name"
+                $0.placeholder = ""
                 $0.text = Profile.sharedInstance.lastName
             }.onTextChanged {
                 Profile.sharedInstance.lastName = $0
@@ -182,7 +183,7 @@ final class EditProfileViewController: FormViewController {
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
                 $0.rowHeight = 60
-                $0.placeholder = "Username"
+                $0.placeholder = ""
                 $0.text = Profile.sharedInstance.username
             }.onTextChanged {
                 Profile.sharedInstance.username = $0
@@ -193,7 +194,7 @@ final class EditProfileViewController: FormViewController {
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
                 $0.rowHeight = 60
-                $0.placeholder = "Email"
+                $0.placeholder = ""
                 $0.text = Profile.sharedInstance.email
             }.onTextChanged {
                 Profile.sharedInstance.email = $0
@@ -204,7 +205,7 @@ final class EditProfileViewController: FormViewController {
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
                 $0.rowHeight = 60
-                $0.placeholder = "Add your phone number"
+                $0.placeholder = ""
                 $0.text = Profile.sharedInstance.phoneNumber
             }.onTextChanged {
                 Profile.sharedInstance.phoneNumber = $0
@@ -250,7 +251,7 @@ final class EditProfileViewController: FormViewController {
         let createHeader: (String -> ViewFormer) = { text in
             return LabelViewFormer<FormLabelHeaderView>()
                 .configure {
-                    $0.viewHeight = 0
+                    $0.viewHeight = 40
                     $0.text = text
             }
         }
@@ -258,7 +259,7 @@ final class EditProfileViewController: FormViewController {
         // Create SectionFormers
         
         let imageSection = SectionFormer(rowFormer: imageRow)
-            .set(headerViewFormer: createHeader("Profile image"))
+            .set(headerViewFormer: createHeader("Profile Image"))
         let aboutSection = SectionFormer(rowFormer: firstNameRow, lastNameRow, usernameRow, emailRow, birthdayRow, phoneRow)
             .set(headerViewFormer: createHeader("Profile information"))
         let moreSection = SectionFormer(rowFormer: moreRow)

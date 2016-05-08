@@ -112,9 +112,6 @@
 		30C2DAFB1CA4397C003AFD8B /* LeftMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAFA1CA4397C003AFD8B /* LeftMenuViewController.swift */; };
 		30C2DAFD1CA43984003AFD8B /* Plaid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAFC1CA43984003AFD8B /* Plaid.swift */; };
 		30C2DAFF1CA4398C003AFD8B /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAFE1CA4398C003AFD8B /* Secrets.swift */; };
-		30C2DB071CA439B6003AFD8B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DB061CA439B6003AFD8B /* Extensions.swift */; };
-		30C2DB091CA439BC003AFD8B /* StarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DB081CA439BC003AFD8B /* StarButton.swift */; };
-		30C2DB0B1CA439C1003AFD8B /* Paths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DB0A1CA439C1003AFD8B /* Paths.swift */; };
 		30C2DB0D1CA439CC003AFD8B /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DB0C1CA439CC003AFD8B /* Auth.storyboard */; };
 		30C2DB0F1CA439D2003AFD8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DB0E1CA439D2003AFD8B /* LaunchScreen.storyboard */; };
 		30C2DB111CA439DC003AFD8B /* Logs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DB101CA439DC003AFD8B /* Logs.swift */; };
@@ -128,6 +125,10 @@
 		30C2DB221CA43B62003AFD8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DB201CA43B62003AFD8B /* Main.storyboard */; };
 		30D526761CDB9814001B41BA /* BitcoinUriViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526751CDB9814001B41BA /* BitcoinUriViewController.swift */; };
 		30D526781CDBB4A0001B41BA /* Bitcoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526771CDBB4A0001B41BA /* Bitcoin.swift */; };
+		30D5267D1CDE3736001B41BA /* ConfigurePointOfSaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D5267C1CDE3736001B41BA /* ConfigurePointOfSaleViewController.swift */; };
+		30D526821CDF7762001B41BA /* ActionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526811CDF7762001B41BA /* ActionData.swift */; };
+		30D526841CDF776B001B41BA /* PeriscopeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30D526831CDF776A001B41BA /* PeriscopeCell.xib */; };
+		30D526861CDF8675001B41BA /* Periscope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526851CDF8675001B41BA /* Periscope.swift */; };
 		30DB595E1CA46CB0007FEE1E /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DB595C1CA46CB0007FEE1E /* Interface.storyboard */; };
 		30DB59601CA46CB0007FEE1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30DB595F1CA46CB0007FEE1E /* Assets.xcassets */; };
 		30DB59671CA46CB0007FEE1E /* app-watchos Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 30DB59661CA46CB0007FEE1E /* app-watchos Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -329,9 +330,6 @@
 		30C2DAFA1CA4397C003AFD8B /* LeftMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LeftMenuViewController.swift; path = "app-ios/LeftMenuViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAFC1CA43984003AFD8B /* Plaid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Plaid.swift; path = "app-ios/Plaid.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAFE1CA4398C003AFD8B /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Secrets.swift; path = "app-ios/Secrets.swift"; sourceTree = SOURCE_ROOT; };
-		30C2DB061CA439B6003AFD8B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = "app-ios/Extensions.swift"; sourceTree = SOURCE_ROOT; };
-		30C2DB081CA439BC003AFD8B /* StarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StarButton.swift; path = "app-ios/StarButton.swift"; sourceTree = SOURCE_ROOT; };
-		30C2DB0A1CA439C1003AFD8B /* Paths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Paths.swift; path = "app-ios/Paths.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DB0C1CA439CC003AFD8B /* Auth.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Auth.storyboard; path = "app-ios/Auth.storyboard"; sourceTree = SOURCE_ROOT; };
 		30C2DB0E1CA439D2003AFD8B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "app-ios/LaunchScreen.storyboard"; sourceTree = SOURCE_ROOT; };
 		30C2DB101CA439DC003AFD8B /* Logs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Logs.swift; path = "app-ios/Logs.swift"; sourceTree = SOURCE_ROOT; };
@@ -345,6 +343,10 @@
 		30C2DB211CA43B62003AFD8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "app-ios/Base.lproj/Main.storyboard"; sourceTree = SOURCE_ROOT; };
 		30D526751CDB9814001B41BA /* BitcoinUriViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BitcoinUriViewController.swift; path = "app-ios/BitcoinUriViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30D526771CDBB4A0001B41BA /* Bitcoin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bitcoin.swift; path = "app-ios/Bitcoin.swift"; sourceTree = SOURCE_ROOT; };
+		30D5267C1CDE3736001B41BA /* ConfigurePointOfSaleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigurePointOfSaleViewController.swift; path = "app-ios/ConfigurePointOfSaleViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30D526811CDF7762001B41BA /* ActionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActionData.swift; path = "app-ios/ActionData.swift"; sourceTree = SOURCE_ROOT; };
+		30D526831CDF776A001B41BA /* PeriscopeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PeriscopeCell.xib; path = "app-ios/PeriscopeCell.xib"; sourceTree = SOURCE_ROOT; };
+		30D526851CDF8675001B41BA /* Periscope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Periscope.swift; path = "app-ios/Periscope.swift"; sourceTree = SOURCE_ROOT; };
 		30DB595A1CA46CB0007FEE1E /* app-watchos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "app-watchos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30DB595D1CA46CB0007FEE1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		30DB595F1CA46CB0007FEE1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -573,13 +575,6 @@
 			name = Lock;
 			sourceTree = "<group>";
 		};
-		307265391C72B95900D2AF61 /* CountryPicker */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = CountryPicker;
-			sourceTree = "<group>";
-		};
 		308AC9A81C9DFA0B0040EF3C /* Support */ = {
 			isa = PBXGroup;
 			children = (
@@ -621,6 +616,9 @@
 			isa = PBXGroup;
 			children = (
 				30B576921CC7D1CE005BCA5A /* SearchDetailViewController.swift */,
+				30D526831CDF776A001B41BA /* PeriscopeCell.xib */,
+				30D526811CDF7762001B41BA /* ActionData.swift */,
+				30D526851CDF8675001B41BA /* Periscope.swift */,
 				30F480D51CCAE5FF00DD1E60 /* PaymentViewController.swift */,
 			);
 			name = Search;
@@ -659,16 +657,6 @@
 				30831F581CD013B000D5D0F4 /* ActivityViewController4.swift */,
 			);
 			name = Activity;
-			sourceTree = "<group>";
-		};
-		30BECC041C6F92C200B8A088 /* StarButton */ = {
-			isa = PBXGroup;
-			children = (
-				30C2DB061CA439B6003AFD8B /* Extensions.swift */,
-				30C2DB081CA439BC003AFD8B /* StarButton.swift */,
-				30C2DB0A1CA439C1003AFD8B /* Paths.swift */,
-			);
-			name = StarButton;
 			sourceTree = "<group>";
 		};
 		30BECC061C6F92EF00B8A088 /* Auth */ = {
@@ -732,15 +720,6 @@
 			name = Storyboards;
 			sourceTree = "<group>";
 		};
-		30BECC0C1C6F93AF00B8A088 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				307265391C72B95900D2AF61 /* CountryPicker */,
-				30BECC041C6F92C200B8A088 /* StarButton */,
-			);
-			name = UI;
-			sourceTree = "<group>";
-		};
 		30C2DA711CA436B8003AFD8B /* sounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -791,6 +770,14 @@
 				30C2DAEC1CA43946003AFD8B /* RecurringBillingPlanViewController.swift */,
 			);
 			name = Plan;
+			sourceTree = "<group>";
+		};
+		30D5267B1CDE370D001B41BA /* POS */ = {
+			isa = PBXGroup;
+			children = (
+				30D5267C1CDE3736001B41BA /* ConfigurePointOfSaleViewController.swift */,
+			);
+			name = POS;
 			sourceTree = "<group>";
 		};
 		30D7B72F1C77880200B64B7F /* Signup */ = {
@@ -852,6 +839,7 @@
 			children = (
 				30C2DACA1CA4385C003AFD8B /* ProfileMenuViewController.swift */,
 				306DF00D1CDA689100864CAE /* Risk */,
+				30D5267B1CDE370D001B41BA /* POS */,
 				30113A2C1CD82CA0002BECF0 /* Header */,
 				309E43BC1CA8ADDE00279D97 /* Web */,
 				308AC9B71C9F79830040EF3C /* Card */,
@@ -920,7 +908,6 @@
 				30BECC091C6F935200B8A088 /* Nav */,
 				304DDE351C9CEDA500962BC4 /* Integrations */,
 				304DDE421C9CF05300962BC4 /* Secrets */,
-				30BECC0C1C6F93AF00B8A088 /* UI */,
 				30BECC0B1C6F939800B8A088 /* Storyboards */,
 				3064E8A71C74D06D0073E00B /* xib */,
 				30BB06E01CCEFC130051C9E7 /* Bundles */,
@@ -1241,6 +1228,7 @@
 				304468F11CAA0BFC008CAE7D /* pop.caf in Resources */,
 				30C2DA751CA436B8003AFD8B /* cashregister.caf in Resources */,
 				30BB06E21CCEFC260051C9E7 /* CountryPicker.bundle in Resources */,
+				30D526841CDF776B001B41BA /* PeriscopeCell.xib in Resources */,
 				30C2DA761CA436B8003AFD8B /* chime.caf in Resources */,
 				309E43CC1CA9CFED00279D97 /* fold.caf in Resources */,
 				30C2DADD1CA438B8003AFD8B /* ProfileLabelCell.xib in Resources */,
@@ -1417,7 +1405,6 @@
 				30BB07011CCFE7D20051C9E7 /* BrowserView.swift in Sources */,
 				30831F591CD013B000D5D0F4 /* ActivityViewController4.swift in Sources */,
 				30C2DAD31CA43881003AFD8B /* Profile.swift in Sources */,
-				30C2DB091CA439BC003AFD8B /* StarButton.swift in Sources */,
 				30831F571CD013A300D5D0F4 /* ActivityViewController3.swift in Sources */,
 				30D526761CDB9814001B41BA /* BitcoinUriViewController.swift in Sources */,
 				30831F611CD01B0E00D5D0F4 /* SimpleTransform.swift in Sources */,
@@ -1439,9 +1426,9 @@
 				309544F51CD295AE003007B2 /* ParallaxHeader.swift in Sources */,
 				30C2DAB11CA437A9003AFD8B /* PresentedTableViewController.swift in Sources */,
 				30C2DAE11CA43909003AFD8B /* FormerInputAccessoryView.swift in Sources */,
-				30C2DB0B1CA439C1003AFD8B /* Paths.swift in Sources */,
 				30BB06F41CCFDED20051C9E7 /* TutorialViewController.swift in Sources */,
 				306DF0091CD991CB00864CAE /* Customer.swift in Sources */,
+				30D526821CDF7762001B41BA /* ActionData.swift in Sources */,
 				30C2DAA91CA4374F003AFD8B /* SignupViewControllerThree.swift in Sources */,
 				30EB3C6E1CCCFAD80010F130 /* RAMTabBarExtension.swift in Sources */,
 				30C2DAFB1CA4397C003AFD8B /* LeftMenuViewController.swift in Sources */,
@@ -1456,6 +1443,7 @@
 				30C2DAD91CA4389E003AFD8B /* ProfileImageCell.swift in Sources */,
 				30C2DA9B1CA4373E003AFD8B /* LoginViewController.swift in Sources */,
 				30C2DAAA1CA4374F003AFD8B /* SignupViewControllerTwo.swift in Sources */,
+				30D5267D1CDE3736001B41BA /* ConfigurePointOfSaleViewController.swift in Sources */,
 				30C2DAF91CA43975003AFD8B /* User.swift in Sources */,
 				30C2DB151CA439E6003AFD8B /* Gravatar.swift in Sources */,
 				300E422D1CB56E10004316CF /* Bank.swift in Sources */,
@@ -1469,12 +1457,12 @@
 				30C2DAE91CA43934003AFD8B /* BankAccountViewController.swift in Sources */,
 				30831F551CD0138E00D5D0F4 /* ActivityViewController2.swift in Sources */,
 				30C2DAA61CA4374F003AFD8B /* SignupIndividualViewControllerTwo.swift in Sources */,
-				30C2DB071CA439B6003AFD8B /* Extensions.swift in Sources */,
 				30C2DAA51CA4374F003AFD8B /* SignupIndividualViewControllerThree.swift in Sources */,
 				30C2DB171CA439F4003AFD8B /* paykloud_iosTests.swift in Sources */,
 				308A348A1CCA803200AAF66F /* History.swift in Sources */,
 				306DF00F1CDA68AB00864CAE /* RiskProfileViewController.swift in Sources */,
 				30C2DAC31CA4383B003AFD8B /* NotificationViewController.swift in Sources */,
+				30D526861CDF8675001B41BA /* Periscope.swift in Sources */,
 				309E43BE1CA8ADF900279D97 /* WebTermsViewController.swift in Sources */,
 				306E82301CDAC36400A43505 /* Balance.swift in Sources */,
 				30C2DB1F1CA43A51003AFD8B /* EditProfileViewController.swift in Sources */,

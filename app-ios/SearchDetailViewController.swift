@@ -13,6 +13,7 @@ import Stripe
 import JGProgressHUD
 import Alamofire
 import SwiftyJSON
+import XLActionController
 
 class SearchDetailViewController: UIViewController, MFMailComposeViewControllerDelegate, STPPaymentCardTextFieldDelegate, PKPaymentAuthorizationViewControllerDelegate, UINavigationBarDelegate {
     
@@ -117,7 +118,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
                 blurImageView.clipsToBounds = true
                 blurImageView.image = UIImage(named: "BackgroundGradientInverse")
                 self.view.addSubview(blurImageView)
-                blurImageView.addSubview(visualEffectView)
+                // blurImageView.addSubview(visualEffectView)
                 self.view.sendSubviewToBack(blurImageView)
             }
             
@@ -143,25 +144,25 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             navBar.setItems([navItem], animated: true)
             
             // Button
-            let inviteButton = UIButton(frame: CGRect(x: 10, y: 265, width: (width/2)-20, height: 48.0))
-            inviteButton.backgroundColor = UIColor.clearColor()
-            inviteButton.layer.borderColor = UIColor.whiteColor().CGColor
-            inviteButton.layer.borderWidth = 1
-            inviteButton.tintColor = UIColor(rgba: "#fff")
-            inviteButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
-            inviteButton.titleLabel?.font = UIFont(name: "Helvetica", size: 14)
-            inviteButton.setTitle(" Apple Pay", forState: .Normal)
-            inviteButton.layer.cornerRadius = 5
-            inviteButton.layer.masksToBounds = true
-            inviteButton.addTarget(self, action: #selector(SearchDetailViewController.showPayModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-            view.addSubview(inviteButton)
+            let payButton = UIButton(frame: CGRect(x: 10, y: 265, width: (width/2)-20, height: 48.0))
+            payButton.backgroundColor = UIColor.whiteColor()
+            payButton.layer.borderColor = UIColor.whiteColor().CGColor
+            payButton.layer.borderWidth = 1
+            payButton.tintColor = UIColor(rgba: "#333")
+            payButton.setTitleColor(UIColor(rgba: "#333"), forState: .Normal)
+            payButton.titleLabel?.font = UIFont(name: "Helvetica", size: 14)
+            payButton.setTitle("Pay " + detailUser.first_name, forState: .Normal)
+            payButton.layer.cornerRadius = 5
+            payButton.layer.masksToBounds = true
+            payButton.addTarget(self, action: #selector(SearchDetailViewController.showPayModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            view.addSubview(payButton)
             
             // Button
             let subscribeButton = UIButton(frame: CGRect(x: width*0.5+10, y: 265, width: (width/2)-20, height: 50.0))
             subscribeButton.backgroundColor = UIColor.clearColor()
             subscribeButton.layer.borderColor = UIColor.whiteColor().CGColor
             subscribeButton.layer.borderWidth = 1
-            subscribeButton.setTitle("Become Customer", forState: .Normal)
+            subscribeButton.setTitle("View Plans", forState: .Normal)
             subscribeButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
             subscribeButton.titleLabel?.font = UIFont(name: "Helvetica", size: 14)
             subscribeButton.layer.cornerRadius = 5
@@ -169,22 +170,6 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             subscribeButton.layer.masksToBounds = true
             subscribeButton.addTarget(self, action: #selector(SearchDetailViewController.showPayModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             view.addSubview(subscribeButton)
-            
-            // Email Button
-            let emailButton = UIButton(frame: CGRect(x: width*0.5+10, y: 265, width: (width/2)-20, height: 50.0))
-            emailButton.backgroundColor = UIColor.whiteColor()
-            emailButton.setTitle("Send Message", forState: .Normal)
-            emailButton.setTitleColor(UIColor.mediumBlue(), forState: .Normal)
-//            emailButton.setBackgroundImage(UIImage(named: "IconPerson"), forState: .Normal)
-            emailButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 14)
-            emailButton.layer.cornerRadius = 5
-            emailButton.layer.borderColor = UIColor.mediumBlue().CGColor
-            emailButton.layer.borderWidth = 1
-            emailButton.layer.masksToBounds = true
-            var y_co: CGFloat = self.view.frame.size.height - 60.0
-            emailButton.frame = CGRectMake(10, y_co, width-20, 50.0)
-            emailButton.addTarget(self, action: #selector(SearchDetailViewController.sendEmailButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-            view.addSubview(emailButton)
             
             let navigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 65)) // Offset by 20 pixels vertically to take the status bar into account
             navigationBar.backgroundColor = UIColor.clearColor()
@@ -198,6 +183,10 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             leftButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
             // Create two buttons for the navigation item
             navigationItem.leftBarButtonItem = leftButton
+            let rightButton = UIBarButtonItem(image: UIImage(named: "ic_paper_plane_light_flat"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SearchDetailViewController.sendEmailButtonTapped(_:)))
+            rightButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+            // Create two buttons for the navigation item
+            navigationItem.rightBarButtonItem = rightButton
             // Assign the navigation item to the navigation bar
             navigationBar.items = [navigationItem]
             // Make the navigation bar a subview of the current view controller
@@ -249,7 +238,26 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
     }
     
     // MARK: STRIPE AND APPLE PAY
-    @IBAction func showPayModal(sender: AnyObject) {
+    func showPayModal(sender: AnyObject) {
+        let actionController = PeriscopeActionController()
+        actionController.headerData = "Select Payment Method"
+        actionController.addAction(Action("Apple Pay", style: .Default, handler: { action in
+            Timeout(0.5) {
+                self.showApplePayModal(self)
+                print("showing apple pay modal")
+            }
+        }))
+        actionController.addAction(Action("Credit Card", style: .Default, handler: { action in
+        }))
+        actionController.addSection(PeriscopeSection())
+        actionController.addAction(Action("Cancel", style: .Destructive, handler: { action in
+        }))
+        self.presentViewController(actionController, animated: true, completion: { _ in
+            print("presented modal")
+        })
+    }
+    
+    func showApplePayModal(sender: AnyObject) {
         // STRIPE APPLE PAY
         guard let request = Stripe.paymentRequestWithMerchantIdentifier(merchantID) else {
             // request will be nil if running on < iOS8
@@ -261,7 +269,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
         if (Stripe.canSubmitPaymentRequest(request)) {
             let paymentController = PKPaymentAuthorizationViewController(paymentRequest: request)
             paymentController.delegate = self
-            presentViewController(paymentController, animated: true, completion: nil)
+            self.presentViewController(paymentController, animated: true, completion: nil)
         } else {
             let paymentController = PaymentViewController()
             // Below displays manual credit card entry forms

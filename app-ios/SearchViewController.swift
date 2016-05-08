@@ -237,11 +237,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
         shouldShowSearchResults = true
+        tblSearchResults.contentInset = UIEdgeInsets(top: 45, left: 0, bottom: 0, right: 0)
         tblSearchResults.reloadData()
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         shouldShowSearchResults = false
+        tblSearchResults.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tblSearchResults.reloadData()
     }
     
