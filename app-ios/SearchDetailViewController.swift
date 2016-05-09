@@ -197,6 +197,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
     
     
     // MARK: Email Composition
+    
     @IBAction func sendEmailButtonTapped(sender: AnyObject) {
         let mailComposeViewController = configuredMailComposeViewController()
         if MFMailComposeViewController.canSendMail() {
@@ -223,6 +224,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
     }
     
     // MARK: MFMailComposeViewControllerDelegate Method
+    
     func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -247,7 +249,9 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
         })
     }
     
+    
     // MARK: SMS Composition
+    
     @IBAction func sendSMSButtonTapped(sender: AnyObject) {
         let smsComposeViewController = configuredSMSViewController()
         if !MFMessageComposeViewController.canSendText() {

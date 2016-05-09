@@ -52,7 +52,7 @@ class CreditCardAccountViewController: UIViewController, CardIOPaymentViewContro
     
     func userDidProvideCreditCardInfo(cardInfo: CardIOCreditCardInfo!, inPaymentViewController paymentViewController: CardIOPaymentViewController!) {
         if let info = cardInfo {
-            let str = NSString(format: "Received card info.\n Number: %@\n expiry: %02lu/%lu\n cvv: %@.", info.redactedCardNumber, info.expiryMonth, info.expiryYear, info.cvv)
+            _ = NSString(format: "Received card info.\n Number: %@\n expiry: %02lu/%lu\n cvv: %@.", info.redactedCardNumber, info.expiryMonth, info.expiryYear, info.cvv)
             // resultLabel.text = str as String
             // Post to Stripe
 
@@ -78,7 +78,7 @@ class CreditCardAccountViewController: UIViewController, CardIOPaymentViewContro
                         switch response.result {
                         case .Success:
                             if let value = response.result.value {
-                                let json = JSON(value)
+                                _ = JSON(value)
                             }
                         case .Failure(let error):
                             print(error)

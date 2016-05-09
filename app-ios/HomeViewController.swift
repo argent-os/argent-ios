@@ -77,13 +77,13 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         
         definesPresentationContext = true
 
-        configureView()                
+        configureView()
+        
+        loadData()
     }
     
     // VIEW DID APPEAR
     override func viewDidAppear(animated: Bool) {
-        
-        loadData()
         
         self.view.addSubview(balanceSwitch)
         self.view.bringSubviewToFront(balanceSwitch)
@@ -307,7 +307,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         balanceSwitch.titleColor = UIColor.whiteColor()
         balanceSwitch.selectedTitleColor = UIColor.mediumBlue()
         balanceSwitch.titleFont = UIFont(name: "Avenir-Book", size: 12.0)
-        balanceSwitch.frame = CGRect(x: view.bounds.width - 175.0, y: 30, width: 160, height: 30.0)
+        balanceSwitch.frame = CGRect(x: view.bounds.width - 185.0, y: 30, width: 180, height: 35.0)
         //autoresizing so it stays at top right (flexible left and flexible bottom margin)
         balanceSwitch.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
         balanceSwitch.bringSubviewToFront(balanceSwitch)

@@ -32,7 +32,7 @@ class SignupIndividualViewControllerTwo: UIViewController, UITextFieldDelegate, 
         // Focuses view controller on first name text input
         passwordTextField.becomeFirstResponder()
         
-        var stepButton = UIBarButtonItem(title: "2/3", style: UIBarButtonItemStyle.Plain, target: nil, action: Selector(""))
+        let stepButton = UIBarButtonItem(title: "2/3", style: UIBarButtonItemStyle.Plain, target: nil, action: Selector(""))
         navigationItem.rightBarButtonItem = stepButton
         navigationItem.rightBarButtonItem?.tintColor = UIColor.lightGrayColor()
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([
@@ -162,7 +162,7 @@ class SignupIndividualViewControllerTwo: UIViewController, UITextFieldDelegate, 
         // sendToolbar.barStyle = UIBarStyle.Default
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Continue", style: UIBarButtonItemStyle.Done, target: self, action: Selector("nextStep:"))
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Continue", style: UIBarButtonItemStyle.Done, target: self, action: #selector(SignupIndividualViewControllerTwo.nextStep(_:)))
         
         var items: [UIBarButtonItem]? = [UIBarButtonItem]()
         items?.append(flexSpace)
@@ -176,7 +176,7 @@ class SignupIndividualViewControllerTwo: UIViewController, UITextFieldDelegate, 
     }
     
     func nextStep(sender: AnyObject) {
-        var x = performValidation()
+        let x = performValidation()
         if x == true {
             performSegueWithIdentifier("finishView", sender: sender)
         }

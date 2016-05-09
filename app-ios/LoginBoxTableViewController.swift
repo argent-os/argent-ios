@@ -28,7 +28,6 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
         
         let screen = UIScreen.mainScreen().bounds
         let width = screen.size.width
-        let height = screen.size.height
         
         // Add button to keyboard
         addToolbarButton()

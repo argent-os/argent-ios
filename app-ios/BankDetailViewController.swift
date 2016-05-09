@@ -246,7 +246,7 @@ class BankDetailViewController: UIViewController, UITextFieldDelegate {
                 case .Success:
                     print("success")
                     if let value = response.result.value {
-                        let data = JSON(value)
+                        _ = JSON(value)
                     }
                 case .Failure(let error):
                     print(error)
@@ -276,7 +276,6 @@ class BankDetailViewController: UIViewController, UITextFieldDelegate {
     
     func displayErrorAlertMessage(alertMessage:String) {
         let customIcon:UIImage = UIImage(named: "ic_close_light")! // your custom icon UIImage
-        let customColor:UIColor = color! // base color for the alert
         let alertView = JSSAlertView().show(
             self,
             title: "",

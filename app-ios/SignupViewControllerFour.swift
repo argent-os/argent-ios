@@ -42,7 +42,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(animated: Bool) {
 
-        let stepButton = UIBarButtonItem(title: "4/4", style: UIBarButtonItemStyle.Plain, target: nil, action: Selector(""))
+        let stepButton = UIBarButtonItem(title: "4/4", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
         navigationItem.rightBarButtonItem = stepButton
         navigationItem.rightBarButtonItem?.tintColor = UIColor.lightGrayColor()
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([

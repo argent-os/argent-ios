@@ -172,7 +172,7 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
                     switch response.result {
                     case .Success:
                         if let value = response.result.value {
-                            let data = JSON(value)
+                            _ = JSON(value)
                         }
                     case .Failure(let error):
                         print(error)
@@ -207,7 +207,7 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
                     case .Success:
                         if let value = response.result.value {
                             var data = JSON(value)
-                            var push = data["ios"]["push_state"]
+                            _ = data["ios"]["push_state"]
                         }
                     case .Failure(let error):
                         print(error)

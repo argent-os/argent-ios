@@ -47,7 +47,7 @@ class Customer {
                         switch response.result {
                         case .Success:
                             if let value = response.result.value {
-                                let json = JSON(value)
+                                _ = JSON(value)
                             }
                         case .Failure(let error):
                             print(error)

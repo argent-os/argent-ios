@@ -47,12 +47,12 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         merchantLabel.frame = CGRect(x: 0, y: 35, width: 300, height: 20)
         merchantLabel.text = "Pay " + (detailUser?.first_name)!
         merchantLabel.textAlignment = .Center
-        merchantLabel.font = UIFont(name: "AvenirNext-Regular", size: 14)
+        merchantLabel.font = UIFont(name: "AvenirNext-Regular", size: 18)
         merchantLabel.textColor = UIColor.lightGrayColor()
         self.view.addSubview(merchantLabel)
         
         chargeInputView.delegate = self
-        chargeInputView.frame = CGRect(x: 0, y: 75, width: 300, height: 100)
+        chargeInputView.frame = CGRect(x: 0, y: 85, width: 300, height: 100)
         chargeInputView.textColor = UIColor.mediumBlue()
         chargeInputView.font = UIFont(name: "AvenirNext-Bold", size: 42)
         chargeInputView.textAlignment = .Center
@@ -60,7 +60,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         chargeInputView.placeholder = "$0.00"
         chargeInputView.addTarget(self, action: #selector(PayMerchantViewController.textField(_:shouldChangeCharactersInRange:replacementString:)), forControlEvents: UIControlEvents.EditingChanged)
 
-        selectPaymentOptionButton.frame = CGRect(x: 20, y: 220, width: 260, height: 60)
+        selectPaymentOptionButton.frame = CGRect(x: 20, y: 230, width: 260, height: 50)
         selectPaymentOptionButton.layer.borderColor = UIColor.mediumBlue().CGColor
         selectPaymentOptionButton.layer.borderWidth = 1
         selectPaymentOptionButton.layer.cornerRadius = 10
