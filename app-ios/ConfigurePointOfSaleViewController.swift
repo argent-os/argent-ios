@@ -54,20 +54,26 @@ class ConfigurePointOfSaleViewController: FormViewController, UIApplicationDeleg
             $0.titleLabel.text = "Keep screen alive"
             }.configure() { cell in
                 cell.rowHeight = 60
-                cell.switched = true
+                if(KeychainSwift().getBool("screenAlive") == true) {
+                    cell.switched = true
+                } else {
+                    cell.switched = false
+                }
                 cell.update()
             }.onSwitchChanged { on in
                 if(on.boolValue == true) {
-                    // prompt to turn on
+                    KeychainSwift().set(true, forKey: "screenAlive", withAccess: .None)
+                    UIApplication.sharedApplication().idleTimerDisabled = true
                 } else {
-                    // deregister
+                    KeychainSwift().set(false, forKey: "screenAlive", withAccess: .None)
+                    UIApplication.sharedApplication().idleTimerDisabled = false
                 }
         }
         let configurePOSRowExit = SwitchRowFormer<FormSwitchCell>() {
             $0.titleLabel.text = "Allow exit"
             }.configure() { cell in
                 cell.rowHeight = 60
-                cell.switched = true
+                cell.switched = false
                 cell.update()
             }.onSwitchChanged { on in
                 if(on.boolValue == true) {
@@ -90,7 +96,7 @@ class ConfigurePointOfSaleViewController: FormViewController, UIApplicationDeleg
         
         // Create SectionFormers
         
-        let titleSection = SectionFormer(rowFormer: configurePOSRowScreenAlive, configurePOSRowExit).set(headerViewFormer: createHeader("Notifications"))
+        let titleSection = SectionFormer(rowFormer: configurePOSRowScreenAlive).set(headerViewFormer: createHeader("Notifications"))
         former.append(sectionFormer: titleSection)
     }
     

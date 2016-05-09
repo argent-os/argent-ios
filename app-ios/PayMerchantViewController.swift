@@ -36,6 +36,8 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         
         // This will set to only one instance
         
+        self.view.backgroundColor = UIColor.mediumBlue()
+        
         // screen width and height:
         let screen = UIScreen.mainScreen().bounds
         _ = screen.size.width
@@ -48,23 +50,24 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         merchantLabel.text = "Pay " + (detailUser?.first_name)!
         merchantLabel.textAlignment = .Center
         merchantLabel.font = UIFont(name: "AvenirNext-Regular", size: 18)
-        merchantLabel.textColor = UIColor.lightGrayColor()
+        merchantLabel.textColor = UIColor.whiteColor()
         self.view.addSubview(merchantLabel)
         
         chargeInputView.delegate = self
         chargeInputView.frame = CGRect(x: 0, y: 85, width: 300, height: 100)
-        chargeInputView.textColor = UIColor.mediumBlue()
-        chargeInputView.font = UIFont(name: "AvenirNext-Bold", size: 42)
+        chargeInputView.textColor = UIColor.whiteColor()
+        chargeInputView.backgroundColor = UIColor.clearColor()
+        chargeInputView.font = UIFont(name: "ArialRoundedMTBold", size: 42)
         chargeInputView.textAlignment = .Center
         chargeInputView.keyboardType = .NumberPad
         chargeInputView.placeholder = "$0.00"
         chargeInputView.addTarget(self, action: #selector(PayMerchantViewController.textField(_:shouldChangeCharactersInRange:replacementString:)), forControlEvents: UIControlEvents.EditingChanged)
 
         selectPaymentOptionButton.frame = CGRect(x: 20, y: 230, width: 260, height: 50)
-        selectPaymentOptionButton.layer.borderColor = UIColor.mediumBlue().CGColor
+        selectPaymentOptionButton.layer.borderColor = UIColor.whiteColor().CGColor
         selectPaymentOptionButton.layer.borderWidth = 1
         selectPaymentOptionButton.layer.cornerRadius = 10
-        selectPaymentOptionButton.backgroundColor = UIColor.clearColor()
+        selectPaymentOptionButton.backgroundColor = UIColor.whiteColor()
         var attribs: [String: AnyObject] = [:]
         attribs[NSFontAttributeName] = UIFont(name: "Avenir-Roman", size: 14)
         attribs[NSForegroundColorAttributeName] = UIColor.mediumBlue()
@@ -223,35 +226,42 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
     func createBackendChargeWithToken(token: STPToken!, completion: PKPaymentAuthorizationStatus -> ()) {
         // SEND REQUEST TO Argent API ENDPOINT TO EXCHANGE STRIPE TOKEN
         
-        let url = apiUrl + "/v1/stripe/charge/create"
-        
-        let headers = [
-            "Authorization": "Bearer " + String(userAccessToken),
-            "Content-Type": "application/json"
-        ]
-        let parameters : [String : AnyObject] = [
-            "token": String(token) ?? "",
-            "delegatedUser": (detailUser?.username)!
-        ]
-        
-        // for invalid character 0 be sure the content type is application/json and enconding is .JSON
-        Alamofire.request(.POST, url,
-            parameters: parameters,
-            encoding:.JSON,
-            headers: headers)
-            .responseJSON { response in
-                switch response.result {
-                case .Success:
-                    if let value = response.result.value {
-                        let json = JSON(value)
-                        print(PKPaymentAuthorizationStatus.Success)
-                        completion(PKPaymentAuthorizationStatus.Success)
+        var str = chargeInputView.text
+        str?.removeAtIndex(str!.characters.indices.first!) // remove first letter
+        let floatValue = (str! as NSString).floatValue
+        let amountInCents = Int(floatValue*100)
+        User.getProfile { (user, NSError) in
+            let url = apiUrl + "/v1/stripe/" + (user?.id)! + "/charge/"
+            
+            let headers = [
+                "Authorization": "Bearer " + String(userAccessToken),
+                "Content-Type": "application/json"
+            ]
+            let parameters : [String : AnyObject] = [
+                "token": String(token) ?? "",
+                "amount": amountInCents,
+                "delegatedUser": (self.detailUser?.username)!
+            ]
+            
+            // for invalid character 0 be sure the content type is application/json and enconding is .JSON
+            Alamofire.request(.POST, url,
+                parameters: parameters,
+                encoding:.JSON,
+                headers: headers)
+                .responseJSON { response in
+                    switch response.result {
+                    case .Success:
+                        if let value = response.result.value {
+                            let json = JSON(value)
+                            print(PKPaymentAuthorizationStatus.Success)
+                            completion(PKPaymentAuthorizationStatus.Success)
+                        }
+                    case .Failure(let error):
+                        print(PKPaymentAuthorizationStatus.Failure)
+                        completion(PKPaymentAuthorizationStatus.Failure)
+                        print(error)
                     }
-                case .Failure(let error):
-                    print(PKPaymentAuthorizationStatus.Failure)
-                    completion(PKPaymentAuthorizationStatus.Failure)
-                    print(error)
-                }
+            }
         }
     }
     

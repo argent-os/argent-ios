@@ -66,6 +66,42 @@ class User {
         }
     }
     
+    class func editProfile(completionHandler: (User?, NSError?) -> Void) {
+        // request to api to get account data as json, put in list and table
+        // curl -X PUT -i -H "Content-Type: application/json" -d '{"access_token": ""}' http://192.168.1.232:5001/v1/profile
+        
+        let parameters : [String : AnyObject] = [:]
+        
+        let headers = [
+            "Authorization": "Bearer " + (userAccessToken as! String),
+            "Content-Type": "application/x-www-form-urlencoded"
+        ]
+        
+        let endpoint = apiUrl + "/v1/profile"
+        
+        Alamofire.request(.POST, endpoint, parameters: parameters, encoding: .URL, headers: headers)
+            .responseJSON { response in
+                switch response.result {
+                case .Success:
+                    if let value = response.result.value {
+                        let data = JSON(value)
+                        let profile = data
+                        let id = profile["_id"].stringValue
+                        let username = profile["username"].stringValue
+                        let email = profile["email"].stringValue
+                        let first_name = profile["first_name"].stringValue
+                        let last_name = profile["last_name"].stringValue
+                        let cust_id = profile["cust_id"].stringValue
+                        let picture = profile["picture"]["secureUrl"].stringValue
+                        let item = User(id: id, username: username, email: email, first_name: first_name, last_name: last_name, cust_id: cust_id, picture: picture)
+                        completionHandler(item, response.result.error)
+                    }
+                case .Failure(let error):
+                    print(error)
+                }
+        }
+    }
+    
     class func getUserAccounts(completionHandler: ([User]?, NSError?) -> Void) {
         // request to api to get account data as json, put in list and table
         // curl -X GET -i -H "Content-Type: application/json" -d '{"access_token": ""}' http://192.168.1.232:5001/v1/users/list

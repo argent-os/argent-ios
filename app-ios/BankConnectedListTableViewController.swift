@@ -104,7 +104,7 @@ class BankConnectedListTableViewController: UITableViewController, SESlideTableV
             let item = self.itemsArray?[indexPath.row]
             cell!.textLabel?.text = ""
             cell!.detailTextLabel?.text = ""
-            if let name = item?.account_name, number = item?.account_number
+            if let name = item?.account_name, _ = item?.account_number
             {
                 cell!.textLabel?.text = name
             }

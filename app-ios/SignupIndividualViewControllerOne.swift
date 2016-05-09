@@ -28,7 +28,7 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
         // Focuses view controller on first name text input
         usernameTextField.becomeFirstResponder()
         
-        let stepButton = UIBarButtonItem(title: "1/3", style: UIBarButtonItemStyle.Plain, target: nil, action: Selector(""))
+        let stepButton = UIBarButtonItem(title: "1/3", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
         navigationItem.rightBarButtonItem = stepButton
         navigationItem.rightBarButtonItem?.tintColor = UIColor.lightGrayColor()
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([

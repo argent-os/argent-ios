@@ -128,6 +128,7 @@
 		30D526841CDF776B001B41BA /* OptionsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30D526831CDF776A001B41BA /* OptionsCell.xib */; };
 		30D526861CDF8675001B41BA /* ActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526851CDF8675001B41BA /* ActionSheet.swift */; };
 		30D5268A1CDFAEC3001B41BA /* PayMerchantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526891CDFAEC3001B41BA /* PayMerchantViewController.swift */; };
+		30D5268C1CE0F303001B41BA /* Charge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D5268B1CE0F303001B41BA /* Charge.swift */; };
 		30DB595E1CA46CB0007FEE1E /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DB595C1CA46CB0007FEE1E /* Interface.storyboard */; };
 		30DB59601CA46CB0007FEE1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30DB595F1CA46CB0007FEE1E /* Assets.xcassets */; };
 		30DB59671CA46CB0007FEE1E /* app-watchos Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 30DB59661CA46CB0007FEE1E /* app-watchos Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -343,6 +344,7 @@
 		30D526831CDF776A001B41BA /* OptionsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OptionsCell.xib; path = "app-ios/OptionsCell.xib"; sourceTree = SOURCE_ROOT; };
 		30D526851CDF8675001B41BA /* ActionSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActionSheet.swift; path = "app-ios/ActionSheet.swift"; sourceTree = SOURCE_ROOT; };
 		30D526891CDFAEC3001B41BA /* PayMerchantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PayMerchantViewController.swift; path = "app-ios/PayMerchantViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30D5268B1CE0F303001B41BA /* Charge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Charge.swift; path = "app-ios/Charge.swift"; sourceTree = SOURCE_ROOT; };
 		30DB595A1CA46CB0007FEE1E /* app-watchos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "app-watchos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30DB595D1CA46CB0007FEE1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		30DB595F1CA46CB0007FEE1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -466,6 +468,7 @@
 				302010C91CAF3B05007D5E7E /* Notification.swift */,
 				300E422C1CB56E10004316CF /* Bank.swift */,
 				300E42321CB71362004316CF /* Card.swift */,
+				30D5268B1CE0F303001B41BA /* Charge.swift */,
 				308A34891CCA803200AAF66F /* History.swift */,
 				306DF0081CD991CB00864CAE /* Customer.swift */,
 				306E822F1CDAC36400A43505 /* Balance.swift */,
@@ -1384,6 +1387,7 @@
 				30D526761CDB9814001B41BA /* BitcoinUriViewController.swift in Sources */,
 				30831F611CD01B0E00D5D0F4 /* SimpleTransform.swift in Sources */,
 				309C8CCA1CCEEE8C0073159C /* SignupCountryPickerViewController.swift in Sources */,
+				30D5268C1CE0F303001B41BA /* Charge.swift in Sources */,
 				302010CA1CAF3B05007D5E7E /* Notification.swift in Sources */,
 				30831F5B1CD0148E00D5D0F4 /* ActivityView2.swift in Sources */,
 				30C2DAAB1CA4374F003AFD8B /* SignupViewControllerZero.swift in Sources */,

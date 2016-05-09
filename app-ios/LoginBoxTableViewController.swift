@@ -38,12 +38,12 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
         usernameTextField.becomeFirstResponder()
         
         usernameTextField.tag = 63631
-        let str = NSAttributedString(string: "Username or Email", attributes: [NSForegroundColorAttributeName:UIColor(rgba: "#fff")])
+        let str = NSAttributedString(string: "username or email", attributes: [NSForegroundColorAttributeName:UIColor(rgba: "#fff")])
         usernameTextField.attributedPlaceholder = str
         usernameTextField.textRectForBounds(CGRectMake(0, 0, 0, 0))
         
         passwordTextField.tag = 63632
-        let str2 = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName:UIColor(rgba: "#fff")])
+        let str2 = NSAttributedString(string: "password", attributes: [NSForegroundColorAttributeName:UIColor(rgba: "#fff")])
         passwordTextField.attributedPlaceholder = str2
         passwordTextField.textRectForBounds(CGRectMake(0, 0, 0, 0))
         
@@ -61,8 +61,8 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
 //        blurImageView.addSubview(visualEffectView)
         self.view.sendSubviewToBack(blurImageView)
         
-        loginTableView.separatorColor = UIColor(rgba: "#fff5")
-        loginTableView.backgroundColor = UIColor(rgba: "#fff1")
+        loginTableView.separatorColor = UIColor(rgba: "#eee3")
+        loginTableView.backgroundColor = UIColor(rgba: "#2221")
         
         usernameCell.backgroundColor = UIColor.clearColor()
         usernameCell.textLabel?.textColor = UIColor.whiteColor()

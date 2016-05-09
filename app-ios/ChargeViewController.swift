@@ -82,7 +82,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         chargeInputView.addTarget(self, action: #selector(ChargeViewController.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
         chargeInputView.frame = CGRect(x: 0, y: 90, width: screenWidth, height: 50)
         chargeInputView.textAlignment = .Center
-        chargeInputView.font = UIFont(name: "AvenirNext-Bold", size: 48)
+        chargeInputView.font = UIFont(name: "ArialRoundedMTBold", size: 48)
         chargeInputView.textColor = UIColor.mediumBlue()
         chargeInputView.placeholder = "$0.00"
         chargeInputView.keyboardType = UIKeyboardType.NumberPad
