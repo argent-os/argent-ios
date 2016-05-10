@@ -68,17 +68,14 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
                 
                 let parameters = ["public_token": accessToken]
                 
-                print(parameters)
-                print(endpoint)
-                
                 Alamofire.request(.POST, endpoint, parameters: parameters, encoding: .JSON, headers: headers).responseJSON { response in
                     switch response.result {
                     case .Success:
                         if let value = response.result.value {
                             let data = JSON(value)
                             self.dismissViewControllerAnimated(true) {
-                                self.showSuccessAlert()
                                 let token = data["response"]["stripe_bank_account_token"]
+                                self.showSuccessAlert()
                                 completionHandler(token.stringValue)
                             }
                         }
@@ -91,7 +88,31 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
     }
     
     func linkBankToStripe(bankToken: String) {
-        print("stripe bank token is ", bankToken)
+        if(userAccessToken != nil) {
+            User.getProfile { (user, NSError) in
+                
+                let endpoint = apiUrl + "/v1/stripe/" + user!.id + "/external_account"
+                
+                let headers = [
+                    "Authorization": "Bearer " + (userAccessToken as! String),
+                    "Content-Type": "application/json"
+                ]
+                
+                let parameters = ["external_account": bankToken]
+                
+                Alamofire.request(.POST, endpoint, parameters: parameters, encoding: .JSON, headers: headers).responseJSON { response in
+                    switch response.result {
+                    case .Success:
+                        if let value = response.result.value {
+                            let data = JSON(value)
+                            // print(data)
+                        }
+                    case .Failure(let error):
+                        print(error)
+                    }
+                }
+            }
+        }
     }
     
     func linkNavigationControllerDidFinishWithBankNotListed(navigationController: PLDLinkNavigationViewController!) {
