@@ -23,44 +23,44 @@ class BankDetailViewController: UIViewController, UITextFieldDelegate {
     let idTextField = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
     let passwordTextField  = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
 
-    func getInstitution(bankString: String) -> Institution {
-        var institution: Institution {
-            switch bankString {
-            case "amex":
-                return Institution.amex
-            case "bofa":
-                return .bofa
-            case "capone360":
-                return .capone360
-            case "chase":
-                return .chase
-            case "citi":
-                return .citi
-            case "fidelity":
-                return .fidelity
-            case "ncfu":
-                return .navy
-            case "pnc":
-                return .pnc
-            case "schwab":
-                return .schwab
-            case "suntrust":
-                return .suntrust
-            case "td":
-                return .tdbank
-            case "us":
-                return .us
-            case "usaa":
-                return .usaa
-            case "wells":
-                return .wells
-            default:
-                return .none
-            }
-        }
-        // Return institution enum
-        return institution
-    }
+//    func getInstitution(bankString: String) -> Institution {
+//        var institution: Institution {
+//            switch bankString {
+//            case "amex":
+//                return Institution.amex
+//            case "bofa":
+//                return .bofa
+//            case "capone360":
+//                return .capone360
+//            case "chase":
+//                return .chase
+//            case "citi":
+//                return .citi
+//            case "fidelity":
+//                return .fidelity
+//            case "ncfu":
+//                return .navy
+//            case "pnc":
+//                return .pnc
+//            case "schwab":
+//                return .schwab
+//            case "suntrust":
+//                return .suntrust
+//            case "td":
+//                return .tdbank
+//            case "us":
+//                return .us
+//            case "usaa":
+//                return .usaa
+//            case "wells":
+//                return .wells
+//            default:
+//                return .none
+//            }
+//        }
+//        // Return institution enum
+//        return institution
+//    }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
@@ -85,7 +85,7 @@ class BankDetailViewController: UIViewController, UITextFieldDelegate {
         
         view.backgroundColor = color
         
-        addToolbarButton()
+//        addToolbarButton()
 
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
@@ -161,65 +161,65 @@ class BankDetailViewController: UIViewController, UITextFieldDelegate {
     }
     
     // Add send toolbar
-    func addToolbarButton()
-    {
-        let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
-        let sendToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, screenWidth, 50))
-        // sendToolbar.barStyle = UIBarStyle.Default
-        
-        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Connect", style: UIBarButtonItemStyle.Done, target: self, action: #selector(BankDetailViewController.login(_:)))
-        done.tintColor = UIColor.whiteColor()
-        UIToolbar.appearance().barTintColor = UIColor.whiteColor()
-        done.setTitleTextAttributes([
-            NSFontAttributeName : UIFont(name: "Avenir-Book", size: 15.0)!,
-            NSForegroundColorAttributeName : color!
-            ], forState: .Normal)
-
-        var items: [UIBarButtonItem]? = [UIBarButtonItem]()
-        items?.append(flexSpace)
-        items?.append(done)
-        items?.append(flexSpace)
-        
-        sendToolbar.items = items
-        sendToolbar.sizeToFit()
-        idTextField.inputAccessoryView=sendToolbar
-        passwordTextField.inputAccessoryView=sendToolbar
-    }
-    
-    func login(sender: AnyObject) {
-        // Function for toolbar button
- 
-        let institution = getInstitution(bankName!)
-        if idTextField.text != "" || passwordTextField.text != "" {
-            let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
-            HUD.showInView(self.view!)
-            HUD.backgroundColor = UIColor(white: 0.0, alpha: 0.4)
-            HUD.textLabel.text = "Authenticating to " + longBankName!
-            HUD.dismissAfterDelay(1)
-            PS_addUser(.Connect, username: idTextField.text!, password: passwordTextField.text!, pin: "", institution: institution, completion: { (response, accessToken, mfaType, mfa, accounts, transactions, error) in
-                    self.updateUserToken(accessToken)
-                    // post the accesstoken to the user api
-                    // print(accessToken)
-                    // print(mfaType)
-                    // print(mfa)
-                    // print(response!)
-                    // print(transactions!)
-                    // print(accounts)
-                    HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
-                    HUD.textLabel.text = "Bank connected!"
-                    HUD.dismissAfterDelay(2)
-                    print("error is", error)
-                    if(error != nil) {
-                        print(error)
-                        HUD.indicatorView = JGProgressHUDErrorIndicatorView()
-                        HUD.textLabel.text = "Could not connect to bank"
-                        HUD.dismissAfterDelay(2)
-                    }
-            })
-        }
-    }
+//    func addToolbarButton()
+//    {
+//        let screen = UIScreen.mainScreen().bounds
+//        let screenWidth = screen.size.width
+//        let sendToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, screenWidth, 50))
+//        // sendToolbar.barStyle = UIBarStyle.Default
+//        
+//        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+//        let done: UIBarButtonItem = UIBarButtonItem(title: "Connect", style: UIBarButtonItemStyle.Done, target: self, action: #selector(BankDetailViewController.login(_:)))
+//        done.tintColor = UIColor.whiteColor()
+//        UIToolbar.appearance().barTintColor = UIColor.whiteColor()
+//        done.setTitleTextAttributes([
+//            NSFontAttributeName : UIFont(name: "Avenir-Book", size: 15.0)!,
+//            NSForegroundColorAttributeName : color!
+//            ], forState: .Normal)
+//
+//        var items: [UIBarButtonItem]? = [UIBarButtonItem]()
+//        items?.append(flexSpace)
+//        items?.append(done)
+//        items?.append(flexSpace)
+//        
+//        sendToolbar.items = items
+//        sendToolbar.sizeToFit()
+//        idTextField.inputAccessoryView=sendToolbar
+//        passwordTextField.inputAccessoryView=sendToolbar
+//    }
+//    
+//    func login(sender: AnyObject) {
+//        // Function for toolbar button
+// 
+//        let institution = getInstitution(bankName!)
+//        if idTextField.text != "" || passwordTextField.text != "" {
+//            let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+//            HUD.showInView(self.view!)
+//            HUD.backgroundColor = UIColor(white: 0.0, alpha: 0.4)
+//            HUD.textLabel.text = "Authenticating to " + longBankName!
+//            HUD.dismissAfterDelay(1)
+//            PS_addUser(.Connect, username: idTextField.text!, password: passwordTextField.text!, pin: "", institution: institution, completion: { (response, accessToken, mfaType, mfa, accounts, transactions, error) in
+//                    self.updateUserToken(accessToken)
+//                    // post the accesstoken to the user api
+//                    // print(accessToken)
+//                    // print(mfaType)
+//                    // print(mfa)
+//                    // print(response!)
+//                    // print(transactions!)
+//                    // print(accounts)
+//                    HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
+//                    HUD.textLabel.text = "Bank connected!"
+//                    HUD.dismissAfterDelay(2)
+//                    print("error is", error)
+//                    if(error != nil) {
+//                        print(error)
+//                        HUD.indicatorView = JGProgressHUDErrorIndicatorView()
+//                        HUD.textLabel.text = "Could not connect to bank"
+//                        HUD.dismissAfterDelay(2)
+//                    }
+//            })
+//        }
+//    }
     
     func updateUserToken(token: String) {
         if userAccessToken != nil {
@@ -268,7 +268,7 @@ class BankDetailViewController: UIViewController, UITextFieldDelegate {
         {
             // Not found, so remove keyboard.
             textField.resignFirstResponder()
-            login(self)
+//            login(self)
             return true
         }
         return false

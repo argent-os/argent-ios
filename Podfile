@@ -17,6 +17,8 @@ target 'app-ios' do
 	pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 	pod 'CardIO'
 	pod 'Stripe'
+	pod 'plaid-ios-sdk'
+	pod 'plaid-ios-link'
 	pod 'TextFieldEffects'
 	pod 'UIColor_Hex_Swift'
 	pod 'KeychainSwift'

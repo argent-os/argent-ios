@@ -11,6 +11,7 @@ import Stripe
 import PasscodeLock
 import SwiftyJSON
 import KeychainSwift
+import plaid_ios_sdk
 
 let merchantID = "merchant.com.argentapp.pay"
 var userData:JSON? // init user data, declare globally, needs SwiftyJSON
@@ -26,8 +27,8 @@ var userData:JSON? // init user data, declare globally, needs SwiftyJSON
 
 // let apiUrl = "http://localhost:5001"
 // let apiUrl = "http://192.168.1.182:5001"
-// let apiUrl = "http://192.168.1.232:5001"
- let apiUrl = "http://proton-api-dev.us-east-1.elasticbeanstalk.com"
+ let apiUrl = "http://192.168.1.232:5001"
+// let apiUrl = "http://proton-api-dev.us-east-1.elasticbeanstalk.com"
 // PROD
 //let apiUrl = "http://api.argentapp.com"
 
@@ -83,14 +84,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIToolbar.appearance().barTintColor = UIColor.mediumBlue()
         UIToolbar.appearance().backgroundColor = UIColor.mediumBlue()
         
+        // Screen Dimming Enable
+        let dim = KeychainSwift().getBool("screenAlive")
+        if dim != nil && dim == true {
+            UIApplication.sharedApplication().idleTimerDisabled = true
+        } else {
+            UIApplication.sharedApplication().idleTimerDisabled = false
+        }
+        
         // Toolbar Keyboard UI
         if let font = UIFont(name: "Avenir-Book", size: 15) {
             UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: font,NSForegroundColorAttributeName:UIColor.whiteColor()], forState: UIControlState.Normal)
         }
         
         // Initialize Plaid, change to .Production before golive
-        Plaid.initializePlaid(.Testing)
-        
+        Plaid.sharedInstance().setPublicKey("fb32b0520292ad69be7b4d1ade4bd3")
+
         // Display PasscodeLock on Launch
         passcodeLockPresenter.presentPasscodeLock()
         

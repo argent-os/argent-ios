@@ -28,4 +28,7 @@
 // Country picker
 #import "Pods/CountryPicker/CountryPicker/CountryPicker.h"
 
+// Plaid Link
+#import "Pods/plaid-ios-link/PlaidLink/Classes/PLDLinkNavigationViewController.h"
+
 #endif /* ObjC_Bridging_Header_h */
