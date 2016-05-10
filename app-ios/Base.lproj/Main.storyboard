@@ -1381,7 +1381,7 @@ support request</string>
                         <viewControllerLayoutGuide type="bottom" id="Aa7-CV-e8d"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="2uG-We-evA">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1522,28 +1522,22 @@ We support both debit and credit.</string>
                                 <rect key="frame" x="20" y="666" width="374" height="50"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="f4r-rm-i0t"/>
+                                    <constraint firstAttribute="height" constant="50" id="6q5-De-fjj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <state key="normal" title="Add Bank Account"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IdL-hy-SC1">
-                                <rect key="frame" x="20" y="20" width="374" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconBank" translatesAutoresizingMaskIntoConstraints="NO" id="KoB-Hd-4HP">
                                 <rect key="frame" x="164" y="198" width="86" height="128"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="tPe-Af-GYO"/>
+                                    <constraint firstAttribute="height" constant="128" id="NFe-WU-ZHn"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ut-Ju-5YB">
                                 <rect key="frame" x="20" y="390" width="374" height="62"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="62" id="5DN-ln-L4N"/>
+                                    <constraint firstAttribute="height" constant="62" id="mjJ-v1-WE7"/>
                                 </constraints>
                                 <string key="text">Select from a list of authorized banks.
 We currently support 1,000+ US
@@ -1555,14 +1549,14 @@ institutions</string>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V5M-sE-Rv5">
                                 <rect key="frame" x="20" y="460" width="374" height="130"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="Vgm-E1-J1l"/>
+                                    <constraint firstAttribute="height" constant="130" id="vHE-us-KdD"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OUz-h7-oqM">
-                                <rect key="frame" x="20" y="28" width="374" height="162"/>
+                                <rect key="frame" x="20" y="20" width="374" height="170"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1570,7 +1564,7 @@ institutions</string>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RqW-Mf-mvz">
                                 <rect key="frame" x="0.0" y="598" width="414" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="W47-ry-rVX"/>
+                                    <constraint firstAttribute="height" constant="60" id="s49-LH-xyq"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -1582,9 +1576,9 @@ institutions</string>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bank Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Use-cp-lh2">
-                                <rect key="frame" x="20" y="343" width="374" height="39"/>
+                                <rect key="frame" x="20" y="334" width="374" height="48"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="39" id="o1b-xC-yoN"/>
+                                    <constraint firstAttribute="height" constant="48" id="Ek3-g3-red"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -1593,31 +1587,27 @@ institutions</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="V5M-sE-Rv5" firstAttribute="top" secondItem="6Ut-Ju-5YB" secondAttribute="bottom" constant="8" symbolic="YES" id="00P-XC-9BU"/>
-                            <constraint firstItem="OUz-h7-oqM" firstAttribute="leading" secondItem="Use-cp-lh2" secondAttribute="leading" id="09n-IL-95R"/>
-                            <constraint firstItem="Use-cp-lh2" firstAttribute="trailing" secondItem="6Ut-Ju-5YB" secondAttribute="trailing" id="2X3-dl-dgA"/>
-                            <constraint firstAttribute="bottom" secondItem="EG7-xI-0r0" secondAttribute="bottom" constant="20" symbolic="YES" id="3z7-Xo-2wL"/>
-                            <constraint firstItem="Use-cp-lh2" firstAttribute="top" secondItem="KoB-Hd-4HP" secondAttribute="bottom" constant="17" id="9bL-Ow-2Fg"/>
-                            <constraint firstItem="OUz-h7-oqM" firstAttribute="trailing" secondItem="Use-cp-lh2" secondAttribute="trailing" id="C1M-Ks-T3c"/>
-                            <constraint firstItem="KoB-Hd-4HP" firstAttribute="centerX" secondItem="Use-cp-lh2" secondAttribute="centerX" id="Ceh-ku-24z"/>
-                            <constraint firstAttribute="trailing" secondItem="RqW-Mf-mvz" secondAttribute="trailing" id="Enu-wA-rvL"/>
-                            <constraint firstItem="V5M-sE-Rv5" firstAttribute="leading" secondItem="EG7-xI-0r0" secondAttribute="leading" id="EzT-kY-fb2"/>
-                            <constraint firstItem="IdL-hy-SC1" firstAttribute="leading" secondItem="Tlu-lx-Uxm" secondAttribute="leadingMargin" id="QIE-Qr-B0V"/>
-                            <constraint firstItem="IdL-hy-SC1" firstAttribute="leading" secondItem="OUz-h7-oqM" secondAttribute="leading" id="RvL-Gj-ly0"/>
-                            <constraint firstItem="fzi-cR-AQR" firstAttribute="top" secondItem="IdL-hy-SC1" secondAttribute="bottom" constant="23" id="Sne-Fv-M6Z"/>
-                            <constraint firstItem="KoB-Hd-4HP" firstAttribute="top" secondItem="OUz-h7-oqM" secondAttribute="bottom" constant="8" symbolic="YES" id="ZPf-hV-d2e"/>
-                            <constraint firstItem="V5M-sE-Rv5" firstAttribute="trailing" secondItem="EG7-xI-0r0" secondAttribute="trailing" id="ae5-rp-xvf"/>
-                            <constraint firstItem="IdL-hy-SC1" firstAttribute="trailing" secondItem="OUz-h7-oqM" secondAttribute="trailing" id="gmO-tM-X6o"/>
-                            <constraint firstItem="RqW-Mf-mvz" firstAttribute="leading" secondItem="Tlu-lx-Uxm" secondAttribute="leading" id="h9N-tZ-zLw"/>
-                            <constraint firstItem="IdL-hy-SC1" firstAttribute="top" secondItem="Tlu-lx-Uxm" secondAttribute="top" constant="20" symbolic="YES" id="kKs-Yv-swa"/>
-                            <constraint firstItem="6Ut-Ju-5YB" firstAttribute="top" secondItem="Use-cp-lh2" secondAttribute="bottom" constant="8" symbolic="YES" id="lez-uR-I0s"/>
-                            <constraint firstItem="OUz-h7-oqM" firstAttribute="top" secondItem="Tlu-lx-Uxm" secondAttribute="topMargin" constant="28" id="mFd-sC-O7n"/>
-                            <constraint firstItem="RqW-Mf-mvz" firstAttribute="centerX" secondItem="EG7-xI-0r0" secondAttribute="centerX" id="maX-sj-oyT"/>
-                            <constraint firstItem="Use-cp-lh2" firstAttribute="leading" secondItem="6Ut-Ju-5YB" secondAttribute="leading" id="ptB-KL-P2R"/>
-                            <constraint firstItem="EG7-xI-0r0" firstAttribute="top" secondItem="RqW-Mf-mvz" secondAttribute="bottom" constant="8" symbolic="YES" id="vlG-TI-Qgj"/>
-                            <constraint firstItem="6Ut-Ju-5YB" firstAttribute="leading" secondItem="V5M-sE-Rv5" secondAttribute="leading" id="vtn-Hw-gVl"/>
-                            <constraint firstItem="RqW-Mf-mvz" firstAttribute="top" secondItem="V5M-sE-Rv5" secondAttribute="bottom" constant="8" symbolic="YES" id="wD3-HN-sIR"/>
-                            <constraint firstItem="6Ut-Ju-5YB" firstAttribute="trailing" secondItem="V5M-sE-Rv5" secondAttribute="trailing" id="xGi-CJ-Pis"/>
+                            <constraint firstItem="OUz-h7-oqM" firstAttribute="top" secondItem="Tlu-lx-Uxm" secondAttribute="top" constant="20" symbolic="YES" id="11N-kZ-ndF"/>
+                            <constraint firstItem="6Ut-Ju-5YB" firstAttribute="top" secondItem="Use-cp-lh2" secondAttribute="bottom" constant="8" symbolic="YES" id="7FR-kz-FSt"/>
+                            <constraint firstItem="6Ut-Ju-5YB" firstAttribute="trailing" secondItem="V5M-sE-Rv5" secondAttribute="trailing" id="9HI-fF-cWv"/>
+                            <constraint firstItem="Use-cp-lh2" firstAttribute="trailing" secondItem="6Ut-Ju-5YB" secondAttribute="trailing" id="CKz-bJ-frT"/>
+                            <constraint firstItem="V5M-sE-Rv5" firstAttribute="leading" secondItem="EG7-xI-0r0" secondAttribute="leading" id="FiR-Jh-V2V"/>
+                            <constraint firstItem="KoB-Hd-4HP" firstAttribute="top" secondItem="OUz-h7-oqM" secondAttribute="bottom" constant="8" symbolic="YES" id="Myb-q4-b1B"/>
+                            <constraint firstItem="RqW-Mf-mvz" firstAttribute="centerX" secondItem="EG7-xI-0r0" secondAttribute="centerX" id="Nbu-N7-2U3"/>
+                            <constraint firstItem="OUz-h7-oqM" firstAttribute="trailing" secondItem="Use-cp-lh2" secondAttribute="trailing" id="NoL-C7-hVC"/>
+                            <constraint firstItem="OUz-h7-oqM" firstAttribute="leading" secondItem="Tlu-lx-Uxm" secondAttribute="leadingMargin" id="Q47-n8-FjN"/>
+                            <constraint firstItem="V5M-sE-Rv5" firstAttribute="top" secondItem="6Ut-Ju-5YB" secondAttribute="bottom" constant="8" symbolic="YES" id="U6o-Wh-vKA"/>
+                            <constraint firstAttribute="bottom" secondItem="EG7-xI-0r0" secondAttribute="bottom" constant="20" symbolic="YES" id="WxT-uA-f47"/>
+                            <constraint firstItem="RqW-Mf-mvz" firstAttribute="leading" secondItem="Tlu-lx-Uxm" secondAttribute="leading" id="XoM-ff-BIv"/>
+                            <constraint firstItem="RqW-Mf-mvz" firstAttribute="top" secondItem="V5M-sE-Rv5" secondAttribute="bottom" constant="8" symbolic="YES" id="aXJ-3Q-iuf"/>
+                            <constraint firstItem="KoB-Hd-4HP" firstAttribute="centerX" secondItem="Use-cp-lh2" secondAttribute="centerX" id="fS0-wa-RBU"/>
+                            <constraint firstItem="EG7-xI-0r0" firstAttribute="top" secondItem="RqW-Mf-mvz" secondAttribute="bottom" constant="8" symbolic="YES" id="fxg-wg-0B1"/>
+                            <constraint firstItem="OUz-h7-oqM" firstAttribute="leading" secondItem="Use-cp-lh2" secondAttribute="leading" id="gPT-hP-lgN"/>
+                            <constraint firstItem="6Ut-Ju-5YB" firstAttribute="leading" secondItem="V5M-sE-Rv5" secondAttribute="leading" id="lY6-Aw-NHh"/>
+                            <constraint firstItem="Use-cp-lh2" firstAttribute="top" secondItem="KoB-Hd-4HP" secondAttribute="bottom" constant="8" symbolic="YES" id="ntz-T2-le5"/>
+                            <constraint firstItem="V5M-sE-Rv5" firstAttribute="trailing" secondItem="EG7-xI-0r0" secondAttribute="trailing" id="p4t-V4-ziU"/>
+                            <constraint firstAttribute="trailing" secondItem="RqW-Mf-mvz" secondAttribute="trailing" id="qH1-XK-Klh"/>
+                            <constraint firstItem="Use-cp-lh2" firstAttribute="leading" secondItem="6Ut-Ju-5YB" secondAttribute="leading" id="sqz-no-7SH"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
@@ -3509,7 +3499,7 @@ risk profiles who have also activated this feature</string>
         <segue reference="kpf-dT-hyx"/>
         <segue reference="m0d-gd-RWW"/>
         <segue reference="o5e-Ut-781"/>
-        <segue reference="zQh-Po-kj4"/>
+        <segue reference="Bot-Tn-1ZP"/>
         <segue reference="wgV-xY-MTp"/>
         <segue reference="7cu-FP-MoG"/>
         <segue reference="aks-Yo-Spb"/>

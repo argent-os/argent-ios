@@ -46,12 +46,13 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
     
     func linkNavigationContoller(navigationController: PLDLinkNavigationViewController!, didFinishWithAccessToken accessToken: String!) {
         print("success \(accessToken)")
-        linkPlaidBankAccount({ (token) in
-                self.linkBankToStripe(token)
-            }, accessToken: accessToken)
+        linkPlaidBankAccount({ (stripeBankToken, accessToken) in
+            self.linkBankToStripe(stripeBankToken)
+            self.updateUserPlaidToken(accessToken)
+        }, accessToken: accessToken)
     }
     
-    func linkPlaidBankAccount(completionHandler: (String) -> Void, accessToken: String) {
+    func linkPlaidBankAccount(completionHandler: (String, String) -> Void, accessToken: String) {
         // ** NOTE: this access_token is actually the public_token sent to the API
         // take this access token and connect bank account to stripe
         // save access token to user database
@@ -68,16 +69,57 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
                 
                 let parameters = ["public_token": accessToken]
                 
-                Alamofire.request(.POST, endpoint, parameters: parameters, encoding: .JSON, headers: headers).responseJSON { response in
+                Alamofire.request(.POST, endpoint, parameters: parameters, encoding: .JSON, headers: headers).responseJSON {
+                    response in
                     switch response.result {
                     case .Success:
                         if let value = response.result.value {
                             let data = JSON(value)
                             self.dismissViewControllerAnimated(true) {
-                                let token = data["response"]["stripe_bank_account_token"]
+                                let access_token = data["response"]["access_token"]
+                                let stripe_bank_token = data["response"]["stripe_bank_account_token"]
                                 self.showSuccessAlert()
-                                completionHandler(token.stringValue)
+                                completionHandler(stripe_bank_token.stringValue, access_token.stringValue)
                             }
+                        }
+                    case .Failure(let error):
+                        print(error)
+                    }
+                }
+            }
+        }
+    }
+    
+    func updateUserPlaidToken(accessToken: String) {
+        if(userAccessToken != nil) {
+            User.getProfile { (user, NSError) in
+                
+                let endpoint = apiUrl + "/v1/profile/" + (user?.id)!
+                
+                let headers = [
+                    "Authorization": "Bearer " + (userAccessToken as! String),
+                    "Content-Type": "application/json"
+                ]
+                
+                let plaidObj = [ "access_token" : accessToken ]
+                let plaidNSDict = plaidObj as NSDictionary //no error message
+                
+                let parameters : [String : AnyObject] = [
+                    "plaid" : plaidNSDict
+                ]
+                
+                print(endpoint)
+                print(parameters)
+                print(headers)
+                
+                Alamofire.request(.PUT, endpoint, parameters: parameters, encoding: .JSON, headers: headers).responseJSON {
+                    response in
+                    switch response.result {
+                    case .Success:
+                        print("success")
+                        if let value = response.result.value {
+                            let data = JSON(value)
+                            // print(data)
                         }
                     case .Failure(let error):
                         print(error)
@@ -100,7 +142,8 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
                 
                 let parameters = ["external_account": bankToken]
                 
-                Alamofire.request(.POST, endpoint, parameters: parameters, encoding: .JSON, headers: headers).responseJSON { response in
+                Alamofire.request(.POST, endpoint, parameters: parameters, encoding: .JSON, headers: headers).responseJSON {
+                    response in
                     switch response.result {
                     case .Success:
                         if let value = response.result.value {
