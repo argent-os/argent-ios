@@ -144,7 +144,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
-        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 47))
+        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 65))
         navBar.translucent = true
         navBar.tintColor = UIColor.whiteColor()
         navBar.backgroundColor = UIColor.clearColor()
@@ -155,7 +155,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
             NSForegroundColorAttributeName:UIColor.darkGrayColor()
         ]
         self.view.addSubview(navBar)
-        let navItem = UINavigationItem(title: "Company Representative Information")
+        let navItem = UINavigationItem(title: "Company Rep Information")
         navItem.leftBarButtonItem?.tintColor = UIColor.darkGrayColor()
         navBar.setItems([navItem], animated: true)
         

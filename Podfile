@@ -49,6 +49,7 @@ target 'app-ios' do
 	pod 'XLActionController'
 	pod 'AYVibrantButton'
 	pod 'GaugeKit'
+	pod 'StepSlider'
 	#pod 'DOFavoriteButton'
 
 	post_install do |installer|

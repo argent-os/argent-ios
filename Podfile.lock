@@ -34,6 +34,7 @@ PODS:
   - SESlideTableViewCell (0.7.0)
   - SFDraggableDialogView (1.1.4)
   - SnapKit (0.20.0)
+  - StepSlider (0.1.2)
   - Stripe (7.0.0):
     - Stripe/Core (= 7.0.0)
   - Stripe/Core (7.0.0)
@@ -78,6 +79,7 @@ DEPENDENCIES:
   - SESlideTableViewCell
   - SFDraggableDialogView
   - SnapKit
+  - StepSlider
   - Stripe
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
   - TextFieldEffects
@@ -127,6 +129,7 @@ SPEC CHECKSUMS:
   SESlideTableViewCell: 1487a6aedc84b480a888fc33b8d1c58fa5026f99
   SFDraggableDialogView: cfe9b80b5fff19f7e0fda86dcabee8b03a4c3b44
   SnapKit: 5fce3c1bbbf1fbd31de9aa92f33eb9fa03f15650
+  StepSlider: 54466ab1de9002435b6839091f97ff62967fdd7e
   Stripe: 147bbff1ba7cf3422e4ed14f6e1fbbc72471ce6c
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   TextFieldEffects: bc4fd3bd557321bd61a0762f3f50965477a36f62
