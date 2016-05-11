@@ -24,8 +24,18 @@ class RiskProfileViewController: UIViewController {
         enableRiskProfileButton.layer.cornerRadius = 5
         enableRiskProfileButton.clipsToBounds = true
         enableRiskProfileButton.backgroundColor = UIColor.mediumBlue()
-        enableRiskProfileButton.addTarget(self, action: #selector(RiskProfileViewController.enableRiskProfiling(_:)), forControlEvents: .TouchUpInside)
-        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        let score = KeychainSwift().get("riskScore")
+        print(score)
+        if score == nil || score == "" {
+            self.enableRiskProfileButton.setTitle("Enable Risk Profile", forState: .Normal)
+            self.enableRiskProfileButton.addTarget(self, action: #selector(RiskProfileViewController.enableRiskProfiling(_:)), forControlEvents: .TouchUpInside)
+        } else {
+            self.enableRiskProfileButton.setTitle("Disable Risk Profile", forState: .Normal)
+            self.enableRiskProfileButton.addTarget(self, action: #selector(RiskProfileViewController.disableRiskProfiling(_:)), forControlEvents: .TouchUpInside)
+        }
     }
     
     func enableRiskProfiling(sender: AnyObject) {
@@ -52,15 +62,14 @@ class RiskProfileViewController: UIViewController {
                         if let value = response.result.value {
                             let data = JSON(value)
                             let calculatedRiskScore = data["score"]
-                            print("user risk score", calculatedRiskScore)
                             self.showSuccessAlert("Risk Profile Enabled", color: UIColor(rgba: "#1EBC61"))
                             self.enableRiskProfileButton.setTitle("Disable Risk Profile", forState: .Normal)
-                            self.enableRiskProfileButton.removeTarget(self, action: #selector(RiskProfileViewController.enableRiskProfiling(_:)), forControlEvents: .TouchUpInside)
                             self.enableRiskProfileButton.addTarget(self, action: #selector(RiskProfileViewController.disableRiskProfiling(_:)), forControlEvents: .TouchUpInside)
+                            self.enableRiskProfileButton.removeTarget(self, action: #selector(RiskProfileViewController.enableRiskProfiling(_:)), forControlEvents: .TouchUpInside)
                             
                             KeychainSwift().set(calculatedRiskScore.stringValue, forKey: "riskScore")
                             
-                            // set completion handler to post this to our api user profile
+                            // set completion handler to post this risk score to our api user profile
                             
                         }
                     case .Failure(let error):
@@ -72,10 +81,24 @@ class RiskProfileViewController: UIViewController {
     }
     
     func disableRiskProfiling(sender: AnyObject) {
-
+        KeychainSwift().set("", forKey: "riskScore")
+        showDisabledAlert("Risk Profile Disabled", color: UIColor.mediumBlue())
     }
     
     func showSuccessAlert(str: String, color: UIColor) {
+        let customIcon:UIImage = UIImage(named: "ic_check_light")! // your custom icon UIImage
+        let alertView = JSSAlertView().show(
+            self,
+            title: "",
+            text: str,
+            buttonText: "Ok",
+            noButtons: false,
+            color: color,
+            iconImage: customIcon)
+        alertView.setTextTheme(.Light) // can be .Light or .Dark
+    }
+    
+    func showDisabledAlert(str: String, color: UIColor) {
         let customIcon:UIImage = UIImage(named: "ic_check_light")! // your custom icon UIImage
         let alertView = JSSAlertView().show(
             self,
