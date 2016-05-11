@@ -3558,7 +3558,7 @@ explicit permission.</string>
     </scenes>
     <resources>
         <image name="BackgroundBusinessBlurDark" width="267" height="440"/>
-        <image name="IconBank" width="86" height="81"/>
+        <image name="IconBank" width="86" height="86"/>
         <image name="IconBroken" width="86" height="80"/>
         <image name="IconCloseLight" width="24" height="24"/>
         <image name="IconCreditCard" width="86" height="63"/>
