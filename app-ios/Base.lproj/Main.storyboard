@@ -3358,7 +3358,7 @@ explicit permission.</string>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <state key="normal" title="View Risk Profile">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 </state>
                                 <connections>
                                     <segue destination="W5D-pT-2P1" kind="show" id="3dI-Za-4ot"/>
@@ -3669,7 +3669,7 @@ explicit permission.</string>
         <image name="BackgroundBusinessBlurDark" width="267" height="440"/>
         <image name="IconBank" width="86" height="86"/>
         <image name="IconBroken" width="86" height="86"/>
-        <image name="IconCloseLight" width="24" height="24"/>
+        <image name="IconCloseLight" width="16" height="16"/>
         <image name="IconCreditCard" width="86" height="63"/>
         <image name="IconLogoWhite" width="342" height="342"/>
         <image name="IconPerson" width="86" height="86"/>
