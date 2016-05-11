@@ -9,6 +9,7 @@
 import Foundation
 import GaugeKit
 import KeychainSwift
+import MZFormSheetPresentationController
 
 class RiskScoreViewController: UIViewController {
     
@@ -33,12 +34,12 @@ class RiskScoreViewController: UIViewController {
 
     func configureView() {
         
-        g.frame = CGRect(x: 50, y: 70, width: self.view.layer.frame.width-100, height: 250)
+        g.frame = CGRect(x: 50, y: 80, width: self.view.layer.frame.width-100, height: 250)
         g.startColor = UIColor.greenColor()
         g.contentMode = .ScaleAspectFit
         g.shadowRadius = 40
         g.shadowOpacity = 0.01
-        g.lineWidth = 15
+        g.lineWidth = 5
         g.maxValue = 100
         self.view.addSubview(g)
         
@@ -52,14 +53,15 @@ class RiskScoreViewController: UIViewController {
         l.maxValue = 100
         self.view.addSubview(l)
         
-        lbl.frame = CGRect(x: 50, y: 50, width: self.view.layer.frame.width-100, height: 250)
+        lbl.frame = CGRect(x: 50, y: 60, width: self.view.layer.frame.width-100, height: 250)
         lbl.textColor = UIColor.whiteColor()
         lbl.textAlignment = .Center
         lbl.font = UIFont(name: "AvenirNext-UltraLight", size: 36)
         self.view.addSubview(lbl)
         
-        titleLabel.frame = CGRect(x: 50, y: 90, width: self.view.layer.frame.width-100, height: 250)
+        titleLabel.frame = CGRect(x: 50, y: 100, width: self.view.layer.frame.width-100, height: 250)
         titleLabel.text = "Risk Score"
+        titleLabel.alpha = 0.5
         titleLabel.textColor = UIColor.whiteColor()
         titleLabel.textAlignment = .Center
         titleLabel.font = UIFont(name: "Avenir-Light", size: 14)
@@ -74,6 +76,7 @@ class RiskScoreViewController: UIViewController {
         info.frame = CGRect(x: self.view.frame.width/2-13, y: self.view.frame.height-136, width: 26, height: 26)
         info.setBackgroundImage(UIImage(named: "ic_question"), forState: .Normal)
         info.contentMode = .ScaleAspectFit
+        info.addTarget(self, action: #selector(RiskScoreViewController.showInfoModal(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(info)
         
     }
@@ -92,8 +95,8 @@ class RiskScoreViewController: UIViewController {
                 titleLabel.text = "Perfect Risk Score!"
             }
             else if(g.rate >= 79) {
-                g.startColor = UIColor.greenColor()
-                l.startColor = UIColor.greenColor()
+                g.startColor = UIColor.limeGreen()
+                l.startColor = UIColor.limeGreen()
                 l.endColor = UIColor.lightBlue()
                 titleLabel.text = "Great Risk Score"
             } else if(g.rate > 59) {
@@ -119,6 +122,38 @@ class RiskScoreViewController: UIViewController {
             l.rate = 100
         }
 
+    }
+    
+    // MARK: Tutorial modal
+    
+    func showInfoModal(sender: AnyObject) {
+        let navigationController = self.storyboard!.instantiateViewControllerWithIdentifier("infoModalNavigationController") as! UINavigationController
+        let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
+        
+        // Initialize and style the terms and conditions modal
+        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
+        formSheetController.presentationController?.contentViewSize = CGSizeMake(300, 300)
+        formSheetController.presentationController?.shouldUseMotionEffect = true
+        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor()
+        formSheetController.presentationController?.containerView?.sizeToFit()
+        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Light
+        formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
+        formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
+        formSheetController.contentViewCornerRadius = 10
+        formSheetController.allowDismissByPanningPresentedView = true
+        formSheetController.interactivePanGestureDismissalDirection = .All;
+        
+        // Blur will be applied to all MZFormSheetPresentationControllers by default
+        MZFormSheetPresentationController.appearance().shouldApplyBackgroundBlurEffect = true
+        
+        let presentedViewController = navigationController.viewControllers.first as! RiskTutorialViewController
+        
+        // keep passing along user data to modal
+        presentedViewController.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
+        presentedViewController.navigationItem.leftItemsSupplementBackButton = true
+        
+        // Be sure to update current module on storyboard
+        self.presentViewController(formSheetController, animated: true, completion: nil)
     }
     
 }

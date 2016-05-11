@@ -13,6 +13,7 @@
 		300E422F1CB57206004316CF /* BankConnectedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E422E1CB57206004316CF /* BankConnectedTableViewCell.swift */; };
 		300E42311CB7123E004316CF /* CreditCardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E42301CB7123E004316CF /* CreditCardListViewController.swift */; };
 		300E42331CB71362004316CF /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E42321CB71362004316CF /* Card.swift */; };
+		3015ADC31CE3B1110053D220 /* RiskTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015ADC21CE3B1110053D220 /* RiskTutorialViewController.swift */; };
 		302010CA1CAF3B05007D5E7E /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302010C91CAF3B05007D5E7E /* Notification.swift */; };
 		302010D11CB016ED007D5E7E /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 302010D01CB016ED007D5E7E /* NotificationCenter.framework */; };
 		302010D41CB016ED007D5E7E /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302010D31CB016ED007D5E7E /* TodayViewController.swift */; };
@@ -227,6 +228,7 @@
 		300E422E1CB57206004316CF /* BankConnectedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankConnectedTableViewCell.swift; path = "app-ios/BankConnectedTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		300E42301CB7123E004316CF /* CreditCardListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreditCardListViewController.swift; path = "app-ios/CreditCardListViewController.swift"; sourceTree = SOURCE_ROOT; };
 		300E42321CB71362004316CF /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Card.swift; path = "app-ios/Card.swift"; sourceTree = SOURCE_ROOT; };
+		3015ADC21CE3B1110053D220 /* RiskTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RiskTutorialViewController.swift; path = "app-ios/RiskTutorialViewController.swift"; sourceTree = SOURCE_ROOT; };
 		302010C91CAF3B05007D5E7E /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Notification.swift; path = "app-ios/Notification.swift"; sourceTree = SOURCE_ROOT; };
 		302010CF1CB016ED007D5E7E /* Argent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Argent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		302010D01CB016ED007D5E7E /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
@@ -547,6 +549,7 @@
 			children = (
 				306DF00E1CDA68AB00864CAE /* RiskProfileViewController.swift */,
 				30D5268D1CE34C03001B41BA /* RiskScoreViewController.swift */,
+				3015ADC21CE3B1110053D220 /* RiskTutorialViewController.swift */,
 			);
 			name = Risk;
 			sourceTree = "<group>";
@@ -1381,6 +1384,7 @@
 				30831F631CD01B1500D5D0F4 /* DirectManipulationGestureRecognizer.swift in Sources */,
 				30C2DB1D1CA43A05003AFD8B /* paykloud_iosUITests.swift in Sources */,
 				30C2DADB1CA438A5003AFD8B /* ProfileLabelCell.swift in Sources */,
+				3015ADC31CE3B1110053D220 /* RiskTutorialViewController.swift in Sources */,
 				3064931C1CD6B00500A17B00 /* TutorialHomeViewController.swift in Sources */,
 				30D5268E1CE34C03001B41BA /* RiskScoreViewController.swift in Sources */,
 				30C2DAA41CA4374F003AFD8B /* SignupIndividualViewControllerOne.swift in Sources */,

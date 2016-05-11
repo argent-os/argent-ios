@@ -3486,6 +3486,75 @@ explicit permission.</string>
             </objects>
             <point key="canvasLocation" x="1363" y="-3553"/>
         </scene>
+        <!--Risk Tutorial View Controller-->
+        <scene sceneID="Zeq-5H-QWz">
+            <objects>
+                <viewController id="Nni-gJ-y2g" customClass="RiskTutorialViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vRF-B9-PQ9"/>
+                        <viewControllerLayoutGuide type="bottom" id="QeJ-uJ-vrd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xkd-nQ-Szt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BNW-yh-i4u">
+                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                                <connections>
+                                    <segue destination="51y-cT-t9a" kind="embed" id="IJx-5B-xfR"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BNW-yh-i4u" firstAttribute="top" secondItem="vRF-B9-PQ9" secondAttribute="bottom" id="5YL-Qx-yob"/>
+                            <constraint firstItem="BNW-yh-i4u" firstAttribute="bottom" secondItem="QeJ-uJ-vrd" secondAttribute="top" id="CsS-bC-nK6"/>
+                            <constraint firstItem="BNW-yh-i4u" firstAttribute="leading" secondItem="xkd-nQ-Szt" secondAttribute="leading" id="HQh-hC-hV1"/>
+                            <constraint firstAttribute="trailing" secondItem="BNW-yh-i4u" secondAttribute="trailing" id="gbH-HU-vuL"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="AzA-Mg-Tcn"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LV5-OB-kaw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3258" y="-7813"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Nbc-wo-KcH">
+            <objects>
+                <navigationController storyboardIdentifier="infoModalNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Lyq-c5-I8C" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aTv-Mi-rZV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Nni-gJ-y2g" kind="relationship" relationship="rootViewController" id="AxR-5W-UwK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hUh-3m-4xJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2622" y="-7881"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="qVY-xo-05Q">
+            <objects>
+                <viewController id="51y-cT-t9a" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y0s-XN-Dlh"/>
+                        <viewControllerLayoutGuide type="bottom" id="Vhh-KF-tPk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5Dm-Rt-0z8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gMV-YM-ydE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3799" y="-7845"/>
+        </scene>
     </scenes>
     <resources>
         <image name="BackgroundBusinessBlurDark" width="267" height="440"/>
