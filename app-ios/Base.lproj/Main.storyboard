@@ -3224,8 +3224,10 @@ Tap here to view</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="62" id="5z3-Z2-eqp"/>
                                 </constraints>
-                                <string key="text">Enable risk profiling to see other Argent users 
-risk profiles who have also activated this feature</string>
+                                <string key="text">Enable risk profiling to see your overall calculated risk 
+score. Your risk score will be private and 
+NEVER shared unless granted 
+explicit permission.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
