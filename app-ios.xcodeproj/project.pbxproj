@@ -129,6 +129,7 @@
 		30D526861CDF8675001B41BA /* ActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526851CDF8675001B41BA /* ActionSheet.swift */; };
 		30D5268A1CDFAEC3001B41BA /* PayMerchantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526891CDFAEC3001B41BA /* PayMerchantViewController.swift */; };
 		30D5268C1CE0F303001B41BA /* Charge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D5268B1CE0F303001B41BA /* Charge.swift */; };
+		30D5268E1CE34C03001B41BA /* RiskScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D5268D1CE34C03001B41BA /* RiskScoreViewController.swift */; };
 		30DB595E1CA46CB0007FEE1E /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DB595C1CA46CB0007FEE1E /* Interface.storyboard */; };
 		30DB59601CA46CB0007FEE1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30DB595F1CA46CB0007FEE1E /* Assets.xcassets */; };
 		30DB59671CA46CB0007FEE1E /* app-watchos Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 30DB59661CA46CB0007FEE1E /* app-watchos Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -345,6 +346,7 @@
 		30D526851CDF8675001B41BA /* ActionSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActionSheet.swift; path = "app-ios/ActionSheet.swift"; sourceTree = SOURCE_ROOT; };
 		30D526891CDFAEC3001B41BA /* PayMerchantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PayMerchantViewController.swift; path = "app-ios/PayMerchantViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30D5268B1CE0F303001B41BA /* Charge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Charge.swift; path = "app-ios/Charge.swift"; sourceTree = SOURCE_ROOT; };
+		30D5268D1CE34C03001B41BA /* RiskScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RiskScoreViewController.swift; path = "app-ios/RiskScoreViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30DB595A1CA46CB0007FEE1E /* app-watchos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "app-watchos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30DB595D1CA46CB0007FEE1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		30DB595F1CA46CB0007FEE1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -454,8 +456,8 @@
 		30128DDE1C8FAC6E009E2EA7 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
-				306DF00C1CDA482200864CAE /* Menu */,
 				30B576891CC30388005BCA5A /* Search */,
+				306DF00C1CDA482200864CAE /* Menu */,
 				30DB9B751C9CF1E000871253 /* Profile */,
 			);
 			name = Subviews;
@@ -544,6 +546,7 @@
 			isa = PBXGroup;
 			children = (
 				306DF00E1CDA68AB00864CAE /* RiskProfileViewController.swift */,
+				30D5268D1CE34C03001B41BA /* RiskScoreViewController.swift */,
 			);
 			name = Risk;
 			sourceTree = "<group>";
@@ -1379,6 +1382,7 @@
 				30C2DB1D1CA43A05003AFD8B /* paykloud_iosUITests.swift in Sources */,
 				30C2DADB1CA438A5003AFD8B /* ProfileLabelCell.swift in Sources */,
 				3064931C1CD6B00500A17B00 /* TutorialHomeViewController.swift in Sources */,
+				30D5268E1CE34C03001B41BA /* RiskScoreViewController.swift in Sources */,
 				30C2DAA41CA4374F003AFD8B /* SignupIndividualViewControllerOne.swift in Sources */,
 				30BB07011CCFE7D20051C9E7 /* BrowserView.swift in Sources */,
 				30831F591CD013B000D5D0F4 /* ActivityViewController4.swift in Sources */,

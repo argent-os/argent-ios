@@ -493,8 +493,14 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         let item = self.accountHistoryArray?[indexPath.row]
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         cell.textLabel?.text = ""
-        cell.detailTextLabel?.text = "Account credited"
         cell.detailTextLabel?.textColor = UIColor.lightGrayColor()
+        if let amount = item?.amount {
+            if Double(amount)!/100 < 0 {
+                cell.detailTextLabel?.text = "Account debited"
+            } else {
+                cell.detailTextLabel?.text = "Account credited"
+            }
+        }
         if let text = item?.amount
         {
             cell.textLabel?.text = "$" + String(format: "%.2f", Double(text)!/100)

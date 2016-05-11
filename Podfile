@@ -48,6 +48,7 @@ target 'app-ios' do
 	pod 'QRCode'
 	pod 'XLActionController'
 	pod 'AYVibrantButton'
+	pod 'GaugeKit'
 	#pod 'DOFavoriteButton'
 
 	post_install do |installer|
