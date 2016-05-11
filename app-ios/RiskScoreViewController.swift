@@ -57,7 +57,7 @@ class RiskScoreViewController: UIViewController {
         lbl.frame = CGRect(x: 50, y: 60, width: self.view.layer.frame.width-100, height: 250)
         lbl.textColor = UIColor.whiteColor()
         lbl.textAlignment = .Center
-        lbl.font = UIFont(name: "AvenirNext-UltraLight", size: 36)
+        lbl.font = UIFont(name: "Avenir-Light", size: 36)
         self.view.addSubview(lbl)
         
         titleLabel.frame = CGRect(x: 50, y: 100, width: self.view.layer.frame.width-100, height: 250)
@@ -65,7 +65,7 @@ class RiskScoreViewController: UIViewController {
         titleLabel.alpha = 0.5
         titleLabel.textColor = UIColor.whiteColor()
         titleLabel.textAlignment = .Center
-        titleLabel.font = UIFont(name: "Avenir-Light", size: 14)
+        titleLabel.font = UIFont(name: "Avenir-Book", size: 14)
         self.view.addSubview(titleLabel)
         
         bg.frame = CGRect(x: 0, y: 0, width: self.view.frame.width+1, height: self.view.frame.height-250)
