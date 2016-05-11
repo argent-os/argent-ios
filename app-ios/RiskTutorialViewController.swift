@@ -38,8 +38,8 @@ class RiskTutorialViewController: UIViewController {
         titleLabel.textColor = UIColor.whiteColor()
         self.view.addSubview(titleLabel)
         
-        descriptionLabel.frame = CGRect(x: 20, y: 70, width: 260, height: 100)
-        descriptionLabel.text = "This is your risk profile. It's value ranges from 0-100 and provides an overall risk assessment based on your financial situation among other proprietary calculations.  The current risk profile values are Perfect, Great, Good, Average, and Bad. Contact support for more information regarding risk profiling."
+        descriptionLabel.frame = CGRect(x: 20, y: 70, width: 260, height: 150)
+        descriptionLabel.text = "This is your risk profile. It's value ranges from 0-100 and provides an overall risk assessment based on your financial situation among other proprietary calculations.  The current risk profile values are Perfect, Great, Good, Average, and Poor. Contact support for more information regarding risk profiling."
         descriptionLabel.numberOfLines = 0
         descriptionLabel.alpha = 0.8
         descriptionLabel.textAlignment = .Center

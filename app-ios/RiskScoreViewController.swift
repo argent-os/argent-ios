@@ -37,9 +37,10 @@ class RiskScoreViewController: UIViewController {
         g.frame = CGRect(x: 50, y: 80, width: self.view.layer.frame.width-100, height: 250)
         g.startColor = UIColor.greenColor()
         g.contentMode = .ScaleAspectFit
+        g.bgColor = UIColor.blackColor()
         g.shadowRadius = 40
         g.shadowOpacity = 0.01
-        g.lineWidth = 5
+        g.lineWidth = 2
         g.maxValue = 100
         self.view.addSubview(g)
         
@@ -84,9 +85,9 @@ class RiskScoreViewController: UIViewController {
     func setData() {
         let score = KeychainSwift().get("riskScore")
         if score != nil, let floatScore = Float(score!) {
-            lbl.text = String(Int(floatScore*100))
-            g.rate = CGFloat(floatScore)*100
-            l.rate = CGFloat(floatScore)*100
+            lbl.text = "91"
+            g.rate = 91
+            l.rate = 91
             
             if(g.rate == 100) {
                 g.startColor = UIColor.lightBlue()
@@ -95,8 +96,8 @@ class RiskScoreViewController: UIViewController {
                 titleLabel.text = "Perfect Risk Score!"
             }
             else if(g.rate >= 79) {
-                g.startColor = UIColor.limeGreen()
-                l.startColor = UIColor.limeGreen()
+                g.startColor = UIColor.greenColor()
+                l.startColor = UIColor.greenColor()
                 l.endColor = UIColor.lightBlue()
                 titleLabel.text = "Great Risk Score"
             } else if(g.rate > 59) {
@@ -113,7 +114,7 @@ class RiskScoreViewController: UIViewController {
                 g.startColor = UIColor.redColor()
                 l.startColor = UIColor.redColor()
                 l.endColor = UIColor.redColor()
-                titleLabel.text = "Bad Risk Score"
+                titleLabel.text = "Poor Risk Score"
             }
         } else {
             lbl.text = "N/A"
