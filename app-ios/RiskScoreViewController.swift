@@ -85,9 +85,9 @@ class RiskScoreViewController: UIViewController {
     func setData() {
         let score = KeychainSwift().get("riskScore")
         if score != nil, let floatScore = Float(score!) {
-            lbl.text = "91"
-            g.rate = 91
-            l.rate = 91
+            lbl.text = String(Int(floatScore*100))
+            g.rate = CGFloat(floatScore)*100
+            l.rate = CGFloat(floatScore)*100
             
             if(g.rate == 100) {
                 g.startColor = UIColor.lightBlue()
