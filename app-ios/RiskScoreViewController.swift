@@ -27,18 +27,9 @@ class RiskScoreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.addSubview(l)
 
         configureView()
         setData()
-    }
-
-    override func viewWillDisappear(animated: Bool) {
-        l.removeFromSuperview()
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        self.view.addSubview(l)
     }
     
     func configureView() {
@@ -61,7 +52,8 @@ class RiskScoreViewController: UIViewController {
         l.shadowOpacity = 0.01
         l.lineWidth = 20
         l.maxValue = 100
-        
+        self.view.addSubview(l)
+
         lbl.frame = CGRect(x: 50, y: 60, width: self.view.layer.frame.width-100, height: 250)
         lbl.textColor = UIColor.whiteColor()
         lbl.textAlignment = .Center
@@ -86,7 +78,9 @@ class RiskScoreViewController: UIViewController {
         info.setBackgroundImage(UIImage(named: "ic_question"), forState: .Normal)
         info.contentMode = .ScaleAspectFit
         info.addTarget(self, action: #selector(RiskScoreViewController.showInfoModal(_:)), forControlEvents: .TouchUpInside)
+        info.addTarget(self, action: #selector(RiskScoreViewController.showInfoModal(_:)), forControlEvents: .TouchUpOutside)
         self.view.addSubview(info)
+        self.view.bringSubviewToFront(info)
         
     }
     
@@ -139,6 +133,7 @@ class RiskScoreViewController: UIViewController {
         let navigationController = self.storyboard!.instantiateViewControllerWithIdentifier("infoModalNavigationController") as! UINavigationController
         let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
         
+        print("showing tut")
         // Initialize and style the terms and conditions modal
         formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
         formSheetController.presentationController?.contentViewSize = CGSizeMake(300, 300)
