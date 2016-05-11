@@ -206,13 +206,13 @@ extension UIApplication {
 
 extension UIColor {
     static func mediumBlue() -> UIColor {
-        return UIColor(rgba: "#233f8a")
+        return UIColor(rgba: "#4c5a67")
     }
     static func darkBlue() -> UIColor {
-        return UIColor(rgba: "#152e6e")
+        return UIColor(rgba: "#1d282d")
     }
     static func lightBlue() -> UIColor {
-        return UIColor(rgba: "#38a1fe")
+        return UIColor(rgba: "#99acbd")
     }
     static func limeGreen() -> UIColor {
         return UIColor(rgba: "#d8ff52")

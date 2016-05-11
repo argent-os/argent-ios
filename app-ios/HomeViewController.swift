@@ -264,8 +264,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         graph.dataSource = self
         graph.colorTop = UIColor.clearColor()
         graph.colorBottom = UIColor.darkBlue()
-        graph.colorLine = UIColor(rgba: "#0003")
-        graph.colorPoint = UIColor.whiteColor()
+//        graph.colorLine = UIColor(rgba: "#0003")
+        graph.colorLine = UIColor.yellowColor()
+        graph.colorPoint = UIColor.orangeColor()
         graph.colorBackgroundPopUplabel = UIColor.whiteColor()
         graph.delegate = self
         graph.widthLine = 3
