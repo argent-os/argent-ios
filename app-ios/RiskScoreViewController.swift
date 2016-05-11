@@ -27,11 +27,20 @@ class RiskScoreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.addSubview(l)
+
         configureView()
         setData()
     }
 
+    override func viewWillDisappear(animated: Bool) {
+        l.removeFromSuperview()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.view.addSubview(l)
+    }
+    
     func configureView() {
         
         g.frame = CGRect(x: 50, y: 80, width: self.view.layer.frame.width-100, height: 250)
@@ -52,7 +61,6 @@ class RiskScoreViewController: UIViewController {
         l.shadowOpacity = 0.01
         l.lineWidth = 20
         l.maxValue = 100
-        self.view.addSubview(l)
         
         lbl.frame = CGRect(x: 50, y: 60, width: self.view.layer.frame.width-100, height: 250)
         lbl.textColor = UIColor.whiteColor()
