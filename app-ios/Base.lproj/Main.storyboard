@@ -287,14 +287,14 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="WsJ-UR-NwF" firstAttribute="centerY" secondItem="Mhz-ig-91I" secondAttribute="centerY" id="BWx-m0-j5q"/>
-                                    <constraint firstItem="WsJ-UR-NwF" firstAttribute="centerX" secondItem="Mhz-ig-91I" secondAttribute="centerX" id="q9x-44-k0w"/>
+                                    <constraint firstItem="WsJ-UR-NwF" firstAttribute="centerX" secondItem="Mhz-ig-91I" secondAttribute="centerX" id="CDp-W0-Hvi"/>
+                                    <constraint firstItem="WsJ-UR-NwF" firstAttribute="centerY" secondItem="Mhz-ig-91I" secondAttribute="centerY" id="xPL-1G-caY"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable App Security" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZgR-LK-D6u">
-                                <rect key="frame" x="20" y="176" width="374" height="39"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Application Security" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZgR-LK-D6u">
+                                <rect key="frame" x="20" y="166" width="374" height="49"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="39" id="cPU-Lb-XQf"/>
+                                    <constraint firstAttribute="height" constant="49" id="Omt-IP-TIq"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -303,7 +303,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fuD-HU-ISB">
                                 <rect key="frame" x="20" y="223" width="374" height="62"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="62" id="5it-qG-PRa"/>
+                                    <constraint firstAttribute="height" constant="62" id="bWw-TX-xQp"/>
                                 </constraints>
                                 <string key="text">We use TouchID as 
 the default configuration
@@ -316,7 +316,7 @@ for older iOS versions</string>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FEn-Bp-Q0E">
                                 <rect key="frame" x="20" y="293" width="374" height="63"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="63" id="ykF-XW-prc"/>
+                                    <constraint firstAttribute="height" constant="63" id="s0I-9P-w6x"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -328,41 +328,39 @@ for older iOS versions</string>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Hy-f5-vpn">
-                                <rect key="frame" x="20" y="20" width="374" height="54"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="54" id="Brz-Zn-uuy"/>
-                                </constraints>
+                                <rect key="frame" x="20" y="20" width="374" height="44"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconTouchSecure" translatesAutoresizingMaskIntoConstraints="NO" id="c79-qa-XdE">
-                                <rect key="frame" x="143" y="82" width="128" height="86"/>
+                                <rect key="frame" x="143" y="72" width="128" height="86"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="128" id="Kvm-rX-9fg"/>
+                                    <constraint firstAttribute="width" constant="128" id="SdV-Sl-SRX"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
                         <constraints>
-                            <constraint firstItem="fuD-HU-ISB" firstAttribute="leading" secondItem="FEn-Bp-Q0E" secondAttribute="leading" id="FCZ-Lq-jPU"/>
-                            <constraint firstItem="3Hy-f5-vpn" firstAttribute="trailing" secondItem="ZgR-LK-D6u" secondAttribute="trailing" id="NDh-qi-WGo"/>
-                            <constraint firstItem="fuD-HU-ISB" firstAttribute="top" secondItem="ZgR-LK-D6u" secondAttribute="bottom" constant="8" symbolic="YES" id="Pe6-Ch-wrP"/>
-                            <constraint firstItem="Mhz-ig-91I" firstAttribute="top" secondItem="FEn-Bp-Q0E" secondAttribute="bottom" constant="8" symbolic="YES" id="QZu-yl-2Fb"/>
-                            <constraint firstItem="Mhz-ig-91I" firstAttribute="leading" secondItem="cjg-Gh-qx4" secondAttribute="leading" id="U6Y-ul-4Az"/>
-                            <constraint firstItem="3Hy-f5-vpn" firstAttribute="leading" secondItem="ZgR-LK-D6u" secondAttribute="leading" id="UeS-3N-eH3"/>
-                            <constraint firstItem="FEn-Bp-Q0E" firstAttribute="top" secondItem="fuD-HU-ISB" secondAttribute="bottom" constant="8" symbolic="YES" id="WZy-VM-aN2"/>
-                            <constraint firstAttribute="trailing" secondItem="Mhz-ig-91I" secondAttribute="trailing" id="cqi-aN-SAE"/>
-                            <constraint firstItem="3Hy-f5-vpn" firstAttribute="leading" secondItem="cjg-Gh-qx4" secondAttribute="leadingMargin" id="dub-jU-FBq"/>
-                            <constraint firstItem="ZgR-LK-D6u" firstAttribute="trailing" secondItem="fuD-HU-ISB" secondAttribute="trailing" id="fJ1-4h-f59"/>
-                            <constraint firstItem="c79-qa-XdE" firstAttribute="centerX" secondItem="ZgR-LK-D6u" secondAttribute="centerX" id="hqi-bt-lDV"/>
-                            <constraint firstItem="FEn-Bp-Q0E" firstAttribute="centerX" secondItem="Mhz-ig-91I" secondAttribute="centerX" id="psZ-Jr-uQW"/>
-                            <constraint firstItem="ZgR-LK-D6u" firstAttribute="leading" secondItem="fuD-HU-ISB" secondAttribute="leading" id="rIZ-D5-Rex"/>
-                            <constraint firstItem="ZgR-LK-D6u" firstAttribute="top" secondItem="c79-qa-XdE" secondAttribute="bottom" constant="8" symbolic="YES" id="rZu-Id-pDH"/>
-                            <constraint firstItem="fuD-HU-ISB" firstAttribute="trailing" secondItem="FEn-Bp-Q0E" secondAttribute="trailing" id="raG-Ai-Eoo"/>
-                            <constraint firstItem="c79-qa-XdE" firstAttribute="top" secondItem="3Hy-f5-vpn" secondAttribute="bottom" constant="8" symbolic="YES" id="uit-00-35N"/>
-                            <constraint firstItem="3Hy-f5-vpn" firstAttribute="top" secondItem="cjg-Gh-qx4" secondAttribute="top" constant="20" symbolic="YES" id="vQo-8W-1tr"/>
-                            <constraint firstItem="Mhz-ig-91I" firstAttribute="bottom" secondItem="8ws-xj-SDk" secondAttribute="top" id="wKJ-h3-R4I"/>
+                            <constraint firstItem="FEn-Bp-Q0E" firstAttribute="top" secondItem="fuD-HU-ISB" secondAttribute="bottom" constant="8" symbolic="YES" id="2sp-eN-DWE"/>
+                            <constraint firstItem="Mhz-ig-91I" firstAttribute="top" secondItem="FEn-Bp-Q0E" secondAttribute="bottom" constant="8" symbolic="YES" id="4wF-aJ-kif"/>
+                            <constraint firstItem="Mhz-ig-91I" firstAttribute="leading" secondItem="cjg-Gh-qx4" secondAttribute="leading" id="4xM-3J-k5A"/>
+                            <constraint firstItem="fuD-HU-ISB" firstAttribute="top" secondItem="ZgR-LK-D6u" secondAttribute="bottom" constant="8" symbolic="YES" id="62g-af-SCJ"/>
+                            <constraint firstItem="3Hy-f5-vpn" firstAttribute="leading" secondItem="ZgR-LK-D6u" secondAttribute="leading" id="7Tx-j3-llK"/>
+                            <constraint firstItem="ZgR-LK-D6u" firstAttribute="top" secondItem="c79-qa-XdE" secondAttribute="bottom" constant="8" symbolic="YES" id="AiO-lg-CGN"/>
+                            <constraint firstItem="ZgR-LK-D6u" firstAttribute="trailing" secondItem="fuD-HU-ISB" secondAttribute="trailing" id="E41-5w-TkG"/>
+                            <constraint firstAttribute="trailing" secondItem="Mhz-ig-91I" secondAttribute="trailing" id="KWs-Bh-G5p"/>
+                            <constraint firstItem="3Hy-f5-vpn" firstAttribute="trailing" secondItem="ZgR-LK-D6u" secondAttribute="trailing" id="KbH-rn-NHY"/>
+                            <constraint firstItem="ZgR-LK-D6u" firstAttribute="leading" secondItem="fuD-HU-ISB" secondAttribute="leading" id="VS8-lK-Kla"/>
+                            <constraint firstItem="3Hy-f5-vpn" firstAttribute="top" secondItem="cjg-Gh-qx4" secondAttribute="top" constant="20" symbolic="YES" id="WhO-hp-Ack"/>
+                            <constraint firstItem="3Hy-f5-vpn" firstAttribute="leading" secondItem="cjg-Gh-qx4" secondAttribute="leadingMargin" id="apY-OT-arM"/>
+                            <constraint firstItem="fuD-HU-ISB" firstAttribute="trailing" secondItem="FEn-Bp-Q0E" secondAttribute="trailing" id="cSi-Ci-T1n"/>
+                            <constraint firstItem="c79-qa-XdE" firstAttribute="top" secondItem="N9c-Oy-RjQ" secondAttribute="bottom" constant="8" symbolic="YES" id="fNq-ea-X4b"/>
+                            <constraint firstItem="Mhz-ig-91I" firstAttribute="bottom" secondItem="8ws-xj-SDk" secondAttribute="top" id="kOz-xg-uks"/>
+                            <constraint firstItem="fuD-HU-ISB" firstAttribute="leading" secondItem="FEn-Bp-Q0E" secondAttribute="leading" id="o1n-cp-VEw"/>
+                            <constraint firstItem="3Hy-f5-vpn" firstAttribute="centerX" secondItem="c79-qa-XdE" secondAttribute="centerX" id="pU0-Id-GPq"/>
+                            <constraint firstItem="c79-qa-XdE" firstAttribute="top" secondItem="3Hy-f5-vpn" secondAttribute="bottom" constant="8" symbolic="YES" id="qN8-6b-DXU"/>
+                            <constraint firstItem="FEn-Bp-Q0E" firstAttribute="centerX" secondItem="Mhz-ig-91I" secondAttribute="centerX" id="ten-RI-Rz2"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
