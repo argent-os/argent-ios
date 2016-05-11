@@ -252,7 +252,7 @@
                         <viewControllerLayoutGuide type="bottom" id="9sL-eu-DXM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3fx-Yv-Vo1">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -698,6 +698,116 @@ support request</string>
             </objects>
             <point key="canvasLocation" x="2612" y="-2800"/>
         </scene>
+        <!--Transfer View Controller-->
+        <scene sceneID="8Rj-l5-CUo">
+            <objects>
+                <viewController id="qI0-OM-i0b" customClass="TransferViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="auV-vN-3fg"/>
+                        <viewControllerLayoutGuide type="bottom" id="dwp-No-9Yp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mLa-SX-qM6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Maj-v5-q8W">
+                                <rect key="frame" x="20" y="666" width="374" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="x5e-ed-Tan"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <state key="normal" title="Initiate Transfer"/>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconPiggy" translatesAutoresizingMaskIntoConstraints="NO" id="iKL-Y4-ua9">
+                                <rect key="frame" x="164" y="198" width="86" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="5Yn-c2-K8l"/>
+                                    <constraint firstAttribute="width" constant="86" id="gob-nk-qXh"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6g5-U6-vG6">
+                                <rect key="frame" x="16" y="390" width="383" height="62"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="62" id="T9U-NV-JtJ"/>
+                                </constraints>
+                                <string key="text">Cash out your available balance to
+ the bank account of your choice.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WCp-uf-jDv">
+                                <rect key="frame" x="20" y="460" width="374" height="130"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="0rc-Gn-uSd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W1C-yc-Ejp">
+                                <rect key="frame" x="20" y="20" width="374" height="170"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JMw-jG-pKa">
+                                <rect key="frame" x="0.0" y="598" width="414" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="cpY-7T-Fh6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <state key="normal" title="View Past Transfers">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Transfers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cye-du-MGb">
+                                <rect key="frame" x="20" y="334" width="374" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="Dvc-cp-oYf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="W1C-yc-Ejp" firstAttribute="leading" secondItem="mLa-SX-qM6" secondAttribute="leadingMargin" id="0Ch-v3-Poy"/>
+                            <constraint firstItem="cye-du-MGb" firstAttribute="trailing" secondItem="WCp-uf-jDv" secondAttribute="trailing" id="DRp-xO-Gp6"/>
+                            <constraint firstAttribute="bottom" secondItem="Maj-v5-q8W" secondAttribute="bottom" constant="20" symbolic="YES" id="F6g-ne-XkR"/>
+                            <constraint firstItem="WCp-uf-jDv" firstAttribute="trailing" secondItem="Maj-v5-q8W" secondAttribute="trailing" id="Hz7-pO-IFu"/>
+                            <constraint firstItem="JMw-jG-pKa" firstAttribute="centerX" secondItem="Maj-v5-q8W" secondAttribute="centerX" id="IGh-Ab-txX"/>
+                            <constraint firstItem="W1C-yc-Ejp" firstAttribute="trailing" secondItem="cye-du-MGb" secondAttribute="trailing" id="Jz4-jt-ift"/>
+                            <constraint firstItem="iKL-Y4-ua9" firstAttribute="centerX" secondItem="cye-du-MGb" secondAttribute="centerX" id="OCz-kh-crE"/>
+                            <constraint firstItem="cye-du-MGb" firstAttribute="centerX" secondItem="6g5-U6-vG6" secondAttribute="centerX" id="Oks-0m-gJ2"/>
+                            <constraint firstItem="cye-du-MGb" firstAttribute="leading" secondItem="WCp-uf-jDv" secondAttribute="leading" id="V23-th-rv9"/>
+                            <constraint firstItem="W1C-yc-Ejp" firstAttribute="leading" secondItem="cye-du-MGb" secondAttribute="leading" id="V5c-yM-TXQ"/>
+                            <constraint firstAttribute="trailing" secondItem="JMw-jG-pKa" secondAttribute="trailing" id="WNz-Kh-hez"/>
+                            <constraint firstItem="WCp-uf-jDv" firstAttribute="top" secondItem="6g5-U6-vG6" secondAttribute="bottom" constant="8" symbolic="YES" id="Y1Y-Du-btc"/>
+                            <constraint firstItem="JMw-jG-pKa" firstAttribute="leading" secondItem="mLa-SX-qM6" secondAttribute="leading" id="dif-2d-sLQ"/>
+                            <constraint firstItem="6g5-U6-vG6" firstAttribute="leading" secondItem="mLa-SX-qM6" secondAttribute="leadingMargin" constant="-4" id="gzs-l5-n17"/>
+                            <constraint firstItem="Maj-v5-q8W" firstAttribute="top" secondItem="JMw-jG-pKa" secondAttribute="bottom" constant="8" symbolic="YES" id="izJ-LX-XE8"/>
+                            <constraint firstItem="6g5-U6-vG6" firstAttribute="top" secondItem="cye-du-MGb" secondAttribute="bottom" constant="8" symbolic="YES" id="jEx-Mb-86f"/>
+                            <constraint firstItem="JMw-jG-pKa" firstAttribute="top" secondItem="WCp-uf-jDv" secondAttribute="bottom" constant="8" symbolic="YES" id="kOH-8i-hfs"/>
+                            <constraint firstItem="iKL-Y4-ua9" firstAttribute="top" secondItem="W1C-yc-Ejp" secondAttribute="bottom" constant="8" symbolic="YES" id="rSi-ey-95c"/>
+                            <constraint firstItem="WCp-uf-jDv" firstAttribute="leading" secondItem="Maj-v5-q8W" secondAttribute="leading" id="vpf-jy-pmZ"/>
+                            <constraint firstItem="W1C-yc-Ejp" firstAttribute="top" secondItem="mLa-SX-qM6" secondAttribute="top" constant="20" symbolic="YES" id="xcF-WT-Jhh"/>
+                            <constraint firstItem="cye-du-MGb" firstAttribute="top" secondItem="iKL-Y4-ua9" secondAttribute="bottom" constant="8" symbolic="YES" id="zRA-ze-jCx"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="initiateTransferButton" destination="Maj-v5-q8W" id="cXX-6d-QJv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wcQ-XA-oJ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1483" y="-4426"/>
+        </scene>
         <!--Profile Menu View Controller-->
         <scene sceneID="8pv-XZ-CS6">
             <objects>
@@ -937,6 +1047,9 @@ support request</string>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="qI0-OM-i0b" kind="show" id="ocN-03-D7s"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="b5u-PO-BzI">
                                         <rect key="frame" x="0.0" y="504" width="1024" height="44"/>
@@ -1781,7 +1894,7 @@ institutions</string>
             <objects>
                 <tableViewController id="KGf-0C-kob" customClass="LoginBoxTableViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="static" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="bgy-lf-zOr">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="88"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -1789,13 +1902,13 @@ institutions</string>
                             <tableViewSection id="rTA-q7-2M2">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" id="tF7-UZ-FCf">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tF7-UZ-FCf" id="K0b-Ts-Ds6">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username or Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cIS-Br-dKu">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username or Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cIS-Br-dKu">
                                                     <rect key="frame" x="8" y="7" width="284" height="30"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
@@ -1813,13 +1926,13 @@ institutions</string>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Euc-ps-ykF" userLabel="Password Cell">
-                                        <rect key="frame" x="0.0" y="44" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="44" width="300" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Euc-ps-ykF" id="wMO-GX-3Ba">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Ul-P4-THN">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Ul-P4-THN">
                                                     <rect key="frame" x="8" y="7" width="284" height="30"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
@@ -3560,6 +3673,7 @@ explicit permission.</string>
         <image name="IconCreditCard" width="86" height="63"/>
         <image name="IconLogoWhite" width="342" height="342"/>
         <image name="IconPerson" width="86" height="79"/>
+        <image name="IconPiggy" width="86" height="86"/>
         <image name="IconRisk" width="86" height="86"/>
         <image name="IconTouchSecure" width="86" height="86"/>
         <image name="ic_close_light" width="22" height="22"/>
@@ -3571,24 +3685,24 @@ explicit permission.</string>
         <image name="ic_user" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="exE-qz-Ig3"/>
-        <segue reference="m3z-fp-Nlm"/>
-        <segue reference="igQ-zk-tCm"/>
-        <segue reference="aks-Yo-Spb"/>
-        <segue reference="7cu-FP-MoG"/>
-        <segue reference="Bc6-jW-uiV"/>
         <segue reference="fEJ-lR-z9I"/>
+        <segue reference="aks-Yo-Spb"/>
+        <segue reference="igQ-zk-tCm"/>
+        <segue reference="m3z-fp-Nlm"/>
+        <segue reference="exE-qz-Ig3"/>
         <segue reference="agi-3I-cSC"/>
         <segue reference="VI5-hp-Gm2"/>
         <segue reference="ipn-3I-3vc"/>
-        <segue reference="rU0-4E-4jX"/>
+        <segue reference="Bc6-jW-uiV"/>
+        <segue reference="7cu-FP-MoG"/>
+        <segue reference="mwT-xt-Ez4"/>
+        <segue reference="zQh-Po-kj4"/>
+        <segue reference="wgV-xY-MTp"/>
         <segue reference="xTl-cs-ajG"/>
         <segue reference="YDb-8b-gnI"/>
         <segue reference="kpf-dT-hyx"/>
         <segue reference="m0d-gd-RWW"/>
         <segue reference="o5e-Ut-781"/>
-        <segue reference="zQh-Po-kj4"/>
-        <segue reference="wgV-xY-MTp"/>
         <segue reference="zsk-4D-roF"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

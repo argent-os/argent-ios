@@ -41,6 +41,7 @@
 		30831F631CD01B1500D5D0F4 /* DirectManipulationGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30831F621CD01B1500D5D0F4 /* DirectManipulationGestureRecognizer.swift */; };
 		308A348A1CCA803200AAF66F /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A34891CCA803200AAF66F /* History.swift */; };
 		309544F51CD295AE003007B2 /* ParallaxHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309544F41CD295AE003007B2 /* ParallaxHeader.swift */; };
+		30960EFF1CE3D7C100749695 /* TransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30960EFE1CE3D7C100749695 /* TransferViewController.swift */; };
 		309C8CCA1CCEEE8C0073159C /* SignupCountryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309C8CC91CCEEE8C0073159C /* SignupCountryPickerViewController.swift */; };
 		309E43BE1CA8ADF900279D97 /* WebTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E43BD1CA8ADF900279D97 /* WebTermsViewController.swift */; };
 		309E43C21CA8AE0B00279D97 /* WebSupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E43C11CA8AE0B00279D97 /* WebSupportViewController.swift */; };
@@ -257,6 +258,7 @@
 		30831F621CD01B1500D5D0F4 /* DirectManipulationGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectManipulationGestureRecognizer.swift; path = "app-ios/DirectManipulationGestureRecognizer.swift"; sourceTree = SOURCE_ROOT; };
 		308A34891CCA803200AAF66F /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = History.swift; path = "app-ios/History.swift"; sourceTree = SOURCE_ROOT; };
 		309544F41CD295AE003007B2 /* ParallaxHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParallaxHeader.swift; path = "app-ios/ParallaxHeader.swift"; sourceTree = SOURCE_ROOT; };
+		30960EFE1CE3D7C100749695 /* TransferViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransferViewController.swift; path = "app-ios/TransferViewController.swift"; sourceTree = SOURCE_ROOT; };
 		309C8CC91CCEEE8C0073159C /* SignupCountryPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupCountryPickerViewController.swift; path = "app-ios/SignupCountryPickerViewController.swift"; sourceTree = SOURCE_ROOT; };
 		309E43BD1CA8ADF900279D97 /* WebTermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebTermsViewController.swift; path = "app-ios/WebTermsViewController.swift"; sourceTree = SOURCE_ROOT; };
 		309E43C11CA8AE0B00279D97 /* WebSupportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebSupportViewController.swift; path = "app-ios/WebSupportViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -485,6 +487,7 @@
 		3015ADC41CE3D3E10053D220 /* Transfer */ = {
 			isa = PBXGroup;
 			children = (
+				30960EFE1CE3D7C100749695 /* TransferViewController.swift */,
 			);
 			name = Transfer;
 			sourceTree = "<group>";
@@ -1439,6 +1442,7 @@
 				30C2DAAA1CA4374F003AFD8B /* SignupViewControllerTwo.swift in Sources */,
 				30D5267D1CDE3736001B41BA /* ConfigurePointOfSaleViewController.swift in Sources */,
 				30C2DAF91CA43975003AFD8B /* User.swift in Sources */,
+				30960EFF1CE3D7C100749695 /* TransferViewController.swift in Sources */,
 				30C2DB151CA439E6003AFD8B /* Gravatar.swift in Sources */,
 				300E422D1CB56E10004316CF /* Bank.swift in Sources */,
 				30C2DA961CA4372D003AFD8B /* PasscodeSettingsViewController.swift in Sources */,
