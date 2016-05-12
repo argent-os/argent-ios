@@ -12,15 +12,18 @@ import SwiftyJSON
 import JGProgressHUD
 import WatchConnectivity
 
-class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UITextFieldDelegate {
+class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, WCSessionDelegate {
 
     var window:UIWindow = UIWindow()
     
     @IBOutlet weak var usernameTextField: UITextField!
+    
     @IBOutlet weak var passwordTextField: UITextField!
 
     @IBOutlet var loginTableView: UITableView!
+    
     @IBOutlet weak var usernameCell: UITableViewCell!
+    
     @IBOutlet weak var passwordCell: UITableViewCell!
     
     override func viewDidLoad() {
@@ -28,10 +31,7 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
         
         let screen = UIScreen.mainScreen().bounds
         let width = screen.size.width
-        
-        // Add button to keyboard
-        addToolbarButton()
-        
+
         self.usernameTextField.delegate = self
         self.passwordTextField.delegate = self
         
@@ -47,20 +47,6 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
         passwordTextField.attributedPlaceholder = str2
         passwordTextField.textRectForBounds(CGRectMake(0, 0, 0, 0))
         
-        
-        // Blurview
-        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
-        visualEffectView.frame = CGRectMake(0, 0, width, 330)
-        let blurImageView: UIImageView = UIImageView(frame: CGRectMake(0, 0, width, 330))
-        blurImageView.contentMode = .ScaleAspectFill
-        blurImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-        blurImageView.layer.masksToBounds = true
-        blurImageView.clipsToBounds = true
-        blurImageView.image = UIImage(named: "BackgroundGradientInverse")
-//        self.view.addSubview(blurImageView)
-//        blurImageView.addSubview(visualEffectView)
-        self.view.sendSubviewToBack(blurImageView)
-        
         loginTableView.separatorColor = UIColor(rgba: "#eee3")
         loginTableView.backgroundColor = UIColor(rgba: "#2221")
         
@@ -74,6 +60,32 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
         passwordCell.textLabel?.textColor = UIColor.whiteColor()
     }
     
+    func login(sender: AnyObject) {
+        Auth.login(usernameTextField.text!, username: usernameTextField.text!, password: passwordTextField.text!) { (token) in
+            if(token != "") {
+                self.performSegueWithIdentifier("homeView", sender: self)
+            }
+            // Send access token and Stripe key to Apple Watch
+            if WCSession.isSupported() { //makes sure it's not an iPad or iPod
+                let watchSession = WCSession.defaultSession()
+                watchSession.delegate = self
+                watchSession.activateSession()
+                if watchSession.paired && watchSession.watchAppInstalled {
+                    do {
+                        try watchSession.updateApplicationContext(
+                            [
+                                "user_token": token
+                            ]
+                        )
+                        print("setting watch data")
+                    } catch let error as NSError {
+                        print(error.description)
+                    }
+                }
+            }
+        }
+    }
+    
     func textRectForBounds(bounds: CGRect) -> CGRect {
         return CGRectInset(bounds, 0, 10)
     }
@@ -83,134 +95,8 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
         return CGRectInset(bounds, 0, 10)
     }
     
-    // Add send toolbar
-    func addToolbarButton()
-    {
-        let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
-        let sendToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, screenWidth, 50))
-        // sendToolbar.barStyle = UIBarStyle.Default
-        
-        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Login", style: UIBarButtonItemStyle.Done, target: self, action: #selector(LoginBoxTableViewController.loginButtonTapped(_:)))
-        
-        UIToolbar.appearance().barTintColor = UIColor.whiteColor()
-
-        done.setTitleTextAttributes([
-                    NSFontAttributeName : UIFont(name: "Avenir-Light", size: 15.0)!,
-                    NSForegroundColorAttributeName : UIColor.mediumBlue()
-                    ], forState: .Normal)
-        
-        var items: [UIBarButtonItem]? = [UIBarButtonItem]()
-        items?.append(flexSpace)
-        items?.append(done)
-        items?.append(flexSpace)
-        
-        sendToolbar.items = items
-        sendToolbar.sizeToFit()
-        passwordTextField.inputAccessoryView=sendToolbar
-        usernameTextField.inputAccessoryView=sendToolbar
-    }
-    
-    @IBAction func loginButtonTapped(sender: AnyObject) {
-        let email = usernameTextField.text
-        let username = usernameTextField.text
-        let password = passwordTextField.text
-        
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
-        // HUD.textLabel.text = "Logging in"
-        HUD.showInView(self.view!)
-        HUD.dismissAfterDelay(0.3)
-        
-        // check for empty fields
-        if(email!.isEmpty) {
-            // display alert message
-            displayErrorAlertMessage("Username or Email not entered");
-            return;
-        } else if(password!.isEmpty) {
-            displayErrorAlertMessage("Password not entered");
-            return;
-        }
-        
-        Alamofire.request(.POST, apiUrl + "/v1/login", parameters: [
-            "username": username!,
-            "email":email!,
-            "password":password!
-            ],
-            encoding:.JSON)
-            .progress { bytesWritten, totalBytesWritten, totalBytesExpectedToWrite in
-                // print(totalBytesWritten)
-                // print(totalBytesExpectedToWrite)
-                
-                // This closure is NOT called on the main queue for performance
-                // reasons. To update your ui, dispatch to the main queue.
-                dispatch_async(dispatch_get_main_queue()) {
-                    // print("Total bytes written on main queue: \(totalBytesWritten)")
-                }
-            }
-            .responseJSON { response in
-                // go to main view
-                if(response.response?.statusCode == 200) {
-                    NSUserDefaults.standardUserDefaults().setBool(true,forKey:"userLoggedIn")
-                    NSUserDefaults.standardUserDefaults().synchronize()
-                } else {
-                    self.displayDefaultErrorAlertMessage("Failed to login, please check username/email and password are correct");
-                }
-                
-                switch response.result {
-                case .Success:
-                    if let value = response.result.value {
-                        let json = JSON(value)
-                        userData = json
-                        
-                        // Send access token and Stripe key to Apple Watch
-                        if WCSession.isSupported() { //makes sure it's not an iPad or iPod
-                            let watchSession = WCSession.defaultSession()
-                            watchSession.delegate = self
-                            watchSession.activateSession()
-                            if watchSession.paired && watchSession.watchAppInstalled {
-                                do {
-                                    try watchSession.updateApplicationContext(
-                                        [
-                                            // TODO: Make secret key call from API, find user by ID
-                                            "user_token": userData!["token"].stringValue,
-                                            "stripe_key": userData!["user"]["stripe"]["secretKey"].stringValue,
-                                            "account_id": userData!["user"]["stripe"]["accountId"].stringValue
-                                        ]
-                                    )
-                                    print("setting watch data")
-                                } catch let error as NSError {
-                                    print(error.description)
-                                }
-                            }
-                        }
-                        
-                        let token = userData!["token"].stringValue
-
-                        NSUserDefaults.standardUserDefaults().setValue(token, forKey: "userAccessToken")
-                        NSUserDefaults.standardUserDefaults().synchronize()
-                        
-                        // go to main view
-                        self.performSegueWithIdentifier("homeView", sender: self);
-                        
-                        self.dismissKeyboard()
-                        
-                    }
-                case .Failure(let error):
-                    print(error)
-                    self.displayDefaultErrorAlertMessage("Failed to login, please check username/email and password are correct");
-                }
-        }
-        
-    }
-    
     override func viewWillDisappear(animated: Bool) {
-//        UIToolbar.appearance().barTintColor = UIColor(rgba: "#1796fa")
-//        UIToolbar.appearance().backgroundColor = UIColor(rgba: "#1796fa")
-//        if let font = UIFont(name: "Avenir-Book", size: 15) {
-//            UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: font,NSForegroundColorAttributeName:UIColor.whiteColor()], forState: UIControlState.Normal)
-//            
-//        }
+
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -231,10 +117,8 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
             let sb = UIStoryboard(name: "Main", bundle: nil)
             let rootViewController = (sb.instantiateViewControllerWithIdentifier("RootViewController")) as UIViewController
             self.presentViewController(rootViewController, animated: true, completion: nil)
-            let root = UIApplication.sharedApplication().keyWindow?.rootViewController
             self.window.rootViewController = rootViewController
-//                root!.presentViewController(rootViewController, animated: false, completion: { () -> Void in
-//                })
+            UIApplication.sharedApplication().keyWindow?.rootViewController = rootViewController
             // critical: ensures rootViewController is set on login
         }
     }
@@ -249,7 +133,7 @@ class LoginBoxTableViewController: UITableViewController, WCSessionDelegate, UIT
             nextR.becomeFirstResponder()
         } else {
             // Not found, so remove keyboard.
-            self.loginButtonTapped(self)
+            self.login(self)
             textField.resignFirstResponder()
             return true
         }
