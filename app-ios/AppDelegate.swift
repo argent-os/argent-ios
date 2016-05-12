@@ -197,24 +197,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Edit scheme to run automatically, run after launch confirm,, and back to run automatically
     // http://stackoverflow.com/questions/24878274/getting-dyld-fatal-error-after-updating-to-xcode-6-beta-4-using-swift
 }
-// Fix Push notification bug: _handleNonLaunchSpecificActions
-extension UIApplication {
-    func _handleNonLaunchSpecificActions(arg1: AnyObject, forScene arg2: AnyObject, withTransitionContext arg3: AnyObject, completion completionHandler: () -> Void) {
-        //catching handleNonLaunchSpecificActions:forScene exception on app close
-    }
-}
-
-extension UIColor {
-    static func mediumBlue() -> UIColor {
-        return UIColor(rgba: "#4c5a67")
-    }
-    static func darkBlue() -> UIColor {
-        return UIColor(rgba: "#1d282d")
-    }
-    static func lightBlue() -> UIColor {
-        return UIColor(rgba: "#99acbd")
-    }
-    static func limeGreen() -> UIColor {
-        return UIColor(rgba: "#d8ff52")
-    }
-}

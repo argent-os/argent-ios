@@ -40,11 +40,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Search" image="ic_search" id="U4p-ue-j3d" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
-                        <connections>
-                            <outlet property="animation" destination="5og-XN-6KF" id="t1q-Mn-7Zh"/>
-                        </connections>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Search" image="ic_search" id="U4p-ue-j3d"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
@@ -54,19 +50,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdn-59-Bnh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="5og-XN-6KF" customClass="RAMBounceAnimation" customModule="RAMAnimatedTabBarController">
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="color" keyPath="iconSelectedColor">
-                            <color key="value" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="duration">
-                            <real key="value" value="1"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="textSelectedColor">
-                            <color key="value" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </customObject>
                 <searchDisplayController id="b3j-hU-muC">
                     <connections>
                         <outlet property="delegate" destination="a1M-TW-bLs" id="OM9-Cd-uc9"/>
@@ -1715,11 +1698,7 @@ institutions</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <tabBarItem key="tabBarItem" title="Notifications" image="ic_notify" selectedImage="ic_notify" id="YyQ-LY-ofo" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
-                        <connections>
-                            <outlet property="animation" destination="ZBX-kF-EwL" id="u62-Bl-MLc"/>
-                        </connections>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Notifications" image="ic_notify" selectedImage="ic_notify" id="YyQ-LY-ofo" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController"/>
                     <navigationItem key="navigationItem" id="IZf-rL-VA4">
                         <nil key="title"/>
                     </navigationItem>
@@ -1727,19 +1706,6 @@ institutions</string>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                 </viewController>
-                <customObject id="ZBX-kF-EwL" customClass="RAMBounceAnimation" customModule="RAMAnimatedTabBarController">
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="duration">
-                            <real key="value" value="1"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="iconSelectedColor">
-                            <color key="value" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="textSelectedColor">
-                            <color key="value" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </customObject>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bbk-5t-bPb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2280" y="-772"/>
@@ -1753,15 +1719,11 @@ institutions</string>
                         <viewControllerLayoutGuide type="bottom" id="Mv2-J1-WVg"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Wlq-Lz-if3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Menu" image="ic_link_dark" selectedImage="ic_link_dark" id="Wbg-GP-L9N" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
-                        <connections>
-                            <outlet property="animation" destination="3hQ-60-KjM" id="8bZ-Ly-VmP"/>
-                        </connections>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Menu" image="ic_menu" selectedImage="ic_menu" id="Wbg-GP-L9N"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <segue destination="4oC-TM-jI5" kind="presentation" identifier="chargeView" id="uG4-vF-WlK"/>
@@ -1770,19 +1732,6 @@ institutions</string>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="97T-hV-39n" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="3hQ-60-KjM" customClass="RAMBounceAnimation" customModule="RAMAnimatedTabBarController">
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="duration">
-                            <real key="value" value="1"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="iconSelectedColor">
-                            <color key="value" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="textSelectedColor">
-                            <color key="value" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </customObject>
             </objects>
             <point key="canvasLocation" x="-1670" y="-1651"/>
         </scene>
@@ -1799,11 +1748,7 @@ institutions</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="ic_home" selectedImage="ic_home" id="RW7-a0-lvA" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
-                        <connections>
-                            <outlet property="animation" destination="6CM-U6-Q2n" id="IUP-vP-TrY"/>
-                        </connections>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Home" image="ic_home" selectedImage="ic_home" id="RW7-a0-lvA"/>
                     <navigationItem key="navigationItem" title="Balance" id="w3e-6C-5LA" userLabel="nav"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -1816,19 +1761,6 @@ institutions</string>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <customObject id="6CM-U6-Q2n" customClass="RAMBounceAnimation" customModule="RAMAnimatedTabBarController">
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="color" keyPath="iconSelectedColor">
-                            <color key="value" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="duration">
-                            <real key="value" value="1"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="textSelectedColor">
-                            <color key="value" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </customObject>
             </objects>
             <point key="canvasLocation" x="1096" y="-1236"/>
         </scene>
@@ -3391,10 +3323,10 @@ Tap here to view</string>
             </objects>
             <point key="canvasLocation" x="2066" y="125"/>
         </scene>
-        <!--Animated Tab Bar Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="BWL-9G-AUk">
             <objects>
-                <tabBarController storyboardIdentifier="RootViewController" automaticallyAdjustsScrollViewInsets="NO" id="FFu-uW-Oqz" customClass="RAMAnimatedTabBarController" customModule="RAMAnimatedTabBarController" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="RootViewController" automaticallyAdjustsScrollViewInsets="NO" id="FFu-uW-Oqz" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="KNb-GY-NSK"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
@@ -3898,11 +3830,7 @@ granted explicit permission.</string>
         <scene sceneID="WmV-2w-5RD">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tfH-Yx-qca" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Account" image="ic_user" selectedImage="ic_user" id="fIh-ul-vs2" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
-                        <connections>
-                            <outlet property="animation" destination="YP2-zP-gNB" id="f5N-PL-Ada"/>
-                        </connections>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Account" image="ic_user" selectedImage="ic_user" id="fIh-ul-vs2"/>
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Aav-u7-uD7">
@@ -3915,19 +3843,6 @@ granted explicit permission.</string>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b9E-3l-Sqs" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="YP2-zP-gNB" customClass="RAMBounceAnimation" customModule="RAMAnimatedTabBarController">
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="color" keyPath="textSelectedColor">
-                            <color key="value" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="iconSelectedColor">
-                            <color key="value" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="duration">
-                            <real key="value" value="1"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </customObject>
             </objects>
             <point key="canvasLocation" x="2280" y="-1780"/>
         </scene>
@@ -4101,7 +4016,7 @@ granted explicit permission.</string>
         <image name="IconTouchSecure" width="86" height="86"/>
         <image name="ic_close_light" width="22" height="22"/>
         <image name="ic_home" width="30" height="30"/>
-        <image name="ic_link_dark" width="30" height="30"/>
+        <image name="ic_menu" width="30" height="30"/>
         <image name="ic_notify" width="30" height="30"/>
         <image name="ic_search" width="30" height="30"/>
         <image name="ic_unlock" width="86" height="86"/>
@@ -4116,17 +4031,17 @@ granted explicit permission.</string>
         <segue reference="agi-3I-cSC"/>
         <segue reference="VI5-hp-Gm2"/>
         <segue reference="ipn-3I-3vc"/>
-        <segue reference="Ecj-JT-gqY"/>
+        <segue reference="Bc6-jW-uiV"/>
+        <segue reference="7cu-FP-MoG"/>
+        <segue reference="A1R-09-1HJ"/>
+        <segue reference="UFB-DJ-qrH"/>
         <segue reference="xTl-cs-ajG"/>
         <segue reference="m0d-gd-RWW"/>
-        <segue reference="Bot-Tn-1ZP"/>
-        <segue reference="wgV-xY-MTp"/>
         <segue reference="o5e-Ut-781"/>
         <segue reference="E98-FC-SfF"/>
         <segue reference="jpD-81-9Zm"/>
-        <segue reference="YDb-8b-gnI"/>
-        <segue reference="Bc6-jW-uiV"/>
-        <segue reference="7cu-FP-MoG"/>
+        <segue reference="Bot-Tn-1ZP"/>
+        <segue reference="wgV-xY-MTp"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>

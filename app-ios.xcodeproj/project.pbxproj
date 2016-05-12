@@ -43,6 +43,7 @@
 		309544F51CD295AE003007B2 /* ParallaxHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309544F41CD295AE003007B2 /* ParallaxHeader.swift */; };
 		30960EFF1CE3D7C100749695 /* TransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30960EFE1CE3D7C100749695 /* TransferViewController.swift */; };
 		30960F011CE40CBE00749695 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30960F001CE40CBE00749695 /* Auth.swift */; };
+		30960F041CE4E80000749695 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30960F031CE4E80000749695 /* Extensions.swift */; };
 		309C8CCA1CCEEE8C0073159C /* SignupCountryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309C8CC91CCEEE8C0073159C /* SignupCountryPickerViewController.swift */; };
 		309E43BE1CA8ADF900279D97 /* WebTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E43BD1CA8ADF900279D97 /* WebTermsViewController.swift */; };
 		309E43C21CA8AE0B00279D97 /* WebSupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E43C11CA8AE0B00279D97 /* WebSupportViewController.swift */; };
@@ -261,6 +262,7 @@
 		309544F41CD295AE003007B2 /* ParallaxHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParallaxHeader.swift; path = "app-ios/ParallaxHeader.swift"; sourceTree = SOURCE_ROOT; };
 		30960EFE1CE3D7C100749695 /* TransferViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransferViewController.swift; path = "app-ios/TransferViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30960F001CE40CBE00749695 /* Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Auth.swift; path = "app-ios/Auth.swift"; sourceTree = SOURCE_ROOT; };
+		30960F031CE4E80000749695 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = "app-ios/Extensions.swift"; sourceTree = SOURCE_ROOT; };
 		309C8CC91CCEEE8C0073159C /* SignupCountryPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupCountryPickerViewController.swift; path = "app-ios/SignupCountryPickerViewController.swift"; sourceTree = SOURCE_ROOT; };
 		309E43BD1CA8ADF900279D97 /* WebTermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebTermsViewController.swift; path = "app-ios/WebTermsViewController.swift"; sourceTree = SOURCE_ROOT; };
 		309E43C11CA8AE0B00279D97 /* WebSupportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebSupportViewController.swift; path = "app-ios/WebSupportViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -609,6 +611,14 @@
 			name = Card;
 			sourceTree = "<group>";
 		};
+		30960F021CE4E7F100749695 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				30960F031CE4E80000749695 /* Extensions.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		309E15911CBC29FB00EA95E4 /* Charge */ = {
 			isa = PBXGroup;
 			children = (
@@ -902,6 +912,7 @@
 				306D6DB11C7008D200467C41 /* Resources */,
 				30BECC061C6F92EF00B8A088 /* Auth */,
 				3064931A1CD6AFEB00A17B00 /* Tutorials */,
+				30960F021CE4E7F100749695 /* Extensions */,
 				30BECC071C6F932400B8A088 /* Main */,
 				3013DCEA1C8515A300268DAD /* Models */,
 				304DDE351C9CEDA500962BC4 /* Integrations */,
@@ -1410,6 +1421,7 @@
 				30831F611CD01B0E00D5D0F4 /* SimpleTransform.swift in Sources */,
 				309C8CCA1CCEEE8C0073159C /* SignupCountryPickerViewController.swift in Sources */,
 				30D5268C1CE0F303001B41BA /* Charge.swift in Sources */,
+				30960F041CE4E80000749695 /* Extensions.swift in Sources */,
 				302010CA1CAF3B05007D5E7E /* Notification.swift in Sources */,
 				30960F011CE40CBE00749695 /* Auth.swift in Sources */,
 				30831F5B1CD0148E00D5D0F4 /* ActivityView2.swift in Sources */,

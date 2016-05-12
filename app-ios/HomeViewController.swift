@@ -248,25 +248,21 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         self.view.addSubview(logoImageView)
         
         // Blurview
-        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
-        visualEffectView.frame = CGRectMake(0, 0, screenWidth, screenHeight)
-        let blurImageView: UIImageView = UIImageView(frame: CGRectMake(0, 0, screenWidth, screenHeight))
-        blurImageView.contentMode = .ScaleAspectFill
-        blurImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-        blurImageView.layer.masksToBounds = true
-        blurImageView.clipsToBounds = true
-        blurImageView.backgroundColor = UIColor.mediumBlue()
-//        blurImageView.image = UIImage(named: "BackgroundGradientInverse")
-        self.view.addSubview(blurImageView)
-        //        blurImageView.addSubview(visualEffectView)
-        self.view.sendSubviewToBack(blurImageView)
+        let bg: UIImageView = UIImageView(frame: CGRectMake(0, 0, screenWidth, screenHeight))
+        bg.contentMode = .ScaleAspectFill
+        bg.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
+        bg.layer.masksToBounds = true
+        bg.clipsToBounds = true
+        bg.backgroundColor = UIColor.slateBlue()
+        self.view.addSubview(bg)
+        self.view.sendSubviewToBack(bg)
 
         graph.dataSource = self
         graph.colorTop = UIColor.clearColor()
-        graph.colorBottom = UIColor.darkBlue()
+        graph.colorBottom = UIColor.slateBlue()
 //        graph.colorLine = UIColor(rgba: "#0003")
         graph.colorLine = UIColor.yellowColor()
-        graph.colorPoint = UIColor.orangeColor()
+        graph.colorPoint = UIColor.mediumBlue()
         graph.colorBackgroundPopUplabel = UIColor.whiteColor()
         graph.delegate = self
         graph.widthLine = 3
@@ -380,7 +376,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         self.view.addSubview(lblPendingDescription)
         
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
-        loadingView.tintColor = UIColor.whiteColor()
+        loadingView.tintColor = UIColor.yellowColor()
         tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
                     self?.tableView.dg_stopLoading()
@@ -516,68 +512,4 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         return 60.0
     }
     
-}
-
-extension UISegmentedControl {
-    func removeBorders() {
-        setTitleTextAttributes(
-            [NSForegroundColorAttributeName : UIColor.whiteColor(),
-                NSFontAttributeName : UIFont(name: "Avenir-Book", size: 12)!],
-            forState: .Normal)
-        setTitleTextAttributes(
-            [NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "Avenir-Light", size: 18)!],
-            forState: .Selected)
-        setBackgroundImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forState: .Normal, barMetrics: .Default)
-        setBackgroundImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forState: .Selected, barMetrics: .Default)
-        setDividerImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forLeftSegmentState: .Normal, rightSegmentState: .Normal, barMetrics: .Default)
-    }
-    
-    // create a 1x1 image with this color
-    private func imageWithColor(color: UIColor, source: String) -> UIImage {
-        let rect = CGRectMake(10.0, 0.0, 100.0, 1.0)
-        UIGraphicsBeginImageContext(rect.size)
-        let context = UIGraphicsGetCurrentContext()
-        CGContextSetFillColorWithColor(context, color.CGColor);
-        CGContextFillRect(context, rect);
-        let image = UIImage(named: source)
-        UIGraphicsEndImageContext();
-        return image!
-    }
-}
-
-
-extension String {
-    func toBool() -> Bool? {
-        switch self {
-        case "True", "true", "yes", "1":
-            return true
-        case "False", "false", "no", "0":
-            return false
-        default:
-            return nil
-        }
-    }
-}
-
-extension UIImage{
-    
-    func alpha(value:CGFloat)->UIImage
-    {
-        UIGraphicsBeginImageContextWithOptions(self.size, false, 0.0)
-        
-        let ctx = UIGraphicsGetCurrentContext();
-        let area = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height);
-        
-        CGContextScaleCTM(ctx, 1, -1);
-        CGContextTranslateCTM(ctx, 0, -area.size.height);
-        CGContextSetBlendMode(ctx, CGBlendMode.Multiply);
-        CGContextSetAlpha(ctx, value);
-        CGContextDrawImage(ctx, area, self.CGImage);
-        
-        let newImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-        return newImage;
-    }
 }
