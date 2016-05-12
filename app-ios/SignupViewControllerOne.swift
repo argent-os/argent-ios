@@ -102,7 +102,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         firstNameTextField.keyboardType = UIKeyboardType.Default
         firstNameTextField.returnKeyType = UIReturnKeyType.Next
         firstNameTextField.clearButtonMode = UITextFieldViewMode.Never
-        firstNameTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.13, width: 300, height: 50)
+        firstNameTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.20, width: 300, height: 50)
         firstNameTextField.returnKeyType = UIReturnKeyType.Next
         scrollView.addSubview(firstNameTextField)
         
@@ -120,7 +120,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         lastNameTextField.keyboardType = UIKeyboardType.Default
         lastNameTextField.returnKeyType = UIReturnKeyType.Next
         lastNameTextField.clearButtonMode = UITextFieldViewMode.Never
-        lastNameTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.23, width: 300, height: 50)
+        lastNameTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.30, width: 300, height: 50)
         lastNameTextField.returnKeyType = UIReturnKeyType.Next
         scrollView.addSubview(lastNameTextField)
 
@@ -135,7 +135,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         dobTextField.keyboardType = UIKeyboardType.NumberPad
         dobTextField.textColor = UIColor.grayColor()
         dobTextField.clearButtonMode = UITextFieldViewMode.Never
-        dobTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.33, width: 300, height: 50)
+        dobTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.40, width: 300, height: 50)
         scrollView.addSubview(dobTextField)
         
         // Transparent navigation bar
