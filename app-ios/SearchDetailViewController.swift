@@ -95,7 +95,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
                 blurImageView.addSubview(visualEffectView)
                 self.view.sendSubviewToBack(blurImageView)
             } else {
-                let img: UIImage = UIImage(named: "BackgroundMountain2")!
+                let img: UIImage = UIImage(named: "LogoRound")!
                 let userImageView: UIImageView = UIImageView(frame: CGRectMake(width / 2, 0, 90, 90))
                 userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
                 userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 135)
@@ -104,7 +104,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
                 userImageView.layer.masksToBounds = true
                 userImageView.clipsToBounds = true
                 userImageView.image = img
-                userImageView.layer.borderWidth = 3
+                userImageView.layer.borderWidth = 1
                 userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
                 self.view.addSubview(userImageView)
                 
@@ -171,7 +171,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             leftButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
             // Create two buttons for the navigation item
             navigationItem.leftBarButtonItem = leftButton
-            let rightButton = UIBarButtonItem(image: UIImage(named: "ic_paper_plane_light_flat"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SearchDetailViewController.showMessageModal(_:)))
+            let rightButton = UIBarButtonItem(image: UIImage(named: "ic_paper_plane_light_flat")?.alpha(0.5), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SearchDetailViewController.showMessageModal(_:)))
             rightButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
             // Create two buttons for the navigation item
             navigationItem.rightBarButtonItem = rightButton

@@ -501,13 +501,13 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             } else {
                 cell.detailTextLabel?.text = "Account credited"
             }
-        }
-        if let text = item?.amount
-        {
-            cell.textLabel?.text = "$" + String(format: "%.2f", Double(text)!/100)
+            let formatter = NSNumberFormatter()
+            formatter.numberStyle = .CurrencyStyle
+            // formatter.locale = NSLocale.currentLocale() // This is the default
+            let amt = formatter.stringFromNumber(Float(amount)!/100)
+            cell.textLabel?.text = amt!
             cell.textLabel?.font = UIFont(name: "Avenir-Book", size: 14)
             cell.textLabel?.textColor = UIColor.darkGrayColor()
-
         }
         return cell
     }
@@ -557,5 +557,27 @@ extension String {
         default:
             return nil
         }
+    }
+}
+
+extension UIImage{
+    
+    func alpha(value:CGFloat)->UIImage
+    {
+        UIGraphicsBeginImageContextWithOptions(self.size, false, 0.0)
+        
+        let ctx = UIGraphicsGetCurrentContext();
+        let area = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height);
+        
+        CGContextScaleCTM(ctx, 1, -1);
+        CGContextTranslateCTM(ctx, 0, -area.size.height);
+        CGContextSetBlendMode(ctx, CGBlendMode.Multiply);
+        CGContextSetAlpha(ctx, value);
+        CGContextDrawImage(ctx, area, self.CGImage);
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        return newImage;
     }
 }
