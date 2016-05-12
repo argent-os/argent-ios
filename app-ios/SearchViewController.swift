@@ -136,7 +136,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 imageView.backgroundColor = UIColor.clearColor()
                 imageView.layer.cornerRadius = 15
                 imageView.layer.masksToBounds = true
-                imageView.image = UIImage(named: "LogoThumb")
+                imageView.image = UIImage(named: "PersonThumb")
                 cell.contentView.addSubview(imageView)
             }
             cell.indentationWidth = 5; // The amount each indentation will move the text
@@ -172,7 +172,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 imageView.backgroundColor = UIColor.clearColor()
                 imageView.layer.cornerRadius = 15
                 imageView.layer.masksToBounds = true
-                imageView.image = UIImage(named: "LogoThumb")
+                imageView.image = UIImage(named: "PersonThumb")
                 cell.contentView.addSubview(imageView)
             }
             cell.indentationWidth = 5; // The amount each indentation will move the text

@@ -166,7 +166,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             // Create a navigation item with a title
             let navigationItem = UINavigationItem()
             // Create left and right button for navigation item
-            let leftButton = UIBarButtonItem(image: UIImage(named: "IconCloseLight"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SearchDetailViewController.returnToMenu(_:)))
+            let leftButton = UIBarButtonItem(image: UIImage(named: "ic_close_light"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SearchDetailViewController.returnToMenu(_:)))
             let font = UIFont(name: "Avenir-Book", size: 14)
             leftButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
             // Create two buttons for the navigation item
