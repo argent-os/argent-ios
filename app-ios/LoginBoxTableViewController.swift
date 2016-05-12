@@ -61,27 +61,37 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
     }
     
     func login(sender: AnyObject) {
-        Auth.login(usernameTextField.text!, username: usernameTextField.text!, password: passwordTextField.text!) { (token) in
-            if(token != "") {
+        let HUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        HUD.showInView(self.view)
+        if(usernameTextField.text == "" || passwordTextField.text == "") {
+            displayAlertMessage("Fields cannot be empty")
+            HUD.dismiss()
+        }
+        Auth.login(usernameTextField.text!, username: usernameTextField.text!, password: passwordTextField.text!) { (token, grant, err) in
+            if(grant == true && token != "") {
+                HUD.dismiss()
                 self.performSegueWithIdentifier("homeView", sender: self)
-            }
-            // Send access token and Stripe key to Apple Watch
-            if WCSession.isSupported() { //makes sure it's not an iPad or iPod
-                let watchSession = WCSession.defaultSession()
-                watchSession.delegate = self
-                watchSession.activateSession()
-                if watchSession.paired && watchSession.watchAppInstalled {
-                    do {
-                        try watchSession.updateApplicationContext(
-                            [
-                                "user_token": token
-                            ]
-                        )
-                        print("setting watch data")
-                    } catch let error as NSError {
-                        print(error.description)
+                // Send access token and Stripe key to Apple Watch
+                if WCSession.isSupported() { //makes sure it's not an iPad or iPod
+                    let watchSession = WCSession.defaultSession()
+                    watchSession.delegate = self
+                    watchSession.activateSession()
+                    if watchSession.paired && watchSession.watchAppInstalled {
+                        do {
+                            try watchSession.updateApplicationContext(
+                                [
+                                    "user_token": token
+                                ]
+                            )
+                            print("setting watch data")
+                        } catch let error as NSError {
+                            print(error.description)
+                        }
                     }
                 }
+            } else {
+                HUD.dismiss()
+                self.displayAlertMessage("Error logging in")
             }
         }
     }

@@ -23,7 +23,7 @@ class Auth {
     }
     
     
-    class func login(email: String, username: String, password: String, completionHandler: (String) -> ()) {
+    class func login(email: String, username: String, password: String, completionHandler: (String, Bool, NSError) -> ()) {
         
         // check for empty fields
         if(email.isEmpty) {
@@ -66,7 +66,12 @@ class Auth {
                         // completion handler here for apple watch
                         
                         let token = data["token"].stringValue
-                        completionHandler(token)
+                        if(response.result.error != nil) {
+                            completionHandler(token, false, response.result.error!)
+                        } else {
+                            completionHandler(token, true, NSError(domain: "nil", code: 000, userInfo: [:]))
+                        }
+                        
                         
                         NSUserDefaults.standardUserDefaults().setValue(token, forKey: "userAccessToken")
                         NSUserDefaults.standardUserDefaults().synchronize()
