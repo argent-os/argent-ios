@@ -19,9 +19,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
     @IBOutlet weak var closeButton: UIButton!
     
     @IBOutlet weak var loginBox: UIView!
-    
-    @IBOutlet weak var loginButton: UIButton!
-    
+        
     override func viewDidAppear(animated: Bool) {
         userData = nil
         NSUserDefaults.standardUserDefaults().setBool(false,forKey:"userLoggedIn");
@@ -30,9 +28,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        loginButton.layer.masksToBounds = true
-        loginButton.layer.cornerRadius = 5
         
         NSUserDefaults.standardUserDefaults().setValue("", forKey: "userAccessToken")
         NSUserDefaults.standardUserDefaults().synchronize()
