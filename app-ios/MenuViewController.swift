@@ -23,9 +23,9 @@ class MenuViewController: UIViewController, CircleMenuDelegate {
     
     let colors = [UIColor.redColor(), UIColor.grayColor(), UIColor.greenColor(), UIColor.purpleColor()]
     let items: [(icon: String, color: UIColor)] = [
-        ("ic_card_light", UIColor.whiteColor()),        
-        ("ic_repeat_light", UIColor.whiteColor()),
-        ("ic_paper_plane_light", UIColor.whiteColor()),
+        ("ic_card", UIColor.yellowColor()),
+        ("ic_repeat", UIColor.yellowColor()),
+        ("ic_paper_plane", UIColor.yellowColor()),
 //        ("ic_coinbag_light", UIColor.whiteColor()),
 //        ("ic_link_light", UIColor.whiteColor()),
 //        ("ic_paper_light", UIColor.whiteColor()),
@@ -108,8 +108,8 @@ class MenuViewController: UIViewController, CircleMenuDelegate {
 
     func circleMenu(circleMenu: CircleMenu, willDisplay circleMenuButton: CircleMenuButton, atIndex: Int) {
         //        circleMenuButton.backgroundColor = items[atIndex].color
-        circleMenuButton.backgroundColor = UIColor.darkBlue()
-        circleMenuButton.layer.borderColor = UIColor(rgba: "#fff3").CGColor
+        circleMenuButton.backgroundColor = UIColor.yellowColor()
+        circleMenuButton.layer.borderColor = UIColor(rgba: "#3333").CGColor
         circleMenuButton.layer.borderWidth = 1
         circleMenuButton.setImage(UIImage(imageLiteral: items[atIndex].icon), forState: .Normal)
 

@@ -44,6 +44,7 @@
 		30960EFF1CE3D7C100749695 /* TransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30960EFE1CE3D7C100749695 /* TransferViewController.swift */; };
 		30960F011CE40CBE00749695 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30960F001CE40CBE00749695 /* Auth.swift */; };
 		30960F041CE4E80000749695 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30960F031CE4E80000749695 /* Extensions.swift */; };
+		30960F071CE4EA5700749695 /* ProfilePictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30960F061CE4EA5700749695 /* ProfilePictureViewController.swift */; };
 		309C8CCA1CCEEE8C0073159C /* SignupCountryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309C8CC91CCEEE8C0073159C /* SignupCountryPickerViewController.swift */; };
 		309E43BE1CA8ADF900279D97 /* WebTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E43BD1CA8ADF900279D97 /* WebTermsViewController.swift */; };
 		309E43C21CA8AE0B00279D97 /* WebSupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309E43C11CA8AE0B00279D97 /* WebSupportViewController.swift */; };
@@ -263,6 +264,7 @@
 		30960EFE1CE3D7C100749695 /* TransferViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransferViewController.swift; path = "app-ios/TransferViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30960F001CE40CBE00749695 /* Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Auth.swift; path = "app-ios/Auth.swift"; sourceTree = SOURCE_ROOT; };
 		30960F031CE4E80000749695 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = "app-ios/Extensions.swift"; sourceTree = SOURCE_ROOT; };
+		30960F061CE4EA5700749695 /* ProfilePictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfilePictureViewController.swift; path = "app-ios/ProfilePictureViewController.swift"; sourceTree = SOURCE_ROOT; };
 		309C8CC91CCEEE8C0073159C /* SignupCountryPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupCountryPickerViewController.swift; path = "app-ios/SignupCountryPickerViewController.swift"; sourceTree = SOURCE_ROOT; };
 		309E43BD1CA8ADF900279D97 /* WebTermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebTermsViewController.swift; path = "app-ios/WebTermsViewController.swift"; sourceTree = SOURCE_ROOT; };
 		309E43C11CA8AE0B00279D97 /* WebSupportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebSupportViewController.swift; path = "app-ios/WebSupportViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -619,6 +621,14 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		30960F051CE4EA4000749695 /* Picture */ = {
+			isa = PBXGroup;
+			children = (
+				30960F061CE4EA5700749695 /* ProfilePictureViewController.swift */,
+			);
+			name = Picture;
+			sourceTree = "<group>";
+		};
 		309E15911CBC29FB00EA95E4 /* Charge */ = {
 			isa = PBXGroup;
 			children = (
@@ -853,6 +863,7 @@
 				309E43BC1CA8ADDE00279D97 /* Web */,
 				308AC9B71C9F79830040EF3C /* Card */,
 				308AC9A81C9DFA0B0040EF3C /* Support */,
+				30960F051CE4EA4000749695 /* Picture */,
 				3004D60B1C9DF13200499CD0 /* Edit */,
 				3004D6041C9DBE1300499CD0 /* Notifications */,
 				3015ADC41CE3D3E10053D220 /* Transfer */,
@@ -1432,6 +1443,7 @@
 				30C2DAA71CA4374F003AFD8B /* SignupViewControllerFour.swift in Sources */,
 				30C2DB131CA439E1003AFD8B /* Timeout.swift in Sources */,
 				30D526781CDBB4A0001B41BA /* Bitcoin.swift in Sources */,
+				30960F071CE4EA5700749695 /* ProfilePictureViewController.swift in Sources */,
 				30C2DACB1CA4385C003AFD8B /* ProfileMenuViewController.swift in Sources */,
 				30C2DAB31CA437B2003AFD8B /* TermsViewController.swift in Sources */,
 				300E422B1CB47428004316CF /* BankConnectedListTableViewController.swift in Sources */,
