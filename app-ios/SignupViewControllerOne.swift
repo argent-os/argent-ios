@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import TextFieldEffects
 import UIColor_Hex_Swift
 import JGProgressHUD
 import JSSAlertView
@@ -18,9 +17,9 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
     // WHEN NAVIGATING TO A NAVIGATION CONTROLLER USE SEGUE SHOW NOT MODAL!
     @IBOutlet weak var continueButton: UIButton!
     
-    let firstNameTextField  = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
-    let lastNameTextField  = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
-    let dobTextField  = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
+    let firstNameTextField  = UITextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
+    let lastNameTextField  = UITextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
+    let dobTextField  = UITextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
     
     var dobDay:String = ""
     var dobMonth:String = ""
@@ -91,51 +90,51 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         // Programatically set the input fields
         firstNameTextField.tag = 89
         firstNameTextField.textAlignment = NSTextAlignment.Center
-        firstNameTextField.font = UIFont(name: "Avenir-Light", size: 20)
-        firstNameTextField.borderActiveColor = UIColor.clearColor()
-        firstNameTextField.borderInactiveColor = UIColor(rgba: "#FFFA") // color with alpha
+        firstNameTextField.font = UIFont(name: "Avenir-Light", size: 16)
+        firstNameTextField.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.3).CGColor
+        firstNameTextField.layer.borderWidth = 1
+        firstNameTextField.layer.cornerRadius = 25
         firstNameTextField.backgroundColor = UIColor.clearColor()
         firstNameTextField.placeholder = "First Name"
-        firstNameTextField.placeholderColor = UIColor.grayColor()
         firstNameTextField.textColor = UIColor.grayColor()
         firstNameTextField.autocapitalizationType = UITextAutocapitalizationType.Words
         firstNameTextField.autocorrectionType = UITextAutocorrectionType.No
         firstNameTextField.keyboardType = UIKeyboardType.Default
         firstNameTextField.returnKeyType = UIReturnKeyType.Next
-        firstNameTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
+        firstNameTextField.clearButtonMode = UITextFieldViewMode.Never
         firstNameTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.13, width: 300, height: 50)
         firstNameTextField.returnKeyType = UIReturnKeyType.Next
         scrollView.addSubview(firstNameTextField)
         
         lastNameTextField.tag = 90
         lastNameTextField.textAlignment = NSTextAlignment.Center
-        lastNameTextField.font = UIFont(name: "Avenir-Light", size: 20)
-        lastNameTextField.borderActiveColor = UIColor.clearColor()
-        lastNameTextField.borderInactiveColor = UIColor.clearColor() // color with alpha
+        lastNameTextField.font = UIFont(name: "Avenir-Light", size: 16)
+        lastNameTextField.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.3).CGColor
+        lastNameTextField.layer.borderWidth = 1
+        lastNameTextField.layer.cornerRadius = 25
         lastNameTextField.backgroundColor = UIColor.clearColor()
         lastNameTextField.placeholder = "Last Name"
-        lastNameTextField.placeholderColor = UIColor.grayColor()
         lastNameTextField.textColor = UIColor.grayColor()
         lastNameTextField.autocapitalizationType = UITextAutocapitalizationType.Words
         lastNameTextField.autocorrectionType = UITextAutocorrectionType.No
         lastNameTextField.keyboardType = UIKeyboardType.Default
         lastNameTextField.returnKeyType = UIReturnKeyType.Next
-        lastNameTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
+        lastNameTextField.clearButtonMode = UITextFieldViewMode.Never
         lastNameTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.23, width: 300, height: 50)
         lastNameTextField.returnKeyType = UIReturnKeyType.Next
         scrollView.addSubview(lastNameTextField)
 
         dobTextField.tag = 91
         dobTextField.textAlignment = NSTextAlignment.Center
-        dobTextField.font = UIFont(name: "Avenir-Light", size: 20)
-        dobTextField.borderActiveColor = UIColor.clearColor()
-        dobTextField.borderInactiveColor = UIColor.clearColor() // color with alpha
+        dobTextField.font = UIFont(name: "Avenir-Light", size: 16)
+        dobTextField.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.3).CGColor
+        dobTextField.layer.borderWidth = 1
+        dobTextField.layer.cornerRadius = 25
         dobTextField.backgroundColor = UIColor.clearColor()
         dobTextField.placeholder = "Date of Birth - MM/DD/YYYY"
         dobTextField.keyboardType = UIKeyboardType.NumberPad
-        dobTextField.placeholderColor = UIColor.grayColor()
         dobTextField.textColor = UIColor.grayColor()
-        dobTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
+        dobTextField.clearButtonMode = UITextFieldViewMode.Never
         dobTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.33, width: 300, height: 50)
         scrollView.addSubview(dobTextField)
         

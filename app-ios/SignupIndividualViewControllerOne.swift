@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import TextFieldEffects
 import UIColor_Hex_Swift
 import JGProgressHUD
 import JSSAlertView
@@ -18,8 +17,8 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
     // WHEN NAVIGATING TO A NAVIGATION CONTROLLER USE SEGUE SHOW NOT MODAL!
     @IBOutlet weak var continueButton: UIButton!
     
-    let usernameTextField  = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
-    let emailTextField  = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
+    let usernameTextField  = UITextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
+    let emailTextField  = UITextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
     
     // Height not adjusted button bool value
     var alreadyAdjustedVC2:Bool = false
@@ -81,36 +80,36 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
         // Programatically set the input fields
         usernameTextField.tag = 123
         usernameTextField.textAlignment = NSTextAlignment.Center
-        usernameTextField.font = UIFont(name: "Avenir-Light", size: 20)
-        usernameTextField.borderActiveColor = UIColor.clearColor()
-        usernameTextField.borderInactiveColor = UIColor.clearColor() // color with alpha
+        usernameTextField.font = UIFont(name: "Avenir-Light", size: 16)
+        usernameTextField.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.3).CGColor
+        usernameTextField.layer.borderWidth = 1
+        usernameTextField.layer.cornerRadius = 25
         usernameTextField.backgroundColor = UIColor.clearColor()
         usernameTextField.placeholder = "Username"
-        usernameTextField.placeholderColor = UIColor.grayColor()
         usernameTextField.textColor = UIColor.grayColor()
         usernameTextField.autocapitalizationType = UITextAutocapitalizationType.None
         usernameTextField.autocorrectionType = UITextAutocorrectionType.No
         usernameTextField.keyboardType = UIKeyboardType.Default
         usernameTextField.returnKeyType = UIReturnKeyType.Next
-        usernameTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
+        usernameTextField.clearButtonMode = UITextFieldViewMode.Never
         usernameTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.20, width: 300, height: 50)
         usernameTextField.returnKeyType = UIReturnKeyType.Next
         scrollView.addSubview(usernameTextField)
         
         emailTextField.tag = 124
         emailTextField.textAlignment = NSTextAlignment.Center
-        emailTextField.font = UIFont(name: "Avenir-Light", size: 20)
-        emailTextField.borderActiveColor = UIColor.clearColor()
-        emailTextField.borderInactiveColor = UIColor.clearColor() // color with alpha
+        emailTextField.font = UIFont(name: "Avenir-Light", size: 16)
         emailTextField.backgroundColor = UIColor.clearColor()
-        emailTextField.placeholder = "Email Address"
-        emailTextField.placeholderColor = UIColor.grayColor()
+        emailTextField.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.3).CGColor
+        emailTextField.layer.borderWidth = 1
+        emailTextField.layer.cornerRadius = 25
+        emailTextField.placeholder = "Email"
         emailTextField.textColor = UIColor.grayColor()
         emailTextField.autocapitalizationType = UITextAutocapitalizationType.None
         emailTextField.autocorrectionType = UITextAutocorrectionType.No
         emailTextField.keyboardType = UIKeyboardType.EmailAddress
         emailTextField.returnKeyType = UIReturnKeyType.Next
-        emailTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
+        emailTextField.clearButtonMode = UITextFieldViewMode.Never
         emailTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.30, width: 300, height: 50)
         emailTextField.returnKeyType = UIReturnKeyType.Next
         scrollView.addSubview(emailTextField)

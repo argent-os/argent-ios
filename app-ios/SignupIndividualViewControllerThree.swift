@@ -80,8 +80,8 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
         // Set checkbox animation
         switchTermsAndPrivacy.onAnimationType = BEMAnimationType.OneStroke
         switchTermsAndPrivacy.offAnimationType = BEMAnimationType.OneStroke
-        switchTermsAndPrivacy.onCheckColor = UIColor(rgba: "#1aa8f6")
-        switchTermsAndPrivacy.onTintColor = UIColor(rgba: "#1aa8f6")
+        switchTermsAndPrivacy.onCheckColor = UIColor.mediumBlue()
+        switchTermsAndPrivacy.onTintColor = UIColor.darkBlue()
         switchTermsAndPrivacy.frame.origin.y = screenHeight-300 // 250 from bottom
         switchTermsAndPrivacy.frame.origin.x = (self.view.bounds.size.width - switchTermsAndPrivacy.frame.size.width) / 2.0
         self.view!.addSubview(switchTermsAndPrivacy)

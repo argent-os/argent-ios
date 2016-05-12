@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import TextFieldEffects
 import UIColor_Hex_Swift
 import JGProgressHUD
 import KeychainSwift
@@ -19,8 +18,8 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate, UIScroll
     // WHEN NAVIGATING TO A NAVIGATION CONTROLLER USE SEGUE SHOW NOT MODAL!
     @IBOutlet weak var continueButton: UIButton!
     
-    let passwordTextField  = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
-    let repeatPasswordTextField  = HoshiTextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
+    let passwordTextField  = UITextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
+    let repeatPasswordTextField  = UITextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
     
     // Keychain
     let keychain = KeychainSwift()
@@ -85,38 +84,38 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate, UIScroll
         // Programatically set the input fields
         passwordTextField.tag = 234
         passwordTextField.textAlignment = NSTextAlignment.Center
-        passwordTextField.font = UIFont(name: "Avenir-Light", size: 20)
-        passwordTextField.borderActiveColor = UIColor.clearColor()
-        passwordTextField.borderInactiveColor = UIColor.clearColor() // color with alpha
+        passwordTextField.font = UIFont(name: "Avenir-Light", size: 16)
+        passwordTextField.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.3).CGColor
+        passwordTextField.layer.borderWidth = 1
+        passwordTextField.layer.cornerRadius = 25
         passwordTextField.backgroundColor = UIColor.clearColor()
         passwordTextField.placeholder = "Password"
-        passwordTextField.placeholderColor = UIColor.grayColor()
         passwordTextField.textColor = UIColor.grayColor()
-        passwordTextField.autocapitalizationType = UITextAutocapitalizationType.None
+        passwordTextField.autocapitalizationType = UITextAutocapitalizationType.Words
         passwordTextField.secureTextEntry = true
         passwordTextField.autocorrectionType = UITextAutocorrectionType.No
         passwordTextField.keyboardType = UIKeyboardType.Default
         passwordTextField.returnKeyType = UIReturnKeyType.Next
-        passwordTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
+        passwordTextField.clearButtonMode = UITextFieldViewMode.Never
         passwordTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.20, width: 300, height: 50)
         passwordTextField.returnKeyType = UIReturnKeyType.Next
         scrollView.addSubview(passwordTextField)
         
         repeatPasswordTextField.tag = 235
         repeatPasswordTextField.textAlignment = NSTextAlignment.Center
-        repeatPasswordTextField.font = UIFont(name: "Avenir-Light", size: 20)
-        repeatPasswordTextField.borderActiveColor = UIColor.clearColor()
-        repeatPasswordTextField.borderInactiveColor = UIColor.clearColor() // color with alpha
+        repeatPasswordTextField.font = UIFont(name: "Avenir-Light", size: 16)
+        repeatPasswordTextField.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.3).CGColor
+        repeatPasswordTextField.layer.borderWidth = 1
+        repeatPasswordTextField.layer.cornerRadius = 25
         repeatPasswordTextField.backgroundColor = UIColor.clearColor()
         repeatPasswordTextField.placeholder = "Repeat Password"
-        repeatPasswordTextField.placeholderColor = UIColor.grayColor()
         repeatPasswordTextField.textColor = UIColor.grayColor()
-        repeatPasswordTextField.autocapitalizationType = UITextAutocapitalizationType.None
+        repeatPasswordTextField.autocapitalizationType = UITextAutocapitalizationType.Words
         repeatPasswordTextField.secureTextEntry = true
         repeatPasswordTextField.autocorrectionType = UITextAutocorrectionType.No
         repeatPasswordTextField.keyboardType = UIKeyboardType.EmailAddress
         repeatPasswordTextField.returnKeyType = UIReturnKeyType.Next
-        repeatPasswordTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
+        repeatPasswordTextField.clearButtonMode = UITextFieldViewMode.Never
         repeatPasswordTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.30, width: 300, height: 50)
         repeatPasswordTextField.returnKeyType = UIReturnKeyType.Next
         scrollView.addSubview(repeatPasswordTextField)
