@@ -12,7 +12,6 @@ import CircleMenu
 
 class MenuViewController: UIViewController, CircleMenuDelegate {
 
-    
     let circleMenuButton = CircleMenu(
         frame: CGRect(x: 0, y: 0, width: 85, height: 85),
         normalIcon:"IconMenu",
@@ -26,9 +25,9 @@ class MenuViewController: UIViewController, CircleMenuDelegate {
         ("ic_card", UIColor.yellowColor()),
         ("ic_repeat", UIColor.yellowColor()),
         ("ic_paper_plane", UIColor.yellowColor()),
-//        ("ic_coinbag_light", UIColor.whiteColor()),
-//        ("ic_link_light", UIColor.whiteColor()),
-//        ("ic_paper_light", UIColor.whiteColor()),
+        // ("ic_coinbag_light", UIColor.whiteColor()),
+        // ("ic_link_light", UIColor.whiteColor()),
+        // ("ic_paper_light", UIColor.whiteColor()),
     ]
     
     override func viewDidLoad() {
@@ -48,13 +47,11 @@ class MenuViewController: UIViewController, CircleMenuDelegate {
         backgroundImageView.layer.masksToBounds = true
         backgroundImageView.clipsToBounds = true
         self.view.addSubview(backgroundImageView)
-//        backgroundImageView.addSubview(visualEffectView)
+        // backgroundImageView.addSubview(visualEffectView)
         self.view.sendSubviewToBack(backgroundImageView)
         self.view.addSubview(backgroundImageView)
         
-//        self.view.backgroundColor = UIColor.mediumBlue()
-        
-//        circleMenuButton.backgroundColor = UIColor.clearColor()
+        // circleMenuButton.backgroundColor = UIColor.clearColor()
         circleMenuButton.backgroundColor = UIColor.darkBlue()
         circleMenuButton.delegate = self
         circleMenuButton.center = self.view.center
@@ -64,7 +61,7 @@ class MenuViewController: UIViewController, CircleMenuDelegate {
         view.addSubview(circleMenuButton)
         
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 65))
-//        navBar.barTintColor = UIColor(rgba: "#258ff6")
+        // navBar.barTintColor = UIColor(rgba: "#258ff6")
         navBar.barTintColor = UIColor.mediumBlue()
         navBar.tintColor = UIColor.whiteColor()
         navBar.translucent = false
@@ -86,7 +83,7 @@ class MenuViewController: UIViewController, CircleMenuDelegate {
         }
     }
     
-    func addBlurView(){
+    private func addBlurView(){
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
@@ -107,7 +104,7 @@ class MenuViewController: UIViewController, CircleMenuDelegate {
     // MARK: CircleMenu Delegate
 
     func circleMenu(circleMenu: CircleMenu, willDisplay circleMenuButton: CircleMenuButton, atIndex: Int) {
-        //        circleMenuButton.backgroundColor = items[atIndex].color
+        // circleMenuButton.backgroundColor = items[atIndex].color
         circleMenuButton.backgroundColor = UIColor.yellowColor()
         circleMenuButton.layer.borderColor = UIColor(rgba: "#3333").CGColor
         circleMenuButton.layer.borderWidth = 1

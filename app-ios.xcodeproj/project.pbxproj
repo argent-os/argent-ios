@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		278F38ABFB35EDAA24E7A2BC /* Pods_app_watchos_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6959C28B834901781B0C0FCC /* Pods_app_watchos_Extension.framework */; };
+		300D8BDF1CE5416700FC3B05 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300D8BDE1CE5416700FC3B05 /* OnboardingCollectionViewCell.swift */; };
+		300D8BE31CE5461A00FC3B05 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300D8BE21CE5461A00FC3B05 /* OnboardingViewController.swift */; };
 		300E422B1CB47428004316CF /* BankConnectedListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E422A1CB47428004316CF /* BankConnectedListTableViewController.swift */; };
 		300E422D1CB56E10004316CF /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E422C1CB56E10004316CF /* Bank.swift */; };
 		300E422F1CB57206004316CF /* BankConnectedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E422E1CB57206004316CF /* BankConnectedTableViewCell.swift */; };
@@ -33,12 +35,6 @@
 		306E82301CDAC36400A43505 /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306E822F1CDAC36400A43505 /* Balance.swift */; };
 		307C6A221C7E91A100723E39 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C6A211C7E91A100723E39 /* StoreKit.framework */; };
 		307C6A241C7E91AA00723E39 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C6A231C7E91AA00723E39 /* PassKit.framework */; };
-		30831F551CD0138E00D5D0F4 /* ActivityViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30831F541CD0138E00D5D0F4 /* ActivityViewController2.swift */; };
-		30831F571CD013A300D5D0F4 /* ActivityViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30831F561CD013A300D5D0F4 /* ActivityViewController3.swift */; };
-		30831F591CD013B000D5D0F4 /* ActivityViewController4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30831F581CD013B000D5D0F4 /* ActivityViewController4.swift */; };
-		30831F5B1CD0148E00D5D0F4 /* ActivityView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30831F5A1CD0148E00D5D0F4 /* ActivityView2.swift */; };
-		30831F611CD01B0E00D5D0F4 /* SimpleTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30831F601CD01B0E00D5D0F4 /* SimpleTransform.swift */; };
-		30831F631CD01B1500D5D0F4 /* DirectManipulationGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30831F621CD01B1500D5D0F4 /* DirectManipulationGestureRecognizer.swift */; };
 		308A348A1CCA803200AAF66F /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A34891CCA803200AAF66F /* History.swift */; };
 		309544F51CD295AE003007B2 /* ParallaxHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309544F41CD295AE003007B2 /* ParallaxHeader.swift */; };
 		30960EFF1CE3D7C100749695 /* TransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30960EFE1CE3D7C100749695 /* TransferViewController.swift */; };
@@ -55,12 +51,6 @@
 		30AF67391CA498A3006B83DA /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AF67381CA498A3006B83DA /* PassKit.framework */; };
 		30B576931CC7D1CF005BCA5A /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B576921CC7D1CE005BCA5A /* SearchDetailViewController.swift */; };
 		30BB06E21CCEFC260051C9E7 /* CountryPicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30BB06E11CCEFC260051C9E7 /* CountryPicker.bundle */; };
-		30BB06F41CCFDED20051C9E7 /* FeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB06F31CCFDED20051C9E7 /* FeaturesViewController.swift */; };
-		30BB07011CCFE7D20051C9E7 /* BrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB06FE1CCFE7D20051C9E7 /* BrowserView.swift */; };
-		30BB07021CCFE7D20051C9E7 /* BrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB06FF1CCFE7D20051C9E7 /* BrowserViewController.swift */; };
-		30BB07031CCFE7D20051C9E7 /* CoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB07001CCFE7D20051C9E7 /* CoverView.swift */; };
-		30BB072C1CCFEBD90051C9E7 /* ActivityView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB072A1CCFEBD90051C9E7 /* ActivityView1.swift */; };
-		30BB072D1CCFEBD90051C9E7 /* ActivityViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BB072B1CCFEBD90051C9E7 /* ActivityViewController1.swift */; };
 		30C2DA551CA43655003AFD8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA541CA43655003AFD8B /* Assets.xcassets */; };
 		30C2DA591CA43665003AFD8B /* App.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA581CA43665003AFD8B /* App.entitlements */; };
 		30C2DA5B1CA4366C003AFD8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DA5A1CA4366C003AFD8B /* AppDelegate.swift */; };
@@ -227,6 +217,8 @@
 		1F47764297D847A2B25B7D81 /* Pods_argent_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_argent_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B614FB4245DEA1791296CAF /* Pods-app-watchos Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-watchos Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-app-watchos Extension/Pods-app-watchos Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		300B66F61CA4635800E24AF1 /* RESideMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RESideMenu.framework; path = "Pods/../build/Debug-iphoneos/RESideMenu.framework"; sourceTree = "<group>"; };
+		300D8BDE1CE5416700FC3B05 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
+		300D8BE21CE5461A00FC3B05 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingViewController.swift; path = "app-ios/OnboardingViewController.swift"; sourceTree = SOURCE_ROOT; };
 		300E422A1CB47428004316CF /* BankConnectedListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankConnectedListTableViewController.swift; path = "app-ios/BankConnectedListTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		300E422C1CB56E10004316CF /* Bank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bank.swift; path = "app-ios/Bank.swift"; sourceTree = SOURCE_ROOT; };
 		300E422E1CB57206004316CF /* BankConnectedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankConnectedTableViewCell.swift; path = "app-ios/BankConnectedTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
@@ -253,12 +245,6 @@
 		306E822F1CDAC36400A43505 /* Balance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Balance.swift; path = "app-ios/Balance.swift"; sourceTree = SOURCE_ROOT; };
 		307C6A211C7E91A100723E39 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		307C6A231C7E91AA00723E39 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
-		30831F541CD0138E00D5D0F4 /* ActivityViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityViewController2.swift; path = "app-ios/ActivityViewController2.swift"; sourceTree = SOURCE_ROOT; };
-		30831F561CD013A300D5D0F4 /* ActivityViewController3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityViewController3.swift; path = "app-ios/ActivityViewController3.swift"; sourceTree = SOURCE_ROOT; };
-		30831F581CD013B000D5D0F4 /* ActivityViewController4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityViewController4.swift; path = "app-ios/ActivityViewController4.swift"; sourceTree = SOURCE_ROOT; };
-		30831F5A1CD0148E00D5D0F4 /* ActivityView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityView2.swift; path = "app-ios/ActivityView2.swift"; sourceTree = SOURCE_ROOT; };
-		30831F601CD01B0E00D5D0F4 /* SimpleTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleTransform.swift; path = "app-ios/SimpleTransform.swift"; sourceTree = SOURCE_ROOT; };
-		30831F621CD01B1500D5D0F4 /* DirectManipulationGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectManipulationGestureRecognizer.swift; path = "app-ios/DirectManipulationGestureRecognizer.swift"; sourceTree = SOURCE_ROOT; };
 		308A34891CCA803200AAF66F /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = History.swift; path = "app-ios/History.swift"; sourceTree = SOURCE_ROOT; };
 		309544F41CD295AE003007B2 /* ParallaxHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParallaxHeader.swift; path = "app-ios/ParallaxHeader.swift"; sourceTree = SOURCE_ROOT; };
 		30960EFE1CE3D7C100749695 /* TransferViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransferViewController.swift; path = "app-ios/TransferViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -276,12 +262,6 @@
 		30AF67381CA498A3006B83DA /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.2.sdk/System/Library/Frameworks/PassKit.framework; sourceTree = DEVELOPER_DIR; };
 		30B576921CC7D1CE005BCA5A /* SearchDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchDetailViewController.swift; path = "app-ios/SearchDetailViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30BB06E11CCEFC260051C9E7 /* CountryPicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CountryPicker.bundle; sourceTree = SOURCE_ROOT; };
-		30BB06F31CCFDED20051C9E7 /* FeaturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeaturesViewController.swift; path = "app-ios/FeaturesViewController.swift"; sourceTree = SOURCE_ROOT; };
-		30BB06FE1CCFE7D20051C9E7 /* BrowserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrowserView.swift; path = "app-ios/BrowserView.swift"; sourceTree = SOURCE_ROOT; };
-		30BB06FF1CCFE7D20051C9E7 /* BrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrowserViewController.swift; path = "app-ios/BrowserViewController.swift"; sourceTree = SOURCE_ROOT; };
-		30BB07001CCFE7D20051C9E7 /* CoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoverView.swift; path = "app-ios/CoverView.swift"; sourceTree = SOURCE_ROOT; };
-		30BB072A1CCFEBD90051C9E7 /* ActivityView1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityView1.swift; path = "app-ios/ActivityView1.swift"; sourceTree = SOURCE_ROOT; };
-		30BB072B1CCFEBD90051C9E7 /* ActivityViewController1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityViewController1.swift; path = "app-ios/ActivityViewController1.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DA541CA43655003AFD8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "app-ios/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		30C2DA561CA4365D003AFD8B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "app-ios/Info.plist"; sourceTree = SOURCE_ROOT; };
 		30C2DA581CA43665003AFD8B /* App.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = App.entitlements; path = "app-ios/App.entitlements"; sourceTree = SOURCE_ROOT; };
@@ -668,42 +648,16 @@
 			name = Bundles;
 			sourceTree = "<group>";
 		};
-		30BB06F51CCFE6E00051C9E7 /* Features */ = {
-			isa = PBXGroup;
-			children = (
-				30BB07211CCFEB7B0051C9E7 /* Activity */,
-				30831F621CD01B1500D5D0F4 /* DirectManipulationGestureRecognizer.swift */,
-				30831F601CD01B0E00D5D0F4 /* SimpleTransform.swift */,
-				30BB06F31CCFDED20051C9E7 /* FeaturesViewController.swift */,
-				30BB06FE1CCFE7D20051C9E7 /* BrowserView.swift */,
-				30BB06FF1CCFE7D20051C9E7 /* BrowserViewController.swift */,
-				30BB07001CCFE7D20051C9E7 /* CoverView.swift */,
-			);
-			name = Features;
-			sourceTree = "<group>";
-		};
-		30BB07211CCFEB7B0051C9E7 /* Activity */ = {
-			isa = PBXGroup;
-			children = (
-				30BB072A1CCFEBD90051C9E7 /* ActivityView1.swift */,
-				30831F5A1CD0148E00D5D0F4 /* ActivityView2.swift */,
-				30BB072B1CCFEBD90051C9E7 /* ActivityViewController1.swift */,
-				30831F541CD0138E00D5D0F4 /* ActivityViewController2.swift */,
-				30831F561CD013A300D5D0F4 /* ActivityViewController3.swift */,
-				30831F581CD013B000D5D0F4 /* ActivityViewController4.swift */,
-			);
-			name = Activity;
-			sourceTree = "<group>";
-		};
 		30BECC061C6F92EF00B8A088 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				30BB06F51CCFE6E00051C9E7 /* Features */,
 				30718AEB1C8E32E100CB0EEB /* Lock */,
 				30D7B72F1C77880200B64B7F /* Signup */,
 				30C2DA981CA4373E003AFD8B /* LoginBoxTableViewController.swift */,
 				30C2DA991CA4373E003AFD8B /* LoginViewController.swift */,
 				30C2DAAC1CA43795003AFD8B /* AuthViewController.swift */,
+				300D8BE21CE5461A00FC3B05 /* OnboardingViewController.swift */,
+				300D8BDE1CE5416700FC3B05 /* OnboardingCollectionViewCell.swift */,
 				30C2DAAE1CA4379F003AFD8B /* ResetPasswordViewController.swift */,
 				30C2DAB01CA437A9003AFD8B /* PresentedTableViewController.swift */,
 				30C2DAB21CA437B2003AFD8B /* TermsViewController.swift */,
@@ -1400,7 +1354,6 @@
 			files = (
 				30C2DAFF1CA4398C003AFD8B /* Secrets.swift in Sources */,
 				30C2DA9A1CA4373E003AFD8B /* LoginBoxTableViewController.swift in Sources */,
-				30BB07021CCFE7D20051C9E7 /* BrowserViewController.swift in Sources */,
 				30C2DAFD1CA43984003AFD8B /* Plaid.swift in Sources */,
 				306DF00B1CD9979400864CAE /* Plan.swift in Sources */,
 				30C2DA951CA4372D003AFD8B /* PasscodeLockConfiguration.swift in Sources */,
@@ -1412,33 +1365,27 @@
 				30C2DAC51CA43841003AFD8B /* SearchViewController.swift in Sources */,
 				30C2DA5B1CA4366C003AFD8B /* AppDelegate.swift in Sources */,
 				300E42311CB7123E004316CF /* CreditCardListViewController.swift in Sources */,
-				30BB072C1CCFEBD90051C9E7 /* ActivityView1.swift in Sources */,
 				30C2DAE51CA4392E003AFD8B /* AddBankViewController.swift in Sources */,
 				30C2DAC11CA43836003AFD8B /* ProfileViewController.swift in Sources */,
 				30C2DAEF1CA43951003AFD8B /* AddCustomerViewController.swift in Sources */,
 				30C2DAD01CA4386A003AFD8B /* SupportMenuViewController.swift in Sources */,
-				30831F631CD01B1500D5D0F4 /* DirectManipulationGestureRecognizer.swift in Sources */,
 				30C2DB1D1CA43A05003AFD8B /* paykloud_iosUITests.swift in Sources */,
 				30C2DADB1CA438A5003AFD8B /* ProfileLabelCell.swift in Sources */,
 				3015ADC31CE3B1110053D220 /* RiskTutorialViewController.swift in Sources */,
 				3064931C1CD6B00500A17B00 /* TutorialHomeViewController.swift in Sources */,
 				30D5268E1CE34C03001B41BA /* RiskScoreViewController.swift in Sources */,
 				30C2DAA41CA4374F003AFD8B /* SignupIndividualViewControllerOne.swift in Sources */,
-				30BB07011CCFE7D20051C9E7 /* BrowserView.swift in Sources */,
-				30831F591CD013B000D5D0F4 /* ActivityViewController4.swift in Sources */,
 				30C2DAD31CA43881003AFD8B /* Profile.swift in Sources */,
-				30831F571CD013A300D5D0F4 /* ActivityViewController3.swift in Sources */,
 				30D526761CDB9814001B41BA /* BitcoinUriViewController.swift in Sources */,
-				30831F611CD01B0E00D5D0F4 /* SimpleTransform.swift in Sources */,
 				309C8CCA1CCEEE8C0073159C /* SignupCountryPickerViewController.swift in Sources */,
 				30D5268C1CE0F303001B41BA /* Charge.swift in Sources */,
 				30960F041CE4E80000749695 /* Extensions.swift in Sources */,
 				302010CA1CAF3B05007D5E7E /* Notification.swift in Sources */,
 				30960F011CE40CBE00749695 /* Auth.swift in Sources */,
-				30831F5B1CD0148E00D5D0F4 /* ActivityView2.swift in Sources */,
 				30C2DAAB1CA4374F003AFD8B /* SignupViewControllerZero.swift in Sources */,
 				30C2DAF51CA43967003AFD8B /* ChargeViewController.swift in Sources */,
 				30C2DAA81CA4374F003AFD8B /* SignupViewControllerOne.swift in Sources */,
+				300D8BE31CE5461A00FC3B05 /* OnboardingViewController.swift in Sources */,
 				30C2DABF1CA43823003AFD8B /* HomeViewController.swift in Sources */,
 				30C2DAA71CA4374F003AFD8B /* SignupViewControllerFour.swift in Sources */,
 				30C2DB131CA439E1003AFD8B /* Timeout.swift in Sources */,
@@ -1447,16 +1394,13 @@
 				30C2DACB1CA4385C003AFD8B /* ProfileMenuViewController.swift in Sources */,
 				30C2DAB31CA437B2003AFD8B /* TermsViewController.swift in Sources */,
 				300E422B1CB47428004316CF /* BankConnectedListTableViewController.swift in Sources */,
-				30BB072D1CCFEBD90051C9E7 /* ActivityViewController1.swift in Sources */,
 				30C2DAD51CA43892003AFD8B /* ProfileFieldCell.swift in Sources */,
 				309544F51CD295AE003007B2 /* ParallaxHeader.swift in Sources */,
 				30C2DAB11CA437A9003AFD8B /* PresentedTableViewController.swift in Sources */,
 				30C2DAE11CA43909003AFD8B /* FormerInputAccessoryView.swift in Sources */,
-				30BB06F41CCFDED20051C9E7 /* FeaturesViewController.swift in Sources */,
 				306DF0091CD991CB00864CAE /* Customer.swift in Sources */,
 				30D526821CDF7762001B41BA /* ActionData.swift in Sources */,
 				30C2DAA91CA4374F003AFD8B /* SignupViewControllerThree.swift in Sources */,
-				30BB07031CCFE7D20051C9E7 /* CoverView.swift in Sources */,
 				30D5268A1CDFAEC3001B41BA /* PayMerchantViewController.swift in Sources */,
 				300E42331CB71362004316CF /* Card.swift in Sources */,
 				30C2DAE31CA43926003AFD8B /* ConfigureNotificationsViewController.swift in Sources */,
@@ -1479,7 +1423,6 @@
 				30C2DB111CA439DC003AFD8B /* Logs.swift in Sources */,
 				30C2DAD11CA4386A003AFD8B /* SupportMessageViewController.swift in Sources */,
 				30C2DAE91CA43934003AFD8B /* BankAccountViewController.swift in Sources */,
-				30831F551CD0138E00D5D0F4 /* ActivityViewController2.swift in Sources */,
 				30C2DAA61CA4374F003AFD8B /* SignupIndividualViewControllerTwo.swift in Sources */,
 				30C2DAA51CA4374F003AFD8B /* SignupIndividualViewControllerThree.swift in Sources */,
 				30C2DB171CA439F4003AFD8B /* paykloud_iosTests.swift in Sources */,
@@ -1490,6 +1433,7 @@
 				309E43BE1CA8ADF900279D97 /* WebTermsViewController.swift in Sources */,
 				306E82301CDAC36400A43505 /* Balance.swift in Sources */,
 				30C2DB1F1CA43A51003AFD8B /* EditProfileViewController.swift in Sources */,
+				300D8BDF1CE5416700FC3B05 /* OnboardingCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

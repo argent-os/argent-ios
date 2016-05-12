@@ -17,37 +17,38 @@ import BEMSimpleLineGraph
 import UICountingLabel
 import DGElasticPullToRefresh
 import Gecco
-import RAMAnimatedTabBarController
 
 var userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
 
 class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpleLineGraphDataSource, UITableViewDelegate, UITableViewDataSource  {
 
-    var window: UIWindow?
+    private var window: UIWindow?
 
-    var accountHistoryArray:Array<History>?
+    private var accountHistoryArray:Array<History>?
     
-    var balance:Balance = Balance(pending: 0, available: 0)
+    private var balance:Balance = Balance(pending: 0, available: 0)
     
-    var tableView:UITableView = UITableView()
+    private var tableView:UITableView = UITableView()
     
-    var arrayOfValues: Array<AnyObject> = [30,10,20,50,60,80]
+    private var arrayOfValues: Array<AnyObject> = [30,10,20,50,60,80]
     
-    var user = User(id: "", username: "", email: "", first_name: "", last_name: "", cust_id: "", picture: "")
+    private var user = User(id: "", username: "", email: "", first_name: "", last_name: "", cust_id: "", picture: "")
     
-    let lblAccountPending:UICountingLabel = UICountingLabel()
+    private let lblAccountPending:UICountingLabel = UICountingLabel()
 
-    let lblAccountAvailable:UICountingLabel = UICountingLabel()
+    private let lblAccountAvailable:UICountingLabel = UICountingLabel()
 
-    let lblAvailableDescription:UILabel = UILabel()
+    private let lblAvailableDescription:UILabel = UILabel()
 
-    let lblPendingDescription:UILabel = UILabel()
+    private let lblPendingDescription:UILabel = UILabel()
+    
+    private let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
 
-    let balanceSwitch = DGRunkeeperSwitch(leftTitle: "Pending", rightTitle: "Available")
+    private let balanceSwitch = DGRunkeeperSwitch(leftTitle: "Pending", rightTitle: "Available")
 
-    let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 15, width: UIScreen.mainScreen().bounds.size.width, height: 50))
+    private let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 15, width: UIScreen.mainScreen().bounds.size.width, height: 50))
 
-    let graph: BEMSimpleLineGraphView = BEMSimpleLineGraphView(frame: CGRectMake(0, 100, UIScreen.mainScreen().bounds.size.width, 190))
+    private let graph: BEMSimpleLineGraphView = BEMSimpleLineGraphView(frame: CGRectMake(0, 100, UIScreen.mainScreen().bounds.size.width, 190))
         
     @IBAction func indexChanged(sender: DGRunkeeperSwitch) {
         if(sender.selectedIndex == 0) {
@@ -84,7 +85,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     // VIEW DID APPEAR
     override func viewDidAppear(animated: Bool) {
-        
         self.view.addSubview(balanceSwitch)
         self.view.bringSubviewToFront(balanceSwitch)
         UITextField.appearance().keyboardAppearance = .Light
@@ -140,9 +140,10 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         // IMPORTANT: load new access token on home load, otherwise the old token will be requested to the server
         userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
         
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
-        HUD.showInView(graph)
-        HUD.dismissAfterDelay(2, animated: true)
+        activityIndicator.center = tableView.center
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(activityIndicator)
         
         if((userAccessToken) != nil) {
             // Get stripe data
@@ -185,7 +186,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 if error != nil {
                     print(error)
                 }
-                HUD.dismiss()
+                self.activityIndicator.stopAnimating()
             }
             
             // Get user profile
@@ -457,11 +458,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         NSUserDefaults.standardUserDefaults().setBool(false,forKey:"userLoggedIn");
         NSUserDefaults.standardUserDefaults().synchronize();
         userData = nil
-
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
-        HUD.textLabel.text = "Logging out"
-        HUD.showInView(self.view!)
-        HUD.dismissAfterDelay(0.3)
         
         // go to login view
         self.performSegueWithIdentifier("loginView", sender: self);

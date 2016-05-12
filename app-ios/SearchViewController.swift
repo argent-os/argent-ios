@@ -29,6 +29,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     private var dateFormatter = NSDateFormatter()
     
+    private var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+    
     deinit {
         tblSearchResults.dg_removePullToRefresh()
     }
@@ -43,6 +45,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
+        
+        activityIndicator.center = view.center
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(activityIndicator)
         
         tblSearchResults.delegate = self
         tblSearchResults.dataSource = self
@@ -204,9 +211,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: Custom functions
     
     func loadUserAccounts() {
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
-        HUD.showInView(self.view!)
-        HUD.dismissAfterDelay(3.0)
+        activityIndicator.center = view.center
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(activityIndicator)
         User.getUserAccounts({ (items, error) in
             if error != nil
             {
@@ -216,7 +224,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             self.dataArray = items!
             
-            HUD.dismiss()
+            self.activityIndicator.stopAnimating()
                         
             self.tblSearchResults.reloadData()
         })
@@ -300,31 +308,31 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // MARK: CustomSearchControllerDelegate functions
     
-    func didStartSearching() {
+    private func didStartSearching() {
         shouldShowSearchResults = true
         tblSearchResults.reloadData()
     }
     
-    func didTapOnSearchButton() {
+    private func didTapOnSearchButton() {
         if !shouldShowSearchResults {
             shouldShowSearchResults = true
             tblSearchResults.reloadData()
         }
     }
     
-    func didTapOnCancelButton() {
+    private func didTapOnCancelButton() {
         shouldShowSearchResults = false
         tblSearchResults.reloadData()
     }
     
     // Refresh
-    func refresh(sender:AnyObject)
+    private func refresh(sender:AnyObject)
     {
         self.loadUserAccounts()
     }
     
     // Search here
-    func didChangeSearchText(searchText: String) {
+    private func didChangeSearchText(searchText: String) {
         // Filter the data array and get only those countries that match the search text.
         filteredArray = dataArray.filter({ (user) -> Bool in
             let userStr: NSString = user.username
@@ -335,7 +343,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tblSearchResults.reloadData()
     }
     
-    func filterContentForSearchText(searchText: String, scope: String) {
+    private func filterContentForSearchText(searchText: String, scope: String) {
         filteredArray = filteredArray.filter({( user : User) -> Bool in
             _ = (scope == "Username") || (scope == "Email") || (scope == "Name")
             if(scope == "Username") {

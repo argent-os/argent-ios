@@ -14,14 +14,14 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var avatarImageView: UIImageView!
 
-    var customersLabel:UILabel = UILabel()
+    private var customersLabel:UILabel = UILabel()
     
-    var plansLabel:UILabel = UILabel()
+    private var plansLabel:UILabel = UILabel()
     
-    var customersArray = [Customer]()
+    private var customersArray = [Customer]()
     
-    var plansArray = [Plan]()
-    
+    private var plansArray = [Plan]()
+        
     override func viewDidAppear(animated: Bool) {
         self.navigationController!.navigationBar.backgroundColor = UIColor.clearColor()
         self.navigationController!.navigationBar.barTintColor = UIColor.clearColor()
@@ -131,7 +131,7 @@ class ProfileViewController: UIViewController {
         ]
     }
     
-    func loadCustomerList(completionHandler: ([Customer]?, NSError?) -> ()) {
+    private func loadCustomerList(completionHandler: ([Customer]?, NSError?) -> ()) {
         Customer.getCustomerList({ (customers, error) in
             if error != nil {
                 let alert = UIAlertController(title: "Error", message: "Could not load customers \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
@@ -143,7 +143,7 @@ class ProfileViewController: UIViewController {
         })
     }
     
-    func loadPlanList(completionHandler: ([Plan]?, NSError?) -> ()) {
+    private func loadPlanList(completionHandler: ([Plan]?, NSError?) -> ()) {
         Plan.getPlanList({ (plans, error) in
             if error != nil {
                 let alert = UIAlertController(title: "Error", message: "Could not load plans \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)

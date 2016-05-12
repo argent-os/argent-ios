@@ -630,6 +630,25 @@ support request</string>
             </objects>
             <point key="canvasLocation" x="3463" y="-2682"/>
         </scene>
+        <!--Profile Picture View Controller-->
+        <scene sceneID="Kfy-h6-wWf">
+            <objects>
+                <viewController id="rKS-mp-YD3" customClass="ProfilePictureViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fiI-wg-P2Q"/>
+                        <viewControllerLayoutGuide type="bottom" id="Hqb-i7-IIR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fA8-61-UHx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dh7-aU-JrK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1828" y="-2861"/>
+        </scene>
         <!--Profile-->
         <scene sceneID="pCQ-kF-NQE">
             <objects>
@@ -665,19 +684,6 @@ support request</string>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OpL-4q-E40" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="2VB-En-gK8" customClass="RAMBounceAnimation" customModule="RAMAnimatedTabBarController">
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="duration">
-                            <real key="value" value="1"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="iconSelectedColor">
-                            <color key="value" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="textSelectedColor">
-                            <color key="value" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </customObject>
             </objects>
             <point key="canvasLocation" x="2612" y="-2800"/>
         </scene>
@@ -1412,6 +1418,7 @@ support request</string>
                     <connections>
                         <outlet property="shareCell" destination="QNN-j1-GwY" id="gfm-1S-Hih"/>
                         <segue destination="mQk-jK-m8v" kind="presentation" identifier="loginView" id="mwT-xt-Ez4"/>
+                        <segue destination="rKS-mp-YD3" kind="show" identifier="profilePictureView" id="Ye3-3H-xME"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ksz-q1-Iax" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1446,7 +1453,7 @@ support request</string>
                         <viewControllerLayoutGuide type="bottom" id="Aa7-CV-e8d"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="2uG-We-evA">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1698,7 +1705,7 @@ institutions</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <tabBarItem key="tabBarItem" title="Notifications" image="ic_notify" selectedImage="ic_notify" id="YyQ-LY-ofo" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController"/>
+                    <tabBarItem key="tabBarItem" title="Notifications" image="ic_notify" selectedImage="ic_notify" id="YyQ-LY-ofo"/>
                     <navigationItem key="navigationItem" id="IZf-rL-VA4">
                         <nil key="title"/>
                     </navigationItem>
@@ -4033,15 +4040,15 @@ granted explicit permission.</string>
         <segue reference="ipn-3I-3vc"/>
         <segue reference="Bc6-jW-uiV"/>
         <segue reference="7cu-FP-MoG"/>
-        <segue reference="A1R-09-1HJ"/>
-        <segue reference="UFB-DJ-qrH"/>
+        <segue reference="mwT-xt-Ez4"/>
+        <segue reference="zQh-Po-kj4"/>
+        <segue reference="wgV-xY-MTp"/>
         <segue reference="xTl-cs-ajG"/>
+        <segue reference="UFB-DJ-qrH"/>
         <segue reference="m0d-gd-RWW"/>
         <segue reference="o5e-Ut-781"/>
         <segue reference="E98-FC-SfF"/>
         <segue reference="jpD-81-9Zm"/>
-        <segue reference="Bot-Tn-1ZP"/>
-        <segue reference="wgV-xY-MTp"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>

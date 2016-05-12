@@ -50,6 +50,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return presenter
     }()
     
+    func skipOnboarding(notification: NSNotification) {
+        
+        if let appContentVC = UIStoryboard(name: "Auth", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("authViewController") as? UIViewController {
+            let overlayView: UIView = UIScreen.mainScreen().snapshotViewAfterScreenUpdates(false)
+            appContentVC.view.addSubview(overlayView)
+            self.window?.rootViewController = appContentVC
+            UIView.animateWithDuration(0.4, delay: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: { () -> Void in
+                overlayView.alpha = 0
+                }, completion: { (finished) -> Void in
+                    overlayView.removeFromSuperview()
+            })
+        }
+    }
+
     // 3D Touch
     func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: Bool -> Void) {
         if shortcutItem.type == "com.argentapp.ios.add-customer" {
@@ -79,6 +93,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        // Setup skip onboarding notification
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.skipOnboarding(_:)), name: "kDismissOnboardingNotification", object: nil)
         
         // Globally set toolbar
         UIToolbar.appearance().barTintColor = UIColor.mediumBlue()

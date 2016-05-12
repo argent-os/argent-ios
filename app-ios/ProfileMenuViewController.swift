@@ -82,7 +82,13 @@ class ProfileMenuViewController: UITableViewController {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         
+        let userImageView: UIImageView = UIImageView(frame: CGRectMake(screenWidth / 2, 0, 90, 90))
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(ProfileMenuViewController.goToEditPicture(_:)))
+        userImageView.userInteractionEnabled = true
+        userImageView.addGestureRecognizer(tapGestureRecognizer)
+        
         User.getProfile({ (user, error) in
+            
             if error != nil
             {
                 let alert = UIAlertController(title: "Error", message: "Could not load profile \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
@@ -91,7 +97,6 @@ class ProfileMenuViewController: UITableViewController {
             }
             if user?.picture != nil && user?.picture != "" {
                 let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
-                let userImageView: UIImageView = UIImageView(frame: CGRectMake(screenWidth / 2, 0, 90, 90))
                 userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
                 userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 120)
                 userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
@@ -119,5 +124,8 @@ class ProfileMenuViewController: UITableViewController {
         })
     }
     
+    func goToEditPicture(sender: AnyObject) {
+        self.performSegueWithIdentifier("profilePictureView", sender: sender)
+    }
     
 }

@@ -9,16 +9,17 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import JGProgressHUD
 import DGElasticPullToRefresh
 
 class NotificationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var notificationsArray:Array<NotificationItem>?
+    private var notificationsArray:Array<NotificationItem>?
     
-    var tableView:UITableView = UITableView()
+    private var tableView:UITableView = UITableView()
     
-    var dateFormatter = NSDateFormatter()
+    private var dateFormatter = NSDateFormatter()
+    
+    private var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
     override func viewDidAppear(animated: Bool) {
         self.childViewControllerForStatusBarStyle()?.setNeedsStatusBarAppearanceUpdate()
@@ -30,6 +31,11 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
+        
+        activityIndicator.center = tableView.center
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(activityIndicator)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -67,9 +73,11 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         self.loadNotificationItems()
     }
     
-    func loadNotificationItems() {
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
-        HUD.showInView(self.view!)
+    private func loadNotificationItems() {
+        activityIndicator.center = view.center
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(activityIndicator)
         NotificationItem.getNotificationList({ (notifications, error) in
             if error != nil
             {
@@ -79,13 +87,13 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
             }
             self.notificationsArray = notifications
             
-            HUD.dismiss()
-
+            self.activityIndicator.stopAnimating()
+            
             self.tableView.reloadData()
         })
     }
     
-    func timeStringFromUnixTime(unixTime: Double) -> String {
+    private func timeStringFromUnixTime(unixTime: Double) -> String {
         let date = NSDate(timeIntervalSince1970: unixTime)
         let dateFormatter = NSDateFormatter()
         
@@ -94,7 +102,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         return dateFormatter.stringFromDate(date)
     }
     
-    func dayStringFromTime(unixTime: Double) -> String {
+    private func dayStringFromTime(unixTime: Double) -> String {
         let dateFormatter = NSDateFormatter()
         let date = NSDate(timeIntervalSince1970: unixTime)
         dateFormatter.locale = NSLocale(localeIdentifier: NSLocale.currentLocale().localeIdentifier)
@@ -102,7 +110,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         return dateFormatter.stringFromDate(date)
     }
     
-    func refresh(sender:AnyObject)
+    private func refresh(sender:AnyObject)
     {
         self.loadNotificationItems()
     }

@@ -11,37 +11,54 @@ import UIKit
 
 class ProfilePictureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    @IBOutlet weak var myActivityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var myImageView: UIImageView!
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
-    @IBAction func uploadButtonTapped(sender: AnyObject) {
-        
+    var imageView: UIImageView = UIImageView()
+    
+    var selectImageButton: UIButton = UIButton()
+    
+    func uploadButtonTapped(sender: AnyObject) {
         myImageUploadRequest()
-        
     }
     
-    @IBAction func selectPhotoButtonTapped(sender: AnyObject) {
+    func selectPhotoButtonTapped(sender: AnyObject) {
         
-        let myPickerController = UIImagePickerController()
-        myPickerController.delegate = self;
-        myPickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        
-        self.presentViewController(myPickerController, animated: true, completion: nil)
-        
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = self;
+        pickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        self.presentViewController(pickerController, animated: true, completion: nil)
+        activityIndicator.stopAnimating()
     }
-    
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-            myImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+            imageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+            imageView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+            imageView.center = self.view.center
+            imageView.layer.cornerRadius = imageView.frame.size.width/2
+            imageView.layer.masksToBounds = true
             self.dismissViewControllerAnimated(true, completion: nil)
+            activityIndicator.stopAnimating()
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        //myImageUploadRequest()
+        selectPhotoButtonTapped(self)
+        
+        imageView = UIImageView(image: UIImage(named: "IconEmpty"))
+        imageView.center = view.center
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(ProfilePictureViewController.uploadButtonTapped(_:)))
+        imageView.userInteractionEnabled = true
+        imageView.addGestureRecognizer(tapGestureRecognizer)
+        self.view.addSubview(imageView)
+        
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(activityIndicator)
+        
+        myImageUploadRequest()
         
     }
     
@@ -50,15 +67,10 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
         // Dispose of any resources that can be recreated.
     }
     
-    
-    
-    
-    
-    
     func myImageUploadRequest()
     {
         
-        let myUrl = NSURL(string: "http://www.swiftdeveloperblog.com/http-post-example-script/");
+        let myUrl = NSURL(string: "http://localhost:5001/http-post-example-script/");
         //let myUrl = NSURL(string: "http://www.boredwear.com/utils/postImage.php");
         
         let request = NSMutableURLRequest(URL:myUrl!);
@@ -74,16 +86,13 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
         
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         
-        
-        let imageData = UIImageJPEGRepresentation(myImageView.image!, 1)
+        let imageData = UIImageJPEGRepresentation(imageView.image!, 1)
         
         if(imageData==nil)  { return; }
         
         request.HTTPBody = createBodyWithParameters(param, filePathKey: "file", imageDataKey: imageData!, boundary: boundary)
         
-        
-        
-        myActivityIndicator.startAnimating();
+        activityIndicator.startAnimating();
         
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
             data, response, error in
@@ -103,11 +112,9 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
 //            let err: NSError?
 //            let json = NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as? NSDictionary
             
-            
-            
             dispatch_async(dispatch_get_main_queue(),{
-                self.myActivityIndicator.stopAnimating()
-                self.myImageView.image = nil;
+                self.activityIndicator.stopAnimating()
+                self.imageView.image = nil;
             });
             
             /*
@@ -116,13 +123,10 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
              println("firstNameValue: \(firstNameValue)")
              }
              */
-            
         }
         
         task.resume()
-        
     }
-    
     
     func createBodyWithParameters(parameters: [String: String]?, filePathKey: String?, imageDataKey: NSData, boundary: String) -> NSData {
         let body = NSMutableData();
@@ -144,29 +148,17 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
         body.appendString("Content-Type: \(mimetype)\r\n\r\n")
         body.appendData(imageDataKey)
         body.appendString("\r\n")
-        
-        
-        
         body.appendString("--\(boundary)--\r\n")
         
         return body
     }
     
-    
-    
-    
     func generateBoundaryString() -> String {
         return "Boundary-\(NSUUID().UUIDString)"
     }
-    
-    
-    
 }
 
-
-
 extension NSMutableData {
-    
     func appendString(string: String) {
         let data = string.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
         appendData(data!)

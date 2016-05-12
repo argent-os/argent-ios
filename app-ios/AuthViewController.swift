@@ -1,26 +1,30 @@
 //
-//  InitializeAuth.swift
+//  AuthViewController.swift
 //  argent-ios
 //
 //  Created by Sinan Ulkuatam on 2/9/16.
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
 //
 
-import QuartzCore
-import JGProgressHUD
-import JGProgressHUD
-import Gecco
-
 class AuthViewController: UIViewController  {
     
-    var spotlightViewController: SpotlightViewController?
-
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func skipOnboarding(sender: AnyObject) {
+        NSNotificationCenter.defaultCenter().postNotificationName("kDismissOnboardingNotification", object: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Border radius on uiview
-        view.layer.cornerRadius = 0
-        view.layer.masksToBounds = true
         
+        configureView()
+    }
+    
+    func configureView() {
         // Set background image
         let backgroundView: UIImageView = UIImageView(image: UIImage(named: "BackgroundBusiness1"))
         backgroundView.contentMode = UIViewContentMode.ScaleAspectFill
@@ -31,10 +35,6 @@ class AuthViewController: UIViewController  {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
-        
-//        let storyboard = UIStoryboard(name: "Auth", bundle: nil)
-//        let vc = storyboard.instantiateViewControllerWithIdentifier("authViewController")
-//        self.navigationController?.pushViewController(vc, animated: true)
         
         // UI
         let loginButton = UIButton(frame: CGRect(x: 10, y: screenHeight-60-10, width: screenWidth/2-20, height: 60.0))
@@ -100,24 +100,25 @@ class AuthViewController: UIViewController  {
         button.titleLabel?.font = UIFont(name: "Avenir-Light", size: 14)
         button.addTarget(self, action: #selector(self.goToTutorial(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(button)
-        
     }
     
     //Changing Status Bar
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
+    
+    
+    func goToTutorial(sender: AnyObject!) {
+        let viewController:UIViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateViewControllerWithIdentifier("onboardingVC") as! OnboardingViewController
+        
+        self.presentViewController(viewController, animated: true, completion: nil)
+    }
+    
 
     // Set the ID in the storyboard in order to enable transition!
     func signup(sender:AnyObject!)
     {
         let viewController:UINavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SignupNavigationController") as! UINavigationController
-        
-        self.presentViewController(viewController, animated: true, completion: nil)
-    }
-    
-    func goToTutorial(sender: AnyObject!) {
-        let viewController:BrowserViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateViewControllerWithIdentifier("BrowserViewController") as! BrowserViewController
         
         self.presentViewController(viewController, animated: true, completion: nil)
     }
@@ -128,11 +129,6 @@ class AuthViewController: UIViewController  {
         let viewController:LoginViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
         
         self.presentViewController(viewController, animated: true, completion: nil)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     override func viewDidAppear(animated: Bool) {
