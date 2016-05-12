@@ -66,9 +66,11 @@ class AuthViewController: UIViewController  {
         signupButton.addTarget(self, action: #selector(AuthViewController.signup(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(signupButton)
         
-        let imageName = "IconLogoWhite"
+        let imageName = "Logo"
         let image = UIImage(named: imageName)
         let imageView = UIImageView(image: image!)
+        imageView.layer.cornerRadius = 30
+        imageView.layer.masksToBounds = true
         imageView.tag = 7577
         imageView.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
         imageView.frame.origin.y = screenHeight*0.14 // 14 down from the top

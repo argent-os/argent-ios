@@ -17,19 +17,7 @@
                     <view key="view" contentMode="scaleToFill" id="Nfm-Fg-MAB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eqs-cd-zMb">
-                                <rect key="frame" x="20" y="471" width="374" height="81"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Eqs-cd-zMb" firstAttribute="top" secondItem="fU3-wt-lna" secondAttribute="bottom" constant="407" id="AVe-zx-4Xu"/>
-                            <constraint firstItem="yK1-a1-oUv" firstAttribute="top" secondItem="Eqs-cd-zMb" secondAttribute="bottom" constant="184" id="bDL-Rl-ESi"/>
-                            <constraint firstItem="Eqs-cd-zMb" firstAttribute="trailing" secondItem="Nfm-Fg-MAB" secondAttribute="trailingMargin" id="hJ0-wZ-YpL"/>
-                            <constraint firstItem="Eqs-cd-zMb" firstAttribute="leading" secondItem="Nfm-Fg-MAB" secondAttribute="leadingMargin" id="sP1-Ck-7PG"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fgy-ZG-yJs"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -226,7 +214,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="IconCloseColor" width="24" height="24"/>
+        <image name="IconCloseColor" width="16" height="16"/>
         <image name="IconSwipe" width="145" height="206"/>
         <image name="IconUndo" width="21" height="21"/>
         <image name="ic_close_light" width="22" height="22"/>

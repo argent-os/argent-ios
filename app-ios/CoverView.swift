@@ -41,8 +41,10 @@ final class CoverView: UIView {
     }
     
     override init(frame: CGRect) {
-        logoView = UIImageView(image: UIImage(named: "ic_logo_outline_white_large"))
+        logoView = UIImageView(image: UIImage(named: "ic_logo"))
         logoView.frame = CGRect(x: 0, y: -100, width: 200, height: 200)
+        logoView.layer.cornerRadius = 25
+        logoView.layer.masksToBounds = true
         logoView.contentMode = .ScaleAspectFill
         logoView.tintColor = UIColor.whiteColor()
         logoView.sizeToFit()
