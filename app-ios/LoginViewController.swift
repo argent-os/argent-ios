@@ -29,6 +29,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureView()
+    }
+    
+    func configureView() {
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
+        
         NSUserDefaults.standardUserDefaults().setValue("", forKey: "userAccessToken")
         NSUserDefaults.standardUserDefaults().synchronize()
         
@@ -49,17 +57,27 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         loginBox.layer.borderColor = UIColor(rgba: "#fff5").CGColor
         loginBox.layer.borderWidth = 1
         loginBox.layer.masksToBounds = true
-
+        
         // Border radius on uiview
         view.layer.cornerRadius = 0
         view.layer.masksToBounds = true
-                
+        
         // Do any additional setup after loading the view.
         
         //Looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
+        let imageName = "Logo"
+        let image = UIImage(named: imageName)
+        let imageView = UIImageView(image: image!)
+        imageView.layer.cornerRadius = 30
+        imageView.layer.masksToBounds = true
+        imageView.tag = 42312
+        imageView.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
+        imageView.frame.origin.y = screenHeight*0.10 // 10% down from the top
+        imageView.frame.origin.x = (self.view.bounds.size.width - imageView.frame.size.width) / 2.0 // centered left to right.
+        view.addSubview(imageView)
     }
     
     //Calls this function when the tap is recognized.
