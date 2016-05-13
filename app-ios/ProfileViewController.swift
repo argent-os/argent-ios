@@ -82,8 +82,8 @@ class ProfileViewController: UIViewController {
             let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.goToEdit(_:)))
             tap.numberOfTapsRequired = 1
             settingsIcon.addGestureRecognizer(tap)
-            self.view.addSubview(settingsIcon)
-            self.view.bringSubviewToFront(settingsIcon)
+            // self.view.addSubview(settingsIcon)
+            // self.view.bringSubviewToFront(settingsIcon)
             
             let customersLabel = UILabel(frame: CGRectMake(25, 110, 75, 70))
             customersLabel.textAlignment = NSTextAlignment.Center

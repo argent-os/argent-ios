@@ -23,6 +23,8 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
     
     let imagePickerController = ImagePickerController()
     
+    var txt = UILabel()
+
     func selectPhotoButtonTapped(sender: AnyObject) {
         
         imagePickerController.delegate = self
@@ -48,6 +50,12 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
         self.view.addSubview(activityIndicator)
+        
+        txt.frame = CGRect(x: 0, y: 0, width: 300, height: 100)
+        txt.center = view.center
+        txt.textAlignment = .Center
+        txt.text = "No image selected"
+        txt.font = UIFont(name: "Avenir-Light", size: 18)
         
     }
     
@@ -92,6 +100,8 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
                                     print("success")
                                 case .Failure(let error):
                                     print("failure")
+                                    self.txt.text = "Error uploading picture, check file size"
+                                    self.view.addSubview(self.txt)
                                 }
                             })
                         case .Failure(let encodingError):
@@ -129,13 +139,6 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
     func cancelButtonDidPress() {
         activityIndicator.stopAnimating()
         activityIndicator.hidden = true
-        
-        var txt = UILabel()
-        txt.frame = CGRect(x: 0, y: 0, width: 300, height: 100)
-        txt.center = view.center
-        txt.textAlignment = .Center
-        txt.text = "No image selected"
-        txt.font = UIFont(name: "Avenir-Light", size: 18)
         self.view.addSubview(txt)
     }
 }

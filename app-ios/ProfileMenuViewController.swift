@@ -8,6 +8,7 @@
 
 import Foundation
 import SafariServices
+import DGElasticPullToRefresh
 
 class ProfileMenuViewController: UITableViewController {
     
@@ -21,9 +22,21 @@ class ProfileMenuViewController: UITableViewController {
     func configureView() {
         
         let screen = UIScreen.mainScreen().bounds
-        _ = screen.size.width
+        let screenWidth = screen.size.width
 
         self.tableView.tableHeaderView = ParallaxHeaderView.init(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 100));
+        
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.frame = CGRect(x: 0, y: 65, width: screenWidth, height: 100)
+        loadingView.tintColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
+        tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
+                self?.tableView.dg_stopLoading()
+                self!.loadProfile()
+            })
+            }, loadingView: loadingView)
+        tableView.dg_setPullToRefreshFillColor(UIColor.clearColor())
+        tableView.dg_setPullToRefreshBackgroundColor(UIColor.clearColor())
         
         loadProfile()
         
