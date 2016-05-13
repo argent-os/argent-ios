@@ -48,6 +48,7 @@ target 'app-ios' do
 	pod 'AYVibrantButton'
 	pod 'GaugeKit'
 	pod 'StepSlider'
+	pod 'ImagePicker'
 	#pod 'DOFavoriteButton'
 
 	post_install do |installer|

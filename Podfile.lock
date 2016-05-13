@@ -10,13 +10,11 @@ PODS:
   - DGElasticPullToRefresh (1.0.3)
   - DGRunkeeperSwitch (1.1.1)
   - DZNEmptyDataSet (1.8)
-  - EAIntroView (2.8.3):
-    - EARestrictedScrollView (~> 1.1.0)
-  - EARestrictedScrollView (1.1.0)
   - FlagKit (1.0.7)
   - Former (1.3.0)
   - GaugeKit (0.3.2)
   - Gecco (0.2.0)
+  - ImagePicker (1.2)
   - JGProgressHUD (1.3.1)
   - JSSAlertView (1.1.4)
   - JVFloatLabeledTextField (1.1.0)
@@ -60,11 +58,11 @@ DEPENDENCIES:
   - DGElasticPullToRefresh
   - DGRunkeeperSwitch
   - DZNEmptyDataSet
-  - EAIntroView
   - FlagKit
   - Former
   - GaugeKit
   - Gecco
+  - ImagePicker
   - JGProgressHUD
   - JSSAlertView
   - JVFloatLabeledTextField
@@ -108,12 +106,11 @@ SPEC CHECKSUMS:
   DGElasticPullToRefresh: 040f39ae69840b3261d163fe6735c5901bf851e9
   DGRunkeeperSwitch: da12f199532a99958a1e87ec0a5af61efdba11ec
   DZNEmptyDataSet: d2351b2e8daefa40433ef292e246e21f6be31a7b
-  EAIntroView: e948c83e642f30010d427e643c18a6f2b529afed
-  EARestrictedScrollView: b0c2a3f92fb2610bb44d71c5e4893777c89e45ef
   FlagKit: dffc62b4c5db33043c89bbda0bda897077d521e5
   Former: 7380ef3b9bdb3bf43d9f0fe99e369987d3068705
   GaugeKit: 4d5c3491521ed2d6e2f83cac5f51d0cd09db8989
   Gecco: 27ab0f43da3f8e844771cf641992afdd1ea09c62
+  ImagePicker: 85f14ed6872f46c08d210077b5540a890a6cd151
   JGProgressHUD: 153053a21d81208cb5f659691996bcefce6a9885
   JSSAlertView: f42fc4be811925cef72ea808746df5a6c27eb356
   JVFloatLabeledTextField: ea4a3d8387ddd43724c472bb2b8ab39b79af05d4

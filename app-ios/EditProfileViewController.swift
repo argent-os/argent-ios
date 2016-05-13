@@ -258,14 +258,15 @@ final class EditProfileViewController: FormViewController {
         
         // Create SectionFormers
         
-        let imageSection = SectionFormer(rowFormer: imageRow)
-            .set(headerViewFormer: createHeader("Profile Image"))
+        // Temporarily remove image section
+        //let imageSection = SectionFormer(rowFormer: imageRow)
+        //    .set(headerViewFormer: createHeader("Profile Image"))
         let aboutSection = SectionFormer(rowFormer: firstNameRow, lastNameRow, usernameRow, emailRow, birthdayRow, phoneRow)
             .set(headerViewFormer: createHeader("Profile information"))
         let moreSection = SectionFormer(rowFormer: moreRow)
             .set(headerViewFormer: createHeader("Additional transfer-enabling security infomation"))
         
-        former.append(sectionFormer: imageSection, aboutSection, moreSection)
+        former.append(sectionFormer: aboutSection, moreSection)
             .onCellSelected { [weak self] _ in
                 self?.formerInputAccessoryView.update()
         }

@@ -8,8 +8,12 @@
 
 import Foundation
 import UIKit
+import ImagePicker
+import Alamofire
 
-class ProfilePictureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ProfilePictureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImagePickerDelegate {
+    
+    var window = UIWindow()
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
@@ -17,27 +21,15 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
     
     var selectImageButton: UIButton = UIButton()
     
-    func uploadButtonTapped(sender: AnyObject) {
-        myImageUploadRequest()
-    }
+    let imagePickerController = ImagePickerController()
     
     func selectPhotoButtonTapped(sender: AnyObject) {
         
-        let pickerController = UIImagePickerController()
-        pickerController.delegate = self;
-        pickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        self.presentViewController(pickerController, animated: true, completion: nil)
+        imagePickerController.delegate = self
+        imagePickerController.imageLimit = 1
+        presentViewController(imagePickerController, animated: true, completion: nil)
+
         activityIndicator.stopAnimating()
-    }
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-            imageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-            imageView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-            imageView.center = self.view.center
-            imageView.layer.cornerRadius = imageView.frame.size.width/2
-            imageView.layer.masksToBounds = true
-            self.dismissViewControllerAnimated(true, completion: nil)
-            activityIndicator.stopAnimating()
     }
     
     override func viewDidLoad() {
@@ -48,17 +40,14 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
         
         imageView = UIImageView(image: UIImage(named: "IconEmpty"))
         imageView.center = view.center
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(ProfilePictureViewController.uploadButtonTapped(_:)))
         imageView.userInteractionEnabled = true
-        imageView.addGestureRecognizer(tapGestureRecognizer)
         self.view.addSubview(imageView)
         
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
         activityIndicator.center = view.center
         activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
         self.view.addSubview(activityIndicator)
-        
-        myImageUploadRequest()
         
     }
     
@@ -67,94 +56,87 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
         // Dispose of any resources that can be recreated.
     }
     
-    func myImageUploadRequest()
+    func imageUploadRequest(uploadedImage: UIImage)
     {
         
-        let myUrl = NSURL(string: "http://localhost:5001/http-post-example-script/");
-        //let myUrl = NSURL(string: "http://www.boredwear.com/utils/postImage.php");
-        
-        let request = NSMutableURLRequest(URL:myUrl!);
-        request.HTTPMethod = "POST";
-        
-        let param = [
-            "firstName"  : "Sergey",
-            "lastName"    : "Kargopolov",
-            "userId"    : "9"
-        ]
-        
-        let boundary = generateBoundaryString()
-        
-        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-        
-        let imageData = UIImageJPEGRepresentation(imageView.image!, 1)
-        
-        if(imageData==nil)  { return; }
-        
-        request.HTTPBody = createBodyWithParameters(param, filePathKey: "file", imageDataKey: imageData!, boundary: boundary)
-        
-        activityIndicator.startAnimating();
-        
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
-            data, response, error in
-            
-            if error != nil {
-                print("error=\(error)")
-                return
-            }
-            
-            // You can print out response object
-            print("******* response = \(response)")
-            
-            // Print out reponse body
-            let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)
-            print("****** response data = \(responseString!)")
-            
-//            let err: NSError?
-//            let json = NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as? NSDictionary
-            
-            dispatch_async(dispatch_get_main_queue(),{
+        if(userAccessToken != nil) {
+            User.getProfile { (user, NSError) in
+                
+                let endpoint = apiUrl + "/v1/cloudinary/" + (user?.id)! + "/upload"
+                
+                let parameters = [:]
+                
+                let img = UIImageJPEGRepresentation(uploadedImage, 1)
+                
+                if(img==nil)  { return; }
+                
+                let imageData: NSData = NSData(data: img!)
+                
+                Alamofire.upload(.POST, endpoint, multipartFormData: {
+                    multipartFormData in
+                
+                    multipartFormData.appendBodyPart(data: imageData, name: "avatar", fileName: "avatar", mimeType: "image/jpg")
+                    
+                    for (key, value) in parameters {
+                        multipartFormData.appendBodyPart(data: value.dataUsingEncoding(NSUTF8StringEncoding)!, name: key as! String)
+                    }
+                    
+                    }, encodingCompletion: {
+                        encodingResult in
+                        
+                        switch encodingResult {
+                        case .Success(let upload, _, _):
+                            upload.responseJSON(completionHandler: { response in
+                                switch response.result {
+                                case .Success:
+                                    print("success")
+                                case .Failure(let error):
+                                    print("failure")
+                                }
+                            })
+                        case .Failure(let encodingError):
+                            print(encodingError)
+                        }
+                })
+
                 self.activityIndicator.stopAnimating()
-                self.imageView.image = nil;
-            });
-            
-            /*
-             if let parseJSON = json {
-             var firstNameValue = parseJSON["firstName"] as? String
-             println("firstNameValue: \(firstNameValue)")
-             }
-             */
-        }
-        
-        task.resume()
-    }
-    
-    func createBodyWithParameters(parameters: [String: String]?, filePathKey: String?, imageDataKey: NSData, boundary: String) -> NSData {
-        let body = NSMutableData();
-        
-        if parameters != nil {
-            for (key, value) in parameters! {
-                body.appendString("--\(boundary)\r\n")
-                body.appendString("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n")
-                body.appendString("\(value)\r\n")
             }
         }
-        
-        let filename = "user-profile.jpg"
-        
-        let mimetype = "image/jpg"
-        
-        body.appendString("--\(boundary)\r\n")
-        body.appendString("Content-Disposition: form-data; name=\"\(filePathKey!)\"; filename=\"\(filename)\"\r\n")
-        body.appendString("Content-Type: \(mimetype)\r\n\r\n")
-        body.appendData(imageDataKey)
-        body.appendString("\r\n")
-        body.appendString("--\(boundary)--\r\n")
-        
-        return body
     }
     
-    func generateBoundaryString() -> String {
-        return "Boundary-\(NSUUID().UUIDString)"
+    // Delegate: Imagepicker
+    func wrapperDidPress(images: [UIImage]) {
+
+    }
+    
+    func doneButtonDidPress(images: [UIImage]) {
+        imageView.image = images[0]
+        imageUploadRequest(imageView.image!)
+        imageView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        imageView.center = self.view.center
+        imageView.layer.cornerRadius = imageView.frame.size.width/2
+        imageView.layer.masksToBounds = true
+        self.dismissViewControllerAnimated(true, completion: nil)
+        activityIndicator.stopAnimating()
+        activityIndicator.hidden = true
+        Timeout(0.3) {
+            if let navController = self.navigationController {
+                navController.popViewControllerAnimated(true)
+            }
+        }
+    }
+    
+    func cancelButtonDidPress() {
+        activityIndicator.stopAnimating()
+        activityIndicator.hidden = true
+        
+        var txt = UILabel()
+        txt.frame = CGRect(x: 0, y: 0, width: 300, height: 100)
+        txt.center = view.center
+        txt.textAlignment = .Center
+        txt.text = "No image selected"
+        txt.font = UIFont(name: "Avenir-Light", size: 18)
+        self.view.addSubview(txt)
     }
 }
 
