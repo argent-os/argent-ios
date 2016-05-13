@@ -55,21 +55,21 @@ class ParallaxHeaderView: UIView {
                 self.heightLayoutConstraint = NSLayoutConstraint(item: imageView, attribute: .Height, relatedBy: .Equal, toItem: self.containerView, attribute: .Height, multiplier: 1.0, constant: 0.0)
                 self.containerView.addConstraint(self.heightLayoutConstraint)
             } else {
-                let img = UIImage(named: "BackgroundGradientInverse")
-                imageView.image = img
-                
-                // Blurview
-                let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
-                visualEffectView.frame = CGRectMake(0, 0, 600, 500)
-                
-                self.containerView.addSubview(imageView)
-                imageView.addSubview(visualEffectView)
-                
-                self.containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[imageView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["imageView" : imageView]))
-                self.bottomLayoutConstraint = NSLayoutConstraint(item: imageView, attribute: .Bottom, relatedBy: .Equal, toItem: self.containerView, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
-                self.containerView.addConstraint(self.bottomLayoutConstraint)
-                self.heightLayoutConstraint = NSLayoutConstraint(item: imageView, attribute: .Height, relatedBy: .Equal, toItem: self.containerView, attribute: .Height, multiplier: 1.0, constant: 0.0)
-                self.containerView.addConstraint(self.heightLayoutConstraint)
+//                let img = UIImage(named: "BackgroundGradientInverse")
+//                imageView.image = img
+//                
+//                // Blurview
+//                let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
+//                visualEffectView.frame = CGRectMake(0, 0, 600, 500)
+//                
+//                self.containerView.addSubview(imageView)
+//                imageView.addSubview(visualEffectView)
+//                
+//                self.containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[imageView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["imageView" : imageView]))
+//                self.bottomLayoutConstraint = NSLayoutConstraint(item: imageView, attribute: .Bottom, relatedBy: .Equal, toItem: self.containerView, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
+//                self.containerView.addConstraint(self.bottomLayoutConstraint)
+//                self.heightLayoutConstraint = NSLayoutConstraint(item: imageView, attribute: .Height, relatedBy: .Equal, toItem: self.containerView, attribute: .Height, multiplier: 1.0, constant: 0.0)
+//                self.containerView.addConstraint(self.heightLayoutConstraint)
             }
         })
 

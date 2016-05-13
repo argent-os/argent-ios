@@ -88,7 +88,7 @@ extension UIColor {
         return UIColor(rgba: "#141c29")
     }
     static func lightBlue() -> UIColor {
-        return UIColor(rgba: "#99acbd")
+        return UIColor(rgba: "#7b8999")
     }
     static func limeGreen() -> UIColor {
         return UIColor(rgba: "#d8ff52")

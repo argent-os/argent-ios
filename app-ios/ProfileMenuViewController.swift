@@ -121,7 +121,7 @@ class ProfileMenuViewController: UITableViewController {
                 userImageView.layer.borderColor = UIColor(rgba: "#fff").CGColor
                 self.tableView.addSubview(userImageView)
             } else {
-                let img = UIImage(named: "IconPerson")
+                let img = UIImage(named: "IconCamera")
                 let userImageView: UIImageView = UIImageView(frame: CGRectMake(screenWidth / 2, 0, 90, 90))
                 userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
                 userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 120)
