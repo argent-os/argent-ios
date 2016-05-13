@@ -96,5 +96,8 @@ extension UIColor {
     static func slateBlue() -> UIColor {
         return UIColor(rgba: "#2c3441")
     }
+    static func brandYellow() -> UIColor {
+        return UIColor(rgba: "#FFCF4B")
+    }
 }
 

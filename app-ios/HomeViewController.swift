@@ -262,8 +262,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         graph.colorTop = UIColor.clearColor()
         graph.colorBottom = UIColor.slateBlue()
 //        graph.colorLine = UIColor(rgba: "#0003")
-        graph.colorLine = UIColor.yellowColor()
-        graph.colorPoint = UIColor.mediumBlue()
+        graph.colorLine = UIColor.brandYellow()
+        graph.colorPoint = UIColor.yellowColor()
         graph.colorBackgroundPopUplabel = UIColor.whiteColor()
         graph.delegate = self
         graph.widthLine = 3
@@ -301,9 +301,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         navBar.setItems([navItem], animated: true)
         
         balanceSwitch.backgroundColor = UIColor.clearColor()
-        balanceSwitch.selectedBackgroundColor = UIColor.whiteColor()
+        balanceSwitch.selectedBackgroundColor = UIColor.darkBlue().colorWithAlphaComponent(0.5)
         balanceSwitch.titleColor = UIColor.whiteColor()
-        balanceSwitch.selectedTitleColor = UIColor.mediumBlue()
+        balanceSwitch.selectedTitleColor = UIColor.whiteColor()
         balanceSwitch.titleFont = UIFont(name: "Avenir-Book", size: 12.0)
         balanceSwitch.frame = CGRect(x: view.bounds.width - 185.0, y: 30, width: 180, height: 35.0)
         //autoresizing so it stays at top right (flexible left and flexible bottom margin)
