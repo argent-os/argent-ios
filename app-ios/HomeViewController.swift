@@ -204,9 +204,11 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
                 
                 if user?.picture != nil && user?.picture != "" {
-                    let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
-                    userImageView.image = img
-                    self.view.addSubview(userImageView)
+                    Timeout(0.5) {
+                        let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
+                        userImageView.image = img
+                        self.view.addSubview(userImageView)
+                    }
                 } else {
                     if user?.username == nil || user?.username == "" {
                         // logout on failure to get profile
@@ -313,15 +315,14 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         balanceSwitch.bringSubviewToFront(balanceSwitch)
         balanceSwitch.addTarget(self, action: #selector(HomeViewController.indexChanged(_:)), forControlEvents: .ValueChanged)
         
-        let headerView: UIView = UIView(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 60))
+        let headerView: UIView = UIView(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 40))
         headerView.backgroundColor = UIColor.clearColor()
-
         let headerViewTitle: UILabel = UILabel()
-        headerViewTitle.frame = CGRect(x: 0, y: 15, width: screenWidth, height: 40)
-        headerViewTitle.text = "Account Activity"
-        headerViewTitle.font = UIFont(name: "Avenir-Book", size: 16)
-        headerViewTitle.textAlignment = .Center
-        headerViewTitle.textColor = UIColor.darkGrayColor()
+        headerViewTitle.frame = CGRect(x: 18, y: 15, width: screenWidth, height: 30)
+        headerViewTitle.text = "Transaction History"
+        headerViewTitle.font = UIFont(name: "Avenir-Light", size: 16)
+        headerViewTitle.textAlignment = .Left
+        headerViewTitle.textColor = UIColor.lightGrayColor()
         headerView.addSubview(headerViewTitle)
         
         let tutorialButton:UIButton = UIButton()
@@ -491,16 +492,17 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         cell.lblDate?.text = ""
         if let amount = item?.amount {
             if Double(amount)!/100 < 0 {
-                cell.lblCreditDebit?.text = "Account debited"
+                cell.lblCreditDebit?.text = "Account debit"
+                cell.lblAmount?.textColor = UIColor.brandRed()
             } else {
-                cell.lblCreditDebit?.text = "Account credited"
+                cell.lblCreditDebit?.text = "Account credit"
+                cell.lblAmount?.textColor = UIColor.brandGreen()
             }
             let formatter = NSNumberFormatter()
             formatter.numberStyle = .CurrencyStyle
             // formatter.locale = NSLocale.currentLocale() // This is the default
             let amt = formatter.stringFromNumber(Float(amount)!/100)
             cell.lblAmount?.text = amt!
-            cell.lblAmount?.textColor = UIColor.darkGrayColor()
         }
         if let date = item?.created
         {
@@ -522,7 +524,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 90.0
+        return 80.0
     }
     
 }

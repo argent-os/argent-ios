@@ -99,5 +99,11 @@ extension UIColor {
     static func brandYellow() -> UIColor {
         return UIColor(rgba: "#FFCF4B")
     }
+    static func brandGreen() -> UIColor {
+        return UIColor(rgba: "#01d199")
+    }
+    static func brandRed() -> UIColor {
+        return UIColor(rgba: "#f74e1d")
+    }
 }
 
