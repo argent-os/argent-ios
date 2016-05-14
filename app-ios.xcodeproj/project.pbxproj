@@ -103,7 +103,6 @@
 		30C2DAEF1CA43951003AFD8B /* AddCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAEE1CA43951003AFD8B /* AddCustomerViewController.swift */; };
 		30C2DAF51CA43967003AFD8B /* ChargeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAF41CA43967003AFD8B /* ChargeViewController.swift */; };
 		30C2DAF91CA43975003AFD8B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAF81CA43975003AFD8B /* User.swift */; };
-		30C2DAFD1CA43984003AFD8B /* Plaid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAFC1CA43984003AFD8B /* Plaid.swift */; };
 		30C2DAFF1CA4398C003AFD8B /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAFE1CA4398C003AFD8B /* Secrets.swift */; };
 		30C2DB0D1CA439CC003AFD8B /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DB0C1CA439CC003AFD8B /* Auth.storyboard */; };
 		30C2DB0F1CA439D2003AFD8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DB0E1CA439D2003AFD8B /* LaunchScreen.storyboard */; };
@@ -315,7 +314,6 @@
 		30C2DAEE1CA43951003AFD8B /* AddCustomerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddCustomerViewController.swift; path = "app-ios/AddCustomerViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAF41CA43967003AFD8B /* ChargeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChargeViewController.swift; path = "app-ios/ChargeViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAF81CA43975003AFD8B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = "app-ios/User.swift"; sourceTree = SOURCE_ROOT; };
-		30C2DAFC1CA43984003AFD8B /* Plaid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Plaid.swift; path = "app-ios/Plaid.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAFE1CA4398C003AFD8B /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Secrets.swift; path = "app-ios/Secrets.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DB0C1CA439CC003AFD8B /* Auth.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Auth.storyboard; path = "app-ios/Auth.storyboard"; sourceTree = SOURCE_ROOT; };
 		30C2DB0E1CA439D2003AFD8B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "app-ios/LaunchScreen.storyboard"; sourceTree = SOURCE_ROOT; };
@@ -487,14 +485,6 @@
 				302010D81CB016ED007D5E7E /* Info.plist */,
 			);
 			path = "app-notificationcenter";
-			sourceTree = "<group>";
-		};
-		304DDE351C9CEDA500962BC4 /* Integrations */ = {
-			isa = PBXGroup;
-			children = (
-				30C2DAFC1CA43984003AFD8B /* Plaid.swift */,
-			);
-			name = Integrations;
 			sourceTree = "<group>";
 		};
 		304DDE421C9CF05300962BC4 /* Secrets */ = {
@@ -880,7 +870,6 @@
 				30960F021CE4E7F100749695 /* Extensions */,
 				30BECC071C6F932400B8A088 /* Main */,
 				3013DCEA1C8515A300268DAD /* Models */,
-				304DDE351C9CEDA500962BC4 /* Integrations */,
 				304DDE421C9CF05300962BC4 /* Secrets */,
 				30BECC0B1C6F939800B8A088 /* Storyboards */,
 				3064E8A71C74D06D0073E00B /* xib */,
@@ -1354,7 +1343,6 @@
 			files = (
 				30C2DAFF1CA4398C003AFD8B /* Secrets.swift in Sources */,
 				30C2DA9A1CA4373E003AFD8B /* LoginBoxTableViewController.swift in Sources */,
-				30C2DAFD1CA43984003AFD8B /* Plaid.swift in Sources */,
 				306DF00B1CD9979400864CAE /* Plan.swift in Sources */,
 				30C2DA951CA4372D003AFD8B /* PasscodeLockConfiguration.swift in Sources */,
 				309E43C41CA8AE1800279D97 /* WebPrivacyViewController.swift in Sources */,

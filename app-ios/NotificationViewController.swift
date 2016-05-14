@@ -129,9 +129,104 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         cell.detailTextLabel?.text = ""
         if let text = item?.type
         {
+            switch text {
+                case "invoice.created":
+                    cell.textLabel?.text = "Invoice Created"
+                case "account.updated":
+                    cell.textLabel?.text = "Account updated"
+                case "account.application.deauthorized":
+                    cell.textLabel?.text = "Account application deauthorized"
+                case "application_fee.created":
+                    cell.textLabel?.text = "Application fee created"
+                case "application_fee.refunded":
+                    cell.textLabel?.text = "Application fee refunded"
+                case "balance.available":
+                    cell.textLabel?.text = "Your account balance is now available"
+                case "charge.succeeded":
+                   cell.textLabel?.text = "Charge succeeded"
+                case "charge.failed":
+                   cell.textLabel?.text = "Charge failed"
+                case "charge.refunded":
+                   cell.textLabel?.text = "Charge refunded"
+                case "charge.captured":
+                   cell.textLabel?.text = "Charge captured"
+                case "charge.updated":
+                   cell.textLabel?.text = "Charge updated"
+                case "charge.dispute.created":
+                   cell.textLabel?.text = "Charge dispute created"
+                case "charge.dispute.updated":
+                   cell.textLabel?.text = "Charge dispute updated"
+                case "charge.dispute.closed":
+                   cell.textLabel?.text = "Charge dispute is now closed"
+                case "customer.created":
+                   cell.textLabel?.text = "New customer created"
+                case "customer.updated":
+                   cell.textLabel?.text = "Customer information updated"
+                case "customer.deleted":
+                   cell.textLabel?.text = "Customer deleted"
+                case "customer.card.created":
+                   cell.textLabel?.text = "Customer card added"
+                case "customer.card.updated":
+                   cell.textLabel?.text = "Customer card information updated"
+                case "customer.card.deleted":
+                   cell.textLabel?.text = "Customer card deleted"
+                case "customer.subscription.created":
+                   cell.textLabel?.text = "Customer subscription created"
+                case "customer.subscription.updated":
+                   cell.textLabel?.text = "Customer subscription updated"
+                case "customer.subscription.deleted":
+                   cell.textLabel?.text = "Customer subscription deleted"
+                case "customer.subscription.trial_will_end":
+                   cell.textLabel?.text = "Customer subscription trial will end soon"
+                case "customer.discount.created":
+                   cell.textLabel?.text = "Customer discount created"
+                case "customer.discount.updated":
+                   cell.textLabel?.text = "Customer discount updated"
+                case "customer.discount.deleted":
+                   cell.textLabel?.text = "Customer discount deleted"
+                case "invoice.created":
+                   cell.textLabel?.text = "Invoice created"
+                case "invoice.updated":
+                   cell.textLabel?.text = "Invoice updated"
+                case "invoice.payment_succeeded":
+                   cell.textLabel?.text = "Invoice payment succeeded"
+                case "invoice.payment_failed ":
+                   cell.textLabel?.text = "Invoice payment failed"
+                case "invoiceitem.created":
+                   cell.textLabel?.text = "Invoice item created"
+                case "invoiceitem.updated":
+                   cell.textLabel?.text = "Invoice item updated"
+                case "invoiceitem.deleted":
+                   cell.textLabel?.text = "Invoice item deleted"
+                case "plan.created":
+                   cell.textLabel?.text = "Recurring billing plan created"
+                case "plan.updated":
+                   cell.textLabel?.text = "Recurring billing plan updated"
+                case" plan.deleted":
+                   cell.textLabel?.text = "Recurring billing plan deleted"
+                case "coupon.created":
+                   cell.textLabel?.text = "Coupon created"
+                case "coupon.deleted":
+                   cell.textLabel?.text = "Coupon deleted"
+                case "recipient.created":
+                   cell.textLabel?.text = "Recipient created"
+                case "recipient.updated":
+                   cell.textLabel?.text = "Recipient information updated"
+                case "recipient.deleted":
+                   cell.textLabel?.text = "Recipient deleted"
+                case "transfer.created":
+                   cell.textLabel?.text = "Transfer created"
+                case "transfer.updated":
+                   cell.textLabel?.text = "Transfer updated"
+                case "transfer.paid":
+                   cell.textLabel?.text = "Transfer paid successfully"
+                case "transfer.failed":
+                   cell.textLabel?.text = "Transfer failed"
+                default:
+                    cell.textLabel?.text = ""
+            }
             cell.textLabel?.font = UIFont(name: "Avenir", size: 16)
             cell.textLabel?.textColor = UIColor.darkGrayColor()
-            cell.textLabel?.text = text
         }
         if let date = item?.created
         {

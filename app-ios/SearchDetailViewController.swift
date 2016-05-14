@@ -219,8 +219,9 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
     }
     
     func showSendMailErrorAlert() {
-        let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", delegate: self, cancelButtonTitle: "OK")
-        sendMailErrorAlert.show()
+        let sendMailErrorAlert = UIAlertController(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", preferredStyle: .Alert)
+            sendMailErrorAlert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(sendMailErrorAlert, animated: true, completion: nil)
     }
     
     // MARK: MFMailComposeViewControllerDelegate Method

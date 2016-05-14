@@ -37,6 +37,7 @@ PODS:
   - Stripe (7.0.0):
     - Stripe/Core (= 7.0.0)
   - Stripe/Core (7.0.0)
+  - SwiftAddressBook (0.6.2)
   - SwiftyJSON (2.3.2)
   - TextFieldEffects (1.2.0)
   - UIColor_Hex_Swift (2.1)
@@ -79,6 +80,7 @@ DEPENDENCIES:
   - SnapKit
   - StepSlider
   - Stripe
+  - SwiftAddressBook
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
   - TextFieldEffects
   - UIColor_Hex_Swift
@@ -128,6 +130,7 @@ SPEC CHECKSUMS:
   SnapKit: 5fce3c1bbbf1fbd31de9aa92f33eb9fa03f15650
   StepSlider: 54466ab1de9002435b6839091f97ff62967fdd7e
   Stripe: 147bbff1ba7cf3422e4ed14f6e1fbbc72471ce6c
+  SwiftAddressBook: 88c68c6bd0c6a9cb10e5cdc80f91fd87b5e0f4ec
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   TextFieldEffects: bc4fd3bd557321bd61a0762f3f50965477a36f62
   UIColor_Hex_Swift: e91dc51f6bf252ec7bf74c8704ceedeeb7640c1c

@@ -99,6 +99,14 @@ class ProfileMenuViewController: UITableViewController {
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(ProfileMenuViewController.goToEditPicture(_:)))
         userImageView.userInteractionEnabled = true
         userImageView.addGestureRecognizer(tapGestureRecognizer)
+        userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
+        userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 120)
+        userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+        userImageView.layer.cornerRadius = userImageView.frame.size.height/2
+        userImageView.layer.masksToBounds = true
+        userImageView.clipsToBounds = true
+        userImageView.layer.borderWidth = 3
+        userImageView.layer.borderColor = UIColor(rgba: "#fff").CGColor
         
         User.getProfile({ (user, error) in
             
@@ -110,28 +118,11 @@ class ProfileMenuViewController: UITableViewController {
             }
             if user?.picture != nil && user?.picture != "" {
                 let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
-                userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-                userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 120)
-                userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
-                userImageView.layer.cornerRadius = userImageView.frame.size.height/2
-                userImageView.layer.masksToBounds = true
-                userImageView.clipsToBounds = true
                 userImageView.image = img
-                userImageView.layer.borderWidth = 3
-                userImageView.layer.borderColor = UIColor(rgba: "#fff").CGColor
                 self.tableView.addSubview(userImageView)
             } else {
                 let img = UIImage(named: "IconCamera")
-                let userImageView: UIImageView = UIImageView(frame: CGRectMake(screenWidth / 2, 0, 90, 90))
-                userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-                userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 120)
-                userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
-                userImageView.layer.cornerRadius = userImageView.frame.size.height/2
-                userImageView.layer.masksToBounds = true
-                userImageView.clipsToBounds = true
                 userImageView.image = img
-                userImageView.layer.borderWidth = 3
-                userImageView.layer.borderColor = UIColor(rgba: "#fff").CGColor
                 self.tableView.addSubview(userImageView)
             }
         })

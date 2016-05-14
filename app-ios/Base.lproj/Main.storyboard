@@ -208,6 +208,25 @@
             <point key="canvasLocation" x="-1146" y="-3090"/>
         </scene>
         <!--Add Customer View Controller-->
+        <scene sceneID="16J-0o-fkb">
+            <objects>
+                <viewController id="dhF-jf-B2R" customClass="AddCustomerViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1lY-qa-Sx5"/>
+                        <viewControllerLayoutGuide type="bottom" id="drd-12-mGi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="a6h-st-hBO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eG2-Ag-XLV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1876" y="-2531"/>
+        </scene>
+        <!--Add Customer View Controller-->
         <scene sceneID="VLc-Zy-WhO">
             <objects>
                 <viewController storyboardIdentifier="AddCustomerViewController" id="pzK-yB-ekt" customClass="AddCustomerViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
@@ -216,7 +235,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Ufo-7n-xsj"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="e5k-4D-PF8">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -224,7 +243,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cGr-Gv-9gd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-973" y="-2222"/>
+            <point key="canvasLocation" x="-1027" y="-2326"/>
         </scene>
         <!--Recurring Billing View Controller-->
         <scene sceneID="IfJ-jG-LJ2">
@@ -1735,7 +1754,7 @@ institutions</string>
                     <connections>
                         <segue destination="4oC-TM-jI5" kind="presentation" identifier="chargeView" id="uG4-vF-WlK"/>
                         <segue destination="SDr-Sd-KOe" kind="show" identifier="addPlanView" id="E98-FC-SfF"/>
-                        <segue destination="pzK-yB-ekt" kind="show" identifier="addCustomerView" id="o5e-Ut-781"/>
+                        <segue destination="dhF-jf-B2R" kind="show" identifier="addCustomerView" id="Vb3-e8-F7w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="97T-hV-39n" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1763,7 +1782,6 @@ institutions</string>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <segue destination="mQk-jK-m8v" kind="presentation" identifier="loginView" id="A1R-09-1HJ"/>
-                        <segue destination="pzK-yB-ekt" kind="show" identifier="addCustomerView" id="PrX-Yu-xbB"/>
                         <segue destination="SDr-Sd-KOe" kind="show" identifier="addPlanView" id="kpf-dT-hyx"/>
                     </connections>
                 </viewController>
@@ -4030,25 +4048,24 @@ granted explicit permission.</string>
         <image name="ic_user" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fEJ-lR-z9I"/>
-        <segue reference="aks-Yo-Spb"/>
-        <segue reference="igQ-zk-tCm"/>
         <segue reference="m3z-fp-Nlm"/>
         <segue reference="exE-qz-Ig3"/>
         <segue reference="agi-3I-cSC"/>
         <segue reference="VI5-hp-Gm2"/>
         <segue reference="ipn-3I-3vc"/>
-        <segue reference="Bc6-jW-uiV"/>
+        <segue reference="igQ-zk-tCm"/>
+        <segue reference="aks-Yo-Spb"/>
         <segue reference="7cu-FP-MoG"/>
+        <segue reference="Bc6-jW-uiV"/>
+        <segue reference="fEJ-lR-z9I"/>
+        <segue reference="m0d-gd-RWW"/>
         <segue reference="mwT-xt-Ez4"/>
         <segue reference="zQh-Po-kj4"/>
         <segue reference="wgV-xY-MTp"/>
         <segue reference="xTl-cs-ajG"/>
         <segue reference="UFB-DJ-qrH"/>
-        <segue reference="m0d-gd-RWW"/>
-        <segue reference="o5e-Ut-781"/>
-        <segue reference="E98-FC-SfF"/>
         <segue reference="jpD-81-9Zm"/>
+        <segue reference="E98-FC-SfF"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>
