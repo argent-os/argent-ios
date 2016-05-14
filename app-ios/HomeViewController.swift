@@ -24,6 +24,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 
     private var window: UIWindow?
 
+    private var dateFormatter = NSDateFormatter()
+
     private var accountHistoryArray:Array<History>?
     
     private var balance:Balance = Balance(pending: 0, available: 0)
@@ -191,22 +193,22 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             
             // Get user profile
             loadUserProfile { (user, error) in
-                // let img = UIImage(named: "Logo")
+                
+                let userImageView: UIImageView = UIImageView(frame: CGRectMake(20, 31, 40, 40))
+                userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
+                userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+                userImageView.layer.cornerRadius = userImageView.frame.size.height/2
+                userImageView.layer.masksToBounds = true
+                userImageView.clipsToBounds = true
+                userImageView.layer.borderWidth = 2
+                userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
+                
                 if user?.picture != nil && user?.picture != "" {
-                    let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
-                    let userImageView: UIImageView = UIImageView(frame: CGRectMake(20, 31, 40, 40))
-                    userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-                    //                userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 65)
-                    userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
-                    userImageView.layer.cornerRadius = userImageView.frame.size.height/2
-                    userImageView.layer.masksToBounds = true
-                    userImageView.clipsToBounds = true
-                    userImageView.image = img
-                    userImageView.layer.borderWidth = 2
-                    userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
-                    self.view.addSubview(userImageView)
+//                    let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
+//                    userImageView.image = img
+//                    self.view.addSubview(userImageView)
                 } else {
-                    if(user?.username == nil || user?.username == "") {
+                    if user?.username == nil || user?.username == "" {
                         // logout on failure to get profile
                         NSUserDefaults.standardUserDefaults().setValue("", forKey: "userAccessToken")
                         NSUserDefaults.standardUserDefaults().synchronize();
@@ -479,33 +481,44 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        let CellIdentifier: String = "Cell"
-        let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: CellIdentifier)
+        self.tableView.registerNib(UINib(nibName: "HistoryCustomCell", bundle: nil), forCellReuseIdentifier: "idCellCustomHistory")
+
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("idCellCustomHistory") as! HistoryCustomCell
 
         let item = self.accountHistoryArray?[indexPath.row]
         cell.selectionStyle = UITableViewCellSelectionStyle.None
-        cell.textLabel?.text = ""
-        cell.detailTextLabel?.textColor = UIColor.lightGrayColor()
+        cell.lblAmount?.text = ""
+        cell.lblDate?.text = ""
         if let amount = item?.amount {
             if Double(amount)!/100 < 0 {
-                cell.detailTextLabel?.text = "Account debited"
+                cell.lblCreditDebit?.text = "Account debited"
             } else {
-                cell.detailTextLabel?.text = "Account credited"
+                cell.lblCreditDebit?.text = "Account credited"
             }
             let formatter = NSNumberFormatter()
             formatter.numberStyle = .CurrencyStyle
             // formatter.locale = NSLocale.currentLocale() // This is the default
             let amt = formatter.stringFromNumber(Float(amount)!/100)
-            cell.textLabel?.text = amt!
-            cell.textLabel?.font = UIFont(name: "Avenir-Book", size: 14)
-            cell.textLabel?.textColor = UIColor.darkGrayColor()
+            cell.lblAmount?.text = amt!
+            cell.lblAmount?.textColor = UIColor.darkGrayColor()
+        }
+        if let date = item?.created
+        {
+            if(!date.isEmpty || date != "") {
+                let converted_date = NSDate(timeIntervalSince1970: Double(date)!)
+                dateFormatter.dateStyle = .MediumStyle
+                let formatted_date = dateFormatter.stringFromDate(converted_date)
+                dateFormatter.dateFormat = "dd/MM/yyyy"
+                cell.lblDate?.text = String(formatted_date) //+ " / uid " + uid
+            } else {
+                
+            }
         }
         return cell
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 60.0
+        return 90.0
     }
     
 }

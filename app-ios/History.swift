@@ -13,9 +13,11 @@ import Alamofire
 class History {
     
     let amount: String
+    let created: String
     
-    required init(amount: String) {
+    required init(amount: String, created: String) {
         self.amount = amount
+        self.created = created
     }
     
     class func getAccountHistory(completionHandler: ([History]?, NSError?) -> Void) {
@@ -50,7 +52,8 @@ class History {
                                 let accountHistories = data["transactions"]["data"].arrayValue
                                 for history in accountHistories {
                                     let amount = history["amount"].stringValue
-                                    let item = History(amount: amount)
+                                    let created = history["created"].stringValue
+                                    let item = History(amount: amount, created: created)
                                     historyItemsArray.append(item)
                                 }
                                 completionHandler(historyItemsArray, response.result.error)

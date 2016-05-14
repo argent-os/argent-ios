@@ -40,7 +40,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         tableView.delegate = self
         tableView.dataSource = self
         tableView.showsVerticalScrollIndicator = false
-        tableView.frame = CGRect(x: 0, y: 65, width: screenWidth, height: screenHeight-65)
+        tableView.frame = CGRect(x: 0, y: 65, width: screenWidth, height: screenHeight-110)
         self.view.addSubview(tableView)
         
         self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
@@ -134,6 +134,12 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
                     cell.textLabel?.text = "Invoice Created"
                 case "account.updated":
                     cell.textLabel?.text = "Account updated"
+                case "account.external_account.created":
+                    cell.textLabel?.text = "External account created"
+                case "account.external_account.updated":
+                    cell.textLabel?.text = "External account updated"
+                case "account.external_account.deleted":
+                    cell.textLabel?.text = "External account deleted"
                 case "account.application.deauthorized":
                     cell.textLabel?.text = "Account application deauthorized"
                 case "application_fee.created":
