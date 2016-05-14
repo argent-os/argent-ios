@@ -117,6 +117,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: font,NSForegroundColorAttributeName:UIColor.whiteColor()], forState: UIControlState.Normal)
         }
         
+        // Tabbar UI
+        UITabBar.appearance().tintColor = UIColor.slateBlue()
+        
         // Initialize Plaid, change to .Production before golive
         Plaid.sharedInstance().setPublicKey("fb32b0520292ad69be7b4d1ade4bd3")
 

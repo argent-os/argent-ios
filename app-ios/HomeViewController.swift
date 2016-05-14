@@ -203,11 +203,11 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
                 
                 if user?.picture != nil && user?.picture != "" {
-                    Timeout(0.5) {
-                        let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
-                        userImageView.image = img
-                        self.view.addSubview(userImageView)
-                    }
+//                    Timeout(0.5) {
+//                        let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
+//                        userImageView.image = img
+//                        self.view.addSubview(userImageView)
+//                    }
                 } else {
                     if user?.username == nil || user?.username == "" {
                         // logout on failure to get profile
@@ -491,10 +491,12 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         cell.lblDate?.text = ""
         if let amount = item?.amount {
             if Double(amount)!/100 < 0 {
-                cell.lblCreditDebit?.text = "Debit"
+                // cell.lblCreditDebit?.text = "Debit"
+                cell.img.image = UIImage(named: "ic_arrow_down")
                 cell.lblAmount?.textColor = UIColor.brandRed()
             } else {
-                cell.lblCreditDebit?.text = "Credit"
+                // cell.lblCreditDebit?.text = "Credit"
+                cell.img.image = UIImage(named: "ic_arrow_up")
                 cell.lblAmount?.textColor = UIColor.brandGreen()
             }
             let formatter = NSNumberFormatter()
@@ -507,9 +509,12 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         {
             if(!date.isEmpty || date != "") {
                 let converted_date = NSDate(timeIntervalSince1970: Double(date)!)
-                dateFormatter.dateStyle = .MediumStyle
+                dateFormatter.dateStyle = .ShortStyle
                 let formatted_date = dateFormatter.stringFromDate(converted_date)
                 dateFormatter.dateFormat = "dd/MM/yyyy"
+                cell.lblDate?.layer.cornerRadius = 10
+                cell.lblDate?.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.5).CGColor
+                cell.lblDate?.layer.borderWidth = 1
                 cell.lblDate?.text = String(formatted_date) //+ " / uid " + uid
             } else {
                 
