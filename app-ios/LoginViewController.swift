@@ -12,14 +12,15 @@ import Alamofire
 import SwiftyJSON
 import TextFieldEffects
 import UIColor_Hex_Swift
-import JGProgressHUD
 
 class LoginViewController: UIViewController, UITextFieldDelegate  {
     
     @IBOutlet weak var closeButton: UIButton!
     
     @IBOutlet weak var loginBox: UIView!
-        
+    
+    private let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+
     override func viewDidAppear(animated: Bool) {
         userData = nil
         NSUserDefaults.standardUserDefaults().setBool(false,forKey:"userLoggedIn");
@@ -37,12 +38,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
+        activityIndicator.center = self.view.center
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(activityIndicator)
+        activityIndicator.stopAnimating()
+        
         NSUserDefaults.standardUserDefaults().setValue("", forKey: "userAccessToken")
         NSUserDefaults.standardUserDefaults().synchronize()
-        
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
-        HUD.showInView(self.view!)
-        HUD.dismissAfterDelay(0.3)
         
         UITextField.appearance().keyboardAppearance = .Dark
         

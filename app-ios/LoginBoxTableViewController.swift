@@ -26,11 +26,13 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
     
     @IBOutlet weak var passwordCell: UITableViewCell!
     
+    private let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.White)
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let screen = UIScreen.mainScreen().bounds
-        let width = screen.size.width
+        let _ = screen.size.width
 
         self.usernameTextField.delegate = self
         self.passwordTextField.delegate = self
@@ -60,15 +62,21 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
     }
     
     func login(sender: AnyObject) {
-        let HUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
-        HUD.showInView(self.view)
+        
+        activityIndicator.center = tableView.center
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(activityIndicator)
+        
         if(usernameTextField.text == "" || passwordTextField.text == "") {
             displayAlertMessage("Fields cannot be empty")
-            HUD.dismiss()
+            activityIndicator.stopAnimating()
+            activityIndicator.hidden = true
         }
         Auth.login(usernameTextField.text!, username: usernameTextField.text!, password: passwordTextField.text!) { (token, grant, err) in
             if(grant == true && token != "") {
-                HUD.dismiss()
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.hidden = true
                 self.performSegueWithIdentifier("homeView", sender: self)
                 // Send access token and Stripe key to Apple Watch
                 if WCSession.isSupported() { //makes sure it's not an iPad or iPod
@@ -89,7 +97,8 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
                     }
                 }
             } else {
-                HUD.dismiss()
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.hidden = true
                 self.displayAlertMessage("Error logging in")
             }
         }

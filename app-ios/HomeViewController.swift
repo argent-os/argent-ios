@@ -9,7 +9,6 @@
 import UIKit
 import SnapKit
 import Alamofire
-import JGProgressHUD
 import SwiftyJSON
 import Stripe
 import DGRunkeeperSwitch
@@ -20,7 +19,7 @@ import Gecco
 
 var userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
 
-class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpleLineGraphDataSource, UITableViewDelegate, UITableViewDataSource  {
+class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpleLineGraphDataSource, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate  {
 
     private var window: UIWindow?
 
@@ -326,7 +325,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         headerView.addSubview(headerViewTitle)
         
         let tutorialButton:UIButton = UIButton()
-        tutorialButton.frame = CGRect(x: screenWidth-40, y: 22, width: 22, height: 22)
+        tutorialButton.frame = CGRect(x: screenWidth-40, y: 19, width: 22, height: 22)
         tutorialButton.setImage(UIImage(named: "ic_question"), forState: .Normal)
         tutorialButton.setTitle("Tuts", forState: .Normal)
         tutorialButton.setTitleColor(UIColor.redColor(), forState: .Normal)
@@ -492,10 +491,10 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         cell.lblDate?.text = ""
         if let amount = item?.amount {
             if Double(amount)!/100 < 0 {
-                cell.lblCreditDebit?.text = "Account debit"
+                cell.lblCreditDebit?.text = "Debit"
                 cell.lblAmount?.textColor = UIColor.brandRed()
             } else {
-                cell.lblCreditDebit?.text = "Account credit"
+                cell.lblCreditDebit?.text = "Credit"
                 cell.lblAmount?.textColor = UIColor.brandGreen()
             }
             let formatter = NSNumberFormatter()
@@ -525,6 +524,14 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 80.0
+    }
+    
+    // Scrollview
+
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+//        var rect: CGRect = self.view.frame
+//        rect.origin.y = -scrollView.contentOffset.y
+//        self.view.frame = rect
     }
     
 }

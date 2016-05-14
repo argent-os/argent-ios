@@ -165,7 +165,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window!.rootViewController = viewController
         
         // Global background color
-        self.window!.backgroundColor = UIColor.whiteColor()
+        self.window!.backgroundColor = UIColor.slateBlue()
         self.window!.makeKeyAndVisible()
         self.window!.makeKeyWindow()
 
