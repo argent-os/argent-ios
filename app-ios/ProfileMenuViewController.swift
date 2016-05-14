@@ -116,8 +116,8 @@ class ProfileMenuViewController: UITableViewController {
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
-            if user?.picture != nil && user?.picture != "" {
-                let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
+            if user!.picture != "" {
+                let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user!.picture))!)!)!
                 userImageView.image = img
                 self.tableView.addSubview(userImageView)
             } else {

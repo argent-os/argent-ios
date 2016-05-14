@@ -202,14 +202,14 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 userImageView.layer.borderWidth = 2
                 userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
                 
-                if user?.picture != nil && user?.picture != "" {
-//                    Timeout(0.5) {
-//                        let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
-//                        userImageView.image = img
-//                        self.view.addSubview(userImageView)
-//                    }
+                if self.user.picture != "" {
+                    Timeout(0.5) {
+                        let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (self.user.picture))!)!)!
+                        userImageView.image = img
+                        self.view.addSubview(userImageView)
+                    }
                 } else {
-                    if user?.username == nil || user?.username == "" {
+                    if self.user.username == "" {
                         // logout on failure to get profile
                         NSUserDefaults.standardUserDefaults().setValue("", forKey: "userAccessToken")
                         NSUserDefaults.standardUserDefaults().synchronize();
