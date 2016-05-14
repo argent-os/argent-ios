@@ -14,9 +14,9 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var avatarImageView: UIImageView!
 
-    private var customersLabel:UILabel = UILabel()
+    private var customersCountLabel:UILabel = UILabel()
     
-    private var plansLabel:UILabel = UILabel()
+    private var plansCountLabel:UILabel = UILabel()
     
     private var customersArray = [Customer]()
     
@@ -85,38 +85,55 @@ class ProfileViewController: UIViewController {
             // self.view.addSubview(settingsIcon)
             // self.view.bringSubviewToFront(settingsIcon)
             
-            let customersLabel = UILabel(frame: CGRectMake(25, 110, 75, 70))
-            customersLabel.textAlignment = NSTextAlignment.Center
-            customersLabel.font = UIFont(name: "ArialRoundedMTBold", size: 14)
-            customersLabel.numberOfLines = 0
-            customersLabel.textColor = UIColor(rgba: "#fff5")
-            customersLabel.text = "0\ncustomers"
-            self.view.addSubview(customersLabel)
-            self.view.bringSubviewToFront(customersLabel)
+            let customersCountLabel = UILabel(frame: CGRectMake(40, 100, 75, 70))
+            customersCountLabel.textAlignment = NSTextAlignment.Center
+            customersCountLabel.font = UIFont(name: "AvenirNext-UltraLight", size: 36)
+            customersCountLabel.numberOfLines = 0
+            customersCountLabel.textColor = UIColor(rgba: "#fffa")
+            customersCountLabel.text = "0"
+            self.view.addSubview(customersCountLabel)
+            self.view.bringSubviewToFront(customersCountLabel)
             
-            let plansLabel = UILabel(frame: CGRectMake(screenWidth-100, 110, 75, 70))
-            plansLabel.textAlignment = NSTextAlignment.Center
-            plansLabel.font = UIFont(name: "ArialRoundedMTBold", size: 14)
-            plansLabel.numberOfLines = 0
-            plansLabel.text = "0\nplans"
-            plansLabel.textColor = UIColor(rgba: "#fff5")
-            plansLabel.text = "0\nplans"
-            self.view.addSubview(plansLabel)
-            self.view.bringSubviewToFront(plansLabel)
+            let customersTitleLabel = UILabel(frame: CGRectMake(40, 130, 75, 70))
+            customersTitleLabel.textAlignment = NSTextAlignment.Center
+            customersTitleLabel.font = UIFont(name: "Avenir-Light", size: 12)
+            customersTitleLabel.numberOfLines = 0
+            customersTitleLabel.textColor = UIColor(rgba: "#fffc")
+            customersTitleLabel.text = "Customers"
+            self.view.addSubview(customersTitleLabel)
+            self.view.bringSubviewToFront(customersTitleLabel)
+            
+            let plansCountLabel = UILabel(frame: CGRectMake(screenWidth-120, 100, 75, 70))
+            plansCountLabel.textAlignment = NSTextAlignment.Center
+            plansCountLabel.font = UIFont(name: "AvenirNext-UltraLight", size: 36)
+            plansCountLabel.numberOfLines = 0
+            plansCountLabel.text = "0"
+            plansCountLabel.textColor = UIColor(rgba: "#fffa")
+            self.view.addSubview(plansCountLabel)
+            self.view.bringSubviewToFront(plansCountLabel)
+            
+            let plansTitleLabel = UILabel(frame: CGRectMake(screenWidth-120, 130, 75, 70))
+            plansTitleLabel.textAlignment = NSTextAlignment.Center
+            plansTitleLabel.font = UIFont(name: "Avenir-Light", size: 12)
+            plansTitleLabel.numberOfLines = 0
+            plansTitleLabel.textColor = UIColor(rgba: "#fffc")
+            plansTitleLabel.text = "Plans"
+            self.view.addSubview(plansTitleLabel)
+            self.view.bringSubviewToFront(plansTitleLabel)
             
             self.loadCustomerList { (customers: [Customer]?, NSError) in
                 if(customers!.count < 2 && customers!.count > 0) {
-                    customersLabel.text = String(customers!.count) + "\ncustomers"
+                    customersCountLabel.text = String(customers!.count)
                 } else {
-                    customersLabel.text = String(customers!.count) + "\ncustomers"
+                    customersCountLabel.text = String(customers!.count)
                 }
             }
             
             self.loadPlanList { (plans: [Plan]?, NSError) in
                 if(plans!.count < 2 && plans!.count > 0) {
-                    plansLabel.text = String(plans!.count) + "\nplan"
+                    plansCountLabel.text = String(plans!.count)
                 } else {
-                    plansLabel.text = String(plans!.count) + "\nplans"
+                    plansCountLabel.text = String(plans!.count)
                 }
             }
             

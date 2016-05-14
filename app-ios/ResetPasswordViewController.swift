@@ -35,6 +35,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
         
         // Focuses view controller on first name text input
         emailTextField.becomeFirstResponder()
+        emailTextField.tintColor = UIColor.whiteColor()
         
         // Add action to close button to return to auth view
         closeButton.addTarget(self, action: #selector(ResetPasswordViewController.goToLogin(_:)), forControlEvents: UIControlEvents.TouchUpInside)

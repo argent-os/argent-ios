@@ -27,8 +27,8 @@ var userData:JSON? // init user data, declare globally, needs SwiftyJSON
 
 // let apiUrl = "http://localhost:5001"
 // let apiUrl = "http://192.168.1.182:5001"
- let apiUrl = "http://192.168.1.232:5001"
-// let apiUrl = "http://proton-api-dev.us-east-1.elasticbeanstalk.com"
+// let apiUrl = "http://192.168.1.232:5001"
+ let apiUrl = "http://proton-api-dev.us-east-1.elasticbeanstalk.com"
 // PROD
 //let apiUrl = "http://api.argentapp.com"
 
@@ -93,6 +93,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        // Set push notification badge to zero
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         
         // Setup skip onboarding notification
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.skipOnboarding(_:)), name: "kDismissOnboardingNotification", object: nil)
