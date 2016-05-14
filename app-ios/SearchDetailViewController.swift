@@ -152,7 +152,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
 
             let payButton = UIButton(frame: CGRect(x: 20, y: 325, width: (width/2)-40, height: 50.0))
             payButton.setTitleColor(UIColor(rgba: "#fff").colorWithAlphaComponent(0.5), forState: .Normal)
-            payButton.titleLabel?.font = UIFont(name: "AvenirNext-UltraLight", size: 16)
+            payButton.titleLabel?.font = UIFont(name: "Avenir-Light", size: 16)
             payButton.setTitle("Pay " + detailUser.first_name, forState: .Normal)
             payButton.addTarget(self, action: #selector(SearchDetailViewController.payMerchantModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             self.view.addSubview(payButton)
@@ -160,7 +160,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             // Button
             let viewPlansButton = UIButton(frame: CGRect(x: width*0.5+20, y: 325, width: (width/2)-40, height: 50.0))
             viewPlansButton.setTitleColor(UIColor(rgba: "#fff").colorWithAlphaComponent(0.5), forState: .Normal)
-            viewPlansButton.titleLabel?.font = UIFont(name: "AvenirNext-UltraLight", size: 16)
+            viewPlansButton.titleLabel?.font = UIFont(name: "Avenir-Light", size: 16)
             viewPlansButton.setTitle("View Plans", forState: .Normal)
             viewPlansButton.addTarget(self, action: #selector(SearchDetailViewController.payMerchantModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             viewPlansButton.addTarget(self, action: nil, forControlEvents: UIControlEvents.TouchUpInside)

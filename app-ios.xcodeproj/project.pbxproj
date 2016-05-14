@@ -103,7 +103,6 @@
 		30C2DAEF1CA43951003AFD8B /* AddCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAEE1CA43951003AFD8B /* AddCustomerViewController.swift */; };
 		30C2DAF51CA43967003AFD8B /* ChargeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAF41CA43967003AFD8B /* ChargeViewController.swift */; };
 		30C2DAF91CA43975003AFD8B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAF81CA43975003AFD8B /* User.swift */; };
-		30C2DAFF1CA4398C003AFD8B /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAFE1CA4398C003AFD8B /* Secrets.swift */; };
 		30C2DB0D1CA439CC003AFD8B /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DB0C1CA439CC003AFD8B /* Auth.storyboard */; };
 		30C2DB0F1CA439D2003AFD8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DB0E1CA439D2003AFD8B /* LaunchScreen.storyboard */; };
 		30C2DB111CA439DC003AFD8B /* Logs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DB101CA439DC003AFD8B /* Logs.swift */; };
@@ -118,7 +117,6 @@
 		30CA45581CE6CEFF00D656E5 /* HistoryCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CA45571CE6CEFF00D656E5 /* HistoryCustomCell.swift */; };
 		30CA455A1CE6CF7F00D656E5 /* HistoryCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30CA45591CE6CF7F00D656E5 /* HistoryCustomCell.xib */; };
 		30CA455C1CE6DC7000D656E5 /* HistoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CA455B1CE6DC7000D656E5 /* HistoryDetailViewController.swift */; };
-		30CA455E1CE7693400D656E5 /* SplitProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CA455D1CE7693400D656E5 /* SplitProfileViewController.swift */; };
 		30D526761CDB9814001B41BA /* BitcoinUriViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526751CDB9814001B41BA /* BitcoinUriViewController.swift */; };
 		30D526781CDBB4A0001B41BA /* Bitcoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526771CDBB4A0001B41BA /* Bitcoin.swift */; };
 		30D5267D1CDE3736001B41BA /* ConfigurePointOfSaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D5267C1CDE3736001B41BA /* ConfigurePointOfSaleViewController.swift */; };
@@ -318,7 +316,6 @@
 		30C2DAEE1CA43951003AFD8B /* AddCustomerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddCustomerViewController.swift; path = "app-ios/AddCustomerViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAF41CA43967003AFD8B /* ChargeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChargeViewController.swift; path = "app-ios/ChargeViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAF81CA43975003AFD8B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = "app-ios/User.swift"; sourceTree = SOURCE_ROOT; };
-		30C2DAFE1CA4398C003AFD8B /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Secrets.swift; path = "app-ios/Secrets.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DB0C1CA439CC003AFD8B /* Auth.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Auth.storyboard; path = "app-ios/Auth.storyboard"; sourceTree = SOURCE_ROOT; };
 		30C2DB0E1CA439D2003AFD8B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "app-ios/LaunchScreen.storyboard"; sourceTree = SOURCE_ROOT; };
 		30C2DB101CA439DC003AFD8B /* Logs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Logs.swift; path = "app-ios/Logs.swift"; sourceTree = SOURCE_ROOT; };
@@ -333,7 +330,6 @@
 		30CA45571CE6CEFF00D656E5 /* HistoryCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HistoryCustomCell.swift; path = "app-ios/HistoryCustomCell.swift"; sourceTree = SOURCE_ROOT; };
 		30CA45591CE6CF7F00D656E5 /* HistoryCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HistoryCustomCell.xib; path = "app-ios/HistoryCustomCell.xib"; sourceTree = SOURCE_ROOT; };
 		30CA455B1CE6DC7000D656E5 /* HistoryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HistoryDetailViewController.swift; path = "app-ios/HistoryDetailViewController.swift"; sourceTree = SOURCE_ROOT; };
-		30CA455D1CE7693400D656E5 /* SplitProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SplitProfileViewController.swift; path = "app-ios/SplitProfileViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30D526751CDB9814001B41BA /* BitcoinUriViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BitcoinUriViewController.swift; path = "app-ios/BitcoinUriViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30D526771CDBB4A0001B41BA /* Bitcoin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bitcoin.swift; path = "app-ios/Bitcoin.swift"; sourceTree = SOURCE_ROOT; };
 		30D5267C1CDE3736001B41BA /* ConfigurePointOfSaleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigurePointOfSaleViewController.swift; path = "app-ios/ConfigurePointOfSaleViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -497,28 +493,12 @@
 			path = "app-notificationcenter";
 			sourceTree = "<group>";
 		};
-		304DDE421C9CF05300962BC4 /* Secrets */ = {
-			isa = PBXGroup;
-			children = (
-				30C2DAFE1CA4398C003AFD8B /* Secrets.swift */,
-			);
-			name = Secrets;
-			sourceTree = "<group>";
-		};
 		3064931A1CD6AFEB00A17B00 /* Tutorials */ = {
 			isa = PBXGroup;
 			children = (
 				3064931B1CD6B00500A17B00 /* TutorialHomeViewController.swift */,
 			);
 			name = Tutorials;
-			sourceTree = "<group>";
-		};
-		3064E8A71C74D06D0073E00B /* xib */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = xib;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		306D6DB11C7008D200467C41 /* Resources */ = {
@@ -828,7 +808,6 @@
 			isa = PBXGroup;
 			children = (
 				30C2DACA1CA4385C003AFD8B /* ProfileMenuViewController.swift */,
-				30CA455D1CE7693400D656E5 /* SplitProfileViewController.swift */,
 				306DF00D1CDA689100864CAE /* Risk */,
 				30D5267B1CDE370D001B41BA /* POS */,
 				30113A2C1CD82CA0002BECF0 /* Header */,
@@ -898,9 +877,7 @@
 				30960F021CE4E7F100749695 /* Extensions */,
 				30BECC071C6F932400B8A088 /* Main */,
 				3013DCEA1C8515A300268DAD /* Models */,
-				304DDE421C9CF05300962BC4 /* Secrets */,
 				30BECC0B1C6F939800B8A088 /* Storyboards */,
-				3064E8A71C74D06D0073E00B /* xib */,
 				30BB06E01CCEFC130051C9E7 /* Bundles */,
 				30BECC0A1C6F936E00B8A088 /* Modules */,
 				30C2DA561CA4365D003AFD8B /* Info.plist */,
@@ -1370,7 +1347,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30C2DAFF1CA4398C003AFD8B /* Secrets.swift in Sources */,
 				30C2DA9A1CA4373E003AFD8B /* LoginBoxTableViewController.swift in Sources */,
 				306DF00B1CD9979400864CAE /* Plan.swift in Sources */,
 				30CA45581CE6CEFF00D656E5 /* HistoryCustomCell.swift in Sources */,
@@ -1452,7 +1428,6 @@
 				309E43BE1CA8ADF900279D97 /* WebTermsViewController.swift in Sources */,
 				306E82301CDAC36400A43505 /* Balance.swift in Sources */,
 				30C2DB1F1CA43A51003AFD8B /* EditProfileViewController.swift in Sources */,
-				30CA455E1CE7693400D656E5 /* SplitProfileViewController.swift in Sources */,
 				300D8BDF1CE5416700FC3B05 /* OnboardingCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

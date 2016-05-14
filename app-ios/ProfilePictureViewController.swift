@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import ImagePicker
 import Alamofire
+import JSSAlertView
 
 class ProfilePictureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImagePickerDelegate {
     
@@ -25,6 +26,8 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
     
     var txt = UILabel()
 
+    var allowedFileSize:Bool = false
+    
     func selectPhotoButtonTapped(sender: AnyObject) {
         
         imagePickerController.delegate = self
@@ -81,35 +84,47 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
                 
                 let imageData: NSData = NSData(data: img!)
                 
-                Alamofire.upload(.POST, endpoint, multipartFormData: {
-                    multipartFormData in
+                let fileSize = Float(imageData.length) / 1024.0 / 1024.0
+                let fileSizeString = String.localizedStringWithFormat("%.2f", fileSize)
+                NSLog("File size is : %.2f MB", fileSize)
                 
-                    multipartFormData.appendBodyPart(data: imageData, name: "avatar", fileName: "avatar", mimeType: "image/jpg")
-                    
-                    for (key, value) in parameters {
-                        multipartFormData.appendBodyPart(data: value.dataUsingEncoding(NSUTF8StringEncoding)!, name: key as! String)
-                    }
-                    
-                    }, encodingCompletion: {
-                        encodingResult in
-                        
-                        switch encodingResult {
-                        case .Success(let upload, _, _):
-                            upload.responseJSON(completionHandler: { response in
-                                switch response.result {
-                                case .Success:
-                                    print("success")
-                                case .Failure(let error):
-                                    print("failure")
-                                    self.txt.text = "Error uploading picture, check file size"
-                                    self.view.addSubview(self.txt)
-                                }
-                            })
-                        case .Failure(let encodingError):
-                            print(encodingError)
+                if(fileSize > 0.5) {
+                    self.allowedFileSize = false
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                    self.imageView.removeFromSuperview()
+                    self.txt.text = "File size " + fileSizeString + "MB too large"
+                    self.view.addSubview(self.txt)
+                } else {
+                    self.allowedFileSize = false
+                    Alamofire.upload(.POST, endpoint, multipartFormData: {
+                        multipartFormData in
+    
+                        multipartFormData.appendBodyPart(data: imageData, name: "avatar", fileName: "avatar", mimeType: "image/jpg")
+    
+                        for (key, value) in parameters {
+                            multipartFormData.appendBodyPart(data: value.dataUsingEncoding(NSUTF8StringEncoding)!, name: key as! String)
                         }
-                })
-
+    
+                        }, encodingCompletion: {
+                            encodingResult in
+    
+                            switch encodingResult {
+                            case .Success(let upload, _, _):
+                                upload.responseJSON(completionHandler: { response in
+                                    switch response.result {
+                                    case .Success:
+                                        print("success")
+                                    case .Failure(let error):
+                                        print("failure")
+                                        self.txt.text = "Error uploading picture, check file size"
+                                        self.view.addSubview(self.txt)
+                                    }
+                                })
+                            case .Failure(let encodingError):
+                                print(encodingError)
+                            }
+                    })
+                }
                 self.activityIndicator.stopAnimating()
             }
         }
@@ -127,14 +142,17 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
         imageView.center = self.view.center
         imageView.layer.cornerRadius = imageView.frame.size.width/2
         imageView.layer.masksToBounds = true
-        self.dismissViewControllerAnimated(true, completion: nil)
         activityIndicator.stopAnimating()
         activityIndicator.hidden = true
-        Timeout(0.3) {
-            if let navController = self.navigationController {
-                navController.popViewControllerAnimated(true)
+        if(self.allowedFileSize == true) {
+            self.dismissViewControllerAnimated(true, completion: nil)
+            Timeout(0.3) {
+                if let navController = self.navigationController {
+                    navController.popViewControllerAnimated(true)
+                }
             }
         }
+
     }
     
     func cancelButtonDidPress() {
