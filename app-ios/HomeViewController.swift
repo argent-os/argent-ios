@@ -510,8 +510,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             if(!date.isEmpty || date != "") {
                 let converted_date = NSDate(timeIntervalSince1970: Double(date)!)
                 dateFormatter.dateStyle = .ShortStyle
+                dateFormatter.dateFormat = "MMM dd"
                 let formatted_date = dateFormatter.stringFromDate(converted_date)
-                dateFormatter.dateFormat = "dd/MM/yyyy"
                 cell.lblDate?.layer.cornerRadius = 10
                 cell.lblDate?.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.5).CGColor
                 cell.lblDate?.layer.borderWidth = 1
