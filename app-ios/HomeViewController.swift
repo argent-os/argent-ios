@@ -49,7 +49,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 
     private let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 15, width: UIScreen.mainScreen().bounds.size.width, height: 50))
 
-    private let graph: BEMSimpleLineGraphView = BEMSimpleLineGraphView(frame: CGRectMake(0, 100, UIScreen.mainScreen().bounds.size.width, 190))
+    private let graph: BEMSimpleLineGraphView = BEMSimpleLineGraphView(frame: CGRectMake(0, 90, UIScreen.mainScreen().bounds.size.width, 200))
         
     @IBAction func indexChanged(sender: DGRunkeeperSwitch) {
         if(sender.selectedIndex == 0) {
@@ -191,7 +191,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             }
             
             // Get user profile
-            loadUserProfile { (user, error) in
+            User.getProfile({ (user, error) in
                 
                 let userImageView: UIImageView = UIImageView(frame: CGRectMake(20, 31, 40, 40))
                 userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
@@ -202,14 +202,14 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 userImageView.layer.borderWidth = 2
                 userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
                 
-                if self.user.picture != "" {
-                    Timeout(0.5) {
-                        let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (self.user.picture))!)!)!
-                        userImageView.image = img
-                        self.view.addSubview(userImageView)
-                    }
+                if user!.picture != "" {
+//                    Timeout(2.5) {
+//                        let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user!.picture))!)!)!
+//                        userImageView.image = img
+//                        self.view.addSubview(userImageView)
+//                    }
                 } else {
-                    if self.user.username == "" {
+                    if user!.username == "" {
                         // logout on failure to get profile
                         NSUserDefaults.standardUserDefaults().setValue("", forKey: "userAccessToken")
                         NSUserDefaults.standardUserDefaults().synchronize();
@@ -219,11 +219,12 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                         let sb = UIStoryboard(name: "Main", bundle: nil)
                         let loginVC = sb.instantiateViewControllerWithIdentifier("LoginViewController")
                         let root = UIApplication.sharedApplication().keyWindow?.rootViewController
-                            root!.presentViewController(loginVC, animated: false, completion: { () -> Void in
+                        root!.presentViewController(loginVC, animated: false, completion: { () -> Void in
                         })
                     }
                 }
-            }
+            })
+
         } else {
             // check if user logged in, if not send to login
             print("user not logged in")
@@ -249,7 +250,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         logoImageView.image = img
         logoImageView.layer.borderWidth = 2
         logoImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
-        self.view.addSubview(logoImageView)
+        // self.view.addSubview(logoImageView)
         
         // Blurview
         let bg: UIImageView = UIImageView(frame: CGRectMake(0, 0, screenWidth, screenHeight))
@@ -308,7 +309,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         balanceSwitch.titleColor = UIColor.whiteColor()
         balanceSwitch.selectedTitleColor = UIColor.whiteColor()
         balanceSwitch.titleFont = UIFont(name: "Avenir-Book", size: 12.0)
-        balanceSwitch.frame = CGRect(x: view.bounds.width - 185.0, y: 30, width: 180, height: 35.0)
+        balanceSwitch.frame = CGRect(x: view.bounds.width - 185.0, y: 40, width: 180, height: 35.0)
         //autoresizing so it stays at top right (flexible left and flexible bottom margin)
         balanceSwitch.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
         balanceSwitch.bringSubviewToFront(balanceSwitch)
@@ -342,7 +343,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         self.view.addSubview(tableView)
         
         lblAccountAvailable.tintColor = UIColor.whiteColor()
-        lblAccountAvailable.frame = CGRectMake(20, 81, 200, 40)
+        lblAccountAvailable.frame = CGRectMake(20, 31, 200, 40)
         let str0 = NSAttributedString(string: "$0.00", attributes:
             [
                 NSFontAttributeName: UIFont(name: "Avenir-Book", size: 18)!,
@@ -351,7 +352,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         lblAccountAvailable.attributedText = str0
         
         lblAccountPending.tintColor = UIColor.whiteColor()
-        lblAccountPending.frame = CGRectMake(20, 81, 200, 40)
+        lblAccountPending.frame = CGRectMake(20, 31, 200, 40)
         let str1 = NSAttributedString(string: "$0.00", attributes:
             [
                 NSFontAttributeName: UIFont(name: "Avenir-Book", size: 18)!,
@@ -360,7 +361,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         lblAccountPending.attributedText = str1
         self.view.addSubview(lblAccountPending)
         
-        lblAvailableDescription.frame = CGRectMake(20, 106, 200, 40)
+        lblAvailableDescription.frame = CGRectMake(20, 56, 200, 40)
         let str2 = NSAttributedString(string: "Available Balance", attributes:
             [
                 NSFontAttributeName: UIFont(name: "Avenir-Book", size: 12)!,
@@ -369,7 +370,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         lblAvailableDescription.attributedText = str2
         // add available label initially
         
-        lblPendingDescription.frame = CGRectMake(20, 106, 200, 40)
+        lblPendingDescription.frame = CGRectMake(20, 56, 200, 40)
         let str3 = NSAttributedString(string: "Pending Balance", attributes:
             [
                 NSFontAttributeName: UIFont(name: "Avenir-Book", size: 12)!,
@@ -426,19 +427,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             }
             self.balance = balance!
             completionHandler(balance!, error)
-        })
-    }
-    
-    func loadUserProfile(completionHandler: (User?, NSError?) -> ()) {
-        User.getProfile({ (user, error) in
-            if error != nil
-            {
-                let alert = UIAlertController(title: "Error", message: "Could not load profile \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
-            }
-            self.user = user!
-            completionHandler(user!, error)
         })
     }
 
@@ -534,6 +522,11 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     // Scrollview
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
+//        if(scrollView.contentOffset.y < 0) {
+//            
+//        } else {
+//            
+//        }
 //        var rect: CGRect = self.view.frame
 //        rect.origin.y = -scrollView.contentOffset.y
 //        self.view.frame = rect

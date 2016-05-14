@@ -45,7 +45,9 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
 
         let screen = UIScreen.mainScreen().bounds
         let width = screen.size.width
-        _ = screen.size.height
+        let height = screen.size.height
+        
+        self.view.backgroundColor = UIColor.offWhite()
         
         // adds a manual credit card entry textfield
         // self.view.addSubview(paymentTextField)
@@ -60,45 +62,22 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             
             // Email textfield
             lbl.text = detailUser.first_name + " " + detailUser.last_name
-            lbl.frame = CGRectMake(0, 160, width, 110)
+            lbl.frame = CGRectMake(0, 160, width, 130)
             lbl.textAlignment = .Center
             lbl.textColor = UIColor.whiteColor()
+            lbl.font = UIFont(name: "Avenir-Light", size: 20)
             lbl.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
             self.view.addSubview(lbl)
 
+            let blurImageView: UIImageView = UIImageView(frame: CGRectMake(30, 90, width-60, 300))
+            
             // User image
             let pic = detailUser.picture
             if pic != "" {
                 let img: UIImage = UIImage(data: NSData(contentsOfURL: NSURL(string: detailUser.picture)!)!)!
-                let userImageView: UIImageView = UIImageView(frame: CGRectMake(width / 2, 0, 90, 90))
+                let userImageView: UIImageView = UIImageView(frame: CGRectMake(width / 2, 0, 60, 60))
                 userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-                userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 135)
-                userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
-                userImageView.layer.cornerRadius = userImageView.frame.size.height/2
-                userImageView.layer.masksToBounds = true
-                userImageView.clipsToBounds = true
-                userImageView.image = img
-                userImageView.layer.borderWidth = 3
-                userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
-                self.view.addSubview(userImageView)
-                
-                // Blurview
-                let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
-                visualEffectView.frame = CGRectMake(0, 0, width, 330)
-                let blurImageView: UIImageView = UIImageView(frame: CGRectMake(0, 0, width, 330))
-                blurImageView.contentMode = .ScaleAspectFill
-                blurImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-                blurImageView.layer.masksToBounds = true
-                blurImageView.clipsToBounds = true
-                blurImageView.image = img
-                self.view.addSubview(blurImageView)
-                blurImageView.addSubview(visualEffectView)
-                self.view.sendSubviewToBack(blurImageView)
-            } else {
-                let img: UIImage = UIImage(named: "LogoRound")!
-                let userImageView: UIImageView = UIImageView(frame: CGRectMake(width / 2, 0, 90, 90))
-                userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-                userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 135)
+                userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 155)
                 userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
                 userImageView.layer.cornerRadius = userImageView.frame.size.height/2
                 userImageView.layer.masksToBounds = true
@@ -109,16 +88,44 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
                 self.view.addSubview(userImageView)
                 
                 // Blurview
-                let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
-                visualEffectView.frame = CGRectMake(0, 0, width, 330)
-                let blurImageView: UIImageView = UIImageView(frame: CGRectMake(0, 0, width, 330))
+                let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
+                visualEffectView.frame = CGRectMake(0, 0, width, height)
                 blurImageView.contentMode = .ScaleAspectFill
                 blurImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
                 blurImageView.layer.masksToBounds = true
                 blurImageView.clipsToBounds = true
-                blurImageView.image = UIImage(named: "BackgroundGradientInverse")
+                blurImageView.image = img
+                blurImageView.layer.cornerRadius = 10
                 self.view.addSubview(blurImageView)
-                // blurImageView.addSubview(visualEffectView)
+                blurImageView.addSubview(visualEffectView)
+                self.view.sendSubviewToBack(blurImageView)
+            } else {
+                let img: UIImage = UIImage(named: "LogoRound")!
+                let userImageView: UIImageView = UIImageView(frame: CGRectMake(width / 2, 0, 60, 60))
+                userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
+                userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 155)
+                userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+                userImageView.layer.cornerRadius = userImageView.frame.size.height/2
+                userImageView.layer.masksToBounds = true
+                userImageView.clipsToBounds = true
+                userImageView.image = img
+                userImageView.layer.borderWidth = 1
+                userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
+                self.view.addSubview(userImageView)
+                
+                // Blurview
+                let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
+                visualEffectView.frame = CGRectMake(0, 0, width, 500)
+                blurImageView.contentMode = .ScaleAspectFill
+                blurImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
+                blurImageView.layer.masksToBounds = true
+                blurImageView.clipsToBounds = true
+                blurImageView.image = img
+                blurImageView.layer.cornerRadius = 30
+                self.view.addSubview(blurImageView)
+                blurImageView.image = UIImage(named: "BackgroundBusiness1")
+                self.view.addSubview(blurImageView)
+                blurImageView.addSubview(visualEffectView)
                 self.view.sendSubviewToBack(blurImageView)
             }
             
@@ -126,42 +133,42 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             self.navigationController?.view.backgroundColor = UIColor.clearColor()
             self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
             self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
-            self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+            self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
             self.navigationController?.navigationBar.barStyle = .BlackTranslucent
             let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: width, height: 65))
             navBar.translucent = true
-            navBar.tintColor = UIColor.whiteColor()
+            navBar.tintColor = UIColor.darkGrayColor()
             navBar.backgroundColor = UIColor.clearColor()
             navBar.shadowImage = UIImage()
             navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
             navBar.titleTextAttributes = [
-                NSForegroundColorAttributeName : UIColor.whiteColor(),
+                NSForegroundColorAttributeName : UIColor.darkGrayColor(),
                 NSFontAttributeName : UIFont(name: "Avenir-Book", size: 18)!
             ]
             self.view.addSubview(navBar)
             let navItem = UINavigationItem(title: "@"+detailUser.username)
-            navItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
+            navItem.leftBarButtonItem?.tintColor = UIColor.darkGrayColor()
             navBar.setItems([navItem], animated: true)
 
-            // Button
-            let payButton = AYVibrantButton(frame: CGRect(x: 10, y: 265, width: (width/2)-20, height: 50.0), style: AYVibrantButtonStyleFill)
-            payButton.vibrancyEffect = UIVibrancyEffect(forBlurEffect:UIBlurEffect(style: .Dark))
-            payButton.text = "Pay " + detailUser.first_name
-            payButton.font = UIFont(name: "Avenir-Book", size: 14)
+            let payButton = UIButton(frame: CGRect(x: 20, y: 325, width: (width/2)-40, height: 50.0))
+            payButton.setTitleColor(UIColor(rgba: "#fff").colorWithAlphaComponent(0.5), forState: .Normal)
+            payButton.titleLabel?.font = UIFont(name: "AvenirNext-UltraLight", size: 16)
+            payButton.setTitle("Pay " + detailUser.first_name, forState: .Normal)
             payButton.addTarget(self, action: #selector(SearchDetailViewController.payMerchantModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-            view.addSubview(payButton)
+            self.view.addSubview(payButton)
             
             // Button
-            let subscribeButton = AYVibrantButton(frame: CGRect(x: width*0.5+10, y: 265, width: (width/2)-20, height: 50.0), style: AYVibrantButtonStyleInvert)
-            subscribeButton.vibrancyEffect = UIVibrancyEffect(forBlurEffect:UIBlurEffect(style: .Dark))
-            subscribeButton.text = "View Plans"
-            subscribeButton.font = UIFont(name: "Avenir-Book", size: 14)
-            subscribeButton.addTarget(self, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
-            view.addSubview(subscribeButton)
+            let viewPlansButton = UIButton(frame: CGRect(x: width*0.5+20, y: 325, width: (width/2)-40, height: 50.0))
+            viewPlansButton.setTitleColor(UIColor(rgba: "#fff").colorWithAlphaComponent(0.5), forState: .Normal)
+            viewPlansButton.titleLabel?.font = UIFont(name: "AvenirNext-UltraLight", size: 16)
+            viewPlansButton.setTitle("View Plans", forState: .Normal)
+            viewPlansButton.addTarget(self, action: #selector(SearchDetailViewController.payMerchantModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            viewPlansButton.addTarget(self, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
+            self.view.addSubview(viewPlansButton)
             
             let navigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 65)) // Offset by 20 pixels vertically to take the status bar into account
             navigationBar.backgroundColor = UIColor.clearColor()
-            navigationBar.tintColor = UIColor.whiteColor()
+            navigationBar.tintColor = UIColor.darkGrayColor()
             navigationBar.delegate = self
             // Create a navigation item with a title
             let navigationItem = UINavigationItem()

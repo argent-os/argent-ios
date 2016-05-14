@@ -12,6 +12,7 @@ PODS:
   - DZNEmptyDataSet (1.8)
   - FlagKit (1.0.7)
   - Former (1.3.0)
+  - FXBlurView (1.6.4)
   - GaugeKit (0.3.2)
   - Gecco (0.2.0)
   - ImagePicker (1.2)
@@ -37,7 +38,6 @@ PODS:
   - Stripe (7.0.0):
     - Stripe/Core (= 7.0.0)
   - Stripe/Core (7.0.0)
-  - SwiftAddressBook (0.6.2)
   - SwiftyJSON (2.3.2)
   - TextFieldEffects (1.2.0)
   - UIColor_Hex_Swift (2.1)
@@ -61,6 +61,7 @@ DEPENDENCIES:
   - DZNEmptyDataSet
   - FlagKit
   - Former
+  - FXBlurView
   - GaugeKit
   - Gecco
   - ImagePicker
@@ -80,7 +81,6 @@ DEPENDENCIES:
   - SnapKit
   - StepSlider
   - Stripe
-  - SwiftAddressBook
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
   - TextFieldEffects
   - UIColor_Hex_Swift
@@ -110,6 +110,7 @@ SPEC CHECKSUMS:
   DZNEmptyDataSet: d2351b2e8daefa40433ef292e246e21f6be31a7b
   FlagKit: dffc62b4c5db33043c89bbda0bda897077d521e5
   Former: 7380ef3b9bdb3bf43d9f0fe99e369987d3068705
+  FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
   GaugeKit: 4d5c3491521ed2d6e2f83cac5f51d0cd09db8989
   Gecco: 27ab0f43da3f8e844771cf641992afdd1ea09c62
   ImagePicker: 85f14ed6872f46c08d210077b5540a890a6cd151
@@ -130,7 +131,6 @@ SPEC CHECKSUMS:
   SnapKit: 5fce3c1bbbf1fbd31de9aa92f33eb9fa03f15650
   StepSlider: 54466ab1de9002435b6839091f97ff62967fdd7e
   Stripe: 147bbff1ba7cf3422e4ed14f6e1fbbc72471ce6c
-  SwiftAddressBook: 88c68c6bd0c6a9cb10e5cdc80f91fd87b5e0f4ec
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   TextFieldEffects: bc4fd3bd557321bd61a0762f3f50965477a36f62
   UIColor_Hex_Swift: e91dc51f6bf252ec7bf74c8704ceedeeb7640c1c

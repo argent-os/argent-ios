@@ -49,6 +49,7 @@ target 'app-ios' do
 	pod 'GaugeKit'
 	pod 'StepSlider'
 	pod 'ImagePicker'
+	pod 'FXBlurView'
 	#pod 'DOFavoriteButton'
 
 	post_install do |installer|

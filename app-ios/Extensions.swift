@@ -105,5 +105,8 @@ extension UIColor {
     static func brandRed() -> UIColor {
         return UIColor(rgba: "#f74e1d")
     }
+    static func offWhite() -> UIColor {
+        return UIColor(rgba: "#f5f7fa")
+    }
 }
 

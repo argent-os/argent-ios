@@ -118,6 +118,7 @@
 		30CA45581CE6CEFF00D656E5 /* HistoryCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CA45571CE6CEFF00D656E5 /* HistoryCustomCell.swift */; };
 		30CA455A1CE6CF7F00D656E5 /* HistoryCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30CA45591CE6CF7F00D656E5 /* HistoryCustomCell.xib */; };
 		30CA455C1CE6DC7000D656E5 /* HistoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CA455B1CE6DC7000D656E5 /* HistoryDetailViewController.swift */; };
+		30CA455E1CE7693400D656E5 /* SplitProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CA455D1CE7693400D656E5 /* SplitProfileViewController.swift */; };
 		30D526761CDB9814001B41BA /* BitcoinUriViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526751CDB9814001B41BA /* BitcoinUriViewController.swift */; };
 		30D526781CDBB4A0001B41BA /* Bitcoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526771CDBB4A0001B41BA /* Bitcoin.swift */; };
 		30D5267D1CDE3736001B41BA /* ConfigurePointOfSaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D5267C1CDE3736001B41BA /* ConfigurePointOfSaleViewController.swift */; };
@@ -332,6 +333,7 @@
 		30CA45571CE6CEFF00D656E5 /* HistoryCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HistoryCustomCell.swift; path = "app-ios/HistoryCustomCell.swift"; sourceTree = SOURCE_ROOT; };
 		30CA45591CE6CF7F00D656E5 /* HistoryCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HistoryCustomCell.xib; path = "app-ios/HistoryCustomCell.xib"; sourceTree = SOURCE_ROOT; };
 		30CA455B1CE6DC7000D656E5 /* HistoryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HistoryDetailViewController.swift; path = "app-ios/HistoryDetailViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30CA455D1CE7693400D656E5 /* SplitProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SplitProfileViewController.swift; path = "app-ios/SplitProfileViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30D526751CDB9814001B41BA /* BitcoinUriViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BitcoinUriViewController.swift; path = "app-ios/BitcoinUriViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30D526771CDBB4A0001B41BA /* Bitcoin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bitcoin.swift; path = "app-ios/Bitcoin.swift"; sourceTree = SOURCE_ROOT; };
 		30D5267C1CDE3736001B41BA /* ConfigurePointOfSaleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigurePointOfSaleViewController.swift; path = "app-ios/ConfigurePointOfSaleViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -826,6 +828,7 @@
 			isa = PBXGroup;
 			children = (
 				30C2DACA1CA4385C003AFD8B /* ProfileMenuViewController.swift */,
+				30CA455D1CE7693400D656E5 /* SplitProfileViewController.swift */,
 				306DF00D1CDA689100864CAE /* Risk */,
 				30D5267B1CDE370D001B41BA /* POS */,
 				30113A2C1CD82CA0002BECF0 /* Header */,
@@ -1449,6 +1452,7 @@
 				309E43BE1CA8ADF900279D97 /* WebTermsViewController.swift in Sources */,
 				306E82301CDAC36400A43505 /* Balance.swift in Sources */,
 				30C2DB1F1CA43A51003AFD8B /* EditProfileViewController.swift in Sources */,
+				30CA455E1CE7693400D656E5 /* SplitProfileViewController.swift in Sources */,
 				300D8BDF1CE5416700FC3B05 /* OnboardingCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
