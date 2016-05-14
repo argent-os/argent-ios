@@ -1761,6 +1761,25 @@ institutions</string>
             </objects>
             <point key="canvasLocation" x="-1670" y="-1651"/>
         </scene>
+        <!--History Detail View Controller-->
+        <scene sceneID="cYy-QS-kul">
+            <objects>
+                <viewController id="VGI-hD-ybP" customClass="HistoryDetailViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kQ4-E7-u7P"/>
+                        <viewControllerLayoutGuide type="bottom" id="n85-GB-84W"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Nik-jp-YWb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QGm-e6-mY6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="560" y="-1236"/>
+        </scene>
         <!--Home Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -1783,6 +1802,7 @@ institutions</string>
                     <connections>
                         <segue destination="mQk-jK-m8v" kind="presentation" identifier="loginView" id="A1R-09-1HJ"/>
                         <segue destination="SDr-Sd-KOe" kind="show" identifier="addPlanView" id="kpf-dT-hyx"/>
+                        <segue destination="VGI-hD-ybP" kind="show" identifier="historyDetailView" id="cdv-Yf-Hky"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

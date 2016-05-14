@@ -204,9 +204,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
                 
                 if user?.picture != nil && user?.picture != "" {
-//                    let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
-//                    userImageView.image = img
-//                    self.view.addSubview(userImageView)
+                    let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
+                    userImageView.image = img
+                    self.view.addSubview(userImageView)
                 } else {
                     if user?.username == nil || user?.username == "" {
                         // logout on failure to get profile
@@ -515,6 +515,10 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             }
         }
         return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // self.performSegueWithIdentifier("historyDetailView", sender: self)
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

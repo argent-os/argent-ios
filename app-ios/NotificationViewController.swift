@@ -228,8 +228,14 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
                    cell.textLabel?.text = "Transfer paid successfully"
                 case "transfer.failed":
                    cell.textLabel?.text = "Transfer failed"
+                case "bitcoin.receiver.transaction.created":
+                    cell.textLabel?.text = "Bitcoin receiver transaction created"
+                case "bitcoin.receiver.created":
+                    cell.textLabel?.text = "Bitcoin receiver created"
+                case "bitcoin.receiver.filled":
+                    cell.textLabel?.text = "Bitcoin receiver filled"
                 default:
-                    cell.textLabel?.text = ""
+                    cell.textLabel?.text = text
             }
             cell.textLabel?.font = UIFont(name: "Avenir", size: 16)
             cell.textLabel?.textColor = UIColor.darkGrayColor()
