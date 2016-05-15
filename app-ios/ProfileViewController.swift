@@ -62,8 +62,8 @@ class ProfileViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSForegroundColorAttributeName : UIColor.mediumBlue(),
-            NSFontAttributeName : UIFont(name: "Avenir-Light", size: 18.0)!
+            NSForegroundColorAttributeName : UIColor.whiteColor(),
+            NSFontAttributeName : UIFont(name: "Avenir-Light", size: 12.0)!
         ]
         
         User.getProfile({ (item, error) in
@@ -94,36 +94,36 @@ class ProfileViewController: UIViewController {
             // self.view.addSubview(settingsIcon)
             // self.view.bringSubviewToFront(settingsIcon)
             
-            let customersCountLabel = UILabel(frame: CGRectMake(40, 20, 75, 70))
+            let customersCountLabel = UILabel(frame: CGRectMake(30, 20, 75, 70))
             customersCountLabel.textAlignment = NSTextAlignment.Center
-            customersCountLabel.font = UIFont(name: "Avenir-Book", size: 24)
+            customersCountLabel.font = UIFont(name: "Avenir-Book", size: 18)
             customersCountLabel.numberOfLines = 0
             customersCountLabel.textColor = UIColor(rgba: "#fffa")
             customersCountLabel.text = "0"
             self.view.addSubview(customersCountLabel)
             self.view.bringSubviewToFront(customersCountLabel)
             
-            let customersTitleLabel = UILabel(frame: CGRectMake(40, 40, 75, 70))
+            let customersTitleLabel = UILabel(frame: CGRectMake(30, 40, 75, 70))
             customersTitleLabel.textAlignment = NSTextAlignment.Center
-            customersTitleLabel.font = UIFont(name: "Avenir-Light", size: 12)
+            customersTitleLabel.font = UIFont(name: "Avenir-Light", size: 10)
             customersTitleLabel.numberOfLines = 0
             customersTitleLabel.textColor = UIColor(rgba: "#fffc")
             customersTitleLabel.text = "Customers"
             self.view.addSubview(customersTitleLabel)
             self.view.bringSubviewToFront(customersTitleLabel)
             
-            let plansCountLabel = UILabel(frame: CGRectMake(screenWidth-120, 20, 75, 70))
+            let plansCountLabel = UILabel(frame: CGRectMake(screenWidth-110, 20, 75, 70))
             plansCountLabel.textAlignment = NSTextAlignment.Center
-            plansCountLabel.font = UIFont(name: "Avenir-Book", size: 24)
+            plansCountLabel.font = UIFont(name: "Avenir-Book", size: 18)
             plansCountLabel.numberOfLines = 0
             plansCountLabel.text = "0"
             plansCountLabel.textColor = UIColor(rgba: "#fffa")
             self.view.addSubview(plansCountLabel)
             self.view.bringSubviewToFront(plansCountLabel)
             
-            let plansTitleLabel = UILabel(frame: CGRectMake(screenWidth-120, 40, 75, 70))
+            let plansTitleLabel = UILabel(frame: CGRectMake(screenWidth-110, 40, 75, 70))
             plansTitleLabel.textAlignment = NSTextAlignment.Center
-            plansTitleLabel.font = UIFont(name: "Avenir-Light", size: 12)
+            plansTitleLabel.font = UIFont(name: "Avenir-Light", size: 10)
             plansTitleLabel.numberOfLines = 0
             plansTitleLabel.textColor = UIColor(rgba: "#fffc")
             plansTitleLabel.text = "Plans"

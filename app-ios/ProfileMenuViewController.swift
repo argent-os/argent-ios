@@ -24,11 +24,11 @@ class ProfileMenuViewController: UITableViewController {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
 
-        self.tableView.tableHeaderView = ParallaxHeaderView.init(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 100));
+        self.tableView.tableHeaderView = ParallaxHeaderView.init(frame: CGRectMake(0, 100, CGRectGetWidth(self.view.bounds), 100));
         
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
-        loadingView.frame = CGRect(x: 0, y: 65, width: screenWidth, height: 100)
-        loadingView.tintColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
+        loadingView.frame = CGRect(x: 0, y: 100, width: screenWidth, height: 100)
+        loadingView.tintColor = UIColor.whiteColor().colorWithAlphaComponent(0.8)
         tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
                 self?.tableView.dg_stopLoading()
