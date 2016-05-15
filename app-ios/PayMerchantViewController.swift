@@ -75,7 +75,10 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         selectPaymentOptionButton.setAttributedTitle(str, forState: .Normal)
         selectPaymentOptionButton.addTarget(self, action: #selector(PayMerchantViewController.showPayModal(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(selectPaymentOptionButton)
-
+        
+        //Looks for single or multiple taps.  Close keyboard on tap
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -301,5 +304,11 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
             iconImage: customIcon)
         alertView.setTextTheme(.Light) // can be .Light or .Dark
         chargeInputView.text = ""
+    }
+    
+    //Calls this function when the tap is recognized.
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
 }

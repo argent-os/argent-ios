@@ -193,7 +193,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             // Get user profile
             User.getProfile({ (user, error) in
                 
-                let userImageView: UIImageView = UIImageView(frame: CGRectMake(20, 31, 40, 40))
+                let userImageView: UIImageView = UIImageView(frame: CGRectMake(20, 40, 40, 40))
                 userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
                 userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
                 userImageView.layer.cornerRadius = userImageView.frame.size.height/2

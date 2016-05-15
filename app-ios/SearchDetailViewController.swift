@@ -69,7 +69,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             lbl.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
             self.view.addSubview(lbl)
 
-            let blurImageView: UIImageView = UIImageView(frame: CGRectMake(30, 90, width-60, 300))
+            let blurImageView: UIImageView = UIImageView(frame: CGRectMake(35, 90, width-70, 300))
             
             // User image
             let pic = detailUser.picture
@@ -121,7 +121,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
                 blurImageView.layer.masksToBounds = true
                 blurImageView.clipsToBounds = true
                 blurImageView.image = img
-                blurImageView.layer.cornerRadius = 30
+                blurImageView.layer.cornerRadius = 10
                 self.view.addSubview(blurImageView)
                 blurImageView.image = UIImage(named: "BackgroundBusiness1")
                 self.view.addSubview(blurImageView)
@@ -150,18 +150,24 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             navItem.leftBarButtonItem?.tintColor = UIColor.darkGrayColor()
             navBar.setItems([navItem], animated: true)
 
-            let payButton = UIButton(frame: CGRect(x: 20, y: 325, width: (width/2)-40, height: 50.0))
+            let payButton = UIButton(frame: CGRect(x: 30, y: 325, width: (width/2)-60, height: 50.0))
             payButton.setTitleColor(UIColor(rgba: "#fff").colorWithAlphaComponent(0.5), forState: .Normal)
             payButton.titleLabel?.font = UIFont(name: "Avenir-Light", size: 16)
-            payButton.setTitle("Pay " + detailUser.first_name, forState: .Normal)
+            if detailUser.first_name != "" {
+                payButton.setTitle("Pay " + detailUser.first_name, forState: .Normal)
+            } else {
+                payButton.setTitle("Pay User", forState: .Normal)
+            }
+            payButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Right
             payButton.addTarget(self, action: #selector(SearchDetailViewController.payMerchantModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             self.view.addSubview(payButton)
             
             // Button
-            let viewPlansButton = UIButton(frame: CGRect(x: width*0.5+20, y: 325, width: (width/2)-40, height: 50.0))
+            let viewPlansButton = UIButton(frame: CGRect(x: width*0.5+30, y: 325, width: (width/2)-60, height: 50.0))
             viewPlansButton.setTitleColor(UIColor(rgba: "#fff").colorWithAlphaComponent(0.5), forState: .Normal)
             viewPlansButton.titleLabel?.font = UIFont(name: "Avenir-Light", size: 16)
             viewPlansButton.setTitle("View Plans", forState: .Normal)
+            viewPlansButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
             viewPlansButton.addTarget(self, action: #selector(SearchDetailViewController.payMerchantModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             viewPlansButton.addTarget(self, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
             self.view.addSubview(viewPlansButton)
