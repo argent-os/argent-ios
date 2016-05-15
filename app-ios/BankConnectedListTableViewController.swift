@@ -103,7 +103,10 @@ class BankConnectedListTableViewController: UITableViewController, SESlideTableV
             cell!.addRightButtonWithText("Delete", textColor: UIColor.whiteColor(), backgroundColor: UIColor(hue: 0.0/360.0, saturation: 0.8, brightness: 0.9, alpha: 1.0))
             let item = self.itemsArray?[indexPath.row]
             cell!.textLabel?.text = ""
+            cell?.textLabel?.font = UIFont(name: "Avenir-Light", size: 14)
             cell!.detailTextLabel?.text = ""
+            cell?.detailTextLabel?.font = UIFont(name: "Avenir-Light", size: 12)
+            
             if let name = item?.account_name, _ = item?.account_number
             {
                 cell!.textLabel?.text = name

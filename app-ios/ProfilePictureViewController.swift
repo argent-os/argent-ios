@@ -88,14 +88,14 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
                 let fileSizeString = String.localizedStringWithFormat("%.2f", fileSize)
                 NSLog("File size is : %.2f MB", fileSize)
                 
-                if(fileSize > 0.5) {
+                if(fileSize > 1.25) {
                     self.allowedFileSize = false
                     self.dismissViewControllerAnimated(true, completion: nil)
                     self.imageView.removeFromSuperview()
                     self.txt.text = "File size " + fileSizeString + "MB too large"
                     self.view.addSubview(self.txt)
                 } else {
-                    self.allowedFileSize = false
+                    self.allowedFileSize = true
                     Alamofire.upload(.POST, endpoint, multipartFormData: {
                         multipartFormData in
     
@@ -116,7 +116,7 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
                                         print("success")
                                     case .Failure(let error):
                                         print("failure")
-                                        self.txt.text = "Error uploading picture, check file size"
+                                        self.txt.text = "Error uploading picture"
                                         self.view.addSubview(self.txt)
                                     }
                                 })
@@ -144,12 +144,10 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
         imageView.layer.masksToBounds = true
         activityIndicator.stopAnimating()
         activityIndicator.hidden = true
-        if(self.allowedFileSize == true) {
-            self.dismissViewControllerAnimated(true, completion: nil)
-            Timeout(0.3) {
-                if let navController = self.navigationController {
-                    navController.popViewControllerAnimated(true)
-                }
+        self.dismissViewControllerAnimated(true, completion: nil)
+        Timeout(0.3) {
+            if let navController = self.navigationController {
+                navController.popViewControllerAnimated(true)
             }
         }
 

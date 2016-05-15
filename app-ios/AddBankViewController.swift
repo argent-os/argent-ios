@@ -76,6 +76,8 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
                         if let value = response.result.value {
                             let data = JSON(value)
                             self.dismissViewControllerAnimated(true) {
+                                print("this is the data")
+                                print(data)
                                 let access_token = data["response"]["access_token"]
                                 let stripe_bank_token = data["response"]["stripe_bank_account_token"]
                                 self.showSuccessAlert()
@@ -141,6 +143,8 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
                 ]
                 
                 let parameters = ["external_account": bankToken]
+                
+                print(bankToken)
                 
                 Alamofire.request(.POST, endpoint, parameters: parameters, encoding: .JSON, headers: headers).responseJSON {
                     response in

@@ -33,7 +33,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     private var arrayOfValues: Array<AnyObject> = [30,10,20,50,60,80]
     
-    private var user = User(id: "", username: "", email: "", first_name: "", last_name: "", picture: "")
+    private var user = User(id: "", username: "", email: "", first_name: "", last_name: "", picture: "", plaid_access_token: "")
     
     private let lblAccountPending:UICountingLabel = UICountingLabel()
 
@@ -203,11 +203,11 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
                 
                 if user!.picture != "" {
-//                    Timeout(2.5) {
-//                        let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user!.picture))!)!)!
-//                        userImageView.image = img
-//                        self.view.addSubview(userImageView)
-//                    }
+                    Timeout(0.3) {
+                        let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user!.picture))!)!)!
+                        userImageView.image = img
+                        self.view.addSubview(userImageView)
+                    }
                 } else {
                     if user!.username == "" {
                         // logout on failure to get profile
@@ -343,7 +343,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         self.view.addSubview(tableView)
         
         lblAccountAvailable.tintColor = UIColor.whiteColor()
-        lblAccountAvailable.frame = CGRectMake(20, 31, 200, 40)
+        lblAccountAvailable.frame = CGRectMake(20, 81, 200, 40)
         let str0 = NSAttributedString(string: "$0.00", attributes:
             [
                 NSFontAttributeName: UIFont(name: "Avenir-Book", size: 18)!,
@@ -352,7 +352,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         lblAccountAvailable.attributedText = str0
         
         lblAccountPending.tintColor = UIColor.whiteColor()
-        lblAccountPending.frame = CGRectMake(20, 31, 200, 40)
+        lblAccountPending.frame = CGRectMake(20, 81, 200, 40)
         let str1 = NSAttributedString(string: "$0.00", attributes:
             [
                 NSFontAttributeName: UIFont(name: "Avenir-Book", size: 18)!,
@@ -361,7 +361,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         lblAccountPending.attributedText = str1
         self.view.addSubview(lblAccountPending)
         
-        lblAvailableDescription.frame = CGRectMake(20, 56, 200, 40)
+        lblAvailableDescription.frame = CGRectMake(20, 106, 200, 40)
         let str2 = NSAttributedString(string: "Available Balance", attributes:
             [
                 NSFontAttributeName: UIFont(name: "Avenir-Book", size: 12)!,
@@ -370,7 +370,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         lblAvailableDescription.attributedText = str2
         // add available label initially
         
-        lblPendingDescription.frame = CGRectMake(20, 56, 200, 40)
+        lblPendingDescription.frame = CGRectMake(20, 106, 200, 40)
         let str3 = NSAttributedString(string: "Pending Balance", attributes:
             [
                 NSFontAttributeName: UIFont(name: "Avenir-Book", size: 12)!,

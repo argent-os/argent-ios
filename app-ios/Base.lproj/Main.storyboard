@@ -681,7 +681,7 @@ support request</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jr1-2c-jjh">
-                                <rect key="frame" x="0.0" y="64" width="414" height="623"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                                 <connections>
                                     <segue destination="lTf-cF-Xdq" kind="embed" id="isS-vZ-wBF"/>
                                 </connections>
@@ -689,10 +689,10 @@ support request</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="jr1-2c-jjh" firstAttribute="leading" secondItem="Pyk-l7-CGz" secondAttribute="leading" id="AhP-dU-UiR"/>
-                            <constraint firstItem="jr1-2c-jjh" firstAttribute="bottom" secondItem="qbv-YN-1RU" secondAttribute="top" id="V4x-Ge-Rct"/>
-                            <constraint firstAttribute="trailing" secondItem="jr1-2c-jjh" secondAttribute="trailing" id="ktD-Q4-QPe"/>
-                            <constraint firstItem="jr1-2c-jjh" firstAttribute="top" secondItem="9gY-er-fKy" secondAttribute="bottom" id="mGQ-rF-gmV"/>
+                            <constraint firstItem="jr1-2c-jjh" firstAttribute="leading" secondItem="Pyk-l7-CGz" secondAttribute="leading" id="8kD-nZ-jRA"/>
+                            <constraint firstItem="jr1-2c-jjh" firstAttribute="top" secondItem="Pyk-l7-CGz" secondAttribute="top" id="IsM-ga-FHQ"/>
+                            <constraint firstItem="jr1-2c-jjh" firstAttribute="bottom" secondItem="qbv-YN-1RU" secondAttribute="top" id="g2p-bi-89d"/>
+                            <constraint firstAttribute="trailing" secondItem="jr1-2c-jjh" secondAttribute="trailing" id="ruN-1Z-r4u"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2ww-xx-ARR"/>
@@ -1504,7 +1504,7 @@ support request</string>
                         <viewControllerLayoutGuide type="bottom" id="Aa7-CV-e8d"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="2uG-We-evA">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -4100,11 +4100,11 @@ granted explicit permission.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="UFB-DJ-qrH"/>
-        <segue reference="A1R-09-1HJ"/>
+        <segue reference="mwT-xt-Ez4"/>
+        <segue reference="Bot-Tn-1ZP"/>
+        <segue reference="wgV-xY-MTp"/>
         <segue reference="xTl-cs-ajG"/>
         <segue reference="m0d-gd-RWW"/>
-        <segue reference="zQh-Po-kj4"/>
-        <segue reference="wgV-xY-MTp"/>
         <segue reference="jpD-81-9Zm"/>
         <segue reference="m3z-fp-Nlm"/>
         <segue reference="exE-qz-Ig3"/>

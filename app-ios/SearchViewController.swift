@@ -131,13 +131,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             // After filtering
             let pic = filteredArray[indexPath.row].picture
             if pic != "" {
-//                let imageView: UIImageView = UIImageView(frame: CGRectMake(10, 15, 30, 30))
-//                imageView.backgroundColor = UIColor.clearColor()
-//                imageView.layer.cornerRadius = 15
-//                imageView.layer.masksToBounds = true
-//                let img: UIImage = UIImage(data: NSData(contentsOfURL: NSURL(string: pic)!)!)!
-//                imageView.image = img
-//                cell.contentView.addSubview(imageView)
+                let imageView: UIImageView = UIImageView(frame: CGRectMake(10, 15, 30, 30))
+                imageView.backgroundColor = UIColor.clearColor()
+                imageView.layer.cornerRadius = 15
+                imageView.layer.masksToBounds = true
+                let img: UIImage = UIImage(data: NSData(contentsOfURL: NSURL(string: pic)!)!)!
+                imageView.image = img
+                cell.contentView.addSubview(imageView)
             } else {
                 let imageView: UIImageView = UIImageView(frame: CGRectMake(10, 15, 30, 30))
                 imageView.backgroundColor = UIColor.clearColor()
@@ -167,13 +167,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             // Default loaded array
             let pic = dataArray[indexPath.row].picture
             if pic != "" {
-//                let imageView: UIImageView = UIImageView(frame: CGRectMake(10, 15, 30, 30))
-//                imageView.backgroundColor = UIColor.clearColor()
-//                imageView.layer.cornerRadius = 15
-//                imageView.layer.masksToBounds = true
-//                let img: UIImage = UIImage(data: NSData(contentsOfURL: NSURL(string: pic)!)!)!
-//                imageView.image = img
-//                cell.contentView.addSubview(imageView)
+                let imageView: UIImageView = UIImageView(frame: CGRectMake(10, 15, 30, 30))
+                imageView.backgroundColor = UIColor.clearColor()
+                imageView.layer.cornerRadius = 15
+                imageView.layer.masksToBounds = true
+                let img: UIImage = UIImage(data: NSData(contentsOfURL: NSURL(string: pic)!)!)!
+                imageView.image = img
+                cell.contentView.addSubview(imageView)
             } else {
                 let imageView: UIImageView = UIImageView(frame: CGRectMake(10, 15, 30, 30))
                 imageView.backgroundColor = UIColor.clearColor()

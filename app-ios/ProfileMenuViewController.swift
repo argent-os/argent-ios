@@ -117,9 +117,9 @@ class ProfileMenuViewController: UITableViewController {
                 self.presentViewController(alert, animated: true, completion: nil)
             }
             if user!.picture != "" {
-                //let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user!.picture))!)!)!
-                //userImageView.image = img
-                //self.tableView.addSubview(userImageView)
+                let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user!.picture))!)!)!
+                userImageView.image = img
+                self.tableView.addSubview(userImageView)
             } else {
                 let img = UIImage(named: "IconCamera")
                 userImageView.image = img

@@ -21,7 +21,9 @@ class ProfileViewController: UIViewController {
     private var customersArray = [Customer]()
     
     private var plansArray = [Plan]()
-        
+    
+    private let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 15, width: UIScreen.mainScreen().bounds.size.width, height: 50))
+
     override func viewDidAppear(animated: Bool) {
         self.navigationController!.navigationBar.backgroundColor = UIColor.clearColor()
         self.navigationController!.navigationBar.barTintColor = UIColor.clearColor()
@@ -31,7 +33,6 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.darkGrayColor()]
-        self.view.backgroundColor = UIColor.whiteColor()
         
         // Style user avatar
 //        avatarImageView.image = UIImage(named: "avatar")
@@ -42,20 +43,28 @@ class ProfileViewController: UIViewController {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         
-        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 15, width: screenWidth, height: 50))
-        navBar.barTintColor = UIColor.clearColor()
         navBar.translucent = true
         navBar.tintColor = UIColor.whiteColor()
-        navBar.backgroundColor = UIColor.clearColor()
         navBar.shadowImage = UIImage()
         navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "Avenir-Black", size: 18)!
+            NSFontAttributeName : UIFont(name: "Avenir-Light", size: 18)!
         ]
         self.view.addSubview(navBar)
-        self.view.bringSubviewToFront(navBar)
-        
+        self.view.sendSubviewToBack(navBar)
+        let navItem = UINavigationItem(title: "")
+        navBar.setItems([navItem], animated: true)
+        // Transparent navigation bar
+        self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSForegroundColorAttributeName : UIColor.mediumBlue(),
+            NSFontAttributeName : UIFont(name: "Avenir-Light", size: 18.0)!
+        ]
         
         User.getProfile({ (item, error) in
             if error != nil
@@ -71,7 +80,7 @@ class ProfileViewController: UIViewController {
             if f_name != nil && l_name != nil {
                 self.navigationItem.title = f_name! + " " + l_name!
             }
-            navBar.setItems([navItem], animated: false)
+            self.navBar.setItems([navItem], animated: false)
             
             let settingsIcon = UIImageView(frame: CGRectMake(0, 0, 32, 32))
             settingsIcon.image = UIImage(named: "IconSettingsWhite")
@@ -85,16 +94,16 @@ class ProfileViewController: UIViewController {
             // self.view.addSubview(settingsIcon)
             // self.view.bringSubviewToFront(settingsIcon)
             
-            let customersCountLabel = UILabel(frame: CGRectMake(40, 100, 75, 70))
+            let customersCountLabel = UILabel(frame: CGRectMake(40, 20, 75, 70))
             customersCountLabel.textAlignment = NSTextAlignment.Center
-            customersCountLabel.font = UIFont(name: "AvenirNext-UltraLight", size: 36)
+            customersCountLabel.font = UIFont(name: "Avenir-Book", size: 24)
             customersCountLabel.numberOfLines = 0
             customersCountLabel.textColor = UIColor(rgba: "#fffa")
             customersCountLabel.text = "0"
             self.view.addSubview(customersCountLabel)
             self.view.bringSubviewToFront(customersCountLabel)
             
-            let customersTitleLabel = UILabel(frame: CGRectMake(40, 130, 75, 70))
+            let customersTitleLabel = UILabel(frame: CGRectMake(40, 40, 75, 70))
             customersTitleLabel.textAlignment = NSTextAlignment.Center
             customersTitleLabel.font = UIFont(name: "Avenir-Light", size: 12)
             customersTitleLabel.numberOfLines = 0
@@ -103,16 +112,16 @@ class ProfileViewController: UIViewController {
             self.view.addSubview(customersTitleLabel)
             self.view.bringSubviewToFront(customersTitleLabel)
             
-            let plansCountLabel = UILabel(frame: CGRectMake(screenWidth-120, 100, 75, 70))
+            let plansCountLabel = UILabel(frame: CGRectMake(screenWidth-120, 20, 75, 70))
             plansCountLabel.textAlignment = NSTextAlignment.Center
-            plansCountLabel.font = UIFont(name: "AvenirNext-UltraLight", size: 36)
+            plansCountLabel.font = UIFont(name: "Avenir-Book", size: 24)
             plansCountLabel.numberOfLines = 0
             plansCountLabel.text = "0"
             plansCountLabel.textColor = UIColor(rgba: "#fffa")
             self.view.addSubview(plansCountLabel)
             self.view.bringSubviewToFront(plansCountLabel)
             
-            let plansTitleLabel = UILabel(frame: CGRectMake(screenWidth-120, 130, 75, 70))
+            let plansTitleLabel = UILabel(frame: CGRectMake(screenWidth-120, 40, 75, 70))
             plansTitleLabel.textAlignment = NSTextAlignment.Center
             plansTitleLabel.font = UIFont(name: "Avenir-Light", size: 12)
             plansTitleLabel.numberOfLines = 0
@@ -138,14 +147,6 @@ class ProfileViewController: UIViewController {
             }
             
         })
-        
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.translucent = true
-        self.navigationController?.navigationBar.titleTextAttributes = [
-            NSForegroundColorAttributeName : UIColor.darkGrayColor(),
-            NSFontAttributeName : UIFont(name: "Avenir-Light", size: 18.0)!
-        ]
     }
     
     private func loadCustomerList(completionHandler: ([Customer]?, NSError?) -> ()) {
