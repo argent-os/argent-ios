@@ -16,10 +16,11 @@ import BEMSimpleLineGraph
 import UICountingLabel
 import DGElasticPullToRefresh
 import Gecco
+import DZNEmptyDataSet
 
 var userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
 
-class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpleLineGraphDataSource, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate  {
+class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpleLineGraphDataSource, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate  {
 
     private var window: UIWindow?
 
@@ -31,7 +32,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     private var tableView:UITableView = UITableView()
     
-    private var arrayOfValues: Array<AnyObject> = [30,10,20,50,60,80]
+//    private var arrayOfValues: Array<AnyObject> = [30,10,20,50,60,80]
     
     private var user = User(id: "", username: "", email: "", first_name: "", last_name: "", picture: "", plaid_access_token: "")
     
@@ -106,27 +107,27 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     func dateRangeSegmentControl(segment: UISegmentedControl) {
         if segment.selectedSegmentIndex == 0 {
             // action for the first button (Current or Default)
-            arrayOfValues = [30,20,30,80]
+//            arrayOfValues = [30,20,30,80]
             graph.reloadGraph()
         }
         else if segment.selectedSegmentIndex == 1 {
             // action for the second button
-            arrayOfValues = [20,60,30]
+//            arrayOfValues = [20,60,30]
             graph.reloadGraph()
         }
         else if segment.selectedSegmentIndex == 2 {
             // action for the third button
-            arrayOfValues = [30,10,20,50,60,80]
+//            arrayOfValues = [30,10,20,50,60,80]
             graph.reloadGraph()
         }
         else if segment.selectedSegmentIndex == 3 {
             // action for the fourth button
-            arrayOfValues = [10,90,60,50,30,10,90,60,50,30,20,40]
+//            arrayOfValues = [10,90,60,50,30,10,90,60,50,30,20,40]
             graph.reloadGraph()
         }
         else if segment.selectedSegmentIndex == 4 {
             // action for the fourth button
-            arrayOfValues = [10,90,60,50,30]
+//            arrayOfValues = [10,90,60,50,30]
             graph.reloadGraph()
         }
     }
@@ -339,6 +340,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         tableView.tableHeaderView = headerView
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+        tableView.tableFooterView = UIView()
         tableView.showsVerticalScrollIndicator = false
         self.view.addSubview(tableView)
         
@@ -456,11 +460,14 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     // MARK: BEM Graph Delegate Methods
     func numberOfPointsInLineGraph(graph: BEMSimpleLineGraphView) -> Int {
-        return Int(self.arrayOfValues.count)
+//        return Int(self.arrayOfValues.count)
+        return 0
+        
     }
     
     func lineGraph(graph: BEMSimpleLineGraphView, valueForPointAtIndex index: Int) -> CGFloat {
-        return CGFloat(self.arrayOfValues[index] as! NSNumber)
+//        return CGFloat(self.arrayOfValues[index] as! NSNumber)
+        return 0
     }
     
     // MARK: TableView Delegate
@@ -530,6 +537,38 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 //        var rect: CGRect = self.view.frame
 //        rect.origin.y = -scrollView.contentOffset.y
 //        self.view.frame = rect
+    }
+    
+    // Delegate: DZNEmptyDataSet
+    
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let str = "Transactions"
+        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
+    
+    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let str = "No transactions have occurred yet!  Create a billing plan to let customers signup for recurring payments."
+        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
+    
+    func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
+        return UIImage(named: "IconEmptyMoneyBag")
+    }
+    
+    func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
+        let str = "Create your first plan"
+        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
+    
+    func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
+            let ac = UIAlertController(title: "Create your first plan", message: nil, preferredStyle: .Alert)
+            let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RecurringBillingViewController") as! RecurringBillingViewController
+            
+            self.presentViewController(viewController, animated: true, completion: nil)
+        
     }
     
 }
