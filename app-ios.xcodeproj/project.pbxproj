@@ -91,7 +91,7 @@
 		30C2DAD71CA43898003AFD8B /* ProfileFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DAD61CA43898003AFD8B /* ProfileFieldCell.xib */; };
 		30C2DAD91CA4389E003AFD8B /* ProfileImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAD81CA4389E003AFD8B /* ProfileImageCell.swift */; };
 		30C2DADB1CA438A5003AFD8B /* ProfileLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DADA1CA438A5003AFD8B /* ProfileLabelCell.swift */; };
-		30C2DADD1CA438B8003AFD8B /* ProfileLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DADC1CA438B8003AFD8B /* ProfileLabelCell.xib */; };
+		30C2DADD1CA438B8003AFD8B /* CustomLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DADC1CA438B8003AFD8B /* CustomLabelCell.xib */; };
 		30C2DADF1CA438BE003AFD8B /* ProfileImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DADE1CA438BE003AFD8B /* ProfileImageCell.xib */; };
 		30C2DAE11CA43909003AFD8B /* FormerInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAE01CA43909003AFD8B /* FormerInputAccessoryView.swift */; };
 		30C2DAE31CA43926003AFD8B /* ConfigureNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAE21CA43926003AFD8B /* ConfigureNotificationsViewController.swift */; };
@@ -304,7 +304,7 @@
 		30C2DAD61CA43898003AFD8B /* ProfileFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileFieldCell.xib; path = "app-ios/ProfileFieldCell.xib"; sourceTree = SOURCE_ROOT; };
 		30C2DAD81CA4389E003AFD8B /* ProfileImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileImageCell.swift; path = "app-ios/ProfileImageCell.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DADA1CA438A5003AFD8B /* ProfileLabelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileLabelCell.swift; path = "app-ios/ProfileLabelCell.swift"; sourceTree = SOURCE_ROOT; };
-		30C2DADC1CA438B8003AFD8B /* ProfileLabelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileLabelCell.xib; path = "app-ios/ProfileLabelCell.xib"; sourceTree = SOURCE_ROOT; };
+		30C2DADC1CA438B8003AFD8B /* CustomLabelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomLabelCell.xib; path = "app-ios/CustomLabelCell.xib"; sourceTree = SOURCE_ROOT; };
 		30C2DADE1CA438BE003AFD8B /* ProfileImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileImageCell.xib; path = "app-ios/ProfileImageCell.xib"; sourceTree = SOURCE_ROOT; };
 		30C2DAE01CA43909003AFD8B /* FormerInputAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormerInputAccessoryView.swift; path = "app-ios/FormerInputAccessoryView.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAE21CA43926003AFD8B /* ConfigureNotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigureNotificationsViewController.swift; path = "app-ios/ConfigureNotificationsViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -426,7 +426,7 @@
 			children = (
 				30C2DAD61CA43898003AFD8B /* ProfileFieldCell.xib */,
 				30C2DADE1CA438BE003AFD8B /* ProfileImageCell.xib */,
-				30C2DADC1CA438B8003AFD8B /* ProfileLabelCell.xib */,
+				30C2DADC1CA438B8003AFD8B /* CustomLabelCell.xib */,
 				30C2DAD21CA43881003AFD8B /* Profile.swift */,
 				30C2DB1E1CA43A51003AFD8B /* EditProfileViewController.swift */,
 				30C2DAE01CA43909003AFD8B /* FormerInputAccessoryView.swift */,
@@ -1200,7 +1200,7 @@
 				30D526841CDF776B001B41BA /* OptionsCell.xib in Resources */,
 				30C2DA761CA436B8003AFD8B /* chime.caf in Resources */,
 				309E43CC1CA9CFED00279D97 /* fold.caf in Resources */,
-				30C2DADD1CA438B8003AFD8B /* ProfileLabelCell.xib in Resources */,
+				30C2DADD1CA438B8003AFD8B /* CustomLabelCell.xib in Resources */,
 				30C2DB1B1CA43A00003AFD8B /* Info.plist in Resources */,
 				30C2DB191CA439FA003AFD8B /* Info.plist in Resources */,
 				309E43CD1CA9CFED00279D97 /* selected.caf in Resources */,

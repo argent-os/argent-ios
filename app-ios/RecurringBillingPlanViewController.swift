@@ -14,10 +14,16 @@ import Former
 import JGProgressHUD
 import JSSAlertView
 
-final class RecurringBillingViewController: FormViewController, UINavigationBarDelegate {
+final class RecurringBillingViewController: FormViewController, UINavigationBarDelegate, UITextFieldDelegate {
     
     var dic: Dictionary<String, String> = [:]
     
+    let amountInputView = UITextField()
+
+    let perIntervalLabel = UILabel()
+
+    let currencyFormatter = NSNumberFormatter()
+
     // MARK: Public
     
     override func viewDidLoad() {
@@ -55,15 +61,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
     }
     
     override func viewDidAppear(animated: Bool) {
-        // screen width and height:
-        let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
-        let screenHeight = screen.size.height
-        
-        tableView.contentInset.top = 10
-        tableView.contentInset.bottom = 30
-        tableView.contentOffset.y = -10
-        tableView.frame = CGRect(x: 0, y: 50, width: screenWidth, height: screenHeight-60)
+
     }
     
     private func configure() {
@@ -74,8 +72,15 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-        tableView.frame = CGRect(x: 0, y: 100, width: screenWidth, height: screenHeight-60)
         tableView.backgroundColor = UIColor.whiteColor()
+        tableView.contentInset.top = 170
+        tableView.contentInset.bottom = 90
+        tableView.contentOffset.y = 0
+        tableView.frame = CGRect(x: 0, y: 350, width: screenWidth, height: screenHeight)
+        
+        //Looks for single or multiple taps.  Close keyboard on tap
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RecurringBillingViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
         
         // UI
         let addPlanButton = UIButton(frame: CGRect(x: 20, y: screenHeight-80, width: screenWidth-40, height: 60.0))
@@ -90,24 +95,30 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         addPlanButton.addTarget(self, action: #selector(RecurringBillingViewController.addPlanButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(addPlanButton)
         
+        amountInputView.addTarget(self, action: #selector(RecurringBillingViewController.textField(_:shouldChangeCharactersInRange:replacementString:)), forControlEvents: UIControlEvents.EditingChanged)
+        amountInputView.delegate = self
+        amountInputView.frame = CGRect(x: 0, y: 40, width: screenWidth, height: 90)
+        amountInputView.textAlignment = .Center
+        amountInputView.font = UIFont(name: "ArialRoundedMTBold", size: 48)
+        amountInputView.textColor = UIColor.mediumBlue()
+        amountInputView.placeholder = "$0.00"
+        amountInputView.keyboardType = UIKeyboardType.NumberPad
+        amountInputView.backgroundColor = UIColor.whiteColor()
+        self.view.addSubview(amountInputView)
+        amountInputView.becomeFirstResponder()
+        
+        perIntervalLabel.frame = CGRect(x: 0, y: 110, width: screenWidth, height: 30)
+        perIntervalLabel.textAlignment = .Center
+        perIntervalLabel.font = UIFont.systemFontOfSize(16)
+        perIntervalLabel.textColor = UIColor.lightGrayColor()
+        perIntervalLabel.text = ""
+        perIntervalLabel.backgroundColor = UIColor.whiteColor()
+        self.view.addSubview(perIntervalLabel)
+        
         self.navigationItem.title = "Add Plan"
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.darkGrayColor()]
         
         // Create RowFomers
-        
-        let planIdRow = TextFieldRowFormer<FormTextFieldCell>() {
-            $0.titleLabel.text = "ID"
-            $0.titleLabel.font = UIFont.systemFontOfSize(15)
-            $0.titleLabel.textColor = UIColor.grayColor()
-            $0.textField.font = UIFont.systemFontOfSize(15)
-            $0.textField.autocorrectionType = .No
-            $0.textField.autocapitalizationType = .None
-            }.configure {
-                $0.placeholder = "(i.e. gold)"
-                $0.rowHeight = 60
-            }.onTextChanged { [weak self] in
-                self?.dic["planIdKey"] = $0
-        }
         
         let planNameRow = TextFieldRowFormer<FormTextFieldCell>() {
             $0.titleLabel.text = "Name"
@@ -117,42 +128,44 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
             $0.textField.autocorrectionType = .No
             $0.textField.autocapitalizationType = .Words
             }.configure {
-                $0.placeholder = "(i.e. Gold)"
+                $0.placeholder = "Name of the plan (i.e. Gold)"
                 $0.rowHeight = 60
             }.onTextChanged { [weak self] in
                 self?.dic["planNameKey"] = $0
         }
         
-        let planCurrencyRow = TextFieldRowFormer<FormTextFieldCell>() {
+        let planIdRow = TextFieldRowFormer<FormTextFieldCell>() {
+            $0.titleLabel.text = "ID"
+            $0.titleLabel.font = UIFont.systemFontOfSize(15)
+            $0.titleLabel.textColor = UIColor.grayColor()
+            $0.textField.font = UIFont.systemFontOfSize(15)
+            $0.textField.autocorrectionType = .No
+            $0.textField.autocapitalizationType = .None
+            }.configure {
+                $0.placeholder = "A unique plan identifier (i.e. gold_123)"
+                $0.rowHeight = 60
+            }.onTextChanged { [weak self] in
+                self?.dic["planIdKey"] = $0
+        }
+        
+        let planCurrencyRow = InlinePickerRowFormer<CustomLabelCell, String>(instantiateType: .Nib(nibName: "CustomLabelCell")) {
             $0.titleLabel.text = "Currency"
             $0.titleLabel.font = UIFont.systemFontOfSize(15)
             $0.titleLabel.textColor = UIColor.grayColor()
-            $0.textField.font = UIFont.systemFontOfSize(15)
-            $0.textField.autocorrectionType = .No
-            $0.textField.autocapitalizationType = .None
             }.configure {
-                $0.placeholder = "(i.e. usd)"
-                $0.rowHeight = 60                
-            }.onTextChanged { [weak self] in
-                self?.dic["planCurrencyKey"] = $0
-        }
-        
-        let planAmountRow = TextFieldRowFormer<FormTextFieldCell>() {
-            $0.titleLabel.text = "Amount"
-            $0.titleLabel.font = UIFont.systemFontOfSize(15)
-            $0.titleLabel.textColor = UIColor.grayColor()
-            $0.textField.font = UIFont.systemFontOfSize(15)
-            $0.textField.autocorrectionType = .No
-            $0.textField.keyboardType = .NumberPad
-            $0.textField.autocapitalizationType = .None
-            }.configure {
-                $0.placeholder = "in $"
+                let currencies = ["", "usd"]
                 $0.rowHeight = 60
-            }.onTextChanged { [weak self] in
-                self?.dic["planAmountKey"] = $0
+                $0.pickerItems = currencies.map {
+                    InlinePickerItem(title: $0)
+                }
+                if let currencyAmount = Plan.sharedInstance.currency {
+                    $0.selectedRow = currencies.indexOf(currencyAmount) ?? 0
+                }
+            }.onValueChanged {
+                self.dic["planCurrencyKey"] = $0.title
         }
         
-        let planIntervalRow = InlinePickerRowFormer<ProfileLabelCell, String>(instantiateType: .Nib(nibName: "ProfileLabelCell")) {
+        let planIntervalRow = InlinePickerRowFormer<CustomLabelCell, String>(instantiateType: .Nib(nibName: "CustomLabelCell")) {
             $0.titleLabel.text = "Interval"
             $0.titleLabel.font = UIFont.systemFontOfSize(15)
             $0.titleLabel.textColor = UIColor.grayColor()
@@ -166,19 +179,20 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
                     $0.selectedRow = intervals.indexOf(invervalAmount) ?? 0
                 }
             }.onValueChanged {
-                print($0.displayTitle)
-                print($0.title)
-                print($0.value)
+                self.perIntervalLabel.text = "per " + $0.title
                 self.dic["planIntervalKey"] = $0.title
         }
         
         let planIntervalCountRow = TextFieldRowFormer<FormTextFieldCell>() {
+            $0.titleLabel.text = "Count"
+            $0.titleLabel.font = UIFont.systemFontOfSize(15)
+            $0.titleLabel.textColor = UIColor.grayColor()
             $0.textField.font = UIFont.systemFontOfSize(15)
             $0.textField.autocorrectionType = .No
             $0.textField.autocapitalizationType = .None
             $0.textField.keyboardType = .NumberPad
             }.configure {
-                $0.placeholder = "The number of intervals between each billing"
+                $0.placeholder = "# of intervals between each billing"
                 $0.rowHeight = 60
             }.onTextChanged { [weak self] in
                 if self?.dic["planIntervalKey"] == "year" && Int($0) > 1 {
@@ -228,7 +242,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         
         // Create SectionFormers
         
-        let titleSection = SectionFormer(rowFormer: planIdRow, planNameRow, planCurrencyRow, planAmountRow, planIntervalRow, planIntervalCountRow, planTrialPeriodRow, planStatementDescriptionRow)
+        let titleSection = SectionFormer(rowFormer: planNameRow, planIdRow, planCurrencyRow, planIntervalRow, planIntervalCountRow, planTrialPeriodRow, planStatementDescriptionRow)
             .set(headerViewFormer: createHeader())
 
         former.append(sectionFormer: titleSection)
@@ -273,6 +287,38 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
             color: customColor,
             iconImage: customIcon)
         alertView.setTextTheme(.Light) // can be .Light or .Dark
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        // Construct the text that will be in the field if this change is accepted
+        let oldText = amountInputView.text! as NSString
+        var newText = oldText.stringByReplacingCharactersInRange(range, withString: string) as NSString!
+        var newTextString = String(newText)
+        
+        let digits = NSCharacterSet.decimalDigitCharacterSet()
+        var digitText = ""
+        for c in newTextString.unicodeScalars {
+            if digits.longCharacterIsMember(c.value) {
+                digitText.append(c)
+            }
+        }
+        
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        formatter.locale = NSLocale(localeIdentifier: "en_US")
+        let numberFromField = (NSString(string: digitText).doubleValue)/100
+        newText = formatter.stringFromNumber(numberFromField)
+        
+        textField.text = String(newText)
+        
+        // revert for posting string to api
+        var originalString = textField.text
+        originalString?.removeAtIndex(originalString!.characters.indices.first!) // remove first letter
+        let revertString = originalString?.stringByReplacingOccurrencesOfString(".", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        self.dic["planAmountKey"] = revertString
+        
+        return false
     }
     
     //Calls this function when the tap is recognized.

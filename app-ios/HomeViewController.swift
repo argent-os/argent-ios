@@ -534,11 +534,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     // Scrollview
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
-//        if(scrollView.contentOffset.y < 0) {
-//            
-//        } else {
-//            
-//        }
 //        var rect: CGRect = self.view.frame
 //        rect.origin.y = -scrollView.contentOffset.y
 //        self.view.frame = rect

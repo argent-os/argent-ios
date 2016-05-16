@@ -97,7 +97,7 @@ final class EditProfileViewController: FormViewController {
             }.onTextChanged {
                 Profile.sharedInstance.businessAddressCity = $0
         }
-        let businessAddressStateRow = InlinePickerRowFormer<ProfileLabelCell, String>(instantiateType: .Nib(nibName: "ProfileLabelCell")) {
+        let businessAddressStateRow = InlinePickerRowFormer<CustomLabelCell, String>(instantiateType: .Nib(nibName: "CustomLabelCell")) {
             $0.titleLabel.text = "State"
             }.inlineCellSetup {
                     $0.tintColor = UIColor.darkGrayColor()
@@ -113,7 +113,7 @@ final class EditProfileViewController: FormViewController {
             }.onValueChanged {
                 Profile.sharedInstance.businessAddressState = $0.title
         }
-        let businessTypeRow = InlinePickerRowFormer<ProfileLabelCell, String>(instantiateType: .Nib(nibName: "ProfileLabelCell")) {
+        let businessTypeRow = InlinePickerRowFormer<CustomLabelCell, String>(instantiateType: .Nib(nibName: "CustomLabelCell")) {
             $0.titleLabel.text = "Type"
             }.inlineCellSetup {
                     $0.tintColor = UIColor.darkGrayColor()
@@ -210,7 +210,7 @@ final class EditProfileViewController: FormViewController {
             }.onTextChanged {
                 Profile.sharedInstance.phoneNumber = $0
         }
-        let birthdayRow = InlineDatePickerRowFormer<ProfileLabelCell>(instantiateType: .Nib(nibName: "ProfileLabelCell")) {
+        let birthdayRow = InlineDatePickerRowFormer<CustomLabelCell>(instantiateType: .Nib(nibName: "CustomLabelCell")) {
             $0.titleLabel.text = "Birthday"
             }.configure {
                 $0.date = Profile.sharedInstance.birthDay ?? NSDate()

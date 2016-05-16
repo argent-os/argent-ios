@@ -12,14 +12,16 @@ import Alamofire
 
 class Plan {
     
-    static let sharedInstance = Plan(id: "", interval: "")
+    static let sharedInstance = Plan(id: "", interval: "", currency: "")
 
     let interval: Optional<String>
+    let currency: Optional<String>
     
     let id: String
     
-    required init(id: String, interval: String) {
+    required init(id: String, interval: String, currency: String) {
         self.interval = interval
+        self.currency = currency
         self.id = id
     }
     
@@ -30,24 +32,7 @@ class Plan {
                     print(error)
                 }
                 
-                print("got request")
-                
-                print(dic)
-                
-                print(dic["planIntervalKey"])
-                print(dic["planIntervalCountKey"])
-                
                 if let plan_id = dic["planIdKey"], plan_name = dic["planNameKey"], plan_currency = dic["planCurrencyKey"], plan_amount = dic["planAmountKey"], plan_interval = dic["planIntervalKey"], plan_interval_count = dic["planIntervalCountKey"] {
-                    
-                    print("set the data")
-                    
-                    if let plan_trial_period_days = dic["planTrialPeriodKey"], plan_statement_descriptor = dic["planStatementDescriptionKey"] {
-                        print("set optional data")
-
-                    }
-                }
-                // Post plan using Alamofire
-                if let plan_id = dic["planIdKey"], plan_name = dic["planNameKey"], plan_currency = dic["planCurrencyKey"], plan_amount = dic["planAmountKey"], plan_interval = dic["planIntervalKey"], plan_interval_count = dic["planIntervalCountKey"], plan_trial_period_days = dic["planTrialPeriodKey"], plan_statement_descriptor = dic["planStatementDescriptionKey"] {
                     
                     let headers = [
                         "Authorization": "Bearer " + (userAccessToken as! String),
@@ -59,12 +44,8 @@ class Plan {
                         "interval": plan_interval,
                         "interval_count": plan_interval_count,
                         "name": plan_name,
-                        "currency": plan_currency,
-                        "trial_period_days": plan_trial_period_days,
-                        "statement_descriptor": plan_statement_descriptor
+                        "currency": plan_currency
                     ]
-                    
-                    print(parameters)
                     
                     let endpoint = apiUrl + "/v1/stripe/" + (user?.id)! + "/plans"
                     
@@ -81,6 +62,43 @@ class Plan {
                             case .Failure(let error):
                                 print(error)
                             }
+                    }
+                    
+                    // if optional parameters are entered
+                    if let plan_trial_period_days = dic["planTrialPeriodKey"], plan_statement_descriptor = dic["planStatementDescriptionKey"] {
+                        print("set optional data")
+
+                        let headers = [
+                            "Authorization": "Bearer " + (userAccessToken as! String),
+                            "Content-Type": "application/json"
+                        ]
+                        let parameters : [String : AnyObject] = [
+                            "id": plan_id,
+                            "amount": plan_amount,
+                            "interval": plan_interval,
+                            "interval_count": plan_interval_count,
+                            "name": plan_name,
+                            "currency": plan_currency,
+                            "trial_period_days": plan_trial_period_days,
+                            "statement_descriptor": plan_statement_descriptor
+                        ]
+                        
+                        let endpoint = apiUrl + "/v1/stripe/" + (user?.id)! + "/plans"
+                        
+                        Alamofire.request(.POST, endpoint,
+                            parameters: parameters,
+                            encoding:.JSON,
+                            headers: headers)
+                            .responseJSON { response in
+                                switch response.result {
+                                case .Success:
+                                    if let value = response.result.value {
+                                        _ = JSON(value)
+                                    }
+                                case .Failure(let error):
+                                    print(error)
+                                }
+                        }
                     }
                 }
             })
@@ -119,7 +137,7 @@ class Plan {
                                 let plans = data["plans"]["data"].arrayValue
                                 for plan in plans {
                                     let id = plan["id"].stringValue
-                                    let item = Plan(id: id, interval: "")
+                                    let item = Plan(id: id, interval: "", currency: "")
                                     plansArray.append(item)
                                 }
                                 completionHandler(plansArray, response.result.error)

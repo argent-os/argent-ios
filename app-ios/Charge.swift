@@ -101,7 +101,7 @@ class Charge {
                                 let plans = data["plans"]["data"].arrayValue
                                 for plan in plans {
                                     let id = plan["id"].stringValue
-                                    let item = Plan(id: id, interval: "")
+                                    let item = Plan(id: id, interval: "", currency: "")
                                     plansArray.append(item)
                                 }
                                 completionHandler(plansArray, response.result.error)

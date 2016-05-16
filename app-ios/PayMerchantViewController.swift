@@ -77,7 +77,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         self.view.addSubview(selectPaymentOptionButton)
         
         //Looks for single or multiple taps.  Close keyboard on tap
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PayMerchantViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
     

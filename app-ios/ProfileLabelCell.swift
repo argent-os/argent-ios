@@ -1,5 +1,5 @@
 //
-//  ProfileLabelCell.swift
+//  CustomLabelCell.swift
 //  argent-ios
 //
 //  Created by Sinan Ulkuatam on 3/19/16.
@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Former
 
-final class ProfileLabelCell: UITableViewCell, InlineDatePickerFormableRow, InlinePickerFormableRow {
+final class CustomLabelCell: UITableViewCell, InlineDatePickerFormableRow, InlinePickerFormableRow {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var displayLabel: UILabel!
