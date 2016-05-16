@@ -35,10 +35,10 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
     // MARK: Private
     
     private func setupNav() {
-        let navigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 50)) // Offset by 20 pixels vertically to take the status bar into account
+        let navigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 60)) // Offset by 20 pixels vertically to take the status bar into account
         
-        navigationBar.backgroundColor = UIColor.whiteColor()
-        navigationBar.tintColor = UIColor.mediumBlue()
+        navigationBar.backgroundColor = UIColor.slateBlue()
+        navigationBar.tintColor = UIColor.whiteColor()
         navigationBar.delegate = self
         
         // Create a navigation item with a title
@@ -46,14 +46,14 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         navigationItem.title = "Add Billing Plan"
         
         // Create left and right button for navigation item
-        let leftButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(RecurringBillingViewController.returnToMenu(_:)))
-        let font = UIFont(name: "Avenir-Book", size: 14)
-        leftButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+        let leftButton = UIBarButtonItem(image: UIImage(named: "IconCloseLight"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(RecurringBillingViewController.returnToMenu(_:)))
+        let font = UIFont.systemFontOfSize(14)
+        leftButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
         // Create two buttons for the navigation item
         navigationItem.leftBarButtonItem = leftButton
         
         // Assign the navigation item to the navigation bar
-        navigationBar.titleTextAttributes = [NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()]
+        navigationBar.titleTextAttributes = [NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.mediumBlue()]
         navigationBar.items = [navigationItem]
         
         // Make the navigation bar a subview of the current view controller
@@ -73,14 +73,14 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         let screenHeight = screen.size.height
         
         tableView.backgroundColor = UIColor.whiteColor()
-        tableView.contentInset.top = 170
+        tableView.contentInset.top = 140
         tableView.contentInset.bottom = 90
         tableView.contentOffset.y = 0
         tableView.frame = CGRect(x: 0, y: 350, width: screenWidth, height: screenHeight)
         
         // UI
         let addPlanButton = UIButton(frame: CGRect(x: 20, y: screenHeight-80, width: screenWidth-40, height: 60.0))
-        addPlanButton.backgroundColor = UIColor.mediumBlue()
+        addPlanButton.backgroundColor = UIColor.slateBlue()
         addPlanButton.tintColor = UIColor(rgba: "#fff")
         addPlanButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
         addPlanButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
@@ -94,22 +94,22 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         amountInputView.addTarget(self, action: #selector(RecurringBillingViewController.endEditing(_:)), forControlEvents: UIControlEvents.EditingDidEnd)
         amountInputView.addTarget(self, action: #selector(RecurringBillingViewController.textField(_:shouldChangeCharactersInRange:replacementString:)), forControlEvents: UIControlEvents.EditingChanged)
         amountInputView.delegate = self
-        amountInputView.frame = CGRect(x: 0, y: 40, width: screenWidth, height: 90)
+        amountInputView.frame = CGRect(x: 0, y: 30, width: screenWidth, height: 100)
         amountInputView.textAlignment = .Center
         amountInputView.font = UIFont(name: "ArialRoundedMTBold", size: 48)
-        amountInputView.textColor = UIColor.mediumBlue()
+        amountInputView.textColor = UIColor.whiteColor()
         amountInputView.placeholder = "$0.00"
         amountInputView.keyboardType = UIKeyboardType.NumberPad
-        amountInputView.backgroundColor = UIColor.whiteColor()
+        amountInputView.backgroundColor = UIColor.slateBlue()
         self.view.addSubview(amountInputView)
         amountInputView.becomeFirstResponder()
         
-        perIntervalLabel.frame = CGRect(x: 0, y: 110, width: screenWidth, height: 30)
+        perIntervalLabel.frame = CGRect(x: 0, y: 100, width: screenWidth, height: 40)
         perIntervalLabel.textAlignment = .Center
         perIntervalLabel.font = UIFont.systemFontOfSize(16)
-        perIntervalLabel.textColor = UIColor.lightGrayColor()
+        perIntervalLabel.textColor = UIColor.whiteColor()
         perIntervalLabel.text = ""
-        perIntervalLabel.backgroundColor = UIColor.whiteColor()
+        perIntervalLabel.backgroundColor = UIColor.slateBlue()
         self.view.addSubview(perIntervalLabel)
         
         self.navigationItem.title = "Add Plan"
