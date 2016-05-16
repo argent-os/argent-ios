@@ -30,42 +30,58 @@ class Plan {
                     print(error)
                 }
                 
+                print("got request")
+                
+                print(dic)
+                
+                print(dic["planIntervalKey"])
+                print(dic["planIntervalCountKey"])
+                
+                if let plan_id = dic["planIdKey"], plan_name = dic["planNameKey"], plan_currency = dic["planCurrencyKey"], plan_amount = dic["planAmountKey"], plan_interval = dic["planIntervalKey"], plan_interval_count = dic["planIntervalCountKey"] {
+                    
+                    print("set the data")
+                    
+                    if let plan_trial_period_days = dic["planTrialPeriodKey"], plan_statement_descriptor = dic["planStatementDescriptionKey"] {
+                        print("set optional data")
+
+                    }
+                }
                 // Post plan using Alamofire
-                let plan_id = dic["planIdKey"]
-                let plan_name = dic["planNameKey"]
-                let plan_currency = dic["planCurrencyKey"]
-                let plan_amount = dic["planAmountKey"]
-                let plan_interval = dic["planIntervalKey"]
-                let plan_trial_period = dic["planTrialPeriodKey"]
-                let plan_statement_desc = dic["planStatementDescriptionKey"]
-                
-                let headers = [
-                    "Authorization": "Bearer " + (userAccessToken as! String),
-                    "Content-Type": "application/json"
-                ]
-                let parameters : [String : AnyObject] = [
-                    "id": plan_id!,
-                    "amount": plan_amount!,
-                    "interval": plan_interval!,
-                    "name": plan_name!,
-                    "currency": plan_currency!
-                ]
-                
-                let endpoint = apiUrl + "/v1/stripe/" + (user?.id)! + "/plans"
-                
-                Alamofire.request(.POST, endpoint,
-                    parameters: parameters,
-                    encoding:.JSON,
-                    headers: headers)
-                    .responseJSON { response in
-                        switch response.result {
-                        case .Success:
-                            if let value = response.result.value {
-                                _ = JSON(value)
+                if let plan_id = dic["planIdKey"], plan_name = dic["planNameKey"], plan_currency = dic["planCurrencyKey"], plan_amount = dic["planAmountKey"], plan_interval = dic["planIntervalKey"], plan_interval_count = dic["planIntervalCountKey"], plan_trial_period_days = dic["planTrialPeriodKey"], plan_statement_descriptor = dic["planStatementDescriptionKey"] {
+                    
+                    let headers = [
+                        "Authorization": "Bearer " + (userAccessToken as! String),
+                        "Content-Type": "application/json"
+                    ]
+                    let parameters : [String : AnyObject] = [
+                        "id": plan_id,
+                        "amount": plan_amount,
+                        "interval": plan_interval,
+                        "interval_count": plan_interval_count,
+                        "name": plan_name,
+                        "currency": plan_currency,
+                        "trial_period_days": plan_trial_period_days,
+                        "statement_descriptor": plan_statement_descriptor
+                    ]
+                    
+                    print(parameters)
+                    
+                    let endpoint = apiUrl + "/v1/stripe/" + (user?.id)! + "/plans"
+                    
+                    Alamofire.request(.POST, endpoint,
+                        parameters: parameters,
+                        encoding:.JSON,
+                        headers: headers)
+                        .responseJSON { response in
+                            switch response.result {
+                            case .Success:
+                                if let value = response.result.value {
+                                    _ = JSON(value)
+                                }
+                            case .Failure(let error):
+                                print(error)
                             }
-                        case .Failure(let error):
-                            print(error)
-                        }
+                    }
                 }
             })
         }

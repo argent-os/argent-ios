@@ -1397,7 +1397,7 @@ support request</string>
         <!--Configure Notifications View Controller-->
         <scene sceneID="DaJ-Fm-TGu">
             <objects>
-                <viewController id="TLv-6n-mxk" customClass="ConfigureNotificationsViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ConfigureNotificationsViewController" id="TLv-6n-mxk" customClass="ConfigureNotificationsViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VRR-Iv-jlm"/>
                         <viewControllerLayoutGuide type="bottom" id="ety-Cm-TsI"/>

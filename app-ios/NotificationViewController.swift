@@ -287,15 +287,15 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
+        // let str = "Turn on push notifications"
         let str = ""
         let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)]
         return NSAttributedString(string: str, attributes: attrs)
     }
     
     func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
-//        let ac = UIAlertController(title: "Button tapped", message: nil, preferredStyle: .Alert)
-//        ac.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
-//        presentViewController(ac, animated: true, completion: nil)
+        let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ConfigureNotificationsViewController") as! ConfigureNotificationsViewController
+        self.presentViewController(viewController, animated: true, completion: nil)
     }
     
 }

@@ -96,45 +96,57 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         // Create RowFomers
         
         let planIdRow = TextFieldRowFormer<FormTextFieldCell>() {
-            $0.textField.font = UIFont(name: "Avenir-Book", size: 15)
+            $0.titleLabel.text = "ID"
+            $0.titleLabel.font = UIFont.systemFontOfSize(15)
+            $0.titleLabel.textColor = UIColor.grayColor()
+            $0.textField.font = UIFont.systemFontOfSize(15)
             $0.textField.autocorrectionType = .No
             $0.textField.autocapitalizationType = .None
             }.configure {
-                $0.placeholder = "Plan ID (i.e. gold)"
+                $0.placeholder = "(i.e. gold)"
                 $0.rowHeight = 60
             }.onTextChanged { [weak self] in
                 self?.dic["planIdKey"] = $0
         }
         
         let planNameRow = TextFieldRowFormer<FormTextFieldCell>() {
-            $0.textField.font = UIFont(name: "Avenir-Book", size: 15)
+            $0.titleLabel.text = "Name"
+            $0.titleLabel.font = UIFont.systemFontOfSize(15)
+            $0.titleLabel.textColor = UIColor.grayColor()
+            $0.textField.font = UIFont.systemFontOfSize(15)
             $0.textField.autocorrectionType = .No
             $0.textField.autocapitalizationType = .Words
             }.configure {
-                $0.placeholder = "Plan Name (i.e. Gold)"
+                $0.placeholder = "(i.e. Gold)"
                 $0.rowHeight = 60
             }.onTextChanged { [weak self] in
                 self?.dic["planNameKey"] = $0
         }
         
         let planCurrencyRow = TextFieldRowFormer<FormTextFieldCell>() {
-            $0.textField.font = UIFont(name: "Avenir-Book", size: 15)
+            $0.titleLabel.text = "Currency"
+            $0.titleLabel.font = UIFont.systemFontOfSize(15)
+            $0.titleLabel.textColor = UIColor.grayColor()
+            $0.textField.font = UIFont.systemFontOfSize(15)
             $0.textField.autocorrectionType = .No
             $0.textField.autocapitalizationType = .None
             }.configure {
-                $0.placeholder = "Currency"
+                $0.placeholder = "(i.e. usd)"
                 $0.rowHeight = 60                
             }.onTextChanged { [weak self] in
                 self?.dic["planCurrencyKey"] = $0
         }
         
         let planAmountRow = TextFieldRowFormer<FormTextFieldCell>() {
-            $0.textField.font = UIFont(name: "Avenir-Book", size: 15)
+            $0.titleLabel.text = "Amount"
+            $0.titleLabel.font = UIFont.systemFontOfSize(15)
+            $0.titleLabel.textColor = UIColor.grayColor()
+            $0.textField.font = UIFont.systemFontOfSize(15)
             $0.textField.autocorrectionType = .No
             $0.textField.keyboardType = .NumberPad
             $0.textField.autocapitalizationType = .None
             }.configure {
-                $0.placeholder = "Amount"
+                $0.placeholder = "in $"
                 $0.rowHeight = 60
             }.onTextChanged { [weak self] in
                 self?.dic["planAmountKey"] = $0
@@ -142,10 +154,10 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         
         let planIntervalRow = InlinePickerRowFormer<ProfileLabelCell, String>(instantiateType: .Nib(nibName: "ProfileLabelCell")) {
             $0.titleLabel.text = "Interval"
-            $0.titleLabel.font = UIFont(name: "Avenir-Book", size: 15)
-            $0.titleLabel.textColor = UIColor.lightGrayColor()
+            $0.titleLabel.font = UIFont.systemFontOfSize(15)
+            $0.titleLabel.textColor = UIColor.grayColor()
             }.configure {
-                let intervals = ["day", "month", "week", "year"]
+                let intervals = ["", "day", "week", "month", "year"]
                 $0.rowHeight = 60
                 $0.pickerItems = intervals.map {
                     InlinePickerItem(title: $0)
@@ -154,22 +166,47 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
                     $0.selectedRow = intervals.indexOf(invervalAmount) ?? 0
                 }
             }.onValueChanged {
+                print($0.displayTitle)
+                print($0.title)
+                print($0.value)
                 self.dic["planIntervalKey"] = $0.title
         }
         
-        let planTrialPeriodRow = TextFieldRowFormer<FormTextFieldCell>() {
-            $0.textField.font = UIFont(name: "Avenir-Book", size: 15)
+        let planIntervalCountRow = TextFieldRowFormer<FormTextFieldCell>() {
+            $0.textField.font = UIFont.systemFontOfSize(15)
             $0.textField.autocorrectionType = .No
             $0.textField.autocapitalizationType = .None
             $0.textField.keyboardType = .NumberPad
             }.configure {
-                $0.placeholder = "Trial Period (in days)"
+                $0.placeholder = "The number of intervals between each billing"
+                $0.rowHeight = 60
+            }.onTextChanged { [weak self] in
+                if self?.dic["planIntervalKey"] == "year" && Int($0) > 1 {
+                    self!.showErrorAlert()
+                } else {
+                    self?.dic["planIntervalCountKey"] = $0
+                }
+        }
+        
+        let planTrialPeriodRow = TextFieldRowFormer<FormTextFieldCell>() {
+            $0.titleLabel.text = "Trial"
+            $0.titleLabel.font = UIFont.systemFontOfSize(15)
+            $0.titleLabel.textColor = UIColor.grayColor()
+            $0.textField.font = UIFont.systemFontOfSize(15)
+            $0.textField.autocorrectionType = .No
+            $0.textField.autocapitalizationType = .None
+            $0.textField.keyboardType = .NumberPad
+            }.configure {
+                $0.placeholder = "(in days)"
                 $0.rowHeight = 60
             }.onTextChanged { [weak self] in
                 self?.dic["planTrialPeriodKey"] = $0
         }
         
         let planStatementDescriptionRow = TextFieldRowFormer<FormTextFieldCell>() {
+            $0.titleLabel.text = "Desc"
+            $0.titleLabel.font = UIFont.systemFontOfSize(15)
+            $0.titleLabel.textColor = UIColor.grayColor()
             $0.textField.font = .systemFontOfSize(15)
             $0.textField.autocorrectionType = .No
             $0.textField.autocapitalizationType = .None
@@ -191,28 +228,46 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         
         // Create SectionFormers
         
-        let titleSection = SectionFormer(rowFormer: planIdRow, planNameRow, planCurrencyRow, planAmountRow, planIntervalRow, planTrialPeriodRow, planStatementDescriptionRow)
+        let titleSection = SectionFormer(rowFormer: planIdRow, planNameRow, planCurrencyRow, planAmountRow, planIntervalRow, planIntervalCountRow, planTrialPeriodRow, planStatementDescriptionRow)
             .set(headerViewFormer: createHeader())
 
         former.append(sectionFormer: titleSection)
     }
     
     func addPlanButtonTapped(sender: AnyObject) {
+        print("dic is ")
+        print(dic)
         Plan.createPlan(dic)
-        showSuccessAlert()
+        if let msg = dic["planNameKey"] {
+            showSuccessAlert(msg)
+        }
     }
     
     func returnToMenu(sender: AnyObject) {
         self.view.window!.rootViewController!.dismissViewControllerAnimated(true, completion: { _ in })
     }
     
-    func showSuccessAlert() {
+    func showSuccessAlert(msg: String) {
         let customIcon:UIImage = UIImage(named: "ic_check_light")! // your custom icon UIImage
         let customColor:UIColor = UIColor(rgba: "#1EBC61") // base color for the alert
         let alertView = JSSAlertView().show(
             self,
             title: "",
-            text: String(dic["planNameKey"]) + " plan created!",
+            text: msg + " plan created!",
+            buttonText: "",
+            noButtons: true,
+            color: customColor,
+            iconImage: customIcon)
+        alertView.setTextTheme(.Light) // can be .Light or .Dark
+    }
+    
+    func showErrorAlert() {
+        let customIcon:UIImage = UIImage(named: "ic_close_light")! // your custom icon UIImage
+        let customColor:UIColor = UIColor.brandRed() // base color for the alert
+        let alertView = JSSAlertView().show(
+            self,
+            title: "",
+            text: "Interval for yearly plans can\'t be greater than 1",
             buttonText: "",
             noButtons: true,
             color: customColor,

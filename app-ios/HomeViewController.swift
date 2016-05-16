@@ -569,9 +569,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     }
     
     func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
-            let ac = UIAlertController(title: "Create your first plan", message: nil, preferredStyle: .Alert)
             let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RecurringBillingViewController") as! RecurringBillingViewController
-            
             self.presentViewController(viewController, animated: true, completion: nil)
         
     }
