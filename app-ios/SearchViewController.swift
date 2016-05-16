@@ -138,7 +138,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             cell.indentationWidth = 5; // The amount each indentation will move the text
             cell.indentationLevel = 8;  // The number of times you indent the text
-            cell.textLabel?.text = "@" + String(filteredArray[indexPath.row].username)
+            cell.textLabel?.text = String(filteredArray[indexPath.row].username)
             cell.textLabel?.textColor = UIColor.darkGrayColor()
             cell.textLabel?.font = UIFont.systemFontOfSize(14)
             cell.selectionStyle = UITableViewCellSelectionStyle.Default
@@ -176,8 +176,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.indentationLevel = 8;  // The number of times you indent the text
             cell.textLabel?.text = "@" + String(dataArray[indexPath.row].username)
             cell.textLabel?.textColor = UIColor.darkGrayColor()
-            cell.textLabel?.font = UIFont(name: "Avenir", size: 14)
-            cell.detailTextLabel?.font = UIFont(name: "Avenir", size: 10)
+            cell.textLabel?.font = UIFont.systemFontOfSize(14)
+            cell.detailTextLabel?.font = UIFont.systemFontOfSize(10)
             cell.selectionStyle = UITableViewCellSelectionStyle.Default
             cell.detailTextLabel?.textColor = UIColor.darkGrayColor()
             
