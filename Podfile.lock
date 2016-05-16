@@ -9,10 +9,10 @@ PODS:
   - CWStatusBarNotification (2.3.4)
   - DGElasticPullToRefresh (1.0.3)
   - DGRunkeeperSwitch (1.1.1)
+  - DKCircleButton (1.1)
   - DZNEmptyDataSet (1.8)
   - FlagKit (1.0.7)
   - Former (1.3.0)
-  - FXBlurView (1.6.4)
   - GaugeKit (0.3.2)
   - Gecco (0.2.0)
   - ImagePicker (1.2)
@@ -58,10 +58,10 @@ DEPENDENCIES:
   - CWStatusBarNotification
   - DGElasticPullToRefresh
   - DGRunkeeperSwitch
+  - DKCircleButton
   - DZNEmptyDataSet
   - FlagKit
   - Former
-  - FXBlurView
   - GaugeKit
   - Gecco
   - ImagePicker
@@ -107,10 +107,10 @@ SPEC CHECKSUMS:
   CWStatusBarNotification: 3fec41edcb0ae3677d9febfcb9632d8bdf52294c
   DGElasticPullToRefresh: 040f39ae69840b3261d163fe6735c5901bf851e9
   DGRunkeeperSwitch: da12f199532a99958a1e87ec0a5af61efdba11ec
+  DKCircleButton: 62564c9debae08ad77dabb8d9658dfeb5520f2c4
   DZNEmptyDataSet: d2351b2e8daefa40433ef292e246e21f6be31a7b
   FlagKit: dffc62b4c5db33043c89bbda0bda897077d521e5
   Former: 7380ef3b9bdb3bf43d9f0fe99e369987d3068705
-  FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
   GaugeKit: 4d5c3491521ed2d6e2f83cac5f51d0cd09db8989
   Gecco: 27ab0f43da3f8e844771cf641992afdd1ea09c62
   ImagePicker: 85f14ed6872f46c08d210077b5540a890a6cd151

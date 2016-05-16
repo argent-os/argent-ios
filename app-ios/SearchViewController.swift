@@ -55,7 +55,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         tblSearchResults.delegate = self
         tblSearchResults.dataSource = self
-        tblSearchResults.frame = CGRect(x: 0, y: 15, width: screenWidth, height: screenHeight-62)
+        tblSearchResults.frame = CGRect(x: 0, y: 18, width: screenWidth, height: screenHeight-60)
         self.view.addSubview(tblSearchResults)
         
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()

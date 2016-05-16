@@ -7,17 +7,12 @@
 //
 
 import Foundation
-import Alamofire
-import SwiftyJSON
-import JGProgressHUD
 import UIKit
-import Former
-import Stripe
 import JSSAlertView
+import MessageUI
+import DKCircleButton
 
-final class AddCustomerViewController: FormViewController, UINavigationBarDelegate {
-    
-    var dic: Dictionary<String, String> = [:]
+final class AddCustomerViewController: UIViewController, UINavigationBarDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate {
     
     // MARK: Public
     
@@ -60,11 +55,6 @@ final class AddCustomerViewController: FormViewController, UINavigationBarDelega
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
-        
-        tableView.contentInset.top = 10
-        tableView.contentInset.bottom = 30
-        tableView.contentOffset.y = -10
-        tableView.frame = CGRect(x: 0, y: 50, width: screenWidth, height: screenHeight-60)
     }
     
     private func configure() {
@@ -75,71 +65,47 @@ final class AddCustomerViewController: FormViewController, UINavigationBarDelega
         let screenHeight = screen.size.height
         
         title = "Invite Customer"
-        tableView.backgroundColor = UIColor.whiteColor()
         
-        // UI
-        let addCustomerButton = UIButton(frame: CGRect(x: 20, y: screenHeight-80, width: screenWidth-40, height: 60.0))
-        addCustomerButton.backgroundColor = UIColor.mediumBlue()
-        addCustomerButton.tintColor = UIColor(rgba: "#fff")
-        addCustomerButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
-        addCustomerButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
-        addCustomerButton.setTitle("Invite Customer", forState: .Normal)
-        addCustomerButton.layer.cornerRadius = 5
-        addCustomerButton.layer.masksToBounds = true
-        addCustomerButton.clipsToBounds = true
-        addCustomerButton.addTarget(self, action: #selector(AddCustomerViewController.addCustomerButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        view.addSubview(addCustomerButton)
+        let emailButton: DKCircleButton = DKCircleButton(frame: CGRectMake(0, 0, 90, 90))
+        emailButton.center = CGPointMake(self.view.layer.frame.width/2, screenHeight*0.3)
+        emailButton.titleLabel!.font = UIFont.systemFontOfSize(22)
+        emailButton.borderColor = UIColor.slateBlue()
+        emailButton.tintColor = UIColor.slateBlue()
+        emailButton.setTitle("Email", forState: .Normal)
+        emailButton.setTitleColor(UIColor.slateBlue(), forState: .Normal)
+        let str0 = NSAttributedString(string: "Email", attributes:
+            [
+                NSFontAttributeName: UIFont.systemFontOfSize(12),
+                NSForegroundColorAttributeName:UIColor.slateBlue()
+            ])
+        emailButton.setAttributedTitle(str0, forState: .Normal)
+        emailButton.addTarget(self, action: #selector(AddCustomerViewController.sendEmailButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(emailButton)
+        
+        
+        let smsButton: DKCircleButton = DKCircleButton(frame: CGRectMake(0, 0, 90, 90))
+        smsButton.center = CGPointMake(self.view.layer.frame.width/2, screenHeight*0.6)
+        smsButton.titleLabel!.font = UIFont.systemFontOfSize(22)
+        smsButton.borderColor = UIColor.slateBlue()
+        smsButton.tintColor = UIColor.slateBlue()
+        smsButton.setTitle("SMS", forState: .Normal)
+        smsButton.setTitleColor(UIColor.slateBlue(), forState: .Normal)
+        let str1 = NSAttributedString(string: "SMS", attributes:
+            [
+                NSFontAttributeName: UIFont.systemFontOfSize(12),
+                NSForegroundColorAttributeName:UIColor.slateBlue()
+            ])
+        smsButton.setAttributedTitle(str1, forState: .Normal)
+        smsButton.addTarget(self, action: #selector(AddCustomerViewController.sendSMSButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(smsButton)
         
         self.navigationItem.title = "Invite Customer"
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.darkGrayColor()]
         
-        // Create RowFomers
-        
-        let emailRow = TextFieldRowFormer<FormTextFieldCell>() {
-            $0.textField.font = UIFont(name: "Avenir-Book", size: 15)
-            $0.textField.autocapitalizationType = .None
-            $0.textField.autocorrectionType = .No
-            $0.textField.keyboardType = .EmailAddress
-            }.configure {
-                $0.placeholder = "Email"
-                $0.rowHeight = 60
-            }.onTextChanged { [weak self] in
-                self?.dic["customerEmailKey"] = $0
-        }
-
-        let descriptionRow = TextFieldRowFormer<FormTextFieldCell>() {
-            $0.textField.font = UIFont(name: "Avenir-Book", size: 15)
-            $0.textField.autocorrectionType = .No
-            $0.textField.autocapitalizationType = .None
-            }.configure {
-                $0.placeholder = "Attach a note"
-                $0.rowHeight = 60
-            }.onTextChanged { [weak self] in
-                self?.dic["customerDescriptionKey"] = $0
-        }
-        
-        // Create Headers
-        
-        let createHeader: (() -> ViewFormer) = {
-            return CustomViewFormer<FormHeaderFooterView>()
-                .configure {
-                    $0.viewHeight = 0
-            }
-        }
-        
-        // Create SectionFormers
-        
-        // TODO: Add paymentRow using Stripe payment textfield adding to view
-        
-        let titleSection = SectionFormer(rowFormer: emailRow, descriptionRow)
-            .set(headerViewFormer: createHeader())
-
-        former.append(sectionFormer: titleSection)
     }
     
     func addCustomerButtonTapped(sender: AnyObject) {
         
-        Customer.createCustomer(dic)
         showSuccessAlert()
     }
     
@@ -149,7 +115,7 @@ final class AddCustomerViewController: FormViewController, UINavigationBarDelega
         let alertView = JSSAlertView().show(
             self,
             title: "",
-            text: "Email invite sent to " + String(dic["customerEmailKey"]) + "!",
+            text: "Invite sent!",
             buttonText: "",
             noButtons: true,
             color: customColor,
@@ -171,4 +137,70 @@ final class AddCustomerViewController: FormViewController, UINavigationBarDelega
         dismissKeyboard()
         super.viewWillDisappear(animated)
     }
+    
+    
+    // MARK: Email Composition
+    
+    @IBAction func sendEmailButtonTapped(sender: AnyObject) {
+        let mailComposeViewController = configuredMailComposeViewController()
+        if MFMailComposeViewController.canSendMail() {
+            self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+        } else {
+            self.showSendMailErrorAlert()
+        }
+    }
+    
+    func configuredMailComposeViewController() -> MFMailComposeViewController {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
+        
+        mailComposerVC.setToRecipients([])
+        mailComposerVC.setSubject("Message from Argent User")
+        mailComposerVC.setMessageBody("Hello!", isHTML: false)
+        
+        return mailComposerVC
+    }
+    
+    func showSendMailErrorAlert() {
+        let sendMailErrorAlert = UIAlertController(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", preferredStyle: .Alert)
+        sendMailErrorAlert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(sendMailErrorAlert, animated: true, completion: nil)
+    }
+    
+    // MARK: MFMailComposeViewControllerDelegate Method
+    
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // MARK: SMS Composition
+    
+    @IBAction func sendSMSButtonTapped(sender: AnyObject) {
+        let smsComposeViewController = configuredSMSViewController()
+        if !MFMessageComposeViewController.canSendText() {
+            print("SMS services are not available")
+        } else {
+            self.presentViewController(smsComposeViewController, animated: true, completion: nil)
+        }
+    }
+    
+    func configuredSMSViewController() -> MFMessageComposeViewController {
+        let composeSMSVC = MFMessageComposeViewController()
+        composeSMSVC.messageComposeDelegate = self
+        
+        // Configure the fields of the interface.
+        composeSMSVC.recipients = ([])
+        composeSMSVC.body = "Hello from Argent!"
+        
+        return composeSMSVC
+    }
+    
+    func messageComposeViewController(controller: MFMessageComposeViewController,
+                                      didFinishWithResult result: MessageComposeResult) {
+        // Check the result or perform other tasks.
+        
+        // Dismiss the mail compose view controller.
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
 }

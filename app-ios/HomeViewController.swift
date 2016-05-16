@@ -200,7 +200,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 userImageView.layer.cornerRadius = userImageView.frame.size.height/2
                 userImageView.layer.masksToBounds = true
                 userImageView.clipsToBounds = true
-                userImageView.layer.borderWidth = 2
+                userImageView.layer.borderWidth = 1
                 userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
                 
                 if user!.picture != "" {
@@ -210,19 +210,24 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                         self.view.addSubview(userImageView)
                     }
                 } else {
-                    if user!.username == "" {
-                        // logout on failure to get profile
-                        NSUserDefaults.standardUserDefaults().setValue("", forKey: "userAccessToken")
-                        NSUserDefaults.standardUserDefaults().synchronize();
-                        userData = nil
-                        
-                        // go to login view
-                        let sb = UIStoryboard(name: "Main", bundle: nil)
-                        let loginVC = sb.instantiateViewControllerWithIdentifier("LoginViewController")
-                        let root = UIApplication.sharedApplication().keyWindow?.rootViewController
-                        root!.presentViewController(loginVC, animated: false, completion: { () -> Void in
-                        })
+                    Timeout(0.3) {
+                        let img = UIImage(named: "PersonThumb")
+                        userImageView.image = img
+                        self.view.addSubview(userImageView)
                     }
+//                    if user!.username == "" {
+//                        // logout on failure to get profile
+//                        NSUserDefaults.standardUserDefaults().setValue("", forKey: "userAccessToken")
+//                        NSUserDefaults.standardUserDefaults().synchronize();
+//                        userData = nil
+//                        
+//                        // go to login view
+//                        let sb = UIStoryboard(name: "Main", bundle: nil)
+//                        let loginVC = sb.instantiateViewControllerWithIdentifier("LoginViewController")
+//                        let root = UIApplication.sharedApplication().keyWindow?.rootViewController
+//                        root!.presentViewController(loginVC, animated: false, completion: { () -> Void in
+//                        })
+//                    }
                 }
             })
 
@@ -368,7 +373,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         lblAvailableDescription.frame = CGRectMake(20, 106, 200, 40)
         let str2 = NSAttributedString(string: "Available Balance", attributes:
             [
-                NSFontAttributeName: UIFont(name: "Avenir-Book", size: 12)!,
+                NSFontAttributeName: UIFont.systemFontOfSize(12),
                 NSForegroundColorAttributeName:UIColor(rgba: "#fffa")
             ])
         lblAvailableDescription.attributedText = str2
@@ -377,7 +382,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         lblPendingDescription.frame = CGRectMake(20, 106, 200, 40)
         let str3 = NSAttributedString(string: "Pending Balance", attributes:
             [
-                NSFontAttributeName: UIFont(name: "Avenir-Book", size: 12)!,
+                NSFontAttributeName: UIFont.systemFontOfSize(12),
                 NSForegroundColorAttributeName:UIColor(rgba: "#fffa")
             ])
         lblPendingDescription.attributedText = str3
