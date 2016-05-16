@@ -13,6 +13,8 @@ import JSSAlertView
 import MZFormSheetPresentationController
 import QRCode
 import CWStatusBarNotification
+import SwiftyJSON
+import Alamofire
 
 class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, UINavigationBarDelegate {
     
@@ -161,6 +163,25 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         self.view.addSubview(paymentTextField)
     }
     
+    func getCurrentBitcoinValue(completionHandler: (value: Float) -> Void) {
+        Alamofire.request(.GET, "https://blockchain.info/ticker", parameters: [:], encoding: .JSON, headers: [:])
+        .validate()
+        .responseJSON { (response) in
+        switch response.result {
+            case .Success:
+                if let value = response.result.value {
+                    let data = JSON(value)
+                    let bitcoinUSDValue = data["USD"]["15m"].floatValue
+                    print("1 bitcoin is currently worth ")
+                    print("$", bitcoinUSDValue)
+                    completionHandler(value: bitcoinUSDValue)
+                }
+            case .Failure(let error):
+                print(error)
+            }
+        }
+    }
+    
     func payWithBitcoin(sender: AnyObject) {
         let navigationController = self.storyboard!.instantiateViewControllerWithIdentifier("qrFormSheetController") as! UINavigationController
         let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
@@ -189,20 +210,23 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
             str?.removeAtIndex(str!.characters.indices.first!) // remove first letter
 
             let floatValue = (str! as NSString).floatValue*100
-
+            
             Bitcoin.createBitcoinReceiver(Int(floatValue)) { (bitcoin, err) in
-                print(bitcoin)
-                presentedViewController.bitcoinUri = bitcoin?.uri ?? ""
                 
-                formSheetController.willPresentContentViewControllerHandler = { vc in
-                    let navigationController = vc as! UINavigationController
-                    let presentedViewController = navigationController.viewControllers.first as! BitcoinUriViewController
-                    presentedViewController.view?.layoutIfNeeded()
+                    print("bitcoin object")
+                    print(bitcoin)
+                    presentedViewController.bitcoinUri = bitcoin?.uri ?? ""
+                    
+                    formSheetController.willPresentContentViewControllerHandler = { vc in
+                        let navigationController = vc as! UINavigationController
+                        let presentedViewController = navigationController.viewControllers.first as! BitcoinUriViewController
+                        presentedViewController.view?.layoutIfNeeded()
+                    }
+                    
+                    self.presentViewController(formSheetController, animated: true, completion: nil)
                 }
-                
-                self.presentViewController(formSheetController, animated: true, completion: nil)
             }
-        }
+ 
     }
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation

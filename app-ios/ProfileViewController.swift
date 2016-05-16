@@ -43,6 +43,8 @@ class ProfileViewController: UIViewController {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         
+        self.view.backgroundColor = UIColor.slateBlue()
+        
         navBar.translucent = true
         navBar.tintColor = UIColor.whiteColor()
         navBar.shadowImage = UIImage()

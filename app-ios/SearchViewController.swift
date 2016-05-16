@@ -40,6 +40,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // CRITICAL: Fixes view searchDetailController
         definesPresentationContext = true
 
+        self.view.backgroundColor = UIColor.slateBlue()
+        
         // Do any additional setup after loading the view, typically from a nib.
         
         let screen = UIScreen.mainScreen().bounds
@@ -53,7 +55,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         tblSearchResults.delegate = self
         tblSearchResults.dataSource = self
-        tblSearchResults.frame = CGRect(x: 0, y: 63, width: screenWidth, height: screenHeight-110)
+        tblSearchResults.frame = CGRect(x: 0, y: 15, width: screenWidth, height: screenHeight-62)
         self.view.addSubview(tblSearchResults)
         
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
@@ -68,18 +70,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tblSearchResults.dg_setPullToRefreshBackgroundColor(UIColor.darkBlue())
         
         loadUserAccounts()
-        
-        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 65))
-        navBar.barTintColor = UIColor.mediumBlue()
-        navBar.tintColor = UIColor.whiteColor()
-        navBar.translucent = false
-        navBar.titleTextAttributes = [
-            NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "Avenir-Book", size: 18)!
-        ]
-        self.view.addSubview(navBar);
-        let navItem = UINavigationItem(title: "Search");
-        navBar.setItems([navItem], animated: false);
         
         configureSearchController()
     }
@@ -186,10 +176,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.indentationLevel = 8;  // The number of times you indent the text
             cell.textLabel?.text = "@" + String(dataArray[indexPath.row].username)
             cell.textLabel?.textColor = UIColor.darkGrayColor()
-            cell.textLabel?.font = UIFont.systemFontOfSize(14)
-            cell.detailTextLabel?.font = UIFont.systemFontOfSize(12)
+            cell.textLabel?.font = UIFont(name: "Avenir", size: 14)
+            cell.detailTextLabel?.font = UIFont(name: "Avenir", size: 10)
             cell.selectionStyle = UITableViewCellSelectionStyle.Default
-            cell.detailTextLabel?.textColor = UIColor.lightGrayColor()
+            cell.detailTextLabel?.textColor = UIColor.darkGrayColor()
             
             let first_name = dataArray[indexPath.row].first_name
             let last_name = String(dataArray[indexPath.row].last_name)
@@ -238,9 +228,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search users"
+        searchController.searchBar.placeholder = ""
         searchController.searchBar.sizeToFit()
-        searchController.searchBar.frame = CGRect(x: 0, y: 200, width: screenWidth, height: 60)
+        searchController.searchBar.frame = CGRect(x: 0, y: 210, width: screenWidth, height: 80)
         searchController.searchBar.translucent = false
         // Setup the Scope Bar
         searchController.searchBar.scopeButtonTitles = ["Username", "Email", "Name"]
@@ -254,11 +244,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
         shouldShowSearchResults = true
+        searchController.searchBar.placeholder = "Search users"
         tblSearchResults.reloadData()
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         shouldShowSearchResults = false
+        searchController.searchBar.placeholder = ""
         tblSearchResults.reloadData()
     }
     
@@ -302,26 +294,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         })
         
         // Reload the tableview.
-        tblSearchResults.reloadData()
-    }
-    
-    
-    // MARK: CustomSearchControllerDelegate functions
-    
-    private func didStartSearching() {
-        shouldShowSearchResults = true
-        tblSearchResults.reloadData()
-    }
-    
-    private func didTapOnSearchButton() {
-        if !shouldShowSearchResults {
-            shouldShowSearchResults = true
-            tblSearchResults.reloadData()
-        }
-    }
-    
-    private func didTapOnCancelButton() {
-        shouldShowSearchResults = false
         tblSearchResults.reloadData()
     }
     

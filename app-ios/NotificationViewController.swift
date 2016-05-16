@@ -10,8 +10,9 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import DGElasticPullToRefresh
+import DZNEmptyDataSet
 
-class NotificationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class NotificationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     private var notificationsArray:Array<NotificationItem>?
     
@@ -39,6 +40,9 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+        tableView.tableFooterView = UIView()
         tableView.showsVerticalScrollIndicator = false
         tableView.frame = CGRect(x: 0, y: 65, width: screenWidth, height: screenHeight-110)
         self.view.addSubview(tableView)
@@ -237,7 +241,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
                 default:
                     cell.textLabel?.text = text
             }
-            cell.textLabel?.font = UIFont(name: "Avenir", size: 16)
+            cell.textLabel?.font = UIFont(name: "Avenir", size: 14)
             cell.textLabel?.textColor = UIColor.darkGrayColor()
         }
         if let date = item?.created
@@ -246,7 +250,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
                 let converted_date = NSDate(timeIntervalSince1970: Double(date)!)
                 dateFormatter.timeStyle = .MediumStyle
                 let formatted_date = dateFormatter.stringFromDate(converted_date)
-                cell.detailTextLabel?.font = UIFont(name: "Avenir", size: 12)
+                cell.detailTextLabel?.font = UIFont(name: "Avenir", size: 10)
                 cell.detailTextLabel?.textColor = UIColor.lightGrayColor()
                 cell.detailTextLabel?.text = String(formatted_date) //+ " / uid " + uid
             } else {
@@ -262,6 +266,37 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.Default
+    }
+    
+    // Delegate: DZNEmptyDataSet
+    
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let str = "Notifications"
+        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
+    
+    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let str = "No notifications yet!  If push notifications are turned on you will see them here."
+        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
+    
+    func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
+        return UIImage(named: "IconEmptyNotifications")
+    }
+    
+    func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
+        let str = ""
+        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)]
+        return NSAttributedString(string: str, attributes: attrs)
+        
+    }
+    
+    func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
+//        let ac = UIAlertController(title: "Button tapped", message: nil, preferredStyle: .Alert)
+//        ac.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+//        presentViewController(ac, animated: true, completion: nil)
     }
     
 }

@@ -150,7 +150,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             navItem.leftBarButtonItem?.tintColor = UIColor.darkGrayColor()
             navBar.setItems([navItem], animated: true)
 
-            let payButton = UIButton(frame: CGRect(x: 30, y: 325, width: (width/2)-60, height: 50.0))
+            let payButton = UIButton(frame: CGRect(x: 30, y: 300, width: (width/2)-60, height: 50.0))
             payButton.setTitleColor(UIColor(rgba: "#fff").colorWithAlphaComponent(0.5), forState: .Normal)
             payButton.titleLabel?.font = UIFont(name: "Avenir-Light", size: 16)
             if detailUser.first_name != "" {
@@ -163,7 +163,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             self.view.addSubview(payButton)
             
             // Button
-            let viewPlansButton = UIButton(frame: CGRect(x: width*0.5+30, y: 325, width: (width/2)-60, height: 50.0))
+            let viewPlansButton = UIButton(frame: CGRect(x: width*0.5+30, y: 300, width: (width/2)-60, height: 50.0))
             viewPlansButton.setTitleColor(UIColor(rgba: "#fff").colorWithAlphaComponent(0.5), forState: .Normal)
             viewPlansButton.titleLabel?.font = UIFont(name: "Avenir-Light", size: 16)
             viewPlansButton.setTitle("View Plans", forState: .Normal)
