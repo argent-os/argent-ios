@@ -78,10 +78,6 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         tableView.contentOffset.y = 0
         tableView.frame = CGRect(x: 0, y: 350, width: screenWidth, height: screenHeight)
         
-        //Looks for single or multiple taps.  Close keyboard on tap
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RecurringBillingViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
-        
         // UI
         let addPlanButton = UIButton(frame: CGRect(x: 20, y: screenHeight-80, width: screenWidth-40, height: 60.0))
         addPlanButton.backgroundColor = UIColor.mediumBlue()
@@ -94,7 +90,8 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         addPlanButton.clipsToBounds = true
         addPlanButton.addTarget(self, action: #selector(RecurringBillingViewController.addPlanButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(addPlanButton)
-        
+
+        amountInputView.addTarget(self, action: #selector(RecurringBillingViewController.endEditing(_:)), forControlEvents: UIControlEvents.EditingDidEnd)
         amountInputView.addTarget(self, action: #selector(RecurringBillingViewController.textField(_:shouldChangeCharactersInRange:replacementString:)), forControlEvents: UIControlEvents.EditingChanged)
         amountInputView.delegate = self
         amountInputView.frame = CGRect(x: 0, y: 40, width: screenWidth, height: 90)
@@ -321,7 +318,10 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         return false
     }
     
-    //Calls this function when the tap is recognized.
+    func endEditing(sender: AnyObject) {
+        dismissKeyboard()
+    }
+    
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
