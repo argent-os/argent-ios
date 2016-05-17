@@ -4001,7 +4001,7 @@ be private unless otherwise requested.</string>
         <image name="BackgroundBusinessBlurDark" width="267" height="440"/>
         <image name="IconBank" width="86" height="86"/>
         <image name="IconBroken" width="86" height="86"/>
-        <image name="IconCloseLight" width="16" height="16"/>
+        <image name="IconCloseLight" width="24" height="24"/>
         <image name="IconCreditCard" width="86" height="63"/>
         <image name="IconPerson" width="86" height="86"/>
         <image name="IconPiggy" width="86" height="86"/>

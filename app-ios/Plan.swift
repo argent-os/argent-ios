@@ -25,14 +25,14 @@ class Plan {
         self.id = id
     }
     
-    class func createPlan(dic: Dictionary<String, String>) {
+    class func createPlan(dic: Dictionary<String, String>, completionHandler: (Bool, String) -> Void) {
         if(userAccessToken != nil) {
             User.getProfile({ (user, error) in
                 if error != nil {
                     print(error)
                 }
                 
-                if let plan_id = dic["planIdKey"], plan_name = dic["planNameKey"], plan_currency = dic["planCurrencyKey"], plan_amount = dic["planAmountKey"], plan_interval = dic["planIntervalKey"], plan_interval_count = dic["planIntervalCountKey"] {
+                if let plan_id = dic["planIdKey"], plan_name = dic["planNameKey"], plan_currency = dic["planCurrencyKey"], plan_amount = dic["planAmountKey"], plan_interval = dic["planIntervalKey"] {
                     
                     let headers = [
                         "Authorization": "Bearer " + (userAccessToken as! String),
@@ -42,7 +42,7 @@ class Plan {
                         "id": plan_id,
                         "amount": plan_amount,
                         "interval": plan_interval,
-                        "interval_count": plan_interval_count,
+                        "interval_count": 1,
                         "name": plan_name,
                         "currency": plan_currency
                     ]
@@ -57,7 +57,13 @@ class Plan {
                             switch response.result {
                             case .Success:
                                 if let value = response.result.value {
-                                    _ = JSON(value)
+                                    let data = JSON(value)
+                                    if (response.response?.statusCode == 200) {
+                                        completionHandler(true, "")
+                                    } else {
+                                        let err = data["error"]["message"].stringValue
+                                        completionHandler(false, err)
+                                    }
                                 }
                             case .Failure(let error):
                                 print(error)
@@ -76,7 +82,7 @@ class Plan {
                             "id": plan_id,
                             "amount": plan_amount,
                             "interval": plan_interval,
-                            "interval_count": plan_interval_count,
+                            "interval_count": 1,
                             "name": plan_name,
                             "currency": plan_currency,
                             "trial_period_days": plan_trial_period_days,

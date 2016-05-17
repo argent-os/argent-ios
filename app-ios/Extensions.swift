@@ -100,7 +100,7 @@ extension UIColor {
         return UIColor(rgba: "#FFCF4B")
     }
     static func brandGreen() -> UIColor {
-        return UIColor(rgba: "#01d199")
+        return UIColor(rgba: "#2ECC71")
     }
     static func brandRed() -> UIColor {
         return UIColor(rgba: "#f74e1d")

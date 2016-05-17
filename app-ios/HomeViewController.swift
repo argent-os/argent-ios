@@ -188,6 +188,10 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 if error != nil {
                     print(error)
                 }
+                // sets up the empty data set view after load if no data is present
+                self.tableView.emptyDataSetSource = self
+                self.tableView.emptyDataSetDelegate = self
+                self.tableView.tableFooterView = UIView()
                 self.activityIndicator.stopAnimating()
             }
             
@@ -345,9 +349,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         tableView.tableHeaderView = headerView
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.emptyDataSetSource = self
-        tableView.emptyDataSetDelegate = self
-        tableView.tableFooterView = UIView()
         tableView.showsVerticalScrollIndicator = false
         self.view.addSubview(tableView)
         
@@ -548,7 +549,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "No transactions have occurred yet!  Create a billing plan to let customers signup for recurring payments."
+        let str = "No transactions have occurred yet!"
         let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
         return NSAttributedString(string: str, attributes: attrs)
     }
@@ -558,15 +559,14 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     }
     
     func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
-        let str = "Create your first plan"
+        let str = "Create your first billing plan"
         let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)]
         return NSAttributedString(string: str, attributes: attrs)
     }
     
     func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
-            let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RecurringBillingViewController") as! RecurringBillingViewController
-            self.presentViewController(viewController, animated: true, completion: nil)
-        
+        let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RecurringBillingViewController") as! RecurringBillingViewController
+        self.presentViewController(viewController, animated: true, completion: nil)
     }
     
 }

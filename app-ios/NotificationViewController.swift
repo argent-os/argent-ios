@@ -40,9 +40,6 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.emptyDataSetSource = self
-        tableView.emptyDataSetDelegate = self
-        tableView.tableFooterView = UIView()
         tableView.showsVerticalScrollIndicator = false
         tableView.frame = CGRect(x: 0, y: 65, width: screenWidth, height: screenHeight-110)
         self.view.addSubview(tableView)
@@ -93,6 +90,10 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
             
             self.activityIndicator.stopAnimating()
             
+            // sets empty data set if data is nil
+            self.tableView.emptyDataSetSource = self
+            self.tableView.emptyDataSetDelegate = self
+            self.tableView.tableFooterView = UIView()
             self.tableView.reloadData()
         })
     }
@@ -277,7 +278,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "No notifications yet!  If push notifications are turned on you will see them here."
+        let str = "No notifications yet!  Account events will appear here as they occur.  Turn on push notifications to see these events displayed in real-time!"
         let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
         return NSAttributedString(string: str, attributes: attrs)
     }
