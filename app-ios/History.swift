@@ -65,4 +65,50 @@ class History {
             })
         }
     }
+    
+    class func getHistoryArrays(completionHandler: (Array<AnyObject>?, Array<AnyObject>?, Array<AnyObject>?, Array<AnyObject>?, Array<AnyObject>?, Array<AnyObject>?, Array<AnyObject>?, NSError?) -> Void) {
+        // request to api to get data as json, put in list and table
+        
+        // check for token, get profile id based on token and make the request
+        if(userAccessToken != nil) {
+            User.getProfile({ (user, error) in
+                if error != nil {
+                    print(error)
+                }
+                
+                let parameters : [String : AnyObject] = [:]
+                
+                let headers = [
+                    "Authorization": "Bearer " + (userAccessToken as! String),
+                    "Content-Type": "application/x-www-form-urlencoded"
+                ]
+                
+                let limit = "1000"
+                let user_id = (user?.id)
+                
+                let endpoint = apiUrl + "/v1/stripe/" + user_id! + "/history?limit=" + limit
+                
+                Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
+                    .responseJSON { response in
+                        switch response.result {
+                        case .Success:
+                            if let value = response.result.value {
+                                let data = JSON(value)
+                                let historyOneDay = data["history"]["1D"].arrayObject
+                                let historyTwoWeeks = data["history"]["2W"].arrayObject
+                                let historyOneMonth = data["history"]["1M"].arrayObject
+                                let historyThreeMonths = data["history"]["3M"].arrayObject
+                                let historySixMonths = data["history"]["6M"].arrayObject
+                                let historyOneYear = data["history"]["1Y"].arrayObject
+                                let historySixYears = data["history"]["5Y"].arrayObject
+
+                                completionHandler(historyOneDay, historyTwoWeeks, historyOneMonth, historyThreeMonths, historySixMonths, historyOneYear, historySixYears, response.result.error)
+                            }
+                        case .Failure(let error):
+                            print(error)
+                        }
+                }
+            })
+        }
+    }
 }

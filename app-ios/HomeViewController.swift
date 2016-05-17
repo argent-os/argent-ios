@@ -32,7 +32,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     private var tableView:UITableView = UITableView()
     
-//    private var arrayOfValues: Array<AnyObject> = [30,10,20,50,60,80]
+    private var arrayOfValues: Array<AnyObject> = [] // = [30,10,20,50,60,80]
+
+    private var arrayOfDates: Array<AnyObject> = [] // = [30,10,20,50,60,80]
     
     private var user = User(id: "", username: "", email: "", first_name: "", last_name: "", picture: "", plaid_access_token: "")
     
@@ -106,29 +108,34 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     func dateRangeSegmentControl(segment: UISegmentedControl) {
         if segment.selectedSegmentIndex == 0 {
-            // action for the first button (Current or Default)
-//            arrayOfValues = [30,20,30,80]
-            graph.reloadGraph()
+            History.getHistoryArrays({ (_1d, _2w, _1m, _3m, _6m, _1y, _5y, err) in
+                self.arrayOfValues = _1d!
+                self.graph.reloadGraph()
+            })
         }
         else if segment.selectedSegmentIndex == 1 {
-            // action for the second button
-//            arrayOfValues = [20,60,30]
-            graph.reloadGraph()
+            History.getHistoryArrays({ (_1d, _2w, _1m, _3m, _6m, _1y, _5y, err) in
+                self.arrayOfValues = _2w!
+                self.graph.reloadGraph()
+            })
         }
         else if segment.selectedSegmentIndex == 2 {
-            // action for the third button
-//            arrayOfValues = [30,10,20,50,60,80]
-            graph.reloadGraph()
+            History.getHistoryArrays({ (_1d, _2w, _1m, _3m, _6m, _1y, _5y, err) in
+                self.arrayOfValues = _1m!
+                self.graph.reloadGraph()
+            })
         }
         else if segment.selectedSegmentIndex == 3 {
-            // action for the fourth button
-//            arrayOfValues = [10,90,60,50,30,10,90,60,50,30,20,40]
-            graph.reloadGraph()
+            History.getHistoryArrays({ (_1d, _2w, _1m, _3m, _6m, _1y, _5y, err) in
+                self.arrayOfValues = _3m!
+                self.graph.reloadGraph()
+            })
         }
         else if segment.selectedSegmentIndex == 4 {
-            // action for the fourth button
-//            arrayOfValues = [10,90,60,50,30]
-            graph.reloadGraph()
+            History.getHistoryArrays({ (_1d, _2w, _1m, _3m, _6m, _1y, _5y, err) in
+                self.arrayOfValues = _1y!
+                self.graph.reloadGraph()
+            })
         }
     }
     
@@ -193,6 +200,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 self.tableView.emptyDataSetDelegate = self
                 self.tableView.tableFooterView = UIView()
                 self.activityIndicator.stopAnimating()
+
             }
             
             // Get user profile
@@ -204,7 +212,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 userImageView.layer.cornerRadius = userImageView.frame.size.height/2
                 userImageView.layer.masksToBounds = true
                 userImageView.clipsToBounds = true
-                userImageView.layer.borderWidth = 1
+                userImageView.layer.borderWidth = 0
                 userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
                 
                 if user!.picture != "" {
@@ -219,19 +227,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                         userImageView.image = img
                         self.view.addSubview(userImageView)
                     }
-//                    if user!.username == "" {
-//                        // logout on failure to get profile
-//                        NSUserDefaults.standardUserDefaults().setValue("", forKey: "userAccessToken")
-//                        NSUserDefaults.standardUserDefaults().synchronize();
-//                        userData = nil
-//                        
-//                        // go to login view
-//                        let sb = UIStoryboard(name: "Main", bundle: nil)
-//                        let loginVC = sb.instantiateViewControllerWithIdentifier("LoginViewController")
-//                        let root = UIApplication.sharedApplication().keyWindow?.rootViewController
-//                        root!.presentViewController(loginVC, animated: false, completion: { () -> Void in
-//                        })
-//                    }
                 }
             })
 
@@ -290,7 +285,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         graph.layer.masksToBounds = true
         self.view!.addSubview(graph)
         
-        let dateRangeSegment: UISegmentedControl = UISegmentedControl(items: ["1M", "3M", "6M", "1Y", "5Y"])
+        let dateRangeSegment: UISegmentedControl = UISegmentedControl(items: ["1D", "2W", "1M", "3M", "1Y"])
         dateRangeSegment.frame = CGRect(x: 15.0, y: 230.0, width: view.bounds.width - 30.0, height: 30.0)
         //        var y_co: CGFloat = self.view.frame.size.height - 100.0
         //        dateRangeSegment.frame = CGRectMake(10, y_co, width-20, 50.0)
@@ -466,14 +461,16 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     // MARK: BEM Graph Delegate Methods
     func numberOfPointsInLineGraph(graph: BEMSimpleLineGraphView) -> Int {
-//        return Int(self.arrayOfValues.count)
-        return 0
+        return Int(self.arrayOfValues.count)
         
     }
     
     func lineGraph(graph: BEMSimpleLineGraphView, valueForPointAtIndex index: Int) -> CGFloat {
-//        return CGFloat(self.arrayOfValues[index] as! NSNumber)
-        return 0
+        return CGFloat(self.arrayOfValues[index] as! NSNumber)
+    }
+    
+    func numberOfGapsBetweenLabelsOnLineGraph(graph: BEMSimpleLineGraphView) -> Int {
+        return 2
     }
     
     // MARK: TableView Delegate
