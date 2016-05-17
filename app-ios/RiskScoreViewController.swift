@@ -44,13 +44,12 @@ class RiskScoreViewController: UIViewController {
         g.maxValue = 100
         self.view.addSubview(g)
         
-        l.frame = CGRect(x: 100, y: 250, width: self.view.layer.frame.width-200, height: 600)
-        l.type = .Right
-        l.rotate = 135
+        l.frame = CGRect(x: 100, y: 350, width: self.view.layer.frame.width-200, height: 100)
+        l.type = .Line
         l.contentMode = .ScaleAspectFit
         l.shadowRadius = 40
         l.shadowOpacity = 0.01
-        l.lineWidth = 20
+        l.lineWidth = 3
         l.maxValue = 100
         self.view.addSubview(l)
 
