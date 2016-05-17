@@ -36,8 +36,8 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         
         // This will set to only one instance
         
-        self.view.backgroundColor = UIColor.mediumBlue()
-        
+         self.view.backgroundColor = UIColor.whiteColor()
+
         // screen width and height:
         let screen = UIScreen.mainScreen().bounds
         _ = screen.size.width
@@ -49,15 +49,15 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         merchantLabel.frame = CGRect(x: 0, y: 35, width: 300, height: 20)
         merchantLabel.text = "Pay " + (detailUser?.first_name)!
         merchantLabel.textAlignment = .Center
-        merchantLabel.font = UIFont(name: "AvenirNext-Regular", size: 18)
-        merchantLabel.textColor = UIColor.whiteColor()
+        merchantLabel.font = UIFont(name: "DINAlternate-Bold", size: 14)
+        merchantLabel.textColor = UIColor.lightGrayColor()
         self.view.addSubview(merchantLabel)
         
         chargeInputView.delegate = self
-        chargeInputView.frame = CGRect(x: 0, y: 85, width: 300, height: 100)
-        chargeInputView.textColor = UIColor.whiteColor()
+        chargeInputView.frame = CGRect(x: 0, y: 90, width: 300, height: 100)
+        chargeInputView.textColor = UIColor.brandGreen()
         chargeInputView.backgroundColor = UIColor.clearColor()
-        chargeInputView.font = UIFont(name: "ArialRoundedMTBold", size: 42)
+        chargeInputView.font = UIFont(name: "DINAlternate-Bold", size: 42)
         chargeInputView.textAlignment = .Center
         chargeInputView.keyboardType = .NumberPad
         chargeInputView.placeholder = "$0.00"
@@ -69,8 +69,8 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         selectPaymentOptionButton.layer.cornerRadius = 10
         selectPaymentOptionButton.backgroundColor = UIColor.whiteColor()
         var attribs: [String: AnyObject] = [:]
-        attribs[NSFontAttributeName] = UIFont(name: "Avenir-Roman", size: 14)
-        attribs[NSForegroundColorAttributeName] = UIColor.mediumBlue()
+        attribs[NSFontAttributeName] = UIFont(name: "DINAlternate-Bold", size: 14)
+        attribs[NSForegroundColorAttributeName] = UIColor.lightGrayColor()
         let str = NSAttributedString(string: "Select Payment Option", attributes: attribs)
         selectPaymentOptionButton.setAttributedTitle(str, forState: .Normal)
         selectPaymentOptionButton.addTarget(self, action: #selector(PayMerchantViewController.showPayModal(_:)), forControlEvents: .TouchUpInside)

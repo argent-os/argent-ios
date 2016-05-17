@@ -79,13 +79,13 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-        addDoneToolbar()
+        // addDoneToolbar()
         
         chargeInputView.addTarget(self, action: #selector(ChargeViewController.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
         chargeInputView.frame = CGRect(x: 0, y: 90, width: screenWidth, height: 50)
         chargeInputView.textAlignment = .Center
-        chargeInputView.font = UIFont(name: "ArialRoundedMTBold", size: 48)
-        chargeInputView.textColor = UIColor.mediumBlue()
+        chargeInputView.font = UIFont(name: "DINAlternate-Bold", size: 48)
+        chargeInputView.textColor = UIColor.brandGreen()
         chargeInputView.placeholder = "$0.00"
         chargeInputView.keyboardType = UIKeyboardType.NumberPad
         chargeInputView.backgroundColor = UIColor.clearColor()
@@ -124,7 +124,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         
         // Pay button
         let payButton = UIButton(frame: CGRect(x: 20, y: screenHeight-80, width: screenWidth-40, height: 60.0))
-        payButton.backgroundColor = UIColor.mediumBlue()
+        payButton.backgroundColor = UIColor.brandGreen()
         payButton.tintColor = UIColor(rgba: "#fff")
         payButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
         payButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
@@ -296,7 +296,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         let inStyle = CWNotificationAnimationStyle.Top
         let outStyle = CWNotificationAnimationStyle.Top
         let notificationStyle = CWNotificationStyle.NavigationBarNotification
-        self.notification.notificationLabelBackgroundColor = UIColor.mediumBlue()
+        self.notification.notificationLabelBackgroundColor = UIColor.brandGreen()
         self.notification.notificationAnimationInStyle = inStyle
         self.notification.notificationAnimationOutStyle = outStyle
         self.notification.notificationStyle = notificationStyle
