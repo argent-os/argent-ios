@@ -12,8 +12,6 @@ import JGProgressHUD
 
 class ProfileViewController: UIViewController {
     
-    @IBOutlet weak var avatarImageView: UIImageView!
-
     private var customersCountLabel:UILabel = UILabel()
     
     private var plansCountLabel:UILabel = UILabel()
@@ -33,13 +31,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.darkGrayColor()]
-        
-        // Style user avatar
-//        avatarImageView.image = UIImage(named: "avatar")
-//        avatarImageView.layer.cornerRadius = 1.0
-//        avatarImageView.layer.borderColor = UIColor.blackColor().CGColor
-//        avatarImageView.clipsToBounds = true
-        
+
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         

@@ -36,8 +36,21 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         
         // This will set to only one instance
         
-         self.view.backgroundColor = UIColor.whiteColor()
+        self.view.backgroundColor = UIColor.whiteColor()
+        self.view.layer.borderWidth = 1
+        self.view.layer.masksToBounds = true
+        // border radius
+        self.view.layer.cornerRadius = 10.0
+        // border
+        self.view.layer.borderColor = UIColor.darkGrayColor().colorWithAlphaComponent(0.2).CGColor
+        self.view.layer.borderWidth = 1
+        // drop shadow
+        self.view.layer.shadowColor = UIColor.blackColor().CGColor
+        self.view.layer.shadowOpacity = 0.8
+        self.view.layer.shadowRadius = 3.0
+        self.view.layer.shadowOffset = CGSizeMake(2.0, 2.0)
 
+        
         // screen width and height:
         let screen = UIScreen.mainScreen().bounds
         _ = screen.size.width
@@ -54,7 +67,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         self.view.addSubview(merchantLabel)
         
         chargeInputView.delegate = self
-        chargeInputView.frame = CGRect(x: 0, y: 90, width: 300, height: 100)
+        chargeInputView.frame = CGRect(x: 0, y: 95, width: 300, height: 100)
         chargeInputView.textColor = UIColor.brandGreen()
         chargeInputView.backgroundColor = UIColor.clearColor()
         chargeInputView.font = UIFont(name: "DINAlternate-Bold", size: 42)

@@ -59,7 +59,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.view.addSubview(tblSearchResults)
         
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
-        loadingView.tintColor = UIColor.whiteColor()
+        loadingView.tintColor = UIColor.darkBlue()
         tblSearchResults.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
                 self?.tblSearchResults.dg_stopLoading()
@@ -67,7 +67,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             })
             }, loadingView: loadingView)
         tblSearchResults.dg_setPullToRefreshFillColor(UIColor.mediumBlue())
-        tblSearchResults.dg_setPullToRefreshBackgroundColor(UIColor.darkBlue())
+        tblSearchResults.dg_setPullToRefreshBackgroundColor(UIColor.mediumBlue())
         
         loadUserAccounts()
         
@@ -230,10 +230,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = ""
         searchController.searchBar.sizeToFit()
-        searchController.searchBar.frame = CGRect(x: 0, y: 210, width: screenWidth, height: 80)
-        searchController.searchBar.translucent = false
-        // Setup the Scope Bar
-        searchController.searchBar.scopeButtonTitles = ["Username", "Email", "Name"]
+        searchController.searchBar.frame = CGRect(x: 0, y: 170, width: screenWidth, height: 40)
+        searchController.searchBar.translucent = true
+        searchController.searchBar.backgroundColor = UIColor.mediumBlue()
+         searchController.searchBar.searchBarStyle = .Minimal
+
         
         // Place the search bar view to the tableview headerview.
         tblSearchResults.tableHeaderView = searchController.searchBar
@@ -243,6 +244,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: UISearchBarDelegate functions
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        // Setup the Scope Bar
+        searchController.searchBar.scopeButtonTitles = ["Username", "Email", "Name"]
         shouldShowSearchResults = true
         searchController.searchBar.placeholder = "Search users"
         tblSearchResults.reloadData()

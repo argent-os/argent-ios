@@ -18,7 +18,7 @@ class ProfileMenuViewController: UITableViewController {
         super.viewDidLoad()
         configureView()
     }
-    
+
     func configureView() {
         
         let screen = UIScreen.mainScreen().bounds
@@ -90,6 +90,22 @@ class ProfileMenuViewController: UITableViewController {
         }
     }
     
+    func addSubviewWithBounce(theView: UIImageView) {
+        theView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001)
+        self.view.addSubview(theView)
+        UIView.animateWithDuration(0.3 / 1.5, animations: {() -> Void in
+            theView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1)
+            }, completion: {(finished: Bool) -> Void in
+                UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
+                    theView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9)
+                    }, completion: {(finished: Bool) -> Void in
+                        UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
+                            theView.transform = CGAffineTransformIdentity
+                        })
+                })
+        })
+    }
+    
     func loadProfile() {
         
         let screen = UIScreen.mainScreen().bounds
@@ -119,11 +135,13 @@ class ProfileMenuViewController: UITableViewController {
             if user!.picture != "" {
                 let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user!.picture))!)!)!
                 userImageView.image = img
-                self.tableView.addSubview(userImageView)
+//                self.tableView.addSubview(userImageView)
+                self.addSubviewWithBounce(userImageView)
             } else {
                 let img = UIImage(named: "IconCamera")
                 userImageView.image = img
-                self.tableView.addSubview(userImageView)
+//                self.tableView.addSubview(userImageView)
+                self.addSubviewWithBounce(userImageView)
             }
         })
     }

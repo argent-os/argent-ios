@@ -27,13 +27,13 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
     private func setupNav() {
         let navigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 50)) // Offset by 20 pixels vertically to take the status bar into account
         
-        navigationBar.backgroundColor = UIColor.whiteColor()
+        navigationBar.backgroundColor = UIColor.offWhite()
         navigationBar.tintColor = UIColor.mediumBlue()
         navigationBar.delegate = self
         
         // Create a navigation item with a title
         let navigationItem = UINavigationItem()
-        navigationItem.title = "Invite Customer"
+        navigationItem.title = ""
 
         // Create left and right button for navigation item
         let leftButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddCustomerViewController.returnToMenu(_:)))
@@ -64,12 +64,14 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-        title = "Invite Customer"
+        self.view.backgroundColor = UIColor.offWhite()
+        
+        title = ""
         
         let emailButton: DKCircleButton = DKCircleButton(frame: CGRectMake(0, 0, 90, 90))
         emailButton.center = CGPointMake(self.view.layer.frame.width/2, screenHeight*0.3)
         emailButton.titleLabel!.font = UIFont.systemFontOfSize(22)
-        emailButton.borderColor = UIColor.lightGrayColor()
+        emailButton.borderColor = UIColor.lightBlue()
         emailButton.tintColor = UIColor.slateBlue()
         emailButton.setTitle("Email", forState: .Normal)
         emailButton.setTitleColor(UIColor.slateBlue(), forState: .Normal)
@@ -86,7 +88,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         let smsButton: DKCircleButton = DKCircleButton(frame: CGRectMake(0, 0, 90, 90))
         smsButton.center = CGPointMake(self.view.layer.frame.width/2, screenHeight*0.6)
         smsButton.titleLabel!.font = UIFont.systemFontOfSize(22)
-        smsButton.borderColor = UIColor.lightGrayColor()
+        smsButton.borderColor = UIColor.lightBlue()
         smsButton.tintColor = UIColor.slateBlue()
         smsButton.setTitle("SMS", forState: .Normal)
         smsButton.setTitleColor(UIColor.slateBlue(), forState: .Normal)
@@ -99,7 +101,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         smsButton.addTarget(self, action: #selector(AddCustomerViewController.sendSMSButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(smsButton)
         
-        self.navigationItem.title = "Invite Customer"
+        self.navigationItem.title = ""
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.darkGrayColor()]
         
     }
