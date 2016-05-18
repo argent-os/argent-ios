@@ -59,15 +59,15 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             lblAccountAvailable.removeFromSuperview()
             lblAvailableDescription.removeFromSuperview()
             
-            self.view.addSubview(lblAccountPending)
-            self.view.addSubview(lblPendingDescription)
+            self.addSubviewWithBounce(lblAccountPending)
+            self.addSubviewWithBounce(lblPendingDescription)
         }
         if(sender.selectedIndex == 1) {
             lblAccountPending.removeFromSuperview()
             lblPendingDescription.removeFromSuperview()
-            
-            self.view.addSubview(lblAccountAvailable)
-            self.view.addSubview(lblAvailableDescription)
+
+            self.addSubviewWithBounce(lblAccountAvailable)
+            self.addSubviewWithBounce(lblAvailableDescription)
         }
     }
 
@@ -219,13 +219,13 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                     Timeout(0.3) {
                         let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user!.picture))!)!)!
                         userImageView.image = img
-                        self.view.addSubview(userImageView)
+                        self.addSubviewWithBounce(userImageView)
                     }
                 } else {
                     Timeout(0.3) {
                         let img = UIImage(named: "PersonThumb")
                         userImageView.image = img
-                        self.view.addSubview(userImageView)
+                        self.addSubviewWithBounce(userImageView)
                     }
                 }
             })
@@ -364,7 +364,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 NSForegroundColorAttributeName:UIColor(rgba: "#fff")
             ])
         lblAccountPending.attributedText = str1
-        self.view.addSubview(lblAccountPending)
+        self.addSubviewWithBounce(lblAccountPending)
         
         lblAvailableDescription.frame = CGRectMake(20, 106, 200, 40)
         let str2 = NSAttributedString(string: "Available Balance", attributes:
@@ -382,7 +382,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 NSForegroundColorAttributeName:UIColor(rgba: "#fffa")
             ])
         lblPendingDescription.attributedText = str3
-        self.view.addSubview(lblPendingDescription)
+        self.addSubviewWithBounce(lblPendingDescription)
         
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.tintColor = UIColor.brandYellow()
@@ -457,6 +457,23 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         // go to login view
         self.performSegueWithIdentifier("loginView", sender: self);
         
+    }
+    
+    // Animation
+    
+    func addSubviewWithBounce(view: UIView) {
+        view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001)
+        self.view.addSubview(view)
+        UIView.animateWithDuration(0.3 / 1.5, animations: {() -> Void in
+            view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0)
+            }, completion: {(finished: Bool) -> Void in
+                UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
+                    }, completion: {(finished: Bool) -> Void in
+                        UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
+                            view.transform = CGAffineTransformIdentity
+                        })
+                })
+        })
     }
     
     // MARK: BEM Graph Delegate Methods

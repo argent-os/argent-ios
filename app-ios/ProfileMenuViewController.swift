@@ -90,17 +90,17 @@ class ProfileMenuViewController: UITableViewController {
         }
     }
     
-    func addSubviewWithBounce(theView: UIImageView) {
-        theView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001)
-        self.view.addSubview(theView)
+    func addSubviewWithBounce(imageView: UIImageView) {
+        imageView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001)
+        self.view.addSubview(imageView)
         UIView.animateWithDuration(0.3 / 1.5, animations: {() -> Void in
-            theView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1)
+            imageView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1)
             }, completion: {(finished: Bool) -> Void in
                 UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
-                    theView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9)
+                    imageView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9)
                     }, completion: {(finished: Bool) -> Void in
                         UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
-                            theView.transform = CGAffineTransformIdentity
+                            imageView.transform = CGAffineTransformIdentity
                         })
                 })
         })
@@ -135,12 +135,10 @@ class ProfileMenuViewController: UITableViewController {
             if user!.picture != "" {
                 let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user!.picture))!)!)!
                 userImageView.image = img
-//                self.tableView.addSubview(userImageView)
                 self.addSubviewWithBounce(userImageView)
             } else {
                 let img = UIImage(named: "IconCamera")
                 userImageView.image = img
-//                self.tableView.addSubview(userImageView)
                 self.addSubviewWithBounce(userImageView)
             }
         })
