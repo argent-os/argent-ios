@@ -12,11 +12,15 @@ import Alamofire
 import SwiftyJSON
 import JGProgressHUD
 import DGElasticPullToRefresh
+import TransitionTreasury
+import TransitionAnimation
 
-class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
+class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate, ModalTransitionDelegate {
     
     var tblSearchResults:UITableView = UITableView()
     
+    let userImageView: UIImageView = UIImageView(frame: CGRectMake(10, 15, 30, 30))
+
     private var dataArray = [User]()
     
     private var filteredArray = [User]()
@@ -31,14 +35,41 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     private var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
+    private let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 15, width: UIScreen.mainScreen().bounds.size.width, height: 50))
+
+    // tt
+    internal var tr_presentTransition: TRViewControllerTransitionDelegate?
+    
     deinit {
         tblSearchResults.dg_removePullToRefresh()
     }
     
+    lazy var gesture: UIPanGestureRecognizer = {
+        let gesture = UIPanGestureRecognizer(target: self, action: #selector(SearchViewController.swipeTransition(_:)))
+        return gesture
+    }()
+    
+    func swipeTransition(sender: UIPanGestureRecognizer) {
+        switch sender.state {
+        case .Began :
+            print("Began")
+            if sender.translationInView(sender.view).x >= 0 {
+                tabBarController?.tr_selected(0, gesture: sender)
+            } else if sender.translationInView(sender.view).x < 0 {
+                tabBarController?.tr_selected(2, gesture: sender)
+            }
+            
+        default : break
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // CRITICAL: Fixes view searchDetailController
         definesPresentationContext = true
+
+        view.addGestureRecognizer(gesture)
 
         self.view.backgroundColor = UIColor.slateBlue()
         
@@ -48,6 +79,21 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
+        navBar.barTintColor = UIColor.clearColor()
+        navBar.translucent = true
+        navBar.tintColor = UIColor.whiteColor()
+        navBar.backgroundColor = UIColor.clearColor()
+        navBar.shadowImage = UIImage()
+        navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        navBar.titleTextAttributes = [
+            NSForegroundColorAttributeName : UIColor.whiteColor(),
+            NSFontAttributeName : UIFont(name: "Avenir-Light", size: 18)!
+        ]
+//        self.view.addSubview(navBar)
+//        self.view.sendSubviewToBack(navBar)
+        let navItem = UINavigationItem(title: "")
+        navBar.setItems([navItem], animated: true)
+        
         activityIndicator.center = view.center
         activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true
@@ -55,7 +101,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         tblSearchResults.delegate = self
         tblSearchResults.dataSource = self
-        tblSearchResults.frame = CGRect(x: 0, y: 18, width: screenWidth, height: screenHeight-60)
+        tblSearchResults.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight-42)
         self.view.addSubview(tblSearchResults)
         
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
@@ -77,7 +123,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidAppear(animated: Bool) {
         // Set nav back button white
         UIStatusBarStyle.LightContent
-        // self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
     }
     
     override func didReceiveMemoryWarning() {
@@ -96,10 +141,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return 1
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("customerDetailView", sender: self)
-    }
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if shouldShowSearchResults {
             return filteredArray.count
@@ -109,8 +150,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
         self.tblSearchResults.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         let CellIdentifier: String = "Cell"
         let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: CellIdentifier)
@@ -193,6 +234,31 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return cell
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        guard let cell = tableView.cellForRowAtIndexPath(indexPath) else {
+            return
+        }
+    
+        print("selected")
+        let user: User
+        if searchController.active && searchController.searchBar.text != "" {
+            user = filteredArray[indexPath.row]
+        } else {
+            user = dataArray[indexPath.row]
+        }
+        // tt
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SearchDetailViewController") as! SearchDetailViewController
+            self.navigationController
+        self.navigationController!.tr_pushViewController(vc, method: TRPushTransitionMethod.OMNI(keyView: cell), statusBarStyle: .LightContent, completion: {
+                print("Push finished.")
+        })
+        vc.detailUser = user
+        print(user)
+        
+    }
+    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 60.0
     }
@@ -230,12 +296,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = ""
         searchController.searchBar.sizeToFit()
-        searchController.searchBar.frame = CGRect(x: 0, y: 170, width: screenWidth, height: 40)
+        searchController.searchBar.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 40)
         searchController.searchBar.translucent = true
         searchController.searchBar.backgroundColor = UIColor.mediumBlue()
-         searchController.searchBar.searchBarStyle = .Minimal
+        searchController.searchBar.searchBarStyle = .Minimal
+        searchController.searchBar.barStyle = .Black
 
-        
         // Place the search bar view to the tableview headerview.
         tblSearchResults.tableHeaderView = searchController.searchBar
     }
@@ -301,8 +367,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     // Refresh
-    private func refresh(sender:AnyObject)
-    {
+    private func refresh(sender:AnyObject) {
         self.loadUserAccounts()
     }
     
@@ -340,28 +405,20 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tblSearchResults.reloadData()
     }
     
+    
     // MARK: - UISearchBar Delegate
     func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
     }
     
     
-    // MARK: - Segues // see tableView Delegate methods for indexPathForSelectedRow selection
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "customerDetailView" {
-            if let indexPath = tblSearchResults.indexPathForSelectedRow {
-                let user: User
-                if searchController.active && searchController.searchBar.text != "" {
-                    user = filteredArray[indexPath.row]
-                } else {
-                    user = dataArray[indexPath.row]
-                }
-                let controller = segue.destinationViewController as! SearchDetailViewController
-                controller.detailUser = user
-                controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
-                controller.navigationItem.leftItemsSupplementBackButton = true
-            }
-        }
+    // MARK: - Modal tt delegate
+    
+    // tt
+    func modalViewControllerDismiss(callbackData data: AnyObject? = nil) {
+        tr_dismissViewController(completion: {
+            print("Dismiss finished.")
+        })
     }
 }
 

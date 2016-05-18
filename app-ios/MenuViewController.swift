@@ -30,6 +30,24 @@ class MenuViewController: UIViewController, CircleMenuDelegate {
         // ("ic_paper_light", UIColor.whiteColor()),
     ]
     
+    lazy var gesture: UIPanGestureRecognizer = {
+        let gesture = UIPanGestureRecognizer(target: self, action: #selector(MenuViewController.swipeTransition(_:)))
+        return gesture
+    }()
+    
+    func swipeTransition(sender: UIPanGestureRecognizer) {
+        switch sender.state {
+        case .Began :
+            if sender.translationInView(sender.view).x >= 1 {
+                tabBarController?.tr_selected(1, gesture: sender)
+            } else if sender.translationInView(sender.view).x < 2 {
+                tabBarController?.tr_selected(3, gesture: sender)
+            }
+            
+        default : break
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,6 +55,8 @@ class MenuViewController: UIViewController, CircleMenuDelegate {
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
+        view.addGestureRecognizer(gesture)
+
         let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
         visualEffectView.frame = CGRectMake(0, 0, screenWidth, screenHeight)
         let backgroundImageView = UIImageView(image: UIImage(), highlightedImage: nil)

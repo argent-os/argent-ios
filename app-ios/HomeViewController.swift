@@ -76,10 +76,28 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         // Dispose of any resources that can be recreated.
     }
     
+    // Import TransitionTreasury in AppDelegate
+    lazy var gesture: UIPanGestureRecognizer = {
+        let gesture = UIPanGestureRecognizer(target: self, action: #selector(HomeViewController.swipeTransition(_:)))
+        return gesture
+    }()
+    
+    func swipeTransition(sender: UIPanGestureRecognizer) {
+        switch sender.state {
+        case .Began :
+            if sender.translationInView(sender.view).x < 0 {
+                tabBarController?.tr_selected(1, gesture: sender)
+            }
+        default : break
+        }
+    }
+    
     // VIEW DID LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addGestureRecognizer(gesture)
+
         definesPresentationContext = true
 
         configureView()

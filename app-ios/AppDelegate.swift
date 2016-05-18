@@ -12,6 +12,8 @@ import PasscodeLock
 import SwiftyJSON
 import KeychainSwift
 import plaid_ios_sdk
+import TransitionTreasury
+import TransitionAnimation
 
 let merchantID = "merchant.com.argentapp.pay"
 var userData:JSON? // init user data, declare globally, needs SwiftyJSON
@@ -37,7 +39,7 @@ let stripeApiUrl = "https://api.stripe.com"
 
 // For push notifications make sure to delete and re-install app, fix this bug later
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegate {
     
     var window: UIWindow?
     
@@ -92,7 +94,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    func tr_tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
+        print("You did select \(viewController.dynamicType).")
+    }
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        // Transitions 
+        if let tabBarController = window?.rootViewController as? UITabBarController {
+            tabBarController.tr_transitionDelegate = TRTabBarTransitionDelegate(method: TRTabBarTransitionMethod.Slide)
+            tabBarController.tr_delegate = self
+        }
         
         // Set push notification badge to zero
         UIApplication.sharedApplication().applicationIconBadgeNumber = 0

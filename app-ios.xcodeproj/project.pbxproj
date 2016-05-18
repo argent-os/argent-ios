@@ -535,10 +535,10 @@
 			isa = PBXGroup;
 			children = (
 				30C2DABE1CA43823003AFD8B /* HomeViewController.swift */,
-				30C2DAC01CA43836003AFD8B /* ProfileViewController.swift */,
-				30C2DAC21CA4383B003AFD8B /* NotificationViewController.swift */,
 				30C2DAC41CA43841003AFD8B /* SearchViewController.swift */,
 				30C2DAC81CA43853003AFD8B /* MenuViewController.swift */,
+				30C2DAC21CA4383B003AFD8B /* NotificationViewController.swift */,
+				30C2DAC01CA43836003AFD8B /* ProfileViewController.swift */,
 				30128DDE1C8FAC6E009E2EA7 /* Subviews */,
 			);
 			name = Tabs;

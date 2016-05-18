@@ -16,9 +16,13 @@ import SwiftyJSON
 import XLActionController
 import MZFormSheetPresentationController
 import AYVibrantButton
+import TransitionTreasury
+import TransitionAnimation
 
-class SearchDetailViewController: UIViewController, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UINavigationBarDelegate {
+class SearchDetailViewController: UIViewController, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UINavigationBarDelegate, NavgationTransitionable {
     
+    var tr_pushTransition: TRNavgationTransitionDelegate?
+
     @IBOutlet weak var emailLabel: UILabel!
     
     @IBOutlet weak var usernameLabel: UILabel!
@@ -41,8 +45,17 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
         return .LightContent
     }
     
+    deinit {
+        print("deinit.")
+    }
+    
     func configureView() {
 
+        if let transitionAnimation = tr_pushTransition?.transition as? IBanTangTransitionAnimation {
+            print(transitionAnimation.keyView)
+            print(transitionAnimation.keyViewCopy)
+        }
+        
         let screen = UIScreen.mainScreen().bounds
         let width = screen.size.width
         let height = screen.size.height
@@ -180,11 +193,8 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             // Create a navigation item with a title
             let navigationItem = UINavigationItem()
             // Create left and right button for navigation item
-            let leftButton = UIBarButtonItem(image: UIImage(named: "ic_close_light"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SearchDetailViewController.returnToMenu(_:)))
             let font = UIFont(name: "Avenir-Book", size: 14)
-            leftButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
             // Create two buttons for the navigation item
-            navigationItem.leftBarButtonItem = leftButton
             let rightButton = UIBarButtonItem(image: UIImage(named: "ic_paper_plane_light_flat")?.alpha(0.7), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SearchDetailViewController.showMessageModal(_:)))
             rightButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
             // Create two buttons for the navigation item
@@ -199,6 +209,10 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.navigationController?.navigationBarHidden = false
     }
     
     override func didReceiveMemoryWarning() {

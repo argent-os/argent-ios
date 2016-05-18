@@ -26,12 +26,33 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         self.childViewControllerForStatusBarStyle()?.setNeedsStatusBarAppearanceUpdate()
     }
     
+    
+    lazy var gesture: UIPanGestureRecognizer = {
+        let gesture = UIPanGestureRecognizer(target: self, action: #selector(NotificationsViewController.swipeTransition(_:)))
+        return gesture
+    }()
+    
+    func swipeTransition(sender: UIPanGestureRecognizer) {
+        switch sender.state {
+        case .Began :
+            if sender.translationInView(sender.view).x >= 0 {
+                tabBarController?.tr_selected(2, gesture: sender)
+            } else if sender.translationInView(sender.view).x < 4 {
+                tabBarController?.tr_selected(4, gesture: sender)
+            }
+            
+        default : break
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
+        
+        view.addGestureRecognizer(gesture)
         
         activityIndicator.center = tableView.center
         activityIndicator.startAnimating()

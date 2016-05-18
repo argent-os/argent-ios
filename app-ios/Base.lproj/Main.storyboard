@@ -11,13 +11,13 @@
         <!--Search Detail View Controller-->
         <scene sceneID="nbc-3q-s01">
             <objects>
-                <viewController id="E96-37-Kd7" customClass="SearchDetailViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchDetailViewController" id="E96-37-Kd7" customClass="SearchDetailViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dT7-HM-UP6"/>
                         <viewControllerLayoutGuide type="bottom" id="HLl-tB-D5j"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6nZ-kW-z7i">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -27,7 +27,7 @@
             </objects>
             <point key="canvasLocation" x="1189" y="-2660"/>
         </scene>
-        <!--Search-->
+        <!--Search View Controller-->
         <scene sceneID="SMU-V6-kh5">
             <objects>
                 <viewController storyboardIdentifier="SearchViewController" extendedLayoutIncludesOpaqueBars="YES" id="a1M-TW-bLs" customClass="SearchViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
@@ -40,13 +40,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Search" image="ic_search" id="U4p-ue-j3d"/>
+                    <navigationItem key="navigationItem" id="8A1-cO-cow"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="b3j-hU-muC" id="Nr5-LI-kzK"/>
-                        <segue destination="E96-37-Kd7" kind="presentation" identifier="customerDetailView" id="jpD-81-9Zm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdn-59-Bnh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -59,7 +58,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1678" y="-1780"/>
+            <point key="canvasLocation" x="2086" y="-1892"/>
         </scene>
         <!--Tutorial Home View Controller-->
         <scene sceneID="LaJ-OV-HfA">
@@ -1728,7 +1727,7 @@ institutions</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QGm-e6-mY6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="958" y="-1464"/>
+            <point key="canvasLocation" x="560" y="-1256"/>
         </scene>
         <!--Home Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -1756,7 +1755,7 @@ institutions</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="344" y="-1688"/>
+            <point key="canvasLocation" x="36" y="-1694"/>
         </scene>
         <!--Bitcoin Uri View Controller-->
         <scene sceneID="bjw-aB-Sd7">
@@ -3145,7 +3144,7 @@ Tap here to view</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bv3-oX-STF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6900" y="-1694"/>
+            <point key="canvasLocation" x="7712" y="-1694"/>
         </scene>
         <!--Stripe Terms Controller-->
         <scene sceneID="VG1-0g-q3c">
@@ -3331,7 +3330,7 @@ Tap here to view</string>
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="UFB-DJ-qrH"/>
-                        <segue destination="a1M-TW-bLs" kind="relationship" relationship="viewControllers" id="Ua5-Do-cmZ"/>
+                        <segue destination="HMN-2X-Cie" kind="relationship" relationship="viewControllers" id="Ua5-Do-cmZ"/>
                         <segue destination="uI0-ut-YXN" kind="relationship" relationship="viewControllers" id="m0d-gd-RWW"/>
                         <segue destination="D1r-HM-gkI" kind="relationship" relationship="viewControllers" id="FmW-X6-6Aa"/>
                         <segue destination="tfH-Yx-qca" kind="relationship" relationship="viewControllers" id="ZGI-bE-yuI"/>
@@ -3837,7 +3836,7 @@ be private unless otherwise requested.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b9E-3l-Sqs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2280" y="-1780"/>
+            <point key="canvasLocation" x="3092" y="-1780"/>
         </scene>
         <!--Configure Point Of Sale View Controller-->
         <scene sceneID="59S-8r-Sp8">
@@ -3996,6 +3995,25 @@ be private unless otherwise requested.</string>
             </objects>
             <point key="canvasLocation" x="3799" y="-7845"/>
         </scene>
+        <!--Search-->
+        <scene sceneID="9Zo-cs-g3Z">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HMN-2X-Cie" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Search" image="ic_search" id="U4p-ue-j3d"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Bcq-gQ-TaG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="a1M-TW-bLs" kind="relationship" relationship="rootViewController" id="RuS-B8-jIU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mWi-GT-iFP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1274" y="-1892"/>
+        </scene>
     </scenes>
     <resources>
         <image name="BackgroundBusinessBlurDark" width="267" height="440"/>
@@ -4016,13 +4034,13 @@ be private unless otherwise requested.</string>
         <image name="ic_user" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jpD-81-9Zm"/>
-        <segue reference="mwT-xt-Ez4"/>
+        <segue reference="A1R-09-1HJ"/>
+        <segue reference="UFB-DJ-qrH"/>
+        <segue reference="xTl-cs-ajG"/>
+        <segue reference="m0d-gd-RWW"/>
         <segue reference="Bot-Tn-1ZP"/>
         <segue reference="wgV-xY-MTp"/>
-        <segue reference="xTl-cs-ajG"/>
-        <segue reference="UFB-DJ-qrH"/>
-        <segue reference="m0d-gd-RWW"/>
+        <segue reference="fEJ-lR-z9I"/>
         <segue reference="aks-Yo-Spb"/>
         <segue reference="igQ-zk-tCm"/>
         <segue reference="m3z-fp-Nlm"/>
@@ -4030,7 +4048,6 @@ be private unless otherwise requested.</string>
         <segue reference="agi-3I-cSC"/>
         <segue reference="VI5-hp-Gm2"/>
         <segue reference="ipn-3I-3vc"/>
-        <segue reference="fEJ-lR-z9I"/>
         <segue reference="Bc6-jW-uiV"/>
         <segue reference="7cu-FP-MoG"/>
     </inferredMetricsTieBreakers>

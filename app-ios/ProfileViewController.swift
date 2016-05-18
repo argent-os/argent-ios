@@ -28,6 +28,21 @@ class ProfileViewController: UIViewController {
         UIStatusBarStyle.Default
     }
     
+    lazy var gesture: UIPanGestureRecognizer = {
+        let gesture = UIPanGestureRecognizer(target: self, action: #selector(ProfileViewController.swipeTransition(_:)))
+        return gesture
+    }()
+
+    func swipeTransition(sender: UIPanGestureRecognizer) {
+        switch sender.state {
+        case .Began :
+            if sender.translationInView(sender.view).x >= 0 {
+                tabBarController?.tr_selected(3, gesture: sender)
+            }
+        default : break
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.darkGrayColor()]
@@ -35,6 +50,8 @@ class ProfileViewController: UIViewController {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         
+        view.addGestureRecognizer(gesture)
+
         self.view.backgroundColor = UIColor.slateBlue()
         
         navBar.translucent = true

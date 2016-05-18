@@ -50,6 +50,8 @@ target 'app-ios' do
 	pod 'StepSlider'
 	pod 'ImagePicker'
 	pod 'DKCircleButton'
+	pod 'TransitionTreasury'
+	pod 'TransitionAnimation'
 	#pod 'DOFavoriteButton'
 
 	post_install do |installer|
