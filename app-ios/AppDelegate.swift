@@ -29,8 +29,8 @@ var userData:JSON? // init user data, declare globally, needs SwiftyJSON
 
 // let apiUrl = "http://localhost:5001"
 // let apiUrl = "http://192.168.1.182:5001"
- let apiUrl = "http://192.168.1.232:5001"
-// let apiUrl = "http://proton-api-dev.us-east-1.elasticbeanstalk.com"
+// let apiUrl = "http://192.168.1.232:5001"
+ let apiUrl = "http://proton-api-dev.us-east-1.elasticbeanstalk.com"
 // PROD
 //let apiUrl = "http://api.argent.cloud"
 
@@ -161,8 +161,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
         UINavigationBar.appearance().translucent = true
         
         // Search Bar UI
-        UISearchBar.appearance().barTintColor = UIColor.mediumBlue()
-        UISearchBar.appearance().tintColor = UIColor.whiteColor()
+        UISearchBar.appearance().barTintColor = UIColor.whiteColor()
+        UISearchBar.appearance().tintColor = UIColor.mediumBlue()
         
         // UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).tintColor = UIColor.darkBlue()
         

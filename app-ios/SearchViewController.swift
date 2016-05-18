@@ -66,9 +66,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // CRITICAL: Fixes view searchDetailController
-        definesPresentationContext = true
-
         view.addGestureRecognizer(gesture)
 
         self.view.backgroundColor = UIColor.slateBlue()
@@ -79,20 +76,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-        navBar.barTintColor = UIColor.clearColor()
-        navBar.translucent = true
-        navBar.tintColor = UIColor.whiteColor()
-        navBar.backgroundColor = UIColor.clearColor()
-        navBar.shadowImage = UIImage()
-        navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
-        navBar.titleTextAttributes = [
-            NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "Avenir-Light", size: 18)!
+        self.title = "Search"
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSForegroundColorAttributeName : UIColor.darkGrayColor(),
+            NSFontAttributeName : UIFont(name: "Avenir-Light", size: 18.0)!
         ]
-//        self.view.addSubview(navBar)
-//        self.view.sendSubviewToBack(navBar)
-        let navItem = UINavigationItem(title: "")
-        navBar.setItems([navItem], animated: true)
         
         activityIndicator.center = view.center
         activityIndicator.startAnimating()
@@ -113,7 +101,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             })
             }, loadingView: loadingView)
         tblSearchResults.dg_setPullToRefreshFillColor(UIColor.mediumBlue())
-        tblSearchResults.dg_setPullToRefreshBackgroundColor(UIColor.mediumBlue())
+        tblSearchResults.dg_setPullToRefreshBackgroundColor(UIColor.whiteColor())
         
         loadUserAccounts()
         
@@ -122,6 +110,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidAppear(animated: Bool) {
         // Set nav back button white
+        self.searchController.searchBar.hidden = false
         UIStatusBarStyle.LightContent
     }
     
@@ -241,6 +230,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return
         }
     
+        self.shouldShowSearchResults = false
+        self.searchController.searchBar.hidden = true
+        self.searchController.searchBar.resignFirstResponder()
+        self.searchController.searchBar.placeholder = ""
+        searchBarCancelButtonClicked(searchController.searchBar)
+        
         print("selected")
         let user: User
         if searchController.active && searchController.searchBar.text != "" {
@@ -296,14 +291,16 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = ""
         searchController.searchBar.sizeToFit()
-        searchController.searchBar.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 40)
+        searchController.searchBar.frame = CGRect(x: 0, y: 0, width: screenWidth, height:40)
         searchController.searchBar.translucent = true
-        searchController.searchBar.backgroundColor = UIColor.mediumBlue()
+        searchController.searchBar.backgroundColor = UIColor.whiteColor()
         searchController.searchBar.searchBarStyle = .Minimal
+        searchController.searchBar.tintColor = UIColor.mediumBlue()
         searchController.searchBar.barStyle = .Black
 
         // Place the search bar view to the tableview headerview.
         tblSearchResults.tableHeaderView = searchController.searchBar
+        tblSearchResults.bringSubviewToFront(searchController.searchBar)
     }
     
     
@@ -311,6 +308,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
         // Setup the Scope Bar
+        searchBar.setShowsCancelButton(true, animated: true)
+        for ob: UIView in ((searchBar.subviews[0] )).subviews {
+            if let z = ob as? UIButton {
+                let btn: UIButton = z
+                btn.setTitleColor(UIColor.mediumBlue(), forState: .Normal)
+            }
+        }
         searchController.searchBar.scopeButtonTitles = ["Username", "Email", "Name"]
         shouldShowSearchResults = true
         searchController.searchBar.placeholder = "Search users"
