@@ -3998,7 +3998,7 @@ be private unless otherwise requested.</string>
         <!--Search-->
         <scene sceneID="9Zo-cs-g3Z">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBarsOnSwipe="YES" id="HMN-2X-Cie" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" hidesBarsOnSwipe="YES" id="HMN-2X-Cie" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Search" image="ic_search" id="U4p-ue-j3d"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Bcq-gQ-TaG">

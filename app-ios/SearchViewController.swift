@@ -37,7 +37,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     private let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 15, width: UIScreen.mainScreen().bounds.size.width, height: 50))
 
-    // tt
     internal var tr_presentTransition: TRViewControllerTransitionDelegate?
     
     deinit {
@@ -93,7 +92,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.view.addSubview(tblSearchResults)
         
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
-        loadingView.tintColor = UIColor.darkBlue()
+        loadingView.tintColor = UIColor.whiteColor()
         tblSearchResults.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
                 self?.tblSearchResults.dg_stopLoading()
@@ -110,6 +109,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidAppear(animated: Bool) {
         // Set nav back button white
+        searchController.searchBar.becomeFirstResponder()
         self.searchController.searchBar.hidden = false
         UIStatusBarStyle.LightContent
     }
@@ -236,14 +236,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.searchController.searchBar.placeholder = ""
         searchBarCancelButtonClicked(searchController.searchBar)
         
-        print("selected")
         let user: User
         if searchController.active && searchController.searchBar.text != "" {
             user = filteredArray[indexPath.row]
         } else {
             user = dataArray[indexPath.row]
         }
-        // tt
+        
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SearchDetailViewController") as! SearchDetailViewController
             self.navigationController
         self.navigationController!.tr_pushViewController(vc, method: TRPushTransitionMethod.OMNI(keyView: cell), statusBarStyle: .LightContent, completion: {
@@ -297,7 +296,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchController.searchBar.searchBarStyle = .Minimal
         searchController.searchBar.tintColor = UIColor.mediumBlue()
         searchController.searchBar.barStyle = .Black
-
+        
         // Place the search bar view to the tableview headerview.
         tblSearchResults.tableHeaderView = searchController.searchBar
         tblSearchResults.bringSubviewToFront(searchController.searchBar)
@@ -418,7 +417,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // MARK: - Modal tt delegate
     
-    // tt
     func modalViewControllerDismiss(callbackData data: AnyObject? = nil) {
         tr_dismissViewController(completion: {
             print("Dismiss finished.")
