@@ -57,7 +57,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         let containerFrame: CGRect = self.loginBox.frame
         loginBox.frame = containerFrame
         loginBox.layer.cornerRadius = 5
-        loginBox.layer.borderColor = UIColor(rgba: "#fff5").CGColor
+        loginBox.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.3).CGColor
         loginBox.layer.borderWidth = 1
         loginBox.layer.masksToBounds = true
         
