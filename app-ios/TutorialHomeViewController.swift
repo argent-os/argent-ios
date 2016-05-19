@@ -33,7 +33,7 @@ class TutorialHomeViewController: SpotlightViewController {
         case 2:
             spotlightView.move(Spotlight.RoundedRect(center: CGPointMake(screenSize.width / 2, 243), size: CGSizeMake(screenSize.width-30, 40), cornerRadius: 6), moveType: .Disappear)
         case 3:
-            spotlightView.move(Spotlight.RoundedRect(center: CGPointMake(screenSize.width / 2, 305), size: CGSizeMake(screenSize.width-100, 40), cornerRadius: 6), moveType: .Disappear)
+            spotlightView.move(Spotlight.Oval(center: CGPointMake(screenSize.width / 2, 305), diameter: 50), moveType: .Disappear)
         case 4:
             spotlightView.move(Spotlight.RoundedRect(center: CGPointMake(screenSize.width / 2, screenSize.height-25), size: CGSizeMake(screenSize.width-20, 43), cornerRadius: 6), moveType: .Disappear)
         case 5:
