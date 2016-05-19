@@ -53,7 +53,7 @@ class SignupViewControllerZero: UIViewController {
         
         let individualImageView = UIImageView()
         individualImageView.image = UIImage(named: "IconIndividual")
-        individualImageView.frame = CGRect(x: backgroundIndividualImageView.frame.width/2-40, y: backgroundIndividualImageView.frame.height/2-40, width: 80, height: 80)
+        individualImageView.frame = CGRect(x: backgroundIndividualImageView.frame.width/2-40, y: backgroundIndividualImageView.frame.height/2-60, width: 80, height: 80)
         backgroundIndividualImageView.addSubview(individualImageView)
         let gestureRecognizerIndividual = UITapGestureRecognizer(target: self, action: #selector(individualSegue(_:)))
         individualImageView.addGestureRecognizer(gestureRecognizerIndividual)
@@ -63,7 +63,7 @@ class SignupViewControllerZero: UIViewController {
         individualTitle.textColor = UIColor.slateBlue()
         individualTitle.textAlignment = .Center
         individualTitle.font = UIFont.systemFontOfSize(18)
-        individualTitle.frame = CGRect(x: 0, y: backgroundIndividualImageView.frame.height/2+40, width: screenWidth, height: 40)
+        individualTitle.frame = CGRect(x: 0, y: backgroundIndividualImageView.frame.height/2+20, width: screenWidth, height: 40)
         individualTitle.text = "Individual"
         self.view.addSubview(individualTitle)
         
@@ -71,7 +71,7 @@ class SignupViewControllerZero: UIViewController {
         individualSubtitle.textColor = UIColor.slateBlue().colorWithAlphaComponent(0.5)
         individualSubtitle.textAlignment = .Center
         individualSubtitle.font = UIFont.systemFontOfSize(12)
-        individualSubtitle.frame = CGRect(x: 0, y: backgroundIndividualImageView.frame.height/2+70, width: screenWidth, height: 40)
+        individualSubtitle.frame = CGRect(x: 0, y: backgroundIndividualImageView.frame.height/2+50, width: screenWidth, height: 40)
         individualSubtitle.text = "Start sending and receiving payments"
         self.view.addSubview(individualSubtitle)
 
@@ -87,7 +87,7 @@ class SignupViewControllerZero: UIViewController {
         let companyImageView = UIImageView()
         companyImageView.image = UIImage(named: "IconBusinessBuilding")
         companyImageView.center = backgroundCompanyImageView.center
-        companyImageView.frame = CGRect(x: backgroundCompanyImageView.frame.width/2-40, y: backgroundCompanyImageView.frame.height/2-40, width: 80, height: 80)
+        companyImageView.frame = CGRect(x: backgroundCompanyImageView.frame.width/2-40, y: backgroundCompanyImageView.frame.height/2-60, width: 80, height: 80)
         backgroundCompanyImageView.addSubview(companyImageView)
         let gestureRecognizerCompany = UITapGestureRecognizer(target: self, action: #selector(companySegue(_:)))
         companyImageView.addGestureRecognizer(gestureRecognizerCompany)
@@ -97,7 +97,7 @@ class SignupViewControllerZero: UIViewController {
         companyTitle.textColor = UIColor.whiteColor()
         companyTitle.textAlignment = .Center
         companyTitle.font = UIFont.systemFontOfSize(18)
-        companyTitle.frame = CGRect(x: 0, y: backgroundCompanyImageView.frame.height/2+40, width: screenWidth, height: 40)
+        companyTitle.frame = CGRect(x: 0, y: backgroundCompanyImageView.frame.height/2+20, width: screenWidth, height: 40)
         companyTitle.text = "Company"
         backgroundCompanyImageView.addSubview(companyTitle)
         
@@ -105,7 +105,7 @@ class SignupViewControllerZero: UIViewController {
         companySubtitle.textColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
         companySubtitle.textAlignment = .Center
         companySubtitle.font = UIFont.systemFontOfSize(12)
-        companySubtitle.frame = CGRect(x: 0, y: backgroundCompanyImageView.frame.height/2+70, width: screenWidth, height: 40)
+        companySubtitle.frame = CGRect(x: 0, y: backgroundCompanyImageView.frame.height/2+50, width: screenWidth, height: 40)
         companySubtitle.text = "Higher volume limits enabled"
         backgroundCompanyImageView.addSubview(companySubtitle)
         
@@ -122,9 +122,9 @@ class SignupViewControllerZero: UIViewController {
 //        self.view.bringSubviewToFront(pageTitle)
         
         let pageSubtitle = UILabel()
-        pageSubtitle.frame = CGRect(x: 0, y: 30, width: screenWidth, height: 40)
+        pageSubtitle.frame = CGRect(x: 0, y: 20, width: screenWidth, height: 40)
         pageSubtitle.textAlignment = .Center
-        pageSubtitle.text = "Welcome, are you an individual or company?"
+        pageSubtitle.text = "Choose your entity type"
         pageSubtitle.textColor = UIColor.mediumBlue().colorWithAlphaComponent(0.5)
         pageSubtitle.font = UIFont.systemFontOfSize(14)
         self.view.addSubview(pageSubtitle)
@@ -137,7 +137,7 @@ class SignupViewControllerZero: UIViewController {
         backBtn.setBackgroundImage(backBtnImage, forState: .Normal)
         backBtn.setBackgroundImage(backBtnImagePressed, forState: .Highlighted)
         backBtn.addTarget(self, action: #selector(SignupViewControllerZero.goToAuth(_:)), forControlEvents: .TouchUpInside)
-        backBtn.frame = CGRectMake(0, 0, 33, 33)
+        backBtn.frame = CGRectMake(0, -10, 33, 33)
         let backButtonView: UIView = UIView(frame: CGRectMake(0, 0, 33, 33))
         backButtonView.bounds = CGRectOffset(backButtonView.bounds, 7, -7)
         backButtonView.addSubview(backBtn)
