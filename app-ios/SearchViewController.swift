@@ -245,7 +245,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SearchDetailViewController") as! SearchDetailViewController
             self.navigationController
-        self.navigationController!.tr_pushViewController(vc, method: TRPushTransitionMethod.OMNI(keyView: cell), statusBarStyle: .LightContent, completion: {
+        self.navigationController!.tr_pushViewController(vc, method: TRPresentTransitionMethod.Twitter, statusBarStyle: .LightContent, completion: {
                 print("Push finished.")
         })
         vc.detailUser = user

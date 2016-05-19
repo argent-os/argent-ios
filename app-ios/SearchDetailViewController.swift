@@ -77,9 +77,6 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             }
             
             let cardView: UIImageView = UIImageView(frame: CGRectMake(35, 90, width-70, height*0.6))
-            // Blurview
-            let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
-            visualEffectView.frame = CGRectMake(0, 0, width, 500)
             cardView.contentMode = .ScaleToFill
             cardView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
             cardView.layer.masksToBounds = true
@@ -101,6 +98,24 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             cardView.layer.masksToBounds = true
             containerLayer.addSublayer(cardView.layer)
             self.view.layer.addSublayer(containerLayer)
+            
+            let chatBubble = UIImageView(image: UIImage(named: "IconChat"), highlightedImage: .None)
+            chatBubble.alpha = 0.5
+            chatBubble.frame = CGRect(x: width/2-70, y: 320, width: 50, height: 50)
+            self.view.addSubview(chatBubble)
+            self.view.bringSubviewToFront(chatBubble)
+            let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(sendSMSButtonTapped(_:)))
+            chatBubble.addGestureRecognizer(gestureRecognizer)
+            chatBubble.userInteractionEnabled = true
+            
+            let emailIcon = UIImageView(image: UIImage(named: "IconEmail"), highlightedImage: .None)
+            emailIcon.alpha = 0.5
+            emailIcon.frame = CGRect(x: width/2+20, y: 320, width: 50, height: 50)
+            self.view.addSubview(emailIcon)
+            self.view.bringSubviewToFront(emailIcon)
+            let gestureRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(sendEmailButtonTapped(_:)))
+            emailIcon.addGestureRecognizer(gestureRecognizer2)
+            emailIcon.userInteractionEnabled = true
             
             let userImageView: UIImageView = UIImageView(frame: CGRectMake(width / 2, 0, 75, 75))
             userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
@@ -147,7 +162,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             navBar.setItems([navItem], animated: true)
             
             // Button
-            let viewPlansButton = UIButton(frame: CGRect(x: 50, y: cardView.layer.frame.height+10,  width: self.view.layer.frame.width-100, height: 50.0))
+            let viewPlansButton = UIButton(frame: CGRect(x: 50, y: cardView.layer.frame.height+20,  width: self.view.layer.frame.width-100, height: 50.0))
             viewPlansButton.setTitleColor(UIColor.mediumBlue().colorWithAlphaComponent(0.9), forState: .Normal)
             viewPlansButton.titleLabel?.font = UIFont(name: "Avenir-Light", size: 16)
             viewPlansButton.setTitle("View Plans", forState: .Normal)
@@ -155,12 +170,12 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             viewPlansButton.addTarget(self, action: #selector(SearchDetailViewController.payMerchantModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             viewPlansButton.layer.cornerRadius = 10
             viewPlansButton.layer.borderColor = UIColor.mediumBlue().colorWithAlphaComponent(0.5).CGColor
-            viewPlansButton.layer.borderWidth = 1
+            viewPlansButton.layer.borderWidth = 0
             viewPlansButton.addTarget(self, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
             self.view.addSubview(viewPlansButton)
             
             
-            let payButton = UIButton(frame: CGRect(x: 50, y: cardView.layer.frame.height+70, width: self.view.layer.frame.width-100, height: 50.0))
+            let payButton = UIButton(frame: CGRect(x: 50, y: cardView.layer.frame.height+70,  width: self.view.layer.frame.width-100, height: 50.0))
             payButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.9), forState: .Normal)
             payButton.titleLabel?.font = UIFont(name: "Avenir-Light", size: 16)
             if detailUser.first_name != "" {
@@ -171,7 +186,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             payButton.layer.cornerRadius = 10
             payButton.layer.borderColor = UIColor.mediumBlue().CGColor
             payButton.layer.borderWidth = 1
-            payButton.backgroundColor = UIColor.mediumBlue()
+            payButton.backgroundColor = UIColor.lightBlue()
             payButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
             payButton.addTarget(self, action: #selector(SearchDetailViewController.payMerchantModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             self.view.addSubview(payButton)
@@ -185,29 +200,14 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             lbl.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
             self.view.addSubview(lbl)
             self.view.bringSubviewToFront(lbl)
-            
-            let navigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 65)) // Offset by 20 pixels vertically to take the status bar into account
-            navigationBar.backgroundColor = UIColor.clearColor()
-            navigationBar.tintColor = UIColor.mediumBlue()
-            navigationBar.delegate = self
-            // Create a navigation item with a title
-            let navigationItem = UINavigationItem()
-            // Create left and right button for navigation item
-            let font = UIFont(name: "Avenir-Book", size: 14)
-            // Create two buttons for the navigation item
-            let rightButton = UIBarButtonItem(image: UIImage(named: "ic_paper_plane_light_flat")?.alpha(0.7), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SearchDetailViewController.showMessageModal(_:)))
-            rightButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
-            // Create two buttons for the navigation item
-            navigationItem.rightBarButtonItem = rightButton
-            // Assign the navigation item to the navigation bar
-            navigationBar.items = [navigationItem]
-            // Make the navigation bar a subview of the current view controller
-            self.view.addSubview(navigationBar)
+
         }
     }
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        self.view.addGestureRecognizer(gestureRecognizer)
         configureView()
     }
     
@@ -226,7 +226,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
     
     // MARK: Email Composition
     
-    @IBAction func sendEmailButtonTapped(sender: AnyObject) {
+    @IBAction func sendEmailButtonTapped(sender: UIGestureRecognizer) {
         let mailComposeViewController = configuredMailComposeViewController()
         if MFMailComposeViewController.canSendMail() {
             self.presentViewController(mailComposeViewController, animated: true, completion: nil)
@@ -258,30 +258,9 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func showMessageModal(sender: AnyObject) {
-        let actionController = ArgentActionController()
-        actionController.headerData = "Contact Method"
-        actionController.addAction(Action("Email", style: .Default, handler: { action in
-            Timeout(0.2) {
-                self.sendEmailButtonTapped(self)
-            }
-        }))
-        actionController.addAction(Action("SMS", style: .Default, handler: { action in
-            Timeout(0.2) {
-                self.sendSMSButtonTapped(self)
-            }
-        }))
-        actionController.addSection(ActionSection())
-        actionController.addAction(Action("Cancel", style: .Destructive, handler: { action in
-        }))
-        self.presentViewController(actionController, animated: true, completion: { _ in
-        })
-    }
-    
-    
     // MARK: SMS Composition
     
-    @IBAction func sendSMSButtonTapped(sender: AnyObject) {
+    @IBAction func sendSMSButtonTapped(sender: UIGestureRecognizer) {
         let smsComposeViewController = configuredSMSViewController()
         if !MFMessageComposeViewController.canSendText() {
             print("SMS services are not available")
