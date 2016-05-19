@@ -1694,7 +1694,7 @@ institutions</string>
                         <viewControllerLayoutGuide type="bottom" id="Mv2-J1-WVg"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Wlq-Lz-if3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -3167,13 +3167,13 @@ Tap here to view</string>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundGradientInverse" translatesAutoresizingMaskIntoConstraints="NO" id="cim-DB-tEz">
                                 <rect key="frame" x="0.0" y="0.0" width="419" height="736"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TlV-xV-E6e">
+                            <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TlV-xV-E6e">
                                 <rect key="frame" x="20" y="28" width="25" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="2ep-sE-r3z"/>
                                     <constraint firstAttribute="height" constant="25" id="4MH-ug-tkS"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="IconCloseLight"/>
+                                <state key="normal" backgroundImage="ic_close_light"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reset Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egK-5e-s9L">
                                 <rect key="frame" x="20" y="61" width="374" height="34"/>
@@ -3956,7 +3956,6 @@ be private unless otherwise requested.</string>
         <image name="BackgroundGradientInverse" width="134" height="334"/>
         <image name="IconBank" width="86" height="86"/>
         <image name="IconBroken" width="86" height="86"/>
-        <image name="IconCloseLight" width="24" height="24"/>
         <image name="IconCreditCard" width="86" height="63"/>
         <image name="IconPiggy" width="86" height="86"/>
         <image name="IconRisk" width="86" height="86"/>
@@ -3973,12 +3972,6 @@ be private unless otherwise requested.</string>
         <segue reference="VI5-hp-Gm2"/>
         <segue reference="agi-3I-cSC"/>
         <segue reference="OJY-8f-FpG"/>
-        <segue reference="WA2-vu-RC9"/>
-        <segue reference="xTl-cs-ajG"/>
-        <segue reference="m0d-gd-RWW"/>
-        <segue reference="UFB-DJ-qrH"/>
-        <segue reference="Bot-Tn-1ZP"/>
-        <segue reference="wgV-xY-MTp"/>
         <segue reference="m3z-fp-Nlm"/>
         <segue reference="igQ-zk-tCm"/>
         <segue reference="aks-Yo-Spb"/>
@@ -3986,6 +3979,12 @@ be private unless otherwise requested.</string>
         <segue reference="fEJ-lR-z9I"/>
         <segue reference="Bc6-jW-uiV"/>
         <segue reference="ipn-3I-3vc"/>
+        <segue reference="wgV-xY-MTp"/>
+        <segue reference="dtT-zy-VVd"/>
+        <segue reference="xTl-cs-ajG"/>
+        <segue reference="m0d-gd-RWW"/>
+        <segue reference="UFB-DJ-qrH"/>
+        <segue reference="Bot-Tn-1ZP"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>

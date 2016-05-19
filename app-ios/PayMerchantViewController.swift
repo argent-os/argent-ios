@@ -144,10 +144,10 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
                 self.showApplePayModal(self)
             }
         }))
-        actionController.addAction(Action("Credit Card", style: .Default, handler: { action in
-            Timeout(0.5) {
-            }
-        }))
+//        actionController.addAction(Action("Credit Card", style: .Default, handler: { action in
+//            Timeout(0.5) {
+//            }
+//        }))
         actionController.addSection(ActionSection())
         actionController.addAction(Action("Cancel", style: .Destructive, handler: { action in
         }))
@@ -164,24 +164,33 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
             // request will be nil if running on < iOS8
             return
         }
-        if(chargeInputView.text == "") {
-            showErrorAlert("No amount entered")
+        print(merchantID)
+        print(chargeInputView.text)
+        if(chargeInputView.text == "" || chargeInputView.text == "$0.00") {
+            showErrorAlert("Amount invalid")
         } else {
             var str = chargeInputView.text
             str?.removeAtIndex(str!.characters.indices.first!) // remove first letter
             let floatValue = (str! as NSString).floatValue
-            request.paymentSummaryItems = [
-                PKPaymentSummaryItem(label: (detailUser?.first_name)!, amount: NSDecimalNumber(float: floatValue))
-            ]
-            if (Stripe.canSubmitPaymentRequest(request)) {
-                let paymentController = PKPaymentAuthorizationViewController(paymentRequest: request)
-                paymentController.delegate = self
-                self.presentViewController(paymentController, animated: true, completion: nil)
+            if(floatValue<1) {
+                showErrorAlert("Amount cannot be less than 1")
             } else {
-                // let paymentController = PaymentViewController()
-                // Below displays manual credit card entry forms
-                // presentViewController(paymentController, animated: true, completion: nil)
-                // Show the user your own credit card form (see options 2 or 3)
+                request.paymentSummaryItems = [
+                    PKPaymentSummaryItem(label: (detailUser?.first_name)!, amount: NSDecimalNumber(float: floatValue))
+                ]
+                print(request)
+                if (Stripe.canSubmitPaymentRequest(request)) {
+                    print("stripe can submit payment request")
+                    let paymentController = PKPaymentAuthorizationViewController(paymentRequest: request)
+                    paymentController.delegate = self
+                    self.presentViewController(paymentController, animated: true, completion: nil)
+                } else {
+                    print("something went wrong")
+                    // let paymentController = PaymentViewController()
+                    // Below displays manual credit card entry forms
+                    // presentViewController(paymentController, animated: true, completion: nil)
+                    // Show the user your own credit card form (see options 2 or 3)
+                }
             }
         }
     }
@@ -217,9 +226,11 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
          after all of our asynchronous code is finished executing. This is how the
          PKPaymentAuthorizationViewController knows when and how to update its UI.
          */
+        print("in payment auth")
         handlePaymentAuthorizationWithPayment(payment) { (PKPaymentAuthorizationStatus) -> () in
             // close pay modal
             self.showSuccessAlert()
+            print("success")
             controller.dismissViewControllerAnimated(true, completion: nil)
         }
     }
@@ -235,6 +246,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
              Notice that we're passing the completion block through.
              See the above comment in didAuthorizePayment to learn why.
              */
+            print("creating backend charge with token")
             self.createBackendChargeWithToken(token, completion: completion)
         }
     }
@@ -242,6 +254,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
     func createBackendChargeWithToken(token: STPToken!, completion: PKPaymentAuthorizationStatus -> ()) {
         // SEND REQUEST TO Argent API ENDPOINT TO EXCHANGE STRIPE TOKEN
         
+        print("creating backend token")
         var str = chargeInputView.text
         str?.removeAtIndex(str!.characters.indices.first!) // remove first letter
         let floatValue = (str! as NSString).floatValue
@@ -284,6 +297,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
     func paymentAuthorizationViewControllerDidFinish(controller: PKPaymentAuthorizationViewController) {
         dismissViewControllerAnimated(true, completion: nil)
         controller.dismissViewControllerAnimated(true, completion: nil)
+        print("dismissing")
     }
     
     

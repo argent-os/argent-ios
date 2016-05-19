@@ -10,10 +10,12 @@ import UIKit
 
 class OnboardingCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var contentDescriptionLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var getStartedButton: UIButton!
+    @IBOutlet weak var contentImage: UIImageView!
     @IBAction func getStarted(sender: AnyObject) {
-        
-    NSNotificationCenter.defaultCenter().postNotificationName("kDismissOnboardingNotification", object: self)
+        NSNotificationCenter.defaultCenter().postNotificationName("kDismissOnboardingNotification", object: self)
     }
+    
 }

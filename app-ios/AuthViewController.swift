@@ -70,8 +70,7 @@ class AuthViewController: UIViewController, LTMorphingLabelDelegate  {
         loginButton.backgroundColor = UIColor(rgba: "#0003")
         loginButton.tintColor = UIColor(rgba: "#fff")
         loginButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
-        loginButton.setTitleColor(UIColor(rgba: "#eee"), forState: .Selected)
-        loginButton.setTitleColor(UIColor(rgba: "#eee"), forState: .Focused)
+        loginButton.setTitleColor(UIColor(rgba: "#ddd"), forState: .Highlighted)
         loginButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
         loginButton.setTitle("Log in", forState: .Normal)
         loginButton.layer.cornerRadius = 5
@@ -85,8 +84,7 @@ class AuthViewController: UIViewController, LTMorphingLabelDelegate  {
         signupButton.backgroundColor = UIColor.whiteColor()
         signupButton.setTitle("Sign up", forState: .Normal)
         signupButton.setTitleColor(UIColor.darkGrayColor(), forState: .Normal)
-        signupButton.setTitleColor(UIColor(rgba: "#eee"), forState: .Selected)
-        signupButton.setTitleColor(UIColor(rgba: "#eee"), forState: .Focused)
+        signupButton.setTitleColor(UIColor(rgba: "#aaa"), forState: .Highlighted)
         signupButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
         signupButton.layer.cornerRadius = 5
         signupButton.layer.borderWidth = 2

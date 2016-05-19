@@ -15,7 +15,7 @@ import plaid_ios_sdk
 import TransitionTreasury
 import TransitionAnimation
 
-let merchantID = "merchant.com.argentapp.pay"
+let merchantID = "merchant.com.argentapp.pay.v2"
 var userData:JSON? // init user data, declare globally, needs SwiftyJSON
 
 // Get Local IP address by looking by using ifconfig command at terminal and looking below the 'inet' value
