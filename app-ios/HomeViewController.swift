@@ -187,7 +187,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 
                 if(pendingBalance != 0 && availableBalance != 0) {
                     self.lblAccountPending.countFrom(CGFloat(pendingBalance)/100-600, to: CGFloat(pendingBalance)/100)
-                    self.lblAccountPending.textColor = UIColor.whiteColor()
+                    self.lblAccountPending.textColor = UIColor.slateBlue()
                     self.lblAccountPending.format = "%.2f"
                     self.lblAccountPending.animationDuration = 0.5
                     self.lblAccountPending.method = UILabelCountingMethod.EaseInOut
@@ -197,7 +197,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                     }
     
                     self.lblAccountAvailable.countFrom((CGFloat(Float(availableBalance))/100)-100, to: CGFloat(Float(availableBalance))/100)
-                    self.lblAccountAvailable.textColor = UIColor.whiteColor()
+                    self.lblAccountAvailable.textColor = UIColor.slateBlue()
                     self.lblAccountAvailable.format = "%.2f"
                     self.lblAccountAvailable.animationDuration = 1.0
                     self.lblAccountAvailable.method = UILabelCountingMethod.EaseInOut
@@ -281,25 +281,25 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         bg.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
         bg.layer.masksToBounds = true
         bg.clipsToBounds = true
-        bg.backgroundColor = UIColor.slateBlue()
+        bg.backgroundColor = UIColor.offWhite()
         self.view.addSubview(bg)
         self.view.sendSubviewToBack(bg)
 
         graph.dataSource = self
         graph.colorTop = UIColor.clearColor()
-        graph.colorBottom = UIColor.slateBlue()
+        graph.colorBottom = UIColor.offWhite()
 //        graph.colorLine = UIColor(rgba: "#0003")
-        graph.colorLine = UIColor.brandYellow()
-        graph.colorPoint = UIColor.yellowColor()
+        graph.colorLine = UIColor.brandGreen()
+        graph.colorPoint = UIColor.brandGreen()
         graph.colorBackgroundPopUplabel = UIColor.whiteColor()
         graph.delegate = self
         graph.widthLine = 3
         graph.displayDotsWhileAnimating = true
         graph.enablePopUpReport = true
-        graph.noDataLabelColor = UIColor.whiteColor()
+        graph.noDataLabelColor = UIColor.mediumBlue()
         graph.enableTouchReport = true
         graph.enableBezierCurve = true
-        graph.colorTouchInputLine = UIColor.whiteColor()
+        graph.colorTouchInputLine = UIColor.lightBlue()
         graph.layer.masksToBounds = true
         self.view!.addSubview(graph)
         
@@ -314,7 +314,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         
         navBar.barTintColor = UIColor.clearColor()
         navBar.translucent = true
-        navBar.tintColor = UIColor.whiteColor()
+        navBar.tintColor = UIColor.mediumBlue()
         navBar.backgroundColor = UIColor.clearColor()
         navBar.shadowImage = UIImage()
         navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
@@ -328,9 +328,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         navBar.setItems([navItem], animated: true)
         
         balanceSwitch.backgroundColor = UIColor.clearColor()
-        balanceSwitch.selectedBackgroundColor = UIColor.darkBlue().colorWithAlphaComponent(0.5)
-        balanceSwitch.titleColor = UIColor.whiteColor()
-        balanceSwitch.selectedTitleColor = UIColor.whiteColor()
+        balanceSwitch.selectedBackgroundColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
+        balanceSwitch.titleColor = UIColor.mediumBlue()
+        balanceSwitch.selectedTitleColor = UIColor.mediumBlue()
         balanceSwitch.titleFont = UIFont.systemFontOfSize(12)
         balanceSwitch.frame = CGRect(x: view.bounds.width - 185.0, y: 40, width: 180, height: 35.0)
         //autoresizing so it stays at top right (flexible left and flexible bottom margin)
@@ -345,7 +345,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         headerViewTitle.text = "Transaction History"
         headerViewTitle.font = UIFont(name: "Avenir-Light", size: 16)
         headerViewTitle.textAlignment = .Left
-        headerViewTitle.textColor = UIColor.lightGrayColor()
+        headerViewTitle.textColor = UIColor.mediumBlue()
         headerView.addSubview(headerViewTitle)
         
         let tutorialButton:UIButton = UIButton()
@@ -365,21 +365,21 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         tableView.showsVerticalScrollIndicator = false
         self.view.addSubview(tableView)
         
-        lblAccountAvailable.tintColor = UIColor.whiteColor()
+        lblAccountAvailable.tintColor = UIColor.darkBlue()
         lblAccountAvailable.frame = CGRectMake(20, 81, 200, 40)
         let str0 = NSAttributedString(string: "$0.00", attributes:
             [
                 NSFontAttributeName: UIFont(name: "Avenir-Book", size: 18)!,
-                NSForegroundColorAttributeName:UIColor(rgba: "#fff")
+                NSForegroundColorAttributeName:UIColor.slateBlue()
             ])
         lblAccountAvailable.attributedText = str0
         
-        lblAccountPending.tintColor = UIColor.whiteColor()
+        lblAccountPending.tintColor = UIColor.darkBlue()
         lblAccountPending.frame = CGRectMake(20, 81, 200, 40)
         let str1 = NSAttributedString(string: "$0.00", attributes:
             [
                 NSFontAttributeName: UIFont(name: "Avenir-Book", size: 18)!,
-                NSForegroundColorAttributeName:UIColor(rgba: "#fff")
+                NSForegroundColorAttributeName:UIColor.slateBlue()
             ])
         lblAccountPending.attributedText = str1
         self.addSubviewWithBounce(lblAccountPending)
@@ -388,7 +388,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         let str2 = NSAttributedString(string: "Available Balance", attributes:
             [
                 NSFontAttributeName: UIFont.systemFontOfSize(12),
-                NSForegroundColorAttributeName:UIColor(rgba: "#fffa")
+                NSForegroundColorAttributeName:UIColor.slateBlue().colorWithAlphaComponent(0.5)
             ])
         lblAvailableDescription.attributedText = str2
         // add available label initially
@@ -397,13 +397,13 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         let str3 = NSAttributedString(string: "Pending Balance", attributes:
             [
                 NSFontAttributeName: UIFont.systemFontOfSize(12),
-                NSForegroundColorAttributeName:UIColor(rgba: "#fffa")
+                NSForegroundColorAttributeName:UIColor.slateBlue().colorWithAlphaComponent(0.5)
             ])
         lblPendingDescription.attributedText = str3
         self.addSubviewWithBounce(lblPendingDescription)
         
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
-        loadingView.tintColor = UIColor.brandYellow()
+        loadingView.tintColor = UIColor.slateBlue().colorWithAlphaComponent(0.5)
         tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
                     self?.tableView.dg_stopLoading()
