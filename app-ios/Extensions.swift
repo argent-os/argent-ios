@@ -11,11 +11,11 @@ import Foundation
 extension UISegmentedControl {
     func removeBorders() {
         setTitleTextAttributes(
-            [NSForegroundColorAttributeName : UIColor.slateBlue(),
+            [NSForegroundColorAttributeName : UIColor.slateBlue().colorWithAlphaComponent(0.4),
                 NSFontAttributeName : UIFont(name: "Avenir-Book", size: 12)!],
             forState: .Normal)
         setTitleTextAttributes(
-            [NSForegroundColorAttributeName : UIColor.darkBlue(),
+            [NSForegroundColorAttributeName : UIColor.slateBlue(),
                 NSFontAttributeName : UIFont(name: "Avenir-Light", size: 18)!],
             forState: .Selected)
         setBackgroundImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forState: .Normal, barMetrics: .Default)
