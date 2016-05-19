@@ -14,10 +14,62 @@ class SignupViewControllerZero: UIViewController {
     // WHEN NAVIGATING TO A NAVIGATION CONTROLLER USE SEGUE SHOW NOT MODAL!
     @IBOutlet weak var continueButton: UIButton!
     
+    let backgroundIndividualImageView = UIView()
+    
+    let individualImageView = UIImageView()
+    
+    let individualTitle = UILabel()
+
+    let individualSubtitle = UILabel()
+
+    let backgroundCompanyImageView = UIView()
+
+    let companyImageView = UIImageView()
+
+    let companyTitle = UILabel()
+
+    let companySubtitle = UILabel()
+
+    let pageTitle = UILabel()
+
+    let pageSubtitle = UILabel()
+
+    let backBtn: UIButton = UIButton(type: .Custom)
+
     override func viewDidAppear(animated: Bool) {
         // Clear NSUserDefaults
         let appDomain = NSBundle.mainBundle().bundleIdentifier!
         NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain)
+        
+        Timeout(0.3) {
+            self.addTopSubviewWithBounce(self.individualImageView)
+        }
+        Timeout(0.2) {
+            self.addTopSubviewWithBounce(self.individualTitle)
+        }
+        Timeout(0.1) {
+            self.addTopSubviewWithBounce(self.individualSubtitle)
+        }
+        
+        Timeout(0.1) {
+            self.addBottomSubviewWithBounce(self.companyImageView)
+        }
+        Timeout(0.2) {
+            self.addBottomSubviewWithBounce(self.companyTitle)
+        }
+        Timeout(0.3) {
+            self.addBottomSubviewWithBounce(self.companySubtitle)
+        }
+        
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        individualImageView.removeFromSuperview()
+        individualTitle.removeFromSuperview()
+        individualSubtitle.removeFromSuperview()
+        companyImageView.removeFromSuperview()
+        companyTitle.removeFromSuperview()
+        companySubtitle.removeFromSuperview()
     }
     
     //Changing Status Bar
@@ -46,73 +98,59 @@ class SignupViewControllerZero: UIViewController {
         
         // Individual Section
         
-        let backgroundIndividualImageView = UIView()
         backgroundIndividualImageView.backgroundColor = UIColor.offWhite()
         backgroundIndividualImageView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight/2)
         self.view.addSubview(backgroundIndividualImageView)
-        
-        let individualImageView = UIImageView()
+
         individualImageView.image = UIImage(named: "IconIndividual")
         individualImageView.frame = CGRect(x: backgroundIndividualImageView.frame.width/2-40, y: backgroundIndividualImageView.frame.height/2-60, width: 80, height: 80)
-        backgroundIndividualImageView.addSubview(individualImageView)
         let gestureRecognizerIndividual = UITapGestureRecognizer(target: self, action: #selector(individualSegue(_:)))
         individualImageView.addGestureRecognizer(gestureRecognizerIndividual)
         individualImageView.userInteractionEnabled = true
+
         
-        let individualTitle = UILabel()
         individualTitle.textColor = UIColor.slateBlue()
         individualTitle.textAlignment = .Center
         individualTitle.font = UIFont.systemFontOfSize(18)
         individualTitle.frame = CGRect(x: 0, y: backgroundIndividualImageView.frame.height/2+20, width: screenWidth, height: 40)
         individualTitle.text = "Individual"
-        self.view.addSubview(individualTitle)
         
-        let individualSubtitle = UILabel()
         individualSubtitle.textColor = UIColor.slateBlue().colorWithAlphaComponent(0.5)
         individualSubtitle.textAlignment = .Center
         individualSubtitle.font = UIFont.systemFontOfSize(12)
         individualSubtitle.frame = CGRect(x: 0, y: backgroundIndividualImageView.frame.height/2+50, width: screenWidth, height: 40)
         individualSubtitle.text = "Start sending and receiving payments"
-        self.view.addSubview(individualSubtitle)
 
         
         //// Company Section
         
         
-        let backgroundCompanyImageView = UIView()
         backgroundCompanyImageView.backgroundColor = UIColor.mediumBlue()
         backgroundCompanyImageView.frame = CGRect(x: 0, y: screenHeight/2, width: screenWidth, height: screenHeight/2)
         self.view.addSubview(backgroundCompanyImageView)
         
-        let companyImageView = UIImageView()
         companyImageView.image = UIImage(named: "IconBusinessBuilding")
         companyImageView.center = backgroundCompanyImageView.center
         companyImageView.frame = CGRect(x: backgroundCompanyImageView.frame.width/2-40, y: backgroundCompanyImageView.frame.height/2-60, width: 80, height: 80)
-        backgroundCompanyImageView.addSubview(companyImageView)
         let gestureRecognizerCompany = UITapGestureRecognizer(target: self, action: #selector(companySegue(_:)))
         companyImageView.addGestureRecognizer(gestureRecognizerCompany)
         companyImageView.userInteractionEnabled = true
         
-        let companyTitle = UILabel()
         companyTitle.textColor = UIColor.whiteColor()
         companyTitle.textAlignment = .Center
         companyTitle.font = UIFont.systemFontOfSize(18)
         companyTitle.frame = CGRect(x: 0, y: backgroundCompanyImageView.frame.height/2+20, width: screenWidth, height: 40)
         companyTitle.text = "Company"
-        backgroundCompanyImageView.addSubview(companyTitle)
         
-        let companySubtitle = UILabel()
         companySubtitle.textColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
         companySubtitle.textAlignment = .Center
         companySubtitle.font = UIFont.systemFontOfSize(12)
         companySubtitle.frame = CGRect(x: 0, y: backgroundCompanyImageView.frame.height/2+50, width: screenWidth, height: 40)
         companySubtitle.text = "Higher volume limits enabled"
-        backgroundCompanyImageView.addSubview(companySubtitle)
         
         
         // Page title
         
-        let pageTitle = UILabel()
         pageTitle.frame = CGRect(x: 0, y: 30, width: screenWidth, height: 40)
         pageTitle.textAlignment = .Center
         pageTitle.text = "Let's get started"
@@ -121,7 +159,6 @@ class SignupViewControllerZero: UIViewController {
 //        self.view.addSubview(pageTitle)
 //        self.view.bringSubviewToFront(pageTitle)
         
-        let pageSubtitle = UILabel()
         pageSubtitle.frame = CGRect(x: 0, y: 20, width: screenWidth, height: 40)
         pageSubtitle.textAlignment = .Center
         pageSubtitle.text = "Choose your entity type"
@@ -131,7 +168,6 @@ class SignupViewControllerZero: UIViewController {
         self.view.bringSubviewToFront(pageSubtitle)
         
         // Close button to return to auth view
-        let backBtn: UIButton = UIButton(type: .Custom)
         let backBtnImage: UIImage = UIImage(named: "IconCloseColor")!
         let backBtnImagePressed: UIImage = UIImage(named: "IconClose")!
         backBtn.setBackgroundImage(backBtnImage, forState: .Normal)
@@ -152,6 +188,36 @@ class SignupViewControllerZero: UIViewController {
         
         // Do any additional setup after loading the view, typically from a nib.
         
+    }
+    
+    func addTopSubviewWithBounce(view: UIView) {
+        view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001)
+        self.backgroundIndividualImageView.addSubview(view)
+        UIView.animateWithDuration(0.3 / 1.5, animations: {() -> Void in
+            view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0)
+            }, completion: {(finished: Bool) -> Void in
+                UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
+                    }, completion: {(finished: Bool) -> Void in
+                        UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
+                            view.transform = CGAffineTransformIdentity
+                        })
+                })
+        })
+    }
+    
+    func addBottomSubviewWithBounce(view: UIView) {
+        view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001)
+        self.backgroundCompanyImageView.addSubview(view)
+        UIView.animateWithDuration(0.3 / 1.5, animations: {() -> Void in
+            view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0)
+            }, completion: {(finished: Bool) -> Void in
+                UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
+                    }, completion: {(finished: Bool) -> Void in
+                        UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
+                            view.transform = CGAffineTransformIdentity
+                        })
+                })
+        })
     }
     
     override func viewWillDisappear(animated: Bool) {

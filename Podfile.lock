@@ -21,6 +21,7 @@ PODS:
   - JVFloatLabeledTextField (1.1.0)
   - KeychainSwift (3.0.13)
   - KMPlaceholderTextView (1.2.0)
+  - LTMorphingLabel (0.2.0)
   - Money (1.7.0):
     - ValueCoding
   - MZAppearance (1.1.6)
@@ -73,6 +74,7 @@ DEPENDENCIES:
   - JVFloatLabeledTextField
   - KeychainSwift
   - KMPlaceholderTextView
+  - LTMorphingLabel
   - Money
   - MZFormSheetPresentationController
   - PasscodeLock
@@ -124,6 +126,7 @@ SPEC CHECKSUMS:
   JVFloatLabeledTextField: ea4a3d8387ddd43724c472bb2b8ab39b79af05d4
   KeychainSwift: 3bda518adb1ab386da0a9a1de93b561ee2c9322b
   KMPlaceholderTextView: cae8ee889bd38d20587eee6b2623b8218f31b8f5
+  LTMorphingLabel: 490aa8e079f9247c7f3130f7d4b1be1d66677377
   Money: f46c3c8fcaf7afa35f2ee3edaeba58335fd5b669
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   MZFormSheetPresentationController: 3b9b6d76adc9f81c2defd0bb59e0f3dc2431e41e

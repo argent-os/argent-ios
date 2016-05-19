@@ -52,6 +52,7 @@ target 'app-ios' do
 	pod 'DKCircleButton'
 	pod 'TransitionTreasury'
 	pod 'TransitionAnimation'
+	pod 'LTMorphingLabel'
 	#pod 'DOFavoriteButton'
 
 	post_install do |installer|

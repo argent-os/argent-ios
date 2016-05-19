@@ -6,7 +6,36 @@
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
 //
 
-class AuthViewController: UIViewController  {
+import LTMorphingLabel
+import Foundation
+
+class AuthViewController: UIViewController, LTMorphingLabelDelegate  {
+    
+    private var i = -1
+    private var textArray = [
+        "Welcome to Argent",
+        "Argent'e' hoş geldiniz",
+        "Bienvenue à Argent",
+        "歡迎銀色",
+        "Bienvenidos a Argent",
+        "アージェントすることを歓迎",
+        "Добро пожаловать в Серебряном",
+        "Willkommen in Argent",
+        "은빛에 오신 것을 환영합니다",
+        "Benvenuto a Argent"
+    ]
+    
+    let lbl = LTMorphingLabel(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 100.0))
+    let imageView = UIImageView()
+    
+    private var text: String {
+        i = i >= textArray.count - 1 ? 0 : i + 1
+        return textArray[i]
+    }
+    
+    func changeText(sender: AnyObject) {
+        lbl.text = text
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -68,28 +97,31 @@ class AuthViewController: UIViewController  {
         
         let imageName = "Logo"
         let image = UIImage(named: imageName)
-        let imageView = UIImageView(image: image!)
+        imageView.image = image
         imageView.layer.cornerRadius = 30
         imageView.layer.masksToBounds = true
         imageView.tag = 7577
         imageView.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
         imageView.frame.origin.y = screenHeight*0.14 // 14 down from the top
         imageView.frame.origin.x = (self.view.bounds.size.width - imageView.frame.size.width) / 2.0 // centered left to right.
-        view.addSubview(imageView)
         
         let attributedString = NSMutableAttributedString(string: "Welcome to Argent")
         // Set range of string length to exactly 8, the number of characters
         attributedString.addAttribute(NSFontAttributeName, value: "Avenir-Bold", range: NSRange(location: 0, length: 15)
         )
-        let text = UILabel(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 100.0))
-        text.tag = 7578
-        text.frame.origin.y = screenHeight*0.40 // 20 down from the top
-        text.textAlignment = NSTextAlignment.Center
-        text.textColor = UIColor.whiteColor()
-        text.attributedText = attributedString
-        text.font = UIFont(name: "Avenir-Bold", size: 14)
-        view.addSubview(text)
-        
+        lbl.morphingEffect = .Scale
+        lbl.delegate = self
+        lbl.morphingEnabled = true
+        lbl.text = text
+        lbl.tag = 7578
+        lbl.frame.origin.y = screenHeight*0.40 // 20 down from the top
+        lbl.textAlignment = NSTextAlignment.Center
+        lbl.textColor = UIColor.whiteColor()
+        lbl.font = UIFont(name: "Avenir-Bold", size: 14)
+        view.addSubview(lbl)
+        let lblTimer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: #selector(AuthViewController.changeText(_:)), userInfo: nil, repeats: true)
+
+
         _ = NSMutableAttributedString(string: "Tap to view app features.")
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 100.0))
         button.tag = 7579
@@ -132,7 +164,37 @@ class AuthViewController: UIViewController  {
     }
 
     override func viewDidAppear(animated: Bool) {
-        
+        addSubviewWithBounce(imageView)
     }
 
+    func addSubviewWithBounce(view: UIView) {
+        view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001)
+        self.view.addSubview(view)
+        UIView.animateWithDuration(0.3 / 1.5, animations: {() -> Void in
+            view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0)
+            }, completion: {(finished: Bool) -> Void in
+                UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
+                    }, completion: {(finished: Bool) -> Void in
+                        UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
+                            view.transform = CGAffineTransformIdentity
+                        })
+                })
+        })
+    }
+}
+
+extension AuthViewController {
+    
+    func morphingDidStart(label: LTMorphingLabel) {
+        
+    }
+    
+    func morphingDidComplete(label: LTMorphingLabel) {
+        
+    }
+    
+    func morphingOnProgress(label: LTMorphingLabel, progress: Float) {
+        
+    }
+    
 }

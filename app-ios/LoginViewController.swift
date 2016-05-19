@@ -19,10 +19,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
     
     @IBOutlet weak var loginBox: UIView!
     
+    let imageView = UIImageView()
+
     private let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
 
     override func viewDidAppear(animated: Bool) {
         userData = nil
+        addSubviewWithBounce(imageView)
         NSUserDefaults.standardUserDefaults().setBool(false,forKey:"userLoggedIn");
         NSUserDefaults.standardUserDefaults().synchronize();
     }
@@ -72,15 +75,30 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         view.addGestureRecognizer(tap)
         
         let imageName = "Logo"
-        let image = UIImage(named: imageName)
-        let imageView = UIImageView(image: image!)
+        let image = UIImage(named: "Logo")
+        imageView.image = image
         imageView.layer.cornerRadius = 30
         imageView.layer.masksToBounds = true
         imageView.tag = 42312
         imageView.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
         imageView.frame.origin.y = screenHeight*0.10 // 10% down from the top
         imageView.frame.origin.x = (self.view.bounds.size.width - imageView.frame.size.width) / 2.0 // centered left to right.
-        view.addSubview(imageView)
+    }
+    
+    func addSubviewWithBounce(view: UIView) {
+        // view.transform = CGAffineTransformMakeTranslation(self.view.frame.origin.x,self.view.frame.origin.y - self.view.frame.size.height * 0.2)
+        view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001)
+        self.view.addSubview(view)
+        UIView.animateWithDuration(0.3 / 1.5, animations: {() -> Void in
+            view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0)
+            }, completion: {(finished: Bool) -> Void in
+                UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
+                    }, completion: {(finished: Bool) -> Void in
+                        UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
+                            view.transform = CGAffineTransformIdentity
+                        })
+                })
+        })
     }
     
     //Calls this function when the tap is recognized.

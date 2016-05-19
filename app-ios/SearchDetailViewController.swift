@@ -102,7 +102,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             self.view.layer.addSublayer(containerLayer)
             
             let chatBubble = UIImageView(image: UIImage(named: "IconChat"), highlightedImage: .None)
-            chatBubble.alpha = 0.5
+            chatBubble.alpha = 0.2
             chatBubble.frame = CGRect(x: width/2-70, y: 320, width: 50, height: 50)
             self.view.addSubview(chatBubble)
             self.view.bringSubviewToFront(chatBubble)
@@ -111,7 +111,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             chatBubble.userInteractionEnabled = true
             
             let emailIcon = UIImageView(image: UIImage(named: "IconEmail"), highlightedImage: .None)
-            emailIcon.alpha = 0.5
+            emailIcon.alpha = 0.2
             emailIcon.frame = CGRect(x: width/2+20, y: 320, width: 50, height: 50)
             self.view.addSubview(emailIcon)
             self.view.bringSubviewToFront(emailIcon)

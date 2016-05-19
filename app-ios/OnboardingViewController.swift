@@ -151,6 +151,7 @@ extension OnboardingViewController : UIScrollViewDelegate {
                 let alpha = (1 - (self.onboardingCollectionView.contentOffset.x - min) / (max - min));
                 self.onboardingPageControl.alpha = alpha
                 self.onboardingSkipButton.alpha = alpha
+                self.onboardingSkipButton.frame = CGRect(x: -20, y: 20, width: 100, height: 100)
             }
         }
     }

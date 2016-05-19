@@ -330,7 +330,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         balanceSwitch.backgroundColor = UIColor.clearColor()
         balanceSwitch.selectedBackgroundColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
         balanceSwitch.titleColor = UIColor.mediumBlue()
-        balanceSwitch.selectedTitleColor = UIColor.mediumBlue()
+        balanceSwitch.selectedTitleColor = UIColor.whiteColor()
         balanceSwitch.titleFont = UIFont.systemFontOfSize(12)
         balanceSwitch.frame = CGRect(x: view.bounds.width - 185.0, y: 40, width: 180, height: 35.0)
         //autoresizing so it stays at top right (flexible left and flexible bottom margin)
