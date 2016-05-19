@@ -23,6 +23,8 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
     
     var tr_pushTransition: TRNavgationTransitionDelegate?
 
+    weak var modalDelegate: ModalViewControllerDelegate?
+
     @IBOutlet weak var emailLabel: UILabel!
     
     @IBOutlet weak var usernameLabel: UILabel!
@@ -176,7 +178,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             
             
             let payButton = UIButton(frame: CGRect(x: 50, y: cardView.layer.frame.height+70,  width: self.view.layer.frame.width-100, height: 50.0))
-            payButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.9), forState: .Normal)
+            payButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(1), forState: .Normal)
             payButton.titleLabel?.font = UIFont(name: "Avenir-Light", size: 16)
             if detailUser.first_name != "" {
                 payButton.setTitle("Pay " + detailUser.first_name, forState: .Normal)
@@ -185,7 +187,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             }
             payButton.layer.cornerRadius = 10
             payButton.layer.borderColor = UIColor.mediumBlue().CGColor
-            payButton.layer.borderWidth = 1
+            payButton.layer.borderWidth = 0
             payButton.backgroundColor = UIColor.lightBlue()
             payButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
             payButton.addTarget(self, action: #selector(SearchDetailViewController.payMerchantModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
@@ -213,6 +215,9 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
     
     override func viewDidAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = false
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
     }
     
     override func didReceiveMemoryWarning() {

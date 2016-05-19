@@ -37,7 +37,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
     private func setupNav() {
         let navigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 60)) // Offset by 20 pixels vertically to take the status bar into account
         
-        navigationBar.backgroundColor = UIColor.brandGreen()
+        navigationBar.backgroundColor = UIColor.lightBlue()
         navigationBar.tintColor = UIColor.whiteColor()
         navigationBar.delegate = self
         
@@ -99,7 +99,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         
         // UI
         let addPlanButton = UIButton(frame: CGRect(x: 20, y: screenHeight-80, width: screenWidth-40, height: 60.0))
-        addPlanButton.backgroundColor = UIColor.brandGreen()
+        addPlanButton.backgroundColor = UIColor.lightBlue()
         addPlanButton.tintColor = UIColor(rgba: "#fff")
         addPlanButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
         addPlanButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
@@ -119,7 +119,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         amountInputView.textColor = UIColor.whiteColor()
         amountInputView.placeholder = "$0.00"
         amountInputView.keyboardType = UIKeyboardType.NumberPad
-        amountInputView.backgroundColor = UIColor.brandGreen()
+        amountInputView.backgroundColor = UIColor.lightBlue()
         self.view.addSubview(amountInputView)
         amountInputView.becomeFirstResponder()
         
@@ -128,7 +128,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         perIntervalLabel.font = UIFont(name: "DINAlternate-Bold", size: 16)
         perIntervalLabel.textColor = UIColor.whiteColor()
         perIntervalLabel.text = ""
-        perIntervalLabel.backgroundColor = UIColor.brandGreen()
+        perIntervalLabel.backgroundColor = UIColor.lightBlue()
         self.view.addSubview(perIntervalLabel)
         
         self.navigationItem.title = "Add Plan"

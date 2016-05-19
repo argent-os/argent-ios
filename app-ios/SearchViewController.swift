@@ -109,8 +109,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidAppear(animated: Bool) {
         // Set nav back button white
-        searchController.searchBar.becomeFirstResponder()
         self.searchController.searchBar.hidden = false
+        
+        if searchController.searchBar.text != "" {
+            searchController.searchBar.becomeFirstResponder()
+        }
+        
         UIStatusBarStyle.LightContent
     }
     
@@ -366,7 +370,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         })
         
         // Reload the tableview.
-        tblSearchResults.reloadData()
+        // tblSearchResults.reloadData()
     }
     
     // Refresh

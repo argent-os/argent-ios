@@ -22,9 +22,9 @@ class MenuViewController: UIViewController, CircleMenuDelegate {
     
     let colors = [UIColor.redColor(), UIColor.grayColor(), UIColor.greenColor(), UIColor.purpleColor()]
     let items: [(icon: String, color: UIColor)] = [
-        ("IconCards", UIColor.brandYellow()),
-        ("IconRepeat", UIColor.brandYellow()),
-        ("IconContactBook", UIColor.brandYellow()),
+        ("IconCardsWhite", UIColor.lightBlue()),
+        ("IconRepeatWhite", UIColor.lightBlue()),
+        ("IconMailWhite", UIColor.lightBlue()),
         // ("ic_coinbag_light", UIColor.whiteColor()),
         // ("ic_link_light", UIColor.whiteColor()),
         // ("ic_paper_light", UIColor.whiteColor()),
@@ -60,7 +60,7 @@ class MenuViewController: UIViewController, CircleMenuDelegate {
         let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
         visualEffectView.frame = CGRectMake(0, 0, screenWidth, screenHeight)
         let backgroundImageView = UIImageView(image: UIImage(), highlightedImage: nil)
-        backgroundImageView.backgroundColor = UIColor.mediumBlue()
+        backgroundImageView.backgroundColor = UIColor.offWhite()
         backgroundImageView.frame = CGRectMake(0, 0, screenWidth, screenHeight)
         backgroundImageView.contentMode = .ScaleAspectFill
         backgroundImageView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
@@ -72,7 +72,7 @@ class MenuViewController: UIViewController, CircleMenuDelegate {
         self.view.addSubview(backgroundImageView)
         
         // circleMenuButton.backgroundColor = UIColor.clearColor()
-        circleMenuButton.backgroundColor = UIColor.darkBlue()
+        circleMenuButton.backgroundColor = UIColor.lightBlue()
         circleMenuButton.delegate = self
         circleMenuButton.center = self.view.center
         circleMenuButton.layer.cornerRadius = circleMenuButton.frame.size.width / 2.0
@@ -125,7 +125,7 @@ class MenuViewController: UIViewController, CircleMenuDelegate {
 
     func circleMenu(circleMenu: CircleMenu, willDisplay circleMenuButton: CircleMenuButton, atIndex: Int) {
         // circleMenuButton.backgroundColor = items[atIndex].color
-        circleMenuButton.backgroundColor = UIColor.brandYellow()
+        circleMenuButton.backgroundColor = UIColor.lightBlue()
         circleMenuButton.layer.borderColor = UIColor(rgba: "#3333").CGColor
         circleMenuButton.layer.borderWidth = 1
         circleMenuButton.setImage(UIImage(imageLiteral: items[atIndex].icon), forState: .Normal)
