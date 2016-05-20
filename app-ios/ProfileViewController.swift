@@ -9,16 +9,21 @@
 import Foundation
 import UIKit
 import JGProgressHUD
+import FXBlurView
 
 class ProfileViewController: UIViewController {
-    
-    private var customersCountLabel:UILabel = UILabel()
-    
-    private var plansCountLabel:UILabel = UILabel()
     
     private var customersArray = [Customer]()
     
     private var plansArray = [Plan]()
+    
+    private var customersCountLabel = UILabel()
+
+    private var customersTitleLabel = UILabel()
+
+    private var plansCountLabel = UILabel()
+
+    private var plansTitleLabel = UILabel()
     
     private let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 15, width: UIScreen.mainScreen().bounds.size.width, height: 50))
 
@@ -53,15 +58,7 @@ class ProfileViewController: UIViewController {
         view.addGestureRecognizer(gesture)
 
         self.view.backgroundColor = UIColor.slateBlue()
-        
-        navBar.translucent = true
-        navBar.tintColor = UIColor.whiteColor()
-        navBar.shadowImage = UIImage()
-        navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
-        navBar.titleTextAttributes = [
-            NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "Avenir-Light", size: 18)!
-        ]
+
         self.view.addSubview(navBar)
         self.view.sendSubviewToBack(navBar)
         let navItem = UINavigationItem(title: "")
@@ -74,7 +71,7 @@ class ProfileViewController: UIViewController {
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "Avenir-Light", size: 12.0)!
+            NSFontAttributeName : UIFont(name: "Avenir-Light", size: 14.0)!
         ]
         
         User.getProfile({ (item, error) in
@@ -105,55 +102,51 @@ class ProfileViewController: UIViewController {
             // self.view.addSubview(settingsIcon)
             // self.view.bringSubviewToFront(settingsIcon)
             
-            let customersCountLabel = UILabel(frame: CGRectMake(30, 20, 75, 70))
-            customersCountLabel.textAlignment = NSTextAlignment.Center
-            customersCountLabel.font = UIFont(name: "Avenir-Book", size: 18)
-            customersCountLabel.numberOfLines = 0
-            customersCountLabel.textColor = UIColor(rgba: "#fffa")
-            customersCountLabel.text = "0"
-            self.view.addSubview(customersCountLabel)
-            self.view.bringSubviewToFront(customersCountLabel)
+            self.customersCountLabel.frame = CGRectMake(30, 20, 75, 70)
+            self.customersCountLabel.textAlignment = NSTextAlignment.Center
+            self.customersCountLabel.font = UIFont(name: "Avenir-Book", size: 18)
+            self.customersCountLabel.numberOfLines = 0
+            self.customersCountLabel.textColor = UIColor(rgba: "#fffa")
+            self.customersCountLabel.text = "0"
+//            self.view.addSubview(self.customersCountLabel)
             
-            let customersTitleLabel = UILabel(frame: CGRectMake(30, 40, 75, 70))
-            customersTitleLabel.textAlignment = NSTextAlignment.Center
-            customersTitleLabel.font = UIFont(name: "Avenir-Light", size: 10)
-            customersTitleLabel.numberOfLines = 0
-            customersTitleLabel.textColor = UIColor(rgba: "#fffc")
-            customersTitleLabel.text = "Customers"
-            self.view.addSubview(customersTitleLabel)
-            self.view.bringSubviewToFront(customersTitleLabel)
+            self.customersTitleLabel.frame = CGRectMake(30, 40, 75, 70)
+            self.customersTitleLabel.textAlignment = NSTextAlignment.Center
+            self.customersTitleLabel.font = UIFont(name: "Avenir-Light", size: 10)
+            self.customersTitleLabel.numberOfLines = 0
+            self.customersTitleLabel.textColor = UIColor(rgba: "#fffc")
+            self.customersTitleLabel.text = "Customers"
+//            self.view.addSubview(self.customersTitleLabel)
             
-            let plansCountLabel = UILabel(frame: CGRectMake(screenWidth-110, 20, 75, 70))
-            plansCountLabel.textAlignment = NSTextAlignment.Center
-            plansCountLabel.font = UIFont(name: "Avenir-Book", size: 18)
-            plansCountLabel.numberOfLines = 0
-            plansCountLabel.text = "0"
-            plansCountLabel.textColor = UIColor(rgba: "#fffa")
-            self.view.addSubview(plansCountLabel)
-            self.view.bringSubviewToFront(plansCountLabel)
+            self.plansCountLabel.frame = CGRectMake(screenWidth-110, 20, 75, 70)
+            self.plansCountLabel.textAlignment = NSTextAlignment.Center
+            self.plansCountLabel.font = UIFont(name: "Avenir-Book", size: 18)
+            self.plansCountLabel.numberOfLines = 0
+            self.plansCountLabel.text = "0"
+            self.plansCountLabel.textColor = UIColor(rgba: "#fffa")
+//            self.view.addSubview(self.plansCountLabel)
             
-            let plansTitleLabel = UILabel(frame: CGRectMake(screenWidth-110, 40, 75, 70))
-            plansTitleLabel.textAlignment = NSTextAlignment.Center
-            plansTitleLabel.font = UIFont(name: "Avenir-Light", size: 10)
-            plansTitleLabel.numberOfLines = 0
-            plansTitleLabel.textColor = UIColor(rgba: "#fffc")
-            plansTitleLabel.text = "Plans"
-            self.view.addSubview(plansTitleLabel)
-            self.view.bringSubviewToFront(plansTitleLabel)
+            self.plansTitleLabel.frame = CGRectMake(screenWidth-110, 40, 75, 70)
+            self.plansTitleLabel.textAlignment = NSTextAlignment.Center
+            self.plansTitleLabel.font = UIFont(name: "Avenir-Light", size: 10)
+            self.plansTitleLabel.numberOfLines = 0
+            self.plansTitleLabel.textColor = UIColor(rgba: "#fffc")
+            self.plansTitleLabel.text = "Plans"
+//            self.view.addSubview(self.plansTitleLabel)
             
             self.loadCustomerList { (customers: [Customer]?, NSError) in
                 if(customers!.count < 2 && customers!.count > 0) {
-                    customersCountLabel.text = String(customers!.count)
+                    self.customersCountLabel.text = String(customers!.count)
                 } else {
-                    customersCountLabel.text = String(customers!.count)
+                    self.customersCountLabel.text = String(customers!.count)
                 }
             }
             
             self.loadPlanList { (plans: [Plan]?, NSError) in
                 if(plans!.count < 2 && plans!.count > 0) {
-                    plansCountLabel.text = String(plans!.count)
+                    self.plansCountLabel.text = String(plans!.count)
                 } else {
-                    plansCountLabel.text = String(plans!.count)
+                    self.plansCountLabel.text = String(plans!.count)
                 }
             }
             
@@ -183,7 +176,6 @@ class ProfileViewController: UIViewController {
             completionHandler(plans!, error)
         })
     }
-
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.Default
@@ -197,6 +189,5 @@ class ProfileViewController: UIViewController {
     func goToEdit(sender: AnyObject) {
         self.performSegueWithIdentifier("editProfileView", sender: sender)
     }
-    
     
 }

@@ -53,6 +53,7 @@ target 'app-ios' do
 	pod 'TransitionTreasury'
 	pod 'TransitionAnimation'
 	pod 'LTMorphingLabel'
+	pod 'FXBlurView'
 	#pod 'DOFavoriteButton'
 
 	post_install do |installer|

@@ -66,20 +66,22 @@ class User {
         }
     }
     
-    class func editProfile(completionHandler: (User?, NSError?) -> Void) {
+    class func saveProfile(dic: Dictionary<String, AnyObject>, completionHandler: (User?, Bool, NSError?) -> Void) {
         // request to api to get account data as json, put in list and table
         // curl -X PUT -i -H "Content-Type: application/json" -d '{"access_token": ""}' http://192.168.1.232:5001/v1/profile
         
-        let parameters : [String : AnyObject] = [:]
+        let parameters : [String : AnyObject] = dic
         
         let headers = [
             "Authorization": "Bearer " + (userAccessToken as! String),
-            "Content-Type": "application/x-www-form-urlencoded"
+            "Content-Type": "application/json"
         ]
         
         let endpoint = apiUrl + "/v1/profile"
         
-        Alamofire.request(.POST, endpoint, parameters: parameters, encoding: .URL, headers: headers)
+        print(parameters)
+        
+        Alamofire.request(.PUT, endpoint, parameters: parameters, encoding: .JSON, headers: headers)
             .responseJSON { response in
                 switch response.result {
                 case .Success:
@@ -94,7 +96,7 @@ class User {
                         let picture = profile["picture"]["secure_url"].stringValue
                         let plaid_access_token = profile["plaid"]["access_token"].stringValue
                         let item = User(id: id, username: username, email: email, first_name: first_name, last_name: last_name, picture: picture, plaid_access_token: plaid_access_token)
-                        completionHandler(item, response.result.error)
+                        completionHandler(item, true, response.result.error)
                     }
                 case .Failure(let error):
                     print(error)

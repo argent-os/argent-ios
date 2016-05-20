@@ -8,8 +8,11 @@
 
 import UIKit
 import Former
+import JSSAlertView
 
-final class EditProfileViewController: FormViewController {
+final class EditProfileViewController: FormViewController, UINavigationBarDelegate {
+    
+    var dic: Dictionary<String, String> = [:]
     
     // MARK: Public
     
@@ -45,36 +48,46 @@ final class EditProfileViewController: FormViewController {
                 $0.placeholder = "For transfer volumes of $20,000+"
                 $0.text = Profile.sharedInstance.ssn
             }.onTextChanged {
+                self.dic["legal_entity_ssn_last_4"] = $0
                 Profile.sharedInstance.ssn = $0
         }
         let businessName = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
             $0.titleLabel.text = "Business Name"
+            $0.textField.autocorrectionType = .No
+            $0.textField.autocapitalizationType = .Words
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
                 $0.rowHeight = 60
                 $0.placeholder = ""
                 $0.text = Profile.sharedInstance.businessName
             }.onTextChanged {
+                self.dic["legal_entity_business_name"] = $0
                 Profile.sharedInstance.businessName = $0
         }
         let businessAddressRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
             $0.titleLabel.text = "Address"
+            $0.textField.autocorrectionType = .No
+            $0.textField.autocapitalizationType = .Words
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
                 $0.rowHeight = 60
                 $0.placeholder = ""
                 $0.text = Profile.sharedInstance.businessAddressLine1
             }.onTextChanged {
+
                 Profile.sharedInstance.businessAddressLine1 = $0
         }
         let businessAddressCountryRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
             $0.titleLabel.text = "Country"
+            $0.textField.autocorrectionType = .No
+            $0.textField.autocapitalizationType = .Words
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
                 $0.rowHeight = 60
                 $0.placeholder = ""
                 $0.text = Profile.sharedInstance.businessAddressCountry
             }.onTextChanged {
+                self.dic["legal_entity_address_country"] = $0
                 Profile.sharedInstance.businessAddressCountry = $0
         }
         let businessAddressZipRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
@@ -85,16 +98,20 @@ final class EditProfileViewController: FormViewController {
                 $0.placeholder = ""
                 $0.text = Profile.sharedInstance.businessAddressZip
             }.onTextChanged {
+                self.dic["legal_entity_address_postal_code"] = $0
                 Profile.sharedInstance.businessAddressZip = $0
         }
         let businessAddressCityRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
             $0.titleLabel.text = "City"
+            $0.textField.autocorrectionType = .No
+            $0.textField.autocapitalizationType = .Words
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
                 $0.rowHeight = 60
                 $0.placeholder = ""
                 $0.text = Profile.sharedInstance.businessAddressCity
             }.onTextChanged {
+                self.dic["legal_entity_address_city"] = $0
                 Profile.sharedInstance.businessAddressCity = $0
         }
         let businessAddressStateRow = InlinePickerRowFormer<CustomLabelCell, String>(instantiateType: .Nib(nibName: "CustomLabelCell")) {
@@ -111,6 +128,7 @@ final class EditProfileViewController: FormViewController {
                     $0.selectedRow = businessStates.indexOf(businessState) ?? 0
                 }
             }.onValueChanged {
+                self.dic["legal_entity_address_state"] = $0.title
                 Profile.sharedInstance.businessAddressState = $0.title
         }
         let businessTypeRow = InlinePickerRowFormer<CustomLabelCell, String>(instantiateType: .Nib(nibName: "CustomLabelCell")) {
@@ -127,57 +145,80 @@ final class EditProfileViewController: FormViewController {
                     $0.selectedRow = businessTypes.indexOf(businessType) ?? 0
                 }
             }.onValueChanged {
+                self.dic["legal_entity_type"] = $0.title
                 Profile.sharedInstance.businessType = $0.title
         }
         return SectionFormer(rowFormer: businessName, businessAddressRow, businessAddressCountryRow, businessAddressZipRow, businessAddressCityRow, businessAddressStateRow, businessTypeRow, ssnRow)
     }()
     
+    func save(sender: AnyObject) {
+        // print(dic)
+        User.saveProfile(dic) { (user, bool, err) in
+            if bool == true {
+                self.showSuccessAlert("Profile Saved")
+            } else {
+                self.showErrorAlert((err?.localizedDescription)!)
+            }
+        }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.0)
+    }
+    
     private func configure() {
-        tableView.frame = CGRect(x: 0, y: 80, width: self.view.bounds.width, height: self.view.bounds.height-80)
-        tableView.contentInset.top = 0
-        tableView.contentInset.bottom = 40
-        tableView.contentOffset.y = 20
-        tableView.backgroundColor = UIColor.whiteColor()
-
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         
-        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 65))
-        navBar.barTintColor = UIColor.mediumBlue()
-        navBar.tintColor = UIColor.darkGrayColor()
-        navBar.translucent = false
-        navBar.titleTextAttributes = [
-            NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "Avenir-Light", size: 18)!
-        ]
-        self.view.addSubview(navBar);
-        let navItem = UINavigationItem(title: "Edit Profile");
-        navBar.setItems([navItem], animated: false);
+        tableView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height-80)
+        tableView.contentInset.top = 0
+        tableView.contentInset.bottom = 60
+        tableView.contentOffset.y = 0
+        tableView.backgroundColor = UIColor(rgba: "#efeff4")
+        
+        title = "Edit Profile"
+        
+        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 60)
+        self.navigationController?.navigationBar.backgroundColor = UIColor.slateBlue()
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
+        
+        let saveButton : UIBarButtonItem = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(EditProfileViewController.save(_:)))
+        
+        self.navigationItem.rightBarButtonItem = saveButton
         
         // Create RowFomers
         
         let firstNameRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
             $0.titleLabel.text = "First Name"
+            $0.textField.autocorrectionType = .No
+            $0.textField.autocapitalizationType = .Words
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
                 $0.rowHeight = 60
                 $0.placeholder = ""
                 $0.text = Profile.sharedInstance.firstName
             }.onTextChanged {
+                self.dic["first_name"] = $0
                 Profile.sharedInstance.firstName = $0
         }
         let lastNameRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
             $0.titleLabel.text = "Last Name"
+            $0.textField.autocorrectionType = .No
+            $0.textField.autocapitalizationType = .Words
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
                 $0.rowHeight = 60
                 $0.placeholder = ""
                 $0.text = Profile.sharedInstance.lastName
             }.onTextChanged {
+                self.dic["last_name"] = $0
                 Profile.sharedInstance.lastName = $0
         }
         let usernameRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
             $0.titleLabel.text = "Username"
+            $0.textField.autocorrectionType = .No
+            $0.textField.autocapitalizationType = .None
             $0.textField.autocapitalizationType = UITextAutocapitalizationType.None
             $0.textField.autocorrectionType = UITextAutocorrectionType.No
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
@@ -186,17 +227,21 @@ final class EditProfileViewController: FormViewController {
                 $0.placeholder = ""
                 $0.text = Profile.sharedInstance.username
             }.onTextChanged {
+                self.dic["username"] = $0
                 Profile.sharedInstance.username = $0
         }
         let emailRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
             $0.titleLabel.text = "Email"
             $0.textField.keyboardType = .EmailAddress
+            $0.textField.autocorrectionType = .No
+            $0.textField.autocapitalizationType = .None
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
                 $0.rowHeight = 60
                 $0.placeholder = ""
                 $0.text = Profile.sharedInstance.email
             }.onTextChanged {
+                self.dic["email"] = $0
                 Profile.sharedInstance.email = $0
         }
         let phoneRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
@@ -208,6 +253,7 @@ final class EditProfileViewController: FormViewController {
                 $0.placeholder = ""
                 $0.text = Profile.sharedInstance.phoneNumber
             }.onTextChanged {
+                self.dic["phone_number"] = $0
                 Profile.sharedInstance.phoneNumber = $0
         }
         let birthdayRow = InlineDatePickerRowFormer<CustomLabelCell>(instantiateType: .Nib(nibName: "CustomLabelCell")) {
@@ -219,6 +265,7 @@ final class EditProfileViewController: FormViewController {
                 $0.tintColor = UIColor.darkGrayColor()
                 $0.datePicker.datePickerMode = .Date
             }.onDateChanged {
+                self.dic["birthday"] = String($0.timeIntervalSince1970)
                 Profile.sharedInstance.birthDay = $0
         }
         let bioRow = TextViewRowFormer<FormTextViewCell>() { [weak self] in
@@ -230,6 +277,7 @@ final class EditProfileViewController: FormViewController {
                 $0.placeholder = "Add your individual or company bio"
                 $0.text = Profile.sharedInstance.introduction
             }.onTextChanged {
+                self.dic["bio"] = $0
                 Profile.sharedInstance.introduction = $0
         }
         let moreRow = SwitchRowFormer<FormSwitchCell>() {
@@ -290,6 +338,35 @@ final class EditProfileViewController: FormViewController {
             former.removeUpdate(sectionFormer: informationSection, rowAnimation: .Top)
         }
     }
+    
+    private func showSuccessAlert(msg: String) {
+        let customIcon:UIImage = UIImage(named: "ic_check_light")! // your custom icon UIImage
+        let customColor:UIColor = UIColor.mediumBlue() // base color for the alert
+        let alertView = JSSAlertView().show(
+            self,
+            title: "",
+            text: msg,
+            buttonText: "Ok",
+            noButtons: false,
+            color: customColor,
+            iconImage: customIcon)
+        alertView.setTextTheme(.Light) // can be .Light or .Dark
+    }
+    
+    private func showErrorAlert(msg: String) {
+        let customIcon:UIImage = UIImage(named: "ic_close_light")! // your custom icon UIImage
+        let customColor:UIColor = UIColor.brandRed() // base color for the alert
+        let alertView = JSSAlertView().show(
+            self,
+            title: "",
+            text: msg,
+            buttonText: "Ok",
+            noButtons: false,
+            color: customColor,
+            iconImage: customIcon)
+        alertView.setTextTheme(.Light) // can be .Light or .Dark
+    }
+    
 }
 
 extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

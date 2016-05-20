@@ -10,9 +10,16 @@ import Foundation
 import SafariServices
 import DGElasticPullToRefresh
 
+let offset_HeaderStop:CGFloat = 40.0 // At this offset the Header stops its transformations
+let distance_W_LabelHeader:CGFloat = 30.0 // The distance between the top of the screen and the top of the White Label
+
 class ProfileMenuViewController: UITableViewController {
     
     @IBOutlet weak var shareCell: UITableViewCell!
+
+    private var userImageView: UIImageView = UIImageView()
+
+    private var scrollView: UIScrollView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,9 +30,12 @@ class ProfileMenuViewController: UITableViewController {
         
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
-
+        
+        self.view.bringSubviewToFront(tableView)
         self.tableView.tableHeaderView = ParallaxHeaderView.init(frame: CGRectMake(0, 100, CGRectGetWidth(self.view.bounds), 100));
         
+        userImageView.frame = CGRectMake(screenWidth / 2, -140, 54, 54)
+
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.frame = CGRect(x: 0, y: 100, width: screenWidth, height: 100)
         loadingView.tintColor = UIColor.whiteColor().colorWithAlphaComponent(0.8)
@@ -43,13 +53,7 @@ class ProfileMenuViewController: UITableViewController {
         // Add action to share cell to return to activity menu
         shareCell.targetForAction(Selector("share:"), withSender: self)
     }
-    
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
-        let headerView = self.tableView.tableHeaderView as! ParallaxHeaderView
-        headerView.scrollViewDidScroll(scrollView)
-    }
-    
-    
+
     override func viewDidAppear(animated: Bool) {
         UIStatusBarStyle.Default
     }
@@ -111,14 +115,13 @@ class ProfileMenuViewController: UITableViewController {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         
-        let userImageView: UIImageView = UIImageView(frame: CGRectMake(screenWidth / 2, 0, 90, 90))
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(ProfileMenuViewController.goToEditPicture(_:)))
         userImageView.userInteractionEnabled = true
         userImageView.addGestureRecognizer(tapGestureRecognizer)
         userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
         userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 120)
         userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
-        userImageView.layer.cornerRadius = userImageView.frame.size.height/2
+        userImageView.layer.cornerRadius = 10
         userImageView.layer.masksToBounds = true
         userImageView.clipsToBounds = true
         userImageView.layer.borderWidth = 3
@@ -126,20 +129,19 @@ class ProfileMenuViewController: UITableViewController {
         
         User.getProfile({ (user, error) in
             
-            if error != nil
-            {
+            if error != nil {
                 let alert = UIAlertController(title: "Error", message: "Could not load profile \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
             if user!.picture != "" {
                 let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user!.picture))!)!)!
-                userImageView.image = img
-                self.addSubviewWithBounce(userImageView)
+                self.userImageView.image = img
+                self.addSubviewWithBounce(self.userImageView)
             } else {
                 let img = UIImage(named: "IconCamera")
-                userImageView.image = img
-                self.addSubviewWithBounce(userImageView)
+                self.userImageView.image = img
+                self.addSubviewWithBounce(self.userImageView)
             }
         })
     }
@@ -148,4 +150,22 @@ class ProfileMenuViewController: UITableViewController {
         self.performSegueWithIdentifier("profilePictureView", sender: sender)
     }
     
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        let headerView = self.tableView.tableHeaderView as! ParallaxHeaderView
+        headerView.scrollViewDidScroll(scrollView)
+        
+        let offsetY = scrollView.contentOffset.y
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        
+        if offsetY == 0 {
+            userImageView.frame.size.height = 54
+            userImageView.frame.size.width = 54
+        } else if offsetY < 0 {
+            userImageView.frame = CGRect(x: screenWidth/2-(-offsetY+54)/2, y: 90, width: -offsetY+54, height: -offsetY+54)
+        } else if self.tableView.contentOffset.y > 0 {
+
+        }
+    }
 }
