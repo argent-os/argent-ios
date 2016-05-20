@@ -67,8 +67,8 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
         
         // Check for iPhone 4 size screen
         if(screenHeight < 500) {
-            flagImg.frame = CGRect(x: screenWidth/2-15, y: screenHeight*0.11, width: 30, height: 30)
-            codeLabel.frame = CGRect(x: 0, y: screenHeight*0.19, width: screenWidth, height: 50)
+            flagImg.frame = CGRect(x: screenWidth/2-15, y: screenHeight*0.15, width: 30, height: 30)
+            codeLabel.frame = CGRect(x: 0, y: screenHeight*0.22, width: screenWidth, height: 50)
         } else {
             flagImg.frame = CGRect(x: screenWidth/2-15, y: screenHeight*0.22, width: 30, height: 40)
             codeLabel.frame = CGRect(x: 0, y: screenHeight*0.28, width: screenWidth, height: 50)
@@ -169,8 +169,8 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
         
         // Check for iPhone 4 size screen
         if(screenHeight < 500) {
-            flagImg.frame = CGRect(x: screenWidth/2-15, y: screenHeight*0.11, width: 30, height: 30)
-            codeLabel.frame = CGRect(x: 0, y: screenHeight*0.19, width: screenWidth, height: 50)
+            flagImg.frame = CGRect(x: screenWidth/2-15, y: screenHeight*0.15, width: 30, height: 30)
+            codeLabel.frame = CGRect(x: 0, y: screenHeight*0.22, width: screenWidth, height: 50)
         } else {
             flagImg.frame = CGRect(x: screenWidth/2-15, y: screenHeight*0.22, width: 30, height: 30)
             codeLabel.frame = CGRect(x: 0, y: screenHeight*0.28, width: screenWidth, height: 50)

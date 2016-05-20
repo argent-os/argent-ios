@@ -59,10 +59,10 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
         }
         
         let screen = UIScreen.mainScreen().bounds
-        let width = screen.size.width
-        let height = screen.size.height
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
         
-        let imageBackground = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height))
+        let imageBackground = UIImageView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight))
         imageBackground.backgroundColor = UIColor.offWhite()
         imageBackground.contentMode = .ScaleToFill
         self.view.addSubview(imageBackground)
@@ -78,7 +78,8 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
                 emailLabel.text = detailUser.email
             }
             
-            let cardView: UIImageView = UIImageView(frame: CGRectMake(35, 90, width-70, height*0.6))
+            let cardView: UIImageView = UIImageView()
+            cardView.frame = CGRectMake(35, 90, screenWidth-70, screenHeight*0.6)
             cardView.contentMode = .ScaleToFill
             cardView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
             cardView.layer.masksToBounds = true
@@ -103,7 +104,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             
             let chatBubble = UIImageView(image: UIImage(named: "IconChat"), highlightedImage: .None)
             chatBubble.alpha = 0.2
-            chatBubble.frame = CGRect(x: width/2-70, y: 320, width: 50, height: 50)
+            chatBubble.frame = CGRect(x: screenWidth/2-70, y: 320, width: 50, height: 50)
             self.view.addSubview(chatBubble)
             self.view.bringSubviewToFront(chatBubble)
             let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(sendSMSButtonTapped(_:)))
@@ -112,20 +113,22 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             
             let emailIcon = UIImageView(image: UIImage(named: "IconEmail"), highlightedImage: .None)
             emailIcon.alpha = 0.2
-            emailIcon.frame = CGRect(x: width/2+20, y: 320, width: 50, height: 50)
+            emailIcon.frame = CGRect(x: screenWidth/2+20, y: 320, width: 50, height: 50)
             self.view.addSubview(emailIcon)
             self.view.bringSubviewToFront(emailIcon)
             let gestureRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(sendEmailButtonTapped(_:)))
             emailIcon.addGestureRecognizer(gestureRecognizer2)
             emailIcon.userInteractionEnabled = true
             
-            let userImageView: UIImageView = UIImageView(frame: CGRectMake(width / 2, 0, 75, 75))
+            let userImageView: UIImageView = UIImageView()
+            userImageView.frame = CGRectMake(screenWidth / 2, 0, 75, 75)
             userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
             userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 205)
             userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
             userImageView.layer.cornerRadius = userImageView.frame.size.height/2
             userImageView.layer.masksToBounds = true
             userImageView.clipsToBounds = true
+            userImageView.layer.cornerRadius = userImageView.frame.size.height/2
             userImageView.layer.borderWidth = 3
             userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
             self.view.addSubview(userImageView)
@@ -148,7 +151,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
             self.navigationController?.navigationBar.tintColor = UIColor.mediumBlue()
             self.navigationController?.navigationBar.barStyle = .BlackTranslucent
-            let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: width, height: 65))
+            let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 65))
             navBar.translucent = true
             navBar.tintColor = UIColor.mediumBlue()
             navBar.backgroundColor = UIColor.clearColor()
@@ -164,7 +167,8 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             navBar.setItems([navItem], animated: true)
             
             // Button
-            let viewPlansButton = UIButton(frame: CGRect(x: 50, y: cardView.layer.frame.height+20,  width: self.view.layer.frame.width-100, height: 50.0))
+            let viewPlansButton = UIButton()
+            viewPlansButton.frame = CGRect(x: 50, y: cardView.layer.frame.height+20,  width: self.view.layer.frame.width-100, height: 50.0)
             viewPlansButton.setTitleColor(UIColor.mediumBlue().colorWithAlphaComponent(0.9), forState: .Normal)
             viewPlansButton.titleLabel?.font = UIFont(name: "Avenir-Light", size: 16)
             viewPlansButton.setTitle("View Plans", forState: .Normal)
@@ -177,7 +181,8 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             self.view.addSubview(viewPlansButton)
             
             
-            let payButton = UIButton(frame: CGRect(x: 50, y: cardView.layer.frame.height+70,  width: self.view.layer.frame.width-100, height: 50.0))
+            let payButton = UIButton()
+            payButton.frame = CGRect(x: 50, y: cardView.layer.frame.height+70,  width: self.view.layer.frame.width-100, height: 50.0)
             payButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(1), forState: .Normal)
             payButton.titleLabel?.font = UIFont(name: "Avenir-Light", size: 16)
             if detailUser.first_name != "" {
@@ -195,13 +200,25 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             
             // Name textfield
             lbl.text = detailUser.first_name + " " + detailUser.last_name
-            lbl.frame = CGRectMake(0, 220, width, 130)
+            lbl.frame = CGRectMake(0, 220, screenWidth, 130)
             lbl.textAlignment = .Center
             lbl.textColor = UIColor.mediumBlue()
             lbl.font = UIFont(name: "Avenir-Light", size: 18)
             lbl.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
             self.view.addSubview(lbl)
             self.view.bringSubviewToFront(lbl)
+            
+            if(screenHeight < 500) {
+                cardView.frame = CGRectMake(35, 90, screenWidth-70, screenHeight*0.6)
+                userImageView.frame = CGRect(x: screenWidth/2-25, y: 80, width: 50, height: 50)
+                userImageView.layer.cornerRadius = 25
+                lbl.frame = CGRectMake(0, 90, screenWidth, 130)
+                chatBubble.frame = CGRect(x: screenWidth/2-70, y: 190, width: 50, height: 50)
+                emailIcon.frame = CGRect(x: screenWidth/2+20, y: 190, width: 50, height: 50)
+                viewPlansButton.frame = CGRect(x: 50, y: cardView.layer.frame.height-30,  width: self.view.layer.frame.width-100, height: 50.0)
+                payButton.frame = CGRect(x: 50, y: cardView.layer.frame.height+20,  width: self.view.layer.frame.width-100, height: 50.0)
+
+            }
 
         }
     }
