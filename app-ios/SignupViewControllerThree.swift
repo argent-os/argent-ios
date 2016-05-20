@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import UIColor_Hex_Swift
 import KeychainSwift
+import StepSlider
 import JSSAlertView
 
 class SignupViewControllerThree: UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
@@ -60,6 +61,19 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate, UIScroll
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
+        let stepper = StepSlider()
+        stepper.frame = CGRect(x: 30, y: 65, width: screenWidth-60, height: 15)
+        stepper.index = 2
+        stepper.trackColor = UIColor.groupTableViewBackgroundColor()
+        stepper.trackHeight = 2
+        stepper.trackCircleRadius = 3
+        stepper.sliderCircleColor = UIColor.slateBlue()
+        stepper.sliderCircleRadius = 3
+        stepper.maxCount = 4
+        stepper.tintColor = UIColor.slateBlue()
+        stepper.backgroundColor = UIColor.clearColor()
+        // self.view.addSubview(stepper)  
+                
         let scrollView:UIScrollView = UIScrollView()
         scrollView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
         scrollView.delegate = self
@@ -81,7 +95,7 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate, UIScroll
         passwordTextField.tag = 234
         passwordTextField.textAlignment = NSTextAlignment.Center
         passwordTextField.font = UIFont.systemFontOfSize(14)
-        passwordTextField.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.3).CGColor
+        passwordTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         passwordTextField.layer.borderWidth = 1
         passwordTextField.layer.cornerRadius = 10
         passwordTextField.backgroundColor = UIColor.clearColor()
@@ -100,7 +114,7 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate, UIScroll
         repeatPasswordTextField.tag = 235
         repeatPasswordTextField.textAlignment = NSTextAlignment.Center
         repeatPasswordTextField.font = UIFont.systemFontOfSize(14)
-        repeatPasswordTextField.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.3).CGColor
+        repeatPasswordTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         repeatPasswordTextField.layer.borderWidth = 1
         repeatPasswordTextField.layer.cornerRadius = 10
         repeatPasswordTextField.backgroundColor = UIColor.clearColor()

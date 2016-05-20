@@ -11,6 +11,7 @@ import BEMCheckBox
 import MZAppearance
 import MZFormSheetPresentationController
 import JSSAlertView
+import StepSlider
 
 class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
     
@@ -78,6 +79,19 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
+        
+        let stepper = StepSlider()
+        stepper.frame = CGRect(x: 30, y: 65, width: screenWidth-60, height: 15)
+        stepper.index = 3
+        stepper.trackColor = UIColor.groupTableViewBackgroundColor()
+        stepper.trackHeight = 2
+        stepper.trackCircleRadius = 3
+        stepper.sliderCircleColor = UIColor.slateBlue()
+        stepper.sliderCircleRadius = 3
+        stepper.maxCount = 4
+        stepper.tintColor = UIColor.slateBlue()
+        stepper.backgroundColor = UIColor.clearColor()
+        // self.view.addSubview(stepper)
         
         // Set checkbox animation
         switchTermsAndPrivacy.onAnimationType = BEMAnimationType.OneStroke

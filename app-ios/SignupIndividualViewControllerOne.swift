@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import UIColor_Hex_Swift
+import StepSlider
 import JSSAlertView
 
 class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
@@ -57,6 +58,19 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
+        let stepper = StepSlider()
+        stepper.frame = CGRect(x: 30, y: 65, width: screenWidth-60, height: 15)
+        stepper.index = 0
+        stepper.trackColor = UIColor.whiteColor()
+        stepper.trackHeight = 2
+        stepper.trackCircleRadius = 3
+        stepper.sliderCircleColor = UIColor.slateBlue()
+        stepper.sliderCircleRadius = 3
+        stepper.maxCount = 3
+        stepper.tintColor = UIColor.slateBlue()
+        stepper.backgroundColor = UIColor.clearColor()
+        // self.view.addSubview(stepper)
+        
         let scrollView:UIScrollView = UIScrollView()
         scrollView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
         scrollView.delegate = self
@@ -78,7 +92,7 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
         usernameTextField.tag = 123
         usernameTextField.textAlignment = NSTextAlignment.Center
         usernameTextField.font = UIFont.systemFontOfSize(14)
-        usernameTextField.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.3).CGColor
+        usernameTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         usernameTextField.layer.borderWidth = 1
         usernameTextField.layer.cornerRadius = 10
         usernameTextField.backgroundColor = UIColor.clearColor()
@@ -97,7 +111,7 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
         emailTextField.textAlignment = NSTextAlignment.Center
         emailTextField.font = UIFont.systemFontOfSize(14)
         emailTextField.backgroundColor = UIColor.clearColor()
-        emailTextField.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.3).CGColor
+        emailTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         emailTextField.layer.borderWidth = 1
         emailTextField.layer.cornerRadius = 10
         emailTextField.placeholder = "Email"

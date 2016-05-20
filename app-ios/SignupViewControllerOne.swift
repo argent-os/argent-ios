@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import UIColor_Hex_Swift
+import StepSlider
 import JSSAlertView
 
 class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
@@ -57,6 +58,19 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         
         self.view.backgroundColor = UIColor.offWhite()
 
+        let stepper = StepSlider()
+        stepper.frame = CGRect(x: 30, y: 65, width: screenWidth-60, height: 15)
+        stepper.index = 0
+        stepper.trackColor = UIColor.whiteColor()
+        stepper.trackHeight = 2
+        stepper.trackCircleRadius = 3
+        stepper.sliderCircleColor = UIColor.slateBlue()
+        stepper.sliderCircleRadius = 3
+        stepper.maxCount = 4
+        stepper.tintColor = UIColor.slateBlue()
+        stepper.backgroundColor = UIColor.clearColor()
+        // self.view.addSubview(stepper)  
+                
         let scrollView:UIScrollView = UIScrollView()
         scrollView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
         scrollView.delegate = self
@@ -72,7 +86,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         firstNameTextField.becomeFirstResponder()
         
         // Tint back button to gray
-        self.navigationController?.navigationBar.tintColor = UIColor.grayColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
         title = ""
         
         // Inherit UITextField Delegate, this is used for next and join on keyboard
@@ -88,7 +102,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         firstNameTextField.tag = 89
         firstNameTextField.textAlignment = NSTextAlignment.Center
         firstNameTextField.font = UIFont.systemFontOfSize(14)
-        firstNameTextField.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.2).CGColor
+        firstNameTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         firstNameTextField.layer.borderWidth = 1
         firstNameTextField.layer.cornerRadius = 10
         firstNameTextField.backgroundColor = UIColor.clearColor()
@@ -106,7 +120,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         lastNameTextField.tag = 90
         lastNameTextField.textAlignment = NSTextAlignment.Center
         lastNameTextField.font = UIFont.systemFontOfSize(14)
-        lastNameTextField.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.2).CGColor
+        lastNameTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         lastNameTextField.layer.borderWidth = 1
         lastNameTextField.layer.cornerRadius = 10
         lastNameTextField.backgroundColor = UIColor.clearColor()
@@ -124,7 +138,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         dobTextField.tag = 91
         dobTextField.textAlignment = NSTextAlignment.Center
         dobTextField.font = UIFont.systemFontOfSize(14)
-        dobTextField.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.2).CGColor
+        dobTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         dobTextField.layer.borderWidth = 1
         dobTextField.layer.cornerRadius = 10
         dobTextField.backgroundColor = UIColor.clearColor()

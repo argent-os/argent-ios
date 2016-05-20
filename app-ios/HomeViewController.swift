@@ -32,9 +32,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     private var tableView:UITableView = UITableView()
     
-    private var arrayOfValues: Array<AnyObject> = [] // = [30,10,20,50,60,80]
+    private var arrayOfValues: Array<AnyObject> = []
 
-    private var arrayOfDates: Array<AnyObject> = [] // = [30,10,20,50,60,80]
+    private var arrayOfDates: Array<AnyObject> = []
     
     private var user = User(id: "", username: "", email: "", first_name: "", last_name: "", picture: "", plaid_access_token: "")
     
@@ -133,19 +133,19 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         }
         else if segment.selectedSegmentIndex == 1 {
             History.getHistoryArrays({ (_1d, _2w, _1m, _3m, _6m, _1y, _5y, err) in
-                self.arrayOfValues = _2w!
+                self.arrayOfValues = _1m!
                 self.graph.reloadGraph()
             })
         }
         else if segment.selectedSegmentIndex == 2 {
             History.getHistoryArrays({ (_1d, _2w, _1m, _3m, _6m, _1y, _5y, err) in
-                self.arrayOfValues = _1m!
+                self.arrayOfValues = _3m!
                 self.graph.reloadGraph()
             })
         }
         else if segment.selectedSegmentIndex == 3 {
             History.getHistoryArrays({ (_1d, _2w, _1m, _3m, _6m, _1y, _5y, err) in
-                self.arrayOfValues = _3m!
+                self.arrayOfValues = _6m!
                 self.graph.reloadGraph()
             })
         }
@@ -288,12 +288,11 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         graph.dataSource = self
         graph.colorTop = UIColor.clearColor()
         graph.colorBottom = UIColor.offWhite()
-//        graph.colorLine = UIColor(rgba: "#0003")
         graph.colorLine = UIColor.brandGreen()
         graph.colorPoint = UIColor.brandGreen()
         graph.colorBackgroundPopUplabel = UIColor.whiteColor()
         graph.delegate = self
-        graph.widthLine = 3
+        graph.widthLine = 2
         graph.displayDotsWhileAnimating = true
         graph.enablePopUpReport = true
         graph.noDataLabelColor = UIColor.mediumBlue()
@@ -303,7 +302,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         graph.layer.masksToBounds = true
         self.view!.addSubview(graph)
         
-        let dateRangeSegment: UISegmentedControl = UISegmentedControl(items: ["1D", "2W", "1M", "3M", "1Y"])
+        let dateRangeSegment: UISegmentedControl = UISegmentedControl(items: ["1D", "1M", "3M", "6M", "1Y"])
         dateRangeSegment.frame = CGRect(x: 15.0, y: 230.0, width: view.bounds.width - 30.0, height: 30.0)
         //        var y_co: CGFloat = self.view.frame.size.height - 100.0
         //        dateRangeSegment.frame = CGRectMake(10, y_co, width-20, 50.0)

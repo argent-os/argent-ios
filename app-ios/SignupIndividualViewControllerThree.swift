@@ -18,6 +18,7 @@ import BEMCheckBox
 import MZAppearance
 import MZFormSheetPresentationController
 import JSSAlertView
+import StepSlider
 
 class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate {
     
@@ -47,7 +48,7 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
         navigationItem.rightBarButtonItem?.tintColor = UIColor.lightGrayColor()
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([
             NSFontAttributeName: UIFont.systemFontOfSize(14),
-            NSForegroundColorAttributeName:UIColor.mediumBlue()
+            NSForegroundColorAttributeName:UIColor.lightGrayColor()
             ], forState: .Normal)
         
         self.finishButton.enabled = false
@@ -64,8 +65,25 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
         HUD.showInView(self.view!)
         HUD.dismissAfterDelay(0.5)
         
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
+        
         self.view.backgroundColor = UIColor.offWhite()
 
+        let stepper = StepSlider()
+        stepper.frame = CGRect(x: 30, y: 65, width: screenWidth-60, height: 15)
+        stepper.index = 2
+        stepper.trackColor = UIColor.whiteColor()
+        stepper.trackHeight = 2
+        stepper.trackCircleRadius = 3
+        stepper.sliderCircleColor = UIColor.slateBlue()
+        stepper.sliderCircleRadius = 3
+        stepper.maxCount = 3
+        stepper.tintColor = UIColor.slateBlue()
+        stepper.backgroundColor = UIColor.clearColor()
+        // self.view.addSubview(stepper)
+        
         agreementButton.titleLabel?.textAlignment = NSTextAlignment.Center
         
         //        print("user first name", userFirstName)
@@ -74,10 +92,6 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
         //        print("user email", userEmail)
         //        print("user phone", userPhoneNumber)
         //        print(countryCode)
-        
-        let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
-        let screenHeight = screen.size.height
         
         // Set checkbox animation
         switchTermsAndPrivacy.onAnimationType = BEMAnimationType.OneStroke

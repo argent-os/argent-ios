@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import UIColor_Hex_Swift
+import StepSlider
 import JSSAlertView
 
 class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
@@ -19,7 +20,7 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
     let usernameTextField  = UITextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
     let emailTextField  = UITextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
     let phoneNumberTextField  = UITextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
-    
+
     // Height not adjusted button bool value
     var alreadyAdjustedVC2:Bool = false
     
@@ -58,6 +59,19 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
+        let stepper = StepSlider()
+        stepper.frame = CGRect(x: 30, y: 65, width: screenWidth-60, height: 15)
+        stepper.index = 1
+        stepper.trackColor = UIColor.whiteColor()
+        stepper.trackHeight = 2
+        stepper.trackCircleRadius = 3
+        stepper.sliderCircleColor = UIColor.slateBlue()
+        stepper.sliderCircleRadius = 3
+        stepper.maxCount = 4
+        stepper.tintColor = UIColor.slateBlue()
+        stepper.backgroundColor = UIColor.clearColor()
+        // self.view.addSubview(stepper)  
+                
         let scrollView:UIScrollView = UIScrollView()
         scrollView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
         scrollView.delegate = self
@@ -83,7 +97,7 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
         usernameTextField.tag = 123
         usernameTextField.textAlignment = NSTextAlignment.Center
         usernameTextField.font = UIFont.systemFontOfSize(14)
-        usernameTextField.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.3).CGColor
+        usernameTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         usernameTextField.layer.borderWidth = 1
         usernameTextField.layer.cornerRadius = 10
         usernameTextField.backgroundColor = UIColor.clearColor()
@@ -101,7 +115,7 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
         emailTextField.tag = 124
         emailTextField.textAlignment = NSTextAlignment.Center
         emailTextField.font = UIFont.systemFontOfSize(14)
-        emailTextField.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.3).CGColor
+        emailTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         emailTextField.layer.borderWidth = 1
         emailTextField.layer.cornerRadius = 10
         emailTextField.backgroundColor = UIColor.clearColor()
@@ -119,7 +133,7 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
         phoneNumberTextField.tag = 125
         phoneNumberTextField.textAlignment = NSTextAlignment.Center
         phoneNumberTextField.font = UIFont.systemFontOfSize(14)
-        phoneNumberTextField.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.3).CGColor
+        phoneNumberTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         phoneNumberTextField.layer.borderWidth = 1
         phoneNumberTextField.layer.cornerRadius = 10
         phoneNumberTextField.backgroundColor = UIColor.clearColor()

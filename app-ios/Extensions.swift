@@ -12,11 +12,11 @@ extension UISegmentedControl {
     func removeBorders() {
         setTitleTextAttributes(
             [NSForegroundColorAttributeName : UIColor.slateBlue().colorWithAlphaComponent(0.4),
-                NSFontAttributeName : UIFont(name: "Avenir-Book", size: 12)!],
+                NSFontAttributeName : UIFont.systemFontOfSize(12)],
             forState: .Normal)
         setTitleTextAttributes(
             [NSForegroundColorAttributeName : UIColor.slateBlue(),
-                NSFontAttributeName : UIFont(name: "Avenir-Light", size: 18)!],
+                NSFontAttributeName : UIFont.systemFontOfSize(18)],
             forState: .Selected)
         setBackgroundImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forState: .Normal, barMetrics: .Default)
         setBackgroundImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forState: .Selected, barMetrics: .Default)
@@ -107,5 +107,13 @@ extension UIColor {
     }
     static func offWhite() -> UIColor {
         return UIColor(rgba: "#f5f7fa")
+    }
+}
+
+extension Float {
+    func round(decimalPlace:Int)->Float{
+        let format = NSString(format: "%%.%if", decimalPlace)
+        let string = NSString(format: format, self)
+        return Float(atof(string.UTF8String))
     }
 }
