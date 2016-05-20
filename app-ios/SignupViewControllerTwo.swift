@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import UIColor_Hex_Swift
-import JGProgressHUD
 import JSSAlertView
 
 class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
@@ -37,7 +36,7 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
         navigationItem.rightBarButtonItem = stepButton
         navigationItem.rightBarButtonItem?.tintColor = UIColor.lightGrayColor()
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([
-            NSFontAttributeName: UIFont(name: "Avenir-Light", size: 16)!,
+            NSFontAttributeName: UIFont.systemFontOfSize(14),
             NSForegroundColorAttributeName:UIColor.lightGrayColor()
             ], forState: .Normal)
         
@@ -50,10 +49,8 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
-        HUD.showInView(self.view!)
-        HUD.dismissAfterDelay(0.5)
+        
+        self.view.backgroundColor = UIColor.offWhite()
         
         addToolbarButton()
 
@@ -85,10 +82,10 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
         // Programatically set the input fields
         usernameTextField.tag = 123
         usernameTextField.textAlignment = NSTextAlignment.Center
-        usernameTextField.font = UIFont(name: "Avenir-Light", size: 16)
+        usernameTextField.font = UIFont.systemFontOfSize(14)
         usernameTextField.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.3).CGColor
         usernameTextField.layer.borderWidth = 1
-        usernameTextField.layer.cornerRadius = 25
+        usernameTextField.layer.cornerRadius = 10
         usernameTextField.backgroundColor = UIColor.clearColor()
         usernameTextField.placeholder = "Username"
         usernameTextField.textColor = UIColor.grayColor()
@@ -103,10 +100,10 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
         
         emailTextField.tag = 124
         emailTextField.textAlignment = NSTextAlignment.Center
-        emailTextField.font = UIFont(name: "Avenir-Light", size: 16)
+        emailTextField.font = UIFont.systemFontOfSize(14)
         emailTextField.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.3).CGColor
         emailTextField.layer.borderWidth = 1
-        emailTextField.layer.cornerRadius = 25
+        emailTextField.layer.cornerRadius = 10
         emailTextField.backgroundColor = UIColor.clearColor()
         emailTextField.placeholder = "Email"
         emailTextField.textColor = UIColor.grayColor()
@@ -121,10 +118,10 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
         
         phoneNumberTextField.tag = 125
         phoneNumberTextField.textAlignment = NSTextAlignment.Center
-        phoneNumberTextField.font = UIFont(name: "Avenir-Light", size: 16)
+        phoneNumberTextField.font = UIFont.systemFontOfSize(14)
         phoneNumberTextField.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.3).CGColor
         phoneNumberTextField.layer.borderWidth = 1
-        phoneNumberTextField.layer.cornerRadius = 25
+        phoneNumberTextField.layer.cornerRadius = 10
         phoneNumberTextField.backgroundColor = UIColor.clearColor()
         phoneNumberTextField.placeholder = "Phone Number (US Only)"
         phoneNumberTextField.textColor = UIColor.grayColor()
@@ -144,7 +141,7 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
         self.navigationController?.view.backgroundColor = UIColor.clearColor()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
-        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.mediumBlue()
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 65))
         navBar.translucent = true
         navBar.tintColor = UIColor.whiteColor()
@@ -152,12 +149,12 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
         navBar.shadowImage = UIImage()
         navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont(name: "Avenir-Light", size: 16)!,
-            NSForegroundColorAttributeName:UIColor.darkGrayColor()
+            NSFontAttributeName: UIFont.systemFontOfSize(14),
+            NSForegroundColorAttributeName:UIColor.mediumBlue().colorWithAlphaComponent(0.5)
         ]
         self.view.addSubview(navBar)
         let navItem = UINavigationItem(title: "Create Your Profile")
-        navItem.leftBarButtonItem?.tintColor = UIColor.darkGrayColor()
+        navItem.leftBarButtonItem?.tintColor = UIColor.mediumBlue()
         navBar.setItems([navItem], animated: true)
         
         // Do any additional setup after loading the view, typically from a nib.

@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import UIColor_Hex_Swift
-import JGProgressHUD
 import JSSAlertView
 
 class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
@@ -38,7 +37,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         navigationItem.rightBarButtonItem = stepButton
         navigationItem.rightBarButtonItem?.tintColor = UIColor.lightGrayColor()
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([
-            NSFontAttributeName: UIFont(name: "Avenir-Light", size: 16)!,
+            NSFontAttributeName: UIFont.systemFontOfSize(14),
             NSForegroundColorAttributeName:UIColor.lightGrayColor()
             ], forState: .Normal)
         
@@ -56,6 +55,8 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
+        self.view.backgroundColor = UIColor.offWhite()
+
         let scrollView:UIScrollView = UIScrollView()
         scrollView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
         scrollView.delegate = self
@@ -64,10 +65,6 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         scrollView.userInteractionEnabled = true
         scrollView.contentSize = CGSizeMake(screenWidth, 550)
         self.view!.addSubview(scrollView)
-
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
-        HUD.showInView(self.view!)
-        HUD.dismissAfterDelay(0.5)
         
         addToolbarButton()
         
@@ -90,10 +87,10 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         // Programatically set the input fields
         firstNameTextField.tag = 89
         firstNameTextField.textAlignment = NSTextAlignment.Center
-        firstNameTextField.font = UIFont(name: "Avenir-Light", size: 16)
-        firstNameTextField.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.3).CGColor
+        firstNameTextField.font = UIFont.systemFontOfSize(14)
+        firstNameTextField.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.2).CGColor
         firstNameTextField.layer.borderWidth = 1
-        firstNameTextField.layer.cornerRadius = 25
+        firstNameTextField.layer.cornerRadius = 10
         firstNameTextField.backgroundColor = UIColor.clearColor()
         firstNameTextField.placeholder = "First Name"
         firstNameTextField.textColor = UIColor.grayColor()
@@ -108,10 +105,10 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         
         lastNameTextField.tag = 90
         lastNameTextField.textAlignment = NSTextAlignment.Center
-        lastNameTextField.font = UIFont(name: "Avenir-Light", size: 16)
-        lastNameTextField.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.3).CGColor
+        lastNameTextField.font = UIFont.systemFontOfSize(14)
+        lastNameTextField.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.2).CGColor
         lastNameTextField.layer.borderWidth = 1
-        lastNameTextField.layer.cornerRadius = 25
+        lastNameTextField.layer.cornerRadius = 10
         lastNameTextField.backgroundColor = UIColor.clearColor()
         lastNameTextField.placeholder = "Last Name"
         lastNameTextField.textColor = UIColor.grayColor()
@@ -126,10 +123,10 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
 
         dobTextField.tag = 91
         dobTextField.textAlignment = NSTextAlignment.Center
-        dobTextField.font = UIFont(name: "Avenir-Light", size: 16)
-        dobTextField.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.3).CGColor
+        dobTextField.font = UIFont.systemFontOfSize(14)
+        dobTextField.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.2).CGColor
         dobTextField.layer.borderWidth = 1
-        dobTextField.layer.cornerRadius = 25
+        dobTextField.layer.cornerRadius = 10
         dobTextField.backgroundColor = UIColor.clearColor()
         dobTextField.placeholder = "Date of Birth - MM/DD/YYYY"
         dobTextField.keyboardType = UIKeyboardType.NumberPad
@@ -142,7 +139,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         self.navigationController?.view.backgroundColor = UIColor.clearColor()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
-        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.mediumBlue()
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 65))
         navBar.translucent = true
         navBar.tintColor = UIColor.whiteColor()
@@ -150,12 +147,12 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         navBar.shadowImage = UIImage()
         navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont(name: "Avenir-Light", size: 16)!,
-            NSForegroundColorAttributeName:UIColor.darkGrayColor()
+            NSFontAttributeName: UIFont.systemFontOfSize(14),
+            NSForegroundColorAttributeName:UIColor.mediumBlue().colorWithAlphaComponent(0.5)
         ]
         self.view.addSubview(navBar)
         let navItem = UINavigationItem(title: "Company Rep Information")
-        navItem.leftBarButtonItem?.tintColor = UIColor.darkGrayColor()
+        navItem.leftBarButtonItem?.tintColor = UIColor.mediumBlue()
         navBar.setItems([navItem], animated: true)
         
         // Do any additional setup after loading the view, typically from a nib.
