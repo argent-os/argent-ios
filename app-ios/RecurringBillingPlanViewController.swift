@@ -271,13 +271,14 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
     
     func showSuccessAlert(msg: String) {
         let customIcon:UIImage = UIImage(named: "ic_check_light")! // your custom icon UIImage
-        let customColor:UIColor = UIColor(rgba: "#1EBC61") // base color for the alert
+        let customColor:UIColor = UIColor.brandGreen() // base color for the alert
+        self.view.endEditing(true)
         let alertView = JSSAlertView().show(
             self,
             title: "",
             text: msg + " plan created!",
-            buttonText: "",
-            noButtons: true,
+            buttonText: "Close",
+            noButtons: false,
             color: customColor,
             iconImage: customIcon)
         alertView.setTextTheme(.Light) // can be .Light or .Dark
@@ -286,12 +287,13 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
     func showErrorInputAlert() {
         let customIcon:UIImage = UIImage(named: "ic_close_light")! // your custom icon UIImage
         let customColor:UIColor = UIColor.brandRed() // base color for the alert
+        self.view.endEditing(true)
         let alertView = JSSAlertView().show(
             self,
             title: "",
             text: "Interval for yearly plans cannot be greater than 1",
-            buttonText: "",
-            noButtons: true,
+            buttonText: "Ok",
+            noButtons: false,
             color: customColor,
             iconImage: customIcon)
         alertView.setTextTheme(.Light) // can be .Light or .Dark
@@ -300,12 +302,13 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
     func showErrorAlert(msg: String) {
         let customIcon:UIImage = UIImage(named: "ic_close_light")! // your custom icon UIImage
         let customColor:UIColor = UIColor.brandRed() // base color for the alert
+        self.view.endEditing(true)
         let alertView = JSSAlertView().show(
             self,
             title: "",
             text: msg,
-            buttonText: "",
-            noButtons: true,
+            buttonText: "Close",
+            noButtons: false,
             color: customColor,
             iconImage: customIcon)
         alertView.setTextTheme(.Light) // can be .Light or .Dark

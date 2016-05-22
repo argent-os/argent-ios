@@ -14,12 +14,20 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
     
     var dic: Dictionary<String, String> = [:]
     
+    var detailUser: User? {
+        didSet {
+            // config
+        }
+    }
+    
     // MARK: Public
     
     override func viewDidLoad() {
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
         super.viewDidLoad()
-        configure()
+        User.getProfile { (user, err) in
+            self.configure(user!)
+        }
     }
     
     // MARK: Private
@@ -148,6 +156,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                 self.dic["legal_entity_type"] = $0.title
                 Profile.sharedInstance.businessType = $0.title
         }
+        
         return SectionFormer(rowFormer: businessName, businessAddressRow, businessAddressCountryRow, businessAddressZipRow, businessAddressCityRow, businessAddressStateRow, businessTypeRow, ssnRow)
     }()
     
@@ -162,16 +171,12 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
         }
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0.0)
-    }
-    
-    private func configure() {
+    private func configure(user: User) {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         
         tableView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height-80)
-        tableView.contentInset.top = 0
+        tableView.contentInset.top = 80
         tableView.contentInset.bottom = 60
         tableView.contentOffset.y = 0
         tableView.backgroundColor = UIColor(rgba: "#efeff4")
@@ -196,7 +201,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
                 $0.rowHeight = 60
-                $0.placeholder = ""
+                $0.placeholder = user.first_name
                 $0.text = Profile.sharedInstance.firstName
             }.onTextChanged {
                 self.dic["first_name"] = $0
@@ -209,7 +214,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
                 $0.rowHeight = 60
-                $0.placeholder = ""
+                $0.placeholder = user.last_name
                 $0.text = Profile.sharedInstance.lastName
             }.onTextChanged {
                 self.dic["last_name"] = $0
@@ -224,7 +229,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
                 $0.rowHeight = 60
-                $0.placeholder = ""
+                $0.placeholder = user.username
                 $0.text = Profile.sharedInstance.username
             }.onTextChanged {
                 self.dic["username"] = $0
@@ -238,7 +243,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
                 $0.rowHeight = 60
-                $0.placeholder = ""
+                $0.placeholder = user.email
                 $0.text = Profile.sharedInstance.email
             }.onTextChanged {
                 self.dic["email"] = $0
@@ -250,7 +255,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
                 $0.rowHeight = 60
-                $0.placeholder = ""
+                $0.placeholder = user.phone
                 $0.text = Profile.sharedInstance.phoneNumber
             }.onTextChanged {
                 self.dic["phone_number"] = $0
@@ -293,7 +298,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                 Profile.sharedInstance.moreInformation = $0
                 self?.switchInfomationSection()
         }
-        
+    
         // Create Headers
         
         let createHeader: (String -> ViewFormer) = { text in
@@ -342,6 +347,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
     private func showSuccessAlert(msg: String) {
         let customIcon:UIImage = UIImage(named: "ic_check_light")! // your custom icon UIImage
         let customColor:UIColor = UIColor.mediumBlue() // base color for the alert
+        self.view.endEditing(true)
         let alertView = JSSAlertView().show(
             self,
             title: "",
@@ -356,6 +362,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
     private func showErrorAlert(msg: String) {
         let customIcon:UIImage = UIImage(named: "ic_close_light")! // your custom icon UIImage
         let customColor:UIColor = UIColor.brandRed() // base color for the alert
+        self.view.endEditing(true)
         let alertView = JSSAlertView().show(
             self,
             title: "",

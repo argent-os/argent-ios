@@ -113,7 +113,8 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
     
     func showSuccessAlert() {
         let customIcon:UIImage = UIImage(named: "ic_check_light")! // your custom icon UIImage
-        let customColor:UIColor = UIColor(rgba: "#1EBC61") // base color for the alert
+        let customColor:UIColor = UIColor.brandGreen() // base color for the alert
+        self.view.endEditing(true)
         let alertView = JSSAlertView().show(
             self,
             title: "",

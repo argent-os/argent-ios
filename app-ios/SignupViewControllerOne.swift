@@ -225,6 +225,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
     func displayErrorAlertMessage(alertMessage:String) {
         let customIcon:UIImage = UIImage(named: "ic_close_light")! // your custom icon UIImage
         let customColor:UIColor = UIColor.mediumBlue() // base color for the alert
+        self.view.endEditing(true)
         let alertView = JSSAlertView().show(
             self,
             title: "",

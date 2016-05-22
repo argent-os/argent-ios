@@ -21,6 +21,8 @@ class ProfileMenuViewController: UITableViewController {
 
     private var scrollView: UIScrollView!
 
+    private let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 40, width: UIScreen.mainScreen().bounds.size.width, height: 50))
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
@@ -34,8 +36,8 @@ class ProfileMenuViewController: UITableViewController {
         self.view.bringSubviewToFront(tableView)
         self.tableView.tableHeaderView = ParallaxHeaderView.init(frame: CGRectMake(0, 100, CGRectGetWidth(self.view.bounds), 100));
         
-        userImageView.frame = CGRectMake(screenWidth / 2, -140, 54, 54)
-
+        userImageView.frame = CGRectMake(screenWidth / 2, -64, 32, 32)
+    
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.frame = CGRect(x: 0, y: 100, width: screenWidth, height: 100)
         loadingView.tintColor = UIColor.whiteColor().colorWithAlphaComponent(0.8)
@@ -43,6 +45,8 @@ class ProfileMenuViewController: UITableViewController {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
                 self?.tableView.dg_stopLoading()
                 self!.loadProfile()
+                self!.userImageView.frame = CGRectMake(screenWidth / 2-30, -24, 60, 60)
+                self!.userImageView.layer.cornerRadius = 30
             })
             }, loadingView: loadingView)
         tableView.dg_setPullToRefreshFillColor(UIColor.clearColor())
@@ -54,6 +58,22 @@ class ProfileMenuViewController: UITableViewController {
         shareCell.targetForAction(Selector("share:"), withSender: self)
     }
 
+    func configureNav(user: User) {
+        let navItem = UINavigationItem()
+
+        // TODO: do a check for first name, and business name
+        let f_name = user.first_name
+        let l_name = user.last_name
+        navItem.title = f_name + " " + l_name
+        
+        self.navBar.titleTextAttributes = [
+            NSForegroundColorAttributeName : UIColor.whiteColor(),
+            NSFontAttributeName : UIFont(name: "Avenir-Light", size: 16.0)!
+        ]
+        self.navBar.setItems([navItem], animated: false)
+        self.view.addSubview(navBar)
+    }
+    
     override func viewDidAppear(animated: Bool) {
         UIStatusBarStyle.Default
     }
@@ -121,7 +141,6 @@ class ProfileMenuViewController: UITableViewController {
         userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
         userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 120)
         userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
-        userImageView.layer.cornerRadius = 10
         userImageView.layer.masksToBounds = true
         userImageView.clipsToBounds = true
         userImageView.layer.borderWidth = 3
@@ -134,6 +153,9 @@ class ProfileMenuViewController: UITableViewController {
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
+            
+            self.configureNav(user!)
+            
             if user!.picture != "" {
                 let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user!.picture))!)!)!
                 self.userImageView.image = img
@@ -158,14 +180,13 @@ class ProfileMenuViewController: UITableViewController {
         let offsetY = scrollView.contentOffset.y
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
-        
-        if offsetY == 0 {
-            userImageView.frame.size.height = 54
-            userImageView.frame.size.width = 54
+                
+        if offsetY < 0 && offsetY > -80 && userImageView.frame.size.width > 16 {
+            userImageView.layer.cornerRadius = (userImageView.frame.size.width/2)
+            userImageView.frame = CGRect(x: screenWidth/2-(-offsetY)/2, y: -24, width: -offsetY, height: -offsetY)
         } else if offsetY < 0 {
-            userImageView.frame = CGRect(x: screenWidth/2-(-offsetY+54)/2, y: 90, width: -offsetY+54, height: -offsetY+54)
-        } else if self.tableView.contentOffset.y > 0 {
-
+            userImageView.layer.cornerRadius = (userImageView.frame.size.width/2)
+            userImageView.frame = CGRect(x: screenWidth/2-(-offsetY)/2, y: -24, width: -offsetY, height: -offsetY)
         }
     }
 }

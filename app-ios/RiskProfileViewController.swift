@@ -87,6 +87,7 @@ class RiskProfileViewController: UIViewController {
     
     func showSuccessAlert(str: String, color: UIColor) {
         let customIcon:UIImage = UIImage(named: "ic_check_light")! // your custom icon UIImage
+        self.view.endEditing(true)
         let alertView = JSSAlertView().show(
             self,
             title: "",
@@ -100,6 +101,7 @@ class RiskProfileViewController: UIViewController {
     
     func showDisabledAlert(str: String, color: UIColor) {
         let customIcon:UIImage = UIImage(named: "ic_check_light")! // your custom icon UIImage
+        self.view.endEditing(true)
         let alertView = JSSAlertView().show(
             self,
             title: "",

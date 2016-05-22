@@ -25,8 +25,6 @@ class ProfileViewController: UIViewController {
 
     private var plansTitleLabel = UILabel()
     
-    private let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 15, width: UIScreen.mainScreen().bounds.size.width, height: 50))
-
     override func viewDidAppear(animated: Bool) {
         self.navigationController!.navigationBar.backgroundColor = UIColor.clearColor()
         self.navigationController!.navigationBar.barTintColor = UIColor.clearColor()
@@ -51,18 +49,11 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.darkGrayColor()]
-
-        let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
         
         view.addGestureRecognizer(gesture)
 
         self.view.backgroundColor = UIColor.slateBlue()
 
-        self.view.addSubview(navBar)
-        self.view.sendSubviewToBack(navBar)
-        let navItem = UINavigationItem(title: "")
-        navBar.setItems([navItem], animated: true)
         // Transparent navigation bar
         self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
         self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
@@ -74,21 +65,21 @@ class ProfileViewController: UIViewController {
             NSFontAttributeName : UIFont(name: "Avenir-Light", size: 14.0)!
         ]
         
-        User.getProfile({ (item, error) in
+        loadUserAccount()
+    }
+    
+    private func loadUserAccount() {
+        
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        
+        User.getProfile({ (user, error) in
             if error != nil
             {
                 let alert = UIAlertController(title: "Error", message: "Could not load profile \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
-            let navItem = UINavigationItem(title: "@"+(item?.username)!)
-            // TODO: do a check for first name, and business name
-            let f_name = item?.first_name
-            let l_name = item?.last_name
-            if f_name != nil && l_name != nil {
-                self.navigationItem.title = f_name! + " " + l_name!
-            }
-            self.navBar.setItems([navItem], animated: false)
             
             let settingsIcon = UIImageView(frame: CGRectMake(0, 0, 32, 32))
             settingsIcon.image = UIImage(named: "IconSettingsWhite")
@@ -108,7 +99,7 @@ class ProfileViewController: UIViewController {
             self.customersCountLabel.numberOfLines = 0
             self.customersCountLabel.textColor = UIColor(rgba: "#fffa")
             self.customersCountLabel.text = "0"
-//            self.view.addSubview(self.customersCountLabel)
+            //            self.view.addSubview(self.customersCountLabel)
             
             self.customersTitleLabel.frame = CGRectMake(30, 40, 75, 70)
             self.customersTitleLabel.textAlignment = NSTextAlignment.Center
@@ -116,7 +107,7 @@ class ProfileViewController: UIViewController {
             self.customersTitleLabel.numberOfLines = 0
             self.customersTitleLabel.textColor = UIColor(rgba: "#fffc")
             self.customersTitleLabel.text = "Customers"
-//            self.view.addSubview(self.customersTitleLabel)
+            //            self.view.addSubview(self.customersTitleLabel)
             
             self.plansCountLabel.frame = CGRectMake(screenWidth-110, 20, 75, 70)
             self.plansCountLabel.textAlignment = NSTextAlignment.Center
@@ -124,7 +115,7 @@ class ProfileViewController: UIViewController {
             self.plansCountLabel.numberOfLines = 0
             self.plansCountLabel.text = "0"
             self.plansCountLabel.textColor = UIColor(rgba: "#fffa")
-//            self.view.addSubview(self.plansCountLabel)
+            //            self.view.addSubview(self.plansCountLabel)
             
             self.plansTitleLabel.frame = CGRectMake(screenWidth-110, 40, 75, 70)
             self.plansTitleLabel.textAlignment = NSTextAlignment.Center
@@ -132,7 +123,7 @@ class ProfileViewController: UIViewController {
             self.plansTitleLabel.numberOfLines = 0
             self.plansTitleLabel.textColor = UIColor(rgba: "#fffc")
             self.plansTitleLabel.text = "Plans"
-//            self.view.addSubview(self.plansTitleLabel)
+            //            self.view.addSubview(self.plansTitleLabel)
             
             self.loadCustomerList { (customers: [Customer]?, NSError) in
                 if(customers!.count < 2 && customers!.count > 0) {

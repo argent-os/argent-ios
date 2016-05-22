@@ -18,15 +18,17 @@ class User {
     let first_name: String
     let last_name: String
     let picture: String
+    let phone: String
     let plaid_access_token: String
     
-    required init(id: String, username: String, email: String, first_name: String, last_name: String, picture: String, plaid_access_token: String) {
+    required init(id: String, username: String, email: String, first_name: String, last_name: String, picture: String, phone: String, plaid_access_token: String) {
         self.id = id
         self.username = username
         self.email = email
         self.first_name = first_name
         self.last_name = last_name
         self.picture = picture
+        self.phone = phone
         self.plaid_access_token = plaid_access_token
     }
     
@@ -56,8 +58,9 @@ class User {
                             let first_name = profile["first_name"].stringValue
                             let last_name = profile["last_name"].stringValue
                             let picture = profile["picture"]["secure_url"].stringValue
+                            let phone = profile["phone_number"].stringValue
                             let plaid_access_token = profile["plaid"]["access_token"].stringValue
-                        let item = User(id: id, username: username, email: email, first_name: first_name, last_name: last_name, picture: picture, plaid_access_token: plaid_access_token)
+                        let item = User(id: id, username: username, email: email, first_name: first_name, last_name: last_name, picture: picture, phone: phone, plaid_access_token: plaid_access_token)
                             completionHandler(item, response.result.error)
                     }
                 case .Failure(let error):
@@ -94,8 +97,9 @@ class User {
                         let first_name = profile["first_name"].stringValue
                         let last_name = profile["last_name"].stringValue
                         let picture = profile["picture"]["secure_url"].stringValue
+                        let phone = profile["phone_number"].stringValue
                         let plaid_access_token = profile["plaid"]["access_token"].stringValue
-                        let item = User(id: id, username: username, email: email, first_name: first_name, last_name: last_name, picture: picture, plaid_access_token: plaid_access_token)
+                        let item = User(id: id, username: username, email: email, first_name: first_name, last_name: last_name, picture: picture, phone: phone, plaid_access_token: plaid_access_token)
                         completionHandler(item, true, response.result.error)
                     }
                 case .Failure(let error):
@@ -129,8 +133,9 @@ class User {
                             let first_name = account["first_name"].stringValue
                             let last_name = account["last_name"].stringValue
                             let picture = account["picture"].stringValue
+                            let phone = ""
                             let plaid_access_token = ""
-                            let item = User(id: id, username: username, email: email, first_name: first_name, last_name: last_name, picture: picture, plaid_access_token: plaid_access_token)
+                            let item = User(id: id, username: username, email: email, first_name: first_name, last_name: last_name, picture: picture, phone: phone, plaid_access_token: plaid_access_token)
                             userItemsArray.append(item)
                         }
                         completionHandler(userItemsArray, response.result.error)
@@ -140,4 +145,8 @@ class User {
                 }
         }
     }
+    
+    // Write Stripe handler get account info
+    // Write Stripe handler update account info
+    
 }

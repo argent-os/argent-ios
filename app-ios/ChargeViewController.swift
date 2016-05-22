@@ -276,13 +276,14 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
     
     func showSuccessAlert() {
         let customIcon:UIImage = UIImage(named: "ic_check_light")! // your custom icon UIImage
-        let customColor:UIColor = UIColor(rgba: "#1EBC61") // base color for the alert
+        let customColor:UIColor = UIColor.brandGreen() // base color for the alert
+        self.view.endEditing(true)
         let alertView = JSSAlertView().show(
             self,
             title: "",
             text: "Payment for amount " + chargeInputView.text! + " succeeded!",
-            buttonText: "",
-            noButtons: true,
+            buttonText: "Close",
+            noButtons: false,
             color: customColor,
             iconImage: customIcon)
         alertView.setTextTheme(.Light) // can be .Light or .Dark

@@ -36,7 +36,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 
     private var arrayOfDates: Array<AnyObject> = []
     
-    private var user = User(id: "", username: "", email: "", first_name: "", last_name: "", picture: "", plaid_access_token: "")
+    private var user = User(id: "", username: "", email: "", first_name: "", last_name: "", picture: "", phone: "", plaid_access_token: "")
     
     private let lblAccountPending:UICountingLabel = UICountingLabel()
 
