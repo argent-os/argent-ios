@@ -221,6 +221,11 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 
             }
             
+            History.getHistoryArrays({ (_1d, _2w, _1m, _3m, _6m, _1y, _5y, err) in
+                self.arrayOfValues = _1m!
+                self.graph.reloadGraph()
+            })
+            
             // Get user profile
             User.getProfile({ (user, error) in
                 
@@ -245,6 +250,15 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                         userImageView.image = img
                         self.addSubviewWithBounce(userImageView)
                     }
+                }
+                
+                if(error != nil) {
+                    print(error)
+                    // check if user logged in, if not send to login
+                    print("user not logged in")
+                    // Normally identifiers are started with capital letters, exception being authViewController, make sure UIStoryboard name is Auth, not Main
+                    let viewController:AuthViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateViewControllerWithIdentifier("authViewController") as! AuthViewController
+                    self.presentViewController(viewController, animated: true, completion: nil)
                 }
             })
 
@@ -286,6 +300,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         self.view.sendSubviewToBack(bg)
 
         graph.dataSource = self
+        graph.frame = CGRect(x: 0, y: 110, width: screenWidth, height: 150)
         graph.colorTop = UIColor.clearColor()
         graph.colorBottom = UIColor.offWhite()
         graph.colorLine = UIColor.brandGreen()

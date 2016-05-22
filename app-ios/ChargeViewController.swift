@@ -186,6 +186,8 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         let navigationController = self.storyboard!.instantiateViewControllerWithIdentifier("qrFormSheetController") as! UINavigationController
         let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
         
+        self.view.endEditing(true)
+        
         // Initialize and style the terms and conditions modal
         formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
         formSheetController.presentationController?.contentViewSize = CGSizeMake(250, 250)
