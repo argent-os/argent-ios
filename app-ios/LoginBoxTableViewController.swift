@@ -37,7 +37,7 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
         self.usernameTextField.delegate = self
         self.passwordTextField.delegate = self
         
-        usernameTextField.becomeFirstResponder()
+       // usernameTextField.becomeFirstResponder()
         
         usernameTextField.tag = 63631
         let str = NSAttributedString(string: "username or email", attributes: [NSForegroundColorAttributeName:UIColor(rgba: "#fff")])
@@ -154,7 +154,7 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
         if let nextR = nextResponder
         {
             // Found next responder, so set it.
-            nextR.becomeFirstResponder()
+            //nextR.becomeFirstResponder()
         } else {
             // Not found, so remove keyboard.
             self.login(self)

@@ -111,7 +111,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         self.view.bringSubviewToFront(balanceSwitch)
         UITextField.appearance().keyboardAppearance = .Light
         UIStatusBarStyle.LightContent
-        
     }
     
     func presentTutorial(sender: AnyObject) {
@@ -471,7 +470,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     func logout() {
         NSUserDefaults.standardUserDefaults().setValue("", forKey: "userAccessToken")
         NSUserDefaults.standardUserDefaults().synchronize();
-        userData = nil
         
         // go to login view
         let sb = UIStoryboard(name: "Main", bundle: nil)

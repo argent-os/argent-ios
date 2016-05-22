@@ -159,7 +159,6 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
                 case .Success:
                     if let value = response.result.value {
                         let json = JSON(value)
-                        userData = json
                         self.dismissKeyboard()
                         
                     }

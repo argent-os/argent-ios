@@ -55,6 +55,7 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
         // Allow continue to be clicked
         Timeout(0.3) {
             self.finishButton.enabled = true
+            return
         }
     }
     
@@ -201,7 +202,6 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
                                 if msg != "" {
                                     HUD.textLabel.text = String(json["message"])
                                 }
-                                // assign userData to self, access globally
                             }
                         case .Failure(let error):
                             HUD.indicatorView = JGProgressHUDErrorIndicatorView()

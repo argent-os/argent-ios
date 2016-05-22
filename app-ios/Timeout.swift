@@ -18,7 +18,7 @@ class Timeout: NSObject
             target: self, selector: #selector(Timeout.invoke), userInfo: nil, repeats: false)
     }
     
-    func invoke()
+    func invoke() -> Void
     {
         self.callback?()
         // Discard callback and timer.

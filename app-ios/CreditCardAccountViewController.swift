@@ -56,9 +56,9 @@ class CreditCardAccountViewController: UIViewController, CardIOPaymentViewContro
             // resultLabel.text = str as String
             // Post to Stripe
 
-            if let token = userData?["token"].stringValue, accountId = userData?["stripe"]["accountId"].stringValue  {
+            if userAccessToken != nil  {
                 let headers = [
-                    "Authorization": "Bearer " + token,
+                    "Authorization": "Bearer " + (userAccessToken as! String),
                     "Content-Type": "application/json"
                 ]
                 
@@ -67,8 +67,7 @@ class CreditCardAccountViewController: UIViewController, CardIOPaymentViewContro
                     "exp_month": info.expiryMonth,
                     "exp_year": info.expiryYear,
                     "number": info.cardNumber,
-                    "cvc": info.cvv,
-                    "accountId": accountId
+                    "cvc": info.cvv
                 ]
 
                 let endpoint = apiUrl + "/v1/stripe/account/cards/";

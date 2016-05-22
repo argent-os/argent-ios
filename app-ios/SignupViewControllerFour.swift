@@ -203,7 +203,6 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
                                 if msg != "" {
                                     HUD.textLabel.text = String(json["message"])
                                 }
-                                // assign userData to self, access globally
                             }
                         case .Failure(let error):
                             HUD.indicatorView = JGProgressHUDErrorIndicatorView()

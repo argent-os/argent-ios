@@ -2,13 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>com.apple.developer.in-app-payments</key>
-	<array>
-		<string>merchant.com.argentapp.pay.v2</string>
-	</array>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>$(AppIdentifierPrefix)com.argentapp.ios</string>
+		<string>$(AppIdentifierPrefix)com.argentapp.ios.app-notificationcenter</string>
 	</array>
 </dict>
 </plist>

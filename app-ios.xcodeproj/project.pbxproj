@@ -21,6 +21,7 @@
 		302010D41CB016ED007D5E7E /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302010D31CB016ED007D5E7E /* TodayViewController.swift */; };
 		302010D71CB016ED007D5E7E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 302010D51CB016ED007D5E7E /* MainInterface.storyboard */; };
 		302010DB1CB016ED007D5E7E /* Argent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 302010CF1CB016ED007D5E7E /* Argent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		302624B91CF2573800EF80D8 /* CountryPicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 302624B81CF2573800EF80D8 /* CountryPicker.bundle */; };
 		304468F01CAA0BFC008CAE7D /* notify.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468ED1CAA0BFC008CAE7D /* notify.caf */; };
 		304468F11CAA0BFC008CAE7D /* pop.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468EE1CAA0BFC008CAE7D /* pop.caf */; };
 		304468F21CAA0BFC008CAE7D /* tone.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468EF1CAA0BFC008CAE7D /* tone.caf */; };
@@ -50,7 +51,6 @@
 		309E43CD1CA9CFED00279D97 /* selected.caf in Resources */ = {isa = PBXBuildFile; fileRef = 309E43CA1CA9CFED00279D97 /* selected.caf */; };
 		30AF67391CA498A3006B83DA /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AF67381CA498A3006B83DA /* PassKit.framework */; };
 		30B576931CC7D1CF005BCA5A /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B576921CC7D1CE005BCA5A /* SearchDetailViewController.swift */; };
-		30BB06E21CCEFC260051C9E7 /* CountryPicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30BB06E11CCEFC260051C9E7 /* CountryPicker.bundle */; };
 		30C2DA551CA43655003AFD8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA541CA43655003AFD8B /* Assets.xcassets */; };
 		30C2DA591CA43665003AFD8B /* App.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA581CA43665003AFD8B /* App.entitlements */; };
 		30C2DA5B1CA4366C003AFD8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DA5A1CA4366C003AFD8B /* AppDelegate.swift */; };
@@ -105,9 +105,7 @@
 		30C2DAF91CA43975003AFD8B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DAF81CA43975003AFD8B /* User.swift */; };
 		30C2DB0D1CA439CC003AFD8B /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DB0C1CA439CC003AFD8B /* Auth.storyboard */; };
 		30C2DB0F1CA439D2003AFD8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DB0E1CA439D2003AFD8B /* LaunchScreen.storyboard */; };
-		30C2DB111CA439DC003AFD8B /* Logs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DB101CA439DC003AFD8B /* Logs.swift */; };
 		30C2DB131CA439E1003AFD8B /* Timeout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DB121CA439E1003AFD8B /* Timeout.swift */; };
-		30C2DB151CA439E6003AFD8B /* Gravatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DB141CA439E6003AFD8B /* Gravatar.swift */; };
 		30C2DB171CA439F4003AFD8B /* paykloud_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DB161CA439F4003AFD8B /* paykloud_iosTests.swift */; };
 		30C2DB191CA439FA003AFD8B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DB181CA439FA003AFD8B /* Info.plist */; };
 		30C2DB1B1CA43A00003AFD8B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DB1A1CA43A00003AFD8B /* Info.plist */; };
@@ -234,6 +232,8 @@
 		302010D31CB016ED007D5E7E /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		302010D61CB016ED007D5E7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		302010D81CB016ED007D5E7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		302624B81CF2573800EF80D8 /* CountryPicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = CountryPicker.bundle; path = "app-ios/bundles/CountryPicker.bundle"; sourceTree = SOURCE_ROOT; };
+		302624BA1CF26ECB00EF80D8 /* Argent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Argent.entitlements; sourceTree = "<group>"; };
 		304468ED1CAA0BFC008CAE7D /* notify.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = notify.caf; sourceTree = "<group>"; };
 		304468EE1CAA0BFC008CAE7D /* pop.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pop.caf; sourceTree = "<group>"; };
 		304468EF1CAA0BFC008CAE7D /* tone.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tone.caf; sourceTree = "<group>"; };
@@ -264,7 +264,6 @@
 		30AF67371CA498A2006B83DA /* app-watchos Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "app-watchos Extension.entitlements"; sourceTree = "<group>"; };
 		30AF67381CA498A3006B83DA /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.2.sdk/System/Library/Frameworks/PassKit.framework; sourceTree = DEVELOPER_DIR; };
 		30B576921CC7D1CE005BCA5A /* SearchDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchDetailViewController.swift; path = "app-ios/SearchDetailViewController.swift"; sourceTree = SOURCE_ROOT; };
-		30BB06E11CCEFC260051C9E7 /* CountryPicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CountryPicker.bundle; sourceTree = SOURCE_ROOT; };
 		30C2DA541CA43655003AFD8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "app-ios/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		30C2DA561CA4365D003AFD8B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "app-ios/Info.plist"; sourceTree = SOURCE_ROOT; };
 		30C2DA581CA43665003AFD8B /* App.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = App.entitlements; path = "app-ios/App.entitlements"; sourceTree = SOURCE_ROOT; };
@@ -320,9 +319,7 @@
 		30C2DAF81CA43975003AFD8B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = "app-ios/User.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DB0C1CA439CC003AFD8B /* Auth.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Auth.storyboard; path = "app-ios/Auth.storyboard"; sourceTree = SOURCE_ROOT; };
 		30C2DB0E1CA439D2003AFD8B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "app-ios/LaunchScreen.storyboard"; sourceTree = SOURCE_ROOT; };
-		30C2DB101CA439DC003AFD8B /* Logs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Logs.swift; path = "app-ios/Logs.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DB121CA439E1003AFD8B /* Timeout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Timeout.swift; path = "app-ios/Timeout.swift"; sourceTree = SOURCE_ROOT; };
-		30C2DB141CA439E6003AFD8B /* Gravatar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Gravatar.swift; path = "app-ios/Gravatar.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DB161CA439F4003AFD8B /* paykloud_iosTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = paykloud_iosTests.swift; path = "app-iosTests/paykloud_iosTests.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DB181CA439FA003AFD8B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "app-iosTests/Info.plist"; sourceTree = SOURCE_ROOT; };
 		30C2DB1A1CA43A00003AFD8B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "app-iosUITests/Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -582,6 +579,7 @@
 		30960F021CE4E7F100749695 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				30C2DB121CA439E1003AFD8B /* Timeout.swift */,
 				30960F031CE4E80000749695 /* Extensions.swift */,
 			);
 			name = Extensions;
@@ -629,7 +627,7 @@
 		30BB06E01CCEFC130051C9E7 /* Bundles */ = {
 			isa = PBXGroup;
 			children = (
-				30BB06E11CCEFC260051C9E7 /* CountryPicker.bundle */,
+				302624B81CF2573800EF80D8 /* CountryPicker.bundle */,
 			);
 			name = Bundles;
 			sourceTree = "<group>";
@@ -657,16 +655,6 @@
 				30718ADA1C8DF57100CB0EEB /* Tabs */,
 			);
 			name = Main;
-			sourceTree = "<group>";
-		};
-		30BECC0A1C6F936E00B8A088 /* Modules */ = {
-			isa = PBXGroup;
-			children = (
-				30C2DB101CA439DC003AFD8B /* Logs.swift */,
-				30C2DB121CA439E1003AFD8B /* Timeout.swift */,
-				30C2DB141CA439E6003AFD8B /* Gravatar.swift */,
-			);
-			name = Modules;
 			sourceTree = "<group>";
 		};
 		30BECC0B1C6F939800B8A088 /* Storyboards */ = {
@@ -845,6 +833,7 @@
 		30FB54011C6A58B40004A538 = {
 			isa = PBXGroup;
 			children = (
+				302624BA1CF26ECB00EF80D8 /* Argent.entitlements */,
 				30FB54411C6ABF6A0004A538 /* ObjC-Bridging-Header.h */,
 				30DB59841CA46DCC007FEE1E /* ObjC-Bridging-Header-WatchOS.h */,
 				30FB540C1C6A58B40004A538 /* app-ios */,
@@ -885,7 +874,6 @@
 				3013DCEA1C8515A300268DAD /* Models */,
 				30BECC0B1C6F939800B8A088 /* Storyboards */,
 				30BB06E01CCEFC130051C9E7 /* Bundles */,
-				30BECC0A1C6F936E00B8A088 /* Modules */,
 				30C2DA561CA4365D003AFD8B /* Info.plist */,
 				30C2DA541CA43655003AFD8B /* Assets.xcassets */,
 			);
@@ -1073,6 +1061,11 @@
 					302010CE1CB016ED007D5E7E = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 95ZGR52Q89;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					30DB59591CA46CB0007FEE1E = {
 						CreatedOnToolsVersion = 7.3;
@@ -1112,6 +1105,9 @@
 						DevelopmentTeam = 95ZGR52Q89;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
 								enabled = 1;
 							};
 							com.apple.OMC = {
@@ -1201,7 +1197,6 @@
 				30C2DA7A1CA436C3003AFD8B /* nyc.mp4 in Resources */,
 				304468F11CAA0BFC008CAE7D /* pop.caf in Resources */,
 				30C2DA751CA436B8003AFD8B /* cashregister.caf in Resources */,
-				30BB06E21CCEFC260051C9E7 /* CountryPicker.bundle in Resources */,
 				30CA455A1CE6CF7F00D656E5 /* HistoryCustomCell.xib in Resources */,
 				30D526841CDF776B001B41BA /* OptionsCell.xib in Resources */,
 				30C2DA761CA436B8003AFD8B /* chime.caf in Resources */,
@@ -1209,6 +1204,7 @@
 				30C2DADD1CA438B8003AFD8B /* CustomLabelCell.xib in Resources */,
 				30C2DB1B1CA43A00003AFD8B /* Info.plist in Resources */,
 				30C2DB191CA439FA003AFD8B /* Info.plist in Resources */,
+				302624B91CF2573800EF80D8 /* CountryPicker.bundle in Resources */,
 				309E43CD1CA9CFED00279D97 /* selected.caf in Resources */,
 				30C2DADF1CA438BE003AFD8B /* ProfileImageCell.xib in Resources */,
 				30C2DB0F1CA439D2003AFD8B /* LaunchScreen.storyboard in Resources */,
@@ -1418,12 +1414,10 @@
 				30D5267D1CDE3736001B41BA /* ConfigurePointOfSaleViewController.swift in Sources */,
 				30C2DAF91CA43975003AFD8B /* User.swift in Sources */,
 				30960EFF1CE3D7C100749695 /* TransferViewController.swift in Sources */,
-				30C2DB151CA439E6003AFD8B /* Gravatar.swift in Sources */,
 				300E422D1CB56E10004316CF /* Bank.swift in Sources */,
 				30C2DA961CA4372D003AFD8B /* PasscodeSettingsViewController.swift in Sources */,
 				300E422F1CB57206004316CF /* BankConnectedTableViewCell.swift in Sources */,
 				30C2DAEB1CA43934003AFD8B /* BankTableViewCell.swift in Sources */,
-				30C2DB111CA439DC003AFD8B /* Logs.swift in Sources */,
 				30C2DAD11CA4386A003AFD8B /* SupportMessageViewController.swift in Sources */,
 				30C2DAE91CA43934003AFD8B /* BankAccountViewController.swift in Sources */,
 				30C2DAA61CA4374F003AFD8B /* SignupIndividualViewControllerTwo.swift in Sources */,
@@ -1516,6 +1510,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_ENTITLEMENTS = Argent.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "app-notificationcenter/Info.plist";
@@ -1531,6 +1526,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_ENTITLEMENTS = Argent.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "app-notificationcenter/Info.plist";

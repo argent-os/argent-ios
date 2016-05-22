@@ -28,7 +28,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
     private let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
 
     override func viewDidAppear(animated: Bool) {
-        userData = nil
         addSubviewWithBounce(imageView)
         NSUserDefaults.standardUserDefaults().setBool(false,forKey:"userLoggedIn");
         NSUserDefaults.standardUserDefaults().synchronize();
