@@ -137,6 +137,7 @@
 		30DB59781CA46CB0007FEE1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30DB59771CA46CB0007FEE1E /* Assets.xcassets */; };
 		30DB597C1CA46CB0007FEE1E /* app-watchos.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 30DB595A1CA46CB0007FEE1E /* app-watchos.app */; };
 		30FF6FD11CEE3F9300A46A1E /* TransferToBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FF6FD01CEE3F9300A46A1E /* TransferToBankViewController.swift */; };
+		30FF6FD51CF221A200A46A1E /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FF6FD41CF221A200A46A1E /* Account.swift */; };
 		ADE75F43B0A9DEFF223342BC /* Pods_app_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 996F775E972E0316411A5150 /* Pods_app_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -360,6 +361,7 @@
 		30FB54291C6A58B40004A538 /* app-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "app-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB54411C6ABF6A0004A538 /* ObjC-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjC-Bridging-Header.h"; sourceTree = "<group>"; };
 		30FF6FD01CEE3F9300A46A1E /* TransferToBankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransferToBankViewController.swift; path = "app-ios/TransferToBankViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30FF6FD41CF221A200A46A1E /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Account.swift; path = "app-ios/Account.swift"; sourceTree = SOURCE_ROOT; };
 		50E88D0ADD61BCA3EBD43D33 /* Pods_protonpay_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_protonpay_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5278C9B083E72E91DE8D539E /* Pods-app-watchos Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-watchos Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-app-watchos Extension/Pods-app-watchos Extension.release.xcconfig"; sourceTree = "<group>"; };
 		62BBF354E2FD43232A999EA5 /* Pods-app-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-app-ios/Pods-app-ios.debug.xcconfig"; sourceTree = "<group>"; };
@@ -464,6 +466,7 @@
 			children = (
 				30960F001CE40CBE00749695 /* Auth.swift */,
 				30C2DAF81CA43975003AFD8B /* User.swift */,
+				30FF6FD41CF221A200A46A1E /* Account.swift */,
 				302010C91CAF3B05007D5E7E /* Notification.swift */,
 				300E422C1CB56E10004316CF /* Bank.swift */,
 				300E42321CB71362004316CF /* Card.swift */,
@@ -1391,6 +1394,7 @@
 				30D526781CDBB4A0001B41BA /* Bitcoin.swift in Sources */,
 				30960F071CE4EA5700749695 /* ProfilePictureViewController.swift in Sources */,
 				30C2DACB1CA4385C003AFD8B /* ProfileMenuViewController.swift in Sources */,
+				30FF6FD51CF221A200A46A1E /* Account.swift in Sources */,
 				30C2DAB31CA437B2003AFD8B /* TermsViewController.swift in Sources */,
 				300E422B1CB47428004316CF /* BankConnectedListTableViewController.swift in Sources */,
 				30C2DAD51CA43892003AFD8B /* ProfileFieldCell.swift in Sources */,

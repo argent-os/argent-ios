@@ -12,6 +12,8 @@ import Alamofire
 import SwiftyJSON
 import TextFieldEffects
 import UIColor_Hex_Swift
+import TransitionTreasury
+import TransitionAnimation
 
 class LoginViewController: UIViewController, UITextFieldDelegate  {
     
@@ -20,6 +22,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
     @IBOutlet weak var loginBox: UIView!
     
     let imageView = UIImageView()
+
+    weak var modalDelegate: ModalViewControllerDelegate?
 
     private let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
 
@@ -41,6 +45,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
+        // Set background image
+        let backgroundView: UIImageView = UIImageView(image: UIImage(named: "BackgroundBusiness1"))
+        backgroundView.contentMode = UIViewContentMode.ScaleAspectFill
+        backgroundView.frame = self.view.bounds
+        self.view!.addSubview(backgroundView)
+        self.view.sendSubviewToBack(backgroundView)
+        
         activityIndicator.center = self.view.center
         activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true
@@ -60,7 +71,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         let containerFrame: CGRect = self.loginBox.frame
         loginBox.frame = containerFrame
         loginBox.layer.cornerRadius = 5
-        loginBox.layer.borderColor = UIColor.mediumBlue().colorWithAlphaComponent(0.5).CGColor
+        loginBox.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.3).CGColor
         loginBox.layer.borderWidth = 1
         loginBox.layer.masksToBounds = true
         
@@ -112,6 +123,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
     {
         // Normally identifiers are started with capital letters, exception being authViewController, make sure UIStoryboard name is Auth, not Main
         let viewController:AuthViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateViewControllerWithIdentifier("authViewController") as! AuthViewController
+        viewController.modalTransitionStyle = .CrossDissolve
         self.presentViewController(viewController, animated: true, completion: nil)
     }
 

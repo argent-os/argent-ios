@@ -51,7 +51,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func swipeTransition(sender: UIPanGestureRecognizer) {
         switch sender.state {
         case .Began :
-            print("Began")
             if sender.translationInView(sender.view).x >= 0 {
                 tabBarController?.tr_selected(0, gesture: sender)
             } else if sender.translationInView(sender.view).x < 0 {
@@ -248,7 +247,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SearchDetailViewController") as! SearchDetailViewController
-            self.navigationController
+
         self.navigationController!.tr_pushViewController(vc, method: TRPresentTransitionMethod.Twitter, statusBarStyle: .LightContent, completion: {
                 print("Push finished.")
         })

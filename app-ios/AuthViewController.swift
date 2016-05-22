@@ -8,8 +8,10 @@
 
 import LTMorphingLabel
 import Foundation
+import TransitionTreasury
+import TransitionAnimation
 
-class AuthViewController: UIViewController, LTMorphingLabelDelegate  {
+class AuthViewController: UIViewController, LTMorphingLabelDelegate, ModalTransitionDelegate  {
     
     private var i = -1
     private var textArray = [
@@ -25,6 +27,8 @@ class AuthViewController: UIViewController, LTMorphingLabelDelegate  {
         "Benvenuto a Argent"
     ]
     
+    internal var tr_presentTransition: TRViewControllerTransitionDelegate?
+
     let lbl = LTMorphingLabel(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 100.0))
     let imageView = UIImageView()
     
@@ -146,21 +150,28 @@ class AuthViewController: UIViewController, LTMorphingLabelDelegate  {
     
 
     // Set the ID in the storyboard in order to enable transition!
-    func signup(sender:AnyObject!)
-    {
+    func signup(sender:AnyObject!) {
         let viewController:UINavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SignupNavigationController") as! UINavigationController
         
         self.presentViewController(viewController, animated: true, completion: nil)
     }
     
     // Set the ID in the storyboard in order to enable transition!
-    func login(sender:AnyObject!)
-    {
-        let viewController:LoginViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-        
-        self.presentViewController(viewController, animated: true, completion: nil)
+    func login(sender:AnyObject!) {
+        let model = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+        model.modalDelegate = self
+        tr_presentViewController(model, method: TRPresentTransitionMethod.Fade, statusBarStyle: .LightContent, completion: {
+        })
     }
 
+    // MARK: - Modal tt delegate
+    
+    func modalViewControllerDismiss(callbackData data: AnyObject? = nil) {
+        tr_dismissViewController(completion: {
+            print("Dismiss finished.")
+        })
+    }
+    
     override func viewDidAppear(animated: Bool) {
         addSubviewWithBounce(imageView)
     }

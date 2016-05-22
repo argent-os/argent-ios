@@ -12,7 +12,7 @@ import JSSAlertView
 
 final class EditProfileViewController: FormViewController, UINavigationBarDelegate {
     
-    var dic: Dictionary<String, String> = [:]
+    var dic: Dictionary<String, AnyObject> = [:]
     
     var detailUser: User? {
         didSet {
@@ -33,18 +33,6 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
     // MARK: Private
     
     private lazy var formerInputAccessoryView: FormerInputAccessoryView = FormerInputAccessoryView(former: self.former)
-    
-    private lazy var imageRow: LabelRowFormer<ProfileImageCell> = {
-        LabelRowFormer<ProfileImageCell>(instantiateType: .Nib(nibName: "ProfileImageCell")) {
-            $0.iconView.image = Profile.sharedInstance.image
-            }.configure {
-                $0.text = "Choose profile image from library"
-                $0.rowHeight = 60
-            }.onSelected { [weak self] _ in
-                self?.former.deselect(true)
-                self?.presentImagePicker()
-        }
-    }()
     
     private lazy var informationSection: SectionFormer = {
         let ssnRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
@@ -175,11 +163,12 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         
-        tableView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height-80)
+        tableView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height-3)
         tableView.contentInset.top = 80
         tableView.contentInset.bottom = 60
         tableView.contentOffset.y = 0
         tableView.backgroundColor = UIColor(rgba: "#efeff4")
+        tableView.showsVerticalScrollIndicator = false
         
         title = "Edit Profile"
         
@@ -191,6 +180,10 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
         let saveButton : UIBarButtonItem = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(EditProfileViewController.save(_:)))
         
         self.navigationItem.rightBarButtonItem = saveButton
+        
+//        Account.getStripeAccount { (acct, err) in
+//            print(acct)
+//        }
         
         // Create RowFomers
         
@@ -327,15 +320,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
             former.append(sectionFormer: informationSection)
         }
     }
-    
-    private func presentImagePicker() {
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.sourceType = .PhotoLibrary
-        picker.allowsEditing = false
-        presentViewController(picker, animated: true, completion: nil)
-    }
-    
+
     private func switchInfomationSection() {
         if Profile.sharedInstance.moreInformation {
             former.insertUpdate(sectionFormer: informationSection, toSection: former.numberOfSections, rowAnimation: .Top)
@@ -374,15 +359,4 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
         alertView.setTextTheme(.Light) // can be .Light or .Dark
     }
     
-}
-
-extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        picker.dismissViewControllerAnimated(true, completion: nil)
-        Profile.sharedInstance.image = image
-        imageRow.cellUpdate {
-            $0.iconView.image = image
-        }
-    }
 }

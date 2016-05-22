@@ -136,33 +136,43 @@ Nunito-SemiBold.ttf</string>
 	<array>
 		<dict>
 			<key>UIApplicationShortcutItemIconFile</key>
-			<string>ic_pay_3d</string>
+			<string></string>
 			<key>UIApplicationShortcutItemSubtitle</key>
 			<string></string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>Make a Payment</string>
+			<string></string>
 			<key>UIApplicationShortcutItemType</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER).make-payment</string>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).search</string>
 		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemIconFile</key>
-			<string>ic_recur_3d</string>
+			<string></string>
 			<key>UIApplicationShortcutItemSubtitle</key>
 			<string></string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>Add Billing Plan</string>
+			<string></string>
 			<key>UIApplicationShortcutItemType</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER).add-plan</string>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).create-plan</string>
 		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemIconFile</key>
-			<string>ic_add_3d</string>
+			<string></string>
 			<key>UIApplicationShortcutItemSubtitle</key>
 			<string></string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>Add Customer</string>
+			<string></string>
 			<key>UIApplicationShortcutItemType</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER).add-customer</string>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).open-terminal</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string></string>
+			<key>UIApplicationShortcutItemSubtitle</key>
+			<string></string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>View Dashboard</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).view-dashboard</string>
 		</dict>
 	</array>
 	<key>UILaunchStoryboardName</key>

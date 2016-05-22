@@ -28,7 +28,12 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Dismiss loader
+        // Set background image
+        let backgroundView: UIImageView = UIImageView(image: UIImage(named: "BackgroundBusinessBlurDark"))
+        backgroundView.contentMode = UIViewContentMode.ScaleAspectFill
+        backgroundView.frame = self.view.bounds
+        self.view!.addSubview(backgroundView)
+        self.view.sendSubviewToBack(backgroundView)
         
         // Add button to keyboard
         addToolbarButton()

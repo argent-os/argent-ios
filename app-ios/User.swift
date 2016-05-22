@@ -51,6 +51,9 @@ class User {
                 case .Success:
                     if let value = response.result.value {
                         let data = JSON(value)
+                        if(data["message"] == "No token supplied") {
+                            HomeViewController().logout()  
+                        }
                         let profile = data
                             let id = profile["_id"].stringValue
                             let username = profile["username"].stringValue

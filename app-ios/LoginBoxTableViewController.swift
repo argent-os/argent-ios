@@ -51,14 +51,20 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
         passwordTextField.textRectForBounds(CGRectMake(0, 0, 0, 0))
         passwordTextField.tintColor = UIColor.whiteColor()
 
-        loginTableView.separatorColor = UIColor(rgba: "#eee3")
+        loginTableView.separatorColor = UIColor(rgba: "#ccc3")
         loginTableView.backgroundColor = UIColor(rgba: "#2221")
-        
+
         usernameCell.backgroundColor = UIColor.clearColor()
         usernameCell.textLabel?.textColor = UIColor.whiteColor()
         
         passwordCell.backgroundColor = UIColor.clearColor()
         passwordCell.textLabel?.textColor = UIColor.whiteColor()
+        
+        // Blurview
+        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+        visualEffectView.frame = CGRectMake(0, 0, 600, 500)
+        self.view.addSubview(visualEffectView)
+        self.view.sendSubviewToBack(visualEffectView)
     }
     
     func login(sender: AnyObject) {

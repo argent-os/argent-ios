@@ -1,5 +1,5 @@
 //
-//  AddCustomerViewController.swift
+//  RecurringBillingViewController.swift
 //  argent-ios
 //
 //  Created by Sinan Ulkuatam on 3/15/16.

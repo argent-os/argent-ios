@@ -222,30 +222,30 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
     }
     
     func displayErrorAlertMessage(alertMessage:String) {
-        let customIcon:UIImage = UIImage(named: "ic_close_light")! // your custom icon UIImage
-        let customColor:UIColor = UIColor.mediumBlue() // base color for the alert
+        let customIcon:UIImage = UIImage(named: "IconBellLight")! // your custom icon UIImage
+        let customColor:UIColor = UIColor.lightBlue() // base color for the alert
         self.view.endEditing(true)
         let alertView = JSSAlertView().show(
             self,
             title: "",
             text: alertMessage,
-            buttonText: "",
-            noButtons: true,
+            buttonText: "Ok",
+            noButtons: false,
             color: customColor,
             iconImage: customIcon)
         alertView.setTextTheme(.Light) // can be .Light or .Dark
     }
     
     func displayDefaultErrorAlertMessage(alertMessage:String) {
-        let customIcon:UIImage = UIImage(named: "ic_close_light")! // your custom icon UIImage
+        let customIcon:UIImage = UIImage(named: "IconBellLight")! // your custom icon UIImage
         let customColor:UIColor = UIColor.mediumBlue() // base color for the alert
         self.view.endEditing(true)
         let alertView = JSSAlertView().show(
             self,
             title: "",
             text: alertMessage,
-            buttonText: "",
-            noButtons: true,
+            buttonText: "Ok",
+            noButtons: false,
             color: customColor,
             iconImage: customIcon)
         alertView.setTextTheme(.Light) // can be .Light or .Dark

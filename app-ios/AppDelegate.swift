@@ -42,16 +42,15 @@ let stripeApiUrl = "https://api.stripe.com"
 class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegate {
     
     var window: UIWindow?
-    
-    // Assign the init view controller of the app
-    var viewController = AuthViewController()
-    
+
+    // Passcode Lock
     lazy var passcodeLockPresenter: PasscodeLockPresenter = {
         let configuration = PasscodeLockConfiguration()
         let presenter = PasscodeLockPresenter(mainWindow: self.window, configuration: configuration)
         return presenter
     }()
     
+    // Onboarding
     func skipOnboarding(notification: NSNotification) {
         
         if let appContentVC = UIStoryboard(name: "Auth", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("authViewController") as? UIViewController {
@@ -65,39 +64,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
             })
         }
     }
-
+    
     // 3D Touch
-    func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: Bool -> Void) {
-        if shortcutItem.type == "com.argentapp.ios.add-customer" {
-            let sb = UIStoryboard(name: "Main", bundle: nil)
-            let addCustomerVC = sb.instantiateViewControllerWithIdentifier("AddCustomerViewController")
-            let root = UIApplication.sharedApplication().keyWindow?.rootViewController
-            root!.presentViewController(addCustomerVC, animated: false, completion: { () -> Void in
-                completionHandler(true)
-            })
+    func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: Bool -> ()) {
+        if shortcutItem.type == "com.argentapp.ios.view-dashboard" {
+            showViewController("RootViewController")
         }
-        if shortcutItem.type == "com.argentapp.ios.add-plan" {
-            let sb = UIStoryboard(name: "Main", bundle: nil)
-            let recurringBillingVC = sb.instantiateViewControllerWithIdentifier("RecurringBillingViewController")
-            let root = UIApplication.sharedApplication().keyWindow?.rootViewController
-            root!.presentViewController(recurringBillingVC, animated: false, completion: { () -> Void in
-                completionHandler(true)
-            })
+        if shortcutItem.type == "com.argentapp.ios.search" {
         }
-        if shortcutItem.type == "com.argentapp.ios.make-payment" {
-            let sb = UIStoryboard(name: "Main", bundle: nil)
-            let chargeVC = sb.instantiateViewControllerWithIdentifier("ChargeViewController")
-            let root = UIApplication.sharedApplication().keyWindow?.rootViewController
-            root!.presentViewController(chargeVC, animated: false, completion: { () -> Void in
-                completionHandler(true)
-            })
+        if shortcutItem.type == "com.argentapp.ios.open-terminal" {
+        }
+        if shortcutItem.type == "com.argentapp.ios.create-plan" {
         }
     }
     
+    private func showViewController(viewControllerId: String) -> Bool {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let rootVC = sb.instantiateViewControllerWithIdentifier(viewControllerId)
+        guard let root = UIApplication.sharedApplication().keyWindow?.rootViewController else { return false }
+        root.presentViewController(rootVC, animated: false, completion: { () -> Void in })
+        return true
+    }
+    
+    // Transition Treasury
     func tr_tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
         print("You did select \(viewController.dynamicType).")
     }
     
+    // Default Launch
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         // Transitions 
@@ -177,12 +171,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
         }
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.window!.rootViewController = viewController
-        
         // Global background color
         self.window!.backgroundColor = UIColor.slateBlue()
         self.window!.makeKeyAndVisible()
         self.window!.makeKeyWindow()
+
+        // Assign the init view controller of the app
+        let x = KeychainSwift().getBool("firstTime")
+        if x == true || x == nil {
+            KeychainSwift().set(false, forKey: "firstTime")
+            let viewController = AuthViewController()
+            self.window!.rootViewController = viewController
+        } else {
+            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RootViewController")
+            self.window!.rootViewController = viewController
+        }
 
         return true
     }

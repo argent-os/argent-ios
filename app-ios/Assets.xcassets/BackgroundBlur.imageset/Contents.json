@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "IconNotifyLight~universal@1x.png"
+      "filename" : "BackgroundBlur~universal@1x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "IconNotifyLight~universal@2x.png"
+      "filename" : "BackgroundBlur~universal@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "IconNotifyLight~universal@3x.png"
+      "filename" : "BackgroundBlur~universal@3x.png"
     }
   ],
   "info" : {

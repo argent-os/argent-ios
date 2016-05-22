@@ -472,23 +472,14 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         NSUserDefaults.standardUserDefaults().setValue("", forKey: "userAccessToken")
         NSUserDefaults.standardUserDefaults().synchronize();
         userData = nil
-
+        
         // go to login view
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let loginVC = sb.instantiateViewControllerWithIdentifier("LoginViewController")
+        loginVC.modalTransitionStyle = .CrossDissolve
         let root = UIApplication.sharedApplication().keyWindow?.rootViewController
-        root!.presentViewController(loginVC, animated: false, completion: { () -> Void in
+        root!.presentViewController(loginVC, animated: true, completion: { () -> Void in
         })
-    }
-    
-    @IBAction func logoutButtonTapped(sender: AnyObject) {
-        NSUserDefaults.standardUserDefaults().setBool(false,forKey:"userLoggedIn");
-        NSUserDefaults.standardUserDefaults().synchronize();
-        userData = nil
-        
-        // go to login view
-        self.performSegueWithIdentifier("loginView", sender: self);
-        
     }
     
     // Animation
@@ -614,5 +605,4 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RecurringBillingViewController") as! RecurringBillingViewController
         self.presentViewController(viewController, animated: true, completion: nil)
     }
-    
 }
