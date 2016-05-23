@@ -12,10 +12,13 @@ import UIKit
 import Former
 import KeychainSwift
 import JGProgressHUD
+import PermissionScope
 
 class ConfigureNotificationsViewController: FormViewController, UIApplicationDelegate {
     
     var dic: Dictionary<String, String> = [:]
+    
+    let pscope = PermissionScope()
     
     // MARK: Public
     
@@ -31,11 +34,23 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
         tableView.contentInset.bottom = 30
         tableView.contentOffset.y = -10
         tableView.backgroundColor = UIColor.whiteColor()
-        // screen width and height:
-        let screen = UIScreen.mainScreen().bounds
-        _ = screen.size.width
-        _ = screen.size.height
 
+        // Set up permissions
+        pscope.addPermission(NotificationsPermission(notificationCategories: nil),
+                             message: "We use this to send intelligent push notifications on account events")
+        
+        pscope.headerLabel.text = "App Request"
+        pscope.closeButtonTextColor = UIColor.mediumBlue()
+        pscope.permissionButtonTextColor = UIColor.mediumBlue()
+        pscope.permissionButtonBorderColor = UIColor.mediumBlue()
+        pscope.buttonFont = UIFont.systemFontOfSize(UIFont.systemFontSize())
+        pscope.labelFont = UIFont.systemFontOfSize(UIFont.systemFontSize())
+        pscope.authorizedButtonColor = UIColor.brandGreen()
+        pscope.unauthorizedButtonColor = UIColor.brandRed()
+        pscope.permissionButtonΒorderWidth = 1
+        pscope.permissionButtonCornerRadius = 5
+        pscope.permissionLabelColor = UIColor.mediumBlue()
+        
         self.navigationItem.title = "Notifications"
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.darkGrayColor()]
@@ -50,9 +65,68 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
                     cell.update()
                 }
             }.onSwitchChanged { on in
-                if(on.boolValue == true) {
+                switch PermissionScope().statusNotifications() {
+                case .Unknown:
+                    // ask
+                    self.pscope.show({ finished, results in
+                        print("got results \(results)")
+                        // Enable push notifications
+                        if #available(iOS 8.0, *) {
+                            let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+                            UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+                            UIApplication.sharedApplication().registerForRemoteNotifications()
+                        } else {
+                            let settings = UIRemoteNotificationType.Alert.union(UIRemoteNotificationType.Badge).union(UIRemoteNotificationType.Sound)
+                            UIApplication.sharedApplication().registerForRemoteNotificationTypes(settings)
+                        }
+                        }, cancelled: { (results) -> Void in
+                            print("cancelled")
+                    })
+                case .Unauthorized, .Disabled:
+                    // off
+                    if(on.boolValue == false) {
+                        self.updateUserNotificationRegistration(on)
+                        self.deregisterPush(self)
+                    } else {
+                        self.pscope.show({ finished, results in
+                            print(results)
+                            print(finished)
+                            // Enable push notifications
+                            if #available(iOS 8.0, *) {
+                                let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+                                UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+                                UIApplication.sharedApplication().registerForRemoteNotifications()
+                            } else {
+                                let settings = UIRemoteNotificationType.Alert.union(UIRemoteNotificationType.Badge).union(UIRemoteNotificationType.Sound)
+                                UIApplication.sharedApplication().registerForRemoteNotificationTypes(settings)
+                            }
+                            }, cancelled: { (results) -> Void in
+                                print("cancelled")
+                                print(results)
+                        })
+                    }
+                case .Authorized:
+                    // If permission is granted, post to endpoint
                     self.updateUserNotificationRegistration(true)
-                    self.promptUserToRegisterPushNotifications(self)
+                }
+                
+                if(on.boolValue == true) {
+                    // show on switch changed by default
+                    self.pscope.show({ finished, results in
+                        print(results)
+                        print(finished)
+                        // Enable push notifications
+                        if #available(iOS 8.0, *) {
+                            let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+                            UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+                            UIApplication.sharedApplication().registerForRemoteNotifications()
+                        } else {
+                            let settings = UIRemoteNotificationType.Alert.union(UIRemoteNotificationType.Badge).union(UIRemoteNotificationType.Sound)
+                            UIApplication.sharedApplication().registerForRemoteNotificationTypes(settings)
+                        }
+                        }, cancelled: { (results) -> Void in
+                            print(results)
+                    })
                 } else {
                     self.updateUserNotificationRegistration(on)
                     self.deregisterPush(self)
@@ -99,52 +173,6 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
             }
         }
     }
-    
-    func promptUserToRegisterPushNotifications(sender: AnyObject) {
-        // Register for Push Notifications
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
-        HUD.showInView(self.view!)
-        HUD.textLabel.text = "Push Notifications are On"
-        HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
-        HUD.position = JGProgressHUDPosition.Center
-        HUD.dismissAfterDelay(1, animated: true)
-        if let userDeviceToken = KeychainSwift().get("deviceToken") {
-            updateUserDeviceToken()
-            // print("push notifications enabled", userDeviceToken)
-        }
-        // Use below for in-controller registration
-        // self.pushNotificationsController = ConfigureNotificationsViewController()
-//        if application.respondsToSelector(#selector(UIApplication.registerUserNotificationSettings(_:))) {
-//            print("registering push")
-//            let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.ExtraLight)
-//            HUD.showInView(self.view!)
-//            HUD.textLabel.text = "Push Notifications are On"
-//            HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
-//            HUD.position = JGProgressHUDPosition.Center
-//            HUD.dismissAfterDelay(1, animated: true)
-//            let userDeviceToken = KeychainSwift().get("deviceToken")
-//            updateUserDeviceToken(userDeviceToken!)
-//            print("push notifications enabled", userDeviceToken)
-            // Enable push notifications
-//            if #available(iOS 8.0, *) {
-//                let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-//                UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-//                UIApplication.sharedApplication().registerForRemoteNotifications()
-//            } else {
-//                let settings = UIRemoteNotificationType.Alert.union(UIRemoteNotificationType.Badge).union(UIRemoteNotificationType.Sound)
-//                UIApplication.sharedApplication().registerForRemoteNotificationTypes(settings)
-//            }
-//        }
-    }
-    
-    // Get device token for push notification
-//    internal func application( application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData ) {
-//        // let userDeviceToken = KeychainSwift().get("deviceToken")
-//        // we can use this to update at the point of view controller down the road
-//        // updateUserDeviceToken(userDeviceToken!)
-//        // print("user device token registered in app controller is ")
-//        // print(userDeviceToken)
-//    }
     
     func updateUserDeviceToken() {
         

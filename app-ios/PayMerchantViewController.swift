@@ -164,8 +164,6 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
             // request will be nil if running on < iOS8
             return
         }
-        print(merchantID)
-        print(chargeInputView.text)
         if(chargeInputView.text == "" || chargeInputView.text == "$0.00") {
             showErrorAlert("Amount invalid")
         } else {
@@ -296,7 +294,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
     
     func paymentAuthorizationViewControllerDidFinish(controller: PKPaymentAuthorizationViewController) {
         dismissViewControllerAnimated(true, completion: nil)
-        //controller.dismissViewControllerAnimated(true, completion: nil)
+        controller.dismissViewControllerAnimated(true, completion: nil)
         print("dismissing")
     }
     
@@ -325,8 +323,8 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
             self,
             title: "",
             text: message,
-            buttonText: "",
-            noButtons: true,
+            buttonText: "Ok",
+            noButtons: false,
             color: customColor,
             iconImage: customIcon)
         alertView.setTextTheme(.Light) // can be .Light or .Dark

@@ -14,6 +14,7 @@ import KeychainSwift
 import plaid_ios_sdk
 import TransitionTreasury
 import TransitionAnimation
+import PermissionScope
 
 let merchantID = "merchant.com.argentapp.pay.v2"
 
@@ -42,6 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
     
     var window: UIWindow?
 
+    let pscope = PermissionScope()
+    
     // Passcode Lock
     lazy var passcodeLockPresenter: PasscodeLockPresenter = {
         let configuration = PasscodeLockConfiguration()
@@ -153,19 +156,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
         // Search Bar UI
         UISearchBar.appearance().barTintColor = UIColor.whiteColor()
         UISearchBar.appearance().tintColor = UIColor.mediumBlue()
-                
-        // Enable push notifications
-        if #available(iOS 8.0, *) {
-            let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-            UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-            UIApplication.sharedApplication().registerForRemoteNotifications()
-        } else {
-            let settings = UIRemoteNotificationType.Alert.union(UIRemoteNotificationType.Badge).union(UIRemoteNotificationType.Sound)
-            UIApplication.sharedApplication().registerForRemoteNotificationTypes(settings)
-        }
         
+        // Set up permissions
+        pscope.addPermission(NotificationsPermission(notificationCategories: nil),
+                             message: "We use this to send intelligent push notifications on account events")
+        
+        pscope.headerLabel.text = "App Request"
+        pscope.closeButtonTextColor = UIColor.mediumBlue()
+        pscope.permissionButtonTextColor = UIColor.mediumBlue()
+        pscope.permissionButtonBorderColor = UIColor.mediumBlue()
+        pscope.buttonFont = UIFont.systemFontOfSize(UIFont.systemFontSize())
+        pscope.labelFont = UIFont.systemFontOfSize(UIFont.systemFontSize())
+        pscope.authorizedButtonColor = UIColor.brandGreen()
+        pscope.unauthorizedButtonColor = UIColor.brandRed()
+        pscope.permissionButtonΒorderWidth = 1
+        pscope.permissionButtonCornerRadius = 5
+        pscope.permissionLabelColor = UIColor.mediumBlue()
+        
+        // Show dialog with callbacks
+        pscope.show({ finished, results in
+                print("got results \(results)")
+                // Enable push notifications
+                if #available(iOS 8.0, *) {
+                    let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+                    UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+                    UIApplication.sharedApplication().registerForRemoteNotifications()
+                } else {
+                    let settings = UIRemoteNotificationType.Alert.union(UIRemoteNotificationType.Badge).union(UIRemoteNotificationType.Sound)
+                    UIApplication.sharedApplication().registerForRemoteNotificationTypes(settings)
+                }
+            }, cancelled: { (results) -> Void in
+                    print("cancelled")
+        })
+        
+        // Global window attributes
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        // Global background color
         self.window!.backgroundColor = UIColor.slateBlue()
         self.window!.makeKeyAndVisible()
         self.window!.makeKeyWindow()
@@ -181,6 +206,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
             self.window!.rootViewController = viewController
         }
         
+        // Save state tab bar
         if let tabBarController = window?.rootViewController as? UITabBarController {
             guard let activeTab = NSUserDefaults.standardUserDefaults().valueForKey("activeTab") else {
                 return false
