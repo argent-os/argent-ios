@@ -38,7 +38,6 @@ target 'app-ios' do
 	pod 'JGProgressHUD'	
 	pod 'SESlideTableViewCell'
 	pod 'JVFloatLabeledTextField'
-	pod 'CircleMenu'
 	pod 'JSSAlertView'
 	pod 'CountryPicker'
 	pod 'FlagKit'

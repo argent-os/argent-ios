@@ -8,27 +8,25 @@
 
 import Foundation
 import UIKit
-import CircleMenu
+import DGRunkeeperSwitch
 
-class MenuViewController: UIViewController, CircleMenuDelegate {
-
-    let circleMenuButton = CircleMenu(
-        frame: CGRect(x: 0, y: 0, width: 85, height: 85),
-        normalIcon:"IconMenu",
-        selectedIcon:"IconCloseLight",
-        buttonsCount: 3,
-        duration: 0.5,
-        distance: 140)
+class MenuViewController: UIViewController {
     
-    let colors = [UIColor.redColor(), UIColor.grayColor(), UIColor.greenColor(), UIColor.purpleColor()]
-    let items: [(icon: String, color: UIColor)] = [
-        ("IconCardsWhite", UIColor.lightBlue()),
-        ("IconRepeatWhite", UIColor.lightBlue()),
-        ("IconMailWhite", UIColor.lightBlue()),
-        // ("ic_coinbag_light", UIColor.whiteColor()),
-        // ("ic_link_light", UIColor.whiteColor()),
-        // ("ic_paper_light", UIColor.whiteColor()),
-    ]
+    private let menuSwitch = DGRunkeeperSwitch(leftTitle: "Controller", rightTitle: "Manage")
+
+    private let viewTerminalImageView = UIImageView()
+
+    private let addPlanImageView = UIImageView()
+    
+    private let inviteImageView = UIImageView()
+
+    @IBAction func indexChanged(sender: DGRunkeeperSwitch) {
+        if(sender.selectedIndex == 0) {
+
+        }
+        if(sender.selectedIndex == 1) {
+        }
+    }
     
     lazy var gesture: UIPanGestureRecognizer = {
         let gesture = UIPanGestureRecognizer(target: self, action: #selector(MenuViewController.swipeTransition(_:)))
@@ -50,13 +48,37 @@ class MenuViewController: UIViewController, CircleMenuDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        configure()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        UIStatusBarStyle.Default
         
+        Timeout(0.0) {
+            self.addSubviewWithBounce(self.viewTerminalImageView)
+        }
+        Timeout(0.1) {
+            self.addSubviewWithBounce(self.addPlanImageView)
+        }
+        Timeout(0.2) {
+            self.addSubviewWithBounce(self.inviteImageView)
+        }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        viewTerminalImageView.removeFromSuperview()
+        addPlanImageView.removeFromSuperview()
+        inviteImageView.removeFromSuperview()
+    }
+    
+    func configure() {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
         view.addGestureRecognizer(gesture)
-
+        
         let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
         visualEffectView.frame = CGRectMake(0, 0, screenWidth, screenHeight)
         let backgroundImageView = UIImageView(image: UIImage(), highlightedImage: nil)
@@ -66,19 +88,44 @@ class MenuViewController: UIViewController, CircleMenuDelegate {
         backgroundImageView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         backgroundImageView.layer.masksToBounds = true
         backgroundImageView.clipsToBounds = true
-        self.view.addSubview(backgroundImageView)
         // backgroundImageView.addSubview(visualEffectView)
         self.view.sendSubviewToBack(backgroundImageView)
         self.view.addSubview(backgroundImageView)
         
-        // circleMenuButton.backgroundColor = UIColor.clearColor()
-        circleMenuButton.backgroundColor = UIColor.lightBlue()
-        circleMenuButton.delegate = self
-        circleMenuButton.center = self.view.center
-        circleMenuButton.layer.cornerRadius = circleMenuButton.frame.size.width / 2.0
-        circleMenuButton.layer.borderColor = UIColor(rgba: "#fff3").CGColor
-        circleMenuButton.layer.borderWidth = 1
-        view.addSubview(circleMenuButton)
+        menuSwitch.backgroundColor = UIColor.mediumBlue()
+        menuSwitch.selectedBackgroundColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
+        menuSwitch.titleColor = UIColor.lightBlue()
+        menuSwitch.selectedTitleColor = UIColor.whiteColor()
+        menuSwitch.titleFont = UIFont.systemFontOfSize(12)
+        menuSwitch.frame = CGRect(x: 50, y: 40, width: screenWidth-100, height: 35.0)
+        //autoresizing so it stays at top right (flexible left and flexible bottom margin)
+        menuSwitch.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
+        menuSwitch.bringSubviewToFront(menuSwitch)
+        menuSwitch.addTarget(self, action: #selector(HomeViewController.indexChanged(_:)), forControlEvents: .ValueChanged)
+        self.view.addSubview(menuSwitch)
+        self.view.bringSubviewToFront(menuSwitch)
+        self.view.superview?.bringSubviewToFront(menuSwitch)
+        
+        viewTerminalImageView.image = UIImage(named: "IconTerminal")
+        viewTerminalImageView.frame = CGRect(x: 35, y: screenHeight*0.2, width: screenWidth-70, height: 150)
+        viewTerminalImageView.contentMode = .ScaleAspectFit
+        let gestureRecognizerTerminal = UITapGestureRecognizer(target: self, action: #selector(terminalButtonSelected(_:)))
+        viewTerminalImageView.addGestureRecognizer(gestureRecognizerTerminal)
+        viewTerminalImageView.userInteractionEnabled = true
+        
+        addPlanImageView.image = UIImage(named: "IconAddPlan")
+        addPlanImageView.frame = CGRect(x: 35, y: screenHeight*0.4, width: screenWidth-70, height: 150)
+        addPlanImageView.contentMode = .ScaleAspectFit
+        let gestureRecognizerPlan = UITapGestureRecognizer(target: self, action: #selector(planButtonSelected(_:)))
+        addPlanImageView.addGestureRecognizer(gestureRecognizerPlan)
+        addPlanImageView.userInteractionEnabled = true
+        
+        inviteImageView.image = UIImage(named: "IconInvite")
+        inviteImageView.frame = CGRect(x: 35, y: screenHeight*0.6, width: screenWidth-70, height: 150)
+        inviteImageView.contentMode = .ScaleAspectFit
+        let gestureRecognizerInvite = UITapGestureRecognizer(target: self, action: #selector(inviteButtonSelected(_:)))
+        inviteImageView.addGestureRecognizer(gestureRecognizerInvite)
+        inviteImageView.userInteractionEnabled = true
         
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 65))
         // navBar.barTintColor = UIColor(rgba: "#258ff6")
@@ -89,18 +136,24 @@ class MenuViewController: UIViewController, CircleMenuDelegate {
             NSForegroundColorAttributeName : UIColor.whiteColor(),
             NSFontAttributeName : UIFont(name: "Avenir-Book", size: 18)!
         ]
-        self.view.addSubview(navBar);
+        //self.view.addSubview(navBar);
         let navItem = UINavigationItem(title: "Main Menu");
         navBar.setItems([navItem], animated: false);
-        
     }
     
-    override func viewDidAppear(animated: Bool) {
-        UIStatusBarStyle.Default
-        circleMenuButton.sendActionsForControlEvents(.TouchUpInside)
-        if(Int(circleMenuButton.state.rawValue) == 0) {
-            circleMenuButton.sendActionsForControlEvents(.TouchUpInside)
-        }
+    internal func terminalButtonSelected(sender: AnyObject) {
+        viewTerminalImageView.highlighted = true
+        self.performSegueWithIdentifier("chargeView", sender: self)
+    }
+    
+    internal func planButtonSelected(sender: AnyObject) {
+        addPlanImageView.highlighted = true
+        self.performSegueWithIdentifier("addPlanView", sender: self)
+    }
+    
+    internal func inviteButtonSelected(sender: AnyObject) {
+        inviteImageView.highlighted = true
+        self.performSegueWithIdentifier("addCustomerView", sender: self)
     }
     
     private func addBlurView(){
@@ -121,39 +174,6 @@ class MenuViewController: UIViewController, CircleMenuDelegate {
     
     // MARK: Delegate Methods
     
-    // MARK: CircleMenu Delegate
-
-    func circleMenu(circleMenu: CircleMenu, willDisplay circleMenuButton: CircleMenuButton, atIndex: Int) {
-        // circleMenuButton.backgroundColor = items[atIndex].color
-        circleMenuButton.backgroundColor = UIColor.lightBlue()
-        circleMenuButton.layer.borderColor = UIColor(rgba: "#3333").CGColor
-        circleMenuButton.layer.borderWidth = 1
-        circleMenuButton.setImage(UIImage(imageLiteral: items[atIndex].icon), forState: .Normal)
-
-        // set highlighted image
-        let highlightedImage  = UIImage(imageLiteral: items[atIndex].icon).imageWithRenderingMode(.AlwaysTemplate)
-        circleMenuButton.setImage(highlightedImage, forState: .Highlighted)
-        circleMenuButton.tintColor = UIColor.init(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0.3)
-    }
-    
-    func circleMenu(circleMenu: CircleMenu, buttonWillSelected circleMenuButton: CircleMenuButton, atIndex: Int) {
-        circleMenuButton.backgroundColor = items[atIndex].color
-    }
-    
-    func circleMenu(circleMenu: CircleMenu, buttonDidSelected circleMenuButton: CircleMenuButton, atIndex: Int) {
-        circleMenuButton.backgroundColor = items[atIndex].color
-        
-        if atIndex == 0 {
-            self.performSegueWithIdentifier("chargeView", sender: self)
-        }
-        if atIndex == 1 {
-            self.performSegueWithIdentifier("addPlanView", sender: self)
-        }
-        if atIndex == 2 {
-            self.performSegueWithIdentifier("addCustomerView", sender: self)
-        }
-    }
-    
     // Statusbar
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.Default
@@ -164,6 +184,23 @@ class MenuViewController: UIViewController, CircleMenuDelegate {
             let rootViewController = (self.storyboard?.instantiateViewControllerWithIdentifier("RootViewController"))! as UIViewController
             self.presentViewController(rootViewController, animated: true, completion: nil)
         }
+    }
+    
+    // Animation
+    
+    func addSubviewWithBounce(view: UIView) {
+        view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001)
+        self.view.addSubview(view)
+        UIView.animateWithDuration(0.3 / 1.5, animations: {() -> Void in
+            view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0)
+            }, completion: {(finished: Bool) -> Void in
+                UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
+                    }, completion: {(finished: Bool) -> Void in
+                        UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
+                            view.transform = CGAffineTransformIdentity
+                        })
+                })
+        })
     }
     
 }

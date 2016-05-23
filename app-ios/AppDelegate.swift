@@ -161,7 +161,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
         // Set up permissions
         pscope.addPermission(NotificationsPermission(notificationCategories: nil),
                              message: "We use this to send real-time push notifications on account events")
-        
         pscope.headerLabel.text = "App Request"
         pscope.bodyLabel.text = "Enabling push notifications"
         pscope.closeButtonTextColor = UIColor.mediumBlue()
@@ -230,11 +229,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
             .stringByReplacingOccurrencesOfString( " ", withString: "" ) as String
         
         KeychainSwift().set(deviceTokenString, forKey: "deviceToken")
-        print( deviceTokenString )
-        addPushToken(deviceTokenString)
+        //print( deviceTokenString )
+        addPushTokenToUser(deviceTokenString)
     }
     
-    func addPushToken(token: String) {
+    func addPushTokenToUser(token: String) {
         if userAccessToken != nil {
             
             let token = KeychainSwift().get("deviceToken")
@@ -244,7 +243,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
                 "Content-Type": "application/json"
             ]
             
-            let iosContent: [String: AnyObject] = [ "push_state": true, "device_token" : token! ] //also works with [ "model" : NSNull()]
+            let iosContent: [String: AnyObject] = [ "push_state": true, "device_token" : token! ]
+
             let iosNSDict = iosContent as NSDictionary //no error message
             
             let parameters : [String : AnyObject] = [

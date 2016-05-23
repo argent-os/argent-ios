@@ -341,7 +341,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         navBar.setItems([navItem], animated: true)
         
         balanceSwitch.backgroundColor = UIColor.clearColor()
-        balanceSwitch.selectedBackgroundColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
+        balanceSwitch.selectedBackgroundColor = UIColor.mediumBlue().colorWithAlphaComponent(0.5)
         balanceSwitch.titleColor = UIColor.mediumBlue()
         balanceSwitch.selectedTitleColor = UIColor.whiteColor()
         balanceSwitch.titleFont = UIFont.systemFontOfSize(12)
