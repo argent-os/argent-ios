@@ -180,6 +180,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
             let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RootViewController")
             self.window!.rootViewController = viewController
         }
+        
+        if let tabBarController = window?.rootViewController as? UITabBarController {
+            guard let activeTab = NSUserDefaults.standardUserDefaults().valueForKey("activeTab") else {
+                return false
+            }
+            passcodeLockPresenter.presentPasscodeLock()
+            tabBarController.selectedIndex = Int(activeTab as! NSNumber)
+        }
 
         return true
     }
@@ -202,14 +210,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
         print("applicationWillResignActive") //ignore  
         print(application)
-        // Display PasscodeLock on Launch
-        passcodeLockPresenter.presentPasscodeLock()
-        //self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        // Global background color
-        //self.window!.makeKeyAndVisible()
-        //self.window!.makeKeyWindow()
-        //let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RootViewController")
-        //self.window!.rootViewController = viewController
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
@@ -238,8 +238,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
             guard let activeTab = NSUserDefaults.standardUserDefaults().valueForKey("activeTab") else {
                 return
             }
-            // Display PasscodeLock on Launch
-            passcodeLockPresenter.presentPasscodeLock()
             tabBarController.selectedIndex = Int(activeTab as! NSNumber)
         }
     }
