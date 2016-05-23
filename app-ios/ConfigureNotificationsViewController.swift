@@ -37,9 +37,10 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
 
         // Set up permissions
         pscope.addPermission(NotificationsPermission(notificationCategories: nil),
-                             message: "We use this to send intelligent push notifications on account events")
+                             message: "We use this to send real-time push notifications on account events")
         
         pscope.headerLabel.text = "App Request"
+        pscope.bodyLabel.text = "Enabling push notifications"
         pscope.closeButtonTextColor = UIColor.mediumBlue()
         pscope.permissionButtonTextColor = UIColor.mediumBlue()
         pscope.permissionButtonBorderColor = UIColor.mediumBlue()

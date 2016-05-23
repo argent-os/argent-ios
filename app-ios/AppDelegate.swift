@@ -15,6 +15,7 @@ import plaid_ios_sdk
 import TransitionTreasury
 import TransitionAnimation
 import PermissionScope
+import Alamofire
 
 let merchantID = "merchant.com.argentapp.pay.v2"
 
@@ -159,9 +160,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
         
         // Set up permissions
         pscope.addPermission(NotificationsPermission(notificationCategories: nil),
-                             message: "We use this to send intelligent push notifications on account events")
+                             message: "We use this to send real-time push notifications on account events")
         
         pscope.headerLabel.text = "App Request"
+        pscope.bodyLabel.text = "Enabling push notifications"
         pscope.closeButtonTextColor = UIColor.mediumBlue()
         pscope.permissionButtonTextColor = UIColor.mediumBlue()
         pscope.permissionButtonBorderColor = UIColor.mediumBlue()
@@ -228,7 +230,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
             .stringByReplacingOccurrencesOfString( " ", withString: "" ) as String
         
         KeychainSwift().set(deviceTokenString, forKey: "deviceToken")
-        // print( deviceTokenString )
+        print( deviceTokenString )
+        addPushToken(deviceTokenString)
+    }
+    
+    func addPushToken(token: String) {
+        if userAccessToken != nil {
+            
+            let token = KeychainSwift().get("deviceToken")
+            
+            let headers = [
+                "Authorization": "Bearer " + (userAccessToken as! String),
+                "Content-Type": "application/json"
+            ]
+            
+            let iosContent: [String: AnyObject] = [ "push_state": true, "device_token" : token! ] //also works with [ "model" : NSNull()]
+            let iosNSDict = iosContent as NSDictionary //no error message
+            
+            let parameters : [String : AnyObject] = [
+                "ios" : iosNSDict
+            ]
+            
+            let endpoint = apiUrl + "/v1/profile"
+            
+            // Encoding as .JSON with header application/json
+            Alamofire.request(.PUT, endpoint, parameters: parameters, encoding: .JSON, headers: headers)
+                .responseJSON { response in
+                    switch response.result {
+                    case .Success:
+                        if let value = response.result.value {
+                            _ = JSON(value)
+                        }
+                    case .Failure(let error):
+                        print(error)
+                    }
+            }
+        }
     }
 
     func applicationWillResignActive(application: UIApplication) {
