@@ -70,14 +70,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
     
     // 3D Touch
     func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: Bool -> ()) {
-        if shortcutItem.type == "com.argentapp.ios.view-dashboard" {
-            showViewController("RootViewController")
-        }
-        if shortcutItem.type == "com.argentapp.ios.search" {
-        }
-        if shortcutItem.type == "com.argentapp.ios.open-terminal" {
-        }
-        if shortcutItem.type == "com.argentapp.ios.create-plan" {
+        if shortcutItem.type == "com.argentapp.ios.dashboard" {
+            if let tabBarController = window?.rootViewController as? UITabBarController {
+                tabBarController.selectedIndex = 0
+            }
+        } else if shortcutItem.type == "com.argentapp.ios.search" {
+            if let tabBarController = window?.rootViewController as? UITabBarController {
+                tabBarController.selectedIndex = 1
+            }
+        } else if shortcutItem.type == "com.argentapp.ios.menu" {
+            if let tabBarController = window?.rootViewController as? UITabBarController {
+                tabBarController.selectedIndex = 2
+            }
+        } else if shortcutItem.type == "com.argentapp.ios.account" {
+            if let tabBarController = window?.rootViewController as? UITabBarController {
+                tabBarController.selectedIndex = 4
+            }
+        } else {
+            if let tabBarController = window?.rootViewController as? UITabBarController {
+                guard let activeTab = NSUserDefaults.standardUserDefaults().valueForKey("activeTab") else {
+                    return
+                }
+                tabBarController.selectedIndex = Int(activeTab as! NSNumber)
+            }
         }
     }
     
@@ -294,13 +309,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
         /*
          Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
          */
-        //Set the tabBarController to the last visted tab
-        if let tabBarController = window?.rootViewController as? UITabBarController {
-            guard let activeTab = NSUserDefaults.standardUserDefaults().valueForKey("activeTab") else {
-                return
-            }
-            tabBarController.selectedIndex = Int(activeTab as! NSNumber)
-        }
     }
 
     func applicationWillEnterForeground(application: UIApplication) {

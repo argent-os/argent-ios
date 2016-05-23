@@ -254,19 +254,15 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 if(error != nil) {
                     print(error)
                     // check if user logged in, if not send to login
-                    print("user not logged in")
-                    // Normally identifiers are started with capital letters, exception being authViewController, make sure UIStoryboard name is Auth, not Main
-                    let viewController:AuthViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateViewControllerWithIdentifier("authViewController") as! AuthViewController
-                    self.presentViewController(viewController, animated: true, completion: nil)
+                    print("user not logged in x")
+                    self.logout()
                 }
             })
 
         } else {
             // check if user logged in, if not send to login
-            print("user not logged in")
-            // Normally identifiers are started with capital letters, exception being authViewController, make sure UIStoryboard name is Auth, not Main
-            let viewController:AuthViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateViewControllerWithIdentifier("authViewController") as! AuthViewController
-            self.presentViewController(viewController, animated: true, completion: nil)
+            print("user not logged in y")
+            self.logout()
         }
     }
 

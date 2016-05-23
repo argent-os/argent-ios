@@ -136,43 +136,43 @@ Nunito-SemiBold.ttf</string>
 	<array>
 		<dict>
 			<key>UIApplicationShortcutItemIconFile</key>
-			<string></string>
+			<string>ic_3d_home</string>
 			<key>UIApplicationShortcutItemSubtitle</key>
 			<string></string>
 			<key>UIApplicationShortcutItemTitle</key>
+			<string>Home</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).dashboard</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>ic_3d_search</string>
+			<key>UIApplicationShortcutItemSubtitle</key>
 			<string></string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Search</string>
 			<key>UIApplicationShortcutItemType</key>
 			<string>$(PRODUCT_BUNDLE_IDENTIFIER).search</string>
 		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemIconFile</key>
-			<string></string>
+			<string>ic_3d_menu</string>
 			<key>UIApplicationShortcutItemSubtitle</key>
 			<string></string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string></string>
+			<string>Menu</string>
 			<key>UIApplicationShortcutItemType</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER).create-plan</string>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).menu</string>
 		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemIconFile</key>
-			<string></string>
+			<string>ic_3d_account</string>
 			<key>UIApplicationShortcutItemSubtitle</key>
 			<string></string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string></string>
+			<string>Account</string>
 			<key>UIApplicationShortcutItemType</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER).open-terminal</string>
-		</dict>
-		<dict>
-			<key>UIApplicationShortcutItemIconFile</key>
-			<string></string>
-			<key>UIApplicationShortcutItemSubtitle</key>
-			<string></string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>View Dashboard</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER).view-dashboard</string>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).account</string>
 		</dict>
 	</array>
 	<key>UILaunchStoryboardName</key>

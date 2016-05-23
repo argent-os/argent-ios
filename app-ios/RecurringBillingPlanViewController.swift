@@ -44,7 +44,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         // Create a navigation item with a title
         let navigationItem = UINavigationItem()
         navigationItem.title = "Create Payment Plan"
-        
+
         // Create left and right button for navigation item
         let leftButton = UIBarButtonItem(image: UIImage(named: "IconCloseLight"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(RecurringBillingViewController.returnToMenu(_:)))
         let font = UIFont.systemFontOfSize(14)

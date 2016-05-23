@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : ""
+      "filename" : "ic_3d_home~universal@1x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "ic_pay_3d@2x.png"
+      "filename" : "ic_3d_home~universal@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "ic_pay_3d@3x.png"
+      "filename" : "ic_3d_home~universal@3x.png"
     }
   ],
   "info" : {

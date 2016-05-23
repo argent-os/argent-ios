@@ -66,6 +66,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         closeButton.addTarget(self, action: #selector(LoginViewController.goToAuth(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         closeButton.addTarget(self, action: #selector(LoginViewController.goToAuth(_:)), forControlEvents: UIControlEvents.TouchUpOutside)
         
+        let resetPasswordButton = UIButton()
+        resetPasswordButton.frame = CGRect(x: 0, y: screenHeight-60, width: screenWidth, height: 40)
+        let str0 = NSAttributedString(string: "Forgot Password?", attributes:
+            [
+                NSFontAttributeName: UIFont.systemFontOfSize(12),
+                NSForegroundColorAttributeName:UIColor.whiteColor()
+            ])
+        resetPasswordButton.setAttributedTitle(str0, forState: .Normal)
+        resetPasswordButton.addTarget(self, action: #selector(LoginViewController.goToReset(_:)), forControlEvents: .TouchUpInside)
+        resetPasswordButton.addTarget(self, action: #selector(LoginViewController.goToReset(_:)), forControlEvents: .TouchUpOutside)
+        self.view.addSubview(resetPasswordButton)
+        self.view.bringSubviewToFront(resetPasswordButton)
+        
         // Login box, set height of container to match embedded tableview
         let containerFrame: CGRect = self.loginBox.frame
         loginBox.frame = containerFrame
@@ -109,6 +122,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
                         })
                 })
         })
+    }
+    
+    func goToReset(sender: AnyObject) {
+        performSegueWithIdentifier("resetPasswordView", sender: sender)
     }
     
     //Calls this function when the tap is recognized.
