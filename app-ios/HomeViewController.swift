@@ -221,7 +221,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             }
             
             History.getHistoryArrays({ (_1d, _2w, _1m, _3m, _6m, _1y, _5y, err) in
-                self.arrayOfValues = _1m!
+                self.arrayOfValues = _3m!
                 self.graph.reloadGraph()
             })
             

@@ -68,34 +68,62 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         
         title = ""
         
-        let emailButton: DKCircleButton = DKCircleButton(frame: CGRectMake(0, 0, 90, 90))
-        emailButton.center = CGPointMake(self.view.layer.frame.width/2, screenHeight*0.3)
+        let backgroundGradient = UIImageView()
+        backgroundGradient.image = UIImage(named: "BackgroundGradientBlue")
+        backgroundGradient.frame = CGRect(x: 0, y: screenHeight-250, width: screenWidth, height: 250)
+        self.view.addSubview(backgroundGradient)
+        
+        let mainImage = UIImageView()
+        mainImage.image = UIImage(named: "IconSend")
+        mainImage.frame = CGRect(x: screenWidth/2-100, y: 80, width: 200, height: 200)
+        mainImage.contentMode = .ScaleAspectFit
+        self.view.addSubview(mainImage)
+        
+        let mainTitle = UILabel()
+        mainTitle.frame = CGRect(x: 0, y: 260, width: screenWidth, height: 40)
+        mainTitle.textColor = UIColor.darkGrayColor()
+        mainTitle.textAlignment = .Center
+        mainTitle.text = "Send Invitation"
+        mainTitle.font = UIFont.systemFontOfSize(18)
+        self.view.addSubview(mainTitle)
+        
+        let mainBody = UILabel()
+        mainBody.frame = CGRect(x:40, y: 280, width: screenWidth-80, height: 80)
+        mainBody.textColor = UIColor.lightGrayColor()
+        mainBody.textAlignment = .Center
+        mainBody.text = "Invite new users, customers, or friends to Argent today! The more the merrier."
+        mainBody.numberOfLines = 5
+        mainBody.font = UIFont.systemFontOfSize(14)
+        self.view.addSubview(mainBody)
+        
+        let emailButton: DKCircleButton = DKCircleButton(frame: CGRectMake(45, screenHeight-180, 90, 90))
+        emailButton.center = CGPointMake(self.view.layer.frame.width*0.3, screenHeight-130)
         emailButton.titleLabel!.font = UIFont.systemFontOfSize(22)
-        emailButton.borderColor = UIColor.lightBlue()
-        emailButton.tintColor = UIColor.slateBlue()
+        emailButton.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
+        emailButton.tintColor = UIColor.whiteColor()
         emailButton.setTitle("Email", forState: .Normal)
-        emailButton.setTitleColor(UIColor.slateBlue(), forState: .Normal)
+        emailButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         let str0 = NSAttributedString(string: "Email", attributes:
             [
                 NSFontAttributeName: UIFont.systemFontOfSize(12),
-                NSForegroundColorAttributeName:UIColor.slateBlue()
+                NSForegroundColorAttributeName:UIColor.whiteColor()
             ])
         emailButton.setAttributedTitle(str0, forState: .Normal)
         emailButton.addTarget(self, action: #selector(AddCustomerViewController.sendEmailButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(emailButton)
         
         
-        let smsButton: DKCircleButton = DKCircleButton(frame: CGRectMake(0, 0, 90, 90))
-        smsButton.center = CGPointMake(self.view.layer.frame.width/2, screenHeight*0.6)
+        let smsButton: DKCircleButton = DKCircleButton(frame: CGRectMake(screenWidth/2+45, screenHeight-180, 90, 90))
+        smsButton.center = CGPointMake(self.view.layer.frame.width*0.7, screenHeight-130)
         smsButton.titleLabel!.font = UIFont.systemFontOfSize(22)
-        smsButton.borderColor = UIColor.lightBlue()
-        smsButton.tintColor = UIColor.slateBlue()
+        smsButton.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
+        smsButton.tintColor = UIColor.whiteColor()
         smsButton.setTitle("SMS", forState: .Normal)
-        smsButton.setTitleColor(UIColor.slateBlue(), forState: .Normal)
+        smsButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         let str1 = NSAttributedString(string: "SMS", attributes:
             [
                 NSFontAttributeName: UIFont.systemFontOfSize(12),
-                NSForegroundColorAttributeName:UIColor.slateBlue()
+                NSForegroundColorAttributeName:UIColor.whiteColor()
             ])
         smsButton.setAttributedTitle(str1, forState: .Normal)
         smsButton.addTarget(self, action: #selector(AddCustomerViewController.sendSMSButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)

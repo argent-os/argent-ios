@@ -31,9 +31,9 @@ let merchantID = "merchant.com.argentapp.pay.v2"
 // let apiUrl = "http://localhost:5001"
 // let apiUrl = "http://192.168.1.182:5001"
 // let apiUrl = "http://192.168.1.232:5001"
- let apiUrl = "http://proton-api-dev.us-east-1.elasticbeanstalk.com"
+ let apiUrl = "http://api.argent.cloud"
 // PROD
-//let apiUrl = "http://api.argent.cloud"
+//let apiUrl = "https://api.argent.cloud"
 
 // Global Stripe base API url
 let stripeApiUrl = "https://api.stripe.com"
@@ -160,7 +160,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
         
         // Set up permissions
         pscope.addPermission(NotificationsPermission(notificationCategories: nil),
-                             message: "We use this to send real-time push notifications on account events")
+                             message: "Welcome to Argent!  Enable feature to receive push notifications on account events")
         pscope.headerLabel.text = "App Request"
         pscope.bodyLabel.text = "Enabling push notifications"
         pscope.closeButtonTextColor = UIColor.mediumBlue()
@@ -174,22 +174,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
         pscope.permissionButtonCornerRadius = 5
         pscope.permissionLabelColor = UIColor.mediumBlue()
         
-        // Show dialog with callbacks
-        pscope.show({ finished, results in
-                print("got results \(results)")
-                // Enable push notifications
-                if #available(iOS 8.0, *) {
-                    let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-                    UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-                    UIApplication.sharedApplication().registerForRemoteNotifications()
-                } else {
-                    let settings = UIRemoteNotificationType.Alert.union(UIRemoteNotificationType.Badge).union(UIRemoteNotificationType.Sound)
-                    UIApplication.sharedApplication().registerForRemoteNotificationTypes(settings)
-                }
-            }, cancelled: { (results) -> Void in
-                    print("cancelled")
-        })
-        
         // Global window attributes
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window!.backgroundColor = UIColor.slateBlue()
@@ -201,6 +185,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
         if x == true || x == nil {
             KeychainSwift().set(false, forKey: "firstTime")
             let viewController = AuthViewController()
+            // Show dialog with callbacks
+            pscope.show({ finished, results in
+                // Enable push notifications
+                if #available(iOS 8.0, *) {
+                    let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+                    UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+                    UIApplication.sharedApplication().registerForRemoteNotifications()
+                } else {
+                    let settings = UIRemoteNotificationType.Alert.union(UIRemoteNotificationType.Badge).union(UIRemoteNotificationType.Sound)
+                    UIApplication.sharedApplication().registerForRemoteNotificationTypes(settings)
+                }
+                }, cancelled: { (results) -> Void in
+                    print("cancelled")
+            })
             self.window!.rootViewController = viewController
         } else {
             let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RootViewController")
