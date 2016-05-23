@@ -226,11 +226,11 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
          after all of our asynchronous code is finished executing. This is how the
          PKPaymentAuthorizationViewController knows when and how to update its UI.
          */
-        print("in payment auth")
+        // print("in payment auth")
         handlePaymentAuthorizationWithPayment(payment) { (PKPaymentAuthorizationStatus) -> () in
             // close pay modal
             self.showSuccessAlert()
-            print("success")
+            // print("success")
             controller.dismissViewControllerAnimated(true, completion: nil)
         }
     }
@@ -296,7 +296,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
     
     func paymentAuthorizationViewControllerDidFinish(controller: PKPaymentAuthorizationViewController) {
         dismissViewControllerAnimated(true, completion: nil)
-        controller.dismissViewControllerAnimated(true, completion: nil)
+        //controller.dismissViewControllerAnimated(true, completion: nil)
         print("dismissing")
     }
     
@@ -305,13 +305,13 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
     
     func showSuccessAlert() {
         let customIcon:UIImage = UIImage(named: "ic_check_light")! // your custom icon UIImage
-        let customColor:UIColor = UIColor(rgba: "#1EBC61") // base color for the alert
+        let customColor:UIColor = UIColor.brandGreen() // base color for the alert
         let alertView = JSSAlertView().show(
             self,
             title: "",
             text: "Payment for amount " + chargeInputView.text! + " succeeded!",
-            buttonText: "",
-            noButtons: true,
+            buttonText: "Close",
+            noButtons: false,
             color: customColor,
             iconImage: customIcon)
         alertView.setTextTheme(.Light) // can be .Light or .Dark
@@ -320,7 +320,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
     
     func showErrorAlert(message: String) {
         let customIcon:UIImage = UIImage(named: "ic_close_light")! // your custom icon UIImage
-        let customColor:UIColor = UIColor(rgba: "#E74C3C") // base color for the alert
+        let customColor:UIColor = UIColor.brandRed() // base color for the alert
         let alertView = JSSAlertView().show(
             self,
             title: "",
