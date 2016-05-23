@@ -184,7 +184,6 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
                     let paymentController = PKPaymentAuthorizationViewController(paymentRequest: request)
                     paymentController.delegate = self
                     self.presentViewController(paymentController, animated: true, completion: nil)
-                    Pay().applePay()
                 } else {
                     print("something went wrong")
                     // let paymentController = PaymentViewController()
