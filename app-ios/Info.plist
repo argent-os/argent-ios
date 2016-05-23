@@ -200,5 +200,7 @@ Nunito-SemiBold.ttf</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>LSApplicationCategoryType</key>
+	<false/>
 </dict>
 </plist>
