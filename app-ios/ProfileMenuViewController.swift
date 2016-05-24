@@ -103,7 +103,9 @@ class ProfileMenuViewController: UITableViewController {
         self.locationLabel.numberOfLines = 0
         self.locationLabel.textColor = UIColor(rgba: "#fff")
         self.locationLabel.attributedText = locationStr
-        self.view.addSubview(self.locationLabel)
+        Timeout(0.1) {
+            self.addSubviewWithBounce(self.locationLabel)
+        }
         
         self.customersCountLabel.frame = CGRectMake(-20, 130, screenWidth/2, 70)
         self.customersCountLabel.textAlignment = NSTextAlignment.Right
@@ -111,7 +113,6 @@ class ProfileMenuViewController: UITableViewController {
         self.customersCountLabel.numberOfLines = 0
         self.customersCountLabel.textColor = UIColor(rgba: "#fff")
         self.customersCountLabel.text = "0"
-        self.view.addSubview(self.customersCountLabel)
         
         self.plansCountLabel.frame = CGRectMake(screenWidth/2+20, 130, screenWidth/2-40, 70)
         self.plansCountLabel.textAlignment = NSTextAlignment.Left
@@ -119,21 +120,26 @@ class ProfileMenuViewController: UITableViewController {
         self.plansCountLabel.numberOfLines = 0
         self.plansCountLabel.text = "0"
         self.plansCountLabel.textColor = UIColor(rgba: "#fff")
-        self.view.addSubview(self.plansCountLabel)
-        
+
         self.loadCustomerList { (customers: [Customer]?, NSError) in
             if(customers!.count < 2 && customers!.count > 0) {
-                self.customersCountLabel.text = String(customers!.count) + " Customer"
+                self.customersCountLabel.text = String(customers!.count) + " customer"
             } else {
-                self.customersCountLabel.text = String(customers!.count) + " Customers"
+                self.customersCountLabel.text = String(customers!.count) + " customers"
+            }
+            Timeout(0.4) {
+                self.addSubviewWithBounce(self.customersCountLabel)
             }
         }
         
         self.loadPlanList { (plans: [Plan]?, NSError) in
             if(plans!.count < 2 && plans!.count > 0) {
-                self.plansCountLabel.text = String(plans!.count) + " Subscription"
+                self.plansCountLabel.text = String(plans!.count) + " subscription"
             } else {
-                self.plansCountLabel.text = String(plans!.count) + " Subscriptions"
+                self.plansCountLabel.text = String(plans!.count) + " subscriptions"
+            }
+            Timeout(0.6) {
+                self.addSubviewWithBounce(self.plansCountLabel)
             }
         }
     }
@@ -228,17 +234,17 @@ class ProfileMenuViewController: UITableViewController {
     }
     
     // Self explanatory
-    func addSubviewWithBounce(imageView: UIImageView) {
-        imageView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001)
-        self.view.addSubview(imageView)
+    func addSubviewWithBounce(view: UIView) {
+        view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001)
+        self.view.addSubview(view)
         UIView.animateWithDuration(0.3 / 1.5, animations: {() -> Void in
-            imageView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1)
+            view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1)
             }, completion: {(finished: Bool) -> Void in
                 UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
-                    imageView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9)
+                    view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9)
                     }, completion: {(finished: Bool) -> Void in
                         UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
-                            imageView.transform = CGAffineTransformIdentity
+                            view.transform = CGAffineTransformIdentity
                         })
                 })
         })
