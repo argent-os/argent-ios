@@ -4,7 +4,6 @@ PODS:
   - BEMCheckBox (1.2.1)
   - BEMSimpleLineGraph (4.1)
   - CardIO (5.3.2)
-  - CircleMenu (1.0.0)
   - CountryPicker (1.2.3)
   - CWStatusBarNotification (2.3.4)
   - DGElasticPullToRefresh (1.0.3)
@@ -35,6 +34,7 @@ PODS:
   - QRCode (0.5)
   - SESlideTableViewCell (0.7.0)
   - SFDraggableDialogView (1.1.4)
+  - SMIconLabel (0.0.1)
   - SnapKit (0.21.0)
   - StepSlider (0.1.2)
   - Stripe (7.0.1):
@@ -58,7 +58,6 @@ DEPENDENCIES:
   - BEMCheckBox
   - BEMSimpleLineGraph
   - CardIO
-  - CircleMenu
   - CountryPicker
   - CWStatusBarNotification
   - DGElasticPullToRefresh
@@ -85,6 +84,7 @@ DEPENDENCIES:
   - QRCode
   - SESlideTableViewCell
   - SFDraggableDialogView
+  - SMIconLabel
   - SnapKit
   - StepSlider
   - Stripe
@@ -111,7 +111,6 @@ SPEC CHECKSUMS:
   BEMCheckBox: 264b8b72aa92adbfefa265cc58a0cdb86b207b9f
   BEMSimpleLineGraph: 44fd451f27f8e9cf96f2da5bea27603093576dd1
   CardIO: 92c45caef0d986c4a303a7afba0c9b76ff2b1f6e
-  CircleMenu: d67d88395705c20c23806632987288b39fbfc690
   CountryPicker: 6f166e2f1cc250f07eba4c587fbe1c0efc21049b
   CWStatusBarNotification: 3fec41edcb0ae3677d9febfcb9632d8bdf52294c
   DGElasticPullToRefresh: 040f39ae69840b3261d163fe6735c5901bf851e9
@@ -139,6 +138,7 @@ SPEC CHECKSUMS:
   QRCode: a249ed747aeb0f4bf5f9c58b5b001b6b3bc80073
   SESlideTableViewCell: 1487a6aedc84b480a888fc33b8d1c58fa5026f99
   SFDraggableDialogView: cfe9b80b5fff19f7e0fda86dcabee8b03a4c3b44
+  SMIconLabel: aa8e3123ca46c0fd9050d7d70fd10bc1410a4b47
   SnapKit: 2756fe24b706367af224c9c508d2f9166d03354c
   StepSlider: 54466ab1de9002435b6839091f97ff62967fdd7e
   Stripe: b92298b31cf156fb23a029361b57e2fcb6583d57

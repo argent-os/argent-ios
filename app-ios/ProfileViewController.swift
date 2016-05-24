@@ -13,18 +13,6 @@ import FXBlurView
 
 class ProfileViewController: UIViewController {
     
-    private var customersArray = [Customer]()
-    
-    private var plansArray = [Plan]()
-    
-    private var customersCountLabel = UILabel()
-
-    private var customersTitleLabel = UILabel()
-
-    private var plansCountLabel = UILabel()
-
-    private var plansTitleLabel = UILabel()
-    
     override func viewDidAppear(animated: Bool) {
         self.navigationController!.navigationBar.backgroundColor = UIColor.clearColor()
         self.navigationController!.navigationBar.barTintColor = UIColor.clearColor()
@@ -52,8 +40,6 @@ class ProfileViewController: UIViewController {
         
         view.addGestureRecognizer(gesture)
 
-        self.view.backgroundColor = UIColor.slateBlue()
-
         // Transparent navigation bar
         self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
         self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
@@ -69,10 +55,6 @@ class ProfileViewController: UIViewController {
     }
     
     private func loadUserAccount() {
-        
-        let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
-        
         User.getProfile({ (user, error) in
             if error != nil
             {
@@ -80,91 +62,6 @@ class ProfileViewController: UIViewController {
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
-            
-            let settingsIcon = UIImageView(frame: CGRectMake(0, 0, 32, 32))
-            settingsIcon.image = UIImage(named: "IconSettingsWhite")
-            settingsIcon.contentMode = .ScaleAspectFit
-            settingsIcon.alpha = 0.5
-            settingsIcon.center = CGPointMake(self.view.frame.size.width / 2, 130)
-            settingsIcon.userInteractionEnabled = true
-            let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.goToEdit(_:)))
-            tap.numberOfTapsRequired = 1
-            settingsIcon.addGestureRecognizer(tap)
-            // self.view.addSubview(settingsIcon)
-            // self.view.bringSubviewToFront(settingsIcon)
-            
-            self.customersCountLabel.frame = CGRectMake(30, 20, 75, 70)
-            self.customersCountLabel.textAlignment = NSTextAlignment.Center
-            self.customersCountLabel.font = UIFont(name: "Avenir-Book", size: 18)
-            self.customersCountLabel.numberOfLines = 0
-            self.customersCountLabel.textColor = UIColor(rgba: "#fffa")
-            self.customersCountLabel.text = "0"
-            //            self.view.addSubview(self.customersCountLabel)
-            
-            self.customersTitleLabel.frame = CGRectMake(30, 40, 75, 70)
-            self.customersTitleLabel.textAlignment = NSTextAlignment.Center
-            self.customersTitleLabel.font = UIFont(name: "Avenir-Light", size: 10)
-            self.customersTitleLabel.numberOfLines = 0
-            self.customersTitleLabel.textColor = UIColor(rgba: "#fffc")
-            self.customersTitleLabel.text = "Customers"
-            //            self.view.addSubview(self.customersTitleLabel)
-            
-            self.plansCountLabel.frame = CGRectMake(screenWidth-110, 20, 75, 70)
-            self.plansCountLabel.textAlignment = NSTextAlignment.Center
-            self.plansCountLabel.font = UIFont(name: "Avenir-Book", size: 18)
-            self.plansCountLabel.numberOfLines = 0
-            self.plansCountLabel.text = "0"
-            self.plansCountLabel.textColor = UIColor(rgba: "#fffa")
-            //            self.view.addSubview(self.plansCountLabel)
-            
-            self.plansTitleLabel.frame = CGRectMake(screenWidth-110, 40, 75, 70)
-            self.plansTitleLabel.textAlignment = NSTextAlignment.Center
-            self.plansTitleLabel.font = UIFont(name: "Avenir-Light", size: 10)
-            self.plansTitleLabel.numberOfLines = 0
-            self.plansTitleLabel.textColor = UIColor(rgba: "#fffc")
-            self.plansTitleLabel.text = "Plans"
-            //            self.view.addSubview(self.plansTitleLabel)
-            
-            self.loadCustomerList { (customers: [Customer]?, NSError) in
-                if(customers!.count < 2 && customers!.count > 0) {
-                    self.customersCountLabel.text = String(customers!.count)
-                } else {
-                    self.customersCountLabel.text = String(customers!.count)
-                }
-            }
-            
-            self.loadPlanList { (plans: [Plan]?, NSError) in
-                if(plans!.count < 2 && plans!.count > 0) {
-                    self.plansCountLabel.text = String(plans!.count)
-                } else {
-                    self.plansCountLabel.text = String(plans!.count)
-                }
-            }
-            
-        })
-    }
-    
-    private func loadCustomerList(completionHandler: ([Customer]?, NSError?) -> ()) {
-        Customer.getCustomerList({ (customers, error) in
-            if error != nil {
-                let alert = UIAlertController(title: "Error", message: "Could not load customers \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
-            }
-            self.customersArray = customers!
-            completionHandler(customers!, error)
-        })
-    }
-    
-    private func loadPlanList(completionHandler: ([Plan]?, NSError?) -> ()) {
-        Plan.getPlanList({ (plans, error) in
-            if error != nil {
-                let alert = UIAlertController(title: "Error", message: "Could not load plans \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
-            }
-            self.plansArray = plans!
-            completionHandler(plans!, error)
         })
     }
     
