@@ -12,7 +12,7 @@ import DGRunkeeperSwitch
 
 class MenuViewController: UIViewController {
     
-    private let menuSwitch = DGRunkeeperSwitch(leftTitle: "Controller", rightTitle: "Manage")
+    private let menuSwitch = DGRunkeeperSwitch(leftTitle: "Main", rightTitle: "Admin")
 
     private let viewTerminalImageView = UIImageView()
 
@@ -92,12 +92,12 @@ class MenuViewController: UIViewController {
         self.view.sendSubviewToBack(backgroundImageView)
         self.view.addSubview(backgroundImageView)
         
-        menuSwitch.backgroundColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
+        menuSwitch.backgroundColor = UIColor.clearColor()
         menuSwitch.selectedBackgroundColor = UIColor.lightBlue()
         menuSwitch.titleColor = UIColor.lightBlue()
         menuSwitch.selectedTitleColor = UIColor.whiteColor()
         menuSwitch.titleFont = UIFont.systemFontOfSize(12)
-        menuSwitch.frame = CGRect(x: 70, y: 40, width: screenWidth-140, height: 35.0)
+        menuSwitch.frame = CGRect(x: 70, y: 50, width: screenWidth-140, height: 35.0)
         //autoresizing so it stays at top right (flexible left and flexible bottom margin)
         menuSwitch.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
         menuSwitch.bringSubviewToFront(menuSwitch)

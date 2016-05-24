@@ -85,7 +85,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         chargeInputView.frame = CGRect(x: 0, y: 90, width: screenWidth, height: 50)
         chargeInputView.textAlignment = .Center
         chargeInputView.font = UIFont(name: "DINAlternate-Bold", size: 48)
-        chargeInputView.textColor = UIColor.lightBlue()
+        chargeInputView.textColor = UIColor.mediumBlue()
         chargeInputView.placeholder = "$0.00"
         chargeInputView.keyboardType = UIKeyboardType.NumberPad
         chargeInputView.backgroundColor = UIColor.clearColor()
@@ -124,7 +124,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         
         // Pay button
         let payButton = UIButton(frame: CGRect(x: 20, y: screenHeight-80, width: screenWidth-40, height: 60.0))
-        payButton.backgroundColor = UIColor.lightBlue()
+        payButton.backgroundColor = UIColor.mediumBlue()
         payButton.tintColor = UIColor(rgba: "#fff")
         payButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
         payButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
@@ -299,7 +299,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         let inStyle = CWNotificationAnimationStyle.Top
         let outStyle = CWNotificationAnimationStyle.Top
         let notificationStyle = CWNotificationStyle.NavigationBarNotification
-        self.notification.notificationLabelBackgroundColor = UIColor.lightBlue()
+        self.notification.notificationLabelBackgroundColor = UIColor.mediumBlue()
         self.notification.notificationAnimationInStyle = inStyle
         self.notification.notificationAnimationOutStyle = outStyle
         self.notification.notificationStyle = notificationStyle

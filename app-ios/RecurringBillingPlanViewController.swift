@@ -37,13 +37,15 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
     private func setupNav() {
         let navigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 60)) // Offset by 20 pixels vertically to take the status bar into account
         
-        navigationBar.backgroundColor = UIColor.lightBlue()
+        navigationBar.backgroundColor = UIColor.mediumBlue()
         navigationBar.tintColor = UIColor.whiteColor()
         navigationBar.delegate = self
         
         // Create a navigation item with a title
         let navigationItem = UINavigationItem()
-        navigationItem.title = "Create Payment Plan"
+        navigationItem.title = ""
+        navigationItem.titleView?.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
 
         // Create left and right button for navigation item
         let leftButton = UIBarButtonItem(image: UIImage(named: "IconCloseLight"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(RecurringBillingViewController.returnToMenu(_:)))
@@ -84,7 +86,6 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
     }
     
     private func configure() {
-        title = "Add Plan"
 
         // screen width and height:
         let screen = UIScreen.mainScreen().bounds
@@ -99,7 +100,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         
         // UI
         let addPlanButton = UIButton(frame: CGRect(x: 20, y: screenHeight-80, width: screenWidth-40, height: 60.0))
-        addPlanButton.backgroundColor = UIColor.lightBlue()
+        addPlanButton.backgroundColor = UIColor.mediumBlue()
         addPlanButton.tintColor = UIColor(rgba: "#fff")
         addPlanButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
         addPlanButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
@@ -119,20 +120,25 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         amountInputView.textColor = UIColor.whiteColor()
         amountInputView.placeholder = "$0.00"
         amountInputView.keyboardType = UIKeyboardType.NumberPad
-        amountInputView.backgroundColor = UIColor.lightBlue()
-        self.view.addSubview(amountInputView)
+        amountInputView.backgroundColor = UIColor.mediumBlue()
+        amountInputView.tintColor = UIColor.whiteColor()
+        addSubviewWithBounce(amountInputView)
         amountInputView.becomeFirstResponder()
+        
+        let topImageView = UIImageView()
+        topImageView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
+        topImageView.image = UIImage(named: "BackgroundGradientFuschia")
+        topImageView.contentMode = .ScaleAspectFill
+        addSubviewWithBounce(topImageView)
+        self.view.sendSubviewToBack(topImageView)
         
         perIntervalLabel.frame = CGRect(x: 0, y: 110, width: screenWidth, height: 50)
         perIntervalLabel.textAlignment = .Center
         perIntervalLabel.font = UIFont(name: "DINAlternate-Bold", size: 16)
         perIntervalLabel.textColor = UIColor.whiteColor()
         perIntervalLabel.text = ""
-        perIntervalLabel.backgroundColor = UIColor.lightBlue()
+        perIntervalLabel.backgroundColor = UIColor.mediumBlue()
         self.view.addSubview(perIntervalLabel)
-        
-        self.navigationItem.title = "Add Plan"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.darkGrayColor()]
         
         // Create RowFomers
         
@@ -214,7 +220,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
             $0.textField.autocapitalizationType = .None
             $0.textField.keyboardType = .NumberPad
             }.configure {
-                $0.placeholder = "in days"
+                $0.placeholder = "(Optional) in days"
                 $0.rowHeight = 60
             }.onTextChanged { [weak self] in
                 self?.dic["planTrialPeriodKey"] = $0
@@ -227,8 +233,9 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
             $0.textField.font = .systemFontOfSize(15)
             $0.textField.autocorrectionType = .No
             $0.textField.autocapitalizationType = .None
+            $0.textField.returnKeyType = .Done
             }.configure {
-                $0.placeholder = "Statement Description"
+                $0.placeholder = "(Optional) Statement Description"
                 $0.rowHeight = 60
             }.onTextChanged { [weak self] in
                 self?.dic["planStatementDescriptionKey"] = $0
@@ -345,6 +352,22 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         self.dic["planAmountKey"] = revertString2
         
         return false
+    }
+    
+    func addSubviewWithBounce(view: UIView) {
+        // view.transform = CGAffineTransformMakeTranslation(self.view.frame.origin.x,self.view.frame.origin.y - self.view.frame.size.height * 0.2)
+        view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001)
+        self.view.addSubview(view)
+        UIView.animateWithDuration(0.3 / 1.5, animations: {() -> Void in
+            view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0)
+            }, completion: {(finished: Bool) -> Void in
+                UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
+                    }, completion: {(finished: Bool) -> Void in
+                        UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
+                            view.transform = CGAffineTransformIdentity
+                        })
+                })
+        })
     }
     
     func endEditing(sender: AnyObject) {

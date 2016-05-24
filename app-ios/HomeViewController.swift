@@ -17,6 +17,7 @@ import UICountingLabel
 import DGElasticPullToRefresh
 import Gecco
 import DZNEmptyDataSet
+import CWStatusBarNotification
 
 var userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
 
@@ -53,7 +54,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     private let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 15, width: UIScreen.mainScreen().bounds.size.width, height: 50))
 
     private let graph: BEMSimpleLineGraphView = BEMSimpleLineGraphView(frame: CGRectMake(0, 90, UIScreen.mainScreen().bounds.size.width, 200))
-        
+    
+    private let notification = CWStatusBarNotification()
+
     @IBAction func indexChanged(sender: DGRunkeeperSwitch) {
         if(sender.selectedIndex == 0) {
             lblAccountAvailable.removeFromSuperview()
@@ -236,6 +239,10 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 userImageView.clipsToBounds = true
                 userImageView.layer.borderWidth = 0
                 userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
+                
+                if user?.first_name != "" {
+                    self.showWelcomeNotification((user?.first_name)!)
+                }
                 
                 if user!.picture != "" {
                     Timeout(0.3) {
@@ -461,7 +468,23 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             completionHandler(balance!, error)
         })
     }
-
+    
+    func showWelcomeNotification(user: String) {
+        setupWelcomeNotification()
+        notification.displayNotificationWithMessage("Welcome " + user + "!", forDuration: 2.5)
+    }
+    
+    func setupWelcomeNotification() {
+        let inStyle = CWNotificationAnimationStyle.Left
+        let outStyle = CWNotificationAnimationStyle.Right
+        let notificationStyle = CWNotificationStyle.StatusBarNotification
+        self.notification.notificationLabelBackgroundColor = UIColor.brandGreen()
+        self.notification.notificationAnimationInStyle = inStyle
+        self.notification.notificationAnimationOutStyle = outStyle
+        self.notification.notificationStyle = notificationStyle
+    }
+    
+    
     // LOGOUT
     func logout() {
         NSUserDefaults.standardUserDefaults().setValue("", forKey: "userAccessToken")

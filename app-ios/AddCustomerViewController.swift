@@ -69,7 +69,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         title = ""
         
         let backgroundGradient = UIImageView()
-        backgroundGradient.image = UIImage(named: "BackgroundGradientBlue")
+        backgroundGradient.image = UIImage(named: "BackgroundGradientPurple")
         backgroundGradient.frame = CGRect(x: 0, y: screenHeight-250, width: screenWidth, height: 250)
         self.view.addSubview(backgroundGradient)
         
@@ -77,7 +77,9 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         mainImage.image = UIImage(named: "IconSend")
         mainImage.frame = CGRect(x: screenWidth/2-100, y: 80, width: 200, height: 200)
         mainImage.contentMode = .ScaleAspectFit
-        self.view.addSubview(mainImage)
+        Timeout(0.1) {
+            self.addSubviewWithBounce(mainImage)
+        }
         
         let mainTitle = UILabel()
         mainTitle.frame = CGRect(x: 0, y: 260, width: screenWidth, height: 40)
@@ -85,7 +87,9 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         mainTitle.textAlignment = .Center
         mainTitle.text = "Send Invitation"
         mainTitle.font = UIFont.systemFontOfSize(18)
-        self.view.addSubview(mainTitle)
+        Timeout(0.2) {
+            self.addSubviewWithBounce(mainTitle)
+        }
         
         let mainBody = UILabel()
         mainBody.frame = CGRect(x:40, y: 280, width: screenWidth-80, height: 80)
@@ -94,7 +98,9 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         mainBody.text = "Invite new users, customers, or friends to Argent today! The more the merrier."
         mainBody.numberOfLines = 5
         mainBody.font = UIFont.systemFontOfSize(14)
-        self.view.addSubview(mainBody)
+        Timeout(0.3) {
+            self.addSubviewWithBounce(mainBody)
+        }
         
         let emailButton: DKCircleButton = DKCircleButton(frame: CGRectMake(45, screenHeight-180, 90, 90))
         emailButton.center = CGPointMake(self.view.layer.frame.width*0.3, screenHeight-130)
@@ -110,8 +116,9 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
             ])
         emailButton.setAttributedTitle(str0, forState: .Normal)
         emailButton.addTarget(self, action: #selector(AddCustomerViewController.sendEmailButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        self.view.addSubview(emailButton)
-        
+        Timeout(0.4) {
+            self.addSubviewWithBounce(emailButton)
+        }
         
         let smsButton: DKCircleButton = DKCircleButton(frame: CGRectMake(screenWidth/2+45, screenHeight-180, 90, 90))
         smsButton.center = CGPointMake(self.view.layer.frame.width*0.7, screenHeight-130)
@@ -127,7 +134,9 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
             ])
         smsButton.setAttributedTitle(str1, forState: .Normal)
         smsButton.addTarget(self, action: #selector(AddCustomerViewController.sendSMSButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        self.view.addSubview(smsButton)
+        Timeout(0.6) {
+            self.addSubviewWithBounce(smsButton)
+        }
         
         self.navigationItem.title = ""
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.darkGrayColor()]
@@ -135,8 +144,23 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
     }
     
     func addCustomerButtonTapped(sender: AnyObject) {
-        
         showSuccessAlert()
+    }
+    
+    func addSubviewWithBounce(view: UIView) {
+        // view.transform = CGAffineTransformMakeTranslation(self.view.frame.origin.x,self.view.frame.origin.y - self.view.frame.size.height * 0.2)
+        view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001)
+        self.view.addSubview(view)
+        UIView.animateWithDuration(0.3 / 1.5, animations: {() -> Void in
+            view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0)
+            }, completion: {(finished: Bool) -> Void in
+                UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
+                    }, completion: {(finished: Bool) -> Void in
+                        UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
+                            view.transform = CGAffineTransformIdentity
+                        })
+                })
+        })
     }
     
     func showSuccessAlert() {

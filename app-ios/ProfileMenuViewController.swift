@@ -9,6 +9,7 @@
 import Foundation
 import SafariServices
 import DGElasticPullToRefresh
+import CWStatusBarNotification
 
 let offset_HeaderStop:CGFloat = 40.0 // At this offset the Header stops its transformations
 let distance_W_LabelHeader:CGFloat = 30.0 // The distance between the top of the screen and the top of the White Label
@@ -21,10 +22,13 @@ class ProfileMenuViewController: UITableViewController {
 
     private var scrollView: UIScrollView!
 
+    private var notification = CWStatusBarNotification()
+
     private let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 40, width: UIScreen.mainScreen().bounds.size.width, height: 50))
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        showProfileIncompleteStatusNotification()
         configureView()
     }
 
@@ -72,6 +76,37 @@ class ProfileMenuViewController: UITableViewController {
         ]
         self.navBar.setItems([navItem], animated: false)
         self.view.addSubview(navBar)
+    }
+    
+    func showProfileIncompleteStatusNotification() {
+        setupIncompleteNotification()
+        notification.displayNotificationWithMessage("Profile Incomplete", forDuration: 2.5)
+    }
+    
+    func showProfileCompleteStatusNotification() {
+        setupCompleteNotification()
+        notification.displayNotificationWithMessage("Profile Complete!", forDuration: 2.5)
+    }
+    
+    func setupCompleteNotification() {
+        let inStyle = CWNotificationAnimationStyle.Left
+        let outStyle = CWNotificationAnimationStyle.Right
+        let notificationStyle = CWNotificationStyle.StatusBarNotification
+        self.notification.notificationLabelBackgroundColor = UIColor.brandGreen()
+        self.notification.notificationAnimationInStyle = inStyle
+        self.notification.notificationAnimationOutStyle = outStyle
+        self.notification.notificationStyle = notificationStyle
+    }
+    
+    
+    func setupIncompleteNotification() {
+        let inStyle = CWNotificationAnimationStyle.Left
+        let outStyle = CWNotificationAnimationStyle.Right
+        let notificationStyle = CWNotificationStyle.StatusBarNotification
+        self.notification.notificationLabelBackgroundColor = UIColor.brandYellow()
+        self.notification.notificationAnimationInStyle = inStyle
+        self.notification.notificationAnimationOutStyle = outStyle
+        self.notification.notificationStyle = notificationStyle
     }
     
     override func viewDidAppear(animated: Bool) {

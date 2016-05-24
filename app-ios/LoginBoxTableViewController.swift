@@ -31,13 +31,17 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configure()
+    }
+    
+    func configure() {
         let screen = UIScreen.mainScreen().bounds
         let _ = screen.size.width
-
+        
         self.usernameTextField.delegate = self
         self.passwordTextField.delegate = self
         
-       // usernameTextField.becomeFirstResponder()
+        // usernameTextField.becomeFirstResponder()
         
         usernameTextField.tag = 63631
         let str = NSAttributedString(string: "username or email", attributes: [NSForegroundColorAttributeName:UIColor(rgba: "#fff")])
@@ -50,10 +54,10 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
         passwordTextField.attributedPlaceholder = str2
         passwordTextField.textRectForBounds(CGRectMake(0, 0, 0, 0))
         passwordTextField.tintColor = UIColor.whiteColor()
-
+        
         loginTableView.separatorColor = UIColor(rgba: "#ccc3")
         loginTableView.backgroundColor = UIColor(rgba: "#2221")
-
+        
         usernameCell.backgroundColor = UIColor.clearColor()
         usernameCell.textLabel?.textColor = UIColor.whiteColor()
         
