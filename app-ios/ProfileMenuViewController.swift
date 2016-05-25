@@ -162,31 +162,20 @@ class ProfileMenuViewController: UITableViewController {
     }
     
     func showProfileIncompleteStatusNotification() {
-        setupIncompleteNotification()
+        setupNotification(UIColor.brandYellow(), style: CWNotificationStyle.StatusBarNotification)
         notification.displayNotificationWithMessage("Profile Incomplete", forDuration: 2.5)
     }
     
     func showProfileCompleteStatusNotification() {
-        setupCompleteNotification()
+        setupNotification(UIColor.brandGreen(), style: CWNotificationStyle.StatusBarNotification)
         notification.displayNotificationWithMessage("Profile Complete!", forDuration: 2.5)
     }
     
-    func setupCompleteNotification() {
+    func setupNotification(color: UIColor, style: CWNotificationStyle) {
         let inStyle = CWNotificationAnimationStyle.Left
         let outStyle = CWNotificationAnimationStyle.Right
-        let notificationStyle = CWNotificationStyle.StatusBarNotification
-        self.notification.notificationLabelBackgroundColor = UIColor.brandGreen()
-        self.notification.notificationAnimationInStyle = inStyle
-        self.notification.notificationAnimationOutStyle = outStyle
-        self.notification.notificationStyle = notificationStyle
-    }
-    
-    
-    func setupIncompleteNotification() {
-        let inStyle = CWNotificationAnimationStyle.Left
-        let outStyle = CWNotificationAnimationStyle.Right
-        let notificationStyle = CWNotificationStyle.StatusBarNotification
-        self.notification.notificationLabelBackgroundColor = UIColor.brandYellow()
+        let notificationStyle = style
+        self.notification.notificationLabelBackgroundColor = color
         self.notification.notificationAnimationInStyle = inStyle
         self.notification.notificationAnimationOutStyle = outStyle
         self.notification.notificationStyle = notificationStyle

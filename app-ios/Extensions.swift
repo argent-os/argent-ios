@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 extension UISegmentedControl {
     func removeBorders() {
@@ -116,4 +117,15 @@ extension Float {
         let string = NSString(format: format, self)
         return Float(atof(string.UTF8String))
     }
+}
+
+public func convertStringToDictionary(text: String) -> [String:AnyObject]? {
+    if let data = text.dataUsingEncoding(NSUTF8StringEncoding) {
+        do {
+            return try NSJSONSerialization.JSONObjectWithData(data, options: []) as? [String:AnyObject]
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+    return nil
 }

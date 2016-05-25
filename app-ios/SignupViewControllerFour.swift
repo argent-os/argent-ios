@@ -154,8 +154,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
                 var tosJSON: [String: [String: AnyObject]] = [ "data" : tosContent ]
                 let tosNSDict = tosJSON as NSDictionary //no error message
                 
-                var dobContent: [String: AnyObject] = [ "day": Int(self.userDobDay)!, "month": Int(self.userDobMonth)!, "year": Int(self.userDobYear)!] //also works with [ "model" : NSNull()]
-                var dobJSON: [String: [String: AnyObject]] = [ "data" : dobContent ]
+                var dobJSON: [String: AnyObject] = [ "day": Int(self.userDobDay)!, "month": Int(self.userDobMonth)!, "year": Int(self.userDobYear)! ]
                 let dobNSDict = dobJSON as NSDictionary //no error message
                 
                 let userPassword = KeychainSwift().get("userPassword")!

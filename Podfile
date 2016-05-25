@@ -6,9 +6,7 @@ link_with 'app-watchos', 'app-watchos Extension'
 def shared_pods
 	pod 'Alamofire', '~> 3.2.1'
 	pod 'Money'
-	pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'	
-#	pod 'AlamoArgo', '~> 0.5.3'	
-#	pod 'Argo', '~> 2.2.0'	
+	pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'		
 end
 
 target 'app-ios' do
@@ -53,6 +51,7 @@ target 'app-ios' do
 	pod 'TransitionAnimation'
 	pod 'LTMorphingLabel'
 	pod 'PermissionScope'
+	pod 'HanekeSwift'
 	#pod 'DOFavoriteButton'
 
 	post_install do |installer|

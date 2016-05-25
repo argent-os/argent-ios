@@ -83,10 +83,10 @@ extension OnboardingViewController {
             if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("onboardingCell", forIndexPath: indexPath) as? OnboardingCollectionViewCell {
                 cell.contentImage.image = UIImage(named: "IconRepeatWhiteLarge")
                 
-                cell.contentDescriptionLabel.text = "Man bun banjo cliche helvetica, sapiente pariatur quinoa fugiat waistcoat tilde. Offal viral ramps, wolf brooklyn microdosing food truck quis marfa typewriter seitan 90's photo booth cronut occaecat. Chambray humblebrag freegan minim tattooed, ramps skateboard polaroid cillum whatever duis ut. Small batch enim qui migas exercitation. Duis +1 hella kale chips YOLO listicle, officia scenester pour-over pabst ramps four dollar toast yuccie before they sold out tempor. Slow-carb biodiesel street art qui, sed post-ironic ennui in mumblecore paleo intelligentsia pinterest sint bicycle rights. Kogi health goth labore, trust fund ad etsy small batch."
+                cell.contentDescriptionLabel.text = "Argent allows businesses to create services plans for their customers to control recurring payments over a custom time interval. Take the pain out of getting paid and let our app do the work for you. Set up a payment plan and start getting paid today!"
                 cell.contentDescriptionLabel.font = UIFont.systemFontOfSize(14)
                 cell.contentDescriptionLabel.lineBreakMode = .ByWordWrapping
-                cell.contentDescriptionLabel.numberOfLines = 5
+                cell.contentDescriptionLabel.numberOfLines = 7
                 cell.contentDescriptionLabel.textAlignment = .Center
                 cell.contentDescriptionLabel.alpha = 0.7
 
@@ -103,10 +103,10 @@ extension OnboardingViewController {
             if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("onboardingCell", forIndexPath: indexPath) as? OnboardingCollectionViewCell {
                 cell.contentImage.image = UIImage(named: "IconBitcoinWhite")
                 
-                cell.contentDescriptionLabel.text = "Cornhole literally green juice, qui leggings reprehenderit kitsch. Laborum pitchfork pickled, cliche ut cold-pressed officia incididunt. Locavore kale chips iPhone you probably haven't heard of them, master cleanse placeat skateboard yr biodiesel cupidatat pabst seitan. Health goth plaid poutine, tofu street art ut distillery microdosing brooklyn culpa crucifix anim. Single-origin coffee ennui mlkshk crucifix wayfarers, squid asymmetrical gluten-free before they sold out cred man bun occaecat 90's voluptate you probably haven't heard of them. Nostrud listicle non, sartorial twee thundercats labore. YOLO PBR&B polaroid, gochujang church-key mumblecore plaid deep v pour-over jean shorts."
+                cell.contentDescriptionLabel.text = "Argent provides a POS (Point of Sale) solution for businesses to accept Bitcoin. We convert Bitcoin into USD with the real-time exchange rate and automatically initiate a transfer into the bank account of your choice."
                 cell.contentDescriptionLabel.font = UIFont.systemFontOfSize(14)
                 cell.contentDescriptionLabel.lineBreakMode = .ByWordWrapping
-                cell.contentDescriptionLabel.numberOfLines = 5
+                cell.contentDescriptionLabel.numberOfLines = 7
                 cell.contentDescriptionLabel.textAlignment = .Center
                 cell.contentDescriptionLabel.alpha = 0.7
 
@@ -128,10 +128,10 @@ extension OnboardingViewController {
                 
                 cell.contentImage.image = UIImage(named: "LogoApplePay")
                 
-                cell.contentDescriptionLabel.text = "VHS franzen banh mi veniam vinyl magna. Et mixtape authentic, shoreditch tumblr qui cray nostrud small batch franzen YOLO typewriter. Bespoke occupy four loko, fingerstache gastropub squid tempor brooklyn quis fanny pack paleo iPhone chartreuse next level. Leggings migas sustainable, mumblecore brunch pariatur kickstarter banjo 3 wolf moon actually drinking vinegar craft beer helvetica. Neutra tofu you probably haven't heard of them cliche. Vero brooklyn aesthetic trust fund, hoodie ramps deep v cray four loko. Four dollar toast flexitarian meditation forage, kitsch narwhal laboris vice."
+                cell.contentDescriptionLabel.text = "Argent enables users to utilize Apple Pay to process secured payments for received services.  Apple Pay enables peer-to-peer payments with a single touch."
                 cell.contentDescriptionLabel.font = UIFont.systemFontOfSize(14)
                 cell.contentDescriptionLabel.lineBreakMode = .ByWordWrapping
-                cell.contentDescriptionLabel.numberOfLines = 5
+                cell.contentDescriptionLabel.numberOfLines = 7
                 cell.contentDescriptionLabel.textAlignment = .Center
                 cell.contentDescriptionLabel.alpha = 0.7
                 

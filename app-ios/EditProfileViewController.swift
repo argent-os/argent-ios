@@ -7,13 +7,26 @@
 //
 
 import UIKit
+import Foundation
 import Former
 import JSSAlertView
 
 final class EditProfileViewController: FormViewController, UINavigationBarDelegate {
     
     var dic: Dictionary<String, AnyObject> = [:]
-    
+
+    var dicAccount: Dictionary<String, AnyObject> = [:]
+
+    var dicAccountData: Dictionary<String, AnyObject> = [:]
+
+    var dicLegalEntityAddress: Dictionary<String, AnyObject> = [:]
+
+    var dicLegalEntityDob: Dictionary<String, AnyObject> = [:]
+
+    var dicLegalEntityBusinessName: Dictionary<String, AnyObject> = [:]
+
+    var dicLegalEntityType: Dictionary<String, AnyObject> = [:]
+
     var detailUser: User? {
         didSet {
             // config
@@ -44,7 +57,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                 $0.placeholder = "For transfer volumes of $20,000+"
                 $0.text = Profile.sharedInstance.ssn
             }.onTextChanged {
-                self.dic["legal_entity_ssn_last_4"] = $0
+                NSUserDefaults.standardUserDefaults().setValue($0, forKey: "ssn_last_4")
                 Profile.sharedInstance.ssn = $0
         }
         let businessName = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
@@ -57,7 +70,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                 $0.placeholder = ""
                 $0.text = Profile.sharedInstance.businessName
             }.onTextChanged {
-                self.dic["legal_entity_business_name"] = $0
+                NSUserDefaults.standardUserDefaults().setValue($0, forKey: "business_name")
                 Profile.sharedInstance.businessName = $0
         }
         let businessAddressRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
@@ -70,7 +83,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                 $0.placeholder = ""
                 $0.text = Profile.sharedInstance.businessAddressLine1
             }.onTextChanged {
-
+                NSUserDefaults.standardUserDefaults().setValue($0, forKey: "line1")
                 Profile.sharedInstance.businessAddressLine1 = $0
         }
         let businessAddressCountryRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
@@ -83,18 +96,19 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                 $0.placeholder = ""
                 $0.text = Profile.sharedInstance.businessAddressCountry
             }.onTextChanged {
-                self.dic["legal_entity_address_country"] = $0
+                NSUserDefaults.standardUserDefaults().setValue($0, forKey: "country")
                 Profile.sharedInstance.businessAddressCountry = $0
         }
         let businessAddressZipRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
-            $0.titleLabel.text = "ZIP"
+            $0.titleLabel.text = "Postal Code"
             $0.textField.keyboardType = .NumberPad
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
+                $0.rowHeight = 60
                 $0.placeholder = ""
                 $0.text = Profile.sharedInstance.businessAddressZip
             }.onTextChanged {
-                self.dic["legal_entity_address_postal_code"] = $0
+                NSUserDefaults.standardUserDefaults().setValue($0, forKey: "postal_code")
                 Profile.sharedInstance.businessAddressZip = $0
         }
         let businessAddressCityRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
@@ -107,7 +121,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                 $0.placeholder = ""
                 $0.text = Profile.sharedInstance.businessAddressCity
             }.onTextChanged {
-                self.dic["legal_entity_address_city"] = $0
+                NSUserDefaults.standardUserDefaults().setValue($0, forKey: "city")
                 Profile.sharedInstance.businessAddressCity = $0
         }
         let businessAddressStateRow = InlinePickerRowFormer<CustomLabelCell, String>(instantiateType: .Nib(nibName: "CustomLabelCell")) {
@@ -124,7 +138,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                     $0.selectedRow = businessStates.indexOf(businessState) ?? 0
                 }
             }.onValueChanged {
-                self.dic["legal_entity_address_state"] = $0.title
+                NSUserDefaults.standardUserDefaults().setValue($0.title, forKey: "state")
                 Profile.sharedInstance.businessAddressState = $0.title
         }
         let businessTypeRow = InlinePickerRowFormer<CustomLabelCell, String>(instantiateType: .Nib(nibName: "CustomLabelCell")) {
@@ -141,7 +155,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                     $0.selectedRow = businessTypes.indexOf(businessType) ?? 0
                 }
             }.onValueChanged {
-                self.dic["legal_entity_type"] = $0.title
+                NSUserDefaults.standardUserDefaults().setValue($0.title, forKey: "type")
                 Profile.sharedInstance.businessType = $0.title
         }
         
@@ -149,14 +163,67 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
     }()
     
     func save(sender: AnyObject) {
-        // print(dic)
-        User.saveProfile(dic) { (user, bool, err) in
+        print("inside save")
+        guard let b_name = NSUserDefaults.standardUserDefaults().valueForKey("business_name") else { print("need name"); return }
+        guard let b_type = NSUserDefaults.standardUserDefaults().valueForKey("type") else { print("need type"); return }
+        guard let b_state = NSUserDefaults.standardUserDefaults().valueForKey("state") else { print("need state"); return }
+        guard let b_city = NSUserDefaults.standardUserDefaults().valueForKey("city") else { print("need city"); return }
+        guard let b_postal_code = NSUserDefaults.standardUserDefaults().valueForKey("postal_code") else { print("need postal"); return }
+        guard let b_country = NSUserDefaults.standardUserDefaults().valueForKey("country") else { print("need country"); return }
+        guard let b_line1 = NSUserDefaults.standardUserDefaults().valueForKey("line1") else { print("need line1"); return }
+        let b_dob_day = "" //NSUserDefaults.standardUserDefaults().valueForKey("dob_day") else { return }
+        let b_dob_month = "" // NSUserDefaults.standardUserDefaults().valueForKey("dob_month") else { return }
+        let b_dob_year = "" //NSUserDefaults.standardUserDefaults().valueForKey("dob_year") else { return }
+
+        let dic : [String:AnyObject] = [
+            "legal_entity": [
+                "type": b_type,
+                "business_name": b_name,
+                "address": [
+                    "city": b_city,
+                    "state": b_state,
+                    "country": b_country,
+                    "line1": b_line1,
+                    "postal_code": b_postal_code
+                ]
+            ]
+        ]
+        
+//        ,
+//        "dob": [
+//        "day": b_dob_day,
+//        "month": b_dob_month,
+//        "year": b_dob_year
+//        ]
+        
+        var legalContent: [String: AnyObject] = [
+            "type": b_type,
+            "business_name": b_name,
+            "address": [
+                "city": b_city,
+                "state": b_state,
+                "country": b_country,
+                "line1": b_line1,
+                "postal_code": b_postal_code
+            ]
+        ]
+        var legalJSON: [String: [String: AnyObject]] = [ "legal_entity" : legalContent ]
+        Account.saveStripeAccount(legalJSON) { (acct, bool, err) in
+            print("save acct called")
             if bool == true {
-                self.showSuccessAlert("Profile Saved")
+                self.showAlert("Profile Updated", color: UIColor.brandGreen(), image: UIImage(named: "ic_check_light")!)
             } else {
-                self.showErrorAlert((err?.localizedDescription)!)
+                self.showAlert((err?.localizedDescription)!, color: UIColor.brandRed(), image: UIImage(named: "ic_close_light")!)
             }
         }
+//        User.saveProfile(dic) { (user, bool, err) in
+//            if bool == true {
+//
+//            } else {
+//                self.showAlert((err?.localizedDescription)!, color: UIColor.brandRed(), image: UIImage(named: "ic_close_light")!)
+//            }
+//
+//        }
     }
     
     private func configure(user: User) {
@@ -181,9 +248,9 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
         
         self.navigationItem.rightBarButtonItem = saveButton
         
-//        Account.getStripeAccount { (acct, err) in
-//            print(acct)
-//        }
+        Account.getStripeAccount { (acct, err) in
+            //print(acct)
+        }
         
         // Create RowFomers
         
@@ -263,7 +330,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                 $0.tintColor = UIColor.darkGrayColor()
                 $0.datePicker.datePickerMode = .Date
             }.onDateChanged {
-                self.dic["birthday"] = String($0.timeIntervalSince1970)
+                self.dicLegalEntityDob["dob"] = String($0.timeIntervalSince1970)
                 Profile.sharedInstance.birthDay = $0
         }
         let bioRow = TextViewRowFormer<FormTextViewCell>() { [weak self] in
@@ -329,9 +396,9 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
         }
     }
     
-    private func showSuccessAlert(msg: String) {
-        let customIcon:UIImage = UIImage(named: "ic_check_light")! // your custom icon UIImage
-        let customColor:UIColor = UIColor.mediumBlue() // base color for the alert
+    private func showAlert(msg: String, color: UIColor, image: UIImage) {
+        let customIcon:UIImage = image // your custom icon UIImage
+        let customColor:UIColor = color // base color for the alert
         self.view.endEditing(true)
         let alertView = JSSAlertView().show(
             self,
@@ -343,20 +410,4 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
             iconImage: customIcon)
         alertView.setTextTheme(.Light) // can be .Light or .Dark
     }
-    
-    private func showErrorAlert(msg: String) {
-        let customIcon:UIImage = UIImage(named: "ic_close_light")! // your custom icon UIImage
-        let customColor:UIColor = UIColor.brandRed() // base color for the alert
-        self.view.endEditing(true)
-        let alertView = JSSAlertView().show(
-            self,
-            title: "",
-            text: msg,
-            buttonText: "Ok",
-            noButtons: false,
-            color: customColor,
-            iconImage: customIcon)
-        alertView.setTextTheme(.Light) // can be .Light or .Dark
-    }
-    
 }

@@ -89,6 +89,9 @@ class User {
                 "Content-Type": "application/json"
             ]
             
+            print("user params are")
+            print(parameters)
+            
             let endpoint = apiUrl + "/v1/profile"
             
             print(parameters)
