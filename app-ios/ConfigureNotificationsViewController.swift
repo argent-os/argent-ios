@@ -66,6 +66,7 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
         // Create RowFomers
         let pushNotificationsRow = SwitchRowFormer<FormSwitchCell>() {
             $0.titleLabel.text = "Push Notifications"
+            $0.titleLabel.font = UIFont.systemFontOfSize(14)
             }.configure() { cell in
                 getPushState { (val, token, error) in
                     cell.rowHeight = 60

@@ -157,7 +157,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.textLabel?.font = UIFont.systemFontOfSize(14)
         cell.selectionStyle = UITableViewCellSelectionStyle.Default
         cell.detailTextLabel?.font = UIFont.systemFontOfSize(12)
-        cell.detailTextLabel?.textColor = UIColor.lightGrayColor()
+        cell.detailTextLabel?.textColor = UIColor.darkGrayColor().colorWithAlphaComponent(0.5)
         
         cell.imageView!.frame = CGRectMake(10, 15, 30, 30)
         cell.imageView!.backgroundColor = UIColor.clearColor()
@@ -188,7 +188,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             if first_name != "" || last_name != "" {
                 cell.detailTextLabel?.text = first_name + " " + last_name
             } else {
-                cell.detailTextLabel?.text = String(dataArray[indexPath.row].email)
+                cell.detailTextLabel?.text = String(dataArray[indexPath.row].username)
             }
         }
         else {
@@ -212,7 +212,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             if first_name != "" || last_name != "" {
                 cell.detailTextLabel?.text = first_name + " " + last_name
             } else {
-                cell.detailTextLabel?.text = String(dataArray[indexPath.row].email)
+                cell.detailTextLabel?.text = String(dataArray[indexPath.row].username)
             }
         }
         

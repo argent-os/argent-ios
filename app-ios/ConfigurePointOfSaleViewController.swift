@@ -59,6 +59,7 @@ class ConfigurePointOfSaleViewController: FormViewController, UIApplicationDeleg
         // Create RowFomers
         let configurePOSRowScreenAlive = SwitchRowFormer<FormSwitchCell>() {
             $0.titleLabel.text = "Keep screen alive"
+            $0.titleLabel.font = UIFont.systemFontOfSize(14)
             }.configure() { cell in
                 cell.rowHeight = 60
                 if(KeychainSwift().getBool("screenAlive") == true) {
@@ -78,6 +79,7 @@ class ConfigurePointOfSaleViewController: FormViewController, UIApplicationDeleg
         }
         let configurePOSRowExit = SwitchRowFormer<FormSwitchCell>() {
             $0.titleLabel.text = "Allow exit"
+            $0.titleLabel.font = UIFont.systemFontOfSize(14)
             }.configure() { cell in
                 cell.rowHeight = 60
                 cell.switched = false

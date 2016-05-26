@@ -41,11 +41,6 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate, UIScroll
         }
     }
     
-    //Changing Status Bar
-    override internal func prefersStatusBarHidden() -> Bool {
-        return true
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

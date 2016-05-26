@@ -1701,7 +1701,7 @@ We support both debit and credit.</string>
                         <viewControllerLayoutGuide type="bottom" id="Mv2-J1-WVg"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Wlq-Lz-if3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -2037,6 +2037,7 @@ We support both debit and credit.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
                         <segue destination="xpa-9P-y7e" kind="show" identifier="VC1i" id="pwA-UY-2qu"/>
                         <segue destination="ian-zS-qrA" kind="show" identifier="VC1c" id="sc3-xx-vZL"/>
@@ -2170,6 +2171,7 @@ We support both debit and credit.</string>
                             <constraint firstItem="SVm-Wx-kdh" firstAttribute="top" secondItem="tBP-XF-AxO" secondAttribute="bottom" constant="8" symbolic="YES" id="xKk-Qk-4un"/>
                         </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="continueButton" destination="Ikb-GO-UZZ" id="M5F-2z-yvd"/>
@@ -3606,20 +3608,20 @@ be private unless otherwise requested.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="m0d-gd-RWW"/>
-        <segue reference="mwT-xt-Ez4"/>
-        <segue reference="zQh-Po-kj4"/>
-        <segue reference="wgV-xY-MTp"/>
-        <segue reference="UFB-DJ-qrH"/>
+        <segue reference="LbW-Hg-Jfu"/>
         <segue reference="OJY-8f-FpG"/>
-        <segue reference="agi-3I-cSC"/>
-        <segue reference="VI5-hp-Gm2"/>
-        <segue reference="ipn-3I-3vc"/>
         <segue reference="m3z-fp-Nlm"/>
         <segue reference="igQ-zk-tCm"/>
         <segue reference="aks-Yo-Spb"/>
         <segue reference="7cu-FP-MoG"/>
         <segue reference="Bc6-jW-uiV"/>
         <segue reference="fEJ-lR-z9I"/>
+        <segue reference="agi-3I-cSC"/>
+        <segue reference="VI5-hp-Gm2"/>
+        <segue reference="ipn-3I-3vc"/>
+        <segue reference="UFB-DJ-qrH"/>
+        <segue reference="zQh-Po-kj4"/>
+        <segue reference="wgV-xY-MTp"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>

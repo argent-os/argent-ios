@@ -173,7 +173,7 @@ class AuthViewController: UIViewController, LTMorphingLabelDelegate, ModalTransi
     }
     
     override func viewDidAppear(animated: Bool) {
-        addSubviewWithBounce(imageView, parentView: self)
+        addSubviewWithFade(imageView, parentView: self)
     }
 }
 

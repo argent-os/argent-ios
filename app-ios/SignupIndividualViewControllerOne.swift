@@ -41,12 +41,7 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
             self.continueButton.enabled = true
         }
     }
-    
-    //Changing Status Bar
-    override internal func prefersStatusBarHidden() -> Bool {
-        return true
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

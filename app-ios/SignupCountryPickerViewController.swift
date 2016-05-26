@@ -17,10 +17,9 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
     let flagImg:UIImageView = UIImageView()
     
     let countryPicker:CountryPicker = CountryPicker()
-
-    //Changing Status Bar
-    override internal func prefersStatusBarHidden() -> Bool {
-        return true
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .Default
     }
     
     override func viewDidAppear(animated: Bool) {

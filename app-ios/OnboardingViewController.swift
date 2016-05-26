@@ -19,6 +19,10 @@ class OnboardingViewController: UIViewController, UICollectionViewDataSource, UI
         
     var onboardingBackgroundScrollView: UIScrollView!
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()

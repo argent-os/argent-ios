@@ -26,6 +26,12 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 
     private var window: UIWindow?
 
+    private var screen = UIScreen.mainScreen().bounds
+
+    private var screenWidth = UIScreen.mainScreen().bounds.size.height
+    
+    private var screenHeight = UIScreen.mainScreen().bounds.size.width
+    
     private var dateFormatter = NSDateFormatter()
 
     private var accountHistoryArray:Array<History>?
@@ -63,15 +69,15 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             lblAccountAvailable.removeFromSuperview()
             lblAvailableDescription.removeFromSuperview()
             
-            addSubviewWithBounce(lblAccountPending, parentView: self)
-            addSubviewWithBounce(lblPendingDescription, parentView: self)
+            addSubviewWithFade(lblAccountPending, parentView: self)
+            addSubviewWithFade(lblPendingDescription, parentView: self)
         }
         if(sender.selectedIndex == 1) {
             lblAccountPending.removeFromSuperview()
             lblPendingDescription.removeFromSuperview()
 
-            addSubviewWithBounce(lblAccountAvailable, parentView: self)
-            addSubviewWithBounce(lblAvailableDescription, parentView: self)
+            addSubviewWithFade(lblAccountAvailable, parentView: self)
+            addSubviewWithFade(lblAvailableDescription, parentView: self)
         }
     }
 
@@ -189,7 +195,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 
                 if(pendingBalance != 0 && availableBalance != 0) {
                     self.lblAccountPending.countFrom(CGFloat(pendingBalance)/100-600, to: CGFloat(pendingBalance)/100)
-                    self.lblAccountPending.textColor = UIColor.slateBlue()
+                    self.lblAccountPending.textColor = UIColor.lightBlue()
                     self.lblAccountPending.format = "%.2f"
                     self.lblAccountPending.animationDuration = 0.5
                     self.lblAccountPending.method = UILabelCountingMethod.EaseInOut
@@ -199,7 +205,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                     }
     
                     self.lblAccountAvailable.countFrom((CGFloat(Float(availableBalance))/100)-100, to: CGFloat(Float(availableBalance))/100)
-                    self.lblAccountAvailable.textColor = UIColor.slateBlue()
+                    self.lblAccountAvailable.textColor = UIColor.lightBlue()
                     self.lblAccountAvailable.format = "%.2f"
                     self.lblAccountAvailable.animationDuration = 1.0
                     self.lblAccountAvailable.method = UILabelCountingMethod.EaseInOut
@@ -241,7 +247,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
                 
                 if user?.first_name != "" {
-                    showGlobalNotification("Welcome " + (user?.first_name)! + "!", duration: 2.5, inStyle: CWNotificationAnimationStyle.Left, outStyle: CWNotificationAnimationStyle.Right, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandGreen())
+                    showGlobalNotification("Welcome " + (user?.first_name)! + "!", duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.lightBlue())
                 }
                 
                 if user!.picture != "" {
@@ -273,7 +279,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 
     func configureView() {
         
-        let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
@@ -295,19 +300,19 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         bg.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
         bg.layer.masksToBounds = true
         bg.clipsToBounds = true
-        bg.backgroundColor = UIColor.offWhite()
+        bg.backgroundColor = UIColor.clearColor()
         self.view.addSubview(bg)
         self.view.sendSubviewToBack(bg)
 
         graph.dataSource = self
         graph.frame = CGRect(x: 0, y: 110, width: screenWidth, height: 150)
         graph.colorTop = UIColor.clearColor()
-        graph.colorBottom = UIColor.offWhite()
+        graph.colorBottom = UIColor.clearColor()
         graph.colorLine = UIColor.brandGreen()
         graph.colorPoint = UIColor.brandGreen()
         graph.colorBackgroundPopUplabel = UIColor.whiteColor()
         graph.delegate = self
-        graph.widthLine = 2
+        graph.widthLine = 1
         graph.displayDotsWhileAnimating = true
         graph.enablePopUpReport = true
         graph.noDataLabelColor = UIColor.mediumBlue()
@@ -316,6 +321,11 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         graph.colorTouchInputLine = UIColor.lightBlue()
         graph.layer.masksToBounds = true
         addSubviewWithFade(graph, parentView: self)
+        
+        let horizontalSplitter = UIView()
+        horizontalSplitter.backgroundColor = UIColor.offWhite()
+        horizontalSplitter.frame = CGRect(x: 15.0, y: 260.0, width: screenWidth - 15.0, height: 1)
+        self.view.addSubview(horizontalSplitter)
         
         let dateRangeSegment: UISegmentedControl = UISegmentedControl(items: ["1D", "1M", "3M", "6M", "1Y"])
         dateRangeSegment.frame = CGRect(x: 15.0, y: 230.0, width: view.bounds.width - 30.0, height: 30.0)
@@ -342,8 +352,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         navBar.setItems([navItem], animated: true)
         
         balanceSwitch.backgroundColor = UIColor.clearColor()
-        balanceSwitch.selectedBackgroundColor = UIColor.mediumBlue().colorWithAlphaComponent(0.5)
-        balanceSwitch.titleColor = UIColor.mediumBlue()
+        balanceSwitch.selectedBackgroundColor = UIColor.lightBlue()
+        balanceSwitch.titleColor = UIColor.lightBlue()
         balanceSwitch.selectedTitleColor = UIColor.whiteColor()
         balanceSwitch.titleFont = UIFont.systemFontOfSize(12)
         balanceSwitch.frame = CGRect(x: view.bounds.width - 185.0, y: 40, width: 180, height: 35.0)
@@ -376,6 +386,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         tableView.tableHeaderView = headerView
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorColor = UIColor.lightBlue().colorWithAlphaComponent(0.3)
         tableView.showsVerticalScrollIndicator = false
         addSubviewWithFade(tableView, parentView: self)
         
@@ -384,7 +395,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         let str0 = NSAttributedString(string: "$0.00", attributes:
             [
                 NSFontAttributeName: UIFont(name: "Avenir-Book", size: 18)!,
-                NSForegroundColorAttributeName:UIColor.slateBlue()
+                NSForegroundColorAttributeName:UIColor.lightBlue()
             ])
         lblAccountAvailable.attributedText = str0
         
@@ -393,10 +404,10 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         let str1 = NSAttributedString(string: "$0.00", attributes:
             [
                 NSFontAttributeName: UIFont(name: "Avenir-Book", size: 18)!,
-                NSForegroundColorAttributeName:UIColor.slateBlue()
+                NSForegroundColorAttributeName:UIColor.lightBlue()
             ])
         lblAccountPending.attributedText = str1
-        addSubviewWithBounce(lblAccountPending, parentView: self)
+        addSubviewWithFade(lblAccountPending, parentView: self)
         
         lblAvailableDescription.frame = CGRectMake(20, 106, 200, 40)
         let str2 = NSAttributedString(string: "Available Balance", attributes:
@@ -414,7 +425,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 NSForegroundColorAttributeName:UIColor.slateBlue().colorWithAlphaComponent(0.5)
             ])
         lblPendingDescription.attributedText = str3
-        addSubviewWithBounce(lblPendingDescription, parentView: self)
+        addSubviewWithFade(lblPendingDescription, parentView: self)
         
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.tintColor = UIColor.slateBlue().colorWithAlphaComponent(0.5)
@@ -556,9 +567,19 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     // Scrollview
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
-//        var rect: CGRect = self.view.frame
-//        rect.origin.y = -scrollView.contentOffset.y
-//        self.view.frame = rect
+        
+//        print("content offset", scrollView.contentOffset.y)
+//        print("top inset", scrollView.contentInset.top)
+//        print("bottom inset", scrollView.contentInset.top)
+//        
+//        if(scrollView.contentOffset.y > 0) {
+//            // until scrollView reaches threshold keep tableview stable unscrolled but move up view
+//            self.tableView.setContentOffset(CGPointZero, animated:true)
+//            self.tableView.frame = CGRect(x: 0, y: -scrollView.contentOffset.y, width: screenWidth, height: screenHeight+scrollView.contentOffset.y-315)
+//            var rect: CGRect = self.view.frame
+//            rect.origin.y = -scrollView.contentOffset.y
+//            self.view.frame = rect
+//        }
     }
     
     // Delegate: DZNEmptyDataSet
@@ -588,5 +609,34 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
         let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RecurringBillingViewController") as! RecurringBillingViewController
         self.presentViewController(viewController, animated: true, completion: nil)
+    }
+}
+
+// Used only in HomeViewController
+extension UISegmentedControl {
+    func removeBorders() {
+        setTitleTextAttributes(
+            [NSForegroundColorAttributeName : UIColor.slateBlue().colorWithAlphaComponent(0.4),
+                NSFontAttributeName : UIFont.systemFontOfSize(12)],
+            forState: .Normal)
+        setTitleTextAttributes(
+            [NSForegroundColorAttributeName : UIColor.lightBlue(),
+                NSFontAttributeName : UIFont.systemFontOfSize(16)],
+            forState: .Selected)
+        setBackgroundImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forState: .Normal, barMetrics: .Default)
+        setBackgroundImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forState: .Selected, barMetrics: .Default)
+        setDividerImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forLeftSegmentState: .Normal, rightSegmentState: .Normal, barMetrics: .Default)
+    }
+    
+    // create a 1x1 image with this color
+    private func imageWithColor(color: UIColor, source: String) -> UIImage {
+        let rect = CGRectMake(10.0, 0.0, 100.0, 1.0)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()
+        CGContextSetFillColorWithColor(context, color.CGColor);
+        CGContextFillRect(context, rect);
+        let image = UIImage(named: source)
+        UIGraphicsEndImageContext();
+        return image!
     }
 }

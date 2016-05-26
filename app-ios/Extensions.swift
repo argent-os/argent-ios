@@ -12,35 +12,6 @@ import CWStatusBarNotification
 
 let globalNotification = CWStatusBarNotification()
 
-extension UISegmentedControl {
-    func removeBorders() {
-        setTitleTextAttributes(
-            [NSForegroundColorAttributeName : UIColor.slateBlue().colorWithAlphaComponent(0.4),
-                NSFontAttributeName : UIFont.systemFontOfSize(12)],
-            forState: .Normal)
-        setTitleTextAttributes(
-            [NSForegroundColorAttributeName : UIColor.slateBlue(),
-                NSFontAttributeName : UIFont.systemFontOfSize(18)],
-            forState: .Selected)
-        setBackgroundImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forState: .Normal, barMetrics: .Default)
-        setBackgroundImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forState: .Selected, barMetrics: .Default)
-        setDividerImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forLeftSegmentState: .Normal, rightSegmentState: .Normal, barMetrics: .Default)
-    }
-    
-    // create a 1x1 image with this color
-    private func imageWithColor(color: UIColor, source: String) -> UIImage {
-        let rect = CGRectMake(10.0, 0.0, 100.0, 1.0)
-        UIGraphicsBeginImageContext(rect.size)
-        let context = UIGraphicsGetCurrentContext()
-        CGContextSetFillColorWithColor(context, color.CGColor);
-        CGContextFillRect(context, rect);
-        let image = UIImage(named: source)
-        UIGraphicsEndImageContext();
-        return image!
-    }
-}
-
-
 extension String {
     func toBool() -> Bool? {
         switch self {

@@ -113,7 +113,7 @@ class ProfileMenuViewController: UITableViewController {
                 Timeout(0.2) {
                     addSubviewWithFade(self.locationLabel, parentView: self)
                 }
-                showGlobalNotification("Profile Incomplete", duration: 2.5, inStyle: CWNotificationAnimationStyle.Left, outStyle: CWNotificationAnimationStyle.Right, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandYellow())
+                showGlobalNotification("Profile Incomplete", duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandYellow())
             }
         }
         self.locationLabel.frame = CGRectMake(0, 70, screenWidth, 70)

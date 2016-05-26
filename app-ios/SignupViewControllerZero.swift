@@ -73,10 +73,14 @@ class SignupViewControllerZero: UIViewController {
     }
     
     //Changing Status Bar
-    override internal func prefersStatusBarHidden() -> Bool {
-        return true
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .Default
     }
-
+    
+    override func preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation {
+        return UIStatusBarAnimation.Slide
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

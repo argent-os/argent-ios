@@ -37,11 +37,6 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
     let userLegalEntityType = NSUserDefaults.standardUserDefaults().stringForKey("userLegalEntityType")!
     let userCountry = NSUserDefaults.standardUserDefaults().stringForKey("userCountry")!
     
-    //Changing Status Bar
-    override internal func prefersStatusBarHidden() -> Bool {
-        return true
-    }
-    
     override func viewDidAppear(animated: Bool) {        
         let stepButton = UIBarButtonItem(title: "3/3", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
         navigationItem.rightBarButtonItem = stepButton

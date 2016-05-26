@@ -25,11 +25,6 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
     var dobMonth:String = ""
     var dobYear:String = ""
     
-    //Changing Status Bar
-    override internal func prefersStatusBarHidden() -> Bool {
-        return true
-    }
-    
     override func viewDidAppear(animated: Bool) {
         
         firstNameTextField.becomeFirstResponder()

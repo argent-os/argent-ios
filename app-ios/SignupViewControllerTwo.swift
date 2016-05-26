@@ -24,11 +24,6 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
     // Height not adjusted button bool value
     var alreadyAdjustedVC2:Bool = false
     
-    //Changing Status Bar
-    override internal func prefersStatusBarHidden() -> Bool {
-        return true
-    }
-    
     override func viewDidAppear(animated: Bool) {
         // Focuses view controller on first name text input
         usernameTextField.becomeFirstResponder()
