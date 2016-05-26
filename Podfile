@@ -52,6 +52,7 @@ target 'app-ios' do
 	pod 'LTMorphingLabel'
 	pod 'PermissionScope'
 	pod 'HanekeSwift'
+	pod 'CellAnimator'
 	#pod 'DOFavoriteButton'
 
 	post_install do |installer|

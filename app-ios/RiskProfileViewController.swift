@@ -18,12 +18,11 @@ class RiskProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationController?.navigationBar.tintColor = UIColor.darkBlue()
-        
-        enableRiskProfileButton.layer.cornerRadius = 5
-        enableRiskProfileButton.clipsToBounds = true
-        enableRiskProfileButton.backgroundColor = UIColor.mediumBlue()
+        configure()
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -36,6 +35,25 @@ class RiskProfileViewController: UIViewController {
             self.enableRiskProfileButton.setTitle("Disable Risk Profile", forState: .Normal)
             self.enableRiskProfileButton.addTarget(self, action: #selector(RiskProfileViewController.disableRiskProfiling(_:)), forControlEvents: .TouchUpInside)
         }
+    }
+    
+    func configure() {
+        
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
+        
+        enableRiskProfileButton.layer.cornerRadius = 10
+        enableRiskProfileButton.clipsToBounds = true
+        enableRiskProfileButton.backgroundColor = UIColor.lightBlue()
+        
+        self.navigationItem.title = "Risk Profile"
+        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSFontAttributeName: UIFont.systemFontOfSize(14),
+            NSForegroundColorAttributeName: UIColor.darkGrayColor()
+        ]
+        
     }
     
     func enableRiskProfiling(sender: AnyObject) {

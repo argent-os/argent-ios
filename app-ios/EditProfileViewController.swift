@@ -39,196 +39,88 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
         super.viewDidLoad()
         User.getProfile { (user, err) in
-            self.configure(user!)
+            let user = user
+            Account.getStripeAccount { (acct, err) in
+                let acct = acct
+                if user != nil && acct != nil {
+                    self.configure(user!, account: acct!)
+                }
+            }
         }
     }
     
     // MARK: Private
     
     private lazy var formerInputAccessoryView: FormerInputAccessoryView = FormerInputAccessoryView(former: self.former)
-    
-    private lazy var informationSection: SectionFormer = {
-        let ssnRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
-            $0.titleLabel.text = "SSN Last 4"
-            $0.textField.keyboardType = .NumberPad
-            $0.textField.inputAccessoryView = self?.formerInputAccessoryView
-            }.configure {
-                $0.rowHeight = 60
-                $0.placeholder = "For transfer volumes of $20,000+"
-                $0.text = Profile.sharedInstance.ssn
-            }.onTextChanged {
-                NSUserDefaults.standardUserDefaults().setValue($0, forKey: "ssn_last_4")
-                Profile.sharedInstance.ssn = $0
-        }
-        let businessName = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
-            $0.titleLabel.text = "Business Name"
-            $0.textField.autocorrectionType = .No
-            $0.textField.autocapitalizationType = .Words
-            $0.textField.inputAccessoryView = self?.formerInputAccessoryView
-            }.configure {
-                $0.rowHeight = 60
-                $0.placeholder = ""
-                $0.text = Profile.sharedInstance.businessName
-            }.onTextChanged {
-                NSUserDefaults.standardUserDefaults().setValue($0, forKey: "business_name")
-                Profile.sharedInstance.businessName = $0
-        }
-        let businessAddressRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
-            $0.titleLabel.text = "Address"
-            $0.textField.autocorrectionType = .No
-            $0.textField.autocapitalizationType = .Words
-            $0.textField.inputAccessoryView = self?.formerInputAccessoryView
-            }.configure {
-                $0.rowHeight = 60
-                $0.placeholder = ""
-                $0.text = Profile.sharedInstance.businessAddressLine1
-            }.onTextChanged {
-                NSUserDefaults.standardUserDefaults().setValue($0, forKey: "line1")
-                Profile.sharedInstance.businessAddressLine1 = $0
-        }
-        let businessAddressCountryRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
-            $0.titleLabel.text = "Country"
-            $0.textField.autocorrectionType = .No
-            $0.textField.autocapitalizationType = .Words
-            $0.textField.inputAccessoryView = self?.formerInputAccessoryView
-            }.configure {
-                $0.rowHeight = 60
-                $0.placeholder = ""
-                $0.text = Profile.sharedInstance.businessAddressCountry
-            }.onTextChanged {
-                NSUserDefaults.standardUserDefaults().setValue($0, forKey: "country")
-                Profile.sharedInstance.businessAddressCountry = $0
-        }
-        let businessAddressZipRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
-            $0.titleLabel.text = "Postal Code"
-            $0.textField.keyboardType = .NumberPad
-            $0.textField.inputAccessoryView = self?.formerInputAccessoryView
-            }.configure {
-                $0.rowHeight = 60
-                $0.placeholder = ""
-                $0.text = Profile.sharedInstance.businessAddressZip
-            }.onTextChanged {
-                NSUserDefaults.standardUserDefaults().setValue($0, forKey: "postal_code")
-                Profile.sharedInstance.businessAddressZip = $0
-        }
-        let businessAddressCityRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
-            $0.titleLabel.text = "City"
-            $0.textField.autocorrectionType = .No
-            $0.textField.autocapitalizationType = .Words
-            $0.textField.inputAccessoryView = self?.formerInputAccessoryView
-            }.configure {
-                $0.rowHeight = 60
-                $0.placeholder = ""
-                $0.text = Profile.sharedInstance.businessAddressCity
-            }.onTextChanged {
-                NSUserDefaults.standardUserDefaults().setValue($0, forKey: "city")
-                Profile.sharedInstance.businessAddressCity = $0
-        }
-        let businessAddressStateRow = InlinePickerRowFormer<CustomLabelCell, String>(instantiateType: .Nib(nibName: "CustomLabelCell")) {
-            $0.titleLabel.text = "State"
-            }.inlineCellSetup {
-                    $0.tintColor = UIColor.darkGrayColor()
-            }.configure {
-                $0.rowHeight = 60
-                let businessStates = Profile.sharedInstance.state
-                $0.pickerItems = businessStates.map {
-                    InlinePickerItem(title: $0)
-                }
-                if let businessState = Profile.sharedInstance.businessAddressState {
-                    $0.selectedRow = businessStates.indexOf(businessState) ?? 0
-                }
-            }.onValueChanged {
-                NSUserDefaults.standardUserDefaults().setValue($0.title, forKey: "state")
-                Profile.sharedInstance.businessAddressState = $0.title
-        }
-        let businessTypeRow = InlinePickerRowFormer<CustomLabelCell, String>(instantiateType: .Nib(nibName: "CustomLabelCell")) {
-            $0.titleLabel.text = "Type"
-            }.inlineCellSetup {
-                    $0.tintColor = UIColor.darkGrayColor()
-            }.configure {
-                $0.rowHeight = 60
-                let businessTypes = ["individual", "company"]
-                $0.pickerItems = businessTypes.map {
-                    InlinePickerItem(title: $0)
-                }
-                if let businessType = Profile.sharedInstance.businessType {
-                    $0.selectedRow = businessTypes.indexOf(businessType) ?? 0
-                }
-            }.onValueChanged {
-                NSUserDefaults.standardUserDefaults().setValue($0.title, forKey: "type")
-                Profile.sharedInstance.businessType = $0.title
-        }
-        
-        return SectionFormer(rowFormer: businessName, businessAddressRow, businessAddressCountryRow, businessAddressZipRow, businessAddressCityRow, businessAddressStateRow, businessTypeRow, ssnRow)
-    }()
-    
+
     func save(sender: AnyObject) {
-        print("inside save")
-        guard let b_name = NSUserDefaults.standardUserDefaults().valueForKey("business_name") else { print("need name"); return }
-        guard let b_type = NSUserDefaults.standardUserDefaults().valueForKey("type") else { print("need type"); return }
-        guard let b_state = NSUserDefaults.standardUserDefaults().valueForKey("state") else { print("need state"); return }
-        guard let b_city = NSUserDefaults.standardUserDefaults().valueForKey("city") else { print("need city"); return }
-        guard let b_postal_code = NSUserDefaults.standardUserDefaults().valueForKey("postal_code") else { print("need postal"); return }
-        guard let b_country = NSUserDefaults.standardUserDefaults().valueForKey("country") else { print("need country"); return }
-        guard let b_line1 = NSUserDefaults.standardUserDefaults().valueForKey("line1") else { print("need line1"); return }
+
+        let b_name = NSUserDefaults.standardUserDefaults().valueForKey("business_name")
+        let b_type = NSUserDefaults.standardUserDefaults().valueForKey("type") ?? ""
+        let b_state = NSUserDefaults.standardUserDefaults().valueForKey("state") ?? ""
+        let b_city = NSUserDefaults.standardUserDefaults().valueForKey("city") ?? ""
+        let b_postal_code = NSUserDefaults.standardUserDefaults().valueForKey("postal_code") ?? ""
+        let b_country = NSUserDefaults.standardUserDefaults().valueForKey("country") ?? ""
+        let b_line1 = NSUserDefaults.standardUserDefaults().valueForKey("line1") ?? ""
+        let b_ssn = NSUserDefaults.standardUserDefaults().valueForKey("ssn_last_4") ?? ""
+        let b_ein = NSUserDefaults.standardUserDefaults().valueForKey("business_tax_id") ?? ""
         let b_dob_day = "" //NSUserDefaults.standardUserDefaults().valueForKey("dob_day") else { return }
         let b_dob_month = "" // NSUserDefaults.standardUserDefaults().valueForKey("dob_month") else { return }
         let b_dob_year = "" //NSUserDefaults.standardUserDefaults().valueForKey("dob_year") else { return }
 
-        let dic : [String:AnyObject] = [
-            "legal_entity": [
-                "type": b_type,
-                "business_name": b_name,
-                "address": [
-                    "city": b_city,
-                    "state": b_state,
-                    "country": b_country,
-                    "line1": b_line1,
-                    "postal_code": b_postal_code
-                ]
-            ]
-        ]
-        
-//        ,
-//        "dob": [
+//      "dob": [
 //        "day": b_dob_day,
 //        "month": b_dob_month,
 //        "year": b_dob_year
-//        ]
+//      ]
         
-        var legalContent: [String: AnyObject] = [
-            "type": b_type,
-            "business_name": b_name,
+        let legalContent: [String: AnyObject] = [
+            "ssn_last_4": b_ssn!,
+            "business_tax_id": b_ein!,
+            "type": b_type!,
+            "business_name": b_name!,
             "address": [
-                "city": b_city,
-                "state": b_state,
-                "country": b_country,
-                "line1": b_line1,
-                "postal_code": b_postal_code
+                "city": b_city!,
+                "state": b_state!,
+                "country": b_country!,
+                "line1": b_line1!,
+                "postal_code": b_postal_code!
             ]
         ]
-        var legalJSON: [String: [String: AnyObject]] = [ "legal_entity" : legalContent ]
-        Account.saveStripeAccount(legalJSON) { (acct, bool, err) in
-            print("save acct called")
+        
+        print(legalContent)
+        
+        let legalJSON: [String: AnyObject] = [
+            "business_name": b_name!,
+            "legal_entity" : legalContent
+        ]
+
+        User.saveProfile(dic) { (user, bool, err) in
             if bool == true {
-                self.showAlert("Profile Updated", color: UIColor.brandGreen(), image: UIImage(named: "ic_check_light")!)
+                Account.saveStripeAccount(legalJSON) { (acct, bool, err) in
+                    print("save acct called")
+                    if bool == true {
+                        self.showAlert("Profile Updated", color: UIColor.brandGreen(), image: UIImage(named: "ic_check_light")!)
+                    } else {
+                        self.showAlert((err?.localizedDescription)!, color: UIColor.brandRed(), image: UIImage(named: "ic_close_light")!)
+                    }
+                }
             } else {
                 self.showAlert((err?.localizedDescription)!, color: UIColor.brandRed(), image: UIImage(named: "ic_close_light")!)
             }
         }
-//        User.saveProfile(dic) { (user, bool, err) in
-//            if bool == true {
-//
-//            } else {
-//                self.showAlert((err?.localizedDescription)!, color: UIColor.brandRed(), image: UIImage(named: "ic_close_light")!)
-//            }
-//
-//        }
     }
     
-    private func configure(user: User) {
+    private func configure(user: User, account: Account) {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
+        
+        print(account)
+        
+        let statusBarBackground = UIView()
+        statusBarBackground.backgroundColor = UIColor.slateBlue()
+        statusBarBackground.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 20)
+        self.view.addSubview(statusBarBackground)
         
         tableView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height-3)
         tableView.contentInset.top = 80
@@ -237,22 +129,21 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
         tableView.backgroundColor = UIColor(rgba: "#efeff4")
         tableView.showsVerticalScrollIndicator = false
         
-        title = "Edit Profile"
-        
         self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 60)
         self.navigationController?.navigationBar.backgroundColor = UIColor.slateBlue()
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
+        self.navigationItem.title = "Edit Profile"
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSFontAttributeName: UIFont.systemFontOfSize(14),
+            NSForegroundColorAttributeName: UIColor.whiteColor()
+        ]
         
         let saveButton : UIBarButtonItem = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(EditProfileViewController.save(_:)))
         
         self.navigationItem.rightBarButtonItem = saveButton
         
-        Account.getStripeAccount { (acct, err) in
-            //print(acct)
-        }
-        
-        // Create RowFomers
+        // Create RowFormers Personal Information
         
         let firstNameRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
             $0.titleLabel.text = "First Name"
@@ -345,20 +236,132 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                 self.dic["bio"] = $0
                 Profile.sharedInstance.introduction = $0
         }
-        let moreRow = SwitchRowFormer<FormSwitchCell>() {
-            $0.titleLabel.text = "Enable higher limit transfer volumes?"
-            $0.titleLabel.textColor = UIColor.darkGrayColor()
-            $0.titleLabel.font = UIFont(name: "Avenir-Light", size: 14)
-//            $0.switchButton.onTintColor = .formerSubColor()
+        
+        // Create RowFormers Business information
+        
+        let businessName = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
+            $0.titleLabel.text = "Busi Name"
+            $0.textField.autocorrectionType = .No
+            $0.textField.autocapitalizationType = .Words
+            $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
                 $0.rowHeight = 60
-                $0.switched = Profile.sharedInstance.moreInformation
-                $0.switchWhenSelected = true
-            }.onSwitchChanged { [weak self] in
-                Profile.sharedInstance.moreInformation = $0
-                self?.switchInfomationSection()
+                $0.placeholder = account.business_name
+                $0.text = Profile.sharedInstance.businessName
+            }.onTextChanged {
+                NSUserDefaults.standardUserDefaults().setValue($0, forKey: "business_name")
+                Profile.sharedInstance.businessName = $0
         }
-    
+        let businessAddressRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
+            $0.titleLabel.text = "Address"
+            $0.textField.autocorrectionType = .No
+            $0.textField.autocapitalizationType = .Words
+            $0.textField.inputAccessoryView = self?.formerInputAccessoryView
+            }.configure {
+                $0.rowHeight = 60
+                $0.placeholder = account.address_line1
+                $0.text = Profile.sharedInstance.businessAddressLine1
+            }.onTextChanged {
+                NSUserDefaults.standardUserDefaults().setValue($0, forKey: "line1")
+                Profile.sharedInstance.businessAddressLine1 = $0
+        }
+        let businessAddressCountryRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
+            $0.titleLabel.text = "Country"
+            $0.textField.autocorrectionType = .No
+            $0.textField.autocapitalizationType = .Words
+            $0.textField.inputAccessoryView = self?.formerInputAccessoryView
+            }.configure {
+                $0.rowHeight = 60
+                $0.placeholder = account.address_country
+                $0.text = Profile.sharedInstance.businessAddressCountry
+            }.onTextChanged {
+                NSUserDefaults.standardUserDefaults().setValue($0, forKey: "country")
+                Profile.sharedInstance.businessAddressCountry = $0
+        }
+        let businessAddressZipRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
+            $0.titleLabel.text = "Postal Code"
+            $0.textField.keyboardType = .NumberPad
+            $0.textField.inputAccessoryView = self?.formerInputAccessoryView
+            }.configure {
+                $0.rowHeight = 60
+                $0.placeholder = account.address_postal_code
+                $0.text = Profile.sharedInstance.businessAddressZip
+            }.onTextChanged {
+                NSUserDefaults.standardUserDefaults().setValue($0, forKey: "postal_code")
+                Profile.sharedInstance.businessAddressZip = $0
+        }
+        let businessAddressCityRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
+            $0.titleLabel.text = "City"
+            $0.textField.autocorrectionType = .No
+            $0.textField.autocapitalizationType = .Words
+            $0.textField.inputAccessoryView = self?.formerInputAccessoryView
+            }.configure {
+                $0.rowHeight = 60
+                $0.placeholder = account.address_city
+                $0.text = Profile.sharedInstance.businessAddressCity
+            }.onTextChanged {
+                NSUserDefaults.standardUserDefaults().setValue($0, forKey: "city")
+                Profile.sharedInstance.businessAddressCity = $0
+        }
+        let businessAddressStateRow = InlinePickerRowFormer<CustomLabelCell, String>(instantiateType: .Nib(nibName: "CustomLabelCell")) {
+            $0.titleLabel.text = "State"
+            }.inlineCellSetup {
+                $0.tintColor = UIColor.darkGrayColor()
+            }.configure {
+                $0.rowHeight = 60
+                let businessStates = Profile.sharedInstance.state
+                $0.pickerItems = businessStates.map {
+                    InlinePickerItem(title: $0)
+                }
+                if let businessState = Profile.sharedInstance.businessAddressState {
+                    $0.selectedRow = businessStates.indexOf(businessState)! //account.address_state ??
+                }
+            }.onValueChanged {
+                NSUserDefaults.standardUserDefaults().setValue($0.title, forKey: "state")
+                Profile.sharedInstance.businessAddressState = $0.title
+        }
+        let businessTypeRow = InlinePickerRowFormer<CustomLabelCell, String>(instantiateType: .Nib(nibName: "CustomLabelCell")) {
+            $0.titleLabel.text = "Type"
+            }.inlineCellSetup {
+                $0.tintColor = UIColor.darkGrayColor()
+            }.configure {
+                $0.rowHeight = 60
+                let businessTypes = ["individual", "company"]
+                $0.pickerItems = businessTypes.map {
+                    InlinePickerItem(title: $0)
+                }
+                if let businessType = Profile.sharedInstance.businessType {
+                    $0.selectedRow = businessTypes.indexOf(businessType)! // account.type ?? 
+                }
+            }.onValueChanged {
+                NSUserDefaults.standardUserDefaults().setValue($0.title, forKey: "type")
+                Profile.sharedInstance.businessType = $0.title
+        }
+        let ssnRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
+            $0.titleLabel.text = "SSN Last 4"
+            $0.textField.keyboardType = .NumberPad
+            $0.textField.inputAccessoryView = self?.formerInputAccessoryView
+            }.configure {
+                $0.rowHeight = 60
+                $0.placeholder = account.ssn_last_4 ?? "XXXX For transfer volumes of $20,000+"
+                $0.text = Profile.sharedInstance.ssn
+            }.onTextChanged {
+                NSUserDefaults.standardUserDefaults().setValue($0, forKey: "ssn_last_4")
+                Profile.sharedInstance.ssn = $0
+        }
+        let einRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
+            $0.titleLabel.text = "EIN"
+            $0.textField.keyboardType = .NumberPad
+            $0.textField.inputAccessoryView = self?.formerInputAccessoryView
+            }.configure {
+                $0.rowHeight = 60
+                $0.placeholder = account.business_tax_id ?? "XX-XXXXXXX Business Tax ID"
+                $0.text = Profile.sharedInstance.ein
+            }.onTextChanged {
+                NSUserDefaults.standardUserDefaults().setValue($0, forKey: "business_tax_id")
+                Profile.sharedInstance.ein = $0
+        }
+        
         // Create Headers
         
         let createHeader: (String -> ViewFormer) = { text in
@@ -372,27 +375,16 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
         // Create SectionFormers
         
         // Temporarily remove image section
-        //let imageSection = SectionFormer(rowFormer: imageRow)
+        // let imageSection = SectionFormer(rowFormer: imageRow)
         //    .set(headerViewFormer: createHeader("Profile Image"))
-        let aboutSection = SectionFormer(rowFormer: firstNameRow, lastNameRow, usernameRow, emailRow, birthdayRow, phoneRow)
+        let profileSection = SectionFormer(rowFormer: firstNameRow, lastNameRow, usernameRow, emailRow, birthdayRow, phoneRow)
             .set(headerViewFormer: createHeader("Profile information"))
-        let moreSection = SectionFormer(rowFormer: moreRow)
-            .set(headerViewFormer: createHeader("Additional transfer-enabling security infomation"))
-        
-        former.append(sectionFormer: aboutSection, moreSection)
+        let businessSection = SectionFormer(rowFormer: businessName, businessAddressRow, businessAddressCountryRow, businessAddressZipRow, businessAddressCityRow, businessAddressStateRow, businessTypeRow, ssnRow, einRow)
+            .set(headerViewFormer: createHeader("Business information"))
+
+        former.append(sectionFormer: profileSection, businessSection)
             .onCellSelected { [weak self] _ in
                 self?.formerInputAccessoryView.update()
-        }
-        if Profile.sharedInstance.moreInformation {
-            former.append(sectionFormer: informationSection)
-        }
-    }
-
-    private func switchInfomationSection() {
-        if Profile.sharedInstance.moreInformation {
-            former.insertUpdate(sectionFormer: informationSection, toSection: former.numberOfSections, rowAnimation: .Top)
-        } else {
-            former.removeUpdate(sectionFormer: informationSection, rowAnimation: .Top)
         }
     }
     

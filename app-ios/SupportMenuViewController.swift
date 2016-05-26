@@ -15,7 +15,16 @@ class SupportMenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // self.navigationController!.navigationBar.tintColor = UIColor.darkGrayColor()
-        // tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        self.navigationItem.title = "Contact Support"
+        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSFontAttributeName: UIFont.systemFontOfSize(14),
+            NSForegroundColorAttributeName: UIColor.darkGrayColor()
+        ]
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
 }

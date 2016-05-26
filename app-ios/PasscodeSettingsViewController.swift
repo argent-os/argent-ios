@@ -43,12 +43,21 @@ class PasscodeSettingsViewController: UIViewController {
         updatePasscodeView()
     }
     
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     override func viewDidLoad() {
         passcodeSwitch.onTintColor = UIColor(rgba: "#1f62f1")
         
-        // self.navigationController!.navigationBar.tintColor = UIColor.darkGrayColor()
-
-        changePasscodeButton.layer.cornerRadius = 5
+        self.navigationItem.title = "App Security"
+        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSFontAttributeName: UIFont.systemFontOfSize(14),
+            NSForegroundColorAttributeName: UIColor.darkGrayColor()
+        ]
+        
+        changePasscodeButton.layer.cornerRadius = 10
         changePasscodeButton.clipsToBounds = true
         changePasscodeButton.backgroundColor = UIColor(rgba: "#ffffff")
         

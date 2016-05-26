@@ -8,6 +8,9 @@
 
 import Foundation
 import Alamofire
+import CWStatusBarNotification
+
+let globalNotification = CWStatusBarNotification()
 
 extension UISegmentedControl {
     func removeBorders() {
@@ -119,6 +122,14 @@ extension Float {
     }
 }
 
+
+extension NSMutableData {
+    func appendString(string: String) {
+        let data = string.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+        appendData(data!)
+    }
+}
+
 public func convertStringToDictionary(text: String) -> [String:AnyObject]? {
     if let data = text.dataUsingEncoding(NSUTF8StringEncoding) {
         do {
@@ -128,4 +139,35 @@ public func convertStringToDictionary(text: String) -> [String:AnyObject]? {
         }
     }
     return nil
+}
+
+func addSubviewWithBounce(view: UIView, parentView: UIViewController) {
+    view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001)
+    parentView.view.addSubview(view)
+    UIView.animateWithDuration(0.3 / 1.5, animations: {() -> Void in
+        view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0)
+        }, completion: {(finished: Bool) -> Void in
+            UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
+                }, completion: {(finished: Bool) -> Void in
+                    UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
+                        view.transform = CGAffineTransformIdentity
+                    })
+            })
+    })
+}
+
+func addSubviewWithFade(view: UIView, parentView: UIViewController) {
+    view.alpha = 0.0
+    parentView.view.addSubview(view)
+    UIView.animateWithDuration(1.0, animations: {
+        view.alpha = 1.0
+    })
+}
+
+func showGlobalNotification(message: String, duration: NSTimeInterval, inStyle: CWNotificationAnimationStyle, outStyle: CWNotificationAnimationStyle, notificationStyle: CWNotificationStyle, color: UIColor) {
+    globalNotification.notificationLabelBackgroundColor = color
+    globalNotification.notificationAnimationInStyle = inStyle
+    globalNotification.notificationAnimationOutStyle = outStyle
+    globalNotification.notificationStyle = notificationStyle
+    globalNotification.displayNotificationWithMessage(message, forDuration: duration)
 }

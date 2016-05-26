@@ -20,6 +20,8 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationCategoryType</key>
+	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -184,9 +186,9 @@ Nunito-SemiBold.ttf</string>
 		<string>armv7</string>
 	</array>
 	<key>UIStatusBarHidden</key>
-	<false/>
+	<true/>
 	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleLightContent</string>
+	<string>UIStatusBarStyleDefault</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -199,8 +201,6 @@ Nunito-SemiBold.ttf</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
-	<key>LSApplicationCategoryType</key>
-	<false/>
+	<true/>
 </dict>
 </plist>

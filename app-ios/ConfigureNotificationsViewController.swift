@@ -27,6 +27,10 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
         configure()
     }
     
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     // MARK: Private
     
     private func configure() {
@@ -54,7 +58,10 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
         
         self.navigationItem.title = "Notifications"
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.darkGrayColor()]
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSFontAttributeName: UIFont.systemFontOfSize(14),
+            NSForegroundColorAttributeName: UIColor.darkGrayColor()
+        ]
         
         // Create RowFomers
         let pushNotificationsRow = SwitchRowFormer<FormSwitchCell>() {

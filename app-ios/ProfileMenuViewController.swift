@@ -31,11 +31,12 @@ class ProfileMenuViewController: UITableViewController {
 
     private var locationLabel = UILabel()
 
+    private var splitter = UIView()
+
     private let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 40, width: UIScreen.mainScreen().bounds.size.width, height: 50))
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        showProfileIncompleteStatusNotification()
         configureView()
         configureHeader()
     }
@@ -57,6 +58,7 @@ class ProfileMenuViewController: UITableViewController {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
                 self?.tableView.dg_stopLoading()
                 self!.loadProfile()
+                self!.configureHeader()
                 self!.userImageView.frame = CGRectMake(screenWidth / 2-30, -24, 60, 60)
                 self!.userImageView.layer.cornerRadius = 30
             })
@@ -75,71 +77,86 @@ class ProfileMenuViewController: UITableViewController {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         
-        let settingsIcon = UIImageView(frame: CGRectMake(0, 0, 32, 32))
-        settingsIcon.image = UIImage(named: "IconSettingsWhite")
-        settingsIcon.contentMode = .ScaleAspectFit
-        settingsIcon.alpha = 0.5
-        settingsIcon.center = CGPointMake(self.view.frame.size.width / 2, 130)
-        settingsIcon.userInteractionEnabled = true
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.goToEdit(_:)))
-        tap.numberOfTapsRequired = 1
-        settingsIcon.addGestureRecognizer(tap)
+        // let settingsIcon = UIImageView(frame: CGRectMake(0, 0, 32, 32))
+        // settingsIcon.image = UIImage(named: "IconSettingsWhite")
+        // settingsIcon.contentMode = .ScaleAspectFit
+        // settingsIcon.alpha = 0.5
+        // settingsIcon.center = CGPointMake(self.view.frame.size.width / 2, 130)
+        // settingsIcon.userInteractionEnabled = true
+        // let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.goToEdit(_:)))
+        // tap.numberOfTapsRequired = 1
+        // settingsIcon.addGestureRecognizer(tap)
         // self.view.addSubview(settingsIcon)
         // self.view.bringSubviewToFront(settingsIcon)
         
-        let splitter = UIView()
         splitter.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
         splitter.frame = CGRect(x: screenWidth/2-0.5, y: 140, width: 1, height: 50)
-        self.view.addSubview(splitter)
+        Timeout(0.2) {
+            addSubviewWithFade(self.splitter, parentView: self)
+        }
         
         let attachment: NSTextAttachment = NSTextAttachment()
         attachment.image = UIImage(named: "IconPinWhiteTiny")
         let attachmentString: NSAttributedString = NSAttributedString(attachment: attachment)
-        let locationStr: NSMutableAttributedString = NSMutableAttributedString(string: "London, UK ")
-        locationStr.appendAttributedString(attachmentString)
+        Account.getStripeAccount { (acct, err) in
+            if let address_city = acct?.address_city, let address_country = acct?.address_country {
+                let locationStr: NSMutableAttributedString = NSMutableAttributedString(string: address_city + ", " + address_country)
+                locationStr.appendAttributedString(attachmentString)
+                self.locationLabel.attributedText = locationStr
+                Timeout(0.2) {
+                    addSubviewWithFade(self.locationLabel, parentView: self)
+                }
+            } else {
+                let locationStr: NSMutableAttributedString = NSMutableAttributedString(string: "Unknown")
+                locationStr.appendAttributedString(attachmentString)
+                self.locationLabel.attributedText = locationStr
+                Timeout(0.2) {
+                    addSubviewWithFade(self.locationLabel, parentView: self)
+                }
+                showGlobalNotification("Profile Incomplete", duration: 2.5, inStyle: CWNotificationAnimationStyle.Left, outStyle: CWNotificationAnimationStyle.Right, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandYellow())
+            }
+        }
         self.locationLabel.frame = CGRectMake(0, 70, screenWidth, 70)
         self.locationLabel.textAlignment = NSTextAlignment.Center
         self.locationLabel.font = UIFont(name: "Avenir-Book", size: 12)
         self.locationLabel.numberOfLines = 0
         self.locationLabel.textColor = UIColor(rgba: "#fff")
-        self.locationLabel.attributedText = locationStr
-        Timeout(0.1) {
-            self.addSubviewWithBounce(self.locationLabel)
-        }
-        
+
         self.customersCountLabel.frame = CGRectMake(-20, 130, screenWidth/2, 70)
         self.customersCountLabel.textAlignment = NSTextAlignment.Right
         self.customersCountLabel.font = UIFont(name: "Avenir-Book", size: 12)
         self.customersCountLabel.numberOfLines = 0
         self.customersCountLabel.textColor = UIColor(rgba: "#fff")
-        self.customersCountLabel.text = "0"
         
         self.plansCountLabel.frame = CGRectMake(screenWidth/2+20, 130, screenWidth/2-40, 70)
         self.plansCountLabel.textAlignment = NSTextAlignment.Left
         self.plansCountLabel.font = UIFont(name: "Avenir-Book", size: 12)
         self.plansCountLabel.numberOfLines = 0
-        self.plansCountLabel.text = "0"
         self.plansCountLabel.textColor = UIColor(rgba: "#fff")
 
         self.loadCustomerList { (customers: [Customer]?, NSError) in
-            if(customers!.count < 2 && customers!.count > 0) {
+            if(customers!.count == 0) {
+                self.customersCountLabel.text = "No customers"
+            } else if(customers!.count < 2 && customers!.count > 0) {
                 self.customersCountLabel.text = String(customers!.count) + " customer"
             } else {
                 self.customersCountLabel.text = String(customers!.count) + " customers"
             }
-            Timeout(0.4) {
-                self.addSubviewWithBounce(self.customersCountLabel)
+            Timeout(0.3) {
+                addSubviewWithFade(self.customersCountLabel, parentView: self)
             }
         }
         
         self.loadPlanList { (plans: [Plan]?, NSError) in
-            if(plans!.count < 2 && plans!.count > 0) {
+            if(plans!.count == 0) {
+                self.plansCountLabel.text = "No subscriptions"
+            } else if(plans!.count < 2 && plans!.count > 0) {
                 self.plansCountLabel.text = String(plans!.count) + " subscription"
             } else {
                 self.plansCountLabel.text = String(plans!.count) + " subscriptions"
             }
-            Timeout(0.6) {
-                self.addSubviewWithBounce(self.plansCountLabel)
+            Timeout(0.3) {
+                addSubviewWithFade(self.plansCountLabel, parentView: self)
             }
         }
     }
@@ -158,29 +175,11 @@ class ProfileMenuViewController: UITableViewController {
             NSFontAttributeName : UIFont(name: "Avenir-Light", size: 16.0)!
         ]
         self.navBar.setItems([navItem], animated: false)
-        self.view.addSubview(navBar)
+        Timeout(0.1) {
+            addSubviewWithFade(self.navBar, parentView: self)
+        }
     }
-    
-    func showProfileIncompleteStatusNotification() {
-        setupNotification(UIColor.brandYellow(), style: CWNotificationStyle.StatusBarNotification)
-        notification.displayNotificationWithMessage("Profile Incomplete", forDuration: 2.5)
-    }
-    
-    func showProfileCompleteStatusNotification() {
-        setupNotification(UIColor.brandGreen(), style: CWNotificationStyle.StatusBarNotification)
-        notification.displayNotificationWithMessage("Profile Complete!", forDuration: 2.5)
-    }
-    
-    func setupNotification(color: UIColor, style: CWNotificationStyle) {
-        let inStyle = CWNotificationAnimationStyle.Left
-        let outStyle = CWNotificationAnimationStyle.Right
-        let notificationStyle = style
-        self.notification.notificationLabelBackgroundColor = color
-        self.notification.notificationAnimationInStyle = inStyle
-        self.notification.notificationAnimationOutStyle = outStyle
-        self.notification.notificationStyle = notificationStyle
-    }
-    
+
     override func viewDidAppear(animated: Bool) {
         UIStatusBarStyle.Default
     }
@@ -222,23 +221,6 @@ class ProfileMenuViewController: UITableViewController {
         }
     }
     
-    // Self explanatory
-    func addSubviewWithBounce(view: UIView) {
-        view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001)
-        self.view.addSubview(view)
-        UIView.animateWithDuration(0.3 / 1.5, animations: {() -> Void in
-            view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1)
-            }, completion: {(finished: Bool) -> Void in
-                UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
-                    view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9)
-                    }, completion: {(finished: Bool) -> Void in
-                        UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
-                            view.transform = CGAffineTransformIdentity
-                        })
-                })
-        })
-    }
-    
     // Loads profile and sets picture
     func loadProfile() {
         
@@ -269,11 +251,11 @@ class ProfileMenuViewController: UITableViewController {
             if user!.picture != "" {
                 let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user!.picture))!)!)!
                 self.userImageView.image = img
-                self.addSubviewWithBounce(self.userImageView)
+                addSubviewWithFade(self.userImageView, parentView: self)
             } else {
                 let img = UIImage(named: "IconCamera")
                 self.userImageView.image = img
-                self.addSubviewWithBounce(self.userImageView)
+                addSubviewWithFade(self.userImageView, parentView: self)
             }
         })
     }

@@ -173,22 +173,7 @@ class AuthViewController: UIViewController, LTMorphingLabelDelegate, ModalTransi
     }
     
     override func viewDidAppear(animated: Bool) {
-        addSubviewWithBounce(imageView)
-    }
-
-    func addSubviewWithBounce(view: UIView) {
-        view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001)
-        self.view.addSubview(view)
-        UIView.animateWithDuration(0.3 / 1.5, animations: {() -> Void in
-            view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0)
-            }, completion: {(finished: Bool) -> Void in
-                UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
-                    }, completion: {(finished: Bool) -> Void in
-                        UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
-                            view.transform = CGAffineTransformIdentity
-                        })
-                })
-        })
+        addSubviewWithBounce(imageView, parentView: self)
     }
 }
 

@@ -17,12 +17,13 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
     
     @IBOutlet weak var addBankButton: UIButton!
     
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        addBankButton.layer.cornerRadius = 5
-        addBankButton.clipsToBounds = true
-        addBankButton.backgroundColor = UIColor.mediumBlue()
+        configure()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -32,6 +33,26 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func configure() {
+        
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
+        
+        addBankButton.layer.cornerRadius = 10
+        addBankButton.clipsToBounds = true
+        addBankButton.backgroundColor = UIColor.lightBlue()
+        
+        self.navigationItem.title = "Bank Account"
+        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSFontAttributeName: UIFont.systemFontOfSize(14),
+            NSForegroundColorAttributeName: UIColor.darkGrayColor()
+        ]
+        title = "Bank Account"
+        
     }
     
     func displayBanks(sender: AnyObject) {
@@ -182,9 +203,5 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
             color: customColor,
             iconImage: customIcon)
         alertView.setTextTheme(.Light) // can be .Light or .Dark
-    }
-    
-    override func prefersStatusBarHidden() -> Bool {
-        return true
     }
 }

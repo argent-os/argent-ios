@@ -56,13 +56,13 @@ class MenuViewController: UIViewController {
         UIStatusBarStyle.Default
         
         Timeout(0.0) {
-            self.addSubviewWithBounce(self.viewTerminalImageView)
+            addSubviewWithBounce(self.viewTerminalImageView, parentView: self)
         }
         Timeout(0.1) {
-            self.addSubviewWithBounce(self.addPlanImageView)
+            addSubviewWithBounce(self.addPlanImageView, parentView: self)
         }
         Timeout(0.2) {
-            self.addSubviewWithBounce(self.inviteImageView)
+            addSubviewWithBounce(self.inviteImageView, parentView: self)
         }
     }
     
@@ -185,22 +185,4 @@ class MenuViewController: UIViewController {
             self.presentViewController(rootViewController, animated: true, completion: nil)
         }
     }
-    
-    // Animation
-    
-    func addSubviewWithBounce(view: UIView) {
-        view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001)
-        self.view.addSubview(view)
-        UIView.animateWithDuration(0.3 / 1.5, animations: {() -> Void in
-            view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0)
-            }, completion: {(finished: Bool) -> Void in
-                UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
-                    }, completion: {(finished: Bool) -> Void in
-                        UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
-                            view.transform = CGAffineTransformIdentity
-                        })
-                })
-        })
-    }
-    
 }

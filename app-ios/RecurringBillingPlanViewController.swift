@@ -31,6 +31,10 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         configure()
         setupNav()
     }
+
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
     
     // MARK: Private
     
@@ -122,15 +126,15 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         amountInputView.keyboardType = UIKeyboardType.NumberPad
         amountInputView.backgroundColor = UIColor.mediumBlue()
         amountInputView.tintColor = UIColor.whiteColor()
-        addSubviewWithBounce(amountInputView)
+        addSubviewWithBounce(amountInputView, parentView: self)
         amountInputView.becomeFirstResponder()
         
         let topImageView = UIImageView()
         topImageView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
         topImageView.image = UIImage(named: "BackgroundGradientFuschia")
         topImageView.contentMode = .ScaleAspectFill
-        addSubviewWithBounce(topImageView)
-        self.view.sendSubviewToBack(topImageView)
+//        addSubviewWithBounce(topImageView, parentView: self)
+//        self.view.sendSubviewToBack(topImageView)
         
         perIntervalLabel.frame = CGRect(x: 0, y: 110, width: screenWidth, height: 50)
         perIntervalLabel.textAlignment = .Center
@@ -352,22 +356,6 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         self.dic["planAmountKey"] = revertString2
         
         return false
-    }
-    
-    func addSubviewWithBounce(view: UIView) {
-        // view.transform = CGAffineTransformMakeTranslation(self.view.frame.origin.x,self.view.frame.origin.y - self.view.frame.size.height * 0.2)
-        view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001)
-        self.view.addSubview(view)
-        UIView.animateWithDuration(0.3 / 1.5, animations: {() -> Void in
-            view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0)
-            }, completion: {(finished: Bool) -> Void in
-                UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
-                    }, completion: {(finished: Bool) -> Void in
-                        UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
-                            view.transform = CGAffineTransformIdentity
-                        })
-                })
-        })
     }
     
     func endEditing(sender: AnyObject) {

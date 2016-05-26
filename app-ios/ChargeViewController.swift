@@ -89,7 +89,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         chargeInputView.placeholder = "$0.00"
         chargeInputView.keyboardType = UIKeyboardType.NumberPad
         chargeInputView.backgroundColor = UIColor.clearColor()
-        self.view.addSubview(chargeInputView)
+        addSubviewWithBounce(chargeInputView, parentView: self)
         
         // Pay with card button
         let payWithCardButton = UIButton(frame: CGRect(x: screenWidth/2+10, y: 180, width: screenWidth/2-20-10, height: 60.0))
@@ -142,7 +142,9 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
     func payMerchant(sender: AnyObject) {
         // Function for toolbar button
         // pay merchant
-        showStatusNotification()
+        if chargeInputView.text != "" || chargeInputView.text != "$0.00" {
+            showGlobalNotification("Paying merchant " + chargeInputView.text!, duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.mediumBlue())
+        }
         Timeout(3.2) {
             self.showSuccessAlert()
         }
@@ -160,7 +162,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         paymentTextField.borderWidth = 1
         paymentTextField.borderColor = UIColor.lightGrayColor()
         // adds a manual credit card entry textfield
-        self.view.addSubview(paymentTextField)
+        addSubviewWithBounce(paymentTextField, parentView: self)
     }
     
     func getCurrentBitcoinValue(completionHandler: (value: Float) -> Void) {
@@ -288,21 +290,6 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
             iconImage: customIcon)
         alertView.setTextTheme(.Light) // can be .Light or .Dark
         chargeInputView.text = ""
-    }
-    
-    func showStatusNotification() {
-        setupNotification()
-        notification.displayNotificationWithMessage("Paying merchant " + chargeInputView.text!, forDuration: 2.5)
-    }
-    
-    func setupNotification() {
-        let inStyle = CWNotificationAnimationStyle.Top
-        let outStyle = CWNotificationAnimationStyle.Top
-        let notificationStyle = CWNotificationStyle.NavigationBarNotification
-        self.notification.notificationLabelBackgroundColor = UIColor.mediumBlue()
-        self.notification.notificationAnimationInStyle = inStyle
-        self.notification.notificationAnimationOutStyle = outStyle
-        self.notification.notificationStyle = notificationStyle
     }
     
     func paymentCardTextFieldDidChange(textField: STPPaymentCardTextField) {

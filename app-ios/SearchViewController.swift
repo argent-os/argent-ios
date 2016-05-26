@@ -14,6 +14,9 @@ import JGProgressHUD
 import DGElasticPullToRefresh
 import TransitionTreasury
 import TransitionAnimation
+import CellAnimator
+import Haneke
+import SDWebImage
 
 class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate, ModalTransitionDelegate {
     
@@ -113,19 +116,16 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if searchController.searchBar.text != "" {
             searchController.searchBar.becomeFirstResponder()
         }
-        
-        UIStatusBarStyle.LightContent
+    }
+
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.Default
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
-    }
-    
     
     // MARK: UITableView Delegate and Datasource functions
     
@@ -148,36 +148,41 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let CellIdentifier: String = "Cell"
         let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: CellIdentifier)
         
+        CellAnimator.animateCell(cell, withTransform: CellAnimator.TransformTilt, andDuration: 0.3)
+
         cell.imageView?.image = nil
+        cell.indentationWidth = 5; // The amount each indentation will move the text
+        cell.indentationLevel = 2;  // The number of times you indent the text
+        cell.textLabel?.textColor = UIColor.darkGrayColor()
+        cell.textLabel?.font = UIFont.systemFontOfSize(14)
+        cell.selectionStyle = UITableViewCellSelectionStyle.Default
+        cell.detailTextLabel?.font = UIFont.systemFontOfSize(12)
+        cell.detailTextLabel?.textColor = UIColor.lightGrayColor()
+        
+        cell.imageView!.frame = CGRectMake(10, 15, 30, 30)
+        cell.imageView!.backgroundColor = UIColor.clearColor()
+        cell.imageView!.layer.cornerRadius = 15
+        cell.imageView!.layer.masksToBounds = true
         
         if shouldShowSearchResults {
             // After filtering
             let pic = filteredArray[indexPath.row].picture
+
+            cell.textLabel?.text = String(filteredArray[indexPath.row].username)
+
             if pic != "" {
                 let imageView: UIImageView = UIImageView(frame: CGRectMake(10, 15, 30, 30))
                 imageView.backgroundColor = UIColor.clearColor()
                 imageView.layer.cornerRadius = 15
                 imageView.layer.masksToBounds = true
-                let img: UIImage = UIImage(data: NSData(contentsOfURL: NSURL(string: pic)!)!)!
-                imageView.image = img
-                cell.contentView.addSubview(imageView)
-            } else {
-                let imageView: UIImageView = UIImageView(frame: CGRectMake(10, 15, 30, 30))
-                imageView.backgroundColor = UIColor.clearColor()
-                imageView.layer.cornerRadius = 15
-                imageView.layer.masksToBounds = true
-                imageView.image = UIImage(named: "PersonThumb")
-                cell.contentView.addSubview(imageView)
+//                let priority = DISPATCH_QUEUE_PRIORITY_HIGH
+//                dispatch_async(dispatch_get_global_queue(priority, 0)) {
+//                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                        cell.imageView!.sd_setImageWithURL(NSURL(string: pic)!, placeholderImage: UIImage(named: "PersonThumb"))
+//                    })
+//                }
             }
-            cell.indentationWidth = 5; // The amount each indentation will move the text
-            cell.indentationLevel = 8;  // The number of times you indent the text
-            cell.textLabel?.text = String(filteredArray[indexPath.row].username)
-            cell.textLabel?.textColor = UIColor.darkGrayColor()
-            cell.textLabel?.font = UIFont.systemFontOfSize(14)
-            cell.selectionStyle = UITableViewCellSelectionStyle.Default
-            cell.detailTextLabel?.font = UIFont.systemFontOfSize(12)
-            cell.detailTextLabel?.textColor = UIColor.lightGrayColor()
-            
+
             let first_name = filteredArray[indexPath.row].first_name
             let last_name = String(filteredArray[indexPath.row].last_name)
             if first_name != "" || last_name != "" {
@@ -194,25 +199,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 imageView.backgroundColor = UIColor.clearColor()
                 imageView.layer.cornerRadius = 15
                 imageView.layer.masksToBounds = true
-                let img: UIImage = UIImage(data: NSData(contentsOfURL: NSURL(string: pic)!)!)!
-                imageView.image = img
-                cell.contentView.addSubview(imageView)
-            } else {
-                let imageView: UIImageView = UIImageView(frame: CGRectMake(10, 15, 30, 30))
-                imageView.backgroundColor = UIColor.clearColor()
-                imageView.layer.cornerRadius = 15
-                imageView.layer.masksToBounds = true
-                imageView.image = UIImage(named: "PersonThumb")
-                cell.contentView.addSubview(imageView)
+//                let priority = DISPATCH_QUEUE_PRIORITY_HIGH
+//                dispatch_async(dispatch_get_global_queue(priority, 0)) {
+//                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                        cell.imageView!.sd_setImageWithURL(NSURL(string: pic)!, placeholderImage: UIImage(named: "PersonThumb"))
+//                    })
+//                }
             }
-            cell.indentationWidth = 5; // The amount each indentation will move the text
-            cell.indentationLevel = 8;  // The number of times you indent the text
-            cell.textLabel?.text = "@" + String(dataArray[indexPath.row].username)
-            cell.textLabel?.textColor = UIColor.darkGrayColor()
-            cell.textLabel?.font = UIFont.systemFontOfSize(14)
-            cell.detailTextLabel?.font = UIFont.systemFontOfSize(10)
-            cell.selectionStyle = UITableViewCellSelectionStyle.Default
-            cell.detailTextLabel?.textColor = UIColor.darkGrayColor()
             
             let first_name = dataArray[indexPath.row].first_name
             let last_name = String(dataArray[indexPath.row].last_name)
@@ -248,7 +241,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SearchDetailViewController") as! SearchDetailViewController
 
-        self.navigationController!.tr_pushViewController(vc, method: TRPresentTransitionMethod.Twitter, statusBarStyle: .LightContent, completion: {
+        self.navigationController!.tr_pushViewController(vc, method: TRPresentTransitionMethod.Twitter, statusBarStyle: .Default, completion: {
                 print("Push finished.")
         })
         vc.detailUser = user

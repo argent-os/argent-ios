@@ -11,6 +11,7 @@ import Alamofire
 import SwiftyJSON
 import DGElasticPullToRefresh
 import DZNEmptyDataSet
+import CellAnimator
 
 class NotificationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
@@ -150,6 +151,8 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         let CellIdentifier: String = "Cell"
         let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: CellIdentifier)
         
+        CellAnimator.animateCell(cell, withTransform: CellAnimator.TransformTilt, andDuration: 0.3)
+
         let item = self.notificationsArray?[indexPath.row]
         cell.textLabel?.text = ""
         cell.detailTextLabel?.text = ""
@@ -287,7 +290,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.Default
+        return UIStatusBarStyle.LightContent
     }
     
     // Delegate: DZNEmptyDataSet

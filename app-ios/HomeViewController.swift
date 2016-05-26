@@ -18,6 +18,7 @@ import DGElasticPullToRefresh
 import Gecco
 import DZNEmptyDataSet
 import CWStatusBarNotification
+import CellAnimator
 
 var userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
 
@@ -37,7 +38,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 
     private var arrayOfDates: Array<AnyObject> = []
     
-    private var user = User(id: "", username: "", email: "", first_name: "", last_name: "", picture: "", phone: "", plaid_access_token: "")
+    private var user = User(id: "", username: "", email: "", first_name: "", last_name: "", picture: "", phone: "", country: "", plaid_access_token: "")
     
     private let lblAccountPending:UICountingLabel = UICountingLabel()
 
@@ -62,15 +63,15 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             lblAccountAvailable.removeFromSuperview()
             lblAvailableDescription.removeFromSuperview()
             
-            self.addSubviewWithBounce(lblAccountPending)
-            self.addSubviewWithBounce(lblPendingDescription)
+            addSubviewWithBounce(lblAccountPending, parentView: self)
+            addSubviewWithBounce(lblPendingDescription, parentView: self)
         }
         if(sender.selectedIndex == 1) {
             lblAccountPending.removeFromSuperview()
             lblPendingDescription.removeFromSuperview()
 
-            self.addSubviewWithBounce(lblAccountAvailable)
-            self.addSubviewWithBounce(lblAvailableDescription)
+            addSubviewWithBounce(lblAccountAvailable, parentView: self)
+            addSubviewWithBounce(lblAvailableDescription, parentView: self)
         }
     }
 
@@ -113,7 +114,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         self.view.addSubview(balanceSwitch)
         self.view.bringSubviewToFront(balanceSwitch)
         UITextField.appearance().keyboardAppearance = .Light
-        UIStatusBarStyle.LightContent
     }
     
     func presentTutorial(sender: AnyObject) {
@@ -161,7 +161,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     //Changing Status Bar
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+        return .Default
     }
     
     func loadData() {
@@ -241,34 +241,32 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
                 
                 if user?.first_name != "" {
-                    self.showWelcomeNotification((user?.first_name)!)
+                    showGlobalNotification("Welcome " + (user?.first_name)! + "!", duration: 2.5, inStyle: CWNotificationAnimationStyle.Left, outStyle: CWNotificationAnimationStyle.Right, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandGreen())
                 }
                 
                 if user!.picture != "" {
                     Timeout(0.3) {
                         let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user!.picture))!)!)!
                         userImageView.image = img
-                        self.addSubviewWithBounce(userImageView)
+                        addSubviewWithBounce(userImageView, parentView: self)
                     }
                 } else {
                     Timeout(0.3) {
                         let img = UIImage(named: "PersonThumb")
                         userImageView.image = img
-                        self.addSubviewWithBounce(userImageView)
+                        addSubviewWithBounce(userImageView, parentView: self)
                     }
                 }
                 
                 if(error != nil) {
                     print(error)
                     // check if user logged in, if not send to login
-                    print("user not logged in x")
                     self.logout()
                 }
             })
 
         } else {
             // check if user logged in, if not send to login
-            print("user not logged in y")
             self.logout()
         }
     }
@@ -317,7 +315,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         graph.enableBezierCurve = true
         graph.colorTouchInputLine = UIColor.lightBlue()
         graph.layer.masksToBounds = true
-        self.view!.addSubview(graph)
+        addSubviewWithFade(graph, parentView: self)
         
         let dateRangeSegment: UISegmentedControl = UISegmentedControl(items: ["1D", "1M", "3M", "6M", "1Y"])
         dateRangeSegment.frame = CGRect(x: 15.0, y: 230.0, width: view.bounds.width - 30.0, height: 30.0)
@@ -326,7 +324,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         dateRangeSegment.selectedSegmentIndex = 2
         dateRangeSegment.removeBorders()
         dateRangeSegment.addTarget(self, action: #selector(HomeViewController.dateRangeSegmentControl(_:)), forControlEvents: .ValueChanged)
-        self.view!.addSubview(dateRangeSegment)
+        addSubviewWithFade(dateRangeSegment, parentView: self)
         
         navBar.barTintColor = UIColor.clearColor()
         navBar.translucent = true
@@ -361,7 +359,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         headerViewTitle.text = "Transaction History"
         headerViewTitle.font = UIFont(name: "Avenir-Light", size: 16)
         headerViewTitle.textAlignment = .Left
-        headerViewTitle.textColor = UIColor.mediumBlue()
+        headerViewTitle.textColor = UIColor.darkGrayColor().colorWithAlphaComponent(0.5)
         headerView.addSubview(headerViewTitle)
         
         let tutorialButton:UIButton = UIButton()
@@ -379,7 +377,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         tableView.delegate = self
         tableView.dataSource = self
         tableView.showsVerticalScrollIndicator = false
-        self.view.addSubview(tableView)
+        addSubviewWithFade(tableView, parentView: self)
         
         lblAccountAvailable.tintColor = UIColor.darkBlue()
         lblAccountAvailable.frame = CGRectMake(20, 81, 200, 40)
@@ -398,7 +396,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 NSForegroundColorAttributeName:UIColor.slateBlue()
             ])
         lblAccountPending.attributedText = str1
-        self.addSubviewWithBounce(lblAccountPending)
+        addSubviewWithBounce(lblAccountPending, parentView: self)
         
         lblAvailableDescription.frame = CGRectMake(20, 106, 200, 40)
         let str2 = NSAttributedString(string: "Available Balance", attributes:
@@ -416,7 +414,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 NSForegroundColorAttributeName:UIColor.slateBlue().colorWithAlphaComponent(0.5)
             ])
         lblPendingDescription.attributedText = str3
-        self.addSubviewWithBounce(lblPendingDescription)
+        addSubviewWithBounce(lblPendingDescription, parentView: self)
         
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.tintColor = UIColor.slateBlue().colorWithAlphaComponent(0.5)
@@ -469,22 +467,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         })
     }
     
-    func showWelcomeNotification(user: String) {
-        setupWelcomeNotification()
-        notification.displayNotificationWithMessage("Welcome " + user + "!", forDuration: 2.5)
-    }
-    
-    func setupWelcomeNotification() {
-        let inStyle = CWNotificationAnimationStyle.Left
-        let outStyle = CWNotificationAnimationStyle.Right
-        let notificationStyle = CWNotificationStyle.StatusBarNotification
-        self.notification.notificationLabelBackgroundColor = UIColor.brandGreen()
-        self.notification.notificationAnimationInStyle = inStyle
-        self.notification.notificationAnimationOutStyle = outStyle
-        self.notification.notificationStyle = notificationStyle
-    }
-    
-    
     // LOGOUT
     func logout() {
         NSUserDefaults.standardUserDefaults().setValue("", forKey: "userAccessToken")
@@ -496,23 +478,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         loginVC.modalTransitionStyle = .CrossDissolve
         let root = UIApplication.sharedApplication().keyWindow?.rootViewController
         root!.presentViewController(loginVC, animated: true, completion: { () -> Void in
-        })
-    }
-    
-    // Animation
-    
-    func addSubviewWithBounce(view: UIView) {
-        view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001)
-        self.view.addSubview(view)
-        UIView.animateWithDuration(0.3 / 1.5, animations: {() -> Void in
-            view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0)
-            }, completion: {(finished: Bool) -> Void in
-                UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
-                    }, completion: {(finished: Bool) -> Void in
-                        UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
-                            view.transform = CGAffineTransformIdentity
-                        })
-                })
         })
     }
     
@@ -534,11 +499,13 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.accountHistoryArray?.count ?? 0
     }
-    
+ 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         self.tableView.registerNib(UINib(nibName: "HistoryCustomCell", bundle: nil), forCellReuseIdentifier: "idCellCustomHistory")
 
         let cell = self.tableView.dequeueReusableCellWithIdentifier("idCellCustomHistory") as! HistoryCustomCell
+
+        CellAnimator.animateCell(cell, withTransform: CellAnimator.TransformTilt, andDuration: 0.3)
 
         let item = self.accountHistoryArray?[indexPath.row]
         cell.selectionStyle = UITableViewCellSelectionStyle.None

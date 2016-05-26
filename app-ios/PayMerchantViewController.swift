@@ -93,13 +93,13 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PayMerchantViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
-    
+
     override func viewDidDisappear(animated: Bool) {
         
     }
     
     override func viewDidAppear(animated: Bool) {
-        self.view.addSubview(chargeInputView)
+        addSubviewWithBounce(chargeInputView, parentView: self)
         chargeInputView.becomeFirstResponder()
     }
     

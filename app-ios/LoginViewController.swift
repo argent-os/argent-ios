@@ -28,7 +28,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
     private let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
 
     override func viewDidAppear(animated: Bool) {
-        addSubviewWithBounce(imageView)
+        addSubviewWithBounce(imageView, parentView: self)
         NSUserDefaults.standardUserDefaults().setBool(false,forKey:"userLoggedIn");
         NSUserDefaults.standardUserDefaults().synchronize();
     }
@@ -106,22 +106,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         imageView.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
         imageView.frame.origin.y = screenHeight*0.10 // 10% down from the top
         imageView.frame.origin.x = (self.view.bounds.size.width - imageView.frame.size.width) / 2.0 // centered left to right.
-    }
-    
-    func addSubviewWithBounce(view: UIView) {
-        // view.transform = CGAffineTransformMakeTranslation(self.view.frame.origin.x,self.view.frame.origin.y - self.view.frame.size.height * 0.2)
-        view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001)
-        self.view.addSubview(view)
-        UIView.animateWithDuration(0.3 / 1.5, animations: {() -> Void in
-            view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0)
-            }, completion: {(finished: Bool) -> Void in
-                UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
-                    }, completion: {(finished: Bool) -> Void in
-                        UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
-                            view.transform = CGAffineTransformIdentity
-                        })
-                })
-        })
     }
     
     func goToReset(sender: AnyObject) {

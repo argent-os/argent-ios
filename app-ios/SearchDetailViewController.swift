@@ -44,7 +44,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+        return .Default
     }
     
     deinit {
@@ -65,10 +65,10 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
         let imageBackground = UIImageView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight))
         imageBackground.backgroundColor = UIColor.offWhite()
         imageBackground.contentMode = .ScaleToFill
-        self.view.addSubview(imageBackground)
+        addSubviewWithFade(imageBackground, parentView: self)
         
         // adds a manual credit card entry textfield
-        // self.view.addSubview(paymentTextField)
+        // addSubviewWithFade(paymentTextField)
         
         if let detailUser = detailUser {
             if let usernameLabel = usernameLabel {
@@ -90,7 +90,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             cardView.layer.shadowOpacity = 1
             cardView.layer.shadowRadius = 1.0
             cardView.clipsToBounds = false
-            self.view.addSubview(cardView)
+            addSubviewWithFade(cardView, parentView: self)
             cardView.backgroundColor = UIColor.whiteColor()
             cardView.center = self.view.center
             let containerLayer: CALayer = CALayer()
@@ -105,7 +105,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             let chatBubble = UIImageView(image: UIImage(named: "IconChat"), highlightedImage: .None)
             chatBubble.alpha = 0.2
             chatBubble.frame = CGRect(x: screenWidth/2-70, y: 320, width: 50, height: 50)
-            self.view.addSubview(chatBubble)
+            addSubviewWithFade(chatBubble, parentView: self)
             self.view.bringSubviewToFront(chatBubble)
             let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(sendSMSButtonTapped(_:)))
             chatBubble.addGestureRecognizer(gestureRecognizer)
@@ -114,7 +114,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             let emailIcon = UIImageView(image: UIImage(named: "IconEmail"), highlightedImage: .None)
             emailIcon.alpha = 0.2
             emailIcon.frame = CGRect(x: screenWidth/2+20, y: 320, width: 50, height: 50)
-            self.view.addSubview(emailIcon)
+            addSubviewWithFade(emailIcon, parentView: self)
             self.view.bringSubviewToFront(emailIcon)
             let gestureRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(sendEmailButtonTapped(_:)))
             emailIcon.addGestureRecognizer(gestureRecognizer2)
@@ -131,7 +131,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             userImageView.layer.cornerRadius = userImageView.frame.size.height/2
             userImageView.layer.borderWidth = 3
             userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
-            self.view.addSubview(userImageView)
+            addSubviewWithFade(userImageView, parentView: self)
             self.view.bringSubviewToFront(userImageView)
             
             // User image
@@ -161,7 +161,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
                 NSForegroundColorAttributeName : UIColor.mediumBlue(),
                 NSFontAttributeName : UIFont(name: "Avenir-Book", size: 18)!
             ]
-            self.view.addSubview(navBar)
+            addSubviewWithFade(navBar, parentView: self)
             let navItem = UINavigationItem(title: "@"+detailUser.username)
             navItem.leftBarButtonItem?.tintColor = UIColor.mediumBlue()
             navBar.setItems([navItem], animated: true)
@@ -178,7 +178,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             viewPlansButton.layer.borderColor = UIColor.mediumBlue().colorWithAlphaComponent(0.5).CGColor
             viewPlansButton.layer.borderWidth = 0
             viewPlansButton.addTarget(self, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
-            self.view.addSubview(viewPlansButton)
+            addSubviewWithFade(viewPlansButton, parentView: self)
             
             
             let payButton = UIButton()
@@ -196,7 +196,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             payButton.backgroundColor = UIColor.lightBlue()
             payButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
             payButton.addTarget(self, action: #selector(SearchDetailViewController.payMerchantModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-            self.view.addSubview(payButton)
+            addSubviewWithFade(payButton, parentView: self)
             
             // Name textfield
             lbl.text = detailUser.first_name + " " + detailUser.last_name
@@ -205,7 +205,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             lbl.textColor = UIColor.mediumBlue()
             lbl.font = UIFont(name: "Avenir-Light", size: 18)
             lbl.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-            self.view.addSubview(lbl)
+            addSubviewWithFade(lbl, parentView: self)
             self.view.bringSubviewToFront(lbl)
             
             if(screenHeight < 500) {

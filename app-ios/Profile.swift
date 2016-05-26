@@ -19,8 +19,10 @@ final class Profile {
     var email: String?
     var birthDay: NSDate?
     var introduction: String?
-    var moreInformation = false
+    var moreInformation = true
     var ssn: String?
+    var ein: String?
+    var pin: String?
     var businessAddressLine1: String?
     var businessAddressLine2: String?
     var businessAddressCity: String?
@@ -34,7 +36,6 @@ final class Profile {
     let state = [ "AK",
                   "AL",
                   "AR",
-                  "AS",
                   "AZ",
                   "CA",
                   "CO",
@@ -43,7 +44,6 @@ final class Profile {
                   "DE",
                   "FL",
                   "GA",
-                  "GU",
                   "HI",
                   "IA",
                   "ID",
@@ -80,7 +80,6 @@ final class Profile {
                   "TX",
                   "UT",
                   "VA",
-                  "VI",
                   "VT",
                   "WA",
                   "WI",

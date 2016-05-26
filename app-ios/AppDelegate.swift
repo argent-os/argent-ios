@@ -28,10 +28,12 @@ let merchantID = "merchant.com.argentapp.pay.v2"
 
 // For provisioning profile naming convention http://stackoverflow.com/questions/20565565/an-app-id-with-identifier-is-not-available-please-enter-a-different-string
 
+// DEV
 // let apiUrl = "http://localhost:5001"
- let apiUrl = "http://192.168.1.182:5001"
+// let apiUrl = "http://192.168.1.182:5001"
 // let apiUrl = "http://192.168.1.232:5001"
-// let apiUrl = "http://api.argent.cloud"
+ let apiUrl = "http://api.argent.cloud"
+
 // PROD
 //let apiUrl = "https://api.argent.cloud"
 
@@ -191,7 +193,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
         
         // Global window attributes
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.window!.backgroundColor = UIColor.slateBlue()
+        self.window!.backgroundColor = UIColor.clearColor()
         self.window!.makeKeyAndVisible()
         self.window!.makeKeyWindow()
 

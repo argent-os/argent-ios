@@ -22,6 +22,10 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         setupNav()
     }
     
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     // MARK: Private
     
     private func setupNav() {
@@ -37,13 +41,13 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
 
         // Create left and right button for navigation item
         let leftButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddCustomerViewController.returnToMenu(_:)))
-        let font = UIFont(name: "Avenir-Book", size: 14)
-        leftButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+        let font = UIFont.systemFontOfSize(14)
+        leftButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
         // Create two buttons for the navigation item
         navigationItem.leftBarButtonItem = leftButton
         
         // Assign the navigation item to the navigation bar
-        navigationBar.titleTextAttributes = [NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.darkGrayColor()]
+        navigationBar.titleTextAttributes = [NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.darkGrayColor()]
         navigationBar.items = [navigationItem]
         
         // Make the navigation bar a subview of the current view controller
@@ -69,7 +73,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         title = ""
         
         let backgroundGradient = UIImageView()
-        backgroundGradient.image = UIImage(named: "BackgroundGradientPurple")
+        backgroundGradient.image = UIImage(named: "BackgroundGradientBlue")
         backgroundGradient.frame = CGRect(x: 0, y: screenHeight-250, width: screenWidth, height: 250)
         self.view.addSubview(backgroundGradient)
         
@@ -78,7 +82,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         mainImage.frame = CGRect(x: screenWidth/2-100, y: 80, width: 200, height: 200)
         mainImage.contentMode = .ScaleAspectFit
         Timeout(0.1) {
-            self.addSubviewWithBounce(mainImage)
+            addSubviewWithBounce(mainImage, parentView: self)
         }
         
         let mainTitle = UILabel()
@@ -88,7 +92,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         mainTitle.text = "Send Invitation"
         mainTitle.font = UIFont.systemFontOfSize(18)
         Timeout(0.2) {
-            self.addSubviewWithBounce(mainTitle)
+            addSubviewWithBounce(mainTitle, parentView: self)
         }
         
         let mainBody = UILabel()
@@ -99,7 +103,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         mainBody.numberOfLines = 5
         mainBody.font = UIFont.systemFontOfSize(14)
         Timeout(0.3) {
-            self.addSubviewWithBounce(mainBody)
+            addSubviewWithBounce(mainBody, parentView: self)
         }
         
         let emailButton: DKCircleButton = DKCircleButton(frame: CGRectMake(45, screenHeight-180, 90, 90))
@@ -117,7 +121,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         emailButton.setAttributedTitle(str0, forState: .Normal)
         emailButton.addTarget(self, action: #selector(AddCustomerViewController.sendEmailButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         Timeout(0.4) {
-            self.addSubviewWithBounce(emailButton)
+            addSubviewWithBounce(emailButton, parentView: self)
         }
         
         let smsButton: DKCircleButton = DKCircleButton(frame: CGRectMake(screenWidth/2+45, screenHeight-180, 90, 90))
@@ -135,7 +139,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         smsButton.setAttributedTitle(str1, forState: .Normal)
         smsButton.addTarget(self, action: #selector(AddCustomerViewController.sendSMSButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         Timeout(0.6) {
-            self.addSubviewWithBounce(smsButton)
+            addSubviewWithBounce(smsButton, parentView: self)
         }
         
         self.navigationItem.title = ""
@@ -145,22 +149,6 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
     
     func addCustomerButtonTapped(sender: AnyObject) {
         showSuccessAlert()
-    }
-    
-    func addSubviewWithBounce(view: UIView) {
-        // view.transform = CGAffineTransformMakeTranslation(self.view.frame.origin.x,self.view.frame.origin.y - self.view.frame.size.height * 0.2)
-        view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001)
-        self.view.addSubview(view)
-        UIView.animateWithDuration(0.3 / 1.5, animations: {() -> Void in
-            view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0)
-            }, completion: {(finished: Bool) -> Void in
-                UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
-                    }, completion: {(finished: Bool) -> Void in
-                        UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
-                            view.transform = CGAffineTransformIdentity
-                        })
-                })
-        })
     }
     
     func showSuccessAlert() {

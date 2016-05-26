@@ -32,7 +32,9 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
         
         imagePickerController.delegate = self
         imagePickerController.imageLimit = 1
-        presentViewController(imagePickerController, animated: true, completion: nil)
+        presentViewController(imagePickerController, animated: true, completion: { void in
+            self.imagePickerController.expandGalleryView()
+        })
 
         activityIndicator.stopAnimating()
     }
@@ -157,12 +159,5 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
         activityIndicator.stopAnimating()
         activityIndicator.hidden = true
         self.view.addSubview(txt)
-    }
-}
-
-extension NSMutableData {
-    func appendString(string: String) {
-        let data = string.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
-        appendData(data!)
     }
 }
