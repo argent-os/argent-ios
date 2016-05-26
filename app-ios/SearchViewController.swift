@@ -23,7 +23,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var tblSearchResults:UITableView = UITableView()
     
     let userImageView: UIImageView = UIImageView(frame: CGRectMake(10, 15, 30, 30))
-
+    
     private var dataArray = [User]()
     
     private var filteredArray = [User]()
@@ -39,7 +39,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
     private let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 15, width: UIScreen.mainScreen().bounds.size.width, height: 50))
-
+    
     internal var tr_presentTransition: TRViewControllerTransitionDelegate?
     
     deinit {
@@ -67,15 +67,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addGestureRecognizer(gesture)
-
-        self.view.backgroundColor = UIColor.slateBlue()
-        
-        // Do any additional setup after loading the view, typically from a nib.
-        
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
+        
+        view.addGestureRecognizer(gesture)
+        
+        self.view.backgroundColor = UIColor.slateBlue()
         
         self.title = "Search"
         self.navigationController?.navigationBar.titleTextAttributes = [
@@ -117,7 +115,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             searchController.searchBar.becomeFirstResponder()
         }
     }
-
+    
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.Default
     }
@@ -143,13 +141,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
+        
         self.tblSearchResults.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         let CellIdentifier: String = "Cell"
         let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: CellIdentifier)
         
         CellAnimator.animateCell(cell, withTransform: CellAnimator.TransformTilt, andDuration: 0.3)
-
+        
         cell.imageView?.image = nil
         cell.indentationWidth = 5; // The amount each indentation will move the text
         cell.indentationLevel = 2;  // The number of times you indent the text
@@ -157,7 +155,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.textLabel?.font = UIFont.systemFontOfSize(14)
         cell.selectionStyle = UITableViewCellSelectionStyle.Default
         cell.detailTextLabel?.font = UIFont.systemFontOfSize(12)
-        cell.detailTextLabel?.textColor = UIColor.darkGrayColor().colorWithAlphaComponent(0.5)
+        cell.detailTextLabel?.textColor = UIColor.lightBlue()
         
         cell.imageView!.frame = CGRectMake(10, 15, 30, 30)
         cell.imageView!.backgroundColor = UIColor.clearColor()
@@ -167,22 +165,22 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if shouldShowSearchResults {
             // After filtering
             let pic = filteredArray[indexPath.row].picture
-
+            
             cell.textLabel?.text = String(filteredArray[indexPath.row].username)
-
+            
             if pic != "" {
                 let imageView: UIImageView = UIImageView(frame: CGRectMake(10, 15, 30, 30))
                 imageView.backgroundColor = UIColor.clearColor()
                 imageView.layer.cornerRadius = 15
                 imageView.layer.masksToBounds = true
-//                let priority = DISPATCH_QUEUE_PRIORITY_HIGH
-//                dispatch_async(dispatch_get_global_queue(priority, 0)) {
-//                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                        cell.imageView!.sd_setImageWithURL(NSURL(string: pic)!, placeholderImage: UIImage(named: "PersonThumb"))
-//                    })
-//                }
+                //                let priority = DISPATCH_QUEUE_PRIORITY_HIGH
+                //                dispatch_async(dispatch_get_global_queue(priority, 0)) {
+                //                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                //                        cell.imageView!.sd_setImageWithURL(NSURL(string: pic)!, placeholderImage: UIImage(named: "PersonThumb"))
+                //                    })
+                //                }
             }
-
+            
             let first_name = filteredArray[indexPath.row].first_name
             let last_name = String(filteredArray[indexPath.row].last_name)
             if first_name != "" || last_name != "" {
@@ -199,12 +197,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 imageView.backgroundColor = UIColor.clearColor()
                 imageView.layer.cornerRadius = 15
                 imageView.layer.masksToBounds = true
-//                let priority = DISPATCH_QUEUE_PRIORITY_HIGH
-//                dispatch_async(dispatch_get_global_queue(priority, 0)) {
-//                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                        cell.imageView!.sd_setImageWithURL(NSURL(string: pic)!, placeholderImage: UIImage(named: "PersonThumb"))
-//                    })
-//                }
+                //                let priority = DISPATCH_QUEUE_PRIORITY_HIGH
+                //                dispatch_async(dispatch_get_global_queue(priority, 0)) {
+                //                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                //                        cell.imageView!.sd_setImageWithURL(NSURL(string: pic)!, placeholderImage: UIImage(named: "PersonThumb"))
+                //                    })
+                //                }
             }
             
             let first_name = dataArray[indexPath.row].first_name
@@ -220,12 +218,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-
+        
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         guard let cell = tableView.cellForRowAtIndexPath(indexPath) else {
             return
         }
-    
+        
         self.shouldShowSearchResults = false
         self.searchController.searchBar.hidden = true
         self.searchController.searchBar.resignFirstResponder()
@@ -240,9 +238,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SearchDetailViewController") as! SearchDetailViewController
-
+        
         self.navigationController!.tr_pushViewController(vc, method: TRPresentTransitionMethod.Twitter, statusBarStyle: .Default, completion: {
-                print("Push finished.")
+            print("Push finished.")
         })
         vc.detailUser = user
         print(user)
@@ -271,7 +269,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.dataArray = items!
             
             self.activityIndicator.stopAnimating()
-                        
+            
             self.tblSearchResults.reloadData()
         })
     }
@@ -279,6 +277,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func configureSearchController() {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
         // Initialize and perform a minimum configuration to the search controller.
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
@@ -292,6 +291,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchController.searchBar.searchBarStyle = .Minimal
         searchController.searchBar.tintColor = UIColor.mediumBlue()
         searchController.searchBar.barStyle = .Black
+        searchController.searchBar.showsScopeBar = false
         
         // Place the search bar view to the tableview headerview.
         tblSearchResults.tableHeaderView = searchController.searchBar
@@ -310,7 +310,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 btn.setTitleColor(UIColor.mediumBlue(), forState: .Normal)
             }
         }
-        searchController.searchBar.scopeButtonTitles = ["Username", "Email", "Name"]
         shouldShowSearchResults = true
         searchController.searchBar.placeholder = "Search users"
         tblSearchResults.reloadData()
@@ -338,31 +337,14 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return
         }
         
-        let searchBar = searchController.searchBar
-        let scope = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
-        filterContentForSearchText(searchController.searchBar.text!, scope: scope)
-        
         // Filter the data array and get only those countries that match the search text.
         filteredArray = dataArray.filter({ (user) -> Bool in
-            if(scope == "Username") {
-                let userStr: NSString = user.username
-                searchedText = userStr as String
-                return (userStr.rangeOfString(searchString, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
-            } else if(scope == "Email") {
-                let userStr: NSString = user.email
-                searchedText = userStr as String
-                return (userStr.rangeOfString(searchString, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
-            } else if(scope == "Name") {
-                let userStr: NSString = user.first_name + " " + user.last_name
-                searchedText = userStr as String
-                return (userStr.rangeOfString(searchString, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
-            }
-            
-            return (user.username.lowercaseString.containsString(searchString.lowercaseString)) || (user.email.lowercaseString.containsString(searchString.lowercaseString))
+            let fullName = user.first_name + " " + user.last_name
+            return (user.username.lowercaseString.containsString(searchString.lowercaseString)) || (user.email.lowercaseString.containsString(searchString.lowercaseString) ||  (fullName.lowercaseString.containsString(searchString.lowercaseString)))
         })
         
         // Reload the tableview.
-        // tblSearchResults.reloadData()
+        tblSearchResults.reloadData()
     }
     
     // Refresh
@@ -384,22 +366,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     private func filterContentForSearchText(searchText: String, scope: String) {
         filteredArray = filteredArray.filter({( user : User) -> Bool in
-            _ = (scope == "Username") || (scope == "Email") || (scope == "Name")
-            if(scope == "Username") {
-                let userStr: NSString = user.username
-                searchedText = userStr as String
-                return (userStr.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
-            } else if(scope == "Email") {
-                let userStr: NSString = user.email
-                searchedText = userStr as String
-                return (userStr.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
-            } else if(scope == "Name") {
-                let userStr: NSString = user.first_name + " " + user.last_name
-                searchedText = userStr as String
-                return (userStr.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
-            }
-            
-            return (user.username.lowercaseString.containsString(searchText.lowercaseString)) || (user.email.lowercaseString.containsString(searchText.lowercaseString))
+            let fullName = user.first_name + " " + user.last_name
+            return (user.username.lowercaseString.containsString(searchText.lowercaseString)) || (user.email.lowercaseString.containsString(searchText.lowercaseString) ||  (fullName.lowercaseString.containsString(searchText.lowercaseString)))
         })
         tblSearchResults.reloadData()
     }
