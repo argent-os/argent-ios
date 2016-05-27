@@ -8,12 +8,15 @@
 
 import Foundation
 import JGProgressHUD
+import Alamofire
 
 class SupportMessageViewController: UIViewController {
     
     
     @IBOutlet weak var message: UITextView!
     
+    private let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // self.navigationController!.navigationBar.tintColor = UIColor.darkGrayColor()
@@ -52,18 +55,33 @@ class SupportMessageViewController: UIViewController {
     }
     
     @IBAction func sendMessageAction() {
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
         HUD.showInView(self.view!)
         HUD.dismissAfterDelay(0.5)
-        sendMessage()
+        
+        if message.text == "" {
+            HUD.textLabel.text = "Message cannot be empty"
+            HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
+            HUD.dismissAfterDelay(2.5)
+        } else {
+            sendMessage()
+        }
     }
     
     func sendMessage() {
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
-        HUD.showInView(self.view!)
-        HUD.textLabel.text = "Message sent!"
-        HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
-        HUD.dismissAfterDelay(2.5)
-        print("message sent")
+        User.getProfile { (user, err) in
+            Alamofire.request(.POST, API_URL + "/v1/message/" + (user?.id)!, parameters: ["subject": "", "message": self.message.text], encoding: .JSON, headers: ["Content-Type": "application/x-www-form-urlencoded"])
+                .responseJSON { (response) in
+                    switch response.result {
+                    case .Success:
+                        if let value = response.result.value {
+                            print(value)
+                            self.HUD.textLabel.text = "Message sent!"
+                            self.HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
+                        }
+                    case .Failure(let error):
+                        print(error)
+                    }
+            }
+        }
     }
 }
