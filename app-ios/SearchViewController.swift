@@ -15,8 +15,6 @@ import DGElasticPullToRefresh
 import TransitionTreasury
 import TransitionAnimation
 import CellAnimator
-import Haneke
-import SDWebImage
 
 class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate, ModalTransitionDelegate {
     
@@ -176,7 +174,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 //                let priority = DISPATCH_QUEUE_PRIORITY_HIGH
                 //                dispatch_async(dispatch_get_global_queue(priority, 0)) {
                 //                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                //                        cell.imageView!.sd_setImageWithURL(NSURL(string: pic)!, placeholderImage: UIImage(named: "PersonThumb"))
+                //                        cell.imageView!. // load image async // (NSURL(string: pic)!, placeholderImage: UIImage(named: "PersonThumb"))
                 //                    })
                 //                }
             }
@@ -200,7 +198,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 //                let priority = DISPATCH_QUEUE_PRIORITY_HIGH
                 //                dispatch_async(dispatch_get_global_queue(priority, 0)) {
                 //                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                //                        cell.imageView!.sd_setImageWithURL(NSURL(string: pic)!, placeholderImage: UIImage(named: "PersonThumb"))
+                //                        cell.imageView!. // load image async // (NSURL(string: pic)!, placeholderImage: UIImage(named: "PersonThumb"))
                 //                    })
                 //                }
             }

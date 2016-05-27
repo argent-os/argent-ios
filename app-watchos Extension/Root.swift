@@ -9,5 +9,5 @@
 import Foundation
 
 class Root {
-    class var stripeApiUrl: String { return "https://api.stripe.com" }
+    class var STRIPE_API_URL: String { return "https://api.stripe.com" }
 }

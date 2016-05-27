@@ -23,7 +23,7 @@ class Auth {
     }
     
     
-    class func login(email: String, username: String, password: String, completionHandler: (String, Bool, NSError) -> ()) {
+    class func login(email: String, username: String, password: String, completionHandler: (String, Bool, String, NSError) -> ()) {
         
         // check for empty fields
         if(email.isEmpty) {
@@ -33,7 +33,7 @@ class Auth {
             return;
         }
         
-        Alamofire.request(.POST, apiUrl + "/v1/login", parameters: [
+        Alamofire.request(.POST, API_URL + "/v1/login", parameters: [
             "username": username,
             "email":email,
             "password":password
@@ -66,12 +66,11 @@ class Auth {
                         // completion handler here for apple watch
                         
                         let token = data["token"].stringValue
-                        if(response.result.error != nil) {
-                            completionHandler(token, false, response.result.error!)
+                        if response.result.error != nil {
+                            completionHandler(token, false, username, response.result.error!)
                         } else {
-                            completionHandler(token, true, NSError(domain: "nil", code: 000, userInfo: [:]))
+                            completionHandler(token, true, username, NSError(domain: "nil", code: 000, userInfo: [:]))
                         }
-                        
                         
                         NSUserDefaults.standardUserDefaults().setValue(token, forKey: "userAccessToken")
                         NSUserDefaults.standardUserDefaults().synchronize()

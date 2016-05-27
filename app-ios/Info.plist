@@ -20,6 +20,20 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>e1bf99f08acb60c6071b22654a49e1c8d647725f</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+		</array>
+	</dict>
 	<key>LSApplicationCategoryType</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
@@ -199,6 +213,10 @@ Nunito-SemiBold.ttf</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>org-appextension-feature-password-management</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>

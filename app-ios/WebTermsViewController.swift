@@ -63,6 +63,7 @@ class WebTermsViewController: UIViewController, WKNavigationDelegate, WKUIDelega
         }
         
         let action1 = previewActionForTitle("Copy Link")
+//        return [action1]
         let action2 = previewActionForTitle("Share")
         return [action1, action2]
 

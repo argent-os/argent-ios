@@ -99,7 +99,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         mainBody.frame = CGRect(x:40, y: 280, width: screenWidth-80, height: 80)
         mainBody.textColor = UIColor.lightGrayColor()
         mainBody.textAlignment = .Center
-        mainBody.text = "Invite new users, customers, or friends to Argent today! The more the merrier."
+        mainBody.text = "Invite new users, customers, or friends to " + APP_NAME + " today! The more the merrier."
         mainBody.numberOfLines = 5
         mainBody.font = UIFont.systemFontOfSize(14)
         Timeout(0.3) {
@@ -198,8 +198,16 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
         
         mailComposerVC.setToRecipients([])
-        mailComposerVC.setSubject("Message from Argent User")
-        mailComposerVC.setMessageBody("Hello!", isHTML: false)
+        User.getProfile { (user, err) in
+            //
+            if let first_name = user?.first_name where first_name != "" {
+                mailComposerVC.setSubject("Re: Message from " + first_name)
+                mailComposerVC.setMessageBody("Hey it's " + first_name + ". Have you tried " + APP_NAME + "? It's a great app I've been using lately! Sending you the link " + FULL_APP_URL, isHTML: false)
+            } else {
+                mailComposerVC.setSubject("Re: Message from " + APP_NAME)
+                mailComposerVC.setMessageBody("Hello from Argent! Check out our app: " + FULL_APP_URL, isHTML: false)
+            }
+        }
         
         return mailComposerVC
     }
@@ -233,7 +241,14 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         
         // Configure the fields of the interface.
         composeSMSVC.recipients = ([])
-        composeSMSVC.body = "Hello from Argent!"
+        User.getProfile { (user, err) in
+            //
+            if let first_name = user?.first_name where first_name != "" {
+                composeSMSVC.body = "Hey it's " + first_name + ". Have you tried " + APP_NAME + "? It's a great app I've been using lately! Sending you the link " + FULL_APP_URL
+            } else {
+                composeSMSVC.body = "Hello from " + APP_NAME + "!" + " Check out our app: " + FULL_APP_URL
+            }
+        }
         
         return composeSMSVC
     }

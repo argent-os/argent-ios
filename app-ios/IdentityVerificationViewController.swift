@@ -166,7 +166,7 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate 
         if(userAccessToken != nil) {
             User.getProfile { (user, NSError) in
                 
-                let endpoint = apiUrl + "/v1/cloudinary/" + (user?.id)! + "/upload"
+                let endpoint = API_URL + "/v1/cloudinary/" + (user?.id)! + "/upload"
                 
                 let parameters = [:]
                 

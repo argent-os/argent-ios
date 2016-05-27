@@ -262,7 +262,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
         mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
         
         mailComposerVC.setToRecipients([(detailUser?.email)!])
-        mailComposerVC.setSubject("Message from Argent User")
+        mailComposerVC.setSubject("Message from " + APP_NAME)
         mailComposerVC.setMessageBody("Hello!", isHTML: false)
         
         return mailComposerVC
@@ -296,8 +296,10 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
         composeSMSVC.messageComposeDelegate = self
         
         // Configure the fields of the interface.
-        composeSMSVC.recipients = ([(detailUser?.email)!])
-        composeSMSVC.body = "Hello from Argent!"
+        // composeSMSVC.recipients = ([(detailUser?.email)!])
+        composeSMSVC.recipients = ([])
+
+        composeSMSVC.body = ""
         
         return composeSMSVC
     }

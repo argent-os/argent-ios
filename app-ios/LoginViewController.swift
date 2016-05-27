@@ -14,6 +14,7 @@ import TextFieldEffects
 import UIColor_Hex_Swift
 import TransitionTreasury
 import TransitionAnimation
+import OnePasswordExtension
 
 class LoginViewController: UIViewController, UITextFieldDelegate  {
     
@@ -21,8 +22,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
     
     @IBOutlet weak var loginBox: UIView!
     
+    @IBOutlet weak var onePasswordButton: UIButton!
+    
     let imageView = UIImageView()
-
+    
     weak var modalDelegate: ModalViewControllerDelegate?
 
     private let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)

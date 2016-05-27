@@ -25,7 +25,7 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
     override func viewDidAppear(animated: Bool) {
         addSubviewWithBounce(codeLabel, parentView: self)
         addSubviewWithBounce(flagImg, parentView: self)
-        addSubviewWithBounce(countryPicker, parentView: self)
+        addSubviewWithFade(countryPicker, parentView: self)
     }
     
     override func viewDidLoad() {

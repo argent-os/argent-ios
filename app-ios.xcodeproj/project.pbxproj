@@ -222,12 +222,12 @@
 		300D8BDE1CE5416700FC3B05 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		300D8BE21CE5461A00FC3B05 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingViewController.swift; path = "app-ios/OnboardingViewController.swift"; sourceTree = SOURCE_ROOT; };
 		300E422A1CB47428004316CF /* BankConnectedListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankConnectedListTableViewController.swift; path = "app-ios/BankConnectedListTableViewController.swift"; sourceTree = SOURCE_ROOT; };
-		300E422C1CB56E10004316CF /* Bank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bank.swift; path = "app-ios/Bank.swift"; sourceTree = SOURCE_ROOT; };
+		300E422C1CB56E10004316CF /* Bank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Bank.swift; path = "app-ios/Bank.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		300E422E1CB57206004316CF /* BankConnectedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankConnectedTableViewCell.swift; path = "app-ios/BankConnectedTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		300E42301CB7123E004316CF /* CreditCardListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreditCardListViewController.swift; path = "app-ios/CreditCardListViewController.swift"; sourceTree = SOURCE_ROOT; };
-		300E42321CB71362004316CF /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Card.swift; path = "app-ios/Card.swift"; sourceTree = SOURCE_ROOT; };
+		300E42321CB71362004316CF /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Card.swift; path = "app-ios/Card.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3015ADC21CE3B1110053D220 /* RiskTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RiskTutorialViewController.swift; path = "app-ios/RiskTutorialViewController.swift"; sourceTree = SOURCE_ROOT; };
-		302010C91CAF3B05007D5E7E /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Notification.swift; path = "app-ios/Notification.swift"; sourceTree = SOURCE_ROOT; };
+		302010C91CAF3B05007D5E7E /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Notification.swift; path = "app-ios/Notification.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		302010CF1CB016ED007D5E7E /* Argent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Argent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		302010D01CB016ED007D5E7E /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		302010D31CB016ED007D5E7E /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -243,18 +243,18 @@
 		306999041CACD0710003B0A6 /* AccountInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInterfaceController.swift; sourceTree = "<group>"; };
 		306999061CACD0890003B0A6 /* SettingsInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsInterfaceController.swift; sourceTree = "<group>"; };
 		3069990A1CACD6240003B0A6 /* Root.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
-		306DF0081CD991CB00864CAE /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Customer.swift; path = "app-ios/Customer.swift"; sourceTree = SOURCE_ROOT; };
-		306DF00A1CD9979400864CAE /* Plan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Plan.swift; path = "app-ios/Plan.swift"; sourceTree = SOURCE_ROOT; };
-		306DF00E1CDA68AB00864CAE /* RiskProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RiskProfileViewController.swift; path = "app-ios/RiskProfileViewController.swift"; sourceTree = SOURCE_ROOT; };
-		306E822F1CDAC36400A43505 /* Balance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Balance.swift; path = "app-ios/Balance.swift"; sourceTree = SOURCE_ROOT; };
+		306DF0081CD991CB00864CAE /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Customer.swift; path = "app-ios/Customer.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		306DF00A1CD9979400864CAE /* Plan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Plan.swift; path = "app-ios/Plan.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		306DF00E1CDA68AB00864CAE /* RiskProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = RiskProfileViewController.swift; path = "app-ios/RiskProfileViewController.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		306E822F1CDAC36400A43505 /* Balance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Balance.swift; path = "app-ios/Balance.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		307C6A211C7E91A100723E39 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		307C6A231C7E91AA00723E39 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
-		308A34891CCA803200AAF66F /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = History.swift; path = "app-ios/History.swift"; sourceTree = SOURCE_ROOT; };
+		308A34891CCA803200AAF66F /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = History.swift; path = "app-ios/History.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		309544F41CD295AE003007B2 /* ParallaxHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParallaxHeader.swift; path = "app-ios/ParallaxHeader.swift"; sourceTree = SOURCE_ROOT; };
 		30960EFE1CE3D7C100749695 /* TransferViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransferViewController.swift; path = "app-ios/TransferViewController.swift"; sourceTree = SOURCE_ROOT; };
-		30960F001CE40CBE00749695 /* Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Auth.swift; path = "app-ios/Auth.swift"; sourceTree = SOURCE_ROOT; };
+		30960F001CE40CBE00749695 /* Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Auth.swift; path = "app-ios/Auth.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		30960F031CE4E80000749695 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = "app-ios/Extensions.swift"; sourceTree = SOURCE_ROOT; };
-		30960F061CE4EA5700749695 /* ProfilePictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfilePictureViewController.swift; path = "app-ios/ProfilePictureViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30960F061CE4EA5700749695 /* ProfilePictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ProfilePictureViewController.swift; path = "app-ios/ProfilePictureViewController.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		309C8CC91CCEEE8C0073159C /* SignupCountryPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupCountryPickerViewController.swift; path = "app-ios/SignupCountryPickerViewController.swift"; sourceTree = SOURCE_ROOT; };
 		309E43BD1CA8ADF900279D97 /* WebTermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebTermsViewController.swift; path = "app-ios/WebTermsViewController.swift"; sourceTree = SOURCE_ROOT; };
 		309E43C11CA8AE0B00279D97 /* WebSupportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebSupportViewController.swift; path = "app-ios/WebSupportViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -262,14 +262,14 @@
 		309E43C81CA9CFED00279D97 /* bloom.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = bloom.caf; sourceTree = "<group>"; };
 		309E43C91CA9CFED00279D97 /* fold.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fold.caf; sourceTree = "<group>"; };
 		309E43CA1CA9CFED00279D97 /* selected.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = selected.caf; sourceTree = "<group>"; };
-		30A5A3F11CF5F0EC00C9EEC2 /* IdentityVerificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IdentityVerificationViewController.swift; path = "app-ios/IdentityVerificationViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30A5A3F11CF5F0EC00C9EEC2 /* IdentityVerificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = IdentityVerificationViewController.swift; path = "app-ios/IdentityVerificationViewController.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		30AF67371CA498A2006B83DA /* app-watchos Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "app-watchos Extension.entitlements"; sourceTree = "<group>"; };
 		30AF67381CA498A3006B83DA /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.2.sdk/System/Library/Frameworks/PassKit.framework; sourceTree = DEVELOPER_DIR; };
 		30B576921CC7D1CE005BCA5A /* SearchDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchDetailViewController.swift; path = "app-ios/SearchDetailViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DA541CA43655003AFD8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "app-ios/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		30C2DA561CA4365D003AFD8B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "app-ios/Info.plist"; sourceTree = SOURCE_ROOT; };
 		30C2DA581CA43665003AFD8B /* App.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = App.entitlements; path = "app-ios/App.entitlements"; sourceTree = SOURCE_ROOT; };
-		30C2DA5A1CA4366C003AFD8B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "app-ios/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
+		30C2DA5A1CA4366C003AFD8B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = AppDelegate.swift; path = "app-ios/AppDelegate.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		30C2DA721CA436B8003AFD8B /* cashregister.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = cashregister.caf; sourceTree = "<group>"; };
 		30C2DA731CA436B8003AFD8B /* chime.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = chime.caf; sourceTree = "<group>"; };
 		30C2DA741CA436B8003AFD8B /* chime2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = chime2.caf; sourceTree = "<group>"; };
@@ -282,15 +282,15 @@
 		30C2DA981CA4373E003AFD8B /* LoginBoxTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginBoxTableViewController.swift; path = "app-ios/LoginBoxTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DA991CA4373E003AFD8B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "app-ios/LoginViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DA9C1CA4374F003AFD8B /* SignupIndividualViewControllerOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupIndividualViewControllerOne.swift; path = "app-ios/SignupIndividualViewControllerOne.swift"; sourceTree = SOURCE_ROOT; };
-		30C2DA9D1CA4374F003AFD8B /* SignupIndividualViewControllerThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupIndividualViewControllerThree.swift; path = "app-ios/SignupIndividualViewControllerThree.swift"; sourceTree = SOURCE_ROOT; };
+		30C2DA9D1CA4374F003AFD8B /* SignupIndividualViewControllerThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = SignupIndividualViewControllerThree.swift; path = "app-ios/SignupIndividualViewControllerThree.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		30C2DA9E1CA4374F003AFD8B /* SignupIndividualViewControllerTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupIndividualViewControllerTwo.swift; path = "app-ios/SignupIndividualViewControllerTwo.swift"; sourceTree = SOURCE_ROOT; };
-		30C2DA9F1CA4374F003AFD8B /* SignupViewControllerFour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewControllerFour.swift; path = "app-ios/SignupViewControllerFour.swift"; sourceTree = SOURCE_ROOT; };
+		30C2DA9F1CA4374F003AFD8B /* SignupViewControllerFour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = SignupViewControllerFour.swift; path = "app-ios/SignupViewControllerFour.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		30C2DAA01CA4374F003AFD8B /* SignupViewControllerOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewControllerOne.swift; path = "app-ios/SignupViewControllerOne.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAA11CA4374F003AFD8B /* SignupViewControllerThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewControllerThree.swift; path = "app-ios/SignupViewControllerThree.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAA21CA4374F003AFD8B /* SignupViewControllerTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewControllerTwo.swift; path = "app-ios/SignupViewControllerTwo.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAA31CA4374F003AFD8B /* SignupViewControllerZero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignupViewControllerZero.swift; path = "app-ios/SignupViewControllerZero.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAAC1CA43795003AFD8B /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthViewController.swift; path = "app-ios/AuthViewController.swift"; sourceTree = SOURCE_ROOT; };
-		30C2DAAE1CA4379F003AFD8B /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResetPasswordViewController.swift; path = "app-ios/ResetPasswordViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30C2DAAE1CA4379F003AFD8B /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ResetPasswordViewController.swift; path = "app-ios/ResetPasswordViewController.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		30C2DAB01CA437A9003AFD8B /* PresentedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PresentedTableViewController.swift; path = "app-ios/PresentedTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAB21CA437B2003AFD8B /* TermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TermsViewController.swift; path = "app-ios/TermsViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DABE1CA43823003AFD8B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = "app-ios/HomeViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -299,7 +299,7 @@
 		30C2DAC41CA43841003AFD8B /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchViewController.swift; path = "app-ios/SearchViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAC81CA43853003AFD8B /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = "app-ios/MenuViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DACA1CA4385C003AFD8B /* ProfileMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileMenuViewController.swift; path = "app-ios/ProfileMenuViewController.swift"; sourceTree = SOURCE_ROOT; };
-		30C2DACC1CA43862003AFD8B /* CreditCardAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreditCardAccountViewController.swift; path = "app-ios/CreditCardAccountViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30C2DACC1CA43862003AFD8B /* CreditCardAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = CreditCardAccountViewController.swift; path = "app-ios/CreditCardAccountViewController.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		30C2DACE1CA4386A003AFD8B /* SupportMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupportMenuViewController.swift; path = "app-ios/SupportMenuViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DACF1CA4386A003AFD8B /* SupportMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupportMessageViewController.swift; path = "app-ios/SupportMessageViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAD21CA43881003AFD8B /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Profile.swift; path = "app-ios/Profile.swift"; sourceTree = SOURCE_ROOT; };
@@ -310,15 +310,15 @@
 		30C2DADC1CA438B8003AFD8B /* CustomLabelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomLabelCell.xib; path = "app-ios/CustomLabelCell.xib"; sourceTree = SOURCE_ROOT; };
 		30C2DADE1CA438BE003AFD8B /* ProfileImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileImageCell.xib; path = "app-ios/ProfileImageCell.xib"; sourceTree = SOURCE_ROOT; };
 		30C2DAE01CA43909003AFD8B /* FormerInputAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormerInputAccessoryView.swift; path = "app-ios/FormerInputAccessoryView.swift"; sourceTree = SOURCE_ROOT; };
-		30C2DAE21CA43926003AFD8B /* ConfigureNotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigureNotificationsViewController.swift; path = "app-ios/ConfigureNotificationsViewController.swift"; sourceTree = SOURCE_ROOT; };
-		30C2DAE41CA4392E003AFD8B /* AddBankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddBankViewController.swift; path = "app-ios/AddBankViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30C2DAE21CA43926003AFD8B /* ConfigureNotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ConfigureNotificationsViewController.swift; path = "app-ios/ConfigureNotificationsViewController.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		30C2DAE41CA4392E003AFD8B /* AddBankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = AddBankViewController.swift; path = "app-ios/AddBankViewController.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		30C2DAE61CA43934003AFD8B /* BankAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankAccountViewController.swift; path = "app-ios/BankAccountViewController.swift"; sourceTree = SOURCE_ROOT; };
-		30C2DAE71CA43934003AFD8B /* BankDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankDetailViewController.swift; path = "app-ios/BankDetailViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30C2DAE71CA43934003AFD8B /* BankDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = BankDetailViewController.swift; path = "app-ios/BankDetailViewController.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		30C2DAE81CA43934003AFD8B /* BankTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankTableViewCell.swift; path = "app-ios/BankTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAEC1CA43946003AFD8B /* RecurringBillingPlanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecurringBillingPlanViewController.swift; path = "app-ios/RecurringBillingPlanViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAEE1CA43951003AFD8B /* AddCustomerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddCustomerViewController.swift; path = "app-ios/AddCustomerViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DAF41CA43967003AFD8B /* ChargeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChargeViewController.swift; path = "app-ios/ChargeViewController.swift"; sourceTree = SOURCE_ROOT; };
-		30C2DAF81CA43975003AFD8B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = "app-ios/User.swift"; sourceTree = SOURCE_ROOT; };
+		30C2DAF81CA43975003AFD8B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = User.swift; path = "app-ios/User.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		30C2DB0C1CA439CC003AFD8B /* Auth.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Auth.storyboard; path = "app-ios/Auth.storyboard"; sourceTree = SOURCE_ROOT; };
 		30C2DB0E1CA439D2003AFD8B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "app-ios/LaunchScreen.storyboard"; sourceTree = SOURCE_ROOT; };
 		30C2DB121CA439E1003AFD8B /* Timeout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Timeout.swift; path = "app-ios/Timeout.swift"; sourceTree = SOURCE_ROOT; };
@@ -332,13 +332,13 @@
 		30CA45591CE6CF7F00D656E5 /* HistoryCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HistoryCustomCell.xib; path = "app-ios/HistoryCustomCell.xib"; sourceTree = SOURCE_ROOT; };
 		30CA455B1CE6DC7000D656E5 /* HistoryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HistoryDetailViewController.swift; path = "app-ios/HistoryDetailViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30D526751CDB9814001B41BA /* BitcoinUriViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BitcoinUriViewController.swift; path = "app-ios/BitcoinUriViewController.swift"; sourceTree = SOURCE_ROOT; };
-		30D526771CDBB4A0001B41BA /* Bitcoin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bitcoin.swift; path = "app-ios/Bitcoin.swift"; sourceTree = SOURCE_ROOT; };
+		30D526771CDBB4A0001B41BA /* Bitcoin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Bitcoin.swift; path = "app-ios/Bitcoin.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		30D5267C1CDE3736001B41BA /* ConfigurePointOfSaleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigurePointOfSaleViewController.swift; path = "app-ios/ConfigurePointOfSaleViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30D526811CDF7762001B41BA /* ActionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActionData.swift; path = "app-ios/ActionData.swift"; sourceTree = SOURCE_ROOT; };
 		30D526831CDF776A001B41BA /* OptionsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OptionsCell.xib; path = "app-ios/OptionsCell.xib"; sourceTree = SOURCE_ROOT; };
 		30D526851CDF8675001B41BA /* ActionSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActionSheet.swift; path = "app-ios/ActionSheet.swift"; sourceTree = SOURCE_ROOT; };
-		30D526891CDFAEC3001B41BA /* PayMerchantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PayMerchantViewController.swift; path = "app-ios/PayMerchantViewController.swift"; sourceTree = SOURCE_ROOT; };
-		30D5268B1CE0F303001B41BA /* Charge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Charge.swift; path = "app-ios/Charge.swift"; sourceTree = SOURCE_ROOT; };
+		30D526891CDFAEC3001B41BA /* PayMerchantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = PayMerchantViewController.swift; path = "app-ios/PayMerchantViewController.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		30D5268B1CE0F303001B41BA /* Charge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Charge.swift; path = "app-ios/Charge.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		30D5268D1CE34C03001B41BA /* RiskScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RiskScoreViewController.swift; path = "app-ios/RiskScoreViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30DB595A1CA46CB0007FEE1E /* app-watchos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "app-watchos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30DB595D1CA46CB0007FEE1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -360,7 +360,7 @@
 		30FB54291C6A58B40004A538 /* app-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "app-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB54411C6ABF6A0004A538 /* ObjC-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjC-Bridging-Header.h"; sourceTree = "<group>"; };
 		30FF6FD01CEE3F9300A46A1E /* TransferToBankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransferToBankViewController.swift; path = "app-ios/TransferToBankViewController.swift"; sourceTree = SOURCE_ROOT; };
-		30FF6FD41CF221A200A46A1E /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Account.swift; path = "app-ios/Account.swift"; sourceTree = SOURCE_ROOT; };
+		30FF6FD41CF221A200A46A1E /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Account.swift; path = "app-ios/Account.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		50E88D0ADD61BCA3EBD43D33 /* Pods_protonpay_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_protonpay_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5278C9B083E72E91DE8D539E /* Pods-app-watchos Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-watchos Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-app-watchos Extension/Pods-app-watchos Extension.release.xcconfig"; sourceTree = "<group>"; };
 		62BBF354E2FD43232A999EA5 /* Pods-app-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-app-ios/Pods-app-ios.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1011,6 +1011,7 @@
 				545614C87EF7766B953CD8F4 /* Copy Pods Resources */,
 				300B66F31CA45F6F00E24AF1 /* Embed Watch Content */,
 				302010DF1CB016ED007D5E7E /* Embed App Extensions */,
+				309B43561CF7A946009B54FA /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1284,6 +1285,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-app-watchos Extension/Pods-app-watchos Extension-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		309B43561CF7A946009B54FA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" e1bf99f08acb60c6071b22654a49e1c8d647725f 238364a42213cfaf378307cbd030097bb64be7d587c1a8c61a413f7a576bae26";
 		};
 		545614C87EF7766B953CD8F4 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1736,6 +1750,7 @@
 				INFOPLIST_FILE = "app-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -\"DDebug\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.argentapp.ios;
 				PRODUCT_NAME = Argent;
 				PROVISIONING_PROFILE = "";

@@ -11,6 +11,8 @@ import Alamofire
 import SwiftyJSON
 import JGProgressHUD
 import WatchConnectivity
+import OnePasswordExtension
+import Crashlytics
 
 class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, WCSessionDelegate {
 
@@ -20,6 +22,8 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
     
     @IBOutlet weak var passwordTextField: UITextField!
 
+    @IBOutlet weak var onePasswordButton: UITableViewCell!
+    
     @IBOutlet var loginTableView: UITableView!
     
     @IBOutlet weak var usernameCell: UITableViewCell!
@@ -38,6 +42,22 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
         let screen = UIScreen.mainScreen().bounds
         let _ = screen.size.width
         
+        //onePasswordButton
+        onePasswordButton.textLabel?.textColor = UIColor.whiteColor()
+        onePasswordButton.textLabel?.textAlignment = .Center
+        onePasswordButton.textLabel?.font = UIFont.systemFontOfSize(11)
+        onePasswordButton.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.3)
+        // Set up OnePassword
+        if OnePasswordExtension.sharedExtension().isAppExtensionAvailable() {
+            self.onePasswordButton.textLabel?.text = "Use 1Password"
+            let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.useOnePassword(_:)))
+            self.onePasswordButton.addGestureRecognizer(tap)
+        } else {
+            self.onePasswordButton.textLabel?.text = "Get 1Password"
+            let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.checkOnePasswordExists(_:)))
+            self.onePasswordButton.addGestureRecognizer(tap)
+        }
+        
         self.usernameTextField.delegate = self
         self.passwordTextField.delegate = self
         
@@ -53,6 +73,7 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
         let str2 = NSAttributedString(string: "password", attributes: [NSForegroundColorAttributeName:UIColor(rgba: "#fff")])
         passwordTextField.attributedPlaceholder = str2
         passwordTextField.textRectForBounds(CGRectMake(0, 0, 0, 0))
+        passwordTextField.clearsOnBeginEditing = false
         passwordTextField.tintColor = UIColor.whiteColor()
         
         loginTableView.separatorColor = UIColor(rgba: "#ccc3")
@@ -83,11 +104,18 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
             activityIndicator.stopAnimating()
             activityIndicator.hidden = true
         }
-        Auth.login(usernameTextField.text!, username: usernameTextField.text!, password: passwordTextField.text!) { (token, grant, err) in
+        Auth.login(usernameTextField.text!, username: usernameTextField.text!, password: passwordTextField.text!) { (token, grant, username, err) in
             if(grant == true && token != "") {
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.hidden = true
                 self.performSegueWithIdentifier("homeView", sender: self)
+                
+                Answers.logLoginWithMethod("Default",
+                                           success: true,
+                                           customAttributes: [
+                                                "user": username
+                                            ])
+                
                 // Send access token and Stripe key to Apple Watch
                 if WCSession.isSupported() { //makes sure it's not an iPad or iPod
                     let watchSession = WCSession.defaultSession()
@@ -109,9 +137,59 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
             } else {
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.hidden = true
+                Answers.logLoginWithMethod("Default",
+                                           success: false,
+                                           customAttributes: [
+                                            "error": "Error using default login method"
+                    ])
                 self.displayAlertMessage("Error logging in")
             }
         }
+    }
+    
+    func checkOnePasswordExists(sender: AnyObject) {
+        if OnePasswordExtension.sharedExtension().isAppExtensionAvailable() == false {
+            let alertController = UIAlertController(title: "1Password is not installed", message: "Get 1Password from the App Store", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            
+            let OKAction = UIAlertAction(title: "Get 1Password", style: .Default) { (action) in UIApplication.sharedApplication().openURL(NSURL(string: "https://itunes.apple.com/app/1password-password-manager/id568903335")!)
+            }
+            
+            alertController.addAction(OKAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    func useOnePassword(sender: AnyObject) {
+        OnePasswordExtension.sharedExtension().findLoginForURLString("https://www.argentapp.com", forViewController: self, sender: sender, completion: { (loginDictionary, error) -> Void in
+            if loginDictionary == nil {
+                if error!.code != Int(AppExtensionErrorCodeCancelledByUser) {
+                    print("Error invoking 1Password App Extension for find login: \(error)")
+                    Answers.logLoginWithMethod("1Password",
+                        success: false,
+                        customAttributes: [
+                            "error": error!
+                        ])
+                }
+                return
+            }
+            
+            Answers.logLoginWithMethod("1Password",
+                success: true,
+                customAttributes: [
+                    "user": (loginDictionary?[AppExtensionUsernameKey])!
+                ])
+            
+            self.usernameTextField.text = loginDictionary?[AppExtensionUsernameKey] as? String
+            self.passwordTextField.text = loginDictionary?[AppExtensionPasswordKey] as? String
+            
+            self.onePasswordButton.textLabel?.text = "Login"
+            let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.login(_:)))
+            self.onePasswordButton.addGestureRecognizer(tap)
+            
+        })
     }
     
     func textRectForBounds(bounds: CGRect) -> CGRect {

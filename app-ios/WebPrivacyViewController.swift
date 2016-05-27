@@ -57,7 +57,7 @@ class WebPrivacyViewController: UIViewController, WKNavigationDelegate, WKUIDele
                 }
                 if title == "Share" {
                     let activityViewController  = UIActivityViewController(
-                        activityItems: ["Argent Privacy Policy  http://www.argentapp.com/privacy" as NSString],
+                        activityItems: [APP_NAME + " Privacy Policy  http://www.argentapp.com/privacy" as NSString],
                         applicationActivities: nil)
                     activityViewController.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList]
                     self.presentViewController(activityViewController, animated: true, completion: nil)
@@ -66,6 +66,7 @@ class WebPrivacyViewController: UIViewController, WKNavigationDelegate, WKUIDele
         }
         
         let action1 = previewActionForTitle("Copy Link")
+//        return [action1]
         let action2 = previewActionForTitle("Share")
         return [action1, action2]
         

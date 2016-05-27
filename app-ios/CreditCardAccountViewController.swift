@@ -70,7 +70,7 @@ class CreditCardAccountViewController: UIViewController, CardIOPaymentViewContro
                     "cvc": info.cvv
                 ]
 
-                let endpoint = apiUrl + "/v1/stripe/account/cards/";
+                let endpoint = API_URL + "/v1/stripe/account/cards/";
                 
                 Alamofire.request(.POST, endpoint, parameters: parameters, encoding: .JSON, headers: headers)
                     .responseJSON { response in

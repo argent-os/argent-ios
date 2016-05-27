@@ -35,7 +35,7 @@ class Bitcoin {
                     "amount": amount,
                 ]
                 
-                let endpoint = apiUrl + "/v1/stripe/" + (user?.id)! + "/bitcoin"
+                let endpoint = API_URL + "/v1/stripe/" + (user?.id)! + "/bitcoin"
                 
                 Alamofire.request(.POST, endpoint,
                     parameters: parameters,

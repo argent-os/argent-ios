@@ -201,7 +201,7 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
                 "ios" : iosNSDict
             ]
             
-            let endpoint = apiUrl + "/v1/profile"
+            let endpoint = API_URL + "/v1/profile"
             
             // Encoding as .JSON with header application/json
             Alamofire.request(.PUT, endpoint, parameters: parameters, encoding: .JSON, headers: headers)
@@ -235,7 +235,7 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
                 "ios" : iosNSDict
             ]
             
-            let endpoint = apiUrl + "/v1/profile"
+            let endpoint = API_URL + "/v1/profile"
             
             // Encoding as .JSON with header application/json
             Alamofire.request(.PUT, endpoint, parameters: parameters, encoding: .JSON, headers: headers)
@@ -261,7 +261,7 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
                 "Content-Type": "application/x-www-form-urlencoded"
             ]
             
-            let endpoint = apiUrl + "/v1/profile"
+            let endpoint = API_URL + "/v1/profile"
             
             // Encoding as .JSON with header application/json
             Alamofire.request(.GET, endpoint, parameters: [:], encoding: .URL, headers: headers)

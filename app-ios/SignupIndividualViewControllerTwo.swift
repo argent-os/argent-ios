@@ -188,7 +188,7 @@ class SignupIndividualViewControllerTwo: UIViewController, UITextFieldDelegate, 
     
     func displayErrorAlertMessage(alertMessage:String) {
         let customIcon:UIImage = UIImage(named: "IconBellLight")! // your custom icon UIImage
-        let customColor:UIColor = UIColor.lightBlue() // base color for the alert
+        let customColor:UIColor = UIColor.brandRed() // base color for the alert
         self.view.endEditing(true)
         let alertView = JSSAlertView().show(
             self,

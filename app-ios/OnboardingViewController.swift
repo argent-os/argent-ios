@@ -87,7 +87,7 @@ extension OnboardingViewController {
             if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("onboardingCell", forIndexPath: indexPath) as? OnboardingCollectionViewCell {
                 cell.contentImage.image = UIImage(named: "IconRepeatWhiteLarge")
                 
-                cell.contentDescriptionLabel.text = "Argent allows businesses to create services plans for their customers to control recurring payments over a custom time interval. Take the pain out of getting paid and let our app do the work for you. Set up a payment plan and start getting paid today!"
+                cell.contentDescriptionLabel.text = APP_NAME + " allows businesses to create services plans for their customers to control recurring payments over a custom time interval. Take the pain out of getting paid and let our app do the work for you. Set up a payment plan and start getting paid today!"
                 cell.contentDescriptionLabel.font = UIFont.systemFontOfSize(14)
                 cell.contentDescriptionLabel.lineBreakMode = .ByWordWrapping
                 cell.contentDescriptionLabel.numberOfLines = 7
@@ -107,7 +107,7 @@ extension OnboardingViewController {
             if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("onboardingCell", forIndexPath: indexPath) as? OnboardingCollectionViewCell {
                 cell.contentImage.image = UIImage(named: "IconBitcoinWhite")
                 
-                cell.contentDescriptionLabel.text = "Argent provides a POS (Point of Sale) solution for businesses to accept Bitcoin. We convert Bitcoin into USD with the real-time exchange rate and automatically initiate a transfer into the bank account of your choice."
+                cell.contentDescriptionLabel.text = APP_NAME + " provides a POS (Point of Sale) solution for businesses to accept Bitcoin. We convert Bitcoin into USD with the real-time exchange rate and automatically initiate a transfer into the bank account of your choice."
                 cell.contentDescriptionLabel.font = UIFont.systemFontOfSize(14)
                 cell.contentDescriptionLabel.lineBreakMode = .ByWordWrapping
                 cell.contentDescriptionLabel.numberOfLines = 7
@@ -132,7 +132,7 @@ extension OnboardingViewController {
                 
                 cell.contentImage.image = UIImage(named: "LogoApplePay")
                 
-                cell.contentDescriptionLabel.text = "Argent enables users to utilize Apple Pay to process secured payments for received services.  Apple Pay enables peer-to-peer payments with a single touch."
+                cell.contentDescriptionLabel.text = APP_NAME + " enables users to utilize Apple Pay to process secured payments for received services.  Apple Pay enables peer-to-peer payments with a single touch."
                 cell.contentDescriptionLabel.font = UIFont.systemFontOfSize(14)
                 cell.contentDescriptionLabel.lineBreakMode = .ByWordWrapping
                 cell.contentDescriptionLabel.numberOfLines = 7

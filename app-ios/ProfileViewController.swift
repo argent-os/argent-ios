@@ -9,14 +9,14 @@
 import Foundation
 import UIKit
 import JGProgressHUD
-import FXBlurView
+import Armchair
 
 class ProfileViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         self.navigationController!.navigationBar.backgroundColor = UIColor.clearColor()
         self.navigationController!.navigationBar.barTintColor = UIColor.clearColor()
-        UIStatusBarStyle.Default
+        UIStatusBarStyle.LightContent
     }
     
     lazy var gesture: UIPanGestureRecognizer = {
@@ -66,7 +66,7 @@ class ProfileViewController: UIViewController {
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.Default
+        return UIStatusBarStyle.LightContent
     }
     
     override func didReceiveMemoryWarning() {

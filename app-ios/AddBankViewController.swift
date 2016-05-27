@@ -81,7 +81,7 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         if(userAccessToken != nil) {
             User.getProfile { (user, NSError) in
                 
-                let endpoint = apiUrl + "/v1/plaid/" + user!.id + "/exchange_token"
+                let endpoint = API_URL + "/v1/plaid/" + user!.id + "/exchange_token"
                 
                 let headers = [
                     "Authorization": "Bearer " + (userAccessToken as! String),
@@ -117,7 +117,7 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         if(userAccessToken != nil) {
             User.getProfile { (user, NSError) in
                 
-                let endpoint = apiUrl + "/v1/profile/" + (user?.id)!
+                let endpoint = API_URL + "/v1/profile/" + (user?.id)!
                 
                 let headers = [
                     "Authorization": "Bearer " + (userAccessToken as! String),
@@ -156,7 +156,7 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         if(userAccessToken != nil) {
             User.getProfile { (user, NSError) in
                 
-                let endpoint = apiUrl + "/v1/stripe/" + user!.id + "/external_account"
+                let endpoint = API_URL + "/v1/stripe/" + user!.id + "/external_account"
                 
                 let headers = [
                     "Authorization": "Bearer " + (userAccessToken as! String),

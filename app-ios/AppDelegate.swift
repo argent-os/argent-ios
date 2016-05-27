@@ -16,9 +16,16 @@ import TransitionTreasury
 import TransitionAnimation
 import PermissionScope
 import Alamofire
+import Fabric
+import Crashlytics
+import Armchair
 
-let merchantID = "merchant.com.argentapp.pay.v2"
-
+let ENVIRONMENT = "DEV"
+// let ENVIRONMENT = "PROD"
+let MERCHANT_ID = "merchant.com.argentapp.pay.v2"
+let FULL_APP_URL = "https://itunes.apple.com/us/app/argent/id1110084542?mt=8"
+let APP_ID = "1110084542"
+let APP_NAME = "Argent"
 // Get Local IP address by looking by using ifconfig command at terminal and looking below the 'inet' value
 // Make sure the physical device is connected to the same wifi network
 // Add exception for your IP address in info.plist file so regular http requests can be made
@@ -29,16 +36,16 @@ let merchantID = "merchant.com.argentapp.pay.v2"
 // For provisioning profile naming convention http://stackoverflow.com/questions/20565565/an-app-id-with-identifier-is-not-available-please-enter-a-different-string
 
 // DEV
-// let apiUrl = "http://localhost:5001"
-// let apiUrl = "http://192.168.1.182:5001"
-// let apiUrl = "http://192.168.1.232:5001"
- let apiUrl = "http://api.argent.cloud"
+// let API_URL = "http://localhost:5001"
+// let API_URL = "http://192.168.1.182:5001"
+// let API_URL = "http://192.168.1.232:5001"
+ let API_URL = "http://api.argent.cloud"
 
 // PROD
-//let apiUrl = "https://api.argent.cloud"
+//let API_URL = "https://api.argent.cloud"
 
 // Global Stripe base API url
-let stripeApiUrl = "https://api.stripe.com"
+let STRIPE_API_URL = "https://api.stripe.com"
 
 // For push notifications make sure to delete and re-install app, fix this bug later
 @UIApplicationMain
@@ -114,6 +121,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
     // Default Launch
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        // The AppID is the only required setup
+        Armchair.appID(APP_ID)
+        
+        // Fabric & Crashlytics
+        Fabric.with([STPAPIClient.self, Crashlytics.self])
+        
         // Transitions 
         if let tabBarController = window?.rootViewController as? UITabBarController {
             tabBarController.tr_transitionDelegate = TRTabBarTransitionDelegate(method: TRTabBarTransitionMethod.Slide)
@@ -147,18 +160,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
         UITabBar.appearance().tintColor = UIColor.slateBlue()
         
         // Initialize Plaid, change to .Production before golive
-        Plaid.sharedInstance().setPublicKey("fb32b0520292ad69be7b4d1ade4bd3")
+        if ENVIRONMENT == "DEV" {
+            Plaid.sharedInstance().setPublicKey("fb32b0520292ad69be7b4d1ade4bd3")
+            Stripe.setDefaultPublishableKey("pk_test_6MOTlPN5JrNS5dIN4DUeKFDA")
+            Armchair.debugEnabled(true)
+        } else if ENVIRONMENT == "PROD" {
+            Armchair.debugEnabled(false)
+            // Plaid.sharedInstance().setPublicKey("GET_PROD_ID")
+            // Stripe.setDefaultPublishableKey("pk_live_9kfmn7pMRPKAYSpcf1Fmn266")
+        }
         
         // Globally dark keyboard
         UITextField.appearance().keyboardAppearance = .Light
         
-        // UPDATE TO LIVE BEFORE RELEASING PROD
-        // Enable Stripe DEV
-         Stripe.setDefaultPublishableKey("pk_test_6MOTlPN5JrNS5dIN4DUeKFDA")
-
-        // Enable Stripe PROD
-        // Stripe.setDefaultPublishableKey("pk_live_9kfmn7pMRPKAYSpcf1Fmn266")
-
         // Override point for customization after application launch.
         // Set UINavigationBar
         UINavigationBar.appearance().barStyle = .Black
@@ -177,7 +191,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
         
         // Set up permissions
         pscope.addPermission(NotificationsPermission(notificationCategories: nil),
-                             message: "Welcome to Argent!  Enable feature to receive push notifications on account events")
+                             message: "Welcome to " + APP_NAME + "!" + " Enable feature to receive push notifications on account events")
         pscope.headerLabel.text = "App Request"
         pscope.bodyLabel.text = "Enabling push notifications"
         pscope.closeButtonTextColor = UIColor.mediumBlue()
@@ -198,8 +212,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
         self.window!.makeKeyWindow()
 
         // Assign the init view controller of the app
-        let x = KeychainSwift().getBool("firstTime")
-        if x == true || x == nil {
+        firstTime()
+        
+        // Save state tab bar
+        if let tabBarController = window?.rootViewController as? UITabBarController {
+            guard let activeTab = NSUserDefaults.standardUserDefaults().valueForKey("activeTab") else {
+                return false
+            }
+            passcodeLockPresenter.presentPasscodeLock()
+            tabBarController.selectedIndex = Int(activeTab as! NSNumber)
+        }
+
+        return true
+    }
+
+    func firstTime() {
+        let first_time = KeychainSwift().getBool("firstTime")
+        if first_time == true || first_time == nil {
             KeychainSwift().set(false, forKey: "firstTime")
             let viewController = AuthViewController()
             // Show dialog with callbacks
@@ -221,19 +250,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
             let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RootViewController")
             self.window!.rootViewController = viewController
         }
-        
-        // Save state tab bar
-        if let tabBarController = window?.rootViewController as? UITabBarController {
-            guard let activeTab = NSUserDefaults.standardUserDefaults().valueForKey("activeTab") else {
-                return false
-            }
-            passcodeLockPresenter.presentPasscodeLock()
-            tabBarController.selectedIndex = Int(activeTab as! NSNumber)
-        }
-
-        return true
     }
-
+    
     // Get device token for push notification
     func application( application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData ) {
         
@@ -266,7 +284,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
                 "ios" : iosNSDict
             ]
             
-            let endpoint = apiUrl + "/v1/profile"
+            let endpoint = API_URL + "/v1/profile"
             
             // Encoding as .JSON with header application/json
             Alamofire.request(.PUT, endpoint, parameters: parameters, encoding: .JSON, headers: headers)

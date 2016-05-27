@@ -19,6 +19,8 @@ import MZAppearance
 import MZFormSheetPresentationController
 import JSSAlertView
 import StepSlider
+import OnePasswordExtension
+import CWStatusBarNotification
 
 class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate {
     
@@ -27,13 +29,15 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var agreementButton: UIButton!
     
+    let userPassword = KeychainSwift().get("userPassword")!
+
     let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
     
     var switchTermsAndPrivacy: BEMCheckBox = BEMCheckBox(frame: CGRectMake(0, 0, 50, 50))
     
     // Keychain
     let userUsername = NSUserDefaults.standardUserDefaults().stringForKey("userUsername")!
-    let userEmail = NSUserDefaults.standardUserDefaults().objectForKey("userEmail")!
+    let userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")!
     let userLegalEntityType = NSUserDefaults.standardUserDefaults().stringForKey("userLegalEntityType")!
     let userCountry = NSUserDefaults.standardUserDefaults().stringForKey("userCountry")!
     
@@ -81,13 +85,6 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
         // self.view.addSubview(stepper)
         
         agreementButton.titleLabel?.textAlignment = NSTextAlignment.Center
-        
-        //        print("user first name", userFirstName)
-        //        print("user last name", userLastName)
-        //        print("user username", userUsername)
-        //        print("user email", userEmail)
-        //        print("user phone", userPhoneNumber)
-        //        print(countryCode)
         
         // Set checkbox animation
         switchTermsAndPrivacy.onAnimationType = BEMAnimationType.OneStroke
@@ -151,7 +148,6 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
                 var tosJSON: [String: [String: AnyObject]] = [ "data" : tosContent ]
                 let tosNSDict = tosJSON as NSDictionary //no error message
                 
-                let userPassword = KeychainSwift().get("userPassword")!
                 var userDeviceToken: String {
                     if let userDeviceToken = KeychainSwift().get("user_device_token_ios") {
                         return userDeviceToken
@@ -168,11 +164,11 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
                     "email":self.userEmail,
                     "tos_acceptance" : tosNSDict,
                     "legal_entity_type": self.userLegalEntityType,
-                    "password":userPassword,
+                    "password":self.userPassword,
                     "ios": iosNSDict
                 ]
                 
-                Alamofire.request(.POST, apiUrl + "/v1/register", parameters: parameters, encoding:.JSON)
+                Alamofire.request(.POST, API_URL + "/v1/register", parameters: parameters, encoding:.JSON)
                     .responseJSON { response in
 
                         
@@ -180,9 +176,6 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
                             HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
                             HUD.dismissAfterDelay(3)
                             // go to main view
-                            Timeout(2) {
-                                self.performSegueWithIdentifier("loginView", sender: self)
-                            }
                         } else {
                             HUD.indicatorView = JGProgressHUDErrorIndicatorView()
                             HUD.dismissAfterDelay(3)
@@ -193,6 +186,9 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
                             if let value = response.result.value {
                                 let json = JSON(value)
                                 // potentially use completionHandler/closure in future
+                                
+                                self.displayOnePasswordAlert()
+                                
                                 let msg = json["message"].stringValue
                                 if msg != "" {
                                     HUD.textLabel.text = String(json["message"])
@@ -216,9 +212,93 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
         // TODO: Set keychain username and password
     }
     
+    
+    func saveToOnePassword(username: String, password: String, email: String) {
+        // save credentials to 1Password
+        if OnePasswordExtension.sharedExtension().isAppExtensionAvailable() {
+            let newLoginDetails:[String: AnyObject] = [
+                AppExtensionTitleKey: "Argent",
+                AppExtensionUsernameKey: username,
+                AppExtensionPasswordKey: password,
+                AppExtensionNotesKey: "Saved with the Argent app",
+                AppExtensionSectionTitleKey: "Argent Browser",
+                AppExtensionFieldsKey: [
+                    "email" : email
+                    // Add as many string fields as you please.
+                ]
+            ]
+            
+            // The password generation options are optional, but are very handy in case you have strict rules about password lengths, symbols and digits.
+            let passwordGenerationOptions:[String: AnyObject] = [
+                // The minimum password length can be 4 or more.
+                AppExtensionGeneratedPasswordMinLengthKey: (8),
+                
+                // The maximum password length can be 50 or less.
+                AppExtensionGeneratedPasswordMaxLengthKey: (30),
+                
+                // If YES, the 1Password will guarantee that the generated password will contain at least one digit (number between 0 and 9). Passing NO will not exclude digits from the generated password.
+                AppExtensionGeneratedPasswordRequireDigitsKey: (true),
+                
+                // If YES, the 1Password will guarantee that the generated password will contain at least one symbol (See the list bellow). Passing NO with will exclude symbols from the generated password.
+                AppExtensionGeneratedPasswordRequireSymbolsKey: (true),
+                
+                // Here are all the symbols available in the the 1Password Password Generator:
+                // !@#$%^&*()_-+=|[]{}'\";.,>?/~`
+                // The string for AppExtensionGeneratedPasswordForbiddenCharactersKey should contain the symbols and characters that you wish 1Password to exclude from the generated password.
+                AppExtensionGeneratedPasswordForbiddenCharactersKey: "!@#$%/0lIO"
+            ]
+            
+            OnePasswordExtension.sharedExtension().storeLoginForURLString("https://www.argentapp.com", loginDetails: newLoginDetails, passwordGenerationOptions: passwordGenerationOptions, forViewController: self, sender: self) { (loginDictionary, error) -> Void in
+                if loginDictionary == nil {
+                    if error!.code != Int(AppExtensionErrorCodeCancelledByUser) {
+                        print("Error invoking 1Password App Extension for find login: \(error)")
+                        self.goToAuth()
+                    }
+                    self.goToAuth()
+                    return
+                }
+                self.goToAuth()
+                print("Success 1Password")
+            }
+        }
+    }
+    
+    func displayOnePasswordAlert() {
+        let refreshAlert = UIAlertController(title: "1Password", message: "Would you like to save your login credentials to 1Password?", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Yes Please!", style: .Default, handler: { (action: UIAlertAction!) in
+            if OnePasswordExtension.sharedExtension().isAppExtensionAvailable() == false {
+                let alertController = UIAlertController(title: "1Password is not installed", message: "Get 1Password from the App Store for " + APP_NAME + " Single Sign On", preferredStyle: UIAlertControllerStyle.Alert)
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) in
+                    self.goToAuth()
+                })
+                alertController.addAction(cancelAction)
+                
+                let OKAction = UIAlertAction(title: "Get 1Password", style: .Default) { (action) in UIApplication.sharedApplication().openURL(NSURL(string: "https://itunes.apple.com/app/1password-password-manager/id568903335")!)
+                }
+                
+                alertController.addAction(OKAction)
+                self.presentViewController(alertController, animated: true, completion: nil)
+            } else {
+                self.saveToOnePassword(self.userUsername, password: self.userPassword, email: self.userEmail)
+            }
+        }))
+        refreshAlert.addAction(UIAlertAction(title: "No Thank You", style: .Cancel, handler: { (action: UIAlertAction!) in
+            self.goToAuth()
+        }))
+        presentViewController(refreshAlert, animated: true, completion: nil)
+    }
+    
+    func goToAuth() {
+        self.presentViewController(AuthViewController(), animated: true, completion: {
+            showGlobalNotification("Welcome to " + APP_NAME + "!", duration: 4, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.brandGreen())
+        })
+    }
+    
     func displayErrorAlertMessage(alertMessage:String) {
         let customIcon:UIImage = UIImage(named: "IconBellLight")! // your custom icon UIImage
-        let customColor:UIColor = UIColor.lightBlue() // base color for the alert
+        let customColor:UIColor = UIColor.brandRed() // base color for the alert
         self.view.endEditing(true)
         let alertView = JSSAlertView().show(
             self,
@@ -229,25 +309,6 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
             color: customColor,
             iconImage: customIcon)
         alertView.setTextTheme(.Light) // can be .Light or .Dark
-    }
-    
-    func displayDefaultErrorAlertMessage(alertMessage:String) {
-        let customIcon:UIImage = UIImage(named: "IconBellLight")! // your custom icon UIImage
-        let customColor:UIColor = UIColor.mediumBlue() // base color for the alert
-        self.view.endEditing(true)
-        let alertView = JSSAlertView().show(
-            self,
-            title: "",
-            text: alertMessage,
-            buttonText: "Ok",
-            noButtons: false,
-            color: customColor,
-            iconImage: customIcon)
-        alertView.setTextTheme(.Light) // can be .Light or .Dark
-    }
-    
-    func goToLogin() {
-        self.performSegueWithIdentifier("loginView", sender: self);
     }
 
     // Return IP address of WiFi interface (en0) as a String, or `nil`

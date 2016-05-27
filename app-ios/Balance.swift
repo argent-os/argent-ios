@@ -38,7 +38,7 @@ class Balance {
                     "Content-Type": "application/x-www-url-formencoded"
                 ]
                 
-                let endpoint = apiUrl + "/v1/stripe/" + (user?.id)! + "/balance"
+                let endpoint = API_URL + "/v1/stripe/" + (user?.id)! + "/balance"
                 
                 Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .validate().responseJSON { response in

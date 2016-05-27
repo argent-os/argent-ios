@@ -15,16 +15,16 @@ class AuthViewController: UIViewController, LTMorphingLabelDelegate, ModalTransi
     
     private var i = -1
     private var textArray = [
-        "Welcome to Argent",
-        "Argent'e' hoş geldiniz",
-        "Bienvenue à Argent",
+        "Welcome to " + APP_NAME,
+        APP_NAME + "'e hoş geldiniz",
+        "Bienvenue à " + APP_NAME,
         "歡迎銀色",
-        "Bienvenidos a Argent",
+        "Bienvenidos a " + APP_NAME,
         "アージェントすることを歓迎",
         "Добро пожаловать в Серебряном",
-        "Willkommen in Argent",
+        "Willkommen in " + APP_NAME,
         "은빛에 오신 것을 환영합니다",
-        "Benvenuto a Argent"
+        "Benvenuto a " + APP_NAME
     ]
     
     internal var tr_presentTransition: TRViewControllerTransitionDelegate?

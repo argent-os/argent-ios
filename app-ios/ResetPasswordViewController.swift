@@ -143,7 +143,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
             return;
         }
         
-        Alamofire.request(.POST, apiUrl + "/v1/remindpassword", parameters: [
+        Alamofire.request(.POST, API_URL + "/v1/remindpassword", parameters: [
             "username": username!,
             "email":email!
             ],

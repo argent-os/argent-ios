@@ -64,7 +64,7 @@ class RiskProfileViewController: UIViewController {
         if(userAccessToken != nil) {
             User.getProfile { (user, NSError) in
                 
-                let endpoint = apiUrl + "/v1/plaid/" + user!.id + "/upgrade"
+                let endpoint = API_URL + "/v1/plaid/" + user!.id + "/upgrade"
                 
                 let headers = [
                     "Authorization": "Bearer " + (userAccessToken as! String),

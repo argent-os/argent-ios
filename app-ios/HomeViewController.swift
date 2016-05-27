@@ -19,6 +19,7 @@ import Gecco
 import DZNEmptyDataSet
 import CWStatusBarNotification
 import CellAnimator
+import Crashlytics
 
 var userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
 
@@ -247,7 +248,11 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
                 
                 if user?.first_name != "" {
-                    showGlobalNotification("Welcome " + (user?.first_name)! + "!", duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.lightBlue())
+                    
+                    // Track user action
+                    Answers.logCustomEventWithName("User logged in", customAttributes: nil)
+                    
+                    showGlobalNotification("Welcome " + (user?.first_name)! + "!", duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandGreen())
                 }
                 
                 if user!.picture != "" {

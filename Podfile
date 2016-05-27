@@ -51,8 +51,16 @@ target 'app-ios' do
 	pod 'TransitionAnimation'
 	pod 'LTMorphingLabel'
 	pod 'PermissionScope'
-	pod 'HanekeSwift'
 	pod 'CellAnimator'
+	pod '1PasswordExtension'
+	pod 'Armchair'
+
+	# Fabric
+	pod 'Fabric'
+	pod 'Crashlytics'
+
+	# Uninstalled
+	#pod 'HanekeSwift'
 	#pod 'DOFavoriteButton'
 
 	post_install do |installer|

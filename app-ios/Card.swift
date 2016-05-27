@@ -50,7 +50,7 @@ class Card {
                     "Content-Type": "application/x-www-form-urlencoded"
                 ]
                 
-                let endpoint = apiUrl + "/v1/stripe/" + (user?.id)! + "account/cards/"
+                let endpoint = API_URL + "/v1/stripe/" + (user?.id)! + "account/cards/"
                 
                 Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .validate().responseJSON { response in

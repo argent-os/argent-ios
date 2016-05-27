@@ -42,7 +42,7 @@ class NotificationItem {
                 let limit = "100"
                 let user_id = (user?.id)
                 
-                let endpoint = apiUrl + "/v1/stripe/" + user_id! + "/events?limit=" + limit
+                let endpoint = API_URL + "/v1/stripe/" + user_id! + "/events?limit=" + limit
                 
                 Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .validate().responseJSON { response in

@@ -10,11 +10,14 @@ import Foundation
 import SafariServices
 import DGElasticPullToRefresh
 import CWStatusBarNotification
+import Armchair
 
 class ProfileMenuViewController: UITableViewController {
     
     @IBOutlet weak var shareCell: UITableViewCell!
 
+    @IBOutlet weak var rateCell: UITableViewCell!
+    
     private var userImageView: UIImageView = UIImageView()
 
     private var scrollView: UIScrollView!
@@ -70,6 +73,18 @@ class ProfileMenuViewController: UITableViewController {
         
         // Add action to share cell to return to activity menu
         shareCell.targetForAction(Selector("share:"), withSender: self)
+        
+        // Add action to rate cell to return to activity menu
+        let rateGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.rateApp(_:)))
+        rateCell.addGestureRecognizer(rateGesture)
+    }
+    
+    func rateApp(sender: AnyObject) {
+        Armchair.appID(APP_ID)
+        Armchair.debugEnabled(true)
+        Armchair.showPrompt()
+        // Armchair.rateApp()
+        Armchair.opensInStoreKit(false)
     }
 
     func configureHeader() {
@@ -99,12 +114,19 @@ class ProfileMenuViewController: UITableViewController {
         attachment.image = UIImage(named: "IconPinWhiteTiny")
         let attachmentString: NSAttributedString = NSAttributedString(attachment: attachment)
         Account.getStripeAccount { (acct, err) in
-            if let address_city = acct?.address_city, let address_country = acct?.address_country {
+            if let address_city = acct?.address_city where address_city != "", let address_country = acct?.address_country {
                 let locationStr: NSMutableAttributedString = NSMutableAttributedString(string: address_city + ", " + address_country)
                 locationStr.appendAttributedString(attachmentString)
                 self.locationLabel.attributedText = locationStr
                 Timeout(0.2) {
                     addSubviewWithFade(self.locationLabel, parentView: self)
+                }
+            } else if let address_city = acct?.address_city, let address_country = acct?.address_country {
+                let locationStr: NSMutableAttributedString = NSMutableAttributedString(string: "Unknown, " + address_country)
+                    locationStr.appendAttributedString(attachmentString)
+                    self.locationLabel.attributedText = locationStr
+                    Timeout(0.2) {
+                        addSubviewWithFade(self.locationLabel, parentView: self)
                 }
             } else {
                 let locationStr: NSMutableAttributedString = NSMutableAttributedString(string: "Unknown")
@@ -179,14 +201,10 @@ class ProfileMenuViewController: UITableViewController {
             addSubviewWithFade(self.navBar, parentView: self)
         }
     }
-
-    override func viewDidAppear(animated: Bool) {
-        UIStatusBarStyle.Default
-    }
     
     //Changing Status Bar
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.Default
+        return UIStatusBarStyle.LightContent
     }
     
     // Handles logout action controller

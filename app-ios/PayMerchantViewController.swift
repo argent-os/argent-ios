@@ -160,7 +160,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
     
     
     func showApplePayModal(sender: AnyObject) {
-        guard let request = Stripe.paymentRequestWithMerchantIdentifier(merchantID) else {
+        guard let request = Stripe.paymentRequestWithMerchantIdentifier(MERCHANT_ID) else {
             // request will be nil if running on < iOS8
             return
         }
@@ -258,7 +258,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         let floatValue = (str! as NSString).floatValue
         let amountInCents = Int(floatValue*100)
         User.getProfile { (user, NSError) in
-            let url = apiUrl + "/v1/stripe/" + (user?.id)! + "/charge/"
+            let url = API_URL + "/v1/stripe/" + (user?.id)! + "/charge/"
             
             let headers = [
                 "Authorization": "Bearer " + String(userAccessToken),

@@ -33,7 +33,7 @@ class AccountInterfaceController: WKInterfaceController, WCSessionDelegate {
                     "Content-Type": "application/x-www-form-urlencoded"
                 ]
                 
-                Alamofire.request(.GET, Root.stripeApiUrl + "/v1/balance",
+                Alamofire.request(.GET, Root.STRIPE_API_URL + "/v1/balance",
                     encoding:.URL,
                     headers: headers)
                     .responseJSON { response in

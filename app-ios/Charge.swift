@@ -49,7 +49,7 @@
 //                    "currency": plan_currency!
 //                ]
 //                
-//                let endpoint = apiUrl + "/v1/stripe/" + (user?.id)! + "/plans"
+//                let endpoint = API_URL + "/v1/stripe/" + (user?.id)! + "/plans"
 //                
 //                Alamofire.request(.POST, endpoint,
 //                    parameters: parameters,
@@ -89,7 +89,7 @@
 //                let limit = "100"
 //                let user_id = (user?.id)
 //                
-//                let endpoint = apiUrl + "/v1/stripe/" + user_id! + "/plans?limit=" + limit
+//                let endpoint = API_URL + "/v1/stripe/" + user_id! + "/plans?limit=" + limit
 //                
 //                Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
 //                    .validate().responseJSON { response in
