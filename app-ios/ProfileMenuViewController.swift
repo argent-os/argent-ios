@@ -10,9 +10,9 @@ import Foundation
 import SafariServices
 import DGElasticPullToRefresh
 import CWStatusBarNotification
-import Armchair
+import StoreKit
 
-class ProfileMenuViewController: UITableViewController {
+class ProfileMenuViewController: UITableViewController, SKStoreProductViewControllerDelegate {
     
     @IBOutlet weak var shareCell: UITableViewCell!
 
@@ -37,6 +37,8 @@ class ProfileMenuViewController: UITableViewController {
     private var splitter = UIView()
 
     private let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 40, width: UIScreen.mainScreen().bounds.size.width, height: 50))
+
+    private var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,16 +77,27 @@ class ProfileMenuViewController: UITableViewController {
         shareCell.targetForAction(Selector("share:"), withSender: self)
         
         // Add action to rate cell to return to activity menu
-        let rateGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.rateApp(_:)))
+        let rateGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.openStoreProductWithiTunesItemIdentifier(_:)))
         rateCell.addGestureRecognizer(rateGesture)
     }
     
-    func rateApp(sender: AnyObject) {
-        Armchair.appID(APP_ID)
-        Armchair.debugEnabled(true)
-        Armchair.showPrompt()
-        // Armchair.rateApp()
-        Armchair.opensInStoreKit(false)
+    func openStoreProductWithiTunesItemIdentifier(sender: AnyObject) {
+        showGlobalNotification("Loading App Store", duration: 1, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.mediumBlue())
+        
+        let storeViewController = SKStoreProductViewController()
+        storeViewController.delegate = self
+        
+        let parameters = [ SKStoreProductParameterITunesItemIdentifier : APP_ID]
+        storeViewController.loadProductWithParameters(parameters) { [weak self] (loaded, error) -> Void in
+            if loaded {
+                // Parent class of self is UIViewContorller
+                self?.presentViewController(storeViewController, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func productViewControllerDidFinish(viewController: SKStoreProductViewController) {
+        viewController.dismissViewControllerAnimated(true, completion: nil)
     }
 
     func configureHeader() {

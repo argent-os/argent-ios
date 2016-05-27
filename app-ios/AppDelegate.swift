@@ -64,7 +64,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
     
     // Onboarding
     func skipOnboarding(notification: NSNotification) {
-        
+        // Allows the user to skip the onboarding
+        // process page if they clicked on it
+        // accidentaly or do not want to complete it
         if let appContentVC = UIStoryboard(name: "Auth", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("authViewController") as? UIViewController {
             let overlayView: UIView = UIScreen.mainScreen().snapshotViewAfterScreenUpdates(false)
             appContentVC.view.addSubview(overlayView)
@@ -105,15 +107,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
         }
     }
     
-    private func showViewController(viewControllerId: String) -> Bool {
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let rootVC = sb.instantiateViewControllerWithIdentifier(viewControllerId)
-        guard let root = UIApplication.sharedApplication().keyWindow?.rootViewController else { return false }
-        root.presentViewController(rootVC, animated: false, completion: { () -> Void in })
-        return true
-    }
-    
-    // Transition Treasury
+    // Transition Treasury setup
     func tr_tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
         print("You did select \(viewController.dynamicType).")
     }
@@ -121,8 +115,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
     // Default Launch
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        // The AppID is the only required setup
+        // It is always best to load Armchair as early as possible
+        // because it needs to receive application life-cycle notifications
+        //
+        // NOTE: The appID call always has to go before any other Armchair calls
         Armchair.appID(APP_ID)
+        Armchair.debugEnabled(true)
         
         // Fabric & Crashlytics
         Fabric.with([STPAPIClient.self, Crashlytics.self])
@@ -133,15 +131,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
             tabBarController.tr_delegate = self
         }
         
-        // Set push notification badge to zero
-        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
-        
         // Setup skip onboarding notification
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.skipOnboarding(_:)), name: "kDismissOnboardingNotification", object: nil)
-        
-        // Globally set toolbar
-        UIToolbar.appearance().barTintColor = UIColor.mediumBlue()
-        UIToolbar.appearance().backgroundColor = UIColor.mediumBlue()
         
         // Screen Dimming Enable
         let dim = KeychainSwift().getBool("screenAlive")
@@ -150,14 +141,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
         } else {
             UIApplication.sharedApplication().idleTimerDisabled = false
         }
-        
-        // Toolbar Keyboard UI
-        if let font = UIFont(name: "Avenir-Book", size: 15) {
-            UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: font,NSForegroundColorAttributeName:UIColor.whiteColor()], forState: UIControlState.Normal)
-        }
-        
-        // Tabbar UI
-        UITabBar.appearance().tintColor = UIColor.slateBlue()
         
         // Initialize Plaid, change to .Production before golive
         if ENVIRONMENT == "DEV" {
@@ -170,26 +153,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
             // Stripe.setDefaultPublishableKey("pk_live_9kfmn7pMRPKAYSpcf1Fmn266")
         }
         
-        // Globally dark keyboard
-        UITextField.appearance().keyboardAppearance = .Light
-        
-        // Override point for customization after application launch.
-        // Set UINavigationBar
-        UINavigationBar.appearance().barStyle = .Black
-        // Sets background to a blank/empty image
-        UINavigationBar.appearance().setBackgroundImage(UIImage(), forBarMetrics: .Default)
-        // Sets shadow (line below the bar) to a blank image
-        UINavigationBar.appearance().shadowImage = UIImage()
-        // Sets the translucent background color
-        UINavigationBar.appearance().backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
-        // Set translucent. (Default value is already true, so this can be removed if desired.)
-        UINavigationBar.appearance().translucent = true
-        
-        // Search Bar UI
-        UISearchBar.appearance().barTintColor = UIColor.whiteColor()
-        UISearchBar.appearance().tintColor = UIColor.mediumBlue()
-        
-        // Set up permissions
+        // Set up permissions scope
         pscope.addPermission(NotificationsPermission(notificationCategories: nil),
                              message: "Welcome to " + APP_NAME + "!" + " Enable feature to receive push notifications on account events")
         pscope.headerLabel.text = "App Request"
@@ -210,10 +174,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
         self.window!.backgroundColor = UIColor.clearColor()
         self.window!.makeKeyAndVisible()
         self.window!.makeKeyWindow()
-
+        
+        // Initialize global UI elements ** Must come after setting self.window attributes
+        globalUI()
+        
         // Assign the init view controller of the app
         firstTime()
-        
+
         // Save state tab bar
         if let tabBarController = window?.rootViewController as? UITabBarController {
             guard let activeTab = NSUserDefaults.standardUserDefaults().valueForKey("activeTab") else {
@@ -225,8 +192,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
 
         return true
     }
-
+    
+    func globalUI() {
+        // here we establish any global UI elements
+        // that affect the entire application such
+        // as keyboards, navigation bars, and tabbars
+        
+        // Set push notification badge to zero
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+        
+        // Globally set toolbar
+        UIToolbar.appearance().barTintColor = UIColor.mediumBlue()
+        UIToolbar.appearance().backgroundColor = UIColor.mediumBlue()
+        
+        // Toolbar Keyboard UI
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont.systemFontOfSize(15),NSForegroundColorAttributeName:UIColor.whiteColor()], forState: UIControlState.Normal)
+        
+        // Tabbar UI
+        UITabBar.appearance().tintColor = UIColor.slateBlue()
+        
+        // Globally dark keyboard
+        UITextField.appearance().keyboardAppearance = .Light
+        
+        // Override point for customization after application launch.
+        // Set UINavigationBar
+        UINavigationBar.appearance().barStyle = .Black
+        // Sets background to a blank/empty image
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        // Sets shadow (line below the bar) to a blank image
+        UINavigationBar.appearance().shadowImage = UIImage()
+        // Sets the translucent background color
+        UINavigationBar.appearance().backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+        // Set translucent. (Default value is already true, so this can be removed if desired.)
+        UINavigationBar.appearance().translucent = true
+        
+        // Search Bar UI
+        UISearchBar.appearance().barTintColor = UIColor.whiteColor()
+        UISearchBar.appearance().tintColor = UIColor.mediumBlue()
+    }
+    
     func firstTime() {
+        // Set up a user entering for the first time
+        // if true it will prompt a pscope
+        // 
+        // if denied access users can change permissions later
+        // display root controller otherwise
         let first_time = KeychainSwift().getBool("firstTime")
         if first_time == true || first_time == nil {
             KeychainSwift().set(false, forKey: "firstTime")
@@ -255,6 +265,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
     // Get device token for push notification
     func application( application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData ) {
         
+        // post device token on each device launch
+        // adapts to changing notification status
+        //
+        // TODO: implement new token retrival at point
+        // of change notification setting
         let characterSet: NSCharacterSet = NSCharacterSet( charactersInString: "<>" )
         
         let deviceTokenString: String = ( deviceToken.description as NSString )
@@ -267,6 +282,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
     }
     
     func addPushTokenToUser(token: String) {
+        // pushes new device token to user profile
         if userAccessToken != nil {
             
             let token = KeychainSwift().get("deviceToken")
@@ -315,10 +331,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
          */
         //Remember the users last tab selection
         if let tabBarController = window?.rootViewController as? UITabBarController {
+            
             let tabIndex: Int = tabBarController.selectedIndex
             let userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
             userDefaults.setInteger(tabIndex, forKey: "activeTab")
-            print(userDefaults)
+
             if !userDefaults.synchronize() {
                 print("Error Synchronizing NSUserDefaults")
             }
