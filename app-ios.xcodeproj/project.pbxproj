@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		278F38ABFB35EDAA24E7A2BC /* Pods_app_watchos_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6959C28B834901781B0C0FCC /* Pods_app_watchos_Extension.framework */; };
+		3008AA441CF89B6C00AFE855 /* SupportCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3008AA431CF89B6C00AFE855 /* SupportCategoryTableViewController.swift */; };
 		300D8BDF1CE5416700FC3B05 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300D8BDE1CE5416700FC3B05 /* OnboardingCollectionViewCell.swift */; };
 		300D8BE31CE5461A00FC3B05 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300D8BE21CE5461A00FC3B05 /* OnboardingViewController.swift */; };
 		300E422B1CB47428004316CF /* BankConnectedListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E422A1CB47428004316CF /* BankConnectedListTableViewController.swift */; };
@@ -218,6 +219,7 @@
 		09792DCB26D2F1A099596766 /* Pods-protonpay-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-protonpay-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-protonpay-ios/Pods-protonpay-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		1F47764297D847A2B25B7D81 /* Pods_argent_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_argent_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B614FB4245DEA1791296CAF /* Pods-app-watchos Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-watchos Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-app-watchos Extension/Pods-app-watchos Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		3008AA431CF89B6C00AFE855 /* SupportCategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupportCategoryTableViewController.swift; path = "app-ios/SupportCategoryTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		300B66F61CA4635800E24AF1 /* RESideMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RESideMenu.framework; path = "Pods/../build/Debug-iphoneos/RESideMenu.framework"; sourceTree = "<group>"; };
 		300D8BDE1CE5416700FC3B05 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		300D8BE21CE5461A00FC3B05 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingViewController.swift; path = "app-ios/OnboardingViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -564,6 +566,7 @@
 			isa = PBXGroup;
 			children = (
 				30C2DACE1CA4386A003AFD8B /* SupportMenuViewController.swift */,
+				3008AA431CF89B6C00AFE855 /* SupportCategoryTableViewController.swift */,
 				30C2DACF1CA4386A003AFD8B /* SupportMessageViewController.swift */,
 			);
 			name = Support;
@@ -1395,6 +1398,7 @@
 				3015ADC31CE3B1110053D220 /* RiskTutorialViewController.swift in Sources */,
 				3064931C1CD6B00500A17B00 /* TutorialHomeViewController.swift in Sources */,
 				30CA455C1CE6DC7000D656E5 /* HistoryDetailViewController.swift in Sources */,
+				3008AA441CF89B6C00AFE855 /* SupportCategoryTableViewController.swift in Sources */,
 				30D5268E1CE34C03001B41BA /* RiskScoreViewController.swift in Sources */,
 				30C2DAA41CA4374F003AFD8B /* SignupIndividualViewControllerOne.swift in Sources */,
 				30C2DAD31CA43881003AFD8B /* Profile.swift in Sources */,

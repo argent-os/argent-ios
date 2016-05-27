@@ -12,13 +12,15 @@ import Alamofire
 
 class SupportMessageViewController: UIViewController {
     
-    
     @IBOutlet weak var message: UITextView!
     
     private let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
 
+    var subject: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(subject)
         // self.navigationController!.navigationBar.tintColor = UIColor.darkGrayColor()
     }
     
@@ -55,10 +57,8 @@ class SupportMessageViewController: UIViewController {
     }
     
     @IBAction func sendMessageAction() {
-        HUD.showInView(self.view!)
-        HUD.dismissAfterDelay(0.5)
-        
         if message.text == "" {
+            HUD.showInView(self.view!)
             HUD.textLabel.text = "Message cannot be empty"
             HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
             HUD.dismissAfterDelay(2.5)
@@ -68,15 +68,27 @@ class SupportMessageViewController: UIViewController {
     }
     
     func sendMessage() {
+        HUD.showInView(self.view!)
         User.getProfile { (user, err) in
-            Alamofire.request(.POST, API_URL + "/v1/message/" + (user?.id)!, parameters: ["subject": "", "message": self.message.text], encoding: .JSON, headers: ["Content-Type": "application/x-www-form-urlencoded"])
+
+            let parameters : [String : AnyObject] = [
+                "subject": self.subject!,
+                "message": self.message.text
+            ]
+            
+            let headers : [String : String] = [
+                "Content-Type": "application/json"
+            ]
+            
+            Alamofire.request(.POST, API_URL + "/v1/message/" + (user?.id)!, parameters: parameters, encoding: .JSON, headers: headers)
                 .responseJSON { (response) in
                     switch response.result {
                     case .Success:
                         if let value = response.result.value {
-                            print(value)
                             self.HUD.textLabel.text = "Message sent!"
                             self.HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
+                            self.HUD.dismissAfterDelay(1, animated: true)
+                            self.message.text = ""
                         }
                     case .Failure(let error):
                         print(error)

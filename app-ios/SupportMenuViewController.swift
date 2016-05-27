@@ -12,7 +12,7 @@ class SupportMenuViewController: UIViewController {
     
     
     @IBOutlet weak var cells: UITableViewCell!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
