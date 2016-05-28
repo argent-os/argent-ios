@@ -64,6 +64,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     private let notification = CWStatusBarNotification()
 
+    private var gradient  : CGGradient?
+
     @IBAction func indexChanged(sender: DGRunkeeperSwitch) {
         if(sender.selectedIndex == 0) {
             lblAccountAvailable.removeFromSuperview()
@@ -86,28 +88,10 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         // Dispose of any resources that can be recreated.
     }
     
-    // Import TransitionTreasury in AppDelegate
-    lazy var gesture: UIPanGestureRecognizer = {
-        let gesture = UIPanGestureRecognizer(target: self, action: #selector(HomeViewController.swipeTransition(_:)))
-        return gesture
-    }()
-    
-    func swipeTransition(sender: UIPanGestureRecognizer) {
-        switch sender.state {
-        case .Began :
-            if sender.translationInView(sender.view).x < 0 {
-                tabBarController?.tr_selected(1, gesture: sender)
-            }
-        default : break
-        }
-    }
-    
     // VIEW DID LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addGestureRecognizer(gesture)
-
         definesPresentationContext = true
 
         configureView()
@@ -135,7 +119,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     func dateRangeSegmentControl(segment: UISegmentedControl) {
         if segment.selectedSegmentIndex == 0 {
             History.getHistoryArrays({ (_1d, _2w, _1m, _3m, _6m, _1y, _5y, err) in
-                self.arrayOfValues = _1d!
+                self.arrayOfValues = _2w!
                 self.graph.reloadGraph()
             })
         }
@@ -312,10 +296,16 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         graph.frame = CGRect(x: 0, y: 110, width: screenWidth, height: 150)
         graph.colorTop = UIColor.clearColor()
         graph.colorBottom = UIColor.clearColor()
-        graph.colorLine = UIColor.brandGreen()
         graph.colorPoint = UIColor.brandGreen()
         graph.colorBackgroundPopUplabel = UIColor.whiteColor()
         graph.delegate = self
+        let gradientColors : [CGColor] = [UIColor.brandGreen().CGColor,UIColor.brandYellow().CGColor,UIColor.brandRed().CGColor]        
+        let colorspace = CGColorSpaceCreateDeviceRGB()
+        let locations: [CGFloat] = [0.0, 0.5, 1.0]
+        self.gradient = CGGradientCreateWithColors(colorspace, gradientColors, locations)
+        graph.gradientLine = self.gradient!
+        graph.gradientLineDirection = .Vertical
+        
         graph.widthLine = 1
         graph.displayDotsWhileAnimating = true
         graph.enablePopUpReport = true
@@ -331,7 +321,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         horizontalSplitter.frame = CGRect(x: 15.0, y: 260.0, width: screenWidth - 15.0, height: 1)
         self.view.addSubview(horizontalSplitter)
         
-        let dateRangeSegment: UISegmentedControl = UISegmentedControl(items: ["1D", "1M", "3M", "6M", "1Y"])
+        let dateRangeSegment: UISegmentedControl = UISegmentedControl(items: ["2W", "1M", "3M", "6M", "1Y"])
         dateRangeSegment.frame = CGRect(x: 15.0, y: 230.0, width: view.bounds.width - 30.0, height: 30.0)
         //        var y_co: CGFloat = self.view.frame.size.height - 100.0
         //        dateRangeSegment.frame = CGRectMake(10, y_co, width-20, 50.0)
@@ -571,19 +561,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     // Scrollview
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        
-//        print("content offset", scrollView.contentOffset.y)
-//        print("top inset", scrollView.contentInset.top)
-//        print("bottom inset", scrollView.contentInset.top)
-//        
-//        if(scrollView.contentOffset.y > 0) {
-//            // until scrollView reaches threshold keep tableview stable unscrolled but move up view
-//            self.tableView.setContentOffset(CGPointZero, animated:true)
-//            self.tableView.frame = CGRect(x: 0, y: -scrollView.contentOffset.y, width: screenWidth, height: screenHeight+scrollView.contentOffset.y-315)
-//            var rect: CGRect = self.view.frame
-//            rect.origin.y = -scrollView.contentOffset.y
-//            self.view.frame = rect
-//        }
+        // TODO: Implement table scroll to top on scrolldown
     }
     
     // Delegate: DZNEmptyDataSet

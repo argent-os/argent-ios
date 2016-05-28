@@ -26,6 +26,7 @@ class RiskProfileViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
+        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
         let score = KeychainSwift().get("riskScore")
         print(score)
         if score == nil || score == "" {

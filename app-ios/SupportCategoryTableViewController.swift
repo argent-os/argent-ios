@@ -16,10 +16,13 @@ class SupportCategoryTableViewController: UITableViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Send the subject with the segue
+        
         let selected = self.tableView.indexPathForSelectedRow!.row
         
         let indexPath = tableView.indexPathForSelectedRow
         
+        self.tableView.deselectRowAtIndexPath(indexPath!, animated: true)
+
         let currentCell = tableView.cellForRowAtIndexPath(indexPath!)! as UITableViewCell
         
         let destination = segue.destinationViewController as! SupportMessageViewController

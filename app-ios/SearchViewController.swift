@@ -237,18 +237,14 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SearchDetailViewController") as! SearchDetailViewController
         
-        self.navigationController!.tr_pushViewController(vc, method: TRPresentTransitionMethod.Twitter, statusBarStyle: .Default, completion: {
-            print("Push finished.")
+        self.navigationController!.tr_pushViewController(vc, method: TRPushTransitionMethod.Default, statusBarStyle: .Default, completion: {
         })
         vc.detailUser = user
-        print(user)
-        
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 60.0
     }
-    
     
     // MARK: Custom functions
     

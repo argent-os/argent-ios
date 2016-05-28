@@ -1,31 +1,38 @@
 //
-//  SupportMessageViewController.swift
-//  argent-ios
+//  SearchMessageViewController.swift
+//  app-ios
 //
-//  Created by Sinan Ulkuatam on 3/20/16.
+//  Created by Sinan Ulkuatam on 5/27/16.
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
 //
 
 import Foundation
 import JGProgressHUD
 import Alamofire
+import TransitionTreasury
+import TransitionAnimation
 
-class SupportMessageViewController: UIViewController {
+class SearchMessageViewController: UIViewController, UINavigationBarDelegate, NavgationTransitionable {
+    
+    var tr_pushTransition: TRNavgationTransitionDelegate?
+    
+    weak var modalDelegate: ModalViewControllerDelegate?
     
     @IBOutlet weak var message: UITextView!
     
     private let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
-
-    var subject: String?
+    
+    var username: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(subject)
+        self.navigationController?.hidesBarsOnSwipe = false
+        message.becomeFirstResponder()
+        setupNav()
     }
     
     override func viewWillAppear(animated: Bool) {
         addSendOnKeyboard()
-        message.becomeFirstResponder()
     }
     
     // Add send toolbar
@@ -35,7 +42,7 @@ class SupportMessageViewController: UIViewController {
         let screenWidth = screen.size.width
         let sendToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, screenWidth, 50))
         // sendToolbar.barStyle = UIBarStyle.Default
-
+        
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Send", style: UIBarButtonItemStyle.Done, target: self, action: #selector(self.sendMessageAction))
         UIToolbar.appearance().barTintColor = UIColor.mediumBlue()
@@ -46,7 +53,7 @@ class SupportMessageViewController: UIViewController {
         items?.append(flexSpace)
         items?.append(done)
         items?.append(flexSpace)
-
+        
         sendToolbar.items = items
         sendToolbar.sizeToFit()
         message.inputAccessoryView=sendToolbar
@@ -56,27 +63,45 @@ class SupportMessageViewController: UIViewController {
         if message.text == "" {
             HUD.showInView(self.view!)
             HUD.textLabel.text = "Message cannot be empty"
-            HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
+            HUD.indicatorView = JGProgressHUDErrorIndicatorView()
             HUD.dismissAfterDelay(2.5)
         } else {
             sendMessage()
         }
     }
     
+    private func setupNav() {
+        let navigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 60)) // Offset by 20 pixels vertically to take the status bar into account
+        
+        navigationBar.backgroundColor = UIColor.clearColor()
+        navigationBar.tintColor = UIColor.mediumBlue()
+        navigationBar.delegate = self
+        
+        // Create a navigation item with a title
+        let navigationItem = UINavigationItem()
+        navigationItem.title = ""
+        
+        // Make the navigation bar a subview of the current view controller
+        self.view.addSubview(navigationBar)
+    }
+    
+    func returnToMenu(sender: AnyObject) {
+        self.view.window!.rootViewController!.dismissViewControllerAnimated(true, completion: { _ in })
+    }
+
     func sendMessage() {
         HUD.showInView(self.view!)
         User.getProfile { (user, err) in
-
+            
             let parameters : [String : AnyObject] = [
-                "subject": self.subject!,
-                "message": self.message.text
+                "message": self.message.text,
             ]
             
             let headers : [String : String] = [
                 "Content-Type": "application/json"
             ]
             
-            Alamofire.request(.POST, API_URL + "/v1/message/" + (user?.id)!, parameters: parameters, encoding: .JSON, headers: headers)
+            Alamofire.request(.POST, API_URL + "/v1/message/user/" + self.username!, parameters: parameters, encoding: .JSON, headers: headers)
                 .responseJSON { (response) in
                     switch response.result {
                     case .Success:

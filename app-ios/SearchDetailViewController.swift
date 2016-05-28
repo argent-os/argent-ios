@@ -19,7 +19,7 @@ import AYVibrantButton
 import TransitionTreasury
 import TransitionAnimation
 
-class SearchDetailViewController: UIViewController, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UINavigationBarDelegate, NavgationTransitionable {
+class SearchDetailViewController: UIViewController, UINavigationBarDelegate, NavgationTransitionable {
     
     var tr_pushTransition: TRNavgationTransitionDelegate?
 
@@ -53,6 +53,8 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
     
     func configureView() {
 
+        UIStatusBarStyle.Default
+        
         if let transitionAnimation = tr_pushTransition?.transition as? IBanTangTransitionAnimation {
             print(transitionAnimation.keyView)
             print(transitionAnimation.keyViewCopy)
@@ -102,23 +104,14 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             containerLayer.addSublayer(cardView.layer)
             self.view.layer.addSublayer(containerLayer)
             
-            let chatBubble = UIImageView(image: UIImage(named: "IconChat"), highlightedImage: .None)
+            let chatBubble = UIImageView(image: UIImage(named: "IconChat"), highlightedImage: UIImage(named: "IconChat")!.alpha(0.5))
             chatBubble.alpha = 0.2
-            chatBubble.frame = CGRect(x: screenWidth/2-70, y: 320, width: 50, height: 50)
+            chatBubble.frame = CGRect(x: screenWidth/2-20, y: 335, width: 40, height: 40)
             addSubviewWithFade(chatBubble, parentView: self)
             self.view.bringSubviewToFront(chatBubble)
-            let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(sendSMSButtonTapped(_:)))
+            let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(showMessageView(_:)))
             chatBubble.addGestureRecognizer(gestureRecognizer)
             chatBubble.userInteractionEnabled = true
-            
-            let emailIcon = UIImageView(image: UIImage(named: "IconEmail"), highlightedImage: .None)
-            emailIcon.alpha = 0.2
-            emailIcon.frame = CGRect(x: screenWidth/2+20, y: 320, width: 50, height: 50)
-            addSubviewWithFade(emailIcon, parentView: self)
-            self.view.bringSubviewToFront(emailIcon)
-            let gestureRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(sendEmailButtonTapped(_:)))
-            emailIcon.addGestureRecognizer(gestureRecognizer2)
-            emailIcon.userInteractionEnabled = true
             
             let userImageView: UIImageView = UIImageView()
             userImageView.frame = CGRectMake(screenWidth / 2, 0, 75, 75)
@@ -142,7 +135,6 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             } else {
                 let img: UIImage = UIImage(named: "LogoRound")!
                 userImageView.image = img
-
             }
             
             // Title
@@ -168,7 +160,7 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             
             // Button
             let viewPlansButton = UIButton()
-            viewPlansButton.frame = CGRect(x: 50, y: cardView.layer.frame.height+20,  width: self.view.layer.frame.width-100, height: 50.0)
+            viewPlansButton.frame = CGRect(x: 50, y: cardView.layer.frame.height+10,  width: self.view.layer.frame.width-100, height: 50.0)
             viewPlansButton.setTitleColor(UIColor.mediumBlue().colorWithAlphaComponent(0.9), forState: .Normal)
             viewPlansButton.titleLabel?.font = UIFont(name: "Avenir-Light", size: 16)
             viewPlansButton.setTitle("View Plans", forState: .Normal)
@@ -179,7 +171,6 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             viewPlansButton.layer.borderWidth = 0
             viewPlansButton.addTarget(self, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
             addSubviewWithFade(viewPlansButton, parentView: self)
-            
             
             let payButton = UIButton()
             payButton.frame = CGRect(x: 50, y: cardView.layer.frame.height+70,  width: self.view.layer.frame.width-100, height: 50.0)
@@ -199,7 +190,11 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
             addSubviewWithFade(payButton, parentView: self)
             
             // Name textfield
-            lbl.text = detailUser.first_name + " " + detailUser.last_name
+            if detailUser.first_name != "" {
+                lbl.text = detailUser.first_name + " " + detailUser.last_name
+            } else {
+                lbl.text = detailUser.username
+            }
             lbl.frame = CGRectMake(0, 220, screenWidth, 130)
             lbl.textAlignment = .Center
             lbl.textColor = UIColor.mediumBlue()
@@ -213,21 +208,26 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
                 userImageView.frame = CGRect(x: screenWidth/2-25, y: 80, width: 50, height: 50)
                 userImageView.layer.cornerRadius = 25
                 lbl.frame = CGRectMake(0, 90, screenWidth, 130)
-                chatBubble.frame = CGRect(x: screenWidth/2-70, y: 190, width: 50, height: 50)
-                emailIcon.frame = CGRect(x: screenWidth/2+20, y: 190, width: 50, height: 50)
+                chatBubble.frame = CGRect(x: screenWidth/2-18, y: 192, width: 36, height: 36)
                 viewPlansButton.frame = CGRect(x: 50, y: cardView.layer.frame.height-30,  width: self.view.layer.frame.width-100, height: 50.0)
                 payButton.frame = CGRect(x: 50, y: cardView.layer.frame.height+20,  width: self.view.layer.frame.width-100, height: 50.0)
 
             }
-
         }
     }
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        self.view.addGestureRecognizer(gestureRecognizer)
         configureView()
+    }
+    
+    func showMessageView(sender: AnyObject) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SearchMessageViewController") as! SearchMessageViewController
+        
+        self.navigationController!.tr_pushViewController(vc, method: TRPushTransitionMethod.Default, statusBarStyle: .Default, completion: {
+        })
+        
+        vc.username = detailUser?.username
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -240,78 +240,6 @@ class SearchDetailViewController: UIViewController, MFMailComposeViewControllerD
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    func returnToMenu(sender: AnyObject) {
-        self.view.window!.rootViewController!.dismissViewControllerAnimated(true, completion: { _ in })
-    }
-    
-    
-    // MARK: Email Composition
-    
-    @IBAction func sendEmailButtonTapped(sender: UIGestureRecognizer) {
-        let mailComposeViewController = configuredMailComposeViewController()
-        if MFMailComposeViewController.canSendMail() {
-            self.presentViewController(mailComposeViewController, animated: true, completion: nil)
-        } else {
-            self.showSendMailErrorAlert()
-        }
-    }
-    
-    func configuredMailComposeViewController() -> MFMailComposeViewController {
-        let mailComposerVC = MFMailComposeViewController()
-        mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
-        
-        mailComposerVC.setToRecipients([(detailUser?.email)!])
-        mailComposerVC.setSubject("Message from " + APP_NAME)
-        mailComposerVC.setMessageBody("Hello!", isHTML: false)
-        
-        return mailComposerVC
-    }
-    
-    func showSendMailErrorAlert() {
-        let sendMailErrorAlert = UIAlertController(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", preferredStyle: .Alert)
-            sendMailErrorAlert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(sendMailErrorAlert, animated: true, completion: nil)
-    }
-    
-    // MARK: MFMailComposeViewControllerDelegate Method
-    
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    // MARK: SMS Composition
-    
-    @IBAction func sendSMSButtonTapped(sender: UIGestureRecognizer) {
-        let smsComposeViewController = configuredSMSViewController()
-        if !MFMessageComposeViewController.canSendText() {
-            print("SMS services are not available")
-        } else {
-            self.presentViewController(smsComposeViewController, animated: true, completion: nil)
-        }
-    }
-    
-    func configuredSMSViewController() -> MFMessageComposeViewController {
-        let composeSMSVC = MFMessageComposeViewController()
-        composeSMSVC.messageComposeDelegate = self
-        
-        // Configure the fields of the interface.
-        // composeSMSVC.recipients = ([(detailUser?.email)!])
-        composeSMSVC.recipients = ([])
-
-        composeSMSVC.body = ""
-        
-        return composeSMSVC
-    }
-    
-    func messageComposeViewController(controller: MFMessageComposeViewController,
-                                      didFinishWithResult result: MessageComposeResult) {
-        // Check the result or perform other tasks.
-        
-        // Dismiss the mail compose view controller.
-        controller.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
     
     // MARK: PAYMENT MODAL
     

@@ -49,11 +49,9 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
         onePasswordButton.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.3)
         // Set up OnePassword
         if OnePasswordExtension.sharedExtension().isAppExtensionAvailable() {
-            self.onePasswordButton.textLabel?.text = "Use 1Password"
             let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.useOnePassword(_:)))
             self.onePasswordButton.addGestureRecognizer(tap)
         } else {
-            self.onePasswordButton.textLabel?.text = "Get 1Password"
             let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.checkOnePasswordExists(_:)))
             self.onePasswordButton.addGestureRecognizer(tap)
         }

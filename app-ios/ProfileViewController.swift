@@ -18,28 +18,11 @@ class ProfileViewController: UIViewController {
         self.navigationController!.navigationBar.barTintColor = UIColor.clearColor()
         UIStatusBarStyle.LightContent
     }
-    
-    lazy var gesture: UIPanGestureRecognizer = {
-        let gesture = UIPanGestureRecognizer(target: self, action: #selector(ProfileViewController.swipeTransition(_:)))
-        return gesture
-    }()
-
-    func swipeTransition(sender: UIPanGestureRecognizer) {
-        switch sender.state {
-        case .Began :
-            if sender.translationInView(sender.view).x >= 0 {
-                tabBarController?.tr_selected(3, gesture: sender)
-            }
-        default : break
-        }
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
-        view.addGestureRecognizer(gesture)
-
         // Transparent navigation bar
         self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
         self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
