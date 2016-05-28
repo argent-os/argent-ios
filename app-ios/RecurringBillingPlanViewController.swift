@@ -340,13 +340,8 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
             }
         }
         
-        let formatter = NSNumberFormatter()
-        formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
-        formatter.locale = NSLocale(localeIdentifier: "en_US")
-        let numberFromField = (NSString(string: digitText).doubleValue)/100
-        newText = formatter.stringFromNumber(numberFromField)
-        
-        textField.text = String(newText)
+        let formattedText = formattedCurrency(digitText, fontName: "DINAlternate-Bold", superSize: 32, fontSize: 48, offsetSymbol: 10, offsetCents: 10)
+        textField.attributedText = formattedText
         
         // revert for posting string to api
         var originalString = textField.text

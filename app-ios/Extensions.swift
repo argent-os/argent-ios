@@ -143,21 +143,21 @@ func showGlobalNotification(message: String, duration: NSTimeInterval, inStyle: 
     globalNotification.displayNotificationWithMessage(message, forDuration: duration)
 }
 
-func formattedCurrency(amount: String, fontName: String, superSize: CGFloat, size: CGFloat) -> NSAttributedString {
+func formattedCurrency(amount: String, fontName: String, superSize: CGFloat, fontSize: CGFloat, offsetSymbol: Int, offsetCents: Int) -> NSAttributedString {
     let formatter = NSNumberFormatter()
     formatter.numberStyle = .CurrencyStyle
     let r = Range<String.Index>(start: amount.startIndex, end: amount.endIndex)
     let x = amount.substringWithRange(r)
     let amt = formatter.stringFromNumber(Float(x)!/100)
-    let font:UIFont? = UIFont(name: fontName, size: size)
+    let font:UIFont? = UIFont(name: fontName, size: fontSize)
     let fontSuper:UIFont? = UIFont(name: fontName, size: superSize)
     let attString:NSMutableAttributedString = NSMutableAttributedString(string: amt!, attributes: [NSFontAttributeName:font!])
     if Float(x) < 0 {
-        attString.setAttributes([NSFontAttributeName:fontSuper!,NSBaselineOffsetAttributeName:3], range: NSRange(location:1,length:1))
-        attString.setAttributes([NSFontAttributeName:fontSuper!,NSBaselineOffsetAttributeName:3], range: NSRange(location:(amt?.characters.count)!-2,length:2))
+        attString.setAttributes([NSFontAttributeName:fontSuper!,NSBaselineOffsetAttributeName:offsetSymbol], range: NSRange(location:1,length:1))
+        attString.setAttributes([NSFontAttributeName:fontSuper!,NSBaselineOffsetAttributeName:offsetCents], range: NSRange(location:(amt?.characters.count)!-2,length:2))
     } else {
-        attString.setAttributes([NSFontAttributeName:fontSuper!,NSBaselineOffsetAttributeName:3], range: NSRange(location:0,length:1))
-        attString.setAttributes([NSFontAttributeName:fontSuper!,NSBaselineOffsetAttributeName:3], range: NSRange(location:(amt?.characters.count)!-2,length:2))
+        attString.setAttributes([NSFontAttributeName:fontSuper!,NSBaselineOffsetAttributeName:offsetSymbol], range: NSRange(location:0,length:1))
+        attString.setAttributes([NSFontAttributeName:fontSuper!,NSBaselineOffsetAttributeName:offsetCents], range: NSRange(location:(amt?.characters.count)!-2,length:2))
     }
     return attString
 }

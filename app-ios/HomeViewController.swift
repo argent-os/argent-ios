@@ -185,7 +185,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                     self.lblAccountPending.animationDuration = 0.5
                     self.lblAccountPending.method = UILabelCountingMethod.EaseInOut
                     self.lblAccountPending.completionBlock = {
-                        self.lblAccountPending.attributedText = formattedCurrency(String(pendingBalance), fontName: "HelveticaNeue", superSize: 11, size: 16)
+                        self.lblAccountPending.attributedText = formattedCurrency(String(pendingBalance), fontName: "HelveticaNeue", superSize: 11, fontSize: 16, offsetSymbol: 3, offsetCents: 3)
                     }
     
                     self.lblAccountAvailable.countFrom((CGFloat(Float(availableBalance))/100)-100, to: CGFloat(Float(availableBalance))/100)
@@ -195,7 +195,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                     self.lblAccountAvailable.animationDuration = 1.0
                     self.lblAccountAvailable.method = UILabelCountingMethod.EaseInOut
                     self.lblAccountAvailable.completionBlock = {
-                        self.lblAccountAvailable.attributedText = formattedCurrency(String(availableBalance), fontName: "HelveticaNeue", superSize: 11, size: 16)
+                        self.lblAccountAvailable.attributedText = formattedCurrency(String(availableBalance), fontName: "HelveticaNeue", superSize: 11, fontSize: 16, offsetSymbol: 3, offsetCents: 3)
                     }
                 }
             })
@@ -526,7 +526,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 cell.lblAmount?.textColor = UIColor.brandGreen()
             }
             
-            cell.lblAmount?.attributedText = formattedCurrency(amount, fontName: "HelveticaNeue", superSize: 10, size: 15)
+            cell.lblAmount?.attributedText = formattedCurrency(amount, fontName: "HelveticaNeue", superSize: 10, fontSize: 15, offsetSymbol: 3, offsetCents: 3)
 
         }
         if let date = item?.created
