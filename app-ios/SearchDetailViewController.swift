@@ -151,7 +151,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
             navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
             navBar.titleTextAttributes = [
                 NSForegroundColorAttributeName : UIColor.mediumBlue(),
-                NSFontAttributeName : UIFont(name: "Avenir-Book", size: 18)!
+                NSFontAttributeName : UIFont.systemFontOfSize(18)
             ]
             addSubviewWithFade(navBar, parentView: self)
             let navItem = UINavigationItem(title: "@"+detailUser.username)
@@ -162,10 +162,10 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
             let viewPlansButton = UIButton()
             viewPlansButton.frame = CGRect(x: 50, y: cardView.layer.frame.height+10,  width: self.view.layer.frame.width-100, height: 50.0)
             viewPlansButton.setTitleColor(UIColor.mediumBlue().colorWithAlphaComponent(0.9), forState: .Normal)
-            viewPlansButton.titleLabel?.font = UIFont(name: "Avenir-Light", size: 16)
+            viewPlansButton.titleLabel?.font = UIFont.systemFontOfSize(16)
             viewPlansButton.setTitle("View Plans", forState: .Normal)
             viewPlansButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
-            viewPlansButton.addTarget(self, action: #selector(SearchDetailViewController.payMerchantModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            viewPlansButton.addTarget(self, action: #selector(SearchDetailViewController.viewPlansModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             viewPlansButton.layer.cornerRadius = 10
             viewPlansButton.layer.borderColor = UIColor.mediumBlue().colorWithAlphaComponent(0.5).CGColor
             viewPlansButton.layer.borderWidth = 0
@@ -175,7 +175,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
             let payButton = UIButton()
             payButton.frame = CGRect(x: 50, y: cardView.layer.frame.height+70,  width: self.view.layer.frame.width-100, height: 50.0)
             payButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(1), forState: .Normal)
-            payButton.titleLabel?.font = UIFont(name: "Avenir-Light", size: 16)
+            payButton.titleLabel?.font = UIFont.systemFontOfSize(16)
             if detailUser.first_name != "" {
                 payButton.setTitle("Pay " + detailUser.first_name, forState: .Normal)
             } else {
@@ -198,7 +198,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
             lbl.frame = CGRectMake(0, 220, screenWidth, 130)
             lbl.textAlignment = .Center
             lbl.textColor = UIColor.mediumBlue()
-            lbl.font = UIFont(name: "Avenir-Light", size: 18)
+            lbl.font = UIFont.systemFontOfSize(18)
             lbl.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
             addSubviewWithFade(lbl, parentView: self)
             self.view.bringSubviewToFront(lbl)
@@ -239,6 +239,44 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    // MARK: VIEW PLANS MODAL
+    
+    func viewPlansModal(sender: AnyObject) {
+        
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
+        
+        let navigationController = self.storyboard!.instantiateViewControllerWithIdentifier("viewPlansFormSheetController") as! UINavigationController
+        let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
+        
+        // Initialize and style the terms and conditions modal
+        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
+        formSheetController.presentationController?.contentViewSize = CGSizeMake(300, screenHeight*0.75)
+        formSheetController.presentationController?.shouldUseMotionEffect = true
+        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor()
+        formSheetController.presentationController?.containerView?.sizeToFit()
+        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Light
+        formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
+        formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
+        formSheetController.contentViewCornerRadius = 10
+        formSheetController.allowDismissByPanningPresentedView = true
+        formSheetController.interactivePanGestureDismissalDirection = .All;
+        
+        // Blur will be applied to all MZFormSheetPresentationControllers by default
+        MZFormSheetPresentationController.appearance().shouldApplyBackgroundBlurEffect = true
+        
+        let presentedViewController = navigationController.viewControllers.first as! MerchantPlansViewController
+        
+        // keep passing along user data to modal
+        presentedViewController.detailUser = detailUser
+        presentedViewController.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
+        presentedViewController.navigationItem.leftItemsSupplementBackButton = true
+        
+        // Be sure to update current module on storyboard
+        self.presentViewController(formSheetController, animated: true, completion: nil)
     }
     
     // MARK: PAYMENT MODAL

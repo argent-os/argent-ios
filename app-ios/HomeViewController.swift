@@ -179,23 +179,23 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 
                 if(pendingBalance != 0 && availableBalance != 0) {
                     self.lblAccountPending.countFrom(CGFloat(pendingBalance)/100-600, to: CGFloat(pendingBalance)/100)
+                    self.lblAccountPending.font = UIFont(name: "HelveticaNeue", size:16)
                     self.lblAccountPending.textColor = UIColor.lightBlue()
                     self.lblAccountPending.format = "%.2f"
                     self.lblAccountPending.animationDuration = 0.5
                     self.lblAccountPending.method = UILabelCountingMethod.EaseInOut
                     self.lblAccountPending.completionBlock = {
-                        let pendingBalanceNum = formatter.stringFromNumber(pendingBalance/100)
-                        self.lblAccountPending.text = pendingBalanceNum
+                        self.lblAccountPending.attributedText = formattedCurrency(String(pendingBalance), fontName: "HelveticaNeue", superSize: 11, size: 16)
                     }
     
                     self.lblAccountAvailable.countFrom((CGFloat(Float(availableBalance))/100)-100, to: CGFloat(Float(availableBalance))/100)
                     self.lblAccountAvailable.textColor = UIColor.lightBlue()
                     self.lblAccountAvailable.format = "%.2f"
+                    self.lblAccountAvailable.font = UIFont(name: "HelveticaNeue", size:16)
                     self.lblAccountAvailable.animationDuration = 1.0
                     self.lblAccountAvailable.method = UILabelCountingMethod.EaseInOut
                     self.lblAccountAvailable.completionBlock = {
-                        let availableBalanceNum = formatter.stringFromNumber(availableBalance/100)
-                        self.lblAccountAvailable.text = availableBalanceNum
+                        self.lblAccountAvailable.attributedText = formattedCurrency(String(availableBalance), fontName: "HelveticaNeue", superSize: 11, size: 16)
                     }
                 }
             })
@@ -305,7 +305,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         self.gradient = CGGradientCreateWithColors(colorspace, gradientColors, locations)
         graph.gradientLine = self.gradient!
         graph.gradientLineDirection = .Vertical
-        
         graph.widthLine = 1
         graph.displayDotsWhileAnimating = true
         graph.enablePopUpReport = true
@@ -361,9 +360,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         let headerViewTitle: UILabel = UILabel()
         headerViewTitle.frame = CGRect(x: 18, y: 15, width: screenWidth, height: 30)
         headerViewTitle.text = "Transaction History"
-        headerViewTitle.font = UIFont(name: "Avenir-Light", size: 16)
+        headerViewTitle.font = UIFont.systemFontOfSize(16)
         headerViewTitle.textAlignment = .Left
-        headerViewTitle.textColor = UIColor.darkGrayColor().colorWithAlphaComponent(0.5)
+        headerViewTitle.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.85)
         headerView.addSubview(headerViewTitle)
         
         let tutorialButton:UIButton = UIButton()
@@ -388,7 +387,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         lblAccountAvailable.frame = CGRectMake(20, 81, 200, 40)
         let str0 = NSAttributedString(string: "$0.00", attributes:
             [
-                NSFontAttributeName: UIFont(name: "Avenir-Book", size: 18)!,
+                NSFontAttributeName: UIFont.systemFontOfSize(18),
                 NSForegroundColorAttributeName:UIColor.lightBlue()
             ])
         lblAccountAvailable.attributedText = str0
@@ -397,7 +396,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         lblAccountPending.frame = CGRectMake(20, 81, 200, 40)
         let str1 = NSAttributedString(string: "$0.00", attributes:
             [
-                NSFontAttributeName: UIFont(name: "Avenir-Book", size: 18)!,
+                NSFontAttributeName: UIFont.systemFontOfSize(18),
                 NSForegroundColorAttributeName:UIColor.lightBlue()
             ])
         lblAccountPending.attributedText = str1
@@ -526,11 +525,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 cell.img.image = UIImage(named: "ic_arrow_up")
                 cell.lblAmount?.textColor = UIColor.brandGreen()
             }
-            let formatter = NSNumberFormatter()
-            formatter.numberStyle = .CurrencyStyle
-            // formatter.locale = NSLocale.currentLocale() // This is the default
-            let amt = formatter.stringFromNumber(Float(amount)!/100)
-            cell.lblAmount?.text = amt!
+            
+            cell.lblAmount?.attributedText = formattedCurrency(amount, fontName: "HelveticaNeue", superSize: 10, size: 15)
+
         }
         if let date = item?.created
         {
