@@ -151,7 +151,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
             navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
             navBar.titleTextAttributes = [
                 NSForegroundColorAttributeName : UIColor.mediumBlue(),
-                NSFontAttributeName : UIFont(name: "ArialRoundedMTBold", size: 18)!
+                NSFontAttributeName : UIFont(name: "DINAlternate-Bold", size: 18)!
             ]
             addSubviewWithFade(navBar, parentView: self)
             let navItem = UINavigationItem(title: "@"+detailUser.username)
@@ -162,7 +162,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
             let viewPlansButton = UIButton()
             viewPlansButton.frame = CGRect(x: 50, y: cardView.layer.frame.height+10,  width: self.view.layer.frame.width-100, height: 50.0)
             viewPlansButton.setTitleColor(UIColor.lightBlue().colorWithAlphaComponent(0.9), forState: .Normal)
-            viewPlansButton.titleLabel?.font = UIFont(name: "ArialRoundedMTBold", size: 16)!
+            viewPlansButton.titleLabel?.font = UIFont(name: "DINAlternate-Bold", size: 16)!
             viewPlansButton.setTitle("View Plans", forState: .Normal)
             viewPlansButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
             viewPlansButton.addTarget(self, action: #selector(SearchDetailViewController.viewPlansModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
@@ -176,7 +176,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
             let payButton = UIButton()
             payButton.frame = CGRect(x: 50, y: cardView.layer.frame.height+70,  width: self.view.layer.frame.width-100, height: 50.0)
             payButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(1), forState: .Normal)
-            payButton.titleLabel?.font = UIFont(name: "ArialRoundedMTBold", size: 16)!
+            payButton.titleLabel?.font = UIFont(name: "DINAlternate-Bold", size: 16)!
             if detailUser.first_name != "" {
                 payButton.setTitle("Pay " + detailUser.first_name, forState: .Normal)
             } else {
@@ -199,7 +199,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
             lbl.frame = CGRectMake(0, 220, screenWidth, 130)
             lbl.textAlignment = .Center
             lbl.textColor = UIColor.lightBlue()
-            lbl.font = UIFont(name: "ArialRoundedMTBold", size: 18)!
+            lbl.font = UIFont(name: "DINAlternate-Bold", size: 18)!
             lbl.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
             addSubviewWithFade(lbl, parentView: self)
             self.view.bringSubviewToFront(lbl)

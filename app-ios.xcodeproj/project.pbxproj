@@ -126,7 +126,7 @@
 		30D5267D1CDE3736001B41BA /* ConfigurePointOfSaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D5267C1CDE3736001B41BA /* ConfigurePointOfSaleViewController.swift */; };
 		30D526821CDF7762001B41BA /* ActionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526811CDF7762001B41BA /* ActionData.swift */; };
 		30D526841CDF776B001B41BA /* OptionsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30D526831CDF776A001B41BA /* OptionsCell.xib */; };
-		30D526861CDF8675001B41BA /* ActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526851CDF8675001B41BA /* ActionSheet.swift */; };
+		30D526861CDF8675001B41BA /* OptionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526851CDF8675001B41BA /* OptionsCell.swift */; };
 		30D5268A1CDFAEC3001B41BA /* PayMerchantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526891CDFAEC3001B41BA /* PayMerchantViewController.swift */; };
 		30D5268C1CE0F303001B41BA /* Charge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D5268B1CE0F303001B41BA /* Charge.swift */; };
 		30D5268E1CE34C03001B41BA /* RiskScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D5268D1CE34C03001B41BA /* RiskScoreViewController.swift */; };
@@ -346,7 +346,7 @@
 		30D5267C1CDE3736001B41BA /* ConfigurePointOfSaleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigurePointOfSaleViewController.swift; path = "app-ios/ConfigurePointOfSaleViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30D526811CDF7762001B41BA /* ActionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActionData.swift; path = "app-ios/ActionData.swift"; sourceTree = SOURCE_ROOT; };
 		30D526831CDF776A001B41BA /* OptionsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OptionsCell.xib; path = "app-ios/OptionsCell.xib"; sourceTree = SOURCE_ROOT; };
-		30D526851CDF8675001B41BA /* ActionSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActionSheet.swift; path = "app-ios/ActionSheet.swift"; sourceTree = SOURCE_ROOT; };
+		30D526851CDF8675001B41BA /* OptionsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionsCell.swift; path = "app-ios/OptionsCell.swift"; sourceTree = SOURCE_ROOT; };
 		30D526891CDFAEC3001B41BA /* PayMerchantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = PayMerchantViewController.swift; path = "app-ios/PayMerchantViewController.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		30D5268B1CE0F303001B41BA /* Charge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Charge.swift; path = "app-ios/Charge.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		30D5268D1CE34C03001B41BA /* RiskScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RiskScoreViewController.swift; path = "app-ios/RiskScoreViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -679,8 +679,8 @@
 				30B576921CC7D1CE005BCA5A /* SearchDetailViewController.swift */,
 				3008AA451CF8BC3900AFE855 /* SearchMessageViewController.swift */,
 				30D526831CDF776A001B41BA /* OptionsCell.xib */,
+				30D526851CDF8675001B41BA /* OptionsCell.swift */,
 				30D526811CDF7762001B41BA /* ActionData.swift */,
-				30D526851CDF8675001B41BA /* ActionSheet.swift */,
 				30D526891CDFAEC3001B41BA /* PayMerchantViewController.swift */,
 				30089F441CFA6E4300A2496B /* MerchantPlanCell.xib */,
 				30089F461CFA860E00A2496B /* MerchantPlanCell.swift */,
@@ -1512,7 +1512,7 @@
 				308A348A1CCA803200AAF66F /* History.swift in Sources */,
 				306DF00F1CDA68AB00864CAE /* RiskProfileViewController.swift in Sources */,
 				30C2DAC31CA4383B003AFD8B /* NotificationViewController.swift in Sources */,
-				30D526861CDF8675001B41BA /* ActionSheet.swift in Sources */,
+				30D526861CDF8675001B41BA /* OptionsCell.swift in Sources */,
 				309E43BE1CA8ADF900279D97 /* WebTermsViewController.swift in Sources */,
 				306E82301CDAC36400A43505 /* Balance.swift in Sources */,
 				30C2DB1F1CA43A51003AFD8B /* EditProfileViewController.swift in Sources */,
