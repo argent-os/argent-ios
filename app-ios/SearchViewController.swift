@@ -76,7 +76,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.title = "Search"
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.darkGrayColor(),
-            NSFontAttributeName : UIFont(name: "Avenir-Light", size: 18.0)!
+            NSFontAttributeName : UIFont.systemFontOfSize(18)
         ]
         
         activityIndicator.center = view.center
@@ -152,7 +152,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.textLabel?.textColor = UIColor.darkGrayColor()
         cell.textLabel?.font = UIFont.systemFontOfSize(14)
         cell.selectionStyle = UITableViewCellSelectionStyle.Default
-        cell.detailTextLabel?.font = UIFont.systemFontOfSize(12)
+        cell.detailTextLabel?.font = UIFont(name: "ArialRoundedMTBold", size: 14)
         cell.detailTextLabel?.textColor = UIColor.lightBlue()
         
         cell.imageView!.frame = CGRectMake(10, 15, 30, 30)

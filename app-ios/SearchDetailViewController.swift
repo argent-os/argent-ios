@@ -117,7 +117,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
             userImageView.frame = CGRectMake(screenWidth / 2, 0, 75, 75)
             userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
             userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 205)
-            userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+            userImageView.backgroundColor = UIColor.clearColor()
             userImageView.layer.cornerRadius = userImageView.frame.size.height/2
             userImageView.layer.masksToBounds = true
             userImageView.clipsToBounds = true
@@ -133,7 +133,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
                 let img: UIImage = UIImage(data: NSData(contentsOfURL: NSURL(string: detailUser.picture)!)!)!
                 userImageView.image = img
             } else {
-                let img: UIImage = UIImage(named: "LogoRound")!
+                let img: UIImage = UIImage(named: "IconAnonymous")!
                 userImageView.image = img
             }
             
@@ -151,7 +151,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
             navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
             navBar.titleTextAttributes = [
                 NSForegroundColorAttributeName : UIColor.mediumBlue(),
-                NSFontAttributeName : UIFont.systemFontOfSize(18)
+                NSFontAttributeName : UIFont(name: "ArialRoundedMTBold", size: 18)!
             ]
             addSubviewWithFade(navBar, parentView: self)
             let navItem = UINavigationItem(title: "@"+detailUser.username)
@@ -161,21 +161,22 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
             // Button
             let viewPlansButton = UIButton()
             viewPlansButton.frame = CGRect(x: 50, y: cardView.layer.frame.height+10,  width: self.view.layer.frame.width-100, height: 50.0)
-            viewPlansButton.setTitleColor(UIColor.mediumBlue().colorWithAlphaComponent(0.9), forState: .Normal)
-            viewPlansButton.titleLabel?.font = UIFont.systemFontOfSize(16)
+            viewPlansButton.setTitleColor(UIColor.lightBlue().colorWithAlphaComponent(0.9), forState: .Normal)
+            viewPlansButton.titleLabel?.font = UIFont(name: "ArialRoundedMTBold", size: 16)!
             viewPlansButton.setTitle("View Plans", forState: .Normal)
             viewPlansButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
             viewPlansButton.addTarget(self, action: #selector(SearchDetailViewController.viewPlansModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            viewPlansButton.addTarget(self, action: #selector(SearchDetailViewController.viewPlansModal(_:)), forControlEvents: UIControlEvents.TouchUpOutside)
             viewPlansButton.layer.cornerRadius = 10
             viewPlansButton.layer.borderColor = UIColor.mediumBlue().colorWithAlphaComponent(0.5).CGColor
             viewPlansButton.layer.borderWidth = 0
             viewPlansButton.addTarget(self, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
-            addSubviewWithFade(viewPlansButton, parentView: self)
+            addSubviewWithBounce(viewPlansButton, parentView: self)
             
             let payButton = UIButton()
             payButton.frame = CGRect(x: 50, y: cardView.layer.frame.height+70,  width: self.view.layer.frame.width-100, height: 50.0)
             payButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(1), forState: .Normal)
-            payButton.titleLabel?.font = UIFont.systemFontOfSize(16)
+            payButton.titleLabel?.font = UIFont(name: "ArialRoundedMTBold", size: 16)!
             if detailUser.first_name != "" {
                 payButton.setTitle("Pay " + detailUser.first_name, forState: .Normal)
             } else {
@@ -187,7 +188,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
             payButton.backgroundColor = UIColor.lightBlue()
             payButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
             payButton.addTarget(self, action: #selector(SearchDetailViewController.payMerchantModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-            addSubviewWithFade(payButton, parentView: self)
+            addSubviewWithBounce(payButton, parentView: self)
             
             // Name textfield
             if detailUser.first_name != "" {
@@ -197,8 +198,8 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
             }
             lbl.frame = CGRectMake(0, 220, screenWidth, 130)
             lbl.textAlignment = .Center
-            lbl.textColor = UIColor.mediumBlue()
-            lbl.font = UIFont.systemFontOfSize(18)
+            lbl.textColor = UIColor.lightBlue()
+            lbl.font = UIFont(name: "ArialRoundedMTBold", size: 18)!
             lbl.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
             addSubviewWithFade(lbl, parentView: self)
             self.view.bringSubviewToFront(lbl)
@@ -254,11 +255,11 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
         
         // Initialize and style the terms and conditions modal
         formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
-        formSheetController.presentationController?.contentViewSize = CGSizeMake(300, screenHeight*0.75)
+        formSheetController.presentationController?.contentViewSize = CGSizeMake(300, screenHeight*0.5)
         formSheetController.presentationController?.shouldUseMotionEffect = true
         formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor()
         formSheetController.presentationController?.containerView?.sizeToFit()
-        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Light
+        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
         formSheetController.contentViewCornerRadius = 10

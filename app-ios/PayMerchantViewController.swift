@@ -68,7 +68,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         
         chargeInputView.delegate = self
         chargeInputView.frame = CGRect(x: 0, y: 75, width: 300, height: 100)
-        chargeInputView.textColor = UIColor.brandGreen()
+        chargeInputView.textColor = UIColor.lightBlue()
         chargeInputView.backgroundColor = UIColor.clearColor()
         chargeInputView.font = UIFont(name: "DINAlternate-Bold", size: 48)
         chargeInputView.textAlignment = .Center
@@ -122,7 +122,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
             }
         }
         
-        let formattedText = formattedCurrency(digitText, fontName: "DINAlternate-Bold", superSize: 32, fontSize: 48, offsetSymbol: 10, offsetCents: 10)
+        let formattedText = formatCurrency(digitText, fontName: "DINAlternate-Bold", superSize: 32, fontSize: 48, offsetSymbol: 10, offsetCents: 10)
         textField.attributedText = formattedText
         
         return false
@@ -298,7 +298,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
     
     func showSuccessAlert() {
         let customIcon:UIImage = UIImage(named: "ic_check_light")! // your custom icon UIImage
-        let customColor:UIColor = UIColor.brandGreen() // base color for the alert
+        let customColor:UIColor = UIColor.lightBlue() // base color for the alert
         let alertView = JSSAlertView().show(
             self,
             title: "",

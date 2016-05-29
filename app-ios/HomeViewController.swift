@@ -185,7 +185,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                     self.lblAccountPending.animationDuration = 0.5
                     self.lblAccountPending.method = UILabelCountingMethod.EaseInOut
                     self.lblAccountPending.completionBlock = {
-                        self.lblAccountPending.attributedText = formattedCurrency(String(pendingBalance), fontName: "HelveticaNeue", superSize: 11, fontSize: 16, offsetSymbol: 3, offsetCents: 3)
+                        self.lblAccountPending.attributedText = formatCurrency(String(pendingBalance), fontName: "HelveticaNeue", superSize: 11, fontSize: 16, offsetSymbol: 3, offsetCents: 3)
                     }
     
                     self.lblAccountAvailable.countFrom((CGFloat(Float(availableBalance))/100)-100, to: CGFloat(Float(availableBalance))/100)
@@ -195,7 +195,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                     self.lblAccountAvailable.animationDuration = 1.0
                     self.lblAccountAvailable.method = UILabelCountingMethod.EaseInOut
                     self.lblAccountAvailable.completionBlock = {
-                        self.lblAccountAvailable.attributedText = formattedCurrency(String(availableBalance), fontName: "HelveticaNeue", superSize: 11, fontSize: 16, offsetSymbol: 3, offsetCents: 3)
+                        self.lblAccountAvailable.attributedText = formatCurrency(String(availableBalance), fontName: "HelveticaNeue", superSize: 11, fontSize: 16, offsetSymbol: 3, offsetCents: 3)
                     }
                 }
             })
@@ -301,7 +301,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         graph.delegate = self
         let gradientColors : [CGColor] = [UIColor.brandGreen().CGColor,UIColor.brandYellow().CGColor,UIColor.brandRed().CGColor]        
         let colorspace = CGColorSpaceCreateDeviceRGB()
-        let locations: [CGFloat] = [0.0, 0.5, 1.0]
+        let locations: [CGFloat] = [0.0, 0.7, 1.0]
         self.gradient = CGGradientCreateWithColors(colorspace, gradientColors, locations)
         graph.gradientLine = self.gradient!
         graph.gradientLineDirection = .Vertical
@@ -516,6 +516,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         cell.lblAmount?.text = ""
         cell.lblDate?.text = ""
         if let amount = item?.amount {
+            print(amount)
             if Double(amount)!/100 < 0 {
                 // cell.lblCreditDebit?.text = "Debit"
                 cell.img.image = UIImage(named: "ic_arrow_down")
@@ -526,7 +527,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 cell.lblAmount?.textColor = UIColor.brandGreen()
             }
             
-            cell.lblAmount?.attributedText = formattedCurrency(amount, fontName: "HelveticaNeue", superSize: 10, fontSize: 15, offsetSymbol: 3, offsetCents: 3)
+            cell.lblAmount?.attributedText = formatCurrency(amount, fontName: "HelveticaNeue", superSize: 11, fontSize: 15, offsetSymbol: 3, offsetCents: 3)
 
         }
         if let date = item?.created

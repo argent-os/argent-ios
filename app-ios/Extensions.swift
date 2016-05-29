@@ -143,7 +143,7 @@ func showGlobalNotification(message: String, duration: NSTimeInterval, inStyle: 
     globalNotification.displayNotificationWithMessage(message, forDuration: duration)
 }
 
-func formattedCurrency(amount: String, fontName: String, superSize: CGFloat, fontSize: CGFloat, offsetSymbol: Int, offsetCents: Int) -> NSAttributedString {
+func formatCurrency(amount: String, fontName: String, superSize: CGFloat, fontSize: CGFloat, offsetSymbol: Int, offsetCents: Int) -> NSAttributedString {
     let formatter = NSNumberFormatter()
     formatter.numberStyle = .CurrencyStyle
     let r = Range<String.Index>(start: amount.startIndex, end: amount.endIndex)
@@ -161,3 +161,14 @@ func formattedCurrency(amount: String, fontName: String, superSize: CGFloat, fon
     }
     return attString
 }
+
+extension UIButton {
+    func setBackgroundColor(color: UIColor, forState: UIControlState) {
+        UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))
+        CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), color.CGColor)
+        CGContextFillRect(UIGraphicsGetCurrentContext(), CGRect(x: 0, y: 0, width: 1, height: 1))
+        let colorImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        self.setBackgroundImage(colorImage, forState: forState)
+}}

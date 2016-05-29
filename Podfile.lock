@@ -43,6 +43,7 @@ PODS:
   - SnapKit (0.21.0)
   - StepSlider (0.1.2)
   - Stripe (7.0.2)
+  - SWFrameButton (1.2.2)
   - SwiftyJSON (2.3.2)
   - TextFieldEffects (1.2.0)
   - TransitionAnimation (3.0.4):
@@ -95,6 +96,7 @@ DEPENDENCIES:
   - SnapKit
   - StepSlider
   - Stripe
+  - SWFrameButton
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
   - TextFieldEffects
   - TransitionAnimation
@@ -153,6 +155,7 @@ SPEC CHECKSUMS:
   SnapKit: 2756fe24b706367af224c9c508d2f9166d03354c
   StepSlider: 54466ab1de9002435b6839091f97ff62967fdd7e
   Stripe: d1eae5522cf993590f962ac1829a56c2096cf486
+  SWFrameButton: cd3cc4a8961e8975f4800c0f6d1d3c54c213eb87
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   TextFieldEffects: bc4fd3bd557321bd61a0762f3f50965477a36f62
   TransitionAnimation: d761c1a338f5333f4b02a184935e61a8dc14d0e4

@@ -254,7 +254,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
                 let converted_date = NSDate(timeIntervalSince1970: Double(date)!)
                 dateFormatter.timeStyle = .MediumStyle
                 let formatted_date = dateFormatter.stringFromDate(converted_date)
-                cell.detailTextLabel?.font = UIFont.systemFontOfSize(10)
+                cell.detailTextLabel?.font = UIFont.systemFontOfSize(11)
                 cell.detailTextLabel?.textColor = UIColor.lightGrayColor()
                 cell.detailTextLabel?.text = String(formatted_date) //+ " / uid " + uid
             } else {

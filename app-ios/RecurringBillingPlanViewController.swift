@@ -340,7 +340,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
             }
         }
         
-        let formattedText = formattedCurrency(digitText, fontName: "DINAlternate-Bold", superSize: 32, fontSize: 48, offsetSymbol: 10, offsetCents: 10)
+        let formattedText = formatCurrency(digitText, fontName: "DINAlternate-Bold", superSize: 32, fontSize: 48, offsetSymbol: 10, offsetCents: 10)
         textField.attributedText = formattedText
         
         // revert for posting string to api

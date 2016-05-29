@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		278F38ABFB35EDAA24E7A2BC /* Pods_app_watchos_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6959C28B834901781B0C0FCC /* Pods_app_watchos_Extension.framework */; };
 		30089F431CF93CA600A2496B /* MerchantPlansViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30089F421CF93CA600A2496B /* MerchantPlansViewController.swift */; };
+		30089F451CFA6E4300A2496B /* MerchantPlanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30089F441CFA6E4300A2496B /* MerchantPlanCell.xib */; };
+		30089F471CFA860E00A2496B /* MerchantPlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30089F461CFA860E00A2496B /* MerchantPlanCell.swift */; };
 		3008AA441CF89B6C00AFE855 /* SupportCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3008AA431CF89B6C00AFE855 /* SupportCategoryTableViewController.swift */; };
 		3008AA461CF8BC3900AFE855 /* SearchMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3008AA451CF8BC3900AFE855 /* SearchMessageViewController.swift */; };
 		300D8BDF1CE5416700FC3B05 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300D8BDE1CE5416700FC3B05 /* OnboardingCollectionViewCell.swift */; };
@@ -222,6 +224,8 @@
 		1F47764297D847A2B25B7D81 /* Pods_argent_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_argent_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B614FB4245DEA1791296CAF /* Pods-app-watchos Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-watchos Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-app-watchos Extension/Pods-app-watchos Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		30089F421CF93CA600A2496B /* MerchantPlansViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MerchantPlansViewController.swift; path = "app-ios/MerchantPlansViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30089F441CFA6E4300A2496B /* MerchantPlanCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MerchantPlanCell.xib; path = "app-ios/MerchantPlanCell.xib"; sourceTree = SOURCE_ROOT; };
+		30089F461CFA860E00A2496B /* MerchantPlanCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MerchantPlanCell.swift; path = "app-ios/MerchantPlanCell.swift"; sourceTree = SOURCE_ROOT; };
 		3008AA431CF89B6C00AFE855 /* SupportCategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupportCategoryTableViewController.swift; path = "app-ios/SupportCategoryTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		3008AA451CF8BC3900AFE855 /* SearchMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchMessageViewController.swift; path = "app-ios/SearchMessageViewController.swift"; sourceTree = SOURCE_ROOT; };
 		300B66F61CA4635800E24AF1 /* RESideMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RESideMenu.framework; path = "Pods/../build/Debug-iphoneos/RESideMenu.framework"; sourceTree = "<group>"; };
@@ -678,6 +682,8 @@
 				30D526811CDF7762001B41BA /* ActionData.swift */,
 				30D526851CDF8675001B41BA /* ActionSheet.swift */,
 				30D526891CDFAEC3001B41BA /* PayMerchantViewController.swift */,
+				30089F441CFA6E4300A2496B /* MerchantPlanCell.xib */,
+				30089F461CFA860E00A2496B /* MerchantPlanCell.swift */,
 				30089F421CF93CA600A2496B /* MerchantPlansViewController.swift */,
 			);
 			name = Search;
@@ -1246,6 +1252,7 @@
 			files = (
 				30C2DB0D1CA439CC003AFD8B /* Auth.storyboard in Resources */,
 				30C2DA8D1CA436CC003AFD8B /* ocra.ttf in Resources */,
+				30089F451CFA6E4300A2496B /* MerchantPlanCell.xib in Resources */,
 				306999031CAA125C0003B0A6 /* soft.caf in Resources */,
 				309E43CB1CA9CFED00279D97 /* bloom.caf in Resources */,
 				30C2DA911CA436E6003AFD8B /* PasscodeLockView.xib in Resources */,
@@ -1500,6 +1507,7 @@
 				30C2DAE91CA43934003AFD8B /* BankAccountViewController.swift in Sources */,
 				30C2DAA61CA4374F003AFD8B /* SignupIndividualViewControllerTwo.swift in Sources */,
 				30C2DAA51CA4374F003AFD8B /* SignupIndividualViewControllerThree.swift in Sources */,
+				30089F471CFA860E00A2496B /* MerchantPlanCell.swift in Sources */,
 				30C2DB171CA439F4003AFD8B /* paykloud_iosTests.swift in Sources */,
 				308A348A1CCA803200AAF66F /* History.swift in Sources */,
 				306DF00F1CDA68AB00864CAE /* RiskProfileViewController.swift in Sources */,

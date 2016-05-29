@@ -28,7 +28,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
 
     func textFieldDidChange(textField: UITextField) {
         let text = textField.text!.stringByReplacingOccurrencesOfString(currencyFormatter.currencySymbol, withString: "").stringByReplacingOccurrencesOfString(currencyFormatter.groupingSeparator, withString: "").stringByReplacingOccurrencesOfString(currencyFormatter.decimalSeparator, withString: "")
-        let formattedText = formattedCurrency(text, fontName: "DINAlternate-Bold", superSize: 32, fontSize: 48, offsetSymbol: 10, offsetCents: 10)
+        let formattedText = formatCurrency(text, fontName: "DINAlternate-Bold", superSize: 32, fontSize: 48, offsetSymbol: 10, offsetCents: 10)
         textField.attributedText = formattedText
     }
     

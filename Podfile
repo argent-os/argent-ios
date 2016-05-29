@@ -54,7 +54,7 @@ target 'app-ios' do
 	pod 'CellAnimator'
 	pod '1PasswordExtension'
 	pod 'Armchair'
-
+	
 	# Fabric
 	pod 'Fabric'
 	pod 'Crashlytics'
