@@ -119,7 +119,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         
         splitter.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
         splitter.frame = CGRect(x: screenWidth/2-0.5, y: 140, width: 1, height: 50)
-        Timeout(0.2) {
+        Timeout(0.05) {
             addSubviewWithFade(self.splitter, parentView: self)
         }
         
