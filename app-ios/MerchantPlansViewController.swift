@@ -154,13 +154,19 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         if let amount = plansArray![indexPath.row].amount, let interval = plansArray![indexPath.row].interval {
             let fc = formatCurrency(amount, fontName: "DINAlternate-Bold", superSize: 11, fontSize: 14, offsetSymbol: 2, offsetCents: 2)
             
-            cell.planButton.normalTitle = fc.string
-            cell.planButton.confirmationTitle = "Confirm"
-            
             let attrs: [String: AnyObject] = [
                 NSForegroundColorAttributeName : UIColor.lightBlue().colorWithAlphaComponent(0.5),
                 NSFontAttributeName : UIFont(name: "DINAlternate-Bold", size: 12)!
             ]
+            
+            let attrs2: [String: AnyObject] = [
+                NSForegroundColorAttributeName : UIColor.brandGreen(),
+                NSFontAttributeName : UIFont(name: "DINAlternate-Bold", size: 14)!
+            ]
+            
+            cell.planButton.attributedNormalTitle = fc
+            cell.planButton.attributedConfirmationTitle = NSAttributedString(string: "Confirm", attributes: attrs2)
+            
             switch interval {
             case "day":
                 let interval = NSAttributedString(string: " / day", attributes: attrs)

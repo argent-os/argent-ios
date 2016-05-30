@@ -45,33 +45,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tblSearchResults.dg_removePullToRefresh()
     }
     
-    lazy var gesture: UIPanGestureRecognizer = {
-        let gesture = UIPanGestureRecognizer(target: self, action: #selector(SearchViewController.swipeTransition(_:)))
-        return gesture
-    }()
-    
-    func swipeTransition(sender: UIPanGestureRecognizer) {
-        switch sender.state {
-        case .Began :
-            if sender.translationInView(sender.view).x >= 0 {
-                tabBarController?.tr_selected(0, gesture: sender)
-            } else if sender.translationInView(sender.view).x < 0 {
-                tabBarController?.tr_selected(2, gesture: sender)
-            }
-            
-        default : break
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
-        
-        view.addGestureRecognizer(gesture)
-        
+                
         self.view.backgroundColor = UIColor.slateBlue()
         
         self.title = "Search"
