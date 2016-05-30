@@ -116,34 +116,53 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         balanceSwitch.removeFromSuperview()
     }
     
+    func showGraphActivityIndicator() {
+        print("showing indicator")
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.center = CGPointMake(self.view.layer.frame.width*0.5, self.view.layer.frame.height*0.3)
+        self.view.addSubview(activityIndicator)
+    }
+    
     func dateRangeSegmentControl(segment: UISegmentedControl) {
+        showGraphActivityIndicator()
         if segment.selectedSegmentIndex == 0 {
+            showGraphActivityIndicator()
             History.getHistoryArrays({ (_1d, _2w, _1m, _3m, _6m, _1y, _5y, err) in
                 self.arrayOfValues = _2w!
+                self.activityIndicator.stopAnimating()
                 self.graph.reloadGraph()
             })
         }
         else if segment.selectedSegmentIndex == 1 {
+            showGraphActivityIndicator()
             History.getHistoryArrays({ (_1d, _2w, _1m, _3m, _6m, _1y, _5y, err) in
                 self.arrayOfValues = _1m!
+                self.activityIndicator.stopAnimating()
                 self.graph.reloadGraph()
             })
         }
         else if segment.selectedSegmentIndex == 2 {
+            showGraphActivityIndicator()
             History.getHistoryArrays({ (_1d, _2w, _1m, _3m, _6m, _1y, _5y, err) in
                 self.arrayOfValues = _3m!
+                self.activityIndicator.stopAnimating()
                 self.graph.reloadGraph()
             })
         }
         else if segment.selectedSegmentIndex == 3 {
+            showGraphActivityIndicator()
             History.getHistoryArrays({ (_1d, _2w, _1m, _3m, _6m, _1y, _5y, err) in
                 self.arrayOfValues = _6m!
+                self.activityIndicator.stopAnimating()
                 self.graph.reloadGraph()
             })
         }
         else if segment.selectedSegmentIndex == 4 {
+            showGraphActivityIndicator()
             History.getHistoryArrays({ (_1d, _2w, _1m, _3m, _6m, _1y, _5y, err) in
                 self.arrayOfValues = _1y!
+                self.activityIndicator.stopAnimating()
                 self.graph.reloadGraph()
             })
         }
@@ -235,7 +254,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                     // Track user action
                     Answers.logCustomEventWithName("User logged in", customAttributes: nil)
                     
-                    showGlobalNotification("Welcome " + (user?.first_name)! + "!", duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandGreen())
+                    showGlobalNotification("Welcome " + (user?.first_name)! + "!", duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.slateBlue())
                 }
                 
                 if user!.picture != "" {
@@ -305,7 +324,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         self.gradient = CGGradientCreateWithColors(colorspace, gradientColors, locations)
         graph.gradientLine = self.gradient!
         graph.gradientLineDirection = .Vertical
-        graph.widthLine = 1
+        graph.widthLine = 1.5
         graph.displayDotsWhileAnimating = true
         graph.enablePopUpReport = true
         graph.noDataLabelColor = UIColor.mediumBlue()

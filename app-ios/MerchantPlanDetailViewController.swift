@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MZFormSheetPresentationController
 
 class MerchantPlanDetailViewController: UIViewController {
     
@@ -35,21 +36,21 @@ class MerchantPlanDetailViewController: UIViewController {
     
     func layoutViews() {
         
-        circleView.frame = CGRect(x: 90, y: 80, width: 120, height: 120)
+        circleView.frame = CGRect(x: 90, y: 110, width: 120, height: 120)
         circleView.backgroundColor = UIColor.clearColor()
         circleView.layer.cornerRadius = circleView.frame.height/2
         circleView.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
         circleView.layer.borderWidth = 1
         addSubviewWithBounce(circleView, parentView: self)
         
-        planTitleLabel.frame = CGRect(x: 40, y: -10, width: 300-80, height: 100)
+        planTitleLabel.frame = CGRect(x: 40, y: 20, width: 300-80, height: 100)
         planTitleLabel.text = planName
         planTitleLabel.font = UIFont(name: "DINAlternate-Bold", size: 24)
         planTitleLabel.textAlignment = .Center
         planTitleLabel.textColor = UIColor.lightBlue()
         addSubviewWithBounce(planTitleLabel, parentView: self)
         
-        planAmountLabel.frame = CGRect(x: 40, y: 55, width: 300-80, height: 150)
+        planAmountLabel.frame = CGRect(x: 40, y: 85, width: 300-80, height: 150)
         planAmountLabel.attributedText = formatCurrency(planAmount!, fontName: "DINAlternate-Bold", superSize: 16, fontSize: 24, offsetSymbol: 5, offsetCents: 5)
         planAmountLabel.textAlignment = .Center
         planAmountLabel.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
@@ -58,14 +59,14 @@ class MerchantPlanDetailViewController: UIViewController {
             planAmountLabel.attributedText = formatCurrency(planAmount!, fontName: "DINAlternate-Bold", superSize: 12, fontSize: 18, offsetSymbol: 3, offsetCents: 3)
         }
         
-        planIntervalLabel.frame = CGRect(x: 40, y: 110, width: 300-80, height: 100)
+        planIntervalLabel.frame = CGRect(x: 40, y: 140, width: 300-80, height: 100)
         planIntervalLabel.text = "per " + planInterval!
         planIntervalLabel.font = UIFont(name: "DINAlternate-Bold", size: 12)
         planIntervalLabel.textAlignment = .Center
         planIntervalLabel.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
         addSubviewWithBounce(planIntervalLabel, parentView: self)
         
-        planStatementDescriptorLabel.frame = CGRect(x: 40, y: 140, width: 300-80, height: 200)
+        planStatementDescriptorLabel.frame = CGRect(x: 40, y: 170, width: 300-80, height: 200)
         planStatementDescriptorLabel.numberOfLines = 8
         planStatementDescriptorLabel.font = UIFont(name: "DINAlternate-Bold", size: 12)
         planStatementDescriptorLabel.textAlignment = .Center
@@ -77,6 +78,18 @@ class MerchantPlanDetailViewController: UIViewController {
             planStatementDescriptorLabel.text = planStatementDescriptor
         }
 
+    }
+    
+    func shouldUseContentViewFrameForPresentationController(presentationController: MZFormSheetPresentationController) -> Bool {
+        return true
+    }
+    
+    func contentViewFrameForPresentationController(presentationController: MZFormSheetPresentationController, currentFrame: CGRect) -> CGRect {
+        print(currentFrame.size.height)
+        print(currentFrame.origin.y)
+//        currentFrame.size.height = 450
+//        currentFrame.origin.y = 20
+        return currentFrame
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

@@ -80,10 +80,10 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
 //        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(viewPlanDetails(_:)))
 //        view.addGestureRecognizer(tap)
         
-        activityIndicator.center = tableView.center
-        activityIndicator.startAnimating()
-        activityIndicator.hidesWhenStopped = true
-        self.view.addSubview(activityIndicator)
+//        activityIndicator.center = tableView.center
+//        activityIndicator.startAnimating()
+//        activityIndicator.hidesWhenStopped = true
+//        self.view.addSubview(activityIndicator)
         
         tableView.registerClass(MerchantPlanCell.self, forCellReuseIdentifier: cellReuseIdendifier)
         self.view.addSubview(tableView)
@@ -96,7 +96,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.reloadData()
         tableView.showsVerticalScrollIndicator = false
         print(self.view.frame.height)
-        tableView.frame = CGRect(x: 0, y: 50, width: 300, height: 260)
+        tableView.frame = CGRect(x: 0, y: 10, width: 300, height: 390)
         self.view.addSubview(tableView)
         
         self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
@@ -164,6 +164,8 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
                 NSFontAttributeName : UIFont(name: "DINAlternate-Bold", size: 14)!
             ]
             
+//            cell.planButton.normalTitle = "N/A"
+//            cell.planButton.confirmationTitle = "Confirm"
             cell.planButton.attributedNormalTitle = fc
             cell.planButton.attributedConfirmationTitle = NSAttributedString(string: "Confirm", attributes: attrs2)
             
@@ -260,7 +262,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RecurringBillingViewController") as! RecurringBillingViewController
         self.presentViewController(viewController, animated: true, completion: nil)
     }
-    
+
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)

@@ -255,10 +255,12 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
         
         // Initialize and style the terms and conditions modal
         formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
-        formSheetController.presentationController?.contentViewSize = CGSizeMake(300, screenHeight*0.5)
+        formSheetController.presentationController?.contentViewSize = CGSizeMake(300, screenHeight*0.6)
         formSheetController.presentationController?.shouldUseMotionEffect = true
         formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor()
         formSheetController.presentationController?.containerView?.sizeToFit()
+        formSheetController.presentationController?.shouldCenterVertically = true
+        formSheetController.presentationController?.shouldCenterHorizontally = true
         formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom

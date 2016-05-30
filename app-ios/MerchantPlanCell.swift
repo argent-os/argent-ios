@@ -31,15 +31,7 @@ class MerchantPlanCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        activityIndicator.center = self.contentView.center
-        activityIndicator.startAnimating()
-        activityIndicator.hidesWhenStopped = true
-        self.contentView.addSubview(activityIndicator)
-        Timeout(0.3) {
-            self.activityIndicator.stopAnimating()
-        }
-        
+    
         planNameLabel.frame = CGRect(x: 20, y: 20, width: 180, height: 20)
         planNameLabel.font = UIFont(name: "DINAlternate-Bold", size: 16)
         planNameLabel.textColor = UIColor.lightBlue()
@@ -50,12 +42,12 @@ class MerchantPlanCell: UITableViewCell {
         planButton.frame = CGRect(x: self.contentView.frame.size.width-95, y: 25, width: 80, height: 30)
         planButton.addTarget(self, action: #selector(MerchantPlanCell.purchaseButtonTapped(_:)), forControlEvents: .TouchUpInside)
         planButton.buttonState = AvePurchaseButtonState.Normal
-        //planButton.normalTitle = "N/A"
-        //planButton.confirmationTitle = "Confirm"
+//        planButton.normalTitle = "N/A"
+//        planButton.confirmationTitle = "Confirm"
         planButton.normalColor = UIColor.iosBlue()
         planButton.tintColor = UIColor.iosBlue()
         planButton.confirmationColor = UIColor.brandGreen()
-        //planButton.sizeToFit()
+//        planButton.sizeToFit()
 
     }
     
