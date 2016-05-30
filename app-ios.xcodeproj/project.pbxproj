@@ -11,6 +11,7 @@
 		30089F431CF93CA600A2496B /* MerchantPlansViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30089F421CF93CA600A2496B /* MerchantPlansViewController.swift */; };
 		30089F451CFA6E4300A2496B /* MerchantPlanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30089F441CFA6E4300A2496B /* MerchantPlanCell.xib */; };
 		30089F471CFA860E00A2496B /* MerchantPlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30089F461CFA860E00A2496B /* MerchantPlanCell.swift */; };
+		30089F491CFBDE9000A2496B /* MerchantPlanDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30089F481CFBDE9000A2496B /* MerchantPlanDetailViewController.swift */; };
 		3008AA441CF89B6C00AFE855 /* SupportCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3008AA431CF89B6C00AFE855 /* SupportCategoryTableViewController.swift */; };
 		3008AA461CF8BC3900AFE855 /* SearchMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3008AA451CF8BC3900AFE855 /* SearchMessageViewController.swift */; };
 		300D8BDF1CE5416700FC3B05 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300D8BDE1CE5416700FC3B05 /* OnboardingCollectionViewCell.swift */; };
@@ -226,6 +227,7 @@
 		30089F421CF93CA600A2496B /* MerchantPlansViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MerchantPlansViewController.swift; path = "app-ios/MerchantPlansViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30089F441CFA6E4300A2496B /* MerchantPlanCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MerchantPlanCell.xib; path = "app-ios/MerchantPlanCell.xib"; sourceTree = SOURCE_ROOT; };
 		30089F461CFA860E00A2496B /* MerchantPlanCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MerchantPlanCell.swift; path = "app-ios/MerchantPlanCell.swift"; sourceTree = SOURCE_ROOT; };
+		30089F481CFBDE9000A2496B /* MerchantPlanDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MerchantPlanDetailViewController.swift; path = "app-ios/MerchantPlanDetailViewController.swift"; sourceTree = SOURCE_ROOT; };
 		3008AA431CF89B6C00AFE855 /* SupportCategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupportCategoryTableViewController.swift; path = "app-ios/SupportCategoryTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		3008AA451CF8BC3900AFE855 /* SearchMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchMessageViewController.swift; path = "app-ios/SearchMessageViewController.swift"; sourceTree = SOURCE_ROOT; };
 		300B66F61CA4635800E24AF1 /* RESideMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RESideMenu.framework; path = "Pods/../build/Debug-iphoneos/RESideMenu.framework"; sourceTree = "<group>"; };
@@ -685,6 +687,7 @@
 				30089F441CFA6E4300A2496B /* MerchantPlanCell.xib */,
 				30089F461CFA860E00A2496B /* MerchantPlanCell.swift */,
 				30089F421CF93CA600A2496B /* MerchantPlansViewController.swift */,
+				30089F481CFBDE9000A2496B /* MerchantPlanDetailViewController.swift */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -1446,6 +1449,7 @@
 				30C2DAC11CA43836003AFD8B /* ProfileViewController.swift in Sources */,
 				30C2DAEF1CA43951003AFD8B /* AddCustomerViewController.swift in Sources */,
 				30C2DAD01CA4386A003AFD8B /* SupportMenuViewController.swift in Sources */,
+				30089F491CFBDE9000A2496B /* MerchantPlanDetailViewController.swift in Sources */,
 				30C2DB1D1CA43A05003AFD8B /* paykloud_iosUITests.swift in Sources */,
 				30C2DADB1CA438A5003AFD8B /* ProfileLabelCell.swift in Sources */,
 				3015ADC31CE3B1110053D220 /* RiskTutorialViewController.swift in Sources */,

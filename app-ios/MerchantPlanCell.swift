@@ -39,14 +39,14 @@ class MerchantPlanCell: UITableViewCell {
             self.activityIndicator.stopAnimating()
         }
         
-        planNameLabel.frame = CGRect(x: 20, y: 20, width: 70, height: 20)
+        planNameLabel.frame = CGRect(x: 20, y: 20, width: 180, height: 20)
         planNameLabel.font = UIFont(name: "ArialRoundedMTBold", size: 16)
         planNameLabel.textColor = UIColor.lightBlue()
         
-        planAmountLabel.frame = CGRect(x: 20, y: 40, width: 70, height: 20)
+        planAmountLabel.frame = CGRect(x: 20, y: 40, width: 180, height: 20)
         planAmountLabel.textColor = UIColor.lightBlue()
         
-        planButton.frame = CGRect(x: self.contentView.frame.size.width-110, y: self.contentView.frame.size.height*0.5-15, width: 90, height: 30)
+        planButton.frame = CGRect(x: self.contentView.frame.size.width-105, y: self.contentView.frame.size.height*0.5-15, width: 90, height: 30)
         planButton.setTitle("Subscribe", forState: .Normal)
         let str1 = NSAttributedString(string: "Subscribe", attributes: [
             NSForegroundColorAttributeName : UIColor.lightBlue(),

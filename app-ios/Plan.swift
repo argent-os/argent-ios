@@ -12,17 +12,22 @@ import Alamofire
 
 class Plan {
     
-    static let sharedInstance = Plan(id: "", interval: "", currency: "")
+    static let sharedInstance = Plan(id: "", name: "", interval: "", currency: "", amount: "", statement_desc: "")
 
+    let id: Optional<String>
+    let name: Optional<String>
     let interval: Optional<String>
     let currency: Optional<String>
+    let amount: Optional<String>
+    let statement_desc: Optional<String>
     
-    let id: String
-    
-    required init(id: String, interval: String, currency: String) {
+    required init(id: String, name: String, interval: String, currency: String, amount: String, statement_desc: String) {
+        self.id = id
+        self.name = name
         self.interval = interval
         self.currency = currency
-        self.id = id
+        self.amount = amount
+        self.statement_desc = statement_desc
     }
     
     class func createPlan(dic: Dictionary<String, String>, completionHandler: (Bool, String) -> Void) {
@@ -143,7 +148,11 @@ class Plan {
                                 let plans = data["plans"]["data"].arrayValue
                                 for plan in plans {
                                     let id = plan["id"].stringValue
-                                    let item = Plan(id: id, interval: "", currency: "")
+                                    let amount = plan["amount"].stringValue
+                                    let name = plan["name"].stringValue
+                                    let interval = plan["interval"].stringValue
+                                    let statement_desc = plan["statement_descriptor"].stringValue
+                                    let item = Plan(id: id, name: name, interval: interval, currency: "", amount: amount, statement_desc: statement_desc)
                                     plansArray.append(item)
                                 }
                                 completionHandler(plansArray, response.result.error)
@@ -155,4 +164,47 @@ class Plan {
             })
         }
     }
+    
+    class func getDelegatedPlanList(delegatedUsername: String, completionHandler: ([Plan]?, NSError?) -> Void) {
+        // request to api to get data as json, put in list and table
+        
+        // check for token, get profile id based on token and make the request
+        
+        let parameters : [String : AnyObject] = [:]
+        
+        let headers = [
+            "Authorization": "Bearer " + (userAccessToken as! String),
+            "Content-Type": "application/x-www-form-urlencoded"
+        ]
+        
+        let limit = "100"
+        let delegated_username = delegatedUsername
+        
+        let endpoint = API_URL + "/v1/stripe/plans/" + delegated_username + "?limit=" + limit
+        
+        Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
+            .validate().responseJSON { response in
+                switch response.result {
+                case .Success:
+                    if let value = response.result.value {
+                        let data = JSON(value)
+                        var plansArray = [Plan]()
+                        let plans = data["plans"]["data"].arrayValue
+                        for plan in plans {
+                            let id = plan["id"].stringValue
+                            let amount = plan["amount"].stringValue
+                            let name = plan["name"].stringValue
+                            let interval = plan["interval"].stringValue
+                            let statement_desc = plan["statement_descriptor"].stringValue
+                            let item = Plan(id: id, name: name, interval: interval, currency: "", amount: amount, statement_desc: statement_desc)
+                            plansArray.append(item)
+                        }
+                        completionHandler(plansArray, response.result.error)
+                    }
+                case .Failure(let error):
+                    print(error)
+                }
+        }
+    }
+
 }

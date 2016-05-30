@@ -20,8 +20,6 @@ import CellAnimator
 
 class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
-    private var notificationsArray:Array<NotificationItem>?
-    
     private var dateFormatter = NSDateFormatter()
     
     private var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
@@ -30,13 +28,11 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
     
     private var tableView = UITableView()
     
-    private var planNameArray = ["Gold", "Silver", "Platinum", "Bronze"]
-    
-    private var planNameArray2 = []
-
-    private var planAmountArray = ["1499", "1199", "599", "299"]
+    private var plansArray:Array<Plan>?
 
     private var cellReuseIdendifier = "idCellMerchantPlan"
+    
+    private var selectedRow: Int?
     
     var detailUser: User? {
         didSet {
@@ -93,8 +89,9 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         self.view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.emptyDataSetSource = self
-        tableView.emptyDataSetDelegate = self
+        // test empty works
+        // tableView.emptyDataSetSource = self
+        // tableView.emptyDataSetDelegate = self
         tableView.tableFooterView = UIView()
         tableView.reloadData()
         tableView.showsVerticalScrollIndicator = false
@@ -116,21 +113,21 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         let navItem = UINavigationItem(title: "Plans");
         navBar.setItems([navItem], animated: false);
         
-        //self.loadNotificationItems()
+        self.loadPlans()
     }
     
-    private func loadNotificationItems() {
+    private func loadPlans() {
         activityIndicator.center = view.center
         activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true
         // self.view.addSubview(activityIndicator)
-        NotificationItem.getNotificationList({ (notifications, error) in
+        Plan.getDelegatedPlanList((detailUser?.username)!, completionHandler: { (plans, error) in
             if error != nil {
-                let alert = UIAlertController(title: "Error", message: "Could not load notifications \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
+                let alert = UIAlertController(title: "Error", message: "Could not load plans \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
-            self.notificationsArray = notifications
+            self.plansArray = plans
             self.activityIndicator.stopAnimating()
             
             // sets empty data set if data is nil
@@ -142,20 +139,22 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if detailUser?.username == "sinan" {
-            return 0
-        } else {
-            return planNameArray.count
-        }
+        return self.plansArray?.count ?? 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdendifier, forIndexPath: indexPath) as! MerchantPlanCell
-        cell.planNameLabel.text = planNameArray[indexPath.row]
-        let amount = planAmountArray[indexPath.row]
-        let fc = formatCurrency(amount, fontName: "ArialRoundedMTBold", superSize: 11, fontSize: 14, offsetSymbol: 2, offsetCents: 2)
-        cell.planAmountLabel.attributedText = fc
+        
+        CellAnimator.animateCell(cell, withTransform: CellAnimator.TransformTilt, andDuration: 0.3)
+
+        if let name = plansArray![indexPath.row].name {
+            cell.planNameLabel.text = name
+        }
+        if let amount = plansArray![indexPath.row].amount {
+            let fc = formatCurrency(amount, fontName: "ArialRoundedMTBold", superSize: 11, fontSize: 14, offsetSymbol: 2, offsetCents: 2)
+            cell.planAmountLabel.attributedText = fc
+        }
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(subscribeToPlan(_:)))
         cell.planButton.addGestureRecognizer(tap)
@@ -163,8 +162,36 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         return cell
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        self.selectedRow = indexPath.row
+        self.performSegueWithIdentifier("viewPlanDetail", sender: self)
+    }
+    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 80
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "viewPlanDetail" {
+            let destination = segue.destinationViewController as! MerchantPlanDetailViewController
+            guard let name = plansArray![self.selectedRow!].name else {
+                return
+            }
+            guard let amount = plansArray![self.selectedRow!].amount else {
+                return
+            }
+            guard let interval = plansArray![self.selectedRow!].interval else {
+                return
+            }
+            guard let desc = plansArray![self.selectedRow!].statement_desc else {
+                return
+            }
+            destination.planName = name
+            destination.planAmount = amount
+            destination.planInterval = interval
+            destination.planStatementDescriptor = desc
+        }
     }
     
     func subscribeToPlan(sender: AnyObject) {
@@ -173,8 +200,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
-    
-    
+
     
     // MARK: DZNEmptyDataSet delegate
     
