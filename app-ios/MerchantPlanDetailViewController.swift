@@ -44,7 +44,7 @@ class MerchantPlanDetailViewController: UIViewController {
         
         planTitleLabel.frame = CGRect(x: 40, y: -10, width: 300-80, height: 100)
         planTitleLabel.text = planName
-        planTitleLabel.font = UIFont(name: "ArialRoundedMTBold", size: 24)
+        planTitleLabel.font = UIFont(name: "DINAlternate-Bold", size: 24)
         planTitleLabel.textAlignment = .Center
         planTitleLabel.textColor = UIColor.lightBlue()
         addSubviewWithBounce(planTitleLabel, parentView: self)
@@ -54,6 +54,9 @@ class MerchantPlanDetailViewController: UIViewController {
         planAmountLabel.textAlignment = .Center
         planAmountLabel.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
         addSubviewWithBounce(planAmountLabel, parentView: self)
+        if Int(planAmount!)! > 1000000 {
+            planAmountLabel.attributedText = formatCurrency(planAmount!, fontName: "DINAlternate-Bold", superSize: 12, fontSize: 18, offsetSymbol: 3, offsetCents: 3)
+        }
         
         planIntervalLabel.frame = CGRect(x: 40, y: 110, width: 300-80, height: 100)
         planIntervalLabel.text = "per " + planInterval!

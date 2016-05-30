@@ -2,6 +2,7 @@ PODS:
   - 1PasswordExtension (1.8.2)
   - Alamofire (3.2.1)
   - Armchair (0.1.1)
+  - AvePurchaseButton (1.0.0)
   - AYVibrantButton (1.0.4)
   - BEMCheckBox (1.2.1)
   - BEMSimpleLineGraph (4.1)
@@ -43,7 +44,6 @@ PODS:
   - SnapKit (0.21.0)
   - StepSlider (0.1.2)
   - Stripe (7.0.2)
-  - SWFrameButton (1.2.2)
   - SwiftyJSON (2.3.2)
   - TextFieldEffects (1.2.0)
   - TransitionAnimation (3.0.4):
@@ -60,6 +60,7 @@ DEPENDENCIES:
   - 1PasswordExtension
   - Alamofire (~> 3.2.1)
   - Armchair
+  - AvePurchaseButton
   - AYVibrantButton
   - BEMCheckBox
   - BEMSimpleLineGraph
@@ -96,7 +97,6 @@ DEPENDENCIES:
   - SnapKit
   - StepSlider
   - Stripe
-  - SWFrameButton
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
   - TextFieldEffects
   - TransitionAnimation
@@ -118,6 +118,7 @@ SPEC CHECKSUMS:
   1PasswordExtension: 303f2b7bbf6dc19ede3090bd6b5987530648d687
   Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
   Armchair: 276f0dadba704b562870613301bdf7b595a29315
+  AvePurchaseButton: 5d710f7e6c0dee9ef4f60c2dad88440a711bd969
   AYVibrantButton: ca0138e754e886d92e3c71c58dd16cc392c780b8
   BEMCheckBox: 264b8b72aa92adbfefa265cc58a0cdb86b207b9f
   BEMSimpleLineGraph: 44fd451f27f8e9cf96f2da5bea27603093576dd1
@@ -155,7 +156,6 @@ SPEC CHECKSUMS:
   SnapKit: 2756fe24b706367af224c9c508d2f9166d03354c
   StepSlider: 54466ab1de9002435b6839091f97ff62967fdd7e
   Stripe: d1eae5522cf993590f962ac1829a56c2096cf486
-  SWFrameButton: cd3cc4a8961e8975f4800c0f6d1d3c54c213eb87
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   TextFieldEffects: bc4fd3bd557321bd61a0762f3f50965477a36f62
   TransitionAnimation: d761c1a338f5333f4b02a184935e61a8dc14d0e4

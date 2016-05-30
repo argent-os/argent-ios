@@ -8,12 +8,13 @@
 
 import Foundation
 import UIKit
+import AvePurchaseButton
 
 class MerchantPlanCell: UITableViewCell {
     
     var planNameLabel = UILabel()
     var planAmountLabel = UILabel()
-    var planButton = UIButton()
+    let planButton: AvePurchaseButton = AvePurchaseButton()
     var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -40,36 +41,41 @@ class MerchantPlanCell: UITableViewCell {
         }
         
         planNameLabel.frame = CGRect(x: 20, y: 20, width: 180, height: 20)
-        planNameLabel.font = UIFont(name: "ArialRoundedMTBold", size: 16)
+        planNameLabel.font = UIFont(name: "DINAlternate-Bold", size: 16)
         planNameLabel.textColor = UIColor.lightBlue()
         
         planAmountLabel.frame = CGRect(x: 20, y: 40, width: 180, height: 20)
         planAmountLabel.textColor = UIColor.lightBlue()
         
-        planButton.frame = CGRect(x: self.contentView.frame.size.width-105, y: self.contentView.frame.size.height*0.5-15, width: 90, height: 30)
-        planButton.setTitle("Subscribe", forState: .Normal)
-        let str1 = NSAttributedString(string: "Subscribe", attributes: [
-            NSForegroundColorAttributeName : UIColor.lightBlue(),
-            NSFontAttributeName : UIFont(name: "ArialRoundedMTBold", size: 14.0)!
-        ])
-        let str2 = NSAttributedString(string: "Subscribe", attributes: [
-            NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "ArialRoundedMTBold", size: 14.0)!
-        ])
-        let str3 = NSAttributedString(string: "Unsubscribe", attributes: [
-            NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "ArialRoundedMTBold", size: 14.0)!
-        ])
-        planButton.setAttributedTitle(str1, forState: .Normal)
-        planButton.setAttributedTitle(str2, forState: .Highlighted)
-        planButton.setAttributedTitle(str3, forState: .Selected)
-        planButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
-        planButton.setBackgroundColor(UIColor.lightBlue(), forState: .Highlighted)
-        planButton.setBackgroundColor(UIColor.lightBlue(), forState: .Selected)
-        planButton.layer.cornerRadius = 10
-        planButton.layer.masksToBounds = true
-        planButton.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
-        planButton.layer.borderWidth = 1
+        planButton.frame = CGRect(x: self.contentView.frame.size.width-95, y: 25, width: 80, height: 30)
+        planButton.addTarget(self, action: #selector(MerchantPlanCell.purchaseButtonTapped(_:)), forControlEvents: .TouchUpInside)
+        planButton.buttonState = AvePurchaseButtonState.Normal
+        //planButton.normalTitle = "N/A"
+        //planButton.confirmationTitle = "Confirm"
+        planButton.normalColor = UIColor.iosBlue()
+        planButton.tintColor = UIColor.iosBlue()
+        planButton.confirmationColor = UIColor.brandGreen()
+        //planButton.sizeToFit()
 
+    }
+    
+    func purchaseButtonTapped(button: AvePurchaseButton) {
+        switch button.buttonState {
+        case AvePurchaseButtonState.Normal:
+            button.setButtonState(AvePurchaseButtonState.Confirmation, animated: true)
+        case AvePurchaseButtonState.Confirmation:
+            // start the purchasing progress here, when done, go back to
+            // AvePurchaseButtonStateProgress
+            button.setButtonState(AvePurchaseButtonState.Progress, animated: true)
+            Timeout(1) {
+                button.setButtonState(.Normal, animated: true)
+            }
+//            self.startPurchaseWithCompletionHandler({() -> Void in
+//                button.setButtonState(AvePurchaseButtonState.Normal, animated: true)
+//            })
+        case AvePurchaseButtonState.Progress:
+            break
+        }
+        
     }
 }

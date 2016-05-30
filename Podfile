@@ -54,6 +54,7 @@ target 'app-ios' do
 	pod 'CellAnimator'
 	pod '1PasswordExtension'
 	pod 'Armchair'
+	pod 'AvePurchaseButton'
 	
 	# Fabric
 	pod 'Fabric'

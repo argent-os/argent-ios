@@ -107,7 +107,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         navBar.translucent = false
         navBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.lightBlue(),
-            NSFontAttributeName : UIFont.systemFontOfSize(18)
+            NSFontAttributeName : UIFont(name: "DINAlternate-Bold", size: 18)!
         ]
         self.view.addSubview(navBar);
         let navItem = UINavigationItem(title: "Plans");
@@ -151,13 +151,37 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         if let name = plansArray![indexPath.row].name {
             cell.planNameLabel.text = name
         }
-        if let amount = plansArray![indexPath.row].amount {
-            let fc = formatCurrency(amount, fontName: "ArialRoundedMTBold", superSize: 11, fontSize: 14, offsetSymbol: 2, offsetCents: 2)
-            cell.planAmountLabel.attributedText = fc
+        if let amount = plansArray![indexPath.row].amount, let interval = plansArray![indexPath.row].interval {
+            let fc = formatCurrency(amount, fontName: "DINAlternate-Bold", superSize: 11, fontSize: 14, offsetSymbol: 2, offsetCents: 2)
+            
+            cell.planButton.normalTitle = fc.string
+            cell.planButton.confirmationTitle = "Confirm"
+            
+            let attrs: [String: AnyObject] = [
+                NSForegroundColorAttributeName : UIColor.lightBlue().colorWithAlphaComponent(0.5),
+                NSFontAttributeName : UIFont(name: "DINAlternate-Bold", size: 12)!
+            ]
+            switch interval {
+            case "day":
+                let interval = NSAttributedString(string: " / day", attributes: attrs)
+                cell.planAmountLabel.attributedText = fc + interval
+            case "week":
+                let interval = NSAttributedString(string: " / wk", attributes: attrs)
+                cell.planAmountLabel.attributedText = fc + interval
+            case "month":
+                let interval = NSAttributedString(string: " / mo", attributes: attrs)
+                cell.planAmountLabel.attributedText = fc + interval
+            case "year":
+                let interval = NSAttributedString(string: " / yr", attributes: attrs)
+                cell.planAmountLabel.attributedText = fc + interval
+            default:
+                let interval = NSAttributedString(string: " / " + interval, attributes: attrs)
+                cell.planAmountLabel.attributedText = fc + interval
+            }
         }
-        
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(subscribeToPlan(_:)))
-        cell.planButton.addGestureRecognizer(tap)
+
+        //let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(subscribeToPlan(_:)))
+        //cell.planButton.addGestureRecognizer(tap)
         
         return cell
     }

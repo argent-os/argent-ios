@@ -83,6 +83,9 @@ extension UIColor {
     static func offWhite() -> UIColor {
         return UIColor(rgba: "#f5f7fa")
     }
+    static func iosBlue() -> UIColor {
+        return UIColor(rgba: "#007aff")
+    }
 }
 
 extension Float {
@@ -172,3 +175,12 @@ extension UIButton {
         
         self.setBackgroundImage(colorImage, forState: forState)
 }}
+
+// concatenate attributed strings
+func + (left: NSAttributedString, right: NSAttributedString) -> NSAttributedString
+{
+    let result = NSMutableAttributedString()
+    result.appendAttributedString(left)
+    result.appendAttributedString(right)
+    return result
+}
