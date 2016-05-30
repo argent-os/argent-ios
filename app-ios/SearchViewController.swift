@@ -15,8 +15,9 @@ import DGElasticPullToRefresh
 import TransitionTreasury
 import TransitionAnimation
 import CellAnimator
+import DZNEmptyDataSet
 
-class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate, ModalTransitionDelegate {
+class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate, ModalTransitionDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     var tblSearchResults:UITableView = UITableView()
     
@@ -84,8 +85,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         activityIndicator.hidesWhenStopped = true
         self.view.addSubview(activityIndicator)
         
+        tblSearchResults.reloadData()
         tblSearchResults.delegate = self
         tblSearchResults.dataSource = self
+        tblSearchResults.emptyDataSetSource = self
+        tblSearchResults.emptyDataSetDelegate = self
+        // A little trick for removing the cell separators
+        tblSearchResults.tableFooterView = UIView()
         tblSearchResults.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight-42)
         self.view.addSubview(tblSearchResults)
         
@@ -150,9 +156,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.indentationWidth = 5; // The amount each indentation will move the text
         cell.indentationLevel = 2;  // The number of times you indent the text
         cell.textLabel?.textColor = UIColor.darkGrayColor()
-        cell.textLabel?.font = UIFont.systemFontOfSize(14)
+        cell.textLabel?.font = UIFont(name: "DINAlternate-Bold", size: 14)
         cell.selectionStyle = UITableViewCellSelectionStyle.Default
-        cell.detailTextLabel?.font = UIFont(name: "ArialRoundedMTBold", size: 14)
+        cell.detailTextLabel?.font = UIFont(name: "DINAlternate-Bold", size: 14)
         cell.detailTextLabel?.textColor = UIColor.lightBlue()
         
         cell.imageView!.frame = CGRectMake(10, 15, 30, 30)
@@ -264,7 +270,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             self.activityIndicator.stopAnimating()
             
-            self.tblSearchResults.reloadData()
+            //self.tblSearchResults.reloadData()
         })
     }
     
@@ -312,13 +318,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         shouldShowSearchResults = false
         searchController.searchBar.placeholder = ""
-        tblSearchResults.reloadData()
+        //tblSearchResults.reloadData()
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         if !shouldShowSearchResults {
             shouldShowSearchResults = true
-            tblSearchResults.reloadData()
+            //tblSearchResults.reloadData()
         }
         searchController.searchBar.resignFirstResponder()
     }
@@ -373,12 +379,42 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     
-    // MARK: - Modal tt delegate
+    // MARK: - Modal Transition Treasury delegate
     
     func modalViewControllerDismiss(callbackData data: AnyObject? = nil) {
         tr_dismissViewController(completion: {
             print("Dismiss finished.")
         })
+    }
+    
+    
+    // MARK: DZNEmptyDataSet delegate
+    
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let str = "Search Argent"
+        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
+    
+    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let str = "Find users by name or username"
+        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
+    
+    func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
+        return UIImage(named: "IconEmptySearch")
+    }
+    
+    func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
+        let str = ""
+        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)]
+        return NSAttributedString(string: str, attributes: attrs)
+    }
+    
+    func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
+        let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RecurringBillingViewController") as! RecurringBillingViewController
+        self.presentViewController(viewController, animated: true, completion: nil)
     }
 }
 

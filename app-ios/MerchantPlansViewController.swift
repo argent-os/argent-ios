@@ -31,6 +31,8 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
     private var tableView = UITableView()
     
     private var planNameArray = ["Gold", "Silver", "Platinum", "Bronze"]
+    
+    private var planNameArray2 = []
 
     private var planAmountArray = ["1499", "1199", "599", "299"]
 
@@ -91,8 +93,13 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         self.view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+        tableView.tableFooterView = UIView()
+        tableView.reloadData()
         tableView.showsVerticalScrollIndicator = false
-        tableView.frame = CGRect(x: 0, y: 50, width: 300, height: screenHeight)
+        print(self.view.frame.height)
+        tableView.frame = CGRect(x: 0, y: 50, width: 300, height: 260)
         self.view.addSubview(tableView)
         
         self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
@@ -109,7 +116,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         let navItem = UINavigationItem(title: "Plans");
         navBar.setItems([navItem], animated: false);
         
-        self.loadNotificationItems()
+        //self.loadNotificationItems()
     }
     
     private func loadNotificationItems() {
@@ -135,7 +142,11 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return planNameArray.count
+        if detailUser?.username == "sinan" {
+            return 0
+        } else {
+            return planNameArray.count
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -163,10 +174,12 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         return UIStatusBarStyle.LightContent
     }
     
-    // Delegate: DZNEmptyDataSet
+    
+    
+    // MARK: DZNEmptyDataSet delegate
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "Plans"
+        let str = ""
         let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)]
         return NSAttributedString(string: str, attributes: attrs)
     }
@@ -188,6 +201,8 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
+        let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RecurringBillingViewController") as! RecurringBillingViewController
+        self.presentViewController(viewController, animated: true, completion: nil)
     }
     
     func dismissKeyboard() {

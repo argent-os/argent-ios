@@ -22,7 +22,6 @@ class MerchantPlanCell: UITableViewCell {
         self.contentView.addSubview(planNameLabel)
         self.contentView.addSubview(planAmountLabel)
         self.contentView.addSubview(planButton)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
