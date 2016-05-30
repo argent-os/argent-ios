@@ -45,7 +45,6 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configure()
     }
     
@@ -79,11 +78,6 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         //Looks for single or multiple taps.  Close keyboard on tap
 //        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(viewPlanDetails(_:)))
 //        view.addGestureRecognizer(tap)
-        
-//        activityIndicator.center = tableView.center
-//        activityIndicator.startAnimating()
-//        activityIndicator.hidesWhenStopped = true
-//        self.view.addSubview(activityIndicator)
         
         tableView.registerClass(MerchantPlanCell.self, forCellReuseIdentifier: cellReuseIdendifier)
         self.view.addSubview(tableView)
@@ -239,13 +233,13 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let str = ""
         let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)]
-        return NSAttributedString(string: str, attributes: attrs)
+        return NSAttributedString(string: str, attributes: headerAttrs)
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "This user does not have any currently available plans."
         let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
-        return NSAttributedString(string: str, attributes: attrs)
+        return NSAttributedString(string: str, attributes: bodyAttrs)
     }
     
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
@@ -255,7 +249,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
     func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
         let str = ""
         let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)]
-        return NSAttributedString(string: str, attributes: attrs)
+        return NSAttributedString(string: str, attributes: calloutAttrs)
     }
     
     func emptyDataSetDidTapButton(scrollView: UIScrollView!) {

@@ -76,7 +76,7 @@ class MenuViewController: UIViewController {
         menuSwitch.selectedBackgroundColor = UIColor.lightBlue()
         menuSwitch.titleColor = UIColor.lightBlue()
         menuSwitch.selectedTitleColor = UIColor.whiteColor()
-        menuSwitch.titleFont = UIFont.systemFontOfSize(12)
+        menuSwitch.titleFont = UIFont(name: "ArialRoundedMTBold", size: 12)
         menuSwitch.frame = CGRect(x: 70, y: 50, width: screenWidth-140, height: 35.0)
         //autoresizing so it stays at top right (flexible left and flexible bottom margin)
         menuSwitch.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
@@ -114,7 +114,7 @@ class MenuViewController: UIViewController {
         navBar.translucent = false
         navBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "Avenir-Book", size: 18)!
+            NSFontAttributeName : UIFont(name: "ArialRoundedMTBold", size: 18)!
         ]
         //self.view.addSubview(navBar);
         let navItem = UINavigationItem(title: "Main Menu");

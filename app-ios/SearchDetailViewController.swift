@@ -138,19 +138,17 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
             }
             
             // Title
-            self.navigationController?.view.backgroundColor = UIColor.clearColor()
-            self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
-            self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
-            self.navigationController?.navigationBar.tintColor = UIColor.mediumBlue()
-            self.navigationController?.navigationBar.barStyle = .BlackTranslucent
+            self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
+            self.navigationController?.navigationBar.topItem!.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+            //self.navigationController?.navigationBar.topItem!.backBarButtonItem?.tintColor = UIColor.lightBlue()
             let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 65))
             navBar.translucent = true
-            navBar.tintColor = UIColor.mediumBlue()
+            navBar.tintColor = UIColor.slateBlue()
             navBar.backgroundColor = UIColor.clearColor()
             navBar.shadowImage = UIImage()
             navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
             navBar.titleTextAttributes = [
-                NSForegroundColorAttributeName : UIColor.mediumBlue(),
+                NSForegroundColorAttributeName : UIColor.lightBlue(),
                 NSFontAttributeName : UIFont(name: "DINAlternate-Bold", size: 18)!
             ]
             addSubviewWithFade(navBar, parentView: self)

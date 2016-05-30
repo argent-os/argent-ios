@@ -58,8 +58,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 
     private let balanceSwitch = DGRunkeeperSwitch(leftTitle: "Pending", rightTitle: "Available")
 
-    private let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 15, width: UIScreen.mainScreen().bounds.size.width, height: 50))
-
     private let graph: BEMSimpleLineGraphView = BEMSimpleLineGraphView(frame: CGRectMake(0, 90, UIScreen.mainScreen().bounds.size.width, 200))
     
     private let notification = CWStatusBarNotification()
@@ -348,26 +346,11 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         dateRangeSegment.addTarget(self, action: #selector(HomeViewController.dateRangeSegmentControl(_:)), forControlEvents: .ValueChanged)
         addSubviewWithFade(dateRangeSegment, parentView: self)
         
-        navBar.barTintColor = UIColor.clearColor()
-        navBar.translucent = true
-        navBar.tintColor = UIColor.mediumBlue()
-        navBar.backgroundColor = UIColor.clearColor()
-        navBar.shadowImage = UIImage()
-        navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
-        navBar.titleTextAttributes = [
-            NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "Avenir-Light", size: 18)!
-        ]
-        self.view.addSubview(navBar)
-        self.view.sendSubviewToBack(navBar)
-        let navItem = UINavigationItem(title: "")
-        navBar.setItems([navItem], animated: true)
-        
         balanceSwitch.backgroundColor = UIColor.clearColor()
+        balanceSwitch.titleFont = UIFont(name: "ArialRoundedMTBold", size: 12)
         balanceSwitch.selectedBackgroundColor = UIColor.lightBlue()
         balanceSwitch.titleColor = UIColor.lightBlue()
         balanceSwitch.selectedTitleColor = UIColor.whiteColor()
-        balanceSwitch.titleFont = UIFont.systemFontOfSize(12)
         balanceSwitch.frame = CGRect(x: view.bounds.width - 185.0, y: 40, width: 180, height: 35.0)
         //autoresizing so it stays at top right (flexible left and flexible bottom margin)
         balanceSwitch.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
@@ -379,9 +362,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         let headerViewTitle: UILabel = UILabel()
         headerViewTitle.frame = CGRect(x: 18, y: 15, width: screenWidth, height: 30)
         headerViewTitle.text = "Transaction History"
-        headerViewTitle.font = UIFont.systemFontOfSize(16)
+        headerViewTitle.font = UIFont.systemFontOfSize(14)
         headerViewTitle.textAlignment = .Left
-        headerViewTitle.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.85)
+        headerViewTitle.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.7)
         headerView.addSubview(headerViewTitle)
         
         let tutorialButton:UIButton = UIButton()
@@ -452,13 +435,14 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
         
         // Transparent navigation bar
-        // self.navigationController?.navigationBar.barTintColor = UIColor(rgba: "#1a8ef5")
+        self.navigationController?.navigationBar.barTintColor = UIColor.lightBlue()
+        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.mediumBlue(),
-            NSFontAttributeName : UIFont(name: "Avenir-Light", size: 18.0)!
+            NSFontAttributeName : UIFont(name: "HelveticaNeue-Light", size: 18.0)!
         ]
 
     }
@@ -585,14 +569,13 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "Transactions"
-        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)]
-        return NSAttributedString(string: str, attributes: attrs)
+        return NSAttributedString(string: str, attributes: headerAttrs)
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "No transactions have occurred yet."
         let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
-        return NSAttributedString(string: str, attributes: attrs)
+        return NSAttributedString(string: str, attributes: bodyAttrs)
     }
     
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
@@ -602,7 +585,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
         let str = "Create your first billing plan"
         let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)]
-        return NSAttributedString(string: str, attributes: attrs)
+        return NSAttributedString(string: str, attributes: calloutAttrs)
     }
     
     func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
@@ -615,12 +598,16 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 extension UISegmentedControl {
     func removeBorders() {
         setTitleTextAttributes(
-            [NSForegroundColorAttributeName : UIColor.slateBlue().colorWithAlphaComponent(0.4),
-                NSFontAttributeName : UIFont.systemFontOfSize(12)],
+            [
+                NSForegroundColorAttributeName : UIColor.lightBlue().colorWithAlphaComponent(0.4),
+                NSFontAttributeName : UIFont(name: "HelveticaNeue", size: 11)!
+            ],
             forState: .Normal)
         setTitleTextAttributes(
-            [NSForegroundColorAttributeName : UIColor.lightBlue(),
-                NSFontAttributeName : UIFont.systemFontOfSize(16)],
+            [
+                NSForegroundColorAttributeName : UIColor.lightBlue(),
+                NSFontAttributeName : UIFont(name: "HelveticaNeue", size: 14)!
+            ],
             forState: .Selected)
         setBackgroundImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forState: .Normal, barMetrics: .Default)
         setBackgroundImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forState: .Selected, barMetrics: .Default)

@@ -37,8 +37,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     private var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
-    private let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 15, width: UIScreen.mainScreen().bounds.size.width, height: 50))
-    
     internal var tr_presentTransition: TRViewControllerTransitionDelegate?
     
     deinit {
@@ -56,8 +54,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         self.title = "Search"
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSForegroundColorAttributeName : UIColor.darkGrayColor(),
-            NSFontAttributeName : UIFont.systemFontOfSize(18)
+            NSForegroundColorAttributeName : UIColor.lightBlue(),
+            NSFontAttributeName : UIFont(name: "DINAlternate-Bold", size:18)!
         ]
         
         activityIndicator.center = view.center
@@ -372,14 +370,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "Search Argent"
-        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)]
-        return NSAttributedString(string: str, attributes: attrs)
+        return NSAttributedString(string: str, attributes: headerAttrs)
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "Find users by name or username"
-        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
-        return NSAttributedString(string: str, attributes: attrs)
+        return NSAttributedString(string: str, attributes: bodyAttrs)
     }
     
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
@@ -389,7 +385,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
         let str = ""
         let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)]
-        return NSAttributedString(string: str, attributes: attrs)
+        return NSAttributedString(string: str, attributes: calloutAttrs)
     }
     
     func emptyDataSetDidTapButton(scrollView: UIScrollView!) {

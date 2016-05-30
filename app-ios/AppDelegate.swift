@@ -214,9 +214,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
         // Globally dark keyboard
         UITextField.appearance().keyboardAppearance = .Light
         
-        // Override point for customization after application launch.
-        // Set UINavigationBar
-        UINavigationBar.appearance().barStyle = .Black
+        // Navbar UI
         // Sets background to a blank/empty image
         UINavigationBar.appearance().setBackgroundImage(UIImage(), forBarMetrics: .Default)
         // Sets shadow (line below the bar) to a blank image
@@ -228,7 +226,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
         
         // Search Bar UI
         UISearchBar.appearance().barTintColor = UIColor.whiteColor()
-        UISearchBar.appearance().tintColor = UIColor.mediumBlue()
+        UISearchBar.appearance().tintColor = UIColor.lightBlue()
     }
     
     func firstTime() {

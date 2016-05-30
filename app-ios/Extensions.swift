@@ -12,6 +12,32 @@ import CWStatusBarNotification
 
 let globalNotification = CWStatusBarNotification()
 
+let headerAttrs: [String: AnyObject] = [
+    NSForegroundColorAttributeName : UIColor.lightBlue(),
+    NSFontAttributeName : UIFont(name: "DINAlternate-Bold", size: 20)!
+]
+
+let bodyAttrs: [String: AnyObject] = [
+    NSForegroundColorAttributeName : UIColor.lightBlue().colorWithAlphaComponent(0.5),
+    NSFontAttributeName : UIFont(name: "DINAlternate-Bold", size: 14)!
+]
+
+let calloutAttrs: [String: AnyObject] = [
+    NSForegroundColorAttributeName : UIColor.lightBlue().colorWithAlphaComponent(0.85),
+    NSFontAttributeName : UIFont(name: "DINAlternate-Bold", size: 14)!,
+    NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue
+]
+
+func transparentNav() {
+    UINavigationBar.appearance().setBackgroundImage(UIImage(), forBarMetrics: .Default)
+    // Sets shadow (line below the bar) to a blank image
+    UINavigationBar.appearance().shadowImage = UIImage()
+    // Sets the translucent background color
+    UINavigationBar.appearance().backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+    // Set translucent. (Default value is already true, so this can be removed if desired.)
+    UINavigationBar.appearance().translucent = true
+}
+
 extension String {
     func toBool() -> Bool? {
         switch self {

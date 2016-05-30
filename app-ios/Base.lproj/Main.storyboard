@@ -11,7 +11,7 @@
         <!--Search Detail View Controller-->
         <scene sceneID="nbc-3q-s01">
             <objects>
-                <viewController storyboardIdentifier="SearchDetailViewController" id="E96-37-Kd7" customClass="SearchDetailViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchDetailViewController" hidesBottomBarWhenPushed="YES" id="E96-37-Kd7" customClass="SearchDetailViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dT7-HM-UP6"/>
                         <viewControllerLayoutGuide type="bottom" id="HLl-tB-D5j"/>

@@ -277,13 +277,13 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "Notifications"
         let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)]
-        return NSAttributedString(string: str, attributes: attrs)
+        return NSAttributedString(string: str, attributes: headerAttrs)
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "No notifications yet.  Events and push notifications will appear here as they occur."
         let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
-        return NSAttributedString(string: str, attributes: attrs)
+        return NSAttributedString(string: str, attributes: bodyAttrs)
     }
     
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
@@ -294,7 +294,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         // let str = "Turn on push notifications"
         let str = ""
         let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)]
-        return NSAttributedString(string: str, attributes: attrs)
+        return NSAttributedString(string: str, attributes: calloutAttrs)
     }
     
     func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
