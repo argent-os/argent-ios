@@ -42,15 +42,15 @@ class MerchantPlanDetailViewController: UIViewController {
         circleView.layer.borderWidth = 1
         addSubviewWithBounce(circleView, parentView: self)
         
-        planTitleLabel.frame = CGRect(x: 40, y: 0, width: 300-80, height: 100)
+        planTitleLabel.frame = CGRect(x: 40, y: -10, width: 300-80, height: 100)
         planTitleLabel.text = planName
-        planTitleLabel.font = UIFont(name: "DINAlternate-Bold", size: 32)
+        planTitleLabel.font = UIFont(name: "ArialRoundedMTBold", size: 24)
         planTitleLabel.textAlignment = .Center
         planTitleLabel.textColor = UIColor.lightBlue()
         addSubviewWithBounce(planTitleLabel, parentView: self)
         
         planAmountLabel.frame = CGRect(x: 40, y: 55, width: 300-80, height: 150)
-        planAmountLabel.attributedText = formatCurrency(planAmount!, fontName: "DINAlternate-Bold", superSize: 16, fontSize: 24, offsetSymbol: 6, offsetCents: 6)
+        planAmountLabel.attributedText = formatCurrency(planAmount!, fontName: "DINAlternate-Bold", superSize: 16, fontSize: 24, offsetSymbol: 5, offsetCents: 5)
         planAmountLabel.textAlignment = .Center
         planAmountLabel.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
         addSubviewWithBounce(planAmountLabel, parentView: self)
@@ -62,7 +62,7 @@ class MerchantPlanDetailViewController: UIViewController {
         planIntervalLabel.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
         addSubviewWithBounce(planIntervalLabel, parentView: self)
         
-        planStatementDescriptorLabel.frame = CGRect(x: 40, y: 135, width: 300-80, height: 200)
+        planStatementDescriptorLabel.frame = CGRect(x: 40, y: 140, width: 300-80, height: 200)
         planStatementDescriptorLabel.numberOfLines = 8
         planStatementDescriptorLabel.font = UIFont(name: "DINAlternate-Bold", size: 12)
         planStatementDescriptorLabel.textAlignment = .Center
