@@ -45,7 +45,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         configureView()
         configureHeader()
     }
-
+    
     func configureView() {
         
         let screen = UIScreen.mainScreen().bounds

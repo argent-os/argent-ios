@@ -215,6 +215,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
         UITextField.appearance().keyboardAppearance = .Light
         
         // Navbar UI
+        UINavigationBar.appearance().barStyle = .Black
         // Sets background to a blank/empty image
         UINavigationBar.appearance().setBackgroundImage(UIImage(), forBarMetrics: .Default)
         // Sets shadow (line below the bar) to a blank image

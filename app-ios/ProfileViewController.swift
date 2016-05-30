@@ -14,6 +14,7 @@ import Armchair
 class ProfileViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
+        self.childViewControllerForStatusBarStyle()?.setNeedsStatusBarAppearanceUpdate()
         self.navigationController!.navigationBar.backgroundColor = UIColor.clearColor()
         self.navigationController!.navigationBar.barTintColor = UIColor.clearColor()
         UIStatusBarStyle.LightContent
