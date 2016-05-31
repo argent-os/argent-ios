@@ -188,6 +188,7 @@ class Plan {
                 case .Success:
                     if let value = response.result.value {
                         let data = JSON(value)
+                        print(data)
                         var plansArray = [Plan]()
                         let plans = data["plans"]["data"].arrayValue
                         for plan in plans {

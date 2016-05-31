@@ -162,15 +162,11 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
                 NSForegroundColorAttributeName : UIColor.brandGreen(),
                 NSFontAttributeName : UIFont(name: "DINAlternate-Bold", size: 14)!
             ]
-
-            // set selected row
-            self.selectedRow = indexPath.row
             
             cell.planButton.attributedNormalTitle = fc
             cell.planButton.attributedConfirmationTitle = NSAttributedString(string: "Subscribed", attributes: attrs2)
             cell.planButton.addTarget(self, action: #selector(self.purchaseButtonTapped(_:)), forControlEvents: .TouchUpInside)
             cell.planButton.tag = indexPath.row
-            print(cell.planButton.tag)
 
             switch interval {
             case "day":
@@ -225,6 +221,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        self.selectedRow = indexPath.row
         self.performSegueWithIdentifier("viewPlanDetail", sender: self)
     }
     
