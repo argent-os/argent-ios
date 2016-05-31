@@ -55,6 +55,7 @@ target 'app-ios' do
 	pod '1PasswordExtension'
 	pod 'Armchair'
 	pod 'AvePurchaseButton'
+	pod 'EmitterKit'
 
 	# Fabric
 	pod 'Fabric'

@@ -72,7 +72,7 @@ public class ActionHeader: UICollectionReusableView {
         label.textColor = UIColor.darkGrayColor()
         label.numberOfLines = 0
         label.lineBreakMode = .ByWordWrapping
-        label.font = UIFont(name: "DINAlternate-Bold", size: 14)
+        label.font = UIFont(name: "HelveticaNeue", size: 14)
         return label
     }()
     
@@ -104,7 +104,7 @@ public class ArgentActionController: ActionController<OptionsCell, String, Actio
             guard let me = self else { return 0 }
             let label = UILabel(frame: CGRectMake(0, 0, me.view.frame.width - 40, CGFloat.max))
             label.numberOfLines = 0
-            label.font = UIFont(name: "DINAlternate-Bold", size: 14)
+            label.font = UIFont(name: "HelveticaNeue", size: 14)
             label.text = headerData
             label.sizeToFit()
             return label.frame.size.height + 30

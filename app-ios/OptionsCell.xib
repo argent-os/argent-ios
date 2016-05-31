@@ -14,28 +14,28 @@
                 <rect key="frame" x="0.0" y="0.0" width="500" height="60"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Action title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="amS-Rr-sbk">
-                        <rect key="frame" x="25" y="21" width="451" height="19"/>
-                        <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="16"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xHC-6U-E5A">
                         <rect key="frame" x="0.0" y="59" width="500" height="1"/>
                         <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.5" colorSpace="calibratedRGB"/>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Action title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="amS-Rr-sbk">
+                        <rect key="frame" x="25" y="15" width="451" height="30"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="xHC-6U-E5A" secondAttribute="bottom" id="29a-UX-Cix"/>
-                <constraint firstItem="amS-Rr-sbk" firstAttribute="leading" secondItem="fOL-sM-c6E" secondAttribute="leading" constant="25" id="8WD-bN-kDl"/>
-                <constraint firstItem="amS-Rr-sbk" firstAttribute="centerX" secondItem="xHC-6U-E5A" secondAttribute="centerX" id="B5c-g8-hlK"/>
-                <constraint firstItem="amS-Rr-sbk" firstAttribute="top" secondItem="fOL-sM-c6E" secondAttribute="top" constant="21" id="CCr-d1-WlI"/>
-                <constraint firstItem="amS-Rr-sbk" firstAttribute="centerY" secondItem="fOL-sM-c6E" secondAttribute="centerY" id="HOR-gd-u8b"/>
-                <constraint firstItem="xHC-6U-E5A" firstAttribute="top" secondItem="amS-Rr-sbk" secondAttribute="bottom" constant="19" id="Ils-pX-1du"/>
-                <constraint firstAttribute="trailing" secondItem="xHC-6U-E5A" secondAttribute="trailing" id="OVx-MR-kg3"/>
-                <constraint firstItem="xHC-6U-E5A" firstAttribute="leading" secondItem="fOL-sM-c6E" secondAttribute="leading" id="wqo-us-Rd6"/>
+                <constraint firstItem="amS-Rr-sbk" firstAttribute="leading" secondItem="fOL-sM-c6E" secondAttribute="leading" constant="25" id="3je-bY-LLO"/>
+                <constraint firstItem="amS-Rr-sbk" firstAttribute="centerX" secondItem="xHC-6U-E5A" secondAttribute="centerX" id="AwV-YL-wDh"/>
+                <constraint firstItem="amS-Rr-sbk" firstAttribute="centerY" secondItem="fOL-sM-c6E" secondAttribute="centerY" id="R0b-Fz-uM8"/>
+                <constraint firstAttribute="trailing" secondItem="xHC-6U-E5A" secondAttribute="trailing" id="REr-bC-O4n"/>
+                <constraint firstAttribute="bottom" secondItem="xHC-6U-E5A" secondAttribute="bottom" id="jAi-w5-aCa"/>
+                <constraint firstItem="xHC-6U-E5A" firstAttribute="top" secondItem="amS-Rr-sbk" secondAttribute="bottom" constant="14" id="ldb-L1-hkg"/>
+                <constraint firstItem="xHC-6U-E5A" firstAttribute="leading" secondItem="fOL-sM-c6E" secondAttribute="leading" id="sUo-vc-xqx"/>
+                <constraint firstItem="amS-Rr-sbk" firstAttribute="top" secondItem="fOL-sM-c6E" secondAttribute="top" constant="15" id="yc5-or-DJ3"/>
             </constraints>
             <size key="customSize" width="500" height="131"/>
             <connections>

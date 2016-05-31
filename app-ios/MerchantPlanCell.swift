@@ -40,34 +40,10 @@ class MerchantPlanCell: UITableViewCell {
         planAmountLabel.textColor = UIColor.lightBlue()
         
         planButton.frame = CGRect(x: self.contentView.frame.size.width-95, y: 25, width: 80, height: 30)
-        planButton.addTarget(self, action: #selector(MerchantPlanCell.purchaseButtonTapped(_:)), forControlEvents: .TouchUpInside)
         planButton.buttonState = AvePurchaseButtonState.Normal
-//        planButton.normalTitle = "N/A"
-//        planButton.confirmationTitle = "Confirm"
         planButton.normalColor = UIColor.iosBlue()
         planButton.tintColor = UIColor.iosBlue()
         planButton.confirmationColor = UIColor.brandGreen()
-//        planButton.sizeToFit()
-
-    }
-    
-    func purchaseButtonTapped(button: AvePurchaseButton) {
-        switch button.buttonState {
-        case AvePurchaseButtonState.Normal:
-            button.setButtonState(AvePurchaseButtonState.Confirmation, animated: true)
-        case AvePurchaseButtonState.Confirmation:
-            // start the purchasing progress here, when done, go back to
-            // AvePurchaseButtonStateProgress
-            button.setButtonState(AvePurchaseButtonState.Progress, animated: true)
-            Timeout(1) {
-                button.setButtonState(.Normal, animated: true)
-            }
-//            self.startPurchaseWithCompletionHandler({() -> Void in
-//                button.setButtonState(AvePurchaseButtonState.Normal, animated: true)
-//            })
-        case AvePurchaseButtonState.Progress:
-            break
-        }
-        
+        // planButton.sizeToFit()
     }
 }
