@@ -114,7 +114,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     }
     
     func showGraphActivityIndicator() {
-        print("showing indicator")
         activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true
         activityIndicator.center = CGPointMake(self.view.layer.frame.width*0.5, self.view.layer.frame.height*0.3)
@@ -183,7 +182,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         if((userAccessToken) != nil) {
             // Get stripe data
             loadStripe({ (balance, err) in
-                print("loading stripe")
                 let pendingBalance = balance.pending
                 let availableBalance = balance.available
                 
@@ -192,9 +190,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 let formatter = NSNumberFormatter()
                 formatter.numberStyle = .CurrencyStyle
                 formatter.locale = NSLocale.currentLocale() // This is the default
-                
-                print(balance.pending)
-                print(balance.available)
+
                 self.lblAccountPending.attributedText = formatCurrency(String(pendingBalance), fontName: "HelveticaNeue", superSize: 11, fontSize: 16, offsetSymbol: 3, offsetCents: 3)
                 addSubviewWithFade(self.lblAccountPending, parentView: self)
                 self.lblAccountAvailable.attributedText = formatCurrency(String(availableBalance), fontName: "HelveticaNeue", superSize: 11, fontSize: 16, offsetSymbol: 3, offsetCents: 3)
@@ -310,7 +306,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         graph.widthLine = 1.5
         graph.displayDotsWhileAnimating = true
         graph.enablePopUpReport = true
-        graph.noDataLabelColor = UIColor.mediumBlue()
+        graph.noDataLabelColor = UIColor.lightBlue()
         graph.enableTouchReport = true
         graph.enableBezierCurve = true
         graph.colorTouchInputLine = UIColor.lightBlue()
@@ -335,7 +331,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         balanceSwitch.titleFont = UIFont(name: "ArialRoundedMTBold", size: 12)
         balanceSwitch.selectedBackgroundColor = UIColor.clearColor()
         balanceSwitch.titleColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
-        balanceSwitch.selectedTitleColor = UIColor.mediumBlue()
+        balanceSwitch.selectedTitleColor = UIColor.lightBlue()
         balanceSwitch.frame = CGRect(x: view.bounds.width - 185.0, y: 40, width: 180, height: 35.0)
         //autoresizing so it stays at top right (flexible left and flexible bottom margin)
         balanceSwitch.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
@@ -370,21 +366,21 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         tableView.showsVerticalScrollIndicator = false
         addSubviewWithFade(tableView, parentView: self)
         
-        lblAccountAvailable.tintColor = UIColor.darkBlue()
+        lblAccountAvailable.textColor = UIColor.lightBlue()
         lblAccountAvailable.frame = CGRectMake(20, 81, 200, 40)
         let str0 = NSAttributedString(string: "N/A", attributes:
             [
                 NSFontAttributeName: UIFont.systemFontOfSize(18),
-                NSForegroundColorAttributeName:UIColor.lightBlue()
+                NSForegroundColorAttributeName:UIColor.lightBlue().colorWithAlphaComponent(0.7)
             ])
         lblAccountAvailable.attributedText = str0
         
-        lblAccountPending.tintColor = UIColor.darkBlue()
+        lblAccountPending.textColor = UIColor.lightBlue()
         lblAccountPending.frame = CGRectMake(20, 81, 200, 40)
         let str1 = NSAttributedString(string: "N/A", attributes:
             [
                 NSFontAttributeName: UIFont.systemFontOfSize(18),
-                NSForegroundColorAttributeName:UIColor.lightBlue()
+                NSForegroundColorAttributeName:UIColor.lightBlue().colorWithAlphaComponent(0.7)
             ])
         lblAccountPending.attributedText = str1
         
@@ -392,7 +388,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         let str2 = NSAttributedString(string: "Available Balance", attributes:
             [
                 NSFontAttributeName: UIFont.systemFontOfSize(12),
-                NSForegroundColorAttributeName:UIColor.slateBlue().colorWithAlphaComponent(0.5)
+                NSForegroundColorAttributeName:UIColor.lightBlue().colorWithAlphaComponent(0.5)
             ])
         lblAvailableDescription.attributedText = str2
         // add available label initially
@@ -401,7 +397,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         let str3 = NSAttributedString(string: "Pending Balance", attributes:
             [
                 NSFontAttributeName: UIFont.systemFontOfSize(12),
-                NSForegroundColorAttributeName:UIColor.slateBlue().colorWithAlphaComponent(0.5)
+                NSForegroundColorAttributeName:UIColor.lightBlue().colorWithAlphaComponent(0.5)
             ])
         lblPendingDescription.attributedText = str3
         addSubviewWithFade(lblPendingDescription, parentView: self)
@@ -503,7 +499,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         cell.lblAmount?.text = ""
         cell.lblDate?.text = ""
         if let amount = item?.amount {
-            print(amount)
             if Double(amount)!/100 < 0 {
                 // cell.lblCreditDebit?.text = "Debit"
                 if APP_THEME == "LIGHT" {
@@ -533,7 +528,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 dateFormatter.dateFormat = "MMM dd"
                 let formatted_date = dateFormatter.stringFromDate(converted_date)
                 cell.lblDate?.layer.cornerRadius = 10
-                cell.lblDate?.layer.borderColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.5).CGColor
+                cell.lblDate?.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
                 cell.lblDate?.layer.borderWidth = 1
                 cell.lblDate?.text = String(formatted_date) //+ " / uid " + uid
             } else {
