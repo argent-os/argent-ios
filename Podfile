@@ -56,6 +56,7 @@ target 'app-ios' do
 	pod 'Armchair'
 	pod 'AvePurchaseButton'
 	pod 'EmitterKit'
+	pod 'DynamicColor'
 
 	# Fabric
 	pod 'Fabric'

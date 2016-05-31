@@ -20,6 +20,7 @@ import Fabric
 import Crashlytics
 import Armchair
 
+var APP_THEME = "LIGHT"
 let ENVIRONMENT = "DEV"
 // let ENVIRONMENT = "PROD"
 let MERCHANT_ID = "merchant.com.argentapp.pay.v2"
@@ -37,12 +38,12 @@ let APP_NAME = "Argent"
 
 // DEV
 // let API_URL = "http://localhost:5001"
- let API_URL = "http://192.168.1.182:5001"
+// let API_URL = "http://192.168.1.182:5001"
 // let API_URL = "http://192.168.1.232:5001"
 // let API_URL = "http://api.argent.cloud"
 
 // PROD
-//let API_URL = "https://api.argent.cloud"
+let API_URL = "https://api.argent.cloud"
 
 // Global Stripe base API url
 let STRIPE_API_URL = "https://api.stripe.com"
@@ -114,6 +115,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
     
     // Default Launch
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        // Set global app theme
+        if (KeychainSwift().get("theme") == "DARK") {
+            APP_THEME = "DARK"
+        } else {
+            APP_THEME = "LIGHT"
+        }
         
         // It is always best to load Armchair as early as possible
         // because it needs to receive application life-cycle notifications

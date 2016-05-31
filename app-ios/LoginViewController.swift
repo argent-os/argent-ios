@@ -43,6 +43,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
     }
     
     func configureView() {
+        
+        self.view.backgroundColor = UIColor.globalBackground()
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height

@@ -58,7 +58,8 @@ class AuthViewController: UIViewController, LTMorphingLabelDelegate, ModalTransi
     }
     
     func configureView() {
-        // Set background image
+        
+        self.view.backgroundColor = UIColor.globalBackground()        // Set background image
         let backgroundView: UIImageView = UIImageView(image: UIImage(named: "BackgroundBusiness1"))
         backgroundView.contentMode = UIViewContentMode.ScaleAspectFill
         backgroundView.frame = self.view.bounds

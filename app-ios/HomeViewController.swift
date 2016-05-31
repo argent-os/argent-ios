@@ -284,6 +284,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 
     func configureView() {
         
+        self.view.backgroundColor = UIColor.globalBackground()        
+        
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
@@ -313,12 +315,12 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         graph.frame = CGRect(x: 0, y: 110, width: screenWidth, height: 150)
         graph.colorTop = UIColor.clearColor()
         graph.colorBottom = UIColor.clearColor()
-        graph.colorPoint = UIColor.brandGreen()
+        graph.colorPoint = UIColor.neonGreen()
         graph.colorBackgroundPopUplabel = UIColor.whiteColor()
         graph.delegate = self
-        let gradientColors : [CGColor] = [UIColor.brandGreen().CGColor,UIColor.brandYellow().CGColor,UIColor.brandRed().CGColor]        
+        let gradientColors : [CGColor] = [UIColor.neonBlue().CGColor,UIColor.neonGreen().CGColor,UIColor.neonYellow().CGColor,UIColor.neonOrange().CGColor,UIColor.neonPink().CGColor]
         let colorspace = CGColorSpaceCreateDeviceRGB()
-        let locations: [CGFloat] = [0.0, 0.7, 1.0]
+        let locations: [CGFloat] = [0.20, 0.40, 0.60, 0.90, 1.0]
         self.gradient = CGGradientCreateWithColors(colorspace, gradientColors, locations)
         graph.gradientLine = self.gradient!
         graph.gradientLineDirection = .Vertical
@@ -348,9 +350,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         
         balanceSwitch.backgroundColor = UIColor.clearColor()
         balanceSwitch.titleFont = UIFont(name: "ArialRoundedMTBold", size: 12)
-        balanceSwitch.selectedBackgroundColor = UIColor.lightBlue()
-        balanceSwitch.titleColor = UIColor.lightBlue()
-        balanceSwitch.selectedTitleColor = UIColor.whiteColor()
+        balanceSwitch.selectedBackgroundColor = UIColor.clearColor()
+        balanceSwitch.titleColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
+        balanceSwitch.selectedTitleColor = UIColor.mediumBlue()
         balanceSwitch.frame = CGRect(x: view.bounds.width - 185.0, y: 40, width: 180, height: 35.0)
         //autoresizing so it stays at top right (flexible left and flexible bottom margin)
         balanceSwitch.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
@@ -522,11 +524,19 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             print(amount)
             if Double(amount)!/100 < 0 {
                 // cell.lblCreditDebit?.text = "Debit"
-                cell.img.image = UIImage(named: "ic_arrow_down")
+                if APP_THEME == "LIGHT" {
+                    cell.img.image = UIImage(named: "ic_arrow_down")
+                } else {
+                    cell.img.image = UIImage(named: "ic_arrow_down_pink")
+                }
                 cell.lblAmount?.textColor = UIColor.brandRed()
             } else {
                 // cell.lblCreditDebit?.text = "Credit"
-                cell.img.image = UIImage(named: "ic_arrow_up")
+                if APP_THEME == "LIGHT" {
+                    cell.img.image = UIImage(named: "ic_arrow_up")
+                } else {
+                    cell.img.image = UIImage(named: "ic_arrow_up_blue")
+                }
                 cell.lblAmount?.textColor = UIColor.brandGreen()
             }
             

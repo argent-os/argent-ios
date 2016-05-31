@@ -124,7 +124,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
         tableView.contentInset.top = 80
         tableView.contentInset.bottom = 60
         tableView.contentOffset.y = 0
-        tableView.backgroundColor = UIColor(rgba: "#efeff4")
+        tableView.backgroundColor = UIColor.globalBackground()
         tableView.showsVerticalScrollIndicator = false
         
         self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 60)

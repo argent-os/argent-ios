@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import CWStatusBarNotification
+import DynamicColor
 
 let globalNotification = CWStatusBarNotification()
 
@@ -72,35 +73,113 @@ extension UIApplication {
 }
 
 extension UIColor {
+    static func globalBackground() -> UIColor {
+        return UIColor(rgba: "#fff")
+    }
     static func mediumBlue() -> UIColor {
-        return UIColor(rgba: "#2c3441")
+        if APP_THEME == "LIGHT" {
+            return UIColor(rgba: "#2c3441")
+        } else {
+            return UIColor(rgba: "#2c3441")
+        }
     }
     static func darkBlue() -> UIColor {
-        return UIColor(rgba: "#141c29")
+        if APP_THEME == "LIGHT" {
+            return UIColor(rgba: "#141c29")
+        } else {
+            return UIColor(rgba: "#141c29")
+        }
     }
     static func lightBlue() -> UIColor {
-        return UIColor(rgba: "#7b8999")
+        if APP_THEME == "LIGHT" {
+            return UIColor(rgba: "#7b8999")
+        } else {
+            return UIColor(rgba: "#7b8999")
+        }
     }
     static func limeGreen() -> UIColor {
-        return UIColor(rgba: "#d8ff52")
+        if APP_THEME == "LIGHT" {
+            return UIColor(rgba: "#d8ff52")
+        } else {
+            return UIColor(rgba: "#d8ff52")
+        }
     }
     static func slateBlue() -> UIColor {
-        return UIColor(rgba: "#2c3441")
+        if APP_THEME == "LIGHT" {
+            return UIColor(rgba: "#2c3441")
+        } else {
+            return UIColor(rgba: "#2c3441")
+        }
     }
     static func brandYellow() -> UIColor {
-        return UIColor(rgba: "#FFCF4B")
+        if APP_THEME == "LIGHT" {
+            return UIColor(rgba: "#e5df1f")
+        } else {
+            return UIColor(rgba: "#e5df1f")
+        }
     }
     static func brandGreen() -> UIColor {
-        return UIColor(rgba: "#2ECC71")
+        if APP_THEME == "LIGHT" {
+            return UIColor(rgba: "#1ecc70")
+        } else {
+            return UIColor(rgba: "#0f49de")
+        }
     }
     static func brandRed() -> UIColor {
-        return UIColor(rgba: "#f74e1d")
+        if APP_THEME == "LIGHT" {
+            return UIColor(rgba: "#e84c4c")
+        } else {
+            return UIColor(rgba: "#fd0981")
+        }
     }
     static func offWhite() -> UIColor {
-        return UIColor(rgba: "#f5f7fa")
+        if APP_THEME == "LIGHT" {
+            return UIColor(rgba: "#f5f7fa")
+        } else {
+            return UIColor(rgba: "#f5f7fa")
+        }
     }
     static func iosBlue() -> UIColor {
-        return UIColor(rgba: "#007aff")
+        if APP_THEME == "LIGHT" {
+            return UIColor(rgba: "#007aff")
+        } else {
+            return UIColor(rgba: "#007aff")
+        }
+    }
+    static func neonBlue() -> UIColor {
+        if APP_THEME == "LIGHT" {
+            return UIColor(rgba: "#1cd7ec")
+        } else {
+            return UIColor(rgba: "#1cd7ec").invertColor()
+        }
+    }
+    static func neonGreen() -> UIColor {
+        if APP_THEME == "LIGHT" {
+            return UIColor(rgba: "#23e839")
+        } else {
+            return UIColor(rgba: "#23e839").invertColor()
+        }
+    }
+    static func neonYellow() -> UIColor {
+        if APP_THEME == "LIGHT" {
+            return UIColor(rgba: "#edef1b")
+        } else {
+            return UIColor(rgba: "#edef1b").invertColor()
+        }
+    }
+    static func neonOrange() -> UIColor {
+        if APP_THEME == "LIGHT" {
+            return UIColor(rgba: "#f28225")
+        } else {
+            return UIColor(rgba: "#f28225").invertColor()
+        }
+    }
+    static func neonPink() -> UIColor {
+        if APP_THEME == "LIGHT" {
+            return UIColor(rgba: "#fd0981")
+        } else {
+            return UIColor(rgba: "#fd0981").invertColor()
+        }
     }
 }
 

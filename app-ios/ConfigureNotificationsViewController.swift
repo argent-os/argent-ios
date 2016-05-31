@@ -37,7 +37,7 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
         tableView.contentInset.top = 10
         tableView.contentInset.bottom = 30
         tableView.contentOffset.y = -10
-        tableView.backgroundColor = UIColor.whiteColor()
+        tableView.backgroundColor = UIColor.globalBackground()
 
         // Set up permissions
         pscope.addPermission(NotificationsPermission(notificationCategories: nil),

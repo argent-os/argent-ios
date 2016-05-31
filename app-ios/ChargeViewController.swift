@@ -61,7 +61,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         
         // Create left and right button for navigation item
         let leftButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ChargeViewController.returnToMenu(_:)))
-        let font = UIFont(name: "AvenirNext-Regular", size: 14)
+        let font = UIFont(name: "DINAlternate-Bold", size: 14)
         leftButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
         // Create two buttons for the navigation item
         navigationItem.leftBarButtonItem = leftButton
@@ -83,7 +83,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         // addDoneToolbar()
         
         chargeInputView.addTarget(self, action: #selector(ChargeViewController.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
-        chargeInputView.frame = CGRect(x: 0, y: 90, width: screenWidth, height: 50)
+        chargeInputView.frame = CGRect(x: 0, y: 90, width: screenWidth, height: 65)
         chargeInputView.textAlignment = .Center
         chargeInputView.font = UIFont(name: "DINAlternate-Bold", size: 48)
         chargeInputView.textColor = UIColor.mediumBlue()
@@ -97,7 +97,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         payWithCardButton.backgroundColor = UIColor.clearColor()
         payWithCardButton.tintColor = UIColor.mediumBlue()
         payWithCardButton.setTitleColor(UIColor.mediumBlue(), forState: .Normal)
-        payWithCardButton.titleLabel?.font = UIFont(name: "AvenirNext-Regular", size: 14)
+        payWithCardButton.titleLabel?.font = UIFont(name: "DINAlternate-Bold", size: 13)
         payWithCardButton.layer.borderColor = UIColor.mediumBlue().colorWithAlphaComponent(0.5).CGColor
         payWithCardButton.layer.borderWidth = 1
         payWithCardButton.layer.cornerRadius = 5
@@ -112,7 +112,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         payWithBitcoinButton.backgroundColor = UIColor.clearColor()
         payWithBitcoinButton.tintColor = UIColor.mediumBlue()
         payWithBitcoinButton.setTitleColor(UIColor.mediumBlue(), forState: .Normal)
-        payWithBitcoinButton.titleLabel?.font = UIFont(name: "AvenirNext-Regular", size: 14)
+        payWithBitcoinButton.titleLabel?.font = UIFont(name: "DINAlternate-Bold", size: 13)
         payWithBitcoinButton.layer.borderColor = UIColor.mediumBlue().colorWithAlphaComponent(0.5).CGColor
         payWithBitcoinButton.layer.borderWidth = 1
         payWithBitcoinButton.layer.cornerRadius = 5
@@ -128,7 +128,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         payButton.backgroundColor = UIColor.mediumBlue()
         payButton.tintColor = UIColor(rgba: "#fff")
         payButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
-        payButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
+        payButton.titleLabel?.font = UIFont(name: "DINAlternate-Bold", size: 14)
         payButton.setTitle("Pay Merchant", forState: .Normal)
         payButton.layer.cornerRadius = 5
         payButton.layer.masksToBounds = true
@@ -257,7 +257,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         done.tintColor = UIColor.whiteColor()
         UIToolbar.appearance().barTintColor = UIColor.mediumBlue()
         done.setTitleTextAttributes([
-            NSFontAttributeName : UIFont(name: "Avenir-Book", size: 15.0)!,
+            NSFontAttributeName : UIFont(name: "DINAlternate-Bold", size: 15)!,
             NSForegroundColorAttributeName : UIColor(rgba: "#fff")
             ], forState: .Normal)
         var items: [UIBarButtonItem]? = [UIBarButtonItem]()

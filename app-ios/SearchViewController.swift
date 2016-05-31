@@ -55,7 +55,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.title = "Search"
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.lightBlue(),
-            NSFontAttributeName : UIFont(name: "DINAlternate-Bold", size:18)!
+            NSFontAttributeName : UIFont(name: "HelveticaNeue", size:18)!
         ]
         
         activityIndicator.center = view.center
@@ -134,9 +134,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.indentationWidth = 5; // The amount each indentation will move the text
         cell.indentationLevel = 2;  // The number of times you indent the text
         cell.textLabel?.textColor = UIColor.darkGrayColor()
-        cell.textLabel?.font = UIFont(name: "DINAlternate-Bold", size: 14)
+        cell.textLabel?.font = UIFont(name: "HelveticaNeue", size: 14)
         cell.selectionStyle = UITableViewCellSelectionStyle.Default
-        cell.detailTextLabel?.font = UIFont(name: "DINAlternate-Bold", size: 14)
+        cell.detailTextLabel?.font = UIFont(name: "HelveticaNeue", size: 14)
         cell.detailTextLabel?.textColor = UIColor.lightBlue()
         
         cell.imageView!.frame = CGRectMake(10, 15, 30, 30)

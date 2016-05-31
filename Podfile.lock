@@ -15,6 +15,7 @@ PODS:
   - DGElasticPullToRefresh (1.0.3)
   - DGRunkeeperSwitch (1.1.1)
   - DKCircleButton (1.1)
+  - DynamicColor (2.4.0)
   - DZNEmptyDataSet (1.8.1)
   - EmitterKit (4.0.2)
   - Fabric (1.6.7)
@@ -73,6 +74,7 @@ DEPENDENCIES:
   - DGElasticPullToRefresh
   - DGRunkeeperSwitch
   - DKCircleButton
+  - DynamicColor
   - DZNEmptyDataSet
   - EmitterKit
   - Fabric
@@ -132,6 +134,7 @@ SPEC CHECKSUMS:
   DGElasticPullToRefresh: 040f39ae69840b3261d163fe6735c5901bf851e9
   DGRunkeeperSwitch: da12f199532a99958a1e87ec0a5af61efdba11ec
   DKCircleButton: 62564c9debae08ad77dabb8d9658dfeb5520f2c4
+  DynamicColor: 2f3fd61053684667bad9f03045dcf9a2a5a007ea
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   EmitterKit: ac0dced2291745a6dd299a150665e1b3f0844a32
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7

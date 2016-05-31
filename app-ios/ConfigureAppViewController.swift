@@ -7,14 +7,6 @@
 //
 
 import Foundation
-//
-//  ConfigureNotificationsViewController.swift
-//  argent-ios
-//
-//  Created by Sinan Ulkuatam on 3/19/16.
-//  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
-//
-import Foundation
 import Alamofire
 import SwiftyJSON
 import UIKit
@@ -22,7 +14,7 @@ import Former
 import KeychainSwift
 import JGProgressHUD
 
-class ConfigurePointOfSaleViewController: FormViewController, UIApplicationDelegate {
+class ConfigureAppViewController: FormViewController, UIApplicationDelegate {
     
     var dic: Dictionary<String, String> = [:]
     
@@ -43,13 +35,13 @@ class ConfigurePointOfSaleViewController: FormViewController, UIApplicationDeleg
         tableView.contentInset.top = 10
         tableView.contentInset.bottom = 30
         tableView.contentOffset.y = -10
-        tableView.backgroundColor = UIColor.whiteColor()
+        tableView.backgroundColor = UIColor.globalBackground()
         // screen width and height:
         let screen = UIScreen.mainScreen().bounds
         _ = screen.size.width
         _ = screen.size.height
         
-        self.navigationItem.title = "Point of Sale Terminal Settings"
+        self.navigationItem.title = "App Settings"
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSFontAttributeName: UIFont.systemFontOfSize(14),
@@ -58,7 +50,7 @@ class ConfigurePointOfSaleViewController: FormViewController, UIApplicationDeleg
         
         // Create RowFomers
         let configurePOSRowScreenAlive = SwitchRowFormer<FormSwitchCell>() {
-            $0.titleLabel.text = "Keep screen alive"
+            $0.titleLabel.text = "Keep POS screen alive"
             $0.titleLabel.font = UIFont.systemFontOfSize(14)
             }.configure() { cell in
                 cell.rowHeight = 60
@@ -75,6 +67,24 @@ class ConfigurePointOfSaleViewController: FormViewController, UIApplicationDeleg
                 } else {
                     KeychainSwift().set(false, forKey: "screenAlive", withAccess: .None)
                     UIApplication.sharedApplication().idleTimerDisabled = false
+                }
+        }
+        let configureThemeRow = SwitchRowFormer<FormSwitchCell>() {
+            $0.titleLabel.text = "Alternate Theme"
+            $0.titleLabel.font = UIFont.systemFontOfSize(14)
+            }.configure() { cell in
+                cell.rowHeight = 60
+                if(KeychainSwift().get("theme") == "DARK") {
+                    cell.switched = true
+                } else {
+                    cell.switched = false
+                }
+                cell.update()
+            }.onSwitchChanged { on in
+                if(on.boolValue == true) {
+                    KeychainSwift().set("DARK", forKey: "theme", withAccess: .None)
+                } else {
+                    KeychainSwift().set("LIGHT", forKey: "theme", withAccess: .None)
                 }
         }
         let configurePOSRowExit = SwitchRowFormer<FormSwitchCell>() {
@@ -105,7 +115,7 @@ class ConfigurePointOfSaleViewController: FormViewController, UIApplicationDeleg
         
         // Create SectionFormers
         
-        let titleSection = SectionFormer(rowFormer: configurePOSRowScreenAlive).set(headerViewFormer: createHeader("Notifications"))
+        let titleSection = SectionFormer(rowFormer: configurePOSRowScreenAlive, configureThemeRow).set(headerViewFormer: createHeader("App Settings"))
         former.append(sectionFormer: titleSection)
     }
     

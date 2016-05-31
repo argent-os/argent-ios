@@ -124,7 +124,7 @@
 		30CA455C1CE6DC7000D656E5 /* HistoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CA455B1CE6DC7000D656E5 /* HistoryDetailViewController.swift */; };
 		30D526761CDB9814001B41BA /* BitcoinUriViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526751CDB9814001B41BA /* BitcoinUriViewController.swift */; };
 		30D526781CDBB4A0001B41BA /* Bitcoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526771CDBB4A0001B41BA /* Bitcoin.swift */; };
-		30D5267D1CDE3736001B41BA /* ConfigurePointOfSaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D5267C1CDE3736001B41BA /* ConfigurePointOfSaleViewController.swift */; };
+		30D5267D1CDE3736001B41BA /* ConfigureAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D5267C1CDE3736001B41BA /* ConfigureAppViewController.swift */; };
 		30D526821CDF7762001B41BA /* ActionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526811CDF7762001B41BA /* ActionData.swift */; };
 		30D526841CDF776B001B41BA /* OptionsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30D526831CDF776A001B41BA /* OptionsCell.xib */; };
 		30D526861CDF8675001B41BA /* OptionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526851CDF8675001B41BA /* OptionsCell.swift */; };
@@ -345,7 +345,7 @@
 		30CA455B1CE6DC7000D656E5 /* HistoryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HistoryDetailViewController.swift; path = "app-ios/HistoryDetailViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30D526751CDB9814001B41BA /* BitcoinUriViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BitcoinUriViewController.swift; path = "app-ios/BitcoinUriViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30D526771CDBB4A0001B41BA /* Bitcoin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Bitcoin.swift; path = "app-ios/Bitcoin.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		30D5267C1CDE3736001B41BA /* ConfigurePointOfSaleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigurePointOfSaleViewController.swift; path = "app-ios/ConfigurePointOfSaleViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30D5267C1CDE3736001B41BA /* ConfigureAppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigureAppViewController.swift; path = "app-ios/ConfigureAppViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30D526811CDF7762001B41BA /* ActionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActionData.swift; path = "app-ios/ActionData.swift"; sourceTree = SOURCE_ROOT; };
 		30D526831CDF776A001B41BA /* OptionsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OptionsCell.xib; path = "app-ios/OptionsCell.xib"; sourceTree = SOURCE_ROOT; };
 		30D526851CDF8675001B41BA /* OptionsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionsCell.swift; path = "app-ios/OptionsCell.swift"; sourceTree = SOURCE_ROOT; };
@@ -804,12 +804,12 @@
 			name = Plan;
 			sourceTree = "<group>";
 		};
-		30D5267B1CDE370D001B41BA /* POS */ = {
+		30D5267B1CDE370D001B41BA /* App */ = {
 			isa = PBXGroup;
 			children = (
-				30D5267C1CDE3736001B41BA /* ConfigurePointOfSaleViewController.swift */,
+				30D5267C1CDE3736001B41BA /* ConfigureAppViewController.swift */,
 			);
-			name = POS;
+			name = App;
 			sourceTree = "<group>";
 		};
 		30D7B72F1C77880200B64B7F /* Signup */ = {
@@ -872,7 +872,7 @@
 				30C2DACA1CA4385C003AFD8B /* ProfileMenuViewController.swift */,
 				30A5A3F01CF5F0E000C9EEC2 /* Verification */,
 				306DF00D1CDA689100864CAE /* Risk */,
-				30D5267B1CDE370D001B41BA /* POS */,
+				30D5267B1CDE370D001B41BA /* App */,
 				30113A2C1CD82CA0002BECF0 /* Header */,
 				309E43BC1CA8ADDE00279D97 /* Web */,
 				308AC9B71C9F79830040EF3C /* Card */,
@@ -1499,7 +1499,7 @@
 				30C2DAD91CA4389E003AFD8B /* ProfileImageCell.swift in Sources */,
 				30C2DA9B1CA4373E003AFD8B /* LoginViewController.swift in Sources */,
 				30C2DAAA1CA4374F003AFD8B /* SignupViewControllerTwo.swift in Sources */,
-				30D5267D1CDE3736001B41BA /* ConfigurePointOfSaleViewController.swift in Sources */,
+				30D5267D1CDE3736001B41BA /* ConfigureAppViewController.swift in Sources */,
 				30C2DAF91CA43975003AFD8B /* User.swift in Sources */,
 				30960EFF1CE3D7C100749695 /* TransferViewController.swift in Sources */,
 				300E422D1CB56E10004316CF /* Bank.swift in Sources */,

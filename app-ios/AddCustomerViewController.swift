@@ -90,7 +90,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         mainTitle.textColor = UIColor.darkGrayColor()
         mainTitle.textAlignment = .Center
         mainTitle.text = "Send Invitation"
-        mainTitle.font = UIFont.systemFontOfSize(18)
+        mainTitle.font = UIFont(name: "DINAlternate-Bold", size: 20)
         Timeout(0.2) {
             addSubviewWithBounce(mainTitle, parentView: self)
         }
@@ -101,7 +101,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         mainBody.textAlignment = .Center
         mainBody.text = "Invite new users, customers, or friends to " + APP_NAME + " today! The more the merrier."
         mainBody.numberOfLines = 5
-        mainBody.font = UIFont.systemFontOfSize(14)
+        mainBody.font = UIFont(name: "DINAlternate-Bold", size: 14)
         Timeout(0.3) {
             addSubviewWithBounce(mainBody, parentView: self)
         }
@@ -111,11 +111,10 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         emailButton.titleLabel!.font = UIFont.systemFontOfSize(22)
         emailButton.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
         emailButton.tintColor = UIColor.whiteColor()
-        emailButton.setTitle("Email", forState: .Normal)
         emailButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        let str0 = NSAttributedString(string: "Email", attributes:
+        let str0 = NSAttributedString(string: "Mail", attributes:
             [
-                NSFontAttributeName: UIFont.systemFontOfSize(12),
+                NSFontAttributeName: UIFont(name: "DINAlternate-Bold", size: 12)!,
                 NSForegroundColorAttributeName:UIColor.whiteColor()
             ])
         emailButton.setAttributedTitle(str0, forState: .Normal)
@@ -129,11 +128,10 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         smsButton.titleLabel!.font = UIFont.systemFontOfSize(22)
         smsButton.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
         smsButton.tintColor = UIColor.whiteColor()
-        smsButton.setTitle("SMS", forState: .Normal)
         smsButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         let str1 = NSAttributedString(string: "SMS", attributes:
             [
-                NSFontAttributeName: UIFont.systemFontOfSize(12),
+                NSFontAttributeName: UIFont(name: "DINAlternate-Bold", size: 12)!,
                 NSForegroundColorAttributeName:UIColor.whiteColor()
             ])
         smsButton.setAttributedTitle(str1, forState: .Normal)

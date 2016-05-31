@@ -48,6 +48,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
     
     func configureView() {
         
+        self.view.backgroundColor = UIColor.globalBackground()        
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         

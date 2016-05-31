@@ -23,6 +23,7 @@ class HistoryDetailViewController: UIViewController, UINavigationBarDelegate {
     
     func configureView() {
         
+        self.view.backgroundColor = UIColor.globalBackground()        
         let screen = UIScreen.mainScreen().bounds
         let width = screen.size.width
         _ = screen.size.height

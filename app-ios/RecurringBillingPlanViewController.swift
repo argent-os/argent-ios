@@ -96,7 +96,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-        tableView.backgroundColor = UIColor.whiteColor()
+        tableView.backgroundColor = UIColor.globalBackground()
         tableView.contentInset.top = 160
         tableView.contentInset.bottom = 90
         tableView.contentOffset.y = 0
@@ -118,7 +118,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         amountInputView.addTarget(self, action: #selector(RecurringBillingViewController.endEditing(_:)), forControlEvents: UIControlEvents.EditingDidEnd)
         amountInputView.addTarget(self, action: #selector(RecurringBillingViewController.textField(_:shouldChangeCharactersInRange:replacementString:)), forControlEvents: UIControlEvents.EditingChanged)
         amountInputView.delegate = self
-        amountInputView.frame = CGRect(x: 0, y: 30, width: screenWidth, height: 110)
+        amountInputView.frame = CGRect(x: 0, y: 20, width: screenWidth, height: 140)
         amountInputView.textAlignment = .Center
         amountInputView.font = UIFont(name: "DINAlternate-Bold", size: 48)
         amountInputView.textColor = UIColor.whiteColor()

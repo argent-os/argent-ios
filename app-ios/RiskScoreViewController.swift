@@ -34,6 +34,7 @@ class RiskScoreViewController: UIViewController {
     
     func configureView() {
         
+        self.view.backgroundColor = UIColor.globalBackground()        
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
 
         g.frame = CGRect(x: 50, y: 80, width: self.view.layer.frame.width-100, height: 250)

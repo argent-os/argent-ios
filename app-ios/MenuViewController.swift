@@ -73,10 +73,10 @@ class MenuViewController: UIViewController {
         self.view.addSubview(backgroundImageView)
         
         menuSwitch.backgroundColor = UIColor.clearColor()
-        menuSwitch.selectedBackgroundColor = UIColor.lightBlue()
-        menuSwitch.titleColor = UIColor.lightBlue()
-        menuSwitch.selectedTitleColor = UIColor.whiteColor()
-        menuSwitch.titleFont = UIFont(name: "ArialRoundedMTBold", size: 12)
+        menuSwitch.selectedBackgroundColor = UIColor.clearColor()
+        menuSwitch.titleColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
+        menuSwitch.selectedTitleColor = UIColor.mediumBlue()
+        menuSwitch.titleFont = UIFont(name: "ArialRoundedMTBold", size: 18)
         menuSwitch.frame = CGRect(x: 70, y: 50, width: screenWidth-140, height: 35.0)
         //autoresizing so it stays at top right (flexible left and flexible bottom margin)
         menuSwitch.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]

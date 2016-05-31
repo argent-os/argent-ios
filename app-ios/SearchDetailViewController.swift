@@ -52,7 +52,8 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
     }
     
     func configureView() {
-
+        
+        self.view.backgroundColor = UIColor.globalBackground()
         UIStatusBarStyle.Default
         
         if let transitionAnimation = tr_pushTransition?.transition as? IBanTangTransitionAnimation {
