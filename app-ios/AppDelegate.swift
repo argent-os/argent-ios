@@ -199,7 +199,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
                         UIApplication.sharedApplication().applicationIconBadgeNumber = 0
                         tabBarController.tabBar.items![3].badgeValue = "1"
                         Timeout(5) {
-                            tabBarController.tabBar.items![3].badgeValue = ""
+                            tabBarController.tabBar.items![3].badgeValue = nil
                         }
                     }
                     
