@@ -167,7 +167,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
             self.selectedRow = indexPath.row
             
             cell.planButton.attributedNormalTitle = fc
-            cell.planButton.attributedConfirmationTitle = NSAttributedString(string: "Confirm", attributes: attrs2)
+            cell.planButton.attributedConfirmationTitle = NSAttributedString(string: "Subscribed", attributes: attrs2)
             cell.planButton.addTarget(self, action: #selector(self.purchaseButtonTapped(_:)), forControlEvents: .TouchUpInside)
             cell.planButton.tag = indexPath.row
             print(cell.planButton.tag)
@@ -205,6 +205,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
             print(paymentSuccessListener?.isListening)
             paymentSuccessListener = self.paymentSuccessSignal!.once {
                 print("payment success executed")
+                button.setButtonState(AvePurchaseButtonState.Normal, animated: true)
                 button.setButtonState(AvePurchaseButtonState.Confirmation, animated: true)
                 button.attributedNormalTitle = NSAttributedString(string: "Subscribed", attributes: [
                     NSForegroundColorAttributeName : UIColor.brandGreen(),
