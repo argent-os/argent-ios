@@ -1666,7 +1666,7 @@ We support both debit and credit.</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <tabBarItem key="tabBarItem" title="Notifications" image="ic_notify" selectedImage="ic_notify" id="YyQ-LY-ofo"/>
+                    <tabBarItem key="tabBarItem" title="Notifications" image="ic_tab_notify" selectedImage="ic_tab_notify" id="YyQ-LY-ofo"/>
                     <navigationItem key="navigationItem" id="IZf-rL-VA4">
                         <nil key="title"/>
                     </navigationItem>
@@ -1691,7 +1691,7 @@ We support both debit and credit.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Menu" image="ic_menu" selectedImage="ic_menu" id="Wbg-GP-L9N"/>
+                    <tabBarItem key="tabBarItem" title="Menu" image="ic_tab_menu" selectedImage="ic_tab_menu" id="Wbg-GP-L9N"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <segue destination="4oC-TM-jI5" kind="presentation" identifier="chargeView" id="uG4-vF-WlK"/>
@@ -1735,7 +1735,7 @@ We support both debit and credit.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="ic_home" selectedImage="ic_home" id="RW7-a0-lvA"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="ic_tab_home" selectedImage="ic_tab_home" id="RW7-a0-lvA"/>
                     <navigationItem key="navigationItem" title="Balance" id="w3e-6C-5LA" userLabel="nav"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -3376,7 +3376,7 @@ be private unless otherwise requested.</string>
         <scene sceneID="WmV-2w-5RD">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tfH-Yx-qca" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Account" image="ic_user" selectedImage="ic_user" id="fIh-ul-vs2"/>
+                    <tabBarItem key="tabBarItem" title="Account" image="ic_tab_account" selectedImage="ic_tab_account" id="fIh-ul-vs2"/>
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Aav-u7-uD7">
@@ -3553,7 +3553,7 @@ be private unless otherwise requested.</string>
         <scene sceneID="9Zo-cs-g3Z">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" hidesBarsOnSwipe="YES" hidesBarsWhenKeyboardAppears="YES" id="HMN-2X-Cie" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Search" image="ic_search" id="U4p-ue-j3d"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="ic_tab_search" id="U4p-ue-j3d"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Bcq-gQ-TaG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -3580,7 +3580,7 @@ be private unless otherwise requested.</string>
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="Xfd-nI-eYl" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="Xfd-nI-eYl" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
                                 <rect key="frame" x="20" y="20" width="374" height="696"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -3622,40 +3622,6 @@ be private unless otherwise requested.</string>
             </objects>
             <point key="canvasLocation" x="869" y="-4385"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="6zX-8X-nUS">
-            <objects>
-                <viewController id="Jsu-Q5-zfE" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Vkr-qi-P7h"/>
-                        <viewControllerLayoutGuide type="bottom" id="XLA-s9-pi2"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ehm-Hw-KMF">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zlK-s7-N6E">
-                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
-                                <connections>
-                                    <segue destination="Tcf-9c-AQL" kind="embed" id="L6V-lg-EUM"/>
-                                </connections>
-                            </containerView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="zlK-s7-N6E" firstAttribute="top" secondItem="Vkr-qi-P7h" secondAttribute="bottom" id="2Vt-RC-Zhb"/>
-                            <constraint firstItem="zlK-s7-N6E" firstAttribute="leading" secondItem="ehm-Hw-KMF" secondAttribute="leading" id="BQ4-ad-W3L"/>
-                            <constraint firstItem="zlK-s7-N6E" firstAttribute="bottom" secondItem="XLA-s9-pi2" secondAttribute="top" id="G2s-ky-2hk"/>
-                            <constraint firstAttribute="trailing" secondItem="zlK-s7-N6E" secondAttribute="trailing" id="Icl-9f-Id5"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="3Jj-aY-F9V"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dyN-lY-QLv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1634" y="-4345"/>
-        </scene>
         <!--Merchant Plans View Controller-->
         <scene sceneID="jI3-xe-7ti">
             <objects>
@@ -3677,23 +3643,6 @@ be private unless otherwise requested.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UBb-dW-R5k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="330" y="-4325"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="OfV-rH-ohg">
-            <objects>
-                <viewController id="Tcf-9c-AQL" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="bKQ-aP-F9m"/>
-                        <viewControllerLayoutGuide type="bottom" id="rfe-Mh-zcD"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="zTa-Bb-dq8">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nEb-Wk-z8i" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2175" y="-4377"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iGJ-t7-2fC">
@@ -3722,28 +3671,28 @@ be private unless otherwise requested.</string>
         <image name="IconSupport" width="171" height="171"/>
         <image name="IconTouchSecure" width="86" height="86"/>
         <image name="ic_close_light" width="22" height="22"/>
-        <image name="ic_home" width="30" height="30"/>
-        <image name="ic_menu" width="30" height="30"/>
-        <image name="ic_notify" width="30" height="30"/>
-        <image name="ic_search" width="30" height="30"/>
-        <image name="ic_user" width="30" height="30"/>
+        <image name="ic_tab_account" width="30" height="30"/>
+        <image name="ic_tab_home" width="30" height="30"/>
+        <image name="ic_tab_menu" width="30" height="30"/>
+        <image name="ic_tab_notify" width="30" height="30"/>
+        <image name="ic_tab_search" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mwT-xt-Ez4"/>
+        <segue reference="A1R-09-1HJ"/>
+        <segue reference="UFB-DJ-qrH"/>
         <segue reference="m0d-gd-RWW"/>
         <segue reference="zQh-Po-kj4"/>
         <segue reference="wgV-xY-MTp"/>
-        <segue reference="YDb-8b-gnI"/>
-        <segue reference="fEJ-lR-z9I"/>
-        <segue reference="aks-Yo-Spb"/>
         <segue reference="igQ-zk-tCm"/>
         <segue reference="m3z-fp-Nlm"/>
         <segue reference="rLo-0p-I9d"/>
         <segue reference="agi-3I-cSC"/>
         <segue reference="VI5-hp-Gm2"/>
         <segue reference="ipn-3I-3vc"/>
-        <segue reference="7cu-FP-MoG"/>
+        <segue reference="aks-Yo-Spb"/>
+        <segue reference="fEJ-lR-z9I"/>
         <segue reference="Bc6-jW-uiV"/>
+        <segue reference="7cu-FP-MoG"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>

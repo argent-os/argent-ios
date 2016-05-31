@@ -38,12 +38,12 @@ let APP_NAME = "Argent"
 
 // DEV
 // let API_URL = "http://localhost:5001"
-// let API_URL = "http://192.168.1.182:5001"
+ let API_URL = "http://192.168.1.182:5001"
 // let API_URL = "http://192.168.1.232:5001"
 // let API_URL = "http://api.argent.cloud"
 
 // PROD
-let API_URL = "https://api.argent.cloud"
+//let API_URL = "https://api.argent.cloud"
 
 // Global Stripe base API url
 let STRIPE_API_URL = "https://api.stripe.com"
@@ -191,6 +191,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
 
         // Save state tab bar
         if let tabBarController = window?.rootViewController as? UITabBarController {
+            print(UIApplication.sharedApplication().applicationIconBadgeNumber)
+            for item in tabBarController.tabBar.items! {
+                if let image = item.image {
+                    item.image = image.imageWithRenderingMode(.AlwaysOriginal)
+                }
+            }
             guard let activeTab = NSUserDefaults.standardUserDefaults().valueForKey("activeTab") else {
                 return false
             }
@@ -218,6 +224,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
         
         // Tabbar UI
         UITabBar.appearance().tintColor = UIColor.slateBlue()
+        UITabBar.appearance().barTintColor = UIColor.whiteColor()
         
         // Globally dark keyboard
         UITextField.appearance().keyboardAppearance = .Light
@@ -338,7 +345,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
          */
         //Remember the users last tab selection
         if let tabBarController = window?.rootViewController as? UITabBarController {
-            
+            // Uses the original colors for your images, so they aren't not rendered as grey automatically.
             let tabIndex: Int = tabBarController.selectedIndex
             let userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
             userDefaults.setInteger(tabIndex, forKey: "activeTab")

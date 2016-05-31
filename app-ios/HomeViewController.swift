@@ -561,7 +561,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "No transactions have occurred yet."
-        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
+        // let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
         return NSAttributedString(string: str, attributes: bodyAttrs)
     }
     
@@ -571,7 +571,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
         let str = "Create your first billing plan"
-        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)]
+        // let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)]
         return NSAttributedString(string: str, attributes: calloutAttrs)
     }
     

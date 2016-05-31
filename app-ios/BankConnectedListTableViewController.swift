@@ -14,7 +14,7 @@ import SESlideTableViewCell
 
 class BankConnectedListTableViewController: UITableViewController, SESlideTableViewCellDelegate {
     
-    var itemsArray:Array<Bank>?
+    var itemsArray:Array<Plaid_>?
     var bankRefreshControl = UIRefreshControl()
     var dateFormatter = NSDateFormatter()
     
@@ -42,7 +42,7 @@ class BankConnectedListTableViewController: UITableViewController, SESlideTableV
     }
     
     func loadBankAccounts() {
-        Bank.getBankAccounts({ (items, error) in
+        Plaid_.getBankAccounts({ (items, error) in
             if error != nil
             {
                 let alert = UIAlertController(title: "Error", message: "Could not load banks \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)

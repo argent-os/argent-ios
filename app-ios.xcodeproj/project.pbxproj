@@ -16,7 +16,7 @@
 		3008AA461CF8BC3900AFE855 /* SearchMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3008AA451CF8BC3900AFE855 /* SearchMessageViewController.swift */; };
 		300D8BE31CE5461A00FC3B05 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300D8BE21CE5461A00FC3B05 /* OnboardingViewController.swift */; };
 		300E422B1CB47428004316CF /* BankConnectedListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E422A1CB47428004316CF /* BankConnectedListTableViewController.swift */; };
-		300E422D1CB56E10004316CF /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E422C1CB56E10004316CF /* Bank.swift */; };
+		300E422D1CB56E10004316CF /* Plaid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E422C1CB56E10004316CF /* Plaid.swift */; };
 		300E422F1CB57206004316CF /* BankConnectedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E422E1CB57206004316CF /* BankConnectedTableViewCell.swift */; };
 		300E42311CB7123E004316CF /* CreditCardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E42301CB7123E004316CF /* CreditCardListViewController.swift */; };
 		300E42331CB71362004316CF /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E42321CB71362004316CF /* Card.swift */; };
@@ -30,6 +30,7 @@
 		304468F01CAA0BFC008CAE7D /* notify.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468ED1CAA0BFC008CAE7D /* notify.caf */; };
 		304468F11CAA0BFC008CAE7D /* pop.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468EE1CAA0BFC008CAE7D /* pop.caf */; };
 		304468F21CAA0BFC008CAE7D /* tone.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468EF1CAA0BFC008CAE7D /* tone.caf */; };
+		3045BB961CFDD0C700A49551 /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3045BB951CFDD0C700A49551 /* Bank.swift */; };
 		3064931C1CD6B00500A17B00 /* TutorialHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3064931B1CD6B00500A17B00 /* TutorialHomeViewController.swift */; };
 		306999031CAA125C0003B0A6 /* soft.caf in Resources */ = {isa = PBXBuildFile; fileRef = 306999021CAA125C0003B0A6 /* soft.caf */; };
 		306999051CACD0710003B0A6 /* AccountInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306999041CACD0710003B0A6 /* AccountInterfaceController.swift */; };
@@ -233,7 +234,7 @@
 		300B66F61CA4635800E24AF1 /* RESideMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RESideMenu.framework; path = "Pods/../build/Debug-iphoneos/RESideMenu.framework"; sourceTree = "<group>"; };
 		300D8BE21CE5461A00FC3B05 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingViewController.swift; path = "app-ios/OnboardingViewController.swift"; sourceTree = SOURCE_ROOT; };
 		300E422A1CB47428004316CF /* BankConnectedListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankConnectedListTableViewController.swift; path = "app-ios/BankConnectedListTableViewController.swift"; sourceTree = SOURCE_ROOT; };
-		300E422C1CB56E10004316CF /* Bank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Bank.swift; path = "app-ios/Bank.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		300E422C1CB56E10004316CF /* Plaid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Plaid.swift; path = "app-ios/Plaid.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		300E422E1CB57206004316CF /* BankConnectedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankConnectedTableViewCell.swift; path = "app-ios/BankConnectedTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		300E42301CB7123E004316CF /* CreditCardListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreditCardListViewController.swift; path = "app-ios/CreditCardListViewController.swift"; sourceTree = SOURCE_ROOT; };
 		300E42321CB71362004316CF /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Card.swift; path = "app-ios/Card.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -249,6 +250,7 @@
 		304468ED1CAA0BFC008CAE7D /* notify.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = notify.caf; sourceTree = "<group>"; };
 		304468EE1CAA0BFC008CAE7D /* pop.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pop.caf; sourceTree = "<group>"; };
 		304468EF1CAA0BFC008CAE7D /* tone.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tone.caf; sourceTree = "<group>"; };
+		3045BB951CFDD0C700A49551 /* Bank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bank.swift; path = "app-ios/Bank.swift"; sourceTree = SOURCE_ROOT; };
 		3064931B1CD6B00500A17B00 /* TutorialHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TutorialHomeViewController.swift; path = "app-ios/TutorialHomeViewController.swift"; sourceTree = SOURCE_ROOT; };
 		306999021CAA125C0003B0A6 /* soft.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = soft.caf; sourceTree = "<group>"; };
 		306999041CACD0710003B0A6 /* AccountInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInterfaceController.swift; sourceTree = "<group>"; };
@@ -520,7 +522,8 @@
 				30C2DAF81CA43975003AFD8B /* User.swift */,
 				30FF6FD41CF221A200A46A1E /* Account.swift */,
 				302010C91CAF3B05007D5E7E /* Notification.swift */,
-				300E422C1CB56E10004316CF /* Bank.swift */,
+				300E422C1CB56E10004316CF /* Plaid.swift */,
+				3045BB951CFDD0C700A49551 /* Bank.swift */,
 				300E42321CB71362004316CF /* Card.swift */,
 				30D5268B1CE0F303001B41BA /* Charge.swift */,
 				308A34891CCA803200AAF66F /* History.swift */,
@@ -1502,10 +1505,11 @@
 				30D5267D1CDE3736001B41BA /* ConfigureAppViewController.swift in Sources */,
 				30C2DAF91CA43975003AFD8B /* User.swift in Sources */,
 				30960EFF1CE3D7C100749695 /* TransferViewController.swift in Sources */,
-				300E422D1CB56E10004316CF /* Bank.swift in Sources */,
+				300E422D1CB56E10004316CF /* Plaid.swift in Sources */,
 				30C2DA961CA4372D003AFD8B /* PasscodeSettingsViewController.swift in Sources */,
 				300E422F1CB57206004316CF /* BankConnectedTableViewCell.swift in Sources */,
 				30C2DAEB1CA43934003AFD8B /* BankTableViewCell.swift in Sources */,
+				3045BB961CFDD0C700A49551 /* Bank.swift in Sources */,
 				30A5A3F21CF5F0EC00C9EEC2 /* IdentityVerificationViewController.swift in Sources */,
 				30C2DAD11CA4386A003AFD8B /* SupportMessageViewController.swift in Sources */,
 				30C2DAE91CA43934003AFD8B /* BankAccountViewController.swift in Sources */,
