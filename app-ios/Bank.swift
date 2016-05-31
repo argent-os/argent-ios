@@ -88,7 +88,6 @@ class Bank {
                         case .Success:
                             if let value = response.result.value {
                                 let data = JSON(value)
-                                print(data)
                                 var bankItemsArray = [Bank]()
                                 let banks = data["external_accounts"]["data"].arrayValue
                                 for bank in banks {
@@ -112,6 +111,43 @@ class Bank {
                                     bankItemsArray.append(item)
                                 }
                                 completionHandler(bankItemsArray, response.result.error)
+                            }
+                        case .Failure(let error):
+                            print(error)
+                        }
+                }
+            })
+        }
+    }
+    
+    class func deleteBankAccount(id: String, completionHandler: (Bool?, NSError?) -> Void) {
+        
+        // check for token, get profile id based on token and make the request
+        if(userAccessToken != nil) {
+            User.getProfile({ (user, error) in
+                if error != nil {
+                    print(error)
+                }
+                
+                let user_id = (user?.id)
+                
+                let parameters : [String : AnyObject] = [:]
+                
+                let headers = [
+                    "Authorization": "Bearer " + (userAccessToken as! String),
+                    "Content-Type": "application/json"
+                ]
+                
+                let endpoint = API_URL + "/v1/stripe/" + user_id! + "/external_account/" + id
+                
+                Alamofire.request(.DELETE, endpoint, parameters: parameters, encoding: .URL, headers: headers)
+                    .responseJSON { response in
+                        switch response.result {
+                        case .Success:
+                            if let value = response.result.value {
+                                let data = JSON(value)
+
+                                completionHandler(true, response.result.error)
                             }
                         case .Failure(let error):
                             print(error)

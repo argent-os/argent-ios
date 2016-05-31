@@ -268,6 +268,14 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
+        if let tabBarController = window?.rootViewController as? UITabBarController {
+            for item in tabBarController.tabBar.items! {
+                if let image = item.image {
+                    item.image = image.imageWithRenderingMode(.AlwaysOriginal)
+                }
+            }
+        }
+        
         let img: UIImage = UIImage(named: "Logo")!
         let logoImageView: UIImageView = UIImageView(frame: CGRectMake(20, 31, 40, 40))
         logoImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
@@ -529,6 +537,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 let formatted_date = dateFormatter.stringFromDate(converted_date)
                 cell.lblDate?.layer.cornerRadius = 10
                 cell.lblDate?.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
+                cell.lblDate?.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.75)
                 cell.lblDate?.layer.borderWidth = 1
                 cell.lblDate?.text = String(formatted_date) //+ " / uid " + uid
             } else {

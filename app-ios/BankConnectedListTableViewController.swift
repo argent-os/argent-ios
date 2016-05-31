@@ -16,7 +16,9 @@ import MCSwipeTableViewCell
 class BankConnectedListTableViewController: UITableViewController, MCSwipeTableViewCellDelegate {
     
     var itemsArray:Array<Bank>?
+    
     var bankRefreshControl = UIRefreshControl()
+    
     var dateFormatter = NSDateFormatter()
     
     override func viewDidLoad() {
@@ -93,11 +95,6 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.itemsArray?.count ?? 0
     }
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    }
 
     // MARK DELEGATE MCTABLEVIEWCELL
     
@@ -107,6 +104,10 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
         imageView.contentMode = UIViewContentMode.Center;
         return imageView;
     }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let CellIdentifier: String = "cell";
@@ -115,26 +116,33 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
             cell = MCSwipeTableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: CellIdentifier);
             cell!.selectionStyle = UITableViewCellSelectionStyle.Gray;
             cell!.contentView.backgroundColor = UIColor.whiteColor();
-            
+            cell.textLabel?.tintColor = UIColor.lightBlue()
+            cell.detailTextLabel?.tintColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
+            cell.tag = indexPath.row
+
             let item = self.itemsArray?[indexPath.row]
-            if let name = item?.bank_name
-            {
+            if let name = item?.bank_name, id = item?.id {
                 cell.textLabel?.text = name
             }
-            if let available = item?.bank_name, current = item?.fingerprint, number = item?.last4
-            {
+            if let number = item?.last4 {
                 // cell!.detailTextLabel?.text = "Current $" + current + " | " + "Available $" + available
                 cell.detailTextLabel?.text = "For account ending in " + number
-                
             }
         }
 
         let closeView: UIView = self.viewWithImageName("ic_close_light");
 
-        var  closeCell = cell
         cell.setSwipeGestureWithView(closeView, color:  UIColor.brandRed(), mode: .Exit, state: .State3) {
-            (cell : MCSwipeTableViewCell!, state : MCSwipeTableViewCellState!, mode : MCSwipeTableViewCellMode!) in print("Did swipe \"close \"");
-            closeCell = nil
+            (cell : MCSwipeTableViewCell!, state : MCSwipeTableViewCellState!, mode : MCSwipeTableViewCellMode!) in
+            let item = self.itemsArray?[cell.tag]
+            if let id = item?.id {
+                print("Did swipe" + id);
+                // send request to delete the bank account, on completion reload table data!
+                Bank.deleteBankAccount(id, completionHandler: { (bool, err) in
+                    print("deleted bank account ", bool)
+                    self.loadBankAccounts()
+                })
+            }
         };
 
         return cell;
