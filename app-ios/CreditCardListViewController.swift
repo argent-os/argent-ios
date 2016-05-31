@@ -6,13 +6,14 @@
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
 //
 
+import UIKit
 import Foundation
 import Alamofire
 import SwiftyJSON
 import JGProgressHUD
-import SESlideTableViewCell
+import MCSwipeTableViewCell
 
-class CreditCardListViewController: UITableViewController, SESlideTableViewCellDelegate {
+class CreditCardListViewController: UITableViewController, MCSwipeTableViewCellDelegate {
     
     var itemsArray:Array<Card>?
     var cardRefreshControl = UIRefreshControl()
@@ -92,30 +93,48 @@ class CreditCardListViewController: UITableViewController, SESlideTableViewCellD
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.itemsArray?.count ?? 0
     }
+
+    // MARK DELEGATE MCTABLEVIEWCELL
+    
+    func viewWithImageName(name: String) -> UIView {
+        let image: UIImage = UIImage(named: name)!;
+        let imageView: UIImageView = UIImageView(image: image);
+        imageView.contentMode = UIViewContentMode.Center;
+        return imageView;
+    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        let CELL_ID = "Cell"
-        var cell = tableView.dequeueReusableCellWithIdentifier(CELL_ID) as? SESlideTableViewCell
-        if (cell == nil) {
-            cell = SESlideTableViewCell(style: .Subtitle, reuseIdentifier: CELL_ID)
-            cell!.delegate = self
-            cell!.addRightButtonWithText("Delete", textColor: UIColor.whiteColor(), backgroundColor: UIColor(hue: 0.0/360.0, saturation: 0.8, brightness: 0.9, alpha: 1.0))
+        let CellIdentifier: String = "cell";
+        var cell: MCSwipeTableViewCell! = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as! MCSwipeTableViewCell!;
+        if cell == nil {
+            cell = MCSwipeTableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: CellIdentifier);
+            cell!.selectionStyle = UITableViewCellSelectionStyle.Gray;
+            cell!.contentView.backgroundColor = UIColor.whiteColor();
+            
             let item = self.itemsArray?[indexPath.row]
-            cell!.textLabel?.text = ""
-            cell!.detailTextLabel?.text = ""
-            if let brand = item?.brand
-            {
-                cell!.textLabel?.text = brand
+            if let brand = item?.brand {
+                cell.textLabel?.text = brand
             }
-            if let number = item?.last4
-            {
-                cell!.detailTextLabel?.text = "For card ending in " + number
-                
+            if let number = item?.last4 {
+                cell.detailTextLabel?.text = "For card ending in " + number
             }
         }
         
-        return cell!
+        let closeView: UIView = self.viewWithImageName("ic_close_light");
+        
+        cell.setSwipeGestureWithView(closeView, color:  UIColor.brandRed(), mode: .Exit, state: .State3) {
+            (cell : MCSwipeTableViewCell!, state : MCSwipeTableViewCellState!, mode : MCSwipeTableViewCellMode!) in print("Did swipe \"Clock \"");
+                NSLog("Did swipe \"close\" cell")
+        };
+        
+        return cell;
     }
     
+    // Called when the user starts swiping the cell.
+    
+    // Called during a swipe.
+    
+    func swipeTableViewCell(cell: MCSwipeTableViewCell, didSwipeWithPercentage percentage: CGFloat) {
+    }
+
 }

@@ -6,15 +6,16 @@
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
 //
 
+import UIKit
 import Foundation
 import Alamofire
 import SwiftyJSON
 import JGProgressHUD
-import SESlideTableViewCell
+import MCSwipeTableViewCell
 
-class BankConnectedListTableViewController: UITableViewController, SESlideTableViewCellDelegate {
+class BankConnectedListTableViewController: UITableViewController, MCSwipeTableViewCellDelegate {
     
-    var itemsArray:Array<Plaid_>?
+    var itemsArray:Array<Bank>?
     var bankRefreshControl = UIRefreshControl()
     var dateFormatter = NSDateFormatter()
     
@@ -42,7 +43,7 @@ class BankConnectedListTableViewController: UITableViewController, SESlideTableV
     }
     
     func loadBankAccounts() {
-        Plaid_.getBankAccounts({ (items, error) in
+        Bank.getBankAccounts({ (items, error) in
             if error != nil
             {
                 let alert = UIAlertController(title: "Error", message: "Could not load banks \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
@@ -93,33 +94,50 @@ class BankConnectedListTableViewController: UITableViewController, SESlideTableV
         return self.itemsArray?.count ?? 0
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let CELL_ID = "Cell"
-        var cell = tableView.dequeueReusableCellWithIdentifier(CELL_ID) as? SESlideTableViewCell
-        if (cell == nil) {
-            cell = SESlideTableViewCell(style: .Subtitle, reuseIdentifier: CELL_ID)
-            cell!.delegate = self
-            cell!.addRightButtonWithText("Delete", textColor: UIColor.whiteColor(), backgroundColor: UIColor(hue: 0.0/360.0, saturation: 0.8, brightness: 0.9, alpha: 1.0))
-            let item = self.itemsArray?[indexPath.row]
-            cell!.textLabel?.text = ""
-            cell?.textLabel?.font = UIFont(name: "Avenir-Light", size: 14)
-            cell!.detailTextLabel?.text = ""
-            cell?.detailTextLabel?.font = UIFont(name: "Avenir-Light", size: 12)
-            
-            if let name = item?.account_name, _ = item?.account_number
-            {
-                cell!.textLabel?.text = name
-            }
-            if let available = item?.account_balance_available, current = item?.account_balance_current, number = item?.account_number
-            {
-//                cell!.detailTextLabel?.text = "Current $" + current + " | " + "Available $" + available
-                  cell!.detailTextLabel?.text = "For account ending in " + number
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
 
+    // MARK DELEGATE MCTABLEVIEWCELL
+    
+    func viewWithImageName(name: String) -> UIView {
+        let image: UIImage = UIImage(named: name)!;
+        let imageView: UIImageView = UIImageView(image: image);
+        imageView.contentMode = UIViewContentMode.Center;
+        return imageView;
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let CellIdentifier: String = "cell";
+        var cell: MCSwipeTableViewCell! = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as! MCSwipeTableViewCell!;
+        if cell == nil {
+            cell = MCSwipeTableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: CellIdentifier);
+            cell!.selectionStyle = UITableViewCellSelectionStyle.Gray;
+            cell!.contentView.backgroundColor = UIColor.whiteColor();
+            
+            let item = self.itemsArray?[indexPath.row]
+            if let name = item?.bank_name
+            {
+                cell.textLabel?.text = name
+            }
+            if let available = item?.bank_name, current = item?.fingerprint, number = item?.last4
+            {
+                // cell!.detailTextLabel?.text = "Current $" + current + " | " + "Available $" + available
+                cell.detailTextLabel?.text = "For account ending in " + number
+                
             }
         }
-        
-        return cell!
+
+        let closeView: UIView = self.viewWithImageName("ic_close_light");
+
+        var  closeCell = cell
+        cell.setSwipeGestureWithView(closeView, color:  UIColor.brandRed(), mode: .Exit, state: .State3) {
+            (cell : MCSwipeTableViewCell!, state : MCSwipeTableViewCellState!, mode : MCSwipeTableViewCellMode!) in print("Did swipe \"close \"");
+            closeCell = nil
+        };
+
+        return cell;
     }
     
 }

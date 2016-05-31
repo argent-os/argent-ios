@@ -34,7 +34,7 @@ target 'app-ios' do
 	pod 'UICountingLabel'
 	pod 'DGRunkeeperSwitch'
 	pod 'JGProgressHUD'	
-	pod 'SESlideTableViewCell'
+	pod 'MCSwipeTableViewCell'
 	pod 'JVFloatLabeledTextField'
 	pod 'JSSAlertView'
 	pod 'CountryPicker'
