@@ -38,9 +38,9 @@ let APP_NAME = "Argent"
 
 // DEV
 // let API_URL = "http://localhost:5001"
- let API_URL = "http://192.168.1.182:5001"
+// let API_URL = "http://192.168.1.182:5001"
 // let API_URL = "http://192.168.1.232:5001"
-// let API_URL = "http://api.argent.cloud"
+ let API_URL = "http://api.argent.cloud"
 
 // PROD
 //let API_URL = "https://api.argent.cloud"
@@ -195,6 +195,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
             for item in tabBarController.tabBar.items! {
                 if let image = item.image {
                     item.image = image.imageWithRenderingMode(.AlwaysOriginal)
+                    if UIApplication.sharedApplication().applicationIconBadgeNumber != 0 {
+                        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+                        tabBarController.tabBar.items![3].badgeValue = "1"
+                        Timeout(5) {
+                            tabBarController.tabBar.items![3].badgeValue = ""
+                        }
+                    }
+                    
                 }
             }
             guard let activeTab = NSUserDefaults.standardUserDefaults().valueForKey("activeTab") else {
@@ -212,8 +220,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
         // that affect the entire application such
         // as keyboards, navigation bars, and tabbars
         
-        // Set push notification badge to zero
-        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+        // Set notification badge to zero on launch
+        // UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         
         // Globally set toolbar
         UIToolbar.appearance().barTintColor = UIColor.mediumBlue()
@@ -345,6 +353,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
          */
         //Remember the users last tab selection
         if let tabBarController = window?.rootViewController as? UITabBarController {
+            for item in tabBarController.tabBar.items! {
+                if let image = item.image {
+                    item.image = image.imageWithRenderingMode(.AlwaysOriginal)
+                }
+            }
             // Uses the original colors for your images, so they aren't not rendered as grey automatically.
             let tabIndex: Int = tabBarController.selectedIndex
             let userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
