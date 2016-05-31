@@ -12,7 +12,6 @@ import SwiftyJSON
 import Stripe
 import DGRunkeeperSwitch
 import BEMSimpleLineGraph
-import UICountingLabel
 import DGElasticPullToRefresh
 import Gecco
 import DZNEmptyDataSet
@@ -46,9 +45,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     private var user = User(id: "", username: "", email: "", first_name: "", last_name: "", picture: "", phone: "", country: "", plaid_access_token: "")
     
-    private let lblAccountPending:UICountingLabel = UICountingLabel()
+    private let lblAccountPending:UILabel = UILabel()
 
-    private let lblAccountAvailable:UICountingLabel = UICountingLabel()
+    private let lblAccountAvailable:UILabel = UILabel()
 
     private let lblAvailableDescription:UILabel = UILabel()
 
@@ -184,7 +183,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         if((userAccessToken) != nil) {
             // Get stripe data
             loadStripe({ (balance, err) in
-                
+                print("loading stripe")
                 let pendingBalance = balance.pending
                 let availableBalance = balance.available
                 
@@ -194,27 +193,11 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 formatter.numberStyle = .CurrencyStyle
                 formatter.locale = NSLocale.currentLocale() // This is the default
                 
-                if(pendingBalance != 0 && availableBalance != 0) {
-                    self.lblAccountPending.countFrom(CGFloat(pendingBalance)/100-600, to: CGFloat(pendingBalance)/100)
-                    self.lblAccountPending.font = UIFont(name: "HelveticaNeue", size:16)
-                    self.lblAccountPending.textColor = UIColor.lightBlue()
-                    self.lblAccountPending.format = "%.2f"
-                    self.lblAccountPending.animationDuration = 0.5
-                    self.lblAccountPending.method = UILabelCountingMethod.EaseInOut
-                    self.lblAccountPending.completionBlock = {
-                        self.lblAccountPending.attributedText = formatCurrency(String(pendingBalance), fontName: "HelveticaNeue", superSize: 11, fontSize: 16, offsetSymbol: 3, offsetCents: 3)
-                    }
-    
-                    self.lblAccountAvailable.countFrom((CGFloat(Float(availableBalance))/100)-100, to: CGFloat(Float(availableBalance))/100)
-                    self.lblAccountAvailable.textColor = UIColor.lightBlue()
-                    self.lblAccountAvailable.format = "%.2f"
-                    self.lblAccountAvailable.font = UIFont(name: "HelveticaNeue", size:16)
-                    self.lblAccountAvailable.animationDuration = 1.0
-                    self.lblAccountAvailable.method = UILabelCountingMethod.EaseInOut
-                    self.lblAccountAvailable.completionBlock = {
-                        self.lblAccountAvailable.attributedText = formatCurrency(String(availableBalance), fontName: "HelveticaNeue", superSize: 11, fontSize: 16, offsetSymbol: 3, offsetCents: 3)
-                    }
-                }
+                print(balance.pending)
+                print(balance.available)
+                self.lblAccountPending.attributedText = formatCurrency(String(pendingBalance), fontName: "HelveticaNeue", superSize: 11, fontSize: 16, offsetSymbol: 3, offsetCents: 3)
+                addSubviewWithFade(self.lblAccountPending, parentView: self)
+                self.lblAccountAvailable.attributedText = formatCurrency(String(availableBalance), fontName: "HelveticaNeue", superSize: 11, fontSize: 16, offsetSymbol: 3, offsetCents: 3)
             })
             
             // Get user account history
@@ -389,7 +372,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         
         lblAccountAvailable.tintColor = UIColor.darkBlue()
         lblAccountAvailable.frame = CGRectMake(20, 81, 200, 40)
-        let str0 = NSAttributedString(string: "$0.00", attributes:
+        let str0 = NSAttributedString(string: "N/A", attributes:
             [
                 NSFontAttributeName: UIFont.systemFontOfSize(18),
                 NSForegroundColorAttributeName:UIColor.lightBlue()
@@ -398,13 +381,12 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         
         lblAccountPending.tintColor = UIColor.darkBlue()
         lblAccountPending.frame = CGRectMake(20, 81, 200, 40)
-        let str1 = NSAttributedString(string: "$0.00", attributes:
+        let str1 = NSAttributedString(string: "N/A", attributes:
             [
                 NSFontAttributeName: UIFont.systemFontOfSize(18),
                 NSForegroundColorAttributeName:UIColor.lightBlue()
             ])
         lblAccountPending.attributedText = str1
-        addSubviewWithFade(lblAccountPending, parentView: self)
         
         lblAvailableDescription.frame = CGRectMake(20, 106, 200, 40)
         let str2 = NSAttributedString(string: "Available Balance", attributes:
