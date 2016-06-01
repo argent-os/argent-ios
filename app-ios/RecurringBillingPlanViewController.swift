@@ -33,7 +33,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
     }
 
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+        return .Default
     }
     
     // MARK: Private
@@ -41,18 +41,18 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
     private func setupNav() {
         let navigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 60)) // Offset by 20 pixels vertically to take the status bar into account
         
-        navigationBar.backgroundColor = UIColor.mediumBlue()
-        navigationBar.tintColor = UIColor.whiteColor()
+        navigationBar.backgroundColor = UIColor.clearColor()
+        navigationBar.tintColor = UIColor.mediumBlue()
         navigationBar.delegate = self
         
         // Create a navigation item with a title
         let navigationItem = UINavigationItem()
         navigationItem.title = ""
         navigationItem.titleView?.tintColor = UIColor.whiteColor()
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.mediumBlue()]
 
         // Create left and right button for navigation item
-        let leftButton = UIBarButtonItem(image: UIImage(named: "IconCloseLight"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(RecurringBillingViewController.returnToMenu(_:)))
+        let leftButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.returnToMenu(_:)))
         let font = UIFont.systemFontOfSize(14)
         leftButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
         // Create two buttons for the navigation item
@@ -104,10 +104,10 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         
         // UI
         let addPlanButton = UIButton(frame: CGRect(x: 20, y: screenHeight-80, width: screenWidth-40, height: 60.0))
-        addPlanButton.backgroundColor = UIColor.mediumBlue()
+        addPlanButton.backgroundColor = UIColor.lightBlue()
         addPlanButton.tintColor = UIColor(rgba: "#fff")
         addPlanButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
-        addPlanButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
+        addPlanButton.titleLabel?.font = UIFont(name: "DINAlternate-Bold", size: 16)
         addPlanButton.setTitle("Add Plan", forState: .Normal)
         addPlanButton.layer.cornerRadius = 5
         addPlanButton.layer.masksToBounds = true
@@ -115,17 +115,17 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         addPlanButton.addTarget(self, action: #selector(RecurringBillingViewController.addPlanButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(addPlanButton)
 
-        amountInputView.addTarget(self, action: #selector(RecurringBillingViewController.endEditing(_:)), forControlEvents: UIControlEvents.EditingDidEnd)
-        amountInputView.addTarget(self, action: #selector(RecurringBillingViewController.textField(_:shouldChangeCharactersInRange:replacementString:)), forControlEvents: UIControlEvents.EditingChanged)
+        amountInputView.addTarget(self, action: #selector(self.endEditing(_:)), forControlEvents: UIControlEvents.EditingDidEnd)
+        amountInputView.addTarget(self, action: #selector(self.textField(_:shouldChangeCharactersInRange:replacementString:)), forControlEvents: UIControlEvents.EditingChanged)
         amountInputView.delegate = self
-        amountInputView.frame = CGRect(x: 0, y: 20, width: screenWidth, height: 140)
+        amountInputView.frame = CGRect(x: 0, y: -10, width: screenWidth, height: 170)
         amountInputView.textAlignment = .Center
         amountInputView.font = UIFont(name: "DINAlternate-Bold", size: 48)
-        amountInputView.textColor = UIColor.whiteColor()
+        amountInputView.textColor = UIColor.lightBlue()
         amountInputView.placeholder = "$0.00"
         amountInputView.keyboardType = UIKeyboardType.NumberPad
-        amountInputView.backgroundColor = UIColor.mediumBlue()
-        amountInputView.tintColor = UIColor.whiteColor()
+        amountInputView.backgroundColor = UIColor.offWhite()
+        amountInputView.tintColor = UIColor.lightBlue()
         addSubviewWithBounce(amountInputView, parentView: self, duration: 0.3)
         amountInputView.becomeFirstResponder()
         
@@ -139,9 +139,9 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         perIntervalLabel.frame = CGRect(x: 0, y: 110, width: screenWidth, height: 50)
         perIntervalLabel.textAlignment = .Center
         perIntervalLabel.font = UIFont(name: "DINAlternate-Bold", size: 16)
-        perIntervalLabel.textColor = UIColor.whiteColor()
+        perIntervalLabel.textColor = UIColor.lightBlue()
         perIntervalLabel.text = ""
-        perIntervalLabel.backgroundColor = UIColor.mediumBlue()
+        perIntervalLabel.backgroundColor = UIColor.clearColor()
         self.view.addSubview(perIntervalLabel)
         
         // Create RowFomers
@@ -196,25 +196,6 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
                 self.dic["planIntervalKey"] = $0.title
         }
         
-//        let planIntervalCountRow = TextFieldRowFormer<FormTextFieldCell>() {
-//            $0.titleLabel.text = "Cycle"
-//            $0.titleLabel.font = UIFont.systemFontOfSize(15)
-//            $0.titleLabel.textColor = UIColor.grayColor()
-//            $0.textField.font = UIFont.systemFontOfSize(15)
-//            $0.textField.autocorrectionType = .No
-//            $0.textField.autocapitalizationType = .None
-//            $0.textField.keyboardType = .NumberPad
-//            }.configure {
-//                $0.placeholder = "The billing cycle of the plan"
-//                $0.rowHeight = 60
-//            }.onTextChanged { [weak self] in
-//                if self?.dic["planIntervalKey"] == "year" && Int($0) > 1 {
-//                    self!.showErrorAlert()
-//                } else {
-//                    self?.dic["planIntervalCountKey"] = $0
-//                }
-//        }
-        
         let planTrialPeriodRow = TextFieldRowFormer<FormTextFieldCell>() {
             $0.titleLabel.text = "Trial"
             $0.titleLabel.font = UIFont.systemFontOfSize(15)
@@ -245,6 +226,25 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
                 self?.dic["planStatementDescriptionKey"] = $0
         }
         
+        //        let planIntervalCountRow = TextFieldRowFormer<FormTextFieldCell>() {
+        //            $0.titleLabel.text = "Cycle"
+        //            $0.titleLabel.font = UIFont.systemFontOfSize(15)
+        //            $0.titleLabel.textColor = UIColor.grayColor()
+        //            $0.textField.font = UIFont.systemFontOfSize(15)
+        //            $0.textField.autocorrectionType = .No
+        //            $0.textField.autocapitalizationType = .None
+        //            $0.textField.keyboardType = .NumberPad
+        //            }.configure {
+        //                $0.placeholder = "The billing cycle of the plan"
+        //                $0.rowHeight = 60
+        //            }.onTextChanged { [weak self] in
+        //                if self?.dic["planIntervalKey"] == "year" && Int($0) > 1 {
+        //                    self!.showAlert("Interval for yearly plans cannot be greater than 1", UIColor.brandRed(), "ic_close_light")
+        //                } else {
+        //                    self?.dic["planIntervalCountKey"] = $0
+        //                }
+        //        }
+        
         // Create Headers
         
         let createHeader: (() -> ViewFormer) = {
@@ -266,12 +266,12 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         Plan.createPlan(dic) { (bool, err) in
             if bool == true {
                 if let msg = self.dic["planNameKey"] {
-                    self.showSuccessAlert(msg)
+                    self.showAlert(msg + " plan created!", color: UIColor.brandGreen(), icon: "ic_check_light")
                     self.amountInputView.text = ""
                     self.perIntervalLabel.text = ""
                 }
             } else {
-                self.showErrorAlert(err)
+                self.showAlert(err, color: UIColor.brandRed(), icon: "ic_close_light")
             }
         }
     }
@@ -280,39 +280,8 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         self.view.window!.rootViewController!.dismissViewControllerAnimated(true, completion: { _ in })
     }
     
-    func showSuccessAlert(msg: String) {
-        let customIcon:UIImage = UIImage(named: "ic_check_light")! // your custom icon UIImage
-        let customColor:UIColor = UIColor.brandGreen() // base color for the alert
-        self.view.endEditing(true)
-        let alertView = JSSAlertView().show(
-            self,
-            title: "",
-            text: msg + " plan created!",
-            buttonText: "Close",
-            noButtons: false,
-            color: customColor,
-            iconImage: customIcon)
-        alertView.setTextTheme(.Light) // can be .Light or .Dark
-    }
-    
-    func showErrorInputAlert() {
-        let customIcon:UIImage = UIImage(named: "ic_close_light")! // your custom icon UIImage
-        let customColor:UIColor = UIColor.brandRed() // base color for the alert
-        self.view.endEditing(true)
-        let alertView = JSSAlertView().show(
-            self,
-            title: "",
-            text: "Interval for yearly plans cannot be greater than 1",
-            buttonText: "Ok",
-            noButtons: false,
-            color: customColor,
-            iconImage: customIcon)
-        alertView.setTextTheme(.Light) // can be .Light or .Dark
-    }
-    
-    func showErrorAlert(msg: String) {
-        let customIcon:UIImage = UIImage(named: "ic_close_light")! // your custom icon UIImage
-        let customColor:UIColor = UIColor.brandRed() // base color for the alert
+    func showAlert(msg: String, color: UIColor, icon: String) {
+        let customIcon:UIImage = UIImage(named: icon)! // your custom icon UIImage
         self.view.endEditing(true)
         let alertView = JSSAlertView().show(
             self,
@@ -320,7 +289,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
             text: msg,
             buttonText: "Close",
             noButtons: false,
-            color: customColor,
+            color: color,
             iconImage: customIcon)
         alertView.setTextTheme(.Light) // can be .Light or .Dark
     }

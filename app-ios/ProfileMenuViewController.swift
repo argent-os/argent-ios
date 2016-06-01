@@ -27,14 +27,20 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
     private var customersArray = [Customer]()
     
     private var plansArray = [Plan]()
-    
+
+    private var subscriptionsArray = [Subscription]()
+
     private var customersCountLabel = UILabel()
     
     private var plansCountLabel = UILabel()
 
+    private var subscriptionsCountLabel = UILabel()
+
     private var locationLabel = UILabel()
 
     private var splitter = UIView()
+
+    private var splitter2 = UIView()
 
     private let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 40, width: UIScreen.mainScreen().bounds.size.width, height: 50))
 
@@ -118,12 +124,6 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         // self.view.addSubview(settingsIcon)
         // self.view.bringSubviewToFront(settingsIcon)
         
-        splitter.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
-        splitter.frame = CGRect(x: screenWidth/2-0.5, y: 140, width: 1, height: 50)
-        Timeout(0.05) {
-            addSubviewWithFade(self.splitter, parentView: self, duration: 1.2)
-        }
-        
         let attachment: NSTextAttachment = NSTextAttachment()
         attachment.image = UIImage(named: "IconPinWhiteTiny")
         let attachmentString: NSAttributedString = NSAttributedString(attachment: attachment)
@@ -154,19 +154,37 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         }
         self.locationLabel.frame = CGRectMake(0, 72, screenWidth, 70)
         self.locationLabel.textAlignment = NSTextAlignment.Center
-        self.locationLabel.font = UIFont(name: "Avenir-Book", size: 12)
+        self.locationLabel.font = UIFont(name: "HelveticaNeue-Light", size: 12)
         self.locationLabel.numberOfLines = 0
         self.locationLabel.textColor = UIColor(rgba: "#fff")
 
-        self.customersCountLabel.frame = CGRectMake(-20, 130, screenWidth/2, 70)
-        self.customersCountLabel.textAlignment = NSTextAlignment.Right
-        self.customersCountLabel.font = UIFont(name: "Avenir-Book", size: 12)
+        splitter.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
+        splitter.frame = CGRect(x: screenWidth*0.333-0.5, y: 140, width: 1, height: 50)
+        Timeout(0.05) {
+            addSubviewWithFade(self.splitter, parentView: self, duration: 1.2)
+        }
+        
+        splitter2.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
+        splitter2.frame = CGRect(x: screenWidth*0.666-0.5, y: 140, width: 1, height: 50)
+        Timeout(0.1) {
+            addSubviewWithFade(self.splitter2, parentView: self, duration: 1.2)
+        }
+        
+        self.subscriptionsCountLabel.frame = CGRectMake(30, 130, 80, 70)
+        self.subscriptionsCountLabel.textAlignment = NSTextAlignment.Center
+        self.subscriptionsCountLabel.font = UIFont(name: "HelveticaNeue-Light", size: 12)
+        self.subscriptionsCountLabel.numberOfLines = 0
+        self.subscriptionsCountLabel.textColor = UIColor(rgba: "#fff")
+        
+        self.customersCountLabel.frame = CGRectMake(screenWidth*0.5-40, 130, 80, 70)
+        self.customersCountLabel.textAlignment = NSTextAlignment.Center
+        self.customersCountLabel.font = UIFont(name: "HelveticaNeue-Light", size: 12)
         self.customersCountLabel.numberOfLines = 0
         self.customersCountLabel.textColor = UIColor(rgba: "#fff")
         
-        self.plansCountLabel.frame = CGRectMake(screenWidth/2+20, 130, screenWidth/2-40, 70)
-        self.plansCountLabel.textAlignment = NSTextAlignment.Left
-        self.plansCountLabel.font = UIFont(name: "Avenir-Book", size: 12)
+        self.plansCountLabel.frame = CGRectMake(screenWidth-110, 130, 80, 70)
+        self.plansCountLabel.textAlignment = NSTextAlignment.Center
+        self.plansCountLabel.font = UIFont(name: "HelveticaNeue-Light", size: 12)
         self.plansCountLabel.numberOfLines = 0
         self.plansCountLabel.textColor = UIColor(rgba: "#fff")
 
@@ -174,9 +192,9 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
             if(customers!.count == 0) {
                 self.customersCountLabel.text = "No customers"
             } else if(customers!.count < 2 && customers!.count > 0) {
-                self.customersCountLabel.text = String(customers!.count) + " customer"
+                self.customersCountLabel.text = String(customers!.count) + "\ncustomer"
             } else {
-                self.customersCountLabel.text = String(customers!.count) + " customers"
+                self.customersCountLabel.text = String(customers!.count) + "\ncustomers"
             }
             Timeout(0.3) {
                 addSubviewWithFade(self.customersCountLabel, parentView: self, duration: 0.8)
@@ -185,14 +203,27 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         
         self.loadPlanList { (plans: [Plan]?, NSError) in
             if(plans!.count == 0) {
-                self.plansCountLabel.text = "No subscriptions"
+                self.plansCountLabel.text = "No plans"
             } else if(plans!.count < 2 && plans!.count > 0) {
-                self.plansCountLabel.text = String(plans!.count) + " subscription"
+                self.plansCountLabel.text = String(plans!.count) + "\nplan"
             } else {
-                self.plansCountLabel.text = String(plans!.count) + " subscriptions"
+                self.plansCountLabel.text = String(plans!.count) + "\nplans"
             }
             Timeout(0.3) {
                 addSubviewWithFade(self.plansCountLabel, parentView: self, duration: 0.8)
+            }
+        }
+        
+        self.loadSubscriptionList { (subscriptions: [Subscription]?, NSError) in
+            if(subscriptions!.count == 0) {
+                self.subscriptionsCountLabel.text = "No subscriptions"
+            } else if(subscriptions!.count < 2 && subscriptions!.count > 0) {
+                self.subscriptionsCountLabel.text = String(subscriptions!.count) + "\nsubscription"
+            } else {
+                self.subscriptionsCountLabel.text = String(subscriptions!.count) + "\nsubscriptions"
+            }
+            Timeout(0.3) {
+                addSubviewWithFade(self.subscriptionsCountLabel, parentView: self, duration: 0.8)
             }
         }
     }
@@ -213,7 +244,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         
         self.navBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "Avenir-Light", size: 16.0)!
+            NSFontAttributeName : UIFont(name: "HelveticaNeue-Light", size: 16.0)!
         ]
         self.navBar.setItems([navItem], animated: false)
         Timeout(0.1) {
@@ -325,6 +356,18 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
             }
             self.plansArray = plans!
             completionHandler(plans!, error)
+        })
+    }
+    
+    private func loadSubscriptionList(completionHandler: ([Subscription]?, NSError?) -> ()) {
+        Subscription.getSubscriptionList({ (subscriptions, error) in
+            if error != nil {
+                let alert = UIAlertController(title: "Error", message: "Could not load subscriptions \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+            self.subscriptionsArray = subscriptions!
+            completionHandler(subscriptions!, error)
         })
     }
     

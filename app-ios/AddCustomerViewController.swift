@@ -79,14 +79,14 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         
         let mainImage = UIImageView()
         mainImage.image = UIImage(named: "IconSend")
-        mainImage.frame = CGRect(x: screenWidth/2-100, y: 80, width: 200, height: 200)
+        mainImage.frame = CGRect(x: screenWidth/2-65, y: 100, width: 130, height: 130)
         mainImage.contentMode = .ScaleAspectFit
         Timeout(0.1) {
             addSubviewWithBounce(mainImage, parentView: self, duration: 0.3)
         }
         
         let mainTitle = UILabel()
-        mainTitle.frame = CGRect(x: 0, y: 260, width: screenWidth, height: 40)
+        mainTitle.frame = CGRect(x: 0, y: 220, width: screenWidth, height: 40)
         mainTitle.textColor = UIColor.darkGrayColor()
         mainTitle.textAlignment = .Center
         mainTitle.text = "Send Invitation"
@@ -96,7 +96,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         }
         
         let mainBody = UILabel()
-        mainBody.frame = CGRect(x:40, y: 280, width: screenWidth-80, height: 80)
+        mainBody.frame = CGRect(x:40, y: 240, width: screenWidth-80, height: 80)
         mainBody.textColor = UIColor.lightGrayColor()
         mainBody.textAlignment = .Center
         mainBody.text = "Invite new users, customers, or friends to " + APP_NAME + " today! The more the merrier."
@@ -110,6 +110,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         emailButton.center = CGPointMake(self.view.layer.frame.width*0.3, screenHeight-130)
         emailButton.titleLabel!.font = UIFont.systemFontOfSize(22)
         emailButton.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
+        emailButton.borderSize = 1
         emailButton.tintColor = UIColor.whiteColor()
         emailButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         let str0 = NSAttributedString(string: "Mail", attributes:
@@ -127,6 +128,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         smsButton.center = CGPointMake(self.view.layer.frame.width*0.7, screenHeight-130)
         smsButton.titleLabel!.font = UIFont.systemFontOfSize(22)
         smsButton.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
+        smsButton.borderSize = 1
         smsButton.tintColor = UIColor.whiteColor()
         smsButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         let str1 = NSAttributedString(string: "SMS", attributes:

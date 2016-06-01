@@ -97,6 +97,13 @@ extension UIColor {
             return UIColor(rgba: "#7b8999")
         }
     }
+    static func skyBlue() -> UIColor {
+        if APP_THEME == "LIGHT" {
+            return UIColor(rgba: "#00b5ff")
+        } else {
+            return UIColor(rgba: "#00b5ff")
+        }
+    }
     static func limeGreen() -> UIColor {
         if APP_THEME == "LIGHT" {
             return UIColor(rgba: "#d8ff52")
@@ -230,6 +237,33 @@ func addSubviewWithFade(view: UIView, parentView: UIViewController, duration: NS
     parentView.view.addSubview(view)
     UIView.animateWithDuration(duration, animations: {
         view.alpha = 1.0
+    })
+}
+
+
+func addSubviewWithShadow(color: UIColor, radius: CGFloat, offsetX: CGFloat, offsetY: CGFloat, opacity: Float, parentView: UIViewController, childView: UIView) {
+    childView.alpha = 0.0
+    parentView.view.addSubview(childView)
+    UIView.animateWithDuration(1.0, animations: {
+        let containerLayer: CALayer = CALayer()
+        containerLayer.shadowColor = color.CGColor
+        containerLayer.shadowRadius = radius
+        containerLayer.shadowOffset = CGSizeMake(offsetX, offsetY)
+        containerLayer.shadowOpacity = opacity
+        childView.layer.masksToBounds = true
+        containerLayer.addSublayer(childView.layer)
+        parentView.view.layer.addSublayer(containerLayer)
+        childView.alpha = 1.0
+    })
+}
+
+func addSubviewText(view: UIView, parentView: UIViewController, text: UILabel, frame: CGRect, str: NSAttributedString) {
+    view.alpha = 0.0
+    parentView.view.addSubview(view)
+    UIView.animateWithDuration(1.0, animations: {
+        view.alpha = 1.0
+        text.attributedText = str
+        view.addSubview(text)
     })
 }
 

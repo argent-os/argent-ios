@@ -14,11 +14,11 @@ class MenuViewController: UIViewController {
 
     private let menuSwitch = AnimatedSegmentSwitch()
 
-    private let viewTerminalImageView = UIImageView()
+    private let viewTerminalImageView = UIView()
 
-    private let addPlanImageView = UIImageView()
+    private let addPlanImageView = UIView()
     
-    private let inviteImageView = UIImageView()
+    private let inviteImageView = UIView()
 
     private var mainView = UIView()
     
@@ -26,72 +26,10 @@ class MenuViewController: UIViewController {
     
     @IBAction func indexChanged(sender: AnimatedSegmentSwitch) {
         if(sender.selectedIndex == 0) {
-            // remove previous views
-            UIView.animateWithDuration(0.2, animations: {
-                self.viewTerminalImageView.alpha = 1.0
-                }, completion: {(value: Bool) in
-                    addSubviewWithFade(self.viewTerminalImageView, parentView: self, duration: 0.8)
-            })
-            UIView.animateWithDuration(0.7, animations: {
-                self.addPlanImageView.alpha = 1.0
-                }, completion: {(value: Bool) in
-                    addSubviewWithFade(self.addPlanImageView, parentView: self, duration: 0.8)
-            })
-            UIView.animateWithDuration(1.2, animations: {
-                self.inviteImageView.alpha = 1.0
-                }, completion: {(value: Bool) in
-                    addSubviewWithFade(self.inviteImageView, parentView: self, duration: 0.8)
-            })
-            // add views
-            UIView.animateWithDuration(0.2, animations: {
-                self.viewTerminalImageView.alpha = 1.0
-                }, completion: {(value: Bool) in
-                    addSubviewWithFade(self.viewTerminalImageView, parentView: self, duration: 0.8)
-            })
-            UIView.animateWithDuration(0.7, animations: {
-                self.addPlanImageView.alpha = 1.0
-                }, completion: {(value: Bool) in
-                    addSubviewWithFade(self.addPlanImageView, parentView: self, duration: 0.8)
-            })
-            UIView.animateWithDuration(1.2, animations: {
-                self.inviteImageView.alpha = 1.0
-                }, completion: {(value: Bool) in
-                    addSubviewWithFade(self.inviteImageView, parentView: self, duration: 0.8)
-            })
+
         }
         if(sender.selectedIndex == 1) {
-            // remove previous views
-            UIView.animateWithDuration(0.2, animations: {
-                self.viewTerminalImageView.alpha = 0.0
-                }, completion: {(value: Bool) in
-                self.viewTerminalImageView.removeFromSuperview()
-            })
-            UIView.animateWithDuration(0.7, animations: {
-                self.addPlanImageView.alpha = 0.0
-                }, completion: {(value: Bool) in
-                    self.addPlanImageView.removeFromSuperview()
-            })
-            UIView.animateWithDuration(1.2, animations: {
-                self.inviteImageView.alpha = 0.0
-                }, completion: {(value: Bool) in
-                    self.inviteImageView.removeFromSuperview()
-            })
-            // add views
-            UIView.animateWithDuration(0.2, animations: {
-                self.viewTerminalImageView.alpha = 1.0
-                }, completion: {(value: Bool) in
-                    addSubviewWithFade(self.viewTerminalImageView, parentView: self, duration: 0.8)
-            })
-            UIView.animateWithDuration(0.7, animations: {
-                self.addPlanImageView.alpha = 1.0
-                }, completion: {(value: Bool) in
-                    addSubviewWithFade(self.addPlanImageView, parentView: self, duration: 0.8)
-            })
-            UIView.animateWithDuration(1.2, animations: {
-                self.inviteImageView.alpha = 1.0
-                }, completion: {(value: Bool) in
-                    addSubviewWithFade(self.inviteImageView, parentView: self, duration: 0.8)
-            })
+
         }
     }
     
@@ -127,13 +65,13 @@ class MenuViewController: UIViewController {
         mainView.sendSubviewToBack(backgroundImageView)
         mainView.addSubview(backgroundImageView)
         
-        menuSwitch.items = ["Main", "Overview", "History"]
+        menuSwitch.items = ["Main", "Overview"]
         menuSwitch.backgroundColor = UIColor.clearColor()
-        menuSwitch.thumbColor = UIColor(rgba: "#00b5ff")
+        menuSwitch.thumbColor = UIColor.clearColor()
         menuSwitch.titleColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
-        menuSwitch.selectedTitleColor = UIColor.whiteColor()
+        menuSwitch.selectedTitleColor = UIColor.mediumBlue()
         menuSwitch.font = UIFont(name: "ArialRoundedMTBold", size: 16)
-        menuSwitch.frame = CGRect(x: 35, y: 50, width: screenWidth-70, height: 35.0)
+        menuSwitch.frame = CGRect(x: 50, y: 50, width: screenWidth-100, height: 35.0)
         //autoresizing so it stays at top right (flexible left and flexible bottom margin)
         menuSwitch.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
         menuSwitch.bringSubviewToFront(menuSwitch)
@@ -142,36 +80,73 @@ class MenuViewController: UIViewController {
         self.view.bringSubviewToFront(menuSwitch)
         self.view.superview?.bringSubviewToFront(menuSwitch)
         
-        viewTerminalImageView.image = UIImage(named: "IconTerminal")
-        viewTerminalImageView.frame = CGRect(x: 35, y: screenHeight*0.2, width: screenWidth-70, height: 150)
+        // Layers create issues with gesture recognizers, add buttons on top of layers to fix this issue
+        
+        viewTerminalImageView.backgroundColor = UIColor.whiteColor()
+        viewTerminalImageView.layer.cornerRadius = 10
+        viewTerminalImageView.frame = CGRect(x: 35, y: screenHeight*0.2, width: screenWidth-70, height: 120)
         viewTerminalImageView.contentMode = .ScaleAspectFit
-        let gestureRecognizerTerminal = UITapGestureRecognizer(target: self, action: #selector(terminalButtonSelected(_:)))
-        viewTerminalImageView.addGestureRecognizer(gestureRecognizerTerminal)
-        viewTerminalImageView.userInteractionEnabled = true
+        addSubviewWithShadow(UIColor.lightBlue(), radius: 10.0, offsetX: 0.0, offsetY: 0, opacity: 0.2, parentView: self, childView: viewTerminalImageView)
+        let btn1 = UIButton()
+        let str1 = NSAttributedString(string: "POS Terminal", attributes: [
+            NSForegroundColorAttributeName : UIColor.lightBlue(),
+            NSFontAttributeName : UIFont(name: "ArialRoundedMTBold", size: 18)!
+        ])
+        btn1.setAttributedTitle(str1, forState: .Normal)
+        btn1.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
+        btn1.frame = CGRect(x: 35, y: screenHeight*0.2, width: screenWidth-70, height: 120)
+        btn1.layer.cornerRadius = 10
+        btn1.layer.masksToBounds = true
+        btn1.backgroundColor = UIColor.whiteColor()
+        btn1.addTarget(self, action: #selector(terminalButtonSelected(_:)), forControlEvents: .TouchUpInside)
+        self.view.addSubview(btn1)
+        self.view.bringSubviewToFront(btn1)
+        self.view.superview?.bringSubviewToFront(btn1)
+        self.view.bringSubviewToFront(btn1)
         
-        addPlanImageView.image = UIImage(named: "IconAddPlan")
-        addPlanImageView.frame = CGRect(x: 35, y: screenHeight*0.4, width: screenWidth-70, height: 150)
+        addPlanImageView.backgroundColor = UIColor.whiteColor()
+        addPlanImageView.layer.cornerRadius = 10
+        addPlanImageView.frame = CGRect(x: 35, y: screenHeight*0.42, width: screenWidth-70, height: 120)
         addPlanImageView.contentMode = .ScaleAspectFit
-        let gestureRecognizerPlan = UITapGestureRecognizer(target: self, action: #selector(planButtonSelected(_:)))
-        addPlanImageView.addGestureRecognizer(gestureRecognizerPlan)
-        addPlanImageView.userInteractionEnabled = true
+        addSubviewWithShadow(UIColor.lightBlue(), radius: 10.0, offsetX: 0.0, offsetY: 0, opacity: 0.2, parentView: self, childView: addPlanImageView)
+        let btn2 = UIButton()
+        let str2 = NSAttributedString(string: "Add Plan", attributes: [
+            NSForegroundColorAttributeName : UIColor.lightBlue(),
+            NSFontAttributeName : UIFont(name: "ArialRoundedMTBold", size: 18)!
+        ])
+        btn2.setAttributedTitle(str2, forState: .Normal)
+        btn2.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
+        btn2.frame = CGRect(x: 35, y: screenHeight*0.42, width: screenWidth-70, height: 120)
+        btn2.layer.cornerRadius = 10
+        btn2.layer.masksToBounds = true
+        btn2.backgroundColor = UIColor.whiteColor()
+        btn2.addTarget(self, action: #selector(planButtonSelected(_:)), forControlEvents: .TouchUpInside)
+        self.view.addSubview(btn2)
+        self.view.bringSubviewToFront(btn2)
+        self.view.superview?.bringSubviewToFront(btn2)
+        self.view.bringSubviewToFront(btn2)
         
-        inviteImageView.image = UIImage(named: "IconInvite")
-        inviteImageView.frame = CGRect(x: 35, y: screenHeight*0.6, width: screenWidth-70, height: 150)
+        inviteImageView.backgroundColor = UIColor.whiteColor()
+        inviteImageView.layer.cornerRadius = 10
+        inviteImageView.frame = CGRect(x: 35, y: screenHeight*0.64, width: screenWidth-70, height: 120)
         inviteImageView.contentMode = .ScaleAspectFit
-        let gestureRecognizerInvite = UITapGestureRecognizer(target: self, action: #selector(inviteButtonSelected(_:)))
-        inviteImageView.addGestureRecognizer(gestureRecognizerInvite)
-        inviteImageView.userInteractionEnabled = true
-        
-        Timeout(0.2) {
-            addSubviewWithFade(self.viewTerminalImageView, parentView: self, duration: 0.8)
-        }
-        Timeout(0.7) {
-            addSubviewWithFade(self.addPlanImageView, parentView: self, duration: 0.8)
-        }
-        Timeout(1.2) {
-            addSubviewWithFade(self.inviteImageView, parentView: self, duration: 0.8)
-        }
+        addSubviewWithShadow(UIColor.lightBlue(), radius: 10.0, offsetX: 0.0, offsetY: 0, opacity: 0.2, parentView: self, childView: inviteImageView)
+        let btn3 = UIButton()
+        let str3 = NSAttributedString(string: "Invite Customer", attributes: [
+            NSForegroundColorAttributeName : UIColor.lightBlue(),
+            NSFontAttributeName : UIFont(name: "ArialRoundedMTBold", size: 18)!
+        ])
+        btn3.setAttributedTitle(str3, forState: .Normal)
+        btn3.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
+        btn3.frame = CGRect(x: 35, y: screenHeight*0.64, width: screenWidth-70, height: 120)
+        btn3.layer.cornerRadius = 10
+        btn3.layer.masksToBounds = true
+        btn3.backgroundColor = UIColor.whiteColor()
+        btn3.addTarget(self, action: #selector(inviteButtonSelected(_:)), forControlEvents: .TouchUpInside)
+        self.view.addSubview(btn3)
+        self.view.bringSubviewToFront(btn3)
+        self.view.superview?.bringSubviewToFront(btn3)
+        self.view.bringSubviewToFront(btn3)
         
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 65))
         // navBar.barTintColor = UIColor(rgba: "#258ff6")
@@ -187,18 +162,17 @@ class MenuViewController: UIViewController {
         navBar.setItems([navItem], animated: false);
     }
     
-    internal func terminalButtonSelected(sender: AnyObject) {
-        viewTerminalImageView.highlighted = true
+    func terminalButtonSelected(sender: AnyObject) {
+        print("charge selected")
         self.performSegueWithIdentifier("chargeView", sender: self)
     }
     
-    internal func planButtonSelected(sender: AnyObject) {
-        addPlanImageView.highlighted = true
+    func planButtonSelected(sender: AnyObject) {
+        print("plan selected")
         self.performSegueWithIdentifier("addPlanView", sender: self)
     }
     
-    internal func inviteButtonSelected(sender: AnyObject) {
-        inviteImageView.highlighted = true
+    func inviteButtonSelected(sender: AnyObject) {
         self.performSegueWithIdentifier("addCustomerView", sender: self)
     }
     
@@ -231,4 +205,11 @@ class MenuViewController: UIViewController {
             self.presentViewController(rootViewController, animated: true, completion: nil)
         }
     }
+}
+
+extension MenuViewController {
+    
+    
+    
+    
 }

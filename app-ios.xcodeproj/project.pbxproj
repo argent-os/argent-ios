@@ -45,6 +45,7 @@
 		308073061CFF38D20070C7FE /* SubscriptionsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308073051CFF38D20070C7FE /* SubscriptionsListTableViewController.swift */; };
 		308073081CFF39230070C7FE /* CustomersListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308073071CFF39230070C7FE /* CustomersListTableViewController.swift */; };
 		3080730A1CFF393F0070C7FE /* PlansListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308073091CFF393F0070C7FE /* PlansListTableViewController.swift */; };
+		3080730C1CFF6F260070C7FE /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080730B1CFF6F250070C7FE /* Subscription.swift */; };
 		308630031CFCDEBD00695215 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308630021CFCDEBD00695215 /* OnboardingCollectionViewCell.swift */; };
 		308A348A1CCA803200AAF66F /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A34891CCA803200AAF66F /* History.swift */; };
 		309544F51CD295AE003007B2 /* ParallaxHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309544F41CD295AE003007B2 /* ParallaxHeader.swift */; };
@@ -268,6 +269,7 @@
 		308073051CFF38D20070C7FE /* SubscriptionsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SubscriptionsListTableViewController.swift; path = "app-ios/SubscriptionsListTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		308073071CFF39230070C7FE /* CustomersListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomersListTableViewController.swift; path = "app-ios/CustomersListTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		308073091CFF393F0070C7FE /* PlansListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlansListTableViewController.swift; path = "app-ios/PlansListTableViewController.swift"; sourceTree = SOURCE_ROOT; };
+		3080730B1CFF6F250070C7FE /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Subscription.swift; path = "app-ios/Subscription.swift"; sourceTree = SOURCE_ROOT; };
 		308630021CFCDEBD00695215 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingCollectionViewCell.swift; path = "app-ios/OnboardingCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		308A34891CCA803200AAF66F /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = History.swift; path = "app-ios/History.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		309544F41CD295AE003007B2 /* ParallaxHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParallaxHeader.swift; path = "app-ios/ParallaxHeader.swift"; sourceTree = SOURCE_ROOT; };
@@ -539,6 +541,7 @@
 				306DF0081CD991CB00864CAE /* Customer.swift */,
 				306E822F1CDAC36400A43505 /* Balance.swift */,
 				306DF00A1CD9979400864CAE /* Plan.swift */,
+				3080730B1CFF6F250070C7FE /* Subscription.swift */,
 				30D526771CDBB4A0001B41BA /* Bitcoin.swift */,
 			);
 			name = Models;
@@ -1460,6 +1463,7 @@
 				30C2DAE51CA4392E003AFD8B /* AddBankViewController.swift in Sources */,
 				30C2DAC11CA43836003AFD8B /* ProfileViewController.swift in Sources */,
 				30C2DAEF1CA43951003AFD8B /* AddCustomerViewController.swift in Sources */,
+				3080730C1CFF6F260070C7FE /* Subscription.swift in Sources */,
 				30C2DAD01CA4386A003AFD8B /* SupportMenuViewController.swift in Sources */,
 				30089F491CFBDE9000A2496B /* MerchantPlanDetailViewController.swift in Sources */,
 				30C2DB1D1CA43A05003AFD8B /* paykloud_iosUITests.swift in Sources */,

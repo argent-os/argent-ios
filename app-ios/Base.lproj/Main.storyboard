@@ -925,8 +925,8 @@ support request</string>
                                             <rect key="frame" x="0.0" y="0.0" width="810" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Application" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OhL-r3-Lku">
-                                                    <rect key="frame" x="196" y="21" width="75.5" height="17.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="App Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OhL-r3-Lku">
+                                                    <rect key="frame" x="196" y="21" width="87" height="17.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                     <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -3772,7 +3772,12 @@ be private unless otherwise requested.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ahh-WH-9EU"/>
-        <segue reference="LbW-Hg-Jfu"/>
+        <segue reference="mwT-xt-Ez4"/>
+        <segue reference="zQh-Po-kj4"/>
+        <segue reference="wgV-xY-MTp"/>
+        <segue reference="YDb-8b-gnI"/>
+        <segue reference="VI5-hp-Gm2"/>
+        <segue reference="agi-3I-cSC"/>
         <segue reference="rLo-0p-I9d"/>
         <segue reference="m3z-fp-Nlm"/>
         <segue reference="igQ-zk-tCm"/>
@@ -3780,12 +3785,7 @@ be private unless otherwise requested.</string>
         <segue reference="7cu-FP-MoG"/>
         <segue reference="Bc6-jW-uiV"/>
         <segue reference="fEJ-lR-z9I"/>
-        <segue reference="agi-3I-cSC"/>
-        <segue reference="VI5-hp-Gm2"/>
         <segue reference="ipn-3I-3vc"/>
-        <segue reference="zQh-Po-kj4"/>
-        <segue reference="wgV-xY-MTp"/>
-        <segue reference="YDb-8b-gnI"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>

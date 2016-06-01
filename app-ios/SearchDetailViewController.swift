@@ -81,29 +81,16 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
                 emailLabel.text = detailUser.email
             }
             
-            let cardView: UIImageView = UIImageView()
-            cardView.frame = CGRectMake(35, 90, screenWidth-70, screenHeight*0.6)
+            let cardView: UIView = UIView()
+            cardView.backgroundColor = UIColor.whiteColor()
+            cardView.frame = CGRectMake(35, 135, screenWidth-70, screenHeight*0.6)
             cardView.contentMode = .ScaleToFill
             cardView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
             cardView.layer.masksToBounds = true
             cardView.clipsToBounds = true
             cardView.layer.cornerRadius = 10
-            cardView.layer.shadowColor = UIColor.purpleColor().CGColor
-            cardView.layer.shadowOffset = CGSizeMake(0, 1)
-            cardView.layer.shadowOpacity = 1
-            cardView.layer.shadowRadius = 1.0
             cardView.clipsToBounds = false
-            addSubviewWithFade(cardView, parentView: self, duration: 0.8)
-            cardView.backgroundColor = UIColor.whiteColor()
-            cardView.center = self.view.center
-            let containerLayer: CALayer = CALayer()
-            containerLayer.shadowColor = UIColor.lightBlue().CGColor
-            containerLayer.shadowRadius = 10.0
-            containerLayer.shadowOffset = CGSizeMake(0.0, 5.0)
-            containerLayer.shadowOpacity = 0.2
-            cardView.layer.masksToBounds = true
-            containerLayer.addSublayer(cardView.layer)
-            self.view.layer.addSublayer(containerLayer)
+            addSubviewWithShadow(UIColor.lightBlue(), radius: 10.0, offsetX: 0.0, offsetY: 5.0, opacity: 0.2, parentView: self, childView: cardView)
             
             let chatBubble = UIImageView(image: UIImage(named: "IconChat"), highlightedImage: UIImage(named: "IconChat")!.alpha(0.5))
             chatBubble.alpha = 0.2
