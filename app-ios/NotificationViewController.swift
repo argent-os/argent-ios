@@ -198,6 +198,12 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
                    cell.textLabel?.text = "Customer discount updated"
                 case "customer.discount.deleted":
                    cell.textLabel?.text = "Customer discount deleted"
+                case "customer.source.created":
+                    cell.textLabel?.text = "Customer source created"
+                case "customer.source.updated":
+                    cell.textLabel?.text = "Customer source updated"
+                case "customer.source.deleted":
+                    cell.textLabel?.text = "Customer source deleted"
                 case "invoice.created":
                    cell.textLabel?.text = "Invoice created"
                 case "invoice.updated":

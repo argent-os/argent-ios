@@ -19,6 +19,7 @@ import DZNEmptyDataSet
 import CellAnimator
 import AvePurchaseButton
 import EmitterKit
+import PassKit
 
 class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
@@ -31,17 +32,23 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
     private var tableView = UITableView()
     
     private var plansArray:Array<Plan>?
-
+    
     private var cellReuseIdendifier = "idCellMerchantPlan"
     
     private var selectedRow: Int?
-
+    
     private var selectedAmount: Float?
-
+    
     var paymentSuccessSignal: Signal? = Signal()
     
+    var paymentFinishSignal: Signal? = Signal()
+    
     var paymentSuccessListener: Listener?
-
+    
+    var paymentFinishListener: Listener?
+    
+    var globalTag: Int?
+    
     var detailUser: User? {
         didSet {
         }
@@ -84,8 +91,8 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         self.navigationController?.navigationBar.barTintColor = UIColor.lightGrayColor()
         
         //Looks for single or multiple taps.  Close keyboard on tap
-//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(viewPlanDetails(_:)))
-//        view.addGestureRecognizer(tap)
+        //        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(viewPlanDetails(_:)))
+        //        view.addGestureRecognizer(tap)
         
         tableView.registerClass(MerchantPlanCell.self, forCellReuseIdentifier: cellReuseIdendifier)
         self.view.addSubview(tableView)
@@ -136,7 +143,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
             self.tableView.reloadData()
         })
     }
-
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.plansArray?.count ?? 0
     }
@@ -146,7 +153,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdendifier, forIndexPath: indexPath) as! MerchantPlanCell
         
         CellAnimator.animateCell(cell, withTransform: CellAnimator.TransformTilt, andDuration: 0.3)
-
+        
         if let name = plansArray![indexPath.row].name {
             cell.planNameLabel.text = name
         }
@@ -167,7 +174,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
             cell.planButton.attributedConfirmationTitle = NSAttributedString(string: "Subscribed", attributes: attrs2)
             cell.planButton.addTarget(self, action: #selector(self.purchaseButtonTapped(_:)), forControlEvents: .TouchUpInside)
             cell.planButton.tag = indexPath.row
-
+            
             switch interval {
             case "day":
                 let interval = NSAttributedString(string: " / day", attributes: attrs)
@@ -186,7 +193,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
                 cell.planAmountLabel.attributedText = fc + interval
             }
         }
-
+        
         return cell
     }
     
@@ -195,10 +202,10 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         case AvePurchaseButtonState.Normal:
             button.setButtonState(AvePurchaseButtonState.Progress, animated: true)
             let tag = button.tag
+            globalTag = button.tag
             // with the button tag we have the indexPath of the table, send this into the show pay modal then apple pay modal, then select the index row path based on the button tag
             self.showPayModal(self, tag: tag)
-            print("I'm listening!")
-            print(paymentSuccessListener?.isListening)
+            // print(paymentSuccessListener?.isListening)
             paymentSuccessListener = self.paymentSuccessSignal!.once {
                 print("payment success executed")
                 button.setButtonState(AvePurchaseButtonState.Normal, animated: true)
@@ -208,6 +215,10 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
                     NSFontAttributeName : UIFont(name: "DINAlternate-Bold", size: 14)!
                     ])
             }
+            paymentFinishListener = self.paymentFinishSignal!.once {
+                print("payment finish executed")
+                button.setButtonState(AvePurchaseButtonState.Normal, animated: true)
+            }
         case AvePurchaseButtonState.Progress:
             // start the purchasing progress here, when done, go back to AvePurchaseButtonStateProgress
             // listen for completion
@@ -216,7 +227,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
             break
         }
     }
-
+    
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
@@ -254,7 +265,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
-
+    
     
     // MARK: DZNEmptyDataSet delegate
     
@@ -284,7 +295,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RecurringBillingViewController") as! RecurringBillingViewController
         self.presentViewController(viewController, animated: true, completion: nil)
     }
-
+    
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
@@ -293,11 +304,11 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
 
 
 extension MerchantPlansViewController: STPPaymentCardTextFieldDelegate, PKPaymentAuthorizationViewControllerDelegate, UITextFieldDelegate {
-
+    
     func close() -> Void {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-
+    
     // MARK: Payment Options Modal
     
     func showPayModal(sender: AnyObject, tag: Int) {
@@ -310,10 +321,8 @@ extension MerchantPlansViewController: STPPaymentCardTextFieldDelegate, PKPaymen
             }
         }))
         actionController.addSection(ActionSection())
-        actionController.addAction(Action("Cancel", style: .Destructive, handler: { action in
-        }))
-        self.presentViewController(actionController, animated: true, completion: { _ in
-        })
+        actionController.addAction(Action("Cancel", style: .Destructive, handler: { action in }))
+        self.presentViewController(actionController, animated: true, completion: { _ in })
     }
     
     
@@ -328,13 +337,19 @@ extension MerchantPlansViewController: STPPaymentCardTextFieldDelegate, PKPaymen
         guard let amount = plansArray![tag].amount else {
             return
         }
-        print("passed amount is")
-        print(amount)
+        
         let amt = Float(amount)!/100
-        //print(amount)
+        
         request.paymentSummaryItems = [
             PKPaymentSummaryItem(label: (detailUser?.first_name)!, amount: NSDecimalNumber(float: amt))
         ]
+        if PKPaymentAuthorizationViewController.canMakePaymentsUsingNetworks([PKPaymentNetworkAmex, PKPaymentNetworkMasterCard, PKPaymentNetworkVisa]) {
+            // find a way to add customer address to request, and send in request for new/create customer
+            request.merchantCapabilities = PKMerchantCapability.Capability3DS
+            request.requiredShippingAddressFields = PKAddressField.PostalAddress
+            request.requiredBillingAddressFields = PKAddressField.PostalAddress
+        }
+        
         print(request)
         if (Stripe.canSubmitPaymentRequest(request)) {
             print("stripe can submit payment request")
@@ -412,7 +427,18 @@ extension MerchantPlansViewController: STPPaymentCardTextFieldDelegate, PKPaymen
         // SEND REQUEST TO Argent API ENDPOINT TO EXCHANGE STRIPE TOKEN
         
         User.getProfile { (user, NSError) in
-            let url = API_URL + "/v1/stripe/" + (user?.id)! + "/charge/"
+            
+            let url = API_URL + "/v1/stripe/" + (user?.id)! + "/subscriptions/" + (self.detailUser?.username)!
+            
+            guard let amount = self.plansArray![self.globalTag!].amount else {
+                return
+            }
+            guard let planId = self.plansArray![self.globalTag!].id else {
+                return
+            }
+            
+            let amountInCents = Float(amount)!
+            print(amountInCents)
             
             let headers = [
                 "Authorization": "Bearer " + String(userAccessToken),
@@ -420,8 +446,8 @@ extension MerchantPlansViewController: STPPaymentCardTextFieldDelegate, PKPaymen
             ]
             let parameters : [String : AnyObject] = [
                 "token": String(token) ?? "",
-                "amount": 0,
-                "delegatedUser": (self.detailUser?.username)!
+                "amount": amountInCents,
+                "plan_id": planId
             ]
             
             // for invalid character 0 be sure the content type is application/json and enconding is .JSON
@@ -447,11 +473,17 @@ extension MerchantPlansViewController: STPPaymentCardTextFieldDelegate, PKPaymen
     }
     
     func paymentAuthorizationViewControllerDidFinish(controller: PKPaymentAuthorizationViewController) {
-        dismissViewControllerAnimated(true, completion: nil)
+        self.paymentFinishSignal!.emit()
         controller.dismissViewControllerAnimated(true, completion: nil)
         print("dismissing")
     }
     
+    func processPayment(payment: PKPayment, completion: (PKPaymentAuthorizationStatus -> Void)) {
+        // Use your payment processor's SDK to finish charging your user.
+        // When this is done, call completion(PKPaymentAuthorizationStatus.Success)
+        completion(PKPaymentAuthorizationStatus.Failure)
+        self.processPayment(payment, completion: completion)
+    }
     
     // MARK: ALERTS
     

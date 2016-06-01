@@ -157,8 +157,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
             Armchair.debugEnabled(true)
         } else if ENVIRONMENT == "PROD" {
             Armchair.debugEnabled(false)
-            // Plaid.sharedInstance().setPublicKey("GET_PROD_ID")
-            // Stripe.setDefaultPublishableKey("pk_live_9kfmn7pMRPKAYSpcf1Fmn266")
+            // GET PLAID PROD KEYS
+            Plaid.sharedInstance().setPublicKey("fb32b0520292ad69be7b4d1ade4bd3")
+            Stripe.setDefaultPublishableKey("pk_live_9kfmn7pMRPKAYSpcf1Fmn266")
         }
         
         // Set up permissions scope
