@@ -32,7 +32,7 @@ target 'app-ios' do
 	pod 'KMPlaceholderTextView'
 	pod 'SFDraggableDialogView'
 	pod 'UICountingLabel'
-	pod 'DGRunkeeperSwitch'
+	pod 'AnimatedSegmentSwitch'
 	pod 'JGProgressHUD'	
 	pod 'MCSwipeTableViewCell'
 	pod 'JVFloatLabeledTextField'

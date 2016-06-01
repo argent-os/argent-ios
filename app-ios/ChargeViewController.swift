@@ -90,7 +90,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         chargeInputView.placeholder = "$0.00"
         chargeInputView.keyboardType = UIKeyboardType.NumberPad
         chargeInputView.backgroundColor = UIColor.clearColor()
-        addSubviewWithBounce(chargeInputView, parentView: self)
+        addSubviewWithBounce(chargeInputView, parentView: self, duration: 0.3)
         
         // Pay with card button
         let payWithCardButton = UIButton(frame: CGRect(x: screenWidth/2+10, y: 180, width: screenWidth/2-20-10, height: 60.0))
@@ -163,7 +163,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         paymentTextField.borderWidth = 1
         paymentTextField.borderColor = UIColor.lightGrayColor()
         // adds a manual credit card entry textfield
-        addSubviewWithBounce(paymentTextField, parentView: self)
+        addSubviewWithBounce(paymentTextField, parentView: self, duration: 0.3)
     }
     
     func getCurrentBitcoinValue(completionHandler: (value: Float) -> Void) {

@@ -82,7 +82,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         mainImage.frame = CGRect(x: screenWidth/2-100, y: 80, width: 200, height: 200)
         mainImage.contentMode = .ScaleAspectFit
         Timeout(0.1) {
-            addSubviewWithBounce(mainImage, parentView: self)
+            addSubviewWithBounce(mainImage, parentView: self, duration: 0.3)
         }
         
         let mainTitle = UILabel()
@@ -92,7 +92,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         mainTitle.text = "Send Invitation"
         mainTitle.font = UIFont(name: "DINAlternate-Bold", size: 20)
         Timeout(0.2) {
-            addSubviewWithBounce(mainTitle, parentView: self)
+            addSubviewWithBounce(mainTitle, parentView: self, duration: 0.3)
         }
         
         let mainBody = UILabel()
@@ -103,7 +103,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         mainBody.numberOfLines = 5
         mainBody.font = UIFont(name: "DINAlternate-Bold", size: 14)
         Timeout(0.3) {
-            addSubviewWithBounce(mainBody, parentView: self)
+            addSubviewWithBounce(mainBody, parentView: self, duration: 0.3)
         }
         
         let emailButton: DKCircleButton = DKCircleButton(frame: CGRectMake(45, screenHeight-180, 90, 90))
@@ -120,7 +120,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         emailButton.setAttributedTitle(str0, forState: .Normal)
         emailButton.addTarget(self, action: #selector(AddCustomerViewController.sendEmailButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         Timeout(0.4) {
-            addSubviewWithBounce(emailButton, parentView: self)
+            addSubviewWithBounce(emailButton, parentView: self, duration: 0.3)
         }
         
         let smsButton: DKCircleButton = DKCircleButton(frame: CGRectMake(screenWidth/2+45, screenHeight-180, 90, 90))
@@ -137,7 +137,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         smsButton.setAttributedTitle(str1, forState: .Normal)
         smsButton.addTarget(self, action: #selector(AddCustomerViewController.sendSMSButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         Timeout(0.6) {
-            addSubviewWithBounce(smsButton, parentView: self)
+            addSubviewWithBounce(smsButton, parentView: self, duration: 0.3)
         }
         
         self.navigationItem.title = ""

@@ -1,6 +1,7 @@
 PODS:
   - 1PasswordExtension (1.8.2)
   - Alamofire (3.2.1)
+  - AnimatedSegmentSwitch (0.1.0)
   - Armchair (0.1.1)
   - AvePurchaseButton (1.0.3)
   - AYVibrantButton (1.0.4)
@@ -13,7 +14,6 @@ PODS:
     - Fabric (~> 1.6.3)
   - CWStatusBarNotification (2.3.4)
   - DGElasticPullToRefresh (1.0.3)
-  - DGRunkeeperSwitch (1.1.1)
   - DKCircleButton (1.1)
   - DynamicColor (2.4.0)
   - DZNEmptyDataSet (1.8.1)
@@ -61,6 +61,7 @@ PODS:
 DEPENDENCIES:
   - 1PasswordExtension
   - Alamofire (~> 3.2.1)
+  - AnimatedSegmentSwitch
   - Armchair
   - AvePurchaseButton
   - AYVibrantButton
@@ -72,7 +73,6 @@ DEPENDENCIES:
   - Crashlytics
   - CWStatusBarNotification
   - DGElasticPullToRefresh
-  - DGRunkeeperSwitch
   - DKCircleButton
   - DynamicColor
   - DZNEmptyDataSet
@@ -121,6 +121,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   1PasswordExtension: 303f2b7bbf6dc19ede3090bd6b5987530648d687
   Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
+  AnimatedSegmentSwitch: 7bc126b7b433f4a1b4fb6546abe405cd4b5163ae
   Armchair: 276f0dadba704b562870613301bdf7b595a29315
   AvePurchaseButton: 325c181105409b744129e4b6808895a15545caa6
   AYVibrantButton: ca0138e754e886d92e3c71c58dd16cc392c780b8
@@ -132,7 +133,6 @@ SPEC CHECKSUMS:
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   CWStatusBarNotification: 3fec41edcb0ae3677d9febfcb9632d8bdf52294c
   DGElasticPullToRefresh: 040f39ae69840b3261d163fe6735c5901bf851e9
-  DGRunkeeperSwitch: da12f199532a99958a1e87ec0a5af61efdba11ec
   DKCircleButton: 62564c9debae08ad77dabb8d9658dfeb5520f2c4
   DynamicColor: 2f3fd61053684667bad9f03045dcf9a2a5a007ea
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7

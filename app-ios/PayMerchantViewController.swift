@@ -99,7 +99,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
     }
     
     override func viewDidAppear(animated: Bool) {
-        addSubviewWithBounce(chargeInputView, parentView: self)
+        addSubviewWithBounce(chargeInputView, parentView: self, duration: 0.3)
         chargeInputView.becomeFirstResponder()
     }
     

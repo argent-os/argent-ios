@@ -126,7 +126,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         amountInputView.keyboardType = UIKeyboardType.NumberPad
         amountInputView.backgroundColor = UIColor.mediumBlue()
         amountInputView.tintColor = UIColor.whiteColor()
-        addSubviewWithBounce(amountInputView, parentView: self)
+        addSubviewWithBounce(amountInputView, parentView: self, duration: 0.3)
         amountInputView.becomeFirstResponder()
         
         let topImageView = UIImageView()

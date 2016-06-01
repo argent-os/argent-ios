@@ -41,11 +41,11 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
     
     var paymentSuccessSignal: Signal? = Signal()
     
-    var paymentFinishSignal: Signal? = Signal()
+    var paymentCancelSignal: Signal? = Signal()
     
     var paymentSuccessListener: Listener?
     
-    var paymentFinishListener: Listener?
+    var paymentCancelListener: Listener?
     
     var globalTag: Int?
     
@@ -215,7 +215,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
                     NSFontAttributeName : UIFont(name: "DINAlternate-Bold", size: 14)!
                     ])
             }
-            paymentFinishListener = self.paymentFinishSignal!.once {
+            paymentCancelListener = self.paymentCancelSignal!.once {
                 print("payment finish executed")
                 button.setButtonState(AvePurchaseButtonState.Normal, animated: true)
             }
@@ -321,7 +321,9 @@ extension MerchantPlansViewController: STPPaymentCardTextFieldDelegate, PKPaymen
             }
         }))
         actionController.addSection(ActionSection())
-        actionController.addAction(Action("Cancel", style: .Destructive, handler: { action in }))
+        actionController.addAction(Action("Cancel", style: .Destructive, handler: { action in
+            self.paymentCancelSignal!.emit()
+        }))
         self.presentViewController(actionController, animated: true, completion: { _ in })
     }
     
@@ -473,7 +475,7 @@ extension MerchantPlansViewController: STPPaymentCardTextFieldDelegate, PKPaymen
     }
     
     func paymentAuthorizationViewControllerDidFinish(controller: PKPaymentAuthorizationViewController) {
-        self.paymentFinishSignal!.emit()
+        self.paymentCancelSignal!.emit()
         controller.dismissViewControllerAnimated(true, completion: nil)
         print("dismissing")
     }

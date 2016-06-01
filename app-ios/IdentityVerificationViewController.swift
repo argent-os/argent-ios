@@ -58,7 +58,7 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate 
         passportCardButton.layer.cornerRadius = 10
         passportCardButton.backgroundColor = UIColor.clearColor()
         self.passportCardButton.addTarget(self, action: #selector(IdentityVerificationViewController.openCamera(_:)), forControlEvents: .TouchUpInside)
-        addSubviewWithBounce(passportCardButton, parentView: self)
+        addSubviewWithBounce(passportCardButton, parentView: self, duration: 0.3)
         
         // Add only on US/CA/AU Location
         self.identityCardButton.frame = CGRect(x: 30, y: 200, width: screenWidth-60, height: 80)
@@ -97,11 +97,11 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate 
     func loadData() {
         User.getProfile { (user, err) in
             if user?.country == "US" || user?.country == "AU" || user?.country == "CA" {
-                addSubviewWithBounce(self.identityCardButton, parentView: self)
+                addSubviewWithBounce(self.identityCardButton, parentView: self, duration: 0.4)
                 
-                addSubviewWithBounce(self.driversLicenseButton, parentView: self)
+                addSubviewWithBounce(self.driversLicenseButton, parentView: self, duration: 0.5)
                 
-                addSubviewWithBounce(self.socialSecurityButton, parentView: self)
+                addSubviewWithBounce(self.socialSecurityButton, parentView: self, duration: 0.6)
             }
         }
     }

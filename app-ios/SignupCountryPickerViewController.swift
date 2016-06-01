@@ -23,9 +23,9 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
     }
     
     override func viewDidAppear(animated: Bool) {
-        addSubviewWithBounce(codeLabel, parentView: self)
-        addSubviewWithBounce(flagImg, parentView: self)
-        addSubviewWithFade(countryPicker, parentView: self)
+        addSubviewWithBounce(codeLabel, parentView: self, duration: 0.7)
+        addSubviewWithBounce(flagImg, parentView: self, duration: 0.9)
+        addSubviewWithFade(countryPicker, parentView: self, duration: 0.3)
     }
     
     override func viewDidLoad() {
@@ -175,8 +175,8 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
             codeLabel.frame = CGRect(x: 0, y: screenHeight*0.28, width: screenWidth, height: 50)
         }
         
-        addSubviewWithBounce(codeLabel, parentView: self)
-        addSubviewWithBounce(flagImg, parentView: self)
+        addSubviewWithBounce(codeLabel, parentView: self, duration: 0.3)
+        addSubviewWithBounce(flagImg, parentView: self, duration: 0.3)
         
     }
 }

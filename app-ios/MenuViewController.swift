@@ -8,11 +8,11 @@
 
 import Foundation
 import UIKit
-import DGRunkeeperSwitch
+import AnimatedSegmentSwitch
 
 class MenuViewController: UIViewController {
-    
-    private let menuSwitch = DGRunkeeperSwitch(leftTitle: "Main", rightTitle: "Admin")
+
+    private let menuSwitch = AnimatedSegmentSwitch()
 
     private let viewTerminalImageView = UIImageView()
 
@@ -20,45 +20,100 @@ class MenuViewController: UIViewController {
     
     private let inviteImageView = UIImageView()
 
-    @IBAction func indexChanged(sender: DGRunkeeperSwitch) {
+    private var mainView = UIView()
+    
+    private var overView = UIView()
+    
+    @IBAction func indexChanged(sender: AnimatedSegmentSwitch) {
         if(sender.selectedIndex == 0) {
-
+            // remove previous views
+            UIView.animateWithDuration(0.2, animations: {
+                self.viewTerminalImageView.alpha = 1.0
+                }, completion: {(value: Bool) in
+                    addSubviewWithFade(self.viewTerminalImageView, parentView: self, duration: 0.8)
+            })
+            UIView.animateWithDuration(0.7, animations: {
+                self.addPlanImageView.alpha = 1.0
+                }, completion: {(value: Bool) in
+                    addSubviewWithFade(self.addPlanImageView, parentView: self, duration: 0.8)
+            })
+            UIView.animateWithDuration(1.2, animations: {
+                self.inviteImageView.alpha = 1.0
+                }, completion: {(value: Bool) in
+                    addSubviewWithFade(self.inviteImageView, parentView: self, duration: 0.8)
+            })
+            // add views
+            UIView.animateWithDuration(0.2, animations: {
+                self.viewTerminalImageView.alpha = 1.0
+                }, completion: {(value: Bool) in
+                    addSubviewWithFade(self.viewTerminalImageView, parentView: self, duration: 0.8)
+            })
+            UIView.animateWithDuration(0.7, animations: {
+                self.addPlanImageView.alpha = 1.0
+                }, completion: {(value: Bool) in
+                    addSubviewWithFade(self.addPlanImageView, parentView: self, duration: 0.8)
+            })
+            UIView.animateWithDuration(1.2, animations: {
+                self.inviteImageView.alpha = 1.0
+                }, completion: {(value: Bool) in
+                    addSubviewWithFade(self.inviteImageView, parentView: self, duration: 0.8)
+            })
         }
         if(sender.selectedIndex == 1) {
+            // remove previous views
+            UIView.animateWithDuration(0.2, animations: {
+                self.viewTerminalImageView.alpha = 0.0
+                }, completion: {(value: Bool) in
+                self.viewTerminalImageView.removeFromSuperview()
+            })
+            UIView.animateWithDuration(0.7, animations: {
+                self.addPlanImageView.alpha = 0.0
+                }, completion: {(value: Bool) in
+                    self.addPlanImageView.removeFromSuperview()
+            })
+            UIView.animateWithDuration(1.2, animations: {
+                self.inviteImageView.alpha = 0.0
+                }, completion: {(value: Bool) in
+                    self.inviteImageView.removeFromSuperview()
+            })
+            // add views
+            UIView.animateWithDuration(0.2, animations: {
+                self.viewTerminalImageView.alpha = 1.0
+                }, completion: {(value: Bool) in
+                    addSubviewWithFade(self.viewTerminalImageView, parentView: self, duration: 0.8)
+            })
+            UIView.animateWithDuration(0.7, animations: {
+                self.addPlanImageView.alpha = 1.0
+                }, completion: {(value: Bool) in
+                    addSubviewWithFade(self.addPlanImageView, parentView: self, duration: 0.8)
+            })
+            UIView.animateWithDuration(1.2, animations: {
+                self.inviteImageView.alpha = 1.0
+                }, completion: {(value: Bool) in
+                    addSubviewWithFade(self.inviteImageView, parentView: self, duration: 0.8)
+            })
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         configure()
     }
     
     override func viewDidAppear(animated: Bool) {
         UIStatusBarStyle.Default
-        
-        Timeout(0.0) {
-            addSubviewWithBounce(self.viewTerminalImageView, parentView: self)
-        }
-        Timeout(0.1) {
-            addSubviewWithBounce(self.addPlanImageView, parentView: self)
-        }
-        Timeout(0.2) {
-            addSubviewWithBounce(self.inviteImageView, parentView: self)
-        }
-    }
-    
-    override func viewDidDisappear(animated: Bool) {
-        viewTerminalImageView.removeFromSuperview()
-        addPlanImageView.removeFromSuperview()
-        inviteImageView.removeFromSuperview()
     }
     
     func configure() {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
-                
+        
+        mainView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
+        overView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
+        
+        self.view.addSubview(mainView)
+        
         let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
         visualEffectView.frame = CGRectMake(0, 0, screenWidth, screenHeight)
         let backgroundImageView = UIImageView(image: UIImage(), highlightedImage: nil)
@@ -69,20 +124,21 @@ class MenuViewController: UIViewController {
         backgroundImageView.layer.masksToBounds = true
         backgroundImageView.clipsToBounds = true
         // backgroundImageView.addSubview(visualEffectView)
-        self.view.sendSubviewToBack(backgroundImageView)
-        self.view.addSubview(backgroundImageView)
+        mainView.sendSubviewToBack(backgroundImageView)
+        mainView.addSubview(backgroundImageView)
         
+        menuSwitch.items = ["Main", "Overview", "History"]
         menuSwitch.backgroundColor = UIColor.clearColor()
-        menuSwitch.selectedBackgroundColor = UIColor.clearColor()
+        menuSwitch.thumbColor = UIColor(rgba: "#00b5ff")
         menuSwitch.titleColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
-        menuSwitch.selectedTitleColor = UIColor.mediumBlue()
-        menuSwitch.titleFont = UIFont(name: "ArialRoundedMTBold", size: 18)
-        menuSwitch.frame = CGRect(x: 70, y: 50, width: screenWidth-140, height: 35.0)
+        menuSwitch.selectedTitleColor = UIColor.whiteColor()
+        menuSwitch.font = UIFont(name: "ArialRoundedMTBold", size: 16)
+        menuSwitch.frame = CGRect(x: 35, y: 50, width: screenWidth-70, height: 35.0)
         //autoresizing so it stays at top right (flexible left and flexible bottom margin)
         menuSwitch.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
         menuSwitch.bringSubviewToFront(menuSwitch)
         menuSwitch.addTarget(self, action: #selector(HomeViewController.indexChanged(_:)), forControlEvents: .ValueChanged)
-        self.view.addSubview(menuSwitch)
+        addSubviewWithFade(menuSwitch, parentView: self, duration: 0.8)
         self.view.bringSubviewToFront(menuSwitch)
         self.view.superview?.bringSubviewToFront(menuSwitch)
         
@@ -107,6 +163,16 @@ class MenuViewController: UIViewController {
         inviteImageView.addGestureRecognizer(gestureRecognizerInvite)
         inviteImageView.userInteractionEnabled = true
         
+        Timeout(0.2) {
+            addSubviewWithFade(self.viewTerminalImageView, parentView: self, duration: 0.8)
+        }
+        Timeout(0.7) {
+            addSubviewWithFade(self.addPlanImageView, parentView: self, duration: 0.8)
+        }
+        Timeout(1.2) {
+            addSubviewWithFade(self.inviteImageView, parentView: self, duration: 0.8)
+        }
+        
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 65))
         // navBar.barTintColor = UIColor(rgba: "#258ff6")
         navBar.barTintColor = UIColor.mediumBlue()
@@ -116,7 +182,7 @@ class MenuViewController: UIViewController {
             NSForegroundColorAttributeName : UIColor.whiteColor(),
             NSFontAttributeName : UIFont(name: "ArialRoundedMTBold", size: 18)!
         ]
-        //self.view.addSubview(navBar);
+        //mainView.addSubview(navBar);
         let navItem = UINavigationItem(title: "Main Menu");
         navBar.setItems([navItem], animated: false);
     }

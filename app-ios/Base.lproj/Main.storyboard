@@ -1687,7 +1687,7 @@ We support both debit and credit.</string>
                         <viewControllerLayoutGuide type="bottom" id="Mv2-J1-WVg"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Wlq-Lz-if3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1805,7 +1805,7 @@ We support both debit and credit.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TQ5-Tm-vUL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2380" y="-1262"/>
+            <point key="canvasLocation" x="-2435" y="-2531"/>
         </scene>
         <!--Login Box Table View Controller-->
         <scene sceneID="VTT-x8-ndO">
@@ -1829,7 +1829,7 @@ We support both debit and credit.</string>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username or Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cIS-Br-dKu">
                                                     <rect key="frame" x="8" y="7" width="304" height="30"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" keyboardAppearance="alert" returnKeyType="next"/>
                                                 </textField>
                                             </subviews>
@@ -1853,7 +1853,7 @@ We support both debit and credit.</string>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Ul-P4-THN">
                                                     <rect key="frame" x="8" y="7" width="304" height="30"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                                 </textField>
                                             </subviews>
@@ -2064,7 +2064,7 @@ We support both debit and credit.</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Isu-SH-uXe"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Continue"/>
                                 <connections>
@@ -2132,7 +2132,7 @@ We support both debit and credit.</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="mjD-Vi-4lj"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Continue"/>
                                 <connections>
@@ -2198,7 +2198,7 @@ We support both debit and credit.</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="RLD-XD-wEK"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Continue"/>
                                 <connections>
@@ -2255,7 +2255,7 @@ We support both debit and credit.</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="cLW-ez-WEe"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Finish"/>
                                 <connections>
@@ -2273,7 +2273,7 @@ We support both debit and credit.</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="68U-47-hWv"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
                                     <string key="title">By checking the circle below I agree to 
@@ -2334,7 +2334,7 @@ Tap here to view</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="g5Y-nM-a8i"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Continue"/>
                                 <connections>
@@ -2390,7 +2390,7 @@ Tap here to view</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="UkF-Ho-k3h"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Continue"/>
                                 <connections>
@@ -2448,7 +2448,7 @@ Tap here to view</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="MwL-Uq-jyy"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Finish"/>
                                 <connections>
@@ -2466,7 +2466,7 @@ Tap here to view</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="Ec7-Hw-PIV"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
                                     <string key="title">By checking the circle below I agree to 
@@ -2527,9 +2527,12 @@ Tap here to view</string>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RLh-vK-t9D">
                                 <rect key="frame" x="20" y="642" width="374" height="33"/>
-                                <color key="backgroundColor" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="aha-1g-XRk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                 <state key="normal" title="Terms of Use">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -2542,26 +2545,13 @@ Tap here to view</string>
                                     </segue>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4og-qx-Neg">
-                                <rect key="frame" x="20" y="683" width="374" height="33"/>
-                                <color key="backgroundColor" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <gestureRecognizers/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                <state key="normal" title="Stripe Agreement">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="623-HG-6df" kind="presentation" identifier="stripeView" customClass="MZFormSheetPresentationViewControllerSegue" modalTransitionStyle="crossDissolve" id="Bc6-jW-uiV">
-                                        <segue key="commit" inheritsFrom="parent" id="hod-NF-UzG"/>
-                                        <segue key="preview" inheritsFrom="commit" id="rHz-cr-s1s"/>
-                                    </segue>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F2N-Ys-I1P">
                                 <rect key="frame" x="20" y="601" width="374" height="33"/>
-                                <color key="backgroundColor" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                <color key="backgroundColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="eVh-nL-RDR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                 <state key="normal" title="Privacy Policy">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -2576,31 +2566,50 @@ Tap here to view</string>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Legal Information" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ixi-FC-Dml">
                                 <rect key="frame" x="20" y="72" width="374" height="52"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="52" id="HO9-06-niX"/>
+                                    <constraint firstAttribute="height" constant="52" id="Zev-Xo-z6b"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4og-qx-Neg">
+                                <rect key="frame" x="20" y="683" width="374" height="33"/>
+                                <color key="backgroundColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="Iup-aE-BfW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                <state key="normal" title="Stripe Agreement">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="623-HG-6df" kind="presentation" identifier="stripeView" customClass="MZFormSheetPresentationViewControllerSegue" modalTransitionStyle="crossDissolve" id="Bc6-jW-uiV">
+                                        <segue key="commit" inheritsFrom="parent" id="hod-NF-UzG"/>
+                                        <segue key="preview" inheritsFrom="commit" id="rHz-cr-s1s"/>
+                                    </segue>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="BAA-rj-Emk" secondAttribute="trailing" id="4qb-VD-FQT"/>
-                            <constraint firstItem="BAA-rj-Emk" firstAttribute="bottom" secondItem="5CS-CI-OXO" secondAttribute="top" id="7pb-rs-AUR"/>
-                            <constraint firstItem="F2N-Ys-I1P" firstAttribute="leading" secondItem="ixi-FC-Dml" secondAttribute="leading" id="AP0-x8-WmW"/>
-                            <constraint firstAttribute="bottom" secondItem="4og-qx-Neg" secondAttribute="bottom" constant="20" symbolic="YES" id="Ax3-fk-sxm"/>
-                            <constraint firstItem="RLh-vK-t9D" firstAttribute="leading" secondItem="3ta-It-dt1" secondAttribute="leadingMargin" id="Bjq-r9-mIP"/>
-                            <constraint firstItem="4og-qx-Neg" firstAttribute="leading" secondItem="RLh-vK-t9D" secondAttribute="leading" id="DUa-0u-ay9"/>
-                            <constraint firstItem="RLh-vK-t9D" firstAttribute="centerX" secondItem="BAA-rj-Emk" secondAttribute="centerX" id="GCO-Zc-hO1"/>
-                            <constraint firstItem="F2N-Ys-I1P" firstAttribute="leading" secondItem="RLh-vK-t9D" secondAttribute="leading" id="J9c-OY-MHJ"/>
-                            <constraint firstItem="ixi-FC-Dml" firstAttribute="trailing" secondItem="F2N-Ys-I1P" secondAttribute="trailing" id="OeS-nY-X47"/>
-                            <constraint firstItem="BAA-rj-Emk" firstAttribute="leading" secondItem="3ta-It-dt1" secondAttribute="leading" id="Vso-Ja-GD2"/>
-                            <constraint firstItem="4og-qx-Neg" firstAttribute="trailing" secondItem="RLh-vK-t9D" secondAttribute="trailing" id="Zpt-JS-rfZ"/>
-                            <constraint firstItem="RLh-vK-t9D" firstAttribute="top" secondItem="F2N-Ys-I1P" secondAttribute="bottom" constant="8" symbolic="YES" id="gVV-Lr-2Hp"/>
-                            <constraint firstItem="ixi-FC-Dml" firstAttribute="top" secondItem="yTU-5m-Rxj" secondAttribute="bottom" constant="8" symbolic="YES" id="hqU-hQ-K9F"/>
-                            <constraint firstItem="BAA-rj-Emk" firstAttribute="top" secondItem="yTU-5m-Rxj" secondAttribute="bottom" id="hwu-hD-b3b"/>
-                            <constraint firstItem="4og-qx-Neg" firstAttribute="top" secondItem="RLh-vK-t9D" secondAttribute="bottom" constant="8" symbolic="YES" id="qiJ-cP-va7"/>
-                            <constraint firstItem="RLh-vK-t9D" firstAttribute="trailing" secondItem="F2N-Ys-I1P" secondAttribute="trailing" id="sbf-Ox-ajc"/>
+                            <constraint firstAttribute="trailing" secondItem="BAA-rj-Emk" secondAttribute="trailing" id="4Yh-wB-ycX"/>
+                            <constraint firstItem="BAA-rj-Emk" firstAttribute="leading" secondItem="3ta-It-dt1" secondAttribute="leading" id="6XR-rq-wui"/>
+                            <constraint firstItem="ixi-FC-Dml" firstAttribute="leading" secondItem="F2N-Ys-I1P" secondAttribute="leading" id="DpK-ji-DqO"/>
+                            <constraint firstAttribute="bottom" secondItem="4og-qx-Neg" secondAttribute="bottom" constant="20" symbolic="YES" id="LBw-d5-Bu3"/>
+                            <constraint firstItem="RLh-vK-t9D" firstAttribute="leading" secondItem="4og-qx-Neg" secondAttribute="leading" id="LkR-BB-iPs"/>
+                            <constraint firstItem="ixi-FC-Dml" firstAttribute="top" secondItem="yTU-5m-Rxj" secondAttribute="bottom" constant="8" symbolic="YES" id="Rmt-ig-Stg"/>
+                            <constraint firstItem="RLh-vK-t9D" firstAttribute="top" secondItem="F2N-Ys-I1P" secondAttribute="bottom" constant="8" symbolic="YES" id="Zmg-3M-Xap"/>
+                            <constraint firstItem="4og-qx-Neg" firstAttribute="top" secondItem="RLh-vK-t9D" secondAttribute="bottom" constant="8" symbolic="YES" id="Zsu-VT-4WZ"/>
+                            <constraint firstItem="RLh-vK-t9D" firstAttribute="trailing" secondItem="4og-qx-Neg" secondAttribute="trailing" id="dpn-io-17U"/>
+                            <constraint firstItem="F2N-Ys-I1P" firstAttribute="trailing" secondItem="RLh-vK-t9D" secondAttribute="trailing" id="fat-Zs-CTU"/>
+                            <constraint firstItem="F2N-Ys-I1P" firstAttribute="leading" secondItem="RLh-vK-t9D" secondAttribute="leading" id="jmr-MW-0Fa"/>
+                            <constraint firstItem="BAA-rj-Emk" firstAttribute="centerX" secondItem="ixi-FC-Dml" secondAttribute="centerX" id="rea-nJ-a6R"/>
+                            <constraint firstItem="ixi-FC-Dml" firstAttribute="trailing" secondItem="F2N-Ys-I1P" secondAttribute="trailing" id="ukl-UG-3Gl"/>
+                            <constraint firstItem="BAA-rj-Emk" firstAttribute="top" secondItem="yTU-5m-Rxj" secondAttribute="bottom" id="vLY-SQ-6jZ"/>
+                            <constraint firstItem="ixi-FC-Dml" firstAttribute="leading" secondItem="3ta-It-dt1" secondAttribute="leadingMargin" id="xag-TR-lWL"/>
+                            <constraint firstItem="BAA-rj-Emk" firstAttribute="bottom" secondItem="5CS-CI-OXO" secondAttribute="top" id="yrf-I2-73T"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="UVs-Pm-qEX"/>
@@ -3336,6 +3345,90 @@ be private unless otherwise requested.</string>
             </objects>
             <point key="canvasLocation" x="3257" y="-6985"/>
         </scene>
+        <!--Customers List Table View Controller-->
+        <scene sceneID="bET-jb-DHu">
+            <objects>
+                <tableViewController id="Dsp-9Y-0Qy" customClass="CustomersListTableViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="k6h-1m-lYo">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="FLD-Aq-3Uf">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FLD-Aq-3Uf" id="bRQ-2H-7kl">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Dsp-9Y-0Qy" id="dev-HD-u18"/>
+                            <outlet property="delegate" destination="Dsp-9Y-0Qy" id="GUl-Le-Rrh"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eNh-0r-4Xa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2585" y="-1099"/>
+        </scene>
+        <!--Plans List Table View Controller-->
+        <scene sceneID="huX-Xg-MEV">
+            <objects>
+                <tableViewController id="7PP-yJ-Vhf" customClass="PlansListTableViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6iS-dX-lhN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Dmg-Ph-LC8">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dmg-Ph-LC8" id="dhm-Mv-Eyn">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="7PP-yJ-Vhf" id="xLZ-uq-8kf"/>
+                            <outlet property="delegate" destination="7PP-yJ-Vhf" id="KbO-Om-GNT"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jHn-tA-D1n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2585" y="-411"/>
+        </scene>
+        <!--Subscriptions List Table View Controller-->
+        <scene sceneID="LOt-OA-Xw7">
+            <objects>
+                <tableViewController id="Sg8-gt-l4e" customClass="SubscriptionsListTableViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="gFS-mB-rqL">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="cbv-Z2-V4X">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cbv-Z2-V4X" id="Kbd-9j-0Bf">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Sg8-gt-l4e" id="6h2-gA-5Ir"/>
+                            <outlet property="delegate" destination="Sg8-gt-l4e" id="hM6-SJ-KLV"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SbS-Zx-zEz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2585" y="270"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Lf8-sj-mco">
             <objects>
@@ -3678,21 +3771,21 @@ be private unless otherwise requested.</string>
         <image name="ic_tab_search" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="A1R-09-1HJ"/>
-        <segue reference="UFB-DJ-qrH"/>
-        <segue reference="m0d-gd-RWW"/>
-        <segue reference="zQh-Po-kj4"/>
-        <segue reference="wgV-xY-MTp"/>
-        <segue reference="igQ-zk-tCm"/>
-        <segue reference="m3z-fp-Nlm"/>
+        <segue reference="ahh-WH-9EU"/>
+        <segue reference="LbW-Hg-Jfu"/>
         <segue reference="rLo-0p-I9d"/>
+        <segue reference="m3z-fp-Nlm"/>
+        <segue reference="igQ-zk-tCm"/>
+        <segue reference="aks-Yo-Spb"/>
+        <segue reference="7cu-FP-MoG"/>
+        <segue reference="Bc6-jW-uiV"/>
+        <segue reference="fEJ-lR-z9I"/>
         <segue reference="agi-3I-cSC"/>
         <segue reference="VI5-hp-Gm2"/>
         <segue reference="ipn-3I-3vc"/>
-        <segue reference="aks-Yo-Spb"/>
-        <segue reference="fEJ-lR-z9I"/>
-        <segue reference="Bc6-jW-uiV"/>
-        <segue reference="7cu-FP-MoG"/>
+        <segue reference="zQh-Po-kj4"/>
+        <segue reference="wgV-xY-MTp"/>
+        <segue reference="YDb-8b-gnI"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>

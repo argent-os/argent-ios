@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import SwiftyJSON
 import Stripe
-import DGRunkeeperSwitch
+import AnimatedSegmentSwitch
 import BEMSimpleLineGraph
 import DGElasticPullToRefresh
 import Gecco
@@ -55,7 +55,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     private let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
 
-    private let balanceSwitch = DGRunkeeperSwitch(leftTitle: "Pending", rightTitle: "Available")
+    private let balanceSwitch = AnimatedSegmentSwitch()
 
     private let graph: BEMSimpleLineGraphView = BEMSimpleLineGraphView(frame: CGRectMake(0, 90, UIScreen.mainScreen().bounds.size.width, 200))
     
@@ -63,20 +63,20 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 
     private var gradient  : CGGradient?
 
-    @IBAction func indexChanged(sender: DGRunkeeperSwitch) {
+    @IBAction func indexChanged(sender: AnimatedSegmentSwitch) {
         if(sender.selectedIndex == 0) {
             lblAccountAvailable.removeFromSuperview()
             lblAvailableDescription.removeFromSuperview()
             
-            addSubviewWithFade(lblAccountPending, parentView: self)
-            addSubviewWithFade(lblPendingDescription, parentView: self)
+            addSubviewWithFade(lblAccountPending, parentView: self, duration: 0.8)
+            addSubviewWithFade(lblPendingDescription, parentView: self, duration: 1)
         }
         if(sender.selectedIndex == 1) {
             lblAccountPending.removeFromSuperview()
             lblPendingDescription.removeFromSuperview()
 
-            addSubviewWithFade(lblAccountAvailable, parentView: self)
-            addSubviewWithFade(lblAvailableDescription, parentView: self)
+            addSubviewWithFade(lblAccountAvailable, parentView: self, duration: 0.8)
+            addSubviewWithFade(lblAvailableDescription, parentView: self, duration: 1)
         }
     }
 
@@ -192,7 +192,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 formatter.locale = NSLocale.currentLocale() // This is the default
 
                 self.lblAccountPending.attributedText = formatCurrency(String(pendingBalance), fontName: "HelveticaNeue", superSize: 11, fontSize: 16, offsetSymbol: 3, offsetCents: 3)
-                addSubviewWithFade(self.lblAccountPending, parentView: self)
+                addSubviewWithFade(self.lblAccountPending, parentView: self, duration: 1)
                 self.lblAccountAvailable.attributedText = formatCurrency(String(availableBalance), fontName: "HelveticaNeue", superSize: 11, fontSize: 16, offsetSymbol: 3, offsetCents: 3)
             })
             
@@ -238,13 +238,13 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                     Timeout(0.3) {
                         let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user!.picture))!)!)!
                         userImageView.image = img
-                        addSubviewWithBounce(userImageView, parentView: self)
+                        addSubviewWithBounce(userImageView, parentView: self, duration: 0.3)
                     }
                 } else {
                     Timeout(0.3) {
                         let img = UIImage(named: "PersonThumb")
                         userImageView.image = img
-                        addSubviewWithBounce(userImageView, parentView: self)
+                        addSubviewWithBounce(userImageView, parentView: self, duration: 0.3)
                     }
                 }
                 
@@ -319,7 +319,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         graph.enableBezierCurve = true
         graph.colorTouchInputLine = UIColor.lightBlue()
         graph.layer.masksToBounds = true
-        addSubviewWithFade(graph, parentView: self)
+        addSubviewWithFade(graph, parentView: self, duration: 0.5)
         
         let horizontalSplitter = UIView()
         horizontalSplitter.backgroundColor = UIColor.offWhite()
@@ -333,11 +333,12 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         dateRangeSegment.selectedSegmentIndex = 2
         dateRangeSegment.removeBorders()
         dateRangeSegment.addTarget(self, action: #selector(HomeViewController.dateRangeSegmentControl(_:)), forControlEvents: .ValueChanged)
-        addSubviewWithFade(dateRangeSegment, parentView: self)
+        addSubviewWithFade(dateRangeSegment, parentView: self, duration: 0.5)
         
+        balanceSwitch.items = ["Pending", "Available"]
         balanceSwitch.backgroundColor = UIColor.clearColor()
-        balanceSwitch.titleFont = UIFont(name: "ArialRoundedMTBold", size: 12)
-        balanceSwitch.selectedBackgroundColor = UIColor.clearColor()
+        balanceSwitch.font = UIFont(name: "ArialRoundedMTBold", size: 12)
+        balanceSwitch.backgroundColor = UIColor.clearColor()
         balanceSwitch.titleColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
         balanceSwitch.selectedTitleColor = UIColor.lightBlue()
         balanceSwitch.frame = CGRect(x: view.bounds.width - 185.0, y: 40, width: 180, height: 35.0)
@@ -372,7 +373,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         tableView.dataSource = self
         tableView.separatorColor = UIColor.lightBlue().colorWithAlphaComponent(0.3)
         tableView.showsVerticalScrollIndicator = false
-        addSubviewWithFade(tableView, parentView: self)
+        addSubviewWithFade(tableView, parentView: self, duration: 0.5)
         
         lblAccountAvailable.textColor = UIColor.lightBlue()
         lblAccountAvailable.frame = CGRectMake(20, 81, 200, 40)
@@ -408,7 +409,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 NSForegroundColorAttributeName:UIColor.lightBlue().colorWithAlphaComponent(0.5)
             ])
         lblPendingDescription.attributedText = str3
-        addSubviewWithFade(lblPendingDescription, parentView: self)
+        addSubviewWithFade(lblPendingDescription, parentView: self, duration: 0.5)
         
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.tintColor = UIColor.slateBlue().colorWithAlphaComponent(0.5)

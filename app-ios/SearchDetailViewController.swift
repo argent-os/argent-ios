@@ -68,7 +68,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
         let imageBackground = UIImageView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight))
         imageBackground.backgroundColor = UIColor.offWhite()
         imageBackground.contentMode = .ScaleToFill
-        addSubviewWithFade(imageBackground, parentView: self)
+        addSubviewWithFade(imageBackground, parentView: self, duration: 0.8)
         
         // adds a manual credit card entry textfield
         // addSubviewWithFade(paymentTextField)
@@ -93,7 +93,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
             cardView.layer.shadowOpacity = 1
             cardView.layer.shadowRadius = 1.0
             cardView.clipsToBounds = false
-            addSubviewWithFade(cardView, parentView: self)
+            addSubviewWithFade(cardView, parentView: self, duration: 0.8)
             cardView.backgroundColor = UIColor.whiteColor()
             cardView.center = self.view.center
             let containerLayer: CALayer = CALayer()
@@ -108,7 +108,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
             let chatBubble = UIImageView(image: UIImage(named: "IconChat"), highlightedImage: UIImage(named: "IconChat")!.alpha(0.5))
             chatBubble.alpha = 0.2
             chatBubble.frame = CGRect(x: screenWidth/2-20, y: 335, width: 40, height: 40)
-            addSubviewWithFade(chatBubble, parentView: self)
+            addSubviewWithFade(chatBubble, parentView: self, duration: 0.8)
             self.view.bringSubviewToFront(chatBubble)
             let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(showMessageView(_:)))
             chatBubble.addGestureRecognizer(gestureRecognizer)
@@ -125,7 +125,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
             userImageView.layer.cornerRadius = userImageView.frame.size.height/2
             userImageView.layer.borderWidth = 3
             userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
-            addSubviewWithFade(userImageView, parentView: self)
+            addSubviewWithFade(userImageView, parentView: self, duration: 0.8)
             self.view.bringSubviewToFront(userImageView)
             
             // User image
@@ -152,7 +152,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
                 NSForegroundColorAttributeName : UIColor.lightBlue(),
                 NSFontAttributeName : UIFont(name: "DINAlternate-Bold", size: 18)!
             ]
-            addSubviewWithFade(navBar, parentView: self)
+            addSubviewWithFade(navBar, parentView: self, duration: 0.8)
             let navItem = UINavigationItem(title: "@"+detailUser.username)
             navItem.leftBarButtonItem?.tintColor = UIColor.mediumBlue()
             navBar.setItems([navItem], animated: true)
@@ -170,7 +170,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
             viewPlansButton.layer.borderColor = UIColor.mediumBlue().colorWithAlphaComponent(0.5).CGColor
             viewPlansButton.layer.borderWidth = 0
             viewPlansButton.addTarget(self, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
-            addSubviewWithBounce(viewPlansButton, parentView: self)
+            addSubviewWithBounce(viewPlansButton, parentView: self, duration: 0.8)
             
             let payButton = UIButton()
             payButton.frame = CGRect(x: 50, y: cardView.layer.frame.height+70,  width: self.view.layer.frame.width-100, height: 50.0)
@@ -187,7 +187,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
             payButton.backgroundColor = UIColor.lightBlue()
             payButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
             payButton.addTarget(self, action: #selector(SearchDetailViewController.payMerchantModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-            addSubviewWithBounce(payButton, parentView: self)
+            addSubviewWithBounce(payButton, parentView: self, duration: 0.8)
             
             // Name textfield
             if detailUser.first_name != "" {
@@ -200,7 +200,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
             lbl.textColor = UIColor.lightBlue()
             lbl.font = UIFont(name: "DINAlternate-Bold", size: 18)!
             lbl.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-            addSubviewWithFade(lbl, parentView: self)
+            addSubviewWithFade(lbl, parentView: self, duration: 0.8)
             self.view.bringSubviewToFront(lbl)
             
             if(screenHeight < 500) {

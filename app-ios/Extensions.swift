@@ -210,25 +210,25 @@ public func convertStringToDictionary(text: String) -> [String:AnyObject]? {
     return nil
 }
 
-func addSubviewWithBounce(view: UIView, parentView: UIViewController) {
+func addSubviewWithBounce(view: UIView, parentView: UIViewController, duration: NSTimeInterval) {
     view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001)
     parentView.view.addSubview(view)
-    UIView.animateWithDuration(0.3 / 1.5, animations: {() -> Void in
+    UIView.animateWithDuration(duration / 1.5, animations: {() -> Void in
         view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0)
         }, completion: {(finished: Bool) -> Void in
-            UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
+            UIView.animateWithDuration(duration / 2, animations: {() -> Void in
                 }, completion: {(finished: Bool) -> Void in
-                    UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
+                    UIView.animateWithDuration(duration / 2, animations: {() -> Void in
                         view.transform = CGAffineTransformIdentity
                     })
             })
     })
 }
 
-func addSubviewWithFade(view: UIView, parentView: UIViewController) {
+func addSubviewWithFade(view: UIView, parentView: UIViewController, duration: NSTimeInterval) {
     view.alpha = 0.0
     parentView.view.addSubview(view)
-    UIView.animateWithDuration(1.0, animations: {
+    UIView.animateWithDuration(duration, animations: {
         view.alpha = 1.0
     })
 }

@@ -42,6 +42,9 @@
 		306E82301CDAC36400A43505 /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306E822F1CDAC36400A43505 /* Balance.swift */; };
 		307C6A221C7E91A100723E39 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C6A211C7E91A100723E39 /* StoreKit.framework */; };
 		307C6A241C7E91AA00723E39 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C6A231C7E91AA00723E39 /* PassKit.framework */; };
+		308073061CFF38D20070C7FE /* SubscriptionsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308073051CFF38D20070C7FE /* SubscriptionsListTableViewController.swift */; };
+		308073081CFF39230070C7FE /* CustomersListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308073071CFF39230070C7FE /* CustomersListTableViewController.swift */; };
+		3080730A1CFF393F0070C7FE /* PlansListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308073091CFF393F0070C7FE /* PlansListTableViewController.swift */; };
 		308630031CFCDEBD00695215 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308630021CFCDEBD00695215 /* OnboardingCollectionViewCell.swift */; };
 		308A348A1CCA803200AAF66F /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A34891CCA803200AAF66F /* History.swift */; };
 		309544F51CD295AE003007B2 /* ParallaxHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309544F41CD295AE003007B2 /* ParallaxHeader.swift */; };
@@ -262,6 +265,9 @@
 		306E822F1CDAC36400A43505 /* Balance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Balance.swift; path = "app-ios/Balance.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		307C6A211C7E91A100723E39 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		307C6A231C7E91AA00723E39 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
+		308073051CFF38D20070C7FE /* SubscriptionsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SubscriptionsListTableViewController.swift; path = "app-ios/SubscriptionsListTableViewController.swift"; sourceTree = SOURCE_ROOT; };
+		308073071CFF39230070C7FE /* CustomersListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomersListTableViewController.swift; path = "app-ios/CustomersListTableViewController.swift"; sourceTree = SOURCE_ROOT; };
+		308073091CFF393F0070C7FE /* PlansListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlansListTableViewController.swift; path = "app-ios/PlansListTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		308630021CFCDEBD00695215 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingCollectionViewCell.swift; path = "app-ios/OnboardingCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		308A34891CCA803200AAF66F /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = History.swift; path = "app-ios/History.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		309544F41CD295AE003007B2 /* ParallaxHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParallaxHeader.swift; path = "app-ios/ParallaxHeader.swift"; sourceTree = SOURCE_ROOT; };
@@ -477,6 +483,7 @@
 		30089F3F1CF9313100A2496B /* Plans */ = {
 			isa = PBXGroup;
 			children = (
+				308073091CFF393F0070C7FE /* PlansListTableViewController.swift */,
 			);
 			name = Plans;
 			sourceTree = "<group>";
@@ -484,6 +491,7 @@
 		30089F401CF9313700A2496B /* Customers */ = {
 			isa = PBXGroup;
 			children = (
+				308073071CFF39230070C7FE /* CustomersListTableViewController.swift */,
 			);
 			name = Customers;
 			sourceTree = "<group>";
@@ -491,6 +499,7 @@
 		30089F411CF9313F00A2496B /* Subscriptions */ = {
 			isa = PBXGroup;
 			children = (
+				308073051CFF38D20070C7FE /* SubscriptionsListTableViewController.swift */,
 			);
 			name = Subscriptions;
 			sourceTree = "<group>";
@@ -1462,6 +1471,7 @@
 				30D5268E1CE34C03001B41BA /* RiskScoreViewController.swift in Sources */,
 				30C2DAA41CA4374F003AFD8B /* SignupIndividualViewControllerOne.swift in Sources */,
 				30C2DAD31CA43881003AFD8B /* Profile.swift in Sources */,
+				3080730A1CFF393F0070C7FE /* PlansListTableViewController.swift in Sources */,
 				30D526761CDB9814001B41BA /* BitcoinUriViewController.swift in Sources */,
 				309C8CCA1CCEEE8C0073159C /* SignupCountryPickerViewController.swift in Sources */,
 				30D5268C1CE0F303001B41BA /* Charge.swift in Sources */,
@@ -1482,6 +1492,7 @@
 				30C2DACB1CA4385C003AFD8B /* ProfileMenuViewController.swift in Sources */,
 				30FF6FD51CF221A200A46A1E /* Account.swift in Sources */,
 				30C2DAB31CA437B2003AFD8B /* TermsViewController.swift in Sources */,
+				308073081CFF39230070C7FE /* CustomersListTableViewController.swift in Sources */,
 				300E422B1CB47428004316CF /* BankConnectedListTableViewController.swift in Sources */,
 				30C2DAD51CA43892003AFD8B /* ProfileFieldCell.swift in Sources */,
 				309544F51CD295AE003007B2 /* ParallaxHeader.swift in Sources */,
@@ -1499,6 +1510,7 @@
 				30C2DACD1CA43862003AFD8B /* CreditCardAccountViewController.swift in Sources */,
 				30C2DAED1CA43946003AFD8B /* RecurringBillingPlanViewController.swift in Sources */,
 				30C2DAAF1CA4379F003AFD8B /* ResetPasswordViewController.swift in Sources */,
+				308073061CFF38D20070C7FE /* SubscriptionsListTableViewController.swift in Sources */,
 				30C2DAD91CA4389E003AFD8B /* ProfileImageCell.swift in Sources */,
 				30C2DA9B1CA4373E003AFD8B /* LoginViewController.swift in Sources */,
 				30C2DAAA1CA4374F003AFD8B /* SignupViewControllerTwo.swift in Sources */,

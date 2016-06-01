@@ -121,7 +121,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         splitter.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
         splitter.frame = CGRect(x: screenWidth/2-0.5, y: 140, width: 1, height: 50)
         Timeout(0.05) {
-            addSubviewWithFade(self.splitter, parentView: self)
+            addSubviewWithFade(self.splitter, parentView: self, duration: 1.2)
         }
         
         let attachment: NSTextAttachment = NSTextAttachment()
@@ -133,26 +133,26 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                 locationStr.appendAttributedString(attachmentString)
                 self.locationLabel.attributedText = locationStr
                 Timeout(0.2) {
-                    addSubviewWithFade(self.locationLabel, parentView: self)
+                    addSubviewWithFade(self.locationLabel, parentView: self, duration: 0.8)
                 }
             } else if let address_city = acct?.address_city, let address_country = acct?.address_country {
                 let locationStr: NSMutableAttributedString = NSMutableAttributedString(string: "Unknown, " + address_country)
                     locationStr.appendAttributedString(attachmentString)
                     self.locationLabel.attributedText = locationStr
                     Timeout(0.2) {
-                        addSubviewWithFade(self.locationLabel, parentView: self)
+                        addSubviewWithFade(self.locationLabel, parentView: self, duration: 0.8)
                 }
             } else {
                 let locationStr: NSMutableAttributedString = NSMutableAttributedString(string: "Unknown")
                 locationStr.appendAttributedString(attachmentString)
                 self.locationLabel.attributedText = locationStr
                 Timeout(0.2) {
-                    addSubviewWithFade(self.locationLabel, parentView: self)
+                    addSubviewWithFade(self.locationLabel, parentView: self, duration: 0.8)
                 }
                 showGlobalNotification("Profile Incomplete", duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandYellow())
             }
         }
-        self.locationLabel.frame = CGRectMake(0, 70, screenWidth, 70)
+        self.locationLabel.frame = CGRectMake(0, 72, screenWidth, 70)
         self.locationLabel.textAlignment = NSTextAlignment.Center
         self.locationLabel.font = UIFont(name: "Avenir-Book", size: 12)
         self.locationLabel.numberOfLines = 0
@@ -179,7 +179,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                 self.customersCountLabel.text = String(customers!.count) + " customers"
             }
             Timeout(0.3) {
-                addSubviewWithFade(self.customersCountLabel, parentView: self)
+                addSubviewWithFade(self.customersCountLabel, parentView: self, duration: 0.8)
             }
         }
         
@@ -192,7 +192,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                 self.plansCountLabel.text = String(plans!.count) + " subscriptions"
             }
             Timeout(0.3) {
-                addSubviewWithFade(self.plansCountLabel, parentView: self)
+                addSubviewWithFade(self.plansCountLabel, parentView: self, duration: 0.8)
             }
         }
     }
@@ -204,7 +204,12 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         // TODO: do a check for first name, and business name
         let f_name = user.first_name
         let l_name = user.last_name
-        navItem.title = f_name + " " + l_name
+        let u_name = user.username
+        if(f_name != "") {
+            navItem.title = f_name + " " + l_name
+        } else {
+            navItem.title = u_name
+        }
         
         self.navBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.whiteColor(),
@@ -212,7 +217,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         ]
         self.navBar.setItems([navItem], animated: false)
         Timeout(0.1) {
-            addSubviewWithFade(self.navBar, parentView: self)
+            addSubviewWithFade(self.navBar, parentView: self, duration: 0.8)
         }
     }
     
@@ -283,11 +288,11 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
             if user!.picture != "" {
                 let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user!.picture))!)!)!
                 self.userImageView.image = img
-                addSubviewWithFade(self.userImageView, parentView: self)
+                addSubviewWithFade(self.userImageView, parentView: self, duration: 0.8)
             } else {
                 let img = UIImage(named: "IconCamera")
                 self.userImageView.image = img
-                addSubviewWithFade(self.userImageView, parentView: self)
+                addSubviewWithFade(self.userImageView, parentView: self, duration: 0.8)
             }
         })
     }
