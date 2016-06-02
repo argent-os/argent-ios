@@ -51,8 +51,8 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
     private func setupNav() {
         let navigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 50)) // Offset by 20 pixels vertically to take the status bar into account
         
-        navigationBar.backgroundColor = UIColor.whiteColor()
-        navigationBar.tintColor = UIColor.mediumBlue()
+        navigationBar.backgroundColor = UIColor.offWhite()
+        navigationBar.tintColor = UIColor.lightBlue()
         navigationBar.delegate = self
         
         // Create a navigation item with a title
@@ -67,7 +67,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         navigationItem.leftBarButtonItem = leftButton
         
         // Assign the navigation item to the navigation bar
-        navigationBar.titleTextAttributes = [NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.lightGrayColor()]
+        navigationBar.titleTextAttributes = [NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.lightBlue()]
         navigationBar.items = [navigationItem]
         
         // Make the navigation bar a subview of the current view controller
@@ -80,40 +80,31 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
+        self.view.backgroundColor = UIColor.offWhite()
+        
         // addDoneToolbar()
         
         chargeInputView.addTarget(self, action: #selector(ChargeViewController.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
-        chargeInputView.frame = CGRect(x: 0, y: 90, width: screenWidth, height: 65)
+        chargeInputView.frame = CGRect(x: 0, y: 80, width: screenWidth, height: 65)
         chargeInputView.textAlignment = .Center
         chargeInputView.font = UIFont(name: "DINAlternate-Bold", size: 48)
-        chargeInputView.textColor = UIColor.mediumBlue()
+        chargeInputView.textColor = UIColor.lightBlue()
         chargeInputView.placeholder = "$0.00"
         chargeInputView.keyboardType = UIKeyboardType.NumberPad
         chargeInputView.backgroundColor = UIColor.clearColor()
-        addSubviewWithBounce(chargeInputView, parentView: self, duration: 0.3)
-        
-        // Pay with card button
-        let payWithCardButton = UIButton(frame: CGRect(x: screenWidth/2+10, y: 180, width: screenWidth/2-20-10, height: 60.0))
-        payWithCardButton.backgroundColor = UIColor.clearColor()
-        payWithCardButton.tintColor = UIColor.mediumBlue()
-        payWithCardButton.setTitleColor(UIColor.mediumBlue(), forState: .Normal)
-        payWithCardButton.titleLabel?.font = UIFont(name: "DINAlternate-Bold", size: 13)
-        payWithCardButton.layer.borderColor = UIColor.mediumBlue().colorWithAlphaComponent(0.5).CGColor
-        payWithCardButton.layer.borderWidth = 1
-        payWithCardButton.layer.cornerRadius = 5
-        payWithCardButton.layer.masksToBounds = true
-        payWithCardButton.setTitle("Pay with Card", forState: .Normal)
-        payWithCardButton.clipsToBounds = true
-        payWithCardButton.addTarget(self, action: #selector(ChargeViewController.payWithCard(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        view.addSubview(payWithCardButton)
+        Timeout(0.2) {
+            addSubviewWithBounce(self.chargeInputView, parentView: self, duration: 0.3)
+        }
         
         // Pay with bitcoin button
         let payWithBitcoinButton = UIButton(frame: CGRect(x: 20, y: 180, width: screenWidth/2-20-10, height: 60.0))
-        payWithBitcoinButton.backgroundColor = UIColor.clearColor()
-        payWithBitcoinButton.tintColor = UIColor.mediumBlue()
-        payWithBitcoinButton.setTitleColor(UIColor.mediumBlue(), forState: .Normal)
+        payWithBitcoinButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
+        payWithBitcoinButton.setBackgroundColor(UIColor.offWhite().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        payWithBitcoinButton.tintColor = UIColor.lightBlue()
+        payWithBitcoinButton.setTitleColor(UIColor.lightBlue(), forState: .Normal)
+        payWithBitcoinButton.setTitleColor(UIColor.lightBlue().colorWithAlphaComponent(0.5), forState: .Highlighted)
         payWithBitcoinButton.titleLabel?.font = UIFont(name: "DINAlternate-Bold", size: 13)
-        payWithBitcoinButton.layer.borderColor = UIColor.mediumBlue().colorWithAlphaComponent(0.5).CGColor
+        payWithBitcoinButton.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
         payWithBitcoinButton.layer.borderWidth = 1
         payWithBitcoinButton.layer.cornerRadius = 5
         payWithBitcoinButton.layer.masksToBounds = true
@@ -121,20 +112,45 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         payWithBitcoinButton.clipsToBounds = true
         payWithBitcoinButton.clipsToBounds = true
         payWithBitcoinButton.addTarget(self, action: #selector(ChargeViewController.payWithBitcoin(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        view.addSubview(payWithBitcoinButton)
+        Timeout(0.3) {
+            addSubviewWithBounce(payWithBitcoinButton, parentView: self, duration: 0.3)
+        }
+        
+        // Pay with card button
+        let payWithCardButton = UIButton(frame: CGRect(x: screenWidth/2+10, y: 180, width: screenWidth/2-20-10, height: 60.0))
+        payWithCardButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
+        payWithCardButton.setBackgroundColor(UIColor.offWhite().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        payWithCardButton.tintColor = UIColor.lightBlue()
+        payWithCardButton.setTitleColor(UIColor.lightBlue(), forState: .Normal)
+        payWithCardButton.setTitleColor(UIColor.lightBlue().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        payWithCardButton.titleLabel?.font = UIFont(name: "DINAlternate-Bold", size: 13)
+        payWithCardButton.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
+        payWithCardButton.layer.borderWidth = 1
+        payWithCardButton.layer.cornerRadius = 5
+        payWithCardButton.layer.masksToBounds = true
+        payWithCardButton.setTitle("Pay with Card", forState: .Normal)
+        payWithCardButton.clipsToBounds = true
+        payWithCardButton.addTarget(self, action: #selector(ChargeViewController.payWithCard(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        Timeout(0.5) {
+            addSubviewWithBounce(payWithCardButton, parentView: self, duration: 0.3)
+        }
         
         // Pay button
         let payButton = UIButton(frame: CGRect(x: 20, y: screenHeight-80, width: screenWidth-40, height: 60.0))
-        payButton.backgroundColor = UIColor.mediumBlue()
+        payButton.setBackgroundColor(UIColor.lightBlue(), forState: .Normal)
+        payButton.setBackgroundColor(UIColor.lightBlue().colorWithAlphaComponent(0.75), forState: .Highlighted)
         payButton.tintColor = UIColor(rgba: "#fff")
         payButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
+        payButton.setTitleColor(UIColor(rgba: "#fffe"), forState: .Highlighted)
         payButton.titleLabel?.font = UIFont(name: "DINAlternate-Bold", size: 14)
         payButton.setTitle("Pay Merchant", forState: .Normal)
         payButton.layer.cornerRadius = 5
         payButton.layer.masksToBounds = true
         payButton.clipsToBounds = true
         payButton.addTarget(self, action: #selector(ChargeViewController.payMerchant(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        view.addSubview(payButton)
+        Timeout(0.6) {
+            addSubviewWithFade(payButton, parentView: self, duration: 1)
+        }
         
         currencyFormatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
         currencyFormatter.currencyCode = NSLocale.currentLocale().displayNameForKey(NSLocaleCurrencySymbol, value: NSLocaleCurrencyCode)
@@ -161,7 +177,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         paymentTextField.frame = CGRectMake(20, 260, screenWidth - 40, 60)
         paymentTextField.delegate = self
         paymentTextField.borderWidth = 1
-        paymentTextField.borderColor = UIColor.lightGrayColor()
+        paymentTextField.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
         // adds a manual credit card entry textfield
         addSubviewWithBounce(paymentTextField, parentView: self, duration: 0.3)
     }
@@ -255,7 +271,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: #selector(ChargeViewController.dismissKeyboard(_:)))
         done.tintColor = UIColor.whiteColor()
-        UIToolbar.appearance().barTintColor = UIColor.mediumBlue()
+        UIToolbar.appearance().barTintColor = UIColor.lightBlue()
         done.setTitleTextAttributes([
             NSFontAttributeName : UIFont(name: "DINAlternate-Bold", size: 15)!,
             NSForegroundColorAttributeName : UIColor(rgba: "#fff")

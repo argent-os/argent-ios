@@ -63,7 +63,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         navigationBar.items = [navigationItem]
         
         // Make the navigation bar a subview of the current view controller
-        self.view.addSubview(navigationBar)
+        addSubviewWithFade(navigationBar, parentView: self, duration: 0.5)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -104,16 +104,20 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         
         // UI
         let addPlanButton = UIButton(frame: CGRect(x: 20, y: screenHeight-80, width: screenWidth-40, height: 60.0))
-        addPlanButton.backgroundColor = UIColor.lightBlue()
+        addPlanButton.setBackgroundColor(UIColor.lightBlue(), forState: .Normal)
+        addPlanButton.setBackgroundColor(UIColor.lightBlue().colorWithAlphaComponent(0.75), forState: .Highlighted)
         addPlanButton.tintColor = UIColor(rgba: "#fff")
         addPlanButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
+        addPlanButton.setTitleColor(UIColor(rgba: "#fffe"), forState: .Highlighted)
         addPlanButton.titleLabel?.font = UIFont(name: "DINAlternate-Bold", size: 16)
         addPlanButton.setTitle("Add Plan", forState: .Normal)
         addPlanButton.layer.cornerRadius = 5
         addPlanButton.layer.masksToBounds = true
         addPlanButton.clipsToBounds = true
         addPlanButton.addTarget(self, action: #selector(RecurringBillingViewController.addPlanButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        view.addSubview(addPlanButton)
+        Timeout(0.5) {
+            addSubviewWithFade(addPlanButton, parentView: self, duration: 0.3)
+        }
 
         amountInputView.addTarget(self, action: #selector(self.endEditing(_:)), forControlEvents: UIControlEvents.EditingDidEnd)
         amountInputView.addTarget(self, action: #selector(self.textField(_:shouldChangeCharactersInRange:replacementString:)), forControlEvents: UIControlEvents.EditingChanged)
@@ -126,8 +130,8 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         amountInputView.keyboardType = UIKeyboardType.NumberPad
         amountInputView.backgroundColor = UIColor.offWhite()
         amountInputView.tintColor = UIColor.lightBlue()
-        addSubviewWithBounce(amountInputView, parentView: self, duration: 0.3)
         amountInputView.becomeFirstResponder()
+        self.view.addSubview(amountInputView)
         
         let topImageView = UIImageView()
         topImageView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
@@ -142,7 +146,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         perIntervalLabel.textColor = UIColor.lightBlue()
         perIntervalLabel.text = ""
         perIntervalLabel.backgroundColor = UIColor.clearColor()
-        self.view.addSubview(perIntervalLabel)
+        addSubviewWithBounce(self.perIntervalLabel, parentView: self, duration: 0.3)
         
         // Create RowFomers
         
