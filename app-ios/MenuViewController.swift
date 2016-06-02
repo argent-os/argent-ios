@@ -29,10 +29,6 @@ class MenuViewController: UIViewController {
         configureMainMenu()
     }
     
-    override func viewDidAppear(animated: Bool) {
-        UIStatusBarStyle.Default
-    }
-    
     func configureMainMenu() {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
@@ -140,28 +136,29 @@ class MenuViewController: UIViewController {
         let items = ["Main Menu", "Plans", "Customers", "Subscriptions"]
         
         self.navigationController?.navigationBar.translucent = false
-        self.navigationController?.navigationBar.barTintColor = UIColor.mediumBlue()
+        self.navigationController?.navigationBar.barTintColor = UIColor.offWhite()
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSForegroundColorAttributeName: UIColor.whiteColor(),
+            NSForegroundColorAttributeName: UIColor.lightBlue(),
             NSFontAttributeName: UIFont(name: "ArialRoundedMTBold", size: 16)!
         ]
         
         self.selectedCellLabel.text = items.first
         
-        let menuView = BTNavigationDropdownMenu(navigationController: self.navigationController, title: items[0], items: items)
-        menuView.cellHeight = 50
-        menuView.cellSeparatorColor = UIColor.whiteColor().colorWithAlphaComponent(0.4)
+        let menuView = BTNavigationDropdownMenu(navigationController: self.navigationController, title: "Main Menu", items: items)
+        menuView.cellHeight = 80
+        menuView.cellSeparatorColor = UIColor.lightBlue().colorWithAlphaComponent(0.2)
         menuView.cellBackgroundColor = self.navigationController?.navigationBar.barTintColor
-        menuView.cellSelectionColor = UIColor.mediumBlue().colorWithAlphaComponent(0.5)
+        menuView.cellSelectionColor = UIColor.whiteColor()
         menuView.keepSelectedCellColor = true
-        menuView.checkMarkImage = UIImage(named: "ic_check_light")
-        menuView.cellTextLabelColor = UIColor.whiteColor()
+        menuView.checkMarkImage = UIImage(named: "IconEmpty")
+        menuView.cellTextLabelColor = UIColor.lightBlue()
         menuView.cellTextLabelFont = UIFont(name: "HelveticaNeue", size: 16)
         menuView.cellTextLabelAlignment = .Center // .Center // .Right // .Left
         menuView.arrowPadding = 15
+        menuView.arrowImage = UIImage(named: "ic_arrow_down_gray")
         menuView.animationDuration = 0.2
         menuView.maskBackgroundColor = UIColor.blackColor()
-        menuView.maskBackgroundOpacity = 0.3
+        menuView.maskBackgroundOpacity = 0.5
         menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
             print("Did select item at index: \(indexPath)")
             self.selectedCellLabel.text = items[indexPath]
@@ -196,7 +193,7 @@ class MenuViewController: UIViewController {
         self.performSegueWithIdentifier("addCustomerView", sender: self)
     }
     
-    private func addBlurView(){
+    private func addBlurView(view: UIView){
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
@@ -204,7 +201,7 @@ class MenuViewController: UIViewController {
         let blurView = UIVisualEffectView(effect: blurEffect)
         blurView.frame = CGRectMake(0, 0, screenWidth, screenHeight)
         blurView.translatesAutoresizingMaskIntoConstraints = false
-        self.view.insertSubview(blurView, aboveSubview: self.view)
+        view.insertSubview(blurView, aboveSubview: self.view)
     }
     
     override func didReceiveMemoryWarning() {
@@ -214,9 +211,9 @@ class MenuViewController: UIViewController {
     
     // MARK: Delegate Methods
     
-    // Statusbar
+    //Changing Status Bar
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+        return .Default
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

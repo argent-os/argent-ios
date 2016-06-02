@@ -1692,6 +1692,7 @@ We support both debit and credit.</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="vd3-ef-jnj"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <segue destination="4oC-TM-jI5" kind="presentation" identifier="chargeView" id="uG4-vF-WlK"/>
@@ -3761,6 +3762,7 @@ be private unless otherwise requested.</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="A13-xJ-Wch" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Menu" image="ic_tab_menu" selectedImage="ic_tab_menu" id="Wbg-GP-L9N"/>
                     <toolbarItems/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nWN-qs-ITK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

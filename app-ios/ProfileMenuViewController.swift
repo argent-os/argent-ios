@@ -187,7 +187,9 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         self.plansCountLabel.font = UIFont(name: "HelveticaNeue-Light", size: 12)
         self.plansCountLabel.numberOfLines = 0
         self.plansCountLabel.textColor = UIColor(rgba: "#fff")
-
+    }
+    
+    func reloadUserData() {
         self.loadCustomerList { (customers: [Customer]?, NSError) in
             if(customers!.count == 0) {
                 self.customersCountLabel.text = "No customers"
@@ -331,6 +333,8 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                 addSubviewWithFade(self.userImageView, parentView: self, duration: 0.8)
             }
         })
+        
+        reloadUserData()
     }
     
     // Opens edit picture

@@ -25,9 +25,9 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
         super.viewDidLoad()
         
         self.navigationItem.title = "Subscriptions"
-        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
         
-        showGlobalNotification("Loading subscriptions", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.mediumBlue())
+        showGlobalNotification("Loading subscriptions", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.lightBlue())
         
         self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         self.dateFormatter.timeStyle = NSDateFormatterStyle.LongStyle
@@ -136,7 +136,7 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
             if let id = item?.id {
                 print("Did swipe" + id);
                 // send request to delete the bank account, on completion reload table data!
-                Plan.deletePlan(id, completionHandler: { (bool, err) in
+                Subscription.deleteSubscription(id, completionHandler: { (bool, err) in
                     print("deleted subscription ", bool)
                     self.loadSubscriptionList()
                 })

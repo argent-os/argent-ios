@@ -25,9 +25,9 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
         super.viewDidLoad()
         
         self.navigationItem.title = "Customers"
-        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
         
-        showGlobalNotification("Loading customers", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.mediumBlue())
+        showGlobalNotification("Loading customers", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.lightBlue())
         
         self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         self.dateFormatter.timeStyle = NSDateFormatterStyle.LongStyle
@@ -118,8 +118,8 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
             cell.tag = indexPath.row
             
             let item = self.itemsArray?[indexPath.row]
-            if let email = item?.email {
-                cell.textLabel?.text = email
+            if let email = item?.email, id = item?.id {
+                cell.textLabel?.text = email ?? id
                 cell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 15)!
             }
         }
@@ -132,7 +132,7 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
             if let id = item?.id {
                 print("Did swipe" + id);
                 // send request to delete the bank account, on completion reload table data!
-                Plan.deletePlan(id, completionHandler: { (bool, err) in
+                Customer.deleteCustomer(id, completionHandler: { (bool, err) in
                     print("deleted customer ", bool)
                     self.loadCustomerList()
                 })

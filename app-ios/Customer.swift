@@ -123,7 +123,7 @@ class Customer {
                 ]
                 
                 let endpoint = API_URL + "/v1/stripe/" + user_id! + "/customers/" + id
-                
+                print("deleting customer", endpoint)
                 Alamofire.request(.DELETE, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .responseJSON { response in
                         switch response.result {
