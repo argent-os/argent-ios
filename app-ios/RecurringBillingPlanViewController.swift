@@ -11,7 +11,6 @@ import Alamofire
 import SwiftyJSON
 import UIKit
 import Former
-import JGProgressHUD
 import JSSAlertView
 
 final class RecurringBillingViewController: FormViewController, UINavigationBarDelegate, UITextFieldDelegate {

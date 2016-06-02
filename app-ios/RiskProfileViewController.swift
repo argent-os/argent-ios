@@ -8,7 +8,7 @@
 
 import Foundation
 import Alamofire
-import JSSAlertView
+import CWStatusBarNotification
 import SwiftyJSON
 import KeychainSwift
 
@@ -81,7 +81,7 @@ class RiskProfileViewController: UIViewController {
                         if let value = response.result.value {
                             let data = JSON(value)
                             let calculatedRiskScore = data["score"]
-                            self.showSuccessAlert("Risk Profile Enabled", color: UIColor(rgba: "#1EBC61"))
+                            showGlobalNotification("Risk profiling enabled", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.brandGreen())
                             self.enableRiskProfileButton.setTitle("Disable Risk Profile", forState: .Normal)
                             self.enableRiskProfileButton.addTarget(self, action: #selector(RiskProfileViewController.disableRiskProfiling(_:)), forControlEvents: .TouchUpInside)
                             self.enableRiskProfileButton.removeTarget(self, action: #selector(RiskProfileViewController.enableRiskProfiling(_:)), forControlEvents: .TouchUpInside)
@@ -101,36 +101,7 @@ class RiskProfileViewController: UIViewController {
     
     func disableRiskProfiling(sender: AnyObject) {
         KeychainSwift().set("", forKey: "riskScore")
-        showDisabledAlert("Risk Profile Disabled", color: UIColor.mediumBlue())
+        showGlobalNotification("Risk profiling disabled", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.neonOrange())
     }
-    
-    func showSuccessAlert(str: String, color: UIColor) {
-        let customIcon:UIImage = UIImage(named: "ic_check_light")! // your custom icon UIImage
-        self.view.endEditing(true)
-        let alertView = JSSAlertView().show(
-            self,
-            title: "",
-            text: str,
-            buttonText: "Ok",
-            noButtons: false,
-            color: color,
-            iconImage: customIcon)
-        alertView.setTextTheme(.Light) // can be .Light or .Dark
-    }
-    
-    func showDisabledAlert(str: String, color: UIColor) {
-        let customIcon:UIImage = UIImage(named: "ic_check_light")! // your custom icon UIImage
-        self.view.endEditing(true)
-        let alertView = JSSAlertView().show(
-            self,
-            title: "",
-            text: str,
-            buttonText: "Ok",
-            noButtons: false,
-            color: color,
-            iconImage: customIcon)
-        alertView.setTextTheme(.Light) // can be .Light or .Dark
-    }
-    
 
 }

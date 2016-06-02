@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 import Alamofire
 import SwiftyJSON
-import JGProgressHUD
+import CWStatusBarNotification
 import MCSwipeTableViewCell
 
 class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellDelegate {
@@ -24,13 +24,10 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "Connected Accounts"
+        self.navigationItem.title = "Plans"
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
         
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
-        HUD.showInView(self.view!)
-        HUD.textLabel.text = "Loading Connected Banks"
-        HUD.dismissAfterDelay(0.7)
+        showGlobalNotification("Loading plans", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.skyBlue())
         
         self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         self.dateFormatter.timeStyle = NSDateFormatterStyle.LongStyle

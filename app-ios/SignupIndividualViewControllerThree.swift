@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import Alamofire
 import SwiftyJSON
-import JGProgressHUD
 import KeychainSwift
 import TextFieldEffects
 import UIColor_Hex_Swift
@@ -60,10 +59,6 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
-        HUD.showInView(self.view!)
-        HUD.dismissAfterDelay(0.5)
         
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
@@ -126,14 +121,12 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
     }
     
     @IBAction func finishButtonTapped(sender: AnyObject) {
-        
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
-        HUD.showInView(self.view!)
+
+        showGlobalNotification("Signing up...", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.skyBlue())
         
         if(self.switchTermsAndPrivacy.on.boolValue == false) {
             // Display error if terms of service and privacy policy not accepted
             displayErrorAlertMessage("Terms of Service and Privacy Policy were not accepted, could not create account");
-            HUD.dismiss()
             return;
         }
         
@@ -173,12 +166,11 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
 
                         
                         if(response.response?.statusCode == 200) {
-                            HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
-                            HUD.dismissAfterDelay(3)
+                            showGlobalNotification("Success!", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.skyBlue())
+
                             // go to main view
                         } else {
-                            HUD.indicatorView = JGProgressHUDErrorIndicatorView()
-                            HUD.dismissAfterDelay(3)
+                            showGlobalNotification("Error occurred", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
                         }
                         
                         switch response.result {
@@ -191,22 +183,17 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
                                 
                                 let msg = json["message"].stringValue
                                 if msg != "" {
-                                    HUD.textLabel.text = String(json["message"])
+                                    showGlobalNotification(String(json["message"]), duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
                                 }
                             }
                         case .Failure(let error):
-                            HUD.indicatorView = JGProgressHUDErrorIndicatorView()
-                            print(error.userInfo[NSUnderlyingErrorKey]?.localizedDescription)
-                            HUD.textLabel.text = error.userInfo[NSUnderlyingErrorKey]?.localizedDescription
-                            HUD.dismissAfterDelay(3)
+                            showGlobalNotification("Error occurred", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
                             break
                         }
                 }
                 
             } else {
-                HUD.indicatorView = JGProgressHUDErrorIndicatorView()
-                HUD.textLabel.text = "Registration Error, please check your network connection or date/time settings are correct."
-                HUD.dismissAfterDelay(10)
+                showGlobalNotification("Registration Error, please check your network connection or date/time settings are correct.", duration: 10.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.brandRed())
             }
         }
         // TODO: Set keychain username and password

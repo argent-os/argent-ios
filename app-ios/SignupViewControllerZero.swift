@@ -195,14 +195,16 @@ class SignupViewControllerZero: UIViewController {
     }
     
     func addTopSubviewWithBounce(view: UIView) {
+        view.alpha = 0
         view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001)
         self.backgroundIndividualImageView.addSubview(view)
-        UIView.animateWithDuration(0.3 / 1.5, animations: {() -> Void in
+        UIView.animateWithDuration(0.5, animations: {() -> Void in
+            view.alpha = 1
             view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0)
             }, completion: {(finished: Bool) -> Void in
-                UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
+                UIView.animateWithDuration(0.3, animations: {() -> Void in
                     }, completion: {(finished: Bool) -> Void in
-                        UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
+                        UIView.animateWithDuration(0.2, animations: {() -> Void in
                             view.transform = CGAffineTransformIdentity
                         })
                 })
@@ -210,14 +212,16 @@ class SignupViewControllerZero: UIViewController {
     }
     
     func addBottomSubviewWithBounce(view: UIView) {
+        view.alpha = 0
         view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001)
         self.backgroundCompanyImageView.addSubview(view)
-        UIView.animateWithDuration(0.3 / 1.5, animations: {() -> Void in
+        UIView.animateWithDuration(0.5, animations: {() -> Void in
+            view.alpha = 1
             view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0)
             }, completion: {(finished: Bool) -> Void in
-                UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
+                UIView.animateWithDuration(0.3, animations: {() -> Void in
                     }, completion: {(finished: Bool) -> Void in
-                        UIView.animateWithDuration(0.3 / 2, animations: {() -> Void in
+                        UIView.animateWithDuration(0.2, animations: {() -> Void in
                             view.transform = CGAffineTransformIdentity
                         })
                 })

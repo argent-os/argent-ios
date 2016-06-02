@@ -32,6 +32,11 @@ class RiskScoreViewController: UIViewController {
         setData()
     }
     
+    //Changing Status Bar
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     func configureView() {
         
         self.view.backgroundColor = UIColor.globalBackground()        

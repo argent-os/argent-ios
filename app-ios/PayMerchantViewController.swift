@@ -13,8 +13,7 @@ import XLActionController
 import Alamofire
 import Stripe
 import SwiftyJSON
-import JGProgressHUD
-import JSSAlertView
+import CWStatusBarNotification
 
 class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelegate, PKPaymentAuthorizationViewControllerDelegate, UITextFieldDelegate {
     
@@ -160,13 +159,13 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
             return
         }
         if(chargeInputView.text == "" || chargeInputView.text == "$0.00") {
-            showErrorAlert("Amount invalid")
+            showGlobalNotification("Amount invalid", duration: 5.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
         } else {
             var str = chargeInputView.text
             str?.removeAtIndex(str!.characters.indices.first!) // remove first letter
             let floatValue = (str! as NSString).floatValue
             if(floatValue<1) {
-                showErrorAlert("Amount cannot be less than 1")
+                showGlobalNotification("Amount cannot be less than 1", duration: 8.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
             } else {
                 request.paymentSummaryItems = [
                     PKPaymentSummaryItem(label: (detailUser?.first_name)!, amount: NSDecimalNumber(float: floatValue))
@@ -222,7 +221,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         // print("in payment auth")
         handlePaymentAuthorizationWithPayment(payment) { (PKPaymentAuthorizationStatus) -> () in
             // close pay modal
-            self.showSuccessAlert()
+            showGlobalNotification("Payment succeeded!", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandGreen())
             // print("success")
             controller.dismissViewControllerAnimated(true, completion: nil)
         }
@@ -292,40 +291,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         controller.dismissViewControllerAnimated(true, completion: nil)
         print("dismissing")
     }
-    
-    
-    // MARK: ALERTS
-    
-    func showSuccessAlert() {
-        let customIcon:UIImage = UIImage(named: "ic_check_light")! // your custom icon UIImage
-        let customColor:UIColor = UIColor.lightBlue() // base color for the alert
-        let alertView = JSSAlertView().show(
-            self,
-            title: "",
-            text: "Payment for amount " + chargeInputView.text! + " succeeded!",
-            buttonText: "Close",
-            noButtons: false,
-            color: customColor,
-            iconImage: customIcon)
-        alertView.setTextTheme(.Light) // can be .Light or .Dark
-        chargeInputView.text = ""
-    }
-    
-    func showErrorAlert(message: String) {
-        let customIcon:UIImage = UIImage(named: "ic_close_light")! // your custom icon UIImage
-        let customColor:UIColor = UIColor.brandRed() // base color for the alert
-        let alertView = JSSAlertView().show(
-            self,
-            title: "",
-            text: message,
-            buttonText: "Ok",
-            noButtons: false,
-            color: customColor,
-            iconImage: customIcon)
-        alertView.setTextTheme(.Light) // can be .Light or .Dark
-        chargeInputView.text = ""
-    }
-    
+
     //Calls this function when the tap is recognized.
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.

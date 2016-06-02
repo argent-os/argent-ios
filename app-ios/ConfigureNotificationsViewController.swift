@@ -11,8 +11,8 @@ import SwiftyJSON
 import UIKit
 import Former
 import KeychainSwift
-import JGProgressHUD
 import PermissionScope
+import CWStatusBarNotification
 
 class ConfigureNotificationsViewController: FormViewController, UIApplicationDelegate {
     
@@ -120,6 +120,7 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
                 }
                 
                 if(on.boolValue == true) {
+                    showGlobalNotification("Push notifications enabled", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandGreen())
                     // show on switch changed by default
                     self.pscope.show({ finished, results in
                         print(results)
@@ -137,6 +138,7 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
                             print(results)
                     })
                 } else {
+                    showGlobalNotification("Push notifications disabled", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.neonOrange())
                     self.updateUserNotificationRegistration(on)
                     self.deregisterPush(self)
                 }
@@ -162,21 +164,11 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
         getPushState { (val, token, err) in
             // If the user has a device token registered in the API, allow deregistration
             if token != nil {
-                let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
-                HUD.showInView(self.view!)
-                HUD.textLabel.text = "Push Notifications are Off"
-                HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
-                HUD.position = JGProgressHUDPosition.Center
-                HUD.dismissAfterDelay(1, animated: true)
+                showGlobalNotification("Push notifications off", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.neonOrange())
                 self.updateUserNotificationRegistration(false)
             } else {
                 // If a token does not exist but the push value is true (say a user delete the app but configured true to push notifications) then configure the api to deregister but without removing the token
-                let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
-                HUD.showInView(self.view!)
-                HUD.textLabel.text = "Push Notifications are Off"
-                HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
-                HUD.position = JGProgressHUDPosition.Center
-                HUD.dismissAfterDelay(1, animated: true)
+                showGlobalNotification("Push notifications off", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.neonOrange())
                 self.updateUserNotificationRegistration(false)
                 // print("no device token found, cannot deregister")
             }
@@ -210,6 +202,7 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
                     case .Success:
                         if let value = response.result.value {
                             _ = JSON(value)
+                            showGlobalNotification("Push notifications will become active on next app launch", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.skyBlue())
                         }
                     case .Failure(let error):
                         print(error)

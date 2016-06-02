@@ -12,7 +12,6 @@ import SwiftyJSON
 import UIKit
 import Former
 import KeychainSwift
-import JGProgressHUD
 
 class ConfigureAppViewController: FormViewController, UIApplicationDelegate {
     
@@ -86,6 +85,9 @@ class ConfigureAppViewController: FormViewController, UIApplicationDelegate {
                 } else {
                     KeychainSwift().set("LIGHT", forKey: "theme", withAccess: .None)
                 }
+                let alert = UIAlertController(title: "Notice", message: "The app theme will update on next application launch", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Got it", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
         }
         let configurePOSRowExit = SwitchRowFormer<FormSwitchCell>() {
             $0.titleLabel.text = "Allow exit"

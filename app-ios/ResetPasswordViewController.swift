@@ -10,10 +10,10 @@ import UIKit
 import QuartzCore
 import Alamofire
 import SwiftyJSON
-import JGProgressHUD
 import TextFieldEffects
 import UIColor_Hex_Swift
 import JSSAlertView
+import CWStatusBarNotification
 
 class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
     
@@ -131,15 +131,12 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
         let email = emailTextField.text
         let username = emailTextField.text
         
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
-        HUD.showInView(self.view!)
-        HUD.textLabel.text = "Sending reset link..."
-        HUD.dismissAfterDelay(0.5)
+        showGlobalNotification("Sending reset link...", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.skyBlue())
         
         // check for empty fields
         if(email!.isEmpty) {
             // display alert message
-            displayAlertMessage("Username/Email not entered");
+            displayAlert("Username/Email not entered", color: UIColor.lightBlue(), icon: "ic_close_light");
             return;
         }
         
@@ -150,11 +147,11 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
             encoding:.JSON)
             .responseJSON { response in
                 if(response.response?.statusCode == 200) {
-                    HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
+                    showGlobalNotification("Reset link sent!", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandGreen())
                 } else {
-                    HUD.indicatorView = JGProgressHUDErrorIndicatorView()
+                    showGlobalNotification("Error sending reset link", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
                 }
-                
+            
                 switch response.result {
                 case .Success:
                     if let value = response.result.value {
@@ -164,7 +161,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
                     }
                 case .Failure(let error):
                     print(error)
-                    self.displayErrorAlertMessage("Failed to remind password, please check username/email is correct");
+                    self.displayAlert("Failed to remind password, please check username/email is correct", color: UIColor.brandRed(), icon: "ic_close_light");
                 }
         }
         
@@ -173,31 +170,15 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     }
     
-    func displayAlertMessage(alertMessage:String) {
-        let customIcon:UIImage = UIImage(named: "ic_close_light")! // your custom icon UIImage
-        let customColor:UIColor = UIColor.mediumBlue() // base color for the alert
+    func displayAlert(msg:String, color: UIColor, icon: String) {
+        let customIcon:UIImage = UIImage(named: icon)! // your custom icon UIImage
         let alertView = JSSAlertView().show(
             self,
             title: "",
-            text: alertMessage,
-            buttonText: "",
-            noButtons: true,
-            color: customColor,
-            iconImage: customIcon)
-        alertView.setTextTheme(.Light) // can be .Light or .Dark
-    }
-    
-    func displayErrorAlertMessage(alertMessage:String) {
-        let customIcon:UIImage = UIImage(named: "ic_close_light")! // your custom icon UIImage
-        let customColor:UIColor = UIColor.mediumBlue() // base color for the alert
-        self.view.endEditing(true)
-        let alertView = JSSAlertView().show(
-            self,
-            title: "",
-            text: alertMessage,
-            buttonText: "Close",
+            text: msg,
+            buttonText: "Ok",
             noButtons: false,
-            color: customColor,
+            color: color,
             iconImage: customIcon)
         alertView.setTextTheme(.Light) // can be .Light or .Dark
     }

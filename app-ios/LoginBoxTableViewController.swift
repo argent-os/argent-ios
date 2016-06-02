@@ -9,7 +9,6 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
-import JGProgressHUD
 import WatchConnectivity
 import OnePasswordExtension
 import Crashlytics

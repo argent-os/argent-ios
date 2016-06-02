@@ -7,15 +7,13 @@
 //
 
 import Foundation
-import JGProgressHUD
 import Alamofire
+import CWStatusBarNotification
 
 class SupportMessageViewController: UIViewController {
     
     @IBOutlet weak var message: UITextView!
     
-    private let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
-
     var subject: String?
     
     override func viewDidLoad() {
@@ -54,17 +52,13 @@ class SupportMessageViewController: UIViewController {
     
     @IBAction func sendMessageAction() {
         if message.text == "" {
-            HUD.showInView(self.view!)
-            HUD.textLabel.text = "Message cannot be empty"
-            HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
-            HUD.dismissAfterDelay(2.5)
+            showGlobalNotification("Message cannot be empty", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
         } else {
             sendMessage()
         }
     }
     
     func sendMessage() {
-        HUD.showInView(self.view!)
         User.getProfile { (user, err) in
 
             let parameters : [String : AnyObject] = [
@@ -81,9 +75,7 @@ class SupportMessageViewController: UIViewController {
                     switch response.result {
                     case .Success:
                         if let value = response.result.value {
-                            self.HUD.textLabel.text = "Message sent!"
-                            self.HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
-                            self.HUD.dismissAfterDelay(1, animated: true)
+                            showGlobalNotification("Message sent!", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandGreen())
                             self.message.text = ""
                         }
                     case .Failure(let error):

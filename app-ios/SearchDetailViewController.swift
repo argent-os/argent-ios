@@ -10,7 +10,6 @@ import UIKit
 import Foundation
 import MessageUI
 import Stripe
-import JGProgressHUD
 import Alamofire
 import SwiftyJSON
 import XLActionController

@@ -59,8 +59,8 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
         codeLabel.textAlignment = .Center
         let str = NSAttributedString(string: countryName, attributes:
             [
-                NSFontAttributeName: UIFont.systemFontOfSize(24),
-                NSForegroundColorAttributeName:UIColor.darkGrayColor()
+                NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 24)!,
+                NSForegroundColorAttributeName:UIColor.lightBlue()
             ])
         codeLabel.attributedText = str
         
@@ -161,8 +161,8 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
         codeLabel.textAlignment = .Center
         let str = NSAttributedString(string: name, attributes:
             [
-                NSFontAttributeName: UIFont.systemFontOfSize(24),
-                NSForegroundColorAttributeName:UIColor.darkGrayColor()
+                NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 24)!,
+                NSForegroundColorAttributeName:UIColor.lightBlue()
             ])
         codeLabel.attributedText = str
         

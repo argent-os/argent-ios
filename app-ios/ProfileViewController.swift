@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import JGProgressHUD
 import Armchair
 
 class ProfileViewController: UIViewController {
@@ -49,8 +48,8 @@ class ProfileViewController: UIViewController {
         })
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
     
     override func didReceiveMemoryWarning() {

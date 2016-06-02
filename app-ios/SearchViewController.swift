@@ -7,10 +7,8 @@
 //
 
 import UIKit
-import JGProgressHUD
 import Alamofire
 import SwiftyJSON
-import JGProgressHUD
 import DGElasticPullToRefresh
 import TransitionTreasury
 import TransitionAnimation

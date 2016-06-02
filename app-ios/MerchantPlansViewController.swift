@@ -13,13 +13,12 @@ import XLActionController
 import Alamofire
 import Stripe
 import SwiftyJSON
-import JGProgressHUD
-import JSSAlertView
 import DZNEmptyDataSet
 import CellAnimator
 import AvePurchaseButton
 import EmitterKit
 import PassKit
+import CWStatusBarNotification
 
 class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
@@ -464,10 +463,12 @@ extension MerchantPlansViewController: STPPaymentCardTextFieldDelegate, PKPaymen
                             let json = JSON(value)
                             print(PKPaymentAuthorizationStatus.Success)
                             completion(PKPaymentAuthorizationStatus.Success)
+                            showGlobalNotification("Successfully subscribed to plan", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.brandGreen())
                         }
                     case .Failure(let error):
                         print(PKPaymentAuthorizationStatus.Failure)
                         completion(PKPaymentAuthorizationStatus.Failure)
+                        showGlobalNotification("Failed to subscribe to plan", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.brandRed())
                         print(error)
                     }
             }
@@ -486,19 +487,5 @@ extension MerchantPlansViewController: STPPaymentCardTextFieldDelegate, PKPaymen
         completion(PKPaymentAuthorizationStatus.Failure)
         self.processPayment(payment, completion: completion)
     }
-    
-    // MARK: ALERTS
-    
-    func showAlert(message: String, color: UIColor, icon: String) {
-        let customIcon:UIImage = UIImage(named: icon)! // your custom icon UIImage
-        let alertView = JSSAlertView().show(
-            self,
-            title: "",
-            text: message,
-            buttonText: "Close",
-            noButtons: false,
-            color: color,
-            iconImage: customIcon)
-        alertView.setTextTheme(.Light) // can be .Light or .Dark
-    }
+
 }

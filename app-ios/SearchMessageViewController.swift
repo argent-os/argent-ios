@@ -7,10 +7,10 @@
 //
 
 import Foundation
-import JGProgressHUD
 import Alamofire
 import TransitionTreasury
 import TransitionAnimation
+import CWStatusBarNotification
 
 class SearchMessageViewController: UIViewController, UINavigationBarDelegate, NavgationTransitionable {
     
@@ -19,8 +19,6 @@ class SearchMessageViewController: UIViewController, UINavigationBarDelegate, Na
     weak var modalDelegate: ModalViewControllerDelegate?
     
     @IBOutlet weak var message: UITextView!
-    
-    private let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
     
     var username: String?
     
@@ -61,10 +59,7 @@ class SearchMessageViewController: UIViewController, UINavigationBarDelegate, Na
     
     @IBAction func sendMessageAction() {
         if message.text == "" {
-            HUD.showInView(self.view!)
-            HUD.textLabel.text = "Message cannot be empty"
-            HUD.indicatorView = JGProgressHUDErrorIndicatorView()
-            HUD.dismissAfterDelay(2.5)
+            showGlobalNotification("Message cannot be empty", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.neonOrange())
         } else {
             sendMessage()
         }
@@ -90,7 +85,6 @@ class SearchMessageViewController: UIViewController, UINavigationBarDelegate, Na
     }
 
     func sendMessage() {
-        HUD.showInView(self.view!)
         User.getProfile { (user, err) in
             
             let parameters : [String : AnyObject] = [
@@ -106,9 +100,7 @@ class SearchMessageViewController: UIViewController, UINavigationBarDelegate, Na
                     switch response.result {
                     case .Success:
                         if let value = response.result.value {
-                            self.HUD.textLabel.text = "Message sent!"
-                            self.HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
-                            self.HUD.dismissAfterDelay(1, animated: true)
+                            showGlobalNotification("Message sent!", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandGreen())
                             self.message.text = ""
                         }
                     case .Failure(let error):

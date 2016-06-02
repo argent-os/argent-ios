@@ -253,8 +253,8 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
     }
     
     //Changing Status Bar
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
     
     // Handles logout action controller

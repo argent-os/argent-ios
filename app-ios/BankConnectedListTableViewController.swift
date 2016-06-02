@@ -44,6 +44,11 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
         self.loadBankAccounts()
     }
     
+    //Changing Status Bar
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     func loadBankAccounts() {
         Bank.getBankAccounts({ (items, error) in
             if error != nil

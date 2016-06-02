@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import WebKit
-import JGProgressHUD
+import CWStatusBarNotification
 
 class WebPrivacyViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
     
@@ -47,11 +47,7 @@ class WebPrivacyViewController: UIViewController, WKNavigationDelegate, WKUIDele
                 //                print("\(previewAction.title) triggered from `DetailViewController` for item: \(item)")
 
                 if title == "Copy Link" {
-                    let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
-                    HUD.showInView(self.view!)
-                    HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
-                    HUD.textLabel.text = "Link Copied!"
-                    HUD.dismissAfterDelay(0.5)
+                    showGlobalNotification("Link copied!", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.skyBlue())
                     UIPasteboard.generalPasteboard().string = "http://www.argentapp.com/privacy"
 
                 }
