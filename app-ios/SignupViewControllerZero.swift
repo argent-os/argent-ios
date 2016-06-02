@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import M13Checkbox
 
 class SignupViewControllerZero: UIViewController {
     
@@ -22,9 +23,13 @@ class SignupViewControllerZero: UIViewController {
 
     let individualSubtitle = UILabel()
 
+    let individualCheckbox = M13Checkbox()
+
     let backgroundCompanyImageView = UIView()
 
     let companyImageView = UIImageView()
+
+    let companyCheckbox = M13Checkbox()
 
     let companyTitle = UILabel()
 
@@ -41,25 +46,12 @@ class SignupViewControllerZero: UIViewController {
         let appDomain = NSBundle.mainBundle().bundleIdentifier!
         NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain)
         
-        Timeout(0.3) {
-            self.addTopSubviewWithBounce(self.individualImageView)
-        }
-        Timeout(0.2) {
-            self.addTopSubviewWithBounce(self.individualTitle)
-        }
-        Timeout(0.1) {
-            self.addTopSubviewWithBounce(self.individualSubtitle)
-        }
+        configureViews()
         
-        Timeout(0.1) {
-            self.addBottomSubviewWithBounce(self.companyImageView)
-        }
-        Timeout(0.2) {
-            self.addBottomSubviewWithBounce(self.companyTitle)
-        }
-        Timeout(0.3) {
-            self.addBottomSubviewWithBounce(self.companySubtitle)
-        }
+        companyCheckbox.userInteractionEnabled = true
+        individualCheckbox.userInteractionEnabled = true
+        companyCheckbox.setCheckState(M13Checkbox.CheckState.Unchecked, animated: true)
+        individualCheckbox.setCheckState(M13Checkbox.CheckState.Unchecked, animated: true)
         
     }
     
@@ -84,6 +76,13 @@ class SignupViewControllerZero: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        configureCheckboxes()
+        
+        layoutSubviews()
+        
+    }
+    
+    func layoutSubviews() {
         // Globally set toolbar
         UIToolbar.appearance().barTintColor = UIColor.whiteColor()
         UIToolbar.appearance().backgroundColor = UIColor.whiteColor()
@@ -95,7 +94,7 @@ class SignupViewControllerZero: UIViewController {
         }
         
         UITextField.appearance().keyboardAppearance = .Light
-
+        
         let screen = UIScreen.mainScreen().bounds
         var screenWidth = screen.size.width
         var screenHeight = screen.size.height
@@ -105,13 +104,18 @@ class SignupViewControllerZero: UIViewController {
         backgroundIndividualImageView.backgroundColor = UIColor.offWhite()
         backgroundIndividualImageView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight/2)
         self.view.addSubview(backgroundIndividualImageView)
-
+        
         individualImageView.image = UIImage(named: "IconIndividual")
+        individualImageView.center = backgroundIndividualImageView.center
         individualImageView.frame = CGRect(x: backgroundIndividualImageView.frame.width/2-40, y: backgroundIndividualImageView.frame.height/2-60, width: 80, height: 80)
-        let gestureRecognizerIndividual = UITapGestureRecognizer(target: self, action: #selector(individualSegue(_:)))
-        individualImageView.addGestureRecognizer(gestureRecognizerIndividual)
-        individualImageView.userInteractionEnabled = true
-
+        
+        individualCheckbox.frame = CGRect(x: backgroundIndividualImageView.frame.width/2-40, y: backgroundIndividualImageView.frame.height/2-60, width: 80, height: 80)
+        individualCheckbox.markType = .Checkmark
+        individualCheckbox.stateChangeAnimation = .Spiral
+        individualCheckbox.animationDuration = 0.5
+        individualCheckbox.addTarget(self, action: #selector(checkState(_:)), forControlEvents: .ValueChanged)
+        individualCheckbox.tintColor = UIColor.lightBlue()
+        individualCheckbox.secondaryTintColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
         
         individualTitle.textColor = UIColor.slateBlue()
         individualTitle.textAlignment = .Center
@@ -124,7 +128,7 @@ class SignupViewControllerZero: UIViewController {
         individualSubtitle.font = UIFont.systemFontOfSize(12)
         individualSubtitle.frame = CGRect(x: 0, y: backgroundIndividualImageView.frame.height/2+50, width: screenWidth, height: 40)
         individualSubtitle.text = "Start sending and receiving payments"
-
+        
         
         //// Company Section
         
@@ -136,9 +140,13 @@ class SignupViewControllerZero: UIViewController {
         companyImageView.image = UIImage(named: "IconBusinessBuilding")
         companyImageView.center = backgroundCompanyImageView.center
         companyImageView.frame = CGRect(x: backgroundCompanyImageView.frame.width/2-40, y: backgroundCompanyImageView.frame.height/2-60, width: 80, height: 80)
-        let gestureRecognizerCompany = UITapGestureRecognizer(target: self, action: #selector(companySegue(_:)))
-        companyImageView.addGestureRecognizer(gestureRecognizerCompany)
-        companyImageView.userInteractionEnabled = true
+        
+        companyCheckbox.frame = CGRect(x: backgroundCompanyImageView.frame.width/2-40, y: backgroundCompanyImageView.frame.height/2-60, width: 80, height: 80)
+        companyCheckbox.markType = .Checkmark
+        companyCheckbox.stateChangeAnimation = .Spiral
+        companyCheckbox.animationDuration = 0.5
+        companyCheckbox.addTarget(self, action: #selector(checkState(_:)), forControlEvents: .ValueChanged)
+        companyCheckbox.tintColor = UIColor.whiteColor()
         
         companyTitle.textColor = UIColor.whiteColor()
         companyTitle.textAlignment = .Center
@@ -152,7 +160,6 @@ class SignupViewControllerZero: UIViewController {
         companySubtitle.frame = CGRect(x: 0, y: backgroundCompanyImageView.frame.height/2+50, width: screenWidth, height: 40)
         companySubtitle.text = "Higher volume limits enabled"
         
-        
         // Page title
         
         pageTitle.frame = CGRect(x: 0, y: 30, width: screenWidth, height: 40)
@@ -160,8 +167,8 @@ class SignupViewControllerZero: UIViewController {
         pageTitle.text = "Let's get started"
         pageTitle.textColor = UIColor.mediumBlue()
         pageTitle.font = UIFont.systemFontOfSize(18)
-//        self.view.addSubview(pageTitle)
-//        self.view.bringSubviewToFront(pageTitle)
+        //        self.view.addSubview(pageTitle)
+        //        self.view.bringSubviewToFront(pageTitle)
         
         pageSubtitle.frame = CGRect(x: 0, y: 20, width: screenWidth, height: 40)
         pageSubtitle.textAlignment = .Center
@@ -172,10 +179,8 @@ class SignupViewControllerZero: UIViewController {
         self.view.bringSubviewToFront(pageSubtitle)
         
         // Close button to return to auth view
-        let backBtnImage: UIImage = UIImage(named: "IconCloseColor")!
-        let backBtnImagePressed: UIImage = UIImage(named: "IconClose")!
-        backBtn.setBackgroundImage(backBtnImage, forState: .Normal)
-        backBtn.setBackgroundImage(backBtnImagePressed, forState: .Highlighted)
+        backBtn.setBackgroundImage(UIImage(named: "IconClose"), forState: .Normal)
+        backBtn.setBackgroundImage(UIImage(named: "IconClose")?.alpha(0.5), forState: .Highlighted)
         backBtn.addTarget(self, action: #selector(SignupViewControllerZero.goToAuth(_:)), forControlEvents: .TouchUpInside)
         backBtn.frame = CGRectMake(0, -10, 33, 33)
         let backButtonView: UIView = UIView(frame: CGRectMake(0, 0, 33, 33))
@@ -183,7 +188,7 @@ class SignupViewControllerZero: UIViewController {
         backButtonView.addSubview(backBtn)
         let backButton: UIBarButtonItem = UIBarButtonItem(customView: backButtonView)
         self.navigationItem.leftBarButtonItem = backButton
-
+        
         // Transparent navigation bar
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -191,7 +196,92 @@ class SignupViewControllerZero: UIViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    func configureCheckboxes() {
+        Timeout(0.2) {
+            self.addTopSubviewWithBounce(self.individualCheckbox)
+        }
+
+        Timeout(0.2) {
+            self.addBottomSubviewWithBounce(self.companyCheckbox)
+        }
+    }
+    
+    func configureViews() {
+        self.addTopSubviewWithBounce(self.individualImageView)
+
+        self.addBottomSubviewWithBounce(self.companyImageView)
+
+        self.addTopSubviewWithBounce(self.individualTitle)
+        Timeout(0.1) {
+            self.addTopSubviewWithBounce(self.individualSubtitle)
+        }
         
+        self.addBottomSubviewWithBounce(self.companyTitle)
+        Timeout(0.1) {
+            self.addBottomSubviewWithBounce(self.companySubtitle)
+        }
+    }
+    
+    func checkState(sender: AnyObject) {
+        // Check company state //
+        // if company checkbox is checked
+        if String(companyCheckbox.checkState) == "Checked" {
+            // uncheck individual
+            companyCheckbox.userInteractionEnabled = false
+            individualCheckbox.userInteractionEnabled = false
+            if String(individualCheckbox.checkState) == "Checked" {
+                individualCheckbox.toggleCheckState(false)
+                UIView.animateWithDuration(0.6, animations: {
+                    self.individualImageView.alpha = 1.0
+                    }, completion: {(value: Bool) in
+                })
+            }
+            UIView.animateWithDuration(0.6, animations: {
+                self.companyImageView.alpha = 0.0
+                }, completion: {(value: Bool) in
+                    Timeout(0.6) {
+                        self.performSegueWithIdentifier("companySegue", sender: sender)
+                    }
+            })
+        } else if String(companyCheckbox.checkState) == "Unchecked" {
+            UIView.animateWithDuration(0.6, animations: {
+                self.companyImageView.alpha = 1.0
+                }, completion: {(value: Bool) in
+                    print("finito company from unchecked")
+            })
+        }
+        
+        // Check individual state //
+        if String(individualCheckbox.checkState) == "Checked" {
+            // uncheck company
+            print("print individual checkboxstate is", individualCheckbox.checkState)
+            companyCheckbox.userInteractionEnabled = false
+            individualCheckbox.userInteractionEnabled = false
+            if String(companyCheckbox.checkState) == "Checked" {
+                companyCheckbox.toggleCheckState(false)
+                // set company image view back to alpha of 1 and unchecked state
+                UIView.animateWithDuration(0.6, animations: {
+                    self.companyImageView.alpha = 1.0
+                    }, completion: {(value: Bool) in
+                })
+            }
+            UIView.animateWithDuration(0.6, animations: {
+                self.individualImageView.alpha = 0.0
+                }, completion: {(value: Bool) in
+                    Timeout(0.6) {
+                        self.performSegueWithIdentifier("individualSegue", sender: sender)
+                    }
+            })
+        } else if String(individualCheckbox.checkState) == "Unchecked" {
+            print("individual checkbox is", individualCheckbox.checkState)
+            UIView.animateWithDuration(0.6, animations: {
+                self.individualImageView.alpha = 1.0
+                }, completion: {(value: Bool) in
+                    print("finito indivdual from unchecked")
+            })
+        }
     }
     
     func addTopSubviewWithBounce(view: UIView) {

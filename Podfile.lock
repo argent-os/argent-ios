@@ -30,6 +30,7 @@ PODS:
   - KeychainSwift (3.0.16)
   - KMPlaceholderTextView (1.2.0)
   - LTMorphingLabel (0.2.0)
+  - M13Checkbox (2.1.2)
   - MCSwipeTableViewCell (2.1.4)
   - Money (1.7.0):
     - ValueCoding
@@ -89,6 +90,7 @@ DEPENDENCIES:
   - KeychainSwift
   - KMPlaceholderTextView
   - LTMorphingLabel
+  - M13Checkbox
   - MCSwipeTableViewCell
   - Money
   - MZFormSheetPresentationController
@@ -149,6 +151,7 @@ SPEC CHECKSUMS:
   KeychainSwift: a5bb85cd498ce2217b55e055ec59e9268d83384c
   KMPlaceholderTextView: cae8ee889bd38d20587eee6b2623b8218f31b8f5
   LTMorphingLabel: 490aa8e079f9247c7f3130f7d4b1be1d66677377
+  M13Checkbox: fbc53145e3ca8ecd1c444a76439bdc0ddb17b008
   MCSwipeTableViewCell: 1b303e16c3a26b1982f3a68386e9b8c5fc8344c3
   Money: f46c3c8fcaf7afa35f2ee3edaeba58335fd5b669
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5

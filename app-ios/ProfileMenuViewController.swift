@@ -272,10 +272,15 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
             // 2
             let logoutAction = UIAlertAction(title: "Logout", style: .Destructive, handler: {
                 (alert: UIAlertAction!) -> Void in
-                NSUserDefaults.standardUserDefaults().setBool(false,forKey:"userLoggedIn");
+                NSUserDefaults.standardUserDefaults().setValue("", forKey: "userAccessToken")
                 NSUserDefaults.standardUserDefaults().synchronize();
+                
                 // go to login view
-                self.performSegueWithIdentifier("loginView", sender: self);
+                let sb = UIStoryboard(name: "Main", bundle: nil)
+                let loginVC = sb.instantiateViewControllerWithIdentifier("LoginViewController")
+                loginVC.modalTransitionStyle = .CrossDissolve
+                let root = UIApplication.sharedApplication().keyWindow?.rootViewController
+                root!.presentViewController(loginVC, animated: true, completion: { () -> Void in })
             })
             //
             let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {

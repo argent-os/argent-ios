@@ -473,8 +473,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         let loginVC = sb.instantiateViewControllerWithIdentifier("LoginViewController")
         loginVC.modalTransitionStyle = .CrossDissolve
         let root = UIApplication.sharedApplication().keyWindow?.rootViewController
-        root!.presentViewController(loginVC, animated: true, completion: { () -> Void in
-        })
+        root!.presentViewController(loginVC, animated: true, completion: { () -> Void in })
     }
     
     // MARK: BEM Graph Delegate Methods

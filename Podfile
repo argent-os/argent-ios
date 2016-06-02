@@ -57,6 +57,7 @@ target 'app-ios' do
 	pod 'AvePurchaseButton'
 	pod 'EmitterKit'
 	pod 'DynamicColor'
+	pod 'M13Checkbox'
 
 	# Fabric
 	pod 'Fabric'
