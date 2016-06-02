@@ -172,7 +172,7 @@ class SignupViewControllerZero: UIViewController {
         
         pageSubtitle.frame = CGRect(x: 0, y: 20, width: screenWidth, height: 40)
         pageSubtitle.textAlignment = .Center
-        pageSubtitle.text = "Choose your entity type"
+        pageSubtitle.text = "Choose entity type"
         pageSubtitle.textColor = UIColor.mediumBlue().colorWithAlphaComponent(0.5)
         pageSubtitle.font = UIFont.systemFontOfSize(14)
         self.view.addSubview(pageSubtitle)

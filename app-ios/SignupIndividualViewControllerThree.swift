@@ -32,7 +32,7 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
 
     let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
     
-    var switchTermsAndPrivacy: BEMCheckBox = BEMCheckBox(frame: CGRectMake(0, 0, 50, 50))
+    var switchTermsAndPrivacy: BEMCheckBox = BEMCheckBox(frame: CGRectMake(0, 0, 60, 60))
     
     // Keychain
     let userUsername = NSUserDefaults.standardUserDefaults().stringForKey("userUsername")!
@@ -84,8 +84,9 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
         // Set checkbox animation
         switchTermsAndPrivacy.onAnimationType = BEMAnimationType.OneStroke
         switchTermsAndPrivacy.offAnimationType = BEMAnimationType.OneStroke
-        switchTermsAndPrivacy.onCheckColor = UIColor.mediumBlue()
-        switchTermsAndPrivacy.onTintColor = UIColor.darkBlue()
+        switchTermsAndPrivacy.onCheckColor = UIColor.lightBlue()
+        switchTermsAndPrivacy.onTintColor = UIColor.lightBlue()
+        switchTermsAndPrivacy.lineWidth = 1
         switchTermsAndPrivacy.frame.origin.y = screenHeight-300 // 250 from bottom
         switchTermsAndPrivacy.frame.origin.x = (self.view.bounds.size.width - switchTermsAndPrivacy.frame.size.width) / 2.0
         self.view!.addSubview(switchTermsAndPrivacy)

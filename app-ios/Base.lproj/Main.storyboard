@@ -2273,7 +2273,7 @@ We support both debit and credit.</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="68U-47-hWv"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
                                     <string key="title">By checking the circle below I agree to 
@@ -2281,7 +2281,7 @@ Argent's terms of service and privacy
 policy agreement and the Stripe 
 connected account agreement.
 Tap here to view</string>
-                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="Ap6-KX-vg6" kind="presentation" identifier="presentModal" customClass="MZFormSheetPresentationViewControllerSegue" id="aks-Yo-Spb">
@@ -2466,7 +2466,7 @@ Tap here to view</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="Ec7-Hw-PIV"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
                                     <string key="title">By checking the circle below I agree to 
@@ -2474,7 +2474,7 @@ Argent's terms of service and privacy
 policy agreement and the Stripe 
 connected account agreement.
 Tap here to view</string>
-                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="Ap6-KX-vg6" kind="presentation" identifier="presentModal" customClass="MZFormSheetPresentationViewControllerSegue" id="YIg-Dp-HpF">
@@ -3772,20 +3772,20 @@ be private unless otherwise requested.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ahh-WH-9EU"/>
-        <segue reference="mwT-xt-Ez4"/>
-        <segue reference="zQh-Po-kj4"/>
-        <segue reference="wgV-xY-MTp"/>
-        <segue reference="YDb-8b-gnI"/>
+        <segue reference="CNn-4s-Hqn"/>
+        <segue reference="ipn-3I-3vc"/>
         <segue reference="VI5-hp-Gm2"/>
         <segue reference="agi-3I-cSC"/>
         <segue reference="rLo-0p-I9d"/>
         <segue reference="m3z-fp-Nlm"/>
         <segue reference="igQ-zk-tCm"/>
-        <segue reference="aks-Yo-Spb"/>
+        <segue reference="YIg-Dp-HpF"/>
         <segue reference="7cu-FP-MoG"/>
         <segue reference="Bc6-jW-uiV"/>
         <segue reference="fEJ-lR-z9I"/>
-        <segue reference="ipn-3I-3vc"/>
+        <segue reference="zQh-Po-kj4"/>
+        <segue reference="wgV-xY-MTp"/>
+        <segue reference="YDb-8b-gnI"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>
