@@ -58,6 +58,7 @@ target 'app-ios' do
 	pod 'EmitterKit'
 	pod 'DynamicColor'
 	pod 'M13Checkbox'
+	pod 'BTNavigationDropdownMenu'
 
 	# Fabric
 	pod 'Fabric'

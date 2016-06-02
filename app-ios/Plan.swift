@@ -206,5 +206,42 @@ class Plan {
                 }
         }
     }
+    
+    class func deletePlan(id: String, completionHandler: (Bool?, NSError?) -> Void) {
+        
+        // check for token, get profile id based on token and make the request
+        if(userAccessToken != nil) {
+            User.getProfile({ (user, error) in
+                if error != nil {
+                    print(error)
+                }
+                
+                let user_id = (user?.id)
+                
+                let parameters : [String : AnyObject] = [:]
+                
+                let headers = [
+                    "Authorization": "Bearer " + (userAccessToken as! String),
+                    "Content-Type": "application/json"
+                ]
+                
+                let endpoint = API_URL + "/v1/stripe/" + user_id! + "/plans/" + id
+                
+                Alamofire.request(.DELETE, endpoint, parameters: parameters, encoding: .URL, headers: headers)
+                    .responseJSON { response in
+                        switch response.result {
+                        case .Success:
+                            if let value = response.result.value {
+                                let data = JSON(value)
+                                
+                                completionHandler(true, response.result.error)
+                            }
+                        case .Failure(let error):
+                            print(error)
+                        }
+                }
+            })
+        }
+    }
 
 }

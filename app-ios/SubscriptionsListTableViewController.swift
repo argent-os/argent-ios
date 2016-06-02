@@ -10,54 +10,54 @@ import UIKit
 import Foundation
 import Alamofire
 import SwiftyJSON
-import MCSwipeTableViewCell
 import CWStatusBarNotification
+import MCSwipeTableViewCell
 
 class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableViewCellDelegate {
     
-    var itemsArray:Array<Bank>?
+    var itemsArray:Array<Subscription>?
     
-    var bankRefreshControl = UIRefreshControl()
+    var viewRefreshControl = UIRefreshControl()
     
     var dateFormatter = NSDateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "Connected Accounts"
+        self.navigationItem.title = "Subscriptions"
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
         
-        showGlobalNotification("Loading subscriptions", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.skyBlue())
+        showGlobalNotification("Loading subscriptions", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.mediumBlue())
         
         self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         self.dateFormatter.timeStyle = NSDateFormatterStyle.LongStyle
         
-        self.bankRefreshControl.backgroundColor = UIColor.clearColor()
+        self.viewRefreshControl.backgroundColor = UIColor.clearColor()
         
-        self.bankRefreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        self.bankRefreshControl.addTarget(self, action: #selector(BankConnectedListTableViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
-        self.tableView?.addSubview(bankRefreshControl)
+        self.viewRefreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.viewRefreshControl.addTarget(self, action: #selector(self.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView?.addSubview(viewRefreshControl)
         
-        self.loadBankAccounts()
+        self.loadSubscriptionList()
     }
     
-    func loadBankAccounts() {
-        Bank.getBankAccounts({ (items, error) in
+    func loadSubscriptionList() {
+        Subscription.getSubscriptionList({ (subscriptions, error) in
             if error != nil
             {
-                let alert = UIAlertController(title: "Error", message: "Could not load banks \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+                let alert = UIAlertController(title: "Error", message: "Could not load subscriptions \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
-            self.itemsArray = items
+            self.itemsArray = subscriptions
             
             // update "last updated" title for refresh control
             let now = NSDate()
             let updateString = "Last Updated at " + self.dateFormatter.stringFromDate(now)
-            self.bankRefreshControl.attributedTitle = NSAttributedString(string: updateString)
-            if self.bankRefreshControl.refreshing
+            self.viewRefreshControl.attributedTitle = NSAttributedString(string: updateString)
+            if self.viewRefreshControl.refreshing
             {
-                self.bankRefreshControl.endRefreshing()
+                self.viewRefreshControl.endRefreshing()
             }
             self.tableView?.reloadData()
         })
@@ -82,7 +82,7 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
     
     func refresh(sender:AnyObject)
     {
-        self.loadBankAccounts()
+        self.loadSubscriptionList()
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -118,12 +118,13 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
             cell.tag = indexPath.row
             
             let item = self.itemsArray?[indexPath.row]
-            if let name = item?.bank_name, id = item?.id {
-                cell.textLabel?.text = name
+            if let name = item?.plan_name, id = item?.id, status = item?.status {
+                cell.textLabel?.text = name + " | Status: " + status
+                cell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 15)!
             }
-            if let number = item?.last4 {
+            if let amount = item?.plan_amount, interval = item?.plan_interval {
                 // cell!.detailTextLabel?.text = "Current $" + current + " | " + "Available $" + available
-                cell.detailTextLabel?.text = "For account ending in " + number
+                cell.detailTextLabel?.attributedText = formatCurrency(amount, fontName: "HelveticaNeue-Light", superSize: 11, fontSize: 14, offsetSymbol: 3, offsetCents: 3) +  NSAttributedString(string: " / ") +  NSAttributedString(string:  interval)
             }
         }
         
@@ -135,9 +136,9 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
             if let id = item?.id {
                 print("Did swipe" + id);
                 // send request to delete the bank account, on completion reload table data!
-                Bank.deleteBankAccount(id, completionHandler: { (bool, err) in
-                    print("deleted bank account ", bool)
-                    self.loadBankAccounts()
+                Plan.deletePlan(id, completionHandler: { (bool, err) in
+                    print("deleted subscription ", bool)
+                    self.loadSubscriptionList()
                 })
             }
         };

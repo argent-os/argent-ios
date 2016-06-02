@@ -7,6 +7,7 @@ PODS:
   - AYVibrantButton (1.0.4)
   - BEMCheckBox (1.2.1)
   - BEMSimpleLineGraph (4.1)
+  - BTNavigationDropdownMenu (0.3)
   - CardIO (5.3.2)
   - CellAnimator (0.1.3)
   - CountryPicker (1.2.3)
@@ -68,6 +69,7 @@ DEPENDENCIES:
   - AYVibrantButton
   - BEMCheckBox
   - BEMSimpleLineGraph
+  - BTNavigationDropdownMenu
   - CardIO
   - CellAnimator
   - CountryPicker
@@ -129,6 +131,7 @@ SPEC CHECKSUMS:
   AYVibrantButton: ca0138e754e886d92e3c71c58dd16cc392c780b8
   BEMCheckBox: 264b8b72aa92adbfefa265cc58a0cdb86b207b9f
   BEMSimpleLineGraph: 44fd451f27f8e9cf96f2da5bea27603093576dd1
+  BTNavigationDropdownMenu: c36d20785253699046fdd295698c24b1d1c18f53
   CardIO: 92c45caef0d986c4a303a7afba0c9b76ff2b1f6e
   CellAnimator: dfba32e8223bbc1e0d4e16524eb51f475082501b
   CountryPicker: 6f166e2f1cc250f07eba4c587fbe1c0efc21049b
