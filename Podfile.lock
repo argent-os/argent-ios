@@ -1,5 +1,6 @@
 PODS:
   - 1PasswordExtension (1.8.2)
+  - ABPadLockScreen (3.4.1)
   - Alamofire (3.2.1)
   - AnimatedSegmentSwitch (0.1.0)
   - Armchair (0.1.1)
@@ -63,6 +64,7 @@ PODS:
 
 DEPENDENCIES:
   - 1PasswordExtension
+  - ABPadLockScreen
   - Alamofire (~> 3.2.1)
   - AnimatedSegmentSwitch
   - Armchair
@@ -126,6 +128,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   1PasswordExtension: 303f2b7bbf6dc19ede3090bd6b5987530648d687
+  ABPadLockScreen: 4185a25c40291946071aa12908c0d0ad242bc420
   Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
   AnimatedSegmentSwitch: 7bc126b7b433f4a1b4fb6546abe405cd4b5163ae
   Armchair: 276f0dadba704b562870613301bdf7b595a29315

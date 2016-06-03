@@ -48,8 +48,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-        
-        
+        // definespresentationcontext screen
         self.view.backgroundColor = UIColor.slateBlue()
         
         self.title = "Search"

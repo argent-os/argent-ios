@@ -88,8 +88,13 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
         
         showGlobalNotification("Securely confirming ssn...", duration: 2.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
         Account.saveStripeAccount(legalJSON) { (acct, bool, err) in
-            showGlobalNotification("SSN Confirmed!", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
-            self.dismissViewControllerAnimated(true, completion: nil)
+            if bool {
+                showGlobalNotification("SSN Confirmed!", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
+                self.dismissViewControllerAnimated(true, completion: nil)
+            } else {
+                showGlobalNotification("An error occurred", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.orangeColor())
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
         }
     }
     

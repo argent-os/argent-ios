@@ -9,6 +9,7 @@
 import ImagePicker
 import Alamofire
 import Foundation
+import CWStatusBarNotification
 import MZFormSheetPresentationController
 
 class IdentityVerificationViewController: UIViewController, ImagePickerDelegate {
@@ -166,6 +167,8 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate 
     func imageUploadRequest(uploadedImage: UIImage)
     {
         
+        showGlobalNotification("Uploading identity verification document", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.iosBlue())
+
         if(userAccessToken != nil) {
             User.getProfile { (user, NSError) in
                 
@@ -184,32 +187,41 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate 
                 let fileSize = Float(imageData.length) / 1024.0 / 1024.0
                 let fileSizeString = String.localizedStringWithFormat("%.2f", fileSize)
                 NSLog("File size is : %.2f MB", fileSize)
-                Alamofire.upload(.POST, endpoint, multipartFormData: {
-                    multipartFormData in
-                    
-                    multipartFormData.appendBodyPart(data: imageData, name: "document", fileName: "document", mimeType: "image/jpg")
-                    
-                    for (key, value) in parameters {
-                        multipartFormData.appendBodyPart(data: value.dataUsingEncoding(NSUTF8StringEncoding)!, name: key as! String)
-                    }
-                    
-                    }, encodingCompletion: {
-                        encodingResult in
-                        print("encoding result")
-                        switch encodingResult {
-                        case .Success(let upload, _, _):
-                            upload.responseJSON(completionHandler: { response in
-                                switch response.result {
-                                case .Success:
-                                    print("success")
-                                case .Failure(let error):
-                                    print("failure")
-                                }
-                            })
-                        case .Failure(let encodingError):
-                            print(encodingError)
+                
+                if(fileSize > 5) {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                    showGlobalNotification("File size " + fileSizeString + "MB too large", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.redColor())
+                } else {
+                    Alamofire.upload(.POST, endpoint, multipartFormData: {
+                        multipartFormData in
+                        
+                        multipartFormData.appendBodyPart(data: imageData, name: "document", fileName: "document", mimeType: "image/jpg")
+                        
+                        for (key, value) in parameters {
+                            multipartFormData.appendBodyPart(data: value.dataUsingEncoding(NSUTF8StringEncoding)!, name: key as! String)
                         }
-                })
+                        
+                        }, encodingCompletion: {
+                            encodingResult in
+                            print("encoding result")
+                            switch encodingResult {
+                            case .Success(let upload, _, _):
+                                upload.responseJSON(completionHandler: { response in
+                                    switch response.result {
+                                    case .Success:
+                                        print("success")
+                                        showGlobalNotification("Document uploaded!", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
+                                    case .Failure(let error):
+                                        showGlobalNotification("Error uploading document, please contact support", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.neonOrange())
+                                        print("failure")
+                                        print(error)
+                                    }
+                                })
+                            case .Failure(let encodingError):
+                                print(encodingError)
+                            }
+                    })
+                }
             }
         }
     }

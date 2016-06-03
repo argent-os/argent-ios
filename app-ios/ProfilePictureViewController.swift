@@ -11,6 +11,7 @@ import UIKit
 import ImagePicker
 import Alamofire
 import JSSAlertView
+import CWStatusBarNotification
 
 class ProfilePictureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImagePickerDelegate {
     
@@ -25,8 +26,6 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
     let imagePickerController = ImagePickerController()
     
     var txt = UILabel()
-
-    var allowedFileSize:Bool = false
     
     func selectPhotoButtonTapped(sender: AnyObject) {
         
@@ -72,6 +71,7 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
     
     func imageUploadRequest(uploadedImage: UIImage)
     {
+        showGlobalNotification("Uploading profile picture", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
         
         if(userAccessToken != nil) {
             User.getProfile { (user, NSError) in
@@ -90,14 +90,10 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
                 let fileSizeString = String.localizedStringWithFormat("%.2f", fileSize)
                 NSLog("File size is : %.2f MB", fileSize)
                 
-                if(fileSize > 1.25) {
-                    self.allowedFileSize = false
+                if(fileSize > 5) {
                     self.dismissViewControllerAnimated(true, completion: nil)
-                    self.imageView.removeFromSuperview()
-                    self.txt.text = "File size " + fileSizeString + "MB too large"
-                    self.view.addSubview(self.txt)
+                    showGlobalNotification("File size " + fileSizeString + "MB too large", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.redColor())
                 } else {
-                    self.allowedFileSize = true
                     Alamofire.upload(.POST, endpoint, multipartFormData: {
                         multipartFormData in
     
@@ -116,8 +112,10 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
                                     switch response.result {
                                     case .Success:
                                         print("success")
+                                        showGlobalNotification("Profile picture updated", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
                                     case .Failure(let error):
                                         print("failure")
+                                        showGlobalNotification("Could not upload profile picture", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.orangeColor())
                                         self.txt.text = "Error uploading picture"
                                         self.view.addSubview(self.txt)
                                     }
