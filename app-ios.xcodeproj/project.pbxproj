@@ -478,14 +478,14 @@
 			name = Main;
 			sourceTree = "<group>";
 		};
-		30089F3E1CF9312900A2496B /* Admin */ = {
+		30089F3E1CF9312900A2496B /* Dropdown */ = {
 			isa = PBXGroup;
 			children = (
 				30089F411CF9313F00A2496B /* Subscriptions */,
 				30089F401CF9313700A2496B /* Customers */,
 				30089F3F1CF9313100A2496B /* Plans */,
 			);
-			name = Admin;
+			name = Dropdown;
 			sourceTree = "<group>";
 		};
 		30089F3F1CF9313100A2496B /* Plans */ = {
@@ -593,7 +593,7 @@
 		306DF00C1CDA482200864CAE /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				30089F3E1CF9312900A2496B /* Admin */,
+				30089F3E1CF9312900A2496B /* Dropdown */,
 				30089F3D1CF9312000A2496B /* Main */,
 			);
 			name = Menu;

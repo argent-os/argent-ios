@@ -18,12 +18,8 @@ import AYVibrantButton
 import TransitionTreasury
 import TransitionAnimation
 
-class SearchDetailViewController: UIViewController, UINavigationBarDelegate, NavgationTransitionable {
+class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
     
-    var tr_pushTransition: TRNavgationTransitionDelegate?
-
-    weak var modalDelegate: ModalViewControllerDelegate?
-
     @IBOutlet weak var emailLabel: UILabel!
     
     @IBOutlet weak var usernameLabel: UILabel!
@@ -54,11 +50,6 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
         
         self.view.backgroundColor = UIColor.globalBackground()
         UIStatusBarStyle.Default
-        
-        if let transitionAnimation = tr_pushTransition?.transition as? IBanTangTransitionAnimation {
-            print(transitionAnimation.keyView)
-            print(transitionAnimation.keyViewCopy)
-        }
         
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
@@ -213,17 +204,13 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
     func showMessageView(sender: AnyObject) {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SearchMessageViewController") as! SearchMessageViewController
         
-        self.navigationController!.tr_pushViewController(vc, method: TRPushTransitionMethod.Default, statusBarStyle: .Default, completion: {
-        })
+        self.navigationController?.pushViewController(vc, animated: true)
         
         vc.username = detailUser?.username
     }
     
     override func viewDidAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = false
-    }
-    
-    override func viewDidDisappear(animated: Bool) {
     }
     
     override func didReceiveMemoryWarning() {

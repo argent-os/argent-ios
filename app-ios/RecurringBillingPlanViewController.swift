@@ -229,24 +229,24 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
                 self?.dic["planStatementDescriptionKey"] = $0
         }
         
-        //        let planIntervalCountRow = TextFieldRowFormer<FormTextFieldCell>() {
-        //            $0.titleLabel.text = "Cycle"
-        //            $0.titleLabel.font = UIFont.systemFontOfSize(15)
-        //            $0.titleLabel.textColor = UIColor.grayColor()
-        //            $0.textField.font = UIFont.systemFontOfSize(15)
-        //            $0.textField.autocorrectionType = .No
-        //            $0.textField.autocapitalizationType = .None
-        //            $0.textField.keyboardType = .NumberPad
-        //            }.configure {
-        //                $0.placeholder = "The billing cycle of the plan"
-        //                $0.rowHeight = 60
-        //            }.onTextChanged { [weak self] in
-        //                if self?.dic["planIntervalKey"] == "year" && Int($0) > 1 {
-        //                    self!.showAlert("Interval for yearly plans cannot be greater than 1", UIColor.brandRed(), "ic_close_light")
-        //                } else {
-        //                    self?.dic["planIntervalCountKey"] = $0
-        //                }
-        //        }
+        let planIntervalCountRow = TextFieldRowFormer<FormTextFieldCell>() {
+            $0.titleLabel.text = "Cycle"
+            $0.titleLabel.font = UIFont.systemFontOfSize(15)
+            $0.titleLabel.textColor = UIColor.grayColor()
+            $0.textField.font = UIFont.systemFontOfSize(15)
+            $0.textField.autocorrectionType = .No
+            $0.textField.autocapitalizationType = .None
+            $0.textField.keyboardType = .NumberPad
+            }.configure {
+                $0.placeholder = "e.g. count=3 with interval=day bills every 3 days"
+                $0.rowHeight = 60
+            }.onTextChanged { [weak self] in
+                if self?.dic["planIntervalKey"] == "year" && Int($0) > 1 {
+                    self!.showAlert("Interval for yearly plans cannot be greater than 1", color: UIColor.brandRed(), icon: "ic_close_light")
+                } else {
+                    self?.dic["planIntervalCountKey"] = $0
+                }
+        }
         
         // Create Headers
         
@@ -259,7 +259,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         
         // Create SectionFormers
         
-        let titleSection = SectionFormer(rowFormer: planNameRow, planCurrencyRow, planIntervalRow, planTrialPeriodRow, planStatementDescriptionRow)
+        let titleSection = SectionFormer(rowFormer: planNameRow, planCurrencyRow, planIntervalRow, planIntervalCountRow, planTrialPeriodRow, planStatementDescriptionRow)
             .set(headerViewFormer: createHeader())
 
         former.append(sectionFormer: titleSection)
@@ -312,8 +312,13 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
             }
         }
         
-        let formattedText = formatCurrency(digitText, fontName: "DINAlternate-Bold", superSize: 32, fontSize: 48, offsetSymbol: 10, offsetCents: 10)
-        textField.attributedText = formattedText
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        formatter.locale = NSLocale.currentLocale()
+        let numberFromField = (NSString(string: digitText).doubleValue)/100
+        newText = formatter.stringFromNumber(numberFromField)
+        
+        textField.text = String(newText)
         
         // revert for posting string to api
         var originalString = textField.text

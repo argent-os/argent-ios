@@ -27,14 +27,14 @@ class GlanceController: WKInterfaceController {
             
             // check for token, get profile id based on token and make the request
             if let token = applicationContext["token"]  {
-                print("got token")
+                // print("got token")
                 User.getProfile(token as! String, completionHandler: { (user, error) in
                     let headers = [
                         "Authorization": "Bearer " + (token as! String),
                         "Content-Type": "application/x-www-form-urlencoded"
                     ]
                     
-                    print("about to request profile")
+                    // print("about to request profile")
                     Alamofire.request(.GET, Root.API_URL + "/v1/stripe/" + user!.id + "/balance",
                         encoding:.URL,
                         headers: headers)

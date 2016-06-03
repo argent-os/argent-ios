@@ -15,7 +15,7 @@ import TransitionAnimation
 import CellAnimator
 import DZNEmptyDataSet
 
-class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate, ModalTransitionDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     var tblSearchResults:UITableView = UITableView()
     
@@ -35,8 +35,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     private var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
-    internal var tr_presentTransition: TRViewControllerTransitionDelegate?
-    
     deinit {
         tblSearchResults.dg_removePullToRefresh()
     }
@@ -49,6 +47,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let screenHeight = screen.size.height
         
         // definespresentationcontext screen
+        self.definesPresentationContext = true
         self.view.backgroundColor = UIColor.slateBlue()
         
         self.title = "Search"
@@ -220,8 +219,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SearchDetailViewController") as! SearchDetailViewController
         
-        self.navigationController!.tr_pushViewController(vc, method: TRPushTransitionMethod.Default, statusBarStyle: .Default, completion: {
-        })
+        self.navigationController?.pushViewController(vc, animated: true)
+        
         vc.detailUser = user
     }
     
@@ -353,15 +352,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: - UISearchBar Delegate
     func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
-    }
-    
-    
-    // MARK: - Modal Transition Treasury delegate
-    
-    func modalViewControllerDismiss(callbackData data: AnyObject? = nil) {
-        tr_dismissViewController(completion: {
-            print("Dismiss finished.")
-        })
     }
     
     

@@ -16,7 +16,7 @@ import CWStatusBarNotification
 import SwiftyJSON
 import Alamofire
 
-class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, UINavigationBarDelegate {
+class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITextFieldDelegate, UINavigationBarDelegate {
     
     let chargeInputView = UITextField()
 
@@ -28,8 +28,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
 
     func textFieldDidChange(textField: UITextField) {
         let text = textField.text!.stringByReplacingOccurrencesOfString(currencyFormatter.currencySymbol, withString: "").stringByReplacingOccurrencesOfString(currencyFormatter.groupingSeparator, withString: "").stringByReplacingOccurrencesOfString(currencyFormatter.decimalSeparator, withString: "")
-        let formattedText = formatCurrency(text, fontName: "DINAlternate-Bold", superSize: 32, fontSize: 48, offsetSymbol: 10, offsetCents: 10)
-        textField.attributedText = formattedText
+        textField.text = currencyFormatter.stringFromNumber((text as NSString).doubleValue / 100.0)
     }
     
     override func viewDidLoad() {

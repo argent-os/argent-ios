@@ -37,7 +37,7 @@ class Plan {
                     print(error)
                 }
                 
-                if let plan_id = dic["planIdKey"], plan_name = dic["planNameKey"], plan_currency = dic["planCurrencyKey"], plan_amount = dic["planAmountKey"], plan_interval = dic["planIntervalKey"] {
+                if let plan_id = dic["planIdKey"], plan_name = dic["planNameKey"], plan_currency = dic["planCurrencyKey"], plan_amount = dic["planAmountKey"], plan_interval = dic["planIntervalKey"], plan_interval_count = dic["planIntervalCountKey"] {
                     
                     let headers = [
                         "Authorization": "Bearer " + (userAccessToken as! String),
@@ -47,7 +47,7 @@ class Plan {
                         "id": plan_id,
                         "amount": plan_amount,
                         "interval": plan_interval,
-                        "interval_count": 1,
+                        "interval_count": plan_interval_count,
                         "name": plan_name,
                         "currency": plan_currency
                     ]

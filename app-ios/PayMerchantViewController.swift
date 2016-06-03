@@ -123,8 +123,13 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
             }
         }
         
-        let formattedText = formatCurrency(digitText, fontName: "DINAlternate-Bold", superSize: 32, fontSize: 48, offsetSymbol: 10, offsetCents: 10)
-        textField.attributedText = formattedText
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        formatter.locale = NSLocale.currentLocale()
+        let numberFromField = (NSString(string: digitText).doubleValue)/100
+        newText = formatter.stringFromNumber(numberFromField)
+        
+        textField.text = String(newText)
         
         return false
     }

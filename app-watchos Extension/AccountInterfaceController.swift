@@ -20,7 +20,6 @@ class AccountInterfaceController: WKInterfaceController, WCSessionDelegate {
     func session(session: WCSession, didReceiveApplicationContext applicationContext: [String : AnyObject]) {
         print("\(applicationContext)")
         dispatch_async(dispatch_get_main_queue(), {
-            print("update ui")
             //update UI here
             // Get data using Alamofire, data passed from login
             // let accountId = applicationContext["account_id"]!.stringValue
@@ -28,14 +27,14 @@ class AccountInterfaceController: WKInterfaceController, WCSessionDelegate {
             
             // check for token, get profile id based on token and make the request
             if let token = applicationContext["token"]  {
-                print("got token in account interface")
+                // print("got token in account interface")
                 User.getProfile(token as! String, completionHandler: { (user, error) in
                     let headers = [
                         "Authorization": "Bearer " + (token as! String),
                         "Content-Type": "application/x-www-form-urlencoded"
                     ]
                     
-                    print("about to get account balance")
+                    // print("about to get account balance")
                     Alamofire.request(.GET, Root.API_URL + "/v1/stripe/" + (user?.id)! + "/balance",
                         encoding:.URL,
                         headers: headers)
@@ -72,7 +71,7 @@ class AccountInterfaceController: WKInterfaceController, WCSessionDelegate {
                                     let formatter = NSNumberFormatter()
                                     formatter.numberStyle = .CurrencyStyle
                                     // formatter.locale = NSLocale.currentLocale() // This is the default
-                                    print(data)
+                                    // print(data)
                                     let availableNum = formatter.stringFromNumber(Float(balance["available"][0]["amount"].stringValue)!/100)
                                     let pendingNum = formatter.stringFromNumber(Float(balance["pending"][0]["amount"].stringValue)!/100)
                                     self.availableBalanceLabel.setText(availableNum)
