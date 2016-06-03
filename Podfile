@@ -59,6 +59,7 @@ target 'app-ios' do
 	pod 'DynamicColor'
 	pod 'M13Checkbox'
 	pod 'BTNavigationDropdownMenu'
+	pod 'VMaskTextField'
 
 	# Fabric
 	pod 'Fabric'

@@ -3777,6 +3777,144 @@ be private unless otherwise requested.</string>
             </objects>
             <point key="canvasLocation" x="-1712" y="-1641"/>
         </scene>
+        <!--IdentitySSN Modal View Controller-->
+        <scene sceneID="bbr-3b-45d">
+            <objects>
+                <viewController id="sYJ-WR-i0i" customClass="IdentitySSNModalViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Obn-tu-ylB"/>
+                        <viewControllerLayoutGuide type="bottom" id="8aI-fh-Evx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cbm-xg-ivR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6AS-KA-UJO">
+                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                                <connections>
+                                    <segue destination="kP5-P4-2gW" kind="embed" id="XZ8-in-DTf"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="6AS-KA-UJO" secondAttribute="trailing" id="2lJ-Qm-whs"/>
+                            <constraint firstItem="6AS-KA-UJO" firstAttribute="bottom" secondItem="8aI-fh-Evx" secondAttribute="top" id="HN7-b8-KA2"/>
+                            <constraint firstItem="6AS-KA-UJO" firstAttribute="leading" secondItem="cbm-xg-ivR" secondAttribute="leading" id="ccH-zX-4Po"/>
+                            <constraint firstItem="6AS-KA-UJO" firstAttribute="top" secondItem="Obn-tu-ylB" secondAttribute="bottom" id="gxC-1D-vVL"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="H8g-qZ-Cv3"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bHR-oH-mmM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2023" y="-6931"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Jp6-GX-Ty8">
+            <objects>
+                <navigationController storyboardIdentifier="ssnModalNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Piq-R4-gQX" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ptk-uf-GDl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="sYJ-WR-i0i" kind="relationship" relationship="rootViewController" id="xFD-Jj-0AL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ul8-Nb-E3X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1387" y="-6999"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="6yJ-CO-uUg">
+            <objects>
+                <viewController id="kP5-P4-2gW" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4de-9b-tnC"/>
+                        <viewControllerLayoutGuide type="bottom" id="Mme-ug-npq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JP6-RY-OKN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c3A-5r-Ep9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2564" y="-6963"/>
+        </scene>
+        <!--Credit Card Entry Modal View Controller-->
+        <scene sceneID="h8g-ys-n74">
+            <objects>
+                <viewController id="CqK-05-n83" customClass="CreditCardEntryModalViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8eP-f4-IVf"/>
+                        <viewControllerLayoutGuide type="bottom" id="H9a-BR-ud2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WIP-bD-phz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LgW-XE-pi7">
+                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                                <connections>
+                                    <segue destination="9K1-pN-JUk" kind="embed" id="NuD-vR-opf"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LgW-XE-pi7" firstAttribute="top" secondItem="8eP-f4-IVf" secondAttribute="bottom" id="66x-4H-Ssk"/>
+                            <constraint firstItem="LgW-XE-pi7" firstAttribute="leading" secondItem="WIP-bD-phz" secondAttribute="leading" id="RBp-LW-Us4"/>
+                            <constraint firstItem="LgW-XE-pi7" firstAttribute="bottom" secondItem="H9a-BR-ud2" secondAttribute="top" id="itK-jn-V8d"/>
+                            <constraint firstAttribute="trailing" secondItem="LgW-XE-pi7" secondAttribute="trailing" id="zcI-6K-K4w"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="jW7-w8-Ap6"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4f3-S0-sRF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1391" y="-7813"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="tP9-aq-Inp">
+            <objects>
+                <navigationController storyboardIdentifier="creditCardEntryModalNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="4WY-QV-EZ7" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Xzg-ap-jcT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="CqK-05-n83" kind="relationship" relationship="rootViewController" id="h9A-xU-4SX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iNR-E7-Qsa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="755" y="-7881"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Zbb-Me-LLf">
+            <objects>
+                <viewController id="9K1-pN-JUk" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ehM-4e-Rto"/>
+                        <viewControllerLayoutGuide type="bottom" id="rop-vQ-9l9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="q1K-aP-mhf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DPF-03-bFT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1932" y="-7845"/>
+        </scene>
     </scenes>
     <resources>
         <image name="IconBank" width="171" height="171"/>

@@ -79,11 +79,13 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         selectPaymentOptionButton.layer.borderColor = UIColor.whiteColor().CGColor
         selectPaymentOptionButton.layer.borderWidth = 0
         selectPaymentOptionButton.layer.cornerRadius = 10
-        selectPaymentOptionButton.backgroundColor = UIColor.lightBlue()
+        selectPaymentOptionButton.layer.masksToBounds = true
         var attribs: [String: AnyObject] = [:]
         attribs[NSFontAttributeName] = UIFont(name: "DINAlternate-Bold", size: 14)
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
         let str = NSAttributedString(string: "Select Payment Option", attributes: attribs)
+        selectPaymentOptionButton.setBackgroundColor(UIColor.lightBlue(), forState: .Normal)
+        selectPaymentOptionButton.setBackgroundColor(UIColor.lightBlue().colorWithAlphaComponent(0.5), forState: .Highlighted)
         selectPaymentOptionButton.setAttributedTitle(str, forState: .Normal)
         selectPaymentOptionButton.addTarget(self, action: #selector(PayMerchantViewController.showPayModal(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(selectPaymentOptionButton)
@@ -138,10 +140,11 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
                 self.showApplePayModal(self)
             }
         }))
-//        actionController.addAction(Action("Credit Card", style: .Default, handler: { action in
-//            Timeout(0.5) {
-//            }
-//        }))
+        actionController.addAction(Action("Credit Card", style: .Default, handler: { action in
+            Timeout(0.5) {
+                self.showCreditCardModal(self)
+            }
+        }))
         actionController.addSection(ActionSection())
         actionController.addAction(Action("Cancel", style: .Destructive, handler: { action in
         }))
@@ -185,27 +188,6 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
                 }
             }
         }
-    }
-    
-    func paymentCardTextFieldDidChange(textField: STPPaymentCardTextField) {
-        // Toggle navigation, for example
-//        saveButton.enabled = textField.valid
-    }
-    
-    // STRIPE SAVE METHOD
-    @IBAction func save(sender: UIButton) {
-//        if let card = paymentTextField.card {
-//            STPAPIClient.sharedClient().createTokenWithCard(card) { (token, error) -> Void in
-//                if let error = error  {
-//                    print(error)
-//                }
-//                else if let token = token {
-//                    self.createBackendChargeWithToken(token) { status in
-//                        print(status)
-//                    }
-//                }
-//            }
-//        }
     }
     
     // STRIPE FUNCTIONS
@@ -296,5 +278,40 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
+    }
+}
+
+extension PayMerchantViewController {
+    // MARK: Credit card modal
+    
+    func showCreditCardModal(sender: AnyObject) {
+        let navigationController = self.storyboard!.instantiateViewControllerWithIdentifier("creditCardEntryModalNavigationController") as! UINavigationController
+        let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
+        
+        print("showing ssn modal")
+        // Initialize and style the terms and conditions modal
+        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
+        formSheetController.presentationController?.contentViewSize = CGSizeMake(300, 300)
+        formSheetController.presentationController?.shouldUseMotionEffect = true
+        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
+        formSheetController.presentationController?.containerView?.sizeToFit()
+        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
+        formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
+        formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
+        formSheetController.contentViewCornerRadius = 10
+        formSheetController.allowDismissByPanningPresentedView = true
+        formSheetController.interactivePanGestureDismissalDirection = .All;
+        
+        // Blur will be applied to all MZFormSheetPresentationControllers by default
+        MZFormSheetPresentationController.appearance().shouldApplyBackgroundBlurEffect = true
+        
+        let presentedViewController = navigationController.viewControllers.first as! CreditCardEntryModalViewController
+        
+        // keep passing along user data to modal
+        presentedViewController.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
+        presentedViewController.navigationItem.leftItemsSupplementBackButton = true
+        
+        // Be sure to update current module on storyboard
+        self.presentViewController(formSheetController, animated: true, completion: nil)
     }
 }

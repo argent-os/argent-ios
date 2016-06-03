@@ -147,6 +147,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
             let viewPlansButton = UIButton()
             viewPlansButton.frame = CGRect(x: 50, y: cardView.layer.frame.height+10,  width: self.view.layer.frame.width-100, height: 50.0)
             viewPlansButton.setTitleColor(UIColor.lightBlue().colorWithAlphaComponent(0.9), forState: .Normal)
+            viewPlansButton.setTitleColor(UIColor.lightBlue().colorWithAlphaComponent(0.5), forState: .Highlighted)
             viewPlansButton.titleLabel?.font = UIFont(name: "DINAlternate-Bold", size: 16)!
             viewPlansButton.setTitle("View Plans", forState: .Normal)
             viewPlansButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
@@ -170,7 +171,9 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, Nav
             payButton.layer.cornerRadius = 10
             payButton.layer.borderColor = UIColor.mediumBlue().CGColor
             payButton.layer.borderWidth = 0
-            payButton.backgroundColor = UIColor.lightBlue()
+            payButton.layer.masksToBounds = true
+            payButton.setBackgroundColor(UIColor.lightBlue(), forState: .Normal)
+            payButton.setBackgroundColor(UIColor.lightBlue().colorWithAlphaComponent(0.5), forState: .Highlighted)
             payButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
             payButton.addTarget(self, action: #selector(SearchDetailViewController.payMerchantModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             addSubviewWithBounce(payButton, parentView: self, duration: 0.8)

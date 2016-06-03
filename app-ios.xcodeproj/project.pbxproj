@@ -127,6 +127,8 @@
 		30CA45581CE6CEFF00D656E5 /* HistoryCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CA45571CE6CEFF00D656E5 /* HistoryCustomCell.swift */; };
 		30CA455A1CE6CF7F00D656E5 /* HistoryCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30CA45591CE6CF7F00D656E5 /* HistoryCustomCell.xib */; };
 		30CA455C1CE6DC7000D656E5 /* HistoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CA455B1CE6DC7000D656E5 /* HistoryDetailViewController.swift */; };
+		30CF71391D01238A007B5E17 /* IdentitySSNModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CF71381D01238A007B5E17 /* IdentitySSNModalViewController.swift */; };
+		30CF713B1D012B1E007B5E17 /* CreditCardEntryModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CF713A1D012B1E007B5E17 /* CreditCardEntryModalViewController.swift */; };
 		30D526761CDB9814001B41BA /* BitcoinUriViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526751CDB9814001B41BA /* BitcoinUriViewController.swift */; };
 		30D526781CDBB4A0001B41BA /* Bitcoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526771CDBB4A0001B41BA /* Bitcoin.swift */; };
 		30D5267D1CDE3736001B41BA /* ConfigureAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D5267C1CDE3736001B41BA /* ConfigureAppViewController.swift */; };
@@ -353,6 +355,8 @@
 		30CA45571CE6CEFF00D656E5 /* HistoryCustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HistoryCustomCell.swift; path = "app-ios/HistoryCustomCell.swift"; sourceTree = SOURCE_ROOT; };
 		30CA45591CE6CF7F00D656E5 /* HistoryCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HistoryCustomCell.xib; path = "app-ios/HistoryCustomCell.xib"; sourceTree = SOURCE_ROOT; };
 		30CA455B1CE6DC7000D656E5 /* HistoryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HistoryDetailViewController.swift; path = "app-ios/HistoryDetailViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30CF71381D01238A007B5E17 /* IdentitySSNModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IdentitySSNModalViewController.swift; path = "app-ios/IdentitySSNModalViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30CF713A1D012B1E007B5E17 /* CreditCardEntryModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreditCardEntryModalViewController.swift; path = "app-ios/CreditCardEntryModalViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30D526751CDB9814001B41BA /* BitcoinUriViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BitcoinUriViewController.swift; path = "app-ios/BitcoinUriViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30D526771CDBB4A0001B41BA /* Bitcoin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Bitcoin.swift; path = "app-ios/Bitcoin.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		30D5267C1CDE3736001B41BA /* ConfigureAppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigureAppViewController.swift; path = "app-ios/ConfigureAppViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -642,6 +646,7 @@
 			children = (
 				30C2DACC1CA43862003AFD8B /* CreditCardAccountViewController.swift */,
 				300E42301CB7123E004316CF /* CreditCardListViewController.swift */,
+				30CF713A1D012B1E007B5E17 /* CreditCardEntryModalViewController.swift */,
 			);
 			name = Card;
 			sourceTree = "<group>";
@@ -682,12 +687,13 @@
 			name = Web;
 			sourceTree = "<group>";
 		};
-		30A5A3F01CF5F0E000C9EEC2 /* Verification */ = {
+		30A5A3F01CF5F0E000C9EEC2 /* Identity */ = {
 			isa = PBXGroup;
 			children = (
 				30A5A3F11CF5F0EC00C9EEC2 /* IdentityVerificationViewController.swift */,
+				30CF71381D01238A007B5E17 /* IdentitySSNModalViewController.swift */,
 			);
-			name = Verification;
+			name = Identity;
 			sourceTree = "<group>";
 		};
 		30B576891CC30388005BCA5A /* Search */ = {
@@ -885,7 +891,7 @@
 			isa = PBXGroup;
 			children = (
 				30C2DACA1CA4385C003AFD8B /* ProfileMenuViewController.swift */,
-				30A5A3F01CF5F0E000C9EEC2 /* Verification */,
+				30A5A3F01CF5F0E000C9EEC2 /* Identity */,
 				306DF00D1CDA689100864CAE /* Risk */,
 				30D5267B1CDE370D001B41BA /* App */,
 				30113A2C1CD82CA0002BECF0 /* Header */,
@@ -1496,6 +1502,7 @@
 				30C2DACB1CA4385C003AFD8B /* ProfileMenuViewController.swift in Sources */,
 				30FF6FD51CF221A200A46A1E /* Account.swift in Sources */,
 				30C2DAB31CA437B2003AFD8B /* TermsViewController.swift in Sources */,
+				30CF713B1D012B1E007B5E17 /* CreditCardEntryModalViewController.swift in Sources */,
 				308073081CFF39230070C7FE /* CustomersListTableViewController.swift in Sources */,
 				300E422B1CB47428004316CF /* BankConnectedListTableViewController.swift in Sources */,
 				30C2DAD51CA43892003AFD8B /* ProfileFieldCell.swift in Sources */,
@@ -1525,6 +1532,7 @@
 				30C2DA961CA4372D003AFD8B /* PasscodeSettingsViewController.swift in Sources */,
 				300E422F1CB57206004316CF /* BankConnectedTableViewCell.swift in Sources */,
 				30C2DAEB1CA43934003AFD8B /* BankTableViewCell.swift in Sources */,
+				30CF71391D01238A007B5E17 /* IdentitySSNModalViewController.swift in Sources */,
 				3045BB961CFDD0C700A49551 /* Bank.swift in Sources */,
 				30A5A3F21CF5F0EC00C9EEC2 /* IdentityVerificationViewController.swift in Sources */,
 				30C2DAD11CA4386A003AFD8B /* SupportMessageViewController.swift in Sources */,
