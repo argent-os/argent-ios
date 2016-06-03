@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import MZFormSheetPresentationController
 import VMaskTextField
+import CWStatusBarNotification
 
 class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
     
@@ -77,7 +78,19 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
     }
     
     func submitSSN(sender: AnyObject) {
+        let legalContent: [String: AnyObject] = [
+            "personal_id_number": ssnTextField.text!,
+        ]
         
+        let legalJSON: [String: AnyObject] = [
+            "legal_entity" : legalContent
+        ]
+        
+        showGlobalNotification("Securely confirming ssn...", duration: 2.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
+        Account.saveStripeAccount(legalJSON) { (acct, bool, err) in
+            showGlobalNotification("SSN Confirmed!", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
     
     override func viewDidDisappear(animated: Bool) {

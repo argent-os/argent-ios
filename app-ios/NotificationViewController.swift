@@ -125,6 +125,10 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         return self.notificationsArray?.count ?? 0
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         let CellIdentifier: String = "Cell"
@@ -222,7 +226,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
                    cell.textLabel?.text = "Recurring billing plan created"
                 case "plan.updated":
                    cell.textLabel?.text = "Recurring billing plan updated"
-                case" plan.deleted":
+                case "plan.deleted":
                    cell.textLabel?.text = "Recurring billing plan deleted"
                 case "coupon.created":
                    cell.textLabel?.text = "Coupon created"

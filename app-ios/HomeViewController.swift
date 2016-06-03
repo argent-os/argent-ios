@@ -494,7 +494,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.accountHistoryArray?.count ?? 0
     }
- 
+
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         self.tableView.registerNib(UINib(nibName: "HistoryCustomCell", bundle: nil), forCellReuseIdentifier: "idCellCustomHistory")
 
@@ -503,7 +504,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         CellAnimator.animateCell(cell, withTransform: CellAnimator.TransformTilt, andDuration: 0.3)
 
         let item = self.accountHistoryArray?[indexPath.row]
-        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        cell.selectionStyle = UITableViewCellSelectionStyle.Blue
         cell.lblAmount?.text = ""
         cell.lblDate?.text = ""
         if let amount = item?.amount {
@@ -548,6 +549,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         // self.performSegueWithIdentifier("historyDetailView", sender: self)
     }
     
