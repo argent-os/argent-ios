@@ -18,10 +18,11 @@ import DZNEmptyDataSet
 import CWStatusBarNotification
 import CellAnimator
 import Crashlytics
+import WatchConnectivity
 
 var userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
 
-class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpleLineGraphDataSource, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate  {
+class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpleLineGraphDataSource, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, WCSessionDelegate  {
 
     private var window: UIWindow?
 
@@ -225,6 +226,27 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 userImageView.clipsToBounds = true
                 userImageView.layer.borderWidth = 0
                 userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
+                
+                if user?.username != "" && userAccessToken != nil {
+                    // Send access token and Stripe key to Apple Watch
+                    if WCSession.isSupported() { //makes sure it's not an iPad or iPod
+                        let watchSession = WCSession.defaultSession()
+                        watchSession.delegate = self
+                        watchSession.activateSession()
+                        if watchSession.paired && watchSession.watchAppInstalled {
+                            do {
+                                try watchSession.updateApplicationContext(
+                                    [
+                                        "token": userAccessToken!
+                                    ]
+                                )
+                                print("setting watch data from home")
+                            } catch let error as NSError {
+                                print(error.description)
+                            }
+                        }
+                    }
+                }
                 
                 if user?.first_name != "" {
                     

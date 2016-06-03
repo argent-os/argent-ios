@@ -7,7 +7,20 @@
 //
 
 import Foundation
+let ENVIRONMENT = "PROD"
 
 class Root {
-    class var STRIPE_API_URL: String { return "https://api.stripe.com" }
+    
+    class var API_URL: String {
+        var apiurl = ""
+        print("setting api url")
+        if ENVIRONMENT == "DEV" {
+            apiurl = "http://192.168.1.182:5001"
+        } else if ENVIRONMENT == "PROD" {
+            print("set api url")
+            apiurl = "https://api.argent.cloud"
+        }
+        print(apiurl)
+        return apiurl
+    }
 }

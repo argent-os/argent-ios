@@ -8,8 +8,6 @@
 
 import Foundation
 import WatchKit
-import Foundation
-
 
 class SettingsInterfaceController: WKInterfaceController {
     

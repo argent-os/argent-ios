@@ -124,7 +124,7 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
                         do {
                             try watchSession.updateApplicationContext(
                                 [
-                                    "user_token": token
+                                    "token": token
                                 ]
                             )
                             print("setting watch data")

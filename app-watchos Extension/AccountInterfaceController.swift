@@ -8,7 +8,6 @@
 
 import Foundation
 import WatchKit
-import Foundation
 import Alamofire
 import WatchConnectivity
 import SwiftyJSON
@@ -27,44 +26,63 @@ class AccountInterfaceController: WKInterfaceController, WCSessionDelegate {
             // let accountId = applicationContext["account_id"]!.stringValue
             // print(applicationContext["stripe_key"]!)
             
-            if let stripeKey = applicationContext["stripe_key"] {
-                let headers = [
-                    "Authorization": "Bearer " + (stripeKey as! String),
-                    "Content-Type": "application/x-www-form-urlencoded"
-                ]
-                
-                Alamofire.request(.GET, Root.STRIPE_API_URL + "/v1/balance",
-                    encoding:.URL,
-                    headers: headers)
-                    .responseJSON { response in
-                        print(response.request) // original URL request
-                        print(response.response?.statusCode) // URL response
-                        print(response.data) // server data
-                        print(response.result) // result of response serialization
-                        
-                        // go to main view
-                        if(response.response?.statusCode == 200) {
-                            print("green light")
-                        } else {
-                            print("red light")
-                        }
-                        
-                        switch response.result {
-                        case .Success:
-                            if let value = response.result.value {
-                                let json = JSON(value)
-                                let formatter = NSNumberFormatter()
-                                formatter.numberStyle = .CurrencyStyle
-                                // formatter.locale = NSLocale.currentLocale() // This is the default
-                                let availableNum = formatter.stringFromNumber(Float(json["available"][0]["amount"].stringValue)!/100)
-                                let pendingNum = formatter.stringFromNumber(Float(json["pending"][0]["amount"].stringValue)!/100)
-                                self.availableBalanceLabel.setText(availableNum)
-                                self.pendingBalanceLabel.setText(pendingNum)
+            // check for token, get profile id based on token and make the request
+            if let token = applicationContext["token"]  {
+                print("got token in account interface")
+                User.getProfile(token as! String, completionHandler: { (user, error) in
+                    let headers = [
+                        "Authorization": "Bearer " + (token as! String),
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    ]
+                    
+                    print("about to get account balance")
+                    Alamofire.request(.GET, Root.API_URL + "/v1/stripe/" + (user?.id)! + "/balance",
+                        encoding:.URL,
+                        headers: headers)
+                        .responseJSON { response in
+                            print(response.request) // original URL request
+                            print(response.response?.statusCode) // URL response
+                            print(response.data) // server data
+                            print(response.result) // result of response serialization
+                            
+                            // go to main view
+                            if(response.response?.statusCode == 200) {
+                                print("green light")
+                                let titleOfAlert = "Account loaded"
+                                let messageOfAlert = ""
+                                self.presentAlertControllerWithTitle(titleOfAlert, message: messageOfAlert, preferredStyle: .Alert, actions: [WKAlertAction(title: "Close", style: .Default){
+                                    //something after clicking OK
+                                    }])
+                                
+                            } else {
+                                print("red light")
+                                let titleOfAlert = "Account not loaded :("
+                                let messageOfAlert = "Contact support for assistance"
+                                self.presentAlertControllerWithTitle(titleOfAlert, message: messageOfAlert, preferredStyle: .Alert, actions: [WKAlertAction(title: "Ok", style: .Default){
+                                    //something after clicking OK
+                                    }])
+                                
                             }
-                        case .Failure(let error):
-                            print(error)
-                        }
-                }
+                            
+                            switch response.result {
+                            case .Success:
+                                if let value = response.result.value {
+                                    let data = JSON(value)
+                                    let balance = data["balance"]
+                                    let formatter = NSNumberFormatter()
+                                    formatter.numberStyle = .CurrencyStyle
+                                    // formatter.locale = NSLocale.currentLocale() // This is the default
+                                    print(data)
+                                    let availableNum = formatter.stringFromNumber(Float(balance["available"][0]["amount"].stringValue)!/100)
+                                    let pendingNum = formatter.stringFromNumber(Float(balance["pending"][0]["amount"].stringValue)!/100)
+                                    self.availableBalanceLabel.setText(availableNum)
+                                    self.pendingBalanceLabel.setText(pendingNum)
+                                }
+                            case .Failure(let error):
+                                print(error)
+                            }
+                    }
+                })
             }
         })
     }

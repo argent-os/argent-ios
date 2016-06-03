@@ -16,12 +16,6 @@
                                 <segue destination="mjv-ec-GMi" kind="push" id="cam-9m-zrR"/>
                             </connections>
                         </button>
-                        <button width="1" alignment="left" title="Settings" id="QZD-VB-Gf9">
-                            <fontDescription key="font" type="system" pointSize="14"/>
-                            <connections>
-                                <segue destination="bA3-Iq-Bf8" kind="push" id="Vqf-bo-Nbf"/>
-                            </connections>
-                        </button>
                         <button alignment="left" id="kx8-Up-ixe">
                             <group key="contentGroup" width="1" height="22" alignment="left" alpha="0.65000000000000002" animationDuration="1" layout="vertical" id="i7l-cF-vYi">
                                 <items>
@@ -52,7 +46,7 @@
                             <fontDescription key="font" type="system" pointSize="14"/>
                         </label>
                         <label width="1" height="23.5" alignment="center" text="$0.00" textAlignment="center" id="yjh-QU-Shp">
-                            <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="font" type="system" pointSize="14"/>
                         </label>
                         <label width="1" height="33.5" alignment="center" alpha="0.90000000000000002" text="Available Balance" textAlignment="center" baselineAdjustment="alignCenters" id="tD3-qm-c6x">
@@ -60,7 +54,7 @@
                             <fontDescription key="font" type="system" pointSize="14"/>
                         </label>
                         <label width="1" height="23.5" alignment="center" text="$0.00" textAlignment="center" id="yOR-wC-dvj">
-                            <color key="textColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="font" type="system" pointSize="14"/>
                         </label>
                     </items>
@@ -100,7 +94,7 @@
                     <items>
                         <group alignment="left" id="IkT-gv-cue">
                             <items>
-                                <imageView width="136" height="1" alignment="center" verticalAlignment="center" image="ic_logo_outline_white_large" animationDuration="3" id="z0I-QO-IfU"/>
+                                <imageView width="136" height="1" alignment="center" verticalAlignment="center" image="LogoRoundShadow" animationDuration="3" id="z0I-QO-IfU"/>
                             </items>
                         </group>
                         <label alignment="left" baselineAdjustment="alignCenters" id="oLH-sq-bGi">
@@ -110,14 +104,16 @@
                         <label alignment="left" id="wbg-yl-APc"/>
                         <group alignment="left" spacing="4" id="uCw-4Q-Ouw">
                             <items>
-                                <label width="136" height="56.5" alignment="center" text="Account Balance" textAlignment="center" baselineAdjustment="alignCenters" id="W0n-jb-j5z"/>
+                                <label width="136" height="56.5" alignment="center" text="Account Balance" textAlignment="center" baselineAdjustment="alignCenters" id="W0n-jb-j5z">
+                                    <color key="textColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                </label>
                             </items>
                         </group>
                         <label alignment="left" text="Pending" id="Ljp-gL-pKJ">
-                            <color key="textColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
                         <label alignment="left" text="$0.00" id="SB5-RF-quk">
-                            <color key="textColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
                         <label alignment="left" id="TwD-75-LS3"/>
                     </items>
@@ -129,10 +125,10 @@
             </objects>
             <point key="canvasLocation" x="235" y="645"/>
         </scene>
-        <!--BackgroundCard-->
+        <!--BackgroundGradientFuschia-->
         <scene sceneID="AEw-b0-oYE">
             <objects>
-                <notificationController backgroundImage="BackgroundCard" animationDuration="2" id="YCC-NB-fut">
+                <notificationController backgroundImage="BackgroundGradientFuschia" contentMode="scaleAspectFill" animationDuration="4" id="YCC-NB-fut">
                     <items>
                         <label alignment="left" text="Alert Label" id="XkS-y5-khE"/>
                     </items>
@@ -145,10 +141,10 @@
             </objects>
             <point key="canvasLocation" x="235" y="962"/>
         </scene>
-        <!--BackgroundCard-->
+        <!--BackgroundGradientFuschia-->
         <scene sceneID="KIl-fV-djm">
             <objects>
-                <controller backgroundImage="BackgroundCard" animationDuration="2" id="gdX-wl-uQE" customClass="NotificationController" customModule="app_watchos" customModuleProvider="target"/>
+                <controller backgroundImage="BackgroundGradientFuschia" animationDuration="4" id="gdX-wl-uQE" customClass="NotificationController" customModule="app_watchos" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="552" y="962"/>
         </scene>
