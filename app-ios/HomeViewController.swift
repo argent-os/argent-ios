@@ -90,11 +90,14 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        definesPresentationContext = true
+        //definesPresentationContext = true
 
         configureView()
         
         loadData()
+        
+        print("setting up apple watch")
+        setupAppleWatch()
     }
     
     // VIEW DID APPEAR
@@ -102,6 +105,30 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         self.view.addSubview(balanceSwitch)
         self.view.bringSubviewToFront(balanceSwitch)
         UITextField.appearance().keyboardAppearance = .Light
+    }
+    
+    func setupAppleWatch() {
+        print("setting up apple watch")
+        // Send access token and Stripe key to Apple Watch
+        if WCSession.isSupported() { //makes sure it's not an iPad or iPod
+            let watchSession = WCSession.defaultSession()
+            watchSession.delegate = self
+            watchSession.activateSession()
+            if watchSession.paired && watchSession.watchAppInstalled {
+                do {
+                    print(watchSession.paired)
+                    print(watchSession.watchAppInstalled)
+                    try watchSession.updateApplicationContext(
+                        [
+                            "token": userAccessToken!
+                        ]
+                    )
+                    print("setting watch data from home")
+                } catch let error as NSError {
+                    print(error.description)
+                }
+            }
+        }
     }
     
     func presentTutorial(sender: AnyObject) {
@@ -226,27 +253,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 userImageView.clipsToBounds = true
                 userImageView.layer.borderWidth = 0
                 userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
-                
-                if user?.username != "" && userAccessToken != nil {
-                    // Send access token and Stripe key to Apple Watch
-                    if WCSession.isSupported() { //makes sure it's not an iPad or iPod
-                        let watchSession = WCSession.defaultSession()
-                        watchSession.delegate = self
-                        watchSession.activateSession()
-                        if watchSession.paired && watchSession.watchAppInstalled {
-                            do {
-                                try watchSession.updateApplicationContext(
-                                    [
-                                        "token": userAccessToken!
-                                    ]
-                                )
-                                print("setting watch data from home")
-                            } catch let error as NSError {
-                                print(error.description)
-                            }
-                        }
-                    }
-                }
                 
                 if user?.first_name != "" {
                     

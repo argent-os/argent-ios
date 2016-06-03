@@ -125,28 +125,30 @@
             </objects>
             <point key="canvasLocation" x="235" y="645"/>
         </scene>
-        <!--BackgroundGradientFuschia-->
+        <!--BackgroundGradientInverse-->
         <scene sceneID="AEw-b0-oYE">
             <objects>
-                <notificationController backgroundImage="BackgroundGradientFuschia" contentMode="scaleAspectFill" animationDuration="4" id="YCC-NB-fut">
+                <notificationController backgroundImage="BackgroundGradientInverse" contentMode="scaleAspectFill" animationDuration="5" id="YCC-NB-fut">
                     <items>
-                        <label alignment="left" text="Alert Label" id="XkS-y5-khE"/>
+                        <label alignment="center" text="Alert Label" id="XkS-y5-khE"/>
                     </items>
                     <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
                     <connections>
                         <outlet property="notificationAlertLabel" destination="XkS-y5-khE" id="49B-RR-99y"/>
-                        <segue destination="gdX-wl-uQE" kind="relationship" relationship="dynamicNotificationInterface" id="fKh-qV-3T2"/>
+                        <segue destination="7u5-19-VJA" kind="relationship" relationship="dynamicNotificationInterface" id="y7x-Ap-17t"/>
                     </connections>
                 </notificationController>
             </objects>
             <point key="canvasLocation" x="235" y="962"/>
         </scene>
-        <!--BackgroundGradientFuschia-->
-        <scene sceneID="KIl-fV-djm">
+        <!--BackgroundGradientInverse-->
+        <scene sceneID="2qw-ei-j1X">
             <objects>
-                <controller backgroundImage="BackgroundGradientFuschia" animationDuration="4" id="gdX-wl-uQE" customClass="NotificationController" customModule="app_watchos" customModuleProvider="target"/>
+                <controller backgroundImage="BackgroundGradientInverse" contentMode="scaleAspectFill" animationDuration="5" id="7u5-19-VJA">
+                    <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                </controller>
             </objects>
-            <point key="canvasLocation" x="552" y="962"/>
+            <point key="canvasLocation" x="535" y="962"/>
         </scene>
     </scenes>
 </document>

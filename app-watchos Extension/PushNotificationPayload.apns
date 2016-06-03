@@ -1,15 +1,15 @@
 {
     "aps": {
         "alert": {
-            "body": "Test message",
-            "title": "Optional title"
+            "body": "Your balance is now available",
+            "title": "Hello!"
         },
-        "category": "myCategory"
+        "category": "Finance"
     },
     
     "WatchKit Simulator Actions": [
         {
-            "title": "First Button",
+            "title": "Sweet",
             "identifier": "firstButtonAction"
         }
     ],
