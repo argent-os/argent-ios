@@ -24,7 +24,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundGradientInverse" translatesAutoresizingMaskIntoConstraints="NO" id="Fq8-48-Suy">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundGradientTouch" translatesAutoresizingMaskIntoConstraints="NO" id="Fq8-48-Suy">
                     <rect key="frame" x="0.0" y="0.0" width="606" height="600"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HcN-lo-9Jb" userLabel="Placeholders">
@@ -388,7 +388,7 @@
                         <action selector="passcodeSignButtonTap:" destination="-1" eventType="touchUpInside" id="kQR-ai-KbC"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoApp" translatesAutoresizingMaskIntoConstraints="NO" id="tRI-NU-2dj">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoRoundShadow" translatesAutoresizingMaskIntoConstraints="NO" id="tRI-NU-2dj">
                     <rect key="frame" x="268" y="83" width="65" height="65"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="65" id="fP7-jg-3Ap"/>
@@ -471,9 +471,9 @@
         </imageView>
     </objects>
     <resources>
-        <image name="BackgroundGradientInverse" width="134" height="334"/>
-        <image name="LogoApp" width="342" height="342"/>
+        <image name="BackgroundGradientTouch" width="134" height="334"/>
         <image name="LogoRound" width="334" height="334"/>
+        <image name="LogoRoundShadow" width="328" height="328"/>
         <image name="ic_fingerprint" width="86" height="86"/>
     </resources>
 </document>
