@@ -2866,6 +2866,7 @@ Tap here to view</string>
                 <tabBarController storyboardIdentifier="RootViewController" automaticallyAdjustsScrollViewInsets="NO" id="FFu-uW-Oqz" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="KNb-GY-NSK"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="dfY-4f-GNo">
                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="49"/>
@@ -3792,7 +3793,6 @@ be private unless otherwise requested.</string>
         <image name="ic_tab_search" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ahh-WH-9EU"/>
         <segue reference="CNn-4s-Hqn"/>
         <segue reference="ipn-3I-3vc"/>
         <segue reference="VI5-hp-Gm2"/>
@@ -3802,11 +3802,12 @@ be private unless otherwise requested.</string>
         <segue reference="igQ-zk-tCm"/>
         <segue reference="YIg-Dp-HpF"/>
         <segue reference="7cu-FP-MoG"/>
-        <segue reference="Bc6-jW-uiV"/>
         <segue reference="fEJ-lR-z9I"/>
+        <segue reference="Bc6-jW-uiV"/>
+        <segue reference="UFB-DJ-qrH"/>
+        <segue reference="m0d-gd-RWW"/>
         <segue reference="zQh-Po-kj4"/>
         <segue reference="wgV-xY-MTp"/>
-        <segue reference="YDb-8b-gnI"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>

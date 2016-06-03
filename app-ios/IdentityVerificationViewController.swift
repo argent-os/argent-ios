@@ -143,6 +143,7 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate 
     func doneButtonDidPress(images: [UIImage]) {
         imageView.image = images[0]
         imageUploadRequest(imageView.image!)
+        print(imageView.image)
         imageView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         imageView.center = self.view.center
         imageView.layer.cornerRadius = imageView.frame.size.width/2
@@ -166,9 +167,11 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate 
         if(userAccessToken != nil) {
             User.getProfile { (user, NSError) in
                 
-                let endpoint = API_URL + "/v1/cloudinary/" + (user?.id)! + "/upload"
+                let endpoint = API_URL + "/v1/stripe/" + (user?.id)! + "/upload"
                 
-                let parameters = [:]
+                let parameters = [
+                    "purpose": "identity_document"
+                ]
                 
                 let img = UIImageJPEGRepresentation(uploadedImage, 1)
                 
@@ -179,38 +182,32 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate 
                 let fileSize = Float(imageData.length) / 1024.0 / 1024.0
                 let fileSizeString = String.localizedStringWithFormat("%.2f", fileSize)
                 NSLog("File size is : %.2f MB", fileSize)
-                
-                if(fileSize > 1.25) {
-                    self.dismissViewControllerAnimated(true, completion: nil)
-                    self.imageView.removeFromSuperview()
-                } else {
-                    Alamofire.upload(.POST, endpoint, multipartFormData: {
-                        multipartFormData in
-                        
-                        multipartFormData.appendBodyPart(data: imageData, name: "avatar", fileName: "avatar", mimeType: "image/jpg")
-                        
-                        for (key, value) in parameters {
-                            multipartFormData.appendBodyPart(data: value.dataUsingEncoding(NSUTF8StringEncoding)!, name: key as! String)
+                Alamofire.upload(.POST, endpoint, multipartFormData: {
+                    multipartFormData in
+                    
+                    multipartFormData.appendBodyPart(data: imageData, name: "document", fileName: "document", mimeType: "image/jpg")
+                    
+                    for (key, value) in parameters {
+                        multipartFormData.appendBodyPart(data: value.dataUsingEncoding(NSUTF8StringEncoding)!, name: key as! String)
+                    }
+                    
+                    }, encodingCompletion: {
+                        encodingResult in
+                        print("encoding result")
+                        switch encodingResult {
+                        case .Success(let upload, _, _):
+                            upload.responseJSON(completionHandler: { response in
+                                switch response.result {
+                                case .Success:
+                                    print("success")
+                                case .Failure(let error):
+                                    print("failure")
+                                }
+                            })
+                        case .Failure(let encodingError):
+                            print(encodingError)
                         }
-                        
-                        }, encodingCompletion: {
-                            encodingResult in
-                            
-                            switch encodingResult {
-                            case .Success(let upload, _, _):
-                                upload.responseJSON(completionHandler: { response in
-                                    switch response.result {
-                                    case .Success:
-                                        print("success")
-                                    case .Failure(let error):
-                                        print("failure")
-                                    }
-                                })
-                            case .Failure(let encodingError):
-                                print(encodingError)
-                            }
-                    })
-                }
+                })
             }
         }
     }

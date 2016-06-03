@@ -133,8 +133,8 @@ class MenuViewController: UIViewController {
         
         // NAV
         
-        let items = ["Main Menu", "Plans", "Customers", "Subscriptions"]
-        
+        var items = ["Main Menu", "Plans", "Customers", "Subscriptions"]
+
         self.navigationController?.navigationBar.translucent = false
         self.navigationController?.navigationBar.barTintColor = UIColor.offWhite()
         self.navigationController?.navigationBar.titleTextAttributes = [
@@ -146,9 +146,9 @@ class MenuViewController: UIViewController {
         
         let menuView = BTNavigationDropdownMenu(navigationController: self.navigationController, title: "Main Menu", items: items)
         menuView.cellHeight = 80
-        menuView.cellSeparatorColor = UIColor.lightBlue().colorWithAlphaComponent(0.2)
+        menuView.cellSeparatorColor = UIColor.clearColor()
         menuView.cellBackgroundColor = self.navigationController?.navigationBar.barTintColor
-        menuView.cellSelectionColor = UIColor.whiteColor()
+        menuView.cellSelectionColor = UIColor.offWhite()
         menuView.keepSelectedCellColor = true
         menuView.checkMarkImage = UIImage(named: "IconEmpty")
         menuView.cellTextLabelColor = UIColor.lightBlue()
@@ -157,8 +157,8 @@ class MenuViewController: UIViewController {
         menuView.arrowPadding = 15
         menuView.arrowImage = UIImage(named: "ic_arrow_down_gray")
         menuView.animationDuration = 0.2
-        menuView.maskBackgroundColor = UIColor.blackColor()
-        menuView.maskBackgroundOpacity = 0.5
+        menuView.maskBackgroundColor = UIColor.darkBlue()
+        menuView.maskBackgroundOpacity = 0.2
         menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
             print("Did select item at index: \(indexPath)")
             self.selectedCellLabel.text = items[indexPath]
