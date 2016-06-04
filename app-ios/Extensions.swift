@@ -309,6 +309,21 @@ func addActivityIndicatorButton(indicator: UIActivityIndicatorView, button: UIBu
     }
 }
 
+func addActivityIndicatorView(indicator: UIActivityIndicatorView, view: UIView, color: UIActivityIndicatorViewStyle) {
+    let indicator: UIActivityIndicatorView = indicator
+    let halfViewHeight: CGFloat = view.bounds.size.height / 2
+    let halfViewWidth: CGFloat = view.bounds.size.width / 2
+    indicator.activityIndicatorViewStyle = color
+    indicator.center = CGPointMake(halfViewWidth, halfViewHeight)
+    view.addSubview(indicator)
+    indicator.hidesWhenStopped = true
+    indicator.startAnimating()
+    Timeout(2) {
+        indicator.hidden = true
+        indicator.stopAnimating()
+    }
+}
+
 extension UIButton {
     func setBackgroundColor(color: UIColor, forState: UIControlState) {
         UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))

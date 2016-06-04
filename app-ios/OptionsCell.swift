@@ -1,13 +1,4 @@
 //
-//  ActionSheet.swift
-//  app-ios
-//
-//  Created by Sinan Ulkuatam on 5/8/16.
-//  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
-//
-
-import Foundation
-//
 //  Copyright (c) 2015 Xmartlabs ( http://xmartlabs.com )
 //
 //
@@ -31,6 +22,8 @@ import Foundation
 
 import Foundation
 import XLActionController
+import EmitterKit
+import AvePurchaseButton
 
 public class OptionsCell: ActionCell {
     
@@ -53,7 +46,7 @@ public class OptionsCell: ActionCell {
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor(white: 0.0, alpha: 0.15)
         selectedBackgroundView = backgroundView
-        separatorView?.backgroundColor = UIColor(red: 244/255.0, green: 244/255.0, blue: 244/255.0, alpha: 1.0)
+        separatorView?.backgroundColor = UIColor.lightBlue().colorWithAlphaComponent(0.3)
     }
 }
 
@@ -78,7 +71,7 @@ public class ActionHeader: UICollectionReusableView {
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor(white: 0.95, alpha: 1.0)
+        backgroundColor = UIColor.offWhite()
         addSubview(label)
     }
     
@@ -88,6 +81,12 @@ public class ActionHeader: UICollectionReusableView {
 }
 
 public class ArgentActionController: ActionController<OptionsCell, String, ActionHeader, String, UICollectionReusableView, Void> {
+    
+    var paymentCancelSignal: Signal? = Signal()
+
+    public override func onWillDismissView() {
+        paymentCancelSignal?.emit(MerchantPlansViewController().stopAnimation(self, button: AvePurchaseButton()))
+    }
     
     public override init(nibName nibNameOrNil: String? = nil, bundle nibBundleOrNil: NSBundle? = nil) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -119,7 +118,7 @@ public class ArgentActionController: ActionController<OptionsCell, String, Actio
             header.label.center = CGPointMake(header.frame.size.width  / 2, header.frame.size.height / 2)
         }
         onConfigureSectionHeader = { sectionHeader, sectionHeaderData in
-            sectionHeader.backgroundColor = UIColor(white: 0.98, alpha: 1.0)
+            sectionHeader.backgroundColor = UIColor.offWhite()
         }
         onConfigureCellForAction = { [weak self] cell, action, indexPath in
             cell.setup(action.data, detail: nil, image: nil)

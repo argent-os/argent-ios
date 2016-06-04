@@ -19,8 +19,9 @@ import AvePurchaseButton
 import EmitterKit
 import PassKit
 import CWStatusBarNotification
+import XLActionController
 
-class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIGestureRecognizerDelegate {
     
     private var dateFormatter = NSDateFormatter()
     
@@ -41,7 +42,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
     var paymentSuccessSignal: Signal? = Signal()
     
     var paymentCancelSignal: Signal? = Signal()
-    
+
     var paymentSuccessListener: Listener?
     
     var paymentCancelListener: Listener?
@@ -118,7 +119,28 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         let navItem = UINavigationItem(title: "Plans");
         navBar.setItems([navItem], animated: false);
         
+        // add gesture recognizer to window
+        var recognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "handleTapBehind:")
+        recognizer.numberOfTapsRequired = 1
+        recognizer.cancelsTouchesInView = false
+        //So the user can still interact with controls in the modal view
+        self.view.addGestureRecognizer(recognizer)
+        recognizer.delegate = self
+        
         self.loadPlans()
+    }
+    
+    func handleTapBehind(sender: UITapGestureRecognizer) {
+        if sender.state == .Ended {
+            // passing nil gives us coordinates in the window
+            var location: CGPoint = sender.locationInView(nil)
+            // convert the tap's location into the local view's coordinate system, and test to see if it's in or outside. If outside, dismiss the view.
+            if !self.view!.pointInside(self.view!.convertPoint(location, fromView: self.view.window), withEvent: nil) {
+                // remove the recognizer first so it's view.window is valid
+                self.view.removeGestureRecognizer(sender)
+                self.paymentCancelSignal?.emit()
+            }
+        }
     }
     
     private func loadPlans() {
@@ -227,6 +249,17 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
+    func stopAnimation(sender: AnyObject, button: AvePurchaseButton) {
+//        ** throws kitchen sink **
+//        print("stopping animation")
+//        self.paymentCancelSignal?.emit()
+//        AvePurchaseButton().setButtonState(AvePurchaseButtonState.Normal, animated: true)
+//        paymentCancelListener = self.paymentCancelSignal!.once {
+//            print("payment finish executed")
+//            button.setButtonState(AvePurchaseButtonState.Normal, animated: true)
+//        }
+    }
+    
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
@@ -308,6 +341,7 @@ extension MerchantPlansViewController: STPPaymentCardTextFieldDelegate, PKPaymen
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    
     // MARK: Payment Options Modal
     
     func showPayModal(sender: AnyObject, tag: Int) {
@@ -323,9 +357,10 @@ extension MerchantPlansViewController: STPPaymentCardTextFieldDelegate, PKPaymen
         actionController.addAction(Action("Cancel", style: .Destructive, handler: { action in
             self.paymentCancelSignal!.emit()
         }))
+        
         self.presentViewController(actionController, animated: true, completion: { _ in })
     }
-    
+
     
     // MARK: APPLE PAY
     

@@ -12,12 +12,16 @@ import Alamofire
 
 class Bitcoin {
     
-    let amount: Int
+    let id: String
+    let amount: Float80
     let uri: String
+    let filled: Bool
     
-    required init(amount: Int, uri: String) {
+    required init(id: String, amount: Float80, uri: String, filled: Bool) {
+        self.id = id
         self.amount = amount
         self.uri = uri
+        self.filled = filled
     }
     
     class func createBitcoinReceiver(amount: Int, completionHandler: (Bitcoin?, NSError?) -> ()) {
@@ -46,9 +50,12 @@ class Bitcoin {
                         case .Success:
                             if let value = response.result.value {
                                 let data = JSON(value)
-                                let uri = data["receiver"]["bitcoin_uri"].stringValue
-                                let amount = data["receiver"]["bitcoin_amount"].intValue
-                                let bitcoin = Bitcoin(amount: amount, uri: uri)
+                                let receiver = data["receiver"]
+                                let id = receiver["id"].stringValue
+                                let uri = receiver["bitcoin_uri"].stringValue
+                                let amount = Float80(receiver["bitcoin_amount"].floatValue)
+                                let filled = receiver["filled"].boolValue
+                                let bitcoin = Bitcoin(id: id, amount: amount, uri: uri, filled: filled)
                                 completionHandler(bitcoin, response.result.error)
                             }
                         case .Failure(let error):
@@ -59,7 +66,45 @@ class Bitcoin {
         }
     }
     
-    class func getBitcoinReceivers(completionHandler: ([Bitcoin]?, NSError?) -> Void) {
-        // request to api to get data as json, put in list and table
+    class func getBitcoinReceiver(id: String, completionHandler: (Bitcoin?, NSError?) -> Void) {
+        if(userAccessToken != nil) {
+            User.getProfile({ (user, error) in
+                if error != nil {
+                    print(error)
+                }
+                
+                let parameters = [:] 
+                
+                let headers = [
+                    "Authorization": "Bearer " + (userAccessToken as! String),
+                    "Content-Type": "application/x-www-form-urlencoded"
+                ]
+                
+                let endpoint = API_URL + "/v1/stripe/" + (user?.id)! + "/bitcoin/" + id
+                
+                Alamofire.request(.GET, endpoint,
+                    parameters: parameters as! [String : AnyObject],
+                    encoding:.URL,
+                    headers: headers)
+                    .responseJSON { response in
+                        switch response.result {
+                        case .Success:
+                            if let value = response.result.value {
+                                let data = JSON(value)
+                                print(data)
+                                let receiver = data["receiver"]
+                                let id = receiver["id"].stringValue
+                                let uri = receiver["bitcoin_uri"].stringValue
+                                let amount = Float80(receiver["bitcoin_amount"].floatValue)
+                                let filled = receiver["filled"].boolValue
+                                let bitcoin = Bitcoin(id: id, amount: amount, uri: uri, filled: filled)
+                                completionHandler(bitcoin, response.result.error)
+                            }
+                        case .Failure(let error):
+                            print(error)
+                        }
+                }
+            })
+        }
     }
 }

@@ -162,14 +162,14 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         payButton.userInteractionEnabled = false
         addActivityIndicatorButton(UIActivityIndicatorView(), button: payButton, color: .White)
         
-        print("save called")
-        print(chargeInputView.text)
+        // print("save called")
+        // print(chargeInputView.text)
         showGlobalNotification("Paying merchant " + chargeInputView.text!, duration: 1.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
 
         if(chargeInputView.text != "" || chargeInputView.text != "$0.00") {
-            print("civ passes check")
+            // print("civ passes check")
             if let card = paymentTextField.card {
-                print("got card")
+                // print("got card")
                 STPAPIClient.sharedClient().createTokenWithCard(card) { (token, error) -> Void in
                     if let error = error  {
                         print(error)
@@ -177,7 +177,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
                     else if let token = token {
                         print("got token")
                         self.createBackendChargeWithToken(token) { status in
-                            print(status)
+                            // print(status)
                         }
                     }
                 }
@@ -192,7 +192,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
     func createBackendChargeWithToken(token: STPToken!, completion: PKPaymentAuthorizationStatus -> ()) {
         // SEND REQUEST TO API ENDPOINT TO EXCHANGE STRIPE TOKEN
 
-        print("creating backend charge with token")
+        // print("creating backend charge with token")
         if(chargeInputView.text == "" || chargeInputView.text == "$0.00") {
             showGlobalNotification("Amount invalid", duration: 5.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
         } else {
@@ -201,15 +201,14 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
             let floatValue = (str! as NSString).floatValue
             let amountInCents = Int(floatValue*100)
 
-            print("calling create charge")
+            // print("calling create charge")
             createCharge(token, amount: amountInCents)
         }
     }
     
     func createCharge(token: STPToken, amount: Int) {
-        self.payButton.userInteractionEnabled = false
         
-        print("creating backend token")
+        // print("creating backend token")
         User.getProfile { (user, NSError) in
             let url = API_URL + "/v1/stripe/" + (user?.id)! + "/charge/"
             
@@ -222,7 +221,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
                 "amount": amount
             ]
             
-            print(token)
+            // print(token)
             
             // for invalid character 0 be sure the content type is application/json and enconding is .JSON
             Alamofire.request(.POST, url,
@@ -278,8 +277,8 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
                 if let value = response.result.value {
                     let data = JSON(value)
                     let bitcoinUSDValue = data["USD"]["15m"].floatValue
-                    print("1 bitcoin is currently worth ")
-                    print("$", bitcoinUSDValue)
+                    // print("1 bitcoin is currently worth ")
+                    // print("$", bitcoinUSDValue)
                     completionHandler(value: bitcoinUSDValue)
                 }
             case .Failure(let error):
@@ -289,6 +288,8 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
     }
     
     func payWithBitcoin(sender: AnyObject) {
+        addActivityIndicatorView(UIActivityIndicatorView(), view: self.view, color: .Gray)
+        
         let navigationController = self.storyboard!.instantiateViewControllerWithIdentifier("qrFormSheetController") as! UINavigationController
         let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
         
@@ -296,7 +297,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         
         // Initialize and style the terms and conditions modal
         formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
-        formSheetController.presentationController?.contentViewSize = CGSizeMake(250, 250)
+        formSheetController.presentationController?.contentViewSize = CGSizeMake(250, 300)
         formSheetController.presentationController?.shouldUseMotionEffect = true
         formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor()
         formSheetController.presentationController?.containerView?.sizeToFit()
@@ -321,10 +322,11 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
             
             Bitcoin.createBitcoinReceiver(Int(floatValue)) { (bitcoin, err) in
                 
-                    print("bitcoin object")
-                    print(bitcoin)
                     presentedViewController.bitcoinUri = bitcoin?.uri ?? ""
-                    
+                    presentedViewController.bitcoinId = bitcoin?.id ?? ""
+                    presentedViewController.bitcoinFilled = bitcoin?.filled ?? false
+                    presentedViewController.bitcoinAmount = bitcoin?.amount ?? 0
+                
                     formSheetController.willPresentContentViewControllerHandler = { vc in
                         let navigationController = vc as! UINavigationController
                         let presentedViewController = navigationController.viewControllers.first as! BitcoinUriViewController
@@ -348,8 +350,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
     }
     
     // Add send toolbar
-    func addDoneToolbar()
-    {
+    func addDoneToolbar() {
         // screen width and height:
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width

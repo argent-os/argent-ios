@@ -541,6 +541,7 @@
 				302010C91CAF3B05007D5E7E /* Notification.swift */,
 				300E422C1CB56E10004316CF /* Plaid.swift */,
 				3045BB951CFDD0C700A49551 /* Bank.swift */,
+				30D526771CDBB4A0001B41BA /* Bitcoin.swift */,
 				300E42321CB71362004316CF /* Card.swift */,
 				30D5268B1CE0F303001B41BA /* Charge.swift */,
 				308A34891CCA803200AAF66F /* History.swift */,
@@ -548,7 +549,6 @@
 				306E822F1CDAC36400A43505 /* Balance.swift */,
 				306DF00A1CD9979400864CAE /* Plan.swift */,
 				3080730B1CFF6F250070C7FE /* Subscription.swift */,
-				30D526771CDBB4A0001B41BA /* Bitcoin.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
