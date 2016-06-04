@@ -91,7 +91,6 @@ class Bitcoin {
                         case .Success:
                             if let value = response.result.value {
                                 let data = JSON(value)
-                                print(data)
                                 let receiver = data["receiver"]
                                 let id = receiver["id"].stringValue
                                 let uri = receiver["bitcoin_uri"].stringValue

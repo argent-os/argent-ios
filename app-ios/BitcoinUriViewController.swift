@@ -30,6 +30,8 @@ class BitcoinUriViewController: UIViewController {
     
     var bitcoinFilledListener: Listener?
     
+    var bitcoinPoller:NSTimer?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -79,16 +81,25 @@ class BitcoinUriViewController: UIViewController {
         // if the status if filled, emit an event saying that the bitcoin receiver
         // is filled and this will dismiss modal window
         
-        var bitcoinPoller = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: #selector(self.pollBitcoinReceiver(_:)), userInfo: nil, repeats: true)
-
+        // Be careful with timers, they can cause memory leaks if not
+        // explicitly removed / destroyed
+        
+        bitcoinPoller = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: #selector(self.pollBitcoinReceiver(_:)), userInfo: nil, repeats: true)
     }
     
+
     func pollBitcoinReceiver(sender: AnyObject) {
+
+        print("1", self.bitcoinPoller)
+        
         // print("polling bitcoin")
         Bitcoin.getBitcoinReceiver(bitcoinId!) { (bitcoin, err) in
-            // print(bitcoin?.id)
-            // print("bitcoin filled status ", bitcoin!.filled)
+             print(bitcoin?.id)
+             print("bitcoin filled status ", bitcoin!.filled)
             if bitcoin?.filled == true {
+                print("invalidating timer")
+                print("2", self.bitcoinPoller)
+                self.bitcoinPoller!.invalidate()
                 self.dismissViewControllerAnimated(true, completion: {
                     // print("bitcoin receiver for bitcoin id " + self.bitcoinId! + " filled!")
                     showGlobalNotification(String((bitcoin?.amount)!/100000000) + " BTC received!", duration: 5.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor(rgba: "#FF9900"))
