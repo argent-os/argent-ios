@@ -13,11 +13,11 @@ import Alamofire
 class Bitcoin {
     
     let id: String
-    let amount: Float80
+    let amount: Float
     let uri: String
     let filled: Bool
     
-    required init(id: String, amount: Float80, uri: String, filled: Bool) {
+    required init(id: String, amount: Float, uri: String, filled: Bool) {
         self.id = id
         self.amount = amount
         self.uri = uri
@@ -53,7 +53,7 @@ class Bitcoin {
                                 let receiver = data["receiver"]
                                 let id = receiver["id"].stringValue
                                 let uri = receiver["bitcoin_uri"].stringValue
-                                let amount = Float80(receiver["bitcoin_amount"].floatValue)
+                                let amount = receiver["bitcoin_amount"].floatValue
                                 let filled = receiver["filled"].boolValue
                                 let bitcoin = Bitcoin(id: id, amount: amount, uri: uri, filled: filled)
                                 completionHandler(bitcoin, response.result.error)
@@ -95,7 +95,7 @@ class Bitcoin {
                                 let receiver = data["receiver"]
                                 let id = receiver["id"].stringValue
                                 let uri = receiver["bitcoin_uri"].stringValue
-                                let amount = Float80(receiver["bitcoin_amount"].floatValue)
+                                let amount = receiver["bitcoin_amount"].floatValue
                                 let filled = receiver["filled"].boolValue
                                 let bitcoin = Bitcoin(id: id, amount: amount, uri: uri, filled: filled)
                                 completionHandler(bitcoin, response.result.error)

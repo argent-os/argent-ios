@@ -18,7 +18,7 @@ class BitcoinUriViewController: UIViewController {
     
     var bitcoinUri: String?
     
-    var bitcoinAmount: Float80?
+    var bitcoinAmount: Float?
     
     var bitcoinFilled: Bool?
     
