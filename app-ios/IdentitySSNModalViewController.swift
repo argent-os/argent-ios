@@ -78,6 +78,8 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
     }
     
     func submitSSN(sender: AnyObject) {
+        addActivityIndicatorButton(UIActivityIndicatorView(), button: submitSSNButton, color: .White)
+        
         let legalContent: [String: AnyObject] = [
             "personal_id_number": ssnTextField.text!,
         ]

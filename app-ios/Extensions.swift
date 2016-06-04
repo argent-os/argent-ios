@@ -294,6 +294,21 @@ func formatCurrency(amount: String, fontName: String, superSize: CGFloat, fontSi
     return attString
 }
 
+func addActivityIndicatorButton(indicator: UIActivityIndicatorView, button: UIButton, color: UIActivityIndicatorViewStyle) {
+    let indicator: UIActivityIndicatorView = indicator
+    let halfButtonHeight: CGFloat = button.bounds.size.height / 2
+    let buttonWidth: CGFloat = button.bounds.size.width
+    indicator.activityIndicatorViewStyle = color
+    indicator.center = CGPointMake(buttonWidth - halfButtonHeight, halfButtonHeight)
+    button.addSubview(indicator)
+    indicator.hidesWhenStopped = true
+    indicator.startAnimating()
+    Timeout(2) {
+        indicator.hidden = true
+        indicator.stopAnimating()
+    }
+}
+
 extension UIButton {
     func setBackgroundColor(color: UIColor, forState: UIControlState) {
         UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))

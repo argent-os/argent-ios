@@ -266,6 +266,9 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
                             let json = JSON(value)
                             print(PKPaymentAuthorizationStatus.Success)
                             completion(PKPaymentAuthorizationStatus.Success)
+                            self.dismissViewControllerAnimated(true, completion: { 
+                                //
+                            })
                         }
                     case .Failure(let error):
                         print(PKPaymentAuthorizationStatus.Failure)

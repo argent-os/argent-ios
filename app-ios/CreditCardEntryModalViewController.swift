@@ -101,6 +101,7 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
     
     // STRIPE SAVE METHOD
     @IBAction func save(sender: UIButton) {
+        addActivityIndicatorButton(UIActivityIndicatorView(), button: submitCreditCardButton, color: .White)
         if let card = paymentTextField.card {
             STPAPIClient.sharedClient().createTokenWithCard(card) { (token, error) -> Void in
                 if let error = error  {
@@ -181,6 +182,7 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
                                 self.dismissViewControllerAnimated(true, completion: {
                                     print("dismissed")
                                 })
+                                self.dismissKeyboard(self)
                             }
                         }
                     case .Failure(let error):

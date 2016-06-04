@@ -160,6 +160,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
     // STRIPE SAVE METHOD
     @IBAction func save(sender: UIButton) {
         payButton.userInteractionEnabled = false
+        addActivityIndicatorButton(UIActivityIndicatorView(), button: payButton, color: .White)
         
         print("save called")
         print(chargeInputView.text)
