@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import JSSAlertView
 import MessageUI
 import DKCircleButton
 
@@ -145,25 +144,6 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         self.navigationItem.title = ""
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.darkGrayColor()]
         
-    }
-    
-    func addCustomerButtonTapped(sender: AnyObject) {
-        showSuccessAlert()
-    }
-    
-    func showSuccessAlert() {
-        let customIcon:UIImage = UIImage(named: "ic_check_light")! // your custom icon UIImage
-        let customColor:UIColor = UIColor.brandGreen() // base color for the alert
-        self.view.endEditing(true)
-        let alertView = JSSAlertView().show(
-            self,
-            title: "",
-            text: "Invite sent!",
-            buttonText: "",
-            noButtons: true,
-            color: customColor,
-            iconImage: customIcon)
-        alertView.setTextTheme(.Light) // can be .Light or .Dark
     }
 
     func returnToMenu(sender: AnyObject) {

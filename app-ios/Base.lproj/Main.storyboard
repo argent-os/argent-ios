@@ -3849,7 +3849,7 @@ be private unless otherwise requested.</string>
         <!--Credit Card Entry Modal View Controller-->
         <scene sceneID="h8g-ys-n74">
             <objects>
-                <viewController id="CqK-05-n83" customClass="CreditCardEntryModalViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreditCardEntryModalViewController" id="CqK-05-n83" customClass="CreditCardEntryModalViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8eP-f4-IVf"/>
                         <viewControllerLayoutGuide type="bottom" id="H9a-BR-ud2"/>

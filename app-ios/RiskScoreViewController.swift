@@ -112,11 +112,11 @@ class RiskScoreViewController: UIViewController {
             } else if(g.rate > 59) {
                 g.startColor = UIColor.yellowColor()
                 l.startColor = UIColor.yellowColor()
-                l.endColor = UIColor.orangeColor()
+                l.endColor = UIColor.neonOrange()
                 titleLabel.text = "Good Risk Score"
             } else if(g.rate > 39) {
-                g.startColor = UIColor.orangeColor()
-                l.startColor = UIColor.orangeColor()
+                g.startColor = UIColor.neonOrange()
+                l.startColor = UIColor.neonOrange()
                 l.endColor = UIColor.yellowColor()
                 titleLabel.text = "Average Risk Score"
             } else {

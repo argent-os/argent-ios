@@ -316,7 +316,21 @@ extension PayMerchantViewController {
         presentedViewController.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
         presentedViewController.navigationItem.leftItemsSupplementBackButton = true
         
-        // Be sure to update current module on storyboard
-        self.presentViewController(formSheetController, animated: true, completion: nil)
+        // send detail user information for delegated charge
+        presentedViewController.detailUser = detailUser
+        
+        // send charge amount
+        if(chargeInputView.text == "" || chargeInputView.text == "$0.00") {
+            showGlobalNotification("Amount invalid", duration: 5.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
+        } else {
+            var str = chargeInputView.text
+            str?.removeAtIndex(str!.characters.indices.first!) // remove first letter
+            let floatValue = (str! as NSString).floatValue
+            let amountInCents = Int(floatValue*100)
+            presentedViewController.detailAmount = amountInCents
+            
+            // Be sure to update current module on storyboard
+            self.presentViewController(formSheetController, animated: true, completion: nil)
+        }
     }
 }

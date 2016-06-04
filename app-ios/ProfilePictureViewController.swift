@@ -115,7 +115,7 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
                                         showGlobalNotification("Profile picture updated", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
                                     case .Failure(let error):
                                         print("failure")
-                                        showGlobalNotification("Could not upload profile picture", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.orangeColor())
+                                        showGlobalNotification("Could not upload profile picture", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.neonOrange())
                                         self.txt.text = "Error uploading picture"
                                         self.view.addSubview(self.txt)
                                     }

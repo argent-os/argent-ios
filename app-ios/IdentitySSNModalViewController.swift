@@ -92,7 +92,7 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
                 showGlobalNotification("SSN Confirmed!", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
                 self.dismissViewControllerAnimated(true, completion: nil)
             } else {
-                showGlobalNotification("An error occurred", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.orangeColor())
+                showGlobalNotification("An error occurred", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.neonOrange())
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
         }
