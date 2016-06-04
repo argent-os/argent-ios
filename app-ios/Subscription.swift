@@ -54,7 +54,6 @@ class Subscription {
                 
                 let endpoint = API_URL + "/v1/stripe/" + user_id! + "/subscriptions?limit=" + limit
                 
-                print("get got")
                 Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .validate().responseJSON { response in
                         switch response.result {
@@ -62,7 +61,6 @@ class Subscription {
                             if let value = response.result.value {
                                 print(response)
                                 let data = JSON(value)
-                                print(data)
                                 var subscriptionsArray = [Subscription]()
                                 let subscriptions = data["subscriptions"]["data"].arrayValue
                                 for subscription in subscriptions {

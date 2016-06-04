@@ -65,7 +65,7 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate 
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
         let str = NSAttributedString(string: "Submit", attributes: attribs)
         submitCreditCardButton.setAttributedTitle(str, forState: .Normal)
-        submitCreditCardButton.addTarget(self, action: #selector(self.submitCreditCard(_:)), forControlEvents: .TouchUpInside)
+        submitCreditCardButton.addTarget(self, action: #selector(self.save(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(submitCreditCardButton)
     }
 
@@ -139,7 +139,6 @@ extension CreditCardEntryModalViewController: STPPaymentCardTextFieldDelegate {
             ]
             let parameters : [String : AnyObject] = [
                 "token": String(token) ?? "",
-                "amount": 0
             ]
             
             // for invalid character 0 be sure the content type is application/json and enconding is .JSON

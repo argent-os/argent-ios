@@ -230,15 +230,16 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         }
         
         let planIntervalCountRow = TextFieldRowFormer<FormTextFieldCell>() {
-            $0.titleLabel.text = "Cycle"
+            $0.titleLabel.text = "Count"
             $0.titleLabel.font = UIFont.systemFontOfSize(15)
             $0.titleLabel.textColor = UIColor.grayColor()
             $0.textField.font = UIFont.systemFontOfSize(15)
+            $0.textField.text = "1"
             $0.textField.autocorrectionType = .No
             $0.textField.autocapitalizationType = .None
             $0.textField.keyboardType = .NumberPad
             }.configure {
-                $0.placeholder = "e.g. count=3 with interval=day bills every 3 days"
+                $0.placeholder = "e.g. '3' and 'day' bills every 3 days"
                 $0.rowHeight = 60
             }.onTextChanged { [weak self] in
                 if self?.dic["planIntervalKey"] == "year" && Int($0) > 1 {

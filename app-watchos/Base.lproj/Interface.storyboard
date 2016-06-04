@@ -10,31 +10,17 @@
             <objects>
                 <controller title="Argent" animationDuration="3" alwaysBounce="YES" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="app_watchos" customModuleProvider="target">
                     <items>
-                        <button width="1" alignment="left" title="Account" id="OIJ-6n-cbh">
+                        <imageView width="62" height="71" alignment="center" image="LogoRoundShadow" contentMode="scaleAspectFit" id="vyu-7O-Y1K"/>
+                        <button width="1" alignment="left" title="View Account" id="OIJ-6n-cbh">
                             <fontDescription key="font" type="system" pointSize="14"/>
                             <connections>
                                 <segue destination="mjv-ec-GMi" kind="push" id="cam-9m-zrR"/>
                             </connections>
                         </button>
-                        <button alignment="left" id="kx8-Up-ixe">
-                            <group key="contentGroup" width="1" height="22" alignment="left" alpha="0.65000000000000002" animationDuration="1" layout="vertical" id="i7l-cF-vYi">
-                                <items>
-                                    <label width="1" height="55" alignment="center" verticalAlignment="center" text="Deep press for menu" textAlignment="center" baselineAdjustment="alignCenters" id="QUa-zS-x4N">
-                                        <fontDescription key="font" type="system" pointSize="10"/>
-                                    </label>
-                                </items>
-                            </group>
-                        </button>
                     </items>
-                    <menu key="menu" id="46B-El-P8f">
-                        <items>
-                            <menuItem title="Add Customer" icon="add" id="heR-n7-cRj"/>
-                            <menuItem title="Add Plan" icon="accept" id="DV6-jd-znP"/>
-                        </items>
-                    </menu>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="235" y="205.5"/>
+            <point key="canvasLocation" x="235" y="180"/>
         </scene>
         <!--Account-->
         <scene sceneID="g7b-pU-sCG">
