@@ -646,9 +646,9 @@
 		308AC9B71C9F79830040EF3C /* Card */ = {
 			isa = PBXGroup;
 			children = (
+				30CF713F1D026FCE007B5E17 /* Modal */,
 				30C2DACC1CA43862003AFD8B /* CreditCardAccountViewController.swift */,
 				300E42301CB7123E004316CF /* CreditCardListViewController.swift */,
-				30CF713A1D012B1E007B5E17 /* CreditCardEntryModalViewController.swift */,
 			);
 			name = Card;
 			sourceTree = "<group>";
@@ -817,6 +817,14 @@
 				30CF713D1D022DBE007B5E17 /* User.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		30CF713F1D026FCE007B5E17 /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				30CF713A1D012B1E007B5E17 /* CreditCardEntryModalViewController.swift */,
+			);
+			name = Modal;
 			sourceTree = "<group>";
 		};
 		30D526791CDD8874001B41BA /* Customer */ = {

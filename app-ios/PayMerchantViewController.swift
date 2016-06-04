@@ -208,9 +208,13 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         // print("in payment auth")
         handlePaymentAuthorizationWithPayment(payment) { (PKPaymentAuthorizationStatus) -> () in
             // close pay modal
-            showGlobalNotification("Payment succeeded!", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandGreen())
+            showGlobalNotification("Paid " + (self.detailUser?.username)! + " successfully!", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.skyBlue())
             // print("success")
             controller.dismissViewControllerAnimated(true, completion: nil)
+            self.chargeInputView.text == ""
+            self.dismissViewControllerAnimated(true, completion: {
+                //
+            })
         }
     }
     
@@ -239,7 +243,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         let floatValue = (str! as NSString).floatValue
         let amountInCents = Int(floatValue*100)
         User.getProfile { (user, NSError) in
-            let url = API_URL + "/v1/stripe/" + (user?.id)! + "/charge/"
+            let url = API_URL + "/v1/stripe/" + (user?.id)! + "/charge/" + (self.detailUser?.username)!
             
             let headers = [
                 "Authorization": "Bearer " + String(userAccessToken),
@@ -247,8 +251,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
             ]
             let parameters : [String : AnyObject] = [
                 "token": String(token) ?? "",
-                "amount": amountInCents,
-                "delegatedUser": (self.detailUser?.username)!
+                "amount": amountInCents
             ]
             
             // for invalid character 0 be sure the content type is application/json and enconding is .JSON

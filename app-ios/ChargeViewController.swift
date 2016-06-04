@@ -26,6 +26,8 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
     
     let notification = CWStatusBarNotification()
 
+    let payButton = UIButton()
+
     func textFieldDidChange(textField: UITextField) {
         let text = textField.text!.stringByReplacingOccurrencesOfString(currencyFormatter.currencySymbol, withString: "").stringByReplacingOccurrencesOfString(currencyFormatter.groupingSeparator, withString: "").stringByReplacingOccurrencesOfString(currencyFormatter.decimalSeparator, withString: "")
         textField.text = currencyFormatter.stringFromNumber((text as NSString).doubleValue / 100.0)
@@ -105,7 +107,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         payWithBitcoinButton.titleLabel?.font = UIFont(name: "DINAlternate-Bold", size: 13)
         payWithBitcoinButton.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
         payWithBitcoinButton.layer.borderWidth = 1
-        payWithBitcoinButton.layer.cornerRadius = 5
+        payWithBitcoinButton.layer.cornerRadius = 10
         payWithBitcoinButton.layer.masksToBounds = true
         payWithBitcoinButton.setTitle("Pay with Bitcoin", forState: .Normal)
         payWithBitcoinButton.clipsToBounds = true
@@ -125,7 +127,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         payWithCardButton.titleLabel?.font = UIFont(name: "DINAlternate-Bold", size: 13)
         payWithCardButton.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
         payWithCardButton.layer.borderWidth = 1
-        payWithCardButton.layer.cornerRadius = 5
+        payWithCardButton.layer.cornerRadius = 10
         payWithCardButton.layer.masksToBounds = true
         payWithCardButton.setTitle("Pay with Card", forState: .Normal)
         payWithCardButton.clipsToBounds = true
@@ -135,7 +137,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         }
         
         // Pay button
-        let payButton = UIButton(frame: CGRect(x: 20, y: screenHeight-80, width: screenWidth-40, height: 60.0))
+        payButton.frame = CGRect(x: 20, y: screenHeight-80, width: screenWidth-40, height: 60.0)
         payButton.setBackgroundColor(UIColor.lightBlue(), forState: .Normal)
         payButton.setBackgroundColor(UIColor.lightBlue().colorWithAlphaComponent(0.75), forState: .Highlighted)
         payButton.tintColor = UIColor(rgba: "#fff")
@@ -143,28 +145,111 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         payButton.setTitleColor(UIColor(rgba: "#fffe"), forState: .Highlighted)
         payButton.titleLabel?.font = UIFont(name: "DINAlternate-Bold", size: 14)
         payButton.setTitle("Pay Merchant", forState: .Normal)
-        payButton.layer.cornerRadius = 5
+        payButton.layer.cornerRadius = 10
         payButton.layer.masksToBounds = true
         payButton.clipsToBounds = true
-        payButton.addTarget(self, action: #selector(ChargeViewController.payMerchant(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        payButton.addTarget(self, action: #selector(ChargeViewController.save(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         Timeout(0.6) {
-            addSubviewWithFade(payButton, parentView: self, duration: 1)
+            addSubviewWithFade(self.payButton, parentView: self, duration: 1)
         }
         
         currencyFormatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
         currencyFormatter.currencyCode = NSLocale.currentLocale().displayNameForKey(NSLocaleCurrencySymbol, value: NSLocaleCurrencyCode)
     }
+
+    // STRIPE SAVE METHOD
+    @IBAction func save(sender: UIButton) {
+        payButton.userInteractionEnabled = false
+        
+        print("save called")
+        print(chargeInputView.text)
+        showGlobalNotification("Paying merchant " + chargeInputView.text!, duration: 1.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
+
+        if(chargeInputView.text != "" || chargeInputView.text != "$0.00") {
+            print("civ passes check")
+            if let card = paymentTextField.card {
+                print("got card")
+                STPAPIClient.sharedClient().createTokenWithCard(card) { (token, error) -> Void in
+                    if let error = error  {
+                        print(error)
+                    }
+                    else if let token = token {
+                        print("got token")
+                        self.createBackendChargeWithToken(token) { status in
+                            print(status)
+                        }
+                    }
+                }
+            }
+        } else {
+            print("failed")
+            payButton.userInteractionEnabled = true
+            showGlobalNotification("Invalid Amount" + chargeInputView.text!, duration: 5.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.neonOrange())
+        }
+    }
     
-    func payMerchant(sender: AnyObject) {
-        // Function for toolbar button
-        // pay merchant
-        if chargeInputView.text != "" || chargeInputView.text != "$0.00" {
-            showGlobalNotification("Paying merchant " + chargeInputView.text!, duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.mediumBlue())
+    func createBackendChargeWithToken(token: STPToken!, completion: PKPaymentAuthorizationStatus -> ()) {
+        // SEND REQUEST TO API ENDPOINT TO EXCHANGE STRIPE TOKEN
+
+        print("creating backend charge with token")
+        if(chargeInputView.text == "" || chargeInputView.text == "$0.00") {
+            showGlobalNotification("Amount invalid", duration: 5.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
+        } else {
+            var str = chargeInputView.text
+            str?.removeAtIndex(str!.characters.indices.first!) // remove first letter
+            let floatValue = (str! as NSString).floatValue
+            let amountInCents = Int(floatValue*100)
+
+            print("calling create charge")
+            createCharge(token, amount: amountInCents)
         }
-        Timeout(3.2) {
-            self.showSuccessAlert()
+    }
+    
+    func createCharge(token: STPToken, amount: Int) {
+        self.payButton.userInteractionEnabled = false
+        
+        print("creating backend token")
+        User.getProfile { (user, NSError) in
+            let url = API_URL + "/v1/stripe/" + (user?.id)! + "/charge/"
+            
+            let headers = [
+                "Authorization": "Bearer " + String(userAccessToken),
+                "Content-Type": "application/json"
+            ]
+            let parameters : [String : AnyObject] = [
+                "token": String(token) ?? "",
+                "amount": amount
+            ]
+            
+            print(token)
+            
+            // for invalid character 0 be sure the content type is application/json and enconding is .JSON
+            Alamofire.request(.POST, url,
+                parameters: parameters,
+                encoding:.JSON,
+                headers: headers)
+                .responseJSON { response in
+                    switch response.result {
+                    case .Success:
+                        if let value = response.result.value {
+                            let json = JSON(value)
+                            // print(json)
+                            print(PKPaymentAuthorizationStatus.Success)
+                            self.payButton.userInteractionEnabled = true
+                            self.paymentTextField.clear()
+                            self.showAlert("Payment for " + self.chargeInputView.text! + " succeeded!", color: UIColor.skyBlue(), image:UIImage(named: "ic_check_light")!)
+                            self.chargeInputView.text == ""
+                        }
+                    case .Failure(let error):
+                        print(PKPaymentAuthorizationStatus.Failure)
+                        self.payButton.userInteractionEnabled = true
+                        showGlobalNotification("Error paying merchant", duration: 5.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.neonOrange())
+                        self.paymentTextField.clear()
+
+                        print(error)
+                    }
+            }
         }
-        paymentTextField.clear()
     }
     
     func payWithCard(sender: AnyObject) {
@@ -177,8 +262,10 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         paymentTextField.delegate = self
         paymentTextField.borderWidth = 1
         paymentTextField.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
+        paymentTextField.layer.cornerRadius = 10
         // adds a manual credit card entry textfield
         addSubviewWithBounce(paymentTextField, parentView: self, duration: 0.3)
+        paymentTextField.becomeFirstResponder()
     }
     
     func getCurrentBitcoinValue(completionHandler: (value: Float) -> Void) {
@@ -291,20 +378,26 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
     func returnToMenu(sender: AnyObject) {
         self.view.window!.rootViewController!.dismissViewControllerAnimated(true, completion: { _ in })
     }
-    
-    func showSuccessAlert() {
-        let customIcon:UIImage = UIImage(named: "ic_check_light")! // your custom icon UIImage
-        let customColor:UIColor = UIColor.brandGreen() // base color for the alert
+
+    func showAlert(msg: String, color: UIColor, image: UIImage) {
+        let customIcon:UIImage = image // your custom icon UIImage
+        let customColor:UIColor = color // base color for the alert
         self.view.endEditing(true)
         let alertView = JSSAlertView().show(
             self,
             title: "",
-            text: "Payment for amount " + chargeInputView.text! + " succeeded!",
-            buttonText: "Close",
+            text: msg,
+            buttonText: "Ok",
             noButtons: false,
             color: customColor,
             iconImage: customIcon)
         alertView.setTextTheme(.Light) // can be .Light or .Dark
+        alertView.addAction(reset)
+    }
+    
+    func reset() {
+        // this'll run if cancel is pressed after the alert is dismissed
+        paymentTextField.removeFromSuperview()
         chargeInputView.text = ""
     }
     
