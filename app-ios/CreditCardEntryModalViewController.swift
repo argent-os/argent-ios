@@ -144,6 +144,8 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
         
         //showGlobalNotification("Sending payment..." + (self.detailUser?.username)!, duration: 1.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.iosBlue())
 
+        submitCreditCardButton.userInteractionEnabled = false
+        
         print("creating backend token")
         User.getProfile { (user, NSError) in
             print(self.detailUser?.username)
@@ -174,6 +176,7 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
                             // print(json)
                             print(PKPaymentAuthorizationStatus.Success)
                             completion(PKPaymentAuthorizationStatus.Success)
+                            submitCreditCardButton = true
                             Timeout(1.5) {
                                 self.dismissViewControllerAnimated(true, completion: {
                                     print("dismissed")
@@ -183,6 +186,7 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
                     case .Failure(let error):
                         print(PKPaymentAuthorizationStatus.Failure)
                         completion(PKPaymentAuthorizationStatus.Failure)
+                        submitCreditCardButton.userInteractionEnabled = true
                         showGlobalNotification("Error paying " + (self.detailUser?.username)!, duration: 5.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.neonOrange())
 
                         print(error)
