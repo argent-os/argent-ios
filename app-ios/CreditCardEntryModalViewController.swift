@@ -19,7 +19,7 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
     
     let titleLabel = UILabel()
     
-    let submitCreditCardButton = UIButton()
+    var submitCreditCardButton = UIButton()
     
     var paymentTextField = STPPaymentCardTextField()
 
@@ -176,7 +176,7 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
                             // print(json)
                             print(PKPaymentAuthorizationStatus.Success)
                             completion(PKPaymentAuthorizationStatus.Success)
-                            submitCreditCardButton = true
+                            self.submitCreditCardButton.userInteractionEnabled = true
                             Timeout(1.5) {
                                 self.dismissViewControllerAnimated(true, completion: {
                                     print("dismissed")
@@ -186,7 +186,7 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
                     case .Failure(let error):
                         print(PKPaymentAuthorizationStatus.Failure)
                         completion(PKPaymentAuthorizationStatus.Failure)
-                        submitCreditCardButton.userInteractionEnabled = true
+                        self.submitCreditCardButton.userInteractionEnabled = true
                         showGlobalNotification("Error paying " + (self.detailUser?.username)!, duration: 5.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.neonOrange())
 
                         print(error)
