@@ -242,6 +242,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         swipeArrowImageView.image = paymentTextField.brandImage
         if(paymentTextField.isValid) {
             paymentTextField.endEditing(true)
+            swipePaymentSelectionLabel.text = "Submit payment"
         }
     }
     
@@ -321,12 +322,14 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
                     case .Success:
                         if let value = response.result.value {
                             let json = JSON(value)
-                            // print(json)
+                             print(json)
                             print(PKPaymentAuthorizationStatus.Success)
+                            self.showPersonalInformationModal(self, amount: 0)
                             self.payButton.userInteractionEnabled = true
                             self.paymentTextField.clear()
                             self.showAlert("Payment for " + self.chargeInputView.text! + " succeeded!", color: UIColor.skyBlue(), image:UIImage(named: "ic_check_light")!, title: "Success")
                             self.swipeArrowImageView.image = UIImage(named: "ic_arrow_down_gray")
+                            swipePaymentSelectionLabel.text = "Swipe down to select payment option"
                             self.chargeInputView.text == ""
                         }
                     case .Failure(let error):
@@ -350,6 +353,8 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         paymentTextField.frame = CGRectMake(-15, 300, screenWidth+15, 80)
         paymentTextField.textColor = UIColor.lightBlue()
         paymentTextField.textErrorColor = UIColor.brandRed()
+        paymentTextField.placeholderColor = UIColor.lightBlue().colorWithAlphaComponent(0.3)
+        paymentTextField.contentVerticalAlignment = .Center
         paymentTextField.delegate = self
         paymentTextField.borderWidth = 1
         paymentTextField.borderColor = UIColor.offWhite()
@@ -357,20 +362,6 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         // adds a manual credit card entry textfield
         addSubviewWithBounce(paymentTextField, parentView: self, duration: 0.3)
         paymentTextField.becomeFirstResponder()
-        
-        // add email receipt button
-        let emailReceiptButton = UIButton()
-        emailReceiptButton.frame = CGRectMake(0, 370, screenWidth, 80)
-        let str = NSAttributedString(string: "Email me a receipt", attributes: [
-            NSFontAttributeName: UIFont.systemFontOfSize(12, weight: UIFontWeightThin),
-            NSForegroundColorAttributeName:UIColor.lightBlue()
-        ])
-        emailReceiptButton.setAttributedTitle(str, forState: .Normal)
-        emailReceiptButton.setTitleColor(UIColor.lightBlue(), forState: .Normal)
-        emailReceiptButton.setTitleColor(UIColor.mediumBlue(), forState: .Highlighted)
-        emailReceiptButton.setTitleColor(UIColor.mediumBlue(), forState: .Selected)
-        addSubviewWithFade(emailReceiptButton, parentView: self, duration: 1)
-        // add target to bring up email receipt modal
         
         let maskCardImageView = UIView()
         maskCardImageView.backgroundColor = UIColor.whiteColor()
@@ -545,5 +536,43 @@ extension ChargeViewController {
                 self.presentViewController(formSheetController, animated: true, completion: nil)
             }
         }
+    }
+}
+
+
+extension ChargeViewController {
+    
+    // MARK: Personal Information receipt modal
+    
+    func showPersonalInformationModal(sender: AnyObject, amount: Int) {
+        let navigationController = self.storyboard!.instantiateViewControllerWithIdentifier("personalInformationEntryModalNavigationController") as! UINavigationController
+        let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
+        
+        print("showing ssn modal")
+        // Initialize and style the terms and conditions modal
+        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
+        formSheetController.presentationController?.contentViewSize = CGSizeMake(300, 300)
+        formSheetController.presentationController?.shouldUseMotionEffect = true
+        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
+        formSheetController.presentationController?.containerView?.sizeToFit()
+        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
+        formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
+        formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
+        formSheetController.contentViewCornerRadius = 10
+        formSheetController.allowDismissByPanningPresentedView = true
+        formSheetController.interactivePanGestureDismissalDirection = .All;
+        
+        // Blur will be applied to all MZFormSheetPresentationControllers by default
+        MZFormSheetPresentationController.appearance().shouldApplyBackgroundBlurEffect = true
+        
+        let presentedViewController = navigationController.viewControllers.first as! PersonInformationEntryModalViewController
+        
+        // keep passing along user data to modal
+        presentedViewController.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
+        presentedViewController.navigationItem.leftItemsSupplementBackButton = true
+        
+        presentedViewController.detailAmount = amount
+        self.presentViewController(formSheetController, animated: true, completion: nil)
+
     }
 }

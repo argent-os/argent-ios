@@ -131,6 +131,7 @@
 		30CF713B1D012B1E007B5E17 /* CreditCardEntryModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CF713A1D012B1E007B5E17 /* CreditCardEntryModalViewController.swift */; };
 		30CF713E1D022DBE007B5E17 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CF713D1D022DBE007B5E17 /* User.swift */; };
 		30CF71471D03C0F7007B5E17 /* ChargePaymentSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CF71461D03C0F7007B5E17 /* ChargePaymentSelectionViewController.swift */; };
+		30CF714A1D0485F2007B5E17 /* PersonInformationEntryModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CF71491D0485F2007B5E17 /* PersonInformationEntryModalViewController.swift */; };
 		30D526761CDB9814001B41BA /* BitcoinUriViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526751CDB9814001B41BA /* BitcoinUriViewController.swift */; };
 		30D526781CDBB4A0001B41BA /* Bitcoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526771CDBB4A0001B41BA /* Bitcoin.swift */; };
 		30D5267D1CDE3736001B41BA /* ConfigureAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D5267C1CDE3736001B41BA /* ConfigureAppViewController.swift */; };
@@ -361,6 +362,7 @@
 		30CF713A1D012B1E007B5E17 /* CreditCardEntryModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreditCardEntryModalViewController.swift; path = "app-ios/CreditCardEntryModalViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30CF713D1D022DBE007B5E17 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		30CF71461D03C0F7007B5E17 /* ChargePaymentSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChargePaymentSelectionViewController.swift; path = "app-ios/ChargePaymentSelectionViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30CF71491D0485F2007B5E17 /* PersonInformationEntryModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersonInformationEntryModalViewController.swift; path = "app-ios/PersonInformationEntryModalViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30D526751CDB9814001B41BA /* BitcoinUriViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BitcoinUriViewController.swift; path = "app-ios/BitcoinUriViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30D526771CDBB4A0001B41BA /* Bitcoin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Bitcoin.swift; path = "app-ios/Bitcoin.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		30D5267C1CDE3736001B41BA /* ConfigureAppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigureAppViewController.swift; path = "app-ios/ConfigureAppViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -619,6 +621,7 @@
 				30C2DAC81CA43853003AFD8B /* MenuViewController.swift */,
 				30C2DAC21CA4383B003AFD8B /* NotificationViewController.swift */,
 				30C2DAC01CA43836003AFD8B /* ProfileViewController.swift */,
+				30CF71481D0485D4007B5E17 /* Modals */,
 				30128DDE1C8FAC6E009E2EA7 /* Subviews */,
 			);
 			name = Tabs;
@@ -648,7 +651,6 @@
 		308AC9B71C9F79830040EF3C /* Card */ = {
 			isa = PBXGroup;
 			children = (
-				30CF713F1D026FCE007B5E17 /* Modal */,
 				30C2DACC1CA43862003AFD8B /* CreditCardAccountViewController.swift */,
 				300E42301CB7123E004316CF /* CreditCardListViewController.swift */,
 			);
@@ -822,12 +824,13 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		30CF713F1D026FCE007B5E17 /* Modal */ = {
+		30CF71481D0485D4007B5E17 /* Modals */ = {
 			isa = PBXGroup;
 			children = (
 				30CF713A1D012B1E007B5E17 /* CreditCardEntryModalViewController.swift */,
+				30CF71491D0485F2007B5E17 /* PersonInformationEntryModalViewController.swift */,
 			);
-			name = Modal;
+			name = Modals;
 			sourceTree = "<group>";
 		};
 		30D526791CDD8874001B41BA /* Customer */ = {
@@ -1535,6 +1538,7 @@
 				30089F431CF93CA600A2496B /* MerchantPlansViewController.swift in Sources */,
 				30C2DAE11CA43909003AFD8B /* FormerInputAccessoryView.swift in Sources */,
 				306DF0091CD991CB00864CAE /* Customer.swift in Sources */,
+				30CF714A1D0485F2007B5E17 /* PersonInformationEntryModalViewController.swift in Sources */,
 				30D526821CDF7762001B41BA /* ActionData.swift in Sources */,
 				30C2DAA91CA4374F003AFD8B /* SignupViewControllerThree.swift in Sources */,
 				30D5268A1CDFAEC3001B41BA /* PayMerchantViewController.swift in Sources */,
