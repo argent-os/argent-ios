@@ -239,11 +239,11 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
             $0.textField.autocapitalizationType = .None
             $0.textField.keyboardType = .NumberPad
             }.configure {
-                $0.placeholder = "e.g. '3' and 'day' bills every 3 days"
+                $0.placeholder = "e.g. '1' and 'month' bills every 1 month"
                 $0.rowHeight = 60
             }.onTextChanged { [weak self] in
                 if self?.dic["planIntervalKey"] == "year" && Int($0) > 1 {
-                    self!.showAlert("Interval for yearly plans cannot be greater than 1", color: UIColor.brandRed(), icon: "ic_close_light")
+                    self!.showAlert("Error", msg: "Interval for yearly plans cannot be greater than 1", color: UIColor.brandRed(), icon: "ic_close_light")
                 } else {
                     self?.dic["planIntervalCountKey"] = $0
                 }
@@ -270,12 +270,12 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         Plan.createPlan(dic) { (bool, err) in
             if bool == true {
                 if let msg = self.dic["planNameKey"] {
-                    self.showAlert(msg + " plan created!", color: UIColor.brandGreen(), icon: "ic_check_light")
+                    self.showAlert("Success", msg: msg + " plan created!", color: UIColor.brandGreen(), icon: "ic_check_light")
                     self.amountInputView.text = ""
                     self.perIntervalLabel.text = ""
                 }
             } else {
-                self.showAlert(err, color: UIColor.brandRed(), icon: "ic_close_light")
+                self.showAlert("Error", msg: err, color: UIColor.brandRed(), icon: "ic_close_light")
             }
         }
     }
@@ -284,12 +284,12 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         self.view.window!.rootViewController!.dismissViewControllerAnimated(true, completion: { _ in })
     }
     
-    func showAlert(msg: String, color: UIColor, icon: String) {
+    func showAlert(title: String, msg: String, color: UIColor, icon: String) {
         let customIcon:UIImage = UIImage(named: icon)! // your custom icon UIImage
         self.view.endEditing(true)
         let alertView = JSSAlertView().show(
             self,
-            title: "",
+            title: title,
             text: msg,
             buttonText: "Close",
             noButtons: false,

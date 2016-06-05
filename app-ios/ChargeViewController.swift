@@ -210,7 +210,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         
         let option = data!["option"]
         option.map { (unwrappedOption) -> Void in
-            print(unwrappedOption)
+            // print(unwrappedOption)
             if unwrappedOption as! String == "bitcoin" {
                 swipePaymentSelectionLabel.text = "Use any Bitcoin wallet to send BTC"
                 swipeArrowImageView.image = UIImage(named: "LogoBitcoinDark")
@@ -220,7 +220,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
             } else if unwrappedOption as! String == "card" {
                 swipePaymentSelectionLabel.text = "Enter credit card information"
                 swipeArrowImageView.image = paymentTextField.brandImage
-                swipeArrowImageView.image?.alpha(0.5)
+                swipeArrowImageView.alpha = 0.5
                 addSubviewWithFade(self.payButton, parentView: self, duration: 1)
                 addScanCardButton()
                 self.payWithCard(self)
@@ -238,7 +238,8 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
     }
     
     func paymentCardTextFieldDidChange(textField: STPPaymentCardTextField) {
-        print(paymentTextField.brandImage)
+        // print(paymentTextField.brandImage)
+        swipeArrowImageView.alpha = 1
         swipeArrowImageView.image = paymentTextField.brandImage
         if(paymentTextField.isValid) {
             paymentTextField.endEditing(true)
@@ -256,6 +257,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         showGlobalNotification("Paying merchant " + chargeInputView.text!, duration: 1.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
 
         if(chargeInputView.text != "" || chargeInputView.text != "$0.00") {
+            payButton.userInteractionEnabled = false
             // print("civ passes check")
             if let card = paymentTextField.card {
                 // print("got card")
@@ -322,7 +324,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
                     case .Success:
                         if let value = response.result.value {
                             let json = JSON(value)
-                             print(json)
+                            //print(json)
                             print(PKPaymentAuthorizationStatus.Success)
                             self.showPersonalInformationModal(self, amount: 0)
                             self.payButton.userInteractionEnabled = true
@@ -548,7 +550,6 @@ extension ChargeViewController {
         let navigationController = self.storyboard!.instantiateViewControllerWithIdentifier("personalInformationEntryModalNavigationController") as! UINavigationController
         let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
         
-        print("showing ssn modal")
         // Initialize and style the terms and conditions modal
         formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
         formSheetController.presentationController?.contentViewSize = CGSizeMake(300, 300)
@@ -571,7 +572,10 @@ extension ChargeViewController {
         presentedViewController.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
         presentedViewController.navigationItem.leftItemsSupplementBackButton = true
         
-        presentedViewController.detailAmount = amount
+        var str = chargeInputView.text
+        str?.removeAtIndex(str!.characters.indices.first!) // remove first letter
+        let intValue = Int((str! as NSString).floatValue*100)
+        presentedViewController.detailAmount = intValue
         self.presentViewController(formSheetController, animated: true, completion: nil)
 
     }

@@ -65,9 +65,10 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
         informationTextField.textColor = UIColor.lightBlue()
         informationTextField.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
         informationTextField.layer.cornerRadius = 10
-        informationTextField.layer.borderWidth = 1
+        informationTextField.layer.borderWidth = 0
         informationTextField.textAlignment = .Center
         informationTextField.autocapitalizationType = .None
+        informationTextField.autocorrectionType = .No
         informationTextField.keyboardType = .EmailAddress
         informationTextField.becomeFirstResponder()
 
@@ -83,8 +84,7 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
         let str = NSAttributedString(string: "Submit", attributes: attribs)
         submitInformationButton.setAttributedTitle(str, forState: .Normal)
-        submitInformationButton.addTarget(self, action: #selector(self.sendInformation(_:)), forControlEvents: .TouchUpInside)
-        
+        submitInformationButton.addTarget(self, action: #selector(self.configureBeforeSendingReceipt(_:)), forControlEvents: .TouchUpInside)
         
         yesButton.setBackgroundColor(UIColor.lightBlue(), forState: .Normal)
         yesButton.frame = CGRect(x: 155, y: 230, width: 130, height: 50)
@@ -157,44 +157,56 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
         informationTextField.endEditing(true)
     }
     
-    func sendInformation(sender: AnyObject) {
-        // Function for toolbar button
-        // pay merchant
-        showGlobalNotification("Receipt sent!", duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
-        informationTextField.text = ""
-        self.dismissViewControllerAnimated(true) { 
-            //
+    func configureBeforeSendingReceipt(sender: AnyObject) {
+        addActivityIndicatorButton(UIActivityIndicatorView(), button: submitInformationButton, color: .White)
+        if informationTextField.text != "" && detailAmount != 0 {
+            print("sending email receipt")
+            self.sendInformation(self, email: informationTextField.text!, amount: detailAmount!)
+        } else {
+            showGlobalNotification("Amount nil or email empty!", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.neonOrange())
         }
     }
     
-//    func sendInformation(sender: AnyObject, email: String, completion: PKPaymentAuthorizationStatus -> ()) {
-//        // SEND REQUEST TO Argent API ENDPOINT TO SEND RECEIPT
-//        
-//        User.getProfile { (user, err) in
-//            
-//            guard let info = self.informationTextField.text else {
-//                return
-//            }
-//            
-//            let headers : [String : String] = [
-//                "Content-Type": "application/json"
-//            ]
-//            
-//            let parameters = [:]
-//            
-//            // /v1/receipt/8s9g8a0sd9asdjk2/customer?=john@doe.com
-//            Alamofire.request(.POST, API_URL + "/v1/receipt/" + (user?.id)! + "/customer?=" + info, parameters: parameters as! [String : AnyObject], encoding: .JSON, headers: headers)
-//                .responseJSON { (response) in
-//                    switch response.result {
-//                    case .Success:
-//                        if let value = response.result.value {
-//                            showGlobalNotification("Message sent!", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandGreen())
-//                            self.informationTextField.text = ""
-//                        }
-//                    case .Failure(let error):
-//                        print(error)
-//                    }
-//            }
-//        }
-//    }    
+    func sendInformation(sender: AnyObject, email: String, amount: Int) {
+        // SEND REQUEST TO Argent API ENDPOINT TO SEND RECEIPT
+        
+        User.getProfile { (user, err) in
+            
+            let headers : [String : String] = [
+                "Content-Type": "application/x-www-form-urlencoded"
+            ]
+            
+            let amt = Float(amount)/100
+            let formatter = NSNumberFormatter()
+            formatter.numberStyle = .CurrencyStyle
+            let strAmt = formatter.stringFromNumber(amt) // "$123.44"
+
+            let parameters = [
+                "message": "Hello! \n\n This is an email receipt for a recent transaction made on Argent in the amount of " + strAmt! + " on " + NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .ShortStyle)
+            ]
+            
+            print("customer email is", email)
+            // /v1/receipt/8s9g8a0sd9asdjk2/customer?email=john@doe.com
+            Alamofire.request(.POST, API_URL + "/v1/receipts/" + (user?.id)! + "/customer?email=" + email, parameters: parameters, encoding: .URL, headers: headers)
+                .responseJSON { (response) in
+                    switch response.result {
+                    case .Success:
+                        if let value = response.result.value {
+                            let data = JSON(value)
+                            showGlobalNotification("Receipt sent!", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandGreen())
+                            self.informationTextField.text = ""
+                            self.dismissViewControllerAnimated(true) {
+                                //
+                            }
+                        }
+                    case .Failure(let error):
+                        print(error)
+                        showGlobalNotification("Error sending receipt", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.neonOrange())
+                        self.dismissViewControllerAnimated(true) {
+                            //
+                        }
+                    }
+            }
+        }
+    }    
 }
