@@ -60,7 +60,9 @@ target 'app-ios' do
 	pod 'M13Checkbox'
 	pod 'BTNavigationDropdownMenu'
 	pod 'VMaskTextField'
+	pod 'Shimmer'
 
+	
 	# Fabric
 	pod 'Fabric'
 	pod 'Crashlytics'

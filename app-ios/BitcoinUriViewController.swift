@@ -89,21 +89,17 @@ class BitcoinUriViewController: UIViewController {
     
 
     func pollBitcoinReceiver(sender: AnyObject) {
-
-        print("1", self.bitcoinPoller)
         
         // print("polling bitcoin")
         Bitcoin.getBitcoinReceiver(bitcoinId!) { (bitcoin, err) in
-             print(bitcoin?.id)
-             print("bitcoin filled status ", bitcoin!.filled)
+            //print(bitcoin?.id)
+            //print("bitcoin filled status ", bitcoin!.filled)
             if bitcoin?.filled == true {
-                print("invalidating timer")
-                print("2", self.bitcoinPoller)
+                // print("invalidating timer")
                 self.bitcoinPoller!.invalidate()
                 self.dismissViewControllerAnimated(true, completion: {
                     // print("bitcoin receiver for bitcoin id " + self.bitcoinId! + " filled!")
-                    showGlobalNotification(String((bitcoin?.amount)!/100000000) + " BTC received!", duration: 5.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor(rgba: "#FF9900"))
-                    //
+                    showGlobalNotification(String((bitcoin?.amount)!/100000000) + " BTC received!", duration: 5.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.bitcoinOrange())
                 })
             }
         }

@@ -1,6 +1,5 @@
 PODS:
   - 1PasswordExtension (1.8.2)
-  - ABPadLockScreen (3.4.1)
   - Alamofire (3.2.1)
   - AnimatedSegmentSwitch (0.1.0)
   - Armchair (0.1.1)
@@ -46,6 +45,7 @@ PODS:
   - plaid-ios-sdk (0.3.6)
   - QRCode (0.5)
   - SFDraggableDialogView (1.1.4)
+  - Shimmer (1.0.2)
   - SnapKit (0.21.0)
   - StepSlider (0.1.2)
   - Stripe (7.0.2)
@@ -64,7 +64,6 @@ PODS:
 
 DEPENDENCIES:
   - 1PasswordExtension
-  - ABPadLockScreen
   - Alamofire (~> 3.2.1)
   - AnimatedSegmentSwitch
   - Armchair
@@ -105,6 +104,7 @@ DEPENDENCIES:
   - plaid-ios-sdk
   - QRCode
   - SFDraggableDialogView
+  - Shimmer
   - SnapKit
   - StepSlider
   - Stripe
@@ -128,7 +128,6 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   1PasswordExtension: 303f2b7bbf6dc19ede3090bd6b5987530648d687
-  ABPadLockScreen: 4185a25c40291946071aa12908c0d0ad242bc420
   Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
   AnimatedSegmentSwitch: 7bc126b7b433f4a1b4fb6546abe405cd4b5163ae
   Armchair: 276f0dadba704b562870613301bdf7b595a29315
@@ -170,6 +169,7 @@ SPEC CHECKSUMS:
   plaid-ios-sdk: e9865b0fe6a79b3d30d886171d7a26f7e1408935
   QRCode: a249ed747aeb0f4bf5f9c58b5b001b6b3bc80073
   SFDraggableDialogView: cfe9b80b5fff19f7e0fda86dcabee8b03a4c3b44
+  Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
   SnapKit: 2756fe24b706367af224c9c508d2f9166d03354c
   StepSlider: 54466ab1de9002435b6839091f97ff62967fdd7e
   Stripe: d1eae5522cf993590f962ac1829a56c2096cf486

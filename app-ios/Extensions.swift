@@ -181,6 +181,13 @@ extension UIColor {
             return UIColor(rgba: "#f28225").invertColor()
         }
     }
+    static func bitcoinOrange() -> UIColor {
+        if APP_THEME == "LIGHT" {
+            return UIColor(rgba: "#FF9900")
+        } else {
+            return UIColor(rgba: "#FF9900").invertColor()
+        }
+    }
     static func neonPink() -> UIColor {
         if APP_THEME == "LIGHT" {
             return UIColor(rgba: "#fd0981")
@@ -291,6 +298,7 @@ func formatCurrency(amount: String, fontName: String, superSize: CGFloat, fontSi
         attString.setAttributes([NSFontAttributeName:fontSuper!,NSBaselineOffsetAttributeName:offsetSymbol], range: NSRange(location:0,length:1))
         attString.setAttributes([NSFontAttributeName:fontSuper!,NSBaselineOffsetAttributeName:offsetCents], range: NSRange(location:(amt?.characters.count)!-2,length:2))
     }
+    
     return attString
 }
 

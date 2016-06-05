@@ -130,6 +130,7 @@
 		30CF71391D01238A007B5E17 /* IdentitySSNModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CF71381D01238A007B5E17 /* IdentitySSNModalViewController.swift */; };
 		30CF713B1D012B1E007B5E17 /* CreditCardEntryModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CF713A1D012B1E007B5E17 /* CreditCardEntryModalViewController.swift */; };
 		30CF713E1D022DBE007B5E17 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CF713D1D022DBE007B5E17 /* User.swift */; };
+		30CF71471D03C0F7007B5E17 /* ChargePaymentSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CF71461D03C0F7007B5E17 /* ChargePaymentSelectionViewController.swift */; };
 		30D526761CDB9814001B41BA /* BitcoinUriViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526751CDB9814001B41BA /* BitcoinUriViewController.swift */; };
 		30D526781CDBB4A0001B41BA /* Bitcoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526771CDBB4A0001B41BA /* Bitcoin.swift */; };
 		30D5267D1CDE3736001B41BA /* ConfigureAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D5267C1CDE3736001B41BA /* ConfigureAppViewController.swift */; };
@@ -359,6 +360,7 @@
 		30CF71381D01238A007B5E17 /* IdentitySSNModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IdentitySSNModalViewController.swift; path = "app-ios/IdentitySSNModalViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30CF713A1D012B1E007B5E17 /* CreditCardEntryModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreditCardEntryModalViewController.swift; path = "app-ios/CreditCardEntryModalViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30CF713D1D022DBE007B5E17 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		30CF71461D03C0F7007B5E17 /* ChargePaymentSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChargePaymentSelectionViewController.swift; path = "app-ios/ChargePaymentSelectionViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30D526751CDB9814001B41BA /* BitcoinUriViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BitcoinUriViewController.swift; path = "app-ios/BitcoinUriViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30D526771CDBB4A0001B41BA /* Bitcoin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Bitcoin.swift; path = "app-ios/Bitcoin.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		30D5267C1CDE3736001B41BA /* ConfigureAppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigureAppViewController.swift; path = "app-ios/ConfigureAppViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -674,6 +676,7 @@
 			isa = PBXGroup;
 			children = (
 				30C2DAF41CA43967003AFD8B /* ChargeViewController.swift */,
+				30CF71461D03C0F7007B5E17 /* ChargePaymentSelectionViewController.swift */,
 				30D526751CDB9814001B41BA /* BitcoinUriViewController.swift */,
 			);
 			name = Charge;
@@ -1522,6 +1525,7 @@
 				30C2DACB1CA4385C003AFD8B /* ProfileMenuViewController.swift in Sources */,
 				30FF6FD51CF221A200A46A1E /* Account.swift in Sources */,
 				30C2DAB31CA437B2003AFD8B /* TermsViewController.swift in Sources */,
+				30CF71471D03C0F7007B5E17 /* ChargePaymentSelectionViewController.swift in Sources */,
 				30CF713B1D012B1E007B5E17 /* CreditCardEntryModalViewController.swift in Sources */,
 				308073081CFF39230070C7FE /* CustomersListTableViewController.swift in Sources */,
 				300E422B1CB47428004316CF /* BankConnectedListTableViewController.swift in Sources */,

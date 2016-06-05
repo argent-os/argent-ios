@@ -1678,6 +1678,25 @@ We support both debit and credit.</string>
             </objects>
             <point key="canvasLocation" x="2280" y="-772"/>
         </scene>
+        <!--Charge Payment Selection View Controller-->
+        <scene sceneID="LYK-bB-q7w">
+            <objects>
+                <viewController storyboardIdentifier="ChargePaymentSelectionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9X7-zb-1Io" customClass="ChargePaymentSelectionViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yrD-Bz-lsM"/>
+                        <viewControllerLayoutGuide type="bottom" id="n7s-QC-nrf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pSl-vf-RYR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Q5-Ok-71q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1091" y="-2482"/>
+        </scene>
         <!--Menu View Controller-->
         <scene sceneID="cuD-tq-Zje">
             <objects>
