@@ -181,10 +181,8 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         payButton.layer.masksToBounds = true
         payButton.clipsToBounds = true
         payButton.addTarget(self, action: #selector(ChargeViewController.save(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        Timeout(0.6) {
-            addSubviewWithFade(self.payButton, parentView: self, duration: 1)
-        }
-        
+        //addSubviewWithFade(self.payButton, parentView: self, duration: 1)
+
         currencyFormatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
         currencyFormatter.currencyCode = NSLocale.currentLocale().displayNameForKey(NSLocaleCurrencySymbol, value: NSLocaleCurrencyCode)
     }
@@ -217,18 +215,20 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
                 swipePaymentSelectionLabel.text = "Use any Bitcoin wallet to send BTC"
                 swipeArrowImageView.image = UIImage(named: "LogoBitcoinDark")
                 paymentTextField.removeFromSuperview()
+                self.payButton.removeFromSuperview()
                 self.payWithBitcoin(self)
             } else if unwrappedOption as! String == "card" {
                 swipePaymentSelectionLabel.text = "Enter credit card information"
                 swipeArrowImageView.image = paymentTextField.brandImage
                 swipeArrowImageView.image?.alpha(0.5)
-                print(paymentTextField.brandImage)
+                addSubviewWithFade(self.payButton, parentView: self, duration: 1)
                 addScanCardButton()
                 self.payWithCard(self)
             } else if unwrappedOption as! String == "alipay" {
                 swipePaymentSelectionLabel.text = "Swipe down to select payment option"
                 swipeArrowImageView.image = UIImage(named: "ic_arrow_down_gray")
                 paymentTextField.removeFromSuperview()
+                self.payButton.removeFromSuperview()
                 showAlert("Alipay is not currently supported! But we are working on adding it soon.", color: UIColor.alipayBlue(), image: UIImage(named: "LogoAlipay")!, title: "Alipay")
             } else if unwrappedOption as! String == "none" {
                 swipePaymentSelectionLabel.text = "Swipe down to select payment option"
@@ -326,6 +326,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
                             self.payButton.userInteractionEnabled = true
                             self.paymentTextField.clear()
                             self.showAlert("Payment for " + self.chargeInputView.text! + " succeeded!", color: UIColor.skyBlue(), image:UIImage(named: "ic_check_light")!, title: "Success")
+                            self.swipeArrowImageView.image = UIImage(named: "ic_arrow_down_gray")
                             self.chargeInputView.text == ""
                         }
                     case .Failure(let error):
@@ -356,6 +357,20 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         // adds a manual credit card entry textfield
         addSubviewWithBounce(paymentTextField, parentView: self, duration: 0.3)
         paymentTextField.becomeFirstResponder()
+        
+        // add email receipt button
+        let emailReceiptButton = UIButton()
+        emailReceiptButton.frame = CGRectMake(0, 370, screenWidth, 80)
+        let str = NSAttributedString(string: "Email me a receipt", attributes: [
+            NSFontAttributeName: UIFont.systemFontOfSize(12, weight: UIFontWeightThin),
+            NSForegroundColorAttributeName:UIColor.lightBlue()
+        ])
+        emailReceiptButton.setAttributedTitle(str, forState: .Normal)
+        emailReceiptButton.setTitleColor(UIColor.lightBlue(), forState: .Normal)
+        emailReceiptButton.setTitleColor(UIColor.mediumBlue(), forState: .Highlighted)
+        emailReceiptButton.setTitleColor(UIColor.mediumBlue(), forState: .Selected)
+        addSubviewWithFade(emailReceiptButton, parentView: self, duration: 1)
+        // add target to bring up email receipt modal
         
         let maskCardImageView = UIView()
         maskCardImageView.backgroundColor = UIColor.whiteColor()
@@ -448,6 +463,10 @@ extension ChargeViewController: CardIOPaymentViewControllerDelegate {
             card.expYear = info.expiryYear
             card.cvc = info.cvv
             paymentTextField.card = card
+            swipePaymentSelectionLabel.text = "Submit payment"
+            Timeout(0.2) {
+                self.paymentTextField.endEditing(true)
+            }
         }
         paymentViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
