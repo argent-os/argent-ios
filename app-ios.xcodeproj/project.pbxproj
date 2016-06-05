@@ -708,10 +708,10 @@
 			children = (
 				30B576921CC7D1CE005BCA5A /* SearchDetailViewController.swift */,
 				3008AA451CF8BC3900AFE855 /* SearchMessageViewController.swift */,
+				30D526891CDFAEC3001B41BA /* PayMerchantViewController.swift */,
 				30D526831CDF776A001B41BA /* OptionsCell.xib */,
 				30D526851CDF8675001B41BA /* OptionsCell.swift */,
 				30D526811CDF7762001B41BA /* ActionData.swift */,
-				30D526891CDFAEC3001B41BA /* PayMerchantViewController.swift */,
 				30089F441CFA6E4300A2496B /* MerchantPlanCell.xib */,
 				30089F461CFA860E00A2496B /* MerchantPlanCell.swift */,
 				30089F421CF93CA600A2496B /* MerchantPlansViewController.swift */,

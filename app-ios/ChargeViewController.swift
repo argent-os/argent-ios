@@ -329,7 +329,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
                             self.paymentTextField.clear()
                             self.showAlert("Payment for " + self.chargeInputView.text! + " succeeded!", color: UIColor.skyBlue(), image:UIImage(named: "ic_check_light")!, title: "Success")
                             self.swipeArrowImageView.image = UIImage(named: "ic_arrow_down_gray")
-                            swipePaymentSelectionLabel.text = "Swipe down to select payment option"
+                            self.swipePaymentSelectionLabel.text = "Swipe down to select payment option"
                             self.chargeInputView.text == ""
                         }
                     case .Failure(let error):

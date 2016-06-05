@@ -208,7 +208,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         // print("in payment auth")
         handlePaymentAuthorizationWithPayment(payment) { (PKPaymentAuthorizationStatus) -> () in
             // close pay modal
-            showGlobalNotification("Paid " + (self.detailUser?.username)! + " successfully!", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.skyBlue())
+            showGlobalNotification("Paid " + (self.detailUser?.username)! + " successfully!", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
             // print("success")
             controller.dismissViewControllerAnimated(true, completion: nil)
             self.chargeInputView.text == ""
@@ -331,9 +331,10 @@ extension PayMerchantViewController {
         } else {
             var str = chargeInputView.text
             str?.removeAtIndex(str!.characters.indices.first!) // remove first letter
-            let floatValue = (str! as NSString).floatValue
-            let amountInCents = Int(floatValue*100)
-            presentedViewController.detailAmount = amountInCents
+            let amount = (str! as NSString).floatValue
+            presentedViewController.detailAmount = amount
+            presentedViewController.paymentType = "once"
+            presentedViewController.planId = ""
             
             // Be sure to update current module on storyboard
             self.presentViewController(formSheetController, animated: true, completion: nil)

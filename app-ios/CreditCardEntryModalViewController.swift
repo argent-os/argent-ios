@@ -23,7 +23,11 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
     
     var paymentTextField = STPPaymentCardTextField()
 
-    var detailAmount: Int?
+    var paymentType: String?
+
+    var planId: String?
+
+    var detailAmount: Float?
 
     var detailUser: User? {
         didSet {
@@ -108,6 +112,7 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
                     print(error)
                 }
                 else if let token = token {
+                    // determine whether one-time bill payment or recurring revenue payment
                     self.createBackendChargeWithToken(token) { status in
                         print(status)
                     }
@@ -150,22 +155,44 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
         print("creating backend token")
         User.getProfile { (user, NSError) in
             print(self.detailUser?.username)
-            let url = API_URL + "/v1/stripe/" + (user?.id)! + "/charge/" + (self.detailUser?.username)!
+            
+            let amountInCents = Int(self.detailAmount!*100)
+            
+            let url: String?
+            if self.paymentType == "recurring" {
+                url = API_URL + "/v1/stripe/" + (user?.id)! + "/subscriptions/" + (self.detailUser?.username)!
+            } else if self.paymentType == "once" {
+                url = API_URL + "/v1/stripe/" + (user?.id)! + "/charge/" + (self.detailUser?.username)!
+            } else {
+                url = API_URL + "/v1/stripe/"
+            }
+            
+            var parameters = [:]
+            if self.planId != "" {
+                parameters = [
+                    "token": String(token) ?? "",
+                    "amount": amountInCents,
+                    "plan_id": self.planId!
+                ]
+            } else {
+                parameters = [
+                    "token": String(token) ?? "",
+                    "amount": amountInCents,
+                ]
+            }
             
             let headers = [
                 "Authorization": "Bearer " + String(userAccessToken),
                 "Content-Type": "application/json"
             ]
-            let parameters : [String : AnyObject] = [
-                "token": String(token) ?? "",
-                "amount": self.detailAmount!
-            ]
-            
+
             print(token)
+            print("posting to url", url)
+            print("the parameters are", parameters)
             
             // for invalid character 0 be sure the content type is application/json and enconding is .JSON
-            Alamofire.request(.POST, url,
-                parameters: parameters,
+            Alamofire.request(.POST, url!,
+                parameters: parameters as! [String : AnyObject],
                 encoding:.JSON,
                 headers: headers)
                 .responseJSON { response in
