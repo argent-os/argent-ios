@@ -121,7 +121,7 @@ class ChargePaymentSelectionViewController: UIViewController {
             guard sender.translationInView(view).y < 0 else {
                 break
             }
-            modalDelegate?.modalViewControllerDismiss(interactive: true, callbackData: nil)
+            modalDelegate?.modalViewControllerDismiss(interactive: true, callbackData: ["option":"none"])
         default : break
         }
     }

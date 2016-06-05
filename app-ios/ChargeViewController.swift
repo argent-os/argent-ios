@@ -21,6 +21,8 @@ import Shimmer
 
 class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITextFieldDelegate, UINavigationBarDelegate, ModalTransitionDelegate {
     
+    let navigationBar = UINavigationBar()
+    
     var tr_presentTransition: TRViewControllerTransitionDelegate?
 
     let chargeInputView = UITextField()
@@ -33,6 +35,10 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
 
     let payButton = UIButton()
 
+    let swipePaymentSelectionLabel = UILabel()
+
+    let swipeArrowImageView = UIImageView()
+    
     func textFieldDidChange(textField: UITextField) {
         let text = textField.text!.stringByReplacingOccurrencesOfString(currencyFormatter.currencySymbol, withString: "").stringByReplacingOccurrencesOfString(currencyFormatter.groupingSeparator, withString: "").stringByReplacingOccurrencesOfString(currencyFormatter.decimalSeparator, withString: "")
         // textField.attributedText = formatCurrency(text, fontName: "HelveticaNeue-Light", superSize: 24, fontSize: 48, offsetSymbol: 12, offsetCents: 12)
@@ -41,12 +47,12 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        chargeInputView.becomeFirstResponder()
         configure()
         setupNav()
     }
     
     override func viewDidAppear(animated: Bool) {
-        chargeInputView.becomeFirstResponder()
         super.viewDidAppear(true)
     }
     
@@ -56,8 +62,8 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
     }
     
     private func setupNav() {
-        let navigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 50)) // Offset by 20 pixels vertically to take the status bar into account
-        
+         // Offset by 20 pixels vertically to take the status bar into account
+        navigationBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 50)
         navigationBar.backgroundColor = UIColor.clearColor()
         navigationBar.tintColor = UIColor.lightBlue()
         navigationBar.delegate = self
@@ -79,6 +85,28 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         
         // Make the navigation bar a subview of the current view controller
         self.view.addSubview(navigationBar)
+    }
+    
+    func addScanCardButton() {
+        // Create left and right button for navigation item
+        let leftButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ChargeViewController.returnToMenu(_:)))
+        let font = UIFont(name: "DINAlternate-Bold", size: 14)
+        leftButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+        // Create two buttons for the navigation item
+        navigationItem.leftBarButtonItem = leftButton
+        
+        // Assign the navigation item to the navigation bar
+        navigationBar.titleTextAttributes = [NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.lightBlue()]
+        
+        // Create left and right button for navigation item
+        let rightButton = UIBarButtonItem(image: UIImage(named: "IconScanCamera"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.scanCard(_:)))
+        rightButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+        // Create two buttons for the navigation item
+        navigationItem.rightBarButtonItem = rightButton
+        
+        // Assign the navigation item to the navigation bar
+        navigationBar.titleTextAttributes = [NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.lightBlue()]
+        navigationBar.items = [navigationItem]
     }
     
     func configure() {
@@ -104,12 +132,9 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         let headerView = UIImageView()
         headerView.image = UIImage(named: "BackgroundSwipeDown")
         headerView.contentMode = .ScaleAspectFill
-        headerView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 200)
+        headerView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 140)
         self.view.addSubview(headerView)
         self.view.sendSubviewToBack(headerView)
-        
-        let contentView = UIView()
-        self.view.addSubview(contentView)
         
         // addDoneToolbar()
         
@@ -125,21 +150,26 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
             addSubviewWithBounce(self.chargeInputView, parentView: self, duration: 0.3)
         }
         
-        let shimmeringView: FBShimmeringView = FBShimmeringView(frame: self.view.bounds)
-        let swipePaymentSelectionLabel = UILabel()
+        let shimmeringView: FBShimmeringView = FBShimmeringView()
         swipePaymentSelectionLabel.text = "Swipe down to select payment option"
-        swipePaymentSelectionLabel.frame = CGRect(x: 0, y: 200, width: screenWidth, height: 120) // shimmeringView.bounds
         swipePaymentSelectionLabel.textAlignment = .Center
         swipePaymentSelectionLabel.textColor = UIColor.lightBlue()
-        swipePaymentSelectionLabel.font = UIFont.systemFontOfSize(18, weight: UIFontWeightThin)
-        self.view!.addSubview(shimmeringView)
+        swipePaymentSelectionLabel.font = UIFont.systemFontOfSize(14, weight: UIFontWeightThin)
+        swipePaymentSelectionLabel.frame = CGRect(x: 0, y: 280, width: screenWidth, height: 460) // shimmeringView.bounds
+
+        shimmeringView.frame = CGRect(x: 0, y: 280, width: screenWidth, height: 460) // shimmeringView.bounds
         shimmeringView.contentView = swipePaymentSelectionLabel
         shimmeringView.shimmering = true
-
+        addSubviewWithFade(shimmeringView, parentView: self, duration: 1)
         addSubviewWithFade(swipePaymentSelectionLabel, parentView: self, duration: 1)
         
+        swipeArrowImageView.image = UIImage(named: "ic_arrow_down_gray")
+        swipeArrowImageView.frame = CGRect(x: 0, y: 255, width: screenWidth, height: 25) // shimmeringView.bounds
+        swipeArrowImageView.contentMode = .ScaleAspectFit
+        addSubviewWithFade(swipeArrowImageView, parentView: self, duration: 1)
+        
         // Pay button
-        payButton.frame = CGRect(x: 0, y: screenHeight-80, width: screenWidth, height: 80.0)
+        payButton.frame = CGRect(x: 20, y: screenHeight-80, width: screenWidth-40, height: 60.0)
         payButton.setBackgroundColor(UIColor.lightBlue(), forState: .Normal)
         payButton.setBackgroundColor(UIColor.lightBlue().colorWithAlphaComponent(0.75), forState: .Highlighted)
         payButton.tintColor = UIColor(rgba: "#fff")
@@ -147,7 +177,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         payButton.setTitleColor(UIColor(rgba: "#fffe"), forState: .Highlighted)
         payButton.titleLabel?.font = UIFont.systemFontOfSize(16)
         payButton.setTitle("Pay Merchant", forState: .Normal)
-        payButton.layer.cornerRadius = 0
+        payButton.layer.cornerRadius = 10
         payButton.layer.masksToBounds = true
         payButton.clipsToBounds = true
         payButton.addTarget(self, action: #selector(ChargeViewController.save(_:)), forControlEvents: UIControlEvents.TouchUpInside)
@@ -179,7 +209,40 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         
         tr_dismissViewController(interactive: interactive, completion: nil)
         print("got callback data")
-        print(data)
+        
+        let option = data!["option"]
+        option.map { (unwrappedOption) -> Void in
+            print(unwrappedOption)
+            if unwrappedOption as! String == "bitcoin" {
+                swipePaymentSelectionLabel.text = "Use any Bitcoin wallet to send BTC"
+                swipeArrowImageView.image = UIImage(named: "LogoBitcoinDark")
+                paymentTextField.removeFromSuperview()
+                self.payWithBitcoin(self)
+            } else if unwrappedOption as! String == "card" {
+                swipePaymentSelectionLabel.text = "Enter credit card information"
+                swipeArrowImageView.image = paymentTextField.brandImage
+                swipeArrowImageView.image?.alpha(0.5)
+                print(paymentTextField.brandImage)
+                addScanCardButton()
+                self.payWithCard(self)
+            } else if unwrappedOption as! String == "alipay" {
+                swipePaymentSelectionLabel.text = "Swipe down to select payment option"
+                swipeArrowImageView.image = UIImage(named: "ic_arrow_down_gray")
+                paymentTextField.removeFromSuperview()
+                showAlert("Alipay is not currently supported! But we are working on adding it soon.", color: UIColor.alipayBlue(), image: UIImage(named: "LogoAlipay")!, title: "Alipay")
+            } else if unwrappedOption as! String == "none" {
+                swipePaymentSelectionLabel.text = "Swipe down to select payment option"
+                swipeArrowImageView.image = UIImage(named: "ic_arrow_down_gray")
+            }
+        }
+    }
+    
+    func paymentCardTextFieldDidChange(textField: STPPaymentCardTextField) {
+        print(paymentTextField.brandImage)
+        swipeArrowImageView.image = paymentTextField.brandImage
+        if(paymentTextField.isValid) {
+            paymentTextField.endEditing(true)
+        }
     }
     
     // STRIPE SAVE METHOD
@@ -262,7 +325,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
                             print(PKPaymentAuthorizationStatus.Success)
                             self.payButton.userInteractionEnabled = true
                             self.paymentTextField.clear()
-                            self.showAlert("Payment for " + self.chargeInputView.text! + " succeeded!", color: UIColor.skyBlue(), image:UIImage(named: "ic_check_light")!)
+                            self.showAlert("Payment for " + self.chargeInputView.text! + " succeeded!", color: UIColor.skyBlue(), image:UIImage(named: "ic_check_light")!, title: "Success")
                             self.chargeInputView.text == ""
                         }
                     case .Failure(let error):
@@ -283,32 +346,134 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         let screenWidth = screen.size.width
         _ = screen.size.height
         // Card text
-        paymentTextField.frame = CGRectMake(20, 260, screenWidth - 40, 60)
+        paymentTextField.frame = CGRectMake(-15, 300, screenWidth+15, 80)
+        paymentTextField.textColor = UIColor.lightBlue()
+        paymentTextField.textErrorColor = UIColor.brandRed()
         paymentTextField.delegate = self
         paymentTextField.borderWidth = 1
-        paymentTextField.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
-        paymentTextField.layer.cornerRadius = 10
+        paymentTextField.borderColor = UIColor.offWhite()
+        paymentTextField.layer.cornerRadius = 0
         // adds a manual credit card entry textfield
         addSubviewWithBounce(paymentTextField, parentView: self, duration: 0.3)
         paymentTextField.becomeFirstResponder()
+        
+        let maskCardImageView = UIView()
+        maskCardImageView.backgroundColor = UIColor.whiteColor()
+        maskCardImageView.frame = CGRectMake(0, 320, 30, 35)
+        self.view.addSubview(maskCardImageView)
     }
+    
+    func returnToMenu(sender: AnyObject) {
+        self.view.window!.rootViewController!.dismissViewControllerAnimated(true, completion: { _ in })
+    }
+
+    func showAlert(msg: String, color: UIColor, image: UIImage, title: String) {
+        let customIcon:UIImage = image // your custom icon UIImage
+        let customColor:UIColor = color // base color for the alert
+        self.view.endEditing(true)
+        let alertView = JSSAlertView().show(
+            self,
+            title: title,
+            text: msg,
+            buttonText: "Ok",
+            noButtons: false,
+            color: customColor,
+            iconImage: customIcon)
+        alertView.setTextTheme(.Light) // can be .Light or .Dark
+        alertView.addAction(reset)
+    }
+    
+    func reset() {
+        // this'll run if cancel is pressed after the alert is dismissed
+        paymentTextField.removeFromSuperview()
+        chargeInputView.text = ""
+    }
+
+    //Calls this function when the tap is recognized.
+    func dismissKeyboard(sender: AnyObject) {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        self.view.endEditing(true)
+        paymentTextField.endEditing(true)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        dismissKeyboard(self)
+        super.viewWillDisappear(animated)
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+}
+
+
+extension ChargeViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if let ges = gestureRecognizer as? UIPanGestureRecognizer {
+            return ges.translationInView(ges.view).y != 0
+        }
+        return false
+    }
+}
+
+extension ChargeViewController: CardIOPaymentViewControllerDelegate {
+    // CARD IO
+    @IBAction func scanCard(sender: AnyObject) {
+        let cardIOVC = CardIOPaymentViewController(paymentDelegate: self)
+        cardIOVC.hideCardIOLogo = true
+        cardIOVC.collectPostalCode = true
+        cardIOVC.allowFreelyRotatingCardGuide = true
+        cardIOVC.guideColor = UIColor.mediumBlue()
+        cardIOVC.modalPresentationStyle = .FormSheet
+        presentViewController(cardIOVC, animated: true, completion: nil)
+    }
+    
+    func userDidCancelPaymentViewController(paymentViewController: CardIOPaymentViewController!) {
+        //        resultLabel.text = "Card not entered"
+        paymentViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func didScanCard(cardInfo: CardIOCreditCardInfo) {
+        // The full card number is available as info.cardNumber, but don't log that!
+        // print("Received card info. Number: %@, expiry: %02i/%i, cvv: %@.", cardInfo.redactedCardNumber, cardInfo.expiryMonth, cardInfo.expiryYear, cardInfo.cvv);
+        // Use the card info...
+        // Post to Stripe, make API call here
+    }
+    
+    func userDidProvideCreditCardInfo(cardInfo: CardIOCreditCardInfo!, inPaymentViewController paymentViewController: CardIOPaymentViewController!) {
+        if let info = cardInfo {
+            let card: STPCardParams = STPCardParams()
+            card.number = info.cardNumber
+            card.expMonth = info.expiryMonth
+            card.expYear = info.expiryYear
+            card.cvc = info.cvv
+            paymentTextField.card = card
+        }
+        paymentViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+}
+
+extension ChargeViewController {
+    
+    // Bitcoin extensions
     
     func getCurrentBitcoinValue(completionHandler: (value: Float) -> Void) {
         Alamofire.request(.GET, "https://blockchain.info/ticker", parameters: [:], encoding: .JSON, headers: [:])
-        .validate()
-        .responseJSON { (response) in
-        switch response.result {
-            case .Success:
-                if let value = response.result.value {
-                    let data = JSON(value)
-                    let bitcoinUSDValue = data["USD"]["15m"].floatValue
-                    // print("1 bitcoin is currently worth ")
-                    // print("$", bitcoinUSDValue)
-                    completionHandler(value: bitcoinUSDValue)
+            .validate()
+            .responseJSON { (response) in
+                switch response.result {
+                case .Success:
+                    if let value = response.result.value {
+                        let data = JSON(value)
+                        let bitcoinUSDValue = data["USD"]["15m"].floatValue
+                        // print("1 bitcoin is currently worth ")
+                        // print("$", bitcoinUSDValue)
+                        completionHandler(value: bitcoinUSDValue)
+                    }
+                case .Failure(let error):
+                    print(error)
                 }
-            case .Failure(let error):
-                print(error)
-            }
         }
     }
     
@@ -342,121 +507,24 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         if chargeInputView.text != "" {
             var str = chargeInputView.text
             str?.removeAtIndex(str!.characters.indices.first!) // remove first letter
-
+            
             let floatValue = (str! as NSString).floatValue*100
             
             Bitcoin.createBitcoinReceiver(Int(floatValue)) { (bitcoin, err) in
                 
-                    presentedViewController.bitcoinUri = bitcoin?.uri ?? ""
-                    presentedViewController.bitcoinId = bitcoin?.id ?? ""
-                    presentedViewController.bitcoinFilled = bitcoin?.filled ?? false
-                    presentedViewController.bitcoinAmount = bitcoin?.amount ?? 0
+                presentedViewController.bitcoinUri = bitcoin?.uri ?? ""
+                presentedViewController.bitcoinId = bitcoin?.id ?? ""
+                presentedViewController.bitcoinFilled = bitcoin?.filled ?? false
+                presentedViewController.bitcoinAmount = bitcoin?.amount ?? 0
                 
-                    formSheetController.willPresentContentViewControllerHandler = { vc in
-                        let navigationController = vc as! UINavigationController
-                        let presentedViewController = navigationController.viewControllers.first as! BitcoinUriViewController
-                        presentedViewController.view?.layoutIfNeeded()
-                    }
-                    
-                    self.presentViewController(formSheetController, animated: true, completion: nil)
+                formSheetController.willPresentContentViewControllerHandler = { vc in
+                    let navigationController = vc as! UINavigationController
+                    let presentedViewController = navigationController.viewControllers.first as! BitcoinUriViewController
+                    presentedViewController.view?.layoutIfNeeded()
                 }
+                
+                self.presentViewController(formSheetController, animated: true, completion: nil)
             }
- 
-    }
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "selectCustomerView" {
         }
-        if(segue.identifier == "mainMenuView") {
-            let rootViewController = (self.storyboard?.instantiateViewControllerWithIdentifier("RootViewController"))! as UIViewController
-            self.presentViewController(rootViewController, animated: true, completion: nil)
-        }
-    }
-    
-    // Add send toolbar
-    func addDoneToolbar() {
-        // screen width and height:
-        let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
-        _ = screen.size.height
-        let doneToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, screenWidth, 60))
-        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: #selector(ChargeViewController.dismissKeyboard(_:)))
-        done.tintColor = UIColor.whiteColor()
-        UIToolbar.appearance().barTintColor = UIColor.lightBlue()
-        done.setTitleTextAttributes([
-            NSFontAttributeName : UIFont(name: "DINAlternate-Bold", size: 15)!,
-            NSForegroundColorAttributeName : UIColor(rgba: "#fff")
-            ], forState: .Normal)
-        var items: [UIBarButtonItem]? = [UIBarButtonItem]()
-        items?.append(flexSpace)
-        items?.append(done)
-        items?.append(flexSpace)
-        doneToolbar.items = items
-        doneToolbar.sizeToFit()
-        chargeInputView.inputAccessoryView=doneToolbar
-    }
-    
-    func createCharge(sender: AnyObject) {
-        
-    }
-    
-    func returnToMenu(sender: AnyObject) {
-        self.view.window!.rootViewController!.dismissViewControllerAnimated(true, completion: { _ in })
-    }
-
-    func showAlert(msg: String, color: UIColor, image: UIImage) {
-        let customIcon:UIImage = image // your custom icon UIImage
-        let customColor:UIColor = color // base color for the alert
-        self.view.endEditing(true)
-        let alertView = JSSAlertView().show(
-            self,
-            title: "",
-            text: msg,
-            buttonText: "Ok",
-            noButtons: false,
-            color: customColor,
-            iconImage: customIcon)
-        alertView.setTextTheme(.Light) // can be .Light or .Dark
-        alertView.addAction(reset)
-    }
-    
-    func reset() {
-        // this'll run if cancel is pressed after the alert is dismissed
-        paymentTextField.removeFromSuperview()
-        chargeInputView.text = ""
-    }
-    
-    func paymentCardTextFieldDidChange(textField: STPPaymentCardTextField) {
-        if(paymentTextField.isValid) {
-            paymentTextField.endEditing(true)
-        }
-    }
-    
-    //Calls this function when the tap is recognized.
-    func dismissKeyboard(sender: AnyObject) {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
-        self.view.endEditing(true)
-        paymentTextField.endEditing(true)
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        dismissKeyboard(self)
-        super.viewWillDisappear(animated)
-    }
-    
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-}
-
-
-extension ChargeViewController: UIGestureRecognizerDelegate {
-    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
-        if let ges = gestureRecognizer as? UIPanGestureRecognizer {
-            return ges.translationInView(ges.view).y != 0
-        }
-        return false
     }
 }

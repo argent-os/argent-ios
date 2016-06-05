@@ -104,6 +104,13 @@ extension UIColor {
             return UIColor(rgba: "#00b5ff")
         }
     }
+    static func alipayBlue() -> UIColor {
+        if APP_THEME == "LIGHT" {
+            return UIColor(rgba: "#1aa1e6")
+        } else {
+            return UIColor(rgba: "#1aa1e6")
+        }
+    }
     static func limeGreen() -> UIColor {
         if APP_THEME == "LIGHT" {
             return UIColor(rgba: "#d8ff52")
