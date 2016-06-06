@@ -51,7 +51,7 @@ class MenuDetailViewController: UIViewController, ModalTransitionDelegate {
         swipeArrowImageView.image = UIImage(named: "ic_arrow_up_gray")
         swipeArrowImageView.frame = CGRect(x: 0, y: screenHeight-55, width: screenWidth, height: 20) // shimmeringView.bounds
         swipeArrowImageView.contentMode = .ScaleAspectFit
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissModal))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissModal(_:)))
         swipeArrowImageView.addGestureRecognizer(tap)
         addSubviewWithFade(swipeArrowImageView, parentView: self, duration: 1)
         
@@ -70,8 +70,8 @@ class MenuDetailViewController: UIViewController, ModalTransitionDelegate {
         btn1.setAttributedTitle(str1, forState: .Normal)
         btn1.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
         btn1.frame = CGRect(x: 35, y: screenHeight*0.1, width: screenWidth-70, height: 120)
-        btn1.setImage(UIImage(named: "IconEmpty"), forState: .Normal)
-        btn1.setImage(UIImage(named: "IconEmpty")?.alpha(0.5), forState: .Highlighted)
+//        btn1.setImage(UIImage(named: "IconEmpty"), forState: .Normal)
+//        btn1.setImage(UIImage(named: "IconEmpty")?.alpha(0.5), forState: .Highlighted)
         btn1.layer.cornerRadius = 10
         btn1.layer.masksToBounds = true
         btn1.backgroundColor = UIColor.whiteColor()
@@ -95,8 +95,8 @@ class MenuDetailViewController: UIViewController, ModalTransitionDelegate {
         btn2.setAttributedTitle(str2, forState: .Normal)
         btn2.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
         btn2.frame = CGRect(x: 35, y: screenHeight*0.32, width: screenWidth-70, height: 120)
-        btn2.setImage(UIImage(named: "IconEmpty"), forState: .Normal)
-        btn2.setImage(UIImage(named: "IconEmpty")?.alpha(0.5), forState: .Highlighted)
+//        btn2.setImage(UIImage(named: "IconEmpty"), forState: .Normal)
+//        btn2.setImage(UIImage(named: "IconEmpty")?.alpha(0.5), forState: .Highlighted)
         btn2.layer.cornerRadius = 10
         btn2.layer.masksToBounds = true
         btn2.backgroundColor = UIColor.whiteColor()
@@ -119,8 +119,8 @@ class MenuDetailViewController: UIViewController, ModalTransitionDelegate {
             ])
         btn3.setAttributedTitle(str3, forState: .Normal)
         btn3.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
-        btn3.setImage(UIImage(named: "IconEmpty"), forState: .Normal)
-        btn3.setImage(UIImage(named: "IconEmpty")?.alpha(0.5), forState: .Highlighted)
+//        btn3.setImage(UIImage(named: "IconEmpty"), forState: .Normal)
+//        btn3.setImage(UIImage(named: "IconEmpty")?.alpha(0.5), forState: .Highlighted)
         btn3.frame = CGRect(x: 35, y: screenHeight*0.54, width: screenWidth-70, height: 120)
         btn3.layer.cornerRadius = 10
         btn3.layer.masksToBounds = true

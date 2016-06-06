@@ -87,7 +87,7 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
         submitInformationButton.addTarget(self, action: #selector(self.configureBeforeSendingReceipt(_:)), forControlEvents: .TouchUpInside)
         
         yesButton.setBackgroundColor(UIColor.lightBlue(), forState: .Normal)
-        yesButton.frame = CGRect(x: 155, y: 230, width: 130, height: 50)
+        yesButton.frame = CGRect(x: 60, y: 180, width: 180, height: 50)
         let yesStr = NSAttributedString(string: "Yes please!", attributes: [
             NSFontAttributeName: UIFont.systemFontOfSize(14, weight: UIFontWeightThin),
             NSForegroundColorAttributeName:UIColor.whiteColor()
@@ -106,7 +106,7 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
         
         noButton.setBackgroundColor(UIColor.whiteColor(), forState: .Normal)
         noButton.setBackgroundColor(UIColor.whiteColor(), forState: .Highlighted)
-        noButton.frame = CGRect(x: 0, y: 230, width: 150, height: 50)
+        noButton.frame = CGRect(x: 20, y: 240, width: 260, height: 50)
         let noStr = NSAttributedString(string: "No thanks", attributes: [
             NSFontAttributeName: UIFont.systemFontOfSize(14, weight: UIFontWeightMedium),
             NSForegroundColorAttributeName:UIColor.lightBlue()
@@ -173,7 +173,7 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
         User.getProfile { (user, err) in
             
             let headers : [String : String] = [
-                "Content-Type": "application/x-www-form-urlencoded"
+                "Content-Type": "application/json"
             ]
             
             let amt = Float(amount)/100
@@ -187,13 +187,13 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
             
             print("customer email is", email)
             // /v1/receipt/8s9g8a0sd9asdjk2/customer?email=john@doe.com
-            Alamofire.request(.POST, API_URL + "/v1/receipts/" + (user?.id)! + "/customer?email=" + email, parameters: parameters, encoding: .URL, headers: headers)
+            Alamofire.request(.POST, API_URL + "/v1/receipts/" + (user?.id)! + "/customer?email=" + email, parameters: parameters, encoding: .JSON, headers: headers)
                 .responseJSON { (response) in
                     switch response.result {
                     case .Success:
                         if let value = response.result.value {
                             //let data = JSON(value)
-                            showGlobalNotification("Receipt sent!", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandGreen())
+                            showGlobalNotification("Receipt sent!", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
                             self.informationTextField.text = ""
                             self.dismissViewControllerAnimated(true) {
                                 //

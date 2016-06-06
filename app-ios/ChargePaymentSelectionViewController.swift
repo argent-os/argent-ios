@@ -42,7 +42,7 @@ class ChargePaymentSelectionViewController: UIViewController {
         swipeArrowImageView.frame = CGRect(x: 0, y: screenHeight-55, width: screenWidth, height: 20) // shimmeringView.bounds
         swipeArrowImageView.contentMode = .ScaleAspectFit
         addSubviewWithFade(swipeArrowImageView, parentView: self, duration: 1)
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissModal))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissModal(_:)))
         swipeArrowImageView.addGestureRecognizer(tap)
         
         // pay with card

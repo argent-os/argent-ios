@@ -701,7 +701,6 @@
 			isa = PBXGroup;
 			children = (
 				30A5A3F11CF5F0EC00C9EEC2 /* IdentityVerificationViewController.swift */,
-				30CF71381D01238A007B5E17 /* IdentitySSNModalViewController.swift */,
 			);
 			name = Identity;
 			sourceTree = "<group>";
@@ -832,6 +831,7 @@
 			children = (
 				30CF713A1D012B1E007B5E17 /* CreditCardEntryModalViewController.swift */,
 				30CF71491D0485F2007B5E17 /* PersonInformationEntryModalViewController.swift */,
+				30CF71381D01238A007B5E17 /* IdentitySSNModalViewController.swift */,
 			);
 			name = Modals;
 			sourceTree = "<group>";
