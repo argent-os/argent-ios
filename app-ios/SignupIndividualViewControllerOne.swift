@@ -19,9 +19,11 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
     
     let usernameTextField  = UITextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
     let emailTextField  = UITextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
+    let dobTextField  = UITextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
     
-    // Height not adjusted button bool value
-    var alreadyAdjustedVC2:Bool = false
+    var dobDay:String = ""
+    var dobMonth:String = ""
+    var dobYear:String = ""
     
     override func viewDidAppear(animated: Bool) {
         // Focuses view controller on first name text input
@@ -119,6 +121,20 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
         emailTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.30, width: 300, height: 50)
         emailTextField.returnKeyType = UIReturnKeyType.Next
         scrollView.addSubview(emailTextField)
+        
+        dobTextField.tag = 125
+        dobTextField.textAlignment = NSTextAlignment.Center
+        dobTextField.font = UIFont.systemFontOfSize(14)
+        dobTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
+        dobTextField.layer.borderWidth = 1
+        dobTextField.layer.cornerRadius = 10
+        dobTextField.backgroundColor = UIColor.clearColor()
+        dobTextField.placeholder = "Date of Birth - MM/DD/YYYY"
+        dobTextField.keyboardType = UIKeyboardType.NumberPad
+        dobTextField.textColor = UIColor.grayColor()
+        dobTextField.clearButtonMode = UITextFieldViewMode.Never
+        dobTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.40, width: 300, height: 50)
+        scrollView.addSubview(dobTextField)
         
         // Focuses view controller on first name text input
         usernameTextField.becomeFirstResponder()
@@ -259,9 +275,27 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
             } else if(emailTextField.text?.characters.count < 1 || usernameTextField.text?.characters.count < 1) {
                 displayErrorAlertMessage("Username and email fields cannot be empty")
                 return false
+            } else if(dobMonth == "" || dobDay == "" || dobYear == "") {
+                displayErrorAlertMessage("Date of birth cannot be empty")
+                return false
+            } else if(Int(dobMonth) > 12 || Int(dobMonth) == 0 || Int(dobDay) == 0 || Int(dobDay) > 31 || Int(dobYear) > 2006 || Int(dobYear) < 1914) {
+                displayErrorAlertMessage("Month cannot be greater than 12 or equal to zero. Day cannot be greater than 31 or equal to zero, year cannot be less than 1914 or greater than 2006")
+                return false
+            } else if(Int(dobMonth)! == 02 && Int(dobDay)! > 29 && (Int(dobYear)! % 4) == 0 ) {
+                displayErrorAlertMessage("Leap years do not have more than 29 days")
+                return false
+            } else if(Int(dobMonth)! == 02 && Int(dobDay)! > 28 && (Int(dobYear)! % 4) != 0 ) {
+                displayErrorAlertMessage("Invalid entry, not a leap year")
+                return false
+            } else if((Int(dobMonth) == 02 && Int(dobDay) > 30) || (Int(dobMonth) == 04 && Int(dobDay) > 30) || (Int(dobMonth) == 06 && Int(dobDay) > 30) || (Int(dobMonth) == 09 && Int(dobDay) > 30) || (Int(dobMonth) == 11 && Int(dobDay) > 30)) {
+                displayErrorAlertMessage("The entered month does not have 31 days")
+                return false
             } else {
                 NSUserDefaults.standardUserDefaults().setValue(usernameTextField.text!, forKey: "userUsername")
                 NSUserDefaults.standardUserDefaults().setValue(emailTextField.text!, forKey: "userEmail")
+                NSUserDefaults.standardUserDefaults().setValue(dobDay, forKey: "userDobDay")
+                NSUserDefaults.standardUserDefaults().setValue(dobMonth, forKey: "userDobMonth")
+                NSUserDefaults.standardUserDefaults().setValue(dobYear, forKey: "userDobYear")
                 NSUserDefaults.standardUserDefaults().synchronize();
             }
             return true
@@ -273,4 +307,54 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
         self.view.endEditing(true)
     }
     
+}
+
+extension SignupIndividualViewControllerOne {
+    // Format dob number input textfield
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if(textField == dobTextField) {
+            let newString = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
+            let components = newString.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet)
+            
+            let decimalString : String = components.joinWithSeparator("")
+            let length = decimalString.characters.count
+            let decimalStr = decimalString as NSString
+            
+            if length == 0 || length > 8 || length > 11
+            {
+                let newLength = (textField.text! as NSString).length + (string as NSString).length - range.length as Int
+                
+                return (newLength > 8) ? false : true
+            }
+            var index = 0 as Int
+            let formattedString = NSMutableString()
+            
+            if (length - index) > 2
+            {
+                dobMonth = decimalStr.substringWithRange(NSMakeRange(index, 2))
+                formattedString.appendFormat("%@/", dobMonth)
+                //                print("dob month", dobMonth)
+                index += 2
+            }
+            if length - index > 2
+            {
+                dobDay = decimalStr.substringWithRange(NSMakeRange(index, 2))
+                formattedString.appendFormat("%@/", dobDay)
+                //                print("dob day", dobDay)
+                index += 2
+            }
+            if length - index >= 4
+            {
+                dobYear = decimalStr.substringWithRange(NSMakeRange(index, 4))
+                //                print("dob year", dobYear)
+            }
+            
+            let remainder = decimalStr.substringFromIndex(index)
+            formattedString.appendString(remainder)
+            textField.text = formattedString as String
+            return false
+        }
+        return true
+        
+    }
 }
