@@ -44,8 +44,6 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
         self.tableView?.addSubview(viewRefreshControl)
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.emptyDataSetDelegate = self
-        self.tableView.emptyDataSetSource = self
         // trick to make table lines disappear
         self.tableView.tableFooterView = UIView()
         

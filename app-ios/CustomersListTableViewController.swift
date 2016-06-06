@@ -33,6 +33,16 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
     }
     
     private func configureView() {
+        
+        let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        activityIndicator.center = tableView.center
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(activityIndicator)
+        let _ = Timeout(3) {
+            activityIndicator.stopAnimating()
+        }
+        
         self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
         
         self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
@@ -48,8 +58,6 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.emptyDataSetDelegate = self
-        self.tableView.emptyDataSetSource = self
         // trick to make table lines disappear
         self.tableView.tableFooterView = UIView()
         
@@ -155,13 +163,11 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
             guard let email = customersArray![self.selectedRow!].email else {
                 return
             }
-//            guard let plans = customersArray![self.selectedRow!].plans else {
-//                return
-//            }
-//            
+            let id = customersArray![self.selectedRow!].id
+
             let destination = segue.destinationViewController as! CustomersListDetailViewController
+            destination.customerId = id
             destination.customerEmail = email
-//            destination.customerPlans = plans
         }
     }
     
@@ -169,10 +175,7 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         self.selectedRow = indexPath.row
-        print(self.selectedRow)
-        print(selectedRow)
         performSegueWithIdentifier("viewCustomerDetail", sender: self)
-        
     }
     
     // MARK DELEGATE MCTABLEVIEWCELL

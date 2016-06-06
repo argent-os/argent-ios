@@ -12,19 +12,17 @@ import Alamofire
 
 class Subscription {
     
-    static let sharedInstance = Subscription(id: "", name: "", status: "", quantity: "", plan_name: "", plan_interval: "", plan_amount: "")
+    static let sharedInstance = Subscription(id: "", status: "", quantity: 0, plan_name: "", plan_interval: "", plan_amount: 0)
     
     let id: Optional<String>
-    let name: Optional<String>
     let status: Optional<String>
-    let quantity: Optional<String>
+    let quantity: Optional<Int>
     let plan_name: Optional<String>
     let plan_interval: Optional<String>
-    let plan_amount: Optional<String>
+    let plan_amount: Optional<Int>
     
-    required init(id: String, name: String, status: String, quantity: String, plan_name: String, plan_interval: String, plan_amount: String) {
+    required init(id: String, status: String, quantity: Int, plan_name: String, plan_interval: String, plan_amount: Int) {
         self.id = id
-        self.name = name
         self.status = status
         self.quantity = quantity
         self.plan_name = plan_name
@@ -67,14 +65,14 @@ class Subscription {
                                     let id = subscription["id"].stringValue
                                     let name = subscription["name"].stringValue
                                     let status = subscription["status"].stringValue
-                                    let quantity = subscription["quantity"].stringValue
+                                    let quantity = subscription["quantity"].intValue
                                     
                                     let sub_plan = subscription["plan"]
                                     let plan_name = sub_plan["name"].stringValue
                                     let plan_interval = sub_plan["interval"].stringValue
-                                    let plan_amount = sub_plan["amount"].stringValue
+                                    let plan_amount = sub_plan["amount"].intValue
 
-                                    let item = Subscription(id: id, name: name, status: status, quantity: quantity, plan_name: plan_name, plan_interval: plan_interval, plan_amount: plan_amount)
+                                    let item = Subscription(id: id, status: status, quantity: quantity, plan_name: plan_name, plan_interval: plan_interval, plan_amount: plan_amount)
                                     subscriptionsArray.append(item)
                                 }
                                 completionHandler(subscriptionsArray, response.result.error)

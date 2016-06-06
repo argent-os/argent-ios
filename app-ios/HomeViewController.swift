@@ -288,10 +288,206 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             self.logout()
         }
     }
+    
+    func loadAccountHistory(completionHandler: ([History]?, NSError?) -> ()) {
+        History.getAccountHistory({ (transactions, error) in
+            if error != nil {
+                let alert = UIAlertController(title: "Error", message: "Could not load history \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+            self.accountHistoryArray = transactions
+            completionHandler(transactions!, error)
+            self.tableView.reloadData()
+        })
+    }
+    
+    func loadStripe(completionHandler: (Balance, NSError?) -> ()) {
+        // Set account balance label
+        
+        Balance.getStripeBalance({ (balance, error) in
+            if error != nil {
+                let alert = UIAlertController(title: "Error", message: "Could not load history \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+            self.balance = balance!
+            completionHandler(balance!, error)
+        })
+    }
+    
+    // LOGOUT
+    func logout() {
+        NSUserDefaults.standardUserDefaults().setValue("", forKey: "userAccessToken")
+        NSUserDefaults.standardUserDefaults().synchronize();
+        
+        // go to login view
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let loginVC = sb.instantiateViewControllerWithIdentifier("LoginViewController")
+        loginVC.modalTransitionStyle = .CrossDissolve
+        let root = UIApplication.sharedApplication().keyWindow?.rootViewController
+        root!.presentViewController(loginVC, animated: true, completion: { () -> Void in })
+    }
+    
+    // MARK: TableView Delegate
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.accountHistoryArray?.count ?? 0
+    }
 
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        self.tableView.registerNib(UINib(nibName: "HistoryCustomCell", bundle: nil), forCellReuseIdentifier: "idCellCustomHistory")
+
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("idCellCustomHistory") as! HistoryCustomCell
+
+        CellAnimator.animateCell(cell, withTransform: CellAnimator.TransformTilt, andDuration: 0.3)
+
+        let item = self.accountHistoryArray?[indexPath.row]
+        cell.selectionStyle = UITableViewCellSelectionStyle.Blue
+        cell.lblAmount?.text = ""
+        cell.lblDate?.text = ""
+        if let amount = item?.amount {
+            if Double(amount)!/100 < 0 {
+                // cell.lblCreditDebit?.text = "Debit"
+                if APP_THEME == "LIGHT" {
+                    cell.img.image = UIImage(named: "ic_arrow_down")
+                } else {
+                    cell.img.image = UIImage(named: "ic_arrow_down_pink")
+                }
+                cell.lblAmount?.textColor = UIColor.brandRed()
+            } else {
+                // cell.lblCreditDebit?.text = "Credit"
+                if APP_THEME == "LIGHT" {
+                    cell.img.image = UIImage(named: "ic_arrow_up")
+                } else {
+                    cell.img.image = UIImage(named: "ic_arrow_up_blue")
+                }
+                cell.lblAmount?.textColor = UIColor.brandGreen()
+            }
+            
+            cell.lblAmount?.attributedText = formatCurrency(amount, fontName: "HelveticaNeue", superSize: 11, fontSize: 15, offsetSymbol: 3, offsetCents: 3)
+
+        }
+        if let date = item?.created
+        {
+            if(!date.isEmpty || date != "") {
+                let converted_date = NSDate(timeIntervalSince1970: Double(date)!)
+                dateFormatter.dateStyle = .ShortStyle
+                dateFormatter.dateFormat = "MMM dd"
+                let formatted_date = dateFormatter.stringFromDate(converted_date)
+                cell.lblDate?.layer.cornerRadius = 10
+                cell.lblDate?.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
+                cell.lblDate?.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.75)
+                cell.lblDate?.layer.borderWidth = 1
+                cell.lblDate?.text = String(formatted_date) //+ " / uid " + uid
+            } else {
+                
+            }
+        }
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        // self.performSegueWithIdentifier("historyDetailView", sender: self)
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 80.0
+    }
+    
+    // Scrollview
+
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        // TODO: Implement table scroll to top on scrolldown
+    }
+    
+}
+
+extension HomeViewController {
+    // Delegate: DZNEmptyDataSet
+    
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let str = "Transactions"
+        return NSAttributedString(string: str, attributes: headerAttrs)
+    }
+    
+    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let str = "No transactions have occurred yet."
+        // let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
+        return NSAttributedString(string: str, attributes: bodyAttrs)
+    }
+    
+    func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
+        return UIImage(named: "IconEmptyMoneyBag")
+    }
+    
+    func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
+        let str = "Create your first billing plan"
+        // let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)]
+        return NSAttributedString(string: str, attributes: calloutAttrs)
+    }
+    
+    func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
+        let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RecurringBillingViewController") as! RecurringBillingViewController
+        self.presentViewController(viewController, animated: true, completion: nil)
+    }
+}
+
+extension HomeViewController {
+    
+    // MARK: BEM Graph Delegate Methods
+    func numberOfPointsInLineGraph(graph: BEMSimpleLineGraphView) -> Int {
+        return Int(self.arrayOfValues.count)
+        
+    }
+    
+    func lineGraph(graph: BEMSimpleLineGraphView, valueForPointAtIndex index: Int) -> CGFloat {
+        return CGFloat(self.arrayOfValues[index] as! NSNumber)
+    }
+    
+    func numberOfGapsBetweenLabelsOnLineGraph(graph: BEMSimpleLineGraphView) -> Int {
+        return 2
+    }
+}
+
+// Used only in HomeViewController
+extension UISegmentedControl {
+    func removeBorders() {
+        setTitleTextAttributes(
+            [
+                NSForegroundColorAttributeName : UIColor.lightBlue().colorWithAlphaComponent(0.4),
+                NSFontAttributeName : UIFont(name: "HelveticaNeue", size: 11)!
+            ],
+            forState: .Normal)
+        setTitleTextAttributes(
+            [
+                NSForegroundColorAttributeName : UIColor.lightBlue(),
+                NSFontAttributeName : UIFont(name: "HelveticaNeue", size: 14)!
+            ],
+            forState: .Selected)
+        setBackgroundImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forState: .Normal, barMetrics: .Default)
+        setBackgroundImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forState: .Selected, barMetrics: .Default)
+        setDividerImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forLeftSegmentState: .Normal, rightSegmentState: .Normal, barMetrics: .Default)
+    }
+    
+    // create a 1x1 image with this color
+    private func imageWithColor(color: UIColor, source: String) -> UIImage {
+        let rect = CGRectMake(10.0, 0.0, 100.0, 1.0)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()
+        CGContextSetFillColorWithColor(context, color.CGColor);
+        CGContextFillRect(context, rect);
+        let image = UIImage(named: source)
+        UIGraphicsEndImageContext();
+        return image!
+    }
+}
+
+extension HomeViewController {
     func configureView() {
         
-        self.view.backgroundColor = UIColor.globalBackground()        
+        self.view.backgroundColor = UIColor.globalBackground()
         
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
@@ -325,7 +521,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         bg.backgroundColor = UIColor.clearColor()
         self.view.addSubview(bg)
         self.view.sendSubviewToBack(bg)
-
+        
         graph.dataSource = self
         graph.frame = CGRect(x: 0, y: 110, width: screenWidth, height: 150)
         graph.colorTop = UIColor.clearColor()
@@ -443,8 +639,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         loadingView.tintColor = UIColor.slateBlue().colorWithAlphaComponent(0.5)
         tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
-                    self?.tableView.dg_stopLoading()
-                    self?.loadAccountHistory({ (_: [History]?, NSError) in
+                self?.tableView.dg_stopLoading()
+                self?.loadAccountHistory({ (_: [History]?, NSError) in
                 })
             })
             }, loadingView: loadingView)
@@ -461,194 +657,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             NSForegroundColorAttributeName : UIColor.mediumBlue(),
             NSFontAttributeName : UIFont(name: "HelveticaNeue-Light", size: 18.0)!
         ]
-
-    }
-    
-    func loadAccountHistory(completionHandler: ([History]?, NSError?) -> ()) {
-        History.getAccountHistory({ (transactions, error) in
-            if error != nil {
-                let alert = UIAlertController(title: "Error", message: "Could not load history \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
-            }
-            self.accountHistoryArray = transactions
-            completionHandler(transactions!, error)
-            self.tableView.reloadData()
-        })
-    }
-    
-    func loadStripe(completionHandler: (Balance, NSError?) -> ()) {
-        // Set account balance label
         
-        Balance.getStripeBalance({ (balance, error) in
-            if error != nil {
-                let alert = UIAlertController(title: "Error", message: "Could not load history \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
-            }
-            self.balance = balance!
-            completionHandler(balance!, error)
-        })
-    }
-    
-    // LOGOUT
-    func logout() {
-        NSUserDefaults.standardUserDefaults().setValue("", forKey: "userAccessToken")
-        NSUserDefaults.standardUserDefaults().synchronize();
-        
-        // go to login view
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let loginVC = sb.instantiateViewControllerWithIdentifier("LoginViewController")
-        loginVC.modalTransitionStyle = .CrossDissolve
-        let root = UIApplication.sharedApplication().keyWindow?.rootViewController
-        root!.presentViewController(loginVC, animated: true, completion: { () -> Void in })
-    }
-    
-    // MARK: BEM Graph Delegate Methods
-    func numberOfPointsInLineGraph(graph: BEMSimpleLineGraphView) -> Int {
-        return Int(self.arrayOfValues.count)
-        
-    }
-    
-    func lineGraph(graph: BEMSimpleLineGraphView, valueForPointAtIndex index: Int) -> CGFloat {
-        return CGFloat(self.arrayOfValues[index] as! NSNumber)
-    }
-    
-    func numberOfGapsBetweenLabelsOnLineGraph(graph: BEMSimpleLineGraphView) -> Int {
-        return 2
-    }
-    
-    // MARK: TableView Delegate
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.accountHistoryArray?.count ?? 0
-    }
-
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        self.tableView.registerNib(UINib(nibName: "HistoryCustomCell", bundle: nil), forCellReuseIdentifier: "idCellCustomHistory")
-
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("idCellCustomHistory") as! HistoryCustomCell
-
-        CellAnimator.animateCell(cell, withTransform: CellAnimator.TransformTilt, andDuration: 0.3)
-
-        let item = self.accountHistoryArray?[indexPath.row]
-        cell.selectionStyle = UITableViewCellSelectionStyle.Blue
-        cell.lblAmount?.text = ""
-        cell.lblDate?.text = ""
-        if let amount = item?.amount {
-            if Double(amount)!/100 < 0 {
-                // cell.lblCreditDebit?.text = "Debit"
-                if APP_THEME == "LIGHT" {
-                    cell.img.image = UIImage(named: "ic_arrow_down")
-                } else {
-                    cell.img.image = UIImage(named: "ic_arrow_down_pink")
-                }
-                cell.lblAmount?.textColor = UIColor.brandRed()
-            } else {
-                // cell.lblCreditDebit?.text = "Credit"
-                if APP_THEME == "LIGHT" {
-                    cell.img.image = UIImage(named: "ic_arrow_up")
-                } else {
-                    cell.img.image = UIImage(named: "ic_arrow_up_blue")
-                }
-                cell.lblAmount?.textColor = UIColor.brandGreen()
-            }
-            
-            cell.lblAmount?.attributedText = formatCurrency(amount, fontName: "HelveticaNeue", superSize: 11, fontSize: 15, offsetSymbol: 3, offsetCents: 3)
-
-        }
-        if let date = item?.created
-        {
-            if(!date.isEmpty || date != "") {
-                let converted_date = NSDate(timeIntervalSince1970: Double(date)!)
-                dateFormatter.dateStyle = .ShortStyle
-                dateFormatter.dateFormat = "MMM dd"
-                let formatted_date = dateFormatter.stringFromDate(converted_date)
-                cell.lblDate?.layer.cornerRadius = 10
-                cell.lblDate?.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
-                cell.lblDate?.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.75)
-                cell.lblDate?.layer.borderWidth = 1
-                cell.lblDate?.text = String(formatted_date) //+ " / uid " + uid
-            } else {
-                
-            }
-        }
-        return cell
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        // self.performSegueWithIdentifier("historyDetailView", sender: self)
-    }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 80.0
-    }
-    
-    // Scrollview
-
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        // TODO: Implement table scroll to top on scrolldown
-    }
-    
-    // Delegate: DZNEmptyDataSet
-    
-    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "Transactions"
-        return NSAttributedString(string: str, attributes: headerAttrs)
-    }
-    
-    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "No transactions have occurred yet."
-        // let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
-        return NSAttributedString(string: str, attributes: bodyAttrs)
-    }
-    
-    func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
-        return UIImage(named: "IconEmptyMoneyBag")
-    }
-    
-    func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
-        let str = "Create your first billing plan"
-        // let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)]
-        return NSAttributedString(string: str, attributes: calloutAttrs)
-    }
-    
-    func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
-        let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RecurringBillingViewController") as! RecurringBillingViewController
-        self.presentViewController(viewController, animated: true, completion: nil)
-    }
-}
-
-// Used only in HomeViewController
-extension UISegmentedControl {
-    func removeBorders() {
-        setTitleTextAttributes(
-            [
-                NSForegroundColorAttributeName : UIColor.lightBlue().colorWithAlphaComponent(0.4),
-                NSFontAttributeName : UIFont(name: "HelveticaNeue", size: 11)!
-            ],
-            forState: .Normal)
-        setTitleTextAttributes(
-            [
-                NSForegroundColorAttributeName : UIColor.lightBlue(),
-                NSFontAttributeName : UIFont(name: "HelveticaNeue", size: 14)!
-            ],
-            forState: .Selected)
-        setBackgroundImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forState: .Normal, barMetrics: .Default)
-        setBackgroundImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forState: .Selected, barMetrics: .Default)
-        setDividerImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forLeftSegmentState: .Normal, rightSegmentState: .Normal, barMetrics: .Default)
-    }
-    
-    // create a 1x1 image with this color
-    private func imageWithColor(color: UIColor, source: String) -> UIImage {
-        let rect = CGRectMake(10.0, 0.0, 100.0, 1.0)
-        UIGraphicsBeginImageContext(rect.size)
-        let context = UIGraphicsGetCurrentContext()
-        CGContextSetFillColorWithColor(context, color.CGColor);
-        CGContextFillRect(context, rect);
-        let image = UIImage(named: source)
-        UIGraphicsEndImageContext();
-        return image!
     }
 }

@@ -116,8 +116,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         return dateFormatter.stringFromDate(date)
     }
     
-    private func refresh(sender:AnyObject)
-    {
+    private func refresh(sender:AnyObject) {
         self.loadNotificationItems()
     }
     
@@ -139,8 +138,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         let item = self.notificationsArray?[indexPath.row]
         cell.textLabel?.text = ""
         cell.detailTextLabel?.text = ""
-        if let text = item?.type
-        {
+        if let text = item?.type {
             switch text {
                 case "invoice.created":
                     cell.textLabel?.text = "Invoice Created"
@@ -282,6 +280,9 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         return UIStatusBarStyle.LightContent
     }
     
+}
+
+extension NotificationsViewController {
     // Delegate: DZNEmptyDataSet
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
@@ -311,5 +312,4 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ConfigureNotificationsViewController") as! ConfigureNotificationsViewController
         self.presentViewController(viewController, animated: true, completion: nil)
     }
-    
 }

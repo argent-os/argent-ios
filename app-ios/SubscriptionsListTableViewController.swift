@@ -51,8 +51,6 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.emptyDataSetDelegate = self
-        self.tableView.emptyDataSetSource = self
         // trick to make table lines disappear
         self.tableView.tableFooterView = UIView()
         
@@ -176,7 +174,7 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
             
             let destination = segue.destinationViewController as! SubscriptionsListDetailViewController
             destination.subscriptionName = name
-            destination.subscriptionAmount = amount
+            destination.subscriptionAmount = String(amount)
             destination.subscriptionInterval = interval
             destination.subscriptionStatus = status
         }
@@ -215,7 +213,7 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
         }
         if let amount = item?.plan_amount, interval = item?.plan_interval {
             // cell!.detailTextLabel?.text = "Current $" + current + " | " + "Available $" + available
-            cell.detailTextLabel?.attributedText = formatCurrency(amount, fontName: "HelveticaNeue-Light", superSize: 11, fontSize: 15, offsetSymbol: 2, offsetCents: 2) +  NSAttributedString(string: " / ") +  NSAttributedString(string:  interval)
+            cell.detailTextLabel?.attributedText = formatCurrency(String(amount), fontName: "HelveticaNeue-Light", superSize: 11, fontSize: 15, offsetSymbol: 2, offsetCents: 2) +  NSAttributedString(string: " / ") +  NSAttributedString(string:  interval)
         }
         
         let closeView: UIView = self.viewWithImageName("ic_close_light");
