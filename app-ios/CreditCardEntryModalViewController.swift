@@ -105,11 +105,13 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
     
     // STRIPE SAVE METHOD
     @IBAction func save(sender: UIButton) {
+        submitCreditCardButton.userInteractionEnabled = false
         addActivityIndicatorButton(UIActivityIndicatorView(), button: submitCreditCardButton, color: .White)
         if let card = paymentTextField.card {
             STPAPIClient.sharedClient().createTokenWithCard(card) { (token, error) -> Void in
                 if let error = error  {
                     print(error)
+                    self.submitCreditCardButton.userInteractionEnabled = true
                 }
                 else if let token = token {
                     // determine whether one-time bill payment or recurring revenue payment
@@ -149,8 +151,6 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
         // SEND REQUEST TO Argent API ENDPOINT TO EXCHANGE STRIPE TOKEN
         
         //showGlobalNotification("Sending payment..." + (self.detailUser?.username)!, duration: 1.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.iosBlue())
-
-        submitCreditCardButton.userInteractionEnabled = false
         
         print("creating backend token")
         User.getProfile { (user, NSError) in

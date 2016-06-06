@@ -202,13 +202,17 @@ extension SubscriptionsListTableViewController {
     }
     
     func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
-        let str = "Find a merchant and sign up for one!"
+        let str = "Find a merchant to create one"
         // let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)]
         return NSAttributedString(string: str, attributes: calloutAttrs)
     }
     
     func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
-        let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SearchViewController") as! SearchViewController
-        self.presentViewController(viewController, animated: true, completion: nil)
+        // go to search view
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let vc = sb.instantiateViewControllerWithIdentifier("SearchViewController")
+        vc.modalTransitionStyle = .CrossDissolve
+        let root = UIApplication.sharedApplication().keyWindow?.rootViewController
+        root!.presentViewController(vc, animated: true, completion: { () -> Void in })
     }
 }
