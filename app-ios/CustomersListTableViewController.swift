@@ -169,6 +169,8 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         self.selectedRow = indexPath.row
+        print(self.selectedRow)
+        print(selectedRow)
         performSegueWithIdentifier("viewCustomerDetail", sender: self)
         
     }
@@ -185,19 +187,18 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let CellIdentifier: String = "cell";
         var cell: MCSwipeTableViewCell! = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as! MCSwipeTableViewCell!;
-        if cell == nil {
-            cell = MCSwipeTableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: CellIdentifier);
-            cell!.selectionStyle = UITableViewCellSelectionStyle.Gray;
-            cell!.contentView.backgroundColor = UIColor.whiteColor();
-            cell.textLabel?.tintColor = UIColor.lightBlue()
-            cell.detailTextLabel?.tintColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
-            cell.tag = indexPath.row
-            
-            let item = self.customersArray?[indexPath.row]
-            if let email = item?.email, id = item?.id {
-                cell.textLabel?.text = email ?? id
-                cell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 15)!
-            }
+        
+        cell = MCSwipeTableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: CellIdentifier);
+        cell!.selectionStyle = UITableViewCellSelectionStyle.Gray;
+        cell!.contentView.backgroundColor = UIColor.whiteColor();
+        cell.textLabel?.tintColor = UIColor.lightBlue()
+        cell.detailTextLabel?.tintColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
+        cell.tag = indexPath.row
+        
+        let item = self.customersArray?[indexPath.row]
+        if let email = item?.email, id = item?.id {
+            cell.textLabel?.text = email ?? id
+            cell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 15)!
         }
         
         let closeView: UIView = self.viewWithImageName("ic_close_light");
@@ -240,7 +241,7 @@ extension CustomersListTableViewController {
     }
     
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
-        return UIImage(named: "IconMissing")
+        return UIImage(named: "IconEmpty")
     }
     
     func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {

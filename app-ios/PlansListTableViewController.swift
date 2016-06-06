@@ -164,25 +164,23 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let CellIdentifier: String = "cell";
         var cell: MCSwipeTableViewCell! = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as! MCSwipeTableViewCell!;
-        if cell == nil {
-            cell = MCSwipeTableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: CellIdentifier);
-            cell!.selectionStyle = UITableViewCellSelectionStyle.Gray;
-            cell!.contentView.backgroundColor = UIColor.whiteColor();
-            cell.textLabel?.tintColor = UIColor.lightBlue()
-            cell.detailTextLabel?.tintColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
-            cell.tag = indexPath.row
-            
-            let item = self.itemsArray?[indexPath.row]
-            if let name = item?.name {
-                cell.textLabel?.text = name
-                cell.textLabel?.font = UIFont(name: "HelveticaNeue", size: 16)!
-            }
-            if let amount = item?.amount, interval = item?.interval {
-                // cell!.detailTextLabel?.text = "Current $" + current + " | " + "Available $" + available
-                cell.detailTextLabel?.attributedText = formatCurrency(amount, fontName: "HelveticaNeue-Light", superSize: 11, fontSize: 15, offsetSymbol: 2, offsetCents: 2) +  NSAttributedString(string: " / ") +  NSAttributedString(string:  interval)
-            }
-        }
+        cell = MCSwipeTableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: CellIdentifier);
+        cell!.selectionStyle = UITableViewCellSelectionStyle.Gray;
+        cell!.contentView.backgroundColor = UIColor.whiteColor();
+        cell.textLabel?.tintColor = UIColor.lightBlue()
+        cell.detailTextLabel?.tintColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
+        cell.tag = indexPath.row
         
+        let item = self.itemsArray?[indexPath.row]
+        if let name = item?.name {
+            cell.textLabel?.text = name
+            cell.textLabel?.font = UIFont(name: "HelveticaNeue", size: 16)!
+        }
+        if let amount = item?.amount, interval = item?.interval {
+            // cell!.detailTextLabel?.text = "Current $" + current + " | " + "Available $" + available
+            cell.detailTextLabel?.attributedText = formatCurrency(amount, fontName: "HelveticaNeue-Light", superSize: 11, fontSize: 15, offsetSymbol: 2, offsetCents: 2) +  NSAttributedString(string: " / ") +  NSAttributedString(string:  interval)
+        }
+    
         let closeView: UIView = self.viewWithImageName("ic_close_light");
         
         cell.setSwipeGestureWithView(closeView, color:  UIColor.brandRed(), mode: .Exit, state: .State3) {
@@ -226,7 +224,7 @@ extension PlansListTableViewController {
     }
     
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
-        return UIImage(named: "IconMissing")
+        return UIImage(named: "IconEmpty")
     }
     
     func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {

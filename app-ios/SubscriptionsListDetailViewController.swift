@@ -60,23 +60,29 @@ class SubscriptionsListDetailViewController: UIViewController, UINavigationBarDe
         subscriptionTitleLabel.font = UIFont(name: "ArialRoundedMTBold", size: 24)
         subscriptionTitleLabel.textAlignment = .Center
         subscriptionTitleLabel.textColor = UIColor.whiteColor()
-        addSubviewWithBounce(subscriptionTitleLabel, parentView: self, duration: 0.3)
+        let _ = Timeout(0.3) {
+            addSubviewWithBounce(self.subscriptionTitleLabel, parentView: self, duration: 0.3)
+        }
         self.view.bringSubviewToFront(subscriptionTitleLabel)
-        self.view.bringSubviewToFront(subscriptionTitleLabel)
+
         
         circleView.frame = CGRect(x: screenWidth/2-60, y: 140, width: 120, height: 120)
         circleView.backgroundColor = UIColor.clearColor()
         circleView.layer.cornerRadius = circleView.frame.height/2
         circleView.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.5).CGColor
         circleView.layer.borderWidth = 1
-        addSubviewWithBounce(circleView, parentView: self, duration: 0.8)
+        let _ = Timeout(0.5) {
+            addSubviewWithBounce(self.circleView, parentView: self, duration: 0.6)
+        }
         self.view.bringSubviewToFront(circleView)
         
         subscriptionAmountLabel.frame = CGRect(x: 40, y: 115, width: screenWidth-80, height: 150)
         subscriptionAmountLabel.attributedText = formatCurrency(subscriptionAmount!, fontName: "DINAlternate-Bold", superSize: 16, fontSize: 24, offsetSymbol: 5, offsetCents: 5)
         subscriptionAmountLabel.textAlignment = .Center
         subscriptionAmountLabel.textColor = UIColor.whiteColor().colorWithAlphaComponent(1)
-        addSubviewWithBounce(subscriptionAmountLabel, parentView: self, duration: 0.3)
+        let _ = Timeout(0.5) {
+            addSubviewWithBounce(self.subscriptionAmountLabel, parentView: self, duration: 0.3)
+        }
         self.view.bringSubviewToFront(subscriptionAmountLabel)
         if Int(subscriptionAmount!)! > 1000000 {
             subscriptionAmountLabel.attributedText = formatCurrency(subscriptionAmount!, fontName: "DINAlternate-Bold", superSize: 12, fontSize: 18, offsetSymbol: 3, offsetCents: 3)
@@ -87,16 +93,19 @@ class SubscriptionsListDetailViewController: UIViewController, UINavigationBarDe
         subscriptionIntervalLabel.font = UIFont(name: "DINAlternate-Bold", size: 12)
         subscriptionIntervalLabel.textAlignment = .Center
         subscriptionIntervalLabel.textColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
-        self.view.bringSubviewToFront(subscriptionIntervalLabel)
-        addSubviewWithBounce(subscriptionIntervalLabel, parentView: self, duration: 0.3)
+        let _ = Timeout(0.5) {
+            addSubviewWithBounce(self.subscriptionIntervalLabel, parentView: self, duration: 0.3)
+        }
         
         subscriptionStatusLabel.frame = CGRect(x: 40, y: 220, width: screenWidth-80, height: 200)
         subscriptionStatusLabel.numberOfLines = 8
         subscriptionStatusLabel.font = UIFont(name: "DINAlternate-Bold", size: 12)
         subscriptionStatusLabel.textAlignment = .Center
         subscriptionStatusLabel.textColor = UIColor.whiteColor().colorWithAlphaComponent(0.7)
-        addSubviewWithBounce(subscriptionStatusLabel, parentView: self, duration: 0.3)
-        self.view.bringSubviewToFront(subscriptionStatusLabel)
+        let _ = Timeout(0.7) {
+            addSubviewWithBounce(self.subscriptionStatusLabel, parentView: self, duration: 0.3)
+        }
+        self.view.bringSubviewToFront(self.subscriptionStatusLabel)
         subscriptionStatusLabel.text = "Subscription status " + subscriptionStatus!
         
     }

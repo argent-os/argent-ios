@@ -75,10 +75,10 @@ class Customer {
                     "Content-Type": "application/x-www-form-urlencoded"
                 ]
                 
-                //let limit = "100"
+                let limit = "100"
                 let user_id = (user?.id)
                 
-                let endpoint = API_URL + "/v1/stripe/" + user_id! + "/customers"
+                let endpoint = API_URL + "/v1/stripe/" + user_id! + "/customers?limit=" + limit
                 
                 Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .validate().responseJSON { response in
