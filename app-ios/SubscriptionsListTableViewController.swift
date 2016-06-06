@@ -24,6 +24,10 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
+        
         self.navigationItem.title = "Subscriptions"
         self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
         
@@ -39,6 +43,21 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
         self.tableView?.addSubview(viewRefreshControl)
         
         self.loadSubscriptionList()
+
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.offWhite()
+        headerView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 100)
+        self.tableView.tableHeaderView = headerView
+        let headerViewTitle: UILabel = UILabel()
+        headerViewTitle.frame = CGRect(x: 0, y: 35, width: screenWidth, height: 30)
+        headerViewTitle.text = "Subscriptions"
+        headerViewTitle.font = UIFont.systemFontOfSize(18)
+        headerViewTitle.textAlignment = .Center
+        headerViewTitle.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.7)
+        headerView.addSubview(headerViewTitle)
+        
+        self.tableView.separatorColor = UIColor.lightBlue().colorWithAlphaComponent(0.3)
+        
     }
     
     func loadSubscriptionList() {
@@ -86,7 +105,7 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 80.0
+        return 90.0
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -119,12 +138,20 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
             
             let item = self.itemsArray?[indexPath.row]
             if let name = item?.plan_name, id = item?.id, status = item?.status {
-                cell.textLabel?.text = name + " | Status: " + status
-                cell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 15)!
+                let strName = NSAttributedString(string: name + " ", attributes: [:])
+                let strStatus = NSAttributedString(string: status, attributes: [
+                    NSFontAttributeName: UIFont.systemFontOfSize(11),
+                    NSForegroundColorAttributeName:UIColor.brandGreen()
+                ])
+                
+                cell.textLabel?.attributedText = strName + strStatus
+                cell.textLabel?.layer.cornerRadius = 2
+                cell.textLabel?.layer.masksToBounds = true
+                cell.textLabel?.font = UIFont(name: "HelveticaNeue", size: 16)!
             }
             if let amount = item?.plan_amount, interval = item?.plan_interval {
                 // cell!.detailTextLabel?.text = "Current $" + current + " | " + "Available $" + available
-                cell.detailTextLabel?.attributedText = formatCurrency(amount, fontName: "HelveticaNeue-Light", superSize: 11, fontSize: 14, offsetSymbol: 3, offsetCents: 3) +  NSAttributedString(string: " / ") +  NSAttributedString(string:  interval)
+                cell.detailTextLabel?.attributedText = formatCurrency(amount, fontName: "HelveticaNeue-Light", superSize: 11, fontSize: 15, offsetSymbol: 2, offsetCents: 2) +  NSAttributedString(string: " / ") +  NSAttributedString(string:  interval)
             }
         }
         

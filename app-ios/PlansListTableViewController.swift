@@ -39,6 +39,24 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
         self.tableView?.addSubview(viewRefreshControl)
         
         self.loadPlanList()
+        
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
+        
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.offWhite()
+        headerView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 100)
+        self.tableView.tableHeaderView = headerView
+        let headerViewTitle: UILabel = UILabel()
+        headerViewTitle.frame = CGRect(x: 0, y: 35, width: screenWidth, height: 30)
+        headerViewTitle.text = "Plans"
+        headerViewTitle.font = UIFont.systemFontOfSize(18)
+        headerViewTitle.textAlignment = .Center
+        headerViewTitle.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.7)
+        headerView.addSubview(headerViewTitle)
+        
+        self.tableView.separatorColor = UIColor.lightBlue().colorWithAlphaComponent(0.3)
     }
     
     func loadPlanList() {
@@ -60,6 +78,7 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
                 self.viewRefreshControl.endRefreshing()
             }
             self.tableView?.reloadData()
+            
         })
     }
     
@@ -80,13 +99,12 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
         return dateFormatter.stringFromDate(date)
     }
     
-    func refresh(sender:AnyObject)
-    {
+    func refresh(sender:AnyObject) {
         self.loadPlanList()
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 80.0
+        return 90.0
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -120,11 +138,11 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
             let item = self.itemsArray?[indexPath.row]
             if let name = item?.name, id = item?.id {
                 cell.textLabel?.text = name
-                cell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 15)!
+                cell.textLabel?.font = UIFont(name: "HelveticaNeue", size: 16)!
             }
             if let amount = item?.amount, interval = item?.interval {
                 // cell!.detailTextLabel?.text = "Current $" + current + " | " + "Available $" + available
-                cell.detailTextLabel?.attributedText = formatCurrency(amount, fontName: "HelveticaNeue-Light", superSize: 11, fontSize: 14, offsetSymbol: 3, offsetCents: 3) +  NSAttributedString(string: " / ") +  NSAttributedString(string:  interval)
+                cell.detailTextLabel?.attributedText = formatCurrency(amount, fontName: "HelveticaNeue-Light", superSize: 11, fontSize: 15, offsetSymbol: 2, offsetCents: 2) +  NSAttributedString(string: " / ") +  NSAttributedString(string:  interval)
             }
         }
         

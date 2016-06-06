@@ -111,7 +111,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
     
     func configure() {
         
-        // set up pan gesture recognizers
+        // set up pan gesture recognizers tt
         let pan = UIPanGestureRecognizer(target: self, action: #selector(self.interactiveTransition(_:)))
         pan.delegate = self
         view.addGestureRecognizer(pan)

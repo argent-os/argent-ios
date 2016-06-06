@@ -39,6 +39,24 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
         self.tableView?.addSubview(viewRefreshControl)
         
         self.loadCustomerList()
+        
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
+        
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.offWhite()
+        headerView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 100)
+        self.tableView.tableHeaderView = headerView
+        let headerViewTitle: UILabel = UILabel()
+        headerViewTitle.frame = CGRect(x: 0, y: 35, width: screenWidth, height: 30)
+        headerViewTitle.text = "Customers"
+        headerViewTitle.font = UIFont.systemFontOfSize(18)
+        headerViewTitle.textAlignment = .Center
+        headerViewTitle.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.7)
+        headerView.addSubview(headerViewTitle)
+        
+        self.tableView.separatorColor = UIColor.lightBlue().colorWithAlphaComponent(0.3)
     }
     
     func loadCustomerList() {
@@ -60,6 +78,7 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
                 self.viewRefreshControl.endRefreshing()
             }
             self.tableView?.reloadData()
+            
         })
     }
     

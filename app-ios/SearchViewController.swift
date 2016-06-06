@@ -363,7 +363,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "Find users by name or username"
+        let str = "Find merchants & users"
         return NSAttributedString(string: str, attributes: bodyAttrs)
     }
     

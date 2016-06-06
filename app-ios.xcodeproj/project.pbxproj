@@ -132,6 +132,7 @@
 		30CF713E1D022DBE007B5E17 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CF713D1D022DBE007B5E17 /* User.swift */; };
 		30CF71471D03C0F7007B5E17 /* ChargePaymentSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CF71461D03C0F7007B5E17 /* ChargePaymentSelectionViewController.swift */; };
 		30CF714A1D0485F2007B5E17 /* PersonInformationEntryModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CF71491D0485F2007B5E17 /* PersonInformationEntryModalViewController.swift */; };
+		30CF714D1D04CAE1007B5E17 /* MenuDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CF714C1D04CAE1007B5E17 /* MenuDetailViewController.swift */; };
 		30D526761CDB9814001B41BA /* BitcoinUriViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526751CDB9814001B41BA /* BitcoinUriViewController.swift */; };
 		30D526781CDBB4A0001B41BA /* Bitcoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D526771CDBB4A0001B41BA /* Bitcoin.swift */; };
 		30D5267D1CDE3736001B41BA /* ConfigureAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D5267C1CDE3736001B41BA /* ConfigureAppViewController.swift */; };
@@ -363,6 +364,7 @@
 		30CF713D1D022DBE007B5E17 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		30CF71461D03C0F7007B5E17 /* ChargePaymentSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChargePaymentSelectionViewController.swift; path = "app-ios/ChargePaymentSelectionViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30CF71491D0485F2007B5E17 /* PersonInformationEntryModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersonInformationEntryModalViewController.swift; path = "app-ios/PersonInformationEntryModalViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30CF714C1D04CAE1007B5E17 /* MenuDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuDetailViewController.swift; path = "app-ios/MenuDetailViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30D526751CDB9814001B41BA /* BitcoinUriViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BitcoinUriViewController.swift; path = "app-ios/BitcoinUriViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30D526771CDBB4A0001B41BA /* Bitcoin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Bitcoin.swift; path = "app-ios/Bitcoin.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		30D5267C1CDE3736001B41BA /* ConfigureAppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigureAppViewController.swift; path = "app-ios/ConfigureAppViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -597,6 +599,7 @@
 		306DF00C1CDA482200864CAE /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				30CF714B1D04CAA3007B5E17 /* Detail */,
 				30089F3E1CF9312900A2496B /* Dropdown */,
 				30089F3D1CF9312000A2496B /* Main */,
 			);
@@ -831,6 +834,14 @@
 				30CF71491D0485F2007B5E17 /* PersonInformationEntryModalViewController.swift */,
 			);
 			name = Modals;
+			sourceTree = "<group>";
+		};
+		30CF714B1D04CAA3007B5E17 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				30CF714C1D04CAE1007B5E17 /* MenuDetailViewController.swift */,
+			);
+			name = Detail;
 			sourceTree = "<group>";
 		};
 		30D526791CDD8874001B41BA /* Customer */ = {
@@ -1520,6 +1531,7 @@
 				3008AA461CF8BC3900AFE855 /* SearchMessageViewController.swift in Sources */,
 				30FF6FD11CEE3F9300A46A1E /* TransferToBankViewController.swift in Sources */,
 				300D8BE31CE5461A00FC3B05 /* OnboardingViewController.swift in Sources */,
+				30CF714D1D04CAE1007B5E17 /* MenuDetailViewController.swift in Sources */,
 				30C2DABF1CA43823003AFD8B /* HomeViewController.swift in Sources */,
 				30C2DAA71CA4374F003AFD8B /* SignupViewControllerFour.swift in Sources */,
 				30C2DB131CA439E1003AFD8B /* Timeout.swift in Sources */,

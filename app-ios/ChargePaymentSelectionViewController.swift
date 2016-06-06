@@ -14,6 +14,8 @@ class ChargePaymentSelectionViewController: UIViewController {
     
     weak var modalDelegate: ModalViewControllerDelegate?
     
+    let swipeArrowImageView = UIImageView()
+
     @IBOutlet weak var backButton: UIButton!
     
     lazy var dismissGestureRecognizer: UIPanGestureRecognizer = {
@@ -37,8 +39,14 @@ class ChargePaymentSelectionViewController: UIViewController {
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
+        swipeArrowImageView.image = UIImage(named: "ic_arrow_up_gray")
+        swipeArrowImageView.frame = CGRect(x: 0, y: screenHeight-55, width: screenWidth, height: 20) // shimmeringView.bounds
+        swipeArrowImageView.contentMode = .ScaleAspectFit
+        addSubviewWithFade(swipeArrowImageView, parentView: self, duration: 1)
+        
         // Pay with bitcoin button
-        let payWithBitcoinButton = DKCircleButton(frame: CGRect(x: 20, y: 40, width: screenWidth/2-20-10, height: screenWidth/2-20-10))
+        let payWithBitcoinButton = DKCircleButton()
+        payWithBitcoinButton.frame = CGRect(x: 30, y: 40, width: screenWidth/2-40, height: screenWidth/2-40)
         payWithBitcoinButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
         payWithBitcoinButton.setBackgroundColor(UIColor.clearColor(), forState: .Highlighted)
         payWithBitcoinButton.tintColor = UIColor.whiteColor()
@@ -56,7 +64,8 @@ class ChargePaymentSelectionViewController: UIViewController {
         }
         
         // Pay with card button
-        let payWithCardButton = DKCircleButton(frame: CGRect(x: screenWidth/2+10, y: 40, width: screenWidth/2-20-10, height: screenWidth/2-20-10))
+        let payWithCardButton = DKCircleButton()
+        payWithCardButton.frame = CGRect(x: screenWidth/2+20, y: 40, width: screenWidth/2-40, height: screenWidth/2-40)
         payWithCardButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
         payWithCardButton.setBackgroundColor(UIColor.clearColor(), forState: .Highlighted)
         payWithCardButton.tintColor = UIColor.whiteColor()
@@ -73,7 +82,8 @@ class ChargePaymentSelectionViewController: UIViewController {
         }
         
         // Pay with card button
-        let payWithAlipaybutton = DKCircleButton(frame: CGRect(x: screenWidth/2+10, y: 40+20+screenWidth/2-20-10, width: screenWidth/2-20-10, height: screenWidth/2-20-10))
+        let payWithAlipaybutton = DKCircleButton()
+        payWithAlipaybutton.frame = CGRect(x: 30, y: 40+20+screenWidth/2-20-10, width: screenWidth/2-40, height: screenWidth/2-40)
         payWithAlipaybutton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
         payWithAlipaybutton.setBackgroundColor(UIColor.clearColor(), forState: .Highlighted)
         payWithAlipaybutton.tintColor = UIColor.lightBlue()

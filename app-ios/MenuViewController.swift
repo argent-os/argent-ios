@@ -8,36 +8,69 @@
 
 import Foundation
 import UIKit
-import BTNavigationDropdownMenu
+import TransitionTreasury
+import TransitionAnimation
+import Shimmer
 
-class MenuViewController: UIViewController {
+class MenuViewController: UIViewController, ModalTransitionDelegate {
+
+    var tr_presentTransition: TRViewControllerTransitionDelegate?
 
     private let viewTerminalImageView = UIView()
 
     private let addPlanImageView = UIView()
     
     private let inviteImageView = UIView()
-
-    private var mainView = UIView()
-    
-    private var overView = UIView()
     
     let selectedCellLabel = UILabel()
+    
+    let swipeMenuSelectionLabel = UILabel()
+    
+    let swipeArrowImageView = UIImageView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureMainMenu()
     }
     
+    func interactiveTransition(sender: UIPanGestureRecognizer) {
+        switch sender.state {
+        case .Began:
+            guard sender.translationInView(view).y > 0 else {
+                break
+            }
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("MenuDetailViewController") as! MenuDetailViewController
+            vc.modalDelegate = self
+            tr_presentViewController(vc, method: TRPresentTransitionMethod.Scanbot(present: sender, dismiss: vc.dismissGestureRecognizer), completion: {
+                print("Present finished")
+            })
+        default: break
+        }
+    }
+    
+    
+    // modal callback
+    func modalViewControllerDismiss(interactive interactive: Bool, callbackData data: AnyObject?) {
+        
+        tr_dismissViewController(interactive: interactive, completion: nil)
+    }
+    
     func configureMainMenu() {
+        
+        // set up pan gesture recognizers
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(self.interactiveTransition(_:)))
+        pan.delegate = self
+        view.addGestureRecognizer(pan)
+        
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-        mainView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
-        overView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
-        
-        self.view.addSubview(mainView)
+        // remove view shadow
+        let maskView = UIView()
+        maskView.backgroundColor = UIColor.offWhite()
+        maskView.frame = CGRect(x: 0, y: -30, width: screenWidth, height: 60)
+        self.view.addSubview(maskView)
         
         let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
         visualEffectView.frame = CGRectMake(0, 0, screenWidth, screenHeight)
@@ -49,8 +82,8 @@ class MenuViewController: UIViewController {
         backgroundImageView.layer.masksToBounds = true
         backgroundImageView.clipsToBounds = true
         // backgroundImageView.addSubview(visualEffectView)
-        mainView.sendSubviewToBack(backgroundImageView)
-        mainView.addSubview(backgroundImageView)
+        self.view.sendSubviewToBack(backgroundImageView)
+        self.view.addSubview(backgroundImageView)
         
         // Layers create issues with gesture recognizers, add buttons on top of layers to fix this issue
         
@@ -133,8 +166,10 @@ class MenuViewController: UIViewController {
         
         // NAV
         
-        var items = ["Main Menu", "Plans", "Customers", "Subscriptions"]
-
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
+        
         self.navigationController?.navigationBar.translucent = false
         self.navigationController?.navigationBar.barTintColor = UIColor.offWhite()
         self.navigationController?.navigationBar.titleTextAttributes = [
@@ -142,41 +177,24 @@ class MenuViewController: UIViewController {
             NSFontAttributeName: UIFont(name: "ArialRoundedMTBold", size: 16)!
         ]
         
-        self.selectedCellLabel.text = items.first
+        let shimmeringView: FBShimmeringView = FBShimmeringView()
+        swipeMenuSelectionLabel.text = "Swipe down to view more"
+        swipeMenuSelectionLabel.textAlignment = .Center
+        swipeMenuSelectionLabel.textColor = UIColor.lightBlue()
+        swipeMenuSelectionLabel.font = UIFont.systemFontOfSize(14, weight: UIFontWeightThin)
+        swipeMenuSelectionLabel.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 15) // shimmeringView.bounds
         
-        let menuView = BTNavigationDropdownMenu(navigationController: self.navigationController, title: "Main Menu", items: items)
-        menuView.cellHeight = 80
-        menuView.cellSeparatorColor = UIColor.clearColor()
-        menuView.cellBackgroundColor = self.navigationController?.navigationBar.barTintColor
-        menuView.cellSelectionColor = UIColor.offWhite()
-        menuView.keepSelectedCellColor = true
-        menuView.checkMarkImage = UIImage(named: "IconEmpty")
-        menuView.cellTextLabelColor = UIColor.lightBlue()
-        menuView.cellTextLabelFont = UIFont(name: "HelveticaNeue", size: 16)
-        menuView.cellTextLabelAlignment = .Center // .Center // .Right // .Left
-        menuView.arrowPadding = 15
-        menuView.arrowImage = UIImage(named: "ic_arrow_down_gray")
-        menuView.animationDuration = 0.2
-        menuView.maskBackgroundColor = UIColor.darkBlue()
-        menuView.maskBackgroundOpacity = 0.2
-        menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
-            print("Did select item at index: \(indexPath)")
-            self.selectedCellLabel.text = items[indexPath]
-            if(indexPath == 1) {
-                let viewController:PlansListTableViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PlansListTableViewController") as! PlansListTableViewController
-                self.navigationController?.pushViewController(viewController, animated: true)
-            }
-            if(indexPath == 2) {
-                let viewController:CustomersListTableViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("CustomersListTableViewController") as! CustomersListTableViewController
-                self.navigationController?.pushViewController(viewController, animated: true)
-            }
-            if(indexPath == 3) {
-                let viewController:SubscriptionsListTableViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SubscriptionsListTableViewController") as! SubscriptionsListTableViewController
-                self.navigationController?.pushViewController(viewController, animated: true)
-            }
-        }
+        shimmeringView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 15) // shimmeringView.bounds
+        shimmeringView.contentView = swipeMenuSelectionLabel
+        shimmeringView.shimmering = true
+        addSubviewWithFade(shimmeringView, parentView: self, duration: 1)
+        addSubviewWithFade(swipeMenuSelectionLabel, parentView: self, duration: 1)
         
-        self.navigationItem.titleView = menuView
+        swipeArrowImageView.image = UIImage(named: "ic_arrow_down_gray")
+        swipeArrowImageView.frame = CGRect(x: 0, y: 20, width: screenWidth, height: 20) // shimmeringView.bounds
+        swipeArrowImageView.contentMode = .ScaleAspectFit
+        addSubviewWithFade(swipeArrowImageView, parentView: self, duration: 1)
+        
     }
     
     func terminalButtonSelected(sender: AnyObject) {
@@ -191,17 +209,6 @@ class MenuViewController: UIViewController {
     
     func inviteButtonSelected(sender: AnyObject) {
         self.performSegueWithIdentifier("addCustomerView", sender: self)
-    }
-    
-    private func addBlurView(view: UIView){
-        let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
-        let screenHeight = screen.size.height
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
-        let blurView = UIVisualEffectView(effect: blurEffect)
-        blurView.frame = CGRectMake(0, 0, screenWidth, screenHeight)
-        blurView.translatesAutoresizingMaskIntoConstraints = false
-        view.insertSubview(blurView, aboveSubview: self.view)
     }
     
     override func didReceiveMemoryWarning() {
@@ -221,5 +228,14 @@ class MenuViewController: UIViewController {
             let rootViewController = (self.storyboard?.instantiateViewControllerWithIdentifier("RootViewController"))! as UIViewController
             self.presentViewController(rootViewController, animated: true, completion: nil)
         }
+    }
+}
+
+extension MenuViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if let ges = gestureRecognizer as? UIPanGestureRecognizer {
+            return ges.translationInView(ges.view).y != 0
+        }
+        return false
     }
 }

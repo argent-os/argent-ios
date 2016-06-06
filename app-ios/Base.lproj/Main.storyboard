@@ -1827,6 +1827,24 @@ We support both debit and credit.</string>
             </objects>
             <point key="canvasLocation" x="-2435" y="-2531"/>
         </scene>
+        <!--Menu Detail View Controller-->
+        <scene sceneID="NDk-20-xfT">
+            <objects>
+                <viewController storyboardIdentifier="MenuDetailViewController" id="3xb-Em-Cju" customClass="MenuDetailViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GMJ-hS-kLA"/>
+                        <viewControllerLayoutGuide type="bottom" id="aha-Ih-WjU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="s3P-gC-qM0">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i4Y-CU-mTs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2403" y="-1790"/>
+        </scene>
         <!--Login Box Table View Controller-->
         <scene sceneID="VTT-x8-ndO">
             <objects>
