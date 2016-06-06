@@ -33,7 +33,8 @@ final class Profile {
     var businessType: String?
     var phoneNumber: String?
     
-    let state = [ "AK",
+    let state = [ "",
+                  "AK",
                   "AL",
                   "AR",
                   "AZ",
