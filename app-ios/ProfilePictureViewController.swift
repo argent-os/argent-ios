@@ -114,6 +114,7 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
                                         print("success")
                                         showGlobalNotification("Profile picture updated", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
                                     case .Failure(let error):
+                                        print(error)
                                         print("failure")
                                         showGlobalNotification("Could not upload profile picture", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.neonOrange())
                                         self.txt.text = "Error uploading picture"
@@ -145,7 +146,7 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
         activityIndicator.stopAnimating()
         activityIndicator.hidden = true
         self.dismissViewControllerAnimated(true, completion: nil)
-        Timeout(0.3) {
+        let _ = Timeout(0.3) {
             if let navController = self.navigationController {
                 navController.popViewControllerAnimated(true)
             }

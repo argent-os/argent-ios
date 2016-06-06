@@ -17,7 +17,7 @@ class SupportCategoryTableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Send the subject with the segue
         
-        let selected = self.tableView.indexPathForSelectedRow!.row
+        _ = self.tableView.indexPathForSelectedRow!.row
         
         let indexPath = tableView.indexPathForSelectedRow
         

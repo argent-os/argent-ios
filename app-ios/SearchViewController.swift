@@ -200,9 +200,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        guard let cell = tableView.cellForRowAtIndexPath(indexPath) else {
-            return
-        }
+//        guard let cell = tableView.cellForRowAtIndexPath(indexPath) else {
+//            return
+//        }
         
         self.shouldShowSearchResults = false
         self.searchController.searchBar.hidden = true
@@ -253,7 +253,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func configureSearchController() {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
-        let screenHeight = screen.size.height
+        //let screenHeight = screen.size.height
         // Initialize and perform a minimum configuration to the search controller.
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
@@ -373,7 +373,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
         let str = ""
-        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)]
+        //let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)]
         return NSAttributedString(string: str, attributes: calloutAttrs)
     }
     

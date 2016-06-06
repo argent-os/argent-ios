@@ -141,12 +141,12 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         actionController.headerData = "Select Payment Method"
         actionController.addAction(Action("Apple Pay", style: .Default, handler: { action in
             self.chargeInputView.endEditing(true)
-            Timeout(0.5) {
+            let _ = Timeout(0.5) {
                 self.showApplePayModal(self)
             }
         }))
         actionController.addAction(Action("Credit Card", style: .Default, handler: { action in
-            Timeout(0.5) {
+            let _ = Timeout(0.5) {
                 self.showCreditCardModal(self)
             }
         }))

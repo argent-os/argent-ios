@@ -41,8 +41,8 @@ class RiskProfileViewController: UIViewController {
     func configure() {
         
         let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
-        let screenHeight = screen.size.height
+        //let screenWidth = screen.size.width
+        //let screenHeight = screen.size.height
         
         enableRiskProfileButton.layer.cornerRadius = 10
         enableRiskProfileButton.clipsToBounds = true

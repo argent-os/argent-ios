@@ -122,7 +122,7 @@ class AuthViewController: UIViewController, LTMorphingLabelDelegate, ModalTransi
         lbl.textColor = UIColor.whiteColor()
         lbl.font = UIFont(name: "Avenir-Bold", size: 14)
         view.addSubview(lbl)
-        let lblTimer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: #selector(AuthViewController.changeText(_:)), userInfo: nil, repeats: true)
+        _ = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: #selector(AuthViewController.changeText(_:)), userInfo: nil, repeats: true)
 
 
         _ = NSMutableAttributedString(string: "Tap to view app features.")

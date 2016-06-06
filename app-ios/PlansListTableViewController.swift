@@ -42,7 +42,7 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
         
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
-        let screenHeight = screen.size.height
+        //let screenHeight = screen.size.height
         
         let headerView = UIView()
         headerView.backgroundColor = UIColor.offWhite()
@@ -136,7 +136,7 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
             cell.tag = indexPath.row
             
             let item = self.itemsArray?[indexPath.row]
-            if let name = item?.name, id = item?.id {
+            if let name = item?.name {
                 cell.textLabel?.text = name
                 cell.textLabel?.font = UIFont(name: "HelveticaNeue", size: 16)!
             }

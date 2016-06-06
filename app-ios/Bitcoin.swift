@@ -83,7 +83,7 @@ class Bitcoin {
                 let endpoint = API_URL + "/v1/stripe/" + (user?.id)! + "/bitcoin/" + id
                 
                 Alamofire.request(.GET, endpoint,
-                    parameters: parameters as! [String : AnyObject],
+                    parameters: parameters as? [String : AnyObject],
                     encoding:.URL,
                     headers: headers)
                     .responseJSON { response in

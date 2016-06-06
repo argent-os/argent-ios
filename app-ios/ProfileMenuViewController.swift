@@ -132,21 +132,21 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                 let locationStr: NSMutableAttributedString = NSMutableAttributedString(string: address_city + ", " + address_country)
                 locationStr.appendAttributedString(attachmentString)
                 self.locationLabel.attributedText = locationStr
-                Timeout(0.2) {
+                let _ = Timeout(0.2) {
                     addSubviewWithFade(self.locationLabel, parentView: self, duration: 0.8)
                 }
             } else if let address_city = acct?.address_city, let address_country = acct?.address_country {
                 let locationStr: NSMutableAttributedString = NSMutableAttributedString(string: "Unknown, " + address_country)
                     locationStr.appendAttributedString(attachmentString)
                     self.locationLabel.attributedText = locationStr
-                    Timeout(0.2) {
+                    let _ = Timeout(0.2) {
                         addSubviewWithFade(self.locationLabel, parentView: self, duration: 0.8)
                 }
             } else {
                 let locationStr: NSMutableAttributedString = NSMutableAttributedString(string: "Unknown")
                 locationStr.appendAttributedString(attachmentString)
                 self.locationLabel.attributedText = locationStr
-                Timeout(0.2) {
+                let _ = Timeout(0.2) {
                     addSubviewWithFade(self.locationLabel, parentView: self, duration: 0.8)
                 }
                 showGlobalNotification("Profile Incomplete", duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandYellow())
@@ -160,13 +160,13 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
 
         splitter.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
         splitter.frame = CGRect(x: screenWidth*0.333-0.5, y: 140, width: 1, height: 50)
-        Timeout(0.05) {
+        let _ = Timeout(0.05) {
             addSubviewWithFade(self.splitter, parentView: self, duration: 1.2)
         }
         
         splitter2.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
         splitter2.frame = CGRect(x: screenWidth*0.666-0.5, y: 140, width: 1, height: 50)
-        Timeout(0.1) {
+        let _ = Timeout(0.1) {
             addSubviewWithFade(self.splitter2, parentView: self, duration: 1.2)
         }
         
@@ -198,7 +198,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
             } else {
                 self.customersCountLabel.text = String(customers!.count) + "\ncustomers"
             }
-            Timeout(0.3) {
+            let _ = Timeout(0.3) {
                 addSubviewWithFade(self.customersCountLabel, parentView: self, duration: 0.8)
             }
         }
@@ -211,7 +211,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
             } else {
                 self.plansCountLabel.text = String(plans!.count) + "\nplans"
             }
-            Timeout(0.3) {
+            let _ = Timeout(0.3) {
                 addSubviewWithFade(self.plansCountLabel, parentView: self, duration: 0.8)
             }
         }
@@ -224,7 +224,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
             } else {
                 self.subscriptionsCountLabel.text = String(subscriptions!.count) + "\nsubscriptions"
             }
-            Timeout(0.3) {
+            let _ = Timeout(0.3) {
                 addSubviewWithFade(self.subscriptionsCountLabel, parentView: self, duration: 0.8)
             }
         }
@@ -249,7 +249,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
             NSFontAttributeName : UIFont(name: "HelveticaNeue-Light", size: 16.0)!
         ]
         self.navBar.setItems([navItem], animated: false)
-        Timeout(0.1) {
+        let _ = Timeout(0.1) {
             addSubviewWithFade(self.navBar, parentView: self, duration: 0.8)
         }
     }
@@ -300,7 +300,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
     func loadProfile() {
         
         let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
+        //let screenWidth = screen.size.width
         
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(ProfileMenuViewController.goToEditPicture(_:)))
         userImageView.userInteractionEnabled = true

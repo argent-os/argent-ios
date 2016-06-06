@@ -114,7 +114,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         addPlanButton.layer.masksToBounds = true
         addPlanButton.clipsToBounds = true
         addPlanButton.addTarget(self, action: #selector(RecurringBillingViewController.addPlanButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        Timeout(0.5) {
+        let _ = Timeout(0.5) {
             addSubviewWithFade(addPlanButton, parentView: self, duration: 0.3)
         }
 

@@ -45,7 +45,7 @@ class User {
             let parameters : [String : AnyObject] = [:]
             
             let headers = [
-                "Authorization": "Bearer " + (token as! String),
+                "Authorization": "Bearer " + (token),
                 "Content-Type": "application/x-www-form-urlencoded"
             ]
             

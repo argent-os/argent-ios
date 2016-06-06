@@ -26,7 +26,7 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
         
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
-        let screenHeight = screen.size.height
+        //let screenHeight = screen.size.height
         
         self.navigationItem.title = "Subscriptions"
         self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
@@ -137,7 +137,7 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
             cell.tag = indexPath.row
             
             let item = self.itemsArray?[indexPath.row]
-            if let name = item?.plan_name, id = item?.id, status = item?.status {
+            if let name = item?.plan_name, status = item?.status {
                 let strName = NSAttributedString(string: name + " ", attributes: [:])
                 let strStatus = NSAttributedString(string: status, attributes: [
                     NSFontAttributeName: UIFont.systemFontOfSize(11),

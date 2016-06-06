@@ -232,7 +232,7 @@ class Plan {
                         switch response.result {
                         case .Success:
                             if let value = response.result.value {
-                                let data = JSON(value)
+                                //let data = JSON(value)
                                 
                                 completionHandler(true, response.result.error)
                             }

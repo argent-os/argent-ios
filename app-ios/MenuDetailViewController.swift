@@ -63,7 +63,7 @@ class MenuDetailViewController: UIViewController, ModalTransitionDelegate {
         viewCustomersImageView.contentMode = .ScaleAspectFit
         addSubviewWithShadow(UIColor.lightBlue(), radius: 10.0, offsetX: 0.0, offsetY: 0, opacity: 0.2, parentView: self, childView: viewCustomersImageView)
         let btn1 = UIButton()
-        let str1 = NSAttributedString(string: "  View Customers", attributes: [
+        let str1 = NSAttributedString(string: "View Customers", attributes: [
             NSForegroundColorAttributeName : UIColor.lightBlue(),
             NSFontAttributeName : UIFont(name: "ArialRoundedMTBold", size: 18)!
             ])
@@ -88,7 +88,7 @@ class MenuDetailViewController: UIViewController, ModalTransitionDelegate {
         viewSubscriptionsImageView.contentMode = .ScaleAspectFit
         addSubviewWithShadow(UIColor.lightBlue(), radius: 10.0, offsetX: 0.0, offsetY: 0, opacity: 0.2, parentView: self, childView: viewSubscriptionsImageView)
         let btn2 = UIButton()
-        let str2 = NSAttributedString(string: "  View Subscriptions", attributes: [
+        let str2 = NSAttributedString(string: "View Subscriptions", attributes: [
             NSForegroundColorAttributeName : UIColor.lightBlue(),
             NSFontAttributeName : UIFont(name: "ArialRoundedMTBold", size: 18)!
             ])
@@ -113,7 +113,7 @@ class MenuDetailViewController: UIViewController, ModalTransitionDelegate {
         viewPlansImageView.contentMode = .ScaleAspectFit
         addSubviewWithShadow(UIColor.lightBlue(), radius: 10.0, offsetX: 0.0, offsetY: 0, opacity: 0.2, parentView: self, childView: viewPlansImageView)
         let btn3 = UIButton()
-        let str3 = NSAttributedString(string: "  View Plans", attributes: [
+        let str3 = NSAttributedString(string: "View Plans", attributes: [
             NSForegroundColorAttributeName : UIColor.lightBlue(),
             NSFontAttributeName : UIFont(name: "ArialRoundedMTBold", size: 18)!
             ])

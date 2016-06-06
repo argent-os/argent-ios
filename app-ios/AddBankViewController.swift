@@ -37,9 +37,9 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
     
     func configure() {
         
-        let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
-        let screenHeight = screen.size.height
+        //let screen = UIScreen.mainScreen().bounds
+        //let screenWidth = screen.size.width
+        //let screenHeight = screen.size.height
         
         addBankButton.layer.cornerRadius = 10
         addBankButton.clipsToBounds = true
@@ -139,7 +139,7 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
                     case .Success:
                         print("success")
                         if let value = response.result.value {
-                            let data = JSON(value)
+                            //let data = JSON(value)
                             // print(data)
                         }
                     case .Failure(let error):
@@ -170,7 +170,7 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
                     switch response.result {
                     case .Success:
                         if let value = response.result.value {
-                            let data = JSON(value)
+                            //let data = JSON(value)
                             // print(data)
                         }
                     case .Failure(let error):

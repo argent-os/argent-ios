@@ -146,7 +146,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         chargeInputView.placeholder = "$0.00"
         chargeInputView.keyboardType = UIKeyboardType.NumberPad
         chargeInputView.backgroundColor = UIColor.clearColor()
-        Timeout(0.2) {
+        let _ = Timeout(0.2) {
             addSubviewWithBounce(self.chargeInputView, parentView: self, duration: 0.3)
         }
         
@@ -323,7 +323,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
                     switch response.result {
                     case .Success:
                         if let value = response.result.value {
-                            let json = JSON(value)
+                            // let json = JSON(value)
                             //print(json)
                             print(PKPaymentAuthorizationStatus.Success)
                             self.showPersonalInformationModal(self, amount: 0)
@@ -332,7 +332,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
                             self.showAlert("Payment for " + self.chargeInputView.text! + " succeeded!", color: UIColor.skyBlue(), image:UIImage(named: "ic_check_light")!, title: "Success")
                             self.swipeArrowImageView.image = UIImage(named: "ic_arrow_down_gray")
                             self.swipePaymentSelectionLabel.text = "Swipe down to select payment option"
-                            self.chargeInputView.text == ""
+                            self.chargeInputView.text = ""
                         }
                     case .Failure(let error):
                         print(PKPaymentAuthorizationStatus.Failure)
@@ -457,7 +457,7 @@ extension ChargeViewController: CardIOPaymentViewControllerDelegate {
             card.cvc = info.cvv
             paymentTextField.card = card
             swipePaymentSelectionLabel.text = "Submit payment"
-            Timeout(0.2) {
+            let _ = Timeout(0.2) {
                 self.paymentTextField.endEditing(true)
             }
         }

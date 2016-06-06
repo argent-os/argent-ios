@@ -292,7 +292,7 @@ func showGlobalNotification(message: String, duration: NSTimeInterval, inStyle: 
 func formatCurrency(amount: String, fontName: String, superSize: CGFloat, fontSize: CGFloat, offsetSymbol: Int, offsetCents: Int) -> NSAttributedString {
     let formatter = NSNumberFormatter()
     formatter.numberStyle = .CurrencyStyle
-    let r = Range<String.Index>(start: amount.startIndex, end: amount.endIndex)
+    let r = amount.startIndex..<amount.endIndex
     let x = amount.substringWithRange(r)
     let amt = formatter.stringFromNumber(Float(x)!/100)
     let font:UIFont? = UIFont(name: fontName, size: fontSize)
@@ -318,7 +318,7 @@ func addActivityIndicatorButton(indicator: UIActivityIndicatorView, button: UIBu
     button.addSubview(indicator)
     indicator.hidesWhenStopped = true
     indicator.startAnimating()
-    Timeout(2) {
+    let _ = Timeout(2) {
         indicator.hidden = true
         indicator.stopAnimating()
     }
@@ -333,7 +333,7 @@ func addActivityIndicatorView(indicator: UIActivityIndicatorView, view: UIView, 
     view.addSubview(indicator)
     indicator.hidesWhenStopped = true
     indicator.startAnimating()
-    Timeout(2) {
+    let _ = Timeout(2) {
         indicator.hidden = true
         indicator.stopAnimating()
     }

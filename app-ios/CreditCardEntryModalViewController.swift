@@ -139,7 +139,7 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
         // Function for toolbar button
         // pay merchant
         showGlobalNotification("Entering card information", duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
-        Timeout(3.2) {
+        let _ = Timeout(3.2) {
             showGlobalNotification("Card added", duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
         }
         paymentTextField.clear()
@@ -192,7 +192,7 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
             
             // for invalid character 0 be sure the content type is application/json and enconding is .JSON
             Alamofire.request(.POST, url!,
-                parameters: parameters as! [String : AnyObject],
+                parameters: parameters as? [String : AnyObject],
                 encoding:.JSON,
                 headers: headers)
                 .responseJSON { response in
@@ -205,7 +205,7 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
                             print(PKPaymentAuthorizationStatus.Success)
                             completion(PKPaymentAuthorizationStatus.Success)
                             self.submitCreditCardButton.userInteractionEnabled = true
-                            Timeout(1.5) {
+                            let _ = Timeout(1.5) {
                                 self.dismissViewControllerAnimated(true, completion: {
                                     print("dismissed")
                                 })

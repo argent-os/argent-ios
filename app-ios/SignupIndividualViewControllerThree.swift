@@ -51,7 +51,7 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
         
         self.finishButton.enabled = false
         // Allow continue to be clicked
-        Timeout(0.3) {
+        let _ = Timeout(0.3) {
             self.finishButton.enabled = true
             return
         }
@@ -188,7 +188,8 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
                                 }
                             }
                         case .Failure(let error):
-                            showGlobalNotification("Error occurred", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
+                            print(error)
+                            showGlobalNotification(error.localizedDescription, duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
                             break
                         }
                 }

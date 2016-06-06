@@ -1,6 +1,6 @@
 import Foundation
 
-/// Timeout wrapps a callback deferral that may be cancelled.
+/// Timeout wraps a callback deferral that may be cancelled.
 ///
 /// Usage:
 /// Timeout(1.0) { println("1 second has passed.") }

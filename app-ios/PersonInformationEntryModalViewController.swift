@@ -192,7 +192,7 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
                     switch response.result {
                     case .Success:
                         if let value = response.result.value {
-                            let data = JSON(value)
+                            //let data = JSON(value)
                             showGlobalNotification("Receipt sent!", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandGreen())
                             self.informationTextField.text = ""
                             self.dismissViewControllerAnimated(true) {

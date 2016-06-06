@@ -79,8 +79,8 @@ extension OnboardingViewController {
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let _: UICollectionViewCell
-        let width = self.view.layer.frame.width
-        let height = self.view.layer.frame.height
+        // let width = self.view.layer.frame.width
+        // let height = self.view.layer.frame.height
         switch indexPath.row {
         case 0:
             // TODO: cell 1

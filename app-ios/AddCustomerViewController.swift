@@ -55,9 +55,9 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
     
     override func viewDidAppear(animated: Bool) {
         // screen width and height:
-        let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
-        let screenHeight = screen.size.height
+        // let screen = UIScreen.mainScreen().bounds
+        //let screenWidth = screen.size.width
+        //let screenHeight = screen.size.height
     }
     
     private func configure() {
@@ -80,7 +80,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         mainImage.image = UIImage(named: "IconSend")
         mainImage.frame = CGRect(x: screenWidth/2-65, y: 100, width: 130, height: 130)
         mainImage.contentMode = .ScaleAspectFit
-        Timeout(0.1) {
+        let _ = Timeout(0.1) {
             addSubviewWithBounce(mainImage, parentView: self, duration: 0.3)
         }
         
@@ -90,7 +90,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         mainTitle.textAlignment = .Center
         mainTitle.text = "Send Invitation"
         mainTitle.font = UIFont(name: "DINAlternate-Bold", size: 20)
-        Timeout(0.2) {
+        let _ = Timeout(0.2) {
             addSubviewWithBounce(mainTitle, parentView: self, duration: 0.3)
         }
         
@@ -101,7 +101,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         mainBody.text = "Invite new users, customers, or friends to " + APP_NAME + " today! The more the merrier."
         mainBody.numberOfLines = 5
         mainBody.font = UIFont(name: "DINAlternate-Bold", size: 14)
-        Timeout(0.3) {
+        let _ = Timeout(0.3) {
             addSubviewWithBounce(mainBody, parentView: self, duration: 0.3)
         }
         
@@ -119,7 +119,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
             ])
         emailButton.setAttributedTitle(str0, forState: .Normal)
         emailButton.addTarget(self, action: #selector(AddCustomerViewController.sendEmailButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        Timeout(0.4) {
+        let _ = Timeout(0.4) {
             addSubviewWithBounce(emailButton, parentView: self, duration: 0.3)
         }
         
@@ -137,7 +137,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
             ])
         smsButton.setAttributedTitle(str1, forState: .Normal)
         smsButton.addTarget(self, action: #selector(AddCustomerViewController.sendSMSButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        Timeout(0.6) {
+        let _ = Timeout(0.6) {
             addSubviewWithBounce(smsButton, parentView: self, duration: 0.3)
         }
         

@@ -222,7 +222,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
     func viewPlansModal(sender: AnyObject) {
         
         let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
+        //let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
         let navigationController = self.storyboard!.instantiateViewControllerWithIdentifier("viewPlansFormSheetController") as! UINavigationController

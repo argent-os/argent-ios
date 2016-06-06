@@ -168,7 +168,7 @@ class MenuViewController: UIViewController, ModalTransitionDelegate {
         
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
-        let screenHeight = screen.size.height
+        //let screenHeight = screen.size.height
         
         self.navigationController?.navigationBar.translucent = false
         self.navigationController?.navigationBar.barTintColor = UIColor.offWhite()

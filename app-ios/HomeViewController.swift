@@ -263,13 +263,13 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 }
                 
                 if user!.picture != "" {
-                    Timeout(0.3) {
+                    let _ = Timeout(0.3) {
                         let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user!.picture))!)!)!
                         userImageView.image = img
                         addSubviewWithBounce(userImageView, parentView: self, duration: 0.3)
                     }
                 } else {
-                    Timeout(0.3) {
+                    let _ = Timeout(0.3) {
                         let img = UIImage(named: "PersonThumb")
                         userImageView.image = img
                         addSubviewWithBounce(userImageView, parentView: self, duration: 0.3)

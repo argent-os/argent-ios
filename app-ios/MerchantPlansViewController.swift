@@ -83,9 +83,9 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         
         
         // screen width and height:
-        let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
-        let screenHeight = screen.size.height
+        //let screen = UIScreen.mainScreen().bounds
+        //let screenWidth = screen.size.width
+        //let screenHeight = screen.size.height
         
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.barTintColor = UIColor.lightGrayColor()
@@ -120,7 +120,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         navBar.setItems([navItem], animated: false);
         
         // add gesture recognizer to window
-        var recognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "handleTapBehind:")
+        var recognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MerchantPlansViewController.handleTapBehind(_:)))
         recognizer.numberOfTapsRequired = 1
         recognizer.cancelsTouchesInView = false
         //So the user can still interact with controls in the modal view
@@ -133,7 +133,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
     func handleTapBehind(sender: UITapGestureRecognizer) {
         if sender.state == .Ended {
             // passing nil gives us coordinates in the window
-            var location: CGPoint = sender.locationInView(nil)
+            let location: CGPoint = sender.locationInView(nil)
             // convert the tap's location into the local view's coordinate system, and test to see if it's in or outside. If outside, dismiss the view.
             if !self.view!.pointInside(self.view!.convertPoint(location, fromView: self.view.window), withEvent: nil) {
                 // remove the recognizer first so it's view.window is valid
@@ -303,13 +303,13 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let str = ""
-        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)]
+        //let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)]
         return NSAttributedString(string: str, attributes: headerAttrs)
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "This user does not have any currently available plans."
-        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
+        //let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
         return NSAttributedString(string: str, attributes: bodyAttrs)
     }
     
@@ -319,7 +319,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
     
     func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
         let str = ""
-        let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)]
+        //let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)]
         return NSAttributedString(string: str, attributes: calloutAttrs)
     }
     
@@ -348,13 +348,13 @@ extension MerchantPlansViewController: STPPaymentCardTextFieldDelegate, PKPaymen
         let actionController = ArgentActionController()
         actionController.headerData = "Subscribe with"
         actionController.addAction(Action("Apple Pay", style: .Default, handler: { action in
-            Timeout(0.5) {
+            let _ = Timeout(0.5) {
                 print("showing apple pay modal")
                 self.showApplePayModal(self, tag: tag)
             }
         }))
         actionController.addAction(Action("Credit Card", style: .Default, handler: { action in
-            Timeout(0.5) {
+            let _ = Timeout(0.5) {
                 print("showing credit card modal")
                 self.showCreditCardModal(self, tag: tag)
             }

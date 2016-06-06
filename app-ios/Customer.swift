@@ -75,7 +75,7 @@ class Customer {
                     "Content-Type": "application/x-www-form-urlencoded"
                 ]
                 
-                let limit = "100"
+                //let limit = "100"
                 let user_id = (user?.id)
                 
                 let endpoint = API_URL + "/v1/stripe/" + user_id! + "/customers"
@@ -129,7 +129,7 @@ class Customer {
                         switch response.result {
                         case .Success:
                             if let value = response.result.value {
-                                let data = JSON(value)
+                                //let data = JSON(value)
                                 
                                 completionHandler(true, response.result.error)
                             }

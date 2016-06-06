@@ -51,7 +51,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
         
         self.finishButton.enabled = false
         // Allow continue to be clicked
-        Timeout(0.3) {
+        let _ = Timeout(0.3) {
             self.finishButton.enabled = true
         }
     }

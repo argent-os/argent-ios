@@ -38,7 +38,7 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
         
         self.continueButton.enabled = false
         // Allow continue to be clicked
-        Timeout(0.3) {
+        let _ = Timeout(0.3) {
             self.continueButton.enabled = true
         }
     }

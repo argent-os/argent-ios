@@ -96,8 +96,8 @@ class SignupViewControllerZero: UIViewController {
         UITextField.appearance().keyboardAppearance = .Light
         
         let screen = UIScreen.mainScreen().bounds
-        var screenWidth = screen.size.width
-        var screenHeight = screen.size.height
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
         
         // Individual Section
         
@@ -199,11 +199,11 @@ class SignupViewControllerZero: UIViewController {
     }
     
     func configureCheckboxes() {
-        Timeout(0.2) {
+        let _ = Timeout(0.2) {
             self.addTopSubviewWithBounce(self.individualCheckbox)
         }
 
-        Timeout(0.2) {
+        let _ = Timeout(0.2) {
             self.addBottomSubviewWithBounce(self.companyCheckbox)
         }
     }
@@ -214,12 +214,12 @@ class SignupViewControllerZero: UIViewController {
         self.addBottomSubviewWithBounce(self.companyImageView)
 
         self.addTopSubviewWithBounce(self.individualTitle)
-        Timeout(0.1) {
+        let _ = Timeout(0.1) {
             self.addTopSubviewWithBounce(self.individualSubtitle)
         }
         
         self.addBottomSubviewWithBounce(self.companyTitle)
-        Timeout(0.1) {
+        let _ = Timeout(0.1) {
             self.addBottomSubviewWithBounce(self.companySubtitle)
         }
     }
@@ -241,7 +241,7 @@ class SignupViewControllerZero: UIViewController {
             UIView.animateWithDuration(0.6, animations: {
                 self.companyImageView.alpha = 0.0
                 }, completion: {(value: Bool) in
-                    Timeout(0.6) {
+                    let _ = Timeout(0.6) {
                         self.performSegueWithIdentifier("companySegue", sender: sender)
                     }
             })
@@ -270,7 +270,7 @@ class SignupViewControllerZero: UIViewController {
             UIView.animateWithDuration(0.6, animations: {
                 self.individualImageView.alpha = 0.0
                 }, completion: {(value: Bool) in
-                    Timeout(0.6) {
+                    let _ = Timeout(0.6) {
                         self.performSegueWithIdentifier("individualSegue", sender: sender)
                     }
             })

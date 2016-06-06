@@ -41,7 +41,7 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate 
     func configure() {
         
         let screenWidth = screen.size.width
-        let screenHeight = screen.size.height
+        //let screenHeight = screen.size.height
         
         self.navigationItem.title = "Identity Verification"
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
@@ -122,7 +122,7 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate 
             overlayView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
             self.imagePickerController.view.addSubview(overlayView)
 
-            var overlayText = UILabel()
+            let overlayText = UILabel()
             overlayText.text = "Position card over the area below"
             overlayText.font = UIFont.systemFontOfSize(14)
             overlayText.textColor = UIColor.whiteColor()
@@ -152,7 +152,7 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate 
         imageView.layer.cornerRadius = imageView.frame.size.width/2
         imageView.layer.masksToBounds = true
         self.dismissViewControllerAnimated(true, completion: nil)
-        Timeout(0.3) {
+        let _ = Timeout(0.3) {
             if let navController = self.navigationController {
                 navController.popViewControllerAnimated(true)
             }

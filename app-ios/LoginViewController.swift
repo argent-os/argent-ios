@@ -102,7 +102,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate  {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
-        let imageName = "Logo"
         let image = UIImage(named: "Logo")
         imageView.image = image
         imageView.layer.cornerRadius = 30
