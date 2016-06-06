@@ -89,9 +89,7 @@ class SignupViewControllerZero: UIViewController {
         UIToolbar.appearance().layer.borderColor = UIColor.mediumBlue().CGColor
         UIToolbar.appearance().layer.borderWidth = 1
         
-        if let font = UIFont(name: "Avenir-Light", size: 15) {
-            UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: font,NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
-        }
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont.systemFontOfSize(15, weight: UIFontWeightLight) ,NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
         
         UITextField.appearance().keyboardAppearance = .Light
         

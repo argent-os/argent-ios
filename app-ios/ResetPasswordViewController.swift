@@ -59,7 +59,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
         // Tags are 4 and 5 due to signup view textfields taking values 0-3
         emailTextField.tag = 328
         emailTextField.textAlignment = NSTextAlignment.Center
-        emailTextField.font = UIFont(name: "Avenir", size: 20)
+        emailTextField.font = UIFont.systemFontOfSize(20, weight: UIFontWeightLight)
         emailTextField.borderActiveColor = UIColor.clearColor()
         emailTextField.borderInactiveColor = UIColor.clearColor() // color with alpha
         emailTextField.backgroundColor = UIColor.clearColor()
@@ -96,7 +96,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
         UIToolbar.appearance().barTintColor = UIColor.whiteColor()
 
         done.setTitleTextAttributes([
-            NSFontAttributeName : UIFont(name: "Avenir-Light", size: 15.0)!,
+            NSFontAttributeName : UIFont.systemFontOfSize(15, weight: UIFontWeightLight),
             NSForegroundColorAttributeName : UIColor.mediumBlue()
             ], forState: .Normal)
         

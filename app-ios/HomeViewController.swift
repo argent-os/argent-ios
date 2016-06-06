@@ -110,7 +110,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     func setupAppleWatch() {
         print("setting up apple watch")
         // Send access token and Stripe key to Apple Watch
-        if WCSession.isSupported() { //makes sure it's not an iPad or iPod
+        if userAccessToken != nil && WCSession.isSupported(){ //makes sure it's not an iPad or iPod
             let watchSession = WCSession.defaultSession()
             watchSession.delegate = self
             watchSession.activateSession()

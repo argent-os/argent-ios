@@ -34,7 +34,7 @@ class OnboardingViewController: UIViewController, UICollectionViewDataSource, UI
         // Register cells
         
         // Background view setup
-        let backgroundImage: UIImage! = UIImage(named: "BackgroundOnboarding")
+        let backgroundImage: UIImage! = UIImage(named: "BackgroundBusinessBlurDark")
         let backgroundImageView: UIImageView! = UIImageView(image: backgroundImage)
         backgroundImageView.frame = CGRectMake(0.0, 0.0, backgroundImageView.frame.size.width+500, self.view.frame.size.height)
         
@@ -92,9 +92,9 @@ extension OnboardingViewController {
                 cell.contentDescriptionLabel.lineBreakMode = .ByWordWrapping
                 cell.contentDescriptionLabel.numberOfLines = 7
                 cell.contentDescriptionLabel.textAlignment = .Center
-                cell.contentDescriptionLabel.alpha = 0.7
+                cell.contentDescriptionLabel.alpha = 1
 
-                cell.contentLabel.text = "Manage recurring payments"
+                cell.contentLabel.text = "Recurring payments"
                 cell.contentLabel.font = UIFont.systemFontOfSize(18)
                 cell.contentLabel.alpha = 0.9
                 cell.contentLabel.textColor = UIColor.whiteColor()
@@ -105,14 +105,14 @@ extension OnboardingViewController {
         case 1:
             // TODO: cell 2
             if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("onboardingCell", forIndexPath: indexPath) as? OnboardingCollectionViewCell {
-                cell.contentImage.image = UIImage(named: "IconBitcoinWhite")
+                cell.contentImage.image = UIImage(named: "LogoBitcoin")
                 
                 cell.contentDescriptionLabel.text = APP_NAME + " provides a POS (Point of Sale) solution for businesses to accept Bitcoin. We convert Bitcoin into USD with the real-time exchange rate and automatically initiate a transfer into the bank account of your choice."
                 cell.contentDescriptionLabel.font = UIFont.systemFontOfSize(14)
                 cell.contentDescriptionLabel.lineBreakMode = .ByWordWrapping
                 cell.contentDescriptionLabel.numberOfLines = 7
                 cell.contentDescriptionLabel.textAlignment = .Center
-                cell.contentDescriptionLabel.alpha = 0.7
+                cell.contentDescriptionLabel.alpha = 1
 
                 cell.contentLabel.text = "Accept Bitcoin"
                 cell.contentLabel.font = UIFont.systemFontOfSize(18)
@@ -137,7 +137,7 @@ extension OnboardingViewController {
                 cell.contentDescriptionLabel.lineBreakMode = .ByWordWrapping
                 cell.contentDescriptionLabel.numberOfLines = 7
                 cell.contentDescriptionLabel.textAlignment = .Center
-                cell.contentDescriptionLabel.alpha = 0.7
+                cell.contentDescriptionLabel.alpha = 1
                 
                 cell.contentLabel.text = "Apple Pay Integration"
                 cell.contentLabel.font = UIFont.systemFontOfSize(18)

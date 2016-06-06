@@ -72,11 +72,12 @@ class AuthViewController: UIViewController, LTMorphingLabelDelegate, ModalTransi
         
         // UI
         let loginButton = UIButton(frame: CGRect(x: 10, y: screenHeight-60-10, width: screenWidth/2-20, height: 60.0))
-        loginButton.backgroundColor = UIColor(rgba: "#0003")
+        loginButton.setBackgroundColor(UIColor(rgba: "#0003"), forState: .Normal)
+        loginButton.setBackgroundColor(UIColor(rgba: "#111c"), forState: .Highlighted)
         loginButton.tintColor = UIColor(rgba: "#fff")
         loginButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
         loginButton.setTitleColor(UIColor(rgba: "#ddd"), forState: .Highlighted)
-        loginButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
+        loginButton.titleLabel?.font = UIFont.systemFontOfSize(16)
         loginButton.setTitle("Log in", forState: .Normal)
         loginButton.layer.cornerRadius = 5
         loginButton.layer.borderWidth = 2
@@ -86,14 +87,15 @@ class AuthViewController: UIViewController, LTMorphingLabelDelegate, ModalTransi
         view.addSubview(loginButton)
         
         let signupButton = UIButton(frame: CGRect(x: screenWidth*0.5+10, y: screenHeight-60-10, width: screenWidth/2-20, height: 60.0))
-        signupButton.backgroundColor = UIColor.whiteColor()
+        signupButton.setBackgroundColor(UIColor.whiteColor(), forState: .Normal)
+        signupButton.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
         signupButton.setTitle("Sign up", forState: .Normal)
         signupButton.setTitleColor(UIColor.darkGrayColor(), forState: .Normal)
-        signupButton.setTitleColor(UIColor(rgba: "#aaa"), forState: .Highlighted)
-        signupButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
+        signupButton.setTitleColor(UIColor.blackColor(), forState: .Highlighted)
+        signupButton.titleLabel?.font = UIFont.systemFontOfSize(16)
         signupButton.layer.cornerRadius = 5
         signupButton.layer.borderWidth = 2
-        signupButton.layer.borderColor = UIColor(rgba: "#fffa").CGColor
+        signupButton.layer.borderColor = UIColor(rgba: "#fff8").CGColor
         signupButton.layer.masksToBounds = true
         signupButton.addTarget(self, action: #selector(AuthViewController.signup(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(signupButton)
@@ -110,8 +112,7 @@ class AuthViewController: UIViewController, LTMorphingLabelDelegate, ModalTransi
         
         let attributedString = NSMutableAttributedString(string: "Welcome to Argent")
         // Set range of string length to exactly 8, the number of characters
-        attributedString.addAttribute(NSFontAttributeName, value: "Avenir-Bold", range: NSRange(location: 0, length: 15)
-        )
+        attributedString.addAttribute(NSFontAttributeName, value: "HelveticaNeue-Light", range: NSRange(location: 0, length: 15))
         lbl.morphingEffect = .Scale
         lbl.delegate = self
         lbl.morphingEnabled = true
@@ -120,7 +121,7 @@ class AuthViewController: UIViewController, LTMorphingLabelDelegate, ModalTransi
         lbl.frame.origin.y = screenHeight*0.40 // 20 down from the top
         lbl.textAlignment = NSTextAlignment.Center
         lbl.textColor = UIColor.whiteColor()
-        lbl.font = UIFont(name: "Avenir-Bold", size: 14)
+        lbl.font = UIFont.systemFontOfSize(16)
         view.addSubview(lbl)
         _ = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: #selector(AuthViewController.changeText(_:)), userInfo: nil, repeats: true)
 
@@ -131,8 +132,8 @@ class AuthViewController: UIViewController, LTMorphingLabelDelegate, ModalTransi
         button.frame.origin.y = screenHeight*0.44 // 20 down from the top
         button.backgroundColor = UIColor.clearColor()
         button.setTitle("Tap to view app features.", forState: .Normal)
-        button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Light", size: 14)
+        button.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.7), forState: .Normal)
+        button.titleLabel?.font = UIFont.systemFontOfSize(12)
         button.addTarget(self, action: #selector(self.goToTutorial(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(button)
     }
@@ -145,7 +146,7 @@ class AuthViewController: UIViewController, LTMorphingLabelDelegate, ModalTransi
     
     func goToTutorial(sender: AnyObject!) {
         let viewController:UIViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateViewControllerWithIdentifier("onboardingVC") as! OnboardingViewController
-        
+        viewController.modalTransitionStyle = .CrossDissolve
         self.presentViewController(viewController, animated: true, completion: nil)
     }
     

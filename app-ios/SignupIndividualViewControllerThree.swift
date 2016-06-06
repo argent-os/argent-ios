@@ -39,8 +39,11 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
     let userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")!
     let userLegalEntityType = NSUserDefaults.standardUserDefaults().stringForKey("userLegalEntityType")!
     let userCountry = NSUserDefaults.standardUserDefaults().stringForKey("userCountry")!
+    let userDobDay = NSUserDefaults.standardUserDefaults().stringForKey("userDobDay")!
+    let userDobMonth = NSUserDefaults.standardUserDefaults().stringForKey("userDobMonth")!
+    let userDobYear = NSUserDefaults.standardUserDefaults().stringForKey("userDobYear")!
     
-    override func viewDidAppear(animated: Bool) {        
+    override func viewDidAppear(animated: Bool) {
         let stepButton = UIBarButtonItem(title: "3/3", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
         navigationItem.rightBarButtonItem = stepButton
         navigationItem.rightBarButtonItem?.tintColor = UIColor.lightGrayColor()
@@ -149,6 +152,9 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
                     return ""
                 }
                 
+                let dobJSON: [String: AnyObject] = [ "day": Int(self.userDobDay)!, "month": Int(self.userDobMonth)!, "year": Int(self.userDobYear)! ]
+                let dobNSDict = dobJSON as NSDictionary //no error message
+                
                 let iosContent: [String: AnyObject] = [ "push_state": true, "device_token": userDeviceToken ] //also works with [ "model" : NSNull()]
                 let iosNSDict = iosContent as NSDictionary //no error message
                 
@@ -157,6 +163,7 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
                     "country":self.userCountry,
                     "email":self.userEmail,
                     "tos_acceptance" : tosNSDict,
+                    "dob" : dobNSDict,
                     "legal_entity_type": self.userLegalEntityType,
                     "password":self.userPassword,
                     "ios": iosNSDict

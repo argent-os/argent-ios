@@ -64,7 +64,7 @@ class HistoryDetailViewController: UIViewController, UINavigationBarDelegate {
             navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
             navBar.titleTextAttributes = [
                 NSForegroundColorAttributeName : UIColor.whiteColor(),
-                NSFontAttributeName : UIFont(name: "Avenir-Book", size: 18)!
+                NSFontAttributeName : UIFont.systemFontOfSize(18)
             ]
             self.view.addSubview(navBar)
             let navItem = UINavigationItem(title: "")
@@ -80,8 +80,8 @@ class HistoryDetailViewController: UIViewController, UINavigationBarDelegate {
             let navigationItem = UINavigationItem()
             // Create left and right button for navigation item
             let leftButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(HistoryDetailViewController.returnToMenu(_:)))
-            let font = UIFont(name: "Avenir-Book", size: 14)
-            leftButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+            let font = UIFont.systemFontOfSize(14)
+            leftButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
             // Create two buttons for the navigation item
             navigationItem.leftBarButtonItem = leftButton
             // Assign the navigation item to the navigation bar

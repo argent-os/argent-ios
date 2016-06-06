@@ -34,7 +34,7 @@ class RiskTutorialViewController: UIViewController {
         titleLabel.frame = CGRect(x: 0, y: 35, width: 300, height: 20)
         titleLabel.text = "Tutorial"
         titleLabel.textAlignment = .Center
-        titleLabel.font = UIFont(name: "AvenirNext-Regular", size: 18)
+        titleLabel.font = UIFont.systemFontOfSize(18, weight: UIFontWeightLight)
         titleLabel.textColor = UIColor.whiteColor()
         self.view.addSubview(titleLabel)
         
@@ -43,7 +43,7 @@ class RiskTutorialViewController: UIViewController {
         descriptionLabel.numberOfLines = 0
         descriptionLabel.alpha = 0.8
         descriptionLabel.textAlignment = .Center
-        descriptionLabel.font = UIFont(name: "AvenirNext-Regular", size: 12)
+        descriptionLabel.font = UIFont.systemFontOfSize(12, weight: UIFontWeightRegular)
         descriptionLabel.textColor = UIColor.whiteColor()
         self.view.addSubview(descriptionLabel)
         

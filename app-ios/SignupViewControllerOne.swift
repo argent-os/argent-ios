@@ -25,9 +25,13 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
     var dobMonth:String = ""
     var dobYear:String = ""
     
+    var passedValidation:Bool?
+
     override func viewDidAppear(animated: Bool) {
         
         firstNameTextField.becomeFirstResponder()
+
+        addToolbarButton()
 
         let stepButton = UIBarButtonItem(title: "1/4", style: UIBarButtonItemStyle.Plain, target: nil, action: Selector(""))
         navigationItem.rightBarButtonItem = stepButton
@@ -74,8 +78,6 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         scrollView.userInteractionEnabled = true
         scrollView.contentSize = CGSizeMake(screenWidth, 550)
         self.view!.addSubview(scrollView)
-        
-        addToolbarButton()
         
         // Focuses view controller on first name text input
         firstNameTextField.becomeFirstResponder()
@@ -177,7 +179,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         // sendToolbar.barStyle = UIBarStyle.Default
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Continue", style: UIBarButtonItemStyle.Done, target: self, action: #selector(SignupViewControllerOne.nextStep(_:)))
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Continue", style: UIBarButtonItemStyle.Done, target: self, action: #selector(self.nextStep(_:)))
         
         var items: [UIBarButtonItem]? = [UIBarButtonItem]()
         items?.append(flexSpace)
@@ -193,9 +195,15 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
     
     func nextStep(sender: AnyObject) {
         // Function for toolbar button
-        let x = performValidation()
-        if x == true {
+        passedValidation = performValidation()
+        if passedValidation == true {
             self.performSegueWithIdentifier("VC2", sender: sender)
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "VC2" {
+            passedValidation = performValidation()
         }
     }
     
@@ -287,6 +295,9 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         } else if(lastNameTextField.text?.characters.count < 1) {
             displayErrorAlertMessage("Last name cannot be empty")
             return false
+        } else if(dobTextField.text!.characters.count < 10) {
+            displayErrorAlertMessage("Date of birth length too short")
+            return false
         } else if(dobMonth == "" || dobDay == "" || dobYear == "") {
             displayErrorAlertMessage("Date of birth cannot be empty")
             return false
@@ -321,6 +332,9 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
                 return false
             } else if(lastNameTextField.text?.characters.count < 1) {
                 displayErrorAlertMessage("Last name cannot be empty")
+                return false
+            } else if(dobTextField.text!.characters.count < 10) {
+                displayErrorAlertMessage("Date of birth length too short")
                 return false
             } else if(dobMonth == "" || dobDay == "" || dobYear == "") {
                 displayErrorAlertMessage("Date of birth cannot be empty")

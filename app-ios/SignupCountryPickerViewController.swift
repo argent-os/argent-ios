@@ -18,6 +18,12 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
     
     let countryPicker:CountryPicker = CountryPicker()
     
+    let unsupportedImageView = UIImageView()
+    
+    let unsupportedTextLabel = UILabel()
+    
+    let toolBar = UIToolbar()
+
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .Default
     }
@@ -38,6 +44,15 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
+        
+        unsupportedImageView.image = UIImage(named: "IconAlert")
+        unsupportedImageView.frame = CGRect(x: screenWidth/2-20, y: screenHeight*0.4, width: 40, height: 40)
+        
+        unsupportedTextLabel.text = "Only US and Canada are currently supported"
+        unsupportedTextLabel.frame = CGRect(x: 0, y: screenHeight*0.45, width: screenWidth, height: 40)
+        unsupportedTextLabel.textAlignment = .Center
+        unsupportedTextLabel.font = UIFont.systemFontOfSize(14, weight: UIFontWeightLight)
+        unsupportedTextLabel.textColor = UIColor.brandRed()
         
         let countryPickerBackgroundView = UIView()
         countryPickerBackgroundView.backgroundColor = UIColor.whiteColor()
@@ -109,7 +124,6 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
         self.view.sendSubviewToBack(countryPicker)
         countryPicker.sendSubviewToBack(countryPicker)
 
-        let toolBar = UIToolbar()
         toolBar.frame = CGRect(x: 0, y: screenHeight-250, width: screenWidth, height: 40)
         toolBar.barStyle = UIBarStyle.Default
         toolBar.translucent = true
@@ -122,7 +136,7 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
         toolBar.setItems([flexSpace, next, flexSpace], animated: false)
         toolBar.userInteractionEnabled = true
         
-        self.view.addSubview(toolBar)
+        addSubviewWithFade(toolBar, parentView: self, duration: 0.5)
         self.view.superview?.bringSubviewToFront(toolBar)
         self.view.superview?.sendSubviewToBack(countryPicker)
         self.view.bringSubviewToFront(toolBar)
@@ -178,5 +192,17 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
         addSubviewWithBounce(codeLabel, parentView: self, duration: 0.3)
         addSubviewWithBounce(flagImg, parentView: self, duration: 0.3)
         
+        if code == "US" || code == "CA" {
+            // print("country supported")
+            unsupportedTextLabel.removeFromSuperview()
+            unsupportedImageView.removeFromSuperview()
+            addToolbarButton()
+            addSubviewWithFade(countryPicker, parentView: self, duration: 0.3)
+        } else {
+            print("this country is not currently supported")
+            toolBar.removeFromSuperview()
+            addSubviewWithBounce(unsupportedTextLabel, parentView: self, duration: 0.4)
+            addSubviewWithBounce(unsupportedImageView, parentView: self, duration: 0.4)
+        }
     }
 }

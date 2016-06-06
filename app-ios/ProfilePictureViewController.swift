@@ -60,7 +60,7 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
         txt.textAlignment = .Center
         txt.textColor = UIColor.darkGrayColor()
         txt.text = "No image selected"
-        txt.font = UIFont(name: "Avenir-Light", size: 18)
+        txt.font = UIFont.systemFontOfSize(18, weight: UIFontWeightLight)
         
     }
     

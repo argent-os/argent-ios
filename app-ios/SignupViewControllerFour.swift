@@ -148,7 +148,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
                 var tosJSON: [String: [String: AnyObject]] = [ "data" : tosContent ]
                 let tosNSDict = tosJSON as NSDictionary //no error message
                 
-                var dobJSON: [String: AnyObject] = [ "day": Int(self.userDobDay)!, "month": Int(self.userDobMonth)!, "year": Int(self.userDobYear)! ]
+                let dobJSON: [String: AnyObject] = [ "day": Int(self.userDobDay)!, "month": Int(self.userDobMonth)!, "year": Int(self.userDobYear)! ]
                 let dobNSDict = dobJSON as NSDictionary //no error message
                 
                 var userDeviceToken: String {

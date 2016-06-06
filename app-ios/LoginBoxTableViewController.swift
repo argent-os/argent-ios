@@ -52,7 +52,7 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
             let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.useOnePassword(_:)))
             self.onePasswordButton.addGestureRecognizer(tap)
         } else {
-            self.onePasswordButton.textLabel?.text = "Get 1Password"
+            self.onePasswordButton.textLabel?.text = "1Password Login"
             let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.checkOnePasswordExists(_:)))
             self.onePasswordButton.addGestureRecognizer(tap)
         }

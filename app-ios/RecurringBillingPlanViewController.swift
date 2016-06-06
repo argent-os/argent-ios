@@ -239,7 +239,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
             $0.textField.autocapitalizationType = .None
             $0.textField.keyboardType = .NumberPad
             }.configure {
-                $0.placeholder = "e.g. '1' and 'month' bills every 1 month"
+                $0.placeholder = "e.g. '1' and 'month' bills once a month"
                 $0.rowHeight = 60
             }.onTextChanged { [weak self] in
                 if self?.dic["planIntervalKey"] == "year" && Int($0) > 1 {

@@ -25,6 +25,8 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
     var dobMonth:String = ""
     var dobYear:String = ""
     
+    var passedValidation:Bool? = false
+
     override func viewDidAppear(animated: Bool) {
         // Focuses view controller on first name text input
         usernameTextField.becomeFirstResponder()
@@ -77,10 +79,11 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
         scrollView.contentSize = CGSizeMake(screenWidth, 550)
         self.view!.addSubview(scrollView)
         
-        // Inherit UITextField Delegate, this is used for next and join on keyboard
+        // Inherit UITextField Delegate, this is used for next and join on keyboard and dob formatting
         self.usernameTextField.delegate = self
         self.emailTextField.delegate = self
-        
+        self.dobTextField.delegate = self
+
         continueButton.layer.cornerRadius = 0
         continueButton.backgroundColor = UIColor.mediumBlue()
         scrollView.addSubview(continueButton)
@@ -167,8 +170,7 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
     }
 
     // Add send toolbar
-    func addToolbarButton()
-    {
+    func addToolbarButton() {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let sendToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, screenWidth, 50))
@@ -186,12 +188,19 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
         sendToolbar.sizeToFit()
         usernameTextField.inputAccessoryView=sendToolbar
         emailTextField.inputAccessoryView=sendToolbar
+        dobTextField.inputAccessoryView=sendToolbar
     }
     
     func nextStep(sender: AnyObject) {
-        let x = performValidation()
-        if x == true {
+        passedValidation = performValidation()
+        if passedValidation == true {
             performSegueWithIdentifier("VC2", sender: sender)
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "VC2" {
+            passedValidation = performValidation()
         }
     }
     
@@ -257,9 +266,30 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
         } else if(emailTextField.text?.characters.count < 1 || usernameTextField.text?.characters.count < 1) {
             displayErrorAlertMessage("Username and email fields cannot be empty")
             return false
+        } else if(dobTextField.text!.characters.count < 10) {
+            displayErrorAlertMessage("Date of birth length too short")
+            return false
+        } else if(dobMonth == "" || dobDay == "" || dobYear == "") {
+            displayErrorAlertMessage("Date of birth cannot be empty")
+            return false
+        } else if(Int(dobMonth) > 12 || Int(dobMonth) == 0 || Int(dobDay) == 0 || Int(dobDay) > 31 || Int(dobYear) > 2006 || Int(dobYear) < 1914) {
+            displayErrorAlertMessage("Month cannot be greater than 12 or equal to zero. Day cannot be greater than 31 or equal to zero, year cannot be less than 1914 or greater than 2006")
+            return false
+        } else if(Int(dobMonth)! == 02 && Int(dobDay)! > 29 && (Int(dobYear)! % 4) == 0 ) {
+            displayErrorAlertMessage("Leap years do not have more than 29 days")
+            return false
+        } else if(Int(dobMonth)! == 02 && Int(dobDay)! > 28 && (Int(dobYear)! % 4) != 0 ) {
+            displayErrorAlertMessage("Invalid entry, not a leap year")
+            return false
+        } else if((Int(dobMonth) == 02 && Int(dobDay) > 30) || (Int(dobMonth) == 04 && Int(dobDay) > 30) || (Int(dobMonth) == 06 && Int(dobDay) > 30) || (Int(dobMonth) == 09 && Int(dobDay) > 30) || (Int(dobMonth) == 11 && Int(dobDay) > 30)) {
+            displayErrorAlertMessage("The entered month does not have 31 days")
+            return false
         } else {
             NSUserDefaults.standardUserDefaults().setValue(usernameTextField.text!, forKey: "userUsername")
             NSUserDefaults.standardUserDefaults().setValue(emailTextField.text!, forKey: "userEmail")
+            NSUserDefaults.standardUserDefaults().setValue(dobDay, forKey: "userDobDay")
+            NSUserDefaults.standardUserDefaults().setValue(dobMonth, forKey: "userDobMonth")
+            NSUserDefaults.standardUserDefaults().setValue(dobYear, forKey: "userDobYear")
             NSUserDefaults.standardUserDefaults().synchronize();
         }
         return true
@@ -274,6 +304,9 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
                 return false
             } else if(emailTextField.text?.characters.count < 1 || usernameTextField.text?.characters.count < 1) {
                 displayErrorAlertMessage("Username and email fields cannot be empty")
+                return false
+            } else if(dobTextField.text!.characters.count < 10) {
+                displayErrorAlertMessage("Date of birth length too short")
                 return false
             } else if(dobMonth == "" || dobDay == "" || dobYear == "") {
                 displayErrorAlertMessage("Date of birth cannot be empty")

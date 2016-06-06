@@ -31,7 +31,7 @@ class ProfileViewController: UIViewController {
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "Avenir-Light", size: 14.0)!
+            NSFontAttributeName : UIFont.systemFontOfSize(14, weight: UIFontWeightLight)
         ]
         
         loadUserAccount()
