@@ -12,8 +12,9 @@ import Alamofire
 import SwiftyJSON
 import CWStatusBarNotification
 import MCSwipeTableViewCell
+import DZNEmptyDataSet
 
-class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableViewCellDelegate {
+class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableViewCellDelegate, DZNEmptyDataSetSource {
     
     var itemsArray:Array<Subscription>?
     
@@ -173,4 +174,34 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
         return cell;
     }
     
+}
+
+extension SubscriptionsListTableViewController {
+    // Delegate: DZNEmptyDataSet
+    
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let str = "Subscriptions"
+        return NSAttributedString(string: str, attributes: headerAttrs)
+    }
+    
+    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let str = "No subscriptions to plans."
+        // let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
+        return NSAttributedString(string: str, attributes: bodyAttrs)
+    }
+    
+    func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
+        return UIImage(named: "IconMissing")
+    }
+    
+    func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
+        let str = "Find a merchant and sign up for one!"
+        // let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)]
+        return NSAttributedString(string: str, attributes: calloutAttrs)
+    }
+    
+    func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
+        let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SearchViewController") as! SearchViewController
+        self.presentViewController(viewController, animated: true, completion: nil)
+    }
 }

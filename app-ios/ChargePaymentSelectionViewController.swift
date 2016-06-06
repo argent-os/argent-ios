@@ -158,7 +158,7 @@ class ChargePaymentSelectionViewController: UIViewController {
     func panDismiss(sender: UIPanGestureRecognizer) {
         switch sender.state {
         case .Began :
-            guard sender.translationInView(view).y < 0 else {
+            guard sender.velocityInView(view).y < 0 else {
                 break
             }
             modalDelegate?.modalViewControllerDismiss(interactive: true, callbackData: ["option":"none"])

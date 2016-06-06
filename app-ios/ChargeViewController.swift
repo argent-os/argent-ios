@@ -190,7 +190,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
     func interactiveTransition(sender: UIPanGestureRecognizer) {
         switch sender.state {
         case .Began:
-            guard sender.translationInView(view).y > 0 else {
+            guard sender.velocityInView(view).y > 0 else {
                 break
             }
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ChargePaymentSelectionViewController") as! ChargePaymentSelectionViewController
@@ -418,7 +418,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
 extension ChargeViewController: UIGestureRecognizerDelegate {
     func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
         if let ges = gestureRecognizer as? UIPanGestureRecognizer {
-            return ges.translationInView(ges.view).y != 0
+            return ges.velocityInView(ges.view).y != 0
         }
         return false
     }
