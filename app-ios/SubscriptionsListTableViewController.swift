@@ -33,6 +33,15 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
     }
     
     private func configureView() {
+        let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        activityIndicator.center = tableView.center
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(activityIndicator)
+        let _ = Timeout(1.2) {
+            activityIndicator.stopAnimating()
+        }
+        
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         //let screenHeight = screen.size.height

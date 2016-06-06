@@ -39,7 +39,7 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
         activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true
         self.view.addSubview(activityIndicator)
-        let _ = Timeout(3) {
+        let _ = Timeout(1.2) {
             activityIndicator.stopAnimating()
         }
         

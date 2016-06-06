@@ -31,6 +31,15 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
     }
     
     private func configureView() {
+        let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        activityIndicator.center = tableView.center
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(activityIndicator)
+        let _ = Timeout(1.2) {
+            activityIndicator.stopAnimating()
+        }
+        
         self.navigationItem.title = "Plans"
         self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
         
