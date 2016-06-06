@@ -8,7 +8,6 @@
 
 import UIKit
 import TransitionTreasury
-import DKCircleButton
 
 class ChargePaymentSelectionViewController: UIViewController {
     
@@ -43,61 +42,88 @@ class ChargePaymentSelectionViewController: UIViewController {
         swipeArrowImageView.frame = CGRect(x: 0, y: screenHeight-55, width: screenWidth, height: 20) // shimmeringView.bounds
         swipeArrowImageView.contentMode = .ScaleAspectFit
         addSubviewWithFade(swipeArrowImageView, parentView: self, duration: 1)
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissModal))
+        swipeArrowImageView.addGestureRecognizer(tap)
         
-        // Pay with bitcoin button
-        let payWithBitcoinButton = DKCircleButton()
-        payWithBitcoinButton.frame = CGRect(x: 30, y: 40, width: screenWidth/2-40, height: screenWidth/2-40)
-        payWithBitcoinButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
-        payWithBitcoinButton.setBackgroundColor(UIColor.clearColor(), forState: .Highlighted)
-        payWithBitcoinButton.tintColor = UIColor.whiteColor()
-        payWithBitcoinButton.setTitleColor(UIColor.lightBlue(), forState: .Normal)
-        payWithBitcoinButton.setTitleColor(UIColor.lightBlue().colorWithAlphaComponent(0.5), forState: .Highlighted)
-        payWithBitcoinButton.titleLabel?.font = UIFont.systemFontOfSize(16, weight: UIFontWeightLight)
-        payWithBitcoinButton.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
-        payWithBitcoinButton.borderSize = 1
-        payWithBitcoinButton.setTitle("Bitcoin", forState: .Normal)
-        payWithBitcoinButton.clipsToBounds = true
-        payWithBitcoinButton.clipsToBounds = true
-        payWithBitcoinButton.addTarget(self, action: #selector(self.payWithBitcoin(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        Timeout(0.1) {
-            addSubviewWithBounce(payWithBitcoinButton, parentView: self, duration: 0.3)
-        }
+        // pay with card
+        let payWithCardImageView = UIImageView()
+        payWithCardImageView.backgroundColor = UIColor.whiteColor()
+        payWithCardImageView.layer.cornerRadius = 10
+        payWithCardImageView.frame = CGRect(x: 35, y: screenHeight*0.1, width: screenWidth-70, height: 120)
+        payWithCardImageView.contentMode = .ScaleAspectFit
+        addSubviewWithShadow(UIColor.lightBlue(), radius: 10.0, offsetX: 0.0, offsetY: 0, opacity: 0.2, parentView: self, childView: payWithCardImageView)
+        let payWithCardButton = UIButton()
+        let str1 = NSAttributedString(string: "  Credit Card", attributes: [
+            NSForegroundColorAttributeName : UIColor.whiteColor(),
+            NSFontAttributeName : UIFont(name: "ArialRoundedMTBold", size: 18)!
+            ])
+        payWithCardButton.setAttributedTitle(str1, forState: .Normal)
+        payWithCardButton.setBackgroundColor(UIColor.iosBlue(), forState: .Normal)
+        payWithCardButton.setBackgroundColor(UIColor.iosBlue().darkerColor(), forState: .Highlighted)
+        payWithCardButton.frame = CGRect(x: 35, y: screenHeight*0.1, width: screenWidth-70, height: 120)
+        payWithCardButton.setImage(UIImage(named: "LogoCard"), forState: .Normal)
+        payWithCardButton.setImage(UIImage(named: "LogoCard")?.alpha(0.5), forState: .Highlighted)
+        payWithCardButton.layer.cornerRadius = 10
+        payWithCardButton.layer.masksToBounds = true
+        payWithCardButton.backgroundColor = UIColor.iosBlue()
+        payWithCardButton.addTarget(self, action: #selector(self.payWithCard(_:)), forControlEvents: .TouchUpInside)
+        self.view.addSubview(payWithCardButton)
+        self.view.bringSubviewToFront(payWithCardButton)
+        self.view.superview?.bringSubviewToFront(payWithCardButton)
+        self.view.bringSubviewToFront(payWithCardButton)
         
-        // Pay with card button
-        let payWithCardButton = DKCircleButton()
-        payWithCardButton.frame = CGRect(x: screenWidth/2+20, y: 40, width: screenWidth/2-40, height: screenWidth/2-40)
-        payWithCardButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
-        payWithCardButton.setBackgroundColor(UIColor.clearColor(), forState: .Highlighted)
-        payWithCardButton.tintColor = UIColor.whiteColor()
-        payWithCardButton.setTitleColor(UIColor.lightBlue(), forState: .Normal)
-        payWithCardButton.setTitleColor(UIColor.lightBlue().colorWithAlphaComponent(0.5), forState: .Highlighted)
-        payWithCardButton.titleLabel?.font = UIFont.systemFontOfSize(16, weight: UIFontWeightLight)
-        payWithCardButton.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
-        payWithCardButton.borderSize = 1
-        payWithCardButton.setTitle("Credit Card", forState: .Normal)
-        payWithCardButton.clipsToBounds = true
-        payWithCardButton.addTarget(self, action: #selector(ChargeViewController.payWithCard(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        Timeout(0.1) {
-            addSubviewWithBounce(payWithCardButton, parentView: self, duration: 0.3)
-        }
+        let payWithBitcoinImageView = UIImageView()
+        payWithBitcoinImageView.backgroundColor = UIColor.whiteColor()
+        payWithBitcoinImageView.layer.cornerRadius = 10
+        payWithBitcoinImageView.frame = CGRect(x: 35, y: screenHeight*0.32, width: screenWidth-70, height: 120)
+        payWithBitcoinImageView.contentMode = .ScaleAspectFit
+        addSubviewWithShadow(UIColor.lightBlue(), radius: 10.0, offsetX: 0.0, offsetY: 0, opacity: 0.2, parentView: self, childView: payWithBitcoinImageView)
+        let payWithBitcoinButton = UIButton()
+        let str2 = NSAttributedString(string: "  Bitcoin", attributes: [
+            NSForegroundColorAttributeName : UIColor.whiteColor(),
+            NSFontAttributeName : UIFont(name: "ArialRoundedMTBold", size: 18)!
+            ])
+        payWithBitcoinButton.setAttributedTitle(str2, forState: .Normal)
+        payWithBitcoinButton.setBackgroundColor(UIColor.bitcoinOrange(), forState: .Normal)
+        payWithBitcoinButton.setBackgroundColor(UIColor.bitcoinOrange().darkerColor(), forState: .Highlighted)
+        payWithBitcoinButton.frame = CGRect(x: 35, y: screenHeight*0.32, width: screenWidth-70, height: 120)
+        payWithBitcoinButton.setImage(UIImage(named: "LogoBitcoin"), forState: .Normal)
+        payWithBitcoinButton.setImage(UIImage(named: "LogoBitcoin")?.alpha(0.5), forState: .Highlighted)
+        payWithBitcoinButton.layer.cornerRadius = 10
+        payWithBitcoinButton.layer.masksToBounds = true
+        payWithBitcoinButton.backgroundColor = UIColor.whiteColor()
+        payWithBitcoinButton.addTarget(self, action: #selector(self.payWithBitcoin(_:)), forControlEvents: .TouchUpInside)
+        self.view.addSubview(payWithBitcoinButton)
+        self.view.bringSubviewToFront(payWithBitcoinButton)
+        self.view.superview?.bringSubviewToFront(payWithBitcoinButton)
+        self.view.bringSubviewToFront(payWithBitcoinButton)
         
-        // Pay with card button
-        let payWithAlipaybutton = DKCircleButton()
-        payWithAlipaybutton.frame = CGRect(x: 30, y: 40+20+screenWidth/2-20-10, width: screenWidth/2-40, height: screenWidth/2-40)
-        payWithAlipaybutton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
-        payWithAlipaybutton.setBackgroundColor(UIColor.clearColor(), forState: .Highlighted)
-        payWithAlipaybutton.tintColor = UIColor.lightBlue()
-        payWithAlipaybutton.setTitleColor(UIColor.lightBlue(), forState: .Normal)
-        payWithAlipaybutton.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
-        payWithAlipaybutton.titleLabel?.font = UIFont.systemFontOfSize(16, weight: UIFontWeightLight)
-        payWithAlipaybutton.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.3)
-        payWithAlipaybutton.borderSize = 1
-        payWithAlipaybutton.setTitle("Alipay \n(coming soon)", forState: .Normal)
-        payWithAlipaybutton.clipsToBounds = true
-        payWithAlipaybutton.addTarget(self, action: #selector(self.payWithAlipay(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        Timeout(0.3) {
-            addSubviewWithBounce(payWithAlipaybutton, parentView: self, duration: 0.3)
-        }
+        
+        let payWithAlipayImageView = UIImageView()
+        payWithAlipayImageView.backgroundColor = UIColor.whiteColor()
+        payWithAlipayImageView.layer.cornerRadius = 10
+        payWithAlipayImageView.frame = CGRect(x: 35, y: screenHeight*0.54, width: screenWidth-70, height: 120)
+        payWithAlipayImageView.contentMode = .ScaleAspectFit
+        addSubviewWithShadow(UIColor.lightBlue(), radius: 10.0, offsetX: 0.0, offsetY: 0, opacity: 0.2, parentView: self, childView: payWithAlipayImageView)
+        let payWithAlipayButton = UIButton()
+        let str3 = NSAttributedString(string: "  Alipay", attributes: [
+            NSForegroundColorAttributeName : UIColor.whiteColor(),
+            NSFontAttributeName : UIFont(name: "ArialRoundedMTBold", size: 18)!
+            ])
+        payWithAlipayButton.setAttributedTitle(str3, forState: .Normal)
+        payWithAlipayButton.setBackgroundColor(UIColor.alipayBlue(), forState: .Normal)
+        payWithAlipayButton.setBackgroundColor(UIColor.alipayBlue().darkerColor(), forState: .Highlighted)
+        payWithAlipayButton.setImage(UIImage(named: "LogoAlipay"), forState: .Normal)
+        payWithAlipayButton.setImage(UIImage(named: "LogoAlipay")?.alpha(0.5), forState: .Highlighted)
+        payWithAlipayButton.frame = CGRect(x: 35, y: screenHeight*0.54, width: screenWidth-70, height: 120)
+        payWithAlipayButton.layer.cornerRadius = 10
+        payWithAlipayButton.layer.masksToBounds = true
+        payWithAlipayButton.backgroundColor = UIColor.whiteColor()
+        payWithAlipayButton.addTarget(self, action: #selector(self.payWithAlipay(_:)), forControlEvents: .TouchUpInside)
+        self.view.addSubview(payWithAlipayButton)
+        self.view.bringSubviewToFront(payWithAlipayButton)
+        self.view.superview?.bringSubviewToFront(payWithAlipayButton)
+        self.view.bringSubviewToFront(payWithAlipayButton)
         
     }
     
@@ -123,6 +149,10 @@ class ChargePaymentSelectionViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func dismissModal(sender: AnyObject) {
+        modalDelegate?.modalViewControllerDismiss(interactive: true, callbackData: ["option":"none"])
     }
     
     func panDismiss(sender: UIPanGestureRecognizer) {

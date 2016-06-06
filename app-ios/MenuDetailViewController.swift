@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import TransitionTreasury
 import TransitionAnimation
-import DKCircleButton
 import Shimmer
 
 class MenuDetailViewController: UIViewController, ModalTransitionDelegate {
@@ -52,62 +51,85 @@ class MenuDetailViewController: UIViewController, ModalTransitionDelegate {
         swipeArrowImageView.image = UIImage(named: "ic_arrow_up_gray")
         swipeArrowImageView.frame = CGRect(x: 0, y: screenHeight-55, width: screenWidth, height: 20) // shimmeringView.bounds
         swipeArrowImageView.contentMode = .ScaleAspectFit
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissModal))
+        swipeArrowImageView.addGestureRecognizer(tap)
         addSubviewWithFade(swipeArrowImageView, parentView: self, duration: 1)
         
-        // view plans button
-        let viewPlansButton = DKCircleButton()
-        viewPlansButton.frame = CGRect(x: 30, y: 40, width: screenWidth/2-40, height: screenWidth/2-40)
-        viewPlansButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
-        viewPlansButton.setBackgroundColor(UIColor.clearColor(), forState: .Highlighted)
-        viewPlansButton.tintColor = UIColor.whiteColor()
-        viewPlansButton.setTitleColor(UIColor.lightBlue(), forState: .Normal)
-        viewPlansButton.setTitleColor(UIColor.lightBlue().colorWithAlphaComponent(0.5), forState: .Highlighted)
-        viewPlansButton.titleLabel?.font = UIFont.systemFontOfSize(16, weight: UIFontWeightLight)
-        viewPlansButton.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
-        viewPlansButton.borderSize = 1
-        viewPlansButton.setTitle("Plans", forState: .Normal)
-        viewPlansButton.clipsToBounds = true
-        viewPlansButton.clipsToBounds = true
-        viewPlansButton.addTarget(self, action: #selector(self.viewPlans(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        Timeout(0.1) {
-            addSubviewWithBounce(viewPlansButton, parentView: self, duration: 0.3)
-        }
         
-        // view subscriptions button
-        let viewSubscriptionsButton = DKCircleButton()
-        viewSubscriptionsButton.frame = CGRect(x: screenWidth/2+20, y: 40, width: screenWidth/2-40, height: screenWidth/2-40)
-        viewSubscriptionsButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
-        viewSubscriptionsButton.setBackgroundColor(UIColor.clearColor(), forState: .Highlighted)
-        viewSubscriptionsButton.tintColor = UIColor.whiteColor()
-        viewSubscriptionsButton.setTitleColor(UIColor.lightBlue(), forState: .Normal)
-        viewSubscriptionsButton.setTitleColor(UIColor.lightBlue().colorWithAlphaComponent(0.5), forState: .Highlighted)
-        viewSubscriptionsButton.titleLabel?.font = UIFont.systemFontOfSize(16, weight: UIFontWeightLight)
-        viewSubscriptionsButton.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
-        viewSubscriptionsButton.borderSize = 1
-        viewSubscriptionsButton.setTitle("Subscriptions", forState: .Normal)
-        viewSubscriptionsButton.clipsToBounds = true
-        viewSubscriptionsButton.addTarget(self, action: #selector(self.viewSubscriptions(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        Timeout(0.1) {
-            addSubviewWithBounce(viewSubscriptionsButton, parentView: self, duration: 0.3)
-        }
+        let viewCustomersImageView = UIImageView()
+        viewCustomersImageView.backgroundColor = UIColor.whiteColor()
+        viewCustomersImageView.layer.cornerRadius = 10
+        viewCustomersImageView.frame = CGRect(x: 35, y: screenHeight*0.1, width: screenWidth-70, height: 120)
+        viewCustomersImageView.contentMode = .ScaleAspectFit
+        addSubviewWithShadow(UIColor.lightBlue(), radius: 10.0, offsetX: 0.0, offsetY: 0, opacity: 0.2, parentView: self, childView: viewCustomersImageView)
+        let btn1 = UIButton()
+        let str1 = NSAttributedString(string: "  View Customers", attributes: [
+            NSForegroundColorAttributeName : UIColor.lightBlue(),
+            NSFontAttributeName : UIFont(name: "ArialRoundedMTBold", size: 18)!
+            ])
+        btn1.setAttributedTitle(str1, forState: .Normal)
+        btn1.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
+        btn1.frame = CGRect(x: 35, y: screenHeight*0.1, width: screenWidth-70, height: 120)
+        btn1.setImage(UIImage(named: "IconEmpty"), forState: .Normal)
+        btn1.setImage(UIImage(named: "IconEmpty")?.alpha(0.5), forState: .Highlighted)
+        btn1.layer.cornerRadius = 10
+        btn1.layer.masksToBounds = true
+        btn1.backgroundColor = UIColor.whiteColor()
+        btn1.addTarget(self, action: #selector(self.viewCustomers(_:)), forControlEvents: .TouchUpInside)
+        self.view.addSubview(btn1)
+        self.view.bringSubviewToFront(btn1)
+        self.view.superview?.bringSubviewToFront(btn1)
+        self.view.bringSubviewToFront(btn1)
         
-        // view customers button
-        let viewCustomersButton = DKCircleButton()
-        viewCustomersButton.frame = CGRect(x: 30, y: 40+20+screenWidth/2-20-10, width: screenWidth/2-40, height: screenWidth/2-40)
-        viewCustomersButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
-        viewCustomersButton.setBackgroundColor(UIColor.clearColor(), forState: .Highlighted)
-        viewCustomersButton.tintColor = UIColor.lightBlue()
-        viewCustomersButton.setTitleColor(UIColor.lightBlue(), forState: .Normal)
-        viewCustomersButton.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
-        viewCustomersButton.titleLabel?.font = UIFont.systemFontOfSize(16, weight: UIFontWeightLight)
-        viewCustomersButton.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.3)
-        viewCustomersButton.borderSize = 1
-        viewCustomersButton.setTitle("Customers", forState: .Normal)
-        viewCustomersButton.clipsToBounds = true
-        viewCustomersButton.addTarget(self, action: #selector(self.viewCustomers(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        Timeout(0.3) {
-            addSubviewWithBounce(viewCustomersButton, parentView: self, duration: 0.3)
-        }
+        let viewSubscriptionsImageView = UIImageView()
+        viewSubscriptionsImageView.backgroundColor = UIColor.whiteColor()
+        viewSubscriptionsImageView.layer.cornerRadius = 10
+        viewSubscriptionsImageView.frame = CGRect(x: 35, y: screenHeight*0.32, width: screenWidth-70, height: 120)
+        viewSubscriptionsImageView.contentMode = .ScaleAspectFit
+        addSubviewWithShadow(UIColor.lightBlue(), radius: 10.0, offsetX: 0.0, offsetY: 0, opacity: 0.2, parentView: self, childView: viewSubscriptionsImageView)
+        let btn2 = UIButton()
+        let str2 = NSAttributedString(string: "  View Subscriptions", attributes: [
+            NSForegroundColorAttributeName : UIColor.lightBlue(),
+            NSFontAttributeName : UIFont(name: "ArialRoundedMTBold", size: 18)!
+            ])
+        btn2.setAttributedTitle(str2, forState: .Normal)
+        btn2.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
+        btn2.frame = CGRect(x: 35, y: screenHeight*0.32, width: screenWidth-70, height: 120)
+        btn2.setImage(UIImage(named: "IconEmpty"), forState: .Normal)
+        btn2.setImage(UIImage(named: "IconEmpty")?.alpha(0.5), forState: .Highlighted)
+        btn2.layer.cornerRadius = 10
+        btn2.layer.masksToBounds = true
+        btn2.backgroundColor = UIColor.whiteColor()
+        btn2.addTarget(self, action: #selector(self.viewSubscriptions(_:)), forControlEvents: .TouchUpInside)
+        self.view.addSubview(btn2)
+        self.view.bringSubviewToFront(btn2)
+        self.view.superview?.bringSubviewToFront(btn2)
+        self.view.bringSubviewToFront(btn2)
+        
+        let viewPlansImageView = UIImageView()
+        viewPlansImageView.backgroundColor = UIColor.whiteColor()
+        viewPlansImageView.layer.cornerRadius = 10
+        viewPlansImageView.frame = CGRect(x: 35, y: screenHeight*0.54, width: screenWidth-70, height: 120)
+        viewPlansImageView.contentMode = .ScaleAspectFit
+        addSubviewWithShadow(UIColor.lightBlue(), radius: 10.0, offsetX: 0.0, offsetY: 0, opacity: 0.2, parentView: self, childView: viewPlansImageView)
+        let btn3 = UIButton()
+        let str3 = NSAttributedString(string: "  View Plans", attributes: [
+            NSForegroundColorAttributeName : UIColor.lightBlue(),
+            NSFontAttributeName : UIFont(name: "ArialRoundedMTBold", size: 18)!
+            ])
+        btn3.setAttributedTitle(str3, forState: .Normal)
+        btn3.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
+        btn3.setImage(UIImage(named: "IconEmpty"), forState: .Normal)
+        btn3.setImage(UIImage(named: "IconEmpty")?.alpha(0.5), forState: .Highlighted)
+        btn3.frame = CGRect(x: 35, y: screenHeight*0.54, width: screenWidth-70, height: 120)
+        btn3.layer.cornerRadius = 10
+        btn3.layer.masksToBounds = true
+        btn3.backgroundColor = UIColor.whiteColor()
+        btn3.addTarget(self, action: #selector(self.viewPlans(_:)), forControlEvents: .TouchUpInside)
+        self.view.addSubview(btn3)
+        self.view.bringSubviewToFront(btn3)
+        self.view.superview?.bringSubviewToFront(btn3)
+        self.view.bringSubviewToFront(btn3)
 
         
     }
@@ -142,6 +164,10 @@ class MenuDetailViewController: UIViewController, ModalTransitionDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func dismissModal(sender: AnyObject) {
+        modalDelegate?.modalViewControllerDismiss(interactive: true, callbackData: ["option":"none"])
     }
     
     func panDismiss(sender: UIPanGestureRecognizer) {
