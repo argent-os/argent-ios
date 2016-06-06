@@ -14,7 +14,9 @@ import CWStatusBarNotification
 import MCSwipeTableViewCell
 import DZNEmptyDataSet
 
-class CustomersListTableViewController: UITableViewController, MCSwipeTableViewCellDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+class CustomersListTableViewController: UITableViewController, MCSwipeTableViewCellDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UINavigationBarDelegate {
+    
+    var navigationBar = UINavigationBar()
     
     var itemsArray:Array<Customer>?
     
@@ -24,11 +26,12 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationItem.title = "Customers"
+        configureView()
+        setupNav()
+    }
+    
+    private func configureView() {
         self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
-        
-        showGlobalNotification("Loading customers", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.lightBlue())
         
         self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         self.dateFormatter.timeStyle = NSDateFormatterStyle.LongStyle
@@ -54,17 +57,42 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
         
         let headerView = UIView()
         headerView.backgroundColor = UIColor.offWhite()
-        headerView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 100)
+        headerView.frame = CGRect(x: 0, y: 10, width: screenWidth, height: 60)
         self.tableView.tableHeaderView = headerView
         let headerViewTitle: UILabel = UILabel()
-        headerViewTitle.frame = CGRect(x: 0, y: 35, width: screenWidth, height: 30)
+        headerViewTitle.frame = CGRect(x: 0, y: 20, width: screenWidth, height: 35)
         headerViewTitle.text = "Customers"
-        headerViewTitle.font = UIFont.systemFontOfSize(18)
+        headerViewTitle.font = UIFont.systemFontOfSize(16)
         headerViewTitle.textAlignment = .Center
         headerViewTitle.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.7)
         headerView.addSubview(headerViewTitle)
         
         self.tableView.separatorColor = UIColor.lightBlue().colorWithAlphaComponent(0.3)
+    }
+    
+    private func setupNav() {
+        // Offset by 20 pixels vertically to take the status bar into account
+        navigationBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 60)
+        navigationBar.backgroundColor = UIColor.clearColor()
+        navigationBar.tintColor = UIColor.lightBlue()
+        navigationBar.delegate = self
+        
+        // Create a navigation item with a title
+        let navigationItem = UINavigationItem()
+        
+        // Create left and right button for navigation item
+        let leftButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ChargeViewController.returnToMenu(_:)))
+        let font = UIFont(name: "DINAlternate-Bold", size: 14)
+        leftButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+        // Create two buttons for the navigation item
+        navigationItem.leftBarButtonItem = leftButton
+        
+        // Assign the navigation item to the navigation bar
+        navigationBar.titleTextAttributes = [NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.lightBlue()]
+        navigationBar.items = [navigationItem]
+        
+        // Make the navigation bar a subview of the current view controller
+        self.view.addSubview(navigationBar)
     }
     
     func loadCustomerList() {
@@ -167,6 +195,10 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
         };
         
         return cell;
+    }
+    
+    func returnToMenu(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true) { }
     }
     
 }

@@ -14,25 +14,31 @@ import CWStatusBarNotification
 import MCSwipeTableViewCell
 import DZNEmptyDataSet
 
-class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableViewCellDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableViewCellDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UINavigationBarDelegate {
     
-    var itemsArray:Array<Subscription>?
+    let navigationBar = UINavigationBar()
+
+    var subscriptionsArray:Array<Subscription>?
     
     var viewRefreshControl = UIRefreshControl()
     
     var dateFormatter = NSDateFormatter()
     
+    private var selectedRow: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        configureView()
+        setupNav()
+    }
+    
+    private func configureView() {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         //let screenHeight = screen.size.height
         
         self.navigationItem.title = "Subscriptions"
         self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
-        
-        showGlobalNotification("Loading subscriptions", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.lightBlue())
         
         self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         self.dateFormatter.timeStyle = NSDateFormatterStyle.LongStyle
@@ -51,32 +57,56 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
         self.tableView.tableFooterView = UIView()
         
         self.loadSubscriptionList()
-
+        
         let headerView = UIView()
         headerView.backgroundColor = UIColor.offWhite()
-        headerView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 100)
+        headerView.frame = CGRect(x: 0, y: 10, width: screenWidth, height: 60)
         self.tableView.tableHeaderView = headerView
         let headerViewTitle: UILabel = UILabel()
-        headerViewTitle.frame = CGRect(x: 0, y: 35, width: screenWidth, height: 30)
+        headerViewTitle.frame = CGRect(x: 0, y: 20, width: screenWidth, height: 35)
         headerViewTitle.text = "Subscriptions"
-        headerViewTitle.font = UIFont.systemFontOfSize(18)
+        headerViewTitle.font = UIFont.systemFontOfSize(16)
         headerViewTitle.textAlignment = .Center
         headerViewTitle.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.7)
         headerView.addSubview(headerViewTitle)
         
         self.tableView.separatorColor = UIColor.lightBlue().colorWithAlphaComponent(0.3)
+    }
+    
+    private func setupNav() {
+
+        // Offset by 20 pixels vertically to take the status bar into account
+        navigationBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 60)
+        navigationBar.backgroundColor = UIColor.clearColor()
+        navigationBar.tintColor = UIColor.lightBlue()
+        navigationBar.delegate = self
         
+        // Create a navigation item with a title
+        let navigationItem = UINavigationItem()
+        
+        // Create left and right button for navigation item
+        let leftButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ChargeViewController.returnToMenu(_:)))
+        let font = UIFont(name: "DINAlternate-Bold", size: 14)
+        leftButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+        // Create two buttons for the navigation item
+        navigationItem.leftBarButtonItem = leftButton
+        
+        // Assign the navigation item to the navigation bar
+        navigationBar.titleTextAttributes = [NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.lightBlue()]
+        navigationBar.items = [navigationItem]
+        
+        // Make the navigation bar a subview of the current view controller
+        self.view.addSubview(navigationBar)
     }
     
     func loadSubscriptionList() {
         Subscription.getSubscriptionList({ (subscriptions, error) in
-            if error != nil
-            {
+            if error != nil {
                 let alert = UIAlertController(title: "Error", message: "Could not load subscriptions \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
-            self.itemsArray = subscriptions
+            self.subscriptionsArray = subscriptions
             
             // update "last updated" title for refresh control
             let now = NSDate()
@@ -117,7 +147,7 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.itemsArray?.count ?? 0
+        return self.subscriptionsArray?.count ?? 0
     }
     
     // MARK DELEGATE MCTABLEVIEWCELL
@@ -129,8 +159,35 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
         return imageView;
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "viewSubscriptionDetail" {
+            guard let name = subscriptionsArray![self.selectedRow!].name else {
+                return
+            }
+            guard let amount = subscriptionsArray![self.selectedRow!].plan_amount else {
+                return
+            }
+            guard let interval = subscriptionsArray![self.selectedRow!].plan_interval else {
+                return
+            }
+            guard let status = subscriptionsArray![self.selectedRow!].status else {
+                return
+            }
+            
+            let destination = segue.destinationViewController as! SubscriptionsListDetailViewController
+            destination.subscriptionName = name
+            destination.subscriptionAmount = amount
+            destination.subscriptionInterval = interval
+            destination.subscriptionStatus = status
+        }
+    }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        self.selectedRow = indexPath.row
+        performSegueWithIdentifier("viewSubscriptionDetail", sender: self)
+
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -144,7 +201,7 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
             cell.detailTextLabel?.tintColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
             cell.tag = indexPath.row
             
-            let item = self.itemsArray?[indexPath.row]
+            let item = self.subscriptionsArray?[indexPath.row]
             if let name = item?.plan_name, status = item?.status {
                 let strName = NSAttributedString(string: name + " ", attributes: [:])
                 let strStatus = NSAttributedString(string: status, attributes: [
@@ -167,7 +224,7 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
         
         cell.setSwipeGestureWithView(closeView, color:  UIColor.brandRed(), mode: .Exit, state: .State3) {
             (cell : MCSwipeTableViewCell!, state : MCSwipeTableViewCellState!, mode : MCSwipeTableViewCellMode!) in
-            let item = self.itemsArray?[cell.tag]
+            let item = self.subscriptionsArray?[cell.tag]
             if let id = item?.id {
                 print("Did swipe" + id);
                 // send request to delete the bank account, on completion reload table data!
@@ -179,6 +236,12 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
         };
         
         return cell;
+    }
+    
+    func returnToMenu(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true) { 
+            //
+        }
     }
     
 }

@@ -209,7 +209,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         print("got callback data")
         
         let option = data!["option"]
-        option.map { (unwrappedOption) -> Void in
+        let _ = option.map { (unwrappedOption) -> Void in
             // print(unwrappedOption)
             if unwrappedOption as! String == "bitcoin" {
                 swipePaymentSelectionLabel.text = "Use any Bitcoin wallet to send BTC"
@@ -257,12 +257,12 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         showGlobalNotification("Paying merchant " + chargeInputView.text!, duration: 1.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
 
         if(chargeInputView.text != "" || chargeInputView.text != "$0.00") {
-            payButton.userInteractionEnabled = false
             // print("civ passes check")
             if let card = paymentTextField.card {
                 // print("got card")
                 STPAPIClient.sharedClient().createTokenWithCard(card) { (token, error) -> Void in
                     if let error = error  {
+                        self.payButton.userInteractionEnabled = true
                         print(error)
                     }
                     else if let token = token {
@@ -455,7 +455,7 @@ extension ChargeViewController: CardIOPaymentViewControllerDelegate {
             card.expMonth = info.expiryMonth
             card.expYear = info.expiryYear
             card.cvc = info.cvv
-            paymentTextField.card = card
+            paymentTextField.cardParams = card
             swipePaymentSelectionLabel.text = "Submit payment"
             let _ = Timeout(0.2) {
                 self.paymentTextField.endEditing(true)

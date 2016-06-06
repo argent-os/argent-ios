@@ -198,7 +198,7 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate 
                         multipartFormData.appendBodyPart(data: imageData, name: "document", fileName: "document", mimeType: "image/jpg")
                         
                         for (key, value) in parameters {
-                            multipartFormData.appendBodyPart(data: value.dataUsingEncoding(NSUTF8StringEncoding)!, name: key as! String)
+                            multipartFormData.appendBodyPart(data: value.dataUsingEncoding(NSUTF8StringEncoding)!, name: key)
                         }
                         
                         }, encodingCompletion: {

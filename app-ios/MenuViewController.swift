@@ -66,11 +66,20 @@ class MenuViewController: UIViewController, ModalTransitionDelegate {
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-        // remove view shadow
-        let maskView = UIView()
-        maskView.backgroundColor = UIColor.offWhite()
-        maskView.frame = CGRect(x: 0, y: -30, width: screenWidth, height: 60)
-        self.view.addSubview(maskView)
+//        self.view.frame = CGRect(x: 0, y: 80, width: screenWidth, height: screenHeight)
+//        self.view.backgroundColor = UIColor.whiteColor()
+//        self.view.layer.shadowOffset = CGSizeMake(0, 0)
+//        self.view.layer.shadowColor = UIColor.clearColor().CGColor
+//        self.view.layer.cornerRadius = 0.0
+//        self.view.layer.shadowRadius = 0.0
+//        self.view.layer.shadowOpacity = 0.00
+//        
+//        let headerView = UIImageView()
+//        headerView.image = UIImage(named: "BackgroundSwipeDown")
+//        headerView.contentMode = .ScaleAspectFill
+//        headerView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 140)
+//        self.view.addSubview(headerView)
+//        self.view.sendSubviewToBack(headerView)
         
         let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
         visualEffectView.frame = CGRectMake(0, 0, screenWidth, screenHeight)

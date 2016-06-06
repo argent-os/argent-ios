@@ -59,7 +59,7 @@ class Subscription {
                         switch response.result {
                         case .Success:
                             if let value = response.result.value {
-                                print(response)
+                                // print(response)
                                 let data = JSON(value)
                                 var subscriptionsArray = [Subscription]()
                                 let subscriptions = data["subscriptions"]["data"].arrayValue

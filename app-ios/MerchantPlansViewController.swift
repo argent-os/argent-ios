@@ -407,26 +407,6 @@ extension MerchantPlansViewController: STPPaymentCardTextFieldDelegate, PKPaymen
         }
     }
     
-    func paymentCardTextFieldDidChange(textField: STPPaymentCardTextField) {
-        // Toggle navigation, for example
-        //        saveButton.enabled = textField.valid
-    }
-    
-    // STRIPE SAVE METHOD
-    @IBAction func save(sender: UIButton) {
-        //        if let card = paymentTextField.card {
-        //            STPAPIClient.sharedClient().createTokenWithCard(card) { (token, error) -> Void in
-        //                if let error = error  {
-        //                    print(error)
-        //                }
-        //                else if let token = token {
-        //                    self.createBackendChargeWithToken(token) { status in
-        //                        print(status)
-        //                    }
-        //                }
-        //            }
-        //        }
-    }
     
     // STRIPE FUNCTIONS
     func paymentAuthorizationViewController(controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, completion: (PKPaymentAuthorizationStatus) -> Void) {

@@ -55,6 +55,14 @@ class MenuDetailViewController: UIViewController, ModalTransitionDelegate {
         swipeArrowImageView.addGestureRecognizer(tap)
         addSubviewWithFade(swipeArrowImageView, parentView: self, duration: 1)
         
+        navigationController?.navigationBarHidden = false
+        self.navigationController?.navigationBar.translucent = false
+        self.navigationController?.navigationBar.barTintColor = UIColor.blueColor()
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSForegroundColorAttributeName: UIColor.lightBlue(),
+            NSFontAttributeName: UIFont(name: "ArialRoundedMTBold", size: 16)!
+        ]
+        
         
         let viewCustomersImageView = UIImageView()
         viewCustomersImageView.backgroundColor = UIColor.whiteColor()
@@ -140,7 +148,7 @@ class MenuDetailViewController: UIViewController, ModalTransitionDelegate {
     
     func viewCustomers(sender: AnyObject) {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("CustomersListTableViewController") as! CustomersListTableViewController
-        tr_presentViewController(vc, method: TRPresentTransitionMethod.PopTip(visibleHeight: screenHeight*0.8), completion: {
+        tr_presentViewController(vc, method: TRPresentTransitionMethod.Twitter, completion: {
             print("Present finished")
         })
     }
@@ -148,7 +156,7 @@ class MenuDetailViewController: UIViewController, ModalTransitionDelegate {
     func viewPlans(sender: AnyObject) {
         print("plans selected")
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PlansListTableViewController") as! PlansListTableViewController
-        tr_presentViewController(vc, method: TRPresentTransitionMethod.PopTip(visibleHeight: screenHeight*0.8), completion: {
+        tr_presentViewController(vc, method: TRPresentTransitionMethod.Twitter, completion: {
             print("Present finished")
         })
     }
@@ -156,7 +164,7 @@ class MenuDetailViewController: UIViewController, ModalTransitionDelegate {
     func viewSubscriptions(sender: AnyObject) {
         print("subscriptions selected")
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SubscriptionsListTableViewController") as! SubscriptionsListTableViewController
-        tr_presentViewController(vc, method: TRPresentTransitionMethod.PopTip(visibleHeight: screenHeight*0.8), completion: {
+        tr_presentViewController(vc, method: TRPresentTransitionMethod.Twitter, completion: {
             print("Present finished")
         })
     }

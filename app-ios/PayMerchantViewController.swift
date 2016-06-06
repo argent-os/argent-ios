@@ -211,7 +211,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
             showGlobalNotification("Paid " + (self.detailUser?.username)! + " successfully!", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
             // print("success")
             controller.dismissViewControllerAnimated(true, completion: nil)
-            self.chargeInputView.text == ""
+            self.chargeInputView.text = ""
             self.dismissViewControllerAnimated(true, completion: {
                 //
             })
@@ -263,7 +263,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
                     switch response.result {
                     case .Success:
                         if let value = response.result.value {
-                            let json = JSON(value)
+                            //let json = JSON(value)
                             print(PKPaymentAuthorizationStatus.Success)
                             completion(PKPaymentAuthorizationStatus.Success)
                             self.dismissViewControllerAnimated(true, completion: { 
