@@ -161,7 +161,7 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "viewSubscriptionDetail" {
-            guard let name = subscriptionsArray![self.selectedRow!].name else {
+            guard let name = subscriptionsArray![self.selectedRow!].plan_name else {
                 return
             }
             guard let amount = subscriptionsArray![self.selectedRow!].plan_amount else {

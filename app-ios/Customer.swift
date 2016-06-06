@@ -13,7 +13,7 @@ import Alamofire
 class Customer {
     
     let id: String
-    let email: String
+    let email: String?
     
     required init(id: String, email: String) {
         self.id = id
@@ -86,6 +86,7 @@ class Customer {
                         case .Success:
                             if let value = response.result.value {
                                 let data = JSON(value)
+                                print(data)
                                 var customerArray = [Customer]()
                                 let customers = data["customers"]["data"].arrayValue
                                 for customer in customers {

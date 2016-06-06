@@ -18,11 +18,13 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
     
     var navigationBar = UINavigationBar()
     
-    var itemsArray:Array<Customer>?
+    var customersArray:Array<Customer>?
     
     var viewRefreshControl = UIRefreshControl()
     
     var dateFormatter = NSDateFormatter()
+    
+    var selectedRow: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,7 +105,7 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
-            self.itemsArray = customers
+            self.customersArray = customers
             
             // update "last updated" title for refresh control
             let now = NSDate()
@@ -145,7 +147,30 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.itemsArray?.count ?? 0
+        return self.customersArray?.count ?? 0
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "viewCustomerDetail" {
+            guard let email = customersArray![self.selectedRow!].email else {
+                return
+            }
+//            guard let plans = customersArray![self.selectedRow!].plans else {
+//                return
+//            }
+//            
+            let destination = segue.destinationViewController as! CustomersListDetailViewController
+            destination.customerEmail = email
+//            destination.customerPlans = plans
+        }
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        self.selectedRow = indexPath.row
+        performSegueWithIdentifier("viewCustomerDetail", sender: self)
+        
     }
     
     // MARK DELEGATE MCTABLEVIEWCELL
@@ -155,10 +180,6 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
         let imageView: UIImageView = UIImageView(image: image);
         imageView.contentMode = UIViewContentMode.Center;
         return imageView;
-    }
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -172,7 +193,7 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
             cell.detailTextLabel?.tintColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
             cell.tag = indexPath.row
             
-            let item = self.itemsArray?[indexPath.row]
+            let item = self.customersArray?[indexPath.row]
             if let email = item?.email, id = item?.id {
                 cell.textLabel?.text = email ?? id
                 cell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 15)!
@@ -183,7 +204,7 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
         
         cell.setSwipeGestureWithView(closeView, color:  UIColor.brandRed(), mode: .Exit, state: .State3) {
             (cell : MCSwipeTableViewCell!, state : MCSwipeTableViewCellState!, mode : MCSwipeTableViewCellMode!) in
-            let item = self.itemsArray?[cell.tag]
+            let item = self.customersArray?[cell.tag]
             if let id = item?.id {
                 print("Did swipe" + id);
                 // send request to delete the bank account, on completion reload table data!

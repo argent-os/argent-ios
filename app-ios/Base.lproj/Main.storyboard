@@ -3429,7 +3429,7 @@ be private unless otherwise requested.</string>
                     <navigationItem key="navigationItem" id="8hY-8J-gKa"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <segue destination="j9h-Qy-a8K" kind="show" identifier="viewCustomersDetail" id="j4y-kf-XI2"/>
+                        <segue destination="ZNR-ba-X34" kind="show" identifier="viewCustomerDetail" id="tsA-Cg-VzQ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eNh-0r-4Xa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3461,9 +3461,6 @@ be private unless otherwise requested.</string>
                     </tableView>
                     <navigationItem key="navigationItem" id="IfI-B0-lLQ"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <connections>
-                        <segue destination="q4Z-er-PWp" kind="show" identifier="viewPlansDetail" id="EdU-Yu-Yez"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jHn-tA-D1n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -4075,6 +4072,24 @@ be private unless otherwise requested.</string>
             </objects>
             <point key="canvasLocation" x="-2585" y="270"/>
         </scene>
+        <!--Customers List Detail View Controller-->
+        <scene sceneID="EtP-bC-76f">
+            <objects>
+                <viewController id="ZNR-ba-X34" customClass="CustomersListDetailViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nIA-JH-FzO"/>
+                        <viewControllerLayoutGuide type="bottom" id="fqn-0Q-eG2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Smm-t4-FIj">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vlv-a8-YYN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3272" y="-1099"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="k1y-E1-mOJ">
             <objects>
@@ -4088,6 +4103,7 @@ be private unless otherwise requested.</string>
                     <nil name="viewControllers"/>
                     <connections>
                         <segue destination="Dsp-9Y-0Qy" kind="relationship" relationship="rootViewController" id="eJZ-eL-Xu2"/>
+                        <segue destination="ZNR-ba-X34" kind="show" id="CbZ-Ke-Oj6"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gUE-QD-gmV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4129,6 +4145,7 @@ be private unless otherwise requested.</string>
         <image name="ic_tab_search" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="UFB-DJ-qrH"/>
         <segue reference="CNn-4s-Hqn"/>
         <segue reference="ipn-3I-3vc"/>
         <segue reference="VI5-hp-Gm2"/>
@@ -4140,10 +4157,10 @@ be private unless otherwise requested.</string>
         <segue reference="7cu-FP-MoG"/>
         <segue reference="fEJ-lR-z9I"/>
         <segue reference="Bc6-jW-uiV"/>
-        <segue reference="UFB-DJ-qrH"/>
         <segue reference="m0d-gd-RWW"/>
         <segue reference="zQh-Po-kj4"/>
         <segue reference="wgV-xY-MTp"/>
+        <segue reference="tsA-Cg-VzQ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>
