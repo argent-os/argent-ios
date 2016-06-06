@@ -232,16 +232,16 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         let nextTag: Int = textField.tag + 1
         let nextResponder: UIResponder? = textField.superview?.superview?.viewWithTag(nextTag)
-//        if let nextR = nextResponder
-//        {
-//            // Found next responder, so set it.
-//            //nextR.becomeFirstResponder()
-//        } else {
-//            // Not found, so remove keyboard.
-//            self.login(self)
-//            textField.resignFirstResponder()
-//            return true
-//        }
+        if let nextR = nextResponder
+        {
+            // Found next responder, so set it.
+            nextR.becomeFirstResponder()
+        } else {
+            // Not found, so remove keyboard.
+            self.login(self)
+            textField.resignFirstResponder()
+            return true
+        }
         return false
     }
     

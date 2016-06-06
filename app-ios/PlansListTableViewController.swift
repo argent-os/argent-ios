@@ -12,8 +12,9 @@ import Alamofire
 import SwiftyJSON
 import CWStatusBarNotification
 import MCSwipeTableViewCell
+import DZNEmptyDataSet
 
-class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellDelegate {
+class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate  {
     
     var itemsArray:Array<Plan>?
     
@@ -37,6 +38,12 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
         self.viewRefreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.viewRefreshControl.addTarget(self, action: #selector(self.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         self.tableView?.addSubview(viewRefreshControl)
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.emptyDataSetDelegate = self
+        self.tableView.emptyDataSetSource = self
+        // trick to make table lines disappear
+        self.tableView.tableFooterView = UIView()
         
         self.loadPlanList()
         
@@ -167,3 +174,36 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
     }
     
 }
+
+
+
+extension PlansListTableViewController {
+    // Delegate: DZNEmptyDataSet
+    
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let str = "Plans"
+        return NSAttributedString(string: str, attributes: headerAttrs)
+    }
+    
+    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let str = "No plans to show."
+        // let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
+        return NSAttributedString(string: str, attributes: bodyAttrs)
+    }
+    
+    func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
+        return UIImage(named: "IconMissing")
+    }
+    
+    func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
+        let str = "Create a plan"
+        // let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)]
+        return NSAttributedString(string: str, attributes: calloutAttrs)
+    }
+    
+    func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
+        let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RecurringBillingViewController") as! RecurringBillingViewController
+        self.presentViewController(viewController, animated: true, completion: nil)
+    }
+}
+

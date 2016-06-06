@@ -14,7 +14,7 @@ import CWStatusBarNotification
 import MCSwipeTableViewCell
 import DZNEmptyDataSet
 
-class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableViewCellDelegate, DZNEmptyDataSetSource {
+class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableViewCellDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     var itemsArray:Array<Subscription>?
     
@@ -42,6 +42,13 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
         self.viewRefreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.viewRefreshControl.addTarget(self, action: #selector(self.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         self.tableView?.addSubview(viewRefreshControl)
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.emptyDataSetDelegate = self
+        self.tableView.emptyDataSetSource = self
+        // trick to make table lines disappear
+        self.tableView.tableFooterView = UIView()
         
         self.loadSubscriptionList()
 

@@ -38,12 +38,12 @@ let APP_NAME = "Argent"
 
 // DEV
 // let API_URL = "http://localhost:5001"
- let API_URL = "http://192.168.1.182:5001"
+// let API_URL = "http://192.168.1.182:5001"
 // let API_URL = "http://192.168.1.232:5001"
 // let API_URL = "http://api.argent.cloud"
 
 // PROD
-//let API_URL = "https://api.argent.cloud"
+let API_URL = "https://api.argent.cloud"
 
 // Global Stripe base API url
 let STRIPE_API_URL = "https://api.stripe.com"

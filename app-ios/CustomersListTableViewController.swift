@@ -12,8 +12,9 @@ import Alamofire
 import SwiftyJSON
 import CWStatusBarNotification
 import MCSwipeTableViewCell
+import DZNEmptyDataSet
 
-class CustomersListTableViewController: UITableViewController, MCSwipeTableViewCellDelegate {
+class CustomersListTableViewController: UITableViewController, MCSwipeTableViewCellDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     var itemsArray:Array<Customer>?
     
@@ -40,9 +41,16 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
         
         self.loadCustomerList()
         
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.emptyDataSetDelegate = self
+        self.tableView.emptyDataSetSource = self
+        // trick to make table lines disappear
+        self.tableView.tableFooterView = UIView()
+        
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
-        let screenHeight = screen.size.height
+        // let screenHeight = screen.size.height
         
         let headerView = UIView()
         headerView.backgroundColor = UIColor.offWhite()
@@ -161,4 +169,35 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
         return cell;
     }
     
+}
+
+
+extension CustomersListTableViewController {
+    // Delegate: DZNEmptyDataSet
+    
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let str = "Customers"
+        return NSAttributedString(string: str, attributes: headerAttrs)
+    }
+    
+    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let str = "No customers to show."
+        // let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
+        return NSAttributedString(string: str, attributes: bodyAttrs)
+    }
+    
+    func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
+        return UIImage(named: "IconMissing")
+    }
+    
+    func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
+        let str = "Create a subscription plan to get started"
+        // let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)]
+        return NSAttributedString(string: str, attributes: calloutAttrs)
+    }
+    
+    func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
+        let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RecurringBillingViewController") as! RecurringBillingViewController
+        self.presentViewController(viewController, animated: true, completion: nil)
+    }
 }
