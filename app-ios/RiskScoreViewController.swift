@@ -126,9 +126,11 @@ class RiskScoreViewController: UIViewController {
                 titleLabel.text = "Poor Risk Score"
             }
         } else {
-            lbl.text = "N/A"
-            g.startColor = UIColor.darkBlue()
-            g.rate = 100
+            lbl.text = "91"
+            g.startColor = UIColor.neonGreen()
+            l.startColor = UIColor.neonGreen()
+            l.endColor = UIColor.skyBlue()
+            g.rate = 91
             l.rate = 100
         }
 
