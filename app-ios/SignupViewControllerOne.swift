@@ -301,8 +301,8 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         } else if(dobMonth == "" || dobDay == "" || dobYear == "") {
             displayErrorAlertMessage("Date of birth cannot be empty")
             return false
-        } else if(Int(dobMonth) > 12 || Int(dobMonth) == 0 || Int(dobDay) == 0 || Int(dobDay) > 31 || Int(dobYear) > 2006 || Int(dobYear) < 1914) {
-            displayErrorAlertMessage("Month cannot be greater than 12 or equal to zero. Day cannot be greater than 31 or equal to zero, year cannot be less than 1914 or greater than 2006")
+        } else if(Int(dobMonth) > 12 || Int(dobMonth) == 0 || Int(dobDay) == 0 || Int(dobDay) > 31 || Int(dobYear) > 2002 || Int(dobYear) < 1914) {
+            displayErrorAlertMessage("Month cannot be greater than 12 or equal to zero. Day cannot be greater than 31 or equal to zero, year cannot be less than 1914 or greater than 2002")
             return false
         } else if(Int(dobMonth)! == 02 && Int(dobDay)! > 29 && (Int(dobYear)! % 4) == 0 ) {
             displayErrorAlertMessage("Leap years do not have more than 29 days")
@@ -339,8 +339,8 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
             } else if(dobMonth == "" || dobDay == "" || dobYear == "") {
                 displayErrorAlertMessage("Date of birth cannot be empty")
                 return false
-            } else if(Int(dobMonth) > 12 || Int(dobMonth) == 0 || Int(dobDay) == 0 || Int(dobDay) > 31 || Int(dobYear) > 2006 || Int(dobYear) < 1914) {
-                displayErrorAlertMessage("Month cannot be greater than 12 or equal to zero. Day cannot be greater than 31 or equal to zero, year cannot be less than 1914 or greater than 2006")
+            } else if(Int(dobMonth) > 12 || Int(dobMonth) == 0 || Int(dobDay) == 0 || Int(dobDay) > 31 || Int(dobYear) > 2002 || Int(dobYear) < 1914) {
+                displayErrorAlertMessage("Month cannot be greater than 12 or equal to zero. Day cannot be greater than 31 or equal to zero, year cannot be less than 1914 or greater than 2002")
                 return false
             } else if(Int(dobMonth)! == 02 && Int(dobDay)! > 29 && (Int(dobYear)! % 4) == 0 ) {
                 displayErrorAlertMessage("Leap years do not have more than 29 days")
