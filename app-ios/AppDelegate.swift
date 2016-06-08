@@ -20,29 +20,34 @@ import Fabric
 import Crashlytics
 import Armchair
 
+// THEME
 var APP_THEME = "LIGHT"
-let ENVIRONMENT = "DEV"
-// let ENVIRONMENT = "PROD"
+
+// CONFIG
 let MERCHANT_ID = "merchant.com.argentapp.pay.v2"
 let FULL_APP_URL = "https://itunes.apple.com/us/app/argent/id1110084542?mt=8"
 let APP_ID = "1110084542"
 let APP_NAME = "Argent"
-// Get Local IP address by looking by using ifconfig command at terminal and looking below the 'inet' value
-// Make sure the physical device is connected to the same wifi network
-// Add exception for your IP address in info.plist file so regular http requests can be made
-// To perform the above, right click 'add row' and make that row a dictionary value, set NSExceptionAllowsInsecureHTTPLoads to YES
-// In case this doesnt work, make sure NSTransportSecurity has the sub-item Allow Arbitrary Loads set to YES
-// DEV
 
-// For provisioning profile naming convention http://stackoverflow.com/questions/20565565/an-app-id-with-identifier-is-not-available-please-enter-a-different-string
+// ENVIRONMENT
+// let ENVIRONMENT = "DEV"
+let ENVIRONMENT = "PROD"
 
-// DEV
-// let API_URL = "http://localhost:5001"
-// let API_URL = "http://192.168.1.182:5001"
-// let API_URL = "http://192.168.1.232:5001"
-// let API_URL = "http://api.argent.cloud"
+// PLAID
+let PLAID_PUBLIC_KEY_TEST = "fb32b0520292ad69be7b4d1ade4bd3"
+let PLAID_PUBLIC_KEY_LIVE = "fb32b0520292ad69be7b4d1ade4bd3"
 
-// PROD
+// STRIPE
+let STRIPE_PUBLIC_KEY_TEST = "pk_test_6MOTlPN5JrNS5dIN4DUeKFDA"
+let STRIPE_PUBLIC_KEY_LIVE = "pk_live_9kfmn7pMRPKAYSpcf1Fmn266"
+
+// LOCAL TESTING
+// let API_URL = "http://localhost:5001" // Works in simulator
+// let API_URL = "http://192.168.1.182:5001" // Works in MA
+// let API_URL = "http://192.168.1.232:5001" // Works in VA
+
+// API ENDPOINT V1
+// let API_URL = "https://dev.argent.cloud"
 let API_URL = "https://api.argent.cloud"
 
 // For push notifications make sure to delete and re-install app, fix this bug later
@@ -50,7 +55,7 @@ let API_URL = "https://api.argent.cloud"
 class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegate {
     
     var window: UIWindow?
-
+    
     let pscope = PermissionScope()
     
     // Passcode Lock
@@ -130,7 +135,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
         // Fabric & Crashlytics
         Fabric.with([STPAPIClient.self, Crashlytics.self])
         
-        // Transitions 
+        // Transitions
         if let tabBarController = window?.rootViewController as? UITabBarController {
             tabBarController.tr_transitionDelegate = TRTabBarTransitionDelegate(method: TRTabBarTransitionMethod.Slide)
             tabBarController.tr_delegate = self
@@ -149,14 +154,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
         
         // Initialize Plaid, change to .Production before golive
         if ENVIRONMENT == "DEV" {
-            Plaid.sharedInstance().setPublicKey("fb32b0520292ad69be7b4d1ade4bd3")
-            Stripe.setDefaultPublishableKey("pk_test_6MOTlPN5JrNS5dIN4DUeKFDA")
+            Plaid.sharedInstance().setPublicKey(PLAID_PUBLIC_KEY_TEST)
+            Stripe.setDefaultPublishableKey(STRIPE_PUBLIC_KEY_TEST)
             Armchair.debugEnabled(true)
         } else if ENVIRONMENT == "PROD" {
             Armchair.debugEnabled(false)
-            // GET PLAID PROD KEYS
-            Plaid.sharedInstance().setPublicKey("fb32b0520292ad69be7b4d1ade4bd3")
-            Stripe.setDefaultPublishableKey("pk_live_9kfmn7pMRPKAYSpcf1Fmn266")
+            Plaid.sharedInstance().setPublicKey(PLAID_PUBLIC_KEY_LIVE)
+            Stripe.setDefaultPublishableKey(STRIPE_PUBLIC_KEY_LIVE)
         }
         
         // Set up permissions scope
@@ -186,7 +190,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
         
         // Assign the init view controller of the app
         firstTime()
-
+        
         // Save state tab bar
         if let tabBarController = window?.rootViewController as? UITabBarController {
             print(UIApplication.sharedApplication().applicationIconBadgeNumber)
@@ -209,7 +213,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
             passcodeLockPresenter.presentPasscodeLock()
             tabBarController.selectedIndex = Int(activeTab as! NSNumber)
         }
-
+        
         return true
     }
     
@@ -254,7 +258,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
     func firstTime() {
         // Set up a user entering for the first time
         // if true it will prompt a pscope
-        // 
+        //
         // if denied access users can change permissions later
         // display root controller otherwise
         let first_time = KeychainSwift().getBool("firstTime")
@@ -313,7 +317,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
             ]
             
             let iosContent: [String: AnyObject] = [ "push_state": true, "device_token" : token! ]
-
+            
             let iosNSDict = iosContent as NSDictionary //no error message
             
             let parameters : [String : AnyObject] = [
@@ -336,14 +340,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
             }
         }
     }
-
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-        print("applicationWillResignActive") //ignore  
+        print("applicationWillResignActive") //ignore
         print(application)
     }
-
+    
     func applicationDidEnterBackground(application: UIApplication) {
         /*
          Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
@@ -360,7 +364,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
             let tabIndex: Int = tabBarController.selectedIndex
             let userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
             userDefaults.setInteger(tabIndex, forKey: "activeTab")
-
+            
             if !userDefaults.synchronize() {
                 print("Error Synchronizing NSUserDefaults")
             }
@@ -372,18 +376,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
          Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
          */
     }
-
+    
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
         print("applicationWillEnterForeground")
         print(application)
     }
-
+    
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         print("applicationWillTerminate") //ignore
         print(application)
     }
+    
+    // Bug Fix Log
     
     // Error solution for app rename with cocoapods configuration update https://github.com/CocoaPods/CocoaPods/issues/2627
     // Make sure to quit xcode, delete podfile.lock, pod install, cmd shift k, cmd shift b
@@ -394,4 +400,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
     // Clean and Build
     // Edit scheme to run automatically, run after launch confirm,, and back to run automatically
     // http://stackoverflow.com/questions/24878274/getting-dyld-fatal-error-after-updating-to-xcode-6-beta-4-using-swift
+    
+    
+    // Get Local IP address by looking by using ifconfig command at terminal and looking below the 'inet' value
+    // Make sure the physical device is connected to the same wifi network
+    // Add exception for your IP address in info.plist file so regular http requests can be made
+    // To perform the above, right click 'add row' and make that row a dictionary value, set NSExceptionAllowsInsecureHTTPLoads to YES
+    // In case this doesnt work, make sure NSTransportSecurity has the sub-item Allow Arbitrary Loads set to YES
+    // DEV
+    
+    // For provisioning profile naming convention http://stackoverflow.com/questions/20565565/an-app-id-with-identifier-is-not-available-please-enter-a-different-string
 }
