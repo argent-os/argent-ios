@@ -13,7 +13,7 @@ import MZFormSheetPresentationController
 class PresentedTableViewController: UIViewController {
     
 
-    @IBOutlet weak var stripeButton: UIButton!
+//    @IBOutlet weak var stripeButton: UIButton!
     @IBOutlet weak var termsButton: UIButton!
     @IBOutlet weak var privacyButton: UIButton!
     @IBOutlet weak var containerView: UIView!
@@ -25,9 +25,9 @@ class PresentedTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        termsButton.layer.cornerRadius = 5
-        privacyButton.layer.cornerRadius = 5
-        stripeButton.layer.cornerRadius = 5
+        termsButton.layer.cornerRadius = 10
+        privacyButton.layer.cornerRadius = 10
+        // stripeButton.layer.cornerRadius = 10
 
         // This will set to only one instance
         

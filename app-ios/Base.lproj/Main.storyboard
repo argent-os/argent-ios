@@ -1680,7 +1680,7 @@ We support both debit and credit.</string>
                         <viewControllerLayoutGuide type="bottom" id="Mv2-J1-WVg"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Wlq-Lz-if3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -2033,7 +2033,7 @@ We support both debit and credit.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3EM-cc-ygG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4327" y="291"/>
+            <point key="canvasLocation" x="4327" y="125"/>
         </scene>
         <!--Signup Country Picker View Controller-->
         <scene sceneID="jOW-KT-fJs">
@@ -2290,9 +2290,7 @@ We support both debit and credit.</string>
                                 <state key="normal">
                                     <string key="title">By checking the circle below I agree to 
 Argent's terms of service and privacy
-policy agreement and the Stripe 
-connected account agreement.
-Tap here to view</string>
+policy agreement. Tap to view</string>
                                     <color key="titleColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -2483,9 +2481,7 @@ Tap here to view</string>
                                 <state key="normal">
                                     <string key="title">By checking the circle below I agree to 
 Argent's terms of service and privacy
-policy agreement and the Stripe 
-connected account agreement.
-Tap here to view</string>
+policy agreement. Tap to view</string>
                                     <color key="titleColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -2538,13 +2534,13 @@ Tap here to view</string>
                                 <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RLh-vK-t9D">
-                                <rect key="frame" x="20" y="642" width="374" height="33"/>
+                                <rect key="frame" x="20" y="676" width="374" height="40"/>
                                 <color key="backgroundColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="33" id="aha-1g-XRk"/>
+                                    <constraint firstAttribute="height" constant="40" id="XZH-GO-U82"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="Terms of Use">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -2557,13 +2553,22 @@ Tap here to view</string>
                                     </segue>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Legal Information" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ixi-FC-Dml">
+                                <rect key="frame" x="20" y="72" width="374" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="YvD-5U-arT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F2N-Ys-I1P">
-                                <rect key="frame" x="20" y="601" width="374" height="33"/>
+                                <rect key="frame" x="20" y="628" width="374" height="40"/>
                                 <color key="backgroundColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="33" id="eVh-nL-RDR"/>
+                                    <constraint firstAttribute="height" constant="40" id="5kz-GK-3n5"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="Privacy Policy">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -2575,53 +2580,22 @@ Tap here to view</string>
                                     </segue>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Legal Information" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ixi-FC-Dml">
-                                <rect key="frame" x="20" y="72" width="374" height="52"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="52" id="Zev-Xo-z6b"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4og-qx-Neg">
-                                <rect key="frame" x="20" y="683" width="374" height="33"/>
-                                <color key="backgroundColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="33" id="Iup-aE-BfW"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                                <state key="normal" title="Stripe Agreement">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="623-HG-6df" kind="presentation" identifier="stripeView" customClass="MZFormSheetPresentationViewControllerSegue" modalTransitionStyle="crossDissolve" id="Bc6-jW-uiV">
-                                        <segue key="commit" inheritsFrom="parent" id="hod-NF-UzG"/>
-                                        <segue key="preview" inheritsFrom="commit" id="rHz-cr-s1s"/>
-                                    </segue>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="BAA-rj-Emk" secondAttribute="trailing" id="4Yh-wB-ycX"/>
-                            <constraint firstItem="BAA-rj-Emk" firstAttribute="leading" secondItem="3ta-It-dt1" secondAttribute="leading" id="6XR-rq-wui"/>
-                            <constraint firstItem="ixi-FC-Dml" firstAttribute="leading" secondItem="F2N-Ys-I1P" secondAttribute="leading" id="DpK-ji-DqO"/>
-                            <constraint firstAttribute="bottom" secondItem="4og-qx-Neg" secondAttribute="bottom" constant="20" symbolic="YES" id="LBw-d5-Bu3"/>
-                            <constraint firstItem="RLh-vK-t9D" firstAttribute="leading" secondItem="4og-qx-Neg" secondAttribute="leading" id="LkR-BB-iPs"/>
-                            <constraint firstItem="ixi-FC-Dml" firstAttribute="top" secondItem="yTU-5m-Rxj" secondAttribute="bottom" constant="8" symbolic="YES" id="Rmt-ig-Stg"/>
-                            <constraint firstItem="RLh-vK-t9D" firstAttribute="top" secondItem="F2N-Ys-I1P" secondAttribute="bottom" constant="8" symbolic="YES" id="Zmg-3M-Xap"/>
-                            <constraint firstItem="4og-qx-Neg" firstAttribute="top" secondItem="RLh-vK-t9D" secondAttribute="bottom" constant="8" symbolic="YES" id="Zsu-VT-4WZ"/>
-                            <constraint firstItem="RLh-vK-t9D" firstAttribute="trailing" secondItem="4og-qx-Neg" secondAttribute="trailing" id="dpn-io-17U"/>
-                            <constraint firstItem="F2N-Ys-I1P" firstAttribute="trailing" secondItem="RLh-vK-t9D" secondAttribute="trailing" id="fat-Zs-CTU"/>
-                            <constraint firstItem="F2N-Ys-I1P" firstAttribute="leading" secondItem="RLh-vK-t9D" secondAttribute="leading" id="jmr-MW-0Fa"/>
-                            <constraint firstItem="BAA-rj-Emk" firstAttribute="centerX" secondItem="ixi-FC-Dml" secondAttribute="centerX" id="rea-nJ-a6R"/>
-                            <constraint firstItem="ixi-FC-Dml" firstAttribute="trailing" secondItem="F2N-Ys-I1P" secondAttribute="trailing" id="ukl-UG-3Gl"/>
-                            <constraint firstItem="BAA-rj-Emk" firstAttribute="top" secondItem="yTU-5m-Rxj" secondAttribute="bottom" id="vLY-SQ-6jZ"/>
-                            <constraint firstItem="ixi-FC-Dml" firstAttribute="leading" secondItem="3ta-It-dt1" secondAttribute="leadingMargin" id="xag-TR-lWL"/>
-                            <constraint firstItem="BAA-rj-Emk" firstAttribute="bottom" secondItem="5CS-CI-OXO" secondAttribute="top" id="yrf-I2-73T"/>
+                            <constraint firstAttribute="trailing" secondItem="BAA-rj-Emk" secondAttribute="trailing" id="3a5-MD-7Na"/>
+                            <constraint firstItem="BAA-rj-Emk" firstAttribute="top" secondItem="yTU-5m-Rxj" secondAttribute="bottom" id="61E-Up-j4f"/>
+                            <constraint firstItem="RLh-vK-t9D" firstAttribute="top" secondItem="F2N-Ys-I1P" secondAttribute="bottom" constant="8" symbolic="YES" id="CLz-cO-fRQ"/>
+                            <constraint firstItem="F2N-Ys-I1P" firstAttribute="trailing" secondItem="RLh-vK-t9D" secondAttribute="trailing" id="Fag-Mz-IhO"/>
+                            <constraint firstItem="BAA-rj-Emk" firstAttribute="leading" secondItem="3ta-It-dt1" secondAttribute="leading" id="GSp-bZ-84X"/>
+                            <constraint firstItem="ixi-FC-Dml" firstAttribute="top" secondItem="yTU-5m-Rxj" secondAttribute="bottom" constant="8" symbolic="YES" id="JUX-31-2xk"/>
+                            <constraint firstItem="ixi-FC-Dml" firstAttribute="leading" secondItem="3ta-It-dt1" secondAttribute="leadingMargin" id="TtP-iE-j0g"/>
+                            <constraint firstItem="ixi-FC-Dml" firstAttribute="trailing" secondItem="F2N-Ys-I1P" secondAttribute="trailing" id="cDM-nF-dji"/>
+                            <constraint firstAttribute="bottom" secondItem="RLh-vK-t9D" secondAttribute="bottom" constant="20" symbolic="YES" id="cQq-6D-dJe"/>
+                            <constraint firstItem="ixi-FC-Dml" firstAttribute="leading" secondItem="F2N-Ys-I1P" secondAttribute="leading" id="cSO-vv-maD"/>
+                            <constraint firstItem="F2N-Ys-I1P" firstAttribute="leading" secondItem="RLh-vK-t9D" secondAttribute="leading" id="k7e-51-nLL"/>
+                            <constraint firstItem="BAA-rj-Emk" firstAttribute="centerX" secondItem="ixi-FC-Dml" secondAttribute="centerX" id="ma5-kG-6wL"/>
+                            <constraint firstItem="BAA-rj-Emk" firstAttribute="bottom" secondItem="5CS-CI-OXO" secondAttribute="top" id="n5C-XL-aiU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="UVs-Pm-qEX"/>
@@ -2629,14 +2603,13 @@ Tap here to view</string>
                     <connections>
                         <outlet property="containerView" destination="BAA-rj-Emk" id="eI4-cY-Vsu"/>
                         <outlet property="privacyButton" destination="F2N-Ys-I1P" id="cyP-Od-7qD"/>
-                        <outlet property="stripeButton" destination="4og-qx-Neg" id="Ax5-Tv-FIE"/>
                         <outlet property="termsButton" destination="RLh-vK-t9D" id="uwl-jr-JHT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IoR-ae-cVu" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="nHM-mZ-B3d"/>
             </objects>
-            <point key="canvasLocation" x="8739" y="-904"/>
+            <point key="canvasLocation" x="8670" y="-894"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="azN-ee-JRw">
@@ -2736,7 +2709,7 @@ Tap here to view</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rla-1v-8oD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7898" y="16"/>
+            <point key="canvasLocation" x="8670" y="-86"/>
         </scene>
         <!--Privacy View Controller-->
         <scene sceneID="k9d-4O-LPw">
@@ -2775,7 +2748,7 @@ Tap here to view</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XOK-yA-Dcd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8710" y="-818"/>
+            <point key="canvasLocation" x="9256" y="-853"/>
         </scene>
         <!--Reset Password View Controller-->
         <scene sceneID="ko5-7L-2Oo">
@@ -4100,21 +4073,20 @@ Tap here to view</string>
         <image name="ic_tab_search" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mwT-xt-Ez4"/>
+        <segue reference="WA2-vu-RC9"/>
+        <segue reference="rLo-0p-I9d"/>
+        <segue reference="m3z-fp-Nlm"/>
+        <segue reference="igQ-zk-tCm"/>
+        <segue reference="aks-Yo-Spb"/>
+        <segue reference="7cu-FP-MoG"/>
+        <segue reference="fEJ-lR-z9I"/>
+        <segue reference="agi-3I-cSC"/>
+        <segue reference="VI5-hp-Gm2"/>
+        <segue reference="ipn-3I-3vc"/>
         <segue reference="m0d-gd-RWW"/>
         <segue reference="UFB-DJ-qrH"/>
         <segue reference="zQh-Po-kj4"/>
         <segue reference="wgV-xY-MTp"/>
-        <segue reference="rLo-0p-I9d"/>
-        <segue reference="m3z-fp-Nlm"/>
-        <segue reference="igQ-zk-tCm"/>
-        <segue reference="agi-3I-cSC"/>
-        <segue reference="VI5-hp-Gm2"/>
-        <segue reference="ipn-3I-3vc"/>
-        <segue reference="YIg-Dp-HpF"/>
-        <segue reference="7cu-FP-MoG"/>
-        <segue reference="fEJ-lR-z9I"/>
-        <segue reference="Bc6-jW-uiV"/>
         <segue reference="tsA-Cg-VzQ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

@@ -72,11 +72,11 @@ class AuthViewController: UIViewController, LTMorphingLabelDelegate, ModalTransi
         
         // UI
         let loginButton = UIButton(frame: CGRect(x: 10, y: screenHeight-60-10, width: screenWidth/2-20, height: 60.0))
-        loginButton.setBackgroundColor(UIColor(rgba: "#0003"), forState: .Normal)
-        loginButton.setBackgroundColor(UIColor(rgba: "#111c"), forState: .Highlighted)
+        loginButton.setBackgroundColor(UIColor.mediumBlue().colorWithAlphaComponent(0.2), forState: .Normal)
+        loginButton.setBackgroundColor(UIColor.mediumBlue().colorWithAlphaComponent(0.8), forState: .Highlighted)
         loginButton.tintColor = UIColor(rgba: "#fff")
         loginButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
-        loginButton.setTitleColor(UIColor(rgba: "#ddd"), forState: .Highlighted)
+        loginButton.setTitleColor(UIColor.offWhite(), forState: .Highlighted)
         loginButton.titleLabel?.font = UIFont.systemFontOfSize(16)
         loginButton.setTitle("Log in", forState: .Normal)
         loginButton.layer.cornerRadius = 5
