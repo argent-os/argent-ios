@@ -48,7 +48,7 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
         unsupportedImageView.image = UIImage(named: "IconAlert")
         unsupportedImageView.frame = CGRect(x: screenWidth/2-20, y: screenHeight*0.4, width: 40, height: 40)
         
-        unsupportedTextLabel.text = "Only US and Canada are currently supported"
+        unsupportedTextLabel.text = "Only US accounts are currently supported"
         unsupportedTextLabel.frame = CGRect(x: 0, y: screenHeight*0.45, width: screenWidth, height: 40)
         unsupportedTextLabel.textAlignment = .Center
         unsupportedTextLabel.font = UIFont.systemFontOfSize(14, weight: UIFontWeightLight)
@@ -192,7 +192,7 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
         addSubviewWithBounce(codeLabel, parentView: self, duration: 0.3)
         addSubviewWithBounce(flagImg, parentView: self, duration: 0.3)
         
-        if code == "US" || code == "CA" {
+        if code == "US" {
             // print("country supported")
             unsupportedTextLabel.removeFromSuperview()
             unsupportedImageView.removeFromSuperview()

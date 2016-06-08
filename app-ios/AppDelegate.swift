@@ -24,7 +24,7 @@ import Armchair
 var APP_THEME = "LIGHT"
 
 // CONFIG
-let MERCHANT_ID = "merchant.com.argentapp.pay.v2"
+let MERCHANT_ID = "merchant.com.argentapp.pay.v3"
 let FULL_APP_URL = "https://itunes.apple.com/us/app/argent/id1110084542?mt=8"
 let APP_ID = "1110084542"
 let APP_NAME = "Argent"
