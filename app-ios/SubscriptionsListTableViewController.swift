@@ -144,8 +144,7 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
         return dateFormatter.stringFromDate(date)
     }
     
-    func refresh(sender:AnyObject)
-    {
+    func refresh(sender:AnyObject) {
         self.loadSubscriptionList()
     }
     
@@ -209,20 +208,25 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
         
         let item = self.subscriptionsArray?[indexPath.row]
         if let name = item?.plan_name, status = item?.status {
-            let strName = NSAttributedString(string: name + " ", attributes: [:])
+            let strName = name
             let strStatus = NSAttributedString(string: status, attributes: [
                 NSFontAttributeName: UIFont.systemFontOfSize(11),
                 NSForegroundColorAttributeName:UIColor.brandGreen()
             ])
-            
-            cell.textLabel?.attributedText = strName + strStatus
-            cell.textLabel?.layer.cornerRadius = 2
-            cell.textLabel?.layer.masksToBounds = true
-            cell.textLabel?.font = UIFont(name: "HelveticaNeue", size: 16)!
+            cell.textLabel?.attributedText = NSAttributedString(string: strName + " ", attributes: [
+                NSForegroundColorAttributeName : UIColor.mediumBlue(),
+                NSFontAttributeName : UIFont.systemFontOfSize(14, weight: UIFontWeightLight)
+                ]) + strStatus
         }
         if let amount = item?.plan_amount, interval = item?.plan_interval {
-            // cell!.detailTextLabel?.text = "Current $" + current + " | " + "Available $" + available
-            cell.detailTextLabel?.attributedText = formatCurrency(String(amount), fontName: "HelveticaNeue-Light", superSize: 11, fontSize: 15, offsetSymbol: 2, offsetCents: 2) +  NSAttributedString(string: " / ") +  NSAttributedString(string:  interval)
+            let intervalAttributedString = NSAttributedString(string: interval, attributes: [
+                NSForegroundColorAttributeName : UIColor.lightBlue().colorWithAlphaComponent(0.5),
+                NSFontAttributeName : UIFont.systemFontOfSize(11, weight: UIFontWeightRegular)
+            ])
+            let attrText = formatCurrency(String(amount), fontName: "HelveticaNeue", superSize: 11, fontSize: 15, offsetSymbol: 2, offsetCents: 2) +  NSAttributedString(string: " per ") + intervalAttributedString
+            cell.detailTextLabel?.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
+            cell.detailTextLabel?.attributedText = attrText
+
         }
         
         let closeView: UIView = self.viewWithImageName("ic_close_light");
@@ -232,11 +236,20 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
             let item = self.subscriptionsArray?[cell.tag]
             if let id = item?.id {
                 print("Did swipe" + id);
-                // send request to delete the bank account, on completion reload table data!
-                Subscription.deleteSubscription(id, completionHandler: { (bool, err) in
-                    print("deleted subscription ", bool)
-                    self.loadSubscriptionList()
-                })
+                let alertController = UIAlertController(title: "Confirm deletion", message: "Are you sure?  This action cannot be undone.", preferredStyle: UIAlertControllerStyle.Alert)
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+                alertController.addAction(cancelAction)
+                
+                let OKAction = UIAlertAction(title: "Continue", style: .Default) { (action) in
+                    // send request to delete, on completion reload table data!
+                    Subscription.deleteSubscription(id, completionHandler: { (bool, err) in
+                        print("deleted subscription ", bool)
+                        self.loadSubscriptionList()
+                    })
+                }
+                alertController.addAction(OKAction)
+                self.presentViewController(alertController, animated: true, completion: nil)
             }
         };
         

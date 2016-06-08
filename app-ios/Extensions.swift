@@ -297,7 +297,9 @@ func formatCurrency(amount: String, fontName: String, superSize: CGFloat, fontSi
     let amt = formatter.stringFromNumber(Float(x)!/100)
     let font:UIFont? = UIFont(name: fontName, size: fontSize)
     let fontSuper:UIFont? = UIFont(name: fontName, size: superSize)
-    let attString:NSMutableAttributedString = NSMutableAttributedString(string: amt!, attributes: [NSFontAttributeName:font!])
+    let attString:NSMutableAttributedString = NSMutableAttributedString(string: amt!, attributes: [
+        NSFontAttributeName:font!
+    ])
     if Float(x) < 0 {
         attString.setAttributes([NSFontAttributeName:fontSuper!,NSBaselineOffsetAttributeName:offsetSymbol], range: NSRange(location:1,length:1))
         attString.setAttributes([NSFontAttributeName:fontSuper!,NSBaselineOffsetAttributeName:offsetCents], range: NSRange(location:(amt?.characters.count)!-2,length:2))

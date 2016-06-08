@@ -29,7 +29,7 @@ class WebTermsViewController: UIViewController, WKNavigationDelegate, WKUIDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url = NSURL(string:"http://www.argentapp.com/terms")
+        let url = NSURL(string:"https://www.argentapp.com/terms")
         let req = NSURLRequest(URL:url!)
         self.webView!.loadRequest(req)
     }
@@ -45,12 +45,12 @@ class WebTermsViewController: UIViewController, WKNavigationDelegate, WKUIDelega
 //                    item = detailViewController.detailItemTitle else { return }
 //                print("\(previewAction.title) triggered from `DetailViewController` for item: \(item)")
                 if title == "Copy Link" {
-                    UIPasteboard.generalPasteboard().string = "http://www.argentapp.com/terms"
+                    UIPasteboard.generalPasteboard().string = "https://www.argentapp.com/terms"
                     showGlobalNotification("Link copied!", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.skyBlue())
                 }
                 if title == "Share" {
                     let activityViewController  = UIActivityViewController(
-                        activityItems: ["Argent Terms and Conditions  http://www.argentapp.com/terms" as NSString],
+                        activityItems: ["Argent Terms and Conditions  https://www.argentapp.com/terms" as NSString],
                         applicationActivities: nil)
                     activityViewController.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList]
                     self.presentViewController(activityViewController, animated: true, completion: nil)

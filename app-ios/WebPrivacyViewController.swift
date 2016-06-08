@@ -30,7 +30,7 @@ class WebPrivacyViewController: UIViewController, WKNavigationDelegate, WKUIDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url = NSURL(string:"http://www.argentapp.com/privacy")
+        let url = NSURL(string:"https://www.argentapp.com/privacy")
         let req = NSURLRequest(URL:url!)
         self.webView!.loadRequest(req)
     }
@@ -48,12 +48,12 @@ class WebPrivacyViewController: UIViewController, WKNavigationDelegate, WKUIDele
 
                 if title == "Copy Link" {
                     showGlobalNotification("Link copied!", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.skyBlue())
-                    UIPasteboard.generalPasteboard().string = "http://www.argentapp.com/privacy"
+                    UIPasteboard.generalPasteboard().string = "https://www.argentapp.com/privacy"
 
                 }
                 if title == "Share" {
                     let activityViewController  = UIActivityViewController(
-                        activityItems: [APP_NAME + " Privacy Policy  http://www.argentapp.com/privacy" as NSString],
+                        activityItems: [APP_NAME + " Privacy Policy  https://www.argentapp.com/privacy" as NSString],
                         applicationActivities: nil)
                     activityViewController.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList]
                     self.presentViewController(activityViewController, animated: true, completion: nil)

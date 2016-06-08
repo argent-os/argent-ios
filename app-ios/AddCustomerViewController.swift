@@ -162,6 +162,10 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
     }
     
     
+}
+
+extension AddCustomerViewController {
+    
     // MARK: Email Composition
     
     @IBAction func sendEmailButtonTapped(sender: AnyObject) {
@@ -204,6 +208,9 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
+}
+
+extension AddCustomerViewController {
     // MARK: SMS Composition
     
     @IBAction func sendSMSButtonTapped(sender: AnyObject) {
@@ -240,5 +247,4 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         // Dismiss the mail compose view controller.
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
-    
 }

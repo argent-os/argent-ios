@@ -45,9 +45,6 @@ let APP_NAME = "Argent"
 // PROD
 let API_URL = "https://api.argent.cloud"
 
-// Global Stripe base API url
-let STRIPE_API_URL = "https://api.stripe.com"
-
 // For push notifications make sure to delete and re-install app, fix this bug later
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegate {

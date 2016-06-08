@@ -21,6 +21,10 @@ class CustomersListDetailViewController: UIViewController, UINavigationBarDelega
 
     var customerSubscriptions = [Subscription]()
     
+    var viewRefreshControl = UIRefreshControl()
+    
+    var dateFormatter = NSDateFormatter()
+
     private var tableView:UITableView = UITableView()
 
     private let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
@@ -42,6 +46,8 @@ class CustomersListDetailViewController: UIViewController, UINavigationBarDelega
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.emptyDataSetDelegate = self
+        self.tableView.emptyDataSetSource = self
         self.tableView.showsVerticalScrollIndicator = false
         // trick to make table lines disappear
         self.tableView.tableFooterView = UIView()
@@ -56,6 +62,23 @@ class CustomersListDetailViewController: UIViewController, UINavigationBarDelega
         addSubviewWithBounce(customerEmailTitleLabel, parentView: self, duration: 0.3)
         
         self.getCustomerInformation()
+        
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.whiteColor()
+        headerView.frame = CGRect(x: 0, y: 10, width: screenWidth, height: 60)
+        self.tableView.tableHeaderView = headerView
+        let headerViewTitle: UILabel = UILabel()
+        headerViewTitle.frame = CGRect(x: 0, y: 20, width: screenWidth, height: 35)
+        headerViewTitle.text = "Subscriptions"
+        headerViewTitle.font = UIFont.systemFontOfSize(16)
+        headerViewTitle.textAlignment = .Center
+        headerViewTitle.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.7)
+        headerView.addSubview(headerViewTitle)
+        
+        self.viewRefreshControl.backgroundColor = UIColor.clearColor()
+        self.viewRefreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.viewRefreshControl.addTarget(self, action: #selector(self.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(viewRefreshControl)
     }
     
     private func getCustomerInformation() {
@@ -64,13 +87,24 @@ class CustomersListDetailViewController: UIViewController, UINavigationBarDelega
         activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true
         self.view.addSubview(activityIndicator)
+        // update "last updated" title for refresh control
+        let now = NSDate()
+        let updateString = "Last Updated at " + self.dateFormatter.stringFromDate(now)
+        self.viewRefreshControl.attributedTitle = NSAttributedString(string: updateString)
         Customer.getSingleCustomer(customerId!) { (customer, subscriptions, err) in
 //            print(customer)
 //            print(subscriptions)
             self.customerSubscriptions = subscriptions
             self.tableView.reloadData()
             activityIndicator.stopAnimating()
+            if self.viewRefreshControl.refreshing {
+                self.viewRefreshControl.endRefreshing()
+            }
         }
+    }
+    
+    func refresh(sender:AnyObject) {
+        self.getCustomerInformation()
     }
     
     private func setupNav() {
@@ -122,34 +156,33 @@ extension CustomersListDetailViewController {
         let CellIdentifier: String = "Cell"
         let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: CellIdentifier)
         let item = self.customerSubscriptions[indexPath.row]
-        print(item)
+        //print(item)
         cell.textLabel?.text = ""
         cell.detailTextLabel?.text = ""
         
-        if let id = item.id {
-//            print(id)
-        }
-        if let amount = item.plan_amount {
-//            print(amount)
-        }
         if let name = item.plan_name {
-            cell.textLabel?.text = name
-//            print(name)
+            let strName = name
+            cell.textLabel?.attributedText = NSAttributedString(string: strName + " ", attributes: [
+                NSForegroundColorAttributeName : UIColor.mediumBlue(),
+                NSFontAttributeName : UIFont.systemFontOfSize(14, weight: UIFontWeightLight)
+                ])
         }
-        if let interval = item.plan_interval {
-//            print(interval)
-        }
-        if let qty = item.quantity {
-//            print(qty)
-        }
-        if let status = item.status {
-//            print(status)
+        if let amount = item.plan_amount, interval = item.plan_interval, qty = item.quantity, status = item.status {
+            let intervalAttributedString = NSAttributedString(string: interval, attributes: [
+                NSForegroundColorAttributeName : UIColor.lightBlue().colorWithAlphaComponent(0.5),
+                NSFontAttributeName : UIFont.systemFontOfSize(11, weight: UIFontWeightRegular)
+                ])
+            let attrText = formatCurrency(String(amount), fontName: "HelveticaNeue", superSize: 11, fontSize: 15, offsetSymbol: 2, offsetCents: 2) +  NSAttributedString(string: " per ") + intervalAttributedString
+            cell.detailTextLabel?.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
+            cell.detailTextLabel?.attributedText = attrText
+            
         }
         
         return cell
     }
+    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 60.0
+        return 90.0
     }
     
 }

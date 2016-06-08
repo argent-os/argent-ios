@@ -112,17 +112,17 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         
-        // let settingsIcon = UIImageView(frame: CGRectMake(0, 0, 32, 32))
-        // settingsIcon.image = UIImage(named: "IconSettingsWhite")
-        // settingsIcon.contentMode = .ScaleAspectFit
-        // settingsIcon.alpha = 0.5
-        // settingsIcon.center = CGPointMake(self.view.frame.size.width / 2, 130)
-        // settingsIcon.userInteractionEnabled = true
-        // let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.goToEdit(_:)))
-        // tap.numberOfTapsRequired = 1
-        // settingsIcon.addGestureRecognizer(tap)
-        // self.view.addSubview(settingsIcon)
-        // self.view.bringSubviewToFront(settingsIcon)
+//         let settingsIcon = UIImageView(frame: CGRectMake(0, 0, 22, 22))
+//         settingsIcon.image = UIImage(named: "IconSettingsWhite")
+//         settingsIcon.contentMode = .ScaleAspectFit
+//         settingsIcon.alpha = 0.5
+//         settingsIcon.center = CGPointMake(self.view.frame.size.width-25, -10)
+//         settingsIcon.userInteractionEnabled = true
+//         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.goToEdit(_:)))
+//         tap.numberOfTapsRequired = 1
+//         settingsIcon.addGestureRecognizer(tap)
+//         self.view.addSubview(settingsIcon)
+//         self.view.bringSubviewToFront(settingsIcon)
         
         let attachment: NSTextAttachment = NSTextAttachment()
         attachment.image = UIImage(named: "IconPinWhiteTiny")
@@ -263,7 +263,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if(tableView.cellForRowAtIndexPath(indexPath)!.tag == 865) {
             let activityViewController  = UIActivityViewController(
-                activityItems: ["Check out this app!  http://www.argentapp.com/home" as NSString],
+                activityItems: ["Check out this app!  https://www.argentapp.com" as NSString],
                 applicationActivities: nil)
         activityViewController.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList]
             presentViewController(activityViewController, animated: true, completion: nil)
@@ -342,6 +342,10 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         self.performSegueWithIdentifier("profilePictureView", sender: sender)
     }
     
+    // Opens edit picture
+    func goToEdit(sender: AnyObject) {
+        self.performSegueWithIdentifier("editProfileView", sender: sender)
+    }
     
     // Load user data lists for customer and plan
     private func loadCustomerList(completionHandler: ([Customer]?, NSError?) -> ()) {

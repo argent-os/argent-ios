@@ -180,12 +180,21 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
         
         let item = self.itemsArray?[indexPath.row]
         if let name = item?.name {
-            cell.textLabel?.text = name
-            cell.textLabel?.font = UIFont(name: "HelveticaNeue", size: 16)!
+            let strName = name
+            cell.textLabel?.attributedText = NSAttributedString(string: strName + " ", attributes: [
+                NSForegroundColorAttributeName : UIColor.mediumBlue(),
+                NSFontAttributeName : UIFont.systemFontOfSize(14, weight: UIFontWeightLight)
+                ])
         }
         if let amount = item?.amount, interval = item?.interval {
-            // cell!.detailTextLabel?.text = "Current $" + current + " | " + "Available $" + available
-            cell.detailTextLabel?.attributedText = formatCurrency(amount, fontName: "HelveticaNeue-Light", superSize: 11, fontSize: 15, offsetSymbol: 2, offsetCents: 2) +  NSAttributedString(string: " / ") +  NSAttributedString(string:  interval)
+            let intervalAttributedString = NSAttributedString(string: interval, attributes: [
+                NSForegroundColorAttributeName : UIColor.lightBlue().colorWithAlphaComponent(0.5),
+                NSFontAttributeName : UIFont.systemFontOfSize(11, weight: UIFontWeightRegular)
+                ])
+            let attrText = formatCurrency(String(amount), fontName: "HelveticaNeue", superSize: 11, fontSize: 15, offsetSymbol: 2, offsetCents: 2) +  NSAttributedString(string: " per ") + intervalAttributedString
+            cell.detailTextLabel?.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
+            cell.detailTextLabel?.attributedText = attrText
+            
         }
     
         let closeView: UIView = self.viewWithImageName("ic_close_light");
@@ -195,13 +204,22 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
             let item = self.itemsArray?[cell.tag]
             if let id = item?.id {
                 print("Did swipe" + id);
-                // send request to delete the bank account, on completion reload table data!
-                Plan.deletePlan(id, completionHandler: { (bool, err) in
-                    print("deleted plan ", bool)
-                    self.loadPlanList()
-                    self.tableView?.reloadData()
-                    
-                })
+                // send request to delete, on completion reload table data!
+                let alertController = UIAlertController(title: "Confirm deletion", message: "Are you sure?  This action cannot be undone.", preferredStyle: UIAlertControllerStyle.Alert)
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+                alertController.addAction(cancelAction)
+                
+                let OKAction = UIAlertAction(title: "Continue", style: .Default) { (action) in
+                    // send request to delete, on completion reload table data!
+                    Plan.deletePlan(id, completionHandler: { (bool, err) in
+                        print("deleted plan ", bool)
+                        self.loadPlanList()
+                        self.tableView?.reloadData()
+                    })
+                }
+                alertController.addAction(OKAction)
+                self.presentViewController(alertController, animated: true, completion: nil)
             }
         };
         

@@ -78,6 +78,7 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
         headerView.addSubview(headerViewTitle)
         
         self.tableView.separatorColor = UIColor.lightBlue().colorWithAlphaComponent(0.3)
+        
     }
     
     private func setupNav() {
@@ -194,14 +195,20 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
         cell = MCSwipeTableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: CellIdentifier);
         cell!.selectionStyle = UITableViewCellSelectionStyle.Gray;
         cell!.contentView.backgroundColor = UIColor.whiteColor();
-        cell.textLabel?.tintColor = UIColor.lightBlue()
-        cell.detailTextLabel?.tintColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
         cell.tag = indexPath.row
-        
+
         let item = self.customersArray?[indexPath.row]
-        if let email = item?.email, id = item?.id {
-            cell.textLabel?.text = email ?? id
-            cell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 15)!
+        if let email = item?.email {
+            cell.textLabel?.textAlignment = .Center
+            cell.textLabel?.frame = CGRect(x: 0, y: 0, width: self.view.layer.frame.width, height: 50)
+            cell.textLabel?.attributedText = NSAttributedString(string: email, attributes: [
+                NSForegroundColorAttributeName : UIColor.lightBlue(),
+                NSFontAttributeName : UIFont.systemFontOfSize(14, weight: UIFontWeightLight)
+            ])
+//            cell.detailTextLabel?.attributedText = NSAttributedString(string: email, attributes: [
+//                NSForegroundColorAttributeName : UIColor.lightBlue().colorWithAlphaComponent(0.5),
+//                NSFontAttributeName : UIFont.systemFontOfSize(11, weight: UIFontWeightRegular)
+//            ])
         }
         
         let closeView: UIView = self.viewWithImageName("ic_close_light");
@@ -211,11 +218,20 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
             let item = self.customersArray?[cell.tag]
             if let id = item?.id {
                 print("Did swipe" + id);
-                // send request to delete the bank account, on completion reload table data!
-                Customer.deleteCustomer(id, completionHandler: { (bool, err) in
-                    print("deleted customer ", bool)
-                    self.loadCustomerList()
-                })
+                let alertController = UIAlertController(title: "Confirm deletion", message: "Are you sure?  This action cannot be undone.", preferredStyle: UIAlertControllerStyle.Alert)
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+                alertController.addAction(cancelAction)
+                
+                let OKAction = UIAlertAction(title: "Continue", style: .Default) { (action) in
+                    // send request to delete the bank account, on completion reload table data!
+                    Customer.deleteCustomer(id, completionHandler: { (bool, err) in
+                        print("deleted customer ", bool)
+                        self.loadCustomerList()
+                    })
+                }
+                alertController.addAction(OKAction)
+                self.presentViewController(alertController, animated: true, completion: nil)
             }
         };
         
@@ -225,9 +241,7 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
     func returnToMenu(sender: AnyObject) {
         self.dismissViewControllerAnimated(true) { }
     }
-    
 }
-
 
 extension CustomersListTableViewController {
     // Delegate: DZNEmptyDataSet

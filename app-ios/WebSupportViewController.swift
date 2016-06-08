@@ -26,7 +26,7 @@ class WebSupportViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url = NSURL(string:"http://www.argentapp.com/home")
+        let url = NSURL(string:"https://www.argentapp.com/home")
         let req = NSURLRequest(URL:url!)
         self.webView!.loadRequest(req)
     }

@@ -143,10 +143,21 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
             if let id = item?.id {
                 print("Did swipe" + id);
                 // send request to delete the bank account, on completion reload table data!
-                Bank.deleteBankAccount(id, completionHandler: { (bool, err) in
-                    print("deleted bank account ", bool)
-                    self.loadBankAccounts()
-                })
+                // send request to delete, on completion reload table data!
+                let alertController = UIAlertController(title: "Confirm deletion", message: "Are you sure?  This action cannot be undone.", preferredStyle: UIAlertControllerStyle.Alert)
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+                alertController.addAction(cancelAction)
+                
+                let OKAction = UIAlertAction(title: "Continue", style: .Default) { (action) in
+                    // send request to delete, on completion reload table data!
+                    Bank.deleteBankAccount(id, completionHandler: { (bool, err) in
+                        print("deleted bank account ", bool)
+                        self.loadBankAccounts()
+                    })
+                }
+                alertController.addAction(OKAction)
+                self.presentViewController(alertController, animated: true, completion: nil)
             }
         };
 

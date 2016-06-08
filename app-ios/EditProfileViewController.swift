@@ -10,8 +10,8 @@ import UIKit
 import Foundation
 import Former
 import JSSAlertView
-
-final class EditProfileViewController: FormViewController, UINavigationBarDelegate {
+import MessageUI
+final class EditProfileViewController: FormViewController, UINavigationBarDelegate, MFMailComposeViewControllerDelegate {
     
     var dic: Dictionary<String, AnyObject> = [:]
 
@@ -401,7 +401,41 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
 //                NSUserDefaults.standardUserDefaults().setValue($0, forKey: "business_tax_id")
 //                Profile.sharedInstance.ein = $0
 //        }
-        
+        let deleteRow = LabelRowFormer<FormLabelCell>() { [weak self] in
+            if let sSelf = self {
+                $0.backgroundColor = UIColor.brandRed()
+                $0.titleLabel.textColor = UIColor.whiteColor()
+                $0.titleLabel.font = .boldSystemFontOfSize(16)
+                $0.tintColor = UIColor.whiteColor()
+            }
+            }.configure {
+                $0.text = "Delete Account"
+            }.onSelected { [weak self] _ in
+                // show confirmation modal
+                print("selected")
+                let alertControllerCancel = UIAlertController(title: "Thanks!", message: "Thank you for choosing to stay with Argent.  If there is anything we can do to improve your user experience please let us know!  Send us a message at support@argent-tech.com", preferredStyle: UIAlertControllerStyle.Alert)
+                
+                let changeMindAction = UIAlertAction(title: "Ok", style: .Default) { (action) in
+                    // send request to delete the bank account, on completion reload table data!
+                    
+                }
+                alertControllerCancel.addAction(changeMindAction)
+                
+                ///////////
+                let alertController = UIAlertController(title: "Confirm profile deletion", message: "Are you sure?  We'll be very sad to see you go!  Please let us know if we can make it up to you or if the app did not meet your requirements.", preferredStyle: UIAlertControllerStyle.Alert)
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) in
+                    self!.presentViewController(alertControllerCancel, animated: true, completion: nil)
+                })
+                alertController.addAction(cancelAction)
+                
+                let OKAction = UIAlertAction(title: "Continue", style: .Default) { (action) in
+                    self?.sendEmailButtonTapped(self!)
+                }
+                alertController.addAction(OKAction)
+                self!.presentViewController(alertController, animated: true, completion: nil)
+        }
+
         // Create Headers
         
         let createHeader: (String -> ViewFormer) = { text in
@@ -421,8 +455,10 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
             .set(headerViewFormer: createHeader("Profile information"))
         let businessSection = SectionFormer(rowFormer: businessName, businessAddressRow, businessAddressZipRow, businessAddressCityRow, businessAddressStateRow, ssnRow)
             .set(headerViewFormer: createHeader("Business information"))
-
-        former.append(sectionFormer: profileSection, businessSection)
+        let deleteSection = SectionFormer(rowFormer: deleteRow)
+            .set(headerViewFormer: createHeader("Delete account?"))
+        
+        former.append(sectionFormer: profileSection, businessSection, deleteSection)
             .onCellSelected { [weak self] _ in
                 self?.formerInputAccessoryView.update()
         }
@@ -442,4 +478,46 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
             iconImage: customIcon)
         alertView.setTextTheme(.Light) // can be .Light or .Dark
     }
+}
+
+extension EditProfileViewController {
+    
+    // MARK: Email Composition
+    
+    @IBAction func sendEmailButtonTapped(sender: AnyObject) {
+        let mailComposeViewController = self.configuredMailComposeViewController()
+        if MFMailComposeViewController.canSendMail() {
+            self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+        } else {
+            self.showSendMailErrorAlert()
+        }
+        
+    }
+    
+    func configuredMailComposeViewController() -> MFMailComposeViewController {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
+        
+        mailComposerVC.setToRecipients([])
+        User.getProfile { (user, err) in
+            mailComposerVC.setToRecipients(["support@argent-tech.com"])
+            mailComposerVC.setSubject(APP_NAME + " User Deletion | @" + (user?.username)!)
+            mailComposerVC.setMessageBody("I would like to delete my Argent account.", isHTML: false)
+        }
+        
+        return mailComposerVC
+    }
+    
+    func showSendMailErrorAlert() {
+        let sendMailErrorAlert = UIAlertController(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", preferredStyle: .Alert)
+        sendMailErrorAlert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(sendMailErrorAlert, animated: true, completion: nil)
+    }
+    
+    // MARK: MFMailComposeViewControllerDelegate Method
+    
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
+        
 }
