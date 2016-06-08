@@ -35,7 +35,7 @@ class AccountInterfaceController: WKInterfaceController, WCSessionDelegate {
                     ]
                     
                     // print("about to get account balance")
-                    Alamofire.request(.GET, Root.API_URL + "/v1/stripe/" + (user?.id)! + "/balance",
+                    Alamofire.request(.GET, Root.API_URL + "/stripe/" + (user?.id)! + "/balance",
                         encoding:.URL,
                         headers: headers)
                         .responseJSON { response in

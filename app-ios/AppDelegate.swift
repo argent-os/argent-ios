@@ -47,8 +47,8 @@ let STRIPE_PUBLIC_KEY_LIVE = "pk_live_9kfmn7pMRPKAYSpcf1Fmn266"
 // let API_URL = "http://192.168.1.232:5001" // Works in VA
 
 // API ENDPOINT V1
-// let API_URL = "https://dev.argent.cloud"
-let API_URL = "https://api.argent.cloud"
+// let API_URL = "https://dev.argent.cloud/v1"
+let API_URL = "https://api.argent.cloud/v1"
 
 // For push notifications make sure to delete and re-install app, fix this bug later
 @UIApplicationMain
@@ -324,7 +324,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
                 "ios" : iosNSDict
             ]
             
-            let endpoint = API_URL + "/v1/profile"
+            let endpoint = API_URL + "/profile"
             
             // Encoding as .JSON with header application/json
             Alamofire.request(.PUT, endpoint, parameters: parameters, encoding: .JSON, headers: headers)

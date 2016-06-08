@@ -169,7 +169,7 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
                     "ios": iosNSDict
                 ]
                 
-                Alamofire.request(.POST, API_URL + "/v1/register", parameters: parameters, encoding:.JSON)
+                Alamofire.request(.POST, API_URL + "/register", parameters: parameters, encoding:.JSON)
                     .responseJSON { response in
 
                         

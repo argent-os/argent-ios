@@ -243,7 +243,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         let floatValue = (str! as NSString).floatValue
         let amountInCents = Int(floatValue*100)
         User.getProfile { (user, NSError) in
-            let url = API_URL + "/v1/stripe/" + (user?.id)! + "/charge/" + (self.detailUser?.username)!
+            let url = API_URL + "/stripe/" + (user?.id)! + "/charge/" + (self.detailUser?.username)!
             
             let headers = [
                 "Authorization": "Bearer " + String(userAccessToken),

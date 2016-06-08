@@ -54,7 +54,7 @@ class Account {
                 
                 let user_id = (user?.id)
                 
-                let endpoint = API_URL + "/v1/stripe/" + user_id! + "/account"
+                let endpoint = API_URL + "/stripe/" + user_id! + "/account"
                 
                 Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .responseJSON { response in
@@ -106,7 +106,7 @@ class Account {
                 
                 let user_id = (user?.id)
                 
-                let endpoint = API_URL + "/v1/stripe/" + user_id! + "/account"
+                let endpoint = API_URL + "/stripe/" + user_id! + "/account"
                 
                 Alamofire.request(.PUT, endpoint, parameters: parameters, encoding: .JSON, headers: headers)
                     .responseJSON { response in

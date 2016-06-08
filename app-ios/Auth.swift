@@ -33,7 +33,7 @@ class Auth {
             return;
         }
         
-        Alamofire.request(.POST, API_URL + "/v1/login", parameters: [
+        Alamofire.request(.POST, API_URL + "/login", parameters: [
             "username": username,
             "email":email,
             "password":password

@@ -171,7 +171,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
                     "password": self.userPassword,
                     "device_token_ios": userDeviceToken
                 ]
-                Alamofire.request(.POST, API_URL + "/v1/register", parameters: parameters, encoding:.JSON)
+                Alamofire.request(.POST, API_URL + "/register", parameters: parameters, encoding:.JSON)
                     .responseJSON { response in
                         if(response.response?.statusCode == 200) {
 

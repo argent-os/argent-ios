@@ -187,7 +187,7 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
             
             print("customer email is", email)
             // /v1/receipt/8s9g8a0sd9asdjk2/customer?email=john@doe.com
-            Alamofire.request(.POST, API_URL + "/v1/receipts/" + (user?.id)! + "/customer?email=" + email, parameters: parameters, encoding: .JSON, headers: headers)
+            Alamofire.request(.POST, API_URL + "/receipts/" + (user?.id)! + "/customer?email=" + email, parameters: parameters, encoding: .JSON, headers: headers)
                 .responseJSON { (response) in
                     switch response.result {
                     case .Success:

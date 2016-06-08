@@ -450,7 +450,7 @@ extension MerchantPlansViewController: STPPaymentCardTextFieldDelegate, PKPaymen
         
         User.getProfile { (user, NSError) in
             
-            let url = API_URL + "/v1/stripe/" + (user?.id)! + "/subscriptions/" + (self.detailUser?.username)!
+            let url = API_URL + "/stripe/" + (user?.id)! + "/subscriptions/" + (self.detailUser?.username)!
             
             guard let amount = self.plansArray![self.globalTag!].amount else {
                 return

@@ -39,7 +39,7 @@ class Customer {
                     "description": cust_desc ?? "",
                 ]
                 
-                let endpoint = API_URL + "/v1/stripe/" + (user?.id)! + "/customers"
+                let endpoint = API_URL + "/stripe/" + (user?.id)! + "/customers"
                 
                 Alamofire.request(.POST, endpoint,
                     parameters: parameters,
@@ -78,7 +78,7 @@ class Customer {
                 let limit = "100"
                 let user_id = (user?.id)
                 
-                let endpoint = API_URL + "/v1/stripe/" + user_id! + "/customers?limit=" + limit
+                let endpoint = API_URL + "/stripe/" + user_id! + "/customers?limit=" + limit
                 
                 Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .validate().responseJSON { response in
@@ -127,7 +127,7 @@ class Customer {
                 
                 let user_id = (user?.id)
                 
-                let endpoint = API_URL + "/v1/stripe/" + user_id! + "/customers/" + cust_id
+                let endpoint = API_URL + "/stripe/" + user_id! + "/customers/" + cust_id
                 
                 Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .validate().responseJSON { response in
@@ -185,7 +185,7 @@ class Customer {
                     "Content-Type": "application/json"
                 ]
                 
-                let endpoint = API_URL + "/v1/stripe/" + user_id! + "/customers/" + id
+                let endpoint = API_URL + "/stripe/" + user_id! + "/customers/" + id
                 print("deleting customer", endpoint)
                 Alamofire.request(.DELETE, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .responseJSON { response in

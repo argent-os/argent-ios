@@ -160,11 +160,11 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
             
             let url: String?
             if self.paymentType == "recurring" {
-                url = API_URL + "/v1/stripe/" + (user?.id)! + "/subscriptions/" + (self.detailUser?.username)!
+                url = API_URL + "/stripe/" + (user?.id)! + "/subscriptions/" + (self.detailUser?.username)!
             } else if self.paymentType == "once" {
-                url = API_URL + "/v1/stripe/" + (user?.id)! + "/charge/" + (self.detailUser?.username)!
+                url = API_URL + "/stripe/" + (user?.id)! + "/charge/" + (self.detailUser?.username)!
             } else {
-                url = API_URL + "/v1/stripe/"
+                url = API_URL + "/stripe/"
             }
             
             var parameters = [:]

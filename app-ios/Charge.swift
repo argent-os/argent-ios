@@ -15,7 +15,7 @@
 //    class func createCharge(token: String, amount: Float, completionHandler: (Bool, NSError) -> Void) {
 //        User.getProfile { (user, NSError) in
 //            
-//            let url = API_URL + "/v1/stripe/" + (user?.id)! + "/charge/"
+//            let url = API_URL + "/stripe/" + (user?.id)! + "/charge/"
 //            
 //            let headers = [
 //                "Authorization": "Bearer " + String(userAccessToken),

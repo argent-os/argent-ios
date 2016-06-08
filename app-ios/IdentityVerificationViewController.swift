@@ -172,7 +172,7 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate 
         if(userAccessToken != nil) {
             User.getProfile { (user, NSError) in
                 
-                let endpoint = API_URL + "/v1/stripe/" + (user?.id)! + "/upload"
+                let endpoint = API_URL + "/stripe/" + (user?.id)! + "/upload"
                 
                 let parameters = [
                     "purpose": "identity_document"

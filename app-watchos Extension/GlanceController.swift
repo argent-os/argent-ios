@@ -35,7 +35,7 @@ class GlanceController: WKInterfaceController {
                     ]
                     
                     // print("about to request profile")
-                    Alamofire.request(.GET, Root.API_URL + "/v1/stripe/" + user!.id + "/balance",
+                    Alamofire.request(.GET, Root.API_URL + "/stripe/" + user!.id + "/balance",
                         encoding:.URL,
                         headers: headers)
                         .responseJSON { response in

@@ -76,7 +76,7 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
         if(userAccessToken != nil) {
             User.getProfile { (user, NSError) in
                 
-                let endpoint = API_URL + "/v1/cloudinary/" + (user?.id)! + "/upload"
+                let endpoint = API_URL + "/cloudinary/" + (user?.id)! + "/upload"
                 
                 let parameters = [:]
                 

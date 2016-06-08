@@ -62,7 +62,7 @@ class Plaid_ {
                     "Content-Type": "application/json"
                 ]
                 
-                let endpoint = API_URL + "/v1/plaid/" + user_id! + "/auth"
+                let endpoint = API_URL + "/plaid/" + user_id! + "/auth"
                 
                 Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .responseJSON { response in

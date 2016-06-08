@@ -49,7 +49,7 @@ class User {
                 "Content-Type": "application/x-www-form-urlencoded"
             ]
             
-            let endpoint = Root.API_URL + "/v1/profile"
+            let endpoint = Root.API_URL + "/profile"
             
             Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                 .responseJSON { response in

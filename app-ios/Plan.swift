@@ -52,7 +52,7 @@ class Plan {
                         "currency": plan_currency
                     ]
                     
-                    let endpoint = API_URL + "/v1/stripe/" + (user?.id)! + "/plans"
+                    let endpoint = API_URL + "/stripe/" + (user?.id)! + "/plans"
                     
                     Alamofire.request(.POST, endpoint,
                         parameters: parameters,
@@ -94,7 +94,7 @@ class Plan {
                             "statement_descriptor": plan_statement_descriptor
                         ]
                         
-                        let endpoint = API_URL + "/v1/stripe/" + (user?.id)! + "/plans"
+                        let endpoint = API_URL + "/stripe/" + (user?.id)! + "/plans"
                         
                         Alamofire.request(.POST, endpoint,
                             parameters: parameters,
@@ -136,7 +136,7 @@ class Plan {
                 let limit = "100"
                 let user_id = (user?.id)
                 
-                let endpoint = API_URL + "/v1/stripe/" + user_id! + "/plans?limit=" + limit
+                let endpoint = API_URL + "/stripe/" + user_id! + "/plans?limit=" + limit
                 
                 Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .validate().responseJSON { response in
@@ -180,7 +180,7 @@ class Plan {
         let limit = "100"
         let delegated_username = delegatedUsername
         
-        let endpoint = API_URL + "/v1/stripe/plans/" + delegated_username + "?limit=" + limit
+        let endpoint = API_URL + "/stripe/plans/" + delegated_username + "?limit=" + limit
         
         Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
             .validate().responseJSON { response in
@@ -225,7 +225,7 @@ class Plan {
                     "Content-Type": "application/json"
                 ]
                 
-                let endpoint = API_URL + "/v1/stripe/" + user_id! + "/plans/" + id
+                let endpoint = API_URL + "/stripe/" + user_id! + "/plans/" + id
                 
                 Alamofire.request(.DELETE, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .responseJSON { response in

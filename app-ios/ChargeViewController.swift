@@ -301,7 +301,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         
         // print("creating backend token")
         User.getProfile { (user, NSError) in
-            let url = API_URL + "/v1/stripe/" + (user?.id)! + "/charge/"
+            let url = API_URL + "/stripe/" + (user?.id)! + "/charge/"
             
             let headers = [
                 "Authorization": "Bearer " + String(userAccessToken),

@@ -47,7 +47,7 @@ class User {
                 "Content-Type": "application/x-www-form-urlencoded"
             ]
             
-            let endpoint = API_URL + "/v1/profile"
+            let endpoint = API_URL + "/profile"
             
             Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                 .responseJSON { response in
@@ -95,7 +95,7 @@ class User {
             print("user params are")
             print(parameters)
             
-            let endpoint = API_URL + "/v1/profile"
+            let endpoint = API_URL + "/profile"
             
             print(parameters)
             
@@ -133,7 +133,7 @@ class User {
         
         let headers : [String : String] = [:]
         
-        let endpoint = API_URL + "/v1/user/list"
+        let endpoint = API_URL + "/user/list"
         
         Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
             .responseJSON { response in

@@ -237,7 +237,7 @@
 //                "Content-Type": "application/json"
 //            ]
 //
-//            let endpoint = API_URL + "/v1/profile"
+//            let endpoint = API_URL + "/profile"
 //            
 //            // Encoding as .JSON with header application/json
 //            Alamofire.request(.PUT, endpoint, parameters: parameters, encoding: .JSON, headers: headers)

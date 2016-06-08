@@ -95,7 +95,7 @@ class SearchMessageViewController: UIViewController, UINavigationBarDelegate, Na
                 "Content-Type": "application/json"
             ]
             
-            Alamofire.request(.POST, API_URL + "/v1/message/user/" + self.username!, parameters: parameters, encoding: .JSON, headers: headers)
+            Alamofire.request(.POST, API_URL + "/message/user/" + self.username!, parameters: parameters, encoding: .JSON, headers: headers)
                 .responseJSON { (response) in
                     switch response.result {
                     case .Success:

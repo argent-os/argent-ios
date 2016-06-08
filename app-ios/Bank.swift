@@ -80,7 +80,7 @@ class Bank {
                     "Content-Type": "application/json"
                 ]
                 
-                let endpoint = API_URL + "/v1/stripe/" + user_id! + "/external_account?type=bank"
+                let endpoint = API_URL + "/stripe/" + user_id! + "/external_account?type=bank"
                 
                 Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .responseJSON { response in
@@ -138,7 +138,7 @@ class Bank {
                     "Content-Type": "application/json"
                 ]
                 
-                let endpoint = API_URL + "/v1/stripe/" + user_id! + "/external_account/" + id
+                let endpoint = API_URL + "/stripe/" + user_id! + "/external_account/" + id
                 
                 Alamofire.request(.DELETE, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .responseJSON { response in

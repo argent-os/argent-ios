@@ -50,7 +50,7 @@ class Subscription {
                 let limit = "100"
                 let user_id = (user?.id)
                 
-                let endpoint = API_URL + "/v1/stripe/" + user_id! + "/subscriptions?limit=" + limit
+                let endpoint = API_URL + "/stripe/" + user_id! + "/subscriptions?limit=" + limit
                 
                 Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .validate().responseJSON { response in
@@ -103,7 +103,7 @@ class Subscription {
                     "Content-Type": "application/json"
                 ]
                 
-                let endpoint = API_URL + "/v1/stripe/" + user_id! + "/subscriptions/" + id
+                let endpoint = API_URL + "/stripe/" + user_id! + "/subscriptions/" + id
                 
                 Alamofire.request(.DELETE, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .responseJSON { response in
