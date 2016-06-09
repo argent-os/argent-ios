@@ -88,11 +88,17 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
                             let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
                             UIApplication.sharedApplication().registerUserNotificationSettings(settings)
                             UIApplication.sharedApplication().registerForRemoteNotifications()
+                            Answers.logCustomEventWithName("Permission Notifications in Profile Enabled",
+                                customAttributes: [:])
                         } else {
                             let settings = UIRemoteNotificationType.Alert.union(UIRemoteNotificationType.Badge).union(UIRemoteNotificationType.Sound)
                             UIApplication.sharedApplication().registerForRemoteNotificationTypes(settings)
+                            Answers.logCustomEventWithName("Permission Notifications in Profile Enabled",
+                                customAttributes: [:])
                         }
                         }, cancelled: { (results) -> Void in
+                            Answers.logCustomEventWithName("Permission Notifications in Profile Cancelled",
+                                customAttributes: [:])
                             print("cancelled")
                     })
                 case .Unauthorized, .Disabled:
@@ -100,6 +106,8 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
                     if(on.boolValue == false) {
                         self.updateUserNotificationRegistration(on)
                         self.deregisterPush(self)
+                        Answers.logCustomEventWithName("Permission Notifications in Profile Unauthorized/Disabled",
+                            customAttributes: [:])
                     } else {
                         self.pscope.show({ finished, results in
                             print(results)
@@ -120,6 +128,8 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
                     }
                 case .Authorized:
                     // If permission is granted, post to endpoint
+                    Answers.logCustomEventWithName("Permission Notifications Authorized in Profile",
+                        customAttributes: [:])
                     self.updateUserNotificationRegistration(true)
                 }
                 
@@ -207,9 +217,15 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
                         if let value = response.result.value {
                             _ = JSON(value)
                             showGlobalNotification("Push notifications will become active on next app launch", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.skyBlue())
+                            Answers.logCustomEventWithName("Push Notification Device Update Success",
+                                customAttributes: [:])
                         }
                     case .Failure(let error):
                         print(error)
+                        Answers.logCustomEventWithName("Push Notification Device Update Failure",
+                            customAttributes: [
+                                "error": error.localizedDescription
+                            ])
                     }
             }
         }
@@ -242,9 +258,15 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
                         if let value = response.result.value {
                             var data = JSON(value)
                             _ = data["ios"]["push_state"]
+                            Answers.logCustomEventWithName("User Push Notification Update Registration Success",
+                                customAttributes: [:])
                         }
                     case .Failure(let error):
                         print(error)
+                        Answers.logCustomEventWithName("User Push Notification Update Registration Failure",
+                            customAttributes: [
+                                "error": error.localizedDescription
+                            ])
                     }
             }
         }

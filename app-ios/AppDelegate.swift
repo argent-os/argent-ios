@@ -225,6 +225,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
                 return false
             }
             passcodeLockPresenter.presentPasscodeLock()
+            Answers.logCustomEventWithName("Application Security Did Launch",
+                                           customAttributes: [:])
             tabBarController.selectedIndex = Int(activeTab as! NSNumber)
         }
         
@@ -290,12 +292,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
                     let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
                     UIApplication.sharedApplication().registerUserNotificationSettings(settings)
                     UIApplication.sharedApplication().registerForRemoteNotifications()
+                    Answers.logCustomEventWithName("Permission Notifications Enabled",
+                        customAttributes: [:])
                 } else {
                     let settings = UIRemoteNotificationType.Alert.union(UIRemoteNotificationType.Badge).union(UIRemoteNotificationType.Sound)
                     UIApplication.sharedApplication().registerForRemoteNotificationTypes(settings)
+                    Answers.logCustomEventWithName("Permission Notifications Enabled",
+                        customAttributes: [:])
                 }
                 }, cancelled: { (results) -> Void in
                     print("cancelled")
+                    Answers.logCustomEventWithName("Permission Notifications Cancelled",
+                        customAttributes: [:])
             })
             self.window!.rootViewController = viewController
         } else {

@@ -11,6 +11,7 @@ import UIKit
 import MZFormSheetPresentationController
 import VMaskTextField
 import CWStatusBarNotification
+import Crashlytics
 
 class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
     
@@ -93,8 +94,12 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
             if bool {
                 showGlobalNotification("SSN Confirmed!", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
                 self.dismissViewControllerAnimated(true, completion: nil)
+                Answers.logCustomEventWithName("Identity Verification SSN Upload Success",
+                                               customAttributes: [:])
             } else {
                 showGlobalNotification("An error occurred", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.neonOrange())
+                Answers.logCustomEventWithName("Identity Verification SSN Upload Failure",
+                                               customAttributes: [:])
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
         }

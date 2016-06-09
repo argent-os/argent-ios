@@ -14,6 +14,7 @@ import Stripe
 import CWStatusBarNotification
 import Alamofire
 import SwiftyJSON
+import Crashlytics
 
 class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate, STPPaymentCardTextFieldDelegate {
     
@@ -169,12 +170,16 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
             
             var parameters = [:]
             if self.planId != "" {
+                Answers.logCustomEventWithName("Credit Card Recurring Payment Signup",
+                    customAttributes: [:])
                 parameters = [
                     "token": String(token) ?? "",
                     "amount": amountInCents,
                     "plan_id": self.planId!
                 ]
             } else {
+                Answers.logCustomEventWithName("Credit Card Single Payment",
+                    customAttributes: [:])
                 parameters = [
                     "token": String(token) ?? "",
                     "amount": amountInCents,
@@ -205,6 +210,8 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
                             print(PKPaymentAuthorizationStatus.Success)
                             completion(PKPaymentAuthorizationStatus.Success)
                             self.submitCreditCardButton.userInteractionEnabled = true
+                            Answers.logCustomEventWithName("Credit Card Modal Entry Success",
+                                customAttributes: [:])
                             let _ = Timeout(1.5) {
                                 self.dismissViewControllerAnimated(true, completion: {
                                     print("dismissed")
@@ -217,7 +224,10 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
                         completion(PKPaymentAuthorizationStatus.Failure)
                         self.submitCreditCardButton.userInteractionEnabled = true
                         showGlobalNotification("Error paying " + (self.detailUser?.username)!, duration: 5.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.neonOrange())
-
+                        Answers.logCustomEventWithName("Credit Card Entry Modal Failure",
+                            customAttributes: [
+                                "error": error.localizedDescription
+                            ])
                         print(error)
                     }
             }

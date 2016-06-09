@@ -11,6 +11,7 @@ import Alamofire
 import Foundation
 import CWStatusBarNotification
 import MZFormSheetPresentationController
+import Crashlytics
 
 class IdentityVerificationViewController: UIViewController, ImagePickerDelegate {
     
@@ -115,6 +116,9 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate 
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
 
+        Answers.logCustomEventWithName("Identity Verification Picture Upload Selected",
+                                       customAttributes: [:])
+        
         presentViewController(imagePickerController, animated: true, completion: { void in
             let overlayView = UIView()
             overlayView.frame = CGRect(x: 10, y: screenHeight*0.25, width: screenWidth-20, height: 210)
@@ -211,14 +215,24 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate 
                                     case .Success:
                                         print("success")
                                         showGlobalNotification("Document uploaded!", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
+                                        Answers.logCustomEventWithName("Identity Verification Document Upload Success",
+                                            customAttributes: [:])
                                     case .Failure(let error):
                                         showGlobalNotification("Error uploading document, please contact support", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.neonOrange())
+                                        Answers.logCustomEventWithName("Identity Verification Document Upload Failure",
+                                            customAttributes: [
+                                                "error": error.localizedDescription
+                                            ])
                                         print("failure")
                                         print(error)
                                     }
                                 })
                             case .Failure(let encodingError):
                                 print(encodingError)
+                                Answers.logCustomEventWithName("Identity Verification Encoding Error",
+                                    customAttributes: [
+                                        "error": "encoding_error"
+                                    ])
                             }
                     })
                 }
@@ -229,6 +243,10 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate 
     // MARK: SSN modal
     
     func showSSNModal(sender: AnyObject) {
+        
+        Answers.logCustomEventWithName("Identity Verification SSN Selected",
+                                       customAttributes: [:])
+        
         let navigationController = self.storyboard!.instantiateViewControllerWithIdentifier("ssnModalNavigationController") as! UINavigationController
         let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
         

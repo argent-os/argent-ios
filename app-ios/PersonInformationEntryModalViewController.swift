@@ -13,6 +13,7 @@ import Stripe
 import CWStatusBarNotification
 import Alamofire
 import SwiftyJSON
+import Crashlytics
 
 class PersonInformationEntryModalViewController: UIViewController, UITextFieldDelegate, STPPaymentCardTextFieldDelegate {
     
@@ -195,6 +196,10 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
                             //let data = JSON(value)
                             showGlobalNotification("Receipt sent!", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
                             self.informationTextField.text = ""
+                            Answers.logCustomEventWithName("Receipt Sent Success",
+                                customAttributes: [
+                                    "to_email": email
+                                ])
                             self.dismissViewControllerAnimated(true) {
                                 //
                             }
@@ -202,6 +207,10 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
                     case .Failure(let error):
                         print(error)
                         showGlobalNotification("Error sending receipt", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.neonOrange())
+                        Answers.logCustomEventWithName("Receipt Failed to Send",
+                            customAttributes: [
+                                "error": error.localizedDescription
+                            ])
                         self.dismissViewControllerAnimated(true) {
                             //
                         }
