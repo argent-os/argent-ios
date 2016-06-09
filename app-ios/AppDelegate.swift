@@ -48,7 +48,7 @@ let STRIPE_PUBLIC_KEY_LIVE = "pk_live_9kfmn7pMRPKAYSpcf1Fmn266"
 
 // ENVIRONMENT
 // let ENVIRONMENT = "DEV"
-let ENVIRONMENT = "DEV"
+let ENVIRONMENT = "PROD"
 
 // Pre-production check | Change ENVIRONMENT to PROD, Change API_URL to https://api.argent.cloud/v1
 
