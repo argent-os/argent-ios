@@ -166,6 +166,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     }
     
     func presentTutorial(sender: AnyObject) {
+        Answers.logCustomEventWithName("Home Tutorial Presented",
+                                       customAttributes: [:])
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("TutorialHomeViewController") as! TutorialHomeViewController
         viewController.alpha = 0.5
         presentViewController(viewController, animated: true, completion: nil)

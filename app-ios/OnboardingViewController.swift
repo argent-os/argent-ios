@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Crashlytics
 
 class OnboardingViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
@@ -58,6 +59,10 @@ class OnboardingViewController: UIViewController, UICollectionViewDataSource, UI
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidAppear(animated: Bool) {
+        Answers.logCustomEventWithName("Features Page Opened",
+                                       customAttributes: [:])
+    }
     
     @IBAction func skipOnboarding(sender: AnyObject) {
         NSNotificationCenter.defaultCenter().postNotificationName("kDismissOnboardingNotification", object: self)
