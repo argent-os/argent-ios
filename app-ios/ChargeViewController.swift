@@ -347,6 +347,10 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
                     case .Failure(let error):
                         print(PKPaymentAuthorizationStatus.Failure)
                         self.payButton.userInteractionEnabled = true
+                        Answers.logCustomEventWithName("CRITICAL: ERROR PAYING MERCHANT",
+                            customAttributes: [
+                                "error": error.localizedDescription
+                            ])
                         showGlobalNotification("Error paying merchant", duration: 5.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.neonOrange())
                         self.paymentTextField.clear()
 
