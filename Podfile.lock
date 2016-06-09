@@ -56,6 +56,7 @@ PODS:
   - TransitionTreasury (3.0.4)
   - UIColor_Hex_Swift (2.1)
   - UICountingLabel (1.4.0)
+  - UIScrollView-InfiniteScroll (0.7.3)
   - ValueCoding (1.3.0)
   - VMaskTextField (1.0.8)
   - XLActionController (2.0.0):
@@ -114,6 +115,7 @@ DEPENDENCIES:
   - TransitionTreasury
   - UIColor_Hex_Swift
   - UICountingLabel
+  - UIScrollView-InfiniteScroll
   - VMaskTextField
   - XLActionController
 
@@ -179,6 +181,7 @@ SPEC CHECKSUMS:
   TransitionTreasury: 7228b7758ba4b742e152a198dbe6ca1e46b43949
   UIColor_Hex_Swift: e91dc51f6bf252ec7bf74c8704ceedeeb7640c1c
   UICountingLabel: ed5ce5b6d5ef278ff40d99cfa49577a30ab0c87b
+  UIScrollView-InfiniteScroll: b6c7d6d155dca7f9c5dd43813ecffeb301b3d50c
   ValueCoding: 9c9ed6ecdb9cc37f1a8d3fd9f5756953caf5a869
   VMaskTextField: e77fe33633f999c5c38e70bed0afece0625624a4
   XLActionController: 97ed31237413db4d9401c6a559270f4d2b4de136

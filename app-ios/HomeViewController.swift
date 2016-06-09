@@ -90,14 +90,48 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //definesPresentationContext = true
-
         configureView()
         
         loadData()
         
-        print("setting up apple watch")
         setupAppleWatch()
+        
+        addInfiniteScroll()
+    }
+    
+    private func addInfiniteScroll() {
+        // Add infinite scroll handler
+        // change indicator view style to white
+        self.tableView.infiniteScrollIndicatorStyle = .Gray
+        
+        // Add infinite scroll handler
+        self.tableView.addInfiniteScrollWithHandler { (scrollView) -> Void in
+            let tableView = scrollView as! UITableView
+            
+            //
+            // fetch your data here, can be async operation,
+            // just make sure to call finishInfiniteScroll in the end
+            //
+            if self.accountHistoryArray!.count > 98 {
+                let lastIndex = NSIndexPath(forRow: self.accountHistoryArray!.count - 1, inSection: 0)
+                let id = self.accountHistoryArray![lastIndex.row].id
+                // fetch more data with the id
+                self.loadAccountHistory("100", starting_after: id, completionHandler: { (transactions, error) in
+                    self.activityIndicator.stopAnimating()
+                    if transactions?.count < 1 {
+                        self.loadAccountHistory("100", starting_after: "", completionHandler: { _ in
+                            self.tableView.reloadData()
+                        })
+                    }
+                })
+            }
+            
+            // make sure you reload tableView before calling -finishInfiniteScroll
+            tableView.reloadData()
+            
+            // finish infinite scroll animation
+            tableView.finishInfiniteScroll()
+        }
     }
     
     // VIEW DID APPEAR
@@ -230,7 +264,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             })
             
             // Get user account history
-            loadAccountHistory { (historyArr, error) in
+            loadAccountHistory("100", starting_after: "", completionHandler: { (historyArr, error) in
                 if error != nil {
                     print(error)
                 }
@@ -239,8 +273,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 self.tableView.emptyDataSetDelegate = self
                 self.tableView.tableFooterView = UIView()
                 self.activityIndicator.stopAnimating()
-
-            }
+            })
             
             History.getHistoryArrays({ (_1d, _2w, _1m, _3m, _6m, _1y, _5y, err) in
                 self.arrayOfValues = _3m!
@@ -294,8 +327,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         }
     }
     
-    func loadAccountHistory(completionHandler: ([History]?, NSError?) -> ()) {
-        History.getAccountHistory({ (transactions, error) in
+    func loadAccountHistory(limit: String, starting_after: String, completionHandler: ([History]?, NSError?) -> ()) {
+        History.getAccountHistory(limit, starting_after: starting_after, completionHandler: { (transactions, error) in
             if error != nil {
                 let alert = UIAlertController(title: "Error", message: "Could not load history \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
@@ -646,7 +679,7 @@ extension HomeViewController {
         tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
                 self?.tableView.dg_stopLoading()
-                self?.loadAccountHistory({ (_: [History]?, NSError) in
+                self?.loadAccountHistory("100", starting_after: "", completionHandler: { (_: [History]?, NSError) in
                 })
             })
             }, loadingView: loadingView)

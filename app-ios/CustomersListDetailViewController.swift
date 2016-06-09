@@ -33,6 +33,29 @@ class CustomersListDetailViewController: UIViewController, UINavigationBarDelega
         super.viewDidLoad()
         layoutViews()
         setupNav()
+        addInfiniteScroll()
+    }
+    
+    private func addInfiniteScroll() {
+        // Add infinite scroll handler
+        // change indicator view style to white
+        self.tableView.infiniteScrollIndicatorStyle = .Gray
+        
+        // Add infinite scroll handler
+        self.tableView.addInfiniteScrollWithHandler { (scrollView) -> Void in
+            let tableView = scrollView as! UITableView
+            
+            //
+            // fetch your data here, can be async operation,
+            // just make sure to call finishInfiniteScroll in the end
+            //
+            
+            // make sure you reload tableView before calling -finishInfiniteScroll
+            tableView.reloadData()
+            
+            // finish infinite scroll animation
+            tableView.finishInfiniteScroll()
+        }
     }
     
     func layoutViews() {

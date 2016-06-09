@@ -29,10 +29,6 @@ let FULL_APP_URL = "https://itunes.apple.com/us/app/argent/id1110084542?mt=8"
 let APP_ID = "1110084542"
 let APP_NAME = "Argent"
 
-// ENVIRONMENT
-// let ENVIRONMENT = "DEV"
-let ENVIRONMENT = "PROD"
-
 // PLAID
 let PLAID_PUBLIC_KEY_TEST = "fb32b0520292ad69be7b4d1ade4bd3"
 let PLAID_PUBLIC_KEY_LIVE = "fb32b0520292ad69be7b4d1ade4bd3"
@@ -42,13 +38,19 @@ let STRIPE_PUBLIC_KEY_TEST = "pk_test_6MOTlPN5JrNS5dIN4DUeKFDA"
 let STRIPE_PUBLIC_KEY_LIVE = "pk_live_9kfmn7pMRPKAYSpcf1Fmn266"
 
 // LOCAL TESTING
-// let API_URL = "http://localhost:5001" // Works in simulator
-// let API_URL = "http://192.168.1.182:5001" // Works in MA
-// let API_URL = "http://192.168.1.232:5001" // Works in VA
+// let API_URL = "http://localhost:5001/v1" // Works in simulator
+// let API_URL = "http://192.168.1.182:5001/v1" // Works in MA
+// let API_URL = "http://192.168.1.232:5001/v1" // Works in VA
 
 // API ENDPOINT V1
 // let API_URL = "https://dev.argent.cloud/v1"
-let API_URL = "https://api.argent.cloud/v1"
+ let API_URL = "https://api.argent.cloud/v1"
+
+// ENVIRONMENT
+// let ENVIRONMENT = "DEV"
+let ENVIRONMENT = "DEV"
+
+// Pre-production check | Change ENVIRONMENT to PROD, Change API_URL to https://api.argent.cloud/v1
 
 // For push notifications make sure to delete and re-install app, fix this bug later
 @UIApplicationMain

@@ -129,10 +129,6 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
                     "plaid" : plaidNSDict
                 ]
                 
-                print(endpoint)
-                print(parameters)
-                print(headers)
-                
                 Alamofire.request(.PUT, endpoint, parameters: parameters, encoding: .JSON, headers: headers).responseJSON {
                     response in
                     switch response.result {

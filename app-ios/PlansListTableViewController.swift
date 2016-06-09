@@ -18,7 +18,7 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
     
     var navigationBar = UINavigationBar()
     
-    var itemsArray:Array<Plan>?
+    var plansArray:Array<Plan>?
     
     var viewRefreshControl = UIRefreshControl()
     
@@ -28,6 +28,44 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
         super.viewDidLoad()
         configureView()
         setupNav()
+        
+        addInfiniteScroll()
+    }
+    
+    private func addInfiniteScroll() {
+        // Add infinite scroll handler
+        // change indicator view style to white
+        self.tableView.infiniteScrollIndicatorStyle = .Gray
+        
+        // Add infinite scroll handler
+        self.tableView.addInfiniteScrollWithHandler { (scrollView) -> Void in
+            let tableView = scrollView as! UITableView
+            
+            //
+            // fetch your data here, can be async operation,
+            // just make sure to call finishInfiniteScroll in the end
+            //
+            if self.plansArray!.count > 98 {
+                let lastIndex = NSIndexPath(forRow: self.plansArray!.count - 1, inSection: 0)
+                let id = self.plansArray![lastIndex.row].id
+                // fetch more data with the id
+                self.loadPlanList("100", starting_after: id!, completionHandler: { (plans, error) in
+                })
+            }
+            
+            if self.plansArray!.count == 0 {
+                print("plans is less than 1")
+                self.loadPlanList("100", starting_after: "", completionHandler: { _ in
+                    self.tableView.reloadData()
+                })
+            }
+            
+            // make sure you reload tableView before calling -finishInfiniteScroll
+            tableView.reloadData()
+            
+            // finish infinite scroll animation
+            tableView.finishInfiniteScroll()
+        }
     }
     
     private func configureView() {
@@ -56,7 +94,7 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
         // trick to make table lines disappear
         self.tableView.tableFooterView = UIView()
         
-        self.loadPlanList()
+        self.loadPlanList("100", starting_after: "", completionHandler: { _ in })
         
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
@@ -103,22 +141,21 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
         self.view.addSubview(navigationBar)
     }
     
-    func loadPlanList() {
-        Plan.getPlanList({ (plans, error) in
+    func loadPlanList(limit: String, starting_after: String, completionHandler: ([Plan]?, NSError?) -> ()) {
+        Plan.getPlanList(limit, starting_after: starting_after, completionHandler: { (plans, error) in
             if error != nil
             {
                 let alert = UIAlertController(title: "Error", message: "Could not load plans \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
-            self.itemsArray = plans
+            self.plansArray = plans
             
             // update "last updated" title for refresh control
             let now = NSDate()
             let updateString = "Last Updated at " + self.dateFormatter.stringFromDate(now)
             self.viewRefreshControl.attributedTitle = NSAttributedString(string: updateString)
-            if self.viewRefreshControl.refreshing
-            {
+            if self.viewRefreshControl.refreshing {
                 self.viewRefreshControl.endRefreshing()
             }
             self.tableView?.reloadData()
@@ -144,7 +181,8 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
     }
     
     func refresh(sender:AnyObject) {
-        self.loadPlanList()
+        self.loadPlanList("100", starting_after: "", completionHandler: { _ in
+        })
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -152,7 +190,7 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.itemsArray?.count ?? 0
+        return self.plansArray?.count ?? 0
     }
     
     // MARK DELEGATE MCTABLEVIEWCELL
@@ -178,7 +216,7 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
         cell.detailTextLabel?.tintColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
         cell.tag = indexPath.row
         
-        let item = self.itemsArray?[indexPath.row]
+        let item = self.plansArray?[indexPath.row]
         if let name = item?.name {
             let strName = name
             cell.textLabel?.attributedText = NSAttributedString(string: strName + " ", attributes: [
@@ -201,7 +239,7 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
         
         cell.setSwipeGestureWithView(closeView, color:  UIColor.brandRed(), mode: .Exit, state: .State3) {
             (cell : MCSwipeTableViewCell!, state : MCSwipeTableViewCellState!, mode : MCSwipeTableViewCellMode!) in
-            let item = self.itemsArray?[cell.tag]
+            let item = self.plansArray?[cell.tag]
             if let id = item?.id {
                 print("Did swipe" + id);
                 // send request to delete, on completion reload table data!
@@ -214,7 +252,7 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
                     // send request to delete, on completion reload table data!
                     Plan.deletePlan(id, completionHandler: { (bool, err) in
                         print("deleted plan ", bool)
-                        self.loadPlanList()
+                        self.loadPlanList("100", starting_after: "", completionHandler: { _ in })
                         self.tableView?.reloadData()
                     })
                 }

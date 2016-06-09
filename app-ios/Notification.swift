@@ -22,7 +22,7 @@ class NotificationItem {
         self.created = created
     }
     
-    class func getNotificationList(completionHandler: ([NotificationItem]?, NSError?) -> Void) {
+    class func getNotificationList(limit: String, starting_after: String, completionHandler: ([NotificationItem]?, NSError?) -> Void) {
         // request to api to get data as json, put in list and table
         
         // check for token, get profile id based on token and make the request
@@ -39,10 +39,16 @@ class NotificationItem {
                     "Content-Type": "application/x-www-form-urlencoded"
                 ]
                 
-                let limit = "100"
+                let limit = limit
                 let user_id = (user?.id)
+                let starting_after = starting_after
                 
-                let endpoint = API_URL + "/stripe/" + user_id! + "/events?limit=" + limit
+                var endpoint = API_URL + "/stripe/" + user_id! + "/events"
+                if starting_after != "" {
+                    endpoint = API_URL + "/stripe/" + user_id! + "/events?limit=" + limit + "&starting_after=" + starting_after
+                } else {
+                    endpoint = API_URL + "/stripe/" + user_id! + "/events?limit=" + limit
+                }
                 
                 Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .validate().responseJSON { response in

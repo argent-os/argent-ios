@@ -12,15 +12,17 @@ import Alamofire
 
 class History {
     
+    let id: String
     let amount: String
     let created: String
     
-    required init(amount: String, created: String) {
+    required init(id: String, amount: String, created: String) {
+        self.id = id
         self.amount = amount
         self.created = created
     }
     
-    class func getAccountHistory(completionHandler: ([History]?, NSError?) -> Void) {
+    class func getAccountHistory(limit: String, starting_after: String, completionHandler: ([History]?, NSError?) -> Void) {
         // request to api to get data as json, put in list and table
         
         // check for token, get profile id based on token and make the request
@@ -37,10 +39,16 @@ class History {
                     "Content-Type": "application/x-www-form-urlencoded"
                 ]
                 
-                let limit = "100"
+                let limit = limit
+                let starting_after = starting_after
                 let user_id = (user?.id)
                 
-                let endpoint = API_URL + "/stripe/" + user_id! + "/balance/transactions?limit=" + limit
+                var endpoint = API_URL + "/stripe/" + user_id! + "/transactions"
+                if starting_after != "" {
+                    endpoint = API_URL + "/stripe/" + user_id! + "/transactions?limit=" + limit + "&starting_after=" + starting_after
+                } else {
+                    endpoint = API_URL + "/stripe/" + user_id! + "/transactions?limit=" + limit
+                }
                 
                 Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .validate().responseJSON { response in
@@ -51,9 +59,10 @@ class History {
                                 var historyItemsArray = [History]()
                                 let accountHistories = data["transactions"]["data"].arrayValue
                                 for history in accountHistories {
+                                    let id = history["id"].stringValue
                                     let amount = history["amount"].stringValue
                                     let created = history["created"].stringValue
-                                    let item = History(amount: amount, created: created)
+                                    let item = History(id: id, amount: amount, created: created)
                                     historyItemsArray.append(item)
                                 }
                                 completionHandler(historyItemsArray, response.result.error)

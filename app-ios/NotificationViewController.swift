@@ -25,15 +25,50 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
     
     override func viewDidAppear(animated: Bool) {
         self.childViewControllerForStatusBarStyle()?.setNeedsStatusBarAppearanceUpdate()
+        if notificationsArray?.count == 0 {
+            self.loadNotificationItems("100", starting_after: "")
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureView()
+        addInfiniteScroll()
+    }
+    
+    private func addInfiniteScroll() {
+        // Add infinite scroll handler
+        // change indicator view style to white
+        self.tableView.infiniteScrollIndicatorStyle = .Gray
         
+        // Add infinite scroll handler
+        self.tableView.addInfiniteScrollWithHandler { (scrollView) -> Void in
+            let tableView = scrollView as! UITableView
+            
+            //
+            // fetch your data here, can be async operation,
+            // just make sure to call finishInfiniteScroll in the end
+            //
+            if self.notificationsArray!.count > 0 {
+                let lastIndex = NSIndexPath(forRow: self.notificationsArray!.count - 1, inSection: 0)
+                let id = self.notificationsArray![lastIndex.row].id
+                // fetch more data with the id
+                self.loadNotificationItems("100", starting_after: id)
+            }
+            
+            // make sure you reload tableView before calling -finishInfiniteScroll
+            tableView.reloadData()
+            
+            // finish infinite scroll animation
+            tableView.finishInfiniteScroll()
+        }
+    }
+    
+    private func configureView() {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
-                
+        
         activityIndicator.center = tableView.center
         activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true
@@ -54,9 +89,9 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
                 self?.tableView.dg_stopLoading()
-                self!.loadNotificationItems()
+                self!.loadNotificationItems("100", starting_after: "")
             })
-        }, loadingView: loadingView)
+            }, loadingView: loadingView)
         tableView.dg_setPullToRefreshFillColor(UIColor.mediumBlue())
         tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
         
@@ -72,15 +107,15 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         let navItem = UINavigationItem(title: "Notifications");
         navBar.setItems([navItem], animated: false);
         
-        self.loadNotificationItems()
+        self.loadNotificationItems("100", starting_after: "")
     }
     
-    private func loadNotificationItems() {
+    private func loadNotificationItems(limit: String, starting_after: String) {
         activityIndicator.center = view.center
         activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true
         self.view.addSubview(activityIndicator)
-        NotificationItem.getNotificationList({ (notifications, error) in
+        NotificationItem.getNotificationList(limit, starting_after: starting_after, completionHandler: { (notifications, error) in
             if error != nil
             {
                 let alert = UIAlertController(title: "Error", message: "Could not load notifications \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
@@ -117,7 +152,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     private func refresh(sender:AnyObject) {
-        self.loadNotificationItems()
+        self.loadNotificationItems("100", starting_after: "")
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -61,8 +61,8 @@ target 'app-ios' do
 	pod 'BTNavigationDropdownMenu'
 	pod 'VMaskTextField'
 	pod 'Shimmer'
+	pod 'UIScrollView-InfiniteScroll'
 
-	
 	# Fabric
 	pod 'Fabric'
 	pod 'Crashlytics'

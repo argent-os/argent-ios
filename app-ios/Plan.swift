@@ -116,7 +116,7 @@ class Plan {
         }
     }
 
-    class func getPlanList(completionHandler: ([Plan]?, NSError?) -> Void) {
+    class func getPlanList(limit: String, starting_after: String, completionHandler: ([Plan]?, NSError?) -> Void) {
         // request to api to get data as json, put in list and table
         
         // check for token, get profile id based on token and make the request
@@ -133,10 +133,16 @@ class Plan {
                     "Content-Type": "application/x-www-form-urlencoded"
                 ]
                 
-                let limit = "100"
+                let limit = limit
+                let starting_after = starting_after
                 let user_id = (user?.id)
                 
-                let endpoint = API_URL + "/stripe/" + user_id! + "/plans?limit=" + limit
+                var endpoint = API_URL + "/stripe/" + user_id! + "/plans"
+                if starting_after != "" {
+                    endpoint = API_URL + "/stripe/" + user_id! + "/plans?limit=" + limit + "&starting_after=" + starting_after
+                } else {
+                    endpoint = API_URL + "/stripe/" + user_id! + "/plans?limit=" + limit
+                }
                 
                 Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .validate().responseJSON { response in
@@ -165,7 +171,7 @@ class Plan {
         }
     }
     
-    class func getDelegatedPlanList(delegatedUsername: String, completionHandler: ([Plan]?, NSError?) -> Void) {
+    class func getDelegatedPlanList(delegatedUsername: String, limit: String, starting_after: String, completionHandler: ([Plan]?, NSError?) -> Void) {
         // request to api to get data as json, put in list and table
         
         // check for token, get profile id based on token and make the request
@@ -177,10 +183,16 @@ class Plan {
             "Content-Type": "application/x-www-form-urlencoded"
         ]
         
-        let limit = "100"
+        let limit = limit
         let delegated_username = delegatedUsername
+        let starting_after = starting_after
         
-        let endpoint = API_URL + "/stripe/plans/" + delegated_username + "?limit=" + limit
+        var endpoint = API_URL + "/stripe/plans/" + delegated_username
+        if starting_after != "" {
+            endpoint = API_URL + "/stripe/plans/" + delegated_username + "?limit=" + limit + "&starting_after=" + starting_after
+        } else {
+            endpoint = API_URL + "/stripe/plans/" + delegated_username + "?limit=" + limit
+        }
         
         Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
             .validate().responseJSON { response in

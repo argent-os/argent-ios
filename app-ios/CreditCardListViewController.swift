@@ -22,11 +22,39 @@ class CreditCardListViewController: UITableViewController, MCSwipeTableViewCellD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureView()
+        
+        addInfiniteScroll()
+    }
+    
+    private func addInfiniteScroll() {
+        // Add infinite scroll handler
+        // change indicator view style to white
+        self.tableView.infiniteScrollIndicatorStyle = .Gray
+        
+        // Add infinite scroll handler
+        self.tableView.addInfiniteScrollWithHandler { (scrollView) -> Void in
+            let tableView = scrollView as! UITableView
+            
+            //
+            // fetch your data here, can be async operation,
+            // just make sure to call finishInfiniteScroll in the end
+            //
+            
+            // make sure you reload tableView before calling -finishInfiniteScroll
+            tableView.reloadData()
+            
+            // finish infinite scroll animation
+            tableView.finishInfiniteScroll()
+        }
+    }
+    
+    private func configureView() {
         self.navigationItem.title = "Credit Cards"
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
         
         showGlobalNotification("Loading credit cards", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.skyBlue())
-
+        
         self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         self.dateFormatter.timeStyle = NSDateFormatterStyle.LongStyle
         
@@ -37,6 +65,7 @@ class CreditCardListViewController: UITableViewController, MCSwipeTableViewCellD
         self.tableView?.addSubview(cardRefreshControl)
         
         self.loadCreditCards()
+        
     }
     
     func loadCreditCards() {

@@ -30,6 +30,35 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
         super.viewDidLoad()
         configureView()
         setupNav()
+        addInfiniteScroll()
+    }
+    
+    private func addInfiniteScroll() {
+        // Add infinite scroll handler
+        // change indicator view style to white
+        self.tableView.infiniteScrollIndicatorStyle = .Gray
+        
+        // Add infinite scroll handler
+        self.tableView.addInfiniteScrollWithHandler { (scrollView) -> Void in
+            let tableView = scrollView as! UITableView
+            
+            //
+            // fetch your data here, can be async operation,
+            // just make sure to call finishInfiniteScroll in the end
+            //
+            if self.customersArray!.count > 0 {
+                let lastIndex = NSIndexPath(forRow: self.customersArray!.count - 1, inSection: 0)
+                let id = self.customersArray![lastIndex.row].id
+                // fetch more data with the id
+                self.loadCustomerList("100", starting_after: id)
+            }
+            
+            // make sure you reload tableView before calling -finishInfiniteScroll
+            tableView.reloadData()
+            
+            // finish infinite scroll animation
+            tableView.finishInfiniteScroll()
+        }
     }
     
     private func configureView() {
@@ -54,7 +83,7 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
         self.viewRefreshControl.addTarget(self, action: #selector(self.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         self.tableView?.addSubview(viewRefreshControl)
         
-        self.loadCustomerList()
+        self.loadCustomerList("100", starting_after: "")
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -106,8 +135,8 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
         self.view.addSubview(navigationBar)
     }
     
-    func loadCustomerList() {
-        Customer.getCustomerList({ (customers, error) in
+    func loadCustomerList(limit: String, starting_after: String) {
+        Customer.getCustomerList(limit, starting_after: starting_after, completionHandler: { (customers, error) in
             if error != nil
             {
                 let alert = UIAlertController(title: "Error", message: "Could not load customers \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
@@ -148,7 +177,7 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
     
     func refresh(sender:AnyObject)
     {
-        self.loadCustomerList()
+        self.loadCustomerList("100", starting_after: "")
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -227,7 +256,7 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
                     // send request to delete the bank account, on completion reload table data!
                     Customer.deleteCustomer(id, completionHandler: { (bool, err) in
                         print("deleted customer ", bool)
-                        self.loadCustomerList()
+                        self.loadCustomerList("100", starting_after: "")
                     })
                 }
                 alertController.addAction(OKAction)

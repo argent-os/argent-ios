@@ -488,17 +488,6 @@
 			name = Main;
 			sourceTree = "<group>";
 		};
-		30089F3E1CF9312900A2496B /* Dropdown */ = {
-			isa = PBXGroup;
-			children = (
-				30CF714C1D04CAE1007B5E17 /* MenuDetailViewController.swift */,
-				30089F411CF9313F00A2496B /* Subscriptions */,
-				30089F401CF9313700A2496B /* Customers */,
-				30089F3F1CF9313100A2496B /* Plans */,
-			);
-			name = Dropdown;
-			sourceTree = "<group>";
-		};
 		30089F3F1CF9313100A2496B /* Plans */ = {
 			isa = PBXGroup;
 			children = (
@@ -845,7 +834,10 @@
 		30CF714B1D04CAA3007B5E17 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				30089F3E1CF9312900A2496B /* Dropdown */,
+				30CF714C1D04CAE1007B5E17 /* MenuDetailViewController.swift */,
+				30089F411CF9313F00A2496B /* Subscriptions */,
+				30089F401CF9313700A2496B /* Customers */,
+				30089F3F1CF9313100A2496B /* Plans */,
 			);
 			name = Detail;
 			sourceTree = "<group>";

@@ -59,7 +59,7 @@ class Customer {
         }
     }
     
-    class func getCustomerList(completionHandler: ([Customer]?,  NSError?) -> Void) {
+    class func getCustomerList(limit: String, starting_after: String, completionHandler: ([Customer]?,  NSError?) -> Void) {
         // request to api to get data as json, put in list and table
         // check for token, get profile id based on token and make the request
         if(userAccessToken != nil) {
@@ -75,10 +75,16 @@ class Customer {
                     "Content-Type": "application/x-www-form-urlencoded"
                 ]
                 
-                let limit = "100"
+                let limit = limit
+                let starting_after = starting_after
                 let user_id = (user?.id)
                 
-                let endpoint = API_URL + "/stripe/" + user_id! + "/customers?limit=" + limit
+                var endpoint = API_URL + "/stripe/" + user_id! + "/customers"
+                if starting_after != "" {
+                    endpoint = API_URL + "/stripe/" + user_id! + "/customers?limit=" + limit + "&starting_after=" + starting_after
+                } else {
+                    endpoint = API_URL + "/stripe/" + user_id! + "/customers?limit=" + limit
+                }
                 
                 Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .validate().responseJSON { response in
@@ -88,7 +94,6 @@ class Customer {
                                 let data = JSON(value)
                                 // print(data)
                                 var customerArray = [Customer]()
-                                var subscriptionArray = [Subscription]()
                                 let customers = data["customers"]["data"].arrayValue
                                 for customer in customers {
                                     let id = customer["id"].stringValue

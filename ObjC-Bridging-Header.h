@@ -31,4 +31,7 @@
 // Plaid Link
 #import "Pods/plaid-ios-link/PlaidLink/Classes/PLDLinkNavigationViewController.h"
 
+// Infinite Scroll
+#import "Pods/UIScrollView-InfiniteScroll/Classes/UIScrollView+InfiniteScroll.h"
+
 #endif /* ObjC_Bridging_Header_h */

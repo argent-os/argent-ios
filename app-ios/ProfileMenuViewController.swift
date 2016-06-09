@@ -195,6 +195,8 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                 self.customersCountLabel.text = "No customers"
             } else if(customers!.count < 2 && customers!.count > 0) {
                 self.customersCountLabel.text = String(customers!.count) + "\ncustomer"
+            } else if(customers!.count > 98) {
+                self.customersCountLabel.text = "100+\ncustomers"
             } else {
                 self.customersCountLabel.text = String(customers!.count) + "\ncustomers"
             }
@@ -203,11 +205,13 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
             }
         }
         
-        self.loadPlanList { (plans: [Plan]?, NSError) in
+        self.loadPlanList("100", starting_after: "") { (plans, error) in
             if(plans!.count == 0) {
                 self.plansCountLabel.text = "No plans"
             } else if(plans!.count < 2 && plans!.count > 0) {
                 self.plansCountLabel.text = String(plans!.count) + "\nplan"
+            } else if(plans!.count > 98) {
+                self.plansCountLabel.text = "100+\nplans"
             } else {
                 self.plansCountLabel.text = String(plans!.count) + "\nplans"
             }
@@ -221,6 +225,8 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                 self.subscriptionsCountLabel.text = "No subscriptions"
             } else if(subscriptions!.count < 2 && subscriptions!.count > 0) {
                 self.subscriptionsCountLabel.text = String(subscriptions!.count) + "\nsubscription"
+            } else if(subscriptions!.count > 98) {
+                self.subscriptionsCountLabel.text = "100+\nsubscriptions"
             } else {
                 self.subscriptionsCountLabel.text = String(subscriptions!.count) + "\nsubscriptions"
             }
@@ -349,7 +355,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
     
     // Load user data lists for customer and plan
     private func loadCustomerList(completionHandler: ([Customer]?, NSError?) -> ()) {
-        Customer.getCustomerList({ (customers, error) in
+        Customer.getCustomerList("100", starting_after: "", completionHandler: { (customers, error) in
             if error != nil {
                 let alert = UIAlertController(title: "Error", message: "Could not load customers \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
@@ -360,8 +366,8 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         })
     }
     
-    private func loadPlanList(completionHandler: ([Plan]?, NSError?) -> ()) {
-        Plan.getPlanList({ (plans, error) in
+    private func loadPlanList(limit: String, starting_after: String, completionHandler: ([Plan]?, NSError?) -> ()) {
+        Plan.getPlanList(limit, starting_after: starting_after, completionHandler: { (plans, error) in
             if error != nil {
                 let alert = UIAlertController(title: "Error", message: "Could not load plans \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))

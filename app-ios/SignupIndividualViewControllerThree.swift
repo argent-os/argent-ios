@@ -55,6 +55,7 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
         self.finishButton.enabled = false
         // Allow continue to be clicked
         let _ = Timeout(0.3) {
+            self.finishButton.userInteractionEnabled = true
             self.finishButton.enabled = true
             return
         }
@@ -126,11 +127,14 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
     
     @IBAction func finishButtonTapped(sender: AnyObject) {
 
+        finishButton.userInteractionEnabled = false
+        
         showGlobalNotification("Signing up...", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.skyBlue())
         
         if(self.switchTermsAndPrivacy.on.boolValue == false) {
             // Display error if terms of service and privacy policy not accepted
             displayErrorAlertMessage("Terms of Service and Privacy Policy were not accepted, could not create account");
+            self.finishButton.userInteractionEnabled = true
             return;
         }
         
@@ -169,7 +173,11 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
                     "ios": iosNSDict
                 ]
                 
-                Alamofire.request(.POST, API_URL + "/register", parameters: parameters, encoding:.JSON)
+                let headers = [
+                    "Content-Type": "application/json"
+                ]
+                
+                Alamofire.request(.POST, API_URL + "/register", parameters: parameters, encoding:.JSON, headers: headers)
                     .responseJSON { response in
 
                         
@@ -196,6 +204,7 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
                             }
                         case .Failure(let error):
                             print(error)
+                            self.finishButton.userInteractionEnabled = true
                             showGlobalNotification(error.localizedDescription, duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
                             break
                         }

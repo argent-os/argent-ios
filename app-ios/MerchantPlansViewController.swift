@@ -61,6 +61,44 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        addInfiniteScroll()
+    }
+    
+    private func addInfiniteScroll() {
+        // Add infinite scroll handler
+        // change indicator view style to white
+        self.tableView.infiniteScrollIndicatorStyle = .Gray
+        
+        // Add infinite scroll handler
+        self.tableView.addInfiniteScrollWithHandler { (scrollView) -> Void in
+            let tableView = scrollView as! UITableView
+            
+            //
+            // fetch your data here, can be async operation,
+            // just make sure to call finishInfiniteScroll in the end
+            //
+            if self.plansArray!.count > 98 {
+                let lastIndex = NSIndexPath(forRow: self.plansArray!.count - 1, inSection: 0)
+                let id = self.plansArray![lastIndex.row].id
+                // fetch more data with the id
+                self.loadPlans("100", starting_after: id!, completionHandler: { (plans, err) in
+                    print(plans)
+                })
+            }
+            
+            if self.plansArray!.count == 0 {
+                print("plans is less than 1")
+                self.loadPlans("100", starting_after: "", completionHandler: { _ in
+                    self.tableView.reloadData()
+                })
+            }
+            
+            // make sure you reload tableView before calling -finishInfiniteScroll
+            tableView.reloadData()
+            
+            // finish infinite scroll animation
+            tableView.finishInfiniteScroll()
+        }
     }
     
     func configure() {
@@ -127,7 +165,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         self.view.addGestureRecognizer(recognizer)
         recognizer.delegate = self
         
-        self.loadPlans()
+        self.loadPlans("100", starting_after: "", completionHandler: { _ in })
     }
     
     func handleTapBehind(sender: UITapGestureRecognizer) {
@@ -143,12 +181,12 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
-    private func loadPlans() {
+    private func loadPlans(limit: String, starting_after: String, completionHandler: ([Plan]?, NSError?) -> ()) {
         activityIndicator.center = view.center
         activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true
         // self.view.addSubview(activityIndicator)
-        Plan.getDelegatedPlanList((detailUser?.username)!, completionHandler: { (plans, error) in
+        Plan.getDelegatedPlanList((detailUser?.username)!, limit: limit, starting_after: starting_after, completionHandler: { (plans, error) in
             if error != nil {
                 let alert = UIAlertController(title: "Error", message: "Could not load plans \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
