@@ -76,6 +76,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
             let overlayView: UIView = UIScreen.mainScreen().snapshotViewAfterScreenUpdates(false)
             appContentVC.view.addSubview(overlayView)
             self.window?.rootViewController = appContentVC
+            Answers.logCustomEventWithName("Onboarding Skip",
+                                           customAttributes: [:])
             UIView.animateWithDuration(0.4, delay: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: { () -> Void in
                 overlayView.alpha = 0
                 }, completion: { (finished) -> Void in
@@ -89,18 +91,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
         if shortcutItem.type == "com.argentapp.ios.dashboard" {
             if let tabBarController = window?.rootViewController as? UITabBarController {
                 tabBarController.selectedIndex = 0
+                Answers.logCustomEventWithName("3D Touch to Dashboard",
+                                               customAttributes: [:])
             }
         } else if shortcutItem.type == "com.argentapp.ios.search" {
             if let tabBarController = window?.rootViewController as? UITabBarController {
                 tabBarController.selectedIndex = 1
+                Answers.logCustomEventWithName("3D Touch to Search",
+                                               customAttributes: [:])
             }
         } else if shortcutItem.type == "com.argentapp.ios.menu" {
             if let tabBarController = window?.rootViewController as? UITabBarController {
                 tabBarController.selectedIndex = 2
+                Answers.logCustomEventWithName("3D Touch to Menu",
+                                               customAttributes: [:])
             }
         } else if shortcutItem.type == "com.argentapp.ios.account" {
             if let tabBarController = window?.rootViewController as? UITabBarController {
                 tabBarController.selectedIndex = 4
+                Answers.logCustomEventWithName("3D Touch to Account",
+                                               customAttributes: [:])
             }
         } else {
             if let tabBarController = window?.rootViewController as? UITabBarController {

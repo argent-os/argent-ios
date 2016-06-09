@@ -9,6 +9,7 @@
 import UIKit
 import SafariServices
 import MZFormSheetPresentationController
+import Crashlytics
 
 class PresentedTableViewController: UIViewController {
     
@@ -35,6 +36,7 @@ class PresentedTableViewController: UIViewController {
         self.navigationController?.navigationBar.barTintColor = UIColor.lightGrayColor()
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(PresentedTableViewController.close))
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -55,6 +57,8 @@ class PresentedTableViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
             if identifier == "termsView" {
+                Answers.logCustomEventWithName("Legal Terms Viewed",
+                                               customAttributes: [:])
                 if #available(iOS 9.0, *) {
                     let svc = SFSafariViewController(URL: NSURL(string: "https://www.argentapp.com/terms")!, entersReaderIfAvailable: true)
                     self.presentViewController(svc, animated: true, completion: nil)
@@ -64,6 +68,8 @@ class PresentedTableViewController: UIViewController {
                 }
             }
             if identifier == "privacyView" {
+                Answers.logCustomEventWithName("Legal Privacy Viewed",
+                                               customAttributes: [:])
                 if #available(iOS 9.0, *) {
                     let svc = SFSafariViewController(URL: NSURL(string: "https://www.argentapp.com/privacy")!, entersReaderIfAvailable: true)
                     self.presentViewController(svc, animated: true, completion: nil)

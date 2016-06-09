@@ -14,6 +14,7 @@ import TextFieldEffects
 import UIColor_Hex_Swift
 import JSSAlertView
 import CWStatusBarNotification
+import Crashlytics
 
 class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
     
@@ -157,11 +158,17 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
                     if let value = response.result.value {
                         //let json = JSON(value)
                         self.dismissKeyboard()
+                        Answers.logCustomEventWithName("Reset Password Success",
+                            customAttributes: [:])
                         
                     }
                 case .Failure(let error):
                     print(error)
                     self.displayAlert("Failed to remind password, please check username/email is correct", color: UIColor.brandRed(), icon: "ic_close_light");
+                    Answers.logCustomEventWithName("3D Touch to Dashboard",
+                        customAttributes: [
+                            "error": error.localizedDescription
+                        ])
                 }
         }
         

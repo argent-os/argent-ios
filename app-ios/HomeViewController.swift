@@ -366,6 +366,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         loginVC.modalTransitionStyle = .CrossDissolve
         let root = UIApplication.sharedApplication().keyWindow?.rootViewController
         root!.presentViewController(loginVC, animated: true, completion: { () -> Void in })
+        
+        Answers.logCustomEventWithName("Logged User Out from Home",
+                                       customAttributes: [:])
     }
     
     // MARK: TableView Delegate

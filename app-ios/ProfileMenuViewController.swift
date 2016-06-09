@@ -317,6 +317,9 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                 NSUserDefaults.standardUserDefaults().setValue("", forKey: "userAccessToken")
                 NSUserDefaults.standardUserDefaults().synchronize();
                 
+                Answers.logCustomEventWithName("User logged out from profile",
+                    customAttributes: [:])
+                
                 // go to login view
                 let sb = UIStoryboard(name: "Main", bundle: nil)
                 let loginVC = sb.instantiateViewControllerWithIdentifier("LoginViewController")

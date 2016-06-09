@@ -13,6 +13,7 @@ import Former
 import KeychainSwift
 import PermissionScope
 import CWStatusBarNotification
+import Crashlytics
 
 class ConfigureNotificationsViewController: FormViewController, UIApplicationDelegate {
     
@@ -25,6 +26,9 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        
+        Answers.logCustomEventWithName("Notifications Viewed",
+                                       customAttributes: [:])
     }
     
     override func prefersStatusBarHidden() -> Bool {
