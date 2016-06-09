@@ -1,3 +1,10 @@
+//
+//  SignupViewControllerFour.swift
+//  argent-ios
+//
+//  Created by Sinan Ulkuatam on 2/19/16.
+//  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
+//
 
 import Foundation
 import UIKit
@@ -13,6 +20,7 @@ import JSSAlertView
 import StepSlider
 import OnePasswordExtension
 import CWStatusBarNotification
+import Crashlytics
 
 class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
     
@@ -201,10 +209,17 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
                                     let message = String(json["message"])
                                     showGlobalNotification(message, duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.skyBlue())
                                 }
+                                
+                                Answers.logSignUpWithMethod("Signup | type: " + self.userLegalEntityType,
+                                    success: true,
+                                    customAttributes: nil)
                             }
                         case .Failure(let error):
                             self.finishButton.userInteractionEnabled = true
                             showGlobalNotification("Error occurred", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
+                            Answers.logSignUpWithMethod("Signup | type: " + self.userLegalEntityType,
+                                success: false,
+                                customAttributes: nil)
                             break
                         }
                 }

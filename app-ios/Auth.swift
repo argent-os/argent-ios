@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import Crashlytics
 
 class Auth {
     
@@ -75,6 +76,9 @@ class Auth {
                         NSUserDefaults.standardUserDefaults().setValue(token, forKey: "userAccessToken")
                         NSUserDefaults.standardUserDefaults().synchronize()
                         
+                        Answers.logLoginWithMethod("Access",
+                            success: true,
+                            customAttributes: nil)
                         // go to main view from completion handler
                         // self.performSegueWithIdentifier("homeView", sender: self);
                         
@@ -82,6 +86,9 @@ class Auth {
                     }
                 case .Failure(let error):
                     print(error)
+                    Answers.logLoginWithMethod("Access",
+                        success: false,
+                        customAttributes: nil)
                     // display error
                 }
         }

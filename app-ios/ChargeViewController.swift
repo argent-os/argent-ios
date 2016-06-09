@@ -18,6 +18,7 @@ import Alamofire
 import TransitionTreasury
 import TransitionAnimation
 import Shimmer
+import Crashlytics
 
 class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITextFieldDelegate, UINavigationBarDelegate, ModalTransitionDelegate {
     
@@ -330,6 +331,15 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
                             self.payButton.userInteractionEnabled = true
                             self.paymentTextField.clear()
                             self.showAlert("Payment for " + self.chargeInputView.text! + " succeeded!", color: UIColor.skyBlue(), image:UIImage(named: "ic_check_light")!, title: "Success")
+                            var str = self.chargeInputView.text
+                            str?.removeAtIndex(str!.characters.indices.first!) // remove first letter
+                            Answers.logPurchaseWithPrice(decimalWithString(self.currencyFormatter, string: str!),
+                                currency: "USD",
+                                success: true,
+                                itemName: "Payment",
+                                itemType: "POS Sale",
+                                itemId: "sku-###",
+                                customAttributes: nil)
                             self.swipeArrowImageView.image = UIImage(named: "ic_arrow_down_gray")
                             self.swipePaymentSelectionLabel.text = "Swipe down to select payment option"
                             self.chargeInputView.text = ""

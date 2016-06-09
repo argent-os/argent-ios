@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import MessageUI
 import DKCircleButton
+import Crashlytics
 
 final class AddCustomerViewController: UIViewController, UINavigationBarDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate {
     
@@ -169,6 +170,9 @@ extension AddCustomerViewController {
     // MARK: Email Composition
     
     @IBAction func sendEmailButtonTapped(sender: AnyObject) {
+        Answers.logInviteWithMethod("Email",
+                                    customAttributes: nil)
+        
         let mailComposeViewController = configuredMailComposeViewController()
         if MFMailComposeViewController.canSendMail() {
             self.presentViewController(mailComposeViewController, animated: true, completion: nil)
@@ -180,7 +184,7 @@ extension AddCustomerViewController {
     func configuredMailComposeViewController() -> MFMailComposeViewController {
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
-        
+
         mailComposerVC.setToRecipients([])
         User.getProfile { (user, err) in
             //
@@ -214,6 +218,9 @@ extension AddCustomerViewController {
     // MARK: SMS Composition
     
     @IBAction func sendSMSButtonTapped(sender: AnyObject) {
+        Answers.logInviteWithMethod("SMS",
+                                    customAttributes: nil)
+        
         let smsComposeViewController = configuredSMSViewController()
         if !MFMessageComposeViewController.canSendText() {
             print("SMS services are not available")

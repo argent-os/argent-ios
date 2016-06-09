@@ -8,6 +8,7 @@
 
 import UIKit
 import TransitionTreasury
+import Crashlytics
 
 class ChargePaymentSelectionViewController: UIViewController {
     
@@ -133,16 +134,22 @@ class ChargePaymentSelectionViewController: UIViewController {
     
     func payWithAlipay(sender: AnyObject) {
         print("alipay selected")
+        Answers.logCustomEventWithName("Alipay Payment Method Selected",
+                                       customAttributes: nil)
         modalDelegate?.modalViewControllerDismiss(interactive: false, callbackData: ["option":"alipay"])
     }
     
     func payWithBitcoin(sender: AnyObject) {
         print("bitcoin selected")
+        Answers.logCustomEventWithName("Bitcoin Payment Method Selected",
+                                       customAttributes: nil)
         modalDelegate?.modalViewControllerDismiss(interactive: false, callbackData: ["option":"bitcoin"])
     }
     
     func payWithCard(sender: AnyObject) {
         print("card selected")
+        Answers.logCustomEventWithName("Credit Card Payment Method Selected",
+                                       customAttributes: nil)
         modalDelegate?.modalViewControllerDismiss(interactive: false, callbackData: ["option":"card"])
     }
     

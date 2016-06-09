@@ -311,6 +311,11 @@ func formatCurrency(amount: String, fontName: String, superSize: CGFloat, fontSi
     return attString
 }
 
+func decimalWithString(formatter: NSNumberFormatter, string: String) -> NSDecimalNumber {
+    formatter.generatesDecimalNumbers = true
+    return formatter.numberFromString(string) as? NSDecimalNumber ?? 0
+}
+
 func addActivityIndicatorButton(indicator: UIActivityIndicatorView, button: UIButton, color: UIActivityIndicatorViewStyle) {
     let indicator: UIActivityIndicatorView = indicator
     let halfButtonHeight: CGFloat = button.bounds.size.height / 2

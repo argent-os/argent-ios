@@ -20,6 +20,7 @@ import EmitterKit
 import PassKit
 import CWStatusBarNotification
 import XLActionController
+import Crashlytics
 
 class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UIGestureRecognizerDelegate {
     
@@ -38,6 +39,10 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
     private var selectedRow: Int?
     
     private var selectedAmount: Float?
+    
+    let currencyFormatter = NSNumberFormatter()
+    
+    var paymentMethod: String = "None"
     
     var paymentSuccessSignal: Signal? = Signal()
     
@@ -108,29 +113,16 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         self.view.backgroundColor = UIColor.whiteColor()
         self.view.layer.borderWidth = 1
         self.view.layer.masksToBounds = true
-        // border radius
         self.view.layer.cornerRadius = 10.0
-        // border
         self.view.layer.borderColor = UIColor.darkGrayColor().colorWithAlphaComponent(0.2).CGColor
         self.view.layer.borderWidth = 1
-        // drop shadow
         self.view.layer.shadowColor = UIColor.blackColor().CGColor
         self.view.layer.shadowOpacity = 0.8
         self.view.layer.shadowRadius = 3.0
         self.view.layer.shadowOffset = CGSizeMake(2.0, 2.0)
         
-        
-        // screen width and height:
-        //let screen = UIScreen.mainScreen().bounds
-        //let screenWidth = screen.size.width
-        //let screenHeight = screen.size.height
-        
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.barTintColor = UIColor.lightGrayColor()
-        
-        //Looks for single or multiple taps.  Close keyboard on tap
-        //        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(viewPlanDetails(_:)))
-        //        view.addGestureRecognizer(tap)
         
         tableView.registerClass(MerchantPlanCell.self, forCellReuseIdentifier: cellReuseIdendifier)
         self.view.addSubview(tableView)
@@ -388,12 +380,14 @@ extension MerchantPlansViewController: STPPaymentCardTextFieldDelegate, PKPaymen
         actionController.addAction(Action("Apple Pay", style: .Default, handler: { action in
             let _ = Timeout(0.5) {
                 print("showing apple pay modal")
+                self.paymentMethod = "Apple Pay"
                 self.showApplePayModal(self, tag: tag)
             }
         }))
         actionController.addAction(Action("Credit Card", style: .Default, handler: { action in
             let _ = Timeout(0.5) {
                 print("showing credit card modal")
+                self.paymentMethod = "Credit Card"
                 self.showCreditCardModal(self, tag: tag)
             }
         }))
@@ -523,6 +517,24 @@ extension MerchantPlansViewController: STPPaymentCardTextFieldDelegate, PKPaymen
                             print(PKPaymentAuthorizationStatus.Success)
                             completion(PKPaymentAuthorizationStatus.Success)
                             showGlobalNotification("Successfully subscribed to plan", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.brandGreen())
+
+                            guard let amount = self.plansArray![self.globalTag!].amount else {
+                                return
+                            }
+                            guard let interval = self.plansArray![self.globalTag!].interval else {
+                                return
+                            }
+                            
+                            Answers.logPurchaseWithPrice(decimalWithString(self.currencyFormatter, string: amount),
+                                currency: "USD",
+                                success: true,
+                                itemName: "Payment",
+                                itemType: "Merchant Recurring Payment Signup",
+                                itemId: "sku-###",
+                                customAttributes: [
+                                    "method": self.paymentMethod,
+                                    "interval": interval
+                            ])
                         }
                     case .Failure(let error):
                         print(PKPaymentAuthorizationStatus.Failure)

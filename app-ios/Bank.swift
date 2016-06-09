@@ -9,6 +9,7 @@
 import Foundation
 import SwiftyJSON
 import Alamofire
+import Crashlytics
 
 class Bank {
     
@@ -108,11 +109,21 @@ class Bank {
                                     let name = bank["name"].stringValue
                                     
                                     let item = Bank(id: id, object: object, account: account, account_holder_name: account_holder_name, account_holder_type: account_holder_type, bank_name: bank_name, country: country, currency: currency, default_for_currency: default_for_currency, fingerprint: fingerprint, last4: last4, metadata: metadata, routing_number: routing_number, status: status, name: name)
+                                    
+                                    Answers.logCustomEventWithName("Bank GET success",
+                                        customAttributes: [
+                                            "bank_name": bank_name
+                                        ])
+                                    
                                     bankItemsArray.append(item)
                                 }
                                 completionHandler(bankItemsArray, response.result.error)
                             }
                         case .Failure(let error):
+                            Answers.logCustomEventWithName("Bank GET failed",
+                                customAttributes: [
+                                    "error": error.localizedDescription
+                                ])
                             print(error)
                         }
                 }

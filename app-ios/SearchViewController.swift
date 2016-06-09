@@ -14,6 +14,7 @@ import TransitionTreasury
 import TransitionAnimation
 import CellAnimator
 import DZNEmptyDataSet
+import Crashlytics
 
 class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
@@ -313,7 +314,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return
         }
         
-        // Filter the data array and get only those countries that match the search text.
+        Answers.logSearchWithQuery(searchString,
+                                   customAttributes: nil)
+        
+        // Filter the data array and get only those users that match the search text.
         filteredArray = dataArray.filter({ (user) -> Bool in
             let fullName = user.first_name + " " + user.last_name
             return (user.username.lowercaseString.containsString(searchString.lowercaseString)) || (user.email.lowercaseString.containsString(searchString.lowercaseString) ||  (fullName.lowercaseString.containsString(searchString.lowercaseString)))
@@ -330,9 +334,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // Search here
     private func didChangeSearchText(searchText: String) {
-        // Filter the data array and get only those countries that match the search text.
+        // Filter the data array and get only those users that match the search text.
         filteredArray = dataArray.filter({ (user) -> Bool in
             let userStr: NSString = user.username
+            Answers.logSearchWithQuery(searchText,
+                customAttributes: nil)
             return (userStr.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
         })
         

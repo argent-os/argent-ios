@@ -134,8 +134,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
         Armchair.appID(APP_ID)
         Armchair.debugEnabled(true)
         
-        // Fabric & Crashlytics
+        // Fabric & Crashlytics / Answers
         Fabric.with([STPAPIClient.self, Crashlytics.self])
+        Answers.logCustomEventWithName("Application Launched",
+                                       customAttributes: [:])
         
         // Transitions
         if let tabBarController = window?.rootViewController as? UITabBarController {
@@ -265,6 +267,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
         // display root controller otherwise
         let first_time = KeychainSwift().getBool("firstTime")
         if first_time == true || first_time == nil {
+            
+            Answers.logCustomEventWithName("First Time Launch",
+                                           customAttributes: [:])
+            
             KeychainSwift().set(false, forKey: "firstTime")
             let viewController = AuthViewController()
             // Show dialog with callbacks
@@ -286,6 +292,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
             let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RootViewController")
             self.window!.rootViewController = viewController
         }
+
     }
     
     // Get device token for push notification
@@ -305,6 +312,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
         KeychainSwift().set(deviceTokenString, forKey: "deviceToken")
         //print( deviceTokenString )
         addPushTokenToUser(deviceTokenString)
+        
+        Answers.logCustomEventWithName("User Registered For Push Notifications",
+                                       customAttributes: [:])
     }
     
     func addPushTokenToUser(token: String) {
@@ -335,9 +345,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
                     case .Success:
                         if let value = response.result.value {
                             _ = JSON(value)
+                            Answers.logCustomEventWithName("Added Push Token",
+                                customAttributes: [:])
                         }
                     case .Failure(let error):
                         print(error)
+                        Answers.logCustomEventWithName("Push token addition failed",
+                            customAttributes: [
+                                "error": error.localizedDescription
+                            ])
                     }
             }
         }
@@ -348,6 +364,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
         print("applicationWillResignActive") //ignore
         print(application)
+        
+        
+        Answers.logCustomEventWithName("Application Will Resign Active",
+                                       customAttributes: [:])
     }
     
     func applicationDidEnterBackground(application: UIApplication) {
@@ -371,24 +391,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
                 print("Error Synchronizing NSUserDefaults")
             }
         }
+        
+        
+        Answers.logCustomEventWithName("Application Did Enter Background",
+                                       customAttributes: [:])
     }
     
     func applicationDidBecomeActive(application: UIApplication) {
         /*
          Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
          */
+        
+        Answers.logCustomEventWithName("Application Did Become Active",
+                                       customAttributes: [:])
     }
     
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
         print("applicationWillEnterForeground")
         print(application)
+        
+        Answers.logCustomEventWithName("Application Will Enter Foreground",
+                                       customAttributes: [:])
     }
     
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         print("applicationWillTerminate") //ignore
         print(application)
+        
+        Answers.logCustomEventWithName("Application Terminated",
+                                       customAttributes: [:])
     }
     
     // Bug Fix Log

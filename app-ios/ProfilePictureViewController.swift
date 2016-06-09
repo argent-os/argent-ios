@@ -12,6 +12,7 @@ import ImagePicker
 import Alamofire
 import JSSAlertView
 import CWStatusBarNotification
+import Crashlytics
 
 class ProfilePictureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImagePickerDelegate {
     
@@ -113,16 +114,26 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
                                     case .Success:
                                         print("success")
                                         showGlobalNotification("Profile picture updated", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
+                                            Answers.logCustomEventWithName("Picture update success",
+                                                customAttributes: [:])
                                     case .Failure(let error):
                                         print(error)
                                         print("failure")
                                         showGlobalNotification("Could not upload profile picture", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.neonOrange())
                                         self.txt.text = "Error uploading picture"
                                         self.view.addSubview(self.txt)
+                                        Answers.logCustomEventWithName("Picture update failed",
+                                            customAttributes: [
+                                                "error": error.localizedDescription
+                                            ])
                                     }
                                 })
                             case .Failure(let encodingError):
                                 print(encodingError)
+                                Answers.logCustomEventWithName("Picture encoding failed",
+                                    customAttributes: [
+                                        "error": "Encoding Failure"
+                                    ])
                             }
                     })
                 }

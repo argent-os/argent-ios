@@ -20,6 +20,7 @@ import JSSAlertView
 import StepSlider
 import OnePasswordExtension
 import CWStatusBarNotification
+import Crashlytics
 
 class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate {
     
@@ -201,11 +202,17 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
                                 if msg != "" {
                                     showGlobalNotification(String(json["message"]), duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
                                 }
+                                Answers.logSignUpWithMethod("Signup | type: " + self.userLegalEntityType,
+                                    success: true,
+                                    customAttributes: nil)
                             }
                         case .Failure(let error):
                             print(error)
                             self.finishButton.userInteractionEnabled = true
                             showGlobalNotification(error.localizedDescription, duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
+                            Answers.logSignUpWithMethod("Signup | type: " + self.userLegalEntityType,
+                                success: false,
+                                customAttributes: nil)
                             break
                         }
                 }

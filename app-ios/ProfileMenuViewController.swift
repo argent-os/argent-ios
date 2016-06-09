@@ -11,6 +11,7 @@ import SafariServices
 import DGElasticPullToRefresh
 import CWStatusBarNotification
 import StoreKit
+import Crashlytics
 
 class ProfileMenuViewController: UITableViewController, SKStoreProductViewControllerDelegate {
     
@@ -265,15 +266,48 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         return true
     }
     
-    // Handles logout action controller
+    // Handles share and logout action controller
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if(tableView.cellForRowAtIndexPath(indexPath)!.tag == 865) {
+        
+            // share action controller
             let activityViewController  = UIActivityViewController(
-                activityItems: ["Check out this app!  https://www.argentapp.com" as NSString],
-                applicationActivities: nil)
-        activityViewController.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList]
-            presentViewController(activityViewController, animated: true, completion: nil)
+                    activityItems: ["Check out this app!  https://www.argentapp.com" as NSString],
+                    applicationActivities: nil)
+                if activityViewController.userActivity?.activityType == UIActivityTypePostToFacebook {
+                    let uuid = NSUUID().UUIDString
+                    Answers.logShareWithMethod("FaceBook",
+                                               contentName: "User sharing to Facebook",
+                                               contentType: "facebook",
+                                               contentId: uuid,
+                                               customAttributes: nil)
+                } else if activityViewController.userActivity?.activityType == UIActivityTypePostToTwitter {
+                    let uuid = NSUUID().UUIDString
+                    Answers.logShareWithMethod("Twitter",
+                                               contentName: "User sharing to Twitter",
+                                               contentType: "twitter",
+                                               contentId: uuid,
+                                               customAttributes: nil)
+                } else if activityViewController.userActivity?.activityType == UIActivityTypeMessage {
+                    let uuid = NSUUID().UUIDString
+                    Answers.logShareWithMethod("Message",
+                                               contentName: "User sharing through message",
+                                               contentType: "message",
+                                               contentId: uuid,
+                                               customAttributes: nil)
+                } else if activityViewController.userActivity?.activityType == UIActivityTypeMail {
+                    let uuid = NSUUID().UUIDString
+                    Answers.logShareWithMethod("Mail",
+                                               contentName: "User sharing through mail",
+                                               contentType: "mail",
+                                               contentId: uuid,
+                                               customAttributes: nil)
+                }
+            
+            activityViewController.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList]
+                presentViewController(activityViewController, animated: true, completion: nil)
         }
+        
         if(tableView.cellForRowAtIndexPath(indexPath)!.tag == 534) {
             // 1
             let optionMenu = UIAlertController(title: nil, message: "Are you sure you want to logout?", preferredStyle: .ActionSheet)

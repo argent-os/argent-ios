@@ -12,6 +12,7 @@ import JSSAlertView
 import Alamofire
 import SwiftyJSON
 import plaid_ios_link
+import Crashlytics
 
 class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelegate {
     
@@ -101,10 +102,16 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
                                 let stripe_bank_token = data["response"]["stripe_bank_account_token"]
                                 self.showSuccessAlert()
                                 completionHandler(stripe_bank_token.stringValue, access_token.stringValue)
+                                Answers.logCustomEventWithName("Bank account link success",
+                                    customAttributes: [:])
                             }
                         }
                     case .Failure(let error):
                         print(error)
+                        Answers.logCustomEventWithName("Bank account link failed",
+                            customAttributes: [
+                                "error": error.localizedDescription
+                            ])
                     }
                 }
             }
@@ -137,9 +144,15 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
                         if let value = response.result.value {
                             //let data = JSON(value)
                             // print(data)
+                            Answers.logCustomEventWithName("Plaid token update success",
+                                customAttributes: [:])
                         }
                     case .Failure(let error):
                         print(error)
+                        Answers.logCustomEventWithName("Plaid token update failed",
+                            customAttributes: [
+                                "error": error.localizedDescription
+                            ])
                     }
                 }
             }
@@ -168,9 +181,15 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
                         if let value = response.result.value {
                             //let data = JSON(value)
                             // print(data)
+                            Answers.logCustomEventWithName("Link bank to Stripe success",
+                                customAttributes: [:])
                         }
                     case .Failure(let error):
                         print(error)
+                        Answers.logCustomEventWithName("Link bank to Stripe failed",
+                            customAttributes: [
+                                "error": error.localizedDescription
+                            ])
                     }
                 }
             }

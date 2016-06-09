@@ -14,6 +14,7 @@ import Alamofire
 import Stripe
 import SwiftyJSON
 import CWStatusBarNotification
+import Crashlytics
 
 class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelegate, PKPaymentAuthorizationViewControllerDelegate, UITextFieldDelegate {
     
@@ -29,6 +30,8 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
     let merchantLabel = UILabel()
 
     let selectPaymentOptionButton:UIButton = UIButton()
+    
+    var paymentMethod: String = "None"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -143,11 +146,13 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
             self.chargeInputView.endEditing(true)
             let _ = Timeout(0.5) {
                 self.showApplePayModal(self)
+                self.paymentMethod = "Apple Pay"
             }
         }))
         actionController.addAction(Action("Credit Card", style: .Default, handler: { action in
             let _ = Timeout(0.5) {
                 self.showCreditCardModal(self)
+                self.paymentMethod = "Credit Card"
             }
         }))
         actionController.addSection(ActionSection())
@@ -266,7 +271,18 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
                             //let json = JSON(value)
                             print(PKPaymentAuthorizationStatus.Success)
                             completion(PKPaymentAuthorizationStatus.Success)
-                            self.dismissViewControllerAnimated(true, completion: { 
+                            var str = self.chargeInputView.text
+                            str?.removeAtIndex(str!.characters.indices.first!) // remove first letter
+                            Answers.logPurchaseWithPrice(decimalWithString(self.currencyFormatter, string: str!),
+                                currency: "USD",
+                                success: true,
+                                itemName: "Payment",
+                                itemType: "Merchant One-Time Sale",
+                                itemId: "sku-###",
+                                customAttributes: [
+                                    "method": self.paymentMethod
+                                ])
+                            self.dismissViewControllerAnimated(true, completion: {
                                 //
                             })
                         }

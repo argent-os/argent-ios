@@ -9,6 +9,7 @@
 import Foundation
 import SwiftyJSON
 import Alamofire
+import Crashlytics
 
 class User {
     
@@ -69,11 +70,19 @@ class User {
                                 let phone = profile["phone_number"].stringValue
                                 let country = profile["country"].stringValue
                                 let plaid_access_token = profile["plaid"]["access_token"].stringValue
+                            Answers.logCustomEventWithName("Profile GET success",
+                                customAttributes: [
+                                    "user": username
+                                ])
                             let item = User(id: id, username: username, email: email, first_name: first_name, last_name: last_name, picture: picture, phone: phone, country: country, plaid_access_token: plaid_access_token)
                                 completionHandler(item, response.result.error)
                         }
                     case .Failure(let error):
                         print(error)
+                        Answers.logCustomEventWithName("Profile GET failed",
+                            customAttributes: [
+                                "error": error.localizedDescription
+                            ])
                     }
             }
         }
@@ -116,10 +125,18 @@ class User {
                             let country = profile["country"].stringValue
                             let plaid_access_token = profile["plaid"]["access_token"].stringValue
                             let item = User(id: id, username: username, email: email, first_name: first_name, last_name: last_name, picture: picture, phone: phone, country: country, plaid_access_token: plaid_access_token)
+                            Answers.logCustomEventWithName("Profile update success",
+                                customAttributes: [
+                                    "user": username
+                                ])
                             completionHandler(item, true, response.result.error)
                         }
                     case .Failure(let error):
                         print(error)
+                        Answers.logCustomEventWithName("Profile update failed",
+                            customAttributes: [
+                                "error": error.localizedDescription
+                            ])
                     }
             }
         }

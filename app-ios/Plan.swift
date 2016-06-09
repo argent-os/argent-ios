@@ -9,6 +9,7 @@
 import Foundation
 import SwiftyJSON
 import Alamofire
+import Crashlytics
 
 class Plan {
     
@@ -65,6 +66,13 @@ class Plan {
                                     let data = JSON(value)
                                     if (response.response?.statusCode == 200) {
                                         completionHandler(true, "")
+                                        Answers.logCustomEventWithName("Recurring Billing Creation Plan Success",
+                                            customAttributes: [
+                                                "amount": plan_amount,
+                                                "interval": plan_interval,
+                                                "name": plan_name,
+                                                "interval_count": plan_interval_count
+                                            ])
                                     } else {
                                         let err = data["error"]["message"].stringValue
                                         completionHandler(false, err)
@@ -72,6 +80,10 @@ class Plan {
                                 }
                             case .Failure(let error):
                                 print(error)
+                                Answers.logCustomEventWithName("Recurring Billing Plan Error",
+                                    customAttributes: [
+                                        "error": error.localizedDescription
+                                    ])
                             }
                     }
                     
@@ -105,9 +117,21 @@ class Plan {
                                 case .Success:
                                     if let value = response.result.value {
                                         _ = JSON(value)
+                                        Answers.logCustomEventWithName("Recurring Billing Creation Plan Success",
+                                            customAttributes: [
+                                                "amount": plan_amount,
+                                                "interval": plan_interval,
+                                                "name": plan_name,
+                                                "interval_count": plan_interval_count,
+                                                "statement_descriptor": plan_statement_descriptor
+                                            ])
                                     }
                                 case .Failure(let error):
                                     print(error)
+                                    Answers.logCustomEventWithName("Recurring Billing Plan Error",
+                                        customAttributes: [
+                                            "error": error.localizedDescription
+                                        ])
                                 }
                         }
                     }
@@ -209,6 +233,8 @@ class Plan {
                             let interval = plan["interval"].stringValue
                             let statement_desc = plan["statement_descriptor"].stringValue
                             let item = Plan(id: id, name: name, interval: interval, currency: "", amount: amount, statement_desc: statement_desc)
+                            Answers.logCustomEventWithName("Viewing Merchant Recurring Billing Plans",
+                                customAttributes: [:])
                             plansArray.append(item)
                         }
                         completionHandler(plansArray, response.result.error)

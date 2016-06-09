@@ -1,5 +1,5 @@
 //
-//  SignupViewControllerOne.swift
+//  SignupViewControllerThree.swift
 //  argent-ios
 //
 //  Created by Sinan Ulkuatam on 2/19/16.

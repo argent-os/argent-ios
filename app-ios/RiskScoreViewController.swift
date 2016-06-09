@@ -10,6 +10,7 @@ import Foundation
 import GaugeKit
 import KeychainSwift
 import MZFormSheetPresentationController
+import Crashlytics
 
 class RiskScoreViewController: UIViewController {
     
@@ -30,6 +31,11 @@ class RiskScoreViewController: UIViewController {
 
         configureView()
         setData()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        Answers.logCustomEventWithName("Risk Interest",
+                                       customAttributes: ["type": "risk_profile_demo_view"])
     }
     
     //Changing Status Bar

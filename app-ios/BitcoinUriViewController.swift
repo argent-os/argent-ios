@@ -11,6 +11,7 @@ import MZFormSheetPresentationController
 import QRCode
 import EmitterKit
 import CWStatusBarNotification
+import Crashlytics
 
 class BitcoinUriViewController: UIViewController {
     
@@ -100,6 +101,10 @@ class BitcoinUriViewController: UIViewController {
                 self.dismissViewControllerAnimated(true, completion: {
                     // print("bitcoin receiver for bitcoin id " + self.bitcoinId! + " filled!")
                     showGlobalNotification(String((bitcoin?.amount)!/100000000) + " BTC received!", duration: 5.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.bitcoinOrange())
+                    Answers.logCustomEventWithName("Bitcoin received",
+                        customAttributes: [
+                            "amount": String((bitcoin?.amount)!/100000000) + " BTC received"
+                        ])
                 })
             }
         }
