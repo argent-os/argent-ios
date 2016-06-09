@@ -223,7 +223,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         
         self.loadSubscriptionList { (subscriptions: [Subscription]?, NSError) in
             if(subscriptions!.count == 0) {
-                self.subscriptionsCountLabel.text = "No subscriptions"
+                self.subscriptionsCountLabel.text = "No subs"
             } else if(subscriptions!.count < 2 && subscriptions!.count > 0) {
                 self.subscriptionsCountLabel.text = String(subscriptions!.count) + "\nsubscription"
             } else if(subscriptions!.count > 98) {
