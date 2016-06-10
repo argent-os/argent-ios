@@ -21,7 +21,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var tblSearchResults:UITableView = UITableView()
     
     let userImageView: UIImageView = UIImageView(frame: CGRectMake(10, 15, 30, 30))
-        
+    
     private var dataArray = [User]()
     
     private var filteredArray = [User]()
@@ -152,7 +152,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             // After filtering
             let pic = filteredArray[indexPath.row].picture
             
-            cell.textLabel?.text = String(filteredArray[indexPath.row].username)
+            cell.textLabel?.text = String(filteredArray[indexPath.row].business_name) ?? String(filteredArray[indexPath.row].username)
             
             if pic != "" {
                 let imageView: UIImageView = UIImageView(frame: CGRectMake(10, 15, 30, 30))

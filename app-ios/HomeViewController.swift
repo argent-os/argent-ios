@@ -44,7 +44,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 
     private var arrayOfDates: Array<AnyObject> = []
     
-    private var user = User(id: "", username: "", email: "", first_name: "", last_name: "", picture: "", phone: "", country: "", plaid_access_token: "")
+    private var user = User(id: "", username: "", email: "", first_name: "", last_name: "", business_name: "", picture: "", phone: "", country: "", plaid_access_token: "")
     
     private let lblAccountPending:UILabel = UILabel()
 

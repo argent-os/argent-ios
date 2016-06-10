@@ -105,6 +105,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                 $0.placeholder = user.first_name ?? "Enter first name"
                 $0.text = user.first_name ?? Profile.sharedInstance.firstName
                 NSUserDefaults.standardUserDefaults().setValue($0.text, forKey: "b_first_name")
+                self.dic["first_name"] = $0.text
             }.onTextChanged {
                 self.dic["first_name"] = $0
                 NSUserDefaults.standardUserDefaults().setValue($0, forKey: "b_first_name")
@@ -120,6 +121,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                 $0.placeholder = user.last_name ?? "Enter last name"
                 $0.text = user.last_name ?? Profile.sharedInstance.lastName
                 NSUserDefaults.standardUserDefaults().setValue($0.text, forKey: "b_last_name")
+                self.dic["last_name"] = $0.text
             }.onTextChanged {
                 self.dic["last_name"] = $0
                 NSUserDefaults.standardUserDefaults().setValue($0, forKey: "b_last_name")
@@ -136,6 +138,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                 $0.rowHeight = 60
                 $0.placeholder = user.username ?? "Enter username"
                 $0.text = user.username ?? Profile.sharedInstance.username
+                self.dic["username"] = $0.text
             }.onTextChanged {
                 self.dic["username"] = $0
                 Profile.sharedInstance.username = $0
@@ -150,6 +153,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                 $0.rowHeight = 60
                 $0.placeholder = user.email ?? "Enter email"
                 $0.text = user.email ?? Profile.sharedInstance.email
+                self.dic["email"] = $0.text
             }.onTextChanged {
                 self.dic["email"] = $0
                 Profile.sharedInstance.email = $0
@@ -162,6 +166,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                 $0.rowHeight = 60
                 $0.placeholder = user.phone ?? "Enter phone number"
                 $0.text = user.phone ?? Profile.sharedInstance.phoneNumber
+                self.dic["phone_number"] = $0.text
             }.onTextChanged {
                 self.dic["phone_number"] = $0
                 Profile.sharedInstance.phoneNumber = $0
@@ -203,6 +208,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                 $0.placeholder = account.business_name ?? "Enter business name"
                 $0.text = account.business_name ?? Profile.sharedInstance.businessName
                 NSUserDefaults.standardUserDefaults().setValue($0.text, forKey: "business_name")
+                self.dic["business_name"] = $0.text
             }.onTextChanged {
                 NSUserDefaults.standardUserDefaults().setValue($0, forKey: "business_name")
                 Profile.sharedInstance.businessName = $0
