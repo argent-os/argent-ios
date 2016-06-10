@@ -23,8 +23,11 @@ class Account {
     let ssn_last_4: String
     let type: String
     let legal_entity: Dictionary<String, AnyObject>
+    
+    let transfers_enabled: Bool
+    let verification_fields_needed: [String]
 
-    required init(id: String, business_name: String, business_tax_id: String, address_line1: String, address_city: String, address_state: String, address_country: String, address_postal_code: String, ssn_last_4: String, type: String, legal_entity: Dictionary<String, AnyObject>) {
+    required init(id: String, business_name: String, business_tax_id: String, address_line1: String, address_city: String, address_state: String, address_country: String, address_postal_code: String, ssn_last_4: String, type: String, legal_entity: Dictionary<String, AnyObject>, transfers_enabled: Bool, verification_fields_needed: [String]) {
         self.id = id
         self.business_name = business_name
         self.business_tax_id = business_tax_id
@@ -36,6 +39,8 @@ class Account {
         self.ssn_last_4 = ssn_last_4
         self.type = type
         self.legal_entity = legal_entity
+        self.transfers_enabled = transfers_enabled
+        self.verification_fields_needed = verification_fields_needed
     }
     
     class func getStripeAccount(completionHandler: (Account?, NSError?) -> Void) {
@@ -77,10 +82,17 @@ class Account {
                                 let ssn_last_4 = legal_entity["ssn_last_4_provided"].stringValue
                                 let type = legal_entity["type"].stringValue
                                 
-                                let account = Account(id: id, business_name: business_name, business_tax_id: business_tax_id, address_line1: address_line1, address_city: address_city, address_state: address_state, address_country: address_country, address_postal_code: address_postal_code, ssn_last_4: ssn_last_4, type: type, legal_entity: Dictionary<String, AnyObject>())
+                                let transfers_enabled = acct["transfers_enabled"].boolValue
                                 
-                                //print(account)
-                                completionHandler(account, response.result.error)
+                                let _ = acct["verification"]["fields_needed"].arrayObject.map { (unwrappedOptionalArray) -> Void in
+                                    // print(unwrappedOptionalArray)
+                                    
+                                    let account = Account(id: id, business_name: business_name, business_tax_id: business_tax_id, address_line1: address_line1, address_city: address_city, address_state: address_state, address_country: address_country, address_postal_code: address_postal_code, ssn_last_4: ssn_last_4, type: type, legal_entity: Dictionary<String, AnyObject>(), transfers_enabled: transfers_enabled, verification_fields_needed: unwrappedOptionalArray as! [String])
+                                    
+                                    completionHandler(account, response.result.error)
+
+                                }
+                            
                             }
                         case .Failure(let error):
                             print(error)
@@ -130,7 +142,10 @@ class Account {
                                 let ssn_last_4 = legal_entity["ssn_last_4_provided"].stringValue
                                 let type = legal_entity["type"].stringValue
                                 
-                                let account = Account(id: id, business_name: business_name, business_tax_id: business_tax_id, address_line1: address_line1, address_city: address_city, address_state: address_state, address_country: address_country, address_postal_code: address_postal_code, ssn_last_4: ssn_last_4, type: type, legal_entity: Dictionary<String, AnyObject>())
+                                let transfers_enabled = acct["transfers_enabled"].boolValue
+                                let verification_fields_needed = [String(acct["verification"]["fields_needed"].arrayObject)]
+                                
+                                let account = Account(id: id, business_name: business_name, business_tax_id: business_tax_id, address_line1: address_line1, address_city: address_city, address_state: address_state, address_country: address_country, address_postal_code: address_postal_code, ssn_last_4: ssn_last_4, type: type, legal_entity: Dictionary<String, AnyObject>(), transfers_enabled: transfers_enabled, verification_fields_needed: verification_fields_needed)
                                 
                                 completionHandler(account, true, response.result.error)
                             }

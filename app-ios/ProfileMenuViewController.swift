@@ -12,6 +12,7 @@ import DGElasticPullToRefresh
 import CWStatusBarNotification
 import StoreKit
 import Crashlytics
+import Whisper
 
 class ProfileMenuViewController: UITableViewController, SKStoreProductViewControllerDelegate {
     
@@ -51,6 +52,32 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         super.viewDidLoad()
         configureView()
         configureHeader()
+        validateAccount()
+    }
+    
+    func validateAccount() {
+        Account.getStripeAccount { (acct, err) in
+            
+            let fields = acct?.verification_fields_needed
+            let _ = fields.map { (unwrappedOptionalArray) -> Void in
+                
+                let fields_required: [String] = unwrappedOptionalArray
+                let fields_list = fields_required.dropLast().reduce("") { $0 + $1 + ", " } + fields_required.last!
+
+                // regex to replace legal.entity in the future 
+                
+                var announcement = Announcement(title: "Transfers Disabled", subtitle:
+                    fields_list, image: UIImage(named: "IconAlert"))
+                announcement.duration = 7
+                Shout(announcement, to: self)
+                
+                let _ = Timeout(10) {
+                    if acct?.transfers_enabled == false {
+                        showGlobalNotification("Transfers disabled until more account information is provided", duration: 10.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.iosBlue())
+                    }
+                }
+            }
+        }
     }
     
     func configureView() {

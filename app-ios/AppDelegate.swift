@@ -12,8 +12,6 @@ import PasscodeLock
 import SwiftyJSON
 import KeychainSwift
 import plaid_ios_sdk
-import TransitionTreasury
-import TransitionAnimation
 import PermissionScope
 import Alamofire
 import Fabric
@@ -54,7 +52,7 @@ let ENVIRONMENT = "PROD"
 
 // For push notifications make sure to delete and re-install app, fix this bug later
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate { // , TRTabBarControllerDelegate {
     
     var window: UIWindow?
     
@@ -123,9 +121,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
     }
     
     // Transition Treasury setup
-    func tr_tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
-        print("You did select \(viewController.dynamicType).")
-    }
+//     func tr_tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
+//      print("You did select \(viewController.dynamicType).")
+//     }
     
     // Default Launch
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -150,10 +148,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TRTabBarControllerDelegat
                                        customAttributes: [:])
         
         // Transitions
-        if let tabBarController = window?.rootViewController as? UITabBarController {
-            tabBarController.tr_transitionDelegate = TRTabBarTransitionDelegate(method: TRTabBarTransitionMethod.Slide)
-            tabBarController.tr_delegate = self
-        }
+//        if let tabBarController = window?.rootViewController as? UITabBarController {
+//            print("setting transition delegate")
+//            tabBarController.tr_transitionDelegate = TRTabBarTransitionDelegate(method: TRTabBarTransitionMethod.Fade)
+//            tabBarController.tr_delegate = self
+//        }
         
         // Setup skip onboarding notification
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.skipOnboarding(_:)), name: "kDismissOnboardingNotification", object: nil)

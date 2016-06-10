@@ -238,7 +238,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         // IMPORTANT: load new access token on home load, otherwise the old token will be requested to the server
         userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
         
-        print(userAccessToken)
         if String(userAccessToken) == "" || userAccessToken == nil || String(userAccessToken) == "(null)" {
             self.logout()
         }

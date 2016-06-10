@@ -28,6 +28,8 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
     var dicLegalEntityType: Dictionary<String, AnyObject> = [:]
 
     let b_name = NSUserDefaults.standardUserDefaults().valueForKey("business_name") ?? ""
+    let b_first_name = NSUserDefaults.standardUserDefaults().valueForKey("business_first_name") ?? ""
+    let b_last_name = NSUserDefaults.standardUserDefaults().valueForKey("business_last_name") ?? ""
     let b_state = NSUserDefaults.standardUserDefaults().valueForKey("state") ?? ""
     let b_city = NSUserDefaults.standardUserDefaults().valueForKey("city") ?? ""
     let b_postal_code = NSUserDefaults.standardUserDefaults().valueForKey("postal_code") ?? ""
@@ -61,84 +63,6 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
     
     private lazy var formerInputAccessoryView: FormerInputAccessoryView = FormerInputAccessoryView(former: self.former)
 
-    func save(sender: AnyObject) {
-        if b_ssn?.stringValue == "" || b_ssn?.stringValue == nil {
-            print("posting without ssn")
-            postWithoutSSN()
-        } else {
-            print("posting with ssn")
-            postWithSSN()
-        }
-    }
-    
-    func postWithSSN() {
-        
-        let legalContent: [String: AnyObject] = [
-            "ssn_last_4": b_ssn!,
-            "business_name": b_name!,
-            "address": [
-                "city": b_city!,
-                "state": b_state!,
-                "country": b_country!,
-                "line1": b_line1!,
-                "postal_code": b_postal_code!
-            ]
-        ]
-        
-        let legalJSON: [String: AnyObject] = [
-            "business_name": b_name!,
-            "legal_entity" : legalContent
-        ]
-        
-        User.saveProfile(dic) { (user, bool, err) in
-            if bool == true {
-                Account.saveStripeAccount(legalJSON) { (acct, bool, err) in
-                    print("save acct called")
-                    if bool == true {
-                        self.showAlert("Profile Updated", color: UIColor.brandGreen(), image: UIImage(named: "ic_check_light")!)
-                    } else {
-                        self.showAlert((err?.localizedDescription)!, color: UIColor.brandRed(), image: UIImage(named: "ic_close_light")!)
-                    }
-                }
-            } else {
-                self.showAlert((err?.localizedDescription)!, color: UIColor.brandRed(), image: UIImage(named: "ic_close_light")!)
-            }
-        }
-    }
-    
-    func postWithoutSSN() {
-        let legalContent: [String: AnyObject] = [
-            "business_name": b_name!,
-            "address": [
-                "city": b_city!,
-                "state": b_state!,
-                "country": b_country!,
-                "line1": b_line1!,
-                "postal_code": b_postal_code!
-            ]
-        ]
-        
-        let legalJSON: [String: AnyObject] = [
-            "business_name": b_name!,
-            "legal_entity" : legalContent
-        ]
-        
-        User.saveProfile(dic) { (user, bool, err) in
-            if bool == true {
-                Account.saveStripeAccount(legalJSON) { (acct, bool, err) in
-                    print("save acct called")
-                    if bool == true {
-                        self.showAlert("Profile Updated", color: UIColor.brandGreen(), image: UIImage(named: "ic_check_light")!)
-                    } else {
-                        self.showAlert((err?.localizedDescription)!, color: UIColor.brandRed(), image: UIImage(named: "ic_close_light")!)
-                    }
-                }
-            } else {
-                self.showAlert((err?.localizedDescription)!, color: UIColor.brandRed(), image: UIImage(named: "ic_close_light")!)
-            }
-        }
-    }
-    
     private func configure(user: User, account: Account) {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
@@ -149,10 +73,10 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
         self.view.addSubview(statusBarBackground)
         
         tableView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height-3)
-        tableView.contentInset.top = 80
+        tableView.contentInset.top = 40
         tableView.contentInset.bottom = 60
         tableView.contentOffset.y = 0
-        tableView.backgroundColor = UIColor.globalBackground()
+        tableView.backgroundColor = UIColor.offWhite()
         tableView.showsVerticalScrollIndicator = false
         
         self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 60)
@@ -180,8 +104,10 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                 $0.rowHeight = 60
                 $0.placeholder = user.first_name ?? "Enter first name"
                 $0.text = user.first_name ?? Profile.sharedInstance.firstName
+                NSUserDefaults.standardUserDefaults().setValue($0.text, forKey: "b_first_name")
             }.onTextChanged {
                 self.dic["first_name"] = $0
+                NSUserDefaults.standardUserDefaults().setValue($0, forKey: "b_first_name")
                 Profile.sharedInstance.firstName = $0
         }
         let lastNameRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
@@ -193,8 +119,10 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                 $0.rowHeight = 60
                 $0.placeholder = user.last_name ?? "Enter last name"
                 $0.text = user.last_name ?? Profile.sharedInstance.lastName
+                NSUserDefaults.standardUserDefaults().setValue($0.text, forKey: "b_last_name")
             }.onTextChanged {
                 self.dic["last_name"] = $0
+                NSUserDefaults.standardUserDefaults().setValue($0, forKey: "b_last_name")
                 Profile.sharedInstance.lastName = $0
         }
         let usernameRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
@@ -381,7 +309,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                 if account.ssn_last_4.toBool() == true {
                     $0.placeholder = "provided"
                 } else {
-                    $0.placeholder = "XXXX For transfer volumes of $20,000+"
+                    $0.placeholder = "XXXX For transfers of $20,000+"
                 }
                 $0.text = Profile.sharedInstance.ssn
                 NSUserDefaults.standardUserDefaults().setValue($0.text, forKey: "ssn_last_4")
@@ -478,6 +406,94 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
             iconImage: customIcon)
         alertView.setTextTheme(.Light) // can be .Light or .Dark
     }
+}
+
+extension EditProfileViewController {
+    
+    // Update Requests
+    
+    func save(sender: AnyObject) {
+        if b_ssn?.stringValue == "" || b_ssn?.stringValue == nil {
+            print("posting without ssn")
+            postWithoutSSN()
+        } else {
+            print("posting with ssn")
+            postWithSSN()
+        }
+    }
+    
+    func postWithSSN() {
+        
+        let legalContent: [String: AnyObject] = [
+            "first_name": b_last_name!,
+            "last_name": b_first_name!,
+            "ssn_last_4": b_ssn!,
+            "business_name": b_name!,
+            "address": [
+                "city": b_city!,
+                "state": b_state!,
+                "country": b_country!,
+                "line1": b_line1!,
+                "postal_code": b_postal_code!
+            ]
+        ]
+        
+        let legalJSON: [String: AnyObject] = [
+            "business_name": b_name!,
+            "legal_entity" : legalContent
+        ]
+        
+        User.saveProfile(dic) { (user, bool, err) in
+            if bool == true {
+                Account.saveStripeAccount(legalJSON) { (acct, bool, err) in
+                    print("save acct called")
+                    if bool == true {
+                        self.showAlert("Profile Updated", color: UIColor.brandGreen(), image: UIImage(named: "ic_check_light")!)
+                    } else {
+                        self.showAlert((err?.localizedDescription)!, color: UIColor.brandRed(), image: UIImage(named: "ic_close_light")!)
+                    }
+                }
+            } else {
+                self.showAlert((err?.localizedDescription)!, color: UIColor.brandRed(), image: UIImage(named: "ic_close_light")!)
+            }
+        }
+    }
+    
+    func postWithoutSSN() {
+        let legalContent: [String: AnyObject] = [
+            "first_name": b_last_name!,
+            "last_name": b_first_name!,
+            "business_name": b_name!,
+            "address": [
+                "city": b_city!,
+                "state": b_state!,
+                "country": b_country!,
+                "line1": b_line1!,
+                "postal_code": b_postal_code!
+            ]
+        ]
+        
+        let legalJSON: [String: AnyObject] = [
+            "business_name": b_name!,
+            "legal_entity" : legalContent
+        ]
+        
+        User.saveProfile(dic) { (user, bool, err) in
+            if bool == true {
+                Account.saveStripeAccount(legalJSON) { (acct, bool, err) in
+                    print("save acct called")
+                    if bool == true {
+                        self.showAlert("Profile Updated", color: UIColor.brandGreen(), image: UIImage(named: "ic_check_light")!)
+                    } else {
+                        self.showAlert((err?.localizedDescription)!, color: UIColor.brandRed(), image: UIImage(named: "ic_close_light")!)
+                    }
+                }
+            } else {
+                self.showAlert((err?.localizedDescription)!, color: UIColor.brandRed(), image: UIImage(named: "ic_close_light")!)
+            }
+        }
+    }
+    
 }
 
 extension EditProfileViewController {

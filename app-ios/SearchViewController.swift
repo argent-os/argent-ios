@@ -21,7 +21,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var tblSearchResults:UITableView = UITableView()
     
     let userImageView: UIImageView = UIImageView(frame: CGRectMake(10, 15, 30, 30))
-    
+        
     private var dataArray = [User]()
     
     private var filteredArray = [User]()
@@ -43,6 +43,33 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureView()
+        
+        loadUserAccounts()
+        
+        configureSearchController()
+    }
+
+    
+    override func viewDidAppear(animated: Bool) {
+        // Set nav back button white
+        self.searchController.searchBar.hidden = false
+        
+        if searchController.searchBar.text != "" {
+            searchController.searchBar.becomeFirstResponder()
+        }
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.Default
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func configureView() {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
@@ -82,28 +109,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }, loadingView: loadingView)
         tblSearchResults.dg_setPullToRefreshFillColor(UIColor.mediumBlue())
         tblSearchResults.dg_setPullToRefreshBackgroundColor(UIColor.whiteColor())
-        
-        loadUserAccounts()
-        
-        configureSearchController()
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        // Set nav back button white
-        self.searchController.searchBar.hidden = false
-        
-        if searchController.searchBar.text != "" {
-            searchController.searchBar.becomeFirstResponder()
-        }
-    }
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.Default
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // MARK: UITableView Delegate and Datasource functions
@@ -268,7 +273,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchController.searchBar.searchBarStyle = .Minimal
         searchController.searchBar.tintColor = UIColor.mediumBlue()
         searchController.searchBar.barStyle = .Black
-        searchController.searchBar.showsScopeBar = false
+        searchController.searchBar.showsScopeBar = true
         
         // Place the search bar view to the tableview headerview.
         tblSearchResults.tableHeaderView = searchController.searchBar
@@ -347,7 +352,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     private func filterContentForSearchText(searchText: String, scope: String) {
-        filteredArray = filteredArray.filter({( user : User) -> Bool in
+        filteredArray = filteredArray.filter({( user : User ) -> Bool in
             let fullName = user.first_name + " " + user.last_name
             return (user.username.lowercaseString.containsString(searchText.lowercaseString)) || (user.email.lowercaseString.containsString(searchText.lowercaseString) ||  (fullName.lowercaseString.containsString(searchText.lowercaseString)))
         })

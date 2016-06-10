@@ -17,9 +17,10 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
     // WHEN NAVIGATING TO A NAVIGATION CONTROLLER USE SEGUE SHOW NOT MODAL!
     @IBOutlet weak var continueButton: UIButton!
     
-    let firstNameTextField  = UITextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
-    let lastNameTextField  = UITextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
-    let dobTextField  = UITextField(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
+    let firstNameTextField  = UITextField()
+    let lastNameTextField  = UITextField()
+    let businessNameTextField  = UITextField()
+    let dobTextField  = UITextField()
     
     var dobDay:String = ""
     var dobMonth:String = ""
@@ -55,7 +56,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-        self.view.backgroundColor = UIColor.offWhite()
+        self.view.backgroundColor = UIColor.whiteColor()
 
         let stepper = StepSlider()
         stepper.frame = CGRect(x: 30, y: 65, width: screenWidth-60, height: 15)
@@ -110,7 +111,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         firstNameTextField.keyboardType = UIKeyboardType.Default
         firstNameTextField.returnKeyType = UIReturnKeyType.Next
         firstNameTextField.clearButtonMode = UITextFieldViewMode.Never
-        firstNameTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.20, width: 300, height: 50)
+        firstNameTextField.frame = CGRect(x: 100, y: screenHeight*0.20, width: screenWidth/2-100, height: 50)
         firstNameTextField.returnKeyType = UIReturnKeyType.Next
         scrollView.addSubview(firstNameTextField)
         
@@ -128,18 +129,36 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         lastNameTextField.keyboardType = UIKeyboardType.Default
         lastNameTextField.returnKeyType = UIReturnKeyType.Next
         lastNameTextField.clearButtonMode = UITextFieldViewMode.Never
-        lastNameTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.30, width: 300, height: 50)
+        lastNameTextField.frame = CGRect(x: screenWidth/2, y: screenHeight*0.20, width: screenWidth/2-100, height: 50)
         lastNameTextField.returnKeyType = UIReturnKeyType.Next
         scrollView.addSubview(lastNameTextField)
+        
+        businessNameTextField.tag = 91
+        businessNameTextField.textAlignment = NSTextAlignment.Center
+        businessNameTextField.font = UIFont.systemFontOfSize(14)
+        businessNameTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
+        businessNameTextField.layer.borderWidth = 1
+        businessNameTextField.layer.cornerRadius = 10
+        businessNameTextField.backgroundColor = UIColor.clearColor()
+        businessNameTextField.placeholder = "Business Name"
+        businessNameTextField.textColor = UIColor.grayColor()
+        businessNameTextField.autocapitalizationType = UITextAutocapitalizationType.Words
+        businessNameTextField.autocorrectionType = UITextAutocorrectionType.No
+        businessNameTextField.keyboardType = UIKeyboardType.Default
+        businessNameTextField.returnKeyType = UIReturnKeyType.Next
+        businessNameTextField.clearButtonMode = UITextFieldViewMode.Never
+        businessNameTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.30, width: 300, height: 50)
+        businessNameTextField.returnKeyType = UIReturnKeyType.Next
+        scrollView.addSubview(businessNameTextField)
 
-        dobTextField.tag = 91
+        dobTextField.tag = 92
         dobTextField.textAlignment = NSTextAlignment.Center
         dobTextField.font = UIFont.systemFontOfSize(14)
         dobTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         dobTextField.layer.borderWidth = 1
         dobTextField.layer.cornerRadius = 10
         dobTextField.backgroundColor = UIColor.clearColor()
-        dobTextField.placeholder = "Date of Birth - MM/DD/YYYY"
+        dobTextField.placeholder = "Date Founded | MM/DD/YYYY"
         dobTextField.keyboardType = UIKeyboardType.NumberPad
         dobTextField.textColor = UIColor.grayColor()
         dobTextField.clearButtonMode = UITextFieldViewMode.Never
@@ -162,7 +181,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
             NSForegroundColorAttributeName:UIColor.mediumBlue().colorWithAlphaComponent(0.5)
         ]
         self.view.addSubview(navBar)
-        let navItem = UINavigationItem(title: "Company Rep Information")
+        let navItem = UINavigationItem(title: "Company / Rep Information")
         navItem.leftBarButtonItem?.tintColor = UIColor.mediumBlue()
         navBar.setItems([navItem], animated: true)
         
@@ -295,11 +314,14 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         } else if(lastNameTextField.text?.characters.count < 1) {
             displayErrorAlertMessage("Last name cannot be empty")
             return false
+        } else if(businessNameTextField.text?.characters.count < 1) {
+            displayErrorAlertMessage("Company name cannot be empty")
+            return false
         } else if(dobTextField.text!.characters.count < 10) {
-            displayErrorAlertMessage("Date of birth length too short")
+            displayErrorAlertMessage("Company founded date length too short")
             return false
         } else if(dobMonth == "" || dobDay == "" || dobYear == "") {
-            displayErrorAlertMessage("Date of birth cannot be empty")
+            displayErrorAlertMessage("Company founded date cannot be empty")
             return false
         } else if(Int(dobMonth) > 12 || Int(dobMonth) == 0 || Int(dobDay) == 0 || Int(dobDay) > 31 || Int(dobYear) > 2002 || Int(dobYear) < 1914) {
             displayErrorAlertMessage("Month cannot be greater than 12 or equal to zero. Day cannot be greater than 31 or equal to zero, year cannot be less than 1914 or greater than 2002")
@@ -314,6 +336,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
             displayErrorAlertMessage("The entered month does not have 31 days")
             return false
         } else {
+            NSUserDefaults.standardUserDefaults().setValue(businessNameTextField.text!, forKey: "userBusinessName")
             NSUserDefaults.standardUserDefaults().setValue(firstNameTextField.text!, forKey: "userFirstName")
             NSUserDefaults.standardUserDefaults().setValue(lastNameTextField.text!, forKey: "userLastName")
             NSUserDefaults.standardUserDefaults().setValue(dobDay, forKey: "userDobDay")
@@ -333,11 +356,14 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
             } else if(lastNameTextField.text?.characters.count < 1) {
                 displayErrorAlertMessage("Last name cannot be empty")
                 return false
+            } else if(businessNameTextField.text?.characters.count < 1) {
+                displayErrorAlertMessage("Company name cannot be empty")
+                return false
             } else if(dobTextField.text!.characters.count < 10) {
-                displayErrorAlertMessage("Date of birth length too short")
+                displayErrorAlertMessage("Company founded date length too short")
                 return false
             } else if(dobMonth == "" || dobDay == "" || dobYear == "") {
-                displayErrorAlertMessage("Date of birth cannot be empty")
+                displayErrorAlertMessage("Company founded date cannot be empty")
                 return false
             } else if(Int(dobMonth) > 12 || Int(dobMonth) == 0 || Int(dobDay) == 0 || Int(dobDay) > 31 || Int(dobYear) > 2002 || Int(dobYear) < 1914) {
                 displayErrorAlertMessage("Month cannot be greater than 12 or equal to zero. Day cannot be greater than 31 or equal to zero, year cannot be less than 1914 or greater than 2002")
@@ -352,6 +378,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
                 displayErrorAlertMessage("The entered month does not have 31 days")
                 return false
             } else {
+                NSUserDefaults.standardUserDefaults().setValue(businessNameTextField.text!, forKey: "userBusinessName")
                 NSUserDefaults.standardUserDefaults().setValue(firstNameTextField.text!, forKey: "userFirstName")
                 NSUserDefaults.standardUserDefaults().setValue(lastNameTextField.text!, forKey: "userLastName")
                 NSUserDefaults.standardUserDefaults().setValue(dobDay, forKey: "userDobDay")

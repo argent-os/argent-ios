@@ -247,7 +247,6 @@ class SignupViewControllerZero: UIViewController {
             UIView.animateWithDuration(0.6, animations: {
                 self.companyImageView.alpha = 1.0
                 }, completion: {(value: Bool) in
-                    print("finito company from unchecked")
             })
         }
         
@@ -277,7 +276,6 @@ class SignupViewControllerZero: UIViewController {
             UIView.animateWithDuration(0.6, animations: {
                 self.individualImageView.alpha = 1.0
                 }, completion: {(value: Bool) in
-                    print("finito indivdual from unchecked")
             })
         }
     }

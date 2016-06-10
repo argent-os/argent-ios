@@ -147,8 +147,7 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
                 var date: String = "\(calcDate)"
                 
                 var tosContent: [String: AnyObject] = [ "ip": addr!, "date": date ] //also works with [ "model" : NSNull()]
-                var tosJSON: [String: [String: AnyObject]] = [ "data" : tosContent ]
-                let tosNSDict = tosJSON as NSDictionary //no error message
+                let tosNSDict = tosContent as NSDictionary //no error message
                 
                 var userDeviceToken: String {
                     if let userDeviceToken = KeychainSwift().get("user_device_token_ios") {

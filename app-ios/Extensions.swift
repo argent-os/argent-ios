@@ -358,8 +358,7 @@ extension UIButton {
 }}
 
 // concatenate attributed strings
-func + (left: NSAttributedString, right: NSAttributedString) -> NSAttributedString
-{
+func + (left: NSAttributedString, right: NSAttributedString) -> NSAttributedString {
     let result = NSMutableAttributedString()
     result.appendAttributedString(left)
     result.appendAttributedString(right)

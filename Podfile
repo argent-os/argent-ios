@@ -62,7 +62,8 @@ target 'app-ios' do
 	pod 'VMaskTextField'
 	pod 'Shimmer'
 	pod 'UIScrollView-InfiniteScroll'
-
+	pod 'Whisper'
+	
 	# Fabric
 	pod 'Fabric'
 	pod 'Crashlytics'

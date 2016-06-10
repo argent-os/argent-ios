@@ -59,6 +59,7 @@ PODS:
   - UIScrollView-InfiniteScroll (0.7.3)
   - ValueCoding (1.3.0)
   - VMaskTextField (1.0.8)
+  - Whisper (3.0.0)
   - XLActionController (2.0.0):
     - XLActionController/Core (= 2.0.0)
   - XLActionController/Core (2.0.0)
@@ -117,6 +118,7 @@ DEPENDENCIES:
   - UICountingLabel
   - UIScrollView-InfiniteScroll
   - VMaskTextField
+  - Whisper
   - XLActionController
 
 EXTERNAL SOURCES:
@@ -184,6 +186,7 @@ SPEC CHECKSUMS:
   UIScrollView-InfiniteScroll: b6c7d6d155dca7f9c5dd43813ecffeb301b3d50c
   ValueCoding: 9c9ed6ecdb9cc37f1a8d3fd9f5756953caf5a869
   VMaskTextField: e77fe33633f999c5c38e70bed0afece0625624a4
+  Whisper: 42a3ee7c2936f861b23d41bd6cd7dfd22f102405
   XLActionController: 97ed31237413db4d9401c6a559270f4d2b4de136
 
 COCOAPODS: 0.39.0

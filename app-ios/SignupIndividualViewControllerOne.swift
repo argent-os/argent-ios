@@ -132,7 +132,7 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
         dobTextField.layer.borderWidth = 1
         dobTextField.layer.cornerRadius = 10
         dobTextField.backgroundColor = UIColor.clearColor()
-        dobTextField.placeholder = "Date of Birth - MM/DD/YYYY"
+        dobTextField.placeholder = "Date of Birth | MM/DD/YYYY"
         dobTextField.keyboardType = UIKeyboardType.NumberPad
         dobTextField.textColor = UIColor.grayColor()
         dobTextField.clearButtonMode = UITextFieldViewMode.Never

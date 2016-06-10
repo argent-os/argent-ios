@@ -38,6 +38,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
     // Keychain
     let userFirstName = NSUserDefaults.standardUserDefaults().stringForKey("userFirstName")!
     let userLastName = NSUserDefaults.standardUserDefaults().stringForKey("userLastName")!
+    let userBusinessName = NSUserDefaults.standardUserDefaults().stringForKey("userBusinessName")!
     let userUsername = NSUserDefaults.standardUserDefaults().stringForKey("userUsername")!
     let userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")!
     let userPhoneNumber = NSUserDefaults.standardUserDefaults().stringForKey("userPhoneNumber")!
@@ -157,8 +158,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
                 var date: String = "\(calcDate)"
                 
                 var tosContent: [String: AnyObject] = [ "ip": addr!, "date": date ] //also works with [ "model" : NSNull()]
-                var tosJSON: [String: [String: AnyObject]] = [ "data" : tosContent ]
-                let tosNSDict = tosJSON as NSDictionary //no error message
+                let tosNSDict = tosContent as NSDictionary //no error message
                 
                 let dobJSON: [String: AnyObject] = [ "day": Int(self.userDobDay)!, "month": Int(self.userDobMonth)!, "year": Int(self.userDobYear)! ]
                 let dobNSDict = dobJSON as NSDictionary //no error message
@@ -173,6 +173,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
                 let parameters : [String : AnyObject] = [
                     "first_name":self.userFirstName,
                     "last_name":self.userLastName,
+                    "business_name":self.userBusinessName,
                     "username":self.userUsername,
                     "country":self.userCountry,
                     "email":self.userEmail,
