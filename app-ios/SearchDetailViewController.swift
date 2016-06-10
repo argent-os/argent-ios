@@ -85,6 +85,9 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             let chatBubble = UIImageView(image: UIImage(named: "IconChat"), highlightedImage: UIImage(named: "IconChat")!.alpha(0.5))
             chatBubble.alpha = 0.2
             chatBubble.frame = CGRect(x: screenWidth/2-20, y: 335, width: 40, height: 40)
+            if screenWidth < 375 {
+                chatBubble.frame = CGRect(x: screenWidth/2-15, y: 315, width: 30, height: 30)
+            }
             addSubviewWithFade(chatBubble, parentView: self, duration: 0.8)
             self.view.bringSubviewToFront(chatBubble)
             let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(showMessageView(_:)))

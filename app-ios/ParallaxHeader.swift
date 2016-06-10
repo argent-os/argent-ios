@@ -47,7 +47,7 @@ class ParallaxHeaderView: UIView {
                 
                 // Blurview
                 let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
-                visualEffectView.frame = CGRectMake(0, 0, 600, 500)
+                visualEffectView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
                 
                 self.containerView.addSubview(imageView)
                 imageView.addSubview(visualEffectView)

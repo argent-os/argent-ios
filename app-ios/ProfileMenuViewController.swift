@@ -270,6 +270,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if(tableView.cellForRowAtIndexPath(indexPath)!.tag == 865) {
         
+            
             // share action controller
             let activityViewController  = UIActivityViewController(
                     activityItems: ["Check out this app!  https://www.argentapp.com" as NSString],
@@ -306,11 +307,15 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
             
             activityViewController.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList]
                 presentViewController(activityViewController, animated: true, completion: nil)
+            activityViewController.popoverPresentationController?.sourceView = UIView()
+            activityViewController.popoverPresentationController?.sourceRect = UIView().bounds
         }
         
         if(tableView.cellForRowAtIndexPath(indexPath)!.tag == 534) {
             // 1
             let optionMenu = UIAlertController(title: nil, message: "Are you sure you want to logout?", preferredStyle: .ActionSheet)
+            optionMenu.popoverPresentationController?.sourceView = UIView()
+            optionMenu.popoverPresentationController?.sourceRect = UIView().bounds
             // 2
             let logoutAction = UIAlertAction(title: "Logout", style: .Destructive, handler: {
                 (alert: UIAlertAction!) -> Void in
