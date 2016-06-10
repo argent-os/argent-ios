@@ -157,7 +157,9 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             payButton.frame = CGRect(x: 50, y: cardView.layer.frame.height+70,  width: self.view.layer.frame.width-100, height: 50.0)
             payButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(1), forState: .Normal)
             payButton.titleLabel?.font = UIFont(name: "DINAlternate-Bold", size: 16)!
-            if detailUser.first_name != "" {
+            if detailUser.business_name != "" {
+                payButton.setTitle("Pay " + detailUser.business_name, forState: .Normal)
+            } else if detailUser.first_name != "" {
                 payButton.setTitle("Pay " + detailUser.first_name, forState: .Normal)
             } else {
                 payButton.setTitle("Pay User", forState: .Normal)
@@ -173,7 +175,9 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             addSubviewWithBounce(payButton, parentView: self, duration: 0.8)
             
             // Name textfield
-            if detailUser.first_name != "" {
+            if detailUser.business_name != "" {
+                lbl.text = detailUser.business_name
+            } else if detailUser.first_name != "" && detailUser.last_name != "" {
                 lbl.text = detailUser.first_name + " " + detailUser.last_name
             } else {
                 lbl.text = detailUser.username

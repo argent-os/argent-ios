@@ -30,10 +30,10 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
 
         let stepButton = UIBarButtonItem(title: "2/4", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
         navigationItem.rightBarButtonItem = stepButton
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.lightGrayColor()
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.lightBlue()
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([
-            NSFontAttributeName: UIFont.systemFontOfSize(14),
-            NSForegroundColorAttributeName:UIColor.lightGrayColor()
+            NSFontAttributeName: UIFont.systemFontOfSize(17, weight: UIFontWeightLight),
+            NSForegroundColorAttributeName:UIColor.lightBlue()
             ], forState: .Normal)
         
         self.continueButton.enabled = false
@@ -46,7 +46,7 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.offWhite()
+        self.view.backgroundColor = UIColor.whiteColor()
         
         addToolbarButton()
 
@@ -91,13 +91,13 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
         // Programatically set the input fields
         usernameTextField.tag = 123
         usernameTextField.textAlignment = NSTextAlignment.Center
-        usernameTextField.font = UIFont.systemFontOfSize(14)
+        usernameTextField.font = UIFont.systemFontOfSize(17, weight: UIFontWeightLight)
         usernameTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         usernameTextField.layer.borderWidth = 1
         usernameTextField.layer.cornerRadius = 10
         usernameTextField.backgroundColor = UIColor.clearColor()
         usernameTextField.placeholder = "Username"
-        usernameTextField.textColor = UIColor.grayColor()
+        usernameTextField.textColor = UIColor.lightBlue()
         usernameTextField.autocapitalizationType = UITextAutocapitalizationType.None
         usernameTextField.autocorrectionType = UITextAutocorrectionType.No
         usernameTextField.keyboardType = UIKeyboardType.Default
@@ -109,13 +109,13 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
         
         emailTextField.tag = 124
         emailTextField.textAlignment = NSTextAlignment.Center
-        emailTextField.font = UIFont.systemFontOfSize(14)
+        emailTextField.font = UIFont.systemFontOfSize(17, weight: UIFontWeightLight)
         emailTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         emailTextField.layer.borderWidth = 1
         emailTextField.layer.cornerRadius = 10
         emailTextField.backgroundColor = UIColor.clearColor()
         emailTextField.placeholder = "Email"
-        emailTextField.textColor = UIColor.grayColor()
+        emailTextField.textColor = UIColor.lightBlue()
         emailTextField.autocapitalizationType = UITextAutocapitalizationType.None
         emailTextField.autocorrectionType = UITextAutocorrectionType.No
         emailTextField.keyboardType = UIKeyboardType.EmailAddress
@@ -127,13 +127,13 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
         
         phoneNumberTextField.tag = 125
         phoneNumberTextField.textAlignment = NSTextAlignment.Center
-        phoneNumberTextField.font = UIFont.systemFontOfSize(14)
+        phoneNumberTextField.font = UIFont.systemFontOfSize(17, weight: UIFontWeightLight)
         phoneNumberTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         phoneNumberTextField.layer.borderWidth = 1
         phoneNumberTextField.layer.cornerRadius = 10
         phoneNumberTextField.backgroundColor = UIColor.clearColor()
-        phoneNumberTextField.placeholder = "Phone Number (US Only)"
-        phoneNumberTextField.textColor = UIColor.grayColor()
+        phoneNumberTextField.placeholder = "Phone Number (Optional)"
+        phoneNumberTextField.textColor = UIColor.lightBlue()
         phoneNumberTextField.autocapitalizationType = UITextAutocapitalizationType.None
         phoneNumberTextField.autocorrectionType = UITextAutocorrectionType.No
         phoneNumberTextField.keyboardType = UIKeyboardType.NumberPad
@@ -143,7 +143,7 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
         phoneNumberTextField.returnKeyType = UIReturnKeyType.Next
         scrollView.addSubview(phoneNumberTextField)
         
-        self.navigationController?.navigationBar.tintColor = UIColor.grayColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
         title = ""
         
         // Transparent navigation bar
@@ -158,8 +158,8 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
         navBar.shadowImage = UIImage()
         navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont.systemFontOfSize(14),
-            NSForegroundColorAttributeName:UIColor.mediumBlue().colorWithAlphaComponent(0.5)
+            NSFontAttributeName: UIFont.systemFontOfSize(17, weight: UIFontWeightLight),
+            NSForegroundColorAttributeName:UIColor.lightBlue()
         ]
         self.view.addSubview(navBar)
         let navItem = UINavigationItem(title: "Create Your Profile")

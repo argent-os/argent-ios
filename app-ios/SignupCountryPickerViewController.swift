@@ -39,7 +39,7 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
         
         addToolbarButton()
         
-        self.view.backgroundColor = UIColor.offWhite()
+        self.view.backgroundColor = UIColor.whiteColor()
 
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
@@ -70,11 +70,11 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
         flagImg.contentMode = .ScaleAspectFit
         
         let countryName: String = NSLocale.systemLocale().displayNameForKey(NSLocaleCountryCode, value: countryCode)!
-        codeLabel.tintColor = UIColor.grayColor()
+        codeLabel.tintColor = UIColor.lightBlue()
         codeLabel.textAlignment = .Center
         let str = NSAttributedString(string: countryName, attributes:
             [
-                NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 24)!,
+                NSFontAttributeName: UIFont.systemFontOfSize(24, weight: UIFontWeightThin),
                 NSForegroundColorAttributeName:UIColor.lightBlue()
             ])
         codeLabel.attributedText = str
@@ -103,8 +103,8 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
         navBar.shadowImage = UIImage()
         navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont.systemFontOfSize(14),
-            NSForegroundColorAttributeName:UIColor.mediumBlue().colorWithAlphaComponent(0.5)
+            NSFontAttributeName: UIFont.systemFontOfSize(17, weight: UIFontWeightLight),
+            NSForegroundColorAttributeName:UIColor.lightBlue()
         ]
         self.view.addSubview(navBar)
         let navItem = UINavigationItem(title: "Select your Country")
@@ -170,12 +170,12 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
         
         codeLabel.removeFromSuperview()
         codeLabel.text = name
-        codeLabel.tintColor = UIColor.grayColor()
+        codeLabel.tintColor = UIColor.lightBlue()
         codeLabel.frame = CGRect(x: 0, y: screenHeight*0.3, width: screenWidth, height: 50)
         codeLabel.textAlignment = .Center
         let str = NSAttributedString(string: name, attributes:
             [
-                NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 24)!,
+                NSFontAttributeName: UIFont.systemFontOfSize(24, weight: UIFontWeightThin),
                 NSForegroundColorAttributeName:UIColor.lightBlue()
             ])
         codeLabel.attributedText = str

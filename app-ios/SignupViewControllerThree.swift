@@ -28,10 +28,10 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate, UIScroll
         
         let stepButton = UIBarButtonItem(title: "3/4", style: UIBarButtonItemStyle.Plain, target: nil, action: Selector(""))
         navigationItem.rightBarButtonItem = stepButton
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.lightGrayColor()
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.lightBlue()
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([
-            NSFontAttributeName: UIFont.systemFontOfSize(14),
-            NSForegroundColorAttributeName:UIColor.lightGrayColor()
+            NSFontAttributeName: UIFont.systemFontOfSize(17, weight: UIFontWeightLight),
+            NSForegroundColorAttributeName:UIColor.lightBlue()
             ], forState: .Normal)
         
         self.continueButton.enabled = false
@@ -44,7 +44,7 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate, UIScroll
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.offWhite()
+        self.view.backgroundColor = UIColor.whiteColor()
 
         addToolbarButton()
         
@@ -89,13 +89,13 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate, UIScroll
         // Programatically set the input fields
         passwordTextField.tag = 234
         passwordTextField.textAlignment = NSTextAlignment.Center
-        passwordTextField.font = UIFont.systemFontOfSize(14)
+        passwordTextField.font = UIFont.systemFontOfSize(17, weight: UIFontWeightLight)
         passwordTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         passwordTextField.layer.borderWidth = 1
         passwordTextField.layer.cornerRadius = 10
         passwordTextField.backgroundColor = UIColor.clearColor()
         passwordTextField.placeholder = "Password"
-        passwordTextField.textColor = UIColor.grayColor()
+        passwordTextField.textColor = UIColor.lightBlue()
         passwordTextField.autocapitalizationType = UITextAutocapitalizationType.Words
         passwordTextField.secureTextEntry = true
         passwordTextField.autocorrectionType = UITextAutocorrectionType.No
@@ -108,13 +108,13 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate, UIScroll
         
         repeatPasswordTextField.tag = 235
         repeatPasswordTextField.textAlignment = NSTextAlignment.Center
-        repeatPasswordTextField.font = UIFont.systemFontOfSize(14)
+        repeatPasswordTextField.font = UIFont.systemFontOfSize(17, weight: UIFontWeightLight)
         repeatPasswordTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         repeatPasswordTextField.layer.borderWidth = 1
         repeatPasswordTextField.layer.cornerRadius = 10
         repeatPasswordTextField.backgroundColor = UIColor.clearColor()
         repeatPasswordTextField.placeholder = "Repeat Password"
-        repeatPasswordTextField.textColor = UIColor.grayColor()
+        repeatPasswordTextField.textColor = UIColor.lightBlue()
         repeatPasswordTextField.autocapitalizationType = UITextAutocapitalizationType.Words
         repeatPasswordTextField.secureTextEntry = true
         repeatPasswordTextField.autocorrectionType = UITextAutocorrectionType.No
@@ -128,7 +128,7 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate, UIScroll
         // Focuses view controller on first name text input
         passwordTextField.becomeFirstResponder()
         
-        self.navigationController?.navigationBar.tintColor = UIColor.grayColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
         title = ""
         
         // Transparent navigation bar
@@ -143,8 +143,8 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate, UIScroll
         navBar.shadowImage = UIImage()
         navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont.systemFontOfSize(14),
-            NSForegroundColorAttributeName:UIColor.mediumBlue().colorWithAlphaComponent(0.5)
+            NSFontAttributeName: UIFont.systemFontOfSize(17, weight: UIFontWeightLight),
+            NSForegroundColorAttributeName:UIColor.lightBlue()
         ]
         self.view.addSubview(navBar)
         let navItem = UINavigationItem(title: "Create a Password")

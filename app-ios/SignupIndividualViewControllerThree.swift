@@ -47,10 +47,10 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
     override func viewDidAppear(animated: Bool) {
         let stepButton = UIBarButtonItem(title: "3/3", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
         navigationItem.rightBarButtonItem = stepButton
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.lightGrayColor()
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.lightBlue()
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([
-            NSFontAttributeName: UIFont.systemFontOfSize(14),
-            NSForegroundColorAttributeName:UIColor.lightGrayColor()
+            NSFontAttributeName: UIFont.systemFontOfSize(17, weight: UIFontWeightLight),
+            NSForegroundColorAttributeName:UIColor.lightBlue()
             ], forState: .Normal)
         
         self.finishButton.enabled = false
@@ -69,7 +69,7 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-        self.view.backgroundColor = UIColor.offWhite()
+        self.view.backgroundColor = UIColor.whiteColor()
 
         let stepper = StepSlider()
         stepper.frame = CGRect(x: 30, y: 65, width: screenWidth-60, height: 15)
@@ -99,14 +99,14 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
         finishButton.layer.cornerRadius = 0
         finishButton.backgroundColor = UIColor.mediumBlue()
         
-        self.navigationController?.navigationBar.tintColor = UIColor.grayColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
         title = ""
         
         // Transparent navigation bar
         self.navigationController?.view.backgroundColor = UIColor.clearColor()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
-        self.navigationController?.navigationBar.tintColor = UIColor.mediumBlue()
+        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 65))
         navBar.translucent = true
         navBar.tintColor = UIColor.whiteColor()
@@ -114,8 +114,8 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
         navBar.shadowImage = UIImage()
         navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont.systemFontOfSize(14),
-            NSForegroundColorAttributeName:UIColor.mediumBlue().colorWithAlphaComponent(0.5)
+            NSFontAttributeName: UIFont.systemFontOfSize(17, weight: UIFontWeightLight),
+            NSForegroundColorAttributeName:UIColor.lightBlue()
         ]
         self.view.addSubview(navBar)
         let navItem = UINavigationItem(title: "Accept Terms & Privacy")

@@ -33,10 +33,10 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
         
         let stepButton = UIBarButtonItem(title: "1/3", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
         navigationItem.rightBarButtonItem = stepButton
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.lightGrayColor()
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.lightBlue()
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([
-            NSFontAttributeName: UIFont.systemFontOfSize(14),
-            NSForegroundColorAttributeName:UIColor.lightGrayColor()
+            NSFontAttributeName: UIFont.systemFontOfSize(17, weight: UIFontWeightLight),
+            NSForegroundColorAttributeName:UIColor.lightBlue()
             ], forState: .Normal)
         
         self.continueButton.enabled = false
@@ -49,7 +49,7 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = UIColor.offWhite()
+        self.view.backgroundColor = UIColor.whiteColor()
 
         addToolbarButton()
         
@@ -91,13 +91,13 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
         // Programatically set the input fields
         usernameTextField.tag = 123
         usernameTextField.textAlignment = NSTextAlignment.Center
-        usernameTextField.font = UIFont.systemFontOfSize(14)
+        usernameTextField.font = UIFont.systemFontOfSize(17, weight: UIFontWeightLight)
         usernameTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         usernameTextField.layer.borderWidth = 1
         usernameTextField.layer.cornerRadius = 10
         usernameTextField.backgroundColor = UIColor.clearColor()
         usernameTextField.placeholder = "Username"
-        usernameTextField.textColor = UIColor.grayColor()
+        usernameTextField.textColor = UIColor.lightBlue()
         usernameTextField.autocapitalizationType = UITextAutocapitalizationType.None
         usernameTextField.autocorrectionType = UITextAutocorrectionType.No
         usernameTextField.keyboardType = UIKeyboardType.Default
@@ -109,13 +109,13 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
         
         emailTextField.tag = 124
         emailTextField.textAlignment = NSTextAlignment.Center
-        emailTextField.font = UIFont.systemFontOfSize(14)
+        emailTextField.font = UIFont.systemFontOfSize(17, weight: UIFontWeightLight)
         emailTextField.backgroundColor = UIColor.clearColor()
         emailTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         emailTextField.layer.borderWidth = 1
         emailTextField.layer.cornerRadius = 10
         emailTextField.placeholder = "Email"
-        emailTextField.textColor = UIColor.grayColor()
+        emailTextField.textColor = UIColor.lightBlue()
         emailTextField.autocapitalizationType = UITextAutocapitalizationType.None
         emailTextField.autocorrectionType = UITextAutocorrectionType.No
         emailTextField.keyboardType = UIKeyboardType.EmailAddress
@@ -127,14 +127,14 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
         
         dobTextField.tag = 125
         dobTextField.textAlignment = NSTextAlignment.Center
-        dobTextField.font = UIFont.systemFontOfSize(14)
+        dobTextField.font = UIFont.systemFontOfSize(17, weight: UIFontWeightLight)
         dobTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         dobTextField.layer.borderWidth = 1
         dobTextField.layer.cornerRadius = 10
         dobTextField.backgroundColor = UIColor.clearColor()
         dobTextField.placeholder = "Date of Birth | MM/DD/YYYY"
         dobTextField.keyboardType = UIKeyboardType.NumberPad
-        dobTextField.textColor = UIColor.grayColor()
+        dobTextField.textColor = UIColor.lightBlue()
         dobTextField.clearButtonMode = UITextFieldViewMode.Never
         dobTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.40, width: 300, height: 50)
         scrollView.addSubview(dobTextField)
@@ -142,7 +142,7 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
         // Focuses view controller on first name text input
         usernameTextField.becomeFirstResponder()
         
-        self.navigationController?.navigationBar.tintColor = UIColor.grayColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
         title = ""
         
         // Transparent navigation bar
@@ -157,8 +157,8 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
         navBar.shadowImage = UIImage()
         navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont.systemFontOfSize(14),
-            NSForegroundColorAttributeName:UIColor.mediumBlue().colorWithAlphaComponent(0.5)
+            NSFontAttributeName: UIFont.systemFontOfSize(17, weight: UIFontWeightLight),
+            NSForegroundColorAttributeName:UIColor.lightBlue()
         ]
         self.view.addSubview(navBar)
         let navItem = UINavigationItem(title: "Create Your Profile")

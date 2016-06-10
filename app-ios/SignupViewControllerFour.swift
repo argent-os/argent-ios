@@ -52,10 +52,10 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
 
         let stepButton = UIBarButtonItem(title: "4/4", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
         navigationItem.rightBarButtonItem = stepButton
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.lightGrayColor()
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.lightBlue()
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([
-            NSFontAttributeName: UIFont.systemFontOfSize(14),
-            NSForegroundColorAttributeName:UIColor.lightGrayColor()
+            NSFontAttributeName: UIFont.systemFontOfSize(17, weight: UIFontWeightLight),
+            NSForegroundColorAttributeName:UIColor.lightBlue()
             ], forState: .Normal)
         
         self.finishButton.enabled = false
@@ -69,7 +69,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.offWhite()
+        self.view.backgroundColor = UIColor.whiteColor()
 
         agreementButton.titleLabel?.textAlignment = NSTextAlignment.Center
 
@@ -110,7 +110,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
         finishButton.layer.cornerRadius = 0
         finishButton.backgroundColor = UIColor.mediumBlue()
         
-        self.navigationController?.navigationBar.tintColor = UIColor.grayColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
         title = ""
         
         // Transparent navigation bar
@@ -125,8 +125,8 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
         navBar.shadowImage = UIImage()
         navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont.systemFontOfSize(14),
-            NSForegroundColorAttributeName:UIColor.mediumBlue().colorWithAlphaComponent(0.5)
+            NSFontAttributeName: UIFont.systemFontOfSize(17, weight: UIFontWeightLight),
+            NSForegroundColorAttributeName:UIColor.lightBlue()
         ]
         self.view.addSubview(navBar)
         let navItem = UINavigationItem(title: "Accept Terms & Privacy")

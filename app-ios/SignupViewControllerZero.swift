@@ -171,8 +171,8 @@ class SignupViewControllerZero: UIViewController {
         pageSubtitle.frame = CGRect(x: 0, y: 20, width: screenWidth, height: 40)
         pageSubtitle.textAlignment = .Center
         pageSubtitle.text = "Choose entity type"
-        pageSubtitle.textColor = UIColor.mediumBlue().colorWithAlphaComponent(0.5)
-        pageSubtitle.font = UIFont.systemFontOfSize(14)
+        pageSubtitle.textColor = UIColor.lightBlue()
+        pageSubtitle.font = UIFont.systemFontOfSize(17, weight: UIFontWeightThin)
         self.view.addSubview(pageSubtitle)
         self.view.bringSubviewToFront(pageSubtitle)
         
@@ -253,7 +253,7 @@ class SignupViewControllerZero: UIViewController {
         // Check individual state //
         if String(individualCheckbox.checkState) == "Checked" {
             // uncheck company
-            print("print individual checkboxstate is", individualCheckbox.checkState)
+            // print("print individual checkboxstate is", individualCheckbox.checkState)
             companyCheckbox.userInteractionEnabled = false
             individualCheckbox.userInteractionEnabled = false
             if String(companyCheckbox.checkState) == "Checked" {
@@ -272,7 +272,7 @@ class SignupViewControllerZero: UIViewController {
                     }
             })
         } else if String(individualCheckbox.checkState) == "Unchecked" {
-            print("individual checkbox is", individualCheckbox.checkState)
+            // print("individual checkbox is", individualCheckbox.checkState)
             UIView.animateWithDuration(0.6, animations: {
                 self.individualImageView.alpha = 1.0
                 }, completion: {(value: Bool) in

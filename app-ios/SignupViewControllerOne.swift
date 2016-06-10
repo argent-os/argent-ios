@@ -36,10 +36,10 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
 
         let stepButton = UIBarButtonItem(title: "1/4", style: UIBarButtonItemStyle.Plain, target: nil, action: Selector(""))
         navigationItem.rightBarButtonItem = stepButton
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.lightGrayColor()
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.lightBlue()
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([
             NSFontAttributeName: UIFont.systemFontOfSize(14),
-            NSForegroundColorAttributeName:UIColor.lightGrayColor()
+            NSForegroundColorAttributeName:UIColor.lightBlue()
             ], forState: .Normal)
         
         self.continueButton.enabled = false
@@ -97,51 +97,51 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         scrollView.addSubview(continueButton)
 
         // Programatically set the input fields
-        firstNameTextField.tag = 89
+        firstNameTextField.tag = 28346
         firstNameTextField.textAlignment = NSTextAlignment.Center
-        firstNameTextField.font = UIFont.systemFontOfSize(14)
+        firstNameTextField.font = UIFont.systemFontOfSize(17, weight: UIFontWeightLight)
         firstNameTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         firstNameTextField.layer.borderWidth = 1
         firstNameTextField.layer.cornerRadius = 10
         firstNameTextField.backgroundColor = UIColor.clearColor()
         firstNameTextField.placeholder = "First Name"
-        firstNameTextField.textColor = UIColor.grayColor()
+        firstNameTextField.textColor = UIColor.lightBlue()
         firstNameTextField.autocapitalizationType = UITextAutocapitalizationType.Words
         firstNameTextField.autocorrectionType = UITextAutocorrectionType.No
         firstNameTextField.keyboardType = UIKeyboardType.Default
         firstNameTextField.returnKeyType = UIReturnKeyType.Next
         firstNameTextField.clearButtonMode = UITextFieldViewMode.Never
-        firstNameTextField.frame = CGRect(x: 100, y: screenHeight*0.20, width: screenWidth/2-100, height: 50)
+        firstNameTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.10, width: 300, height: 50)
         firstNameTextField.returnKeyType = UIReturnKeyType.Next
         scrollView.addSubview(firstNameTextField)
         
-        lastNameTextField.tag = 90
+        lastNameTextField.tag = 28347
         lastNameTextField.textAlignment = NSTextAlignment.Center
-        lastNameTextField.font = UIFont.systemFontOfSize(14)
+        lastNameTextField.font = UIFont.systemFontOfSize(17, weight: UIFontWeightLight)
         lastNameTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         lastNameTextField.layer.borderWidth = 1
         lastNameTextField.layer.cornerRadius = 10
         lastNameTextField.backgroundColor = UIColor.clearColor()
         lastNameTextField.placeholder = "Last Name"
-        lastNameTextField.textColor = UIColor.grayColor()
+        lastNameTextField.textColor = UIColor.lightBlue()
         lastNameTextField.autocapitalizationType = UITextAutocapitalizationType.Words
         lastNameTextField.autocorrectionType = UITextAutocorrectionType.No
         lastNameTextField.keyboardType = UIKeyboardType.Default
         lastNameTextField.returnKeyType = UIReturnKeyType.Next
         lastNameTextField.clearButtonMode = UITextFieldViewMode.Never
-        lastNameTextField.frame = CGRect(x: screenWidth/2, y: screenHeight*0.20, width: screenWidth/2-100, height: 50)
+        lastNameTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.20, width: 300, height: 50)
         lastNameTextField.returnKeyType = UIReturnKeyType.Next
         scrollView.addSubview(lastNameTextField)
         
-        businessNameTextField.tag = 91
+        businessNameTextField.tag = 28348
         businessNameTextField.textAlignment = NSTextAlignment.Center
-        businessNameTextField.font = UIFont.systemFontOfSize(14)
+        businessNameTextField.font = UIFont.systemFontOfSize(17, weight: UIFontWeightLight)
         businessNameTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         businessNameTextField.layer.borderWidth = 1
         businessNameTextField.layer.cornerRadius = 10
         businessNameTextField.backgroundColor = UIColor.clearColor()
         businessNameTextField.placeholder = "Business Name"
-        businessNameTextField.textColor = UIColor.grayColor()
+        businessNameTextField.textColor = UIColor.lightBlue()
         businessNameTextField.autocapitalizationType = UITextAutocapitalizationType.Words
         businessNameTextField.autocorrectionType = UITextAutocorrectionType.No
         businessNameTextField.keyboardType = UIKeyboardType.Default
@@ -151,16 +151,16 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         businessNameTextField.returnKeyType = UIReturnKeyType.Next
         scrollView.addSubview(businessNameTextField)
 
-        dobTextField.tag = 92
+        dobTextField.tag = 28349
         dobTextField.textAlignment = NSTextAlignment.Center
-        dobTextField.font = UIFont.systemFontOfSize(14)
+        dobTextField.font = UIFont.systemFontOfSize(17, weight: UIFontWeightLight)
         dobTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         dobTextField.layer.borderWidth = 1
         dobTextField.layer.cornerRadius = 10
         dobTextField.backgroundColor = UIColor.clearColor()
         dobTextField.placeholder = "Date Founded | MM/DD/YYYY"
         dobTextField.keyboardType = UIKeyboardType.NumberPad
-        dobTextField.textColor = UIColor.grayColor()
+        dobTextField.textColor = UIColor.lightBlue()
         dobTextField.clearButtonMode = UITextFieldViewMode.Never
         dobTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.40, width: 300, height: 50)
         scrollView.addSubview(dobTextField)
@@ -178,7 +178,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navBar.titleTextAttributes = [
             NSFontAttributeName: UIFont.systemFontOfSize(14),
-            NSForegroundColorAttributeName:UIColor.mediumBlue().colorWithAlphaComponent(0.5)
+            NSForegroundColorAttributeName:UIColor.lightBlue()
         ]
         self.view.addSubview(navBar)
         let navItem = UINavigationItem(title: "Company / Rep Information")
@@ -209,6 +209,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         sendToolbar.sizeToFit()
         firstNameTextField.inputAccessoryView=sendToolbar
         lastNameTextField.inputAccessoryView=sendToolbar
+        businessNameTextField.inputAccessoryView=sendToolbar
         dobTextField.inputAccessoryView=sendToolbar
     }
     

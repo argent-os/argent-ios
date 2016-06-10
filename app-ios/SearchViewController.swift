@@ -167,9 +167,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 //                }
             }
             
+            let business_name = filteredArray[indexPath.row].business_name
             let first_name = filteredArray[indexPath.row].first_name
             let last_name = String(filteredArray[indexPath.row].last_name)
-            if first_name != "" || last_name != "" {
+            if business_name != "" {
+                cell.detailTextLabel?.text = business_name
+            } else if first_name != "" || last_name != "" {
                 cell.detailTextLabel?.text = first_name + " " + last_name
             } else {
                 cell.detailTextLabel?.text = String(dataArray[indexPath.row].username)
@@ -191,9 +194,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 //                }
             }
             
+            let business_name = dataArray[indexPath.row].business_name
             let first_name = dataArray[indexPath.row].first_name
             let last_name = String(dataArray[indexPath.row].last_name)
-            if first_name != "" || last_name != "" {
+            if business_name != "" {
+                cell.detailTextLabel?.text = business_name
+            } else if first_name != "" || last_name != "" {
                 cell.detailTextLabel?.text = first_name + " " + last_name
             } else {
                 cell.detailTextLabel?.text = String(dataArray[indexPath.row].username)
@@ -325,7 +331,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Filter the data array and get only those users that match the search text.
         filteredArray = dataArray.filter({ (user) -> Bool in
             let fullName = user.first_name + " " + user.last_name
-            return (user.username.lowercaseString.containsString(searchString.lowercaseString)) || (user.email.lowercaseString.containsString(searchString.lowercaseString) ||  (fullName.lowercaseString.containsString(searchString.lowercaseString)))
+            return (user.username.lowercaseString.containsString(searchString.lowercaseString)) || (user.business_name.lowercaseString.containsString(searchString.lowercaseString) ||  (fullName.lowercaseString.containsString(searchString.lowercaseString)))
         })
         
         // Reload the tableview.
@@ -341,7 +347,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private func didChangeSearchText(searchText: String) {
         // Filter the data array and get only those users that match the search text.
         filteredArray = dataArray.filter({ (user) -> Bool in
-            let userStr: NSString = user.username
+            var userStr: NSString
+            if user.business_name != "" {
+                userStr = user.business_name
+            } else {
+                userStr = user.username
+            }
             Answers.logSearchWithQuery(searchText,
                 customAttributes: nil)
             return (userStr.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
@@ -354,7 +365,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private func filterContentForSearchText(searchText: String, scope: String) {
         filteredArray = filteredArray.filter({( user : User ) -> Bool in
             let fullName = user.first_name + " " + user.last_name
-            return (user.username.lowercaseString.containsString(searchText.lowercaseString)) || (user.email.lowercaseString.containsString(searchText.lowercaseString) ||  (fullName.lowercaseString.containsString(searchText.lowercaseString)))
+            return (user.username.lowercaseString.containsString(searchText.lowercaseString)) || (user.business_name.lowercaseString.containsString(searchText.lowercaseString) ||  (fullName.lowercaseString.containsString(searchText.lowercaseString)))
         })
         tblSearchResults.reloadData()
     }
