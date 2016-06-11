@@ -68,9 +68,12 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
     
     func linkNavigationContoller(navigationController: PLDLinkNavigationViewController!, didFinishWithAccessToken accessToken: String!) {
         print("success \(accessToken)")
+        print("the access token is", accessToken)
         linkPlaidBankAccount({ (stripeBankToken, accessToken) in
+            print("stripe bank token is", stripeBankToken)
             self.linkBankToStripe(stripeBankToken)
             self.updateUserPlaidToken(accessToken)
+            print("updating user plaid token ", accessToken)
         }, accessToken: accessToken)
     }
     
@@ -91,6 +94,8 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
                 
                 let parameters = ["public_token": accessToken]
                 
+                print(parameters)
+                
                 Alamofire.request(.POST, endpoint, parameters: parameters, encoding: .JSON, headers: headers).responseJSON {
                     response in
                     switch response.result {
@@ -100,10 +105,7 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
                             self.dismissViewControllerAnimated(true) {
                                 let access_token = data["response"]["access_token"]
                                 let stripe_bank_token = data["response"]["stripe_bank_account_token"]
-                                self.showSuccessAlert()
                                 completionHandler(stripe_bank_token.stringValue, access_token.stringValue)
-                                Answers.logCustomEventWithName("Bank account link success",
-                                    customAttributes: [:])
                             }
                         }
                     case .Failure(let error):
@@ -136,14 +138,16 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
                     "plaid" : plaidNSDict
                 ]
                 
+                print("updating plaid user token")
+                print(parameters)
+                
                 Alamofire.request(.PUT, endpoint, parameters: parameters, encoding: .JSON, headers: headers).responseJSON {
                     response in
                     switch response.result {
                     case .Success:
                         print("success")
                         if let value = response.result.value {
-                            //let data = JSON(value)
-                            // print(data)
+                            let data = JSON(value)
                             Answers.logCustomEventWithName("Plaid token update success",
                                 customAttributes: [:])
                         }
@@ -172,17 +176,25 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
                 
                 let parameters = ["external_account": bankToken]
                 
-                print(bankToken)
+                print(parameters)
                 
                 Alamofire.request(.POST, endpoint, parameters: parameters, encoding: .JSON, headers: headers).responseJSON {
                     response in
                     switch response.result {
                     case .Success:
                         if let value = response.result.value {
-                            //let data = JSON(value)
-                            // print(data)
+                            let data = JSON(value)
                             Answers.logCustomEventWithName("Link bank to Stripe success",
                                 customAttributes: [:])
+                            if response.response?.statusCode == 200 {
+                                self.showAlert("Success", msg: "Bank Connected", color: UIColor.brandGreen(), image: UIImage(named: "ic_check_light")!)
+                                Answers.logCustomEventWithName("Bank account link success",
+                                    customAttributes: [:])
+                            } else {
+                                self.showAlert("Error", msg: "Could not link bank account, please contact support for help", color: UIColor.brandRed(), image: UIImage(named: "ic_close_light")!)
+                                Answers.logCustomEventWithName("Bank account link failure",
+                                    customAttributes: [:])
+                            }
                         }
                     case .Failure(let error):
                         print(error)
@@ -204,15 +216,16 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         }
     }
     
-    func showSuccessAlert() {
-        let customIcon:UIImage = UIImage(named: "ic_check_light")! // your custom icon UIImage
-        let customColor:UIColor = UIColor(rgba: "#1EBC61") // base color for the alert
+    private func showAlert(title: String, msg: String, color: UIColor, image: UIImage) {
+        let customIcon:UIImage = image // your custom icon UIImage
+        let customColor:UIColor = color // base color for the alert
+        self.view.endEditing(true)
         let alertView = JSSAlertView().show(
             self,
-            title: "",
-            text: "Bank connected!",
-            buttonText: "",
-            noButtons: true,
+            title: title,
+            text: msg,
+            buttonText: "Ok",
+            noButtons: false,
             color: customColor,
             iconImage: customIcon)
         alertView.setTextTheme(.Light) // can be .Light or .Dark

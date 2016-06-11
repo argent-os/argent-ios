@@ -152,7 +152,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             // After filtering
             let pic = filteredArray[indexPath.row].picture
             
-            cell.textLabel?.text = String(filteredArray[indexPath.row].business_name) ?? String(filteredArray[indexPath.row].username)
+            cell.textLabel?.text = String(filteredArray[indexPath.row].username)
+             //String(filteredArray[indexPath.row].business_name) ??
             
             if pic != "" {
                 let imageView: UIImageView = UIImageView(frame: CGRectMake(10, 15, 30, 30))
@@ -170,12 +171,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let business_name = filteredArray[indexPath.row].business_name
             let first_name = filteredArray[indexPath.row].first_name
             let last_name = String(filteredArray[indexPath.row].last_name)
+            let username = String(filteredArray[indexPath.row].username)
             if business_name != "" {
                 cell.detailTextLabel?.text = business_name
-            } else if first_name != "" || last_name != "" {
+            } else if first_name != "" {
                 cell.detailTextLabel?.text = first_name + " " + last_name
             } else {
-                cell.detailTextLabel?.text = String(dataArray[indexPath.row].username)
+                cell.detailTextLabel?.text = username
             }
         }
         else {

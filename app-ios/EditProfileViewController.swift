@@ -210,6 +210,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                 NSUserDefaults.standardUserDefaults().setValue($0.text, forKey: "business_name")
                 self.dic["business_name"] = $0.text
             }.onTextChanged {
+                self.dic["business_name"] = $0
                 NSUserDefaults.standardUserDefaults().setValue($0, forKey: "business_name")
                 Profile.sharedInstance.businessName = $0
         }
@@ -398,13 +399,13 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
         }
     }
     
-    private func showAlert(msg: String, color: UIColor, image: UIImage) {
+    private func showAlert(title: String, msg: String, color: UIColor, image: UIImage) {
         let customIcon:UIImage = image // your custom icon UIImage
         let customColor:UIColor = color // base color for the alert
         self.view.endEditing(true)
         let alertView = JSSAlertView().show(
             self,
-            title: "",
+            title: title,
             text: msg,
             buttonText: "Ok",
             noButtons: false,
@@ -454,13 +455,13 @@ extension EditProfileViewController {
                 Account.saveStripeAccount(legalJSON) { (acct, bool, err) in
                     print("save acct called")
                     if bool == true {
-                        self.showAlert("Profile Updated", color: UIColor.brandGreen(), image: UIImage(named: "ic_check_light")!)
+                        self.showAlert("Success", msg: "Profile Updated", color: UIColor.brandGreen(), image: UIImage(named: "ic_check_light")!)
                     } else {
-                        self.showAlert((err?.localizedDescription)!, color: UIColor.brandRed(), image: UIImage(named: "ic_close_light")!)
+                        self.showAlert("Error", msg: (err?.localizedDescription)!, color: UIColor.brandRed(), image: UIImage(named: "ic_close_light")!)
                     }
                 }
             } else {
-                self.showAlert((err?.localizedDescription)!, color: UIColor.brandRed(), image: UIImage(named: "ic_close_light")!)
+                self.showAlert("Error", msg: (err?.localizedDescription)!, color: UIColor.brandRed(), image: UIImage(named: "ic_close_light")!)
             }
         }
     }
@@ -485,17 +486,18 @@ extension EditProfileViewController {
         ]
         
         User.saveProfile(dic) { (user, bool, err) in
+            print("the dic is", self.dic)
             if bool == true {
                 Account.saveStripeAccount(legalJSON) { (acct, bool, err) in
                     print("save acct called")
                     if bool == true {
-                        self.showAlert("Profile Updated", color: UIColor.brandGreen(), image: UIImage(named: "ic_check_light")!)
+                        self.showAlert("Success", msg: "Profile Updated", color: UIColor.brandGreen(), image: UIImage(named: "ic_check_light")!)
                     } else {
-                        self.showAlert((err?.localizedDescription)!, color: UIColor.brandRed(), image: UIImage(named: "ic_close_light")!)
+                        self.showAlert("Error", msg: (err?.localizedDescription)!, color: UIColor.brandRed(), image: UIImage(named: "ic_close_light")!)
                     }
                 }
             } else {
-                self.showAlert((err?.localizedDescription)!, color: UIColor.brandRed(), image: UIImage(named: "ic_close_light")!)
+                self.showAlert("Error", msg: (err?.localizedDescription)!, color: UIColor.brandRed(), image: UIImage(named: "ic_close_light")!)
             }
         }
     }

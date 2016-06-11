@@ -55,7 +55,7 @@ class AccountInterfaceController: WKInterfaceController, WCSessionDelegate {
                                 
                             } else {
                                 print("red light")
-                                let titleOfAlert = "Account not loaded :("
+                                let titleOfAlert = "Account not loaded"
                                 let messageOfAlert = "Contact support for assistance"
                                 self.presentAlertControllerWithTitle(titleOfAlert, message: messageOfAlert, preferredStyle: .Alert, actions: [WKAlertAction(title: "Ok", style: .Default){
                                     //something after clicking OK

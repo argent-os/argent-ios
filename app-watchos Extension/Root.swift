@@ -15,10 +15,11 @@ class Root {
         var apiurl = ""
         print("setting api url")
         if ENVIRONMENT == "DEV" {
-            apiurl = "http://192.168.1.182:5001"
+//            apiurl = "http://192.168.1.182:5001/v1"
+            apiurl = "http://192.168.1.232:5001/v1"
         } else if ENVIRONMENT == "PROD" {
             print("set api url")
-            apiurl = "https://api.argent.cloud"
+            apiurl = "https://api.argent.cloud/v1"
         }
         print(apiurl)
         return apiurl

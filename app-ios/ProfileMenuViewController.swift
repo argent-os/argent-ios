@@ -272,7 +272,11 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         let f_name = user.first_name
         let l_name = user.last_name
         let u_name = user.username
-        if(f_name != "") {
+        let b_name = user.business_name
+        print(b_name)
+        if b_name != "" {
+            navItem.title = b_name
+        } else if f_name != "" {
             navItem.title = f_name + " " + l_name
         } else {
             navItem.title = u_name

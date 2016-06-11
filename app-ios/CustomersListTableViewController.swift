@@ -224,6 +224,8 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
         cell = MCSwipeTableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: CellIdentifier);
         cell!.selectionStyle = UITableViewCellSelectionStyle.Gray;
         cell!.contentView.backgroundColor = UIColor.whiteColor();
+        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+
         cell.tag = indexPath.row
 
         let item = self.customersArray?[indexPath.row]

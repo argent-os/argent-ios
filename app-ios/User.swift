@@ -68,7 +68,7 @@ class User {
                                 let email = profile["email"].stringValue
                                 let first_name = profile["first_name"].stringValue
                                 let last_name = profile["last_name"].stringValue
-                                let business_name = profile["business_name"].stringValue
+                                let business_name = profile["business"]["name"].stringValue
                                 let picture = profile["picture"]["secure_url"].stringValue
                                 let phone = profile["phone_number"].stringValue
                                 let country = profile["country"].stringValue
@@ -120,7 +120,7 @@ class User {
                             let email = profile["email"].stringValue
                             let first_name = profile["first_name"].stringValue
                             let last_name = profile["last_name"].stringValue
-                            let business_name = profile["business_name"].stringValue
+                            let business_name = profile["business"]["name"].stringValue
                             let picture = profile["picture"]["secure_url"].stringValue
                             let phone = profile["phone_number"].stringValue
                             let country = profile["country"].stringValue
@@ -160,16 +160,16 @@ class User {
                     if let value = response.result.value {
                         let data = JSON(value)
                         var userItemsArray = [User]()
-                        let accounts = data["users"].arrayValue
-                        for account in accounts {
+                        let users = data["users"].arrayValue
+                        for user in users {
                             let id = ""
-                            let username = account["username"].stringValue
+                            let username = user["username"].stringValue
                             let email = ""
-                            let first_name = account["first_name"].stringValue
-                            let last_name = account["last_name"].stringValue
-                            let business_name = account["business_name"].stringValue
-                            let picture = account["picture"].stringValue
-                            let country = account["country"].stringValue
+                            let first_name = user["first_name"].stringValue
+                            let last_name = user["last_name"].stringValue
+                            let business_name = user["business_name"].stringValue
+                            let picture = user["picture"].stringValue
+                            let country = user["country"].stringValue
                             let phone = ""
                             let plaid_access_token = ""
                             let item = User(id: id, username: username, email: email, first_name: first_name, last_name: last_name, business_name: business_name, picture: picture, phone: phone, country: country, plaid_access_token: plaid_access_token)

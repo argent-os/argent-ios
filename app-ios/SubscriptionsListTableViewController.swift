@@ -227,6 +227,8 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
         cell!.contentView.backgroundColor = UIColor.whiteColor();
         cell.textLabel?.tintColor = UIColor.lightBlue()
         cell.detailTextLabel?.tintColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
+        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        
         cell.tag = indexPath.row
         
         let item = self.subscriptionsArray?[indexPath.row]
