@@ -17,6 +17,7 @@ import Alamofire
 import Fabric
 import Crashlytics
 import Armchair
+import MTZWhatsNew
 
 // THEME
 var APP_THEME = "LIGHT"
@@ -42,17 +43,17 @@ let STRIPE_PUBLIC_KEY_LIVE = "pk_live_9kfmn7pMRPKAYSpcf1Fmn266"
 
 // API ENDPOINT V1
 // let API_URL = "https://dev.argent.cloud/v1"
- let API_URL = "https://api.argent.cloud/v1"
+let API_URL = "https://api.argent.cloud/v1"
 
 // ENVIRONMENT
-// let ENVIRONMENT = "DEV"
+//let ENVIRONMENT = "DEV"
 let ENVIRONMENT = "PROD"
 
 // Pre-production check | Change ENVIRONMENT to PROD, Change API_URL to https://api.argent.cloud/v1
 
 // For push notifications make sure to delete and re-install app, fix this bug later
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate { // , TRTabBarControllerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
@@ -120,13 +121,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate { // , TRTabBarControllerD
         }
     }
     
-    // Transition Treasury setup
-//     func tr_tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
-//      print("You did select \(viewController.dynamicType).")
-//     }
+    func displayNewFeatures() {
+        // init with nib
+//        let vc: MTZWhatsNewGridViewController = MTZWhatsNewGridViewController.init(nibName: "", bundle: <#T##NSBundle?#>)
+//        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RootViewController")
+//        self.window!.rootViewController = viewController
+//        viewController.presentViewController(vc, animated: false, completion: { _ in
+//            print("showing whats new")
+//        })
+//        MTZWhatsNew.handleWhatsNew { ( dic : [NSObject : AnyObject]!) in
+//            let vc: MTZWhatsNewGridViewController = MTZWhatsNewGridViewController(features: dic)
+//            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RootViewController")
+//            self.window!.rootViewController = viewController
+//            viewController.presentViewController(vc, animated: false, completion: { _ in
+//                print("showing whats new")
+//            })
+//        }
+    }
+    
     
     // Default Launch
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        //MTZWhatsNew.performSelector(Selector("setLastAppVersion:"), withObject: "0.0")
+        //displayNewFeatures()
         
         // Set global app theme
         if (KeychainSwift().get("theme") == "DARK") {
@@ -147,13 +165,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate { // , TRTabBarControllerD
         Answers.logCustomEventWithName("Application Launched",
                                        customAttributes: [:])
         
-        // Transitions
-//        if let tabBarController = window?.rootViewController as? UITabBarController {
-//            print("setting transition delegate")
-//            tabBarController.tr_transitionDelegate = TRTabBarTransitionDelegate(method: TRTabBarTransitionMethod.Fade)
-//            tabBarController.tr_delegate = self
-//        }
-        
         // Setup skip onboarding notification
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.skipOnboarding(_:)), name: "kDismissOnboardingNotification", object: nil)
         
@@ -167,13 +178,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate { // , TRTabBarControllerD
         
         // Initialize Plaid, change to .Production before golive
         if ENVIRONMENT == "DEV" {
+            Plaid.sharedInstance().environment = .Tartan
             Plaid.sharedInstance().setPublicKey(PLAID_PUBLIC_KEY_TEST)
             Stripe.setDefaultPublishableKey(STRIPE_PUBLIC_KEY_TEST)
             Armchair.debugEnabled(true)
         } else if ENVIRONMENT == "PROD" {
-            Armchair.debugEnabled(false)
+            Plaid.sharedInstance().environment = .Production
             Plaid.sharedInstance().setPublicKey(PLAID_PUBLIC_KEY_LIVE)
             Stripe.setDefaultPublishableKey(STRIPE_PUBLIC_KEY_LIVE)
+            Armchair.debugEnabled(false)
         }
         
         // Set up permissions scope

@@ -300,7 +300,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
             
             // share action controller
             let activityViewController  = UIActivityViewController(
-                    activityItems: ["Check out this app!  https://www.argentapp.com" as NSString],
+                    activityItems: ["Check out this app!  https://www.argentapp.com/home" as NSString],
                     applicationActivities: nil)
                 if activityViewController.userActivity?.activityType == UIActivityTypePostToFacebook {
                     let uuid = NSUUID().UUIDString

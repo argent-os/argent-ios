@@ -271,9 +271,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
                             //let json = JSON(value)
                             print(PKPaymentAuthorizationStatus.Success)
                             completion(PKPaymentAuthorizationStatus.Success)
-                            var str = self.chargeInputView.text
-                            str?.removeAtIndex(str!.characters.indices.first!) // remove first letter
-                            Answers.logPurchaseWithPrice(decimalWithString(self.currencyFormatter, string: str!),
+                            Answers.logPurchaseWithPrice(decimalWithString(self.currencyFormatter, string: String(floatValue)),
                                 currency: "USD",
                                 success: true,
                                 itemName: "Payment",

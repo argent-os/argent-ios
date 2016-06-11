@@ -13,128 +13,62 @@ import Crashlytics
 
 class Plan {
     
-    static let sharedInstance = Plan(id: "", name: "", interval: "", currency: "", amount: "", statement_desc: "")
+    static let sharedInstance = Plan(id: "", name: "", interval: "", interval_count: 1, currency: "", amount: "", statement_desc: "")
 
     let id: Optional<String>
     let name: Optional<String>
     let interval: Optional<String>
+    let interval_count: Optional<Int>
     let currency: Optional<String>
     let amount: Optional<String>
     let statement_desc: Optional<String>
     
-    required init(id: String, name: String, interval: String, currency: String, amount: String, statement_desc: String) {
+    required init(id: String, name: String, interval: String, interval_count: Int, currency: String, amount: String, statement_desc: String) {
         self.id = id
         self.name = name
         self.interval = interval
+        self.interval_count = interval_count
         self.currency = currency
         self.amount = amount
         self.statement_desc = statement_desc
     }
     
-    class func createPlan(dic: Dictionary<String, String>, completionHandler: (Bool, String) -> Void) {
+    class func createPlan(dic: Dictionary<String, AnyObject>, completionHandler: (Bool, String) -> Void) {
         if(userAccessToken != nil) {
             User.getProfile({ (user, error) in
                 if error != nil {
                     print(error)
                 }
                 
-                if let plan_id = dic["planIdKey"], plan_name = dic["planNameKey"], plan_currency = dic["planCurrencyKey"], plan_amount = dic["planAmountKey"], plan_interval = dic["planIntervalKey"], plan_interval_count = dic["planIntervalCountKey"] {
-                    
-                    let headers = [
-                        "Authorization": "Bearer " + (userAccessToken as! String),
-                        "Content-Type": "application/json"
-                    ]
-                    let parameters : [String : AnyObject] = [
-                        "id": plan_id,
-                        "amount": plan_amount,
-                        "interval": plan_interval,
-                        "interval_count": plan_interval_count,
-                        "name": plan_name,
-                        "currency": plan_currency
-                    ]
-                    
-                    let endpoint = API_URL + "/stripe/" + (user?.id)! + "/plans"
-                    
-                    Alamofire.request(.POST, endpoint,
-                        parameters: parameters,
-                        encoding:.JSON,
-                        headers: headers)
-                        .responseJSON { response in
-                            switch response.result {
-                            case .Success:
-                                if let value = response.result.value {
-                                    let data = JSON(value)
-                                    if (response.response?.statusCode == 200) {
-                                        completionHandler(true, "")
-                                        Answers.logCustomEventWithName("Recurring Billing Creation Plan Success",
-                                            customAttributes: [
-                                                "amount": plan_amount,
-                                                "interval": plan_interval,
-                                                "name": plan_name,
-                                                "interval_count": plan_interval_count
-                                            ])
-                                    } else {
-                                        let err = data["error"]["message"].stringValue
-                                        completionHandler(false, err)
-                                    }
-                                }
-                            case .Failure(let error):
-                                print(error)
-                                Answers.logCustomEventWithName("Recurring Billing Plan Error",
-                                    customAttributes: [
-                                        "error": error.localizedDescription
-                                    ])
+                let headers = [
+                    "Authorization": "Bearer " + (userAccessToken as! String),
+                    "Content-Type": "application/json"
+                ]
+                let parameters : [String : AnyObject] = dic
+                
+                let endpoint = API_URL + "/stripe/" + (user?.id)! + "/plans"
+                
+                Alamofire.request(.POST, endpoint,
+                    parameters: parameters,
+                    encoding:.JSON,
+                    headers: headers)
+                    .responseJSON { response in
+                        switch response.result {
+                        case .Success:
+                            if let value = response.result.value {
+                                let data = JSON(value)
+                                completionHandler(true, String(response.result.error))
+                                Answers.logCustomEventWithName("Recurring Billing Creation Plan Success",
+                                    customAttributes: dic)
                             }
-                    }
-                    
-                    // if optional parameters are entered
-                    if let plan_trial_period_days = dic["planTrialPeriodKey"], plan_statement_descriptor = dic["planStatementDescriptionKey"] {
-                        print("set optional data")
-
-                        let headers = [
-                            "Authorization": "Bearer " + (userAccessToken as! String),
-                            "Content-Type": "application/json"
-                        ]
-                        let parameters : [String : AnyObject] = [
-                            "id": plan_id,
-                            "amount": plan_amount,
-                            "interval": plan_interval,
-                            "interval_count": 1,
-                            "name": plan_name,
-                            "currency": plan_currency,
-                            "trial_period_days": plan_trial_period_days,
-                            "statement_descriptor": plan_statement_descriptor
-                        ]
-                        
-                        let endpoint = API_URL + "/stripe/" + (user?.id)! + "/plans"
-                        
-                        Alamofire.request(.POST, endpoint,
-                            parameters: parameters,
-                            encoding:.JSON,
-                            headers: headers)
-                            .responseJSON { response in
-                                switch response.result {
-                                case .Success:
-                                    if let value = response.result.value {
-                                        _ = JSON(value)
-                                        Answers.logCustomEventWithName("Recurring Billing Creation Plan Success",
-                                            customAttributes: [
-                                                "amount": plan_amount,
-                                                "interval": plan_interval,
-                                                "name": plan_name,
-                                                "interval_count": plan_interval_count,
-                                                "statement_descriptor": plan_statement_descriptor
-                                            ])
-                                    }
-                                case .Failure(let error):
-                                    print(error)
-                                    Answers.logCustomEventWithName("Recurring Billing Plan Error",
-                                        customAttributes: [
-                                            "error": error.localizedDescription
-                                        ])
-                                }
+                        case .Failure(let error):
+                            print(error)
+                            completionHandler(false, error.localizedDescription)
+                            Answers.logCustomEventWithName("Recurring Billing Plan Error",
+                                customAttributes: [
+                                    "error": error.localizedDescription
+                                ])
                         }
-                    }
                 }
             })
         }
@@ -181,8 +115,9 @@ class Plan {
                                     let amount = plan["amount"].stringValue
                                     let name = plan["name"].stringValue
                                     let interval = plan["interval"].stringValue
+                                    let interval_count = plan["interval_count"].intValue
                                     let statement_desc = plan["statement_descriptor"].stringValue
-                                    let item = Plan(id: id, name: name, interval: interval, currency: "", amount: amount, statement_desc: statement_desc)
+                                    let item = Plan(id: id, name: name, interval: interval, interval_count: interval_count, currency: "", amount: amount, statement_desc: statement_desc)
                                     plansArray.append(item)
                                 }
                                 completionHandler(plansArray, response.result.error)
@@ -231,8 +166,9 @@ class Plan {
                             let amount = plan["amount"].stringValue
                             let name = plan["name"].stringValue
                             let interval = plan["interval"].stringValue
+                            let interval_count = plan["interval_count"].intValue
                             let statement_desc = plan["statement_descriptor"].stringValue
-                            let item = Plan(id: id, name: name, interval: interval, currency: "", amount: amount, statement_desc: statement_desc)
+                            let item = Plan(id: id, name: name, interval: interval, interval_count: interval_count, currency: "", amount: amount, statement_desc: statement_desc)
                             Answers.logCustomEventWithName("Viewing Merchant Recurring Billing Plans",
                                 customAttributes: [:])
                             plansArray.append(item)

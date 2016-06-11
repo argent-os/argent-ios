@@ -63,6 +63,7 @@ target 'app-ios' do
 	pod 'Shimmer'
 	pod 'UIScrollView-InfiniteScroll'
 	pod 'Whisper'
+	pod 'MTZWhatsNew'
 	
 	# Fabric
 	pod 'Fabric'

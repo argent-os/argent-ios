@@ -255,8 +255,14 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         
         // print("save called")
         // print(chargeInputView.text)
+        
+        if chargeInputView.text != "" || chargeInputView.text == "$0.00"  {
         showGlobalNotification("Paying merchant " + chargeInputView.text!, duration: 1.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
-
+        } else {
+            showGlobalNotification("Amount cannot be empty", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.neonOrange())
+                payButton.userInteractionEnabled = true
+        }
+        
         if(chargeInputView.text != "" || chargeInputView.text != "$0.00") {
             // print("civ passes check")
             if let card = paymentTextField.card {

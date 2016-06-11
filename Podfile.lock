@@ -35,6 +35,7 @@ PODS:
   - MCSwipeTableViewCell (2.1.4)
   - Money (1.7.0):
     - ValueCoding
+  - MTZWhatsNew (1.1)
   - MZAppearance (1.1.6)
   - MZFormSheetPresentationController (2.4.0):
     - MZAppearance
@@ -99,6 +100,7 @@ DEPENDENCIES:
   - M13Checkbox
   - MCSwipeTableViewCell
   - Money
+  - MTZWhatsNew
   - MZFormSheetPresentationController
   - PasscodeLock
   - PermissionScope
@@ -165,6 +167,7 @@ SPEC CHECKSUMS:
   M13Checkbox: fbc53145e3ca8ecd1c444a76439bdc0ddb17b008
   MCSwipeTableViewCell: 1b303e16c3a26b1982f3a68386e9b8c5fc8344c3
   Money: f46c3c8fcaf7afa35f2ee3edaeba58335fd5b669
+  MTZWhatsNew: 76e8e2b1a21b1550594a66e04231f5566a70a04f
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   MZFormSheetPresentationController: 3b9b6d76adc9f81c2defd0bb59e0f3dc2431e41e
   PasscodeLock: 4ae42c094224a01de3773fcd69ae33886394d959

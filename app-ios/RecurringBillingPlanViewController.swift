@@ -15,7 +15,7 @@ import JSSAlertView
 
 final class RecurringBillingViewController: FormViewController, UINavigationBarDelegate, UITextFieldDelegate {
     
-    var dic: Dictionary<String, String> = [:]
+    var dic: Dictionary<String, AnyObject> = [:]
     
     let amountInputView = UITextField()
 
@@ -84,7 +84,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         let editedPlanString = plan.stringByReplacingOccurrencesOfString(" ", withString: "_", options: NSStringCompareOptions.LiteralSearch, range: nil)
         
         let convertedPlanString = String(editedPlanString).lowercaseString + "_" + (randomString as String)
-        self.dic["planIdKey"] = convertedPlanString
+        self.dic["id"] = convertedPlanString
         print(convertedPlanString)
     }
     
@@ -160,7 +160,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
                 $0.placeholder = "Name of the plan (i.e. Gold)"
                 $0.rowHeight = 60
             }.onTextChanged { [weak self] in
-                self?.dic["planNameKey"] = $0
+                self?.dic["name"] = $0
                 self!.generatePlanID($0, len: 16)
         }
         
@@ -174,11 +174,11 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
                 $0.pickerItems = currencies.map {
                     InlinePickerItem(title: $0)
                 }
-                if let currencyAmount = Plan.sharedInstance.currency {
-                    $0.selectedRow = currencies.indexOf(currencyAmount) ?? 0
+                if let currencyType = Plan.sharedInstance.currency {
+                    $0.selectedRow = currencies.indexOf(currencyType) ?? 0
                 }
             }.onValueChanged {
-                self.dic["planCurrencyKey"] = $0.title
+                self.dic["currency"] = $0.title
         }
         
         let planIntervalRow = InlinePickerRowFormer<CustomLabelCell, String>(instantiateType: .Nib(nibName: "CustomLabelCell")) {
@@ -196,7 +196,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
                 }
             }.onValueChanged {
                 self.perIntervalLabel.text = "per " + $0.title
-                self.dic["planIntervalKey"] = $0.title
+                self.dic["interval"] = $0.title
         }
         
         let planTrialPeriodRow = TextFieldRowFormer<FormTextFieldCell>() {
@@ -211,7 +211,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
                 $0.placeholder = "(Optional) in days"
                 $0.rowHeight = 60
             }.onTextChanged { [weak self] in
-                self?.dic["planTrialPeriodKey"] = $0
+                self?.dic["trial_period_days"] = $0
         }
         
         let planStatementDescriptionRow = TextFieldRowFormer<FormTextFieldCell>() {
@@ -226,7 +226,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
                 $0.placeholder = "(Optional) Statement Description"
                 $0.rowHeight = 60
             }.onTextChanged { [weak self] in
-                self?.dic["planStatementDescriptionKey"] = $0
+                self?.dic["statement_descriptor"] = $0
         }
         
         let planIntervalCountRow = TextFieldRowFormer<FormTextFieldCell>() {
@@ -242,11 +242,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
                 $0.placeholder = "e.g. '1' and 'month' bills once a month"
                 $0.rowHeight = 60
             }.onTextChanged { [weak self] in
-                if self?.dic["planIntervalKey"] == "year" && Int($0) > 1 {
-                    self!.showAlert("Error", msg: "Interval for yearly plans cannot be greater than 1", color: UIColor.brandRed(), icon: "ic_close_light")
-                } else {
-                    self?.dic["planIntervalCountKey"] = $0
-                }
+                self?.dic["interval_count"] = Int($0)
         }
         
         // Create Headers
@@ -269,8 +265,8 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
     func addPlanButtonTapped(sender: AnyObject) {
         Plan.createPlan(dic) { (bool, err) in
             if bool == true {
-                if let msg = self.dic["planNameKey"] {
-                    self.showAlert("Success", msg: msg + " plan created!", color: UIColor.brandGreen(), icon: "ic_check_light")
+                if let msg = self.dic["name"] {
+                    self.showAlert("Success", msg: (msg as! String) + " plan created!", color: UIColor.brandGreen(), icon: "ic_check_light")
                     self.amountInputView.text = ""
                     self.perIntervalLabel.text = ""
                 }
@@ -326,7 +322,8 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         originalString?.removeAtIndex(originalString!.characters.indices.first!) // remove first letter
         let revertString = originalString?.stringByReplacingOccurrencesOfString(".", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
         let revertString2 = revertString?.stringByReplacingOccurrencesOfString(",", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        self.dic["planAmountKey"] = revertString2
+        let amountInt = Int(revertString2!)
+        self.dic["amount"] = amountInt
         
         return false
     }
