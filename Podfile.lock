@@ -25,7 +25,6 @@ PODS:
   - GaugeKit (0.3.2)
   - Gecco (0.2.0)
   - ImagePicker (1.3.0)
-  - INSPullToRefresh (1.1.5)
   - JGProgressHUD (1.3.2)
   - JSSAlertView (1.1.5)
   - JVFloatLabeledTextField (1.1.0)
@@ -33,6 +32,7 @@ PODS:
   - KMPlaceholderTextView (1.2.0)
   - LTMorphingLabel (0.2.0)
   - M13Checkbox (2.1.2)
+  - MCMHeaderAnimated (0.1.0)
   - MCSwipeTableViewCell (2.1.4)
   - Money (1.7.0):
     - ValueCoding
@@ -92,7 +92,6 @@ DEPENDENCIES:
   - GaugeKit
   - Gecco
   - ImagePicker
-  - INSPullToRefresh
   - JGProgressHUD
   - JSSAlertView
   - JVFloatLabeledTextField
@@ -100,6 +99,7 @@ DEPENDENCIES:
   - KMPlaceholderTextView
   - LTMorphingLabel
   - M13Checkbox
+  - MCMHeaderAnimated
   - MCSwipeTableViewCell
   - Money
   - MTZWhatsNew
@@ -160,7 +160,6 @@ SPEC CHECKSUMS:
   GaugeKit: 4d5c3491521ed2d6e2f83cac5f51d0cd09db8989
   Gecco: 27ab0f43da3f8e844771cf641992afdd1ea09c62
   ImagePicker: ed649bfeb850b2b8715c9e95a35725c730b5f627
-  INSPullToRefresh: 112ae2c295d2b3a76daa9dff86e7ef40ed002c47
   JGProgressHUD: ccac0ead9b771eac0ebcc2b0800efd7f1e1784dc
   JSSAlertView: 1ff5d4dcb28b00a38c0293c4c555231c02590be1
   JVFloatLabeledTextField: ea4a3d8387ddd43724c472bb2b8ab39b79af05d4
@@ -168,6 +167,7 @@ SPEC CHECKSUMS:
   KMPlaceholderTextView: cae8ee889bd38d20587eee6b2623b8218f31b8f5
   LTMorphingLabel: 490aa8e079f9247c7f3130f7d4b1be1d66677377
   M13Checkbox: fbc53145e3ca8ecd1c444a76439bdc0ddb17b008
+  MCMHeaderAnimated: eae2bd981f3d57b35c64a202f288afb441900a9c
   MCSwipeTableViewCell: 1b303e16c3a26b1982f3a68386e9b8c5fc8344c3
   Money: f46c3c8fcaf7afa35f2ee3edaeba58335fd5b669
   MTZWhatsNew: 76e8e2b1a21b1550594a66e04231f5566a70a04f

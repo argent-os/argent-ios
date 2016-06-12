@@ -26,7 +26,8 @@
 		302010D41CB016ED007D5E7E /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302010D31CB016ED007D5E7E /* TodayViewController.swift */; };
 		302010D71CB016ED007D5E7E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 302010D51CB016ED007D5E7E /* MainInterface.storyboard */; };
 		302010DB1CB016ED007D5E7E /* Argent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 302010CF1CB016ED007D5E7E /* Argent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		3025C11D1D0DE49200050C2C /* BankConnectedModalWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3025C11C1D0DE49200050C2C /* BankConnectedModalWindow.swift */; };
+		3025C11F1D0DF99C00050C2C /* BankConnectedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3025C11E1D0DF99C00050C2C /* BankConnectedDetailViewController.swift */; };
+		3025C1211D0DF9CA00050C2C /* BankConnectedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3025C1201D0DF9CA00050C2C /* BankConnectedCell.swift */; };
 		302624B91CF2573800EF80D8 /* CountryPicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 302624B81CF2573800EF80D8 /* CountryPicker.bundle */; };
 		304468F01CAA0BFC008CAE7D /* notify.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468ED1CAA0BFC008CAE7D /* notify.caf */; };
 		304468F11CAA0BFC008CAE7D /* pop.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468EE1CAA0BFC008CAE7D /* pop.caf */; };
@@ -258,7 +259,8 @@
 		302010D31CB016ED007D5E7E /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		302010D61CB016ED007D5E7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		302010D81CB016ED007D5E7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3025C11C1D0DE49200050C2C /* BankConnectedModalWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankConnectedModalWindow.swift; path = "app-ios/BankConnectedModalWindow.swift"; sourceTree = SOURCE_ROOT; };
+		3025C11E1D0DF99C00050C2C /* BankConnectedDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankConnectedDetailViewController.swift; path = "app-ios/BankConnectedDetailViewController.swift"; sourceTree = SOURCE_ROOT; };
+		3025C1201D0DF9CA00050C2C /* BankConnectedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankConnectedCell.swift; path = "app-ios/BankConnectedCell.swift"; sourceTree = SOURCE_ROOT; };
 		302624B81CF2573800EF80D8 /* CountryPicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = CountryPicker.bundle; path = "app-ios/bundles/CountryPicker.bundle"; sourceTree = SOURCE_ROOT; };
 		302624BA1CF26ECB00EF80D8 /* Argent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Argent.entitlements; sourceTree = "<group>"; };
 		304468ED1CAA0BFC008CAE7D /* notify.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = notify.caf; sourceTree = "<group>"; };
@@ -948,7 +950,8 @@
 			children = (
 				30C2DAE41CA4392E003AFD8B /* AddBankViewController.swift */,
 				300E422A1CB47428004316CF /* BankConnectedListTableViewController.swift */,
-				3025C11C1D0DE49200050C2C /* BankConnectedModalWindow.swift */,
+				3025C11E1D0DF99C00050C2C /* BankConnectedDetailViewController.swift */,
+				3025C1201D0DF9CA00050C2C /* BankConnectedCell.swift */,
 				300E422E1CB57206004316CF /* BankConnectedTableViewCell.swift */,
 				30C2DAE61CA43934003AFD8B /* BankAccountViewController.swift */,
 				30C2DAE71CA43934003AFD8B /* BankDetailViewController.swift */,
@@ -1528,7 +1531,8 @@
 				30960F011CE40CBE00749695 /* Auth.swift in Sources */,
 				30C2DAAB1CA4374F003AFD8B /* SignupViewControllerZero.swift in Sources */,
 				30C2DAF51CA43967003AFD8B /* ChargeViewController.swift in Sources */,
-				3025C11D1D0DE49200050C2C /* BankConnectedModalWindow.swift in Sources */,
+				3025C11F1D0DF99C00050C2C /* BankConnectedDetailViewController.swift in Sources */,
+				3025C1211D0DF9CA00050C2C /* BankConnectedCell.swift in Sources */,
 				30C2DAA81CA4374F003AFD8B /* SignupViewControllerOne.swift in Sources */,
 				3008AA461CF8BC3900AFE855 /* SearchMessageViewController.swift in Sources */,
 				30FF6FD11CEE3F9300A46A1E /* TransferToBankViewController.swift in Sources */,

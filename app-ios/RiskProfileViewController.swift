@@ -18,9 +18,8 @@ class RiskProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                                    KeychainSwift().set("", forKey: "riskScore")
-
-                let score = KeychainSwift().get("riskScore")
+        KeychainSwift().set("", forKey: "riskScore")
+        let score = KeychainSwift().get("riskScore")
 
         configure()
     }

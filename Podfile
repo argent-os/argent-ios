@@ -64,6 +64,7 @@ target 'app-ios' do
 	pod 'UIScrollView-InfiniteScroll'
 	pod 'Whisper'
 	pod 'MTZWhatsNew'
+	pod "MCMHeaderAnimated"
 
 	# Fabric
 	pod 'Fabric'
