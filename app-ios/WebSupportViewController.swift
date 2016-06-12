@@ -26,6 +26,16 @@ class WebSupportViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 60)
+        self.navigationController?.navigationBar.backgroundColor = UIColor.slateBlue()
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
+        self.navigationItem.title = "Argent Help Center"
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSFontAttributeName: UIFont.systemFontOfSize(14),
+            NSForegroundColorAttributeName: UIColor.whiteColor()
+        ]
+        
         let url = NSURL(string:"https://argentapp.zendesk.com/hc/en-us")
         let req = NSURLRequest(URL:url!)
         self.webView!.loadRequest(req)

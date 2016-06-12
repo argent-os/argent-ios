@@ -4091,7 +4091,7 @@ policy agreement. Tap to view</string>
         <image name="IconRisk" width="171" height="171"/>
         <image name="IconSupport" width="171" height="171"/>
         <image name="IconTouchSecure" width="86" height="86"/>
-        <image name="ic_close_light" width="22" height="22"/>
+        <image name="ic_close_light" width="43" height="43"/>
         <image name="ic_tab_account" width="30" height="30"/>
         <image name="ic_tab_home" width="30" height="30"/>
         <image name="ic_tab_menu" width="30" height="30"/>

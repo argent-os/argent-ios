@@ -72,7 +72,7 @@ class ProfilePictureViewController: UIViewController, UIImagePickerControllerDel
     
     func imageUploadRequest(uploadedImage: UIImage)
     {
-        showGlobalNotification("Uploading profile picture", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
+        showGlobalNotification("Pull down to refresh", duration: 6.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.iosBlue())
         
         if(userAccessToken != nil) {
             User.getProfile { (user, NSError) in

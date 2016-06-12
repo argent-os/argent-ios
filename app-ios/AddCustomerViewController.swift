@@ -190,10 +190,10 @@ extension AddCustomerViewController {
             //
             if let first_name = user?.first_name where first_name != "" {
                 mailComposerVC.setSubject("Re: Message from " + first_name)
-                mailComposerVC.setMessageBody("Hey it's " + first_name + ". Have you tried " + APP_NAME + "? It's a great app I've been using lately! Sending you the link " + FULL_APP_URL, isHTML: false)
+                mailComposerVC.setMessageBody("Hey it's " + first_name + ". Have you tried " + APP_NAME + "? It's a great app I've been using lately! Sending you the link " + APP_URL, isHTML: false)
             } else {
                 mailComposerVC.setSubject("Re: Message from " + APP_NAME)
-                mailComposerVC.setMessageBody("Hello from Argent! Check out our app: " + FULL_APP_URL, isHTML: false)
+                mailComposerVC.setMessageBody("Hello from Argent! Check out our app: " + APP_URL, isHTML: false)
             }
         }
         
@@ -238,9 +238,9 @@ extension AddCustomerViewController {
         User.getProfile { (user, err) in
             //
             if let first_name = user?.first_name where first_name != "" {
-                composeSMSVC.body = "Hey it's " + first_name + ". Have you tried " + APP_NAME + "? It's a great app I've been using lately! Sending you the link " + FULL_APP_URL
+                composeSMSVC.body = "Hey it's " + first_name + ". Have you tried " + APP_NAME + "? It's a great app I've been using lately! Sending you the link " + APP_URL
             } else {
-                composeSMSVC.body = "Hello from " + APP_NAME + "!" + " Check out our app: " + FULL_APP_URL
+                composeSMSVC.body = "Hello from " + APP_NAME + "!" + " Check out our app: " + APP_URL
             }
         }
         

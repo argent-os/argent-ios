@@ -24,7 +24,7 @@ var APP_THEME = "LIGHT"
 
 // CONFIG
 let MERCHANT_ID = "merchant.com.argentapp.pay.v3"
-let FULL_APP_URL = "https://itunes.apple.com/us/app/argent/id1110084542?mt=8"
+let APP_URL = "https://itunes.apple.com/us/app/argent/id1110084542?mt=8"
 let APP_ID = "1110084542"
 let APP_NAME = "Argent"
 
@@ -43,6 +43,7 @@ let API_URL = "http://192.168.1.232:5001/v1" // Works in VA
 
 // API ENDPOINT V1
 //let API_URL = "https://dev.argent.cloud/v1"
+//let API_URL = "https://stage.argent.cloud/v1"
 //let API_URL = "https://api.argent.cloud/v1"
 
 // ENVIRONMENT

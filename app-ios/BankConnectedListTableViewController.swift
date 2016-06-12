@@ -15,7 +15,7 @@ import MCSwipeTableViewCell
 
 class BankConnectedListTableViewController: UITableViewController, MCSwipeTableViewCellDelegate {
     
-    var itemsArray:Array<Bank>?
+    var banksArray:Array<Bank>?
     
     var bankRefreshControl = UIRefreshControl()
     
@@ -86,7 +86,7 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
                 alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
-            self.itemsArray = items
+            self.banksArray = items
             
             // update "last updated" title for refresh control
             let now = NSDate()
@@ -127,7 +127,7 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.itemsArray?.count ?? 0
+        return self.banksArray?.count ?? 0
     }
 
     // MARK DELEGATE MCTABLEVIEWCELL
@@ -152,15 +152,78 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
             cell!.contentView.backgroundColor = UIColor.whiteColor();
             cell.textLabel?.tintColor = UIColor.lightBlue()
             cell.detailTextLabel?.tintColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
-            cell.tag = indexPath.row
 
-            let item = self.itemsArray?[indexPath.row]
-            if let name = item?.bank_name, id = item?.id {
-                cell.textLabel?.text = name
+            cell.tag = indexPath.row
+            
+            let item = self.banksArray?[indexPath.row]
+            if let name = item?.bank_name, status = item?.status {
+                let strName = name
+                
+                switch status {
+                case "new":
+                    let strStatus = NSAttributedString(string: "New Account", attributes: [
+                        NSFontAttributeName: UIFont.systemFontOfSize(11),
+                        NSForegroundColorAttributeName:UIColor.skyBlue()
+                        ])
+                    cell.textLabel?.attributedText = NSAttributedString(string: strName + " ", attributes: [
+                        NSForegroundColorAttributeName : UIColor.mediumBlue(),
+                        NSFontAttributeName : UIFont.systemFontOfSize(14, weight: UIFontWeightLight)
+                        ]) + strStatus
+                case "validated":
+                    let strStatus = NSAttributedString(string: "Validated ✓", attributes: [
+                        NSFontAttributeName: UIFont.systemFontOfSize(11),
+                        NSForegroundColorAttributeName:UIColor.iosBlue()
+                        ])
+                    cell.textLabel?.attributedText = NSAttributedString(string: strName + " ", attributes: [
+                        NSForegroundColorAttributeName : UIColor.mediumBlue(),
+                        NSFontAttributeName : UIFont.systemFontOfSize(14, weight: UIFontWeightLight)
+                        ]) + strStatus
+                case "verified":
+                    let strStatus = NSAttributedString(string: "Verified ✓", attributes: [
+                        NSFontAttributeName: UIFont.systemFontOfSize(11),
+                        NSForegroundColorAttributeName:UIColor.brandGreen()
+                        ])
+                    cell.textLabel?.attributedText = NSAttributedString(string: strName + " ", attributes: [
+                        NSForegroundColorAttributeName : UIColor.mediumBlue(),
+                        NSFontAttributeName : UIFont.systemFontOfSize(14, weight: UIFontWeightLight)
+                        ]) + strStatus
+                case "verification_failed":
+                    let strStatus = NSAttributedString(string: "Verification Failed", attributes: [
+                        NSFontAttributeName: UIFont.systemFontOfSize(11),
+                        NSForegroundColorAttributeName:UIColor.brandRed()
+                        ])
+                    cell.textLabel?.attributedText = NSAttributedString(string: strName + " ", attributes: [
+                        NSForegroundColorAttributeName : UIColor.mediumBlue(),
+                        NSFontAttributeName : UIFont.systemFontOfSize(14, weight: UIFontWeightLight)
+                        ]) + strStatus
+                case "errored":
+                    let strStatus = NSAttributedString(string: "Error Occurred", attributes: [
+                        NSFontAttributeName: UIFont.systemFontOfSize(11),
+                        NSForegroundColorAttributeName:UIColor.brandRed()
+                        ])
+                    cell.textLabel?.attributedText = NSAttributedString(string: strName + " ", attributes: [
+                        NSForegroundColorAttributeName : UIColor.mediumBlue(),
+                        NSFontAttributeName : UIFont.systemFontOfSize(14, weight: UIFontWeightLight)
+                        ]) + strStatus
+                default:
+                    let strStatus = NSAttributedString(string: status, attributes: [
+                        NSFontAttributeName: UIFont.systemFontOfSize(11),
+                        NSForegroundColorAttributeName:UIColor.skyBlue()
+                        ])
+                    cell.textLabel?.attributedText = NSAttributedString(string: strName + " ", attributes: [
+                        NSForegroundColorAttributeName : UIColor.mediumBlue(),
+                        NSFontAttributeName : UIFont.systemFontOfSize(14, weight: UIFontWeightLight)
+                        ]) + strStatus
+                }
+                
             }
-            if let number = item?.last4 {
-                // cell!.detailTextLabel?.text = "Current $" + current + " | " + "Available $" + available
-                cell.detailTextLabel?.text = "For account ending in " + number
+            if let last4 = item?.last4, routing = item?.routing_number {
+                let last4AttributedString = NSAttributedString(string: "For account ending in " + last4 + " | Routing " + routing, attributes: [
+                    NSForegroundColorAttributeName : UIColor.lightBlue().colorWithAlphaComponent(0.5),
+                    NSFontAttributeName : UIFont.systemFontOfSize(11, weight: UIFontWeightRegular)
+                    ])
+                
+                cell.detailTextLabel?.attributedText = last4AttributedString
             }
         }
 
@@ -168,7 +231,7 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
 
         cell.setSwipeGestureWithView(closeView, color:  UIColor.brandRed(), mode: .Exit, state: .State3) {
             (cell : MCSwipeTableViewCell!, state : MCSwipeTableViewCellState!, mode : MCSwipeTableViewCellMode!) in
-            let item = self.itemsArray?[cell.tag]
+            let item = self.banksArray?[cell.tag]
             if let id = item?.id {
                 print("Did swipe" + id);
                 // send request to delete the bank account, on completion reload table data!

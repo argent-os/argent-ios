@@ -101,6 +101,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                 self!.configureHeader()
                 self!.userImageView.frame = CGRectMake(screenWidth / 2-30, -24, 60, 60)
                 self!.userImageView.layer.cornerRadius = 30
+                self!.tableView.tableHeaderView = ParallaxHeaderView.init(frame: CGRectMake(0, 100, CGRectGetWidth(self!.view.bounds), 220));
             })
             }, loadingView: loadingView)
         tableView.dg_setPullToRefreshFillColor(UIColor.clearColor())

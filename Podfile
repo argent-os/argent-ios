@@ -64,7 +64,7 @@ target 'app-ios' do
 	pod 'UIScrollView-InfiniteScroll'
 	pod 'Whisper'
 	pod 'MTZWhatsNew'
-	
+
 	# Fabric
 	pod 'Fabric'
 	pod 'Crashlytics'
