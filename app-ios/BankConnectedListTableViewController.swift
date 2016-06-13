@@ -59,6 +59,9 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
     
     func configureView() {
         
+        // During startup (viewDidLoad or in storyboard) do:
+        self.tableView.allowsMultipleSelectionDuringEditing = false
+
         self.navigationItem.title = "Connected Banks"
         self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
         self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 60)
@@ -134,36 +137,6 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
         self.loadBankAccounts()
     }
     
-
-//        let closeView: UIView = self.viewWithImageName("ic_close_light");
-//
-//        cell.setSwipeGestureWithView(closeView, color:  UIColor.brandRed(), mode: .Exit, state: .State3) {
-//            (cell : MCSwipeTableViewCell!, state : MCSwipeTableViewCellState!, mode : MCSwipeTableViewCellMode!) in
-//            let item = self.banksArray?[cell.tag]
-//            if let id = item?.id {
-//                print("Did swipe" + id);
-//                // send request to delete the bank account, on completion reload table data!
-//                // send request to delete, on completion reload table data!
-//                let alertController = UIAlertController(title: "Confirm deletion", message: "Are you sure?  This action cannot be undone.", preferredStyle: UIAlertControllerStyle.Alert)
-//                
-//                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-//                alertController.addAction(cancelAction)
-//                
-//                let OKAction = UIAlertAction(title: "Continue", style: .Default) { (action) in
-//                    // send request to delete, on completion reload table data!
-//                    Bank.deleteBankAccount(id, completionHandler: { (bool, err) in
-//                        print("deleted bank account ", bool)
-//                        self.loadBankAccounts()
-//                    })
-//                }
-//                alertController.addAction(OKAction)
-//                self.presentViewController(alertController, animated: true, completion: nil)
-//            }
-//        };
-//
-//        return cell;
-//    }
-    
     private var lastSelected: NSIndexPath! = nil
     
     // MARK: - Table view data source
@@ -194,8 +167,8 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
 
         let item = self.banksArray?[indexPath.row]
         if let name = item?.bank_name {
-            
-            let name = "CITIBANK, N.A."
+            // TODO ADD MORE BANKS
+//            let name = "CITIBANK, N.A."
             switch name {
             case "STRIPE TEST BANK":
                 let bankName = NSAttributedString(string: name, attributes: [
@@ -289,7 +262,7 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
 
         }
         if let last4 = item?.last4, routing = item?.routing_number {
-            let routingAttributedString = NSAttributedString(string: routing, attributes: [
+            let routingAttributedString = NSAttributedString(string: "Routing " + routing, attributes: [
                 NSForegroundColorAttributeName : UIColor.whiteColor(),
                 NSFontAttributeName : UIFont.systemFontOfSize(12, weight: UIFontWeightLight)
                 ])
@@ -304,6 +277,42 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
         
         
         return cell
+    }
+    
+    // Override to support conditional editing of the table view.
+    // This only needs to be implemented if you are going to be returning NO
+    // for some items. By default, all items are editable.
+    
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        // Return true if you want the specified item to be editable.
+        return true
+    }
+    // Override to support editing the table view.
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            //add code here for when you hit delete
+            let item = self.banksArray?[indexPath.row]
+            if let id = item?.id {
+                print("Did swipe" + id);
+                // send request to delete the bank account, on completion reload table data!
+                // send request to delete, on completion reload table data!
+                let alertController = UIAlertController(title: "Confirm deletion", message: "Are you sure?  This action cannot be undone.", preferredStyle: UIAlertControllerStyle.Alert)
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+                alertController.addAction(cancelAction)
+                
+                let OKAction = UIAlertAction(title: "Continue", style: .Default) { (action) in
+                    // send request to delete, on completion reload table data!
+                    Bank.deleteBankAccount(id, completionHandler: { (bool, err) in
+                        print("deleted bank account ", bool)
+                        self.loadBankAccounts()
+                    })
+                }
+                alertController.addAction(OKAction)
+                self.presentViewController(alertController, animated: true, completion: nil)
+            }
+        }
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
