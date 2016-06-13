@@ -17,6 +17,7 @@ class BankConnectedCell: UITableViewCell {
     @IBOutlet weak var bankRoutingLabel: UILabel!
     @IBOutlet weak var bankStatusLabel: UILabel!
     @IBOutlet weak var bankLastFourLabel: UILabel!
+    @IBOutlet weak var bankLogoImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

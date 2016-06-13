@@ -76,6 +76,54 @@ extension UIColor {
     static func globalBackground() -> UIColor {
         return UIColor(rgba: "#fff")
     }
+    static func bankCiti() -> UIColor {
+        return UIColor(rgba: "#000066")
+    }
+    static func bankAmex() -> UIColor {
+        return UIColor(rgba: "#11A0DD")
+    }
+    static func bankBofa() -> UIColor {
+        return UIColor(rgba: "#D4001A")
+    }
+    static func bankCapone() -> UIColor {
+        return UIColor(rgba: "#003C70")
+    }
+    static func bankChase() -> UIColor {
+        return UIColor(rgba: "#0f5ba7")
+    }
+    static func bankFidelity() -> UIColor {
+        return UIColor(rgba: "#6ec260")
+    }
+    static func bankNavy() -> UIColor {
+        return UIColor(rgba: "#04427e")
+    }
+    static func bankPnc() -> UIColor {
+        return UIColor(rgba: "#f48024")
+    }
+    static func bankSchwab() -> UIColor {
+        return UIColor(rgba: "#009fdf")
+    }
+    static func bankSuntrust() -> UIColor {
+        return UIColor(rgba: "#f36b2b")
+    }
+    static func bankTd() -> UIColor {
+        return UIColor(rgba: "#2db357")
+    }
+    static func bankUs() -> UIColor {
+        return UIColor(rgba: "#0c2074")
+    }
+    static func bankUsaa() -> UIColor {
+        return UIColor(rgba: "#00365b")
+    }
+    static func bankWells() -> UIColor {
+        return UIColor(rgba: "#bb0826")
+    }
+    static func bitcoinOrange() -> UIColor {
+        return UIColor(rgba: "#FF9900")
+    }
+    static func alipayBlue() -> UIColor {
+        return UIColor(rgba: "#1aa1e6")
+    }
     static func mediumBlue() -> UIColor {
         if APP_THEME == "LIGHT" {
             return UIColor(rgba: "#2c3441")
@@ -102,13 +150,6 @@ extension UIColor {
             return UIColor(rgba: "#00b5ff")
         } else {
             return UIColor(rgba: "#00b5ff")
-        }
-    }
-    static func alipayBlue() -> UIColor {
-        if APP_THEME == "LIGHT" {
-            return UIColor(rgba: "#1aa1e6")
-        } else {
-            return UIColor(rgba: "#1aa1e6")
         }
     }
     static func limeGreen() -> UIColor {
@@ -186,13 +227,6 @@ extension UIColor {
             return UIColor(rgba: "#f28225")
         } else {
             return UIColor(rgba: "#f28225").invertColor()
-        }
-    }
-    static func bitcoinOrange() -> UIColor {
-        if APP_THEME == "LIGHT" {
-            return UIColor(rgba: "#FF9900")
-        } else {
-            return UIColor(rgba: "#FF9900").invertColor()
         }
     }
     static func neonPink() -> UIColor {

@@ -12,9 +12,9 @@ import Alamofire
 import SwiftyJSON
 import JGProgressHUD
 import MCSwipeTableViewCell
-import MCMHeaderAnimated
+import CellAnimator
 
-class BankConnectedListTableViewController: UITableViewController, MCSwipeTableViewCellDelegate, MCMHeaderAnimatedDelegate {
+class BankConnectedListTableViewController: UITableViewController, MCSwipeTableViewCellDelegate {
     
     var banksArray:Array<Bank>?
     
@@ -59,20 +59,12 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
     
     func configureView() {
         
-        self.elements = [
-            ["color": UIColor(rgba: "#e32b49")],
-            ["color": UIColor(rgba: "#2b2be3")],
-            ["color": UIColor.skyBlue()],
-            ["color": UIColor.brandGreen()]
-        ]
-        
         self.navigationItem.title = "Connected Accounts"
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
         
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
+        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
         HUD.showInView(self.view!)
-        HUD.textLabel.text = "Loading Connected Banks"
-        HUD.dismissAfterDelay(0.7)
+        HUD.dismissAfterDelay(0.5)
         
         self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         self.dateFormatter.timeStyle = NSDateFormatterStyle.LongStyle
@@ -141,111 +133,7 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
         self.loadBankAccounts()
     }
     
-//    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        return 80.0
-//    }
-//    
-//    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return self.banksArray?.count ?? 0
-//    }
 
-    // MARK DELEGATE MCTABLEVIEWCELL
-    
-//    func viewWithImageName(name: String) -> UIView {
-//        let image: UIImage = UIImage(named: name)!;
-//        let imageView: UIImageView = UIImageView(image: image);
-//        imageView.contentMode = UIViewContentMode.Center;
-//        return imageView;
-//    }
-//
-//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-//    }
-    
-//    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        let CellIdentifier: String = "cell";
-//        var cell: MCSwipeTableViewCell! = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as! MCSwipeTableViewCell!;
-//        if cell == nil {
-//            cell = MCSwipeTableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: CellIdentifier);
-//            cell!.selectionStyle = UITableViewCellSelectionStyle.Gray;
-//            cell!.contentView.backgroundColor = UIColor.whiteColor();
-//            cell.textLabel?.tintColor = UIColor.lightBlue()
-//            cell.detailTextLabel?.tintColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
-//
-//            cell.tag = indexPath.row
-//            
-//            let item = self.banksArray?[indexPath.row]
-//            if let name = item?.bank_name, status = item?.status {
-//                let strName = name
-//                
-//                switch status {
-//                case "new":
-//                    let strStatus = NSAttributedString(string: "New Account", attributes: [
-//                        NSFontAttributeName: UIFont.systemFontOfSize(11),
-//                        NSForegroundColorAttributeName:UIColor.skyBlue()
-//                        ])
-//                    cell.textLabel?.attributedText = NSAttributedString(string: strName + " ", attributes: [
-//                        NSForegroundColorAttributeName : UIColor.mediumBlue(),
-//                        NSFontAttributeName : UIFont.systemFontOfSize(14, weight: UIFontWeightLight)
-//                        ]) + strStatus
-//                case "validated":
-//                    let strStatus = NSAttributedString(string: "Validated ✓", attributes: [
-//                        NSFontAttributeName: UIFont.systemFontOfSize(11),
-//                        NSForegroundColorAttributeName:UIColor.iosBlue()
-//                        ])
-//                    cell.textLabel?.attributedText = NSAttributedString(string: strName + " ", attributes: [
-//                        NSForegroundColorAttributeName : UIColor.mediumBlue(),
-//                        NSFontAttributeName : UIFont.systemFontOfSize(14, weight: UIFontWeightLight)
-//                        ]) + strStatus
-//                case "verified":
-//                    let strStatus = NSAttributedString(string: "Verified ✓", attributes: [
-//                        NSFontAttributeName: UIFont.systemFontOfSize(11),
-//                        NSForegroundColorAttributeName:UIColor.brandGreen()
-//                        ])
-//                    cell.textLabel?.attributedText = NSAttributedString(string: strName + " ", attributes: [
-//                        NSForegroundColorAttributeName : UIColor.mediumBlue(),
-//                        NSFontAttributeName : UIFont.systemFontOfSize(14, weight: UIFontWeightLight)
-//                        ]) + strStatus
-//                case "verification_failed":
-//                    let strStatus = NSAttributedString(string: "Verification Failed", attributes: [
-//                        NSFontAttributeName: UIFont.systemFontOfSize(11),
-//                        NSForegroundColorAttributeName:UIColor.brandRed()
-//                        ])
-//                    cell.textLabel?.attributedText = NSAttributedString(string: strName + " ", attributes: [
-//                        NSForegroundColorAttributeName : UIColor.mediumBlue(),
-//                        NSFontAttributeName : UIFont.systemFontOfSize(14, weight: UIFontWeightLight)
-//                        ]) + strStatus
-//                case "errored":
-//                    let strStatus = NSAttributedString(string: "Error Occurred", attributes: [
-//                        NSFontAttributeName: UIFont.systemFontOfSize(11),
-//                        NSForegroundColorAttributeName:UIColor.brandRed()
-//                        ])
-//                    cell.textLabel?.attributedText = NSAttributedString(string: strName + " ", attributes: [
-//                        NSForegroundColorAttributeName : UIColor.mediumBlue(),
-//                        NSFontAttributeName : UIFont.systemFontOfSize(14, weight: UIFontWeightLight)
-//                        ]) + strStatus
-//                default:
-//                    let strStatus = NSAttributedString(string: status, attributes: [
-//                        NSFontAttributeName: UIFont.systemFontOfSize(11),
-//                        NSForegroundColorAttributeName:UIColor.skyBlue()
-//                        ])
-//                    cell.textLabel?.attributedText = NSAttributedString(string: strName + " ", attributes: [
-//                        NSForegroundColorAttributeName : UIColor.mediumBlue(),
-//                        NSFontAttributeName : UIFont.systemFontOfSize(14, weight: UIFontWeightLight)
-//                        ]) + strStatus
-//                }
-//                
-//            }
-//            if let last4 = item?.last4, routing = item?.routing_number {
-//                let last4AttributedString = NSAttributedString(string: "For account ending in " + last4 + " | Routing " + routing, attributes: [
-//                    NSForegroundColorAttributeName : UIColor.lightBlue().colorWithAlphaComponent(0.5),
-//                    NSFontAttributeName : UIFont.systemFontOfSize(11, weight: UIFontWeightRegular)
-//                    ])
-//                
-//                cell.detailTextLabel?.attributedText = last4AttributedString
-//            }
-//        }
-//
 //        let closeView: UIView = self.viewWithImageName("ic_close_light");
 //
 //        cell.setSwipeGestureWithView(closeView, color:  UIColor.brandRed(), mode: .Exit, state: .State3) {
@@ -275,9 +163,6 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
 //        return cell;
 //    }
     
-    private let transitionManager = MCMHeaderAnimated()
-    
-    private var elements: NSArray! = []
     private var lastSelected: NSIndexPath! = nil
     
     // MARK: - Table view data source
@@ -291,7 +176,7 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.elements.count
+        return self.banksArray?.count ?? 0
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -299,31 +184,129 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
         
         cell.background.layer.cornerRadius = 30
         cell.background.clipsToBounds = true
-        cell.header.backgroundColor = self.elements.objectAtIndex(indexPath.row).objectForKey("color") as? UIColor
         tableView.separatorColor = UIColor.clearColor()
+        cell.selectionStyle = UITableViewCellSelectionStyle.Blue;
+        cell.textLabel?.tintColor = UIColor.whiteColor()
+        cell.detailTextLabel?.tintColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
+
+        cell.tag = indexPath.row
+
+        let item = self.banksArray?[indexPath.row]
+        if let name = item?.bank_name {
+            
+            let name = "BANK OF AMERICA, N.A."
+            switch name {
+            case "STRIPE TEST BANK":
+                let bankName = NSAttributedString(string: name, attributes: [
+                    NSForegroundColorAttributeName : UIColor.whiteColor(),
+                    NSFontAttributeName : UIFont.systemFontOfSize(16, weight: UIFontWeightRegular)
+                    ])
+                cell.header.backgroundColor = UIColor.lightBlue()
+                cell.bankLogoImageView.image = UIImage(named: "bank_stripe")
+                cell.bankLogoImageView.contentMode = .Right
+                cell.bankTitleLabel.attributedText = bankName
+            case "BANK OF AMERICA, N.A.":
+                let bankName = NSAttributedString(string: name, attributes: [
+                    NSForegroundColorAttributeName : UIColor.whiteColor(),
+                    NSFontAttributeName : UIFont.systemFontOfSize(16, weight: UIFontWeightRegular)
+                    ])
+                cell.header.backgroundColor = UIColor.bankBofa()
+                cell.bankLogoImageView.image = UIImage(named: "bank_bofa")
+                cell.bankLogoImageView.contentMode = .Right
+                cell.bankTitleLabel.attributedText = bankName
+            case "CITIBANK, N.A.":
+                let bankName = NSAttributedString(string: name, attributes: [
+                    NSForegroundColorAttributeName : UIColor.whiteColor(),
+                    NSFontAttributeName : UIFont.systemFontOfSize(16, weight: UIFontWeightRegular)
+                    ])
+                cell.header.backgroundColor = UIColor.bankCiti()
+                cell.bankLogoImageView.image = UIImage(named: "bank_citi")
+                cell.bankLogoImageView.contentMode = .Right
+                cell.bankTitleLabel.attributedText = bankName
+            case "WELLS FARGO BANK":
+                let bankName = NSAttributedString(string: name, attributes: [
+                    NSForegroundColorAttributeName : UIColor.whiteColor(),
+                    NSFontAttributeName : UIFont.systemFontOfSize(16, weight: UIFontWeightRegular)
+                    ])
+                cell.header.backgroundColor = UIColor.bankWells()
+                cell.bankLogoImageView.image = UIImage(named: "bank_wells")
+                cell.bankLogoImageView.contentMode = .Right
+                cell.bankTitleLabel.attributedText = bankName
+            default:
+                let bankName = NSAttributedString(string: name, attributes: [
+                    NSForegroundColorAttributeName : UIColor.whiteColor(),
+                    NSFontAttributeName : UIFont.systemFontOfSize(14, weight: UIFontWeightRegular)
+                    ])
+                cell.header.backgroundColor = UIColor.lightBlue()
+                cell.bankLogoImageView.image = UIImage(named: "bank_default")
+                cell.bankLogoImageView.contentMode = .Right
+                cell.bankTitleLabel.attributedText = bankName
+            }
+
+            
+        }
+        if let status = item?.status {
+
+            switch status {
+            case "new":
+                let strStatus = NSAttributedString(string: "New Account", attributes: [
+                    NSFontAttributeName: UIFont.systemFontOfSize(11),
+                    NSForegroundColorAttributeName:UIColor.whiteColor()
+                    ])
+                cell.bankStatusLabel?.attributedText = strStatus
+            case "validated":
+                let strStatus = NSAttributedString(string: "Validated ✓", attributes: [
+                    NSFontAttributeName: UIFont.systemFontOfSize(11),
+                    NSForegroundColorAttributeName:UIColor.whiteColor()
+                    ])
+                cell.bankStatusLabel?.attributedText = strStatus
+            case "verified":
+                let strStatus = NSAttributedString(string: "Verified ✓", attributes: [
+                    NSFontAttributeName: UIFont.systemFontOfSize(11),
+                    NSForegroundColorAttributeName:UIColor.whiteColor()
+                    ])
+                cell.bankStatusLabel?.attributedText = strStatus
+            case "verification_failed":
+                let strStatus = NSAttributedString(string: "Verification Failed", attributes: [
+                    NSFontAttributeName: UIFont.systemFontOfSize(11),
+                    NSForegroundColorAttributeName:UIColor.whiteColor()
+                    ])
+                cell.bankStatusLabel?.attributedText = strStatus
+            case "errored":
+                let strStatus = NSAttributedString(string: "Error Occurred", attributes: [
+                    NSFontAttributeName: UIFont.systemFontOfSize(11),
+                    NSForegroundColorAttributeName:UIColor.whiteColor()
+                    ])
+                cell.bankStatusLabel?.attributedText = strStatus
+            default:
+                let strStatus = NSAttributedString(string: status, attributes: [
+                    NSFontAttributeName: UIFont.systemFontOfSize(11),
+                    NSForegroundColorAttributeName:UIColor.whiteColor()
+                    ])
+                cell.bankStatusLabel?.attributedText = strStatus
+            }
+
+        }
+        if let last4 = item?.last4, routing = item?.routing_number {
+            let routingAttributedString = NSAttributedString(string: routing, attributes: [
+                NSForegroundColorAttributeName : UIColor.whiteColor(),
+                NSFontAttributeName : UIFont.systemFontOfSize(12, weight: UIFontWeightLight)
+                ])
+            let last4AttributedString = NSAttributedString(string: "Ending in " + last4, attributes: [
+                NSForegroundColorAttributeName : UIColor.whiteColor(),
+                NSFontAttributeName : UIFont.systemFontOfSize(12, weight: UIFontWeightLight)
+                ])
+            
+            cell.bankLastFourLabel?.attributedText = last4AttributedString
+            cell.bankRoutingLabel?.attributedText = routingAttributedString
+        }
+        
         
         return cell
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 190.0
-    }
-    
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "viewBankDetail" {
-            print("performing segue")
-            self.lastSelected = self.tableView.indexPathForSelectedRow
-            let element = self.elements.objectAtIndex(self.tableView.indexPathForSelectedRow!.row)
-            
-            let destination = segue.destinationViewController as! BankConnectedDetailViewController
-            destination.element = element as! NSDictionary
-            destination.transitioningDelegate = self.transitionManager
-            
-            self.transitionManager.destinationViewController = destination
-        }
     }
     
 }
@@ -340,7 +323,7 @@ extension BankConnectedListTableViewController {
     func headerCopy(subview: UIView) -> UIView {
         let cell = tableView.cellForRowAtIndexPath(self.lastSelected) as! BankConnectedCell
         let header = UIView(frame: cell.header.frame)
-        header.backgroundColor = self.elements.objectAtIndex(self.lastSelected.row).objectForKey("color") as? UIColor
+        header.backgroundColor = UIColor.lightBlue()
         return header
     }
     

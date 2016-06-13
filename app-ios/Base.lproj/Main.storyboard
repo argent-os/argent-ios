@@ -3196,11 +3196,11 @@ policy agreement. Tap to view</string>
                                 <connections>
                                     <outlet property="background" destination="9ok-FM-FHn" id="l0S-LS-IFh"/>
                                     <outlet property="bankLastFourLabel" destination="9kt-uR-Ub2" id="x59-o4-Vur"/>
+                                    <outlet property="bankLogoImageView" destination="b1U-Rw-F3h" id="ExR-rs-vRx"/>
                                     <outlet property="bankRoutingLabel" destination="7ja-Jf-VSU" id="Buw-Q3-Akp"/>
                                     <outlet property="bankStatusLabel" destination="IWO-9B-YFP" id="cBO-I4-RJd"/>
                                     <outlet property="bankTitleLabel" destination="7Ge-nX-OD2" id="p8K-UP-ZqC"/>
                                     <outlet property="header" destination="bsp-W4-gpO" id="Sdi-68-NqI"/>
-                                    <segue destination="9FS-C8-2NK" kind="show" identifier="viewBankDetail" id="x0G-cv-N1P"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -3213,52 +3213,6 @@ policy agreement. Tap to view</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x7p-gC-Eh1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5823" y="-5127"/>
-        </scene>
-        <!--Bank Connected Detail View Controller-->
-        <scene sceneID="7v7-YH-yV0">
-            <objects>
-                <viewController id="9FS-C8-2NK" customClass="BankConnectedDetailViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="YYh-DT-D7t"/>
-                        <viewControllerLayoutGuide type="bottom" id="B1m-5S-Sj0"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Tg2-CD-qvO">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bh7-8Q-Sk9">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="220"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xAt-cz-7vb">
-                                <rect key="frame" x="0.0" y="228" width="414" height="508"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="508" id="Yci-lT-R3K"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="xAt-cz-7vb" firstAttribute="top" secondItem="bh7-8Q-Sk9" secondAttribute="bottom" constant="8" symbolic="YES" id="0p9-hT-sMU"/>
-                            <constraint firstItem="bh7-8Q-Sk9" firstAttribute="leading" secondItem="xAt-cz-7vb" secondAttribute="leading" id="8he-2f-kfG"/>
-                            <constraint firstItem="bh7-8Q-Sk9" firstAttribute="top" secondItem="Tg2-CD-qvO" secondAttribute="top" id="YDH-6A-kjz"/>
-                            <constraint firstItem="bh7-8Q-Sk9" firstAttribute="leading" secondItem="Tg2-CD-qvO" secondAttribute="leading" id="Ymu-Nm-y2H"/>
-                            <constraint firstItem="xAt-cz-7vb" firstAttribute="bottom" secondItem="B1m-5S-Sj0" secondAttribute="top" id="ixm-WR-qCI"/>
-                            <constraint firstItem="bh7-8Q-Sk9" firstAttribute="trailing" secondItem="xAt-cz-7vb" secondAttribute="trailing" id="jbP-aV-1BP"/>
-                            <constraint firstAttribute="trailing" secondItem="bh7-8Q-Sk9" secondAttribute="trailing" id="yph-d7-bvq"/>
-                        </constraints>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
-                    <connections>
-                        <outlet property="header" destination="bh7-8Q-Sk9" id="OLf-Mi-vtZ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Bjz-Qi-X1p" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6296" y="-5127"/>
         </scene>
         <!--Credit Card List View Controller-->
         <scene sceneID="zXr-bK-lSX">
