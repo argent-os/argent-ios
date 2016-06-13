@@ -305,8 +305,8 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
                 let OKAction = UIAlertAction(title: "Continue", style: .Default) { (action) in
                     // send request to delete, on completion reload table data!
                     Bank.deleteBankAccount(id, completionHandler: { (bool, err) in
-                        print("deleted bank account ", bool)
                         self.loadBankAccounts()
+                        self.tableView.reloadData()
                     })
                 }
                 alertController.addAction(OKAction)
