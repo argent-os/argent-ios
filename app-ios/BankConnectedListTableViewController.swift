@@ -59,8 +59,9 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
     
     func configureView() {
         
-        self.navigationItem.title = "Connected Accounts"
-        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
+        self.navigationItem.title = "Connected Banks"
+        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
+        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 60)
         
         let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
         HUD.showInView(self.view!)
@@ -194,7 +195,7 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
         let item = self.banksArray?[indexPath.row]
         if let name = item?.bank_name {
             
-            let name = "BANK OF AMERICA, N.A."
+            let name = "CITIBANK, N.A."
             switch name {
             case "STRIPE TEST BANK":
                 let bankName = NSAttributedString(string: name, attributes: [
@@ -210,7 +211,7 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
                     NSForegroundColorAttributeName : UIColor.whiteColor(),
                     NSFontAttributeName : UIFont.systemFontOfSize(16, weight: UIFontWeightRegular)
                     ])
-                cell.header.backgroundColor = UIColor.bankBofa()
+                cell.header.backgroundColor = UIColor.bankBofaAlt()
                 cell.bankLogoImageView.image = UIImage(named: "bank_bofa")
                 cell.bankLogoImageView.contentMode = .Right
                 cell.bankTitleLabel.attributedText = bankName
@@ -219,7 +220,7 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
                     NSForegroundColorAttributeName : UIColor.whiteColor(),
                     NSFontAttributeName : UIFont.systemFontOfSize(16, weight: UIFontWeightRegular)
                     ])
-                cell.header.backgroundColor = UIColor.bankCiti()
+                cell.header.backgroundColor = UIColor.bankCitiAlt()
                 cell.bankLogoImageView.image = UIImage(named: "bank_citi")
                 cell.bankLogoImageView.contentMode = .Right
                 cell.bankTitleLabel.attributedText = bankName

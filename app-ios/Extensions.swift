@@ -79,11 +79,20 @@ extension UIColor {
     static func bankCiti() -> UIColor {
         return UIColor(rgba: "#000066")
     }
+    static func bankCitiAlt() -> UIColor {
+        return UIColor(rgba: "#2b2be3")
+    }
     static func bankAmex() -> UIColor {
         return UIColor(rgba: "#11A0DD")
     }
+    static func bankAmexAlt() -> UIColor {
+        return UIColor(rgba: "#2bb1e3")
+    }
     static func bankBofa() -> UIColor {
         return UIColor(rgba: "#D4001A")
+    }
+    static func bankBofaAlt() -> UIColor {
+        return UIColor(rgba: "#e32b49")
     }
     static func bankCapone() -> UIColor {
         return UIColor(rgba: "#003C70")
