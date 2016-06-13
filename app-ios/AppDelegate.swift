@@ -156,7 +156,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // It is always best to load Armchair as early as possible
         // because it needs to receive application life-cycle notifications
-        //
         // NOTE: The appID call always has to go before any other Armchair calls
         Armchair.appID(APP_ID)
         Armchair.debugEnabled(true)
@@ -192,7 +191,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Set up permissions scope
         pscope.addPermission(NotificationsPermission(notificationCategories: nil),
-                             message: "Welcome to " + APP_NAME + "!" + " Enable feature to receive push notifications on account events")
+                             message: APP_NAME + " is requesting permission to send push notifications on account events")
         pscope.headerLabel.text = "App Request"
         pscope.bodyLabel.text = "Enabling push notifications"
         pscope.closeButtonTextColor = UIColor.mediumBlue()
@@ -207,9 +206,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         pscope.permissionLabelColor = UIColor.mediumBlue()
         
         // Register for push notification on every launch
-        UIApplication.sharedApplication().registerForRemoteNotifications()
-        UIApplication.sharedApplication().registerUserNotificationSettings(
-            UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
+        notify()
 
         // Global window attributes
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
@@ -220,12 +217,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Initialize global UI elements ** Must come after setting self.window attributes
         globalUI()
         
+        // initialize rootviewcontroller *important
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RootViewController")
+        self.window!.rootViewController = viewController
         // Assign the init view controller of the app
         firstTime()
         
         // Save state tab bar
         if let tabBarController = window?.rootViewController as? UITabBarController {
-            print(UIApplication.sharedApplication().applicationIconBadgeNumber)
+            // print(UIApplication.sharedApplication().applicationIconBadgeNumber)
             for item in tabBarController.tabBar.items! {
                 if let image = item.image {
                     item.image = image.imageWithRenderingMode(.AlwaysOriginal)
@@ -295,14 +295,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //
         // if denied access users can change permissions later
         // display root controller otherwise
-        let first_time = KeychainSwift().getBool("firstTime")
-        if first_time == true || first_time == nil {
+        guard let firstTime = NSUserDefaults.standardUserDefaults().valueForKey("firstTime") else {
+            // IMPORTANT: load new access token on appdelegate load, otherwise the old token will be requested to the server
+            userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
+            if userAccessToken != nil {
+                let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RootViewController")
+                self.window!.rootViewController = viewController
+            } else {
+                let sb = UIStoryboard(name: "Main", bundle: nil)
+                let rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RootViewController")
+                let vc = sb.instantiateViewControllerWithIdentifier("LoginViewController")
+                vc.modalTransitionStyle = .CrossDissolve
+                self.window!.rootViewController = rootViewController
+                rootViewController.presentViewController(vc, animated: false, completion: { _ in
+                    print("showing login")
+                })
+            }
+            return
+        }
+
+        if String(firstTime) == "" {
             
             Answers.logCustomEventWithName("First Time Launch",
                                            customAttributes: [:])
             
-            KeychainSwift().set(false, forKey: "firstTime")
-            let viewController = AuthViewController()
+            NSUserDefaults.standardUserDefaults().setValue("launched", forKey: "firstTime")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            
+            let sb = UIStoryboard(name: "Auth", bundle: nil)
+            let rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RootViewController")
+            let vc = sb.instantiateViewControllerWithIdentifier("authViewController")
+            vc.modalTransitionStyle = .CrossDissolve
+            self.window!.rootViewController = rootViewController
+            rootViewController.presentViewController(vc, animated: false, completion: { _ in
+                print("showing auth")
+            })
+            
             // Show dialog with callbacks
             pscope.show({ finished, results in
                 // Enable push notifications
@@ -319,16 +347,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         customAttributes: [:])
                 }
                 }, cancelled: { (results) -> Void in
-                    print("cancelled")
+                    // print("cancelled")
                     Answers.logCustomEventWithName("Permission Notifications Cancelled",
                         customAttributes: [:])
             })
-            self.window!.rootViewController = viewController
-        } else {
-            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RootViewController")
-            self.window!.rootViewController = viewController
         }
-
     }
     
     // Get device token for push notification
@@ -387,7 +410,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 customAttributes: [:])
                         }
                     case .Failure(let error):
-                        print(error)
+                        // print(error)
                         Answers.logCustomEventWithName("Push token addition failed",
                             customAttributes: [
                                 "error": error.localizedDescription
@@ -397,12 +420,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    func notify() {
+        switch PermissionScope().statusNotifications() {
+        case .Unknown:
+            self.pscope.show({ finished, results in
+                print(results)
+                print(finished)
+                // Enable push notifications
+                if #available(iOS 8.0, *) {
+                    let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+                    UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+                    UIApplication.sharedApplication().registerForRemoteNotifications()
+                } else {
+                    let settings = UIRemoteNotificationType.Alert.union(UIRemoteNotificationType.Badge).union(UIRemoteNotificationType.Sound)
+                    UIApplication.sharedApplication().registerForRemoteNotificationTypes(settings)
+                }
+                }, cancelled: { (results) -> Void in
+                    print("cancelled")
+                    print(results)
+            })
+        case .Unauthorized, .Disabled:
+            self.pscope.show({ finished, results in
+                print(results)
+                print(finished)
+                // Enable push notifications
+                if #available(iOS 8.0, *) {
+                    let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+                    UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+                    UIApplication.sharedApplication().registerForRemoteNotifications()
+                } else {
+                    let settings = UIRemoteNotificationType.Alert.union(UIRemoteNotificationType.Badge).union(UIRemoteNotificationType.Sound)
+                    UIApplication.sharedApplication().registerForRemoteNotificationTypes(settings)
+                }
+                }, cancelled: { (results) -> Void in
+                    print("cancelled")
+                    print(results)
+            })
+        case .Authorized:
+            // If permission is granted, post to endpoint
+            Answers.logCustomEventWithName("Permission Notifications Authorized in AppDelegate",
+                                           customAttributes: [:])
+        }
+    }
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
         print("applicationWillResignActive") //ignore
-        print(application)
-        
         
         Answers.logCustomEventWithName("Application Will Resign Active",
                                        customAttributes: [:])
@@ -447,7 +511,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
         print("applicationWillEnterForeground")
-        print(application)
         
         Answers.logCustomEventWithName("Application Will Enter Foreground",
                                        customAttributes: [:])
@@ -456,7 +519,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         print("applicationWillTerminate") //ignore
-        print(application)
         
         Answers.logCustomEventWithName("Application Terminated",
                                        customAttributes: [:])
