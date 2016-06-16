@@ -80,7 +80,7 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
         codeLabel.attributedText = str
         
         // Check for iPhone 4 size screen
-        if(screenHeight < 500) {
+        if screenHeight < 500 {
             flagImg.frame = CGRect(x: screenWidth/2-15, y: screenHeight*0.15, width: 30, height: 30)
             codeLabel.frame = CGRect(x: 0, y: screenHeight*0.22, width: screenWidth, height: 50)
         } else {
@@ -181,7 +181,7 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
         codeLabel.attributedText = str
         
         // Check for iPhone 4 size screen
-        if(screenHeight < 500) {
+        if screenHeight < 500 {
             flagImg.frame = CGRect(x: screenWidth/2-15, y: screenHeight*0.15, width: 30, height: 30)
             codeLabel.frame = CGRect(x: 0, y: screenHeight*0.22, width: screenWidth, height: 50)
         } else {

@@ -85,6 +85,7 @@ class BitcoinUriViewController: UIViewController {
         // Be careful with timers, they can cause memory leaks if not
         // explicitly removed / destroyed
         
+        // poll bitcoin receiver every 30 seconds
         bitcoinPoller = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: #selector(self.pollBitcoinReceiver(_:)), userInfo: nil, repeats: true)
     }
     
@@ -92,6 +93,17 @@ class BitcoinUriViewController: UIViewController {
     func pollBitcoinReceiver(sender: AnyObject) {
         
         // print("polling bitcoin")
+        Timeout(60) {
+            // invalidate timer after 1 minute
+            self.bitcoinPoller!.invalidate()
+            self.dismissViewControllerAnimated(true, completion: {
+                showGlobalNotification("Ƀitcoin was not received", duration: 5.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.bitcoinOrange())
+                Answers.logCustomEventWithName("Ƀitcoin not received",
+                    customAttributes: [
+                        "amount": "No ɃTC received"
+                    ])
+            })
+        }
         Bitcoin.getBitcoinReceiver(bitcoinId!) { (bitcoin, err) in
             //print(bitcoin?.id)
             //print("bitcoin filled status ", bitcoin!.filled)
@@ -101,9 +113,9 @@ class BitcoinUriViewController: UIViewController {
                 self.dismissViewControllerAnimated(true, completion: {
                     // print("bitcoin receiver for bitcoin id " + self.bitcoinId! + " filled!")
                     showGlobalNotification(String((bitcoin?.amount)!/100000000) + " BTC received!", duration: 5.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.bitcoinOrange())
-                    Answers.logCustomEventWithName("Bitcoin received",
+                    Answers.logCustomEventWithName("Ƀitcoin received",
                         customAttributes: [
-                            "amount": String((bitcoin?.amount)!/100000000) + " BTC received"
+                            "amount": String((bitcoin?.amount)!/100000000) + " ɃTC received"
                         ])
                 })
             }

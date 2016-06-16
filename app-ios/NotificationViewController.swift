@@ -249,6 +249,12 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
                    cell.textLabel?.text = "Invoice payment succeeded"
                 case "invoice.payment_failed ":
                    cell.textLabel?.text = "Invoice payment failed"
+                case "payment.created ":
+                    cell.textLabel?.text = "Payment Created"
+                case "payment.failed ":
+                    cell.textLabel?.text = "Payment failed"
+                case "payment.updated ":
+                    cell.textLabel?.text = "Payment updated"
                 case "invoiceitem.created":
                    cell.textLabel?.text = "Invoice item created"
                 case "invoiceitem.updated":

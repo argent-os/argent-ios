@@ -38,32 +38,35 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
     
     func configure() {
         
-        //let screen = UIScreen.mainScreen().bounds
-        //let screenWidth = screen.size.width
-        //let screenHeight = screen.size.height
-        
         addBankButton.layer.cornerRadius = 10
         addBankButton.clipsToBounds = true
         addBankButton.backgroundColor = UIColor.lightBlue()
         
         self.navigationItem.title = "Bank Account"
-        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSFontAttributeName: UIFont.systemFontOfSize(14),
-            NSForegroundColorAttributeName: UIColor.darkGrayColor()
+            NSForegroundColorAttributeName: UIColor.lightBlue()
         ]
         title = "Bank Account"
         
     }
     
     func displayBanks(sender: AnyObject) {
-        let plaidLink = PLDLinkNavigationViewController(environment: .Tartan, product: .Connect)
-        plaidLink.linkDelegate = self
-        plaidLink.providesPresentationContextTransitionStyle = true
-        plaidLink.definesPresentationContext = true
-        plaidLink.modalPresentationStyle = .Custom
+        // Option .Connect | .Auth
+        var plaidLink:PLDLinkNavigationViewController?
+        if ENVIRONMENT == "DEV" {
+            plaidLink = PLDLinkNavigationViewController(environment: .Tartan, product: .Connect)
+        } else if ENVIRONMENT == "PROD" {
+            plaidLink = PLDLinkNavigationViewController(environment: .Production, product: .Connect)
+        }
+
+        plaidLink!.linkDelegate = self
+        plaidLink!.providesPresentationContextTransitionStyle = true
+        plaidLink!.definesPresentationContext = true
+        plaidLink!.modalPresentationStyle = .Custom
         
-        self.presentViewController(plaidLink, animated: true, completion: nil)
+        self.presentViewController(plaidLink!, animated: true, completion: nil)
     }
     
     func linkNavigationContoller(navigationController: PLDLinkNavigationViewController!, didFinishWithAccessToken accessToken: String!) {
@@ -85,7 +88,7 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         if(userAccessToken != nil) {
             User.getProfile { (user, NSError) in
                 
-                let endpoint = API_URL + "/plaid/" + user!.id + "/exchange_token"
+                let endpoint = API_URL + "/plaid/" + user!.id + "/exchange_token/" // + accountId
                 
                 let headers = [
                     "Authorization": "Bearer " + (userAccessToken as! String),
@@ -103,6 +106,7 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
                         if let value = response.result.value {
                             let data = JSON(value)
                             self.dismissViewControllerAnimated(true) {
+                                print(data)
                                 let access_token = data["response"]["access_token"]
                                 let stripe_bank_token = data["response"]["stripe_bank_account_token"]
                                 completionHandler(stripe_bank_token.stringValue, access_token.stringValue)

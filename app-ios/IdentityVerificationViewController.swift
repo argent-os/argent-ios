@@ -42,7 +42,7 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate 
     func configure() {
         
         let screenWidth = screen.size.width
-        //let screenHeight = screen.size.height
+        let screenHeight = screen.size.height
         
         self.navigationItem.title = "Identity Verification"
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
@@ -96,6 +96,16 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate 
         self.socialSecurityButton.layer.cornerRadius = 10
         self.socialSecurityButton.backgroundColor = UIColor.clearColor()
         self.socialSecurityButton.addTarget(self, action: #selector(self.showSSNModal(_:)), forControlEvents: .TouchUpInside)
+        
+        if screenHeight < 500 {
+            passportCardButton.frame = CGRect(x: 30, y: 80, width: screenWidth-60, height: 60)
+
+            self.identityCardButton.frame = CGRect(x: 30, y: 160, width: screenWidth-60, height: 60)
+
+            self.driversLicenseButton.frame = CGRect(x: 30, y: 240, width: screenWidth-60, height: 60)
+            
+            self.socialSecurityButton.frame = CGRect(x: 30, y: 320, width: screenWidth-60, height: 60)
+        }
     }
     
     func loadData() {
@@ -121,7 +131,7 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate 
         
         presentViewController(imagePickerController, animated: true, completion: { void in
             let overlayView = UIView()
-            overlayView.frame = CGRect(x: 10, y: screenHeight*0.25, width: screenWidth-20, height: 210)
+            overlayView.frame = CGRect(x: 20, y: screenHeight*0.25, width: screenWidth-40, height: 210)
             overlayView.layer.cornerRadius = 10
             overlayView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
             self.imagePickerController.view.addSubview(overlayView)
