@@ -407,3 +407,21 @@ func + (left: NSAttributedString, right: NSAttributedString) -> NSAttributedStri
     result.appendAttributedString(right)
     return result
 }
+
+
+class SKTextField: UITextField {
+    
+    let padding = UIEdgeInsets(top: 0, left: 20, bottom: 1, right: 20);
+    
+    override func textRectForBounds(bounds: CGRect) -> CGRect {
+        return UIEdgeInsetsInsetRect(bounds, padding)
+    }
+    
+    override func placeholderRectForBounds(bounds: CGRect) -> CGRect {
+        return UIEdgeInsetsInsetRect(bounds, padding)
+    }
+    
+    override func editingRectForBounds(bounds: CGRect) -> CGRect {
+        return UIEdgeInsetsInsetRect(bounds, padding)
+    }
+}

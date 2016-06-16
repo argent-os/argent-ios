@@ -276,7 +276,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
         formSheetController.presentationController?.shouldUseMotionEffect = true
         formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor()
         formSheetController.presentationController?.containerView?.sizeToFit()
-        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Light
+        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
         formSheetController.contentViewCornerRadius = 10

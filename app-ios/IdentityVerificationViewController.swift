@@ -44,6 +44,8 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate 
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
+        self.view.backgroundColor = UIColor.offWhite()
+        
         self.navigationItem.title = "Identity Verification"
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
         self.navigationController?.navigationBar.titleTextAttributes = [
@@ -52,49 +54,72 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate 
         ]
         
         passportCardButton.frame = CGRect(x: 30, y: 100, width: screenWidth-60, height: 80)
-        passportCardButton.setTitle(" Passport", forState: .Normal)
         passportCardButton.setImage(UIImage(named: "IconPassport"), forState: .Normal)
+        passportCardButton.setBackgroundColor(UIColor.whiteColor(), forState: .Normal)
+        passportCardButton.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
+        let str0 = NSAttributedString(string: " Passport", attributes: [
+                NSFontAttributeName: UIFont.systemFontOfSize(UIFont.systemFontSize(), weight: UIFontWeightLight),
+                NSForegroundColorAttributeName:UIColor.lightBlue()
+            ])
+        passportCardButton.setAttributedTitle(str0, forState: .Normal)
         passportCardButton.setTitleColor(UIColor.lightBlue(), forState: .Normal)
         passportCardButton.setTitleColor(UIColor.mediumBlue(), forState: .Highlighted)
         passportCardButton.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
         passportCardButton.layer.borderWidth = 1
         passportCardButton.layer.cornerRadius = 10
-        passportCardButton.backgroundColor = UIColor.clearColor()
+        passportCardButton.backgroundColor = UIColor.whiteColor()
         self.passportCardButton.addTarget(self, action: #selector(IdentityVerificationViewController.openCamera(_:)), forControlEvents: .TouchUpInside)
         addSubviewWithBounce(passportCardButton, parentView: self, duration: 0.3)
         
         // Add only on US/CA/AU Location
         self.identityCardButton.frame = CGRect(x: 30, y: 200, width: screenWidth-60, height: 80)
-        self.identityCardButton.setTitle(" Identity Card", forState: .Normal)
+        let str1 = NSAttributedString(string: " Identity Card", attributes: [
+            NSFontAttributeName: UIFont.systemFontOfSize(UIFont.systemFontSize(), weight: UIFontWeightLight),
+            NSForegroundColorAttributeName:UIColor.lightBlue()
+            ])
+        self.identityCardButton.setAttributedTitle(str1, forState: .Normal)
         self.identityCardButton.setImage(UIImage(named: "IconIdentityCard"), forState: .Normal)
+        self.identityCardButton.setBackgroundColor(UIColor.whiteColor(), forState: .Normal)
+        self.identityCardButton.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
         self.identityCardButton.setTitleColor(UIColor.lightBlue(), forState: .Normal)
         self.identityCardButton.setTitleColor(UIColor.mediumBlue(), forState: .Highlighted)
         self.identityCardButton.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
         self.identityCardButton.layer.borderWidth = 1
         self.identityCardButton.layer.cornerRadius = 10
-        self.identityCardButton.backgroundColor = UIColor.clearColor()
+        self.identityCardButton.backgroundColor = UIColor.whiteColor()
         self.identityCardButton.addTarget(self, action: #selector(IdentityVerificationViewController.openCamera(_:)), forControlEvents: .TouchUpInside)
         
         self.driversLicenseButton.frame = CGRect(x: 30, y: 300, width: screenWidth-60, height: 80)
-        self.driversLicenseButton.setTitle(" Driver's License", forState: .Normal)
+        let str2 = NSAttributedString(string: " Driver's License", attributes: [
+            NSFontAttributeName: UIFont.systemFontOfSize(UIFont.systemFontSize(), weight: UIFontWeightLight),
+            NSForegroundColorAttributeName:UIColor.lightBlue()
+            ])
+        self.driversLicenseButton.setAttributedTitle(str2, forState: .Normal)
         self.driversLicenseButton.setImage(UIImage(named: "IconIdentityCard"), forState: .Normal)
+        self.driversLicenseButton.setBackgroundColor(UIColor.whiteColor(), forState: .Normal)
+        self.driversLicenseButton.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
         self.driversLicenseButton.setTitleColor(UIColor.lightBlue(), forState: .Normal)
         self.driversLicenseButton.setTitleColor(UIColor.mediumBlue(), forState: .Highlighted)
         self.driversLicenseButton.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
         self.driversLicenseButton.layer.borderWidth = 1
         self.driversLicenseButton.layer.cornerRadius = 10
-        self.driversLicenseButton.backgroundColor = UIColor.clearColor()
+        self.driversLicenseButton.backgroundColor = UIColor.whiteColor()
         self.driversLicenseButton.addTarget(self, action: #selector(IdentityVerificationViewController.openCamera(_:)), forControlEvents: .TouchUpInside)
         
         self.socialSecurityButton.frame = CGRect(x: 30, y: 400, width: screenWidth-60, height: 80)
-        self.socialSecurityButton.setTitle(" Social Security Number", forState: .Normal)
-        self.socialSecurityButton.setImage(UIImage(named: "IconIdentityCard"), forState: .Normal)
+        let str3 = NSAttributedString(string: "Social Security Number", attributes: [
+            NSFontAttributeName: UIFont.systemFontOfSize(UIFont.systemFontSize(), weight: UIFontWeightLight),
+            NSForegroundColorAttributeName:UIColor.lightBlue()
+            ])
+        self.socialSecurityButton.setAttributedTitle(str3, forState: .Normal)
+//        self.socialSecurityButton.setImage(UIImage(named: "IconIdentityCard"), forState: .Normal)
+        self.socialSecurityButton.setBackgroundColor(UIColor.whiteColor(), forState: .Normal)
+        self.socialSecurityButton.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
         self.socialSecurityButton.setTitleColor(UIColor.lightBlue(), forState: .Normal)
         self.socialSecurityButton.setTitleColor(UIColor.mediumBlue(), forState: .Highlighted)
         self.socialSecurityButton.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
         self.socialSecurityButton.layer.borderWidth = 1
         self.socialSecurityButton.layer.cornerRadius = 10
-        self.socialSecurityButton.backgroundColor = UIColor.clearColor()
         self.socialSecurityButton.addTarget(self, action: #selector(self.showSSNModal(_:)), forControlEvents: .TouchUpInside)
         
         if screenHeight < 500 {
@@ -192,6 +217,11 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate 
                     "purpose": "identity_document"
                 ]
                 
+                let headers = [
+                    "Authorization": "Bearer " + (userAccessToken as! String),
+                    "Content-Type": "application/x-www-form-urlencoded"
+                ]
+                
                 let img = UIImageJPEGRepresentation(uploadedImage, 1)
                 
                 if(img==nil)  { return; }
@@ -206,7 +236,7 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate 
                     self.dismissViewControllerAnimated(true, completion: nil)
                     showGlobalNotification("File size " + fileSizeString + "MB too large", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.redColor())
                 } else {
-                    Alamofire.upload(.POST, endpoint, multipartFormData: {
+                    Alamofire.upload(.POST, endpoint, headers: headers, multipartFormData: {
                         multipartFormData in
                         
                         multipartFormData.appendBodyPart(data: imageData, name: "document", fileName: "document", mimeType: "image/jpg")
