@@ -47,6 +47,7 @@
 		3080730A1CFF393F0070C7FE /* PlansListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308073091CFF393F0070C7FE /* PlansListTableViewController.swift */; };
 		3080730C1CFF6F260070C7FE /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080730B1CFF6F250070C7FE /* Subscription.swift */; };
 		308630031CFCDEBD00695215 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308630021CFCDEBD00695215 /* OnboardingCollectionViewCell.swift */; };
+		30879A4F1D12F10300D3DF01 /* BankManualAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30879A4E1D12F10300D3DF01 /* BankManualAddViewController.swift */; };
 		308A348A1CCA803200AAF66F /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A34891CCA803200AAF66F /* History.swift */; };
 		309544F51CD295AE003007B2 /* ParallaxHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309544F41CD295AE003007B2 /* ParallaxHeader.swift */; };
 		30960EFF1CE3D7C100749695 /* TransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30960EFE1CE3D7C100749695 /* TransferViewController.swift */; };
@@ -279,6 +280,7 @@
 		308073091CFF393F0070C7FE /* PlansListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlansListTableViewController.swift; path = "app-ios/PlansListTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		3080730B1CFF6F250070C7FE /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Subscription.swift; path = "app-ios/Subscription.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		308630021CFCDEBD00695215 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingCollectionViewCell.swift; path = "app-ios/OnboardingCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		30879A4E1D12F10300D3DF01 /* BankManualAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankManualAddViewController.swift; path = "app-ios/BankManualAddViewController.swift"; sourceTree = SOURCE_ROOT; };
 		308A34891CCA803200AAF66F /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = History.swift; path = "app-ios/History.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		309544F41CD295AE003007B2 /* ParallaxHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParallaxHeader.swift; path = "app-ios/ParallaxHeader.swift"; sourceTree = SOURCE_ROOT; };
 		30960EFE1CE3D7C100749695 /* TransferViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransferViewController.swift; path = "app-ios/TransferViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -945,6 +947,7 @@
 			isa = PBXGroup;
 			children = (
 				30C2DAE41CA4392E003AFD8B /* AddBankViewController.swift */,
+				30879A4E1D12F10300D3DF01 /* BankManualAddViewController.swift */,
 				300E422A1CB47428004316CF /* BankConnectedListTableViewController.swift */,
 				3025C1201D0DF9CA00050C2C /* BankConnectedCell.swift */,
 				30C2DAE61CA43934003AFD8B /* BankAccountViewController.swift */,
@@ -1579,6 +1582,7 @@
 				30C2DAA61CA4374F003AFD8B /* SignupIndividualViewControllerTwo.swift in Sources */,
 				30C2DAA51CA4374F003AFD8B /* SignupIndividualViewControllerThree.swift in Sources */,
 				30089F471CFA860E00A2496B /* MerchantPlanCell.swift in Sources */,
+				30879A4F1D12F10300D3DF01 /* BankManualAddViewController.swift in Sources */,
 				30C2DB171CA439F4003AFD8B /* paykloud_iosTests.swift in Sources */,
 				308A348A1CCA803200AAF66F /* History.swift in Sources */,
 				30CF714F1D052D55007B5E17 /* SubscriptionsListDetailViewController.swift in Sources */,

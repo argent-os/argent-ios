@@ -44,7 +44,7 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(titleLabel)
         
         ssnTextField.frame = CGRect(x: 20, y: 70, width: 260, height: 150)
-        ssnTextField.placeholder = "xxx-xx-xxxx"
+        ssnTextField.placeholder = "xxxxxxxxx"
         ssnTextField.alpha = 0.8
         ssnTextField.textAlignment = .Center
         ssnTextField.font = UIFont(name: "HelveticaNeue", size: 20)

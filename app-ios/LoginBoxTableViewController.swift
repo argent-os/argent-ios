@@ -184,9 +184,11 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
             self.usernameTextField.text = loginDictionary?[AppExtensionUsernameKey] as? String
             self.passwordTextField.text = loginDictionary?[AppExtensionPasswordKey] as? String
             
-            self.onePasswordButton.textLabel?.text = "Login"
+            self.onePasswordButton.textLabel?.text = "Logging in"
             let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.login(_:)))
             self.onePasswordButton.addGestureRecognizer(tap)
+            
+            self.login(self)
             
         })
     }

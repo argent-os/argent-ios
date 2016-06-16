@@ -602,6 +602,25 @@ support request</string>
             </objects>
             <point key="canvasLocation" x="5041" y="-3521"/>
         </scene>
+        <!--Bank Manual Add View Controller-->
+        <scene sceneID="ZIq-5C-0Uf">
+            <objects>
+                <viewController id="mL6-w4-m6T" customClass="BankManualAddViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1oy-lh-vEJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="G6o-wi-ITl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WEO-ie-cbq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DXL-Fw-E8I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5718" y="-3484"/>
+        </scene>
         <!--Web Terms View Controller-->
         <scene sceneID="yDm-hE-Mge">
             <objects>
@@ -1555,16 +1574,16 @@ We support both debit and credit.</string>
                                 <rect key="frame" x="20" y="666" width="374" height="50"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="iRC-ed-m1H"/>
+                                    <constraint firstAttribute="height" constant="50" id="DDm-DC-dMZ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <state key="normal" title="Add Bank Account"/>
+                                <state key="normal" title="Login to Bank Account"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ut-Ju-5YB">
                                 <rect key="frame" x="0.0" y="390" width="414" height="102"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="102" id="LUM-eI-vte"/>
+                                    <constraint firstAttribute="height" constant="102" id="c1f-xa-W0t"/>
                                 </constraints>
                                 <string key="text">Select from a list of authorized banks
  we currently support 1,000+ institutions</string>
@@ -1573,9 +1592,9 @@ We support both debit and credit.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V5M-sE-Rv5">
-                                <rect key="frame" x="0.0" y="500" width="414" height="90"/>
+                                <rect key="frame" x="0.0" y="500" width="414" height="42"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="yid-ph-Dtj"/>
+                                    <constraint firstAttribute="height" constant="42" id="wbp-Mh-WNR"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1588,23 +1607,23 @@ We support both debit and credit.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RqW-Mf-mvz">
-                                <rect key="frame" x="20" y="598" width="374" height="60"/>
+                                <rect key="frame" x="20" y="608" width="374" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="WcP-nn-VnZ"/>
+                                    <constraint firstAttribute="height" constant="50" id="VpZ-wz-Dje"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <state key="normal" title="View Connected Accounts">
+                                <state key="normal" title="Manually Connect Account">
                                     <color key="titleColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="i0h-r8-yZv" kind="show" id="J4W-JV-iIs"/>
+                                    <segue destination="mL6-w4-m6T" kind="show" id="qhk-jM-M7s"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bank Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Use-cp-lh2">
                                 <rect key="frame" x="0.0" y="334" width="414" height="48"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="4GI-7S-9Px"/>
+                                    <constraint firstAttribute="height" constant="48" id="xyK-i4-zgC"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                 <color key="textColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -1613,39 +1632,57 @@ We support both debit and credit.</string>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconBank" translatesAutoresizingMaskIntoConstraints="NO" id="KoB-Hd-4HP">
                                 <rect key="frame" x="162" y="236" width="90" height="90"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="90" id="Eqk-jg-fTK"/>
-                                    <constraint firstAttribute="height" constant="90" id="Ldh-SK-wAh"/>
+                                    <constraint firstAttribute="height" constant="90" id="alp-Fe-ARm"/>
+                                    <constraint firstAttribute="width" constant="90" id="kM4-Vg-idi"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33S-hC-v74">
+                                <rect key="frame" x="20" y="550" width="374" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="ddt-qa-JVp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <state key="normal" title="View Accounts">
+                                    <color key="titleColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="i0h-r8-yZv" kind="show" id="ZBb-zY-RGx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="V5M-sE-Rv5" firstAttribute="top" secondItem="6Ut-Ju-5YB" secondAttribute="bottom" constant="8" symbolic="YES" id="44f-vd-4c0"/>
-                            <constraint firstItem="6Ut-Ju-5YB" firstAttribute="top" secondItem="Use-cp-lh2" secondAttribute="bottom" constant="8" symbolic="YES" id="8pC-2a-eH7"/>
-                            <constraint firstItem="V5M-sE-Rv5" firstAttribute="centerX" secondItem="RqW-Mf-mvz" secondAttribute="centerX" id="FGM-x1-5Ir"/>
-                            <constraint firstItem="RqW-Mf-mvz" firstAttribute="top" secondItem="V5M-sE-Rv5" secondAttribute="bottom" constant="8" symbolic="YES" id="FgW-d2-Dki"/>
-                            <constraint firstItem="OUz-h7-oqM" firstAttribute="trailing" secondItem="Use-cp-lh2" secondAttribute="trailing" id="Mnv-Dz-NCV"/>
-                            <constraint firstItem="6Ut-Ju-5YB" firstAttribute="leading" secondItem="V5M-sE-Rv5" secondAttribute="leading" id="NXY-KY-SgQ"/>
-                            <constraint firstAttribute="trailing" secondItem="OUz-h7-oqM" secondAttribute="trailing" id="Nmp-Md-zoI"/>
-                            <constraint firstItem="6Ut-Ju-5YB" firstAttribute="trailing" secondItem="V5M-sE-Rv5" secondAttribute="trailing" id="PZU-zb-FeZ"/>
-                            <constraint firstItem="KoB-Hd-4HP" firstAttribute="top" secondItem="OUz-h7-oqM" secondAttribute="bottom" constant="46" id="WuZ-5L-z2t"/>
-                            <constraint firstItem="RqW-Mf-mvz" firstAttribute="leading" secondItem="EG7-xI-0r0" secondAttribute="leading" id="WzN-Ae-wXV"/>
-                            <constraint firstItem="Use-cp-lh2" firstAttribute="leading" secondItem="6Ut-Ju-5YB" secondAttribute="leading" id="YDy-yf-bLs"/>
-                            <constraint firstItem="OUz-h7-oqM" firstAttribute="leading" secondItem="Tlu-lx-Uxm" secondAttribute="leading" id="aMT-zM-sws"/>
-                            <constraint firstItem="Use-cp-lh2" firstAttribute="trailing" secondItem="6Ut-Ju-5YB" secondAttribute="trailing" id="avI-MS-eTk"/>
-                            <constraint firstItem="OUz-h7-oqM" firstAttribute="leading" secondItem="Use-cp-lh2" secondAttribute="leading" id="dxc-jY-Y9C"/>
-                            <constraint firstItem="RqW-Mf-mvz" firstAttribute="trailing" secondItem="EG7-xI-0r0" secondAttribute="trailing" id="e6P-pf-SLj"/>
-                            <constraint firstItem="EG7-xI-0r0" firstAttribute="top" secondItem="RqW-Mf-mvz" secondAttribute="bottom" constant="8" symbolic="YES" id="eu8-YZ-d7T"/>
-                            <constraint firstItem="Use-cp-lh2" firstAttribute="top" secondItem="KoB-Hd-4HP" secondAttribute="bottom" constant="8" symbolic="YES" id="fnQ-FA-F8v"/>
-                            <constraint firstItem="OUz-h7-oqM" firstAttribute="top" secondItem="Tlu-lx-Uxm" secondAttribute="top" id="inm-aM-1aH"/>
-                            <constraint firstAttribute="bottom" secondItem="EG7-xI-0r0" secondAttribute="bottom" constant="20" symbolic="YES" id="jBH-NQ-0ij"/>
-                            <constraint firstItem="RqW-Mf-mvz" firstAttribute="leading" secondItem="Tlu-lx-Uxm" secondAttribute="leadingMargin" id="peq-ab-j9c"/>
-                            <constraint firstItem="KoB-Hd-4HP" firstAttribute="centerX" secondItem="Use-cp-lh2" secondAttribute="centerX" id="uli-fD-2Sm"/>
+                            <constraint firstItem="Use-cp-lh2" firstAttribute="top" secondItem="KoB-Hd-4HP" secondAttribute="bottom" constant="8" symbolic="YES" id="0Ki-A1-r5p"/>
+                            <constraint firstItem="OUz-h7-oqM" firstAttribute="leading" secondItem="Use-cp-lh2" secondAttribute="leading" id="2Ww-8V-LK6"/>
+                            <constraint firstAttribute="bottom" secondItem="EG7-xI-0r0" secondAttribute="bottom" constant="20" symbolic="YES" id="9Io-nn-mla"/>
+                            <constraint firstItem="KoB-Hd-4HP" firstAttribute="top" secondItem="OUz-h7-oqM" secondAttribute="bottom" constant="46" id="B9v-uO-0R7"/>
+                            <constraint firstItem="KoB-Hd-4HP" firstAttribute="centerX" secondItem="Use-cp-lh2" secondAttribute="centerX" id="BuK-Dq-WGG"/>
+                            <constraint firstItem="RqW-Mf-mvz" firstAttribute="top" secondItem="33S-hC-v74" secondAttribute="bottom" constant="8" symbolic="YES" id="Gjg-0y-L5Z"/>
+                            <constraint firstItem="RqW-Mf-mvz" firstAttribute="leading" secondItem="EG7-xI-0r0" secondAttribute="leading" id="KLd-1r-g7m"/>
+                            <constraint firstAttribute="trailing" secondItem="OUz-h7-oqM" secondAttribute="trailing" id="MOL-hl-ymR"/>
+                            <constraint firstItem="RqW-Mf-mvz" firstAttribute="trailing" secondItem="EG7-xI-0r0" secondAttribute="trailing" id="OkA-6X-Qvs"/>
+                            <constraint firstItem="V5M-sE-Rv5" firstAttribute="centerX" secondItem="33S-hC-v74" secondAttribute="centerX" id="P3N-xL-WcE"/>
+                            <constraint firstItem="33S-hC-v74" firstAttribute="leading" secondItem="RqW-Mf-mvz" secondAttribute="leading" id="THX-HM-oUM"/>
+                            <constraint firstItem="EG7-xI-0r0" firstAttribute="top" secondItem="RqW-Mf-mvz" secondAttribute="bottom" constant="8" symbolic="YES" id="fl3-ph-Xj9"/>
+                            <constraint firstItem="OUz-h7-oqM" firstAttribute="top" secondItem="Tlu-lx-Uxm" secondAttribute="top" id="hzI-Rt-2If"/>
+                            <constraint firstItem="Use-cp-lh2" firstAttribute="leading" secondItem="6Ut-Ju-5YB" secondAttribute="leading" id="kSu-Ts-lbl"/>
+                            <constraint firstItem="33S-hC-v74" firstAttribute="leading" secondItem="Tlu-lx-Uxm" secondAttribute="leadingMargin" id="mpW-1q-W3J"/>
+                            <constraint firstItem="6Ut-Ju-5YB" firstAttribute="leading" secondItem="V5M-sE-Rv5" secondAttribute="leading" id="nGO-rJ-3Cr"/>
+                            <constraint firstItem="33S-hC-v74" firstAttribute="trailing" secondItem="RqW-Mf-mvz" secondAttribute="trailing" id="nKC-9x-Nmt"/>
+                            <constraint firstItem="OUz-h7-oqM" firstAttribute="leading" secondItem="Tlu-lx-Uxm" secondAttribute="leading" id="txm-xD-jN9"/>
+                            <constraint firstItem="V5M-sE-Rv5" firstAttribute="top" secondItem="6Ut-Ju-5YB" secondAttribute="bottom" constant="8" symbolic="YES" id="uTg-pv-zXo"/>
+                            <constraint firstItem="33S-hC-v74" firstAttribute="top" secondItem="V5M-sE-Rv5" secondAttribute="bottom" constant="8" symbolic="YES" id="utt-c2-KGc"/>
+                            <constraint firstItem="Use-cp-lh2" firstAttribute="trailing" secondItem="6Ut-Ju-5YB" secondAttribute="trailing" id="vWR-oM-PWR"/>
+                            <constraint firstItem="6Ut-Ju-5YB" firstAttribute="top" secondItem="Use-cp-lh2" secondAttribute="bottom" constant="8" symbolic="YES" id="wDV-81-zgt"/>
+                            <constraint firstItem="6Ut-Ju-5YB" firstAttribute="trailing" secondItem="V5M-sE-Rv5" secondAttribute="trailing" id="wFM-f5-GBa"/>
+                            <constraint firstItem="OUz-h7-oqM" firstAttribute="trailing" secondItem="Use-cp-lh2" secondAttribute="trailing" id="zOY-PI-E57"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="addBankButton" destination="EG7-xI-0r0" id="LPo-O1-LqC"/>
+                        <outlet property="manualConnectBankButton" destination="RqW-Mf-mvz" id="kgD-7z-nEf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bTC-Jk-cIE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4185,7 +4222,7 @@ policy agreement. Tap to view</string>
         <image name="IconRisk" width="171" height="171"/>
         <image name="IconSupport" width="171" height="171"/>
         <image name="IconTouchSecure" width="86" height="86"/>
-        <image name="bank_citi" width="300" height="100"/>
+        <image name="bank_citi" width="114" height="30"/>
         <image name="ic_close_light" width="43" height="43"/>
         <image name="ic_tab_account" width="30" height="30"/>
         <image name="ic_tab_home" width="30" height="30"/>
@@ -4194,20 +4231,20 @@ policy agreement. Tap to view</string>
         <image name="ic_tab_search" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mwT-xt-Ez4"/>
-        <segue reference="m0d-gd-RWW"/>
-        <segue reference="UFB-DJ-qrH"/>
-        <segue reference="zQh-Po-kj4"/>
-        <segue reference="wgV-xY-MTp"/>
+        <segue reference="fEJ-lR-z9I"/>
+        <segue reference="aks-Yo-Spb"/>
+        <segue reference="igQ-zk-tCm"/>
+        <segue reference="m3z-fp-Nlm"/>
         <segue reference="rLo-0p-I9d"/>
         <segue reference="agi-3I-cSC"/>
         <segue reference="VI5-hp-Gm2"/>
         <segue reference="ipn-3I-3vc"/>
-        <segue reference="m3z-fp-Nlm"/>
-        <segue reference="igQ-zk-tCm"/>
-        <segue reference="aks-Yo-Spb"/>
         <segue reference="7cu-FP-MoG"/>
-        <segue reference="fEJ-lR-z9I"/>
+        <segue reference="mwT-xt-Ez4"/>
+        <segue reference="zQh-Po-kj4"/>
+        <segue reference="wgV-xY-MTp"/>
+        <segue reference="m0d-gd-RWW"/>
+        <segue reference="UFB-DJ-qrH"/>
         <segue reference="tsA-Cg-VzQ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

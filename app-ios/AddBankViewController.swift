@@ -17,6 +17,7 @@ import Crashlytics
 class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelegate {
     
     @IBOutlet weak var addBankButton: UIButton!
+    @IBOutlet weak var manualConnectBankButton: UIButton!
     
     override func prefersStatusBarHidden() -> Bool {
         return true
@@ -38,6 +39,13 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
     
     func configure() {
         
+        manualConnectBankButton.layer.cornerRadius = 10
+        manualConnectBankButton.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
+        manualConnectBankButton.layer.borderWidth = 1
+        manualConnectBankButton.setTitleColor(UIColor.lightBlue(), forState: .Normal)
+        manualConnectBankButton.setTitleColor(UIColor.mediumBlue(), forState: .Highlighted)
+        manualConnectBankButton.clipsToBounds = true
+
         addBankButton.layer.cornerRadius = 10
         addBankButton.clipsToBounds = true
         addBankButton.backgroundColor = UIColor.lightBlue()
