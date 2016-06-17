@@ -16,7 +16,7 @@ class OnboardingViewController: UIViewController, UICollectionViewDataSource, UI
     
     @IBOutlet weak var onboardingPageControl: UIPageControl!
     
-    @IBOutlet weak var onboardingSkipButton: UIButton!
+    var onboardingSkipButton = UIButton()
         
     var onboardingBackgroundScrollView: UIScrollView!
     
@@ -28,6 +28,14 @@ class OnboardingViewController: UIViewController, UICollectionViewDataSource, UI
         
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+
+        configureView()
+    }
+    
+    func configureView() {
+        
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
         
         self.onboardingCollectionView.delegate = self
         self.onboardingCollectionView.dataSource = self
@@ -52,6 +60,14 @@ class OnboardingViewController: UIViewController, UICollectionViewDataSource, UI
         
         self.view.addSubview(self.onboardingBackgroundScrollView)
         self.view.sendSubviewToBack(self.onboardingBackgroundScrollView)
+        
+        onboardingSkipButton.frame = CGRect(x: screenWidth-70, y: 10, width: 70, height: 50)
+        onboardingSkipButton.setTitle("Skip", forState: .Normal)
+        onboardingSkipButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        onboardingSkipButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        onboardingSkipButton.tintColor = UIColor.whiteColor()
+        onboardingSkipButton.addTarget(self, action: #selector(self.skipOnboarding(_:)), forControlEvents: .TouchUpInside)
+        self.view.addSubview(onboardingSkipButton)
     }
     
     override func didReceiveMemoryWarning() {
@@ -137,7 +153,7 @@ extension OnboardingViewController {
                 
                 cell.contentImage.image = UIImage(named: "LogoApplePay")
                 
-                cell.contentDescriptionLabel.text = APP_NAME + " enables users to utilize Apple Pay to process secured payments for received services.  Apple Pay enables peer-to-peer payments with a single touch."
+                cell.contentDescriptionLabel.text = APP_NAME + " enables users to utilize Apple Pay to process secured payments for performed services.  We enable both peer-to-peer as well as peer-to-merchant payments with a single touch."
                 cell.contentDescriptionLabel.font = UIFont.systemFontOfSize(14)
                 cell.contentDescriptionLabel.lineBreakMode = .ByWordWrapping
                 cell.contentDescriptionLabel.numberOfLines = 7
