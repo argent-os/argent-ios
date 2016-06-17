@@ -16,6 +16,8 @@ class RiskProfileViewController: UIViewController {
     
     //@IBOutlet weak var enableRiskProfileButton: UIButton!
     
+    @IBOutlet weak var previewButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         KeychainSwift().set("", forKey: "riskScore")
@@ -47,6 +49,16 @@ class RiskProfileViewController: UIViewController {
         //let screenWidth = screen.size.width
         //let screenHeight = screen.size.height
         
+        previewButton.layer.cornerRadius = 10
+        previewButton.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
+        previewButton.layer.borderWidth = 1
+        previewButton.clipsToBounds = true
+        previewButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        previewButton.setTitleColor(UIColor.offWhite(), forState: .Highlighted)
+        previewButton.setBackgroundColor(UIColor.lightBlue(), forState: .Normal)
+        previewButton.setBackgroundColor(UIColor.mediumBlue(), forState: .Highlighted)
+        previewButton.setTitle("See Preview", forState: .Normal)
+
 //        enableRiskProfileButton.layer.cornerRadius = 10
 //        enableRiskProfileButton.clipsToBounds = true
 //        enableRiskProfileButton.backgroundColor = UIColor.lightBlue()

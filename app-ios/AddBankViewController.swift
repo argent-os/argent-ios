@@ -16,7 +16,7 @@ import Crashlytics
 
 class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelegate {
     
-    @IBOutlet weak var addBankButton: UIButton!
+//    @IBOutlet weak var addBankButton: UIButton!
     @IBOutlet weak var manualConnectBankButton: UIButton!
     
     override func prefersStatusBarHidden() -> Bool {
@@ -29,7 +29,7 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
     }
     
     override func viewDidAppear(animated: Bool) {
-        addBankButton.addTarget(self, action: #selector(AddBankViewController.displayBanks(_:)), forControlEvents: .TouchUpInside)
+//        addBankButton.addTarget(self, action: #selector(AddBankViewController.displayBanks(_:)), forControlEvents: .TouchUpInside)
     }
     
     override func didReceiveMemoryWarning() {
@@ -49,14 +49,14 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         manualConnectBankButton.setBackgroundColor(UIColor.mediumBlue(), forState: .Highlighted)
         manualConnectBankButton.setTitle("Manually Connect", forState: .Normal)
 
-        addBankButton.layer.cornerRadius = 10
-        addBankButton.clipsToBounds = true
-        addBankButton.backgroundColor = UIColor.lightBlue()
-        addBankButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        addBankButton.setTitleColor(UIColor.offWhite(), forState: .Highlighted)
-        addBankButton.setBackgroundColor(UIColor.lightBlue(), forState: .Normal)
-        addBankButton.setBackgroundColor(UIColor.mediumBlue(), forState: .Highlighted)
-        addBankButton.setTitle("Login (preview)", forState: .Normal)
+//        addBankButton.layer.cornerRadius = 10
+//        addBankButton.clipsToBounds = true
+//        addBankButton.backgroundColor = UIColor.lightBlue()
+//        addBankButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+//        addBankButton.setTitleColor(UIColor.offWhite(), forState: .Highlighted)
+//        addBankButton.setBackgroundColor(UIColor.lightBlue(), forState: .Normal)
+//        addBankButton.setBackgroundColor(UIColor.mediumBlue(), forState: .Highlighted)
+//        addBankButton.setTitle("Login to Bank", forState: .Normal)
         
         self.navigationItem.title = "Bank Account"
         self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
