@@ -286,7 +286,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 
                 let userImageView: UIImageView = UIImageView(frame: CGRectMake(20, 40, 40, 40))
                 userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-                userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+                userImageView.backgroundColor = UIColor.clearColor()
                 userImageView.layer.cornerRadius = userImageView.frame.size.height/2
                 userImageView.layer.masksToBounds = true
                 userImageView.clipsToBounds = true
@@ -309,7 +309,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                     }
                 } else {
                     let _ = Timeout(0.3) {
-                        let img = UIImage(named: "PersonThumb")
+                        let img = UIImage(named: "ic_tab_account")
                         userImageView.image = img
                         addSubviewWithBounce(userImageView, parentView: self, duration: 0.3)
                     }

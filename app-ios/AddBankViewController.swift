@@ -42,13 +42,21 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         manualConnectBankButton.layer.cornerRadius = 10
         manualConnectBankButton.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
         manualConnectBankButton.layer.borderWidth = 1
-        manualConnectBankButton.setTitleColor(UIColor.lightBlue(), forState: .Normal)
-        manualConnectBankButton.setTitleColor(UIColor.mediumBlue(), forState: .Highlighted)
         manualConnectBankButton.clipsToBounds = true
+        manualConnectBankButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        manualConnectBankButton.setTitleColor(UIColor.offWhite(), forState: .Highlighted)
+        manualConnectBankButton.setBackgroundColor(UIColor.lightBlue(), forState: .Normal)
+        manualConnectBankButton.setBackgroundColor(UIColor.mediumBlue(), forState: .Highlighted)
+        manualConnectBankButton.setTitle("Manually Connect", forState: .Normal)
 
         addBankButton.layer.cornerRadius = 10
         addBankButton.clipsToBounds = true
         addBankButton.backgroundColor = UIColor.lightBlue()
+        addBankButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        addBankButton.setTitleColor(UIColor.offWhite(), forState: .Highlighted)
+        addBankButton.setBackgroundColor(UIColor.lightBlue(), forState: .Normal)
+        addBankButton.setBackgroundColor(UIColor.mediumBlue(), forState: .Highlighted)
+        addBankButton.setTitle("Login (preview)", forState: .Normal)
         
         self.navigationItem.title = "Bank Account"
         self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
@@ -80,12 +88,12 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
     func linkNavigationContoller(navigationController: PLDLinkNavigationViewController!, didFinishWithAccessToken accessToken: String!) {
         print("success \(accessToken)")
         print("the access token is", accessToken)
-        linkPlaidBankAccount({ (stripeBankToken, accessToken) in
-            print("stripe bank token is", stripeBankToken)
-            self.linkBankToStripe(stripeBankToken)
-            self.updateUserPlaidToken(accessToken)
-            print("updating user plaid token ", accessToken)
-        }, accessToken: accessToken)
+//        linkPlaidBankAccount({ (stripeBankToken, accessToken) in
+//            print("stripe bank token is", stripeBankToken)
+//            self.linkBankToStripe(stripeBankToken)
+//            self.updateUserPlaidToken(accessToken)
+//            print("updating user plaid token ", accessToken)
+//        }, accessToken: accessToken)
     }
     
     func linkPlaidBankAccount(completionHandler: (String, String) -> Void, accessToken: String) {

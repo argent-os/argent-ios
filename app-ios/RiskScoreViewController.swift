@@ -50,7 +50,7 @@ class RiskScoreViewController: UIViewController {
         self.view.backgroundColor = UIColor.globalBackground()
         self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
 
-        g.frame = CGRect(x: 60, y: 83, width: self.view.layer.frame.width-120, height: 230)
+        g.frame = CGRect(x: 60, y: 84, width: self.view.layer.frame.width-120, height: 230)
         g.startColor = UIColor.greenColor()
         g.contentMode = .ScaleAspectFit
         g.bgColor = UIColor.offWhite()

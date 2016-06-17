@@ -163,7 +163,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 //                let priority = DISPATCH_QUEUE_PRIORITY_HIGH
                 //                dispatch_async(dispatch_get_global_queue(priority, 0)) {
                 //                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                //                        cell.imageView!. // load image async // (NSURL(string: pic)!, placeholderImage: UIImage(named: "PersonThumb"))
+                //                        cell.imageView!. // load image async // (NSURL(string: pic)!, placeholderImage: UIImage(named: "ic_tab_account"))
                 //                    })
                 //                }
             }
@@ -191,7 +191,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 //                let priority = DISPATCH_QUEUE_PRIORITY_HIGH
                 //                dispatch_async(dispatch_get_global_queue(priority, 0)) {
                 //                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                //                        cell.imageView!. // load image async // (NSURL(string: pic)!, placeholderImage: UIImage(named: "PersonThumb"))
+                //                        cell.imageView!. // load image async // (NSURL(string: pic)!, placeholderImage: UIImage(named: "ic_tab_account"))
                 //                    })
                 //                }
             }

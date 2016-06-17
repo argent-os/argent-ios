@@ -13,7 +13,7 @@ import Alamofire
 import SwiftyJSON
 import Crashlytics
 
-class BankManualAddViewController: UIViewController {
+class BankManualAddViewController: UIViewController, UIScrollViewDelegate {
     
     let flagImg:UIImageView = UIImageView()
 
@@ -57,6 +57,8 @@ class BankManualAddViewController: UIViewController {
         
         self.view.backgroundColor = UIColor.offWhite()
 
+        addToolbarButton()
+        
         self.navigationItem.title = "Manual Entry"
         self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
         self.navigationController?.navigationBar.titleTextAttributes = [
@@ -68,6 +70,15 @@ class BankManualAddViewController: UIViewController {
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
+        
+        let scrollView:UIScrollView = UIScrollView()
+        scrollView.frame = CGRect(x: 0, y: -40, width: screenWidth, height: screenHeight)
+        scrollView.delegate = self
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.scrollEnabled = true
+        scrollView.userInteractionEnabled = true
+        scrollView.contentSize = CGSizeMake(screenWidth, screenHeight*1.2)
+        self.view!.addSubview(scrollView)
         
         // country and bank type | checking & savings
         infoLabel.frame = CGRect(x: 20, y: 80, width: screenWidth-40, height: 70)
@@ -98,10 +109,10 @@ class BankManualAddViewController: UIViewController {
         flagImg.contentMode = .ScaleAspectFit
         flagImg.frame = CGRect(x: screenWidth-65, y: 102, width: 25, height: 25)
         
-        addSubviewWithFade(infoLabel, parentView: self, duration: 0.3)
-        addSubviewWithFade(infoTypeLabel, parentView: self, duration: 0.3)
-        addSubviewWithFade(infoCountryLabel, parentView: self, duration: 0.3)
-        addSubviewWithFade(flagImg, parentView: self, duration: 0.3)
+        scrollView.addSubview(infoLabel)
+        scrollView.addSubview(infoTypeLabel)
+        scrollView.addSubview(infoCountryLabel)
+        scrollView.addSubview(flagImg)
         
         // routing number label and textfield
         routingTextField.frame = CGRect(x: 20, y: 170, width: screenWidth-40, height: 70)
@@ -119,10 +130,10 @@ class BankManualAddViewController: UIViewController {
         routingTextLabel.textColor = UIColor.lightBlue()
         routingTextLabel.font = UIFont.systemFontOfSize(UIFont.systemFontSize(), weight: UIFontWeightLight)
         
-        addSubviewWithFade(routingTextLabel, parentView: self, duration: 0.3)
-        self.view.bringSubviewToFront(routingTextLabel)
-        addSubviewWithFade(routingTextField, parentView: self, duration: 0.3)
-        self.view.sendSubviewToBack(routingTextField)
+        scrollView.addSubview(routingTextLabel)
+        scrollView.bringSubviewToFront(routingTextLabel)
+        scrollView.addSubview(routingTextField)
+        scrollView.sendSubviewToBack(routingTextField)
         
         // account number textfield and label
         accountTextField.frame = CGRect(x: 20, y: 260, width: screenWidth-40, height: 70)
@@ -140,10 +151,10 @@ class BankManualAddViewController: UIViewController {
         accountTextLabel.textColor = UIColor.lightBlue()
         accountTextLabel.font = UIFont.systemFontOfSize(UIFont.systemFontSize(), weight: UIFontWeightLight)
         
-        addSubviewWithFade(accountTextLabel, parentView: self, duration: 0.3)
-        self.view.bringSubviewToFront(accountTextLabel)
-        addSubviewWithFade(accountTextField, parentView: self, duration: 0.3)
-        self.view.sendSubviewToBack(accountTextField)
+        scrollView.addSubview(accountTextLabel)
+        scrollView.bringSubviewToFront(accountTextLabel)
+        scrollView.addSubview(accountTextField)
+        scrollView.sendSubviewToBack(accountTextField)
 
         addBankButton.frame = CGRect(x: 20, y: screenHeight-130, width: screenWidth-40, height: 60)
         addBankButton.setTitle("Add Bank", forState: .Normal)
@@ -156,8 +167,8 @@ class BankManualAddViewController: UIViewController {
         addBankButton.layer.cornerRadius = 10
         addBankButton.layer.masksToBounds = true
         addBankButton.addTarget(self, action: #selector(linkBankToStripe(_:)), forControlEvents: .TouchUpInside)
-        addSubviewWithFade(addBankButton, parentView: self, duration: 0.3)
-        self.view.bringSubviewToFront(addBankButton)
+        scrollView.addSubview(addBankButton)
+        scrollView.bringSubviewToFront(addBankButton)
 
     }
     
@@ -223,5 +234,44 @@ class BankManualAddViewController: UIViewController {
             color: customColor,
             iconImage: customIcon)
         alertView.setTextTheme(.Light) // can be .Light or .Dark
+    }
+    
+    
+    // Add send toolbar
+    func addToolbarButton()
+    {
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let sendToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, screenWidth, 50))
+        // sendToolbar.barStyle = UIBarStyle.Default
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: #selector(self.dismissKeyboard(_:)))
+        
+        UIToolbar.appearance().barTintColor = UIColor.whiteColor()
+        
+        done.setTitleTextAttributes([
+            NSFontAttributeName : UIFont.systemFontOfSize(15, weight: UIFontWeightLight),
+            NSForegroundColorAttributeName : UIColor.mediumBlue()
+            ], forState: .Normal)
+        
+        var items: [UIBarButtonItem]? = [UIBarButtonItem]()
+        items?.append(flexSpace)
+        items?.append(done)
+        items?.append(flexSpace)
+        
+        sendToolbar.items = items
+        sendToolbar.sizeToFit()
+        accountTextField.inputAccessoryView=sendToolbar
+    }
+    
+    //Calls this function when the tap is recognized.
+    func dismissKeyboard(sender: AnyObject) {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }
