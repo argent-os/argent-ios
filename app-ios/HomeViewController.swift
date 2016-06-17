@@ -50,7 +50,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 
     private let lblAccountAvailable:UILabel = UILabel()
     
-    private let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+    private let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.White)
 
     private let balanceSwitch = AnimatedSegmentSwitch()
 
@@ -544,6 +544,10 @@ extension HomeViewController {
         let locations: [CGFloat] = [0.0, 0.5, 1.0]
         self.gradient = CGGradientCreateWithColors(colorspace, gradientColors, locations)
         graph.gradientLine = self.gradient!
+        graph.layer.shadowColor = UIColor.blackColor().colorWithAlphaComponent(0.5).CGColor
+        graph.layer.shadowOffset = CGSize(width: 2, height: 10)
+        graph.layer.shadowRadius = 5
+        graph.layer.shadowOpacity = 1
         graph.gradientLineDirection = .Vertical
         graph.widthLine = 4
         graph.displayDotsWhileAnimating = true
@@ -629,7 +633,7 @@ extension HomeViewController {
         lblAccountPending.attributedText = str1
         
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
-        loadingView.tintColor = UIColor.slateBlue().colorWithAlphaComponent(0.5)
+        loadingView.tintColor = UIColor.lightBlue()
         tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
                 self?.tableView.dg_stopLoading()
@@ -638,7 +642,7 @@ extension HomeViewController {
             })
             }, loadingView: loadingView)
         tableView.dg_setPullToRefreshFillColor(graph.colorBottom)
-        tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
+        tableView.dg_setPullToRefreshBackgroundColor(self.view.backgroundColor!)
         
         // Transparent navigation bar
         self.navigationController?.navigationBar.barTintColor = UIColor.lightBlue()
