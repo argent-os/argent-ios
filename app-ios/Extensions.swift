@@ -44,8 +44,7 @@ extension String {
 
 extension UIImage{
     
-    func alpha(value:CGFloat)->UIImage
-    {
+    func alpha(value:CGFloat) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(self.size, false, 0.0)
         
         let ctx = UIGraphicsGetCurrentContext();
@@ -398,7 +397,6 @@ func + (left: NSAttributedString, right: NSAttributedString) -> NSAttributedStri
     result.appendAttributedString(right)
     return result
 }
-
 
 class SKTextField: UITextField {
     

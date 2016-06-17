@@ -49,10 +49,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     private let lblAccountPending:UILabel = UILabel()
 
     private let lblAccountAvailable:UILabel = UILabel()
-
-    private let lblAvailableDescription:UILabel = UILabel()
-
-    private let lblPendingDescription:UILabel = UILabel()
     
     private let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
 
@@ -67,17 +63,13 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     @IBAction func indexChanged(sender: AnimatedSegmentSwitch) {
         if(sender.selectedIndex == 0) {
             lblAccountAvailable.removeFromSuperview()
-            lblAvailableDescription.removeFromSuperview()
             
             addSubviewWithFade(lblAccountPending, parentView: self, duration: 0.8)
-            addSubviewWithFade(lblPendingDescription, parentView: self, duration: 1)
         }
         if(sender.selectedIndex == 1) {
             lblAccountPending.removeFromSuperview()
-            lblPendingDescription.removeFromSuperview()
 
             addSubviewWithFade(lblAccountAvailable, parentView: self, duration: 0.8)
-            addSubviewWithFade(lblAvailableDescription, parentView: self, duration: 1)
         }
     }
 
@@ -230,7 +222,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     //Changing Status Bar
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .Default
+        return .LightContent
     }
     
     func loadData() {
@@ -259,9 +251,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 formatter.numberStyle = .CurrencyStyle
                 formatter.locale = NSLocale.currentLocale() // This is the default
 
-                self.lblAccountPending.attributedText = formatCurrency(String(pendingBalance), fontName: "HelveticaNeue", superSize: 11, fontSize: 16, offsetSymbol: 3, offsetCents: 3)
+                self.lblAccountPending.attributedText = formatCurrency(String(pendingBalance), fontName: "Avenir-Light", superSize: 16, fontSize: 32, offsetSymbol: 10, offsetCents: 10)
                 addSubviewWithFade(self.lblAccountPending, parentView: self, duration: 1)
-                self.lblAccountAvailable.attributedText = formatCurrency(String(availableBalance), fontName: "HelveticaNeue", superSize: 11, fontSize: 16, offsetSymbol: 3, offsetCents: 3)
+                self.lblAccountAvailable.attributedText = formatCurrency(String(availableBalance), fontName: "Avenir-Light", superSize: 16, fontSize: 32, offsetSymbol: 10, offsetCents: 10)
             })
             
             // Get user account history
@@ -284,35 +276,12 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             // Get user profile
             User.getProfile({ (user, error) in
                 
-                let userImageView: UIImageView = UIImageView(frame: CGRectMake(20, 40, 40, 40))
-                userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-                userImageView.backgroundColor = UIColor.clearColor()
-                userImageView.layer.cornerRadius = userImageView.frame.size.height/2
-                userImageView.layer.masksToBounds = true
-                userImageView.clipsToBounds = true
-                userImageView.layer.borderWidth = 0
-                userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
-                
                 if user?.first_name != "" {
                     
                     // Track user action
                     Answers.logCustomEventWithName("User logged in", customAttributes: nil)
                     
                     showGlobalNotification("Welcome " + (user?.first_name)! + "!", duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.slateBlue())
-                }
-                
-                if user!.picture != "" {
-                    let _ = Timeout(0.3) {
-                        let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user!.picture))!)!)!
-                        userImageView.image = img
-                        addSubviewWithBounce(userImageView, parentView: self, duration: 0.3)
-                    }
-                } else {
-                    let _ = Timeout(0.3) {
-                        let img = UIImage(named: "ic_tab_account")
-                        userImageView.image = img
-                        addSubviewWithBounce(userImageView, parentView: self, duration: 0.3)
-                    }
                 }
                 
                 if(error != nil) {
@@ -497,15 +466,13 @@ extension HomeViewController {
 // Used only in HomeViewController
 extension UISegmentedControl {
     func removeBorders() {
-        setTitleTextAttributes(
-            [
-                NSForegroundColorAttributeName : UIColor.lightBlue().colorWithAlphaComponent(0.4),
+        setTitleTextAttributes([
+                NSForegroundColorAttributeName : UIColor.lightBlue().colorWithAlphaComponent(0.8),
                 NSFontAttributeName : UIFont(name: "HelveticaNeue", size: 11)!
             ],
             forState: .Normal)
-        setTitleTextAttributes(
-            [
-                NSForegroundColorAttributeName : UIColor.lightBlue(),
+        setTitleTextAttributes([
+                NSForegroundColorAttributeName : UIColor.whiteColor(),
                 NSFontAttributeName : UIFont(name: "HelveticaNeue", size: 14)!
             ],
             forState: .Selected)
@@ -530,7 +497,7 @@ extension UISegmentedControl {
 extension HomeViewController {
     func configureView() {
         
-        self.view.backgroundColor = UIColor.globalBackground()
+        self.view.backgroundColor = UIColor.darkBlue()
         
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
@@ -566,19 +533,19 @@ extension HomeViewController {
         self.view.sendSubviewToBack(bg)
         
         graph.dataSource = self
-        graph.frame = CGRect(x: 0, y: 110, width: screenWidth, height: 150)
+        graph.frame = CGRect(x: 0, y: 80, width: screenWidth, height: 150)
         graph.colorTop = UIColor.clearColor()
         graph.colorBottom = UIColor.clearColor()
-        graph.colorPoint = UIColor.neonGreen()
-        graph.colorBackgroundPopUplabel = UIColor.whiteColor()
+        graph.colorPoint = UIColor.skyBlue()
+        graph.colorBackgroundPopUplabel = UIColor.skyBlue()
         graph.delegate = self
-        let gradientColors : [CGColor] = [UIColor.neonBlue().CGColor,UIColor.neonGreen().CGColor,UIColor.neonYellow().CGColor,UIColor.neonOrange().CGColor,UIColor.neonPink().CGColor]
+        let gradientColors : [CGColor] = [UIColor.neonBlue().CGColor, UIColor.neonYellow().CGColor, UIColor.neonPink().CGColor]
         let colorspace = CGColorSpaceCreateDeviceRGB()
-        let locations: [CGFloat] = [0.20, 0.40, 0.60, 0.90, 1.0]
+        let locations: [CGFloat] = [0.0, 0.5, 1.0]
         self.gradient = CGGradientCreateWithColors(colorspace, gradientColors, locations)
         graph.gradientLine = self.gradient!
         graph.gradientLineDirection = .Vertical
-        graph.widthLine = 1.5
+        graph.widthLine = 4
         graph.displayDotsWhileAnimating = true
         graph.enablePopUpReport = true
         graph.noDataLabelColor = UIColor.lightBlue()
@@ -588,13 +555,14 @@ extension HomeViewController {
         graph.layer.masksToBounds = true
         addSubviewWithFade(graph, parentView: self, duration: 0.5)
         
+        // split the date segments
         let horizontalSplitter = UIView()
-        horizontalSplitter.backgroundColor = UIColor.offWhite()
+        horizontalSplitter.backgroundColor = UIColor.clearColor()
         horizontalSplitter.frame = CGRect(x: 15.0, y: 260.0, width: screenWidth - 15.0, height: 1)
         self.view.addSubview(horizontalSplitter)
         
         let dateRangeSegment: UISegmentedControl = UISegmentedControl(items: ["2W", "1M", "3M", "6M", "1Y"])
-        dateRangeSegment.frame = CGRect(x: 15.0, y: 230.0, width: view.bounds.width - 30.0, height: 30.0)
+        dateRangeSegment.frame = CGRect(x: 45.0, y: 230.0, width: view.bounds.width - 90.0, height: 30.0)
         //        var y_co: CGFloat = self.view.frame.size.height - 100.0
         //        dateRangeSegment.frame = CGRectMake(10, y_co, width-20, 50.0)
         dateRangeSegment.selectedSegmentIndex = 2
@@ -604,11 +572,11 @@ extension HomeViewController {
         
         balanceSwitch.items = ["Pending", "Available"]
         balanceSwitch.backgroundColor = UIColor.clearColor()
-        balanceSwitch.font = UIFont(name: "ArialRoundedMTBold", size: 12)
+        balanceSwitch.font = UIFont(name: "Avenir-Light", size: 14)
         balanceSwitch.backgroundColor = UIColor.clearColor()
-        balanceSwitch.titleColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
-        balanceSwitch.selectedTitleColor = UIColor.lightBlue()
-        balanceSwitch.frame = CGRect(x: view.bounds.width - 185.0, y: 40, width: 180, height: 35.0)
+        balanceSwitch.titleColor = UIColor.whiteColor().colorWithAlphaComponent(0.3)
+        balanceSwitch.selectedTitleColor = UIColor.darkBlue()
+        balanceSwitch.frame = CGRect(x: view.bounds.width - 210.0, y: 40, width: 200, height: 32.0)
         //autoresizing so it stays at top right (flexible left and flexible bottom margin)
         balanceSwitch.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
         balanceSwitch.bringSubviewToFront(balanceSwitch)
@@ -642,41 +610,23 @@ extension HomeViewController {
         tableView.showsVerticalScrollIndicator = false
         addSubviewWithFade(tableView, parentView: self, duration: 0.5)
         
-        lblAccountAvailable.textColor = UIColor.lightBlue()
-        lblAccountAvailable.frame = CGRectMake(20, 81, 200, 40)
+        lblAccountAvailable.textColor = UIColor.whiteColor()
+        lblAccountAvailable.frame = CGRectMake(20, 41, 200, 40)
         let str0 = NSAttributedString(string: "N/A", attributes:
             [
                 NSFontAttributeName: UIFont.systemFontOfSize(18),
-                NSForegroundColorAttributeName:UIColor.lightBlue().colorWithAlphaComponent(0.7)
+                NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.7)
             ])
         lblAccountAvailable.attributedText = str0
         
-        lblAccountPending.textColor = UIColor.lightBlue()
-        lblAccountPending.frame = CGRectMake(20, 81, 200, 40)
+        lblAccountPending.textColor = UIColor.whiteColor()
+        lblAccountPending.frame = CGRectMake(20, 41, 200, 40)
         let str1 = NSAttributedString(string: "N/A", attributes:
             [
                 NSFontAttributeName: UIFont.systemFontOfSize(18),
-                NSForegroundColorAttributeName:UIColor.lightBlue().colorWithAlphaComponent(0.7)
+                NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.7)
             ])
         lblAccountPending.attributedText = str1
-        
-        lblAvailableDescription.frame = CGRectMake(20, 106, 200, 40)
-        let str2 = NSAttributedString(string: "Available Balance", attributes:
-            [
-                NSFontAttributeName: UIFont.systemFontOfSize(12),
-                NSForegroundColorAttributeName:UIColor.lightBlue().colorWithAlphaComponent(0.5)
-            ])
-        lblAvailableDescription.attributedText = str2
-        // add available label initially
-        
-        lblPendingDescription.frame = CGRectMake(20, 106, 200, 40)
-        let str3 = NSAttributedString(string: "Pending Balance", attributes:
-            [
-                NSFontAttributeName: UIFont.systemFontOfSize(12),
-                NSForegroundColorAttributeName:UIColor.lightBlue().colorWithAlphaComponent(0.5)
-            ])
-        lblPendingDescription.attributedText = str3
-        addSubviewWithFade(lblPendingDescription, parentView: self, duration: 0.5)
         
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.tintColor = UIColor.slateBlue().colorWithAlphaComponent(0.5)
