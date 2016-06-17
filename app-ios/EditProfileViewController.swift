@@ -271,6 +271,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                     NSUserDefaults.standardUserDefaults().setValue("", forKey: "state")
                 }
             }.onValueChanged {
+                self.b_state = $0.title
                 NSUserDefaults.standardUserDefaults().setValue($0.title, forKey: "state")
                 Profile.sharedInstance.businessAddressState = $0.title
         }
@@ -385,13 +386,31 @@ extension EditProfileViewController {
             print("posting with ssn")
             postWithSSN()
         }
+        Account.getStripeAccount { (acct, err) in
+            if acct?.business_first_name == "" {
+                Account.saveStripeAccount(
+                    [ "legal_entity":
+                        [
+                            "first_name": self.b_first_name!
+                        ]
+                    ]) { (acct, bool, err) in
+                }
+            }
+            if acct?.business_last_name == "" {
+                Account.saveStripeAccount(
+                    [ "legal_entity":
+                        [
+                            "first_name": self.b_first_name!
+                        ]
+                ]) { (acct, bool, err) in
+                }
+            }
+        }
     }
     
     func postWithSSN() {
         
         let legalContent: [String: AnyObject] = [
-            "first_name": b_first_name!,
-            "last_name": b_last_name!,
             "ssn_last_4": b_ssn!,
             "business_name": b_name!,
             "address": [
@@ -427,8 +446,6 @@ extension EditProfileViewController {
     
     func postWithoutSSN() {
         let legalContent: [String: AnyObject] = [
-            "first_name": b_last_name!,
-            "last_name": b_first_name!,
             "business_name": b_name!,
             "address": [
                 "city": b_city!,

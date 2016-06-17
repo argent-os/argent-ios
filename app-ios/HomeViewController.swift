@@ -104,18 +104,20 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             // fetch your data here, can be async operation,
             // just make sure to call finishInfiniteScroll in the end
             //
-            if self.accountHistoryArray!.count > 98 {
-                let lastIndex = NSIndexPath(forRow: self.accountHistoryArray!.count - 1, inSection: 0)
-                let id = self.accountHistoryArray![lastIndex.row].id
-                // fetch more data with the id
-                self.loadAccountHistory("100", starting_after: id, completionHandler: { (transactions, error) in
-                    self.activityIndicator.stopAnimating()
-                    if transactions?.count < 1 {
-                        self.loadAccountHistory("100", starting_after: "", completionHandler: { _ in
-                            self.tableView.reloadData()
-                        })
-                    }
-                })
+            if let history_array = self.accountHistoryArray {
+                if history_array.count > 98 {
+                    let lastIndex = NSIndexPath(forRow: self.accountHistoryArray!.count - 1, inSection: 0)
+                    let id = self.accountHistoryArray![lastIndex.row].id
+                    // fetch more data with the id
+                    self.loadAccountHistory("100", starting_after: id, completionHandler: { (transactions, error) in
+                        self.activityIndicator.stopAnimating()
+                        if transactions?.count < 1 {
+                            self.loadAccountHistory("100", starting_after: "", completionHandler: { _ in
+                                self.tableView.reloadData()
+                            })
+                        }
+                    })
+                }
             }
             
             // make sure you reload tableView before calling -finishInfiniteScroll

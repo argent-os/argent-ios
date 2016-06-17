@@ -4292,11 +4292,11 @@ policy agreement. Tap to view</string>
         <image name="IconTouchSecure" width="86" height="86"/>
         <image name="bank_citi" width="114" height="30"/>
         <image name="ic_close_light" width="43" height="43"/>
-        <image name="ic_tab_account" width="30" height="30"/>
-        <image name="ic_tab_home" width="30" height="30"/>
-        <image name="ic_tab_menu" width="30" height="30"/>
-        <image name="ic_tab_notify" width="30" height="30"/>
-        <image name="ic_tab_search" width="30" height="30"/>
+        <image name="ic_tab_account" width="25" height="25"/>
+        <image name="ic_tab_home" width="25" height="25"/>
+        <image name="ic_tab_menu" width="25" height="25"/>
+        <image name="ic_tab_notify" width="25" height="25"/>
+        <image name="ic_tab_search" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="fEJ-lR-z9I"/>
