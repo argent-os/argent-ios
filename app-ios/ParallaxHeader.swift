@@ -18,7 +18,7 @@ class ParallaxHeaderView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.lightBlue()
         
         // The container view is needed to extend the visible area for the image view
         // to include that below the navigation bar. If this container view isn't present
@@ -26,7 +26,7 @@ class ParallaxHeaderView: UIView {
         // effect would not work correctly
         
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.backgroundColor = UIColor.clearColor()
+        containerView.backgroundColor = UIColor.lightBlue()
         self.addSubview(containerView)
         self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[containerView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["containerView" : containerView]))
         self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[containerView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["containerView" : containerView]))

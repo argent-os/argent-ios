@@ -26,6 +26,8 @@ class RiskScoreViewController: UIViewController {
     
     let info = UIButton()
     
+    let c = UIImageView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,18 +47,19 @@ class RiskScoreViewController: UIViewController {
     
     func configureView() {
         
-        self.view.backgroundColor = UIColor.globalBackground()        
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.view.backgroundColor = UIColor.globalBackground()
+        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
 
-        g.frame = CGRect(x: 50, y: 80, width: self.view.layer.frame.width-100, height: 250)
+        g.frame = CGRect(x: 60, y: 83, width: self.view.layer.frame.width-120, height: 230)
         g.startColor = UIColor.greenColor()
         g.contentMode = .ScaleAspectFit
-        g.bgColor = UIColor.blackColor()
+        g.bgColor = UIColor.offWhite()
         g.shadowRadius = 40
         g.shadowOpacity = 0.01
         g.lineWidth = 3
         g.maxValue = 100
-        self.view.addSubview(g)
+        addSubviewWithFade(g, parentView: self, duration: 0.5)
+        self.view.bringSubviewToFront(g)
         
         l.frame = CGRect(x: 100, y: 350, width: self.view.layer.frame.width-200, height: 100)
         l.type = .Line
@@ -65,26 +68,36 @@ class RiskScoreViewController: UIViewController {
         l.shadowOpacity = 0.01
         l.lineWidth = 3
         l.maxValue = 100
-        self.view.addSubview(l)
+        addSubviewWithFade(l, parentView: self, duration: 0.3)
 
+        c.frame = CGRect(x: 50, y: 80, width: self.view.layer.frame.width-100, height: 250)
+        c.image = UIImage(named: "BackgroundCircleWhite")
+        c.contentMode = .ScaleAspectFill
+        addSubviewWithFade(c, parentView: self, duration: 0.5)
+        self.view.sendSubviewToBack(c)
+        
         lbl.frame = CGRect(x: 50, y: 60, width: self.view.layer.frame.width-100, height: 250)
-        lbl.textColor = UIColor(rgba: "#fffd")
+        lbl.textColor = UIColor.lightBlue()
         lbl.textAlignment = .Center
-        lbl.font = UIFont(name: "HelveticaNeue-UltraLight", size: 48)
-        self.view.addSubview(lbl)
+        lbl.font = UIFont(name: "HelveticaNeue-UltraLight", size: 36)
+        let _ = Timeout(0.5) {
+            addSubviewWithBounce(self.lbl, parentView: self, duration: 0.4)
+        }
         
         titleLabel.frame = CGRect(x: 50, y: 100, width: self.view.layer.frame.width-100, height: 250)
         titleLabel.text = "Risk Score"
         titleLabel.alpha = 0.5
-        titleLabel.textColor = UIColor.whiteColor()
+        titleLabel.textColor = UIColor.lightBlue()
         titleLabel.textAlignment = .Center
         titleLabel.font = UIFont(name: "HelveticaNeue", size: 14)
-        self.view.addSubview(titleLabel)
+        let _ = Timeout(0.3) {
+            addSubviewWithBounce(self.titleLabel, parentView: self, duration: 0.4)
+        }
         
         bg.frame = CGRect(x: 0, y: 0, width: self.view.frame.width+1, height: self.view.frame.height-250)
-        bg.image = UIImage(named: "BackgroundGradientInverseCurved")
+        bg.image = UIImage(named: "BackgroundGradientOffWhiteCurved")
         bg.contentMode = .ScaleAspectFill
-        self.view.addSubview(bg)
+        addSubviewWithFade(bg, parentView: self, duration: 0.5)
         self.view.sendSubviewToBack(bg)
         
         info.frame = CGRect(x: self.view.frame.width/2-13, y: self.view.frame.height-136, width: 26, height: 26)

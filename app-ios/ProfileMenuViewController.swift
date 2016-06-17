@@ -90,21 +90,17 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         let screenWidth = screen.size.width
         
         self.view.bringSubviewToFront(tableView)
-        self.tableView.tableHeaderView = ParallaxHeaderView.init(frame: CGRectMake(0, 100, CGRectGetWidth(self.view.bounds), 220));
+        self.tableView.tableHeaderView = ParallaxHeaderView.init(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 220));
         
-        userImageView.frame = CGRectMake(screenWidth / 2, -64, 32, 32)
-    
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.frame = CGRect(x: 0, y: 100, width: screenWidth, height: 100)
-        loadingView.tintColor = UIColor.whiteColor().colorWithAlphaComponent(0.8)
+        loadingView.tintColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
         tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
                 self?.tableView.dg_stopLoading()
                 self!.loadProfile()
                 self!.configureHeader()
-                self!.userImageView.frame = CGRectMake(screenWidth / 2-30, -24, 60, 60)
-                self!.userImageView.layer.cornerRadius = 30
-                self!.tableView.tableHeaderView = ParallaxHeaderView.init(frame: CGRectMake(0, 100, CGRectGetWidth(self!.view.bounds), 220));
+                self!.tableView.tableHeaderView = ParallaxHeaderView.init(frame: CGRectMake(0, 0, CGRectGetWidth(self!.view.bounds), 220));
             })
             }, loadingView: loadingView)
         tableView.dg_setPullToRefreshFillColor(UIColor.clearColor())
@@ -129,7 +125,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         let parameters = [ SKStoreProductParameterITunesItemIdentifier : APP_ID]
         storeViewController.loadProductWithParameters(parameters) { [weak self] (loaded, error) -> Void in
             if loaded {
-                // Parent class of self is UIViewContorller
+                // Parent class of self is UIViewController
                 self?.presentViewController(storeViewController, animated: true, completion: nil)
             }
         }
@@ -383,13 +379,17 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
     func loadProfile() {
         
         let screen = UIScreen.mainScreen().bounds
-        //let screenWidth = screen.size.width
+        let screenWidth = screen.size.width
         
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(ProfileMenuViewController.goToEditPicture(_:)))
+        
+        userImageView.frame = CGRectMake(screenWidth / 2, -64, 60, 60)
+        userImageView.layer.cornerRadius = 30
         userImageView.userInteractionEnabled = true
         userImageView.addGestureRecognizer(tapGestureRecognizer)
         userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-        userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 120)
+        // centers user profile image
+        userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 10)
         userImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
         userImageView.layer.masksToBounds = true
         userImageView.clipsToBounds = true
@@ -469,20 +469,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
     
     // User profile image view scroll effects
     override func scrollViewDidScroll(scrollView: UIScrollView) {
-        
         let headerView = self.tableView.tableHeaderView as! ParallaxHeaderView
         headerView.scrollViewDidScroll(scrollView)
-        
-        let offsetY = scrollView.contentOffset.y
-        let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
-                
-        if offsetY < 0 && offsetY > -80 && userImageView.frame.size.width > 16 {
-            userImageView.layer.cornerRadius = (userImageView.frame.size.width/2)
-            userImageView.frame = CGRect(x: screenWidth/2-(-offsetY)/2, y: -24, width: -offsetY, height: -offsetY)
-        } else if offsetY < 0 {
-            userImageView.layer.cornerRadius = (userImageView.frame.size.width/2)
-            userImageView.frame = CGRect(x: screenWidth/2-(-offsetY)/2, y: -24, width: -offsetY, height: -offsetY)
-        }
     }
 }
