@@ -64,6 +64,7 @@
 		30A5A3F21CF5F0EC00C9EEC2 /* IdentityVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A5A3F11CF5F0EC00C9EEC2 /* IdentityVerificationViewController.swift */; };
 		30AF67391CA498A3006B83DA /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AF67381CA498A3006B83DA /* PassKit.framework */; };
 		30B576931CC7D1CF005BCA5A /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B576921CC7D1CE005BCA5A /* SearchDetailViewController.swift */; };
+		30C242C91D144A2400261D55 /* BankManualTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C242C81D144A2400261D55 /* BankManualTutorialViewController.swift */; };
 		30C2DA551CA43655003AFD8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA541CA43655003AFD8B /* Assets.xcassets */; };
 		30C2DA591CA43665003AFD8B /* App.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA581CA43665003AFD8B /* App.entitlements */; };
 		30C2DA5B1CA4366C003AFD8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C2DA5A1CA4366C003AFD8B /* AppDelegate.swift */; };
@@ -298,6 +299,7 @@
 		30AF67371CA498A2006B83DA /* app-watchos Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "app-watchos Extension.entitlements"; sourceTree = "<group>"; };
 		30AF67381CA498A3006B83DA /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.2.sdk/System/Library/Frameworks/PassKit.framework; sourceTree = DEVELOPER_DIR; };
 		30B576921CC7D1CE005BCA5A /* SearchDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchDetailViewController.swift; path = "app-ios/SearchDetailViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30C242C81D144A2400261D55 /* BankManualTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankManualTutorialViewController.swift; path = "app-ios/BankManualTutorialViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DA541CA43655003AFD8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "app-ios/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		30C2DA561CA4365D003AFD8B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "app-ios/Info.plist"; sourceTree = SOURCE_ROOT; };
 		30C2DA581CA43665003AFD8B /* App.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = App.entitlements; path = "app-ios/App.entitlements"; sourceTree = SOURCE_ROOT; };
@@ -948,6 +950,7 @@
 			children = (
 				30C2DAE41CA4392E003AFD8B /* AddBankViewController.swift */,
 				30879A4E1D12F10300D3DF01 /* BankManualAddViewController.swift */,
+				30C242C81D144A2400261D55 /* BankManualTutorialViewController.swift */,
 				300E422A1CB47428004316CF /* BankConnectedListTableViewController.swift */,
 				3025C1201D0DF9CA00050C2C /* BankConnectedCell.swift */,
 				30C2DAE61CA43934003AFD8B /* BankAccountViewController.swift */,
@@ -1510,6 +1513,7 @@
 				3080730C1CFF6F260070C7FE /* Subscription.swift in Sources */,
 				30C2DAD01CA4386A003AFD8B /* SupportMenuViewController.swift in Sources */,
 				30089F491CFBDE9000A2496B /* MerchantPlanDetailViewController.swift in Sources */,
+				30C242C91D144A2400261D55 /* BankManualTutorialViewController.swift in Sources */,
 				30C2DB1D1CA43A05003AFD8B /* paykloud_iosUITests.swift in Sources */,
 				30C2DADB1CA438A5003AFD8B /* ProfileLabelCell.swift in Sources */,
 				3015ADC31CE3B1110053D220 /* RiskTutorialViewController.swift in Sources */,

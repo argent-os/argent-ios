@@ -12,9 +12,14 @@ import JSSAlertView
 import Alamofire
 import SwiftyJSON
 import Crashlytics
+import MZFormSheetPresentationController
 
-class BankManualAddViewController: UIViewController, UIScrollViewDelegate {
+class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINavigationBarDelegate {
     
+    let navigationBar = UINavigationBar()
+    
+    let scrollView:UIScrollView = UIScrollView()
+
     let flagImg:UIImageView = UIImageView()
 
     let infoLabel = UILabel()
@@ -58,6 +63,7 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate {
         self.view.backgroundColor = UIColor.offWhite()
 
         addToolbarButton()
+        addHelpButton()
         
         self.navigationItem.title = "Manual Entry"
         self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
@@ -70,9 +76,7 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate {
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-        
-        let scrollView:UIScrollView = UIScrollView()
-        scrollView.frame = CGRect(x: 0, y: -40, width: screenWidth, height: screenHeight)
+        scrollView.frame = CGRect(x: 0, y: -20, width: screenWidth, height: screenHeight)
         scrollView.delegate = self
         scrollView.showsVerticalScrollIndicator = false
         scrollView.scrollEnabled = true
@@ -203,6 +207,7 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate {
                             if response.response?.statusCode == 200 {
                                 Answers.logCustomEventWithName("Manual link bank to Stripe success",
                                     customAttributes: [:])
+                                self.showAlert("Success", msg: "Bank account linked!", color: UIColor.brandGreen(), image: UIImage(named: "ic_close_light")!)
                             } else {
                                 self.showAlert("Error", msg: "Could not link bank account, please contact support for help", color: UIColor.brandRed(), image: UIImage(named: "ic_close_light")!)
                                 Answers.logCustomEventWithName("Manual link bank account link failure",
@@ -273,5 +278,67 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate {
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
+        scrollView.endEditing(true)
+    }
+}
+
+extension BankManualAddViewController {
+    // MARK: Tutorial modal
+    
+    func showTutorialModal(sender: AnyObject) {
+        let navigationController = self.storyboard!.instantiateViewControllerWithIdentifier("bankManualModalNavigationController") as! UINavigationController
+        let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
+        
+        print("showing tut")
+        // Initialize and style the terms and conditions modal
+        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
+        formSheetController.presentationController?.contentViewSize = CGSizeMake(300, 300)
+        formSheetController.presentationController?.shouldUseMotionEffect = true
+        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor()
+        formSheetController.presentationController?.containerView?.sizeToFit()
+        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
+        formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
+        formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.CenterVertically
+        formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
+        formSheetController.contentViewCornerRadius = 10
+        formSheetController.allowDismissByPanningPresentedView = true
+        formSheetController.interactivePanGestureDismissalDirection = .All;
+        
+        // Blur will be applied to all MZFormSheetPresentationControllers by default
+        MZFormSheetPresentationController.appearance().shouldApplyBackgroundBlurEffect = true
+        
+        let presentedViewController = navigationController.viewControllers.first as! BankManualTutorialViewController
+        
+        // keep passing along user data to modal
+        presentedViewController.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
+        presentedViewController.navigationItem.leftItemsSupplementBackButton = true
+        
+        // Be sure to update current module on storyboard
+        self.presentViewController(formSheetController, animated: true, completion: nil)
+    }
+}
+
+extension BankManualAddViewController {
+    func addHelpButton() {
+        // Offset by 20 pixels vertically to take the status bar into account
+        navigationBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 50)
+        navigationBar.backgroundColor = UIColor.clearColor()
+        navigationBar.tintColor = UIColor.lightBlue()
+        navigationBar.delegate = self
+        
+        // Assign the navigation item to the navigation bar
+        navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.lightBlue()]
+        
+        // Create left and right button for navigation item
+        let rightButton = UIBarButtonItem(title: "Help", style: .Plain, target: self, action: #selector(self.showTutorialModal(_:)))
+        rightButton.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+        // Create two buttons for the navigation item
+        navigationItem.rightBarButtonItem = rightButton
+        
+        // Assign the navigation item to the navigation bar
+        navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.lightBlue()]
+        navigationBar.items = [navigationItem]
+        
+        self.view.addSubview(navigationBar)
     }
 }

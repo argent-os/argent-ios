@@ -4203,6 +4203,75 @@ policy agreement. Tap to view</string>
             </objects>
             <point key="canvasLocation" x="-2585" y="-411"/>
         </scene>
+        <!--Bank Manual Tutorial View Controller-->
+        <scene sceneID="ahB-mg-dMM">
+            <objects>
+                <viewController id="uBt-Wq-uU8" customClass="BankManualTutorialViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6IX-QR-fgv"/>
+                        <viewControllerLayoutGuide type="bottom" id="G4V-OT-HiL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BkM-vm-ZoJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Bq-zF-4dd">
+                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                                <connections>
+                                    <segue destination="Lsg-aL-X8r" kind="embed" id="FY3-GF-PR8"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8Bq-zF-4dd" firstAttribute="leading" secondItem="BkM-vm-ZoJ" secondAttribute="leading" id="6Lx-gO-Xnt"/>
+                            <constraint firstItem="8Bq-zF-4dd" firstAttribute="bottom" secondItem="G4V-OT-HiL" secondAttribute="top" id="qY0-yF-ubG"/>
+                            <constraint firstAttribute="trailing" secondItem="8Bq-zF-4dd" secondAttribute="trailing" id="tVq-Ba-Jfa"/>
+                            <constraint firstItem="8Bq-zF-4dd" firstAttribute="top" secondItem="6IX-QR-fgv" secondAttribute="bottom" id="x7C-me-PYb"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="cgm-FE-IRE"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TTT-MB-76m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6976" y="-3484"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="gpq-vR-T73">
+            <objects>
+                <navigationController storyboardIdentifier="bankManualModalNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Yj3-69-wj9" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cCF-d9-s9q">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="uBt-Wq-uU8" kind="relationship" relationship="rootViewController" id="mIH-I0-rJ7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GcK-fX-AeS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6340" y="-3552"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="cMe-Vt-a8S">
+            <objects>
+                <viewController id="Lsg-aL-X8r" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tFr-3M-viM"/>
+                        <viewControllerLayoutGuide type="bottom" id="pXY-vY-zGC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GSq-Wr-JyM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YiX-Sc-9o2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7517" y="-3516"/>
+        </scene>
     </scenes>
     <resources>
         <image name="IconBank" width="171" height="171"/>
