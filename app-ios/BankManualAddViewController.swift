@@ -76,7 +76,7 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-        scrollView.frame = CGRect(x: 0, y: -20, width: screenWidth, height: screenHeight)
+        scrollView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
         scrollView.delegate = self
         scrollView.showsVerticalScrollIndicator = false
         scrollView.scrollEnabled = true
