@@ -37,6 +37,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
     var b_country = NSUserDefaults.standardUserDefaults().valueForKey("country") ?? ""
     var b_line1 = NSUserDefaults.standardUserDefaults().valueForKey("line1") ?? ""
     var b_ssn = NSUserDefaults.standardUserDefaults().valueForKey("ssn_last_4") ?? ""
+    var b_ein = NSUserDefaults.standardUserDefaults().valueForKey("ein") ?? ""
     
     var detailUser: User? {
         didSet {
@@ -293,7 +294,42 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                 NSUserDefaults.standardUserDefaults().setValue($0, forKey: "ssn_last_4")
                 Profile.sharedInstance.ssn = $0
         }
+        
+        let einRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
+            $0.titleLabel.text = "EIN"
+            $0.textField.keyboardType = .NumberPad
+            $0.textField.inputAccessoryView = self?.formerInputAccessoryView
+            }.configure {
+                $0.rowHeight = 60
+                if account.ein != "" {
+                    $0.placeholder = "provided"
+                } else {
+                    $0.placeholder = "Employee Identification Number"
+                }
+                $0.text = Profile.sharedInstance.ein
+                b_ein = $0.text
+                NSUserDefaults.standardUserDefaults().setValue($0.text, forKey: "ein")
+            }.onTextChanged {
+                self.b_ein = $0
+                NSUserDefaults.standardUserDefaults().setValue($0, forKey: "ein")
+                Profile.sharedInstance.ein = $0
+        }
 
+        let saveRow = LabelRowFormer<FormLabelCell>() { [weak self] in
+            if let x = self {
+                $0.backgroundColor = UIColor.skyBlue()
+                $0.titleLabel.textColor = UIColor.whiteColor()
+                $0.titleLabel.font = .boldSystemFontOfSize(16)
+                $0.tintColor = UIColor.whiteColor()
+            }
+            }.configure {
+                $0.text = "Save Profile"
+            }.onSelected { [weak self] _ in
+                if let x = self {
+                    x.save(x)
+                }
+        }
+        
         let deleteRow = LabelRowFormer<FormLabelCell>() { [weak self] in
                 if let x = self {
                     $0.backgroundColor = UIColor.brandRed()
@@ -346,12 +382,13 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
         //    .set(headerViewFormer: createHeader("Profile Image"))
         let profileSection = SectionFormer(rowFormer: firstNameRow, lastNameRow, usernameRow, emailRow, phoneRow)
             .set(headerViewFormer: createHeader("Profile information"))
-        let businessSection = SectionFormer(rowFormer: businessName, businessAddressRow, businessAddressZipRow, businessAddressCityRow, businessAddressStateRow, ssnRow)
+        let businessSection = SectionFormer(rowFormer: businessName, businessAddressRow, businessAddressZipRow, businessAddressCityRow, businessAddressStateRow, ssnRow, einRow)
             .set(headerViewFormer: createHeader("Business information"))
+        let saveSection = SectionFormer(rowFormer: saveRow)
         let deleteSection = SectionFormer(rowFormer: deleteRow)
             .set(headerViewFormer: createHeader("Delete account?"))
         
-        former.append(sectionFormer: profileSection, businessSection, deleteSection)
+        former.append(sectionFormer: profileSection, businessSection, saveSection, deleteSection)
             .onCellSelected { [weak self] _ in
                 self?.formerInputAccessoryView.update()
         }
@@ -401,6 +438,15 @@ extension EditProfileViewController {
                     [ "legal_entity":
                         [
                             "first_name": self.b_first_name!
+                        ]
+                ]) { (acct, bool, err) in
+                }
+            }
+            if acct?.ein == "" {
+                Account.saveStripeAccount(
+                    [ "legal_entity":
+                        [
+                            "business_tax_id": self.b_ein!
                         ]
                 ]) { (acct, bool, err) in
                 }
