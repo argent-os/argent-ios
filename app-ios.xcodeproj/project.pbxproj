@@ -1616,7 +1616,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				IBSC_MODULE = app_watchos_Extension;
 				INFOPLIST_FILE = "app-watchos/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.argentapp.ios.watchkitapp;
@@ -1639,7 +1639,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Distribution";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				IBSC_MODULE = app_watchos_Extension;
 				INFOPLIST_FILE = "app-watchos/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.argentapp.ios.watchkitapp;
