@@ -425,30 +425,36 @@ extension EditProfileViewController {
         }
         Account.getStripeAccount { (acct, err) in
             if acct?.business_first_name == "" {
-                Account.saveStripeAccount(
-                    [ "legal_entity":
-                        [
-                            "first_name": self.b_first_name!
-                        ]
+                if let first_name = self.b_first_name {
+                    Account.saveStripeAccount(
+                        [ "legal_entity":
+                            [
+                                "first_name": first_name
+                            ]
                     ]) { (acct, bool, err) in
+                    }
                 }
             }
             if acct?.business_last_name == "" {
-                Account.saveStripeAccount(
-                    [ "legal_entity":
-                        [
-                            "first_name": self.b_first_name!
-                        ]
-                ]) { (acct, bool, err) in
+                if let last_name = self.b_last_name {
+                    Account.saveStripeAccount(
+                        [ "legal_entity":
+                            [
+                                "last_name": last_name
+                            ]
+                    ]) { (acct, bool, err) in
+                    }
                 }
             }
             if acct?.ein == "" {
-                Account.saveStripeAccount(
-                    [ "legal_entity":
-                        [
-                            "business_tax_id": self.b_ein!
-                        ]
-                ]) { (acct, bool, err) in
+                if let ein = self.b_ein {
+                    Account.saveStripeAccount(
+                        [ "legal_entity":
+                            [
+                                "business_tax_id": ein
+                            ]
+                    ]) { (acct, bool, err) in
+                    }
                 }
             }
         }
