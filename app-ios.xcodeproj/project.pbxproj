@@ -21,10 +21,6 @@
 		300E42331CB71362004316CF /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E42321CB71362004316CF /* Card.swift */; };
 		3015ADC31CE3B1110053D220 /* RiskTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015ADC21CE3B1110053D220 /* RiskTutorialViewController.swift */; };
 		302010CA1CAF3B05007D5E7E /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302010C91CAF3B05007D5E7E /* Notification.swift */; };
-		302010D11CB016ED007D5E7E /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 302010D01CB016ED007D5E7E /* NotificationCenter.framework */; };
-		302010D41CB016ED007D5E7E /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302010D31CB016ED007D5E7E /* TodayViewController.swift */; };
-		302010D71CB016ED007D5E7E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 302010D51CB016ED007D5E7E /* MainInterface.storyboard */; };
-		302010DB1CB016ED007D5E7E /* Argent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 302010CF1CB016ED007D5E7E /* Argent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3025C1211D0DF9CA00050C2C /* BankConnectedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3025C1201D0DF9CA00050C2C /* BankConnectedCell.swift */; };
 		302624B91CF2573800EF80D8 /* CountryPicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 302624B81CF2573800EF80D8 /* CountryPicker.bundle */; };
 		304468F01CAA0BFC008CAE7D /* notify.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468ED1CAA0BFC008CAE7D /* notify.caf */; };
@@ -162,13 +158,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		302010D91CB016ED007D5E7E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 30FB54021C6A58B40004A538 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 302010CE1CB016ED007D5E7E;
-			remoteInfo = "app-notificationcenter";
-		};
 		30DB59681CA46CB0007FEE1E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 30FB54021C6A58B40004A538 /* Project object */;
@@ -217,7 +206,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				302010DB1CB016ED007D5E7E /* Argent.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,7 +241,6 @@
 		300E42321CB71362004316CF /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Card.swift; path = "app-ios/Card.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3015ADC21CE3B1110053D220 /* RiskTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RiskTutorialViewController.swift; path = "app-ios/RiskTutorialViewController.swift"; sourceTree = SOURCE_ROOT; };
 		302010C91CAF3B05007D5E7E /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Notification.swift; path = "app-ios/Notification.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		302010CF1CB016ED007D5E7E /* Argent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Argent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		302010D01CB016ED007D5E7E /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		302010D31CB016ED007D5E7E /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		302010D61CB016ED007D5E7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -414,14 +401,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		302010CC1CB016ED007D5E7E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				302010D11CB016ED007D5E7E /* NotificationCenter.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		30DB59631CA46CB0007FEE1E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -986,7 +965,6 @@
 				30FB54291C6A58B40004A538 /* app-iosTests.xctest */,
 				30DB595A1CA46CB0007FEE1E /* app-watchos.app */,
 				30DB59661CA46CB0007FEE1E /* app-watchos Extension.appex */,
-				302010CF1CB016ED007D5E7E /* Argent.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1064,23 +1042,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		302010CE1CB016ED007D5E7E /* Argent */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 302010DC1CB016ED007D5E7E /* Build configuration list for PBXNativeTarget "Argent" */;
-			buildPhases = (
-				302010CB1CB016ED007D5E7E /* Sources */,
-				302010CC1CB016ED007D5E7E /* Frameworks */,
-				302010CD1CB016ED007D5E7E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = Argent;
-			productName = "app-notificationcenter";
-			productReference = 302010CF1CB016ED007D5E7E /* Argent.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		30DB59591CA46CB0007FEE1E /* app-watchos */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 30DB59831CA46CB0007FEE1E /* Build configuration list for PBXNativeTarget "app-watchos" */;
@@ -1136,7 +1097,6 @@
 			);
 			dependencies = (
 				30DB597B1CA46CB0007FEE1E /* PBXTargetDependency */,
-				302010DA1CB016ED007D5E7E /* PBXTargetDependency */,
 			);
 			name = "app-ios";
 			productName = "timekloud-ios";
@@ -1189,15 +1149,6 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Sinan Ulkuatam";
 				TargetAttributes = {
-					302010CE1CB016ED007D5E7E = {
-						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 95ZGR52Q89;
-						SystemCapabilities = {
-							com.apple.Keychain = {
-								enabled = 1;
-							};
-						};
-					};
 					30DB59591CA46CB0007FEE1E = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 95ZGR52Q89;
@@ -1250,6 +1201,9 @@
 							com.apple.Push = {
 								enabled = 1;
 							};
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
 							com.apple.Wallet = {
 								enabled = 1;
 							};
@@ -1282,20 +1236,11 @@
 				30FB54281C6A58B40004A538 /* app-iosUITests */,
 				30DB59591CA46CB0007FEE1E /* app-watchos */,
 				30DB59651CA46CB0007FEE1E /* app-watchos Extension */,
-				302010CE1CB016ED007D5E7E /* Argent */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		302010CD1CB016ED007D5E7E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				302010D71CB016ED007D5E7E /* MainInterface.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		30DB59581CA46CB0007FEE1E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1470,14 +1415,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		302010CB1CB016ED007D5E7E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				302010D41CB016ED007D5E7E /* TodayViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		30DB59621CA46CB0007FEE1E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1620,11 +1557,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		302010DA1CB016ED007D5E7E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 302010CE1CB016ED007D5E7E /* Argent */;
-			targetProxy = 302010D91CB016ED007D5E7E /* PBXContainerItemProxy */;
-		};
 		30DB59691CA46CB0007FEE1E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 30DB59651CA46CB0007FEE1E /* app-watchos Extension */;
@@ -1675,39 +1607,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		302010DD1CB016ED007D5E7E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_ENTITLEMENTS = Argent.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = "app-notificationcenter/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.argentapp.ios.app-notificationcenter";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		302010DE1CB016ED007D5E7E /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6AC111B16756234AA1FDE27D /* Pods-app-ios.release.xcconfig */;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_ENTITLEMENTS = Argent.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				INFOPLIST_FILE = "app-notificationcenter/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.argentapp.ios.app-notificationcenter";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
 		30DB597D1CA46CB0007FEE1E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1782,12 +1681,13 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_ENTITLEMENTS = "app-watchos Extension/app-watchos Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Distribution";
 				INFOPLIST_FILE = "app-watchos Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.argentapp.ios.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE = "97c2607b-bd81-4245-8ad9-30f3729eaac2";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -1983,15 +1883,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		302010DC1CB016ED007D5E7E /* Build configuration list for PBXNativeTarget "Argent" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				302010DD1CB016ED007D5E7E /* Debug */,
-				302010DE1CB016ED007D5E7E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		30DB59811CA46CB0007FEE1E /* Build configuration list for PBXNativeTarget "app-watchos Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

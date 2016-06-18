@@ -14,7 +14,6 @@ import Alamofire
 import SwiftyJSON
 import XLActionController
 import MZFormSheetPresentationController
-import AYVibrantButton
 import TransitionTreasury
 import TransitionAnimation
 

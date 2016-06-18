@@ -4,7 +4,6 @@ PODS:
   - AnimatedSegmentSwitch (0.1.0)
   - Armchair (0.1.1)
   - AvePurchaseButton (1.0.3)
-  - AYVibrantButton (1.0.4)
   - BEMCheckBox (1.2.1)
   - BEMSimpleLineGraph (4.1)
   - BTNavigationDropdownMenu (0.3)
@@ -72,7 +71,6 @@ DEPENDENCIES:
   - AnimatedSegmentSwitch
   - Armchair
   - AvePurchaseButton
-  - AYVibrantButton
   - BEMCheckBox
   - BEMSimpleLineGraph
   - BTNavigationDropdownMenu
@@ -131,7 +129,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   SwiftyJSON:
-    :commit: 2a5b70f06001316d4fb54501edc70b4084705da0
+    :commit: 73670b94292b8d8496c398a973f56ac67789ba9f
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
@@ -140,7 +138,6 @@ SPEC CHECKSUMS:
   AnimatedSegmentSwitch: 7bc126b7b433f4a1b4fb6546abe405cd4b5163ae
   Armchair: 276f0dadba704b562870613301bdf7b595a29315
   AvePurchaseButton: 325c181105409b744129e4b6808895a15545caa6
-  AYVibrantButton: ca0138e754e886d92e3c71c58dd16cc392c780b8
   BEMCheckBox: 264b8b72aa92adbfefa265cc58a0cdb86b207b9f
   BEMSimpleLineGraph: 44fd451f27f8e9cf96f2da5bea27603093576dd1
   BTNavigationDropdownMenu: c36d20785253699046fdd295698c24b1d1c18f53
