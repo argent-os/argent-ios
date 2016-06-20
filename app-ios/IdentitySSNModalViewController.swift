@@ -44,12 +44,11 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(titleLabel)
         
         ssnTextField.frame = CGRect(x: 20, y: 70, width: 260, height: 150)
-        ssnTextField.placeholder = "xxxxxxxxx"
+        ssnTextField.placeholder = "xxx-xx-xxxx"
         ssnTextField.alpha = 0.8
         ssnTextField.textAlignment = .Center
         ssnTextField.font = UIFont(name: "HelveticaNeue", size: 20)
         ssnTextField.textColor = UIColor.lightBlue()
-        self.view.addSubview(ssnTextField)
 //        ssnTextField.mask = "###-##-####"
         ssnTextField.mask = "#########"
         ssnTextField.delegate = self
@@ -70,7 +69,16 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
         let str = NSAttributedString(string: "Submit", attributes: attribs)
         submitSSNButton.setAttributedTitle(str, forState: .Normal)
         submitSSNButton.addTarget(self, action: #selector(self.submitSSN(_:)), forControlEvents: .TouchUpInside)
-        self.view.addSubview(submitSSNButton)
+        
+        Account.getStripeAccount { (acct, err) in
+            //
+            if (acct?.pin)! == true {
+                self.titleLabel.text = "Your SSN is already provided"
+            } else {
+                self.view.addSubview(self.ssnTextField)
+                self.view.addSubview(self.submitSSNButton)
+            }
+        }
     }
     
     
@@ -79,6 +87,7 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
     }
     
     func submitSSN(sender: AnyObject) {
+        
         addActivityIndicatorButton(UIActivityIndicatorView(), button: submitSSNButton, color: .White)
         
         let legalContent: [String: AnyObject] = [
@@ -92,7 +101,9 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
         showGlobalNotification("Securely confirming ssn...", duration: 2.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
         Account.saveStripeAccount(legalJSON) { (acct, bool, err) in
             if bool {
-                showGlobalNotification("SSN Confirmed!", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
+                let _ = Timeout(2) {
+                    showGlobalNotification("SSN Confirmed!", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
+                }
                 self.dismissViewControllerAnimated(true, completion: nil)
                 Answers.logCustomEventWithName("Identity Verification SSN Upload Success",
                                                customAttributes: [:])

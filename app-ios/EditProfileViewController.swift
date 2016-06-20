@@ -185,7 +185,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
                 $0.rowHeight = 60
-                $0.placeholder = account.business_name ?? "Enter business name"
+                $0.placeholder = account.business_name ?? "Enter business name (required)"
                 $0.text = account.business_name ?? Profile.sharedInstance.businessName
                 b_name = $0.text
                 self.dic["business_name"] = $0.text
@@ -286,7 +286,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                 if account.ssn_last_4.toBool() == true {
                     $0.placeholder = "provided"
                 } else {
-                    $0.placeholder = "XXXX For transfers of $20,000+"
+                    $0.placeholder = "xxxx For transfers of $20,000+"
                 }
                 $0.text = Profile.sharedInstance.ssn
                 NSUserDefaults.standardUserDefaults().setValue($0.text, forKey: "ssn_last_4")
@@ -380,7 +380,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
         // Temporarily remove image section
         // let imageSection = SectionFormer(rowFormer: imageRow)
         //    .set(headerViewFormer: createHeader("Profile Image"))
-        let profileSection = SectionFormer(rowFormer: firstNameRow, lastNameRow, usernameRow, emailRow, phoneRow)
+        let profileSection = SectionFormer(rowFormer: firstNameRow, lastNameRow, usernameRow, emailRow)
             .set(headerViewFormer: createHeader("Profile information"))
         let businessSection = SectionFormer(rowFormer: businessName, businessAddressRow, businessAddressZipRow, businessAddressCityRow, businessAddressStateRow, ssnRow, einRow)
             .set(headerViewFormer: createHeader("Business information"))
@@ -415,14 +415,9 @@ extension EditProfileViewController {
     // Update Requests
     
     func save(sender: AnyObject) {
-        print(b_ssn)
-        if b_ssn?.stringValue == "" || b_ssn!.stringValue == nil {
-            print("posting without ssn")
-            postWithoutSSN()
-        } else {
-            print("posting with ssn")
-            postWithSSN()
-        }
+
+        saveAccount()
+
         Account.getStripeAccount { (acct, err) in
             if acct?.business_first_name == "" {
                 if let first_name = self.b_first_name {
@@ -457,46 +452,22 @@ extension EditProfileViewController {
                     }
                 }
             }
-        }
-    }
-    
-    func postWithSSN() {
-        
-        let legalContent: [String: AnyObject] = [
-            "ssn_last_4": b_ssn!,
-            "business_name": b_name!,
-            "address": [
-                "city": b_city!,
-                "state": b_state!,
-                "country": b_country!,
-                "line1": b_line1!,
-                "postal_code": b_postal_code!
-            ]
-        ]
-        
-        let legalJSON: [String: AnyObject] = [
-            "business_name": b_name!,
-            "email": b_email!,
-            "legal_entity" : legalContent
-        ]
-        
-        User.saveProfile(dic) { (user, bool, err) in
-            if bool == true {
-                Account.saveStripeAccount(legalJSON) { (acct, bool, err) in
-                    print("save acct called")
-                    if bool == true {
-                        self.showAlert("Success", msg: "Profile Updated", color: UIColor.brandGreen(), image: UIImage(named: "ic_check_light")!)
-                    } else {
-                        self.showAlert("Error", msg: (err?.localizedDescription)!, color: UIColor.brandRed(), image: UIImage(named: "ic_close_light")!)
+            if acct?.ssn_last_4.toBool() == false {
+                if let ssn = self.b_ssn {
+                    print("ssn last 4 posting")
+                    Account.saveStripeAccount(
+                        [ "legal_entity":
+                            [
+                                "ssn_last_4": ssn
+                            ]
+                    ]) { (acct, bool, err) in
                     }
                 }
-            } else {
-                self.showAlert("Error", msg: (err?.localizedDescription)!, color: UIColor.brandRed(), image: UIImage(named: "ic_close_light")!)
             }
         }
     }
     
-    func postWithoutSSN() {
+    func saveAccount() {
         let legalContent: [String: AnyObject] = [
             "business_name": b_name!,
             "address": [

@@ -131,7 +131,7 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
 
         routingTextLabel.text = "ACH Routing #"
         routingTextLabel.frame = CGRect(x: 40, y: 170, width: screenWidth-40, height: 70)
-        routingTextLabel.textColor = UIColor.lightBlue()
+        routingTextLabel.textColor = UIColor.mediumBlue()
         routingTextLabel.font = UIFont.systemFontOfSize(UIFont.systemFontSize(), weight: UIFontWeightLight)
         
         scrollView.addSubview(routingTextLabel)
@@ -152,7 +152,7 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
         
         accountTextLabel.frame = CGRect(x: 40, y: 260, width: screenWidth-40, height: 70)
         accountTextLabel.text = "Account #"
-        accountTextLabel.textColor = UIColor.lightBlue()
+        accountTextLabel.textColor = UIColor.mediumBlue()
         accountTextLabel.font = UIFont.systemFontOfSize(UIFont.systemFontSize(), weight: UIFontWeightLight)
         
         scrollView.addSubview(accountTextLabel)
@@ -207,7 +207,7 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
                             if response.response?.statusCode == 200 {
                                 Answers.logCustomEventWithName("Manual link bank to Stripe success",
                                     customAttributes: [:])
-                                self.showAlert("Success", msg: "Bank account linked!", color: UIColor.brandGreen(), image: UIImage(named: "ic_close_light")!)
+                                self.showAlert("Success", msg: "Bank account linked!", color: UIColor.brandGreen(), image: UIImage(named: "ic_check_light")!)
                             } else {
                                 self.showAlert("Error", msg: "Could not link bank account, please contact support for help", color: UIColor.brandRed(), image: UIImage(named: "ic_close_light")!)
                                 Answers.logCustomEventWithName("Manual link bank account link failure",

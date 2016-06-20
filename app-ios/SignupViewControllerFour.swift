@@ -311,7 +311,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
     
     func goToAuth() {
         self.presentViewController(AuthViewController(), animated: true, completion: {
-            showGlobalNotification("Welcome to " + APP_NAME + "!", duration: 4, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.brandGreen())
+            showGlobalNotification("Welcome to " + APP_NAME + "!", duration: 4, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
         })
     }
     

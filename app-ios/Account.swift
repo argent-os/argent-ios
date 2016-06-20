@@ -24,6 +24,7 @@ class Account {
     let address_postal_code: String
     let address_country: String
     let ssn_last_4: String
+    let pin: Bool
     let ein: String
     let type: String
     let legal_entity: Dictionary<String, AnyObject>
@@ -31,7 +32,7 @@ class Account {
     let transfers_enabled: Bool
     let verification_fields_needed: [String]
 
-    required init(id: String, business_first_name: String, business_last_name: String, business_email: String, business_name: String, business_tax_id: String, address_line1: String, address_city: String, address_state: String, address_country: String, address_postal_code: String, ssn_last_4: String, ein: String, type: String, legal_entity: Dictionary<String, AnyObject>, transfers_enabled: Bool, verification_fields_needed: [String]) {
+    required init(id: String, business_first_name: String, business_last_name: String, business_email: String, business_name: String, business_tax_id: String, address_line1: String, address_city: String, address_state: String, address_country: String, address_postal_code: String, ssn_last_4: String, pin: Bool, ein: String, type: String, legal_entity: Dictionary<String, AnyObject>, transfers_enabled: Bool, verification_fields_needed: [String]) {
         self.id = id
         self.business_first_name = business_first_name
         self.business_last_name = business_last_name
@@ -44,6 +45,7 @@ class Account {
         self.address_country = address_country
         self.address_postal_code = address_postal_code
         self.ssn_last_4 = ssn_last_4
+        self.pin = pin
         self.ein = ein
         self.type = type
         self.legal_entity = legal_entity
@@ -91,6 +93,7 @@ class Account {
                                 let address_country = legal_entity["address"]["country"].stringValue
                                 let address_postal_code = legal_entity["address"]["postal_code"].stringValue
                                 let ssn_last_4 = legal_entity["ssn_last_4_provided"].stringValue
+                                let pin = legal_entity["personal_id_number_provided"].boolValue
                                 let ein = legal_entity["business_tax_id"].stringValue
                                 let type = legal_entity["type"].stringValue
                                 
@@ -99,7 +102,7 @@ class Account {
                                 let _ = acct["verification"]["fields_needed"].arrayObject.map { (unwrappedOptionalArray) -> Void in
                                     // print(unwrappedOptionalArray)
                                     
-                                    let account = Account(id: id, business_first_name: business_first_name, business_last_name: business_last_name, business_email: business_email, business_name: business_name,  business_tax_id: business_tax_id, address_line1: address_line1, address_city: address_city, address_state: address_state, address_country: address_country, address_postal_code: address_postal_code, ssn_last_4: ssn_last_4, ein: ein, type: type, legal_entity: Dictionary<String, AnyObject>(), transfers_enabled: transfers_enabled, verification_fields_needed: unwrappedOptionalArray as! [String])
+                                    let account = Account(id: id, business_first_name: business_first_name, business_last_name: business_last_name, business_email: business_email, business_name: business_name,  business_tax_id: business_tax_id, address_line1: address_line1, address_city: address_city, address_state: address_state, address_country: address_country, address_postal_code: address_postal_code, ssn_last_4: ssn_last_4, pin: pin, ein: ein, type: type, legal_entity: Dictionary<String, AnyObject>(), transfers_enabled: transfers_enabled, verification_fields_needed: unwrappedOptionalArray as! [String])
                                     
                                     completionHandler(account, response.result.error)
 
@@ -156,12 +159,13 @@ class Account {
                                 let address_postal_code = legal_entity["address"]["postal_code"].stringValue
                                 let ssn_last_4 = legal_entity["ssn_last_4_provided"].stringValue
                                 let ein = legal_entity["business_tax_id"].stringValue
+                                let pin = legal_entity["personal_id_number_provided"].boolValue
                                 let type = legal_entity["type"].stringValue
                                 
                                 let transfers_enabled = acct["transfers_enabled"].boolValue
                                 let verification_fields_needed = [String(acct["verification"]["fields_needed"].arrayObject)]
                                 
-                                let account = Account(id: id, business_first_name: business_first_name, business_last_name: business_last_name, business_email: business_email, business_name: business_name, business_tax_id: business_tax_id, address_line1: address_line1, address_city: address_city, address_state: address_state, address_country: address_country, address_postal_code: address_postal_code, ssn_last_4: ssn_last_4, ein: ein, type: type, legal_entity: Dictionary<String, AnyObject>(), transfers_enabled: transfers_enabled, verification_fields_needed: verification_fields_needed)
+                                let account = Account(id: id, business_first_name: business_first_name, business_last_name: business_last_name, business_email: business_email, business_name: business_name, business_tax_id: business_tax_id, address_line1: address_line1, address_city: address_city, address_state: address_state, address_country: address_country, address_postal_code: address_postal_code, ssn_last_4: ssn_last_4, pin: pin, ein: ein, type: type, legal_entity: Dictionary<String, AnyObject>(), transfers_enabled: transfers_enabled, verification_fields_needed: verification_fields_needed)
                                 
                                 completionHandler(account, true, response.result.error)
                             }

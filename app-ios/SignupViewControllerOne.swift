@@ -158,7 +158,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         dobTextField.layer.borderWidth = 1
         dobTextField.layer.cornerRadius = 10
         dobTextField.backgroundColor = UIColor.clearColor()
-        dobTextField.placeholder = "Date Founded | MM/DD/YYYY"
+        dobTextField.placeholder = "Date of Birth | MM/DD/YYYY"
         dobTextField.keyboardType = UIKeyboardType.NumberPad
         dobTextField.textColor = UIColor.lightBlue()
         dobTextField.clearButtonMode = UITextFieldViewMode.Never
@@ -319,10 +319,10 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
             displayErrorAlertMessage("Company name cannot be empty")
             return false
         } else if(dobTextField.text!.characters.count < 10) {
-            displayErrorAlertMessage("Company founded date length too short")
+            displayErrorAlertMessage("Date of birth length too short")
             return false
         } else if(dobMonth == "" || dobDay == "" || dobYear == "") {
-            displayErrorAlertMessage("Company founded date cannot be empty")
+            displayErrorAlertMessage("Date of birth cannot be empty")
             return false
         } else if(Int(dobMonth) > 12 || Int(dobMonth) == 0 || Int(dobDay) == 0 || Int(dobDay) > 31 || Int(dobYear) > 2002 || Int(dobYear) < 1914) {
             displayErrorAlertMessage("Month cannot be greater than 12 or equal to zero. Day cannot be greater than 31 or equal to zero, year cannot be less than 1914 or greater than 2002")

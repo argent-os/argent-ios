@@ -13,12 +13,15 @@ import CWStatusBarNotification
 import StoreKit
 import Crashlytics
 import Whisper
+import JSSAlertView
 
 class ProfileMenuViewController: UITableViewController, SKStoreProductViewControllerDelegate {
     
     @IBOutlet weak var shareCell: UITableViewCell!
 
     @IBOutlet weak var rateCell: UITableViewCell!
+    
+    private var verifiedLabel = UILabel()
     
     private var userImageView: UIImageView = UIImageView()
 
@@ -56,6 +59,20 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
     }
     
     func validateAccount() {
+        
+        self.verifiedLabel.contentMode = .Center
+        self.verifiedLabel.textAlignment = .Center
+        self.verifiedLabel.textColor = UIColor.whiteColor()
+        self.verifiedLabel.font = UIFont(name: "HelveticaNeue-Light", size: 14)
+        self.verifiedLabel.layer.cornerRadius = 5
+        self.verifiedLabel.layer.borderColor = UIColor.whiteColor().CGColor
+        self.verifiedLabel.layer.borderWidth = 1
+        let verifyTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.verifyAlert(_:)))
+        self.verifiedLabel.addGestureRecognizer(verifyTap)
+        self.verifiedLabel.userInteractionEnabled = true
+        self.view.addSubview(self.verifiedLabel)
+        self.view.bringSubviewToFront(self.verifiedLabel)
+
         Account.getStripeAccount { (acct, err) in
             
             let fields = acct?.verification_fields_needed
@@ -63,6 +80,9 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                 
                 // if array has values
                 if !unwrappedOptionalArray.isEmpty {
+                    self.verifiedLabel.text = "How to Verify"
+                    self.verifiedLabel.frame = CGRect(x: 20, y: 0, width: 120, height: 25)
+                    
                     let fields_required: [String] = unwrappedOptionalArray
                     let fields_list = fields_required.dropLast().reduce("") { $0 + $1 + ", " } + fields_required.last!
                     
@@ -78,6 +98,9 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                             showGlobalNotification("Transfers disabled until more account information is provided", duration: 10.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.iosBlue())
                         }
                     }
+                } else {
+                    self.verifiedLabel.frame = CGRect(x: 10, y: -20, width: 75, height: 25)
+                    self.verifiedLabel.text = "Verified"
                 }
             }
         }
@@ -134,6 +157,8 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
     func productViewControllerDidFinish(viewController: SKStoreProductViewController) {
         viewController.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    
 
     func configureHeader() {
         
@@ -465,6 +490,22 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
             self.subscriptionsArray = subscriptions!
             completionHandler(subscriptions!, error)
         })
+    }
+    
+    func verifyAlert(sender: AnyObject) {
+        print("tappd")
+        let customIcon:UIImage = UIImage(named: "IconEmpty")! // your custom icon UIImage
+        let customColor:UIColor = UIColor.lightBlue() // base color for the alert
+        self.view.endEditing(true)
+        let alertView = JSSAlertView().show(
+            self,
+            title: "Getting Started",
+            text: "\n In order to receive money through Argent, please follow these steps. \n\n 1) Complete your profile in 'Edit Profile'  \n\n 2) Connect your bank account in 'Bank Account' using your ACH Routing # and Account # \n\n 3) Verify your identity in 'Identity Verification' using one verification document and full SSN \n\n Congratulations!  You are now ready to start receiving payments through Argent. \n",
+            buttonText: "Great!",
+            noButtons: false,
+            color: customColor,
+            iconImage: customIcon)
+        alertView.setTextTheme(.Light) // can be .Light or .Dark
     }
     
     // User profile image view scroll effects

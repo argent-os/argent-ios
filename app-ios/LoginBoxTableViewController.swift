@@ -23,6 +23,8 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
 
     @IBOutlet weak var onePasswordButton: UITableViewCell!
     
+    @IBOutlet weak var loginButton: UITableViewCell!
+    
     @IBOutlet var loginTableView: UITableView!
     
     @IBOutlet weak var usernameCell: UITableViewCell!
@@ -40,6 +42,14 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
     func configure() {
         let screen = UIScreen.mainScreen().bounds
         let _ = screen.size.width
+        
+        self.loginButton.textLabel?.text = "Login to Argent"
+        let loginTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.login(_:)))
+        self.loginButton.addGestureRecognizer(loginTap)
+        loginButton.textLabel?.textColor = UIColor.whiteColor()
+        loginButton.textLabel?.textAlignment = .Center
+        loginButton.textLabel?.font = UIFont.systemFontOfSize(11)
+        loginButton.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.3)
         
         //onePasswordButton
         onePasswordButton.textLabel?.textColor = UIColor.whiteColor()
