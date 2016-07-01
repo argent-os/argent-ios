@@ -22,7 +22,9 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
     @IBOutlet weak var rateCell: UITableViewCell!
     
     private var verifiedLabel = UILabel()
-    
+
+    private var verifiedImage = UIImageView()
+
     private var userImageView: UIImageView = UIImageView()
 
     private var scrollView: UIScrollView!
@@ -100,7 +102,12 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                     }
                 } else {
                     self.verifiedLabel.frame = CGRect(x: 10, y: -20, width: 75, height: 25)
-                    self.verifiedLabel.text = "Verified"
+                    self.verifiedLabel.text = ""
+                    self.verifiedLabel.layer.borderColor = UIColor.clearColor().CGColor
+                    
+                    self.verifiedImage.image = UIImage(named: "IconSuccessWhite")
+                    self.verifiedImage.frame = CGRect(x: 10, y: -30, width: 30, height: 30)
+                    self.view.addSubview(self.verifiedImage)
                 }
             }
         }
