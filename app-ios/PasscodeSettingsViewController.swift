@@ -48,7 +48,7 @@ class PasscodeSettingsViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        passcodeSwitch.onTintColor = UIColor(rgba: "#1f62f1")
+        passcodeSwitch.onTintColor = UIColor.skyBlue()
         
         self.navigationItem.title = "App Security"
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()

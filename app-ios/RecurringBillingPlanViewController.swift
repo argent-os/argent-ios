@@ -223,7 +223,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
             $0.textField.autocapitalizationType = .None
             $0.textField.returnKeyType = .Done
             }.configure {
-                $0.placeholder = "(Optional) Statement Description"
+                $0.placeholder = "(Optional) 22 characters maximum"
                 $0.rowHeight = 60
             }.onTextChanged { [weak self] in
                 self?.dic["statement_descriptor"] = $0

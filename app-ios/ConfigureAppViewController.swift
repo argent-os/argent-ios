@@ -51,6 +51,7 @@ class ConfigureAppViewController: FormViewController, UIApplicationDelegate {
         let configurePOSRowScreenAlive = SwitchRowFormer<FormSwitchCell>() {
             $0.titleLabel.text = "Keep POS screen alive"
             $0.titleLabel.font = UIFont.systemFontOfSize(14)
+            $0.switchButton.onTintColor = UIColor.skyBlue()
             }.configure() { cell in
                 cell.rowHeight = 60
                 if(KeychainSwift().getBool("screenAlive") == true) {
@@ -71,6 +72,7 @@ class ConfigureAppViewController: FormViewController, UIApplicationDelegate {
         let configureThemeRow = SwitchRowFormer<FormSwitchCell>() {
             $0.titleLabel.text = "Alternate Theme"
             $0.titleLabel.font = UIFont.systemFontOfSize(14)
+            $0.switchButton.onTintColor = UIColor.skyBlue()
             }.configure() { cell in
                 cell.rowHeight = 60
                 if(KeychainSwift().get("theme") == "DARK") {

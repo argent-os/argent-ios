@@ -71,6 +71,7 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
         let pushNotificationsRow = SwitchRowFormer<FormSwitchCell>() {
             $0.titleLabel.text = "Push Notifications"
             $0.titleLabel.font = UIFont.systemFontOfSize(14)
+            $0.switchButton.onTintColor = UIColor.skyBlue()
             }.configure() { cell in
                 getPushState { (val, token, error) in
                     cell.rowHeight = 60

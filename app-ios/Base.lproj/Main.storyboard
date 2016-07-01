@@ -1575,7 +1575,8 @@ We support both debit and credit.</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="OTc-2W-gWd"/>
                                 </constraints>
-                                <string key="text">Connect to a US bank account with your ACH routing number and account number. 
+                                <string key="text">Connect to a US bank account with your ACH routing number and account number.
+
 </string>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <color key="textColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="0.5" colorSpace="calibratedRGB"/>
@@ -3393,7 +3394,8 @@ policy agreement. Tap to view</string>
                                 <color key="textColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This feature is currently under development. We will send out notifications once it's live!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gn4-em-kCV">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This feature is currently under development.
+We will send out notifications once it's live!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gn4-em-kCV">
                                 <rect key="frame" x="20" y="226" width="374" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="udt-M9-a1n"/>
@@ -3819,6 +3821,11 @@ policy agreement. Tap to view</string>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="aDx-Sv-krV">
+                        <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </toolbar>
                     <connections>
                         <segue destination="a1M-TW-bLs" kind="relationship" relationship="rootViewController" id="RuS-B8-jIU"/>
                     </connections>
@@ -4311,20 +4318,20 @@ policy agreement. Tap to view</string>
         <image name="ic_tab_search" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mwT-xt-Ez4"/>
-        <segue reference="YDb-8b-gnI"/>
+        <segue reference="A1R-09-1HJ"/>
+        <segue reference="UFB-DJ-qrH"/>
         <segue reference="m0d-gd-RWW"/>
         <segue reference="zQh-Po-kj4"/>
         <segue reference="wgV-xY-MTp"/>
         <segue reference="rLo-0p-I9d"/>
+        <segue reference="agi-3I-cSC"/>
+        <segue reference="VI5-hp-Gm2"/>
+        <segue reference="ipn-3I-3vc"/>
         <segue reference="m3z-fp-Nlm"/>
         <segue reference="igQ-zk-tCm"/>
         <segue reference="aks-Yo-Spb"/>
         <segue reference="fEJ-lR-z9I"/>
         <segue reference="7cu-FP-MoG"/>
-        <segue reference="agi-3I-cSC"/>
-        <segue reference="VI5-hp-Gm2"/>
-        <segue reference="ipn-3I-3vc"/>
         <segue reference="tsA-Cg-VzQ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

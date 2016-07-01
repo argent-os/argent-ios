@@ -73,7 +73,7 @@ class MenuDetailViewController: UIViewController, ModalTransitionDelegate {
         let btn1 = UIButton()
         let str1 = NSAttributedString(string: "View Customers", attributes: [
             NSForegroundColorAttributeName : UIColor.lightBlue(),
-            NSFontAttributeName : UIFont(name: "ArialRoundedMTBold", size: 18)!
+            NSFontAttributeName : UIFont.systemFontOfSize(17, weight: UIFontWeightLight)
             ])
         btn1.setAttributedTitle(str1, forState: .Normal)
         btn1.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
@@ -98,7 +98,7 @@ class MenuDetailViewController: UIViewController, ModalTransitionDelegate {
         let btn2 = UIButton()
         let str2 = NSAttributedString(string: "View Subscriptions", attributes: [
             NSForegroundColorAttributeName : UIColor.lightBlue(),
-            NSFontAttributeName : UIFont(name: "ArialRoundedMTBold", size: 18)!
+            NSFontAttributeName : UIFont.systemFontOfSize(17, weight: UIFontWeightLight)
             ])
         btn2.setAttributedTitle(str2, forState: .Normal)
         btn2.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
@@ -123,7 +123,7 @@ class MenuDetailViewController: UIViewController, ModalTransitionDelegate {
         let btn3 = UIButton()
         let str3 = NSAttributedString(string: "View Plans", attributes: [
             NSForegroundColorAttributeName : UIColor.lightBlue(),
-            NSFontAttributeName : UIFont(name: "ArialRoundedMTBold", size: 18)!
+            NSFontAttributeName : UIFont.systemFontOfSize(17, weight: UIFontWeightLight)
             ])
         btn3.setAttributedTitle(str3, forState: .Normal)
         btn3.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)

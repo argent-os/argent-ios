@@ -48,6 +48,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         loadUserAccounts()
         
         configureSearchController()
+        
+        if let items = UITabBar().items {
+            for item in items {
+                item.title = ""
+                item.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
+            }
+        }
     }
 
     
@@ -78,7 +85,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.definesPresentationContext = true
         self.view.backgroundColor = UIColor.slateBlue()
         
-        self.title = "Search"
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.lightBlue(),
             NSFontAttributeName : UIFont(name: "HelveticaNeue", size:18)!
@@ -152,7 +158,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             // After filtering
             let pic = filteredArray[indexPath.row].picture
             
-            cell.textLabel?.text = String(filteredArray[indexPath.row].username)
+            cell.textLabel?.text = "@" + String(filteredArray[indexPath.row].username)
              //String(filteredArray[indexPath.row].business_name) ??
             
             if pic != "" {
@@ -174,10 +180,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let username = String(filteredArray[indexPath.row].username)
             if business_name != "" {
                 cell.detailTextLabel?.text = business_name
+                cell.textLabel?.text = "@" + username
             } else if first_name != "" {
                 cell.detailTextLabel?.text = first_name + " " + last_name
+                cell.textLabel?.text = "@" + username
             } else {
-                cell.detailTextLabel?.text = username
+                cell.detailTextLabel?.text = "@" + username
             }
         }
         else {
@@ -196,16 +204,16 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 //                }
             }
             
-            let business_name = dataArray[indexPath.row].business_name
-            let first_name = dataArray[indexPath.row].first_name
-            let last_name = String(dataArray[indexPath.row].last_name)
-            if business_name != "" {
-                cell.detailTextLabel?.text = business_name
-            } else if first_name != "" || last_name != "" {
-                cell.detailTextLabel?.text = first_name + " " + last_name
-            } else {
-                cell.detailTextLabel?.text = String(dataArray[indexPath.row].username)
-            }
+//            let business_name = dataArray[indexPath.row].business_name
+//            let first_name = dataArray[indexPath.row].first_name
+//            let last_name = String(dataArray[indexPath.row].last_name)
+//            if business_name != "" {
+//                cell.detailTextLabel?.text = business_name
+//            } else if first_name != "" || last_name != "" {
+//                cell.detailTextLabel?.text = first_name + " " + last_name
+//            } else {
+//                cell.detailTextLabel?.text = String(dataArray[indexPath.row].username)
+//            }
         }
         
         return cell
@@ -301,14 +309,16 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         }
         shouldShowSearchResults = true
-        searchController.searchBar.placeholder = "Search users"
+        searchController.searchBar.placeholder = "Enter username or full name"
         tblSearchResults.reloadData()
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         shouldShowSearchResults = false
         searchController.searchBar.placeholder = ""
-        //tblSearchResults.reloadData()
+        tblSearchResults.emptyDataSetDelegate = self
+        tblSearchResults.emptyDataSetSource = self
+        tblSearchResults.reloadData()
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {

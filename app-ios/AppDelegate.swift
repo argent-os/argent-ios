@@ -222,11 +222,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window!.rootViewController = viewController
         // Assign the init view controller of the app
         firstTime()
-        
+
         // Save state tab bar
         if let tabBarController = window?.rootViewController as? UITabBarController {
+            // Remove the titles and adjust the inset to account for missing title
             // print(UIApplication.sharedApplication().applicationIconBadgeNumber)
             for item in tabBarController.tabBar.items! {
+                item.title = ""
+                item.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
                 if let image = item.image {
                     item.image = image.imageWithRenderingMode(.AlwaysOriginal)
                     if UIApplication.sharedApplication().applicationIconBadgeNumber != 0 {

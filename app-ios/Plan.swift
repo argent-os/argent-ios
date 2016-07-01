@@ -57,6 +57,7 @@ class Plan {
                         case .Success:
                             if let value = response.result.value {
                                 let data = JSON(value)
+                                // TODO: Update plan handling, response with success and error status codes
                                 completionHandler(true, String(response.result.error))
                                 Answers.logCustomEventWithName("Recurring Billing Creation Plan Success",
                                     customAttributes: dic)
