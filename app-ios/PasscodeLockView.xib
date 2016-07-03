@@ -302,7 +302,7 @@
                         <action selector="passcodeSignButtonTap:" destination="-1" eventType="touchUpInside" id="kQR-ai-KbC"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoRoundShadow" translatesAutoresizingMaskIntoConstraints="NO" id="tRI-NU-2dj">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoApp" translatesAutoresizingMaskIntoConstraints="NO" id="tRI-NU-2dj">
                     <rect key="frame" x="8" y="83" width="584" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="Pu7-Ul-M4E"/>
@@ -369,8 +369,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HcN-lo-9Jb" userLabel="Placeholders">
                     <rect key="frame" x="175" y="151" width="250" height="65"/>
                     <subviews>
-                        <view alpha="0.5" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w14-Kb-Jnf" userLabel="Placeholder 1" customClass="PasscodeSignPlaceholderView" customModule="PasscodeLock">
-                            <rect key="frame" x="31" y="25" width="16" height="16"/>
+                        <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w14-Kb-Jnf" userLabel="Placeholder 1" customClass="PasscodeSignPlaceholderView" customModule="PasscodeLock">
+                            <rect key="frame" x="27" y="25" width="16" height="16"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="color" keyPath="errorColor">
@@ -384,8 +384,8 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </view>
-                        <view alpha="0.5" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U7t-aV-fYW" userLabel="Placeholder 1" customClass="PasscodeSignPlaceholderView" customModule="PasscodeLock">
-                            <rect key="frame" x="91" y="25" width="16" height="16"/>
+                        <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U7t-aV-fYW" userLabel="Placeholder 1" customClass="PasscodeSignPlaceholderView" customModule="PasscodeLock">
+                            <rect key="frame" x="89" y="25" width="16" height="16"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="color" keyPath="errorColor">
@@ -399,7 +399,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </view>
-                        <view alpha="0.5" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d8L-r0-NRS" userLabel="Placeholder 1" customClass="PasscodeSignPlaceholderView" customModule="PasscodeLock">
+                        <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d8L-r0-NRS" userLabel="Placeholder 1" customClass="PasscodeSignPlaceholderView" customModule="PasscodeLock">
                             <rect key="frame" x="146" y="25" width="16" height="16"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <userDefinedRuntimeAttributes>
@@ -414,7 +414,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </view>
-                        <view alpha="0.5" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qf8-Py-ORj" userLabel="Placeholder 1" customClass="PasscodeSignPlaceholderView" customModule="PasscodeLock">
+                        <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qf8-Py-ORj" userLabel="Placeholder 1" customClass="PasscodeSignPlaceholderView" customModule="PasscodeLock">
                             <rect key="frame" x="208" y="25" width="16" height="16"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <userDefinedRuntimeAttributes>
@@ -431,12 +431,14 @@
                         </view>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="w14-Kb-Jnf" firstAttribute="top" secondItem="U7t-aV-fYW" secondAttribute="top" id="U5z-p8-Tqn"/>
-                        <constraint firstItem="d8L-r0-NRS" firstAttribute="leading" secondItem="U7t-aV-fYW" secondAttribute="trailing" constant="39" id="aqo-NU-3Ae"/>
-                        <constraint firstItem="qf8-Py-ORj" firstAttribute="leading" secondItem="d8L-r0-NRS" secondAttribute="trailing" constant="46" id="hzc-rt-EgU"/>
-                        <constraint firstItem="U7t-aV-fYW" firstAttribute="leading" secondItem="w14-Kb-Jnf" secondAttribute="trailing" constant="44" id="pnB-Cc-ADZ"/>
-                        <constraint firstItem="U7t-aV-fYW" firstAttribute="top" secondItem="d8L-r0-NRS" secondAttribute="top" id="s8v-sC-nsb"/>
-                        <constraint firstItem="d8L-r0-NRS" firstAttribute="top" secondItem="qf8-Py-ORj" secondAttribute="top" id="xdz-QE-vxt"/>
+                        <constraint firstItem="w14-Kb-Jnf" firstAttribute="leading" secondItem="HcN-lo-9Jb" secondAttribute="leading" constant="27" id="XyW-wC-2NP"/>
+                        <constraint firstItem="U7t-aV-fYW" firstAttribute="leading" secondItem="w14-Kb-Jnf" secondAttribute="trailing" constant="46" id="jGR-by-uph"/>
+                        <constraint firstItem="w14-Kb-Jnf" firstAttribute="top" secondItem="U7t-aV-fYW" secondAttribute="top" id="kpE-lW-9UK"/>
+                        <constraint firstItem="d8L-r0-NRS" firstAttribute="top" secondItem="qf8-Py-ORj" secondAttribute="top" id="lni-SD-fH0"/>
+                        <constraint firstItem="qf8-Py-ORj" firstAttribute="leading" secondItem="d8L-r0-NRS" secondAttribute="trailing" constant="46" id="t35-XL-QwG"/>
+                        <constraint firstItem="U7t-aV-fYW" firstAttribute="top" secondItem="d8L-r0-NRS" secondAttribute="top" id="vGQ-3Q-spc"/>
+                        <constraint firstItem="d8L-r0-NRS" firstAttribute="leading" secondItem="U7t-aV-fYW" secondAttribute="trailing" constant="41" id="xMU-hv-DcU"/>
+                        <constraint firstItem="w14-Kb-Jnf" firstAttribute="centerY" secondItem="HcN-lo-9Jb" secondAttribute="centerY" id="zJ6-Gq-9bo"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wds-t8-e3i">
@@ -547,8 +549,8 @@
     </objects>
     <resources>
         <image name="BackgroundGradientTouch" width="134" height="334"/>
+        <image name="LogoApp" width="342" height="342"/>
         <image name="LogoRound" width="334" height="334"/>
-        <image name="LogoRoundShadow" width="328" height="328"/>
         <image name="ic_fingerprint" width="86" height="86"/>
     </resources>
 </document>
