@@ -26,7 +26,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, WCSessionDeleg
     
     @IBOutlet weak var loginBox: UIView!
     
-    let onePasswordButton = UIButton()
+    let onePasswordButton = UIImageView()
 
     let imageView = UIImageView()
     
@@ -76,15 +76,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate, WCSessionDeleg
         closeButton.addTarget(self, action: #selector(LoginViewController.goToAuth(_:)), forControlEvents: UIControlEvents.TouchUpOutside)
         
         onePasswordButton.frame = CGRect(x: 0, y: screenHeight-140, width: screenWidth, height: 50)
-        onePasswordButton.setImage(UIImage(named: "onepassword-button-light"), forState: .Normal)
+        onePasswordButton.image = UIImage(named: "onepassword-button-light")
         onePasswordButton.contentMode = .ScaleAspectFit
+        onePasswordButton.userInteractionEnabled = true
         self.view.addSubview(onePasswordButton)
         self.view.bringSubviewToFront(onePasswordButton)
+        
         // Set up OnePassword
         if OnePasswordExtension.sharedExtension().isAppExtensionAvailable() {
-            onePasswordButton.addTarget(self, action: #selector(self.useOnePassword(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.useOnePassword(_:)))
+            self.onePasswordButton.addGestureRecognizer(tap)
         } else {
-            onePasswordButton.addTarget(self, action: #selector(self.checkOnePasswordExists(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.checkOnePasswordExists(_:)))
+            self.onePasswordButton.addGestureRecognizer(tap)
         }
         
         let resetPasswordButton = UIButton()

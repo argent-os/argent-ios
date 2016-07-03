@@ -451,7 +451,7 @@ extension ChargeViewController: CardIOPaymentViewControllerDelegate {
         cardIOVC.hideCardIOLogo = true
         cardIOVC.collectPostalCode = true
         cardIOVC.allowFreelyRotatingCardGuide = true
-        cardIOVC.guideColor = UIColor.mediumBlue()
+        cardIOVC.guideColor = UIColor.skyBlue()
         cardIOVC.modalPresentationStyle = .FormSheet
         presentViewController(cardIOVC, animated: true, completion: nil)
     }
