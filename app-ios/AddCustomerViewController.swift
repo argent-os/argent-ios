@@ -79,7 +79,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         self.view.addSubview(backgroundGradient)
         
         let mainImage = UIImageView()
-        mainImage.image = UIImage(named: "LogoApp")
+        mainImage.image = UIImage(named: "LogoAppShadow")
         mainImage.frame = CGRect(x: screenWidth/2-35, y: 110, width: 70, height: 70)
         mainImage.contentMode = .ScaleAspectFit
         let _ = Timeout(0.1) {
@@ -100,7 +100,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         mainBody.frame = CGRect(x:40, y: 240, width: screenWidth-80, height: 80)
         mainBody.textColor = UIColor.lightGrayColor()
         mainBody.textAlignment = .Center
-        mainBody.text = "Invite new users, customers, or friends to " + APP_NAME + " today! The more the merrier."
+        mainBody.text = "Invite new users, customers, or friends to " + APP_NAME + " today. The more the merrier!"
         mainBody.numberOfLines = 5
         mainBody.font = UIFont(name: "DINAlternate-Bold", size: 14)
         let _ = Timeout(0.3) {

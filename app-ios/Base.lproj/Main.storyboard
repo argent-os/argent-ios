@@ -1764,7 +1764,7 @@ We support both debit and credit.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QGm-e6-mY6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2810" y="-1010"/>
+            <point key="canvasLocation" x="2646" y="-1010"/>
         </scene>
         <!--Home Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -1872,7 +1872,7 @@ We support both debit and credit.</string>
         <!--Login Box Table View Controller-->
         <scene sceneID="VTT-x8-ndO">
             <objects>
-                <tableViewController id="KGf-0C-kob" customClass="LoginBoxTableViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="LoginBoxTableViewController" id="KGf-0C-kob" customClass="LoginBoxTableViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="static" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="bgy-lf-zOr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1881,17 +1881,17 @@ We support both debit and credit.</string>
                         <sections>
                             <tableViewSection id="rTA-q7-2M2">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" id="tF7-UZ-FCf">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" rowHeight="60" id="tF7-UZ-FCf">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tF7-UZ-FCf" id="K0b-Ts-Ds6">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username or Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cIS-Br-dKu">
-                                                    <rect key="frame" x="8" y="7" width="304" height="30"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                    <rect key="frame" x="8" y="7" width="304" height="44.5"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" keyboardAppearance="alert" returnKeyType="next"/>
                                                 </textField>
                                             </subviews>
@@ -1905,50 +1905,28 @@ We support both debit and credit.</string>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Euc-ps-ykF" userLabel="Password Cell">
-                                        <rect key="frame" x="0.0" y="44" width="320" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="60" id="Euc-ps-ykF" userLabel="Password Cell">
+                                        <rect key="frame" x="0.0" y="60" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Euc-ps-ykF" id="wMO-GX-3Ba">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Ul-P4-THN">
-                                                    <rect key="frame" x="8" y="7" width="304" height="30"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                    <rect key="frame" x="8" y="7" width="304" height="45"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="4Ul-P4-THN" firstAttribute="leading" secondItem="wMO-GX-3Ba" secondAttribute="leadingMargin" id="7J7-7O-aU8"/>
-                                                <constraint firstItem="4Ul-P4-THN" firstAttribute="trailing" secondItem="wMO-GX-3Ba" secondAttribute="trailingMargin" id="FDz-26-9ht"/>
-                                                <constraint firstItem="4Ul-P4-THN" firstAttribute="centerY" secondItem="wMO-GX-3Ba" secondAttribute="centerY" id="Gqu-Lz-TSa"/>
-                                                <constraint firstItem="4Ul-P4-THN" firstAttribute="top" secondItem="wMO-GX-3Ba" secondAttribute="topMargin" constant="-1" id="j3A-ry-1Pb"/>
+                                                <constraint firstItem="4Ul-P4-THN" firstAttribute="top" secondItem="wMO-GX-3Ba" secondAttribute="topMargin" constant="-1" id="4qP-ut-LOH"/>
+                                                <constraint firstItem="4Ul-P4-THN" firstAttribute="leading" secondItem="wMO-GX-3Ba" secondAttribute="leadingMargin" id="9Qt-f8-1O5"/>
+                                                <constraint firstItem="4Ul-P4-THN" firstAttribute="trailing" secondItem="wMO-GX-3Ba" secondAttribute="trailingMargin" id="aOp-Nl-H6u"/>
+                                                <constraint firstItem="4Ul-P4-THN" firstAttribute="centerY" secondItem="wMO-GX-3Ba" secondAttribute="centerY" id="mOh-7U-Q8R"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="1Oc-5Y-PiD">
-                                        <rect key="frame" x="0.0" y="88" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Oc-5Y-PiD" id="02x-Ct-E7K">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Nfd-rz-gSo" userLabel="1Password Button Cell">
-                                        <rect key="frame" x="0.0" y="132" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nfd-rz-gSo" id="LEk-Qa-mgP">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -1960,9 +1938,7 @@ We support both debit and credit.</string>
                     </tableView>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="loginButton" destination="1Oc-5Y-PiD" id="jh9-M4-w7Y"/>
                         <outlet property="loginTableView" destination="bgy-lf-zOr" id="hFD-Gs-X2S"/>
-                        <outlet property="onePasswordButton" destination="Nfd-rz-gSo" id="4Xw-sE-XrW"/>
                         <outlet property="passwordCell" destination="Euc-ps-ykF" id="QsJ-eu-hSE"/>
                         <outlet property="passwordTextField" destination="4Ul-P4-THN" id="4Pq-e5-wu8"/>
                         <outlet property="usernameCell" destination="tF7-UZ-FCf" id="geO-nc-Md6"/>
@@ -1987,23 +1963,23 @@ We support both debit and credit.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qxj-YF-MXj">
-                                <rect key="frame" x="20" y="360" width="374" height="368"/>
+                                <rect key="frame" x="20" y="304" width="374" height="424"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekf-LC-JMC">
-                                <rect key="frame" x="366" y="176" width="28" height="176"/>
+                                <rect key="frame" x="366" y="176" width="28" height="120"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="176" id="WNn-la-boL"/>
-                                    <constraint firstAttribute="width" constant="28" id="iJd-Yb-2ew"/>
+                                    <constraint firstAttribute="height" constant="120" id="cXm-fB-D4g"/>
+                                    <constraint firstAttribute="width" constant="28" id="dbC-Hv-cuP"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="sXZ-ma-wgZ">
-                                <rect key="frame" x="58" y="176" width="300" height="176"/>
+                                <rect key="frame" x="58" y="176" width="300" height="120"/>
                                 <connections>
                                     <segue destination="KGf-0C-kob" kind="embed" id="ZTI-S2-gc0"/>
                                 </connections>
@@ -2011,14 +1987,14 @@ We support both debit and credit.</string>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zea-Qb-Ash">
                                 <rect key="frame" x="58" y="28" width="336" height="140"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="140" id="dBM-7z-eex"/>
+                                    <constraint firstAttribute="height" constant="140" id="dr4-at-1i9"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKC-VQ-6n0">
-                                <rect key="frame" x="20" y="61" width="25" height="291"/>
+                                <rect key="frame" x="20" y="61" width="25" height="235"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -2026,8 +2002,8 @@ We support both debit and credit.</string>
                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9CP-LG-4Ik">
                                 <rect key="frame" x="20" y="28" width="25" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="78b-Ps-53f"/>
-                                    <constraint firstAttribute="width" constant="25" id="LW8-EC-k2B"/>
+                                    <constraint firstAttribute="height" constant="25" id="qcX-tg-PtF"/>
+                                    <constraint firstAttribute="width" constant="25" id="zce-h7-XDt"/>
                                 </constraints>
                                 <color key="tintColor" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" image="ic_close_light">
@@ -2037,25 +2013,25 @@ We support both debit and credit.</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="9CP-LG-4Ik" firstAttribute="leading" secondItem="SKC-VQ-6n0" secondAttribute="leading" id="1M0-K4-4i0"/>
-                            <constraint firstItem="SKC-VQ-6n0" firstAttribute="leading" secondItem="Qxj-YF-MXj" secondAttribute="leading" id="3Ae-Yu-u4J"/>
-                            <constraint firstItem="zea-Qb-Ash" firstAttribute="trailing" secondItem="qF7-NG-cQ5" secondAttribute="trailingMargin" id="GjC-Lf-xfs"/>
-                            <constraint firstItem="SKC-VQ-6n0" firstAttribute="top" secondItem="9CP-LG-4Ik" secondAttribute="bottom" constant="8" symbolic="YES" id="Ksn-Ds-VVR"/>
-                            <constraint firstItem="zea-Qb-Ash" firstAttribute="leading" secondItem="9CP-LG-4Ik" secondAttribute="trailing" constant="13" id="QN2-hO-JRa"/>
-                            <constraint firstItem="9CP-LG-4Ik" firstAttribute="trailing" secondItem="SKC-VQ-6n0" secondAttribute="trailing" id="Rci-X8-B9q"/>
-                            <constraint firstItem="SKC-VQ-6n0" firstAttribute="baseline" secondItem="ekf-LC-JMC" secondAttribute="baseline" id="SQO-Ul-I1Z"/>
-                            <constraint firstItem="ekf-LC-JMC" firstAttribute="trailing" secondItem="Qxj-YF-MXj" secondAttribute="trailing" id="UcE-ar-fSf"/>
-                            <constraint firstItem="9CP-LG-4Ik" firstAttribute="top" secondItem="zea-Qb-Ash" secondAttribute="top" id="VEV-XP-xqj"/>
-                            <constraint firstItem="9CP-LG-4Ik" firstAttribute="top" secondItem="89e-HS-vDh" secondAttribute="bottom" constant="8" symbolic="YES" id="aqu-eh-K5M"/>
-                            <constraint firstItem="zea-Qb-Ash" firstAttribute="leading" secondItem="sXZ-ma-wgZ" secondAttribute="leading" id="dOG-mV-tv0"/>
-                            <constraint firstItem="Qxj-YF-MXj" firstAttribute="top" secondItem="SKC-VQ-6n0" secondAttribute="bottom" constant="8" symbolic="YES" id="dd3-pN-FDi"/>
-                            <constraint firstItem="2OE-D7-RmW" firstAttribute="top" secondItem="Qxj-YF-MXj" secondAttribute="bottom" constant="8" symbolic="YES" id="drD-mJ-5HV"/>
-                            <constraint firstItem="sXZ-ma-wgZ" firstAttribute="top" secondItem="ekf-LC-JMC" secondAttribute="top" id="eR6-Vf-SyM"/>
-                            <constraint firstItem="Qxj-YF-MXj" firstAttribute="top" secondItem="sXZ-ma-wgZ" secondAttribute="bottom" constant="8" symbolic="YES" id="lTg-pa-aaP"/>
-                            <constraint firstItem="sXZ-ma-wgZ" firstAttribute="top" secondItem="zea-Qb-Ash" secondAttribute="bottom" constant="8" symbolic="YES" id="qGq-ke-RRm"/>
-                            <constraint firstItem="zea-Qb-Ash" firstAttribute="trailing" secondItem="ekf-LC-JMC" secondAttribute="trailing" id="xR7-Hq-Yd3"/>
-                            <constraint firstItem="ekf-LC-JMC" firstAttribute="leading" secondItem="sXZ-ma-wgZ" secondAttribute="trailing" constant="8" symbolic="YES" id="xT7-O0-gbE"/>
-                            <constraint firstItem="9CP-LG-4Ik" firstAttribute="leading" secondItem="qF7-NG-cQ5" secondAttribute="leadingMargin" id="xke-eM-Dpp"/>
+                            <constraint firstItem="zea-Qb-Ash" firstAttribute="leading" secondItem="sXZ-ma-wgZ" secondAttribute="leading" id="2e1-IN-oSv"/>
+                            <constraint firstItem="sXZ-ma-wgZ" firstAttribute="top" secondItem="zea-Qb-Ash" secondAttribute="bottom" constant="8" symbolic="YES" id="4Pb-HH-J8R"/>
+                            <constraint firstItem="9CP-LG-4Ik" firstAttribute="leading" secondItem="SKC-VQ-6n0" secondAttribute="leading" id="70l-Ym-Zuf"/>
+                            <constraint firstItem="sXZ-ma-wgZ" firstAttribute="top" secondItem="ekf-LC-JMC" secondAttribute="top" id="7aJ-7e-Vo6"/>
+                            <constraint firstItem="SKC-VQ-6n0" firstAttribute="baseline" secondItem="ekf-LC-JMC" secondAttribute="baseline" id="96e-Id-S0L"/>
+                            <constraint firstItem="9CP-LG-4Ik" firstAttribute="top" secondItem="89e-HS-vDh" secondAttribute="bottom" constant="8" symbolic="YES" id="9qR-xs-Mg1"/>
+                            <constraint firstItem="ekf-LC-JMC" firstAttribute="trailing" secondItem="Qxj-YF-MXj" secondAttribute="trailing" id="Rwj-Qj-ZCq"/>
+                            <constraint firstItem="9CP-LG-4Ik" firstAttribute="leading" secondItem="qF7-NG-cQ5" secondAttribute="leadingMargin" id="TEC-67-1W1"/>
+                            <constraint firstItem="zea-Qb-Ash" firstAttribute="trailing" secondItem="qF7-NG-cQ5" secondAttribute="trailingMargin" id="Vcs-zy-qbB"/>
+                            <constraint firstItem="9CP-LG-4Ik" firstAttribute="trailing" secondItem="SKC-VQ-6n0" secondAttribute="trailing" id="aZL-iY-WhU"/>
+                            <constraint firstItem="zea-Qb-Ash" firstAttribute="trailing" secondItem="ekf-LC-JMC" secondAttribute="trailing" id="eOG-BO-iuK"/>
+                            <constraint firstItem="9CP-LG-4Ik" firstAttribute="top" secondItem="zea-Qb-Ash" secondAttribute="top" id="lUk-OV-dE5"/>
+                            <constraint firstItem="SKC-VQ-6n0" firstAttribute="top" secondItem="9CP-LG-4Ik" secondAttribute="bottom" constant="8" symbolic="YES" id="nYs-Te-v7a"/>
+                            <constraint firstItem="2OE-D7-RmW" firstAttribute="top" secondItem="Qxj-YF-MXj" secondAttribute="bottom" constant="8" symbolic="YES" id="pSw-wG-db0"/>
+                            <constraint firstItem="ekf-LC-JMC" firstAttribute="leading" secondItem="sXZ-ma-wgZ" secondAttribute="trailing" constant="8" symbolic="YES" id="sMR-u7-Ye3"/>
+                            <constraint firstItem="SKC-VQ-6n0" firstAttribute="leading" secondItem="Qxj-YF-MXj" secondAttribute="leading" id="uaN-kI-vDl"/>
+                            <constraint firstItem="Qxj-YF-MXj" firstAttribute="top" secondItem="sXZ-ma-wgZ" secondAttribute="bottom" constant="8" symbolic="YES" id="xph-mM-d3Q"/>
+                            <constraint firstItem="Qxj-YF-MXj" firstAttribute="top" secondItem="SKC-VQ-6n0" secondAttribute="bottom" constant="8" symbolic="YES" id="yVG-Gn-eSY"/>
+                            <constraint firstItem="zea-Qb-Ash" firstAttribute="leading" secondItem="9CP-LG-4Ik" secondAttribute="trailing" constant="13" id="z35-j7-xeb"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -4318,21 +4294,21 @@ policy agreement. Tap to view</string>
         <image name="ic_tab_search" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="A1R-09-1HJ"/>
-        <segue reference="UFB-DJ-qrH"/>
-        <segue reference="m0d-gd-RWW"/>
+        <segue reference="mwT-xt-Ez4"/>
         <segue reference="zQh-Po-kj4"/>
         <segue reference="wgV-xY-MTp"/>
+        <segue reference="YDb-8b-gnI"/>
+        <segue reference="m0d-gd-RWW"/>
+        <segue reference="tsA-Cg-VzQ"/>
         <segue reference="rLo-0p-I9d"/>
-        <segue reference="agi-3I-cSC"/>
-        <segue reference="VI5-hp-Gm2"/>
-        <segue reference="ipn-3I-3vc"/>
         <segue reference="m3z-fp-Nlm"/>
         <segue reference="igQ-zk-tCm"/>
         <segue reference="aks-Yo-Spb"/>
         <segue reference="fEJ-lR-z9I"/>
         <segue reference="7cu-FP-MoG"/>
-        <segue reference="tsA-Cg-VzQ"/>
+        <segue reference="agi-3I-cSC"/>
+        <segue reference="VI5-hp-Gm2"/>
+        <segue reference="ipn-3I-3vc"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>

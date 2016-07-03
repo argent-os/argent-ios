@@ -389,11 +389,12 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                     customAttributes: [:])
                 
                 // go to login view
-                let sb = UIStoryboard(name: "Main", bundle: nil)
-                let loginVC = sb.instantiateViewControllerWithIdentifier("LoginViewController")
-                loginVC.modalTransitionStyle = .CrossDissolve
-                let root = UIApplication.sharedApplication().keyWindow?.rootViewController
-                root!.presentViewController(loginVC, animated: true, completion: { () -> Void in })
+                // let sb = UIStoryboard(name: "Main", bundle: nil)
+                // let loginVC = sb.instantiateViewControllerWithIdentifier("LoginViewController")
+                // loginVC.modalTransitionStyle = .CrossDissolve
+                // let root = UIApplication.sharedApplication().keyWindow?.rootViewController
+                // root!.presentViewController(loginVC, animated: true, completion: { () -> Void in })
+                self.performSegueWithIdentifier("loginView", sender: self)
             })
             //
             let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {

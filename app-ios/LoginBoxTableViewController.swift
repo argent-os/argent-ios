@@ -10,8 +10,8 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 import WatchConnectivity
-import OnePasswordExtension
 import Crashlytics
+import OnePasswordExtension
 
 class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, WCSessionDelegate {
 
@@ -21,17 +21,13 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
     
     @IBOutlet weak var passwordTextField: UITextField!
 
-    @IBOutlet weak var onePasswordButton: UITableViewCell!
-    
-    @IBOutlet weak var loginButton: UITableViewCell!
-    
     @IBOutlet var loginTableView: UITableView!
     
     @IBOutlet weak var usernameCell: UITableViewCell!
     
     @IBOutlet weak var passwordCell: UITableViewCell!
     
-    private let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.White)
+    private let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,62 +39,38 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
         let screen = UIScreen.mainScreen().bounds
         let _ = screen.size.width
         
-        self.loginButton.textLabel?.text = "Login to Argent"
-        let loginTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.login(_:)))
-        self.loginButton.addGestureRecognizer(loginTap)
-        loginButton.textLabel?.textColor = UIColor.whiteColor()
-        loginButton.textLabel?.textAlignment = .Center
-        loginButton.textLabel?.font = UIFont.systemFontOfSize(11)
-        loginButton.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.3)
-        
-        //onePasswordButton
-        onePasswordButton.textLabel?.textColor = UIColor.whiteColor()
-        onePasswordButton.textLabel?.textAlignment = .Center
-        onePasswordButton.textLabel?.font = UIFont.systemFontOfSize(11)
-        onePasswordButton.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.3)
-        // Set up OnePassword
-        if OnePasswordExtension.sharedExtension().isAppExtensionAvailable() {
-            self.onePasswordButton.textLabel?.text = "Use 1Password"
-            let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.useOnePassword(_:)))
-            self.onePasswordButton.addGestureRecognizer(tap)
-        } else {
-            self.onePasswordButton.textLabel?.text = "1Password Login"
-            let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.checkOnePasswordExists(_:)))
-            self.onePasswordButton.addGestureRecognizer(tap)
-        }
-        
         self.usernameTextField.delegate = self
         self.passwordTextField.delegate = self
         
         // usernameTextField.becomeFirstResponder()
         
         usernameTextField.tag = 63631
-        let str = NSAttributedString(string: "username or email", attributes: [NSForegroundColorAttributeName:UIColor(rgba: "#fff")])
+        let str = NSAttributedString(string: "Username or Email", attributes: [NSForegroundColorAttributeName:UIColor.lightBlue()])
         usernameTextField.attributedPlaceholder = str
         usernameTextField.textRectForBounds(CGRectMake(0, 0, 0, 0))
-        usernameTextField.tintColor = UIColor.whiteColor()
+        usernameTextField.tintColor = UIColor.lightBlue()
         
         passwordTextField.tag = 63632
-        let str2 = NSAttributedString(string: "password", attributes: [NSForegroundColorAttributeName:UIColor(rgba: "#fff")])
+        let str2 = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName:UIColor.lightBlue()])
         passwordTextField.attributedPlaceholder = str2
         passwordTextField.textRectForBounds(CGRectMake(0, 0, 0, 0))
         passwordTextField.clearsOnBeginEditing = false
-        passwordTextField.tintColor = UIColor.whiteColor()
+        passwordTextField.tintColor = UIColor.lightBlue()
         
-        loginTableView.separatorColor = UIColor(rgba: "#ccc3")
-        loginTableView.backgroundColor = UIColor(rgba: "#2221")
+        loginTableView.separatorColor = UIColor.paleBlue().colorWithAlphaComponent(0.5)
+        loginTableView.backgroundColor = UIColor.whiteColor()
         
         usernameCell.backgroundColor = UIColor.clearColor()
-        usernameCell.textLabel?.textColor = UIColor.whiteColor()
+        usernameCell.textLabel?.textColor = UIColor.lightBlue()
         
         passwordCell.backgroundColor = UIColor.clearColor()
-        passwordCell.textLabel?.textColor = UIColor.whiteColor()
+        passwordCell.textLabel?.textColor = UIColor.lightBlue()
         
         // Blurview
-        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
-        visualEffectView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
-        self.view.addSubview(visualEffectView)
-        self.view.sendSubviewToBack(visualEffectView)
+        // let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+        // visualEffectView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
+        // self.view.addSubview(visualEffectView)
+        // self.view.sendSubviewToBack(visualEffectView)
     }
     
     func login(sender: AnyObject) {
@@ -156,57 +128,9 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
         }
     }
     
-    func checkOnePasswordExists(sender: AnyObject) {
-        if OnePasswordExtension.sharedExtension().isAppExtensionAvailable() == false {
-            let alertController = UIAlertController(title: "1Password is not installed", message: "Get 1Password from the App Store", preferredStyle: UIAlertControllerStyle.Alert)
-            
-            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-            alertController.addAction(cancelAction)
-            
-            let OKAction = UIAlertAction(title: "Get 1Password", style: .Default) { (action) in UIApplication.sharedApplication().openURL(NSURL(string: "https://itunes.apple.com/app/1password-password-manager/id568903335")!)
-            }
-            
-            alertController.addAction(OKAction)
-            self.presentViewController(alertController, animated: true, completion: nil)
-        }
-    }
-    
-    func useOnePassword(sender: AnyObject) {
-        OnePasswordExtension.sharedExtension().findLoginForURLString("https://www.argentapp.com", forViewController: self, sender: sender, completion: { (loginDictionary, error) -> Void in
-            if loginDictionary == nil {
-                if error!.code != Int(AppExtensionErrorCodeCancelledByUser) {
-                    print("Error invoking 1Password App Extension for find login: \(error)")
-                    Answers.logLoginWithMethod("1Password",
-                        success: false,
-                        customAttributes: [
-                            "error": error!
-                        ])
-                }
-                return
-            }
-            
-            Answers.logLoginWithMethod("1Password",
-                success: true,
-                customAttributes: [
-                    "user": (loginDictionary?[AppExtensionUsernameKey])!
-                ])
-            
-            self.usernameTextField.text = loginDictionary?[AppExtensionUsernameKey] as? String
-            self.passwordTextField.text = loginDictionary?[AppExtensionPasswordKey] as? String
-            
-            self.onePasswordButton.textLabel?.text = "Logging in"
-            let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.login(_:)))
-            self.onePasswordButton.addGestureRecognizer(tap)
-            
-            self.login(self)
-            
-        })
-    }
-    
     func textRectForBounds(bounds: CGRect) -> CGRect {
         return CGRectInset(bounds, 0, 10)
     }
-    // text position
     
     func editingRectForBounds(bounds: CGRect) -> CGRect {
         return CGRectInset(bounds, 0, 10)
@@ -256,6 +180,7 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
         }
         return false
     }
+    
     
     //Calls this function when the tap is recognized.
     func dismissKeyboard() {

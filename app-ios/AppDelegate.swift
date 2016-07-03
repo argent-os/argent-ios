@@ -17,7 +17,6 @@ import Alamofire
 import Fabric
 import Crashlytics
 import Armchair
-import MTZWhatsNew
 
 // THEME
 var APP_THEME = "LIGHT"
@@ -122,30 +121,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func displayNewFeatures() {
-        // init with nib
-//        let vc: MTZWhatsNewGridViewController = MTZWhatsNewGridViewController.init(nibName: "", bundle: <#T##NSBundle?#>)
-//        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RootViewController")
-//        self.window!.rootViewController = viewController
-//        viewController.presentViewController(vc, animated: false, completion: { _ in
-//            print("showing whats new")
-//        })
-//        MTZWhatsNew.handleWhatsNew { ( dic : [NSObject : AnyObject]!) in
-//            let vc: MTZWhatsNewGridViewController = MTZWhatsNewGridViewController(features: dic)
-//            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RootViewController")
-//            self.window!.rootViewController = viewController
-//            viewController.presentViewController(vc, animated: false, completion: { _ in
-//                print("showing whats new")
-//            })
-//        }
-    }
-    
-    
     // Default Launch
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-        //MTZWhatsNew.performSelector(Selector("setLastAppVersion:"), withObject: "0.0")
-        //displayNewFeatures()
         
         // Set global app theme
         if (KeychainSwift().get("theme") == "DARK") {

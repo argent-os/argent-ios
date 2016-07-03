@@ -100,10 +100,9 @@ class AuthViewController: UIViewController, LTMorphingLabelDelegate, ModalTransi
         signupButton.addTarget(self, action: #selector(AuthViewController.signup(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(signupButton)
         
-        let imageName = "Logo"
+        let imageName = "LogoAppShadow"
         let image = UIImage(named: imageName)
         imageView.image = image
-        imageView.layer.cornerRadius = 30
         imageView.layer.masksToBounds = true
         imageView.tag = 7577
         imageView.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
