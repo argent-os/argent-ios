@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "IconSettings~universal@1x.png"
+      "filename" : "IconCheckFilled~universal@1x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "IconSettings~universal@2x.png"
+      "filename" : "IconCheckFilled~universal@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "IconSettings~universal@3x.png"
+      "filename" : "IconCheckFilled~universal@3x.png"
     }
   ],
   "info" : {

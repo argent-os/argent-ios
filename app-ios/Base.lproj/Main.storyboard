@@ -4277,6 +4277,75 @@ policy agreement. Tap to view</string>
             </objects>
             <point key="canvasLocation" x="7517" y="-3516"/>
         </scene>
+        <!--Account Verification Tutorial View Controller-->
+        <scene sceneID="dEJ-lI-jys">
+            <objects>
+                <viewController id="pPK-cH-DWk" customClass="AccountVerificationTutorialViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="N2L-XN-dn7"/>
+                        <viewControllerLayoutGuide type="bottom" id="Lxk-3I-gdR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="to8-TI-mAF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gnL-Fd-Psz">
+                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                                <connections>
+                                    <segue destination="my9-Z5-lni" kind="embed" id="m94-va-1Wb"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gnL-Fd-Psz" firstAttribute="leading" secondItem="to8-TI-mAF" secondAttribute="leading" id="eDI-eG-e9g"/>
+                            <constraint firstItem="gnL-Fd-Psz" firstAttribute="bottom" secondItem="Lxk-3I-gdR" secondAttribute="top" id="hIm-kv-R4L"/>
+                            <constraint firstItem="gnL-Fd-Psz" firstAttribute="top" secondItem="N2L-XN-dn7" secondAttribute="bottom" id="v8R-do-AY9"/>
+                            <constraint firstAttribute="trailing" secondItem="gnL-Fd-Psz" secondAttribute="trailing" id="yhe-WZ-YuV"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="jav-NQ-wKO"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2YN-8Z-9rx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7159" y="-5066"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="CCL-yD-FHc">
+            <objects>
+                <navigationController storyboardIdentifier="accountVerificationModalNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="9OC-ET-uyL" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NEQ-Sv-2IW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="pPK-cH-DWk" kind="relationship" relationship="rootViewController" id="grV-vE-5ww"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a6e-oI-B74" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6523" y="-5134"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="eID-g5-jAW">
+            <objects>
+                <viewController id="my9-Z5-lni" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mNn-rX-Kpy"/>
+                        <viewControllerLayoutGuide type="bottom" id="1gu-g4-nJI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8BM-lV-TXd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LA8-gT-XYQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7700" y="-5098"/>
+        </scene>
     </scenes>
     <resources>
         <image name="IconBank" width="86" height="86"/>

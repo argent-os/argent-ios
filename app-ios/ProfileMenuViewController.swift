@@ -6,6 +6,7 @@
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
 //
 
+import UIKit
 import Foundation
 import SafariServices
 import DGElasticPullToRefresh
@@ -14,6 +15,7 @@ import StoreKit
 import Crashlytics
 import Whisper
 import JSSAlertView
+import MZFormSheetPresentationController
 
 class ProfileMenuViewController: UITableViewController, SKStoreProductViewControllerDelegate {
     
@@ -69,7 +71,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         self.verifiedLabel.layer.cornerRadius = 5
         self.verifiedLabel.layer.borderColor = UIColor.whiteColor().CGColor
         self.verifiedLabel.layer.borderWidth = 1
-        let verifyTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.verifyAlert(_:)))
+        let verifyTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.showTutorialModal(_:)))
         self.verifiedLabel.addGestureRecognizer(verifyTap)
         self.verifiedLabel.userInteractionEnabled = true
         self.view.addSubview(self.verifiedLabel)
@@ -520,5 +522,40 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         let headerView = self.tableView.tableHeaderView as! ParallaxHeaderView
         headerView.scrollViewDidScroll(scrollView)
+    }
+}
+
+extension ProfileMenuViewController {
+    // MARK: Tutorial modal
+    
+    func showTutorialModal(sender: AnyObject) {
+        let navigationController = self.storyboard!.instantiateViewControllerWithIdentifier("accountVerificationModalNavigationController") as! UINavigationController
+        let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
+        
+        // Initialize and style the terms and conditions modal
+        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
+        formSheetController.presentationController?.contentViewSize = CGSizeMake(300, UIScreen.mainScreen().bounds.height-150)
+        formSheetController.presentationController?.shouldUseMotionEffect = true
+        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor()
+        formSheetController.presentationController?.containerView?.sizeToFit()
+        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
+        formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
+        formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.CenterVertically
+        formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
+        formSheetController.contentViewCornerRadius = 10
+        formSheetController.allowDismissByPanningPresentedView = true
+        formSheetController.interactivePanGestureDismissalDirection = .All;
+        
+        // Blur will be applied to all MZFormSheetPresentationControllers by default
+        MZFormSheetPresentationController.appearance().shouldApplyBackgroundBlurEffect = true
+        
+        let presentedViewController = navigationController.viewControllers.first as! AccountVerificationTutorialViewController
+        
+        // keep passing along user data to modal
+        presentedViewController.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
+        presentedViewController.navigationItem.leftItemsSupplementBackButton = true
+        
+        // Be sure to update current module on storyboard
+        self.presentViewController(formSheetController, animated: true, completion: nil)
     }
 }
