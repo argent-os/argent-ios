@@ -217,7 +217,7 @@ extension BankConnectedListTableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("connectedBankCell", forIndexPath: indexPath) as! BankConnectedCell
         
-        cell.background.layer.cornerRadius = 30
+        cell.background.layer.cornerRadius = 10
         cell.background.clipsToBounds = true
         tableView.separatorColor = UIColor.clearColor()
         cell.selectionStyle = UITableViewCellSelectionStyle.Blue;

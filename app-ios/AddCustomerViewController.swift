@@ -73,13 +73,14 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         title = ""
         
         let backgroundGradient = UIImageView()
-        backgroundGradient.image = UIImage(named: "BackgroundGradientBlue")
+        backgroundGradient.image = UIImage(named: "BackgroundGradientCalmBlue")
         backgroundGradient.frame = CGRect(x: 0, y: screenHeight-250, width: screenWidth, height: 250)
+        backgroundGradient.contentMode = .ScaleToFill
         self.view.addSubview(backgroundGradient)
         
         let mainImage = UIImageView()
-        mainImage.image = UIImage(named: "IconSend")
-        mainImage.frame = CGRect(x: screenWidth/2-65, y: 100, width: 130, height: 130)
+        mainImage.image = UIImage(named: "LogoApp")
+        mainImage.frame = CGRect(x: screenWidth/2-35, y: 110, width: 70, height: 70)
         mainImage.contentMode = .ScaleAspectFit
         let _ = Timeout(0.1) {
             addSubviewWithBounce(mainImage, parentView: self, duration: 0.3)

@@ -15,6 +15,7 @@ class PasscodeSettingsViewController: UIViewController {
     @IBOutlet weak var superView: UIView!
     @IBOutlet weak var passcodeSwitch: UISwitch!
     @IBOutlet weak var changePasscodeButton: UIButton!
+    @IBOutlet weak var backgroundView: UIView!
     
     private let configuration: PasscodeLockConfigurationType
     
@@ -49,6 +50,7 @@ class PasscodeSettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         passcodeSwitch.onTintColor = UIColor.skyBlue()
+        backgroundView.backgroundColor = UIColor.offWhite()
         
         self.navigationItem.title = "App Security"
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()

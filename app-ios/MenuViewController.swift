@@ -101,13 +101,15 @@ class MenuViewController: UIViewController, ModalTransitionDelegate {
         viewTerminalImageView.frame = CGRect(x: 35, y: screenHeight*0.1, width: screenWidth-70, height: 120)
         viewTerminalImageView.contentMode = .ScaleAspectFit
         addSubviewWithShadow(UIColor.lightBlue(), radius: 10.0, offsetX: 0.0, offsetY: 0, opacity: 0.2, parentView: self, childView: viewTerminalImageView)
-        let btn1 = UIButton()
-        let str1 = NSAttributedString(string: "Point of Sale Terminal", attributes: [
+        
+        let btn1 = CenteredButton()
+        let str1 = NSAttributedString(string: "  Point of Sale Terminal", attributes: [
             NSForegroundColorAttributeName : UIColor.lightBlue(),
-            NSFontAttributeName : UIFont.systemFontOfSize(17, weight: UIFontWeightLight)
+            NSFontAttributeName : UIFont.systemFontOfSize(17, weight: UIFontWeightRegular)
         ])
         btn1.setAttributedTitle(str1, forState: .Normal)
         btn1.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
+        btn1.setImage(UIImage(named: "IconReader")?.alpha(0.5), forState: .Highlighted)
         btn1.frame = CGRect(x: 35, y: screenHeight*0.1, width: screenWidth-70, height: 120)
         btn1.layer.cornerRadius = 10
         btn1.layer.masksToBounds = true
@@ -117,19 +119,24 @@ class MenuViewController: UIViewController, ModalTransitionDelegate {
         self.view.bringSubviewToFront(btn1)
         self.view.superview?.bringSubviewToFront(btn1)
         self.view.bringSubviewToFront(btn1)
-        
+        btn1.setImage(UIImage(named: "IconReader"), inFrame: CGRectMake(18, 18, 64, 64), forState: .Normal)
+
         addPlanImageView.backgroundColor = UIColor.whiteColor()
         addPlanImageView.layer.cornerRadius = 10
         addPlanImageView.frame = CGRect(x: 35, y: screenHeight*0.32, width: screenWidth-70, height: 120)
         addPlanImageView.contentMode = .ScaleAspectFit
         addSubviewWithShadow(UIColor.lightBlue(), radius: 10.0, offsetX: 0.0, offsetY: 0, opacity: 0.2, parentView: self, childView: addPlanImageView)
-        let btn2 = UIButton()
-        let str2 = NSAttributedString(string: "Create Plan", attributes: [
+        
+        
+        let btn2 = CenteredButton()
+        btn2.imageEdgeInsets = UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
+        let str2 = NSAttributedString(string: "  Create Plan", attributes: [
             NSForegroundColorAttributeName : UIColor.lightBlue(),
-            NSFontAttributeName : UIFont.systemFontOfSize(17, weight: UIFontWeightLight)
+            NSFontAttributeName : UIFont.systemFontOfSize(17, weight: UIFontWeightRegular)
         ])
         btn2.setAttributedTitle(str2, forState: .Normal)
         btn2.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
+        btn2.setImage(UIImage(named: "IconWand")?.alpha(0.5), forState: .Highlighted)
         btn2.frame = CGRect(x: 35, y: screenHeight*0.32, width: screenWidth-70, height: 120)
         btn2.layer.cornerRadius = 10
         btn2.layer.masksToBounds = true
@@ -139,19 +146,22 @@ class MenuViewController: UIViewController, ModalTransitionDelegate {
         self.view.bringSubviewToFront(btn2)
         self.view.superview?.bringSubviewToFront(btn2)
         self.view.bringSubviewToFront(btn2)
-        
+        btn2.setImage(UIImage(named: "IconWand"), inFrame: CGRectMake(18, 18, 64, 64), forState: .Normal)
+
         inviteImageView.backgroundColor = UIColor.whiteColor()
         inviteImageView.layer.cornerRadius = 10
         inviteImageView.frame = CGRect(x: 35, y: screenHeight*0.54, width: screenWidth-70, height: 120)
         inviteImageView.contentMode = .ScaleAspectFit
         addSubviewWithShadow(UIColor.lightBlue(), radius: 10.0, offsetX: 0.0, offsetY: 0, opacity: 0.2, parentView: self, childView: inviteImageView)
-        let btn3 = UIButton()
-        let str3 = NSAttributedString(string: "Invite User", attributes: [
+        
+        let btn3 = CenteredButton()
+        let str3 = NSAttributedString(string: "  Invite User", attributes: [
             NSForegroundColorAttributeName : UIColor.lightBlue(),
-            NSFontAttributeName : UIFont.systemFontOfSize(17, weight: UIFontWeightLight)
+            NSFontAttributeName : UIFont.systemFontOfSize(17, weight: UIFontWeightRegular)
         ])
         btn3.setAttributedTitle(str3, forState: .Normal)
         btn3.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
+        btn3.setImage(UIImage(named: "IconGift")?.alpha(0.5), forState: .Highlighted)
         btn3.frame = CGRect(x: 35, y: screenHeight*0.54, width: screenWidth-70, height: 120)
         btn3.layer.cornerRadius = 10
         btn3.layer.masksToBounds = true
@@ -161,7 +171,8 @@ class MenuViewController: UIViewController, ModalTransitionDelegate {
         self.view.bringSubviewToFront(btn3)
         self.view.superview?.bringSubviewToFront(btn3)
         self.view.bringSubviewToFront(btn3)
-        
+        btn3.setImage(UIImage(named: "IconGift"), inFrame: CGRectMake(18, 18, 64, 64), forState: .Normal)
+
         setupNav()
     }
     

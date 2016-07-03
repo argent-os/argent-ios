@@ -10,6 +10,7 @@ import Foundation
 import Alamofire
 import CWStatusBarNotification
 import DynamicColor
+import UIKit
 
 let globalNotification = CWStatusBarNotification()
 
@@ -122,6 +123,9 @@ extension UIColor {
     }
     static func alipayBlue() -> UIColor {
         return UIColor(rgba: "#1aa1e6")
+    }
+    static func paleBlue() -> UIColor {
+        return UIColor(rgba: "#99b2c7")
     }
     static func mediumBlue() -> UIColor {
         if APP_THEME == "LIGHT" {
@@ -413,4 +417,71 @@ class SKTextField: UITextField {
     override func editingRectForBounds(bounds: CGRect) -> CGRect {
         return UIEdgeInsetsInsetRect(bounds, padding)
     }
+}
+
+class CenteredButton: UIButton {
+    override func titleRectForContentRect(contentRect: CGRect) -> CGRect {
+        let rect = super.titleRectForContentRect(contentRect)
+        
+        return CGRectMake(0, CGRectGetHeight(contentRect) - CGRectGetHeight(rect)-20,
+                          CGRectGetWidth(contentRect), CGRectGetHeight(rect))
+    }
+    
+    override func imageRectForContentRect(contentRect: CGRect) -> CGRect {
+        let rect = super.imageRectForContentRect(contentRect)
+        let titleRect = titleRectForContentRect(contentRect)
+        
+        return CGRectMake(CGRectGetWidth(contentRect)/2.0 - CGRectGetWidth(rect)/2.0,
+                          (CGRectGetHeight(contentRect) - CGRectGetHeight(titleRect))/2.0 - CGRectGetHeight(rect)/2.0,
+                          CGRectGetWidth(rect), CGRectGetHeight(rect))
+    }
+    
+    override func intrinsicContentSize() -> CGSize {
+        let size = super.intrinsicContentSize()
+        
+        if let image = imageView?.image
+        {
+            var labelHeight: CGFloat = 0.0
+            
+            if let size = titleLabel?.sizeThatFits(CGSizeMake(CGRectGetWidth(self.contentRectForBounds(self.bounds)), CGFloat.max))
+            {
+                labelHeight = size.height
+            }
+            
+            return CGSizeMake(size.width, image.size.height + labelHeight)
+        }
+        
+        return size
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        centerTitleLabel()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        centerTitleLabel()
+    }
+    
+    private func centerTitleLabel() {
+        self.titleLabel?.textAlignment = .Center
+    }
+}
+
+extension UIButton {
+    
+    func setImage(image: UIImage?, inFrame frame: CGRect?, forState state: UIControlState) {
+        self.setImage(image, forState: state)
+        
+        if let frame = frame {
+            self.imageEdgeInsets = UIEdgeInsets(
+                top: frame.minY - self.frame.minY,
+                left: frame.minX - self.frame.minX,
+                bottom: self.frame.maxY - frame.maxY,
+                right: self.frame.maxX - frame.maxX
+            )
+        }
+    }
+    
 }

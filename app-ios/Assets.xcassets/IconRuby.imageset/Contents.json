@@ -3,21 +3,21 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "IconMail~universal@1x.png"
+      "filename" : "IconRuby~universal@1x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "IconMail~universal@2x.png"
+      "filename" : "IconRuby~universal@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "IconMail~universal@3x.png"
+      "filename" : "IconRuby~universal@3x.png"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }

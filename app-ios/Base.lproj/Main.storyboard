@@ -351,6 +351,7 @@ with a fallback to PIN Code</string>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="backgroundView" destination="Mhz-ig-91I" id="ye9-11-BPR"/>
                         <outlet property="changePasscodeButton" destination="FEn-Bp-Q0E" id="fFh-GT-nPa"/>
                         <outlet property="passcodeSwitch" destination="WsJ-UR-NwF" id="ghy-Kc-1qx"/>
                     </connections>
@@ -3394,8 +3395,7 @@ policy agreement. Tap to view</string>
                                 <color key="textColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This feature is currently under development.
-We will send out notifications once it's live!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gn4-em-kCV">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This feature is currently under development. We will send out notifications once it's live!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gn4-em-kCV">
                                 <rect key="frame" x="20" y="226" width="374" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="udt-M9-a1n"/>
@@ -4303,11 +4303,11 @@ We will send out notifications once it's live!" textAlignment="center" lineBreak
         </scene>
     </scenes>
     <resources>
-        <image name="IconBank" width="171" height="171"/>
+        <image name="IconBank" width="86" height="86"/>
         <image name="IconCreditCard" width="171" height="171"/>
         <image name="IconPiggy" width="171" height="171"/>
-        <image name="IconRisk" width="171" height="171"/>
-        <image name="IconSupport" width="171" height="171"/>
+        <image name="IconRisk" width="86" height="86"/>
+        <image name="IconSupport" width="86" height="86"/>
         <image name="IconTouchSecure" width="86" height="86"/>
         <image name="bank_citi" width="114" height="30"/>
         <image name="ic_close_light" width="43" height="43"/>
