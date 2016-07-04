@@ -333,7 +333,7 @@ extension NotificationsViewController {
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "No notifications yet.  Events and push notifications will appear here as they occur."
+        let str = "Events and push notifications will appear here as they occur."
         //let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
         return NSAttributedString(string: str, attributes: bodyAttrs)
     }

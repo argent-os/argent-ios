@@ -93,7 +93,47 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                     self.verifiedLabel.frame = CGRect(x: 120, y: 98, width: screenWidth-240, height: 30)
                     self.locationLabel.textAlignment = NSTextAlignment.Center
                     
-                    let fields_required: [String] = unwrappedOptionalArray
+                    var fields_required: [String] = unwrappedOptionalArray
+                    if let indexOfExternalAccount = fields_required.indexOf("external_account") {
+                        fields_required[indexOfExternalAccount] = "Bank Account"
+                    }
+                    if let indexOfFirstName = fields_required.indexOf("legal_entity.first_name") {
+                        fields_required[indexOfFirstName] = "First Name"
+                    }
+                    if let indexOfLastName = fields_required.indexOf("legal_entity.last_name") {
+                        fields_required[indexOfLastName] = "Last Name"
+                    }
+                    if let indexOfBusinessName = fields_required.indexOf("legal_entity.business_name") {
+                        fields_required[indexOfBusinessName] = "Business Name"
+                    }
+                    
+                    if let indexOfAddressCity = fields_required.indexOf("legal_entity.address.city") {
+                        fields_required[indexOfAddressCity] = "City"
+                    }
+                    if let indexOfAddressState = fields_required.indexOf("legal_entity.address.state") {
+                        fields_required[indexOfAddressState] = "State"
+                    }
+                    if let indexOfAddressZip = fields_required.indexOf("legal_entity.address.postal_code") {
+                        fields_required[indexOfAddressZip] = "ZIP"
+                    }
+                    if let indexOfAddressLine1 = fields_required.indexOf("legal_entity.address.line1") {
+                        fields_required[indexOfAddressLine1] = "Address"
+                    }
+                    
+                    if let indexOfPIN = fields_required.indexOf("legal_entity.personal_id_number") {
+                        fields_required[indexOfPIN] = "Full SSN or PIN"
+                    }
+                    if let indexOfSSNLast4 = fields_required.indexOf("legal_entity.ssn_last_4") {
+                        fields_required[indexOfSSNLast4] = "SSN Last 4"
+                    }
+                    if let indexOfEIN = fields_required.indexOf("legal_entity.business_tax_id") {
+                        fields_required[indexOfEIN] = "Business Tax ID / EIN"
+                    }
+                    if let indexOfVerificationDocument = fields_required.indexOf("legal_entity.verification.document") {
+                        fields_required[indexOfVerificationDocument] = "Verification Document"
+                    }
+                    
+                    
                     let fields_list = fields_required.dropLast().reduce("") { $0 + $1 + ", " } + fields_required.last!
                     
                     // regex to replace legal.entity in the future

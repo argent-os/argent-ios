@@ -278,6 +278,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //let screenHeight = screen.size.height
         // Initialize and perform a minimum configuration to the search controller.
         searchController = UISearchController(searchResultsController: nil)
+        // searchController.searchBar.scopeButtonTitles = ["Merchants", "Users"]
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         searchController.dimsBackgroundDuringPresentation = false
