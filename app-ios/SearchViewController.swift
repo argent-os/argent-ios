@@ -49,12 +49,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         configureSearchController()
         
-        if let items = UITabBar().items {
-            for item in items {
-                item.title = ""
-                item.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
-            }
-        }
     }
 
     
@@ -85,15 +79,22 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.definesPresentationContext = true
         self.view.backgroundColor = UIColor.slateBlue()
         
+        self.navigationItem.title = "Search"
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.lightBlue(),
-            NSFontAttributeName : UIFont(name: "HelveticaNeue", size:18)!
+            NSFontAttributeName : UIFont.systemFontOfSize(18)
         ]
         
         activityIndicator.center = view.center
         activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true
         self.view.addSubview(activityIndicator)
+        
+//        let aView = UIView()
+//        aView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 300)
+//        aView.backgroundColor = UIColor.skyBlue()
+//        self.view.addSubview(aView)
+//        tblSearchResults.tableHeaderView = aView
         
         tblSearchResults.reloadData()
         tblSearchResults.delegate = self
@@ -222,9 +223,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-//        guard let cell = tableView.cellForRowAtIndexPath(indexPath) else {
-//            return
-//        }
         
         self.shouldShowSearchResults = false
         self.searchController.searchBar.hidden = true
@@ -264,6 +262,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
+
             self.dataArray = items!
             
             self.activityIndicator.stopAnimating()
@@ -317,9 +316,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         shouldShowSearchResults = false
         searchController.searchBar.placeholder = ""
-        tblSearchResults.emptyDataSetDelegate = self
-        tblSearchResults.emptyDataSetSource = self
         tblSearchResults.reloadData()
+        
+        loadUserAccounts()
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
@@ -358,6 +357,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // Search here
     private func didChangeSearchText(searchText: String) {
+
         // Filter the data array and get only those users that match the search text.
         filteredArray = dataArray.filter({ (user) -> Bool in
             var userStr: NSString
@@ -376,6 +376,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     private func filterContentForSearchText(searchText: String, scope: String) {
+
         filteredArray = filteredArray.filter({( user : User ) -> Bool in
             let fullName = user.first_name + " " + user.last_name
             return (user.username.lowercaseString.containsString(searchText.lowercaseString)) || (user.business_name.lowercaseString.containsString(searchText.lowercaseString) ||  (fullName.lowercaseString.containsString(searchText.lowercaseString)))

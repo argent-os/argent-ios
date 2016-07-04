@@ -80,7 +80,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         
         let mainImage = UIImageView()
         mainImage.image = UIImage(named: "LogoAppShadow")
-        mainImage.frame = CGRect(x: screenWidth/2-35, y: 110, width: 70, height: 70)
+        mainImage.frame = CGRect(x: screenWidth/2-35, y: 130, width: 70, height: 70)
         mainImage.contentMode = .ScaleAspectFit
         let _ = Timeout(0.1) {
             addSubviewWithBounce(mainImage, parentView: self, duration: 0.3)
