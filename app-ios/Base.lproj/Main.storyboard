@@ -1364,8 +1364,8 @@ support request</string>
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="69.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Argent v1.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KiS-i1-Th0">
-                                                    <rect key="frame" x="196" y="30" width="65.5" height="13"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Version 1.0.1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KiS-i1-Th0">
+                                                    <rect key="frame" x="196" y="30" width="64" height="13"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
                                                     <color key="textColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="0.5" colorSpace="calibratedRGB"/>

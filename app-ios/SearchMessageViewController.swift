@@ -91,7 +91,8 @@ class SearchMessageViewController: UIViewController, UINavigationBarDelegate, Na
                 "message": self.message.text,
             ]
             
-            let headers : [String : String] = [
+            let headers = [
+                "Authorization": "Bearer " + String(userAccessToken),
                 "Content-Type": "application/json"
             ]
             
