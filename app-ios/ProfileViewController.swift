@@ -39,8 +39,7 @@ class ProfileViewController: UIViewController {
     
     private func loadUserAccount() {
         User.getProfile({ (user, error) in
-            if error != nil
-            {
+            if error != nil {
                 let alert = UIAlertController(title: "Error", message: "Could not load profile \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
@@ -49,7 +48,11 @@ class ProfileViewController: UIViewController {
     }
     
     override func prefersStatusBarHidden() -> Bool {
-        return true
+        return false
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
     
     override func didReceiveMemoryWarning() {

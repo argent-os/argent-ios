@@ -27,7 +27,7 @@ class TutorialHomeViewController: SpotlightViewController {
         let screenSize = UIScreen.mainScreen().bounds.size
         switch stepIndex {
         case 0:
-            spotlightView.appear(Spotlight.Oval(center: CGPointMake(screenSize.width - 40, 50), diameter: 50))
+            spotlightView.appear(Spotlight.RoundedRect(center: CGPointMake(screenSize.width-120, 55), size: CGSizeMake(screenSize.width-160, 55), cornerRadius: 6), duration: 0.3)
         case 1:
             spotlightView.move(Spotlight.Oval(center: CGPointMake(screenSize.width/2, 200), diameter: 50))
         case 2:

@@ -30,6 +30,12 @@ class AccountVerificationTutorialViewController: UIViewController {
     
     let tutText4 = UILabel()
     
+    let tutSubText1 = UILabel()
+
+    let tutSubText2 = UILabel()
+
+    let tutSubText3 = UILabel()
+
     let bottomColorView = UIView()
 
     let exitButton = UIButton()
@@ -37,8 +43,10 @@ class AccountVerificationTutorialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("loaded tut")
-        
+        configureView()
+    }
+    
+    func configureView() {
         // This will set to only one instance
         
         self.view.backgroundColor = UIColor.whiteColor()
@@ -58,7 +66,7 @@ class AccountVerificationTutorialViewController: UIViewController {
         titleLabel.textColor = UIColor.lightBlue()
         self.view.addSubview(titleLabel)
         
-        tutImage1.frame = CGRect(x: 40, y: 80, width: 50, height: 50)
+        tutImage1.frame = CGRect(x: 35, y: 90, width: 50, height: 50)
         tutImage1.image = UIImage(named: "IconSettings")
         tutImage1.contentMode = .ScaleAspectFit
         self.view.addSubview(tutImage1)
@@ -67,8 +75,14 @@ class AccountVerificationTutorialViewController: UIViewController {
         tutText1.textAlignment = .Left
         tutText1.textColor = UIColor.lightBlue()
         self.view.addSubview(tutText1)
+        tutSubText1.frame = CGRect(x: 90, y: 100, width: 210, height: 50)
+        tutSubText1.text = "In Edit Profile"
+        tutSubText1.textAlignment = .Left
+        tutSubText1.textColor = UIColor.lightBlue()
+        tutSubText1.font = UIFont.systemFontOfSize(12)
+        self.view.addSubview(tutSubText1)
         
-        tutImage2.frame = CGRect(x: 40, y: 160, width: 50, height: 50)
+        tutImage2.frame = CGRect(x: 35, y: 170, width: 50, height: 50)
         tutImage2.image = UIImage(named: "IconBank")
         tutImage2.contentMode = .ScaleAspectFit
         self.view.addSubview(tutImage2)
@@ -77,8 +91,14 @@ class AccountVerificationTutorialViewController: UIViewController {
         tutText2.textAlignment = .Left
         tutText2.textColor = UIColor.lightBlue()
         self.view.addSubview(tutText2)
+        tutSubText2.frame = CGRect(x: 90, y: 180, width: 210, height: 50)
+        tutSubText2.text = "Account # and ACH Routing #"
+        tutSubText2.textAlignment = .Left
+        tutSubText2.textColor = UIColor.lightBlue()
+        tutSubText2.font = UIFont.systemFontOfSize(12)
+        self.view.addSubview(tutSubText2)
         
-        tutImage3.frame = CGRect(x: 40, y: 240, width: 50, height: 50)
+        tutImage3.frame = CGRect(x: 35, y: 250, width: 50, height: 50)
         tutImage3.image = UIImage(named: "IconPerson")
         tutImage3.contentMode = .ScaleAspectFit
         self.view.addSubview(tutImage3)
@@ -87,6 +107,12 @@ class AccountVerificationTutorialViewController: UIViewController {
         tutText3.textAlignment = .Left
         tutText3.textColor = UIColor.lightBlue()
         self.view.addSubview(tutText3)
+        tutSubText3.frame = CGRect(x: 90, y: 260, width: 210, height: 50)
+        tutSubText3.text = "One document and full SSN"
+        tutSubText3.textAlignment = .Left
+        tutSubText3.textColor = UIColor.lightBlue()
+        tutSubText3.font = UIFont.systemFontOfSize(12)
+        self.view.addSubview(tutSubText3)
         
         tutImage4.frame = CGRect(x: 0, y: 320, width: 300, height: 60)
         tutImage4.image = UIImage(named: "IconCheckFilled")
@@ -95,7 +121,8 @@ class AccountVerificationTutorialViewController: UIViewController {
         self.view.bringSubviewToFront(tutImage4)
         tutText4.frame = CGRect(x: 0, y: 370, width: 300, height: 60)
         tutText4.numberOfLines = 3
-        tutText4.text = "Congrats, you are now ready to \n start accepting payments!"
+        tutText4.font = UIFont.systemFontOfSize(15)
+        tutText4.text = "Congratulations, you are now ready to \n start accepting payments!"
         tutText4.textAlignment = .Center
         tutText4.textColor = UIColor.lightBlue()
         self.view.addSubview(tutText4)
@@ -113,7 +140,7 @@ class AccountVerificationTutorialViewController: UIViewController {
         exitButton.layer.cornerRadius = 10
         exitButton.layer.masksToBounds = true
         var attribs: [String: AnyObject] = [:]
-        attribs[NSFontAttributeName] = UIFont(name: "DINAlternate-Bold", size: 14)
+        attribs[NSFontAttributeName] = UIFont.systemFontOfSize(14)
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
         let str = NSAttributedString(string: "Exit Tutorial", attributes: attribs)
         exitButton.setBackgroundColor(UIColor.lightBlue(), forState: .Normal)
@@ -121,7 +148,6 @@ class AccountVerificationTutorialViewController: UIViewController {
         exitButton.setAttributedTitle(str, forState: .Normal)
         exitButton.addTarget(self, action: #selector(self.close(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(exitButton)
-        
     }
     
     override func viewDidDisappear(animated: Bool) {

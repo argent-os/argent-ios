@@ -37,8 +37,8 @@ class ParallaxHeaderView: UIView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
         imageView.contentMode = .ScaleAspectFill
-        
-        self.containerView.backgroundColor = UIColor.slateBlue()
+
+        self.containerView.backgroundColor = UIColor.paleBlue()
 
         User.getProfile({ (user, error) in
             if user?.picture != nil && user?.picture != "" {
@@ -58,10 +58,18 @@ class ParallaxHeaderView: UIView {
                 self.heightLayoutConstraint = NSLayoutConstraint(item: imageView, attribute: .Height, relatedBy: .Equal, toItem: self.containerView, attribute: .Height, multiplier: 1.0, constant: 0.0)
                 self.containerView.addConstraint(self.heightLayoutConstraint)
             } else {
+                let img = UIImage(named: "BackgroundGradientCalmBlue")
+                imageView.image = img
 
+                self.containerView.addSubview(imageView)
+                
+                self.containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[imageView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["imageView" : imageView]))
+                self.bottomLayoutConstraint = NSLayoutConstraint(item: imageView, attribute: .Bottom, relatedBy: .Equal, toItem: self.containerView, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
+                self.containerView.addConstraint(self.bottomLayoutConstraint)
+                self.heightLayoutConstraint = NSLayoutConstraint(item: imageView, attribute: .Height, relatedBy: .Equal, toItem: self.containerView, attribute: .Height, multiplier: 1.0, constant: 0.0)
+                self.containerView.addConstraint(self.heightLayoutConstraint)
             }
         })
-
     }
     
     required init?(coder aDecoder: NSCoder) {

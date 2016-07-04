@@ -51,6 +51,8 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
 
     private var splitter2 = UIView()
 
+    private var settingsIcon = UIImageView()
+
     private let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 40, width: UIScreen.mainScreen().bounds.size.width, height: 50))
 
     private var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
@@ -63,6 +65,9 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
     }
     
     func validateAccount() {
+        
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
         
         self.verifiedLabel.contentMode = .Center
         self.verifiedLabel.textAlignment = .Center
@@ -85,7 +90,8 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                 // if array has values
                 if !unwrappedOptionalArray.isEmpty {
                     self.verifiedLabel.text = "How to Verify"
-                    self.verifiedLabel.frame = CGRect(x: 20, y: 0, width: 120, height: 25)
+                    self.verifiedLabel.frame = CGRect(x: 120, y: 94, width: screenWidth-240, height: 30)
+                    self.locationLabel.textAlignment = NSTextAlignment.Center
                     
                     let fields_required: [String] = unwrappedOptionalArray
                     let fields_list = fields_required.dropLast().reduce("") { $0 + $1 + ", " } + fields_required.last!
@@ -103,13 +109,27 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                         }
                     }
                 } else {
-                    self.verifiedLabel.frame = CGRect(x: 10, y: -20, width: 75, height: 25)
-                    self.verifiedLabel.text = ""
-                    self.verifiedLabel.layer.borderColor = UIColor.clearColor().CGColor
                     
                     self.verifiedImage.image = UIImage(named: "IconSuccessWhite")
-                    self.verifiedImage.frame = CGRect(x: 10, y: -30, width: 30, height: 30)
+                    self.verifiedImage.frame = CGRect(x: 10, y: -20, width: 25, height: 25)
+                    self.verifiedImage.center = CGPointMake(25, -20)
                     self.view.addSubview(self.verifiedImage)
+                }
+            }
+        }
+    }
+    
+    func checkIfVerified(completionHandler: (Bool, NSError?) -> ()){
+        Account.getStripeAccount { (acct, err) in
+            let fields = acct?.verification_fields_needed
+            let _ = fields.map { (unwrappedOptionalArray) -> Void in
+                // if array has values
+                if !unwrappedOptionalArray.isEmpty {
+                    print("checking if empty... false")
+                    completionHandler(false, nil)
+                } else {
+                    print("checking if empty... true")
+                    completionHandler(true, nil)
                 }
             }
         }
@@ -117,7 +137,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
     
     func configureView() {
         
-        self.view.backgroundColor = UIColor.globalBackground()        
+        self.view.backgroundColor = UIColor.globalBackground()
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         
@@ -166,53 +186,62 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
     func productViewControllerDidFinish(viewController: SKStoreProductViewController) {
         viewController.dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    
 
+    override func viewDidAppear(animated: Bool) {
+//        self.tableView.tableHeaderView!.addSubview(settingsIcon)
+//        self.tableView.tableHeaderView!.bringSubviewToFront(settingsIcon)
+    }
+    
     func configureHeader() {
         
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         
-//         let settingsIcon = UIImageView(frame: CGRectMake(0, 0, 22, 22))
-//         settingsIcon.image = UIImage(named: "IconSettingsWhite")
-//         settingsIcon.contentMode = .ScaleAspectFit
-//         settingsIcon.alpha = 0.5
-//         settingsIcon.center = CGPointMake(self.view.frame.size.width-25, -10)
-//         settingsIcon.userInteractionEnabled = true
-//         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.goToEdit(_:)))
-//         tap.numberOfTapsRequired = 1
-//         settingsIcon.addGestureRecognizer(tap)
-//         self.view.addSubview(settingsIcon)
-//         self.view.bringSubviewToFront(settingsIcon)
+//        settingsIcon.frame = CGRectMake(0, -20, 22, 22)
+//        settingsIcon.image = UIImage(named: "IconSettingsWhite")
+//        settingsIcon.contentMode = .ScaleAspectFit
+//        settingsIcon.alpha = 0.9
+//        settingsIcon.center = CGPointMake(self.view.frame.size.width-25, -20)
+//        settingsIcon.userInteractionEnabled = true
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.goToEdit(_:)))
+//        tap.numberOfTapsRequired = 1
+//        settingsIcon.addGestureRecognizer(tap)
+
         
         let attachment: NSTextAttachment = NSTextAttachment()
         attachment.image = UIImage(named: "IconPinWhiteTiny")
         let attachmentString: NSAttributedString = NSAttributedString(attachment: attachment)
         Account.getStripeAccount { (acct, err) in
-            if let address_city = acct?.address_city where address_city != "", let address_country = acct?.address_country {
-                let locationStr: NSMutableAttributedString = NSMutableAttributedString(string: address_city + ", " + address_country)
-                locationStr.appendAttributedString(attachmentString)
-                self.locationLabel.attributedText = locationStr
-                let _ = Timeout(0.2) {
-                    addSubviewWithFade(self.locationLabel, parentView: self, duration: 0.8)
+            self.checkIfVerified({ (bool, err) in
+                if bool == true {
+                    // the account does not require information, display location
+                    if let address_city = acct?.address_city where address_city != "", let address_country = acct?.address_country {
+                        let locationStr: NSMutableAttributedString = NSMutableAttributedString(string: address_city + ", " + address_country)
+                        // locationStr.appendAttributedString(attachmentString)
+                        self.locationLabel.attributedText = locationStr
+                        let _ = Timeout(0.2) {
+                            addSubviewWithFade(self.locationLabel, parentView: self, duration: 0.8)
+                        }
+                    } else if let address_city = acct?.address_city, let address_country = acct?.address_country {
+                        let locationStr: NSMutableAttributedString = NSMutableAttributedString(string: "Unknown, " + address_country)
+                        // locationStr.appendAttributedString(attachmentString)
+                        self.locationLabel.attributedText = locationStr
+                        let _ = Timeout(0.2) {
+                            addSubviewWithFade(self.locationLabel, parentView: self, duration: 0.8)
+                        }
+                    } else {
+                        let locationStr: NSMutableAttributedString = NSMutableAttributedString(string: "Unknown")
+                        locationStr.appendAttributedString(attachmentString)
+                        self.locationLabel.attributedText = locationStr
+                        let _ = Timeout(0.2) {
+                            addSubviewWithFade(self.locationLabel, parentView: self, duration: 0.8)
+                        }
+                        showGlobalNotification("Profile Incomplete", duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandYellow())
+                    }
+                } else {
+                    // profile information is required, show tutorial button
                 }
-            } else if let address_city = acct?.address_city, let address_country = acct?.address_country {
-                let locationStr: NSMutableAttributedString = NSMutableAttributedString(string: "Unknown, " + address_country)
-                    locationStr.appendAttributedString(attachmentString)
-                    self.locationLabel.attributedText = locationStr
-                    let _ = Timeout(0.2) {
-                        addSubviewWithFade(self.locationLabel, parentView: self, duration: 0.8)
-                }
-            } else {
-                let locationStr: NSMutableAttributedString = NSMutableAttributedString(string: "Unknown")
-                locationStr.appendAttributedString(attachmentString)
-                self.locationLabel.attributedText = locationStr
-                let _ = Timeout(0.2) {
-                    addSubviewWithFade(self.locationLabel, parentView: self, duration: 0.8)
-                }
-                showGlobalNotification("Profile Incomplete", duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandYellow())
-            }
+            })
         }
         self.locationLabel.frame = CGRectMake(0, 72, screenWidth, 70)
         self.locationLabel.textAlignment = NSTextAlignment.Center
@@ -328,7 +357,12 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
     
     //Changing Status Bar
     override func prefersStatusBarHidden() -> Bool {
-        return true
+        return false
+    }
+    
+    //Changing Status Bar
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
     
     // Handles share and logout action controller
@@ -501,23 +535,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
             completionHandler(subscriptions!, error)
         })
     }
-    
-    func verifyAlert(sender: AnyObject) {
-        print("tappd")
-        let customIcon:UIImage = UIImage(named: "IconEmpty")! // your custom icon UIImage
-        let customColor:UIColor = UIColor.lightBlue() // base color for the alert
-        self.view.endEditing(true)
-        let alertView = JSSAlertView().show(
-            self,
-            title: "Getting Started",
-            text: "\n In order to receive money through Argent, please follow these steps. \n\n 1) Complete your profile in 'Edit Profile'  \n\n 2) Connect your bank account in 'Bank Account' using your ACH Routing # and Account # \n\n 3) Verify your identity in 'Identity Verification' using one verification document and full SSN \n\n Congratulations!  You are now ready to start receiving payments through Argent. \n",
-            buttonText: "Great!",
-            noButtons: false,
-            color: customColor,
-            iconImage: customIcon)
-        alertView.setTextTheme(.Light) // can be .Light or .Dark
-    }
-    
+
     // User profile image view scroll effects
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         let headerView = self.tableView.tableHeaderView as! ParallaxHeaderView
@@ -541,6 +559,8 @@ extension ProfileMenuViewController {
         formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
         formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.CenterVertically
+        formSheetController.presentationController?.shouldCenterVertically = true
+        formSheetController.presentationController?.shouldCenterHorizontally = true
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
         formSheetController.contentViewCornerRadius = 10
         formSheetController.allowDismissByPanningPresentedView = true

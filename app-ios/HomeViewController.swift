@@ -168,7 +168,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     }
     
     override func viewDidDisappear(animated: Bool) {
-        balanceSwitch.removeFromSuperview()
     }
     
     func showGraphActivityIndicator() {
