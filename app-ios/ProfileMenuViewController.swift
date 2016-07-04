@@ -90,7 +90,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                 // if array has values
                 if !unwrappedOptionalArray.isEmpty {
                     self.verifiedLabel.text = "How to Verify"
-                    self.verifiedLabel.frame = CGRect(x: 120, y: 94, width: screenWidth-240, height: 30)
+                    self.verifiedLabel.frame = CGRect(x: 120, y: 98, width: screenWidth-240, height: 30)
                     self.locationLabel.textAlignment = NSTextAlignment.Center
                     
                     let fields_required: [String] = unwrappedOptionalArray
@@ -98,8 +98,8 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                     
                     // regex to replace legal.entity in the future
                     
-                    var announcement = Announcement(title: "Profile Incomplete | Require info", subtitle:
-                        fields_list, image: UIImage(named: "IconAlert"))
+                    var announcement = Announcement(title: "Transfers Disabled | Require info", subtitle:
+                        fields_list, image: UIImage(named: "IconAlertCalm"))
                     announcement.duration = 7
                     Shout(announcement, to: self)
                     
@@ -125,10 +125,10 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
             let _ = fields.map { (unwrappedOptionalArray) -> Void in
                 // if array has values
                 if !unwrappedOptionalArray.isEmpty {
-                    print("checking if empty... false")
+                    // print("checking if empty... false")
                     completionHandler(false, nil)
                 } else {
-                    print("checking if empty... true")
+                    // print("checking if empty... true")
                     completionHandler(true, nil)
                 }
             }
@@ -151,13 +151,13 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
                 self?.tableView.dg_stopLoading()
                 self!.loadProfile()
-                self!.configureHeader()
                 self!.tableView.tableHeaderView = ParallaxHeaderView.init(frame: CGRectMake(0, 0, CGRectGetWidth(self!.view.bounds), 220));
             })
             }, loadingView: loadingView)
         tableView.dg_setPullToRefreshFillColor(UIColor.clearColor())
         tableView.dg_setPullToRefreshBackgroundColor(UIColor.clearColor())
         
+        configureHeader()
         loadProfile()
         
         // Add action to share cell to return to activity menu
@@ -249,16 +249,16 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         self.locationLabel.numberOfLines = 0
         self.locationLabel.textColor = UIColor(rgba: "#fff")
 
-        splitter.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
+        splitter.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.1)
         splitter.frame = CGRect(x: screenWidth*0.333-0.5, y: 140, width: 1, height: 50)
         let _ = Timeout(0.05) {
-            addSubviewWithFade(self.splitter, parentView: self, duration: 1.2)
+//            addSubviewWithFade(self.splitter, parentView: self, duration: 1.2)
         }
         
-        splitter2.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2)
+        splitter2.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.1)
         splitter2.frame = CGRect(x: screenWidth*0.666-0.5, y: 140, width: 1, height: 50)
         let _ = Timeout(0.1) {
-            addSubviewWithFade(self.splitter2, parentView: self, duration: 1.2)
+//            addSubviewWithFade(self.splitter2, parentView: self, duration: 1.2)
         }
         
         self.subscriptionsCountLabel.frame = CGRectMake(30, 130, 80, 70)
@@ -336,7 +336,6 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         let l_name = user.last_name
         let u_name = user.username
         let b_name = user.business_name
-        print(b_name)
         if b_name != "" {
             navItem.title = b_name
         } else if f_name != "" {
