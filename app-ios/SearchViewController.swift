@@ -90,12 +90,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         activityIndicator.hidesWhenStopped = true
         self.view.addSubview(activityIndicator)
         
-//        let aView = UIView()
-//        aView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 300)
-//        aView.backgroundColor = UIColor.skyBlue()
-//        self.view.addSubview(aView)
-//        tblSearchResults.tableHeaderView = aView
-        
         tblSearchResults.reloadData()
         tblSearchResults.delegate = self
         tblSearchResults.dataSource = self
