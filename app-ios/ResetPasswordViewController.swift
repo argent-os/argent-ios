@@ -30,7 +30,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
         super.viewDidLoad()
         
         // Set background image
-        let backgroundView: UIImageView = UIImageView(image: UIImage(named: "BackgroundGradientCalmBlueTall"))
+        let backgroundView: UIImageView = UIImageView(image: UIImage(named: "BackgroundGradientNoir"))
         backgroundView.contentMode = UIViewContentMode.ScaleAspectFill
         backgroundView.frame = self.view.bounds
         self.view!.addSubview(backgroundView)

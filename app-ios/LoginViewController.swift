@@ -54,7 +54,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, WCSessionDeleg
         let screenHeight = screen.size.height
         
         // Set background image
-        let backgroundView: UIImageView = UIImageView(image: UIImage(named: "BackgroundGradientCalmBlueTall"))
+        let backgroundView: UIImageView = UIImageView(image: UIImage(named: "BackgroundGradientNoir"))
         backgroundView.contentMode = UIViewContentMode.ScaleToFill
         backgroundView.frame = self.view.bounds
         self.view!.addSubview(backgroundView)
@@ -125,7 +125,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, WCSessionDeleg
         let keyboardTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
         view.addGestureRecognizer(keyboardTap)
         
-        let image = UIImage(named: "LogoAppShadow")
+        let image = UIImage(named: "LogoOutline")
         imageView.image = image
         imageView.layer.masksToBounds = true
         imageView.tag = 42312

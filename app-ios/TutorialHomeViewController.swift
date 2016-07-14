@@ -41,7 +41,7 @@ class TutorialHomeViewController: SpotlightViewController {
         default:
             break
         }
-        
+    
         stepIndex += 1
     }
     

@@ -100,7 +100,7 @@ class AuthViewController: UIViewController, LTMorphingLabelDelegate, ModalTransi
         signupButton.addTarget(self, action: #selector(AuthViewController.signup(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(signupButton)
         
-        let imageName = "LogoAppShadow"
+        let imageName = "LogoOutline"
         let image = UIImage(named: imageName)
         imageView.image = image
         imageView.layer.masksToBounds = true
