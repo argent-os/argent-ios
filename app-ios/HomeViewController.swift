@@ -10,7 +10,6 @@ import UIKit
 import SnapKit
 import SwiftyJSON
 import Stripe
-import AnimatedSegmentSwitch
 import BEMSimpleLineGraph
 import DGElasticPullToRefresh
 import Gecco
@@ -19,12 +18,15 @@ import CWStatusBarNotification
 import CellAnimator
 import Crashlytics
 import WatchConnectivity
+import EasyTipView
 
 var userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
 
-class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpleLineGraphDataSource, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, WCSessionDelegate  {
+class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpleLineGraphDataSource, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, WCSessionDelegate, EasyTipViewDelegate  {
 
     private var window: UIWindow?
+
+    private var backgroundImageView = UIImageView()
 
     private var screen = UIScreen.mainScreen().bounds
 
@@ -32,6 +34,12 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     private var screenHeight = UIScreen.mainScreen().bounds.size.width
     
+    private var balanceSwitch = UISegmentedControl(items: ["Pending", "Available"])
+
+    private var logoView = UIImageView()
+
+    private var tutorialButton:UIButton = UIButton()
+
     private var dateFormatter = NSDateFormatter()
 
     private var accountHistoryArray:Array<History>?
@@ -49,10 +57,10 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     private let lblAccountPending:UILabel = UILabel()
 
     private let lblAccountAvailable:UILabel = UILabel()
-    
-    private let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.White)
 
-    private let balanceSwitch = AnimatedSegmentSwitch()
+    private let lblSubtext:UILabel = UILabel()
+
+    private let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.White)
 
     private let graph: BEMSimpleLineGraphView = BEMSimpleLineGraphView(frame: CGRectMake(0, 90, UIScreen.mainScreen().bounds.size.width, 200))
     
@@ -60,13 +68,13 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 
     private var gradient  : CGGradient?
 
-    @IBAction func indexChanged(sender: AnimatedSegmentSwitch) {
-        if(sender.selectedIndex == 0) {
+    @IBAction func indexChanged(sender: UISegmentedControl) {
+        if(sender.selectedSegmentIndex == 0) {
             lblAccountAvailable.removeFromSuperview()
             
             addSubviewWithFade(lblAccountPending, parentView: self, duration: 0.8)
         }
-        if(sender.selectedIndex == 1) {
+        if(sender.selectedSegmentIndex == 1) {
             lblAccountPending.removeFromSuperview()
 
             addSubviewWithFade(lblAccountAvailable, parentView: self, duration: 0.8)
@@ -94,7 +102,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     private func addInfiniteScroll() {
         // Add infinite scroll handler
         // change indicator view style to white
-        self.tableView.infiniteScrollIndicatorStyle = .Gray
+        self.tableView.infiniteScrollIndicatorStyle = .White
         
         // Add infinite scroll handler
         self.tableView.addInfiniteScrollWithHandler { (scrollView) -> Void in
@@ -130,8 +138,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     // VIEW DID APPEAR
     override func viewDidAppear(animated: Bool) {
-        self.view.addSubview(balanceSwitch)
-        self.view.bringSubviewToFront(balanceSwitch)
+//        self.view.addSubview(balanceSwitch)
+//        self.view.bringSubviewToFront(balanceSwitch)
         UITextField.appearance().keyboardAppearance = .Light
     }
     
@@ -159,12 +167,17 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         }
     }
     
+    // Tooltip
+    let tipView = EasyTipView(text: "Welcome to your Argent dashboard, in order to start accepting payments we will require account verification information.  Head to your profile page to learn more, tap to dismiss.", preferences: EasyTipView.globalPreferences)
+
     func presentTutorial(sender: AnyObject) {
+        
+        tipView.show(forView: self.tutorialButton, withinSuperview: self.view)
+        
         Answers.logCustomEventWithName("Home Tutorial Presented",
                                        customAttributes: [:])
-        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("TutorialHomeViewController") as! TutorialHomeViewController
-        viewController.alpha = 0.5
-        presentViewController(viewController, animated: true, completion: nil)
+        
+        // TODO: Remove Gecco and AnimatedSwitch
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -252,9 +265,11 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 formatter.numberStyle = .CurrencyStyle
                 formatter.locale = NSLocale.currentLocale() // This is the default
 
-                self.lblAccountPending.attributedText = formatCurrency(String(pendingBalance), fontName: "Avenir-Light", superSize: 16, fontSize: 32, offsetSymbol: 10, offsetCents: 10)
+                self.lblAccountPending.attributedText = formatCurrency(String(pendingBalance), fontName: "MyriadPro-Regular", superSize: 16, fontSize: 32, offsetSymbol: 10, offsetCents: 10)
                 addSubviewWithFade(self.lblAccountPending, parentView: self, duration: 1)
-                self.lblAccountAvailable.attributedText = formatCurrency(String(availableBalance), fontName: "Avenir-Light", superSize: 16, fontSize: 32, offsetSymbol: 10, offsetCents: 10)
+                self.lblAccountAvailable.attributedText = formatCurrency(String(availableBalance), fontName: "MyriadPro-Regular", superSize: 16, fontSize: 32, offsetSymbol: 10, offsetCents: 10)
+                
+                addSubviewWithFade(self.lblSubtext, parentView: self, duration: 0.5)
             })
             
             // Get user account history
@@ -282,7 +297,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                     // Track user action
                     Answers.logCustomEventWithName("User logged in", customAttributes: nil)
                     
-                    showGlobalNotification("Welcome " + (user?.first_name)! + "!", duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.slateBlue())
+                    showGlobalNotification("Welcome " + (user?.first_name)! + "!", duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.darkBlue())
                 }
                 
                 if(error != nil) {
@@ -332,8 +347,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         NSUserDefaults.standardUserDefaults().synchronize();
         
         // go to login view
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let loginVC = sb.instantiateViewControllerWithIdentifier("LoginViewController")
+        let sb = UIStoryboard(name: "Auth", bundle: nil)
+        let loginVC = sb.instantiateViewControllerWithIdentifier("authViewController")
         loginVC.modalTransitionStyle = .CrossDissolve
         let root = UIApplication.sharedApplication().keyWindow?.rootViewController
         root!.presentViewController(loginVC, animated: true, completion: { () -> Void in })
@@ -356,30 +371,32 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         CellAnimator.animateCell(cell, withTransform: CellAnimator.TransformTilt, andDuration: 0.3)
 
         let item = self.accountHistoryArray?[indexPath.row]
-        cell.selectionStyle = UITableViewCellSelectionStyle.Blue
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        cell.backgroundColor = UIColor.clearColor()
         cell.lblAmount?.text = ""
         cell.lblDate?.text = ""
         if let amount = item?.amount {
+            let currencyText = formatCurrency(amount, fontName: "MyriadPro-Regular", superSize: 14, fontSize: 24, offsetSymbol: 5, offsetCents: 5)
+            
             if Double(amount)!/100 < 0 {
                 // cell.lblCreditDebit?.text = "Debit"
-                if APP_THEME == "LIGHT" {
-                    cell.img.image = UIImage(named: "ic_arrow_down")
-                } else {
-                    cell.img.image = UIImage(named: "ic_arrow_down_pink")
-                }
-                cell.lblAmount?.textColor = UIColor.brandRed()
+                cell.img.image = UIImage(named: "ic_red_dot")
+                cell.lblAmount.attributedText = currencyText // + NSAttributedString(string: "  Auto transfer created")
+                cell.lblAmount?.textColor = UIColor.whiteColor()
             } else {
                 // cell.lblCreditDebit?.text = "Credit"
-                if APP_THEME == "LIGHT" {
-                    cell.img.image = UIImage(named: "ic_arrow_up")
-                } else {
-                    cell.img.image = UIImage(named: "ic_arrow_up_blue")
-                }
-                cell.lblAmount?.textColor = UIColor.brandGreen()
+                cell.img.image = UIImage(named: "ic_green_dot")
+                cell.lblAmount.attributedText = currencyText
+                cell.lblAmount?.textColor = UIColor.whiteColor()
             }
             
-            cell.lblAmount?.attributedText = formatCurrency(amount, fontName: "HelveticaNeue", superSize: 11, fontSize: 15, offsetSymbol: 3, offsetCents: 3)
-
+            // Identify System Fonts
+            for familyName in UIFont.familyNames() {
+                for fontName in UIFont.fontNamesForFamilyName(familyName as! String) {
+                    //print("\(familyName) : \(fontName)")
+                }
+            }
+            
         }
         if let date = item?.created
         {
@@ -390,8 +407,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 let formatted_date = dateFormatter.stringFromDate(converted_date)
                 cell.lblDate?.layer.cornerRadius = 10
                 cell.lblDate?.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
-                cell.lblDate?.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.75)
-                cell.lblDate?.layer.borderWidth = 1
+                cell.lblDate?.textColor = UIColor.whiteColor().colorWithAlphaComponent(0.8)
+                cell.lblDate?.layer.borderWidth = 0
+                cell.lblDate?.font = UIFont(name: "MyriadPro-Regular", size: 13)
                 cell.lblDate?.text = String(formatted_date) //+ " / uid " + uid
             } else {
                 
@@ -422,23 +440,23 @@ extension HomeViewController {
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "Transactions"
-        return NSAttributedString(string: str, attributes: headerAttrs)
+        return NSAttributedString(string: str, attributes: inverseHeaderAttrs)
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "No transactions have occurred yet."
         // let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
-        return NSAttributedString(string: str, attributes: bodyAttrs)
+        return NSAttributedString(string: str, attributes: inverseBodyAttrs)
     }
     
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
-        return UIImage(named: "IconEmptyMoneyBag")
+        return UIImage(named: "IconEmptyCashStack")
     }
     
     func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
         let str = "Create your first billing plan"
         // let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)]
-        return NSAttributedString(string: str, attributes: calloutAttrs)
+        return NSAttributedString(string: str, attributes: inverseCalloutAttrs)
     }
     
     func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
@@ -469,12 +487,12 @@ extension UISegmentedControl {
     func removeBorders() {
         setTitleTextAttributes([
                 NSForegroundColorAttributeName : UIColor.lightBlue().colorWithAlphaComponent(0.8),
-                NSFontAttributeName : UIFont(name: "HelveticaNeue", size: 11)!
+                NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 11)!
             ],
             forState: .Normal)
         setTitleTextAttributes([
                 NSForegroundColorAttributeName : UIColor.whiteColor(),
-                NSFontAttributeName : UIFont(name: "HelveticaNeue", size: 14)!
+                NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 14)!
             ],
             forState: .Selected)
         setBackgroundImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forState: .Normal, barMetrics: .Default)
@@ -498,10 +516,12 @@ extension UISegmentedControl {
 extension HomeViewController {
     func configureView() {
         
-        self.view.backgroundColor = UIColor.darkBlue()
-        
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
+        
+        backgroundImageView.frame = CGRect(x: 0, y: -2, width: screenWidth, height: screenHeight+4)
+        backgroundImageView.image = UIImage(named: "BackgroundDashboard")
+        addSubviewWithFade(backgroundImageView, parentView: self, duration: 0.5)
         
         if let tabBarController = window?.rootViewController as? UITabBarController {
             for item in tabBarController.tabBar.items! {
@@ -511,17 +531,14 @@ extension HomeViewController {
             }
         }
         
-        let img: UIImage = UIImage(named: "Logo")!
-        let logoImageView: UIImageView = UIImageView(frame: CGRectMake(20, 31, 40, 40))
-        logoImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-        logoImageView.backgroundColor = UIColor.groupTableViewBackgroundColor()
-        logoImageView.layer.cornerRadius = logoImageView.frame.size.height/2
-        logoImageView.layer.masksToBounds = true
-        logoImageView.clipsToBounds = true
-        logoImageView.image = img
-        logoImageView.layer.borderWidth = 2
-        logoImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
-        // self.view.addSubview(logoImageView)
+        // Balance Switch
+        balanceSwitch.tintColor = UIColor.whiteColor()
+        balanceSwitch.backgroundColor = UIColor.clearColor()
+        balanceSwitch.frame = CGRect(x: view.bounds.width - 210.0, y: 42, width: 200, height: 32.0)
+        //autoresizing so it stays at top right (flexible left and flexible bottom margin)
+        balanceSwitch.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
+        balanceSwitch.bringSubviewToFront(balanceSwitch)
+        balanceSwitch.addTarget(self, action: #selector(HomeViewController.indexChanged(_:)), forControlEvents: .ValueChanged)
         
         // Blurview
         let bg: UIImageView = UIImageView(frame: CGRectMake(0, 0, screenWidth, screenHeight))
@@ -537,7 +554,7 @@ extension HomeViewController {
         graph.frame = CGRect(x: 0, y: 80, width: screenWidth, height: 150)
         graph.colorTop = UIColor.clearColor()
         graph.colorBottom = UIColor.clearColor()
-        graph.colorPoint = UIColor.skyBlue()
+        graph.colorPoint = UIColor.darkBlue()
         graph.colorBackgroundPopUplabel = UIColor.skyBlue()
         graph.delegate = self
         let gradientColors : [CGColor] = [UIColor.neonBlue().CGColor, UIColor.neonYellow().CGColor, UIColor.neonPink().CGColor]
@@ -575,37 +592,32 @@ extension HomeViewController {
         dateRangeSegment.addTarget(self, action: #selector(HomeViewController.dateRangeSegmentControl(_:)), forControlEvents: .ValueChanged)
         addSubviewWithFade(dateRangeSegment, parentView: self, duration: 0.5)
         
-        balanceSwitch.items = ["Pending", "Available"]
-        balanceSwitch.backgroundColor = UIColor.clearColor()
-        balanceSwitch.font = UIFont(name: "Avenir-Light", size: 14)
-        balanceSwitch.backgroundColor = UIColor.clearColor()
-        balanceSwitch.titleColor = UIColor.whiteColor().colorWithAlphaComponent(0.3)
-        balanceSwitch.selectedTitleColor = UIColor.darkBlue()
-        balanceSwitch.frame = CGRect(x: view.bounds.width - 210.0, y: 40, width: 200, height: 32.0)
-        //autoresizing so it stays at top right (flexible left and flexible bottom margin)
-        balanceSwitch.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-        balanceSwitch.bringSubviewToFront(balanceSwitch)
-        balanceSwitch.addTarget(self, action: #selector(HomeViewController.indexChanged(_:)), forControlEvents: .ValueChanged)
-        
         let headerView: UIView = UIView(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 40))
         headerView.backgroundColor = UIColor.clearColor()
         let headerViewTitle: UILabel = UILabel()
         headerViewTitle.frame = CGRect(x: 18, y: 15, width: screenWidth, height: 30)
-        headerViewTitle.text = "Transaction History"
+        headerViewTitle.text = ""
         headerViewTitle.font = UIFont.systemFontOfSize(14)
         headerViewTitle.textAlignment = .Left
         headerViewTitle.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.7)
         headerView.addSubview(headerViewTitle)
         
-        let tutorialButton:UIButton = UIButton()
-        tutorialButton.frame = CGRect(x: screenWidth-40, y: 19, width: 22, height: 22)
+        tutorialButton.frame = CGRect(x: screenWidth-40, y: 41, width: 20, height: 20)
         tutorialButton.setImage(UIImage(named: "ic_question"), forState: .Normal)
         tutorialButton.setTitle("Tuts", forState: .Normal)
         tutorialButton.setTitleColor(UIColor.redColor(), forState: .Normal)
         tutorialButton.addTarget(self, action: #selector(HomeViewController.presentTutorial(_:)), forControlEvents: .TouchUpInside)
         tutorialButton.addTarget(self, action: #selector(HomeViewController.presentTutorial(_:)), forControlEvents: .TouchUpOutside)
-        headerView.addSubview(tutorialButton)
-        headerView.bringSubviewToFront(tutorialButton)
+        self.view.addSubview(tutorialButton)
+        self.view.bringSubviewToFront(tutorialButton)
+        
+        logoView.frame = CGRect(x: 20, y: 41, width: 30, height: 30)
+        logoView.image = UIImage(named: "LogoOutline")
+        logoView.alpha = 0.8
+        //logoView.addTarget(self, action: #selector(HomeViewController.presentTutorial(_:)), forControlEvents: .TouchUpInside)
+        //logoView.addTarget(self, action: #selector(HomeViewController.presentTutorial(_:)), forControlEvents: .TouchUpOutside)
+        self.view.addSubview(logoView)
+        self.view.bringSubviewToFront(logoView)
         
         tableView.frame = CGRect(x: 0, y: 270, width: screenWidth, height: screenHeight-315)
         tableView.tableHeaderView = headerView
@@ -613,25 +625,36 @@ extension HomeViewController {
         tableView.dataSource = self
         tableView.separatorColor = UIColor.lightBlue().colorWithAlphaComponent(0.3)
         tableView.showsVerticalScrollIndicator = false
+        tableView.backgroundColor = UIColor.clearColor()
         addSubviewWithFade(tableView, parentView: self, duration: 0.5)
         
         lblAccountAvailable.textColor = UIColor.whiteColor()
-        lblAccountAvailable.frame = CGRectMake(20, 41, 200, 40)
-        let str0 = NSAttributedString(string: "N/A", attributes:
-            [
-                NSFontAttributeName: UIFont.systemFontOfSize(18),
+        lblAccountAvailable.frame = CGRect(x: 0, y: 31, width: screenWidth, height: 60)
+        lblAccountAvailable.textAlignment = .Center
+        let str0 = NSAttributedString(string: "N/A", attributes:[
+                NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 18)!,
                 NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.7)
             ])
         lblAccountAvailable.attributedText = str0
-        
+        ///////
         lblAccountPending.textColor = UIColor.whiteColor()
-        lblAccountPending.frame = CGRectMake(20, 41, 200, 40)
-        let str1 = NSAttributedString(string: "N/A", attributes:
-            [
-                NSFontAttributeName: UIFont.systemFontOfSize(18),
+        lblAccountPending.frame = CGRect(x: 0, y: 31, width: screenWidth, height: 60)
+        lblAccountPending.textAlignment = .Center
+        let str1 = NSAttributedString(string: "N/A", attributes:[
+                NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 18)!,
                 NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.7)
             ])
         lblAccountPending.attributedText = str1
+        ///////
+        lblSubtext.textColor = UIColor.whiteColor()
+        lblSubtext.frame = CGRect(x: 0, y: 55, width: screenWidth, height: 60)
+        lblSubtext.alpha = 0.5
+        lblSubtext.textAlignment = .Center
+        let subtext = NSAttributedString(string: "Pending Balance", attributes:[
+            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 12)!,
+            NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.7)
+            ])
+        lblSubtext.attributedText = subtext
         
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.tintColor = UIColor.lightBlue()
@@ -641,9 +664,9 @@ extension HomeViewController {
                 self?.loadAccountHistory("100", starting_after: "", completionHandler: { (_: [History]?, NSError) in
                 })
             })
-            }, loadingView: loadingView)
-        tableView.dg_setPullToRefreshFillColor(graph.colorBottom)
-        tableView.dg_setPullToRefreshBackgroundColor(self.view.backgroundColor!)
+        }, loadingView: loadingView)
+        tableView.dg_setPullToRefreshFillColor(UIColor.clearColor())
+        tableView.dg_setPullToRefreshBackgroundColor(UIColor.clearColor())
         
         // Transparent navigation bar
         self.navigationController?.navigationBar.barTintColor = UIColor.lightBlue()
@@ -653,8 +676,15 @@ extension HomeViewController {
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.mediumBlue(),
-            NSFontAttributeName : UIFont(name: "HelveticaNeue-Light", size: 18.0)!
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular-Light", size: 18.0)!
         ]
         
+    }
+}
+
+extension HomeViewController {
+    // EasyTipView Delegate
+    func easyTipViewDidDismiss(tipView: EasyTipView) {
+        print("dismissed")
     }
 }

@@ -17,6 +17,7 @@ PODS:
   - DKCircleButton (1.1)
   - DynamicColor (2.4.0)
   - DZNEmptyDataSet (1.8.1)
+  - EasyTipView (0.2.0)
   - EmitterKit (4.0.2)
   - Fabric (1.6.7)
   - FlagKit (1.0.7)
@@ -83,6 +84,7 @@ DEPENDENCIES:
   - DKCircleButton
   - DynamicColor
   - DZNEmptyDataSet
+  - EasyTipView
   - EmitterKit
   - Fabric
   - FlagKit
@@ -150,6 +152,7 @@ SPEC CHECKSUMS:
   DKCircleButton: 62564c9debae08ad77dabb8d9658dfeb5520f2c4
   DynamicColor: 2f3fd61053684667bad9f03045dcf9a2a5a007ea
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  EasyTipView: e8e64a53438b3ef845f5aae39b5758e16079b6db
   EmitterKit: ac0dced2291745a6dd299a150665e1b3f0844a32
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   FlagKit: dffc62b4c5db33043c89bbda0bda897077d521e5

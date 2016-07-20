@@ -43,6 +43,8 @@
 		308073081CFF39230070C7FE /* CustomersListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308073071CFF39230070C7FE /* CustomersListTableViewController.swift */; };
 		3080730A1CFF393F0070C7FE /* PlansListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308073091CFF393F0070C7FE /* PlansListTableViewController.swift */; };
 		3080730C1CFF6F260070C7FE /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080730B1CFF6F250070C7FE /* Subscription.swift */; };
+		3083FA701D3E4E3600D09B19 /* myriad_pro_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3083FA6F1D3E4E3600D09B19 /* myriad_pro_regular.ttf */; };
+		3083FA711D3E4E3600D09B19 /* myriad_pro_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3083FA6F1D3E4E3600D09B19 /* myriad_pro_regular.ttf */; };
 		308630031CFCDEBD00695215 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308630021CFCDEBD00695215 /* OnboardingCollectionViewCell.swift */; };
 		30879A4F1D12F10300D3DF01 /* BankManualAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30879A4E1D12F10300D3DF01 /* BankManualAddViewController.swift */; };
 		308A348A1CCA803200AAF66F /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A34891CCA803200AAF66F /* History.swift */; };
@@ -269,6 +271,7 @@
 		308073071CFF39230070C7FE /* CustomersListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomersListTableViewController.swift; path = "app-ios/CustomersListTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		308073091CFF393F0070C7FE /* PlansListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlansListTableViewController.swift; path = "app-ios/PlansListTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		3080730B1CFF6F250070C7FE /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Subscription.swift; path = "app-ios/Subscription.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		3083FA6F1D3E4E3600D09B19 /* myriad_pro_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = myriad_pro_regular.ttf; sourceTree = "<group>"; };
 		308630021CFCDEBD00695215 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingCollectionViewCell.swift; path = "app-ios/OnboardingCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		30879A4E1D12F10300D3DF01 /* BankManualAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankManualAddViewController.swift; path = "app-ios/BankManualAddViewController.swift"; sourceTree = SOURCE_ROOT; };
 		308A34891CCA803200AAF66F /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = History.swift; path = "app-ios/History.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -784,6 +787,7 @@
 			isa = PBXGroup;
 			children = (
 				30C2DA841CA436CC003AFD8B /* ocra.ttf */,
+				3083FA6F1D3E4E3600D09B19 /* myriad_pro_regular.ttf */,
 			);
 			name = fonts;
 			path = "app-ios/fonts";
@@ -1258,6 +1262,7 @@
 			files = (
 				30DB59601CA46CB0007FEE1E /* Assets.xcassets in Resources */,
 				30DB595E1CA46CB0007FEE1E /* Interface.storyboard in Resources */,
+				3083FA711D3E4E3600D09B19 /* myriad_pro_regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1286,6 +1291,7 @@
 				30C2DA771CA436B8003AFD8B /* chime2.caf in Resources */,
 				304468F01CAA0BFC008CAE7D /* notify.caf in Resources */,
 				30C2DA7A1CA436C3003AFD8B /* nyc.mp4 in Resources */,
+				3083FA701D3E4E3600D09B19 /* myriad_pro_regular.ttf in Resources */,
 				304468F11CAA0BFC008CAE7D /* pop.caf in Resources */,
 				30C2DA751CA436B8003AFD8B /* cashregister.caf in Resources */,
 				30CA455A1CE6CF7F00D656E5 /* HistoryCustomCell.xib in Resources */,

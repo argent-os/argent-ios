@@ -92,11 +92,11 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
                 self!.loadNotificationItems("100", starting_after: "")
             })
             }, loadingView: loadingView)
-        tableView.dg_setPullToRefreshFillColor(UIColor.mediumBlue())
+        tableView.dg_setPullToRefreshFillColor(UIColor.darkBlue())
         tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
         
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 65))
-        navBar.barTintColor = UIColor.mediumBlue()
+        navBar.barTintColor = UIColor.darkBlue()
         navBar.tintColor = UIColor.whiteColor()
         navBar.translucent = false
         navBar.titleTextAttributes = [

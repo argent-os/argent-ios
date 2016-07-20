@@ -131,7 +131,7 @@ class SignupViewControllerZero: UIViewController {
         //// Company Section
         
         
-        backgroundCompanyImageView.backgroundColor = UIColor.mediumBlue()
+        backgroundCompanyImageView.backgroundColor = UIColor.darkBlue()
         backgroundCompanyImageView.frame = CGRect(x: 0, y: screenHeight/2, width: screenWidth, height: screenHeight/2)
         self.view.addSubview(backgroundCompanyImageView)
         

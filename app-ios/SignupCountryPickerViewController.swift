@@ -113,8 +113,7 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
     }
     
     // Add send toolbar
-    func addToolbarButton()
-    {
+    func addToolbarButton() {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
@@ -124,15 +123,18 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
         self.view.sendSubviewToBack(countryPicker)
         countryPicker.sendSubviewToBack(countryPicker)
 
-        toolBar.frame = CGRect(x: 0, y: screenHeight-250, width: screenWidth, height: 40)
+        toolBar.frame = CGRect(x: 0, y: screenHeight-250, width: screenWidth, height: 50)
         toolBar.barStyle = UIBarStyle.Default
-        toolBar.translucent = true
-        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+        toolBar.translucent = false
         toolBar.sizeToFit()
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         let next: UIBarButtonItem = UIBarButtonItem(title: "Continue", style: UIBarButtonItemStyle.Done, target: self, action: #selector(SignupCountryPickerViewController.nextStep(_:)))
 
+        UIToolbar.appearance().barTintColor = UIColor.brandGreen()
+        UIToolbar.appearance().backgroundColor = UIColor.brandGreen()
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont.systemFontOfSize(15, weight: UIFontWeightRegular), NSForegroundColorAttributeName:UIColor.whiteColor()], forState: UIControlState.Normal)
+        
         toolBar.setItems([flexSpace, next, flexSpace], animated: false)
         toolBar.userInteractionEnabled = true
         

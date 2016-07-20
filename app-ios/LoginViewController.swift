@@ -54,7 +54,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, WCSessionDeleg
         let screenHeight = screen.size.height
         
         // Set background image
-        let backgroundView: UIImageView = UIImageView(image: UIImage(named: "BackgroundGradientNoir"))
+        let backgroundView: UIImageView = UIImageView(image: UIImage(named: "BackgroundDashboard"))
         backgroundView.contentMode = UIViewContentMode.ScaleToFill
         backgroundView.frame = self.view.bounds
         self.view!.addSubview(backgroundView)

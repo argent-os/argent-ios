@@ -304,7 +304,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                 if account.ein != "" {
                     $0.placeholder = "provided"
                 } else {
-                    $0.placeholder = "Employee Identification Number"
+                    $0.placeholder = "Business or Personal Tax ID"
                 }
                 $0.text = Profile.sharedInstance.ein
                 b_ein = $0.text

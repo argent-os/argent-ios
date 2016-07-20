@@ -6,6 +6,8 @@
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
 
 import Foundation
+import SystemConfiguration
+import CWStatusBarNotification
 import UIKit
 import Stripe
 import PasscodeLock
@@ -17,6 +19,7 @@ import Alamofire
 import Fabric
 import Crashlytics
 import Armchair
+import EasyTipView
 
 // THEME
 var APP_THEME = "LIGHT"
@@ -137,6 +140,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Armchair.appID(APP_ID)
         Armchair.debugEnabled(true)
         
+        // Tooltips
+        var preferences = EasyTipView.Preferences()
+        preferences.drawing.font = UIFont(name: "MyriadPro-Regular", size: 13)!
+        preferences.drawing.foregroundColor = UIColor.whiteColor()
+        preferences.drawing.backgroundColor = UIColor.skyBlue()
+        preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.Top
+        EasyTipView.globalPreferences = preferences
+        
         // Fabric & Crashlytics / Answers
         Fabric.with([STPAPIClient.self, Crashlytics.self])
         Answers.logCustomEventWithName("Application Launched",
@@ -183,7 +194,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         pscope.permissionLabelColor = UIColor.mediumBlue()
         
         // Register for push notification on every launch
-        notify()
+        // notify()
 
         // Global window attributes
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
@@ -194,9 +205,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Initialize global UI elements ** Must come after setting self.window attributes
         globalUI()
         
+        // Check internet connection status
+        checkNetworkStatus()
+        
         // initialize rootviewcontroller *important
-        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RootViewController")
-        self.window!.rootViewController = viewController
+//        let viewController = UIStoryboard(name: "Auth", bundle: nil).instantiateViewControllerWithIdentifier("authViewController")
+//        self.window!.rootViewController = viewController
         // Assign the init view controller of the app
         firstTime()
 
@@ -231,6 +245,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    func checkNetworkStatus() -> Bool {
+        // See if network connection works
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        let defaultRouteReachability = withUnsafePointer(&zeroAddress) {
+            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
+        }
+        var flags = SCNetworkReachabilityFlags()
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
+            showGlobalNotification("No network connection", duration: 200, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
+            return false
+        }
+        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
+        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        return (isReachable && !needsConnection)
+    }
+    
     func globalUI() {
         // here we establish any global UI elements
         // that affect the entire application such
@@ -244,7 +276,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIToolbar.appearance().backgroundColor = UIColor.mediumBlue()
         
         // Toolbar Keyboard UI
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont.systemFontOfSize(15),NSForegroundColorAttributeName:UIColor.whiteColor()], forState: UIControlState.Normal)
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont.systemFontOfSize(15, weight: UIFontWeightRegular),NSForegroundColorAttributeName:UIColor.whiteColor()], forState: UIControlState.Normal)
         
         // Tabbar UI
         UITabBar.appearance().tintColor = UIColor.slateBlue()
@@ -282,9 +314,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RootViewController")
                 self.window!.rootViewController = viewController
             } else {
-                let sb = UIStoryboard(name: "Main", bundle: nil)
+                let sb = UIStoryboard(name: "Auth", bundle: nil)
                 let rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RootViewController")
-                let vc = sb.instantiateViewControllerWithIdentifier("LoginViewController")
+                let vc = sb.instantiateViewControllerWithIdentifier("authViewController")
                 vc.modalTransitionStyle = .CrossDissolve
                 self.window!.rootViewController = rootViewController
                 rootViewController.presentViewController(vc, animated: false, completion: { _ in
@@ -303,7 +335,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSUserDefaults.standardUserDefaults().synchronize()
             
             let sb = UIStoryboard(name: "Auth", bundle: nil)
-            let rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("RootViewController")
+            let rootViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateViewControllerWithIdentifier("RootViewController")
             let vc = sb.instantiateViewControllerWithIdentifier("authViewController")
             vc.modalTransitionStyle = .CrossDissolve
             self.window!.rootViewController = rootViewController
@@ -399,49 +431,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-    
-    func notify() {
-        switch PermissionScope().statusNotifications() {
-        case .Unknown:
-            self.pscope.show({ finished, results in
-                print(results)
-                print(finished)
-                // Enable push notifications
-                if #available(iOS 8.0, *) {
-                    let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-                    UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-                    UIApplication.sharedApplication().registerForRemoteNotifications()
-                } else {
-                    let settings = UIRemoteNotificationType.Alert.union(UIRemoteNotificationType.Badge).union(UIRemoteNotificationType.Sound)
-                    UIApplication.sharedApplication().registerForRemoteNotificationTypes(settings)
-                }
-                }, cancelled: { (results) -> Void in
-                    print("cancelled")
-                    print(results)
-            })
-        case .Unauthorized, .Disabled:
-            self.pscope.show({ finished, results in
-                print(results)
-                print(finished)
-                // Enable push notifications
-                if #available(iOS 8.0, *) {
-                    let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-                    UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-                    UIApplication.sharedApplication().registerForRemoteNotifications()
-                } else {
-                    let settings = UIRemoteNotificationType.Alert.union(UIRemoteNotificationType.Badge).union(UIRemoteNotificationType.Sound)
-                    UIApplication.sharedApplication().registerForRemoteNotificationTypes(settings)
-                }
-                }, cancelled: { (results) -> Void in
-                    print("cancelled")
-                    print(results)
-            })
-        case .Authorized:
-            // If permission is granted, post to endpoint
-            Answers.logCustomEventWithName("Permission Notifications Authorized in AppDelegate",
-                                           customAttributes: [:])
-        }
-    }
+
+//    func notify() {
+//        switch PermissionScope().statusNotifications() {
+//        case .Unknown:
+//            self.pscope.show({ finished, results in
+//                print(results)
+//                print(finished)
+//                // Enable push notifications
+//                if #available(iOS 8.0, *) {
+//                    let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+//                    UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+//                    UIApplication.sharedApplication().registerForRemoteNotifications()
+//                } else {
+//                    let settings = UIRemoteNotificationType.Alert.union(UIRemoteNotificationType.Badge).union(UIRemoteNotificationType.Sound)
+//                    UIApplication.sharedApplication().registerForRemoteNotificationTypes(settings)
+//                }
+//                }, cancelled: { (results) -> Void in
+//                    print("cancelled")
+//                    print(results)
+//            })
+//        case .Unauthorized, .Disabled:
+//            self.pscope.show({ finished, results in
+//                print(results)
+//                print(finished)
+//                // Enable push notifications
+//                if #available(iOS 8.0, *) {
+//                    let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+//                    UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+//                    UIApplication.sharedApplication().registerForRemoteNotifications()
+//                } else {
+//                    let settings = UIRemoteNotificationType.Alert.union(UIRemoteNotificationType.Badge).union(UIRemoteNotificationType.Sound)
+//                    UIApplication.sharedApplication().registerForRemoteNotificationTypes(settings)
+//                }
+//                }, cancelled: { (results) -> Void in
+//                    print("cancelled")
+//                    print(results)
+//            })
+//        case .Authorized:
+//            // If permission is granted, post to endpoint
+//            Answers.logCustomEventWithName("Permission Notifications Authorized in AppDelegate",
+//                                           customAttributes: [:])
+//        }
+//    }
     
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

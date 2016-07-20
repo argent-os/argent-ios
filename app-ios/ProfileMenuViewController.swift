@@ -16,6 +16,7 @@ import Crashlytics
 import Whisper
 import JSSAlertView
 import MZFormSheetPresentationController
+import EasyTipView
 
 class ProfileMenuViewController: UITableViewController, SKStoreProductViewControllerDelegate {
     
@@ -53,6 +54,10 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
 
     private var settingsIcon = UIImageView()
 
+    private var verifiedButton:UIButton = UIButton()
+
+    private var tipView = EasyTipView(text: "Your account is now verified! Tap to dismiss.", preferences: EasyTipView.globalPreferences)
+    
     private let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 40, width: UIScreen.mainScreen().bounds.size.width, height: 50))
 
     private var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
@@ -72,7 +77,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         self.verifiedLabel.contentMode = .Center
         self.verifiedLabel.textAlignment = .Center
         self.verifiedLabel.textColor = UIColor.whiteColor()
-        self.verifiedLabel.font = UIFont(name: "HelveticaNeue-Light", size: 14)
+        self.verifiedLabel.font = UIFont(name: "MyriadPro-Regular", size: 14)
         self.verifiedLabel.layer.cornerRadius = 5
         self.verifiedLabel.layer.borderColor = UIColor.whiteColor().CGColor
         self.verifiedLabel.layer.borderWidth = 1
@@ -106,7 +111,6 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                     if let indexOfBusinessName = fields_required.indexOf("legal_entity.business_name") {
                         fields_required[indexOfBusinessName] = "Business Name"
                     }
-                    
                     if let indexOfAddressCity = fields_required.indexOf("legal_entity.address.city") {
                         fields_required[indexOfAddressCity] = "City"
                     }
@@ -119,7 +123,6 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                     if let indexOfAddressLine1 = fields_required.indexOf("legal_entity.address.line1") {
                         fields_required[indexOfAddressLine1] = "Address"
                     }
-                    
                     if let indexOfPIN = fields_required.indexOf("legal_entity.personal_id_number") {
                         fields_required[indexOfPIN] = "Full SSN or PIN"
                     }
@@ -149,14 +152,24 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                         }
                     }
                 } else {
-                    
-                    self.verifiedImage.image = UIImage(named: "IconSuccessWhite")
-                    self.verifiedImage.frame = CGRect(x: 10, y: -20, width: 25, height: 25)
-                    self.verifiedImage.center = CGPointMake(25, -20)
-                    self.view.addSubview(self.verifiedImage)
+                    self.verifiedButton.frame = CGRect(x:screenWidth/2-15, y: 110, width: 25, height: 25)
+                    self.verifiedButton.setImage(UIImage(named: "IconSuccessWhite"), forState: .Normal)
+                    self.verifiedButton.setTitle("Tuts", forState: .Normal)
+                    self.verifiedButton.setTitleColor(UIColor.redColor(), forState: .Normal)
+                    self.verifiedButton.addTarget(self, action: #selector(HomeViewController.presentTutorial(_:)), forControlEvents: .TouchUpInside)
+                    self.verifiedButton.addTarget(self, action: #selector(HomeViewController.presentTutorial(_:)), forControlEvents: .TouchUpOutside)
+                    self.view.addSubview(self.verifiedButton)
+                    self.view.bringSubviewToFront(self.verifiedButton)
                 }
             }
         }
+    }
+    
+    func presentTutorial(sender: AnyObject) {
+        tipView.show(forView: self.verifiedButton, withinSuperview: self.view)
+        
+        Answers.logCustomEventWithName("Profile is verified tutorial presented",
+                                    customAttributes: [:])
     }
     
     func checkIfVerified(completionHandler: (Bool, NSError?) -> ()){
@@ -283,9 +296,9 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                 }
             })
         }
-        self.locationLabel.frame = CGRectMake(0, 72, screenWidth, 70)
+        self.locationLabel.frame = CGRectMake(0, 58, screenWidth, 70)
         self.locationLabel.textAlignment = NSTextAlignment.Center
-        self.locationLabel.font = UIFont(name: "HelveticaNeue-Light", size: 12)
+        self.locationLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
         self.locationLabel.numberOfLines = 0
         self.locationLabel.textColor = UIColor(rgba: "#fff")
 
@@ -303,19 +316,19 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         
         self.subscriptionsCountLabel.frame = CGRectMake(30, 130, 80, 70)
         self.subscriptionsCountLabel.textAlignment = NSTextAlignment.Center
-        self.subscriptionsCountLabel.font = UIFont(name: "HelveticaNeue-Light", size: 12)
+        self.subscriptionsCountLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
         self.subscriptionsCountLabel.numberOfLines = 0
         self.subscriptionsCountLabel.textColor = UIColor(rgba: "#fff")
         
         self.customersCountLabel.frame = CGRectMake(screenWidth*0.5-40, 130, 80, 70)
         self.customersCountLabel.textAlignment = NSTextAlignment.Center
-        self.customersCountLabel.font = UIFont(name: "HelveticaNeue-Light", size: 12)
+        self.customersCountLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
         self.customersCountLabel.numberOfLines = 0
         self.customersCountLabel.textColor = UIColor(rgba: "#fff")
         
         self.plansCountLabel.frame = CGRectMake(screenWidth-110, 130, 80, 70)
         self.plansCountLabel.textAlignment = NSTextAlignment.Center
-        self.plansCountLabel.font = UIFont(name: "HelveticaNeue-Light", size: 12)
+        self.plansCountLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
         self.plansCountLabel.numberOfLines = 0
         self.plansCountLabel.textColor = UIColor(rgba: "#fff")
     }
@@ -386,7 +399,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         
         self.navBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "HelveticaNeue-Light", size: 16.0)!
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 16.0)!
         ]
         self.navBar.setItems([navItem], animated: false)
         let _ = Timeout(0.1) {

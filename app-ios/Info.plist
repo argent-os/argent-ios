@@ -75,70 +75,7 @@
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Nunito-Bold.ttf
-Nunito-Bold.ttf
-Nunito-ExtraBold.ttf
-Nunito-ExtraLight.ttf
-Nunito-Light.ttf
-Nunito-Medium.ttf
-Nunito-Regular.ttf
-Nunito-SemiBold.ttf</string>
-		<string>Nunito-ExtraBold.ttf
-Nunito-Bold.ttf
-Nunito-ExtraBold.ttf
-Nunito-ExtraLight.ttf
-Nunito-Light.ttf
-Nunito-Medium.ttf
-Nunito-Regular.ttf
-Nunito-SemiBold.ttf</string>
-		<string>Nunito-ExtraLight.ttf
-Nunito-Bold.ttf
-Nunito-ExtraBold.ttf
-Nunito-ExtraLight.ttf
-Nunito-Light.ttf
-Nunito-Medium.ttf
-Nunito-Regular.ttf
-Nunito-SemiBold.ttf</string>
-		<string>Nunito-Black.ttf
-Nunito-Bold.ttf
-Nunito-ExtraBold.ttf
-Nunito-ExtraLight.ttf
-Nunito-Light.ttf
-Nunito-Medium.ttf
-Nunito-Regular.ttf
-Nunito-SemiBold.ttf</string>
-		<string>Nunito-Light.ttf
-Nunito-Bold.ttf
-Nunito-ExtraBold.ttf
-Nunito-ExtraLight.ttf
-Nunito-Light.ttf
-Nunito-Medium.ttf
-Nunito-Regular.ttf
-Nunito-SemiBold.ttf</string>
-		<string>Nunito-Medium.ttf
-Nunito-Bold.ttf
-Nunito-ExtraBold.ttf
-Nunito-ExtraLight.ttf
-Nunito-Light.ttf
-Nunito-Medium.ttf
-Nunito-Regular.ttf
-Nunito-SemiBold.ttf</string>
-		<string>Nunito-Regular.ttf
-Nunito-Bold.ttf
-Nunito-ExtraBold.ttf
-Nunito-ExtraLight.ttf
-Nunito-Light.ttf
-Nunito-Medium.ttf
-Nunito-Regular.ttf
-Nunito-SemiBold.ttf</string>
-		<string>Nunito-SemiBold.ttf
-Nunito-Bold.ttf
-Nunito-ExtraBold.ttf
-Nunito-ExtraLight.ttf
-Nunito-Light.ttf
-Nunito-Medium.ttf
-Nunito-Regular.ttf
-Nunito-SemiBold.ttf</string>
+		<string>myriad_pro_regular.ttf</string>
 	</array>
 	<key>UIApplicationExitsOnSuspend</key>
 	<true/>

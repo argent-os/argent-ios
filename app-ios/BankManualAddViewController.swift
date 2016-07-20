@@ -13,6 +13,7 @@ import Alamofire
 import SwiftyJSON
 import Crashlytics
 import MZFormSheetPresentationController
+import EasyTipView
 
 class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINavigationBarDelegate {
     
@@ -38,7 +39,13 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
     
     let addBankButton = UIButton()
     
+    let helpButton = UIButton()
+    
     var bankDic: NSDictionary?
+    
+    var rightButton = UIBarButtonItem()
+    
+    let tipView = EasyTipView(text: "All information processed is SHA-256 Bit encrypted with end-to-end SSL. We do not store bank account information on our servers.", preferences: EasyTipView.globalPreferences)
     
     override func prefersStatusBarHidden() -> Bool {
         return true
@@ -160,6 +167,20 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
         scrollView.addSubview(accountTextField)
         scrollView.sendSubviewToBack(accountTextField)
 
+        helpButton.frame = CGRect(x: 20, y: screenHeight-210, width: screenWidth-40, height: 60)
+        helpButton.setTitle("See Example Check", forState: .Normal)
+        helpButton.setTitleColor(UIColor.lightBlue(), forState: .Normal)
+        helpButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
+        helpButton.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
+        helpButton.backgroundColor = UIColor.clearColor()
+        helpButton.layer.borderColor = UIColor.clearColor().CGColor
+        helpButton.layer.borderWidth = 1
+        helpButton.layer.cornerRadius = 10
+        helpButton.layer.masksToBounds = true
+        helpButton.addTarget(self, action: #selector(self.showTutorialModal(_:)), forControlEvents: .TouchUpInside)
+        scrollView.addSubview(helpButton)
+        scrollView.bringSubviewToFront(helpButton)
+        
         addBankButton.frame = CGRect(x: 20, y: screenHeight-130, width: screenWidth-40, height: 60)
         addBankButton.setTitle("Add Bank", forState: .Normal)
         addBankButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
@@ -330,8 +351,11 @@ extension BankManualAddViewController {
         navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.lightBlue()]
         
         // Create left and right button for navigation item
-        let rightButton = UIBarButtonItem(title: "Help", style: .Plain, target: self, action: #selector(self.showTutorialModal(_:)))
-        rightButton.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+        rightButton = UIBarButtonItem(title: "Encryption", style: .Plain, target: self, action: #selector(self.presentTutorial(_:)))
+        rightButton.setTitleTextAttributes([
+            NSForegroundColorAttributeName:UIColor.mediumBlue(),
+            NSFontAttributeName: UIFont.systemFontOfSize(13, weight: UIFontWeightThin)
+        ], forState: UIControlState.Normal)
         // Create two buttons for the navigation item
         navigationItem.rightBarButtonItem = rightButton
         
@@ -340,5 +364,19 @@ extension BankManualAddViewController {
         navigationBar.items = [navigationItem]
         
         self.view.addSubview(navigationBar)
+    }
+    
+    func presentTutorial(sender: AnyObject) {
+        var preferences = EasyTipView.Preferences()
+        preferences.drawing.font = UIFont(name: "MyriadPro-Regular", size: 13)!
+        preferences.drawing.foregroundColor = UIColor.whiteColor()
+        preferences.drawing.backgroundColor = UIColor.skyBlue()
+        preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.Top
+        tipView.show(forView: self.infoLabel, withinSuperview: self.view)
+        
+        Answers.logCustomEventWithName("Bank Security Tutorial Presented",
+                                       customAttributes: [:])
+        
+        // TODO: Remove Gecco and AnimatedSwitch
     }
 }

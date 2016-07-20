@@ -49,7 +49,7 @@ class ConfigureAppViewController: FormViewController, UIApplicationDelegate {
         
         // Create RowFomers
         let configurePOSRowScreenAlive = SwitchRowFormer<FormSwitchCell>() {
-            $0.titleLabel.text = "Keep POS screen alive"
+            $0.titleLabel.text = "Keep screen alive"
             $0.titleLabel.font = UIFont.systemFontOfSize(14)
             $0.switchButton.onTintColor = UIColor.skyBlue()
             }.configure() { cell in
@@ -119,7 +119,7 @@ class ConfigureAppViewController: FormViewController, UIApplicationDelegate {
         
         // Create SectionFormers
         
-        let titleSection = SectionFormer(rowFormer: configurePOSRowScreenAlive, configureThemeRow).set(headerViewFormer: createHeader("App Settings"))
+        let titleSection = SectionFormer(rowFormer: configurePOSRowScreenAlive).set(headerViewFormer: createHeader("App Settings"))
         former.append(sectionFormer: titleSection)
     }
     

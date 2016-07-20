@@ -12,9 +12,12 @@ import Foundation
 import CWStatusBarNotification
 import MZFormSheetPresentationController
 import Crashlytics
+import EasyTipView
 
-class IdentityVerificationViewController: UIViewController, ImagePickerDelegate {
+class IdentityVerificationViewController: UIViewController, ImagePickerDelegate, UINavigationBarDelegate {
     
+    let navigationBar = UINavigationBar()
+
     private var identityCardButton = UIButton()
 
     private var passportCardButton = UIButton()
@@ -24,6 +27,10 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate 
     private var socialSecurityButton = UIButton()
     
     private let imagePickerController = ImagePickerController()
+
+    let tipView = EasyTipView(text: "All information processed is SHA-256 Bit encrypted with end-to-end SSL. We do not store social security information on our servers.  Social security and identity document data is handled and processed by Stripe, one of the world's largest PCI DSS Level 1 compliant payment processors.", preferences: EasyTipView.globalPreferences)
+
+    var rightButton = UIBarButtonItem()
 
     let imageView = UIImageView()
     
@@ -43,6 +50,8 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate 
         
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
+        
+        addHelpButton()
         
         self.view.backgroundColor = UIColor.offWhite()
         
@@ -316,6 +325,49 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate 
         
         // Be sure to update current module on storyboard
         self.presentViewController(formSheetController, animated: true, completion: nil)
+    }
+}
+
+
+extension IdentityVerificationViewController {
+    func addHelpButton() {
+        // Offset by 20 pixels vertically to take the status bar into account
+        navigationBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 50)
+        navigationBar.backgroundColor = UIColor.clearColor()
+        navigationBar.tintColor = UIColor.lightBlue()
+        navigationBar.delegate = self
+        
+        // Assign the navigation item to the navigation bar
+        navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.lightBlue()]
+        
+        // Create left and right button for navigation item
+        rightButton = UIBarButtonItem(title: "Encryption", style: .Plain, target: self, action: #selector(self.presentTutorial(_:)))
+        rightButton.setTitleTextAttributes([
+            NSForegroundColorAttributeName:UIColor.mediumBlue(),
+            NSFontAttributeName: UIFont.systemFontOfSize(13, weight: UIFontWeightThin)
+            ], forState: UIControlState.Normal)
+        // Create two buttons for the navigation item
+        navigationItem.rightBarButtonItem = rightButton
+        
+        // Assign the navigation item to the navigation bar
+        navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.lightBlue()]
+        navigationBar.items = [navigationItem]
+        
+        self.view.addSubview(navigationBar)
+    }
+    
+    func presentTutorial(sender: AnyObject) {
+        var preferences = EasyTipView.Preferences()
+        preferences.drawing.font = UIFont(name: "MyriadPro-Regular", size: 13)!
+        preferences.drawing.foregroundColor = UIColor.whiteColor()
+        preferences.drawing.backgroundColor = UIColor.skyBlue()
+        preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.Top
+        tipView.show(forView: self.passportCardButton, withinSuperview: self.view)
+        
+        Answers.logCustomEventWithName("Identity Security Tutorial Presented",
+                                       customAttributes: [:])
+        
+        // TODO: Remove Gecco and AnimatedSwitch
     }
 }
 

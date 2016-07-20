@@ -29,6 +29,8 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
     
     private let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
 
+    let toolBar = UIToolbar()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,6 +40,8 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
     func configure() {
         let screen = UIScreen.mainScreen().bounds
         let _ = screen.size.width
+        
+        addToolbarButton()
         
         self.usernameTextField.delegate = self
         self.passwordTextField.delegate = self
@@ -71,6 +75,31 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
         // visualEffectView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
         // self.view.addSubview(visualEffectView)
         // self.view.sendSubviewToBack(visualEffectView)
+    }
+    
+    // Add send toolbar
+    func addToolbarButton() {
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
+        
+        toolBar.frame = CGRect(x: 0, y: screenHeight-250, width: screenWidth, height: 50)
+        toolBar.barStyle = UIBarStyle.Default
+        toolBar.translucent = false
+        toolBar.sizeToFit()
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        let next: UIBarButtonItem = UIBarButtonItem(title: "Login", style: UIBarButtonItemStyle.Done, target: self, action: #selector(self.login(_:)))
+        
+        UIToolbar.appearance().barTintColor = UIColor.brandGreen()
+        UIToolbar.appearance().backgroundColor = UIColor.brandGreen()
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont.systemFontOfSize(15, weight: UIFontWeightRegular), NSForegroundColorAttributeName:UIColor.whiteColor()], forState: UIControlState.Normal)
+        
+        toolBar.setItems([flexSpace, next, flexSpace], animated: false)
+        toolBar.userInteractionEnabled = true
+        
+        usernameTextField.inputAccessoryView=toolBar
+        passwordTextField.inputAccessoryView=toolBar
     }
     
     func login(sender: AnyObject) {

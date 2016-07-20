@@ -30,6 +30,22 @@ let calloutAttrs: [String: AnyObject] = [
     NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue
 ]
 
+let inverseHeaderAttrs: [String: AnyObject] = [
+    NSForegroundColorAttributeName : UIColor.whiteColor(),
+    NSFontAttributeName : UIFont(name: "DINAlternate-Bold", size: 20)!
+]
+
+let inverseBodyAttrs: [String: AnyObject] = [
+    NSForegroundColorAttributeName : UIColor.whiteColor().colorWithAlphaComponent(0.5),
+    NSFontAttributeName : UIFont(name: "DINAlternate-Bold", size: 14)!
+]
+
+let inverseCalloutAttrs: [String: AnyObject] = [
+    NSForegroundColorAttributeName : UIColor.whiteColor().colorWithAlphaComponent(0.85),
+    NSFontAttributeName : UIFont(name: "DINAlternate-Bold", size: 14)!,
+    NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue
+]
+
 extension String {
     func toBool() -> Bool? {
         switch self {

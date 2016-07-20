@@ -200,6 +200,10 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Continue", style: UIBarButtonItemStyle.Done, target: self, action: #selector(self.nextStep(_:)))
         
+        UIToolbar.appearance().barTintColor = UIColor.brandGreen()
+        UIToolbar.appearance().backgroundColor = UIColor.brandGreen()
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont.systemFontOfSize(15, weight: UIFontWeightRegular), NSForegroundColorAttributeName:UIColor.whiteColor()], forState: UIControlState.Normal)
+        
         var items: [UIBarButtonItem]? = [UIBarButtonItem]()
         items?.append(flexSpace)
         items?.append(done)

@@ -58,7 +58,7 @@ class ParallaxHeaderView: UIView {
                 self.heightLayoutConstraint = NSLayoutConstraint(item: imageView, attribute: .Height, relatedBy: .Equal, toItem: self.containerView, attribute: .Height, multiplier: 1.0, constant: 0.0)
                 self.containerView.addConstraint(self.heightLayoutConstraint)
             } else {
-                let img = UIImage(named: "BackgroundGradientCalmBlue")
+                let img = UIImage(named: "BackgroundDashboard")
                 imageView.image = img
 
                 self.containerView.addSubview(imageView)
