@@ -66,9 +66,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     private let notification = CWStatusBarNotification()
 
-    private var gradient  : CGGradient?
+    private var gradient: CGGradient?
 
-    @IBAction func indexChanged(sender: UISegmentedControl) {
+    func indexChanged(sender: AnyObject) {
         if(sender.selectedSegmentIndex == 0) {
             lblAccountAvailable.removeFromSuperview()
             

@@ -109,7 +109,7 @@ class MenuViewController: UIViewController, ModalTransitionDelegate {
         ])
         btn1.setAttributedTitle(str1, forState: .Normal)
         btn1.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
-        btn1.setImage(UIImage(named: "IconReader")?.alpha(0.5), forState: .Highlighted)
+        btn1.setImage(UIImage(named: "IconHoldCard")?.alpha(0.5), forState: .Highlighted)
         btn1.frame = CGRect(x: 35, y: screenHeight*0.1, width: screenWidth-70, height: 120)
         btn1.layer.cornerRadius = 10
         btn1.layer.masksToBounds = true
@@ -119,7 +119,7 @@ class MenuViewController: UIViewController, ModalTransitionDelegate {
         self.view.bringSubviewToFront(btn1)
         self.view.superview?.bringSubviewToFront(btn1)
         self.view.bringSubviewToFront(btn1)
-        btn1.setImage(UIImage(named: "IconReader"), inFrame: CGRectMake(18, 18, 64, 64), forState: .Normal)
+        btn1.setImage(UIImage(named: "IconHoldCard"), inFrame: CGRectMake(18, 18, 64, 64), forState: .Normal)
 
         addPlanImageView.backgroundColor = UIColor.whiteColor()
         addPlanImageView.layer.cornerRadius = 10
@@ -161,7 +161,7 @@ class MenuViewController: UIViewController, ModalTransitionDelegate {
         ])
         btn3.setAttributedTitle(str3, forState: .Normal)
         btn3.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
-        btn3.setImage(UIImage(named: "IconGift")?.alpha(0.5), forState: .Highlighted)
+        btn3.setImage(UIImage(named: "IconGiftOpen")?.alpha(0.5), forState: .Highlighted)
         btn3.frame = CGRect(x: 35, y: screenHeight*0.54, width: screenWidth-70, height: 120)
         btn3.layer.cornerRadius = 10
         btn3.layer.masksToBounds = true

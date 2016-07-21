@@ -18,6 +18,12 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
 //    @IBOutlet weak var addBankButton: UIButton!
     @IBOutlet weak var manualConnectBankButton: UIButton!
     
+    private var pageIcon = UIImageView()
+    
+    private var pageHeader = UILabel()
+    
+    private var pageDescription = UILabel()
+    
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
@@ -38,16 +44,46 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
     
     func configure() {
         
-        manualConnectBankButton.layer.cornerRadius = 10
-        manualConnectBankButton.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
-        manualConnectBankButton.layer.borderWidth = 1
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
+        
+        manualConnectBankButton.layer.cornerRadius = 0
+        manualConnectBankButton.frame = CGRect(x: 0, y: screenHeight-100, width: screenWidth, height: 50)
+        manualConnectBankButton.layer.borderColor = UIColor.skyBlue().colorWithAlphaComponent(0.5).CGColor
+        manualConnectBankButton.layer.borderWidth = 0
         manualConnectBankButton.clipsToBounds = true
         manualConnectBankButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         manualConnectBankButton.setTitleColor(UIColor.offWhite(), forState: .Highlighted)
-        manualConnectBankButton.setBackgroundColor(UIColor.lightBlue(), forState: .Normal)
-        manualConnectBankButton.setBackgroundColor(UIColor.mediumBlue(), forState: .Highlighted)
-        manualConnectBankButton.setTitle("Manually Connect", forState: .Normal)
+        manualConnectBankButton.setBackgroundColor(UIColor.skyBlue(), forState: .Normal)
+        manualConnectBankButton.setBackgroundColor(UIColor.skyBlue().darkerColor(), forState: .Highlighted)
+        var attribs: [String: AnyObject] = [:]
+        attribs[NSFontAttributeName] = UIFont.systemFontOfSize(14)
+        attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
+        let str = NSAttributedString(string: "Manually Connect", attributes: attribs)
+        manualConnectBankButton.setAttributedTitle(str, forState: .Normal)
 
+        pageIcon.image = UIImage(named: "IconBankBlue")
+        pageIcon.contentMode = .ScaleAspectFit
+        pageIcon.frame = CGRect(x: screenWidth/2-50, y: 200, width: 100, height: 100)
+        self.view.addSubview(pageIcon)
+        
+        pageHeader.text = "Bank Linking"
+        pageHeader.textColor = UIColor.lightBlue()
+        pageHeader.font = UIFont.systemFontOfSize(24, weight: UIFontWeightMedium)
+        pageHeader.textAlignment = .Center
+        pageHeader.frame = CGRect(x: 0, y: 300, width: screenWidth, height: 30)
+        self.view.addSubview(pageHeader)
+        
+        pageDescription.text = "Link to any US bank account \nusing direct login or manual entry"
+        pageDescription.numberOfLines = 0
+        pageDescription.lineBreakMode = .ByWordWrapping
+        pageDescription.textColor = UIColor.lightBlue()
+        pageDescription.font = UIFont.systemFontOfSize(15, weight: UIFontWeightLight)
+        pageDescription.textAlignment = .Center
+        pageDescription.frame = CGRect(x: 0, y: 335, width: screenWidth, height: 50)
+        self.view.addSubview(pageDescription)
+        
 //        addBankButton.layer.cornerRadius = 10
 //        addBankButton.clipsToBounds = true
 //        addBankButton.backgroundColor = UIColor.lightBlue()

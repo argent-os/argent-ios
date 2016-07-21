@@ -18,6 +18,12 @@ class RiskProfileViewController: UIViewController {
     
     @IBOutlet weak var previewButton: UIButton!
     
+    private var pageIcon = UIImageView()
+    
+    private var pageHeader = UILabel()
+    
+    private var pageDescription = UILabel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         KeychainSwift().set("", forKey: "riskScore")
@@ -46,19 +52,45 @@ class RiskProfileViewController: UIViewController {
     func configure() {
         
         let screen = UIScreen.mainScreen().bounds
-        //let screenWidth = screen.size.width
-        //let screenHeight = screen.size.height
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
+    
+        pageIcon.image = UIImage(named: "IconRisk")
+        pageIcon.contentMode = .ScaleAspectFit
+        pageIcon.frame = CGRect(x: screenWidth/2-50, y: 200, width: 100, height: 100)
+        self.view.addSubview(pageIcon)
         
-        previewButton.layer.cornerRadius = 10
-        previewButton.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
-        previewButton.layer.borderWidth = 1
+        pageHeader.text = "Risk Profile"
+        pageHeader.textColor = UIColor.lightBlue()
+        pageHeader.font = UIFont.systemFontOfSize(24, weight: UIFontWeightMedium)
+        pageHeader.textAlignment = .Center
+        pageHeader.frame = CGRect(x: 0, y: 300, width: screenWidth, height: 30)
+        self.view.addSubview(pageHeader)
+        
+        pageDescription.text = "This feature is currently under development \n we will send out notifications once it's live!"
+        pageDescription.numberOfLines = 0
+        pageDescription.lineBreakMode = .ByWordWrapping
+        pageDescription.textColor = UIColor.lightBlue()
+        pageDescription.font = UIFont.systemFontOfSize(15, weight: UIFontWeightLight)
+        pageDescription.textAlignment = .Center
+        pageDescription.frame = CGRect(x: 0, y: 335, width: screenWidth, height: 50)
+        self.view.addSubview(pageDescription)
+        
+        previewButton.layer.cornerRadius = 0
+        previewButton.frame = CGRect(x: 0, y: screenHeight-100, width: screenWidth, height: 50)
+        previewButton.layer.borderColor = UIColor.skyBlue().colorWithAlphaComponent(0.5).CGColor
+        previewButton.layer.borderWidth = 0
         previewButton.clipsToBounds = true
         previewButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         previewButton.setTitleColor(UIColor.offWhite(), forState: .Highlighted)
-        previewButton.setBackgroundColor(UIColor.lightBlue(), forState: .Normal)
-        previewButton.setBackgroundColor(UIColor.mediumBlue(), forState: .Highlighted)
-        previewButton.setTitle("See Preview", forState: .Normal)
-
+        previewButton.setBackgroundColor(UIColor.skyBlue(), forState: .Normal)
+        previewButton.setBackgroundColor(UIColor.skyBlue().darkerColor(), forState: .Highlighted)
+        var attribs: [String: AnyObject] = [:]
+        attribs[NSFontAttributeName] = UIFont.systemFontOfSize(14)
+        attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
+        let str = NSAttributedString(string: "See Preview", attributes: attribs)
+        previewButton.setAttributedTitle(str, forState: .Normal)
+        
 //        enableRiskProfileButton.layer.cornerRadius = 10
 //        enableRiskProfileButton.clipsToBounds = true
 //        enableRiskProfileButton.backgroundColor = UIColor.lightBlue()

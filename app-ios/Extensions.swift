@@ -20,6 +20,7 @@ public enum AlertType {
     case Notice
     case Warning
     case Edit
+    case Bitcoin
 }
 
 public func showAlert(type: AlertType, title: String, msg: String) {
@@ -55,6 +56,10 @@ public func showAlert(type: AlertType, title: String, msg: String) {
         case .Edit:
             let alertViewIcon = UIImage(named: "ic_shiny_bolt") // Replace the IconImage text with the image name
             alertView.showEdit(title, subTitle: msg, circleIconImage: alertViewIcon)
+            break
+        case .Bitcoin:
+            let alertViewIcon = UIImage(named: "ic_shiny_bitcoin") // Replace the IconImage text with the image name
+            alertView.showInfo(title, subTitle: msg, circleIconImage: alertViewIcon)
             break
     }
 }
@@ -213,9 +218,9 @@ extension UIColor {
     }
     static func skyBlue() -> UIColor {
         if APP_THEME == "LIGHT" {
-            return UIColor(rgba: "#00b5ff")
+            return UIColor(rgba: "#00a1ff")
         } else {
-            return UIColor(rgba: "#00b5ff")
+            return UIColor(rgba: "#00a1ff")
         }
     }
     static func limeGreen() -> UIColor {

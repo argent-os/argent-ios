@@ -320,6 +320,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             shouldShowSearchResults = true
             //tblSearchResults.reloadData()
         }
+        self.view.endEditing(true)
         searchController.searchBar.resignFirstResponder()
     }
     

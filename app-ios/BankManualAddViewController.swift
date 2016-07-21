@@ -166,8 +166,7 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
         scrollView.addSubview(accountTextField)
         scrollView.sendSubviewToBack(accountTextField)
 
-        helpButton.frame = CGRect(x: 20, y: screenHeight-210, width: screenWidth-40, height: 60)
-        helpButton.setTitle("See Example Check", forState: .Normal)
+        helpButton.frame = CGRect(x: 20, y: screenHeight-180, width: screenWidth-40, height: 60)
         helpButton.setTitleColor(UIColor.lightBlue(), forState: .Normal)
         helpButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
         helpButton.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
@@ -177,20 +176,28 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
         helpButton.layer.cornerRadius = 10
         helpButton.layer.masksToBounds = true
         helpButton.addTarget(self, action: #selector(self.showTutorialModal(_:)), forControlEvents: .TouchUpInside)
+        var attribs2: [String: AnyObject] = [:]
+        attribs2[NSFontAttributeName] = UIFont.systemFontOfSize(14)
+        attribs2[NSForegroundColorAttributeName] = UIColor.skyBlue()
+        let str2 = NSAttributedString(string: "Example Check", attributes: attribs2)
+        helpButton.setAttributedTitle(str2, forState: .Normal)
         scrollView.addSubview(helpButton)
         scrollView.bringSubviewToFront(helpButton)
         
-        addBankButton.frame = CGRect(x: 20, y: screenHeight-130, width: screenWidth-40, height: 60)
-        addBankButton.setTitle("Add Bank", forState: .Normal)
+        addBankButton.frame = CGRect(x: 0, y: screenHeight-110, width: screenWidth, height: 60)
         addBankButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        addBankButton.setBackgroundColor(UIColor.lightBlue(), forState: .Normal)
-        addBankButton.setBackgroundColor(UIColor.mediumBlue(), forState: .Highlighted)
-        addBankButton.backgroundColor = UIColor.lightBlue()
-        addBankButton.layer.borderColor = UIColor.lightBlue().CGColor
-        addBankButton.layer.borderWidth = 1
-        addBankButton.layer.cornerRadius = 10
+        addBankButton.setBackgroundColor(UIColor.skyBlue(), forState: .Normal)
+        addBankButton.setBackgroundColor(UIColor.skyBlue().darkerColor(), forState: .Highlighted)
+        addBankButton.layer.borderColor = UIColor.skyBlue().CGColor
+        addBankButton.layer.borderWidth = 0
+        addBankButton.layer.cornerRadius = 0
         addBankButton.layer.masksToBounds = true
         addBankButton.addTarget(self, action: #selector(linkBankToStripe(_:)), forControlEvents: .TouchUpInside)
+        var attribs: [String: AnyObject] = [:]
+        attribs[NSFontAttributeName] = UIFont.systemFontOfSize(14)
+        attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
+        let str = NSAttributedString(string: "Link Bank", attributes: attribs)
+        addBankButton.setAttributedTitle(str, forState: .Normal)
         scrollView.addSubview(addBankButton)
         scrollView.bringSubviewToFront(addBankButton)
 

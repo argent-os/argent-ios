@@ -65,7 +65,8 @@ target 'app-ios' do
 	pod 'MCMHeaderAnimated'
 	pod 'EasyTipView'
 	pod 'SCLAlertView'
-
+	pod 'DGActivityIndicatorView'
+	
 	# Fabric
 	pod 'Fabric'
 	pod 'Crashlytics'
