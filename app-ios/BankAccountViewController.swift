@@ -70,15 +70,16 @@ class MainTableViewController: UITableViewController {
 //        cell.background.backgroundColor = UIColor(rgba: "#333")
 //        cell.background.clipsToBounds = true
         
-        // pass in the background image as a parameter here from self.elements above
+         // pass in the background image as a parameter here from self.elements above
          cell.header.backgroundColor = self.elements.objectAtIndex(indexPath.row).objectForKey("background_color") as? UIColor
          cell.background.backgroundColor = self.elements.objectAtIndex(indexPath.row).objectForKey("background_color") as? UIColor
          cell.contentView.backgroundColor = self.elements.objectAtIndex(indexPath.row).objectForKey("background_color") as? UIColor
         
-        //cell.center = CGPoint(x: cell.frame.width / 2.0, y: height / 2.0)
         let img: UIImage = UIImage(named: self.elements.objectAtIndex(indexPath.row).objectForKey("bank_logo") as! String)!
         cell.imageView!.image = img
         cell.imageView!.contentMode = .ScaleAspectFit
+        cell.imageView!.layer.masksToBounds = true
+        cell.imageView!.frame = CGRect(x: cell.imageView!.frame.origin.x, y: cell.imageView!.frame.origin.y, width: 40,height: 40);
 
         return cell
     }

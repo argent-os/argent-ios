@@ -24,10 +24,11 @@ class BankTableViewCell: UITableViewCell {
     // Here you can customize the appearance of your cell
     override func layoutSubviews() {
         let width = UIScreen.mainScreen().bounds.size.width
+        let height = UIScreen.mainScreen().bounds.size.height
         
         super.layoutSubviews()
         // Customize imageView like you need
-        self.imageView?.frame = CGRectMake(0,0,width,180)
+        self.imageView?.frame = CGRectMake(width/2-50,40,100,100)
         self.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
     }
 }

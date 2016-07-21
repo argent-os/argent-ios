@@ -98,10 +98,9 @@ class BankDetailViewController: UIViewController, UITextFieldDelegate {
         let bankImage = UIImage(named: bankLogo!)
         let bankLogoImageView = UIImageView(image: bankImage!)
         
-        bankLogoImageView.frame = CGRectMake(0, 0, screenWidth, 100)
+        bankLogoImageView.frame = CGRectMake(screenWidth/2-35, 0, 70, 70)
         bankLogoImageView.contentMode = .ScaleAspectFit
         bankLogoImageView.frame.origin.y = screenHeight*0.08 // 10 down from the top
-        bankLogoImageView.frame.origin.x = (self.view.bounds.size.width - screenWidth) / 2.0
 
         view.addSubview(bankLogoImageView)
         
