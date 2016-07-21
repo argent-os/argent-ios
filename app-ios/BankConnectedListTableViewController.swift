@@ -59,9 +59,14 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
     
     func configureView() {
         
+        // Remove extra splitters in table
+        self.tableView.tableFooterView = UIView()
+
         // During startup (viewDidLoad or in storyboard) do:
         self.tableView.allowsMultipleSelectionDuringEditing = false
 
+        self.tableView.backgroundColor = UIColor.offWhite()
+        
         self.navigationItem.title = "Connected Banks"
         self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
         self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 60)
@@ -190,7 +195,7 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 190.0
+        return 100.0
     }
     
 }
@@ -217,12 +222,13 @@ extension BankConnectedListTableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("connectedBankCell", forIndexPath: indexPath) as! BankConnectedCell
         
-        cell.background.layer.cornerRadius = 10
+        cell.background.layer.cornerRadius = 5
         cell.background.clipsToBounds = true
-        tableView.separatorColor = UIColor.clearColor()
+        cell.backgroundColor = UIColor.offWhite()
+        tableView.separatorColor = UIColor.lightBlue().colorWithAlphaComponent(0.3)
         cell.selectionStyle = UITableViewCellSelectionStyle.Blue;
-        cell.textLabel?.tintColor = UIColor.whiteColor()
-        cell.detailTextLabel?.tintColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
+        cell.textLabel?.tintColor = UIColor.lightBlue()
+        cell.detailTextLabel?.tintColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
         
         cell.tag = indexPath.row
         
@@ -231,147 +237,147 @@ extension BankConnectedListTableViewController {
             
             if name.containsString("STRIPE") {
                 let bankName = NSAttributedString(string: name, attributes: [
-                    NSForegroundColorAttributeName : UIColor.whiteColor(),
+                    NSForegroundColorAttributeName : UIColor.lightBlue(),
                     NSFontAttributeName : UIFont.systemFontOfSize(16, weight: UIFontWeightRegular)
                     ])
-                cell.header.backgroundColor = UIColor.lightBlue()
-                cell.bankLogoImageView.image = UIImage(named: "bank_stripe")
-                cell.bankLogoImageView.contentMode = .Right
+                cell.header.backgroundColor = UIColor.offWhite()
+                cell.bankLogoImageView.image = UIImage(named: "bank_avatar_stripe")
+                cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             } else if name.containsString("BANK OF AMERICA") {
                 let bankName = NSAttributedString(string: name, attributes: [
-                    NSForegroundColorAttributeName : UIColor.whiteColor(),
+                    NSForegroundColorAttributeName : UIColor.lightBlue(),
                     NSFontAttributeName : UIFont.systemFontOfSize(16, weight: UIFontWeightRegular)
                     ])
-                cell.header.backgroundColor = UIColor.bankBofa()
-                cell.bankLogoImageView.image = UIImage(named: "bank_bofa")
-                cell.bankLogoImageView.contentMode = .Right
+                //cell.header.backgroundColor = UIColor.bankBofa()
+                cell.bankLogoImageView.image = UIImage(named: "bank_avatar_bofa")
+                cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             } else if name.containsString("CITI") {
                 let bankName = NSAttributedString(string: name, attributes: [
-                    NSForegroundColorAttributeName : UIColor.whiteColor(),
+                    NSForegroundColorAttributeName : UIColor.lightBlue(),
                     NSFontAttributeName : UIFont.systemFontOfSize(16, weight: UIFontWeightRegular)
                     ])
-                cell.header.backgroundColor = UIColor.bankCiti()
-                cell.bankLogoImageView.image = UIImage(named: "bank_citi")
-                cell.bankLogoImageView.contentMode = .Right
+                //cell.header.backgroundColor = UIColor.bankCiti()
+                cell.bankLogoImageView.image = UIImage(named: "bank_avatar_citi")
+                cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             } else if name.containsString("WELLS") {
                 let bankName = NSAttributedString(string: name, attributes: [
-                    NSForegroundColorAttributeName : UIColor.whiteColor(),
+                    NSForegroundColorAttributeName : UIColor.lightBlue(),
                     NSFontAttributeName : UIFont.systemFontOfSize(16, weight: UIFontWeightRegular)
                     ])
-                cell.header.backgroundColor = UIColor.bankWells()
-                cell.bankLogoImageView.image = UIImage(named: "bank_wells")
-                cell.bankLogoImageView.contentMode = .Right
+                //cell.header.backgroundColor = UIColor.bankWells()
+                cell.bankLogoImageView.image = UIImage(named: "bank_avatar_wells")
+                cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             } else if name.containsString("TD BANK") {
                 let bankName = NSAttributedString(string: name, attributes: [
-                    NSForegroundColorAttributeName : UIColor.whiteColor(),
+                    NSForegroundColorAttributeName : UIColor.lightBlue(),
                     NSFontAttributeName : UIFont.systemFontOfSize(16, weight: UIFontWeightRegular)
                     ])
-                cell.header.backgroundColor = UIColor.bankTd()
-                cell.bankLogoImageView.image = UIImage(named: "bank_td")
-                cell.bankLogoImageView.contentMode = .Right
+                //cell.header.backgroundColor = UIColor.bankTd()
+                cell.bankLogoImageView.image = UIImage(named: "bank_avatar_td")
+                cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             } else if name.containsString("US BANK") {
                 let bankName = NSAttributedString(string: name, attributes: [
-                    NSForegroundColorAttributeName : UIColor.whiteColor(),
+                    NSForegroundColorAttributeName : UIColor.lightBlue(),
                     NSFontAttributeName : UIFont.systemFontOfSize(16, weight: UIFontWeightRegular)
                     ])
-                cell.header.backgroundColor = UIColor.bankUs()
-                cell.bankLogoImageView.image = UIImage(named: "bank_us")
-                cell.bankLogoImageView.contentMode = .Right
+                //cell.header.backgroundColor = UIColor.bankUs()
+                cell.bankLogoImageView.image = UIImage(named: "bank_avatar_us")
+                cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             } else if name.containsString("PNC") {
                 let bankName = NSAttributedString(string: name, attributes: [
-                    NSForegroundColorAttributeName : UIColor.whiteColor(),
+                    NSForegroundColorAttributeName : UIColor.lightBlue(),
                     NSFontAttributeName : UIFont.systemFontOfSize(16, weight: UIFontWeightRegular)
                     ])
-                cell.header.backgroundColor = UIColor.bankPnc()
-                cell.bankLogoImageView.image = UIImage(named: "bank_pnc")
-                cell.bankLogoImageView.contentMode = .Right
+                //cell.header.backgroundColor = UIColor.bankPnc()
+                cell.bankLogoImageView.image = UIImage(named: "bank_avatar_pnc")
+                cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             } else if name.containsString("AMERICAN EXPRESS") {
                 let bankName = NSAttributedString(string: name, attributes: [
-                    NSForegroundColorAttributeName : UIColor.whiteColor(),
+                    NSForegroundColorAttributeName : UIColor.lightBlue(),
                     NSFontAttributeName : UIFont.systemFontOfSize(16, weight: UIFontWeightRegular)
                     ])
-                cell.header.backgroundColor = UIColor.bankAmex()
-                cell.bankLogoImageView.image = UIImage(named: "bank_amex")
-                cell.bankLogoImageView.contentMode = .Right
+                //cell.header.backgroundColor = UIColor.bankAmex()
+                cell.bankLogoImageView.image = UIImage(named: "bank_avatar_amex")
+                cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             } else if name.containsString("NAVY") {
                 let bankName = NSAttributedString(string: name, attributes: [
-                    NSForegroundColorAttributeName : UIColor.whiteColor(),
+                    NSForegroundColorAttributeName : UIColor.lightBlue(),
                     NSFontAttributeName : UIFont.systemFontOfSize(16, weight: UIFontWeightRegular)
                     ])
-                cell.header.backgroundColor = UIColor.bankNavy()
-                cell.bankLogoImageView.image = UIImage(named: "bank_navy")
-                cell.bankLogoImageView.contentMode = .Right
+                //cell.header.backgroundColor = UIColor.bankNavy()
+                cell.bankLogoImageView.image = UIImage(named: "bank_avatar_navy")
+                cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             } else if name.containsString("USAA") {
                 let bankName = NSAttributedString(string: name, attributes: [
-                    NSForegroundColorAttributeName : UIColor.whiteColor(),
+                    NSForegroundColorAttributeName : UIColor.lightBlue(),
                     NSFontAttributeName : UIFont.systemFontOfSize(16, weight: UIFontWeightRegular)
                     ])
-                cell.header.backgroundColor = UIColor.bankUsaa()
-                cell.bankLogoImageView.image = UIImage(named: "bank_usaa")
-                cell.bankLogoImageView.contentMode = .Right
+                //cell.header.backgroundColor = UIColor.bankUsaa()
+                cell.bankLogoImageView.image = UIImage(named: "bank_avatar_usaa")
+                cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             } else if name.containsString("CHASE") {
                 let bankName = NSAttributedString(string: name, attributes: [
-                    NSForegroundColorAttributeName : UIColor.whiteColor(),
+                    NSForegroundColorAttributeName : UIColor.lightBlue(),
                     NSFontAttributeName : UIFont.systemFontOfSize(16, weight: UIFontWeightRegular)
                     ])
-                cell.header.backgroundColor = UIColor.bankChase()
-                cell.bankLogoImageView.image = UIImage(named: "bank_chase")
-                cell.bankLogoImageView.contentMode = .Right
+                //cell.header.backgroundColor = UIColor.bankChase()
+                cell.bankLogoImageView.image = UIImage(named: "bank_avatar_chase")
+                cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             } else if name.containsString("CAPITAL ONE") {
                 let bankName = NSAttributedString(string: name, attributes: [
-                    NSForegroundColorAttributeName : UIColor.whiteColor(),
+                    NSForegroundColorAttributeName : UIColor.lightBlue(),
                     NSFontAttributeName : UIFont.systemFontOfSize(16, weight: UIFontWeightRegular)
                     ])
-                cell.header.backgroundColor = UIColor.bankCapone()
-                cell.bankLogoImageView.image = UIImage(named: "bank_capone")
-                cell.bankLogoImageView.contentMode = .Right
+                //cell.header.backgroundColor = UIColor.bankCapone()
+                cell.bankLogoImageView.image = UIImage(named: "bank_avatar_capone")
+                cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             } else if name.containsString("SCHWAB") {
                 let bankName = NSAttributedString(string: name, attributes: [
-                    NSForegroundColorAttributeName : UIColor.whiteColor(),
+                    NSForegroundColorAttributeName : UIColor.lightBlue(),
                     NSFontAttributeName : UIFont.systemFontOfSize(16, weight: UIFontWeightRegular)
                     ])
-                cell.header.backgroundColor = UIColor.bankSchwab()
-                cell.bankLogoImageView.image = UIImage(named: "bank_schwab")
-                cell.bankLogoImageView.contentMode = .Right
+                //cell.header.backgroundColor = UIColor.bankSchwab()
+                cell.bankLogoImageView.image = UIImage(named: "bank_avatar_schwab")
+                cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             } else if name.containsString("FIDELITY") {
                 let bankName = NSAttributedString(string: name, attributes: [
-                    NSForegroundColorAttributeName : UIColor.whiteColor(),
+                    NSForegroundColorAttributeName : UIColor.lightBlue(),
                     NSFontAttributeName : UIFont.systemFontOfSize(16, weight: UIFontWeightRegular)
                     ])
-                cell.header.backgroundColor = UIColor.bankFidelity()
-                cell.bankLogoImageView.image = UIImage(named: "bank_fidelity")
-                cell.bankLogoImageView.contentMode = .Right
+                //cell.header.backgroundColor = UIColor.bankFidelity()
+                cell.bankLogoImageView.image = UIImage(named: "bank_avatar_fidelity")
+                cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             } else if name.containsString("SUNTRUST") {
                 let bankName = NSAttributedString(string: name, attributes: [
-                    NSForegroundColorAttributeName : UIColor.whiteColor(),
+                    NSForegroundColorAttributeName : UIColor.lightBlue(),
                     NSFontAttributeName : UIFont.systemFontOfSize(16, weight: UIFontWeightRegular)
                     ])
-                cell.header.backgroundColor = UIColor.bankSuntrust()
-                cell.bankLogoImageView.image = UIImage(named: "bank_suntrust")
-                cell.bankLogoImageView.contentMode = .Right
+                //cell.header.backgroundColor = UIColor.bankSuntrust()
+                cell.bankLogoImageView.image = UIImage(named: "bank_avatar_suntrust")
+                cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             } else {
                 let bankName = NSAttributedString(string: name, attributes: [
-                    NSForegroundColorAttributeName : UIColor.whiteColor(),
+                    NSForegroundColorAttributeName : UIColor.lightBlue(),
                     NSFontAttributeName : UIFont.systemFontOfSize(14, weight: UIFontWeightRegular)
                     ])
-                cell.header.backgroundColor = UIColor.lightBlue()
-                cell.bankLogoImageView.image = UIImage(named: "bank_default")
-                cell.bankLogoImageView.contentMode = .Right
+                //cell.header.backgroundColor = UIColor.lightBlue()
+                cell.bankLogoImageView.image = UIImage(named: "bank_avatar_default")
+                cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             }
             
@@ -383,37 +389,37 @@ extension BankConnectedListTableViewController {
             case "new":
                 let strStatus = NSAttributedString(string: "New Account", attributes: [
                     NSFontAttributeName: UIFont.systemFontOfSize(11),
-                    NSForegroundColorAttributeName:UIColor.whiteColor()
+                    NSForegroundColorAttributeName:UIColor.lightBlue()
                     ])
                 cell.bankStatusLabel?.attributedText = strStatus
             case "validated":
                 let strStatus = NSAttributedString(string: "Validated ✓", attributes: [
                     NSFontAttributeName: UIFont.systemFontOfSize(11),
-                    NSForegroundColorAttributeName:UIColor.whiteColor()
+                    NSForegroundColorAttributeName:UIColor.lightBlue()
                     ])
                 cell.bankStatusLabel?.attributedText = strStatus
             case "verified":
                 let strStatus = NSAttributedString(string: "Verified ✓", attributes: [
                     NSFontAttributeName: UIFont.systemFontOfSize(11),
-                    NSForegroundColorAttributeName:UIColor.whiteColor()
+                    NSForegroundColorAttributeName:UIColor.lightBlue()
                     ])
                 cell.bankStatusLabel?.attributedText = strStatus
             case "verification_failed":
                 let strStatus = NSAttributedString(string: "Verification Failed", attributes: [
                     NSFontAttributeName: UIFont.systemFontOfSize(11),
-                    NSForegroundColorAttributeName:UIColor.whiteColor()
+                    NSForegroundColorAttributeName:UIColor.lightBlue()
                     ])
                 cell.bankStatusLabel?.attributedText = strStatus
             case "errored":
                 let strStatus = NSAttributedString(string: "Error Occurred", attributes: [
                     NSFontAttributeName: UIFont.systemFontOfSize(11),
-                    NSForegroundColorAttributeName:UIColor.whiteColor()
+                    NSForegroundColorAttributeName:UIColor.lightBlue()
                     ])
                 cell.bankStatusLabel?.attributedText = strStatus
             default:
                 let strStatus = NSAttributedString(string: status, attributes: [
                     NSFontAttributeName: UIFont.systemFontOfSize(11),
-                    NSForegroundColorAttributeName:UIColor.whiteColor()
+                    NSForegroundColorAttributeName:UIColor.lightBlue()
                     ])
                 cell.bankStatusLabel?.attributedText = strStatus
             }
@@ -421,11 +427,11 @@ extension BankConnectedListTableViewController {
         }
         if let last4 = item?.last4, routing = item?.routing_number {
             let routingAttributedString = NSAttributedString(string: "Routing " + routing, attributes: [
-                NSForegroundColorAttributeName : UIColor.whiteColor(),
+                NSForegroundColorAttributeName : UIColor.lightBlue(),
                 NSFontAttributeName : UIFont.systemFontOfSize(12, weight: UIFontWeightLight)
                 ])
             let last4AttributedString = NSAttributedString(string: "Ending in " + last4, attributes: [
-                NSForegroundColorAttributeName : UIColor.whiteColor(),
+                NSForegroundColorAttributeName : UIColor.lightBlue(),
                 NSFontAttributeName : UIFont.systemFontOfSize(12, weight: UIFontWeightLight)
                 ])
             

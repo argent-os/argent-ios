@@ -16,8 +16,12 @@ import Crashlytics
 class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelegate {
     
 //    @IBOutlet weak var addBankButton: UIButton!
-    @IBOutlet weak var manualConnectBankButton: UIButton!
+    private var manualConnectBankButton = UIButton()
     
+    private var directLoginButton = UIButton()
+
+    private var viewAccountsButton = UIButton()
+
     private var pageIcon = UIImageView()
     
     private var pageHeader = UILabel()
@@ -48,8 +52,25 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
+        viewAccountsButton.frame = CGRect(x: 0, y: screenHeight-230, width: screenWidth, height: 60)
+        viewAccountsButton.layer.cornerRadius = 0
+        viewAccountsButton.layer.borderColor = UIColor.skyBlue().colorWithAlphaComponent(0.5).CGColor
+        viewAccountsButton.layer.borderWidth = 0
+        viewAccountsButton.clipsToBounds = true
+        viewAccountsButton.setTitleColor(UIColor.darkBlue(), forState: .Normal)
+        viewAccountsButton.setTitleColor(UIColor.mediumBlue(), forState: .Highlighted)
+        viewAccountsButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
+        viewAccountsButton.setBackgroundColor(UIColor.whiteColor().darkerColor(), forState: .Highlighted)
+        var attribs: [String: AnyObject] = [:]
+        attribs[NSFontAttributeName] = UIFont.systemFontOfSize(14)
+        attribs[NSForegroundColorAttributeName] = UIColor.darkBlue()
+        let str = NSAttributedString(string: "View Accounts", attributes: attribs)
+        viewAccountsButton.setAttributedTitle(str, forState: .Normal)
+        self.view.addSubview(viewAccountsButton)
+        viewAccountsButton.addTarget(self, action: #selector(self.goToConnectedBanks(_:)), forControlEvents: .TouchUpInside)
+
+        manualConnectBankButton.frame = CGRect(x: 0, y: screenHeight-170, width: screenWidth, height: 60)
         manualConnectBankButton.layer.cornerRadius = 0
-        manualConnectBankButton.frame = CGRect(x: 0, y: screenHeight-100, width: screenWidth, height: 50)
         manualConnectBankButton.layer.borderColor = UIColor.skyBlue().colorWithAlphaComponent(0.5).CGColor
         manualConnectBankButton.layer.borderWidth = 0
         manualConnectBankButton.clipsToBounds = true
@@ -57,11 +78,30 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         manualConnectBankButton.setTitleColor(UIColor.offWhite(), forState: .Highlighted)
         manualConnectBankButton.setBackgroundColor(UIColor.skyBlue(), forState: .Normal)
         manualConnectBankButton.setBackgroundColor(UIColor.skyBlue().darkerColor(), forState: .Highlighted)
-        var attribs: [String: AnyObject] = [:]
-        attribs[NSFontAttributeName] = UIFont.systemFontOfSize(14)
-        attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
-        let str = NSAttributedString(string: "Manually Connect", attributes: attribs)
-        manualConnectBankButton.setAttributedTitle(str, forState: .Normal)
+        var attribs3: [String: AnyObject] = [:]
+        attribs3[NSFontAttributeName] = UIFont.systemFontOfSize(14)
+        attribs3[NSForegroundColorAttributeName] = UIColor.whiteColor()
+        let str3 = NSAttributedString(string: "Manually Connect", attributes: attribs3)
+        manualConnectBankButton.setAttributedTitle(str3, forState: .Normal)
+        self.view.addSubview(manualConnectBankButton)
+        manualConnectBankButton.addTarget(self, action: #selector(self.goToManualBank(_:)), forControlEvents: .TouchUpInside)
+
+        directLoginButton.frame = CGRect(x: 0, y: screenHeight-110, width: screenWidth, height: 60)
+        directLoginButton.layer.cornerRadius = 0
+        directLoginButton.layer.borderColor = UIColor.darkBlue().colorWithAlphaComponent(0.5).CGColor
+        directLoginButton.layer.borderWidth = 0
+        directLoginButton.clipsToBounds = true
+        directLoginButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        directLoginButton.setTitleColor(UIColor.offWhite(), forState: .Highlighted)
+        directLoginButton.setBackgroundColor(UIColor.mediumBlue(), forState: .Normal)
+        directLoginButton.setBackgroundColor(UIColor.mediumBlue().darkerColor(), forState: .Highlighted)
+        directLoginButton.addTarget(self, action: #selector(self.goToLoginBank(_:)), forControlEvents: .TouchUpInside)
+        var attribs2: [String: AnyObject] = [:]
+        attribs2[NSFontAttributeName] = UIFont.systemFontOfSize(14)
+        attribs2[NSForegroundColorAttributeName] = UIColor.whiteColor()
+        let str2 = NSAttributedString(string: "Login to Bank", attributes: attribs2)
+        directLoginButton.setAttributedTitle(str2, forState: .Normal)
+        self.view.addSubview(directLoginButton)
 
         pageIcon.image = UIImage(named: "IconBankBlue")
         pageIcon.contentMode = .ScaleAspectFit
@@ -75,7 +115,7 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         pageHeader.frame = CGRect(x: 0, y: 300, width: screenWidth, height: 30)
         self.view.addSubview(pageHeader)
         
-        pageDescription.text = "Link to any US bank account \nusing direct login or manual entry"
+        pageDescription.text = "Link to any US bank account \nusing manual entry"
         pageDescription.numberOfLines = 0
         pageDescription.lineBreakMode = .ByWordWrapping
         pageDescription.textColor = UIColor.lightBlue()
@@ -101,6 +141,18 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         ]
         title = "Bank Account"
         
+    }
+    
+    func goToConnectedBanks(sender: AnyObject) {
+        self.performSegueWithIdentifier("bankConnectedView", sender: self)
+    }
+    
+    func goToManualBank(sender: AnyObject) {
+        self.performSegueWithIdentifier("bankManualView", sender: self)
+    }
+    
+    func goToLoginBank(sender: AnyObject) {
+        self.performSegueWithIdentifier("bankLoginView", sender: self)
     }
     
     func displayBanks(sender: AnyObject) {
