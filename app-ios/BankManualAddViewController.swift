@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import JSSAlertView
 import Alamofire
 import SwiftyJSON
 import Crashlytics
@@ -198,7 +197,16 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
     }
     
     func linkBankToStripe(sender: AnyObject) {
-        if(userAccessToken != nil) {
+        
+        if accountTextField.text == "" || routingTextField.text == "" {
+            showAlert(.Error, title: "Error", msg: "Fields cannot be empty")
+            return
+        } else if routingTextField.text?.characters.count !== 9 {
+            showAlert(.Error, title: "Error", msg: "Routing number must be 9 digits long")
+            return
+        }
+        
+        if userAccessToken != nil {
             User.getProfile { (user, NSError) in
                 
                 let endpoint = API_URL + "/stripe/" + user!.id + "/external_account?type=bank"
@@ -217,8 +225,6 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
                     ]
                 ]
                 
-                print(parameters)
-                
                 Alamofire.request(.POST, endpoint, parameters: parameters, encoding: .JSON, headers: headers).responseJSON {
                     response in
                     switch response.result {
@@ -228,9 +234,11 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
                             if response.response?.statusCode == 200 {
                                 Answers.logCustomEventWithName("Manual link bank to Stripe success",
                                     customAttributes: [:])
-                                self.showAlert("Success", msg: "Bank account linked!", color: UIColor.brandGreen(), image: UIImage(named: "ic_check_light")!)
+                                showAlert(.Success, title: "Success", msg: "Your bank account is now linked")
+
                             } else {
-                                self.showAlert("Error", msg: "Could not link bank account, please contact support for help", color: UIColor.brandRed(), image: UIImage(named: "ic_close_light")!)
+                                showAlert(.Error, title: "Error", msg: "Error linking bank account")
+
                                 Answers.logCustomEventWithName("Manual link bank account link failure",
                                     customAttributes: [:])
                             }
@@ -246,22 +254,6 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
             }
         }
     }
-    
-    private func showAlert(title: String, msg: String, color: UIColor, image: UIImage) {
-        let customIcon:UIImage = image // your custom icon UIImage
-        let customColor:UIColor = color // base color for the alert
-        self.view.endEditing(true)
-        let alertView = JSSAlertView().show(
-            self,
-            title: title,
-            text: msg,
-            buttonText: "Ok",
-            noButtons: false,
-            color: customColor,
-            iconImage: customIcon)
-        alertView.setTextTheme(.Light) // can be .Light or .Dark
-    }
-    
     
     // Add send toolbar
     func addToolbarButton()

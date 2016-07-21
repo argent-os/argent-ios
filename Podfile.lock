@@ -46,6 +46,7 @@ PODS:
     - plaid-ios-sdk
   - plaid-ios-sdk (0.3.6)
   - QRCode (0.5)
+  - SCLAlertView (0.5.8)
   - SFDraggableDialogView (1.1.4)
   - Shimmer (1.0.2)
   - SnapKit (0.21.0)
@@ -109,6 +110,7 @@ DEPENDENCIES:
   - plaid-ios-link
   - plaid-ios-sdk
   - QRCode
+  - SCLAlertView
   - SFDraggableDialogView
   - Shimmer
   - SnapKit
@@ -178,6 +180,7 @@ SPEC CHECKSUMS:
   plaid-ios-link: b508d0cb64007ec036c98ff7f2f0ec1913e8467b
   plaid-ios-sdk: e9865b0fe6a79b3d30d886171d7a26f7e1408935
   QRCode: a249ed747aeb0f4bf5f9c58b5b001b6b3bc80073
+  SCLAlertView: 653e84d1f9fd95333bc54671fbadb7d0c47fce49
   SFDraggableDialogView: cfe9b80b5fff19f7e0fda86dcabee8b03a4c3b44
   Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
   SnapKit: 2756fe24b706367af224c9c508d2f9166d03354c

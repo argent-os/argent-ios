@@ -9,7 +9,6 @@
 import UIKit
 import Foundation
 import Stripe
-import JSSAlertView
 import MZFormSheetPresentationController
 import QRCode
 import CWStatusBarNotification
@@ -230,7 +229,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
                 swipeArrowImageView.image = UIImage(named: "ic_arrow_down_gray")
                 paymentTextField.removeFromSuperview()
                 self.payButton.removeFromSuperview()
-                showAlert("Alipay is not currently supported! But we are working on adding it soon.", color: UIColor.alipayBlue(), image: UIImage(named: "LogoAlipay")!, title: "Alipay")
+                showAlert(.Info, title: "Notice", msg: "Alipay is currently not supported!  But we are working on adding it soon")
             } else if unwrappedOption as! String == "none" {
                 swipePaymentSelectionLabel.text = "Swipe down to select payment option"
                 swipeArrowImageView.image = UIImage(named: "ic_arrow_down_gray")
@@ -336,7 +335,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
                             self.showPersonalInformationModal(self, amount: 0)
                             self.payButton.userInteractionEnabled = true
                             self.paymentTextField.clear()
-                            self.showAlert("Payment for " + self.chargeInputView.text! + " succeeded!", color: UIColor.skyBlue(), image:UIImage(named: "ic_check_light")!, title: "Success")
+                            showAlert(.Success, title: "Success", msg: "Payment for " + self.chargeInputView.text! + " succeeded!")
                             var str = self.chargeInputView.text
                             str?.removeAtIndex(str!.characters.indices.first!) // remove first letter
                             Answers.logPurchaseWithPrice(decimalWithString(self.currencyFormatter, string: str!),
@@ -395,22 +394,6 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         self.view.window!.rootViewController!.dismissViewControllerAnimated(true, completion: { _ in })
     }
 
-    func showAlert(msg: String, color: UIColor, image: UIImage, title: String) {
-        let customIcon:UIImage = image // your custom icon UIImage
-        let customColor:UIColor = color // base color for the alert
-        self.view.endEditing(true)
-        let alertView = JSSAlertView().show(
-            self,
-            title: title,
-            text: msg,
-            buttonText: "Ok",
-            noButtons: false,
-            color: customColor,
-            iconImage: customIcon)
-        alertView.setTextTheme(.Light) // can be .Light or .Dark
-        alertView.addAction(reset)
-    }
-    
     func reset() {
         // this'll run if cancel is pressed after the alert is dismissed
         paymentTextField.removeFromSuperview()

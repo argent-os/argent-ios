@@ -11,6 +11,53 @@ import Alamofire
 import CWStatusBarNotification
 import DynamicColor
 import UIKit
+import SCLAlertView
+
+public enum AlertType {
+    case Success
+    case Error
+    case Info
+    case Notice
+    case Warning
+    case Edit
+}
+
+public func showAlert(type: AlertType, title: String, msg: String) {
+    let appearance = SCLAlertView.SCLAppearance(
+        showCircularIcon: true,
+        fieldCornerRadius : 10,
+        contentViewCornerRadius : 10,
+        buttonCornerRadius: 10,
+        kCircleIconHeight: 57
+    )
+    let alertView = SCLAlertView(appearance: appearance)
+    switch type {
+        case .Success:
+            let alertViewIcon = UIImage(named: "ic_shiny_check") // Replace the IconImage text with the image name
+            alertView.showSuccess(title, subTitle: msg, circleIconImage: alertViewIcon)
+            break
+        case .Error:
+            let alertViewIcon = UIImage(named: "ic_shiny_error") // Replace the IconImage text with the image name
+            alertView.showError(title, subTitle: msg, circleIconImage: alertViewIcon)
+            break
+        case .Info:
+            let alertViewIcon = UIImage(named: "ic_shiny_bolt") // Replace the IconImage text with the image name
+            alertView.showInfo(title, subTitle: msg, circleIconImage: alertViewIcon)
+            break
+        case .Notice:
+            let alertViewIcon = UIImage(named: "ic_shiny_bolt") // Replace the IconImage text with the image name
+            alertView.showNotice(title, subTitle: msg, circleIconImage: alertViewIcon)
+            break
+        case .Warning:
+            let alertViewIcon = UIImage(named: "ic_shiny_alert") // Replace the IconImage text with the image name
+            alertView.showWarning(title, subTitle: msg, circleIconImage: alertViewIcon)
+            break
+        case .Edit:
+            let alertViewIcon = UIImage(named: "ic_shiny_bolt") // Replace the IconImage text with the image name
+            alertView.showEdit(title, subTitle: msg, circleIconImage: alertViewIcon)
+            break
+    }
+}
 
 let globalNotification = CWStatusBarNotification()
 

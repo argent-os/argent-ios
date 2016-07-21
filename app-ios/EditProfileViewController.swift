@@ -9,7 +9,6 @@
 import UIKit
 import Foundation
 import Former
-import JSSAlertView
 import MessageUI
 final class EditProfileViewController: FormViewController, UINavigationBarDelegate, MFMailComposeViewControllerDelegate {
     
@@ -296,7 +295,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
         }
         
         let einRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
-            $0.titleLabel.text = "EIN"
+            $0.titleLabel.text = "Tax ID"
             $0.textField.keyboardType = .NumberPad
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
@@ -304,7 +303,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                 if account.ein != "" {
                     $0.placeholder = "provided"
                 } else {
-                    $0.placeholder = "Business or Personal Tax ID"
+                    $0.placeholder = "Business (EIN) or Personal (SSN) Tax ID"
                 }
                 $0.text = Profile.sharedInstance.ein
                 b_ein = $0.text
@@ -393,21 +392,6 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                 self?.formerInputAccessoryView.update()
         }
     }
-    
-    private func showAlert(title: String, msg: String, color: UIColor, image: UIImage) {
-        let customIcon:UIImage = image // your custom icon UIImage
-        let customColor:UIColor = color // base color for the alert
-        self.view.endEditing(true)
-        let alertView = JSSAlertView().show(
-            self,
-            title: title,
-            text: msg,
-            buttonText: "Ok",
-            noButtons: false,
-            color: customColor,
-            iconImage: customIcon)
-        alertView.setTextTheme(.Light) // can be .Light or .Dark
-    }
 }
 
 extension EditProfileViewController {
@@ -491,13 +475,13 @@ extension EditProfileViewController {
                 Account.saveStripeAccount(legalJSON) { (acct, bool, err) in
                     print("save acct called")
                     if bool == true {
-                        self.showAlert("Success", msg: "Profile Updated", color: UIColor.brandGreen(), image: UIImage(named: "ic_check_light")!)
+                        showAlert(.Success, title: "Success", msg: "Profile updated")
                     } else {
-                        self.showAlert("Error", msg: (err?.localizedDescription)!, color: UIColor.brandRed(), image: UIImage(named: "ic_close_light")!)
+                        showAlert(.Error, title: "Error", msg: (err?.localizedDescription)!)
                     }
                 }
             } else {
-                self.showAlert("Error", msg: (err?.localizedDescription)!, color: UIColor.brandRed(), image: UIImage(named: "ic_close_light")!)
+                showAlert(.Error, title: "Error", msg: (err?.localizedDescription)!)
             }
         }
     }

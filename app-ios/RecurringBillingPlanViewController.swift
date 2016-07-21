@@ -11,7 +11,6 @@ import Alamofire
 import SwiftyJSON
 import UIKit
 import Former
-import JSSAlertView
 
 final class RecurringBillingViewController: FormViewController, UINavigationBarDelegate, UITextFieldDelegate {
     
@@ -208,7 +207,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
             $0.textField.autocapitalizationType = .None
             $0.textField.keyboardType = .NumberPad
             }.configure {
-                $0.placeholder = "(Optional) in days"
+                $0.placeholder = "in days (Optional)"
                 $0.rowHeight = 60
             }.onTextChanged { [weak self] in
                 self?.dic["trial_period_days"] = $0
@@ -223,7 +222,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
             $0.textField.autocapitalizationType = .None
             $0.textField.returnKeyType = .Done
             }.configure {
-                $0.placeholder = "(Optional) 22 characters maximum"
+                $0.placeholder = "Statement descriptor, 22 characters max (Optional)"
                 $0.rowHeight = 60
             }.onTextChanged { [weak self] in
                 self?.dic["statement_descriptor"] = $0
@@ -266,32 +265,18 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         Plan.createPlan(dic) { (bool, err) in
             if bool == true {
                 if let msg = self.dic["name"] {
-                    self.showAlert("Success", msg: (msg as! String) + " plan created!", color: UIColor.brandGreen(), icon: "ic_check_light")
+                    showAlert(.Success, title: "Success", msg: (msg as! String) + " plan created!")
                     self.amountInputView.text = ""
                     self.perIntervalLabel.text = ""
                 }
             } else {
-                self.showAlert("Error", msg: err, color: UIColor.brandRed(), icon: "ic_close_light")
+                showAlert(.Error, title: "Error", msg: err)
             }
         }
     }
     
     func returnToMenu(sender: AnyObject) {
         self.view.window!.rootViewController!.dismissViewControllerAnimated(true, completion: { _ in })
-    }
-    
-    func showAlert(title: String, msg: String, color: UIColor, icon: String) {
-        let customIcon:UIImage = UIImage(named: icon)! // your custom icon UIImage
-        self.view.endEditing(true)
-        let alertView = JSSAlertView().show(
-            self,
-            title: title,
-            text: msg,
-            buttonText: "Close",
-            noButtons: false,
-            color: color,
-            iconImage: customIcon)
-        alertView.setTextTheme(.Light) // can be .Light or .Dark
     }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {

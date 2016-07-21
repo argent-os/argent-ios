@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import UIColor_Hex_Swift
 import StepSlider
-import JSSAlertView
+import SCLAlertView
 
 class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
     
@@ -287,18 +287,8 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
     }
     
     func displayErrorAlertMessage(alertMessage:String) {
-        let customIcon:UIImage = UIImage(named: "IconBellLight")! // your custom icon UIImage
-        let customColor:UIColor = UIColor.brandRed() // base color for the alert
+        showAlert(.Error, title: "Error", msg: alertMessage)
         self.view.endEditing(true)
-        let alertView = JSSAlertView().show(
-            self,
-            title: "",
-            text: alertMessage,
-            buttonText: "Ok",
-            noButtons: false,
-            color: customColor,
-            iconImage: customIcon)
-        alertView.setTextTheme(.Light) // can be .Light or .Dark
     }
     
     func performValidation() -> Bool {

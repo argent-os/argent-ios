@@ -12,7 +12,6 @@ import Alamofire
 import SwiftyJSON
 import TextFieldEffects
 import UIColor_Hex_Swift
-import JSSAlertView
 import CWStatusBarNotification
 import Crashlytics
 
@@ -137,7 +136,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
         // check for empty fields
         if(email!.isEmpty) {
             // display alert message
-            displayAlert("Username/Email not entered", color: UIColor.lightBlue(), icon: "ic_close_light");
+            showAlert(.Warning, title: "Warning", msg: "Username/Email not entered")
             return;
         }
         
@@ -164,7 +163,8 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
                     }
                 case .Failure(let error):
                     print(error)
-                    self.displayAlert("Failed to remind password, please check username/email is correct", color: UIColor.brandRed(), icon: "ic_close_light");
+                    showAlert(.Error, title: "Error", msg: "Failed to remind password, please check username/email is correct")
+
                     Answers.logCustomEventWithName("3D Touch to Dashboard",
                         customAttributes: [
                             "error": error.localizedDescription
@@ -175,19 +175,6 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    }
-    
-    func displayAlert(msg:String, color: UIColor, icon: String) {
-        let customIcon:UIImage = UIImage(named: icon)! // your custom icon UIImage
-        let alertView = JSSAlertView().show(
-            self,
-            title: "",
-            text: msg,
-            buttonText: "Ok",
-            noButtons: false,
-            color: color,
-            iconImage: customIcon)
-        alertView.setTextTheme(.Light) // can be .Light or .Dark
     }
     
     //Changing Status Bar

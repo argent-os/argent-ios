@@ -36,7 +36,6 @@ target 'app-ios' do
 	pod 'JGProgressHUD'	
 	pod 'MCSwipeTableViewCell'
 	pod 'JVFloatLabeledTextField'
-	pod 'JSSAlertView'
 	pod 'CountryPicker'
 	pod 'FlagKit'
 	pod 'DGElasticPullToRefresh'

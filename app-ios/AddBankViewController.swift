@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import JSSAlertView
 import Alamofire
 import SwiftyJSON
 import plaid_ios_link
@@ -207,11 +206,13 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
                             Answers.logCustomEventWithName("Link bank to Stripe success",
                                 customAttributes: [:])
                             if response.response?.statusCode == 200 {
-                                self.showAlert("Success", msg: "Bank Connected", color: UIColor.brandGreen(), image: UIImage(named: "ic_check_light")!)
+                                showAlert(.Success, title: "Success", msg: "Your bank account is now linked")
+
                                 Answers.logCustomEventWithName("Bank account link success",
                                     customAttributes: [:])
                             } else {
-                                self.showAlert("Error", msg: "Could not link bank account, please contact support for help", color: UIColor.brandRed(), image: UIImage(named: "ic_close_light")!)
+                                showAlert(.Error, title: "Error", msg: "Error linking bank account")
+                                
                                 Answers.logCustomEventWithName("Bank account link failure",
                                     customAttributes: [:])
                             }
@@ -234,20 +235,5 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
     func linkNavigationControllerDidCancel(navigationController: PLDLinkNavigationViewController!) {
         dismissViewControllerAnimated(true) {
         }
-    }
-    
-    private func showAlert(title: String, msg: String, color: UIColor, image: UIImage) {
-        let customIcon:UIImage = image // your custom icon UIImage
-        let customColor:UIColor = color // base color for the alert
-        self.view.endEditing(true)
-        let alertView = JSSAlertView().show(
-            self,
-            title: title,
-            text: msg,
-            buttonText: "Ok",
-            noButtons: false,
-            color: customColor,
-            iconImage: customIcon)
-        alertView.setTextTheme(.Light) // can be .Light or .Dark
     }
 }

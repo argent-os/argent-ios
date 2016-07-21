@@ -14,7 +14,6 @@ import CWStatusBarNotification
 import StoreKit
 import Crashlytics
 import Whisper
-import JSSAlertView
 import MZFormSheetPresentationController
 import EasyTipView
 

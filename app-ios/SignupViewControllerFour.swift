@@ -16,7 +16,7 @@ import UIColor_Hex_Swift
 import BEMCheckBox
 import MZAppearance
 import MZFormSheetPresentationController
-import JSSAlertView
+import SCLAlertView
 import StepSlider
 import OnePasswordExtension
 import CWStatusBarNotification
@@ -146,7 +146,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
         
         if(self.switchTermsAndPrivacy.on.boolValue == false) {
             // Display error if terms of service and privacy policy not accepted
-            displayDefaultErrorAlertMessage("Terms of Service and Privacy Policy were not accepted, could not create account");
+            displayErrorAlertMessage("Terms of Service and Privacy Policy were not accepted, could not create account");
             self.finishButton.userInteractionEnabled = true
             return;
         }
@@ -315,19 +315,9 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
         })
     }
     
-    func displayDefaultErrorAlertMessage(alertMessage:String) {
-        let customIcon:UIImage = UIImage(named: "IconBellLight")! // your custom icon UIImage
-        let customColor:UIColor = UIColor.brandRed() // base color for the alert
+    func displayErrorAlertMessage(alertMessage:String) {
+        showAlert(.Error, title: "Error", msg: alertMessage)
         self.view.endEditing(true)
-        let alertView = JSSAlertView().show(
-            self,
-            title: "",
-            text: alertMessage,
-            buttonText: "Ok",
-            noButtons: false,
-            color: customColor,
-            iconImage: customIcon)
-        alertView.setTextTheme(.Light) // can be .Light or .Dark
     }
     
     // Return IP address of WiFi interface (en0) as a String, or `nil`

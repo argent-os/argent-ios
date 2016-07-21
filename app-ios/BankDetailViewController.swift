@@ -11,7 +11,6 @@
 //import Alamofire
 //import SwiftyJSON
 //import JGProgressHUD
-//import JSSAlertView
 //
 //class BankDetailViewController: UIViewController, UITextFieldDelegate {
 //    
@@ -274,16 +273,4 @@
 //        return false
 //    }
 //    
-//    func displayErrorAlertMessage(alertMessage:String) {
-//        let customIcon:UIImage = UIImage(named: "ic_close_light")! // your custom icon UIImage
-//        let alertView = JSSAlertView().show(
-//            self,
-//            title: "",
-//            text: alertMessage,
-//            buttonText: "",
-//            noButtons: true,
-//            color: color!,
-//            iconImage: customIcon)
-//        alertView.setTextTheme(.Light) // can be .Light or .Dark
-//    }
 //}

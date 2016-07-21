@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import ImagePicker
 import Alamofire
-import JSSAlertView
 import CWStatusBarNotification
 import Crashlytics
 
