@@ -380,38 +380,49 @@ extension BankConnectedListTableViewController {
                 cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             }
-            
-            
         }
-        if let status = item?.status {
+
+//        let routingAttributedString = NSAttributedString(string: "Routing " + (item?.routing_number)!, attributes: [
+//            NSForegroundColorAttributeName : UIColor.lightBlue(),
+//            NSFontAttributeName : UIFont.systemFontOfSize(12, weight: UIFontWeightLight)
+//            ])
+//        let last4AttributedString = NSAttributedString(string: "Ending in " + (item?.last4)!, attributes: [
+//            NSForegroundColorAttributeName : UIColor.lightBlue(),
+//            NSFontAttributeName : UIFont.systemFontOfSize(12, weight: UIFontWeightLight)
+//            ])
+//        
+//        cell.bankLastFourLabel?.attributedText = last4AttributedString
+//        cell.bankRoutingLabel?.attributedText = routingAttributedString
+        
+        if let status = item?.status, last4 = item?.last4 {
             
             switch status {
             case "new":
-                let strStatus = NSAttributedString(string: "New Account", attributes: [
+                let strStatus = NSAttributedString(string: "New Account | Ending in " + last4, attributes: [
                     NSFontAttributeName: UIFont.systemFontOfSize(11),
                     NSForegroundColorAttributeName:UIColor.lightBlue()
                     ])
                 cell.bankStatusLabel?.attributedText = strStatus
             case "validated":
-                let strStatus = NSAttributedString(string: "Validated ✓", attributes: [
+                let strStatus = NSAttributedString(string: "Validated | Ending in " + last4, attributes: [
                     NSFontAttributeName: UIFont.systemFontOfSize(11),
                     NSForegroundColorAttributeName:UIColor.lightBlue()
                     ])
                 cell.bankStatusLabel?.attributedText = strStatus
             case "verified":
-                let strStatus = NSAttributedString(string: "Verified ✓", attributes: [
+                let strStatus = NSAttributedString(string: "Verified | Ending in " + last4, attributes: [
                     NSFontAttributeName: UIFont.systemFontOfSize(11),
                     NSForegroundColorAttributeName:UIColor.lightBlue()
                     ])
                 cell.bankStatusLabel?.attributedText = strStatus
             case "verification_failed":
-                let strStatus = NSAttributedString(string: "Verification Failed", attributes: [
+                let strStatus = NSAttributedString(string: "Verification Failed | Ending in " + last4, attributes: [
                     NSFontAttributeName: UIFont.systemFontOfSize(11),
                     NSForegroundColorAttributeName:UIColor.lightBlue()
                     ])
                 cell.bankStatusLabel?.attributedText = strStatus
             case "errored":
-                let strStatus = NSAttributedString(string: "Error Occurred", attributes: [
+                let strStatus = NSAttributedString(string: "Error occurred | This account is invalid", attributes: [
                     NSFontAttributeName: UIFont.systemFontOfSize(11),
                     NSForegroundColorAttributeName:UIColor.lightBlue()
                     ])
@@ -425,20 +436,6 @@ extension BankConnectedListTableViewController {
             }
             
         }
-        if let last4 = item?.last4, routing = item?.routing_number {
-            let routingAttributedString = NSAttributedString(string: "Routing " + routing, attributes: [
-                NSForegroundColorAttributeName : UIColor.lightBlue(),
-                NSFontAttributeName : UIFont.systemFontOfSize(12, weight: UIFontWeightLight)
-                ])
-            let last4AttributedString = NSAttributedString(string: "Ending in " + last4, attributes: [
-                NSForegroundColorAttributeName : UIColor.lightBlue(),
-                NSFontAttributeName : UIFont.systemFontOfSize(12, weight: UIFontWeightLight)
-                ])
-            
-            cell.bankLastFourLabel?.attributedText = last4AttributedString
-            cell.bankRoutingLabel?.attributedText = routingAttributedString
-        }
-        
         
         return cell
     }
