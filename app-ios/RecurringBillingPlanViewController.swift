@@ -81,13 +81,14 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         // sendToolbar.barStyle = UIBarStyle.Default
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: #selector(self.dismissKeyboard(_:)))
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Dismiss", style: UIBarButtonItemStyle.Done, target: self, action: #selector(self.dismissKeyboard(_:)))
         
-        UIToolbar.appearance().barTintColor = UIColor.whiteColor()
+        UIToolbar.appearance().barTintColor = UIColor.skyBlue()
+        UIToolbar.appearance().tintColor = UIColor.whiteColor()
         
         done.setTitleTextAttributes([
             NSFontAttributeName : UIFont.systemFontOfSize(15, weight: UIFontWeightLight),
-            NSForegroundColorAttributeName : UIColor.mediumBlue()
+            NSForegroundColorAttributeName : UIColor.whiteColor()
             ], forState: .Normal)
         
         var items: [UIBarButtonItem]? = [UIBarButtonItem]()
@@ -181,7 +182,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
 //        addSubviewWithBounce(topImageView, parentView: self)
 //        self.view.sendSubviewToBack(topImageView)
         
-        perIntervalLabel.frame = CGRect(x: 0, y: 110, width: screenWidth, height: 50)
+        perIntervalLabel.frame = CGRect(x: 0, y: 90, width: screenWidth, height: 50)
         perIntervalLabel.textAlignment = .Center
         perIntervalLabel.font = UIFont(name: "MyriadPro-Regular", size: 16)!
         perIntervalLabel.textColor = UIColor.lightBlue()

@@ -83,7 +83,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         let verifyTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.showTutorialModal(_:)))
         self.verifiedLabel.addGestureRecognizer(verifyTap)
         self.verifiedLabel.userInteractionEnabled = true
-        self.view.addSubview(self.verifiedLabel)
+        addSubviewWithFade(self.verifiedLabel, parentView: self, duration: 0.8)
         self.view.bringSubviewToFront(self.verifiedLabel)
 
         Account.getStripeAccount { (acct, err) in
@@ -157,7 +157,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                     self.verifiedButton.setTitleColor(UIColor.redColor(), forState: .Normal)
                     self.verifiedButton.addTarget(self, action: #selector(HomeViewController.presentTutorial(_:)), forControlEvents: .TouchUpInside)
                     self.verifiedButton.addTarget(self, action: #selector(HomeViewController.presentTutorial(_:)), forControlEvents: .TouchUpOutside)
-                    self.view.addSubview(self.verifiedButton)
+                    addSubviewWithFade(self.verifiedButton, parentView: self, duration: 0.8)
                     self.view.bringSubviewToFront(self.verifiedButton)
                 }
             }
@@ -271,25 +271,17 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                         let locationStr: NSMutableAttributedString = NSMutableAttributedString(string: address_city + ", " + address_country)
                         // locationStr.appendAttributedString(attachmentString)
                         self.locationLabel.attributedText = locationStr
-                        let _ = Timeout(0.2) {
-                            addSubviewWithFade(self.locationLabel, parentView: self, duration: 0.8)
-                        }
                     } else if let address_city = acct?.address_city, let address_country = acct?.address_country {
                         let locationStr: NSMutableAttributedString = NSMutableAttributedString(string: "Unknown, " + address_country)
                         // locationStr.appendAttributedString(attachmentString)
                         self.locationLabel.attributedText = locationStr
-                        let _ = Timeout(0.2) {
-                            addSubviewWithFade(self.locationLabel, parentView: self, duration: 0.8)
-                        }
                     } else {
                         let locationStr: NSMutableAttributedString = NSMutableAttributedString(string: "Unknown")
                         locationStr.appendAttributedString(attachmentString)
                         self.locationLabel.attributedText = locationStr
-                        let _ = Timeout(0.2) {
-                            addSubviewWithFade(self.locationLabel, parentView: self, duration: 0.8)
-                        }
                         showGlobalNotification("Profile Incomplete", duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandYellow())
                     }
+                    addSubviewWithFade(self.locationLabel, parentView: self, duration: 0.8)
                 } else {
                     // profile information is required, show tutorial button
                 }

@@ -23,25 +23,25 @@ import EasyTipView
 var userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
 
 class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpleLineGraphDataSource, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, WCSessionDelegate, EasyTipViewDelegate  {
-
+    
     private var window: UIWindow?
-
+    
     private var backgroundImageView = UIImageView()
-
+    
     private var screen = UIScreen.mainScreen().bounds
-
+    
     private var screenWidth = UIScreen.mainScreen().bounds.size.height
     
     private var screenHeight = UIScreen.mainScreen().bounds.size.width
     
-    private var balanceSwitch = UISegmentedControl(items: ["Pending", "Available"])
-
+    private var balanceSwitch = UISegmentedControl(items: ["A", "P"])
+    
     private var logoView = UIImageView()
-
+    
     private var tutorialButton:UIButton = UIButton()
-
+    
     private var dateFormatter = NSDateFormatter()
-
+    
     private var accountHistoryArray:Array<History>?
     
     private var balance:Balance = Balance(pending: 0, available: 0)
@@ -49,38 +49,47 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     private var tableView:UITableView = UITableView()
     
     private var arrayOfValues: Array<AnyObject> = []
-
+    
     private var arrayOfDates: Array<AnyObject> = []
     
     private var user = User(id: "", username: "", email: "", first_name: "", last_name: "", business_name: "", picture: "", phone: "", country: "", plaid_access_token: "")
     
     private let lblAccountPending:UILabel = UILabel()
-
+    
     private let lblAccountAvailable:UILabel = UILabel()
-
+    
     private let lblSubtext:UILabel = UILabel()
-
+    
     private let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.White)
-
+    
     private let graph: BEMSimpleLineGraphView = BEMSimpleLineGraphView(frame: CGRectMake(0, 90, UIScreen.mainScreen().bounds.size.width, 200))
     
     private let notification = CWStatusBarNotification()
-
+    
     private var gradient: CGGradient?
-
+    
     func indexChanged(sender: AnyObject) {
         if(sender.selectedSegmentIndex == 0) {
-            lblAccountAvailable.removeFromSuperview()
-            
-            addSubviewWithFade(lblAccountPending, parentView: self, duration: 0.8)
-        }
-        if(sender.selectedSegmentIndex == 1) {
             lblAccountPending.removeFromSuperview()
-
+            let subtext = NSAttributedString(string: "Available Balance", attributes:[
+                NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 12)!,
+                NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.7)
+                ])
+            lblSubtext.attributedText = subtext
             addSubviewWithFade(lblAccountAvailable, parentView: self, duration: 0.8)
         }
-    }
+        if(sender.selectedSegmentIndex == 1) {
+            lblAccountAvailable.removeFromSuperview()
+            let subtext = NSAttributedString(string: "Pending Balance", attributes:[
+                NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 12)!,
+                NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.7)
+                ])
+            lblSubtext.attributedText = subtext
+            addSubviewWithFade(lblAccountPending, parentView: self, duration: 0.8)
 
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -138,8 +147,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     // VIEW DID APPEAR
     override func viewDidAppear(animated: Bool) {
-//        self.view.addSubview(balanceSwitch)
-//        self.view.bringSubviewToFront(balanceSwitch)
+        self.view.addSubview(balanceSwitch)
+        self.view.bringSubviewToFront(balanceSwitch)
         UITextField.appearance().keyboardAppearance = .Light
     }
     
@@ -169,7 +178,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     // Tooltip
     let tipView = EasyTipView(text: "Welcome to your Argent dashboard, in order to start accepting payments we will require account verification information.  Head to your profile page to learn more, tap to dismiss.", preferences: EasyTipView.globalPreferences)
-
+    
     func presentTutorial(sender: AnyObject) {
         
         tipView.show(forView: self.tutorialButton, withinSuperview: self.view)
@@ -260,11 +269,11 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 let availableBalance = balance.available
                 
                 NSNotificationCenter.defaultCenter().postNotificationName("balance", object: nil, userInfo: ["available_bal":availableBalance,"pending_bal":pendingBalance])
-
+                
                 let formatter = NSNumberFormatter()
                 formatter.numberStyle = .CurrencyStyle
                 formatter.locale = NSLocale.currentLocale() // This is the default
-
+                
                 self.lblAccountPending.attributedText = formatCurrency(String(pendingBalance), fontName: "MyriadPro-Regular", superSize: 16, fontSize: 32, offsetSymbol: 10, offsetCents: 10)
                 addSubviewWithFade(self.lblAccountPending, parentView: self, duration: 1)
                 self.lblAccountAvailable.attributedText = formatCurrency(String(availableBalance), fontName: "MyriadPro-Regular", superSize: 16, fontSize: 32, offsetSymbol: 10, offsetCents: 10)
@@ -306,7 +315,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                     self.logout()
                 }
             })
-
+            
         } else {
             // check if user logged in, if not send to login
             self.logout()
@@ -361,15 +370,15 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.accountHistoryArray?.count ?? 0
     }
-
+    
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         self.tableView.registerNib(UINib(nibName: "HistoryCustomCell", bundle: nil), forCellReuseIdentifier: "idCellCustomHistory")
-
+        
         let cell = self.tableView.dequeueReusableCellWithIdentifier("idCellCustomHistory") as! HistoryCustomCell
-
+        
         CellAnimator.animateCell(cell, withTransform: CellAnimator.TransformTilt, andDuration: 0.3)
-
+        
         let item = self.accountHistoryArray?[indexPath.row]
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         cell.backgroundColor = UIColor.clearColor()
@@ -428,7 +437,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     }
     
     // Scrollview
-
+    
     func scrollViewDidScroll(scrollView: UIScrollView) {
         // TODO: Implement table scroll to top on scrolldown
     }
@@ -486,15 +495,15 @@ extension HomeViewController {
 extension UISegmentedControl {
     func removeBorders() {
         setTitleTextAttributes([
-                NSForegroundColorAttributeName : UIColor.lightBlue().colorWithAlphaComponent(0.8),
-                NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 11)!
+            NSForegroundColorAttributeName : UIColor.lightBlue().colorWithAlphaComponent(0.8),
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 11)!
             ],
-            forState: .Normal)
+                               forState: .Normal)
         setTitleTextAttributes([
-                NSForegroundColorAttributeName : UIColor.whiteColor(),
-                NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 14)!
+            NSForegroundColorAttributeName : UIColor.whiteColor(),
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 14)!
             ],
-            forState: .Selected)
+                               forState: .Selected)
         setBackgroundImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forState: .Normal, barMetrics: .Default)
         setBackgroundImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forState: .Selected, barMetrics: .Default)
         setDividerImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forLeftSegmentState: .Normal, rightSegmentState: .Normal, barMetrics: .Default)
@@ -532,9 +541,11 @@ extension HomeViewController {
         }
         
         // Balance Switch
+        balanceSwitch.selectedSegmentIndex = 1
         balanceSwitch.tintColor = UIColor.whiteColor()
         balanceSwitch.backgroundColor = UIColor.clearColor()
-        balanceSwitch.frame = CGRect(x: view.bounds.width - 210.0, y: 42, width: 200, height: 32.0)
+        balanceSwitch.frame = CGRect(x: 20, y: 42, width: 40, height: 25)
+        balanceSwitch.alpha = 0.75
         //autoresizing so it stays at top right (flexible left and flexible bottom margin)
         balanceSwitch.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
         balanceSwitch.bringSubviewToFront(balanceSwitch)
@@ -616,8 +627,8 @@ extension HomeViewController {
         logoView.alpha = 0.8
         //logoView.addTarget(self, action: #selector(HomeViewController.presentTutorial(_:)), forControlEvents: .TouchUpInside)
         //logoView.addTarget(self, action: #selector(HomeViewController.presentTutorial(_:)), forControlEvents: .TouchUpOutside)
-        self.view.addSubview(logoView)
-        self.view.bringSubviewToFront(logoView)
+//        self.view.addSubview(logoView)
+//        self.view.bringSubviewToFront(logoView)
         
         tableView.frame = CGRect(x: 0, y: 270, width: screenWidth, height: screenHeight-315)
         tableView.tableHeaderView = headerView
@@ -632,8 +643,8 @@ extension HomeViewController {
         lblAccountAvailable.frame = CGRect(x: 0, y: 31, width: screenWidth, height: 60)
         lblAccountAvailable.textAlignment = .Center
         let str0 = NSAttributedString(string: "N/A", attributes:[
-                NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 18)!,
-                NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.7)
+            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 18)!,
+            NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.7)
             ])
         lblAccountAvailable.attributedText = str0
         ///////
@@ -641,8 +652,8 @@ extension HomeViewController {
         lblAccountPending.frame = CGRect(x: 0, y: 31, width: screenWidth, height: 60)
         lblAccountPending.textAlignment = .Center
         let str1 = NSAttributedString(string: "N/A", attributes:[
-                NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 18)!,
-                NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.7)
+            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 18)!,
+            NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.7)
             ])
         lblAccountPending.attributedText = str1
         ///////
@@ -664,7 +675,7 @@ extension HomeViewController {
                 self?.loadAccountHistory("100", starting_after: "", completionHandler: { (_: [History]?, NSError) in
                 })
             })
-        }, loadingView: loadingView)
+            }, loadingView: loadingView)
         tableView.dg_setPullToRefreshFillColor(UIColor.clearColor())
         tableView.dg_setPullToRefreshBackgroundColor(UIColor.clearColor())
         

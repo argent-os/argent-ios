@@ -38,7 +38,7 @@ class ParallaxHeaderView: UIView {
         imageView.clipsToBounds = true
         imageView.contentMode = .ScaleAspectFill
 
-        self.containerView.backgroundColor = UIColor.paleBlue()
+        self.containerView.backgroundColor = UIColor.darkBlue()
 
         User.getProfile({ (user, error) in
             if user?.picture != nil && user?.picture != "" {
