@@ -73,9 +73,10 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate,
         passportCardButton.setAttributedTitle(str0, forState: .Normal)
         passportCardButton.setTitleColor(UIColor.lightBlue(), forState: .Normal)
         passportCardButton.setTitleColor(UIColor.mediumBlue(), forState: .Highlighted)
-        passportCardButton.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
+        passportCardButton.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.2).CGColor
         passportCardButton.layer.borderWidth = 1
         passportCardButton.layer.cornerRadius = 10
+        passportCardButton.layer.masksToBounds = true
         passportCardButton.backgroundColor = UIColor.whiteColor()
         self.passportCardButton.addTarget(self, action: #selector(IdentityVerificationViewController.openCamera(_:)), forControlEvents: .TouchUpInside)
         addSubviewWithBounce(passportCardButton, parentView: self, duration: 0.3)
@@ -92,9 +93,10 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate,
         self.identityCardButton.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
         self.identityCardButton.setTitleColor(UIColor.lightBlue(), forState: .Normal)
         self.identityCardButton.setTitleColor(UIColor.mediumBlue(), forState: .Highlighted)
-        self.identityCardButton.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
+        self.identityCardButton.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.2).CGColor
         self.identityCardButton.layer.borderWidth = 1
         self.identityCardButton.layer.cornerRadius = 10
+        self.identityCardButton.layer.masksToBounds = true
         self.identityCardButton.backgroundColor = UIColor.whiteColor()
         self.identityCardButton.addTarget(self, action: #selector(IdentityVerificationViewController.openCamera(_:)), forControlEvents: .TouchUpInside)
         
@@ -109,9 +111,10 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate,
         self.driversLicenseButton.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
         self.driversLicenseButton.setTitleColor(UIColor.lightBlue(), forState: .Normal)
         self.driversLicenseButton.setTitleColor(UIColor.mediumBlue(), forState: .Highlighted)
-        self.driversLicenseButton.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
+        self.driversLicenseButton.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.2).CGColor
         self.driversLicenseButton.layer.borderWidth = 1
         self.driversLicenseButton.layer.cornerRadius = 10
+        self.driversLicenseButton.layer.masksToBounds = true
         self.driversLicenseButton.backgroundColor = UIColor.whiteColor()
         self.driversLicenseButton.addTarget(self, action: #selector(IdentityVerificationViewController.openCamera(_:)), forControlEvents: .TouchUpInside)
         
@@ -126,9 +129,10 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate,
         self.socialSecurityButton.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
         self.socialSecurityButton.setTitleColor(UIColor.lightBlue(), forState: .Normal)
         self.socialSecurityButton.setTitleColor(UIColor.mediumBlue(), forState: .Highlighted)
-        self.socialSecurityButton.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
+        self.socialSecurityButton.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.2).CGColor
         self.socialSecurityButton.layer.borderWidth = 1
         self.socialSecurityButton.layer.cornerRadius = 10
+        self.socialSecurityButton.layer.masksToBounds = true
         self.socialSecurityButton.addTarget(self, action: #selector(self.showSSNModal(_:)), forControlEvents: .TouchUpInside)
         
         if screenHeight < 500 {

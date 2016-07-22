@@ -687,7 +687,7 @@ extension HomeViewController {
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.mediumBlue(),
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular-Light", size: 18.0)!
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 18.0)!
         ]
         
     }
