@@ -66,18 +66,18 @@ class MenuDetailViewController: UIViewController, ModalTransitionDelegate {
         
         let viewCustomersImageView = UIImageView()
         viewCustomersImageView.backgroundColor = UIColor.whiteColor()
-        viewCustomersImageView.layer.cornerRadius = 10
+        viewCustomersImageView.layer.cornerRadius = 5
         viewCustomersImageView.frame = CGRect(x: 35, y: screenHeight*0.1, width: screenWidth-70, height: 120)
         viewCustomersImageView.contentMode = .ScaleAspectFit
-        addSubviewWithShadow(UIColor.lightBlue(), radius: 10.0, offsetX: 0.0, offsetY: 0, opacity: 0.2, parentView: self, childView: viewCustomersImageView)
-        
+        addSubviewWithFade(viewCustomersImageView, parentView: self, duration: 0.5)
+
         let btn1 = CenteredButton()
         let str1 = NSAttributedString(string: "  View Customers", attributes: [
             NSForegroundColorAttributeName : UIColor.lightBlue(),
-            NSFontAttributeName : UIFont.systemFontOfSize(17, weight: UIFontWeightRegular)
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 17)!
             ])
         btn1.setAttributedTitle(str1, forState: .Normal)
-        btn1.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
+        btn1.setBackgroundColor(UIColor.offWhite().lighterColor(), forState: .Highlighted)
         btn1.frame = CGRect(x: 35, y: screenHeight*0.1, width: screenWidth-70, height: 120)
         btn1.setImage(UIImage(named: "IconRocket")?.alpha(0.5), forState: .Highlighted)
         btn1.layer.cornerRadius = 10
@@ -92,21 +92,21 @@ class MenuDetailViewController: UIViewController, ModalTransitionDelegate {
 
         let viewSubscriptionsImageView = UIImageView()
         viewSubscriptionsImageView.backgroundColor = UIColor.whiteColor()
-        viewSubscriptionsImageView.layer.cornerRadius = 10
+        viewSubscriptionsImageView.layer.cornerRadius = 5
         viewSubscriptionsImageView.frame = CGRect(x: 35, y: screenHeight*0.32, width: screenWidth-70, height: 120)
         viewSubscriptionsImageView.contentMode = .ScaleAspectFit
-        addSubviewWithShadow(UIColor.lightBlue(), radius: 10.0, offsetX: 0.0, offsetY: 0, opacity: 0.2, parentView: self, childView: viewSubscriptionsImageView)
+        addSubviewWithFade(viewSubscriptionsImageView, parentView: self, duration: 0.5)
         
         let btn2 = CenteredButton()
         let str2 = NSAttributedString(string: "  View Subscriptions", attributes: [
             NSForegroundColorAttributeName : UIColor.lightBlue(),
-            NSFontAttributeName : UIFont.systemFontOfSize(17, weight: UIFontWeightRegular)
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 17)!
             ])
         btn2.setAttributedTitle(str2, forState: .Normal)
-        btn2.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
+        btn2.setBackgroundColor(UIColor.offWhite().lighterColor(), forState: .Highlighted)
         btn2.frame = CGRect(x: 35, y: screenHeight*0.32, width: screenWidth-70, height: 120)
         btn2.setImage(UIImage(named: "IconRuby")?.alpha(0.5), forState: .Highlighted)
-        btn2.layer.cornerRadius = 10
+        btn2.layer.cornerRadius = 5
         btn2.layer.masksToBounds = true
         btn2.backgroundColor = UIColor.whiteColor()
         btn2.addTarget(self, action: #selector(self.viewSubscriptions(_:)), forControlEvents: .TouchUpInside)
@@ -121,18 +121,18 @@ class MenuDetailViewController: UIViewController, ModalTransitionDelegate {
         viewPlansImageView.layer.cornerRadius = 10
         viewPlansImageView.frame = CGRect(x: 35, y: screenHeight*0.54, width: screenWidth-70, height: 120)
         viewPlansImageView.contentMode = .ScaleAspectFit
-        addSubviewWithShadow(UIColor.lightBlue(), radius: 10.0, offsetX: 0.0, offsetY: 0, opacity: 0.2, parentView: self, childView: viewPlansImageView)
+        addSubviewWithFade(viewPlansImageView, parentView: self, duration: 0.5)
         
         let btn3 = CenteredButton()
         let str3 = NSAttributedString(string: "  View Plans", attributes: [
             NSForegroundColorAttributeName : UIColor.lightBlue(),
-            NSFontAttributeName : UIFont.systemFontOfSize(17, weight: UIFontWeightRegular)
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 17)!
             ])
         btn3.setAttributedTitle(str3, forState: .Normal)
-        btn3.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
+        btn3.setBackgroundColor(UIColor.offWhite().lighterColor(), forState: .Highlighted)
         btn3.setImage(UIImage(named: "IconBulb")?.alpha(0.5), forState: .Highlighted)
         btn3.frame = CGRect(x: 35, y: screenHeight*0.54, width: screenWidth-70, height: 120)
-        btn3.layer.cornerRadius = 10
+        btn3.layer.cornerRadius = 5
         btn3.layer.masksToBounds = true
         btn3.backgroundColor = UIColor.whiteColor()
         btn3.addTarget(self, action: #selector(self.viewPlans(_:)), forControlEvents: .TouchUpInside)

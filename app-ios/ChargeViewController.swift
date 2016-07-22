@@ -141,7 +141,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         chargeInputView.addTarget(self, action: #selector(ChargeViewController.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
         chargeInputView.frame = CGRect(x: 0, y: 60, width: screenWidth, height: 100)
         chargeInputView.textAlignment = .Center
-        chargeInputView.font = UIFont.systemFontOfSize(48, weight: UIFontWeightLight)
+        chargeInputView.font = UIFont(name: "MyriadPro-Regular", size: 48)!
         chargeInputView.textColor = UIColor.lightBlue()
         chargeInputView.placeholder = "$0.00"
         chargeInputView.keyboardType = UIKeyboardType.NumberPad
@@ -154,7 +154,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         swipePaymentSelectionLabel.text = "Swipe down to select payment option"
         swipePaymentSelectionLabel.textAlignment = .Center
         swipePaymentSelectionLabel.textColor = UIColor.lightBlue()
-        swipePaymentSelectionLabel.font = UIFont.systemFontOfSize(14, weight: UIFontWeightThin)
+        swipePaymentSelectionLabel.font = UIFont(name: "MyriadPro-Regular", size: 14)!
         swipePaymentSelectionLabel.frame = CGRect(x: 0, y: 280, width: screenWidth, height: 460) // shimmeringView.bounds
 
         shimmeringView.frame = CGRect(x: 0, y: 280, width: screenWidth, height: 460) // shimmeringView.bounds
@@ -169,15 +169,15 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         addSubviewWithFade(swipeArrowImageView, parentView: self, duration: 1)
         
         // Pay button
-        payButton.frame = CGRect(x: 20, y: screenHeight-80, width: screenWidth-40, height: 60.0)
-        payButton.setBackgroundColor(UIColor.lightBlue(), forState: .Normal)
-        payButton.setBackgroundColor(UIColor.lightBlue().colorWithAlphaComponent(0.75), forState: .Highlighted)
+        payButton.frame = CGRect(x: 0, y: screenHeight-60, width: screenWidth, height: 60.0)
+        payButton.setBackgroundColor(UIColor.skyBlue(), forState: .Normal)
+        payButton.setBackgroundColor(UIColor.skyBlue().lighterColor(), forState: .Highlighted)
         payButton.tintColor = UIColor(rgba: "#fff")
         payButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
         payButton.setTitleColor(UIColor(rgba: "#fffe"), forState: .Highlighted)
-        payButton.titleLabel?.font = UIFont.systemFontOfSize(16)
+        payButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 16)!
         payButton.setTitle("Pay Merchant", forState: .Normal)
-        payButton.layer.cornerRadius = 10
+        payButton.layer.cornerRadius = 0
         payButton.layer.masksToBounds = true
         payButton.clipsToBounds = true
         payButton.addTarget(self, action: #selector(ChargeViewController.save(_:)), forControlEvents: UIControlEvents.TouchUpInside)

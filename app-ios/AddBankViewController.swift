@@ -178,10 +178,10 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         print("the public token is", accessToken)
         let publicToken = accessToken
         linkPlaidBankAccount(publicToken, completionHandler: { (stripeBankToken, accessToken) in
-            print("stripe bank token is", stripeBankToken)
+            //print("stripe bank token is", stripeBankToken)
             self.linkBankToStripe(stripeBankToken)
             self.updateUserPlaidToken(accessToken)
-            print("updating user plaid token ", accessToken)
+            //print("updating user plaid token ", accessToken)
         }, accessToken: accessToken)
     }
     

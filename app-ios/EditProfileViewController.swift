@@ -67,7 +67,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
     private func configure(user: User, account: Account) {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
-        
+                
         let statusBarBackground = UIView()
         statusBarBackground.backgroundColor = UIColor.slateBlue()
         statusBarBackground.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 20)
@@ -485,7 +485,6 @@ extension EditProfileViewController {
             }
         }
     }
-    
 }
 
 extension EditProfileViewController {

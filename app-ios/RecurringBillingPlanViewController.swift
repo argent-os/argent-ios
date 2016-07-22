@@ -39,6 +39,8 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
     private func setupNav() {
         let navigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 60)) // Offset by 20 pixels vertically to take the status bar into account
         
+        addToolbarButton()
+        
         navigationBar.backgroundColor = UIColor.clearColor()
         navigationBar.tintColor = UIColor.mediumBlue()
         navigationBar.delegate = self
@@ -64,8 +66,38 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         addSubviewWithFade(navigationBar, parentView: self, duration: 0.5)
     }
     
-    override func viewDidAppear(animated: Bool) {
-
+    //Calls this function when the tap is recognized.
+    func dismissKeyboard(sender: AnyObject) {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+    
+    // Add send toolbar
+    func addToolbarButton()
+    {
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let sendToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, screenWidth, 50))
+        // sendToolbar.barStyle = UIBarStyle.Default
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: #selector(self.dismissKeyboard(_:)))
+        
+        UIToolbar.appearance().barTintColor = UIColor.whiteColor()
+        
+        done.setTitleTextAttributes([
+            NSFontAttributeName : UIFont.systemFontOfSize(15, weight: UIFontWeightLight),
+            NSForegroundColorAttributeName : UIColor.mediumBlue()
+            ], forState: .Normal)
+        
+        var items: [UIBarButtonItem]? = [UIBarButtonItem]()
+        items?.append(flexSpace)
+        items?.append(done)
+        items?.append(flexSpace)
+        
+        sendToolbar.items = items
+        sendToolbar.sizeToFit()
+        amountInputView.inputAccessoryView=sendToolbar
     }
     
     private func generatePlanID(plan: String, len: Int) -> Void {
@@ -87,12 +119,23 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         print(convertedPlanString)
     }
     
+    override func viewDidAppear(animated: Bool) {
+        UIToolbar().tintColor = UIColor.iosBlue()
+    }
+    
+    // toolbar buttons
+    private lazy var formerInputAccessoryView: FormerInputAccessoryView = FormerInputAccessoryView(former: self.former)
+    
     private func configure() {
 
         // screen width and height:
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
+        
+//        formerInputAccessoryView.tintColor = UIColor.lightBlue()
+//        formerInputAccessoryView.barTintColor = UIColor.iosBlue()
+        UIToolbar().barTintColor = UIColor.iosBlue()
         
         tableView.backgroundColor = UIColor.globalBackground()
         tableView.contentInset.top = 160
@@ -101,15 +144,15 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         tableView.frame = CGRect(x: 0, y: 350, width: screenWidth, height: screenHeight)
         
         // UI
-        let addPlanButton = UIButton(frame: CGRect(x: 20, y: screenHeight-80, width: screenWidth-40, height: 60.0))
-        addPlanButton.setBackgroundColor(UIColor.lightBlue(), forState: .Normal)
-        addPlanButton.setBackgroundColor(UIColor.lightBlue().colorWithAlphaComponent(0.75), forState: .Highlighted)
+        let addPlanButton = UIButton(frame: CGRect(x: 0, y: screenHeight-60, width: screenWidth, height: 60.0))
+        addPlanButton.setBackgroundColor(UIColor.skyBlue(), forState: .Normal)
+        addPlanButton.setBackgroundColor(UIColor.skyBlue().lighterColor(), forState: .Highlighted)
         addPlanButton.tintColor = UIColor(rgba: "#fff")
         addPlanButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
         addPlanButton.setTitleColor(UIColor(rgba: "#fffe"), forState: .Highlighted)
-        addPlanButton.titleLabel?.font = UIFont.systemFontOfSize(16)
-        addPlanButton.setTitle("Add Plan", forState: .Normal)
-        addPlanButton.layer.cornerRadius = 5
+        addPlanButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 16)
+        addPlanButton.setTitle("Create Plan", forState: .Normal)
+        addPlanButton.layer.cornerRadius = 0
         addPlanButton.layer.masksToBounds = true
         addPlanButton.clipsToBounds = true
         addPlanButton.addTarget(self, action: #selector(RecurringBillingViewController.addPlanButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
@@ -122,7 +165,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         amountInputView.delegate = self
         amountInputView.frame = CGRect(x: 0, y: -10, width: screenWidth, height: 170)
         amountInputView.textAlignment = .Center
-        amountInputView.font = UIFont(name: "DINAlternate-Bold", size: 48)
+        amountInputView.font = UIFont(name: "MyriadPro-Regular", size: 48)!
         amountInputView.textColor = UIColor.lightBlue()
         amountInputView.placeholder = "$0.00"
         amountInputView.keyboardType = UIKeyboardType.NumberPad
@@ -133,14 +176,14 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         
         let topImageView = UIImageView()
         topImageView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
-        topImageView.image = UIImage(named: "BackgroundGradientFuschia")
+//        topImageView.image = UIImage(named: "BackgroundGradientFuschia")
         topImageView.contentMode = .ScaleAspectFill
 //        addSubviewWithBounce(topImageView, parentView: self)
 //        self.view.sendSubviewToBack(topImageView)
         
         perIntervalLabel.frame = CGRect(x: 0, y: 110, width: screenWidth, height: 50)
         perIntervalLabel.textAlignment = .Center
-        perIntervalLabel.font = UIFont(name: "DINAlternate-Bold", size: 16)
+        perIntervalLabel.font = UIFont(name: "MyriadPro-Regular", size: 16)!
         perIntervalLabel.textColor = UIColor.lightBlue()
         perIntervalLabel.text = ""
         perIntervalLabel.backgroundColor = UIColor.clearColor()
@@ -148,13 +191,14 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         
         // Create RowFomers
         
-        let planNameRow = TextFieldRowFormer<FormTextFieldCell>() {
+        let planNameRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
             $0.titleLabel.text = "Name"
             $0.titleLabel.font = UIFont.systemFontOfSize(15)
             $0.titleLabel.textColor = UIColor.grayColor()
             $0.textField.font = UIFont.systemFontOfSize(15)
             $0.textField.autocorrectionType = .No
             $0.textField.autocapitalizationType = .Words
+            $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
                 $0.placeholder = "Name of the plan (i.e. Gold)"
                 $0.rowHeight = 60
@@ -198,7 +242,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
                 self.dic["interval"] = $0.title
         }
         
-        let planTrialPeriodRow = TextFieldRowFormer<FormTextFieldCell>() {
+        let planTrialPeriodRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
             $0.titleLabel.text = "Trial"
             $0.titleLabel.font = UIFont.systemFontOfSize(15)
             $0.titleLabel.textColor = UIColor.grayColor()
@@ -206,6 +250,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
             $0.textField.autocorrectionType = .No
             $0.textField.autocapitalizationType = .None
             $0.textField.keyboardType = .NumberPad
+            $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
                 $0.placeholder = "in days (Optional)"
                 $0.rowHeight = 60
@@ -213,7 +258,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
                 self?.dic["trial_period_days"] = $0
         }
         
-        let planStatementDescriptionRow = TextFieldRowFormer<FormTextFieldCell>() {
+        let planStatementDescriptionRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
             $0.titleLabel.text = "Desc"
             $0.titleLabel.font = UIFont.systemFontOfSize(15)
             $0.titleLabel.textColor = UIColor.grayColor()
@@ -221,6 +266,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
             $0.textField.autocorrectionType = .No
             $0.textField.autocapitalizationType = .None
             $0.textField.returnKeyType = .Done
+            $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
                 $0.placeholder = "Statement descriptor, 22 characters max (Optional)"
                 $0.rowHeight = 60
@@ -228,7 +274,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
                 self?.dic["statement_descriptor"] = $0
         }
         
-        let planIntervalCountRow = TextFieldRowFormer<FormTextFieldCell>() {
+        let planIntervalCountRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
             $0.titleLabel.text = "Count"
             $0.titleLabel.font = UIFont.systemFontOfSize(15)
             $0.titleLabel.textColor = UIColor.grayColor()
@@ -237,6 +283,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
             $0.textField.autocorrectionType = .No
             $0.textField.autocapitalizationType = .None
             $0.textField.keyboardType = .NumberPad
+            $0.textField.inputAccessoryView = self?.formerInputAccessoryView
             }.configure {
                 $0.placeholder = "e.g. '1' and 'month' bills once a month"
                 $0.rowHeight = 60
@@ -259,6 +306,9 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
             .set(headerViewFormer: createHeader())
 
         former.append(sectionFormer: titleSection)
+            .onCellSelected { [weak self] _ in
+                self?.formerInputAccessoryView.update()
+        }
     }
     
     func addPlanButtonTapped(sender: AnyObject) {

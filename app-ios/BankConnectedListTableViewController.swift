@@ -10,7 +10,6 @@ import UIKit
 import Foundation
 import Alamofire
 import SwiftyJSON
-import JGProgressHUD
 import MCSwipeTableViewCell
 import CellAnimator
 
@@ -71,9 +70,8 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
         self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
         self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 60)
         
-        let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Light)
-        HUD.showInView(self.view!)
-        HUD.dismissAfterDelay(0.5)
+        let indicator = UIActivityIndicatorView()
+        addActivityIndicatorView(indicator, view: self.tableView, color: UIActivityIndicatorViewStyle.Gray)
         
         self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         self.dateFormatter.timeStyle = NSDateFormatterStyle.LongStyle

@@ -97,22 +97,23 @@ class MenuViewController: UIViewController, ModalTransitionDelegate {
         // Layers create issues with gesture recognizers, add buttons on top of layers to fix this issue
         
         viewTerminalImageView.backgroundColor = UIColor.whiteColor()
-        viewTerminalImageView.layer.cornerRadius = 10
+        viewTerminalImageView.layer.cornerRadius = 5
         viewTerminalImageView.frame = CGRect(x: 35, y: screenHeight*0.1, width: screenWidth-70, height: 120)
         viewTerminalImageView.contentMode = .ScaleAspectFit
-        addSubviewWithShadow(UIColor.lightBlue(), radius: 10.0, offsetX: 0.0, offsetY: 0, opacity: 0.2, parentView: self, childView: viewTerminalImageView)
+        addSubviewWithFade(viewTerminalImageView, parentView: self, duration: 0.5)
         
         let btn1 = CenteredButton()
         let str1 = NSAttributedString(string: "  Point of Sale Terminal", attributes: [
             NSForegroundColorAttributeName : UIColor.lightBlue(),
-            NSFontAttributeName : UIFont.systemFontOfSize(17, weight: UIFontWeightRegular)
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 17)!
         ])
         btn1.setAttributedTitle(str1, forState: .Normal)
-        btn1.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
+        btn1.setBackgroundColor(UIColor.offWhite().lighterColor(), forState: .Highlighted)
         btn1.setImage(UIImage(named: "IconHoldCard")?.alpha(0.5), forState: .Highlighted)
         btn1.frame = CGRect(x: 35, y: screenHeight*0.1, width: screenWidth-70, height: 120)
-        btn1.layer.cornerRadius = 10
+        btn1.layer.cornerRadius = 5
         btn1.layer.masksToBounds = true
+        btn1.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.4).CGColor
         btn1.backgroundColor = UIColor.whiteColor()
         btn1.addTarget(self, action: #selector(terminalButtonSelected(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(btn1)
@@ -122,24 +123,24 @@ class MenuViewController: UIViewController, ModalTransitionDelegate {
         btn1.setImage(UIImage(named: "IconHoldCard"), inFrame: CGRectMake(18, 18, 64, 64), forState: .Normal)
 
         addPlanImageView.backgroundColor = UIColor.whiteColor()
-        addPlanImageView.layer.cornerRadius = 10
+        addPlanImageView.layer.cornerRadius = 5
         addPlanImageView.frame = CGRect(x: 35, y: screenHeight*0.32, width: screenWidth-70, height: 120)
         addPlanImageView.contentMode = .ScaleAspectFit
-        addSubviewWithShadow(UIColor.lightBlue(), radius: 10.0, offsetX: 0.0, offsetY: 0, opacity: 0.2, parentView: self, childView: addPlanImageView)
-        
+        addSubviewWithFade(addPlanImageView, parentView: self, duration: 0.7)
         
         let btn2 = CenteredButton()
         btn2.imageEdgeInsets = UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
         let str2 = NSAttributedString(string: "  Create Plan", attributes: [
             NSForegroundColorAttributeName : UIColor.lightBlue(),
-            NSFontAttributeName : UIFont.systemFontOfSize(17, weight: UIFontWeightRegular)
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 17)!
         ])
         btn2.setAttributedTitle(str2, forState: .Normal)
-        btn2.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
+        btn2.setBackgroundColor(UIColor.offWhite().lighterColor(), forState: .Highlighted)
         btn2.setImage(UIImage(named: "IconWand")?.alpha(0.5), forState: .Highlighted)
         btn2.frame = CGRect(x: 35, y: screenHeight*0.32, width: screenWidth-70, height: 120)
-        btn2.layer.cornerRadius = 10
+        btn2.layer.cornerRadius = 5
         btn2.layer.masksToBounds = true
+        btn2.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.4).CGColor
         btn2.backgroundColor = UIColor.whiteColor()
         btn2.addTarget(self, action: #selector(planButtonSelected(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(btn2)
@@ -149,22 +150,23 @@ class MenuViewController: UIViewController, ModalTransitionDelegate {
         btn2.setImage(UIImage(named: "IconWand"), inFrame: CGRectMake(18, 18, 64, 64), forState: .Normal)
 
         inviteImageView.backgroundColor = UIColor.whiteColor()
-        inviteImageView.layer.cornerRadius = 10
+        inviteImageView.layer.cornerRadius = 5
         inviteImageView.frame = CGRect(x: 35, y: screenHeight*0.54, width: screenWidth-70, height: 120)
         inviteImageView.contentMode = .ScaleAspectFit
-        addSubviewWithShadow(UIColor.lightBlue(), radius: 10.0, offsetX: 0.0, offsetY: 0, opacity: 0.2, parentView: self, childView: inviteImageView)
+        addSubviewWithFade(inviteImageView, parentView: self, duration: 1)
         
         let btn3 = CenteredButton()
         let str3 = NSAttributedString(string: "  Invite User", attributes: [
             NSForegroundColorAttributeName : UIColor.lightBlue(),
-            NSFontAttributeName : UIFont.systemFontOfSize(17, weight: UIFontWeightRegular)
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 17)!
         ])
         btn3.setAttributedTitle(str3, forState: .Normal)
-        btn3.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
+        btn3.setBackgroundColor(UIColor.offWhite().lighterColor(), forState: .Highlighted)
         btn3.setImage(UIImage(named: "IconGiftOpen")?.alpha(0.5), forState: .Highlighted)
         btn3.frame = CGRect(x: 35, y: screenHeight*0.54, width: screenWidth-70, height: 120)
-        btn3.layer.cornerRadius = 10
+        btn3.layer.cornerRadius = 5
         btn3.layer.masksToBounds = true
+        btn3.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.4).CGColor
         btn3.backgroundColor = UIColor.whiteColor()
         btn3.addTarget(self, action: #selector(inviteButtonSelected(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(btn3)
@@ -195,7 +197,7 @@ class MenuViewController: UIViewController, ModalTransitionDelegate {
         swipeMenuSelectionLabel.text = "Swipe down to view more"
         swipeMenuSelectionLabel.textAlignment = .Center
         swipeMenuSelectionLabel.textColor = UIColor.lightBlue()
-        swipeMenuSelectionLabel.font = UIFont.systemFontOfSize(14, weight: UIFontWeightThin)
+        swipeMenuSelectionLabel.font = UIFont(name: "MyriadPro-Regular", size: 14)!
         swipeMenuSelectionLabel.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 15) // shimmeringView.bounds
         
         shimmeringView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 15) // shimmeringView.bounds

@@ -92,7 +92,7 @@ class AccountVerificationTutorialViewController: UIViewController {
         tutText2.textColor = UIColor.lightBlue()
         self.view.addSubview(tutText2)
         tutSubText2.frame = CGRect(x: 90, y: 180, width: 210, height: 50)
-        tutSubText2.text = "Account # and ACH Routing #"
+        tutSubText2.text = "Direct login or manual entry"
         tutSubText2.textAlignment = .Left
         tutSubText2.textColor = UIColor.lightBlue()
         tutSubText2.font = UIFont.systemFontOfSize(12)
@@ -108,7 +108,7 @@ class AccountVerificationTutorialViewController: UIViewController {
         tutText3.textColor = UIColor.lightBlue()
         self.view.addSubview(tutText3)
         tutSubText3.frame = CGRect(x: 90, y: 260, width: 210, height: 50)
-        tutSubText3.text = "One document and full SSN"
+        tutSubText3.text = "One document and SSN"
         tutSubText3.textAlignment = .Left
         tutSubText3.textColor = UIColor.lightBlue()
         tutSubText3.font = UIFont.systemFontOfSize(12)

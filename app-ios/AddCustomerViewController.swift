@@ -73,7 +73,8 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         title = ""
         
         let backgroundGradient = UIImageView()
-        backgroundGradient.image = UIImage(named: "BackgroundGradientCalmBlue")
+//        backgroundGradient.backgroundColor = UIColor.mediumBlue()
+        backgroundGradient.image = UIImage(named: "BackgroundBusinessBlurDark")
         backgroundGradient.frame = CGRect(x: 0, y: screenHeight-250, width: screenWidth, height: 250)
         backgroundGradient.contentMode = .ScaleToFill
         self.view.addSubview(backgroundGradient)
@@ -91,18 +92,18 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         mainTitle.textColor = UIColor.darkGrayColor()
         mainTitle.textAlignment = .Center
         mainTitle.text = "Send Invitation"
-        mainTitle.font = UIFont(name: "DINAlternate-Bold", size: 20)
+        mainTitle.font = UIFont(name: "MyriadPro-Regular", size: 20)
         let _ = Timeout(0.2) {
             addSubviewWithBounce(mainTitle, parentView: self, duration: 0.3)
         }
         
         let mainBody = UILabel()
         mainBody.frame = CGRect(x:40, y: 240, width: screenWidth-80, height: 80)
-        mainBody.textColor = UIColor.lightGrayColor()
+        mainBody.textColor = UIColor.lightBlue()
         mainBody.textAlignment = .Center
-        mainBody.text = "Invite new users, customers, or friends to " + APP_NAME + " today. The more the merrier!"
+        mainBody.text = "Invite new users, customers, merchants, or friends to " + APP_NAME + " today.  The more the merrier! 🎉"
         mainBody.numberOfLines = 5
-        mainBody.font = UIFont(name: "DINAlternate-Bold", size: 14)
+        mainBody.font = UIFont(name: "MyriadPro-Regular", size: 14)
         let _ = Timeout(0.3) {
             addSubviewWithBounce(mainBody, parentView: self, duration: 0.3)
         }
@@ -116,7 +117,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         emailButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         let str0 = NSAttributedString(string: "Mail", attributes:
             [
-                NSFontAttributeName: UIFont(name: "DINAlternate-Bold", size: 12)!,
+                NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 12)!,
                 NSForegroundColorAttributeName:UIColor.whiteColor()
             ])
         emailButton.setAttributedTitle(str0, forState: .Normal)
@@ -134,7 +135,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         smsButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         let str1 = NSAttributedString(string: "SMS", attributes:
             [
-                NSFontAttributeName: UIFont(name: "DINAlternate-Bold", size: 12)!,
+                NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 12)!,
                 NSForegroundColorAttributeName:UIColor.whiteColor()
             ])
         smsButton.setAttributedTitle(str1, forState: .Normal)
