@@ -10,7 +10,6 @@ import UIKit
 import TextFieldEffects
 import Alamofire
 import SwiftyJSON
-import JGProgressHUD
 
 class BankDetailViewController: UIViewController, UITextFieldDelegate {
     
@@ -159,43 +158,38 @@ class BankDetailViewController: UIViewController, UITextFieldDelegate {
     }
     
     // Add send toolbar
-//    func addToolbarButton()
-//    {
-//        let screen = UIScreen.mainScreen().bounds
-//        let screenWidth = screen.size.width
-//        let sendToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, screenWidth, 50))
-//        // sendToolbar.barStyle = UIBarStyle.Default
-//        
-//        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-//        let done: UIBarButtonItem = UIBarButtonItem(title: "Connect", style: UIBarButtonItemStyle.Done, target: self, action: #selector(BankDetailViewController.login(_:)))
-//        done.tintColor = UIColor.whiteColor()
-//        UIToolbar.appearance().barTintColor = UIColor.whiteColor()
-//        done.setTitleTextAttributes([
-//            NSFontAttributeName : UIFont(name: "Avenir-Book", size: 15.0)!,
-//            NSForegroundColorAttributeName : color!
-//            ], forState: .Normal)
-//
-//        var items: [UIBarButtonItem]? = [UIBarButtonItem]()
-//        items?.append(flexSpace)
-//        items?.append(done)
-//        items?.append(flexSpace)
-//        
-//        sendToolbar.items = items
-//        sendToolbar.sizeToFit()
-//        idTextField.inputAccessoryView=sendToolbar
-//        passwordTextField.inputAccessoryView=sendToolbar
-//    }
-//    
-//    func login(sender: AnyObject) {
-//        // Function for toolbar button
-// 
+    func addToolbarButton()
+    {
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let sendToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, screenWidth, 50))
+        // sendToolbar.barStyle = UIBarStyle.Default
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Connect", style: UIBarButtonItemStyle.Done, target: self, action: #selector(BankDetailViewController.login(_:)))
+        done.tintColor = UIColor.whiteColor()
+        UIToolbar.appearance().barTintColor = UIColor.whiteColor()
+        done.setTitleTextAttributes([
+            NSFontAttributeName : UIFont(name: "Avenir-Book", size: 15.0)!,
+            NSForegroundColorAttributeName : color!
+            ], forState: .Normal)
+
+        var items: [UIBarButtonItem]? = [UIBarButtonItem]()
+        items?.append(flexSpace)
+        items?.append(done)
+        items?.append(flexSpace)
+        
+        sendToolbar.items = items
+        sendToolbar.sizeToFit()
+        idTextField.inputAccessoryView=sendToolbar
+        passwordTextField.inputAccessoryView=sendToolbar
+    }
+    
+    func login(sender: AnyObject) {
+        // Function for toolbar button
+ 
 //        let institution = getInstitution(bankName!)
-//        if idTextField.text != "" || passwordTextField.text != "" {
-//            let HUD: JGProgressHUD = JGProgressHUD.init(style: JGProgressHUDStyle.Dark)
-//            HUD.showInView(self.view!)
-//            HUD.backgroundColor = UIColor(white: 0.0, alpha: 0.4)
-//            HUD.textLabel.text = "Authenticating to " + longBankName!
-//            HUD.dismissAfterDelay(1)
+        if idTextField.text != "" || passwordTextField.text != "" {
 //            PS_addUser(.Connect, username: idTextField.text!, password: passwordTextField.text!, pin: "", institution: institution, completion: { (response, accessToken, mfaType, mfa, accounts, transactions, error) in
 //                    self.updateUserToken(accessToken)
 //                    // post the accesstoken to the user api
@@ -205,19 +199,15 @@ class BankDetailViewController: UIViewController, UITextFieldDelegate {
 //                    // print(response!)
 //                    // print(transactions!)
 //                    // print(accounts)
-//                    HUD.indicatorView = JGProgressHUDSuccessIndicatorView()
-//                    HUD.textLabel.text = "Bank connected!"
-//                    HUD.dismissAfterDelay(2)
 //                    print("error is", error)
 //                    if(error != nil) {
 //                        print(error)
-//                        HUD.indicatorView = JGProgressHUDErrorIndicatorView()
 //                        HUD.textLabel.text = "Could not connect to bank"
 //                        HUD.dismissAfterDelay(2)
 //                    }
 //            })
-//        }
-//    }
+        }
+    }
     
     func updateUserToken(token: String) {
         if userAccessToken != nil {

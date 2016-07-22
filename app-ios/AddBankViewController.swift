@@ -63,7 +63,7 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         viewAccountsButton.setBackgroundColor(UIColor.whiteColor().darkerColor(), forState: .Highlighted)
         var attribs: [String: AnyObject] = [:]
         attribs[NSFontAttributeName] = UIFont.systemFontOfSize(14)
-        attribs[NSForegroundColorAttributeName] = UIColor.darkBlue()
+        attribs[NSForegroundColorAttributeName] = UIColor.lightBlue()
         let str = NSAttributedString(string: "View Accounts", attributes: attribs)
         viewAccountsButton.setAttributedTitle(str, forState: .Normal)
         self.view.addSubview(viewAccountsButton)
@@ -105,23 +105,23 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
 
         pageIcon.image = UIImage(named: "IconBankBlue")
         pageIcon.contentMode = .ScaleAspectFit
-        pageIcon.frame = CGRect(x: screenWidth/2-50, y: 200, width: 100, height: 100)
+        pageIcon.frame = CGRect(x: screenWidth/2-50, y: 150, width: 100, height: 100)
         self.view.addSubview(pageIcon)
         
         pageHeader.text = "Bank Linking"
         pageHeader.textColor = UIColor.lightBlue()
         pageHeader.font = UIFont.systemFontOfSize(24, weight: UIFontWeightMedium)
         pageHeader.textAlignment = .Center
-        pageHeader.frame = CGRect(x: 0, y: 300, width: screenWidth, height: 30)
+        pageHeader.frame = CGRect(x: 0, y: 250, width: screenWidth, height: 30)
         self.view.addSubview(pageHeader)
         
-        pageDescription.text = "Link to any US bank account \nusing manual entry"
+        pageDescription.text = "Link to any US bank account \nusing one of the methods below"
         pageDescription.numberOfLines = 0
         pageDescription.lineBreakMode = .ByWordWrapping
         pageDescription.textColor = UIColor.lightBlue()
         pageDescription.font = UIFont.systemFontOfSize(15, weight: UIFontWeightLight)
         pageDescription.textAlignment = .Center
-        pageDescription.frame = CGRect(x: 0, y: 335, width: screenWidth, height: 50)
+        pageDescription.frame = CGRect(x: 0, y: 285, width: screenWidth, height: 50)
         self.view.addSubview(pageDescription)
         
 //        addBankButton.layer.cornerRadius = 10
@@ -152,16 +152,17 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
     }
     
     func goToLoginBank(sender: AnyObject) {
-        self.performSegueWithIdentifier("bankLoginView", sender: self)
+        // self.performSegueWithIdentifier("bankLoginView", sender: self)
+        displayBanks(sender)
     }
     
     func displayBanks(sender: AnyObject) {
         // Option .Connect | .Auth
         var plaidLink:PLDLinkNavigationViewController?
         if ENVIRONMENT == "DEV" {
-            plaidLink = PLDLinkNavigationViewController(environment: .Tartan, product: .Connect)
+            plaidLink = PLDLinkNavigationViewController(environment: .Tartan, product: .Auth)
         } else if ENVIRONMENT == "PROD" {
-            plaidLink = PLDLinkNavigationViewController(environment: .Production, product: .Connect)
+            plaidLink = PLDLinkNavigationViewController(environment: .Production, product: .Auth)
         }
 
         plaidLink!.linkDelegate = self
@@ -174,16 +175,17 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
     
     func linkNavigationContoller(navigationController: PLDLinkNavigationViewController!, didFinishWithAccessToken accessToken: String!) {
         print("success \(accessToken)")
-        print("the access token is", accessToken)
-//        linkPlaidBankAccount({ (stripeBankToken, accessToken) in
-//            print("stripe bank token is", stripeBankToken)
-//            self.linkBankToStripe(stripeBankToken)
-//            self.updateUserPlaidToken(accessToken)
-//            print("updating user plaid token ", accessToken)
-//        }, accessToken: accessToken)
+        print("the public token is", accessToken)
+        let publicToken = accessToken
+        linkPlaidBankAccount(publicToken, completionHandler: { (stripeBankToken, accessToken) in
+            print("stripe bank token is", stripeBankToken)
+            self.linkBankToStripe(stripeBankToken)
+            self.updateUserPlaidToken(accessToken)
+            print("updating user plaid token ", accessToken)
+        }, accessToken: accessToken)
     }
     
-    func linkPlaidBankAccount(completionHandler: (String, String) -> Void, accessToken: String) {
+    func linkPlaidBankAccount(publicToken: String, completionHandler: (String, String) -> Void, accessToken: String) {
         // ** NOTE: this access_token is actually the public_token sent to the API
         // take this access token and connect bank account to stripe
         // save access token to user database
@@ -191,7 +193,7 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         if(userAccessToken != nil) {
             User.getProfile { (user, NSError) in
                 
-                let endpoint = API_URL + "/plaid/" + user!.id + "/exchange_token/" // + accountId
+                let endpoint = API_URL + "/plaid/" + user!.id + "/exchange_token/" + publicToken //+ accountId
                 
                 let headers = [
                     "Authorization": "Bearer " + (userAccessToken as! String),
@@ -217,6 +219,7 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
                         }
                     case .Failure(let error):
                         print(error)
+                        showAlert(.Error, title: "Error", msg: "Failed to link bank account.")
                         Answers.logCustomEventWithName("Bank account link failed",
                             customAttributes: [
                                 "error": error.localizedDescription
@@ -294,7 +297,7 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
                             Answers.logCustomEventWithName("Link bank to Stripe success",
                                 customAttributes: [:])
                             if response.response?.statusCode == 200 {
-                                showAlert(.Success, title: "Success", msg: "Your bank account is now linked")
+                                showAlert(.Success, title: "Success", msg: "Your bank account is now linked!")
 
                                 Answers.logCustomEventWithName("Bank account link success",
                                     customAttributes: [:])

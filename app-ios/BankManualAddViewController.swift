@@ -178,7 +178,7 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
         helpButton.addTarget(self, action: #selector(self.showTutorialModal(_:)), forControlEvents: .TouchUpInside)
         var attribs2: [String: AnyObject] = [:]
         attribs2[NSFontAttributeName] = UIFont.systemFontOfSize(14)
-        attribs2[NSForegroundColorAttributeName] = UIColor.darkBlue()
+        attribs2[NSForegroundColorAttributeName] = UIColor.lightBlue()
         let str2 = NSAttributedString(string: "Example Check", attributes: attribs2)
         helpButton.setAttributedTitle(str2, forState: .Normal)
         scrollView.addSubview(helpButton)
