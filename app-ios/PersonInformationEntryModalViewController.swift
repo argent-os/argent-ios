@@ -52,13 +52,13 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.mediumBlue(),
-            NSFontAttributeName : UIFont(name: "HelveticaNeue-Light", size: 18.0)!
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 18.0)!
         ]
         
         titleLabel.frame = CGRect(x: 0, y: 35, width: 300, height: 20)
         titleLabel.text = "Would you like a receipt?"
         titleLabel.textAlignment = .Center
-        titleLabel.font = UIFont(name: "HelveticaNeue", size: 18)
+        titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 18)
         titleLabel.textColor = UIColor.lightBlue()
         self.view.addSubview(titleLabel)
         
@@ -81,7 +81,7 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
         submitInformationButton.setBackgroundColor(UIColor.lightBlue(), forState: .Normal)
         submitInformationButton.setBackgroundColor(UIColor.lightBlue().colorWithAlphaComponent(0.5), forState: .Highlighted)
         var attribs: [String: AnyObject] = [:]
-        attribs[NSFontAttributeName] = UIFont(name: "DINAlternate-Bold", size: 14)
+        attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
         let str = NSAttributedString(string: "Submit", attributes: attribs)
         submitInformationButton.setAttributedTitle(str, forState: .Normal)

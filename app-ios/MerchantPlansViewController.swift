@@ -139,14 +139,14 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         self.dateFormatter.timeStyle = NSDateFormatterStyle.LongStyle
         
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: 300, height: 50))
-        navBar.barTintColor = UIColor.offWhite()
+        navBar.barTintColor = UIColor.whiteColor()
         navBar.translucent = false
         navBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.lightBlue(),
-            NSFontAttributeName : UIFont(name: "DINAlternate-Bold", size: 18)!
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 18)!
         ]
         self.view.addSubview(navBar);
-        let navItem = UINavigationItem(title: "Plans");
+        let navItem = UINavigationItem(title: "@" + (detailUser?.username)! + " plans");
         navBar.setItems([navItem], animated: false);
         
         // add gesture recognizer to window
@@ -209,11 +209,13 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
             cell.planNameLabel.text = name
         }
         if let amount = plansArray![indexPath.row].amount, let interval = plansArray![indexPath.row].interval {
-            let fc = formatCurrency(amount, fontName: "DINAlternate-Bold", superSize: 11, fontSize: 14, offsetSymbol: 2, offsetCents: 2)
+            let fcMYR = formatCurrency(amount, fontName: "MyriadPro-Regular", superSize: 11, fontSize: 14, offsetSymbol: 2, offsetCents: 2)
+            
+            let fcDIN = formatCurrency(amount, fontName: "DINAlternate-Bold", superSize: 11, fontSize: 14, offsetSymbol: 2, offsetCents: 2)
             
             let attrs: [String: AnyObject] = [
                 NSForegroundColorAttributeName : UIColor.lightBlue().colorWithAlphaComponent(0.2),
-                NSFontAttributeName : UIFont(name: "DINAlternate-Bold", size: 12)!
+                NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 12)!
             ]
             
             let attrs2: [String: AnyObject] = [
@@ -221,7 +223,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
                 NSFontAttributeName : UIFont(name: "DINAlternate-Bold", size: 14)!
             ]
             
-            cell.planButton.attributedNormalTitle = fc
+            cell.planButton.attributedNormalTitle = fcDIN
             cell.planButton.attributedConfirmationTitle = NSAttributedString(string: "Subscribed", attributes: attrs2)
             cell.planButton.addTarget(self, action: #selector(self.purchaseButtonTapped(_:)), forControlEvents: .TouchUpInside)
             cell.planButton.tag = indexPath.row
@@ -229,19 +231,19 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
             switch interval {
             case "day":
                 let interval = NSAttributedString(string: " / day", attributes: attrs)
-                cell.planAmountLabel.attributedText = fc + interval
+                cell.planAmountLabel.attributedText = fcMYR + interval
             case "week":
                 let interval = NSAttributedString(string: " / wk", attributes: attrs)
-                cell.planAmountLabel.attributedText = fc + interval
+                cell.planAmountLabel.attributedText = fcMYR + interval
             case "month":
                 let interval = NSAttributedString(string: " / mo", attributes: attrs)
-                cell.planAmountLabel.attributedText = fc + interval
+                cell.planAmountLabel.attributedText = fcMYR + interval
             case "year":
                 let interval = NSAttributedString(string: " / yr", attributes: attrs)
-                cell.planAmountLabel.attributedText = fc + interval
+                cell.planAmountLabel.attributedText = fcMYR + interval
             default:
                 let interval = NSAttributedString(string: " / " + interval, attributes: attrs)
-                cell.planAmountLabel.attributedText = fc + interval
+                cell.planAmountLabel.attributedText = fcMYR + interval
             }
         }
         

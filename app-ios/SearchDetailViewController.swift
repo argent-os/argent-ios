@@ -81,31 +81,36 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             cardView.clipsToBounds = false
             addSubviewWithShadow(UIColor.lightBlue(), radius: 10.0, offsetX: 0.0, offsetY: 5.0, opacity: 0.2, parentView: self, childView: cardView)
             
-            let chatBubble = UIImageView(image: UIImage(named: "IconChat"), highlightedImage: UIImage(named: "IconChat")!.alpha(0.5))
-            chatBubble.alpha = 0.2
-            chatBubble.frame = CGRect(x: screenWidth/2-20, y: 335, width: 40, height: 40)
-            if screenWidth < 375 {
-                chatBubble.frame = CGRect(x: screenWidth/2-15, y: 315, width: 30, height: 30)
-            }
-            addSubviewWithFade(chatBubble, parentView: self, duration: 0.8)
-            self.view.bringSubviewToFront(chatBubble)
-            let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(showMessageView(_:)))
-            chatBubble.addGestureRecognizer(gestureRecognizer)
-            chatBubble.userInteractionEnabled = true
-            
             let userImageView: UIImageView = UIImageView()
-            userImageView.frame = CGRectMake(screenWidth / 2, 0, 75, 75)
+            userImageView.frame = CGRectMake(screenWidth / 2, 0, 50, 50)
             userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-            userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 205)
+            userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 245)
             userImageView.backgroundColor = UIColor.clearColor()
             userImageView.layer.cornerRadius = userImageView.frame.size.height/2
             userImageView.layer.masksToBounds = true
             userImageView.clipsToBounds = true
-            userImageView.layer.cornerRadius = userImageView.frame.size.height/2
-            userImageView.layer.borderWidth = 3
+            //            userImageView.layer.cornerRadius = userImageView.frame.size.height/2
+            userImageView.layer.cornerRadius = 10
+            userImageView.layer.borderWidth = 0
             userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
             addSubviewWithFade(userImageView, parentView: self, duration: 0.8)
             self.view.bringSubviewToFront(userImageView)
+            
+            // Name textfield
+            if detailUser.business_name != "" {
+                lbl.text = detailUser.business_name
+            } else if detailUser.first_name != "" && detailUser.last_name != "" {
+                lbl.text = detailUser.first_name + " " + detailUser.last_name
+            } else {
+                lbl.text = detailUser.username
+            }
+            lbl.frame = CGRectMake(0, 230, screenWidth, 130)
+            lbl.textAlignment = .Center
+            lbl.textColor = UIColor.lightBlue()
+            lbl.font = UIFont(name: "MyriadPro-Regular", size: 18)!
+            lbl.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
+            addSubviewWithFade(lbl, parentView: self, duration: 0.8)
+            self.view.bringSubviewToFront(lbl)
             
             // User image
             let pic = detailUser.picture
@@ -129,33 +134,54 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
             navBar.titleTextAttributes = [
                 NSForegroundColorAttributeName : UIColor.lightBlue(),
-                NSFontAttributeName : UIFont(name: "DINAlternate-Bold", size: 18)!
+                NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 18)!
             ]
             addSubviewWithFade(navBar, parentView: self, duration: 0.8)
             let navItem = UINavigationItem(title: "@"+detailUser.username)
             navItem.leftBarButtonItem?.tintColor = UIColor.mediumBlue()
             navBar.setItems([navItem], animated: true)
             
-            // Button
+            // Send message button
+            let sendMessageButton = UIButton()
+            sendMessageButton.frame = CGRect(x: 35, y: cardView.layer.frame.height-40,  width: self.view.layer.frame.width-70, height: 60.0)
+            sendMessageButton.setTitleColor(UIColor.skyBlue(), forState: .Normal)
+            sendMessageButton.setTitleColor(UIColor.skyBlue().lighterColor(), forState: .Highlighted)
+            sendMessageButton.setBackgroundColor(UIColor.whiteColor(), forState: .Normal)
+            sendMessageButton.setBackgroundColor(UIColor.offWhite().lighterColor(), forState: .Highlighted)
+            sendMessageButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 16)!
+            sendMessageButton.setTitle("Send Message", forState: .Normal)
+            sendMessageButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
+            sendMessageButton.addTarget(self, action: #selector(SearchDetailViewController.showMessageView(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            sendMessageButton.addTarget(self, action: #selector(SearchDetailViewController.showMessageView(_:)), forControlEvents: UIControlEvents.TouchUpOutside)
+            //sendMessageButton.layer.cornerRadius = 10
+            sendMessageButton.layer.borderColor = UIColor.skyBlue().CGColor
+            sendMessageButton.layer.borderWidth = 0
+            sendMessageButton.addTarget(self, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
+            addSubviewWithBounce(sendMessageButton, parentView: self, duration: 0.8)
+            
+            // View plans Button
             let viewPlansButton = UIButton()
-            viewPlansButton.frame = CGRect(x: 50, y: cardView.layer.frame.height+10,  width: self.view.layer.frame.width-100, height: 50.0)
-            viewPlansButton.setTitleColor(UIColor.paleBlue().colorWithAlphaComponent(0.9), forState: .Normal)
-            viewPlansButton.setTitleColor(UIColor.paleBlue().colorWithAlphaComponent(0.5), forState: .Highlighted)
-            viewPlansButton.titleLabel?.font = UIFont(name: "DINAlternate-Bold", size: 16)!
+            viewPlansButton.frame = CGRect(x: 35, y: cardView.layer.frame.height+20,  width: self.view.layer.frame.width-70, height: 60.0)
+            viewPlansButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+            viewPlansButton.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
+            viewPlansButton.setBackgroundColor(UIColor.skyBlue(), forState: .Normal)
+            viewPlansButton.setBackgroundColor(UIColor.skyBlue().lighterColor(), forState: .Highlighted)
+            viewPlansButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 16)!
             viewPlansButton.setTitle("View Plans", forState: .Normal)
             viewPlansButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
             viewPlansButton.addTarget(self, action: #selector(SearchDetailViewController.viewPlansModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             viewPlansButton.addTarget(self, action: #selector(SearchDetailViewController.viewPlansModal(_:)), forControlEvents: UIControlEvents.TouchUpOutside)
-            viewPlansButton.layer.cornerRadius = 10
-            viewPlansButton.layer.borderColor = UIColor.mediumBlue().colorWithAlphaComponent(0.5).CGColor
+            //viewPlansButton.layer.cornerRadius = 10
+            viewPlansButton.layer.borderColor = UIColor.skyBlue().CGColor
             viewPlansButton.layer.borderWidth = 0
             viewPlansButton.addTarget(self, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
             addSubviewWithBounce(viewPlansButton, parentView: self, duration: 0.8)
             
+            
             let payButton = UIButton()
-            payButton.frame = CGRect(x: 50, y: cardView.layer.frame.height+70,  width: self.view.layer.frame.width-100, height: 50.0)
+            payButton.frame = CGRect(x: 35, y: cardView.layer.frame.height+75,  width: self.view.layer.frame.width-70, height: 60.0)
             payButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(1), forState: .Normal)
-            payButton.titleLabel?.font = UIFont(name: "DINAlternate-Bold", size: 16)!
+            payButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 16)!
             if detailUser.business_name != "" {
                 payButton.setTitle("Pay " + detailUser.business_name, forState: .Normal)
             } else if detailUser.first_name != "" {
@@ -163,41 +189,44 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             } else {
                 payButton.setTitle("Pay User", forState: .Normal)
             }
-            payButton.layer.cornerRadius = 10
-            payButton.layer.borderColor = UIColor.mediumBlue().CGColor
+            //payButton.layer.cornerRadius = 10
             payButton.layer.borderWidth = 0
             payButton.layer.masksToBounds = true
-            payButton.setBackgroundColor(UIColor.paleBlue(), forState: .Normal)
-            payButton.setBackgroundColor(UIColor.paleBlue().colorWithAlphaComponent(0.5), forState: .Highlighted)
+            payButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
+            payButton.setBackgroundColor(UIColor.mediumBlue().lighterColor(), forState: .Highlighted)
+            payButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+            payButton.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
+            payButton.layer.borderColor = UIColor.mediumBlue().CGColor
+            payButton.layer.borderWidth = 1.5
             payButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
             payButton.addTarget(self, action: #selector(SearchDetailViewController.payMerchantModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             addSubviewWithBounce(payButton, parentView: self, duration: 0.8)
+            let rectShape = CAShapeLayer()
+            rectShape.bounds = payButton.frame
+            rectShape.position = payButton.center
+            rectShape.path = UIBezierPath(roundedRect: payButton.bounds, byRoundingCorners: [.BottomLeft, .BottomRight], cornerRadii: CGSize(width: 10, height: 10)).CGPath
             
-            // Name textfield
-            if detailUser.business_name != "" {
-                lbl.text = detailUser.business_name
-            } else if detailUser.first_name != "" && detailUser.last_name != "" {
-                lbl.text = detailUser.first_name + " " + detailUser.last_name
-            } else {
-                lbl.text = detailUser.username
-            }
-            lbl.frame = CGRectMake(0, 220, screenWidth, 130)
-            lbl.textAlignment = .Center
-            lbl.textColor = UIColor.paleBlue()
-            lbl.font = UIFont(name: "DINAlternate-Bold", size: 18)!
-            lbl.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-            addSubviewWithFade(lbl, parentView: self, duration: 0.8)
-            self.view.bringSubviewToFront(lbl)
+            payButton.layer.backgroundColor = UIColor.mediumBlue().CGColor
+            //Here I'm masking the textView's layer with rectShape layer
+            payButton.layer.mask = rectShape
             
             if(screenHeight < 500) {
                 cardView.frame = CGRectMake(35, 90, screenWidth-70, screenHeight*0.6)
                 userImageView.frame = CGRect(x: screenWidth/2-25, y: 80, width: 50, height: 50)
-                userImageView.layer.cornerRadius = 25
+                userImageView.layer.cornerRadius = 5
+                sendMessageButton.frame = CGRect(x: 35, y: cardView.layer.frame.height-60,  width: self.view.layer.frame.width-70, height: 50.0)
                 lbl.frame = CGRectMake(0, 90, screenWidth, 130)
-                chatBubble.frame = CGRect(x: screenWidth/2-18, y: 192, width: 36, height: 36)
-                viewPlansButton.frame = CGRect(x: 50, y: cardView.layer.frame.height-30,  width: self.view.layer.frame.width-100, height: 50.0)
-                payButton.frame = CGRect(x: 50, y: cardView.layer.frame.height+20,  width: self.view.layer.frame.width-100, height: 50.0)
-
+                viewPlansButton.frame = CGRect(x: 35, y: cardView.layer.frame.height-10,  width: self.view.layer.frame.width-70, height: 50.0)
+                payButton.frame = CGRect(x: 35, y: cardView.layer.frame.height+40,  width: self.view.layer.frame.width-70, height: 50.0)
+                
+                let rectShape = CAShapeLayer()
+                rectShape.bounds = payButton.frame
+                rectShape.position = payButton.center
+                rectShape.path = UIBezierPath(roundedRect: payButton.bounds, byRoundingCorners: [.BottomLeft, .BottomRight], cornerRadii: CGSize(width: 10, height: 10)).CGPath
+                
+                payButton.layer.backgroundColor = UIColor.mediumBlue().CGColor
+                //Here I'm masking the textView's layer with rectShape layer
+                payButton.layer.mask = rectShape
             }
         }
     }

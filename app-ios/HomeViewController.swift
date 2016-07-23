@@ -680,15 +680,15 @@ extension HomeViewController {
         tableView.dg_setPullToRefreshBackgroundColor(UIColor.clearColor())
         
         // Transparent navigation bar
-        self.navigationController?.navigationBar.barTintColor = UIColor.lightBlue()
-        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.translucent = true
-        self.navigationController?.navigationBar.titleTextAttributes = [
-            NSForegroundColorAttributeName : UIColor.mediumBlue(),
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 18.0)!
-        ]
+//        self.navigationController?.navigationBar.barTintColor = UIColor.lightBlue()
+//        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
+//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+//        self.navigationController?.navigationBar.shadowImage = UIImage()
+//        self.navigationController?.navigationBar.translucent = true
+//        self.navigationController?.navigationBar.titleTextAttributes = [
+//            NSForegroundColorAttributeName : UIColor.mediumBlue(),
+//            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 18.0)!
+//        ]
         
     }
 }

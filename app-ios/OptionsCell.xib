@@ -4,6 +4,11 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="myriad_pro_regular.ttf">
+            <string>MyriadPro-Regular</string>
+        </mutableArray>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -20,7 +25,7 @@
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Action title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="amS-Rr-sbk">
                         <rect key="frame" x="25" y="15" width="451" height="30"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
