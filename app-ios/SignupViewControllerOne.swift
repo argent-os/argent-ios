@@ -93,7 +93,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         self.dobTextField.delegate = self
         
         continueButton.layer.cornerRadius = 0
-        continueButton.backgroundColor = UIColor.mediumBlue()
+        continueButton.backgroundColor = UIColor.brandGreen()
         scrollView.addSubview(continueButton)
 
         // Programatically set the input fields
@@ -202,7 +202,11 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         
         UIToolbar.appearance().barTintColor = UIColor.brandGreen()
         UIToolbar.appearance().backgroundColor = UIColor.brandGreen()
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont.systemFontOfSize(15, weight: UIFontWeightRegular), NSForegroundColorAttributeName:UIColor.whiteColor()], forState: UIControlState.Normal)
+
+        done.setTitleTextAttributes([
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!,
+            NSForegroundColorAttributeName : UIColor.whiteColor()
+            ], forState: .Normal)
         
         var items: [UIBarButtonItem]? = [UIBarButtonItem]()
         items?.append(flexSpace)

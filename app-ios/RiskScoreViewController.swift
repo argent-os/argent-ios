@@ -41,14 +41,19 @@ class RiskScoreViewController: UIViewController {
     }
     
     //Changing Status Bar
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
+//    override func prefersStatusBarHidden() -> Bool {
+//        return false
+//    }
+//    
+//    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+//        return .LightContent
+//    }
+    
     
     func configureView() {
         
         self.view.backgroundColor = UIColor.globalBackground()
-        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
+//        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
 
         g.frame = CGRect(x: 60, y: 84, width: self.view.layer.frame.width-120, height: 230)
         g.startColor = UIColor.greenColor()

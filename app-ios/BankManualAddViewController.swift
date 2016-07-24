@@ -14,7 +14,7 @@ import Crashlytics
 import MZFormSheetPresentationController
 import EasyTipView
 
-class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINavigationBarDelegate {
+class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINavigationBarDelegate, UITextFieldDelegate {
     
     let navigationBar = UINavigationBar()
     
@@ -47,7 +47,11 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
     let tipView = EasyTipView(text: "All information processed is SHA-256 Bit encrypted with end-to-end SSL. We do not store bank account information on our servers.", preferences: EasyTipView.globalPreferences)
     
     override func prefersStatusBarHidden() -> Bool {
-        return true
+        return false
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .Default
     }
     
     override func viewDidLoad() {
@@ -71,12 +75,12 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
         addToolbarButton()
         addHelpButton()
         
-        self.navigationItem.title = "Manual Entry"
-        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
-        self.navigationController?.navigationBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont.systemFontOfSize(14),
-            NSForegroundColorAttributeName: UIColor.lightBlue()
-        ]
+//        self.navigationItem.title = "Manual Entry"
+//        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
+//        self.navigationController?.navigationBar.titleTextAttributes = [
+//            NSFontAttributeName: UIFont.systemFontOfSize(14),
+//            NSForegroundColorAttributeName: UIColor.lightBlue()
+//        ]
         
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
@@ -96,7 +100,7 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
         infoLabel.textColor = UIColor.lightBlue()
         infoLabel.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.2).CGColor
         infoLabel.layer.borderWidth = 1
-        infoLabel.layer.cornerRadius = 10
+        infoLabel.layer.cornerRadius = 5
         infoLabel.layer.masksToBounds = true
         
         infoTypeLabel.frame = CGRect(x: 40, y: 80, width: 200, height: 70)
@@ -130,10 +134,12 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
         routingTextField.textColor = UIColor.lightBlue()
         routingTextField.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.2).CGColor
         routingTextField.layer.borderWidth = 1
-        routingTextField.layer.cornerRadius = 10
+        routingTextField.layer.cornerRadius = 5
         routingTextField.layer.masksToBounds = true
         routingTextField.textAlignment = .Right
         routingTextField.keyboardType = .NumberPad
+        routingTextField.delegate = self
+        routingTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), forControlEvents: .ValueChanged)
 
         routingTextLabel.text = "ACH Routing #"
         routingTextLabel.frame = CGRect(x: 40, y: 170, width: screenWidth-40, height: 70)
@@ -151,7 +157,7 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
         accountTextField.textColor = UIColor.lightBlue()
         accountTextField.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.2).CGColor
         accountTextField.layer.borderWidth = 1
-        accountTextField.layer.cornerRadius = 10
+        accountTextField.layer.cornerRadius = 5
         accountTextField.layer.masksToBounds = true
         accountTextField.textAlignment = .Right
         accountTextField.keyboardType = .NumberPad
@@ -201,6 +207,14 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
         scrollView.addSubview(addBankButton)
         scrollView.bringSubviewToFront(addBankButton)
 
+    }
+    
+    func textFieldDidChange(textField: UITextField) {
+        print("changed")
+        if textField.text?.characters.count > 8 {
+            print("greater than 9")
+            textField.textColor = UIColor.brandRed()
+        }
     }
     
     func linkBankToStripe(sender: AnyObject) {
@@ -273,11 +287,12 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: #selector(self.dismissKeyboard(_:)))
         
-        UIToolbar.appearance().barTintColor = UIColor.whiteColor()
-        
+        UIToolbar.appearance().barTintColor = UIColor.brandGreen()
+        UIToolbar.appearance().backgroundColor = UIColor.brandGreen()
+
         done.setTitleTextAttributes([
-            NSFontAttributeName : UIFont.systemFontOfSize(15, weight: UIFontWeightLight),
-            NSForegroundColorAttributeName : UIColor.mediumBlue()
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!,
+            NSForegroundColorAttributeName : UIColor.whiteColor()
             ], forState: .Normal)
         
         var items: [UIBarButtonItem]? = [UIBarButtonItem]()

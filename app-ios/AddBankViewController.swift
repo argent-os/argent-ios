@@ -15,7 +15,6 @@ import Crashlytics
 
 class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelegate {
     
-//    @IBOutlet weak var addBankButton: UIButton!
     private var manualConnectBankButton = UIButton()
     
     private var directLoginButton = UIButton()
@@ -29,9 +28,13 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
     private var pageDescription = UILabel()
     
     override func prefersStatusBarHidden() -> Bool {
-        return true
+        return false
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .Default
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -124,21 +127,12 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         pageDescription.frame = CGRect(x: 0, y: 285, width: screenWidth, height: 50)
         self.view.addSubview(pageDescription)
         
-//        addBankButton.layer.cornerRadius = 10
-//        addBankButton.clipsToBounds = true
-//        addBankButton.backgroundColor = UIColor.lightBlue()
-//        addBankButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-//        addBankButton.setTitleColor(UIColor.offWhite(), forState: .Highlighted)
-//        addBankButton.setBackgroundColor(UIColor.lightBlue(), forState: .Normal)
-//        addBankButton.setBackgroundColor(UIColor.mediumBlue(), forState: .Highlighted)
-//        addBankButton.setTitle("Login to Bank", forState: .Normal)
-        
-        self.navigationItem.title = "Bank Account"
-        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
-        self.navigationController?.navigationBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont.systemFontOfSize(14),
-            NSForegroundColorAttributeName: UIColor.lightBlue()
-        ]
+//        self.navigationItem.title = "Bank Account"
+//        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
+//        self.navigationController?.navigationBar.titleTextAttributes = [
+//            NSFontAttributeName: UIFont.systemFontOfSize(14),
+//            NSForegroundColorAttributeName: UIColor.lightBlue()
+//        ]
         title = "Bank Account"
         
     }

@@ -25,7 +25,11 @@ class ConfigureAppViewController: FormViewController, UIApplicationDelegate {
     }
     
     override func prefersStatusBarHidden() -> Bool {
-        return true
+        return false
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .Default
     }
     
     // MARK: Private

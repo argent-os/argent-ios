@@ -28,8 +28,8 @@ class BankManualTutorialViewController: UIViewController {
         _ = screen.size.width
         _ = screen.size.height
         
-        self.navigationController?.navigationBar.translucent = true
-        self.navigationController?.navigationBar.barTintColor = UIColor.lightGrayColor()
+//        self.navigationController?.navigationBar.translucent = true
+//        self.navigationController?.navigationBar.barTintColor = UIColor.lightGrayColor()
         
         titleLabel.frame = CGRect(x: 0, y: 35, width: 300, height: 20)
         titleLabel.text = "Example Check"

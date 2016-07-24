@@ -257,10 +257,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var flags = SCNetworkReachabilityFlags()
         if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
             showGlobalNotification("No network connection", duration: 200, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
+            print("no network connection")
             return false
         }
         let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
         let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        
+        print("is reachable", isReachable.boolValue)
+        print("needs connection", needsConnection.boolValue)
+        
+        if isReachable.boolValue == false{
+            showGlobalNotification("No network connection", duration: 200, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
+        } else if needsConnection == true {
+            showGlobalNotification("Network connection required", duration: 200, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
+        }
+        
         return (isReachable && !needsConnection)
     }
     
@@ -273,15 +284,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         
         // Globally set toolbar
-        UIToolbar.appearance().barTintColor = UIColor.mediumBlue()
-        UIToolbar.appearance().backgroundColor = UIColor.mediumBlue()
-        
-        // Toolbar Keyboard UI
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont.systemFontOfSize(15, weight: UIFontWeightRegular),NSForegroundColorAttributeName:UIColor.whiteColor()], forState: UIControlState.Normal)
-        
+        UIToolbar.appearance().barTintColor = UIColor.skyBlue()
+        UIToolbar.appearance().backgroundColor = UIColor.skyBlue()
+                
         // Tabbar UI
-        UITabBar.appearance().tintColor = UIColor.slateBlue()
-        UITabBar.appearance().barTintColor = UIColor.whiteColor()
+//        UITabBar.appearance().tintColor = UIColor.slateBlue()
+//        UITabBar.appearance().barTintColor = UIColor.whiteColor()
         
         // Globally dark keyboard
         UITextField.appearance().keyboardAppearance = .Light

@@ -80,9 +80,11 @@ class MenuDetailViewController: UIViewController, ModalTransitionDelegate {
         btn1.setBackgroundColor(UIColor.offWhite().lighterColor(), forState: .Highlighted)
         btn1.frame = CGRect(x: 35, y: screenHeight*0.1, width: screenWidth-70, height: 120)
         btn1.setImage(UIImage(named: "IconRocket")?.alpha(0.5), forState: .Highlighted)
-        btn1.layer.cornerRadius = 10
-        btn1.layer.masksToBounds = true
+        btn1.layer.cornerRadius = 5
         btn1.backgroundColor = UIColor.whiteColor()
+        btn1.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.2).CGColor
+        btn1.layer.borderWidth = 1
+        btn1.layer.masksToBounds = true
         btn1.addTarget(self, action: #selector(self.viewCustomers(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(btn1)
         self.view.bringSubviewToFront(btn1)
@@ -107,8 +109,10 @@ class MenuDetailViewController: UIViewController, ModalTransitionDelegate {
         btn2.frame = CGRect(x: 35, y: screenHeight*0.32, width: screenWidth-70, height: 120)
         btn2.setImage(UIImage(named: "IconRuby")?.alpha(0.5), forState: .Highlighted)
         btn2.layer.cornerRadius = 5
-        btn2.layer.masksToBounds = true
         btn2.backgroundColor = UIColor.whiteColor()
+        btn2.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.2).CGColor
+        btn2.layer.borderWidth = 1
+        btn2.layer.masksToBounds = true
         btn2.addTarget(self, action: #selector(self.viewSubscriptions(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(btn2)
         self.view.bringSubviewToFront(btn2)
@@ -133,8 +137,10 @@ class MenuDetailViewController: UIViewController, ModalTransitionDelegate {
         btn3.setImage(UIImage(named: "IconBulb")?.alpha(0.5), forState: .Highlighted)
         btn3.frame = CGRect(x: 35, y: screenHeight*0.54, width: screenWidth-70, height: 120)
         btn3.layer.cornerRadius = 5
-        btn3.layer.masksToBounds = true
         btn3.backgroundColor = UIColor.whiteColor()
+        btn3.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.2).CGColor
+        btn3.layer.borderWidth = 1
+        btn3.layer.masksToBounds = true
         btn3.addTarget(self, action: #selector(self.viewPlans(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(btn3)
         self.view.bringSubviewToFront(btn3)

@@ -93,7 +93,11 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
         
         UIToolbar.appearance().barTintColor = UIColor.brandGreen()
         UIToolbar.appearance().backgroundColor = UIColor.brandGreen()
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont.systemFontOfSize(15, weight: UIFontWeightRegular), NSForegroundColorAttributeName:UIColor.whiteColor()], forState: UIControlState.Normal)
+
+        next.setTitleTextAttributes([
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!,
+            NSForegroundColorAttributeName : UIColor.whiteColor()
+            ], forState: .Normal)
         
         toolBar.setItems([flexSpace, next, flexSpace], animated: false)
         toolBar.userInteractionEnabled = true

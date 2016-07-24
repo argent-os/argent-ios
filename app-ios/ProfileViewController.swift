@@ -21,16 +21,15 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         // Transparent navigation bar
-        self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.barTintColor = UIColor.lightBlue()
         self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSForegroundColorAttributeName : UIColor.whiteColor(),
+            NSForegroundColorAttributeName : UIColor.lightBlue(),
             NSFontAttributeName : UIFont.systemFontOfSize(14, weight: UIFontWeightLight)
         ]
         
@@ -47,12 +46,14 @@ class ProfileViewController: UIViewController {
         })
     }
     
+    //Changing Status Bar
     override func prefersStatusBarHidden() -> Bool {
         return false
     }
     
+    //Changing Status Bar
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+        return .Default
     }
     
     override func didReceiveMemoryWarning() {

@@ -17,14 +17,17 @@ class SupportMenuViewController: UIViewController {
         super.viewDidLoad()
         
         self.navigationItem.title = "Contact Support"
-        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont.systemFontOfSize(14),
-            NSForegroundColorAttributeName: UIColor.darkGrayColor()
+            NSForegroundColorAttributeName: UIColor.lightBlue()
         ]
     }
     
     override func prefersStatusBarHidden() -> Bool {
-        return true
+        return false
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .Default
     }
 }

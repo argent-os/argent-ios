@@ -31,13 +31,19 @@ class RiskProfileViewController: UIViewController {
 
         configure()
     }
-    
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
+//    
+//    override func prefersStatusBarHidden() -> Bool {
+//        return false
+//    }
+//    
+//    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+//        return .Default
+//    }
+//    
     
     override func viewDidAppear(animated: Bool) {
-        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
+
+        
 //        let score = KeychainSwift().get("riskScore")
 //        print(score)
 //        if score == nil || score == "" {
@@ -95,12 +101,12 @@ class RiskProfileViewController: UIViewController {
 //        enableRiskProfileButton.clipsToBounds = true
 //        enableRiskProfileButton.backgroundColor = UIColor.lightBlue()
         
-        self.navigationItem.title = "Risk Profile"
-        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
-        self.navigationController?.navigationBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont.systemFontOfSize(14),
-            NSForegroundColorAttributeName: UIColor.darkGrayColor()
-        ]
+//        self.navigationItem.title = "Risk Profile"
+//        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
+//        self.navigationController?.navigationBar.titleTextAttributes = [
+//            NSFontAttributeName: UIFont.systemFontOfSize(14),
+//            NSForegroundColorAttributeName: UIColor.lightBlue()
+//        ]
         
     }
     

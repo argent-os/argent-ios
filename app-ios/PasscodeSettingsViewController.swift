@@ -43,11 +43,7 @@ class PasscodeSettingsViewController: UIViewController {
         
         updatePasscodeView()
     }
-    
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
-    
+
     override func viewDidLoad() {
         passcodeSwitch.onTintColor = UIColor.skyBlue()
         backgroundView.backgroundColor = UIColor.offWhite()
@@ -108,8 +104,12 @@ class PasscodeSettingsViewController: UIViewController {
     }
     
     //Changing Status Bar
+    override func prefersStatusBarHidden() -> Bool {
+        return false
+    }
+    
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+        return .Default
     }
 
     // This function is called before the segue, use this to make sure the view controller is properly returned to the root view controller

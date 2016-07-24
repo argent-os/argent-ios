@@ -31,7 +31,11 @@ class IdentityVerificationSplashViewController: UIViewController {
     }
     
     override func prefersStatusBarHidden() -> Bool {
-        return true
+        return false
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .Default
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -57,7 +61,7 @@ class IdentityVerificationSplashViewController: UIViewController {
         pageHeader.frame = CGRect(x: 0, y: 300, width: screenWidth, height: 30)
         self.view.addSubview(pageHeader)
         
-        pageDescription.text = "In order to mitigate end-user risk \n we require identity verification information \n with one identity document and full SSN"
+        pageDescription.text = "In order to mitigate end-user risk \n we require identity verification information \n with one identity document and SSN"
         pageDescription.numberOfLines = 0
         pageDescription.lineBreakMode = .ByWordWrapping
         pageDescription.textColor = UIColor.lightBlue()
@@ -85,12 +89,12 @@ class IdentityVerificationSplashViewController: UIViewController {
         //        enableRiskProfileButton.clipsToBounds = true
         //        enableRiskProfileButton.backgroundColor = UIColor.lightBlue()
         
-        self.navigationItem.title = "Identity Verification"
-        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
-        self.navigationController?.navigationBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont.systemFontOfSize(14),
-            NSForegroundColorAttributeName: UIColor.darkGrayColor()
-        ]
+//        self.navigationItem.title = "Identity Verification"
+//        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
+//        self.navigationController?.navigationBar.titleTextAttributes = [
+//            NSFontAttributeName: UIFont.systemFontOfSize(14),
+//            NSForegroundColorAttributeName: UIColor.darkGrayColor()
+//        ]
         
     }
     

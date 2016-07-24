@@ -85,7 +85,7 @@ class SignupIndividualViewControllerTwo: UIViewController, UITextFieldDelegate, 
         self.repeatPasswordTextField.delegate = self
         
         continueButton.layer.cornerRadius = 0
-        continueButton.backgroundColor = UIColor.mediumBlue()
+        continueButton.backgroundColor = UIColor.brandGreen()
         scrollView.addSubview(continueButton)
 
         // Programatically set the input fields
@@ -167,6 +167,11 @@ class SignupIndividualViewControllerTwo: UIViewController, UITextFieldDelegate, 
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Continue", style: UIBarButtonItemStyle.Done, target: self, action: #selector(SignupIndividualViewControllerTwo.nextStep(_:)))
+        
+        done.setTitleTextAttributes([
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!,
+            NSForegroundColorAttributeName : UIColor.whiteColor()
+            ], forState: .Normal)
         
         var items: [UIBarButtonItem]? = [UIBarButtonItem]()
         items?.append(flexSpace)

@@ -31,7 +31,7 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
     }
     
     override func viewDidAppear(animated: Bool) {
-        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
+//        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
     }
     
     private func addInfiniteScroll() {
@@ -63,11 +63,10 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
 
         // During startup (viewDidLoad or in storyboard) do:
         self.tableView.allowsMultipleSelectionDuringEditing = false
-
+        self.tableView.showsVerticalScrollIndicator = false
         self.tableView.backgroundColor = UIColor.offWhite()
         
         self.navigationItem.title = "Connected Banks"
-        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
         self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 60)
         
         let indicator = UIActivityIndicatorView()
@@ -91,7 +90,11 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
     
     //Changing Status Bar
     override func prefersStatusBarHidden() -> Bool {
-        return true
+        return false
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .Default
     }
     
     func loadBankAccounts() {

@@ -85,9 +85,10 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         
         UIToolbar.appearance().barTintColor = UIColor.skyBlue()
         UIToolbar.appearance().tintColor = UIColor.whiteColor()
-        
+        UIToolbar.appearance().backgroundColor = UIColor.brandGreen()
+
         done.setTitleTextAttributes([
-            NSFontAttributeName : UIFont.systemFontOfSize(15, weight: UIFontWeightLight),
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!,
             NSForegroundColorAttributeName : UIColor.whiteColor()
             ], forState: .Normal)
         

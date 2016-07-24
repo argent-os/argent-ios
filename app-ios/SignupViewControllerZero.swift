@@ -84,13 +84,7 @@ class SignupViewControllerZero: UIViewController {
     
     func layoutSubviews() {
         // Globally set toolbar
-        UIToolbar.appearance().barTintColor = UIColor.whiteColor()
-        UIToolbar.appearance().backgroundColor = UIColor.whiteColor()
-        UIToolbar.appearance().layer.borderColor = UIColor.mediumBlue().CGColor
-        UIToolbar.appearance().layer.borderWidth = 1
-        
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont.systemFontOfSize(15, weight: UIFontWeightLight) ,NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
-        
+
         UITextField.appearance().keyboardAppearance = .Light
         
         let screen = UIScreen.mainScreen().bounds

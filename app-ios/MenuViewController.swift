@@ -113,7 +113,8 @@ class MenuViewController: UIViewController, ModalTransitionDelegate {
         btn1.frame = CGRect(x: 35, y: screenHeight*0.1, width: screenWidth-70, height: 120)
         btn1.layer.cornerRadius = 5
         btn1.layer.masksToBounds = true
-        btn1.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.4).CGColor
+        btn1.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.2).CGColor
+        btn1.layer.borderWidth = 1
         btn1.backgroundColor = UIColor.whiteColor()
         btn1.addTarget(self, action: #selector(terminalButtonSelected(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(btn1)
@@ -140,7 +141,8 @@ class MenuViewController: UIViewController, ModalTransitionDelegate {
         btn2.frame = CGRect(x: 35, y: screenHeight*0.32, width: screenWidth-70, height: 120)
         btn2.layer.cornerRadius = 5
         btn2.layer.masksToBounds = true
-        btn2.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.4).CGColor
+        btn2.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.2).CGColor
+        btn2.layer.borderWidth = 1
         btn2.backgroundColor = UIColor.whiteColor()
         btn2.addTarget(self, action: #selector(planButtonSelected(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(btn2)
@@ -166,7 +168,8 @@ class MenuViewController: UIViewController, ModalTransitionDelegate {
         btn3.frame = CGRect(x: 35, y: screenHeight*0.54, width: screenWidth-70, height: 120)
         btn3.layer.cornerRadius = 5
         btn3.layer.masksToBounds = true
-        btn3.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.4).CGColor
+        btn3.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.2).CGColor
+        btn3.layer.borderWidth = 1
         btn3.backgroundColor = UIColor.whiteColor()
         btn3.addTarget(self, action: #selector(inviteButtonSelected(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(btn3)
@@ -235,9 +238,15 @@ class MenuViewController: UIViewController, ModalTransitionDelegate {
     // MARK: Delegate Methods
     
     //Changing Status Bar
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
+    //Changing Status Bar
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .Default
     }
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "menuView") {

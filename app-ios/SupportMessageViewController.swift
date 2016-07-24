@@ -36,9 +36,14 @@ class SupportMessageViewController: UIViewController {
 
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Send", style: UIBarButtonItemStyle.Done, target: self, action: #selector(self.sendMessageAction))
-        UIToolbar.appearance().barTintColor = UIColor.mediumBlue()
-        UIToolbar.appearance().backgroundColor = UIColor.mediumBlue()
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont.systemFontOfSize(15), NSForegroundColorAttributeName:UIColor.whiteColor()], forState: UIControlState.Normal)
+
+        UIToolbar.appearance().barTintColor = UIColor.brandGreen()
+        UIToolbar.appearance().backgroundColor = UIColor.brandGreen()
+
+        done.setTitleTextAttributes([
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!,
+            NSForegroundColorAttributeName : UIColor.whiteColor()
+            ], forState: .Normal)
         
         var items: [UIBarButtonItem]? = [UIBarButtonItem]()
         items?.append(flexSpace)

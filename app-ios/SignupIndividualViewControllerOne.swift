@@ -85,7 +85,7 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
         self.dobTextField.delegate = self
 
         continueButton.layer.cornerRadius = 0
-        continueButton.backgroundColor = UIColor.mediumBlue()
+        continueButton.backgroundColor = UIColor.brandGreen()
         scrollView.addSubview(continueButton)
 
         // Programatically set the input fields
@@ -178,6 +178,11 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Continue", style: UIBarButtonItemStyle.Done, target: self, action: #selector(SignupIndividualViewControllerOne.nextStep(_:)))
+        
+        done.setTitleTextAttributes([
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!,
+            NSForegroundColorAttributeName : UIColor.whiteColor()
+            ], forState: .Normal)
         
         var items: [UIBarButtonItem]? = [UIBarButtonItem]()
         items?.append(flexSpace)

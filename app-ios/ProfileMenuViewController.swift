@@ -123,13 +123,13 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                         fields_required[indexOfAddressLine1] = "Address"
                     }
                     if let indexOfPIN = fields_required.indexOf("legal_entity.personal_id_number") {
-                        fields_required[indexOfPIN] = "Full SSN or PIN"
+                        fields_required[indexOfPIN] = "SSN or Personal ID Number"
                     }
                     if let indexOfSSNLast4 = fields_required.indexOf("legal_entity.ssn_last_4") {
                         fields_required[indexOfSSNLast4] = "SSN Last 4"
                     }
                     if let indexOfEIN = fields_required.indexOf("legal_entity.business_tax_id") {
-                        fields_required[indexOfEIN] = "Business Tax ID / EIN"
+                        fields_required[indexOfEIN] = "Business Tax ID (EIN)"
                     }
                     if let indexOfVerificationDocument = fields_required.indexOf("legal_entity.verification.document") {
                         fields_required[indexOfVerificationDocument] = "Verification Document"
@@ -155,8 +155,8 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                     self.verifiedButton.setImage(UIImage(named: "IconSuccessWhite"), forState: .Normal)
                     self.verifiedButton.setTitle("Tuts", forState: .Normal)
                     self.verifiedButton.setTitleColor(UIColor.redColor(), forState: .Normal)
-                    self.verifiedButton.addTarget(self, action: #selector(HomeViewController.presentTutorial(_:)), forControlEvents: .TouchUpInside)
-                    self.verifiedButton.addTarget(self, action: #selector(HomeViewController.presentTutorial(_:)), forControlEvents: .TouchUpOutside)
+                    self.verifiedButton.addTarget(self, action: #selector(self.presentTutorial(_:)), forControlEvents: .TouchUpInside)
+                    self.verifiedButton.addTarget(self, action: #selector(self.presentTutorial(_:)), forControlEvents: .TouchUpOutside)
                     addSubviewWithFade(self.verifiedButton, parentView: self, duration: 0.8)
                     self.view.bringSubviewToFront(self.verifiedButton)
                 }
@@ -291,7 +291,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         self.locationLabel.textAlignment = NSTextAlignment.Center
         self.locationLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
         self.locationLabel.numberOfLines = 0
-        self.locationLabel.textColor = UIColor(rgba: "#fff")
+        self.locationLabel.textColor = UIColor.whiteColor()
 
         splitter.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.1)
         splitter.frame = CGRect(x: screenWidth*0.333-0.5, y: 140, width: 1, height: 50)
@@ -309,19 +309,19 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         self.subscriptionsCountLabel.textAlignment = NSTextAlignment.Center
         self.subscriptionsCountLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
         self.subscriptionsCountLabel.numberOfLines = 0
-        self.subscriptionsCountLabel.textColor = UIColor(rgba: "#fff")
+        self.subscriptionsCountLabel.textColor = UIColor.whiteColor().colorWithAlphaComponent(0.75)
         
         self.customersCountLabel.frame = CGRectMake(screenWidth*0.5-40, 130, 80, 70)
         self.customersCountLabel.textAlignment = NSTextAlignment.Center
         self.customersCountLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
         self.customersCountLabel.numberOfLines = 0
-        self.customersCountLabel.textColor = UIColor(rgba: "#fff")
+        self.customersCountLabel.textColor = UIColor.whiteColor().colorWithAlphaComponent(0.75)
         
         self.plansCountLabel.frame = CGRectMake(screenWidth-110, 130, 80, 70)
         self.plansCountLabel.textAlignment = NSTextAlignment.Center
         self.plansCountLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
         self.plansCountLabel.numberOfLines = 0
-        self.plansCountLabel.textColor = UIColor(rgba: "#fff")
+        self.plansCountLabel.textColor = UIColor.whiteColor().colorWithAlphaComponent(0.75)
     }
     
     func reloadUserData() {
@@ -405,7 +405,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
     
     //Changing Status Bar
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+        return .Default
     }
     
     // Handles share and logout action controller
