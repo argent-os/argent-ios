@@ -71,13 +71,13 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
         addSubviewWithBounce(paymentTextField, parentView: self, duration: 0.3)
         paymentTextField.becomeFirstResponder()
         
-        submitCreditCardButton.frame = CGRect(x: 20, y: 230, width: 260, height: 50)
+        submitCreditCardButton.frame = CGRect(x: 0, y: 240, width: 300, height: 60)
         submitCreditCardButton.layer.borderColor = UIColor.whiteColor().CGColor
         submitCreditCardButton.layer.borderWidth = 0
-        submitCreditCardButton.layer.cornerRadius = 10
+        submitCreditCardButton.layer.cornerRadius = 0
         submitCreditCardButton.layer.masksToBounds = true
-        submitCreditCardButton.setBackgroundColor(UIColor.lightBlue(), forState: .Normal)
-        submitCreditCardButton.setBackgroundColor(UIColor.lightBlue().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        submitCreditCardButton.setBackgroundColor(UIColor.iosBlue(), forState: .Normal)
+        submitCreditCardButton.setBackgroundColor(UIColor.iosBlue().lighterColor(), forState: .Highlighted)
         var attribs: [String: AnyObject] = [:]
         attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
@@ -85,6 +85,14 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
         submitCreditCardButton.setAttributedTitle(str, forState: .Normal)
         submitCreditCardButton.addTarget(self, action: #selector(self.save(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(submitCreditCardButton)
+        let rectShape = CAShapeLayer()
+        rectShape.bounds = submitCreditCardButton.frame
+        rectShape.position = submitCreditCardButton.center
+        rectShape.path = UIBezierPath(roundedRect: submitCreditCardButton.bounds, byRoundingCorners: [.BottomLeft, .BottomRight], cornerRadii: CGSize(width: 10, height: 10)).CGPath
+        
+        submitCreditCardButton.layer.backgroundColor = UIColor.mediumBlue().CGColor
+        //Here I'm masking the textView's layer with rectShape layer
+        submitCreditCardButton.layer.mask = rectShape
         
     }
 

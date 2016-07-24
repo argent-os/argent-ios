@@ -56,19 +56,27 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
         ssnTextField.secureTextEntry = true
         ssnTextField.becomeFirstResponder()
         
-        submitSSNButton.frame = CGRect(x: 20, y: 230, width: 260, height: 50)
+        submitSSNButton.frame = CGRect(x: 0, y: 240, width: 300, height: 60)
         submitSSNButton.layer.borderColor = UIColor.whiteColor().CGColor
         submitSSNButton.layer.borderWidth = 0
-        submitSSNButton.layer.cornerRadius = 10
+        submitSSNButton.layer.cornerRadius = 0
         submitSSNButton.layer.masksToBounds = true
-        submitSSNButton.setBackgroundColor(UIColor.lightBlue(), forState: .Normal)
-        submitSSNButton.setBackgroundColor(UIColor.lightBlue().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        submitSSNButton.setBackgroundColor(UIColor.iosBlue(), forState: .Normal)
+        submitSSNButton.setBackgroundColor(UIColor.iosBlue().lighterColor(), forState: .Highlighted)
         var attribs: [String: AnyObject] = [:]
-        attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)
+        attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 15)
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
         let str = NSAttributedString(string: "Submit", attributes: attribs)
         submitSSNButton.setAttributedTitle(str, forState: .Normal)
         submitSSNButton.addTarget(self, action: #selector(self.submitSSN(_:)), forControlEvents: .TouchUpInside)
+        let rectShape = CAShapeLayer()
+        rectShape.bounds = submitSSNButton.frame
+        rectShape.position = submitSSNButton.center
+        rectShape.path = UIBezierPath(roundedRect: submitSSNButton.bounds, byRoundingCorners: [.BottomLeft, .BottomRight], cornerRadii: CGSize(width: 5, height: 5)).CGPath
+        
+        submitSSNButton.layer.backgroundColor = UIColor.mediumBlue().CGColor
+        //Here I'm masking the textView's layer with rectShape layer
+        submitSSNButton.layer.mask = rectShape
         
         Account.getStripeAccount { (acct, err) in
             //
