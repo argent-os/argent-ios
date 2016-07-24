@@ -22,7 +22,10 @@
 		300E42331CB71362004316CF /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E42321CB71362004316CF /* Card.swift */; };
 		3015ADC31CE3B1110053D220 /* RiskTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015ADC21CE3B1110053D220 /* RiskTutorialViewController.swift */; };
 		302010CA1CAF3B05007D5E7E /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302010C91CAF3B05007D5E7E /* Notification.swift */; };
-		3025C1211D0DF9CA00050C2C /* BankConnectedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3025C1201D0DF9CA00050C2C /* BankConnectedCell.swift */; };
+		3020A6821D44E86500B24B44 /* BankListModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3020A6811D44E86500B24B44 /* BankListModalViewController.swift */; };
+		3020A6861D44FE8E00B24B44 /* BankConnectedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3020A6851D44FE8E00B24B44 /* BankConnectedCell.swift */; };
+		3020A6881D44FEA000B24B44 /* BankACHConnectedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3020A6871D44FEA000B24B44 /* BankACHConnectedCell.xib */; };
+		3020A68A1D45072000B24B44 /* BankACHConnectedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3020A6891D45072000B24B44 /* BankACHConnectedCell.swift */; };
 		302624B91CF2573800EF80D8 /* CountryPicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 302624B81CF2573800EF80D8 /* CountryPicker.bundle */; };
 		304468F01CAA0BFC008CAE7D /* notify.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468ED1CAA0BFC008CAE7D /* notify.caf */; };
 		304468F11CAA0BFC008CAE7D /* pop.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468EE1CAA0BFC008CAE7D /* pop.caf */; };
@@ -250,7 +253,10 @@
 		302010D31CB016ED007D5E7E /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		302010D61CB016ED007D5E7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		302010D81CB016ED007D5E7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3025C1201D0DF9CA00050C2C /* BankConnectedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankConnectedCell.swift; path = "app-ios/BankConnectedCell.swift"; sourceTree = SOURCE_ROOT; };
+		3020A6811D44E86500B24B44 /* BankListModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankListModalViewController.swift; path = "app-ios/fonts/BankListModalViewController.swift"; sourceTree = SOURCE_ROOT; };
+		3020A6851D44FE8E00B24B44 /* BankConnectedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankConnectedCell.swift; path = "app-ios/BankConnectedCell.swift"; sourceTree = SOURCE_ROOT; };
+		3020A6871D44FEA000B24B44 /* BankACHConnectedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BankACHConnectedCell.xib; path = "app-ios/BankACHConnectedCell.xib"; sourceTree = SOURCE_ROOT; };
+		3020A6891D45072000B24B44 /* BankACHConnectedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankACHConnectedCell.swift; path = "app-ios/BankACHConnectedCell.swift"; sourceTree = SOURCE_ROOT; };
 		302624B81CF2573800EF80D8 /* CountryPicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = CountryPicker.bundle; path = "app-ios/bundles/CountryPicker.bundle"; sourceTree = SOURCE_ROOT; };
 		302624BA1CF26ECB00EF80D8 /* Argent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Argent.entitlements; sourceTree = "<group>"; };
 		304468ED1CAA0BFC008CAE7D /* notify.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = notify.caf; sourceTree = "<group>"; };
@@ -827,6 +833,7 @@
 				30CF713A1D012B1E007B5E17 /* CreditCardEntryModalViewController.swift */,
 				30CF71491D0485F2007B5E17 /* PersonInformationEntryModalViewController.swift */,
 				30CF71381D01238A007B5E17 /* IdentitySSNModalViewController.swift */,
+				3020A6811D44E86500B24B44 /* BankListModalViewController.swift */,
 			);
 			name = Modals;
 			sourceTree = "<group>";
@@ -945,11 +952,13 @@
 		30DB9B781C9CFC2300871253 /* Bank */ = {
 			isa = PBXGroup;
 			children = (
+				3020A6871D44FEA000B24B44 /* BankACHConnectedCell.xib */,
+				3020A6891D45072000B24B44 /* BankACHConnectedCell.swift */,
+				3020A6851D44FE8E00B24B44 /* BankConnectedCell.swift */,
 				30C2DAE41CA4392E003AFD8B /* AddBankViewController.swift */,
 				30879A4E1D12F10300D3DF01 /* BankManualAddViewController.swift */,
 				30C242C81D144A2400261D55 /* BankManualTutorialViewController.swift */,
 				300E422A1CB47428004316CF /* BankConnectedListTableViewController.swift */,
-				3025C1201D0DF9CA00050C2C /* BankConnectedCell.swift */,
 				30C2DAE61CA43934003AFD8B /* BankAccountViewController.swift */,
 				30C2DAE71CA43934003AFD8B /* BankDetailViewController.swift */,
 				30C2DAE81CA43934003AFD8B /* BankTableViewCell.swift */,
@@ -1298,6 +1307,7 @@
 				304468F11CAA0BFC008CAE7D /* pop.caf in Resources */,
 				30C2DA751CA436B8003AFD8B /* cashregister.caf in Resources */,
 				30CA455A1CE6CF7F00D656E5 /* HistoryCustomCell.xib in Resources */,
+				3020A6881D44FEA000B24B44 /* BankACHConnectedCell.xib in Resources */,
 				30D526841CDF776B001B41BA /* OptionsCell.xib in Resources */,
 				30C2DA761CA436B8003AFD8B /* chime.caf in Resources */,
 				309E43CC1CA9CFED00279D97 /* fold.caf in Resources */,
@@ -1464,6 +1474,7 @@
 				30B576931CC7D1CF005BCA5A /* SearchDetailViewController.swift in Sources */,
 				30C2DA971CA4372D003AFD8B /* UserDefaultsPasscodeRepository.swift in Sources */,
 				30C2DAC91CA43853003AFD8B /* MenuViewController.swift in Sources */,
+				3020A6861D44FE8E00B24B44 /* BankConnectedCell.swift in Sources */,
 				30C2DAAD1CA43795003AFD8B /* AuthViewController.swift in Sources */,
 				30C2DAC51CA43841003AFD8B /* SearchViewController.swift in Sources */,
 				30C2DA5B1CA4366C003AFD8B /* AppDelegate.swift in Sources */,
@@ -1493,7 +1504,6 @@
 				30960F011CE40CBE00749695 /* Auth.swift in Sources */,
 				30C2DAAB1CA4374F003AFD8B /* SignupViewControllerZero.swift in Sources */,
 				30C2DAF51CA43967003AFD8B /* ChargeViewController.swift in Sources */,
-				3025C1211D0DF9CA00050C2C /* BankConnectedCell.swift in Sources */,
 				30C2DAA81CA4374F003AFD8B /* SignupViewControllerOne.swift in Sources */,
 				3008AA461CF8BC3900AFE855 /* SearchMessageViewController.swift in Sources */,
 				30FF6FD11CEE3F9300A46A1E /* TransferToBankViewController.swift in Sources */,
@@ -1535,6 +1545,7 @@
 				30CF71511D05B066007B5E17 /* CustomersListDetailViewController.swift in Sources */,
 				30C2DAAA1CA4374F003AFD8B /* SignupViewControllerTwo.swift in Sources */,
 				30D5267D1CDE3736001B41BA /* ConfigureAppViewController.swift in Sources */,
+				3020A68A1D45072000B24B44 /* BankACHConnectedCell.swift in Sources */,
 				30C2DAF91CA43975003AFD8B /* User.swift in Sources */,
 				30960EFF1CE3D7C100749695 /* TransferViewController.swift in Sources */,
 				300E422D1CB56E10004316CF /* Plaid.swift in Sources */,
@@ -1551,6 +1562,7 @@
 				30879A4F1D12F10300D3DF01 /* BankManualAddViewController.swift in Sources */,
 				30C2DB171CA439F4003AFD8B /* paykloud_iosTests.swift in Sources */,
 				308A348A1CCA803200AAF66F /* History.swift in Sources */,
+				3020A6821D44E86500B24B44 /* BankListModalViewController.swift in Sources */,
 				30CF714F1D052D55007B5E17 /* SubscriptionsListDetailViewController.swift in Sources */,
 				306DF00F1CDA68AB00864CAE /* RiskProfileViewController.swift in Sources */,
 				30C2DAC31CA4383B003AFD8B /* NotificationViewController.swift in Sources */,

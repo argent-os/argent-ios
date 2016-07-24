@@ -157,6 +157,12 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
                 self.paymentMethod = "Apple Pay"
             }
         }))
+        actionController.addAction(Action("ACH", style: .Default, handler: { action in
+            let _ = Timeout(0.5) {
+                self.showACHModal(self)
+                self.paymentMethod = "ACH"
+            }
+        }))
         actionController.addAction(Action("Credit Card", style: .Default, handler: { action in
             let _ = Timeout(0.5) {
                 self.showCreditCardModal(self)
@@ -312,6 +318,10 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 }
 
 extension PayMerchantViewController {
@@ -321,7 +331,7 @@ extension PayMerchantViewController {
         let navigationController = self.storyboard!.instantiateViewControllerWithIdentifier("creditCardEntryModalNavigationController") as! UINavigationController
         let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
         
-        print("showing ssn modal")
+        print("showing credit card modal")
         // Initialize and style the terms and conditions modal
         formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
         formSheetController.presentationController?.contentViewSize = CGSizeMake(300, 300)
@@ -363,8 +373,56 @@ extension PayMerchantViewController {
             self.presentViewController(formSheetController, animated: true, completion: nil)
         }
     }
+}
+
+
+extension PayMerchantViewController {
+    // MARK: ACH modal
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        self.view.endEditing(true)
+    func showACHModal(sender: AnyObject) {
+        let navigationController = self.storyboard!.instantiateViewControllerWithIdentifier("bankListModalNavigationController") as! UINavigationController
+        let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
+        
+        print("showing ach modal")
+        // Initialize and style the terms and conditions modal
+        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
+        formSheetController.presentationController?.contentViewSize = CGSizeMake(300, 300)
+        formSheetController.presentationController?.shouldUseMotionEffect = true
+        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
+        formSheetController.presentationController?.containerView?.sizeToFit()
+        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
+        formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
+        formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.AlwaysAboveKeyboard
+        formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
+        formSheetController.contentViewCornerRadius = 10
+        formSheetController.allowDismissByPanningPresentedView = true
+        formSheetController.interactivePanGestureDismissalDirection = .All;
+        
+        // Blur will be applied to all MZFormSheetPresentationControllers by default
+        MZFormSheetPresentationController.appearance().shouldApplyBackgroundBlurEffect = true
+        
+        let presentedViewController = navigationController.viewControllers.first as! BankListModalViewController
+        
+        // keep passing along user data to modal
+        presentedViewController.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
+        presentedViewController.navigationItem.leftItemsSupplementBackButton = true
+        
+        // send detail user information for delegated charge
+        presentedViewController.detailUser = detailUser
+        
+        // send charge amount
+        if(chargeInputView.text == "" || chargeInputView.text == "$0.00") {
+            showGlobalNotification("Amount invalid", duration: 5.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
+        } else {
+            var str = chargeInputView.text
+            str?.removeAtIndex(str!.characters.indices.first!) // remove first letter
+            let amount = (str! as NSString).floatValue
+            presentedViewController.detailAmount = amount
+            presentedViewController.paymentType = "once"
+            presentedViewController.bankId = ""
+            
+            // Be sure to update current module on storyboard
+            self.presentViewController(formSheetController, animated: true, completion: nil)
+        }
     }
 }

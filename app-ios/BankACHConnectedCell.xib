@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="connectedBankACHCell" rowHeight="100" id="d8d-c9-ScP" customClass="BankACHConnectedCell" customModule="Argent" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d8d-c9-ScP" id="dtP-13-ceA">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verified | Ending in 9999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fw-LV-Q5L">
+                        <rect key="frame" x="65" y="56" width="247" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="hld-Wc-5kD"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FqJ-qd-OUd">
+                        <rect key="frame" x="8" y="13" width="49" height="73"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="49" id="Mgx-cp-taE"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Citibank" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2r-fm-Rga">
+                        <rect key="frame" x="65" y="30" width="247" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="FqJ-qd-OUd" firstAttribute="centerY" secondItem="dtP-13-ceA" secondAttribute="centerY" id="017-uC-yny"/>
+                    <constraint firstItem="0fw-LV-Q5L" firstAttribute="top" secondItem="h2r-fm-Rga" secondAttribute="bottom" constant="8" symbolic="YES" id="Iez-Di-K6o"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="0fw-LV-Q5L" secondAttribute="bottom" constant="20.5" id="Ozj-Qs-qJo"/>
+                    <constraint firstItem="h2r-fm-Rga" firstAttribute="leading" secondItem="0fw-LV-Q5L" secondAttribute="leading" id="P8Q-ev-n8w"/>
+                    <constraint firstItem="FqJ-qd-OUd" firstAttribute="top" secondItem="dtP-13-ceA" secondAttribute="topMargin" constant="5" id="Rrk-GM-hfN"/>
+                    <constraint firstItem="h2r-fm-Rga" firstAttribute="trailing" secondItem="0fw-LV-Q5L" secondAttribute="trailing" id="hKs-LQ-Hpu"/>
+                    <constraint firstItem="h2r-fm-Rga" firstAttribute="leading" secondItem="FqJ-qd-OUd" secondAttribute="trailing" constant="8" symbolic="YES" id="ho7-bV-Dih"/>
+                    <constraint firstItem="h2r-fm-Rga" firstAttribute="trailing" secondItem="dtP-13-ceA" secondAttribute="trailingMargin" id="qNM-mQ-iMi"/>
+                    <constraint firstItem="h2r-fm-Rga" firstAttribute="top" secondItem="dtP-13-ceA" secondAttribute="topMargin" constant="22" id="r6M-4N-FSE"/>
+                    <constraint firstItem="FqJ-qd-OUd" firstAttribute="leading" secondItem="dtP-13-ceA" secondAttribute="leadingMargin" id="rtX-BJ-VcJ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="bankLogoImageView" destination="FqJ-qd-OUd" id="Isl-RF-T4S"/>
+                <outlet property="bankStatusLabel" destination="0fw-LV-Q5L" id="SUz-71-xWc"/>
+                <outlet property="bankTitleLabel" destination="h2r-fm-Rga" id="jzp-Nq-zNu"/>
+            </connections>
+            <point key="canvasLocation" x="410" y="22"/>
+        </tableViewCell>
+    </objects>
+</document>
