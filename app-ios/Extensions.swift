@@ -29,7 +29,8 @@ public func showAlert(type: AlertType, title: String, msg: String) {
         fieldCornerRadius : 10,
         contentViewCornerRadius : 10,
         buttonCornerRadius: 10,
-        kCircleIconHeight: 57
+        kCircleIconHeight: 57,
+        hideWhenBackgroundViewIsTapped: true
     )
     let alertView = SCLAlertView(appearance: appearance)
     switch type {

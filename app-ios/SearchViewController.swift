@@ -36,6 +36,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     private var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
+    private var searchOverlayView = UIView()
+    
     deinit {
         tblSearchResults.dg_removePullToRefresh()
     }
@@ -74,6 +76,15 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
+        
+        let placeholderImageView = UIImageView()
+        placeholderImageView.image = UIImage(named: "PlaceholderSearch")
+        placeholderImageView.contentMode = .ScaleAspectFit
+        placeholderImageView.frame = CGRect(x: searchOverlayView.layer.frame.width/2-140, y: searchOverlayView.layer.frame.height/2, width: 280, height: 280)
+        placeholderImageView.center = CGPointMake(self.view.layer.frame.width/2, self.view.layer.frame.height/2-120)
+        searchOverlayView.addSubview(placeholderImageView)
+        searchOverlayView.backgroundColor = UIColor.whiteColor()
+        searchOverlayView.frame = CGRect(x: 0, y: 120, width: screenWidth, height: screenHeight-60)
         
         // definespresentationcontext screen
         self.definesPresentationContext = true
@@ -305,14 +316,14 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         shouldShowSearchResults = true
         searchController.searchBar.placeholder = "Enter username or full name"
         tblSearchResults.reloadData()
+        searchOverlayView.removeFromSuperview()
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         shouldShowSearchResults = false
         searchController.searchBar.placeholder = ""
-        tblSearchResults.reloadData()
-        
         loadUserAccounts()
+        addSubviewWithFade(searchOverlayView, parentView: self, duration: 0.3)
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
