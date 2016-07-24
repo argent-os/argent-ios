@@ -133,13 +133,13 @@ class BankListModalViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.reloadData()
         tableView.showsVerticalScrollIndicator = false
         print(self.view.frame.height)
-        tableView.frame = CGRect(x: 0, y: 10, width: 300, height: 390)
+        tableView.frame = CGRect(x: 0, y: 10, width: 280, height: 390)
         self.view.addSubview(tableView)
         
         self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         self.dateFormatter.timeStyle = NSDateFormatterStyle.LongStyle
         
-        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: 300, height: 50))
+        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: 280, height: 50))
         navBar.barTintColor = UIColor.whiteColor()
         navBar.translucent = false
         navBar.titleTextAttributes = [
@@ -151,7 +151,7 @@ class BankListModalViewController: UIViewController, UITableViewDelegate, UITabl
         navBar.setItems([navItem], animated: false);
         
         // add gesture recognizer to window
-        var recognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MerchantPlansViewController.handleTapBehind(_:)))
+        let recognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MerchantPlansViewController.handleTapBehind(_:)))
         recognizer.numberOfTapsRequired = 1
         recognizer.cancelsTouchesInView = false
         //So the user can still interact with controls in the modal view
@@ -223,13 +223,13 @@ class BankListModalViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "This user does not have any currently available plans."
+        let str = "No banks linked."
         //let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
         return NSAttributedString(string: str, attributes: bodyAttrs)
     }
     
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
-        return UIImage(named: "IconEmptyPlans")
+        return UIImage(named: "IconBank")
     }
     
     func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
@@ -259,7 +259,7 @@ extension BankListModalViewController {
         // During startup (viewDidLoad or in storyboard) do:
         self.tableView.allowsMultipleSelectionDuringEditing = false
         self.tableView.showsVerticalScrollIndicator = false
-        self.tableView.backgroundColor = UIColor.offWhite()
+        self.tableView.backgroundColor = UIColor.whiteColor()
         
         self.navigationItem.title = "Connected Banks"
         self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 60)
@@ -398,7 +398,7 @@ extension BankListModalViewController {
 
         let cell = self.tableView.dequeueReusableCellWithIdentifier("connectedBankACHCell", forIndexPath: indexPath) as! BankACHConnectedCell
 
-        cell.backgroundColor = UIColor.offWhite()
+        cell.backgroundColor = UIColor.whiteColor()
         tableView.separatorColor = UIColor.lightBlue().colorWithAlphaComponent(0.3)
         cell.selectionStyle = UITableViewCellSelectionStyle.Blue;
         cell.textLabel?.tintColor = UIColor.lightBlue()

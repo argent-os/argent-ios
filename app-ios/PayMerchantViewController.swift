@@ -61,7 +61,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.barTintColor = UIColor.lightGrayColor()
         
-        merchantLabel.frame = CGRect(x: 0, y: 35, width: 300, height: 20)
+        merchantLabel.frame = CGRect(x: 0, y: 35, width: 280, height: 20)
         // merchantLabel.text = "Pay " + (detailUser?.first_name)!
         merchantLabel.textAlignment = .Center
         merchantLabel.font = UIFont(name: "MyriadPro-Regular", size: 14)
@@ -69,7 +69,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         self.view.addSubview(merchantLabel)
         
         chargeInputView.delegate = self
-        chargeInputView.frame = CGRect(x: 0, y: 75, width: 300, height: 100)
+        chargeInputView.frame = CGRect(x: 0, y: 75, width: 280, height: 100)
         chargeInputView.textColor = UIColor.lightBlue()
         chargeInputView.backgroundColor = UIColor.clearColor()
         chargeInputView.font = UIFont(name: "MyriadPro-Regular", size: 48)
@@ -78,7 +78,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         chargeInputView.placeholder = "$0.00"
         chargeInputView.addTarget(self, action: #selector(PayMerchantViewController.textField(_:shouldChangeCharactersInRange:replacementString:)), forControlEvents: UIControlEvents.EditingChanged)
 
-        selectPaymentOptionButton.frame = CGRect(x: 0, y: 240, width: 300, height: 60)
+        selectPaymentOptionButton.frame = CGRect(x: 0, y: 220, width: 280, height: 60)
         selectPaymentOptionButton.layer.borderColor = UIColor.whiteColor().CGColor
         selectPaymentOptionButton.layer.borderWidth = 0
         selectPaymentOptionButton.layer.cornerRadius = 0
@@ -334,13 +334,13 @@ extension PayMerchantViewController {
         print("showing credit card modal")
         // Initialize and style the terms and conditions modal
         formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
-        formSheetController.presentationController?.contentViewSize = CGSizeMake(300, 300)
+        formSheetController.presentationController?.contentViewSize = CGSizeMake(280, 280)
         formSheetController.presentationController?.shouldUseMotionEffect = true
         formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
         formSheetController.presentationController?.containerView?.sizeToFit()
         formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
-        formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.AlwaysAboveKeyboard
+        formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.CenterVertically
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
         formSheetController.contentViewCornerRadius = 10
         formSheetController.allowDismissByPanningPresentedView = true
@@ -386,13 +386,15 @@ extension PayMerchantViewController {
         print("showing ach modal")
         // Initialize and style the terms and conditions modal
         formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
-        formSheetController.presentationController?.contentViewSize = CGSizeMake(300, 300)
+        formSheetController.presentationController?.contentViewSize = CGSizeMake(280, 400)
         formSheetController.presentationController?.shouldUseMotionEffect = true
         formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
         formSheetController.presentationController?.containerView?.sizeToFit()
         formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
-        formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.AlwaysAboveKeyboard
+        formSheetController.presentationController?.shouldCenterVertically = true
+        formSheetController.presentationController?.shouldCenterHorizontally = true
+        formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.CenterVertically
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
         formSheetController.contentViewCornerRadius = 10
         formSheetController.allowDismissByPanningPresentedView = true

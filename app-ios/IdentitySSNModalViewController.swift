@@ -36,14 +36,14 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.barTintColor = UIColor.lightGrayColor()
         
-        titleLabel.frame = CGRect(x: 0, y: 35, width: 300, height: 20)
+        titleLabel.frame = CGRect(x: 0, y: 35, width: 280, height: 20)
         titleLabel.text = "Enter your SSN"
         titleLabel.textAlignment = .Center
         titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 18)
         titleLabel.textColor = UIColor.lightBlue()
         self.view.addSubview(titleLabel)
         
-        ssnTextField.frame = CGRect(x: 20, y: 70, width: 260, height: 150)
+        ssnTextField.frame = CGRect(x: 10, y: 70, width: 260, height: 150)
         ssnTextField.placeholder = "xxx-xx-xxxx"
         ssnTextField.alpha = 0.8
         ssnTextField.textAlignment = .Center
@@ -56,7 +56,7 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
         ssnTextField.secureTextEntry = true
         ssnTextField.becomeFirstResponder()
         
-        submitSSNButton.frame = CGRect(x: 0, y: 240, width: 300, height: 60)
+        submitSSNButton.frame = CGRect(x: 0, y: 220, width: 280, height: 60)
         submitSSNButton.layer.borderColor = UIColor.whiteColor().CGColor
         submitSSNButton.layer.borderWidth = 0
         submitSSNButton.layer.cornerRadius = 0

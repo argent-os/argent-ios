@@ -18,7 +18,7 @@ import Crashlytics
 
 class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate, STPPaymentCardTextFieldDelegate {
     
-    let titleLabel = UILabel()
+    let creditCardLogoImageView = UIImageView()
     
     var submitCreditCardButton = UIButton()
     
@@ -56,22 +56,28 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.barTintColor = UIColor.lightGrayColor()
         
-        titleLabel.frame = CGRect(x: 0, y: 35, width: 300, height: 20)
-        titleLabel.text = "Enter Credit Card"
-        titleLabel.textAlignment = .Center
-        titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 18)
-        titleLabel.textColor = UIColor.lightBlue()
-        self.view.addSubview(titleLabel)
+        creditCardLogoImageView.frame = CGRect(x: 125, y: 35, width: 30, height: 30)
+        creditCardLogoImageView.image = paymentTextField.brandImage
+        creditCardLogoImageView.contentMode = .ScaleAspectFit
+        self.view.addSubview(creditCardLogoImageView)
         
-        paymentTextField.frame = CGRect(x: 20, y: 105, width: 260, height: 60)
+        let paymentMaskView = UIView()
+        paymentMaskView.backgroundColor = UIColor.redColor()
+        paymentMaskView.frame = CGRect(x: 10, y: 125, width: 40, height: 40)
+        self.view.addSubview(paymentMaskView)
+        self.view.bringSubviewToFront(paymentMaskView)
+        
+        paymentTextField.frame = CGRect(x: 10, y: 105, width: 260, height: 60)
         paymentTextField.textColor = UIColor.lightBlue()
         paymentTextField.textErrorColor = UIColor.brandRed()
         paymentTextField.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
         paymentTextField.layer.cornerRadius = 10
+        paymentTextField.borderWidth = 0
+        paymentTextField.delegate = self
         addSubviewWithBounce(paymentTextField, parentView: self, duration: 0.3)
         paymentTextField.becomeFirstResponder()
         
-        submitCreditCardButton.frame = CGRect(x: 0, y: 240, width: 300, height: 60)
+        submitCreditCardButton.frame = CGRect(x: 0, y: 220, width: 280, height: 60)
         submitCreditCardButton.layer.borderColor = UIColor.whiteColor().CGColor
         submitCreditCardButton.layer.borderWidth = 0
         submitCreditCardButton.layer.cornerRadius = 0
@@ -132,8 +138,10 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
         }
     }
     
-    
     func paymentCardTextFieldDidChange(textField: STPPaymentCardTextField) {
+        // print(paymentTextField.brandImage)
+        creditCardLogoImageView.alpha = 1
+        creditCardLogoImageView.image = paymentTextField.brandImage
         if(paymentTextField.isValid) {
             paymentTextField.endEditing(true)
         }

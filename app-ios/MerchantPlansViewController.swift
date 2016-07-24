@@ -132,13 +132,13 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.reloadData()
         tableView.showsVerticalScrollIndicator = false
         print(self.view.frame.height)
-        tableView.frame = CGRect(x: 0, y: 10, width: 300, height: 390)
+        tableView.frame = CGRect(x: 0, y: 10, width: 280, height: 390)
         self.view.addSubview(tableView)
         
         self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         self.dateFormatter.timeStyle = NSDateFormatterStyle.LongStyle
         
-        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: 300, height: 50))
+        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: 280, height: 50))
         navBar.barTintColor = UIColor.whiteColor()
         navBar.translucent = false
         navBar.titleTextAttributes = [
@@ -585,14 +585,14 @@ extension MerchantPlansViewController {
         print("showing credit card modal")
         // Initialize and style the terms and conditions modal
         formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
-        formSheetController.presentationController?.contentViewSize = CGSizeMake(300, 300)
+        formSheetController.presentationController?.contentViewSize = CGSizeMake(280, 280)
         formSheetController.presentationController?.shouldUseMotionEffect = true
         formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
         formSheetController.presentationController?.containerView?.sizeToFit()
         formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
-        formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.AlwaysAboveKeyboard
+        formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.CenterVertically
         formSheetController.contentViewCornerRadius = 10
         formSheetController.allowDismissByPanningPresentedView = true
         formSheetController.interactivePanGestureDismissalDirection = .All;

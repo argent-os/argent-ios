@@ -265,7 +265,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
         
         // Initialize and style the terms and conditions modal
         formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
-        formSheetController.presentationController?.contentViewSize = CGSizeMake(300, screenHeight*0.6)
+        formSheetController.presentationController?.contentViewSize = CGSizeMake(280, screenHeight*0.6)
         formSheetController.presentationController?.shouldUseMotionEffect = true
         formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor()
         formSheetController.presentationController?.containerView?.sizeToFit()
@@ -300,14 +300,14 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
         
         // Initialize and style the pay merchant modal
         formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
-        formSheetController.presentationController?.contentViewSize = CGSizeMake(300, 300)
+        formSheetController.presentationController?.contentViewSize = CGSizeMake(280, 280)
         formSheetController.presentationController?.shouldUseMotionEffect = true
         formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor()
         formSheetController.presentationController?.containerView?.sizeToFit()
         formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
-        formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.AlwaysAboveKeyboard
+        formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.CenterVertically
         formSheetController.contentViewCornerRadius = 10
         formSheetController.allowDismissByPanningPresentedView = true
         formSheetController.interactivePanGestureDismissalDirection = .All;
