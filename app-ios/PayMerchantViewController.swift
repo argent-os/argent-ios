@@ -78,10 +78,10 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         chargeInputView.placeholder = "$0.00"
         chargeInputView.addTarget(self, action: #selector(PayMerchantViewController.textField(_:shouldChangeCharactersInRange:replacementString:)), forControlEvents: UIControlEvents.EditingChanged)
 
-        selectPaymentOptionButton.frame = CGRect(x: 20, y: 230, width: 260, height: 50)
+        selectPaymentOptionButton.frame = CGRect(x: 0, y: 240, width: 300, height: 60)
         selectPaymentOptionButton.layer.borderColor = UIColor.whiteColor().CGColor
         selectPaymentOptionButton.layer.borderWidth = 0
-        selectPaymentOptionButton.layer.cornerRadius = 10
+        selectPaymentOptionButton.layer.cornerRadius = 0
         selectPaymentOptionButton.layer.masksToBounds = true
         var attribs: [String: AnyObject] = [:]
         attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)
@@ -92,6 +92,14 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         selectPaymentOptionButton.setAttributedTitle(str, forState: .Normal)
         selectPaymentOptionButton.addTarget(self, action: #selector(PayMerchantViewController.showPayModal(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(selectPaymentOptionButton)
+        let rectShape = CAShapeLayer()
+        rectShape.bounds = selectPaymentOptionButton.frame
+        rectShape.position = selectPaymentOptionButton.center
+        rectShape.path = UIBezierPath(roundedRect: selectPaymentOptionButton.bounds, byRoundingCorners: [.BottomLeft, .BottomRight], cornerRadii: CGSize(width: 10, height: 10)).CGPath
+        
+        selectPaymentOptionButton.layer.backgroundColor = UIColor.mediumBlue().CGColor
+        //Here I'm masking the textView's layer with rectShape layer
+        selectPaymentOptionButton.layer.mask = rectShape
         
         //Looks for single or multiple taps.  Close keyboard on tap
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PayMerchantViewController.dismissKeyboard))

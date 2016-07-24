@@ -106,17 +106,17 @@ extension OnboardingViewController {
         case 0:
             // TODO: cell 1
             if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("onboardingCell", forIndexPath: indexPath) as? OnboardingCollectionViewCell {
-                cell.contentImage.image = UIImage(named: "IconRepeatWhiteLarge")
+                cell.contentImage.image = UIImage(named: "IconIntroRecurring")
                 
                 cell.contentDescriptionLabel.text = APP_NAME + " allows businesses to create services plans for their customers to control recurring payments over a custom time interval. Take the pain out of getting paid and let our app do the work for you. Set up a payment plan and start getting paid today!"
-                cell.contentDescriptionLabel.font = UIFont.systemFontOfSize(14)
+                cell.contentDescriptionLabel.font = UIFont(name: "MyriadPro-Regular", size: 17)
                 cell.contentDescriptionLabel.lineBreakMode = .ByWordWrapping
                 cell.contentDescriptionLabel.numberOfLines = 7
                 cell.contentDescriptionLabel.textAlignment = .Center
                 cell.contentDescriptionLabel.alpha = 1
 
                 cell.contentLabel.text = "Recurring payments"
-                cell.contentLabel.font = UIFont.systemFontOfSize(18)
+                cell.contentLabel.font = UIFont(name: "MyriadPro-Regular", size: 24)
                 cell.contentLabel.alpha = 0.9
                 cell.contentLabel.textColor = UIColor.whiteColor()
                 cell.getStartedButton.hidden = true
@@ -126,17 +126,17 @@ extension OnboardingViewController {
         case 1:
             // TODO: cell 2
             if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("onboardingCell", forIndexPath: indexPath) as? OnboardingCollectionViewCell {
-                cell.contentImage.image = UIImage(named: "LogoBitcoin")
+                cell.contentImage.image = UIImage(named: "IconIntroBitcoin")
                 
                 cell.contentDescriptionLabel.text = APP_NAME + " provides a POS (Point of Sale) solution for businesses to accept Bitcoin. We convert Bitcoin into USD with the real-time exchange rate and automatically initiate a transfer into the bank account of your choice."
-                cell.contentDescriptionLabel.font = UIFont.systemFontOfSize(14)
+                cell.contentDescriptionLabel.font = UIFont(name: "MyriadPro-Regular", size: 17)
                 cell.contentDescriptionLabel.lineBreakMode = .ByWordWrapping
                 cell.contentDescriptionLabel.numberOfLines = 7
                 cell.contentDescriptionLabel.textAlignment = .Center
                 cell.contentDescriptionLabel.alpha = 1
 
                 cell.contentLabel.text = "Accept Bitcoin"
-                cell.contentLabel.font = UIFont.systemFontOfSize(18)
+                cell.contentLabel.font = UIFont(name: "MyriadPro-Regular", size: 24)
                 cell.contentLabel.alpha = 0.9
                 cell.contentLabel.textColor = UIColor.whiteColor()
                 cell.getStartedButton.hidden = true
@@ -151,17 +151,17 @@ extension OnboardingViewController {
                 cell.getStartedButton.setTitleColor(UIColor.lightBlue(), forState: .Normal)
                 cell.getStartedButton.setTitleColor(UIColor.darkBlue(), forState: .Highlighted)
                 
-                cell.contentImage.image = UIImage(named: "LogoApplePay")
+                cell.contentImage.image = UIImage(named: "IconIntroTouch")
                 
                 cell.contentDescriptionLabel.text = APP_NAME + " enables users to utilize Apple Pay to process secured payments for performed services.  We enable both peer-to-peer as well as peer-to-merchant payments with a single touch."
-                cell.contentDescriptionLabel.font = UIFont.systemFontOfSize(14)
+                cell.contentDescriptionLabel.font = UIFont(name: "MyriadPro-Regular", size: 17)
                 cell.contentDescriptionLabel.lineBreakMode = .ByWordWrapping
                 cell.contentDescriptionLabel.numberOfLines = 7
                 cell.contentDescriptionLabel.textAlignment = .Center
                 cell.contentDescriptionLabel.alpha = 1
                 
                 cell.contentLabel.text = "Apple Pay Integration"
-                cell.contentLabel.font = UIFont.systemFontOfSize(18)
+                cell.contentLabel.font = UIFont(name: "MyriadPro-Regular", size: 24)
                 cell.contentLabel.alpha = 0.9
                 cell.contentLabel.textColor = UIColor.whiteColor()
                 cell.getStartedButton.hidden = false
