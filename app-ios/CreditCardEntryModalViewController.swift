@@ -46,6 +46,10 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
         configureView()
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
+    
     func configureView() {
         
         // screen width and height:
@@ -56,18 +60,19 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.barTintColor = UIColor.lightGrayColor()
         
-        creditCardLogoImageView.frame = CGRect(x: 125, y: 35, width: 30, height: 30)
+        creditCardLogoImageView.frame = CGRect(x: 125, y: 50, width: 30, height: 30)
         creditCardLogoImageView.image = paymentTextField.brandImage
         creditCardLogoImageView.contentMode = .ScaleAspectFit
         self.view.addSubview(creditCardLogoImageView)
         
         let paymentMaskView = UIView()
-        paymentMaskView.backgroundColor = UIColor.redColor()
-        paymentMaskView.frame = CGRect(x: 10, y: 125, width: 40, height: 40)
+        paymentMaskView.backgroundColor = UIColor.offWhite()
+        paymentMaskView.frame = CGRect(x: 0, y: 115, width: 42, height: 40)
         self.view.addSubview(paymentMaskView)
         self.view.bringSubviewToFront(paymentMaskView)
+        self.view.superview?.bringSubviewToFront(paymentMaskView)
         
-        paymentTextField.frame = CGRect(x: 10, y: 105, width: 260, height: 60)
+        paymentTextField.frame = CGRect(x: 0, y: 105, width: 260, height: 60)
         paymentTextField.textColor = UIColor.lightBlue()
         paymentTextField.textErrorColor = UIColor.brandRed()
         paymentTextField.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
@@ -76,14 +81,16 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
         paymentTextField.delegate = self
         addSubviewWithBounce(paymentTextField, parentView: self, duration: 0.3)
         paymentTextField.becomeFirstResponder()
+        self.view.sendSubviewToBack(paymentTextField)
         
+        submitCreditCardButton.userInteractionEnabled = false
         submitCreditCardButton.frame = CGRect(x: 0, y: 220, width: 280, height: 60)
         submitCreditCardButton.layer.borderColor = UIColor.whiteColor().CGColor
         submitCreditCardButton.layer.borderWidth = 0
         submitCreditCardButton.layer.cornerRadius = 0
         submitCreditCardButton.layer.masksToBounds = true
-        submitCreditCardButton.setBackgroundColor(UIColor.iosBlue(), forState: .Normal)
-        submitCreditCardButton.setBackgroundColor(UIColor.iosBlue().lighterColor(), forState: .Highlighted)
+        submitCreditCardButton.setBackgroundColor(UIColor.lightBlue().lighterColor(), forState: .Normal)
+        submitCreditCardButton.setBackgroundColor(UIColor.lightBlue().lighterColor(), forState: .Highlighted)
         var attribs: [String: AnyObject] = [:]
         attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
@@ -122,6 +129,7 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
     @IBAction func save(sender: UIButton) {
         submitCreditCardButton.userInteractionEnabled = false
         addActivityIndicatorButton(UIActivityIndicatorView(), button: submitCreditCardButton, color: .White)
+
         if let card = paymentTextField.card {
             STPAPIClient.sharedClient().createTokenWithCard(card) { (token, error) -> Void in
                 if let error = error  {
@@ -143,7 +151,9 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
         creditCardLogoImageView.alpha = 1
         creditCardLogoImageView.image = paymentTextField.brandImage
         if(paymentTextField.isValid) {
-            paymentTextField.endEditing(true)
+            submitCreditCardButton.setBackgroundColor(UIColor.brandGreen(), forState: .Normal)
+            submitCreditCardButton.setBackgroundColor(UIColor.brandGreen().lighterColor(), forState: .Highlighted)
+            submitCreditCardButton.userInteractionEnabled = true
         }
     }
     

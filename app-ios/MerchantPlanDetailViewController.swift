@@ -85,19 +85,6 @@ class MerchantPlanDetailViewController: UIViewController {
 
     }
     
-//    func shouldUseContentViewFrameForPresentationController(presentationController: MZFormSheetPresentationController) -> Bool {
-//        return true
-//    }
-//    
-//    func contentViewFrameForPresentationController(presentationController: MZFormSheetPresentationController, currentFrame: CGRect) -> CGRect {
-//        print(currentFrame.size.height)
-//        print(currentFrame.origin.y)
-//        var currentFrame = currentFrame
-//        currentFrame.size.height = 250
-//        currentFrame.origin.y = 20
-//        return currentFrame
-//    }
-    
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		278F38ABFB35EDAA24E7A2BC /* Pods_app_watchos_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6959C28B834901781B0C0FCC /* Pods_app_watchos_Extension.framework */; };
+		30043B3B1D45698100594385 /* BankACHConfirmationModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30043B3A1D45698100594385 /* BankACHConfirmationModalViewController.swift */; };
+		30043B3D1D456B2A00594385 /* BankListModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30043B3C1D456B2A00594385 /* BankListModalViewController.swift */; };
 		300780CD1D29ABD200618984 /* AccountVerificationTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300780CC1D29ABD200618984 /* AccountVerificationTutorialViewController.swift */; };
 		30089F431CF93CA600A2496B /* MerchantPlansViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30089F421CF93CA600A2496B /* MerchantPlansViewController.swift */; };
 		30089F451CFA6E4300A2496B /* MerchantPlanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30089F441CFA6E4300A2496B /* MerchantPlanCell.xib */; };
@@ -22,7 +24,6 @@
 		300E42331CB71362004316CF /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E42321CB71362004316CF /* Card.swift */; };
 		3015ADC31CE3B1110053D220 /* RiskTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015ADC21CE3B1110053D220 /* RiskTutorialViewController.swift */; };
 		302010CA1CAF3B05007D5E7E /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302010C91CAF3B05007D5E7E /* Notification.swift */; };
-		3020A6821D44E86500B24B44 /* BankListModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3020A6811D44E86500B24B44 /* BankListModalViewController.swift */; };
 		3020A6861D44FE8E00B24B44 /* BankConnectedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3020A6851D44FE8E00B24B44 /* BankConnectedCell.swift */; };
 		3020A6881D44FEA000B24B44 /* BankACHConnectedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3020A6871D44FEA000B24B44 /* BankACHConnectedCell.xib */; };
 		3020A68A1D45072000B24B44 /* BankACHConnectedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3020A6891D45072000B24B44 /* BankACHConnectedCell.swift */; };
@@ -234,6 +235,8 @@
 		09792DCB26D2F1A099596766 /* Pods-protonpay-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-protonpay-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-protonpay-ios/Pods-protonpay-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		1F47764297D847A2B25B7D81 /* Pods_argent_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_argent_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B614FB4245DEA1791296CAF /* Pods-app-watchos Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-watchos Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-app-watchos Extension/Pods-app-watchos Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		30043B3A1D45698100594385 /* BankACHConfirmationModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankACHConfirmationModalViewController.swift; path = "app-ios/BankACHConfirmationModalViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30043B3C1D456B2A00594385 /* BankListModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankListModalViewController.swift; path = "app-ios/BankListModalViewController.swift"; sourceTree = SOURCE_ROOT; };
 		300780CC1D29ABD200618984 /* AccountVerificationTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountVerificationTutorialViewController.swift; path = "app-ios/AccountVerificationTutorialViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30089F421CF93CA600A2496B /* MerchantPlansViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = MerchantPlansViewController.swift; path = "app-ios/MerchantPlansViewController.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		30089F441CFA6E4300A2496B /* MerchantPlanCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MerchantPlanCell.xib; path = "app-ios/MerchantPlanCell.xib"; sourceTree = SOURCE_ROOT; };
@@ -253,7 +256,6 @@
 		302010D31CB016ED007D5E7E /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		302010D61CB016ED007D5E7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		302010D81CB016ED007D5E7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3020A6811D44E86500B24B44 /* BankListModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankListModalViewController.swift; path = "app-ios/fonts/BankListModalViewController.swift"; sourceTree = SOURCE_ROOT; };
 		3020A6851D44FE8E00B24B44 /* BankConnectedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankConnectedCell.swift; path = "app-ios/BankConnectedCell.swift"; sourceTree = SOURCE_ROOT; };
 		3020A6871D44FEA000B24B44 /* BankACHConnectedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BankACHConnectedCell.xib; path = "app-ios/BankACHConnectedCell.xib"; sourceTree = SOURCE_ROOT; };
 		3020A6891D45072000B24B44 /* BankACHConnectedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankACHConnectedCell.swift; path = "app-ios/BankACHConnectedCell.swift"; sourceTree = SOURCE_ROOT; };
@@ -718,6 +720,8 @@
 				30089F461CFA860E00A2496B /* MerchantPlanCell.swift */,
 				30089F421CF93CA600A2496B /* MerchantPlansViewController.swift */,
 				30089F481CFBDE9000A2496B /* MerchantPlanDetailViewController.swift */,
+				3020A6871D44FEA000B24B44 /* BankACHConnectedCell.xib */,
+				3020A6891D45072000B24B44 /* BankACHConnectedCell.swift */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -833,7 +837,8 @@
 				30CF713A1D012B1E007B5E17 /* CreditCardEntryModalViewController.swift */,
 				30CF71491D0485F2007B5E17 /* PersonInformationEntryModalViewController.swift */,
 				30CF71381D01238A007B5E17 /* IdentitySSNModalViewController.swift */,
-				3020A6811D44E86500B24B44 /* BankListModalViewController.swift */,
+				30043B3C1D456B2A00594385 /* BankListModalViewController.swift */,
+				30043B3A1D45698100594385 /* BankACHConfirmationModalViewController.swift */,
 			);
 			name = Modals;
 			sourceTree = "<group>";
@@ -952,8 +957,6 @@
 		30DB9B781C9CFC2300871253 /* Bank */ = {
 			isa = PBXGroup;
 			children = (
-				3020A6871D44FEA000B24B44 /* BankACHConnectedCell.xib */,
-				3020A6891D45072000B24B44 /* BankACHConnectedCell.swift */,
 				3020A6851D44FE8E00B24B44 /* BankConnectedCell.swift */,
 				30C2DAE41CA4392E003AFD8B /* AddBankViewController.swift */,
 				30879A4E1D12F10300D3DF01 /* BankManualAddViewController.swift */,
@@ -1477,6 +1480,7 @@
 				3020A6861D44FE8E00B24B44 /* BankConnectedCell.swift in Sources */,
 				30C2DAAD1CA43795003AFD8B /* AuthViewController.swift in Sources */,
 				30C2DAC51CA43841003AFD8B /* SearchViewController.swift in Sources */,
+				30043B3D1D456B2A00594385 /* BankListModalViewController.swift in Sources */,
 				30C2DA5B1CA4366C003AFD8B /* AppDelegate.swift in Sources */,
 				300E42311CB7123E004316CF /* CreditCardListViewController.swift in Sources */,
 				30C2DAE51CA4392E003AFD8B /* AddBankViewController.swift in Sources */,
@@ -1549,6 +1553,7 @@
 				30C2DAF91CA43975003AFD8B /* User.swift in Sources */,
 				30960EFF1CE3D7C100749695 /* TransferViewController.swift in Sources */,
 				300E422D1CB56E10004316CF /* Plaid.swift in Sources */,
+				30043B3B1D45698100594385 /* BankACHConfirmationModalViewController.swift in Sources */,
 				30C2DA961CA4372D003AFD8B /* PasscodeSettingsViewController.swift in Sources */,
 				30C2DAEB1CA43934003AFD8B /* BankTableViewCell.swift in Sources */,
 				30CF71391D01238A007B5E17 /* IdentitySSNModalViewController.swift in Sources */,
@@ -1562,7 +1567,6 @@
 				30879A4F1D12F10300D3DF01 /* BankManualAddViewController.swift in Sources */,
 				30C2DB171CA439F4003AFD8B /* paykloud_iosTests.swift in Sources */,
 				308A348A1CCA803200AAF66F /* History.swift in Sources */,
-				3020A6821D44E86500B24B44 /* BankListModalViewController.swift in Sources */,
 				30CF714F1D052D55007B5E17 /* SubscriptionsListDetailViewController.swift in Sources */,
 				306DF00F1CDA68AB00864CAE /* RiskProfileViewController.swift in Sources */,
 				30C2DAC31CA4383B003AFD8B /* NotificationViewController.swift in Sources */,

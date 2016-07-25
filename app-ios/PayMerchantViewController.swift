@@ -33,6 +33,10 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
     
     var paymentMethod: String = "None"
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,9 +61,6 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         let screen = UIScreen.mainScreen().bounds
         _ = screen.size.width
         _ = screen.size.height
-        
-        self.navigationController?.navigationBar.translucent = true
-        self.navigationController?.navigationBar.barTintColor = UIColor.lightGrayColor()
         
         merchantLabel.frame = CGRect(x: 0, y: 35, width: 280, height: 20)
         // merchantLabel.text = "Pay " + (detailUser?.first_name)!
@@ -157,16 +158,16 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
                 self.paymentMethod = "Apple Pay"
             }
         }))
-        actionController.addAction(Action("ACH", style: .Default, handler: { action in
+        actionController.addAction(Action("ACH Transfer", style: .Default, handler: { action in
             let _ = Timeout(0.5) {
                 self.showACHModal(self)
                 self.paymentMethod = "ACH"
             }
         }))
-        actionController.addAction(Action("Credit Card", style: .Default, handler: { action in
+        actionController.addAction(Action("Credit or Debit Card", style: .Default, handler: { action in
             let _ = Timeout(0.5) {
                 self.showCreditCardModal(self)
-                self.paymentMethod = "Credit Card"
+                self.paymentMethod = "Card"
             }
         }))
         actionController.addSection(ActionSection())
@@ -421,7 +422,8 @@ extension PayMerchantViewController {
             let amount = (str! as NSString).floatValue
             presentedViewController.detailAmount = amount
             presentedViewController.paymentType = "once"
-            presentedViewController.bankId = ""
+            presentedViewController.planId = ""
+            // send an empty plan id as this is a onetime payment
             
             // Be sure to update current module on storyboard
             self.presentViewController(formSheetController, animated: true, completion: nil)

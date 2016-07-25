@@ -278,17 +278,13 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                         let locationStr: NSMutableAttributedString = NSMutableAttributedString(string: address_city + ", " + address_country)
                         // locationStr.appendAttributedString(attachmentString)
                         self.locationLabel.attributedText = locationStr
-                    } else if let address_city = acct?.address_city, let address_country = acct?.address_country {
-                        let locationStr: NSMutableAttributedString = NSMutableAttributedString(string: "Unknown, " + address_country)
-                        // locationStr.appendAttributedString(attachmentString)
-                        self.locationLabel.attributedText = locationStr
                     } else {
                         let locationStr: NSMutableAttributedString = NSMutableAttributedString(string: "Unknown")
                         locationStr.appendAttributedString(attachmentString)
                         self.locationLabel.attributedText = locationStr
                         showGlobalNotification("Profile Incomplete", duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandYellow())
                     }
-                    addSubviewWithFade(self.locationLabel, parentView: self, duration: 0.8)
+                    addSubviewWithFade(self.locationLabel, parentView: self, duration: 0)
                 } else {
                     // profile information is required, show tutorial button
                 }
@@ -523,6 +519,14 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         userImageView.layer.borderColor = UIColor(rgba: "#fff").colorWithAlphaComponent(0.3).CGColor
         
         User.getProfile({ (user, error) in
+            
+            let acv = UIActivityIndicatorView(activityIndicatorStyle: .White)
+            acv.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            acv.startAnimating()
+            self.activityIndicator.center = self.userImageView.center
+            self.userImageView.addSubview(acv)
+            addActivityIndicatorView(acv, view: self.userImageView, color: .White)
+            self.userImageView.bringSubviewToFront(acv)
             
             if error != nil {
                 let alert = UIAlertController(title: "Error", message: "Could not load profile \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)

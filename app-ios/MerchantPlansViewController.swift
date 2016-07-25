@@ -122,7 +122,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         self.view.layer.shadowOffset = CGSizeMake(2.0, 2.0)
         
         self.navigationController?.navigationBar.translucent = true
-        self.navigationController?.navigationBar.barTintColor = UIColor.lightGrayColor()
+        self.navigationController?.navigationBar.barTintColor = UIColor.lightBlue()
         
         tableView.registerClass(MerchantPlanCell.self, forCellReuseIdentifier: cellReuseIdendifier)
         self.view.addSubview(tableView)
@@ -143,7 +143,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         navBar.translucent = false
         navBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.lightBlue(),
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 18)!
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!
         ]
         self.view.addSubview(navBar);
         let navItem = UINavigationItem(title: "@" + (detailUser?.username)! + " plans");
@@ -330,7 +330,6 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         return UIStatusBarStyle.LightContent
     }
     
-    
     // MARK: DZNEmptyDataSet delegate
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
@@ -386,7 +385,7 @@ extension MerchantPlansViewController: STPPaymentCardTextFieldDelegate, PKPaymen
                 self.showApplePayModal(self, tag: tag)
             }
         }))
-        actionController.addAction(Action("Credit Card", style: .Default, handler: { action in
+        actionController.addAction(Action("Credit or Debit Card", style: .Default, handler: { action in
             let _ = Timeout(0.5) {
                 print("showing credit card modal")
                 self.paymentMethod = "Credit Card"

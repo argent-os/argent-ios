@@ -16,6 +16,8 @@ import XLActionController
 import MZFormSheetPresentationController
 import TransitionTreasury
 import TransitionAnimation
+import EasyTipView
+import Crashlytics
 
 class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
     
@@ -25,11 +27,15 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
     
     @IBOutlet weak var stacks: UIStackView!
     
+    private var tipView = EasyTipView(text: "This is an " + APP_NAME + " user's profile page, from here you can make one-time or recurring payments", preferences: EasyTipView.globalPreferences)
+
+    let tutorialButton = UIButton()
+
     let paymentTextField = STPPaymentCardTextField()
     
     var saveButton: UIButton! = nil;
     
-    let lbl:UILabel = UILabel()
+    let companyTitleLabel:UILabel = UILabel()
 
     var detailUser: User? {
         didSet {
@@ -72,7 +78,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             
             let cardView: UIView = UIView()
             cardView.backgroundColor = UIColor.whiteColor()
-            cardView.frame = CGRectMake(35, 135, screenWidth-70, screenHeight*0.6)
+            cardView.frame = CGRectMake(35, 135, screenWidth-70, 270)
             cardView.contentMode = .ScaleToFill
             cardView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
             cardView.layer.masksToBounds = true
@@ -82,9 +88,9 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             addSubviewWithShadow(UIColor.lightBlue(), radius: 10.0, offsetX: 0.0, offsetY: 5.0, opacity: 0.2, parentView: self, childView: cardView)
             
             let userImageView: UIImageView = UIImageView()
-            userImageView.frame = CGRectMake(screenWidth / 2, 0, 50, 50)
+            userImageView.frame = CGRectMake(55, 150, 50, 50)
             userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-            userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 245)
+//            userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 245)
             userImageView.backgroundColor = UIColor.clearColor()
             userImageView.layer.cornerRadius = userImageView.frame.size.height/2
             userImageView.layer.masksToBounds = true
@@ -98,19 +104,73 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             
             // Name textfield
             if detailUser.business_name != "" {
-                lbl.text = detailUser.business_name
+                companyTitleLabel.text = detailUser.business_name
             } else if detailUser.first_name != "" && detailUser.last_name != "" {
-                lbl.text = detailUser.first_name + " " + detailUser.last_name
+                companyTitleLabel.text = detailUser.first_name + " " + detailUser.last_name
             } else {
-                lbl.text = detailUser.username
+                companyTitleLabel.text = detailUser.username
             }
-            lbl.frame = CGRectMake(0, 230, screenWidth, 130)
-            lbl.textAlignment = .Center
-            lbl.textColor = UIColor.lightBlue()
-            lbl.font = UIFont(name: "MyriadPro-Regular", size: 18)!
-            lbl.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-            addSubviewWithFade(lbl, parentView: self, duration: 0.8)
-            self.view.bringSubviewToFront(lbl)
+            companyTitleLabel.frame = CGRectMake(115, 100, 200, 130)
+            companyTitleLabel.textAlignment = .Left
+            companyTitleLabel.textColor = UIColor.lightBlue()
+            companyTitleLabel.font = UIFont(name: "MyriadPro-Regular", size: 18)!
+            companyTitleLabel.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
+            addSubviewWithFade(companyTitleLabel, parentView: self, duration: 0.8)
+            self.view.bringSubviewToFront(companyTitleLabel)
+            
+            // Send message button
+            let sendMessageButton = UIButton()
+            sendMessageButton.frame = CGRect(x: 115, y: 165, width: 200, height: 40.0)
+            sendMessageButton.setTitleColor(UIColor.skyBlue(), forState: .Normal)
+            sendMessageButton.setTitleColor(UIColor.skyBlue().lighterColor(), forState: .Highlighted)
+            sendMessageButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
+            sendMessageButton.setBackgroundColor(UIColor.clearColor().lighterColor(), forState: .Highlighted)
+            sendMessageButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 14)!
+            sendMessageButton.setTitle("Send Message", forState: .Normal)
+            sendMessageButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
+            sendMessageButton.addTarget(self, action: #selector(SearchDetailViewController.showMessageView(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            sendMessageButton.addTarget(self, action: #selector(SearchDetailViewController.showMessageView(_:)), forControlEvents: UIControlEvents.TouchUpOutside)
+            //sendMessageButton.layer.cornerRadius = 10
+            sendMessageButton.layer.borderColor = UIColor.skyBlue().CGColor
+            sendMessageButton.layer.borderWidth = 0
+            sendMessageButton.addTarget(self, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
+            addSubviewWithFade(sendMessageButton, parentView: self, duration: 0.8)
+            
+            // Share button
+            let shareButton = UIButton()
+            shareButton.frame = CGRect(x: cardView.frame.width-5, y: 150, width: 20, height: 28)
+            shareButton.setTitleColor(UIColor.skyBlue(), forState: .Normal)
+            shareButton.setTitleColor(UIColor.skyBlue().lighterColor(), forState: .Highlighted)
+            shareButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
+            shareButton.setBackgroundColor(UIColor.clearColor().lighterColor(), forState: .Highlighted)
+            shareButton.setBackgroundImage(UIImage(named: "IconShare"), forState: .Normal)
+            shareButton.setBackgroundImage(UIImage(named: "IconShare")?.alpha(0.5), forState: .Highlighted)
+            shareButton.contentMode = .ScaleAspectFit
+            shareButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 14)!
+            shareButton.setTitle("", forState: .Normal)
+            shareButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
+            shareButton.addTarget(self, action: #selector(self.shareButtonClicked(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            shareButton.addTarget(self, action: #selector(self.shareButtonClicked(_:)), forControlEvents: UIControlEvents.TouchUpOutside)
+            //shareButton.layer.cornerRadius = 10
+            shareButton.addTarget(self, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
+            addSubviewWithFade(shareButton, parentView: self, duration: 0.8)
+            
+            tutorialButton.frame = CGRect(x: self.view.frame.width/2-10, y: 500, width: 20, height: 20)
+            tutorialButton.setTitleColor(UIColor.skyBlue(), forState: .Normal)
+            tutorialButton.setTitleColor(UIColor.skyBlue().lighterColor(), forState: .Highlighted)
+            tutorialButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
+            tutorialButton.setBackgroundColor(UIColor.clearColor().lighterColor(), forState: .Highlighted)
+            tutorialButton.setBackgroundImage(UIImage(named: "ic_question"), forState: .Normal)
+            tutorialButton.setBackgroundImage(UIImage(named: "ic_question")?.alpha(0.5), forState: .Highlighted)
+            tutorialButton.contentMode = .ScaleAspectFit
+            tutorialButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 14)!
+            tutorialButton.setTitle("", forState: .Normal)
+            tutorialButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
+            tutorialButton.addTarget(self, action: #selector(self.tutorialButtonClicked(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            tutorialButton.addTarget(self, action: #selector(self.tutorialButtonClicked(_:)), forControlEvents: UIControlEvents.TouchUpOutside)
+            //tutorialButton.layer.cornerRadius = 10
+            tutorialButton.addTarget(self, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
+            addSubviewWithFade(tutorialButton, parentView: self, duration: 0.8)
             
             // User image
             let pic = detailUser.picture
@@ -141,32 +201,32 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             navItem.leftBarButtonItem?.tintColor = UIColor.mediumBlue()
             navBar.setItems([navItem], animated: true)
             
-            // Send message button
-            let sendMessageButton = UIButton()
-            sendMessageButton.frame = CGRect(x: 35, y: cardView.layer.frame.height-40,  width: self.view.layer.frame.width-70, height: 60.0)
-            sendMessageButton.setTitleColor(UIColor.skyBlue(), forState: .Normal)
-            sendMessageButton.setTitleColor(UIColor.skyBlue().lighterColor(), forState: .Highlighted)
-            sendMessageButton.setBackgroundColor(UIColor.whiteColor(), forState: .Normal)
-            sendMessageButton.setBackgroundColor(UIColor.offWhite().lighterColor(), forState: .Highlighted)
-            sendMessageButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 16)!
-            sendMessageButton.setTitle("Send Message", forState: .Normal)
-            sendMessageButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
-            sendMessageButton.addTarget(self, action: #selector(SearchDetailViewController.showMessageView(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-            sendMessageButton.addTarget(self, action: #selector(SearchDetailViewController.showMessageView(_:)), forControlEvents: UIControlEvents.TouchUpOutside)
-            //sendMessageButton.layer.cornerRadius = 10
-            sendMessageButton.layer.borderColor = UIColor.skyBlue().CGColor
-            sendMessageButton.layer.borderWidth = 0
-            sendMessageButton.addTarget(self, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
-            addSubviewWithBounce(sendMessageButton, parentView: self, duration: 0.8)
+            // Enable ACH Button
+            let enableACHButton = UIButton()
+            enableACHButton.frame = CGRect(x: 35, y: cardView.layer.frame.height-40,  width: self.view.layer.frame.width-70, height: 60.0)
+            enableACHButton.setTitleColor(UIColor.skyBlue(), forState: .Normal)
+            enableACHButton.setTitleColor(UIColor.skyBlue(), forState: .Highlighted)
+            enableACHButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
+            enableACHButton.setBackgroundColor(UIColor.whiteColor().lighterColor(), forState: .Highlighted)
+            enableACHButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 14)!
+            enableACHButton.setTitle("Enable ACH Transfers", forState: .Normal)
+            enableACHButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
+            enableACHButton.addTarget(self, action: #selector(SearchDetailViewController.showACHModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            enableACHButton.addTarget(self, action: #selector(SearchDetailViewController.showACHModal(_:)), forControlEvents: UIControlEvents.TouchUpOutside)
+            //enableACHButton.layer.cornerRadius = 10
+            enableACHButton.layer.borderColor = UIColor.skyBlue().CGColor
+            enableACHButton.layer.borderWidth = 0
+            enableACHButton.addTarget(self, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
+            self.view.addSubview(enableACHButton)
             
             // View plans Button
             let viewPlansButton = UIButton()
-            viewPlansButton.frame = CGRect(x: 35, y: cardView.layer.frame.height+20,  width: self.view.layer.frame.width-70, height: 60.0)
+            viewPlansButton.frame = CGRect(x: 35, y: cardView.layer.frame.height+19,  width: self.view.layer.frame.width-70, height: 60.0)
             viewPlansButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
             viewPlansButton.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
             viewPlansButton.setBackgroundColor(UIColor.skyBlue(), forState: .Normal)
             viewPlansButton.setBackgroundColor(UIColor.skyBlue().lighterColor(), forState: .Highlighted)
-            viewPlansButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 16)!
+            viewPlansButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 14)!
             viewPlansButton.setTitle("View Plans", forState: .Normal)
             viewPlansButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
             viewPlansButton.addTarget(self, action: #selector(SearchDetailViewController.viewPlansModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
@@ -175,13 +235,13 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             viewPlansButton.layer.borderColor = UIColor.skyBlue().CGColor
             viewPlansButton.layer.borderWidth = 0
             viewPlansButton.addTarget(self, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
-            addSubviewWithBounce(viewPlansButton, parentView: self, duration: 0.8)
+            self.view.addSubview(viewPlansButton)
             
             
             let payButton = UIButton()
             payButton.frame = CGRect(x: 35, y: cardView.layer.frame.height+75,  width: self.view.layer.frame.width-70, height: 60.0)
             payButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(1), forState: .Normal)
-            payButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 16)!
+            payButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 14)!
             if detailUser.business_name != "" {
                 payButton.setTitle("Pay " + detailUser.business_name, forState: .Normal)
             } else if detailUser.first_name != "" {
@@ -200,7 +260,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             payButton.layer.borderWidth = 1.5
             payButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
             payButton.addTarget(self, action: #selector(SearchDetailViewController.payMerchantModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-            addSubviewWithBounce(payButton, parentView: self, duration: 0.8)
+            self.view.addSubview(payButton)
             let rectShape = CAShapeLayer()
             rectShape.bounds = payButton.frame
             rectShape.position = payButton.center
@@ -215,7 +275,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
                 userImageView.frame = CGRect(x: screenWidth/2-25, y: 80, width: 50, height: 50)
                 userImageView.layer.cornerRadius = 5
                 sendMessageButton.frame = CGRect(x: 35, y: cardView.layer.frame.height-60,  width: self.view.layer.frame.width-70, height: 50.0)
-                lbl.frame = CGRectMake(0, 90, screenWidth, 130)
+                companyTitleLabel.frame = CGRectMake(0, 90, screenWidth, 130)
                 viewPlansButton.frame = CGRect(x: 35, y: cardView.layer.frame.height-10,  width: self.view.layer.frame.width-70, height: 50.0)
                 payButton.frame = CGRect(x: 35, y: cardView.layer.frame.height+40,  width: self.view.layer.frame.width-70, height: 50.0)
                 
@@ -263,7 +323,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
         let navigationController = self.storyboard!.instantiateViewControllerWithIdentifier("viewPlansFormSheetController") as! UINavigationController
         let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
         
-        // Initialize and style the terms and conditions modal
+        // Initialize and style the view plans modal
         formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
         formSheetController.presentationController?.contentViewSize = CGSizeMake(280, screenHeight*0.6)
         formSheetController.presentationController?.shouldUseMotionEffect = true
@@ -328,3 +388,81 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
 
 }
 
+extension SearchDetailViewController {
+    func shareButtonClicked(sender: UIButton) {
+        let textToShare = "This is my user profile on the " + APP_NAME + " app, and my username is @" + (detailUser?.username)!
+        
+        if let myWebsite = NSURL(string: APP_URL) {
+            let objectsToShare = [textToShare, myWebsite]
+            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            
+            activityVC.popoverPresentationController?.sourceView = sender
+            self.presentViewController(activityVC, animated: true, completion: nil)
+        }
+    }
+}
+
+
+extension SearchDetailViewController {
+    func tutorialButtonClicked(sender: UIButton) {
+        tipView.show(forView: self.tutorialButton, withinSuperview: self.view)
+        
+        Answers.logCustomEventWithName("Search detail profile tutorial presented",
+                                       customAttributes: [:])
+    }
+}
+
+extension SearchDetailViewController {
+    func showACHAgreementModal(sender: UIButton) {
+
+    }
+}
+
+extension SearchDetailViewController {
+    // MARK: ACH modal
+    
+    func showACHModal(sender: AnyObject) {
+        let navigationController = self.storyboard!.instantiateViewControllerWithIdentifier("bankListModalNavigationController") as! UINavigationController
+        let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
+        
+        print("showing ach modal")
+        // Initialize and style the terms and conditions modal
+        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
+        formSheetController.presentationController?.contentViewSize = CGSizeMake(280, 400)
+        formSheetController.presentationController?.shouldUseMotionEffect = true
+        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
+        formSheetController.presentationController?.containerView?.sizeToFit()
+        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
+        formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
+        formSheetController.presentationController?.shouldCenterVertically = true
+        formSheetController.presentationController?.shouldCenterHorizontally = true
+        formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.CenterVertically
+        formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
+        formSheetController.contentViewCornerRadius = 10
+        formSheetController.allowDismissByPanningPresentedView = true
+        formSheetController.interactivePanGestureDismissalDirection = .All;
+        
+        // Blur will be applied to all MZFormSheetPresentationControllers by default
+        MZFormSheetPresentationController.appearance().shouldApplyBackgroundBlurEffect = true
+        
+        let presentedViewController = navigationController.viewControllers.first as! BankListModalViewController
+        
+        // keep passing along user data to modal
+        presentedViewController.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
+        presentedViewController.navigationItem.leftItemsSupplementBackButton = true
+        
+        // send detail user information for delegated charge
+        presentedViewController.detailUser = detailUser
+        
+//        var str = ""
+//        str.removeAtIndex(str.characters.indices.first!) // remove first letter
+        let amount = Float(123.00) //(str as NSString).floatValue
+        presentedViewController.detailAmount = amount
+        presentedViewController.paymentType = "once"
+        presentedViewController.planId = ""
+        // send an empty plan id as this is a onetime payment
+        
+        // Be sure to update current module on storyboard
+        self.presentViewController(formSheetController, animated: true, completion: nil)
+    }
+}

@@ -21,6 +21,10 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
     
     let submitSSNButton = UIButton()
 
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

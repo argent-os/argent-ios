@@ -29,6 +29,10 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
 
     let noButton = UIButton()
 
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

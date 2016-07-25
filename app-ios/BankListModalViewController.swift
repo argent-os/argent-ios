@@ -40,7 +40,11 @@ class BankListModalViewController: UIViewController, UITableViewDelegate, UITabl
     
     let currencyFormatter = NSNumberFormatter()
     
+    var planId: String?
+    
     var paymentMethod: String = "None"
+    
+    var paymentType: String?
     
     var paymentSuccessSignal: Signal? = Signal()
     
@@ -53,8 +57,6 @@ class BankListModalViewController: UIViewController, UITableViewDelegate, UITabl
     var globalTag: Int?
     
     var detailAmount: Float?
-
-    var paymentType: String?
     
     var bankId: String?
     
@@ -72,6 +74,10 @@ class BankListModalViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func viewDidAppear(animated: Bool) {
         self.childViewControllerForStatusBarStyle()?.setNeedsStatusBarAppearanceUpdate()
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
     
     override func viewDidLoad() {
@@ -144,7 +150,7 @@ class BankListModalViewController: UIViewController, UITableViewDelegate, UITabl
         navBar.translucent = false
         navBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.lightBlue(),
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 18)!
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 14)!
         ]
         self.view.addSubview(navBar);
         let navItem = UINavigationItem(title: "Select ACH Bank");
@@ -197,22 +203,6 @@ class BankListModalViewController: UIViewController, UITableViewDelegate, UITabl
             self.tableView.reloadData()
         })
     }
-    
-    func stopAnimation(sender: AnyObject, button: AvePurchaseButton) {
-        //        ** throws kitchen sink **
-        //        print("stopping animation")
-        //        self.paymentCancelSignal?.emit()
-        //        AvePurchaseButton().setButtonState(AvePurchaseButtonState.Normal, animated: true)
-        //        paymentCancelListener = self.paymentCancelSignal!.once {
-        //            print("payment finish executed")
-        //            button.setButtonState(AvePurchaseButtonState.Normal, animated: true)
-        //        }
-    }
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
-    }
-    
     
     // MARK: DZNEmptyDataSet delegate
     
@@ -369,7 +359,6 @@ extension BankListModalViewController {
             }
         }
     }
-
 }
 
 extension BankListModalViewController {
@@ -383,6 +372,30 @@ extension BankListModalViewController {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        self.selectedRow = indexPath.row
+        print(banksArray![self.selectedRow!].id)
+        self.performSegueWithIdentifier("confirmACHTransferView", sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "confirmACHTransferView" {
+            let destination = segue.destinationViewController as! BankACHConfirmationModalViewController
+            destination.bankId = banksArray![self.selectedRow!].id
+            destination.bankFingerprint = banksArray![self.selectedRow!].fingerprint
+            destination.bankAccountHolderName = banksArray![self.selectedRow!].account_holder_name
+            destination.bankAccountHolderType = banksArray![self.selectedRow!].account_holder_type
+            destination.bankName = banksArray![self.selectedRow!].bank_name
+            destination.bankLast4 = banksArray![self.selectedRow!].last4
+            destination.bankCountry = banksArray![self.selectedRow!].country
+            destination.bankCurrency = banksArray![self.selectedRow!].currency
+            destination.bankRoutingNumer = banksArray![self.selectedRow!].routing_number
+            destination.bankVerificationStatus = banksArray![self.selectedRow!].status
+            destination.detailUser = detailUser
+            destination.detailAmount = detailAmount
+            destination.planId = planId
+            destination.paymentType = paymentType
+            
+        }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
