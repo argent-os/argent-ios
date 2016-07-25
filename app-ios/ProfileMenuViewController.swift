@@ -208,7 +208,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                 self!.loadProfile()
                 self!.configureHeader()
                 self!.tableView.tableHeaderView = ParallaxHeaderView.init(frame: CGRectMake(0, 0, CGRectGetWidth(self!.view.bounds), 220));
-                self!.opaqueView.frame = CGRectMake(0, 148, screenWidth, 70)
+                self!.opaqueView.frame = CGRectMake(0, 150, screenWidth, 70)
                 self!.opaqueView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
                 addSubviewWithFade(self!.opaqueView, parentView: self!, duration: 0.5)
             })
@@ -297,39 +297,39 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         self.locationLabel.textColor = UIColor.whiteColor()
 
         splitter.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.1)
-        splitter.frame = CGRect(x: screenWidth*0.333-0.5, y: 148, width: 1, height: 70)
+        splitter.frame = CGRect(x: screenWidth*0.333-0.5, y: 150, width: 1, height: 70)
         let _ = Timeout(0.05) {
             addSubviewWithFade(self.splitter, parentView: self, duration: 1.2)
         }
         
         splitter2.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.1)
-        splitter2.frame = CGRect(x: screenWidth*0.666-0.5, y: 148, width: 1, height: 70)
+        splitter2.frame = CGRect(x: screenWidth*0.666-0.5, y: 150, width: 1, height: 70)
         let _ = Timeout(0.1) {
             addSubviewWithFade(self.splitter2, parentView: self, duration: 1.2)
         }
         
-        self.subscriptionsCountLabel.frame = CGRectMake(20, 148, 80, 70)
+        self.subscriptionsCountLabel.frame = CGRectMake(20, 150, 80, 70)
         self.subscriptionsCountLabel.textAlignment = NSTextAlignment.Center
         self.subscriptionsCountLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
         self.subscriptionsCountLabel.numberOfLines = 0
         self.subscriptionsCountLabel.textColor = UIColor.whiteColor().colorWithAlphaComponent(0.75)
         self.view.bringSubviewToFront(subscriptionsCountLabel)
 
-        self.customersCountLabel.frame = CGRectMake(screenWidth*0.5-40, 148, 80, 70)
+        self.customersCountLabel.frame = CGRectMake(screenWidth*0.5-40, 150, 80, 70)
         self.customersCountLabel.textAlignment = NSTextAlignment.Center
         self.customersCountLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
         self.customersCountLabel.numberOfLines = 0
         self.customersCountLabel.textColor = UIColor.whiteColor().colorWithAlphaComponent(0.75)
         self.view.bringSubviewToFront(customersCountLabel)
 
-        self.plansCountLabel.frame = CGRectMake(screenWidth-100, 148, 80, 70)
+        self.plansCountLabel.frame = CGRectMake(screenWidth-100, 150, 80, 70)
         self.plansCountLabel.textAlignment = NSTextAlignment.Center
         self.plansCountLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
         self.plansCountLabel.numberOfLines = 0
         self.plansCountLabel.textColor = UIColor.whiteColor().colorWithAlphaComponent(0.75)
         self.view.bringSubviewToFront(plansCountLabel)
         
-        self.opaqueView.frame = CGRectMake(0, 148, screenWidth, 70)
+        self.opaqueView.frame = CGRectMake(0, 150, screenWidth, 70)
         self.opaqueView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
         addSubviewWithFade(opaqueView, parentView: self, duration: 0.5)
     }

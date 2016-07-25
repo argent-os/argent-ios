@@ -129,7 +129,6 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             sendMessageButton.setTitle("Send Message", forState: .Normal)
             sendMessageButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
             sendMessageButton.addTarget(self, action: #selector(SearchDetailViewController.showMessageView(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-            sendMessageButton.addTarget(self, action: #selector(SearchDetailViewController.showMessageView(_:)), forControlEvents: UIControlEvents.TouchUpOutside)
             //sendMessageButton.layer.cornerRadius = 10
             sendMessageButton.layer.borderColor = UIColor.skyBlue().CGColor
             sendMessageButton.layer.borderWidth = 0
@@ -150,12 +149,11 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             shareButton.setTitle("", forState: .Normal)
             shareButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
             shareButton.addTarget(self, action: #selector(self.shareButtonClicked(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-            shareButton.addTarget(self, action: #selector(self.shareButtonClicked(_:)), forControlEvents: UIControlEvents.TouchUpOutside)
             //shareButton.layer.cornerRadius = 10
             shareButton.addTarget(self, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
             addSubviewWithFade(shareButton, parentView: self, duration: 0.8)
             
-            tutorialButton.frame = CGRect(x: self.view.frame.width/2-10, y: 500, width: 20, height: 20)
+            tutorialButton.frame = CGRect(x: self.view.frame.width/2-10, y: 480, width: 20, height: 20)
             tutorialButton.setTitleColor(UIColor.skyBlue(), forState: .Normal)
             tutorialButton.setTitleColor(UIColor.skyBlue().lighterColor(), forState: .Highlighted)
             tutorialButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
@@ -205,14 +203,13 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             let enableACHButton = UIButton()
             enableACHButton.frame = CGRect(x: 35, y: cardView.layer.frame.height-40,  width: self.view.layer.frame.width-70, height: 60.0)
             enableACHButton.setTitleColor(UIColor.skyBlue(), forState: .Normal)
-            enableACHButton.setTitleColor(UIColor.skyBlue(), forState: .Highlighted)
+            enableACHButton.setTitleColor(UIColor.skyBlue().lighterColor(), forState: .Highlighted)
             enableACHButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
             enableACHButton.setBackgroundColor(UIColor.whiteColor().lighterColor(), forState: .Highlighted)
             enableACHButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 14)!
             enableACHButton.setTitle("Enable ACH Transfers", forState: .Normal)
             enableACHButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
             enableACHButton.addTarget(self, action: #selector(SearchDetailViewController.showACHModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-            enableACHButton.addTarget(self, action: #selector(SearchDetailViewController.showACHModal(_:)), forControlEvents: UIControlEvents.TouchUpOutside)
             //enableACHButton.layer.cornerRadius = 10
             enableACHButton.layer.borderColor = UIColor.skyBlue().CGColor
             enableACHButton.layer.borderWidth = 0
@@ -230,7 +227,6 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             viewPlansButton.setTitle("View Plans", forState: .Normal)
             viewPlansButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
             viewPlansButton.addTarget(self, action: #selector(SearchDetailViewController.viewPlansModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-            viewPlansButton.addTarget(self, action: #selector(SearchDetailViewController.viewPlansModal(_:)), forControlEvents: UIControlEvents.TouchUpOutside)
             //viewPlansButton.layer.cornerRadius = 10
             viewPlansButton.layer.borderColor = UIColor.skyBlue().CGColor
             viewPlansButton.layer.borderWidth = 0
@@ -272,13 +268,15 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             
             if(screenHeight < 500) {
                 cardView.frame = CGRectMake(35, 90, screenWidth-70, screenHeight*0.6)
-                userImageView.frame = CGRect(x: screenWidth/2-25, y: 80, width: 50, height: 50)
+                userImageView.frame = CGRect(x: 55, y: 110, width: 50, height: 50)
                 userImageView.layer.cornerRadius = 5
-                sendMessageButton.frame = CGRect(x: 35, y: cardView.layer.frame.height-60,  width: self.view.layer.frame.width-70, height: 50.0)
-                companyTitleLabel.frame = CGRectMake(0, 90, screenWidth, 130)
+                sendMessageButton.frame = CGRect(x: 55, y: 170,  width: self.view.layer.frame.width-70, height: 50.0)
+                companyTitleLabel.frame = CGRectMake(55, 110, screenWidth, 130)
+                companyTitleLabel.autoresizingMask = [.None, .None]
+                shareButton.frame = CGRect(x: cardView.frame.width-5, y: 110, width: 20, height: 28)
                 viewPlansButton.frame = CGRect(x: 35, y: cardView.layer.frame.height-10,  width: self.view.layer.frame.width-70, height: 50.0)
                 payButton.frame = CGRect(x: 35, y: cardView.layer.frame.height+40,  width: self.view.layer.frame.width-70, height: 50.0)
-                
+                tutorialButton.frame = CGRect(x: self.view.frame.width/2-10, y: 400, width: 20, height: 20)
                 let rectShape = CAShapeLayer()
                 rectShape.bounds = payButton.frame
                 rectShape.position = payButton.center

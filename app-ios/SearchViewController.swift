@@ -317,6 +317,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchController.searchBar.placeholder = "Enter username or full name"
         tblSearchResults.reloadData()
         searchOverlayView.removeFromSuperview()
+        self.tblSearchResults.scrollEnabled = true
+        self.tblSearchResults.alwaysBounceVertical = true
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
@@ -324,6 +326,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchController.searchBar.placeholder = ""
         loadUserAccounts()
         addSubviewWithFade(searchOverlayView, parentView: self, duration: 0.3)
+        self.tblSearchResults.scrollEnabled = false
+        self.tblSearchResults.alwaysBounceVertical = false
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {

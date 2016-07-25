@@ -385,7 +385,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         cell.lblAmount?.text = ""
         cell.lblDate?.text = ""
         if let amount = item?.amount {
-            let currencyText = formatCurrency(amount, fontName: "MyriadPro-Regular", superSize: 14, fontSize: 24, offsetSymbol: 5, offsetCents: 5)
+            let currencyText = formatCurrency(amount, fontName: "MyriadPro-Regular", superSize: 12, fontSize: 22, offsetSymbol: 6, offsetCents: 6)
             
             if Double(amount)!/100 < 0 {
                 // cell.lblCreditDebit?.text = "Debit"
@@ -678,18 +678,6 @@ extension HomeViewController {
             }, loadingView: loadingView)
         tableView.dg_setPullToRefreshFillColor(UIColor.clearColor())
         tableView.dg_setPullToRefreshBackgroundColor(UIColor.clearColor())
-        
-        // Transparent navigation bar
-//        self.navigationController?.navigationBar.barTintColor = UIColor.lightBlue()
-//        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
-//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-//        self.navigationController?.navigationBar.shadowImage = UIImage()
-//        self.navigationController?.navigationBar.translucent = true
-//        self.navigationController?.navigationBar.titleTextAttributes = [
-//            NSForegroundColorAttributeName : UIColor.mediumBlue(),
-//            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 18.0)!
-//        ]
-        
     }
 }
 

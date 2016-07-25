@@ -402,19 +402,35 @@ func formatCurrency(amount: String, fontName: String, superSize: CGFloat, fontSi
     let x = amount.substringWithRange(r)
     let amt = formatter.stringFromNumber(Float(x)!/100)
     let font:UIFont? = UIFont(name: fontName, size: fontSize)
-    let fontSuper:UIFont? = UIFont(name: fontName, size: superSize)
     let attString:NSMutableAttributedString = NSMutableAttributedString(string: amt!, attributes: [
         NSFontAttributeName:font!
     ])
-    if Float(x) < 0 {
-        attString.setAttributes([NSFontAttributeName:fontSuper!,NSBaselineOffsetAttributeName:offsetSymbol], range: NSRange(location:1,length:1))
-        attString.setAttributes([NSFontAttributeName:fontSuper!,NSBaselineOffsetAttributeName:offsetCents], range: NSRange(location:(amt?.characters.count)!-2,length:2))
+    
+    let locale = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
+    if locale == "US" {
+        let fontSuper:UIFont? = UIFont(name: fontName, size: superSize)
+        if Float(x) < 0 {
+            attString.setAttributes([NSFontAttributeName:fontSuper!,NSBaselineOffsetAttributeName:offsetSymbol], range: NSRange(location:1,length:1))
+            attString.setAttributes([NSFontAttributeName:fontSuper!,NSBaselineOffsetAttributeName:offsetCents], range: NSRange(location:(amt?.characters.count)!-2,length:2))
+        } else {
+            attString.setAttributes([NSFontAttributeName:fontSuper!,NSBaselineOffsetAttributeName:offsetSymbol], range: NSRange(location:0,length:1))
+            attString.setAttributes([NSFontAttributeName:fontSuper!,NSBaselineOffsetAttributeName:offsetCents], range: NSRange(location:(amt?.characters.count)!-2,length:2))
+        }
+        
+        return attString
+        
     } else {
-        attString.setAttributes([NSFontAttributeName:fontSuper!,NSBaselineOffsetAttributeName:offsetSymbol], range: NSRange(location:0,length:1))
-        attString.setAttributes([NSFontAttributeName:fontSuper!,NSBaselineOffsetAttributeName:offsetCents], range: NSRange(location:(amt?.characters.count)!-2,length:2))
+        
     }
     
     return attString
+}
+
+func currencyStringFromNumber(number: Double) -> String {
+    let formatter = NSNumberFormatter()
+    formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+    formatter.currencyCode = NSLocale.currentLocale().displayNameForKey(NSLocaleCurrencySymbol, value: NSLocaleCurrencyCode)
+    return formatter.stringFromNumber(number)!
 }
 
 func decimalWithString(formatter: NSNumberFormatter, string: String) -> NSDecimalNumber {

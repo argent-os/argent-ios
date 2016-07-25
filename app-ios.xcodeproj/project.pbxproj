@@ -22,7 +22,6 @@
 		300E422D1CB56E10004316CF /* Plaid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E422C1CB56E10004316CF /* Plaid.swift */; };
 		300E42311CB7123E004316CF /* CreditCardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E42301CB7123E004316CF /* CreditCardListViewController.swift */; };
 		300E42331CB71362004316CF /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E42321CB71362004316CF /* Card.swift */; };
-		3015ADC31CE3B1110053D220 /* RiskTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3015ADC21CE3B1110053D220 /* RiskTutorialViewController.swift */; };
 		302010CA1CAF3B05007D5E7E /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302010C91CAF3B05007D5E7E /* Notification.swift */; };
 		3020A6861D44FE8E00B24B44 /* BankConnectedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3020A6851D44FE8E00B24B44 /* BankConnectedCell.swift */; };
 		3020A6881D44FEA000B24B44 /* BankACHConnectedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3020A6871D44FEA000B24B44 /* BankACHConnectedCell.xib */; };
@@ -250,7 +249,6 @@
 		300E422C1CB56E10004316CF /* Plaid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Plaid.swift; path = "app-ios/Plaid.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		300E42301CB7123E004316CF /* CreditCardListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreditCardListViewController.swift; path = "app-ios/CreditCardListViewController.swift"; sourceTree = SOURCE_ROOT; };
 		300E42321CB71362004316CF /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Card.swift; path = "app-ios/Card.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		3015ADC21CE3B1110053D220 /* RiskTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RiskTutorialViewController.swift; path = "app-ios/RiskTutorialViewController.swift"; sourceTree = SOURCE_ROOT; };
 		302010C91CAF3B05007D5E7E /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Notification.swift; path = "app-ios/Notification.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		302010D01CB016ED007D5E7E /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		302010D31CB016ED007D5E7E /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -612,7 +610,6 @@
 			children = (
 				306DF00E1CDA68AB00864CAE /* RiskProfileViewController.swift */,
 				30D5268D1CE34C03001B41BA /* RiskScoreViewController.swift */,
-				3015ADC21CE3B1110053D220 /* RiskTutorialViewController.swift */,
 			);
 			name = Risk;
 			sourceTree = "<group>";
@@ -957,8 +954,8 @@
 		30DB9B781C9CFC2300871253 /* Bank */ = {
 			isa = PBXGroup;
 			children = (
-				3020A6851D44FE8E00B24B44 /* BankConnectedCell.swift */,
 				30C2DAE41CA4392E003AFD8B /* AddBankViewController.swift */,
+				3020A6851D44FE8E00B24B44 /* BankConnectedCell.swift */,
 				30879A4E1D12F10300D3DF01 /* BankManualAddViewController.swift */,
 				30C242C81D144A2400261D55 /* BankManualTutorialViewController.swift */,
 				300E422A1CB47428004316CF /* BankConnectedListTableViewController.swift */,
@@ -1492,7 +1489,6 @@
 				30C242C91D144A2400261D55 /* BankManualTutorialViewController.swift in Sources */,
 				30C2DB1D1CA43A05003AFD8B /* paykloud_iosUITests.swift in Sources */,
 				30C2DADB1CA438A5003AFD8B /* ProfileLabelCell.swift in Sources */,
-				3015ADC31CE3B1110053D220 /* RiskTutorialViewController.swift in Sources */,
 				3064931C1CD6B00500A17B00 /* TutorialHomeViewController.swift in Sources */,
 				30CA455C1CE6DC7000D656E5 /* HistoryDetailViewController.swift in Sources */,
 				3008AA441CF89B6C00AFE855 /* SupportCategoryTableViewController.swift in Sources */,

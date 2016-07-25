@@ -41,6 +41,9 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         // change indicator view style to white
         self.tableView.infiniteScrollIndicatorStyle = .Gray
         
+        // Remove extra splitters in table
+        self.tableView.tableFooterView = UIView()
+        
         // Add infinite scroll handler
         self.tableView.addInfiniteScrollWithHandler { (scrollView) -> Void in
             let tableView = scrollView as! UITableView
@@ -193,6 +196,8 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
                     cell.textLabel?.text = "Application fee refunded"
                 case "balance.available":
                     cell.textLabel?.text = "Your account balance is now available"
+                case "charge.pending":
+                    cell.textLabel?.text = "Charge pending"
                 case "charge.succeeded":
                    cell.textLabel?.text = "Charge succeeded"
                 case "charge.failed":

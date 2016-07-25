@@ -12,6 +12,7 @@ import Crashlytics
 import Alamofire
 import CWStatusBarNotification
 import Stripe
+import M13Checkbox
 
 class BankACHConfirmationModalViewController: UIViewController {
     
@@ -35,7 +36,7 @@ class BankACHConfirmationModalViewController: UIViewController {
     
     var bankCurrency:String?
     
-    var circleView = UIView()
+    var consentACHCheckbox = M13Checkbox()
     
     var submitACHButton = UIButton()
     
@@ -61,12 +62,26 @@ class BankACHConfirmationModalViewController: UIViewController {
         
         self.view.backgroundColor = UIColor.whiteColor()
         
-        circleView.frame = CGRect(x: 80, y: 130, width: 120, height: 120)
-        circleView.backgroundColor = UIColor.clearColor()
-        circleView.layer.cornerRadius = circleView.frame.height/2
-        circleView.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
-        circleView.layer.borderWidth = 1
-        addSubviewWithBounce(circleView, parentView: self, duration: 0.8)
+        let confirmACHText = UILabel()
+        confirmACHText.numberOfLines = 0
+        confirmACHText.text = "By checking below I agree to the Argent ACH terms of service and provide consent with respect to authorization for my bank account to be debited by this merchant."
+        confirmACHText.font = UIFont(name: "MyriadPro-Regular", size: 15)
+        confirmACHText.textColor = UIColor.mediumBlue()
+        confirmACHText.contentMode = .Center
+        confirmACHText.textAlignment = .Center
+        confirmACHText.lineBreakMode = .ByWordWrapping
+        confirmACHText.userInteractionEnabled = true
+        confirmACHText.frame = CGRect(x: 30, y: 60, width: 220, height: 130)
+        addSubviewWithFade(confirmACHText, parentView: self, duration: 1)
+        
+        consentACHCheckbox.frame = CGRect(x: 105, y: 200, width: 70, height: 70)
+        consentACHCheckbox.markType = .Checkmark
+        consentACHCheckbox.stateChangeAnimation = .Spiral
+        consentACHCheckbox.animationDuration = 0.5
+        consentACHCheckbox.addTarget(self, action: #selector(checkState(_:)), forControlEvents: .ValueChanged)
+        consentACHCheckbox.tintColor = UIColor.brandGreen()
+        consentACHCheckbox.secondaryTintColor = UIColor.brandGreen().colorWithAlphaComponent(0.5)
+        addSubviewWithBounce(consentACHCheckbox, parentView: self, duration: 0.8)
         
         submitACHButton.frame = CGRect(x: 0, y: 340, width: 280, height: 60)
         submitACHButton.layer.borderColor = UIColor.whiteColor().CGColor
@@ -90,6 +105,10 @@ class BankACHConfirmationModalViewController: UIViewController {
         submitACHButton.layer.mask = rectShape
         submitACHButton.addTarget(self, action: #selector(self.submit(_:)), forControlEvents: .TouchUpInside)
 
+    }
+    
+    func checkState(sender: AnyObject) {
+        
     }
     
     func submit(sender: AnyObject) {

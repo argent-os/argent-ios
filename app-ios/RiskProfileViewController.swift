@@ -68,7 +68,7 @@ class RiskProfileViewController: UIViewController {
         
         pageHeader.text = "Risk Profile"
         pageHeader.textColor = UIColor.lightBlue()
-        pageHeader.font = UIFont.systemFontOfSize(24, weight: UIFontWeightMedium)
+        pageHeader.font = UIFont(name: "MyriadPro-Regular", size: 24)
         pageHeader.textAlignment = .Center
         pageHeader.frame = CGRect(x: 0, y: 300, width: screenWidth, height: 30)
         self.view.addSubview(pageHeader)
@@ -77,7 +77,7 @@ class RiskProfileViewController: UIViewController {
         pageDescription.numberOfLines = 0
         pageDescription.lineBreakMode = .ByWordWrapping
         pageDescription.textColor = UIColor.lightBlue()
-        pageDescription.font = UIFont.systemFontOfSize(15, weight: UIFontWeightLight)
+        pageDescription.font = UIFont(name: "MyriadPro-Regular", size: 15)
         pageDescription.textAlignment = .Center
         pageDescription.frame = CGRect(x: 0, y: 335, width: screenWidth, height: 50)
         self.view.addSubview(pageDescription)
@@ -97,17 +97,11 @@ class RiskProfileViewController: UIViewController {
         let str = NSAttributedString(string: "See Preview", attributes: attribs)
         previewButton.setAttributedTitle(str, forState: .Normal)
         
-//        enableRiskProfileButton.layer.cornerRadius = 10
-//        enableRiskProfileButton.clipsToBounds = true
-//        enableRiskProfileButton.backgroundColor = UIColor.lightBlue()
-        
-//        self.navigationItem.title = "Risk Profile"
-//        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
-//        self.navigationController?.navigationBar.titleTextAttributes = [
-//            NSFontAttributeName: UIFont.systemFontOfSize(14),
-//            NSForegroundColorAttributeName: UIColor.lightBlue()
-//        ]
-        
+        if(screenHeight < 500) {
+            pageIcon.frame = CGRect(x: screenWidth/2-50, y: 100, width: 100, height: 100)
+            pageHeader.frame = CGRect(x: 0, y: 185, width: screenWidth, height: 30)
+            pageDescription.frame = CGRect(x: 0, y: 210, width: screenWidth, height: 50)
+        }
     }
     
     func enableRiskProfiling(sender: AnyObject) {

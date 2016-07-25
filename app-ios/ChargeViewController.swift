@@ -18,6 +18,7 @@ import TransitionTreasury
 import TransitionAnimation
 import Shimmer
 import Crashlytics
+import Money
 
 class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITextFieldDelegate, UINavigationBarDelegate, ModalTransitionDelegate {
     
@@ -39,11 +40,6 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
 
     let swipeArrowImageView = UIImageView()
     
-    func textFieldDidChange(textField: UITextField) {
-        let text = textField.text!.stringByReplacingOccurrencesOfString(currencyFormatter.currencySymbol, withString: "").stringByReplacingOccurrencesOfString(currencyFormatter.groupingSeparator, withString: "").stringByReplacingOccurrencesOfString(currencyFormatter.decimalSeparator, withString: "")
-        // textField.attributedText = formatCurrency(text, fontName: "HelveticaNeue-Light", superSize: 24, fontSize: 48, offsetSymbol: 12, offsetCents: 12)
-        textField.text = currencyFormatter.stringFromNumber((text as NSString).doubleValue / 100.0)
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -138,7 +134,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         
         // addDoneToolbar()
         
-        chargeInputView.addTarget(self, action: #selector(ChargeViewController.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
+        chargeInputView.addTarget(self, action: #selector(self.textField(_:shouldChangeCharactersInRange:replacementString:)), forControlEvents: UIControlEvents.EditingChanged)
         chargeInputView.frame = CGRect(x: 0, y: 60, width: screenWidth, height: 100)
         chargeInputView.textAlignment = .Center
         chargeInputView.font = UIFont(name: "MyriadPro-Regular", size: 48)!
@@ -187,6 +183,32 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         currencyFormatter.currencyCode = NSLocale.currentLocale().displayNameForKey(NSLocaleCurrencySymbol, value: NSLocaleCurrencyCode)
     }
 
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        // Construct the text that will be in the field if this change is accepted
+        let oldText = chargeInputView.text! as NSString
+        var newText = oldText.stringByReplacingCharactersInRange(range, withString: string) as NSString!
+        var newTextString = String(newText)
+        
+        let digits = NSCharacterSet.decimalDigitCharacterSet()
+        var digitText = ""
+        for c in newTextString.unicodeScalars {
+            if digits.longCharacterIsMember(c.value) {
+                digitText.append(c)
+            }
+        }
+        
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        formatter.locale = NSLocale.currentLocale()
+        let numberFromField = (NSString(string: digitText).doubleValue)/100
+        newText = formatter.stringFromNumber(numberFromField)
+        
+        textField.text = String(newText)
+        
+        return false
+    }
+    
     func interactiveTransition(sender: UIPanGestureRecognizer) {
         switch sender.state {
         case .Began:

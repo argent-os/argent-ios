@@ -158,12 +158,12 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
                 self.paymentMethod = "Apple Pay"
             }
         }))
-        actionController.addAction(Action("ACH Transfer", style: .Default, handler: { action in
-            let _ = Timeout(0.5) {
-                self.showACHModal(self)
-                self.paymentMethod = "ACH"
-            }
-        }))
+//        actionController.addAction(Action("ACH Transfer", style: .Default, handler: { action in
+//            let _ = Timeout(0.5) {
+//                self.showACHModal(self)
+//                self.paymentMethod = "ACH"
+//            }
+//        }))
         actionController.addAction(Action("Credit or Debit Card", style: .Default, handler: { action in
             let _ = Timeout(0.5) {
                 self.showCreditCardModal(self)
