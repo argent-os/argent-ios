@@ -41,6 +41,8 @@ class PasscodeSettingsViewController: UIViewController {
         
         view.backgroundColor = UIColor.whiteColor()
         
+        self.navigationController?.navigationBar.tintColor = UIColor.darkBlue()
+
         updatePasscodeView()
     }
 
@@ -49,10 +51,9 @@ class PasscodeSettingsViewController: UIViewController {
         backgroundView.backgroundColor = UIColor.offWhite()
         
         self.navigationItem.title = "App Security"
-        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont.systemFontOfSize(14),
-            NSForegroundColorAttributeName: UIColor.darkGrayColor()
+            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!,
+            NSForegroundColorAttributeName: UIColor.darkBlue()
         ]
         
         changePasscodeButton.layer.cornerRadius = 10

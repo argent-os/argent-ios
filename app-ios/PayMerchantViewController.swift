@@ -341,7 +341,7 @@ extension PayMerchantViewController {
         formSheetController.presentationController?.containerView?.sizeToFit()
         formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
-        formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.CenterVertically
+        formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.AlwaysAboveKeyboard
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
         formSheetController.contentViewCornerRadius = 10
         formSheetController.allowDismissByPanningPresentedView = true

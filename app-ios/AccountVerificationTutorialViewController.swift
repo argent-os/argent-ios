@@ -62,7 +62,7 @@ class AccountVerificationTutorialViewController: UIViewController {
         titleLabel.frame = CGRect(x: 0, y: 35, width: 300, height: 20)
         titleLabel.text = "Verification Instructions"
         titleLabel.textAlignment = .Center
-        titleLabel.font = UIFont.systemFontOfSize(18, weight: UIFontWeightLight)
+        titleLabel.font = UIFont.systemFontOfSize(18, weight: UIFontWeightRegular)
         titleLabel.textColor = UIColor.lightBlue()
         self.view.addSubview(titleLabel)
         

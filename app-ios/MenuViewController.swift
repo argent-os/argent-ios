@@ -11,6 +11,7 @@ import UIKit
 import TransitionTreasury
 import TransitionAnimation
 import Shimmer
+import KeychainSwift
 
 class MenuViewController: UIViewController, ModalTransitionDelegate {
 
@@ -164,7 +165,7 @@ class MenuViewController: UIViewController, ModalTransitionDelegate {
         ])
         btn3.setAttributedTitle(str3, forState: .Normal)
         btn3.setBackgroundColor(UIColor.offWhite().lighterColor(), forState: .Highlighted)
-        btn3.setImage(UIImage(named: "IconGiftOpen")?.alpha(0.5), forState: .Highlighted)
+        btn3.setImage(UIImage(named: "LogoOutlineDark")?.alpha(0.5), forState: .Highlighted)
         btn3.frame = CGRect(x: 35, y: screenHeight*0.54, width: screenWidth-70, height: 120)
         btn3.layer.cornerRadius = 5
         btn3.layer.masksToBounds = true
@@ -176,9 +177,10 @@ class MenuViewController: UIViewController, ModalTransitionDelegate {
         self.view.bringSubviewToFront(btn3)
         self.view.superview?.bringSubviewToFront(btn3)
         self.view.bringSubviewToFront(btn3)
-        btn3.setImage(UIImage(named: "IconGift"), inFrame: CGRectMake(18, 18, 64, 64), forState: .Normal)
+        btn3.setImage(UIImage(named: "LogoOutlineDark"), inFrame: CGRectMake(18, 18, 64, 64), forState: .Normal)
 
         setupNav()
+
     }
     
     func setupNav() {

@@ -62,19 +62,23 @@ class BankACHConfirmationModalViewController: UIViewController {
         
         self.view.backgroundColor = UIColor.whiteColor()
         
+        guard let business_name = detailUser?.business_name else {
+            return
+        }
+        
         let confirmACHText = UILabel()
         confirmACHText.numberOfLines = 0
-        confirmACHText.text = "By checking below I agree to the Argent ACH terms of service and provide consent with respect to authorization for my bank account to be debited by this merchant."
+        confirmACHText.text = "By checking below I agree to the Argent ACH terms of service and I authorize " + business_name + " to electronically debit my account and, if necessary, electronically credit my account to correct erroneous debits. Please screenshot this page for your records."
         confirmACHText.font = UIFont(name: "MyriadPro-Regular", size: 15)
         confirmACHText.textColor = UIColor.mediumBlue()
         confirmACHText.contentMode = .Center
         confirmACHText.textAlignment = .Center
         confirmACHText.lineBreakMode = .ByWordWrapping
         confirmACHText.userInteractionEnabled = true
-        confirmACHText.frame = CGRect(x: 30, y: 60, width: 220, height: 130)
+        confirmACHText.frame = CGRect(x: 30, y: 50, width: 220, height: 130)
         addSubviewWithFade(confirmACHText, parentView: self, duration: 1)
         
-        consentACHCheckbox.frame = CGRect(x: 105, y: 200, width: 70, height: 70)
+        consentACHCheckbox.frame = CGRect(x: 105, y: 220, width: 70, height: 70)
         consentACHCheckbox.markType = .Checkmark
         consentACHCheckbox.stateChangeAnimation = .Spiral
         consentACHCheckbox.animationDuration = 0.5

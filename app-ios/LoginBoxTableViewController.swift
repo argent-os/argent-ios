@@ -118,6 +118,7 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
             activityIndicator.stopAnimating()
             activityIndicator.hidden = true
         }
+        
         Auth.login(usernameTextField.text!, username: usernameTextField.text!, password: passwordTextField.text!) { (token, grant, username, err) in
             if(grant == true && token != "") {
                 self.activityIndicator.stopAnimating()

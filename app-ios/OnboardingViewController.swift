@@ -109,7 +109,7 @@ extension OnboardingViewController {
                 cell.contentImage.image = UIImage(named: "IconIntroRecurring")
                 
                 cell.contentDescriptionLabel.text = APP_NAME + " allows businesses to create services plans for their customers to control recurring payments over a custom time interval. Take the pain out of getting paid and let our app do the work for you. Set up a payment plan and start getting paid today!"
-                cell.contentDescriptionLabel.font = UIFont(name: "MyriadPro-Regular", size: 17)
+                cell.contentDescriptionLabel.font = UIFont(name: "MyriadPro-Regular", size: 16)
                 cell.contentDescriptionLabel.lineBreakMode = .ByWordWrapping
                 cell.contentDescriptionLabel.numberOfLines = 7
                 cell.contentDescriptionLabel.textAlignment = .Center
@@ -129,7 +129,7 @@ extension OnboardingViewController {
                 cell.contentImage.image = UIImage(named: "IconIntroBitcoin")
                 
                 cell.contentDescriptionLabel.text = APP_NAME + " provides a POS (Point of Sale) solution for businesses to accept Bitcoin. We convert Bitcoin into USD with the real-time exchange rate and automatically initiate a transfer into the bank account of your choice."
-                cell.contentDescriptionLabel.font = UIFont(name: "MyriadPro-Regular", size: 17)
+                cell.contentDescriptionLabel.font = UIFont(name: "MyriadPro-Regular", size: 16)
                 cell.contentDescriptionLabel.lineBreakMode = .ByWordWrapping
                 cell.contentDescriptionLabel.numberOfLines = 7
                 cell.contentDescriptionLabel.textAlignment = .Center
@@ -154,7 +154,7 @@ extension OnboardingViewController {
                 cell.contentImage.image = UIImage(named: "IconIntroTouch")
                 
                 cell.contentDescriptionLabel.text = APP_NAME + " enables users to utilize Apple Pay to process secured payments for performed services.  We enable both peer-to-peer as well as peer-to-merchant payments with a single touch."
-                cell.contentDescriptionLabel.font = UIFont(name: "MyriadPro-Regular", size: 17)
+                cell.contentDescriptionLabel.font = UIFont(name: "MyriadPro-Regular", size: 16)
                 cell.contentDescriptionLabel.lineBreakMode = .ByWordWrapping
                 cell.contentDescriptionLabel.numberOfLines = 7
                 cell.contentDescriptionLabel.textAlignment = .Center

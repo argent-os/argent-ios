@@ -80,6 +80,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         tableView.delegate = self
         tableView.dataSource = self
         tableView.showsVerticalScrollIndicator = false
+        tableView.separatorColor = UIColor.lightBlue().colorWithAlphaComponent(0.3)
         tableView.frame = CGRect(x: 0, y: 65, width: screenWidth, height: screenHeight-110)
         self.view.addSubview(tableView)
         
@@ -104,13 +105,14 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         navBar.translucent = false
         navBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 18)!
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 17)!
         ]
         self.view.addSubview(navBar);
         let navItem = UINavigationItem(title: "Notifications");
         navBar.setItems([navItem], animated: false);
         
         self.loadNotificationItems("100", starting_after: "")
+
     }
     
     private func loadNotificationItems(limit: String, starting_after: String) {

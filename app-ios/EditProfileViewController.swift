@@ -81,12 +81,12 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
         tableView.showsVerticalScrollIndicator = false
         
         self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 60)
-        self.navigationController?.navigationBar.backgroundColor = UIColor.slateBlue()
+        self.navigationController?.navigationBar.backgroundColor = UIColor.skyBlue()
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
         self.navigationItem.title = "Edit Profile"
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont.systemFontOfSize(14),
+            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!,
             NSForegroundColorAttributeName: UIColor.whiteColor()
         ]
         
@@ -318,7 +318,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
             if let x = self {
                 $0.backgroundColor = UIColor.skyBlue()
                 $0.titleLabel.textColor = UIColor.whiteColor()
-                $0.titleLabel.font = .boldSystemFontOfSize(16)
+                $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 16)!
                 $0.tintColor = UIColor.whiteColor()
             }
             }.configure {
@@ -333,7 +333,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                 if let x = self {
                     $0.backgroundColor = UIColor.brandRed()
                     $0.titleLabel.textColor = UIColor.whiteColor()
-                    $0.titleLabel.font = .boldSystemFontOfSize(16)
+                    $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 16)!
                     $0.tintColor = UIColor.whiteColor()
                 }
             }.configure {

@@ -306,7 +306,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                     // Track user action
                     Answers.logCustomEventWithName("User logged in", customAttributes: nil)
                     
-                    showGlobalNotification("Welcome " + (user?.first_name)! + "!", duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.darkBlue())
+                    showGlobalNotification("Welcome " + (user?.first_name)! + "!", duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor(rgba: "#020405"))
                 }
                 
                 if(error != nil) {
@@ -381,7 +381,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         
         let item = self.accountHistoryArray?[indexPath.row]
         cell.selectionStyle = UITableViewCellSelectionStyle.None
-        cell.backgroundColor = UIColor.clearColor()
+        cell.backgroundColor = UIColor.whiteColor()
         cell.lblAmount?.text = ""
         cell.lblDate?.text = ""
         if let amount = item?.amount {
@@ -391,12 +391,12 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 // cell.lblCreditDebit?.text = "Debit"
                 cell.img.image = UIImage(named: "ic_red_dot")
                 cell.lblAmount.attributedText = currencyText // + NSAttributedString(string: "  Auto transfer created")
-                cell.lblAmount?.textColor = UIColor.whiteColor()
+                cell.lblAmount?.textColor = UIColor.lightBlue()
             } else {
                 // cell.lblCreditDebit?.text = "Credit"
                 cell.img.image = UIImage(named: "ic_green_dot")
                 cell.lblAmount.attributedText = currencyText
-                cell.lblAmount?.textColor = UIColor.whiteColor()
+                cell.lblAmount?.textColor = UIColor.lightBlue()
             }
             
             // Identify System Fonts
@@ -416,7 +416,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 let formatted_date = dateFormatter.stringFromDate(converted_date)
                 cell.lblDate?.layer.cornerRadius = 10
                 cell.lblDate?.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
-                cell.lblDate?.textColor = UIColor.whiteColor().colorWithAlphaComponent(0.8)
+                cell.lblDate?.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
                 cell.lblDate?.layer.borderWidth = 0
                 cell.lblDate?.font = UIFont(name: "MyriadPro-Regular", size: 13)
                 cell.lblDate?.text = String(formatted_date) //+ " / uid " + uid
@@ -528,8 +528,11 @@ extension HomeViewController {
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
+        UITabBar.appearance().shadowImage = UIImage()
+        UITabBar.appearance().backgroundImage = UIImage()
+        
         backgroundImageView.frame = CGRect(x: 0, y: -2, width: screenWidth, height: screenHeight+4)
-        backgroundImageView.image = UIImage(named: "BackgroundDashboard")
+        backgroundImageView.image = UIImage(named: "BackgroundGradientBlue")
         addSubviewWithFade(backgroundImageView, parentView: self, duration: 0.5)
         
         if let tabBarController = window?.rootViewController as? UITabBarController {
@@ -631,7 +634,7 @@ extension HomeViewController {
 //        self.view.bringSubviewToFront(logoView)
         
         tableView.frame = CGRect(x: 0, y: 270, width: screenWidth, height: screenHeight-315)
-        tableView.tableHeaderView = headerView
+//        tableView.tableHeaderView = headerView
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorColor = UIColor.lightBlue().colorWithAlphaComponent(0.3)
@@ -668,7 +671,7 @@ extension HomeViewController {
         lblSubtext.attributedText = subtext
         
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
-        loadingView.tintColor = UIColor.lightBlue()
+        loadingView.tintColor = UIColor.whiteColor()
         tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
                 self?.tableView.dg_stopLoading()

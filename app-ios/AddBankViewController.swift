@@ -41,6 +41,7 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
     }
     
     override func viewDidAppear(animated: Bool) {
+        self.navigationController?.navigationBar.tintColor = UIColor.darkBlue()
 //        addBankButton.addTarget(self, action: #selector(AddBankViewController.displayBanks(_:)), forControlEvents: .TouchUpInside)
     }
     
@@ -65,7 +66,7 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         viewAccountsButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
         viewAccountsButton.setBackgroundColor(UIColor.whiteColor().darkerColor(), forState: .Highlighted)
         var attribs: [String: AnyObject] = [:]
-        attribs[NSFontAttributeName] = UIFont.systemFontOfSize(14)
+        attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)!
         attribs[NSForegroundColorAttributeName] = UIColor.lightBlue()
         let str = NSAttributedString(string: "View Accounts", attributes: attribs)
         viewAccountsButton.setAttributedTitle(str, forState: .Normal)
@@ -82,7 +83,7 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         manualConnectBankButton.setBackgroundColor(UIColor.skyBlue(), forState: .Normal)
         manualConnectBankButton.setBackgroundColor(UIColor.skyBlue().darkerColor(), forState: .Highlighted)
         var attribs3: [String: AnyObject] = [:]
-        attribs3[NSFontAttributeName] = UIFont.systemFontOfSize(14)
+        attribs3[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)!
         attribs3[NSForegroundColorAttributeName] = UIColor.whiteColor()
         let str3 = NSAttributedString(string: "Manually Connect", attributes: attribs3)
         manualConnectBankButton.setAttributedTitle(str3, forState: .Normal)
@@ -100,7 +101,7 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         directLoginButton.setBackgroundColor(UIColor.mediumBlue().darkerColor(), forState: .Highlighted)
         directLoginButton.addTarget(self, action: #selector(self.goToLoginBank(_:)), forControlEvents: .TouchUpInside)
         var attribs2: [String: AnyObject] = [:]
-        attribs2[NSFontAttributeName] = UIFont.systemFontOfSize(14)
+        attribs2[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)!
         attribs2[NSForegroundColorAttributeName] = UIColor.whiteColor()
         let str2 = NSAttributedString(string: "Login to Bank", attributes: attribs2)
         directLoginButton.setAttributedTitle(str2, forState: .Normal)
@@ -127,12 +128,12 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         pageDescription.frame = CGRect(x: 0, y: 285, width: screenWidth, height: 50)
         self.view.addSubview(pageDescription)
         
-//        self.navigationItem.title = "Bank Account"
-//        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
-//        self.navigationController?.navigationBar.titleTextAttributes = [
-//            NSFontAttributeName: UIFont.systemFontOfSize(14),
-//            NSForegroundColorAttributeName: UIColor.lightBlue()
-//        ]
+        self.navigationItem.title = "Bank Account"
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!,
+            NSForegroundColorAttributeName: UIColor.darkBlue()
+        ]
+        
         title = "Bank Account"
         if(screenHeight < 500) {
             pageIcon.frame = CGRect(x: screenWidth/2-50, y: 100, width: 100, height: 100)

@@ -25,7 +25,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundDashboard" translatesAutoresizingMaskIntoConstraints="NO" id="Fq8-48-Suy">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundBlueDark" translatesAutoresizingMaskIntoConstraints="NO" id="Fq8-48-Suy">
                     <rect key="frame" x="0.0" y="-7" width="606" height="607"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C9Z-3u-ohd" customClass="PasscodeSignButton" customModule="PasscodeLock">
@@ -548,7 +548,7 @@
         </imageView>
     </objects>
     <resources>
-        <image name="BackgroundDashboard" width="250" height="445"/>
+        <image name="BackgroundBlueDark" width="375" height="667"/>
         <image name="LogoOutline" width="342" height="342"/>
         <image name="LogoRound" width="334" height="334"/>
         <image name="ic_fingerprint" width="86" height="86"/>

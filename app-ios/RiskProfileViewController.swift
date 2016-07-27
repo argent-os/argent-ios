@@ -31,19 +31,18 @@ class RiskProfileViewController: UIViewController {
 
         configure()
     }
-//    
-//    override func prefersStatusBarHidden() -> Bool {
-//        return false
-//    }
-//    
-//    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-//        return .Default
-//    }
-//    
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return false
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .Default
+    }
     
     override func viewDidAppear(animated: Bool) {
+        self.navigationController?.navigationBar.tintColor = UIColor.darkBlue()
 
-        
 //        let score = KeychainSwift().get("riskScore")
 //        print(score)
 //        if score == nil || score == "" {
@@ -92,7 +91,7 @@ class RiskProfileViewController: UIViewController {
         previewButton.setBackgroundColor(UIColor.skyBlue(), forState: .Normal)
         previewButton.setBackgroundColor(UIColor.skyBlue().darkerColor(), forState: .Highlighted)
         var attribs: [String: AnyObject] = [:]
-        attribs[NSFontAttributeName] = UIFont.systemFontOfSize(14)
+        attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)!
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
         let str = NSAttributedString(string: "See Preview", attributes: attribs)
         previewButton.setAttributedTitle(str, forState: .Normal)
@@ -102,6 +101,12 @@ class RiskProfileViewController: UIViewController {
             pageHeader.frame = CGRect(x: 0, y: 185, width: screenWidth, height: 30)
             pageDescription.frame = CGRect(x: 0, y: 210, width: screenWidth, height: 50)
         }
+        
+        self.navigationItem.title = "Risk Profile"
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!,
+            NSForegroundColorAttributeName: UIColor.darkBlue()
+        ]
     }
     
     func enableRiskProfiling(sender: AnyObject) {

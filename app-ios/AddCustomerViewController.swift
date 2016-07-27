@@ -80,7 +80,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         self.view.addSubview(backgroundGradient)
         
         let mainImage = UIImageView()
-        mainImage.image = UIImage(named: "LogoAppShadow")
+        mainImage.image = UIImage(named: "LogoOutlineDark")
         mainImage.frame = CGRect(x: screenWidth/2-35, y: 130, width: 70, height: 70)
         mainImage.contentMode = .ScaleAspectFit
         let _ = Timeout(0.1) {

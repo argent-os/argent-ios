@@ -367,8 +367,8 @@ extension IdentityVerificationViewController {
         // Create left and right button for navigation item
         rightButton = UIBarButtonItem(title: "Encryption", style: .Plain, target: self, action: #selector(self.presentTutorial(_:)))
         rightButton.setTitleTextAttributes([
-            NSForegroundColorAttributeName:UIColor.mediumBlue(),
-            NSFontAttributeName: UIFont.systemFontOfSize(13, weight: UIFontWeightThin)
+            NSForegroundColorAttributeName:UIColor.darkBlue(),
+            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!
             ], forState: UIControlState.Normal)
         // Create two buttons for the navigation item
         navigationItem.rightBarButtonItem = rightButton

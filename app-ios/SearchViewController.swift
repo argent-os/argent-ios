@@ -36,7 +36,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     private var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
-    private var searchOverlayView = UIView()
+    private var searchOverlayMaskView = UIView()
     
     deinit {
         tblSearchResults.dg_removePullToRefresh()
@@ -77,23 +77,23 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-        let placeholderImageView = UIImageView()
-        placeholderImageView.image = UIImage(named: "PlaceholderSearch")
-        placeholderImageView.contentMode = .ScaleAspectFit
-        placeholderImageView.frame = CGRect(x: searchOverlayView.layer.frame.width/2-140, y: searchOverlayView.layer.frame.height/2, width: 280, height: 280)
-        placeholderImageView.center = CGPointMake(self.view.layer.frame.width/2, self.view.layer.frame.height/2-120)
-        searchOverlayView.addSubview(placeholderImageView)
-        searchOverlayView.backgroundColor = UIColor.whiteColor()
-        searchOverlayView.frame = CGRect(x: 0, y: 120, width: screenWidth, height: screenHeight-60)
+        let placeholderMaskImageView = UIImageView()
+        placeholderMaskImageView.image = UIImage(named: "PlaceholderSearch")
+        placeholderMaskImageView.contentMode = .ScaleAspectFit
+        placeholderMaskImageView.frame = CGRect(x: searchOverlayMaskView.layer.frame.width/2-140, y: searchOverlayMaskView.layer.frame.height/2, width: 280, height: 280)
+        placeholderMaskImageView.center = CGPointMake(self.view.layer.frame.width/2, self.view.layer.frame.height/2-120)
+        searchOverlayMaskView.addSubview(placeholderMaskImageView)
+        searchOverlayMaskView.backgroundColor = UIColor.whiteColor()
+        searchOverlayMaskView.frame = CGRect(x: 0, y: 100, width: screenWidth, height: screenHeight-60)
         
         // definespresentationcontext screen
         self.definesPresentationContext = true
-        self.view.backgroundColor = UIColor.slateBlue()
+        self.view.backgroundColor = UIColor.whiteColor()
         
         self.navigationItem.title = "Search"
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.lightBlue(),
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 18)!
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 17)!
         ]
         
         activityIndicator.center = view.center
@@ -305,6 +305,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: UISearchBarDelegate functions
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
         // Setup the Scope Bar
         searchBar.setShowsCancelButton(true, animated: true)
         for ob: UIView in ((searchBar.subviews[0] )).subviews {
@@ -316,18 +319,23 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         shouldShowSearchResults = true
         searchController.searchBar.placeholder = "Enter username or full name"
         tblSearchResults.reloadData()
-        searchOverlayView.removeFromSuperview()
+        searchOverlayMaskView.removeFromSuperview()
         self.tblSearchResults.scrollEnabled = true
         self.tblSearchResults.alwaysBounceVertical = true
+        tblSearchResults.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight-42)
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
         shouldShowSearchResults = false
         searchController.searchBar.placeholder = ""
         loadUserAccounts()
-        addSubviewWithFade(searchOverlayView, parentView: self, duration: 0.3)
+        addSubviewWithFade(searchOverlayMaskView, parentView: self, duration: 0.3)
         self.tblSearchResults.scrollEnabled = false
         self.tblSearchResults.alwaysBounceVertical = false
+        tblSearchResults.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 180)
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {

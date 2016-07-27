@@ -32,7 +32,7 @@ class WebSupportViewController: UIViewController {
         self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
         self.navigationItem.title = "Argent Help Center"
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont.systemFontOfSize(14),
+            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!,
             NSForegroundColorAttributeName: UIColor.whiteColor()
         ]
         

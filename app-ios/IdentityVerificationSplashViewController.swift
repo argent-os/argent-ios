@@ -40,7 +40,6 @@ class IdentityVerificationSplashViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         self.navigationController?.navigationBar.tintColor = UIColor.darkBlue()
-
     }
     
     func configure() {
@@ -78,12 +77,18 @@ class IdentityVerificationSplashViewController: UIViewController {
         goToVerifyButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         goToVerifyButton.setTitleColor(UIColor.offWhite(), forState: .Highlighted)
         goToVerifyButton.setBackgroundColor(UIColor.skyBlue(), forState: .Normal)
-        goToVerifyButton.setBackgroundColor(UIColor.skyBlue().darkerColor(), forState: .Highlighted)
+        goToVerifyButton.setBackgroundColor(UIColor.skyBlue().lighterColor(), forState: .Highlighted)
         var attribs: [String: AnyObject] = [:]
-        attribs[NSFontAttributeName] = UIFont.systemFontOfSize(14)
+        attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)!
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
         let str = NSAttributedString(string: "Verify Identity", attributes: attribs)
         goToVerifyButton.setAttributedTitle(str, forState: .Normal)
+        
+        self.navigationItem.title = "Identity Verification"
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!,
+            NSForegroundColorAttributeName: UIColor.darkBlue()
+        ]
         
         if(screenHeight < 500) {
             pageIcon.frame = CGRect(x: screenWidth/2-50, y: 100, width: 100, height: 100)

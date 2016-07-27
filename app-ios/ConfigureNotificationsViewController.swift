@@ -25,6 +25,7 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configure()
         
         Answers.logCustomEventWithName("Notifications Viewed",
@@ -37,6 +38,10 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .Default
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.navigationController?.navigationBar.tintColor = UIColor.darkBlue()
     }
     
     // MARK: Private
@@ -65,16 +70,15 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
         pscope.permissionLabelColor = UIColor.mediumBlue()
         
         self.navigationItem.title = "Notifications"
-        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont.systemFontOfSize(14),
-            NSForegroundColorAttributeName: UIColor.darkGrayColor()
+            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!,
+            NSForegroundColorAttributeName: UIColor.darkBlue()
         ]
         
         // Create RowFomers
         let pushNotificationsRow = SwitchRowFormer<FormSwitchCell>() {
             $0.titleLabel.text = "Push Notifications"
-            $0.titleLabel.font = UIFont.systemFontOfSize(14)
+            $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 14)!
             $0.switchButton.onTintColor = UIColor.skyBlue()
             }.configure() { cell in
                 getPushState { (val, token, error) in

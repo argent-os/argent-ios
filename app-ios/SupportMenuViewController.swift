@@ -17,10 +17,14 @@ class SupportMenuViewController: UIViewController {
         super.viewDidLoad()
         
         self.navigationItem.title = "Contact Support"
-        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSForegroundColorAttributeName: UIColor.lightBlue()
+            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!,
+            NSForegroundColorAttributeName: UIColor.darkBlue()
         ]
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.navigationController?.navigationBar.tintColor = UIColor.darkBlue()
     }
     
     override func prefersStatusBarHidden() -> Bool {

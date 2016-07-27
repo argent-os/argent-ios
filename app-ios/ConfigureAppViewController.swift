@@ -32,6 +32,10 @@ class ConfigureAppViewController: FormViewController, UIApplicationDelegate {
         return .Default
     }
     
+    override func viewDidAppear(animated: Bool) {
+        self.navigationController?.navigationBar.tintColor = UIColor.darkBlue()
+    }
+    
     // MARK: Private
     
     private func configure() {
@@ -45,16 +49,15 @@ class ConfigureAppViewController: FormViewController, UIApplicationDelegate {
         _ = screen.size.height
         
         self.navigationItem.title = "App Settings"
-        self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont.systemFontOfSize(14),
-            NSForegroundColorAttributeName: UIColor.darkGrayColor()
+            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!,
+            NSForegroundColorAttributeName: UIColor.darkBlue()
         ]
         
         // Create RowFomers
         let configurePOSRowScreenAlive = SwitchRowFormer<FormSwitchCell>() {
             $0.titleLabel.text = "Keep screen alive"
-            $0.titleLabel.font = UIFont.systemFontOfSize(14)
+            $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 14)!
             $0.switchButton.onTintColor = UIColor.skyBlue()
             }.configure() { cell in
                 cell.rowHeight = 60
@@ -73,9 +76,28 @@ class ConfigureAppViewController: FormViewController, UIApplicationDelegate {
                     UIApplication.sharedApplication().idleTimerDisabled = false
                 }
         }
+        let configureCenterMenuRow = SwitchRowFormer<FormSwitchCell>() {
+            $0.titleLabel.text = "Hide center menu text"
+            $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 14)!
+            $0.switchButton.onTintColor = UIColor.skyBlue()
+            }.configure() { cell in
+                cell.rowHeight = 60
+                if(KeychainSwift().getBool("hideCenterMenuText") == true) {
+                    cell.switched = true
+                } else {
+                    cell.switched = false
+                }
+                cell.update()
+            }.onSwitchChanged { on in
+                if(on.boolValue == true) {
+                    KeychainSwift().set(true, forKey: "hideCenterMenuText", withAccess: .None)
+                } else {
+                    KeychainSwift().set(false, forKey: "hideCenterMenuText", withAccess: .None)
+                }
+        }
         let configureThemeRow = SwitchRowFormer<FormSwitchCell>() {
             $0.titleLabel.text = "Alternate Theme"
-            $0.titleLabel.font = UIFont.systemFontOfSize(14)
+            $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 14)!
             $0.switchButton.onTintColor = UIColor.skyBlue()
             }.configure() { cell in
                 cell.rowHeight = 60
@@ -97,7 +119,7 @@ class ConfigureAppViewController: FormViewController, UIApplicationDelegate {
         }
         let configurePOSRowExit = SwitchRowFormer<FormSwitchCell>() {
             $0.titleLabel.text = "Allow exit"
-            $0.titleLabel.font = UIFont.systemFontOfSize(14)
+            $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 14)!
             }.configure() { cell in
                 cell.rowHeight = 60
                 cell.switched = false
