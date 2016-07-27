@@ -60,6 +60,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     private let lblSubtext:UILabel = UILabel()
     
+    private let headerView: UIView = UIView()
+
     private let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.White)
     
     private let graph: BEMSimpleLineGraphView = BEMSimpleLineGraphView(frame: CGRectMake(0, 90, UIScreen.mainScreen().bounds.size.width, 200))
@@ -76,7 +78,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.7)
                 ])
             lblSubtext.attributedText = subtext
-            addSubviewWithFade(lblAccountAvailable, parentView: self, duration: 0.8)
+            self.headerView.addSubview(lblAccountAvailable)
+//            addSubviewWithFade(lblAccountAvailable, parentView: self, duration: 0.8)
         }
         if(sender.selectedSegmentIndex == 1) {
             lblAccountAvailable.removeFromSuperview()
@@ -85,8 +88,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.7)
                 ])
             lblSubtext.attributedText = subtext
-            addSubviewWithFade(lblAccountPending, parentView: self, duration: 0.8)
-
+            self.headerView.addSubview(lblAccountPending)
+//            addSubviewWithFade(lblAccountPending, parentView: self, duration: 0.8)
         }
     }
     
@@ -111,7 +114,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     private func addInfiniteScroll() {
         // Add infinite scroll handler
         // change indicator view style to white
-        self.tableView.infiniteScrollIndicatorStyle = .White
+        self.tableView.infiniteScrollIndicatorStyle = .Gray
         
         // Add infinite scroll handler
         self.tableView.addInfiniteScrollWithHandler { (scrollView) -> Void in
@@ -147,8 +150,10 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     // VIEW DID APPEAR
     override func viewDidAppear(animated: Bool) {
-        self.view.addSubview(balanceSwitch)
-        self.view.bringSubviewToFront(balanceSwitch)
+        headerView.addSubview(balanceSwitch)
+        headerView.bringSubviewToFront(balanceSwitch)
+//        self.view.addSubview(balanceSwitch)
+//        self.view.bringSubviewToFront(balanceSwitch)
         UITextField.appearance().keyboardAppearance = .Light
     }
     
@@ -196,7 +201,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true
         activityIndicator.center = CGPointMake(self.view.layer.frame.width*0.5, self.view.layer.frame.height*0.3)
-        self.view.addSubview(activityIndicator)
+        headerView.addSubview(activityIndicator)
     }
     
     func dateRangeSegmentControl(segment: UISegmentedControl) {
@@ -260,7 +265,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         activityIndicator.center = tableView.center
         activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true
-        self.view.addSubview(activityIndicator)
+        headerView.addSubview(activityIndicator)
         
         if((userAccessToken) != nil) {
             // Get stripe data
@@ -275,10 +280,11 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 formatter.locale = NSLocale.currentLocale() // This is the default
                 
                 self.lblAccountPending.attributedText = formatCurrency(String(pendingBalance), fontName: "MyriadPro-Regular", superSize: 16, fontSize: 32, offsetSymbol: 10, offsetCents: 10)
-                addSubviewWithFade(self.lblAccountPending, parentView: self, duration: 1)
+                self.headerView.addSubview(self.lblAccountPending)
+//                addSubviewWithFade(self.lblAccountPending, parentView: self, duration: 1)
                 self.lblAccountAvailable.attributedText = formatCurrency(String(availableBalance), fontName: "MyriadPro-Regular", superSize: 16, fontSize: 32, offsetSymbol: 10, offsetCents: 10)
-                
-                addSubviewWithFade(self.lblSubtext, parentView: self, duration: 0.5)
+                self.headerView.addSubview(self.lblSubtext)
+//                addSubviewWithFade(self.lblSubtext, parentView: self, duration: 0.5)
             })
             
             // Get user account history
@@ -306,7 +312,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                     // Track user action
                     Answers.logCustomEventWithName("User logged in", customAttributes: nil)
                     
-                    showGlobalNotification("Welcome " + (user?.first_name)! + "!", duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor(rgba: "#020405"))
+                    showGlobalNotification("Welcome " + (user?.first_name)! + "!", duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.darkestBlue())
                 }
                 
                 if(error != nil) {
@@ -531,6 +537,18 @@ extension HomeViewController {
         UITabBar.appearance().shadowImage = UIImage()
         UITabBar.appearance().backgroundImage = UIImage()
         
+        self.view.backgroundColor = UIColor.darkestBlue()
+        
+        // put all content in headerview
+        headerView.backgroundColor = UIColor.clearColor()
+        headerView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 280)
+        
+        let footerView = UIView()
+        footerView.frame = CGRect(x: 0, y: screenHeight-300, width: screenWidth, height: 300)
+        footerView.backgroundColor = tableView.backgroundColor
+        backgroundImageView.addSubview(footerView)
+        
+        // add background image view to take up entire screen, make header color transparent to give parallax effect
         backgroundImageView.frame = CGRect(x: 0, y: -2, width: screenWidth, height: screenHeight+4)
         backgroundImageView.image = UIImage(named: "BackgroundGradientBlue")
         addSubviewWithFade(backgroundImageView, parentView: self, duration: 0.5)
@@ -553,16 +571,6 @@ extension HomeViewController {
         balanceSwitch.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
         balanceSwitch.bringSubviewToFront(balanceSwitch)
         balanceSwitch.addTarget(self, action: #selector(HomeViewController.indexChanged(_:)), forControlEvents: .ValueChanged)
-        
-        // Blurview
-        let bg: UIImageView = UIImageView(frame: CGRectMake(0, 0, screenWidth, screenHeight))
-        bg.contentMode = .ScaleAspectFill
-        bg.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-        bg.layer.masksToBounds = true
-        bg.clipsToBounds = true
-        bg.backgroundColor = UIColor.clearColor()
-        self.view.addSubview(bg)
-        self.view.sendSubviewToBack(bg)
         
         graph.dataSource = self
         graph.frame = CGRect(x: 0, y: 80, width: screenWidth, height: 150)
@@ -589,13 +597,15 @@ extension HomeViewController {
         graph.enableBezierCurve = true
         graph.colorTouchInputLine = UIColor.lightBlue()
         graph.layer.masksToBounds = true
-        addSubviewWithFade(graph, parentView: self, duration: 0.5)
+        headerView.addSubview(graph)
+//        addSubviewWithFade(graph, parentView: self, duration: 0.5)
         
         // split the date segments
         let horizontalSplitter = UIView()
         horizontalSplitter.backgroundColor = UIColor.clearColor()
         horizontalSplitter.frame = CGRect(x: 15.0, y: 260.0, width: screenWidth - 15.0, height: 1)
-        self.view.addSubview(horizontalSplitter)
+//        self.view.addSubview(horizontalSplitter)
+        headerView.addSubview(horizontalSplitter)
         
         let dateRangeSegment: UISegmentedControl = UISegmentedControl(items: ["2W", "1M", "3M", "6M", "1Y"])
         dateRangeSegment.frame = CGRect(x: 45.0, y: 230.0, width: view.bounds.width - 90.0, height: 30.0)
@@ -604,17 +614,9 @@ extension HomeViewController {
         dateRangeSegment.selectedSegmentIndex = 2
         dateRangeSegment.removeBorders()
         dateRangeSegment.addTarget(self, action: #selector(HomeViewController.dateRangeSegmentControl(_:)), forControlEvents: .ValueChanged)
-        addSubviewWithFade(dateRangeSegment, parentView: self, duration: 0.5)
-        
-        let headerView: UIView = UIView(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 40))
-        headerView.backgroundColor = UIColor.clearColor()
-        let headerViewTitle: UILabel = UILabel()
-        headerViewTitle.frame = CGRect(x: 18, y: 15, width: screenWidth, height: 30)
-        headerViewTitle.text = ""
-        headerViewTitle.font = UIFont.systemFontOfSize(14)
-        headerViewTitle.textAlignment = .Left
-        headerViewTitle.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.7)
-        headerView.addSubview(headerViewTitle)
+//        addSubviewWithFade(dateRangeSegment, parentView: self, duration: 0.5)
+        headerView.addSubview(dateRangeSegment)
+        headerView.bringSubviewToFront(dateRangeSegment)
         
         tutorialButton.frame = CGRect(x: screenWidth-40, y: 41, width: 20, height: 20)
         tutorialButton.setImage(UIImage(named: "ic_question"), forState: .Normal)
@@ -622,8 +624,10 @@ extension HomeViewController {
         tutorialButton.setTitleColor(UIColor.redColor(), forState: .Normal)
         tutorialButton.addTarget(self, action: #selector(HomeViewController.presentTutorial(_:)), forControlEvents: .TouchUpInside)
         tutorialButton.addTarget(self, action: #selector(HomeViewController.presentTutorial(_:)), forControlEvents: .TouchUpOutside)
-        self.view.addSubview(tutorialButton)
-        self.view.bringSubviewToFront(tutorialButton)
+        headerView.addSubview(tutorialButton)
+        headerView.bringSubviewToFront(tutorialButton)
+//        self.view.addSubview(tutorialButton)
+//        self.view.bringSubviewToFront(tutorialButton)
         
         logoView.frame = CGRect(x: 20, y: 41, width: 30, height: 30)
         logoView.image = UIImage(named: "LogoOutline")
@@ -633,14 +637,14 @@ extension HomeViewController {
 //        self.view.addSubview(logoView)
 //        self.view.bringSubviewToFront(logoView)
         
-        tableView.frame = CGRect(x: 0, y: 270, width: screenWidth, height: screenHeight-315)
-//        tableView.tableHeaderView = headerView
+        tableView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight-45)
+        tableView.tableHeaderView = headerView
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorColor = UIColor.lightBlue().colorWithAlphaComponent(0.3)
         tableView.showsVerticalScrollIndicator = false
         tableView.backgroundColor = UIColor.clearColor()
-        addSubviewWithFade(tableView, parentView: self, duration: 0.5)
+        addSubviewWithFade(tableView, parentView: self, duration: 1)
         
         lblAccountAvailable.textColor = UIColor.whiteColor()
         lblAccountAvailable.frame = CGRect(x: 0, y: 31, width: screenWidth, height: 60)
@@ -671,6 +675,7 @@ extension HomeViewController {
         lblSubtext.attributedText = subtext
         
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        DGElasticPullToRefreshLoadingViewCircle().frame = CGRect(x: screenWidth/2-15, y: 40, width: 30, height: 30)
         loadingView.tintColor = UIColor.whiteColor()
         tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {

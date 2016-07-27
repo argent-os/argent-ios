@@ -196,6 +196,9 @@ extension UIColor {
     static func paleBlue() -> UIColor {
         return UIColor(rgba: "#99b2c7")
     }
+    static func darkestBlue() -> UIColor {
+        return UIColor(rgba: "#020405")
+    }
     static func mediumBlue() -> UIColor {
         if APP_THEME == "LIGHT" {
             return UIColor(rgba: "#2c3441")
