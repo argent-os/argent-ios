@@ -87,6 +87,8 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.emptyDataSetDelegate = self
+        self.tableView.emptyDataSetSource = self
         // trick to make table lines disappear
         self.tableView.tableFooterView = UIView()
         
@@ -283,7 +285,7 @@ extension CustomersListTableViewController {
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "No customers to show."
+        let str = "No customers to show"
         // let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
         return NSAttributedString(string: str, attributes: bodyAttrs)
     }

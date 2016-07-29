@@ -36,6 +36,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     private var balanceSwitch = UISegmentedControl(items: ["A", "P"])
     
+    private let dateRangeSegment: UISegmentedControl = UISegmentedControl(items: ["2W", "1M", "3M", "6M", "1Y"])
+
     private var logoView = UIImageView()
     
     private var tutorialButton:UIButton = UIButton()
@@ -374,6 +376,10 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     // MARK: TableView Delegate
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.accountHistoryArray?.count > 0 {
+            self.headerView.addSubview(self.dateRangeSegment)
+            self.headerView.bringSubviewToFront(self.dateRangeSegment)
+        }
         return self.accountHistoryArray?.count ?? 0
     }
     
@@ -465,7 +471,7 @@ extension HomeViewController {
     }
     
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
-        return UIImage(named: "IconEmptyCashStack")
+        return UIImage(named: "IconEmptyCashCircle")
     }
     
     func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
@@ -544,9 +550,9 @@ extension HomeViewController {
         headerView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 280)
         
         let footerView = UIView()
-        footerView.frame = CGRect(x: 0, y: screenHeight-300, width: screenWidth, height: 300)
+        footerView.frame = CGRect(x: 0, y: screenHeight-100, width: screenWidth, height: 100)
         footerView.backgroundColor = tableView.backgroundColor
-        backgroundImageView.addSubview(footerView)
+//        backgroundImageView.addSubview(footerView)
         
         // add background image view to take up entire screen, make header color transparent to give parallax effect
         backgroundImageView.frame = CGRect(x: 0, y: -2, width: screenWidth, height: screenHeight+4)
@@ -577,7 +583,7 @@ extension HomeViewController {
         graph.colorTop = UIColor.clearColor()
         graph.colorBottom = UIColor.clearColor()
         graph.colorPoint = UIColor.darkBlue()
-        graph.colorBackgroundPopUplabel = UIColor.skyBlue()
+        graph.colorBackgroundPopUplabel = UIColor.whiteColor()
         graph.delegate = self
         let gradientColors : [CGColor] = [UIColor.neonBlue().CGColor, UIColor.neonYellow().CGColor, UIColor.neonPink().CGColor]
         let colorspace = CGColorSpaceCreateDeviceRGB()
@@ -607,7 +613,6 @@ extension HomeViewController {
 //        self.view.addSubview(horizontalSplitter)
         headerView.addSubview(horizontalSplitter)
         
-        let dateRangeSegment: UISegmentedControl = UISegmentedControl(items: ["2W", "1M", "3M", "6M", "1Y"])
         dateRangeSegment.frame = CGRect(x: 45.0, y: 230.0, width: view.bounds.width - 90.0, height: 30.0)
         //        var y_co: CGFloat = self.view.frame.size.height - 100.0
         //        dateRangeSegment.frame = CGRectMake(10, y_co, width-20, 50.0)
@@ -615,8 +620,6 @@ extension HomeViewController {
         dateRangeSegment.removeBorders()
         dateRangeSegment.addTarget(self, action: #selector(HomeViewController.dateRangeSegmentControl(_:)), forControlEvents: .ValueChanged)
 //        addSubviewWithFade(dateRangeSegment, parentView: self, duration: 0.5)
-        headerView.addSubview(dateRangeSegment)
-        headerView.bringSubviewToFront(dateRangeSegment)
         
         tutorialButton.frame = CGRect(x: screenWidth-40, y: 41, width: 20, height: 20)
         tutorialButton.setImage(UIImage(named: "ic_question"), forState: .Normal)
@@ -675,7 +678,7 @@ extension HomeViewController {
         lblSubtext.attributedText = subtext
         
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
-        DGElasticPullToRefreshLoadingViewCircle().frame = CGRect(x: screenWidth/2-15, y: 40, width: 30, height: 30)
+        loadingView.frame = CGRect(x: 0, y: 100, width: screenWidth, height: 100)
         loadingView.tintColor = UIColor.whiteColor()
         tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {

@@ -12,8 +12,9 @@ import Alamofire
 import SwiftyJSON
 import MCSwipeTableViewCell
 import CellAnimator
+import DZNEmptyDataSet
 
-class BankConnectedListTableViewController: UITableViewController, MCSwipeTableViewCellDelegate {
+class BankConnectedListTableViewController: UITableViewController, MCSwipeTableViewCellDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     var banksArray:Array<Bank>?
     
@@ -61,6 +62,9 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
         // Remove extra splitters in table
         self.tableView.tableFooterView = UIView()
 
+        self.tableView.emptyDataSetSource = self
+        self.tableView.emptyDataSetDelegate = self
+        
         // During startup (viewDidLoad or in storyboard) do:
         self.tableView.allowsMultipleSelectionDuringEditing = false
         self.tableView.showsVerticalScrollIndicator = false
@@ -439,6 +443,36 @@ extension BankConnectedListTableViewController {
         }
         
         return cell
+    }
+}
+
+extension BankConnectedListTableViewController {
+    // Delegate: DZNEmptyDataSet
+    
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let str = "Connected Banks"
+        return NSAttributedString(string: str, attributes: headerAttrs)
+    }
+    
+    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let str = "No banks linked"
+        // let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
+        return NSAttributedString(string: str, attributes: bodyAttrs)
+    }
+    
+    func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
+        return UIImage(named: "IconBank")
+    }
+    
+    func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
+        let str = ""
+        // let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)]
+        return NSAttributedString(string: str, attributes: calloutAttrs)
+    }
+    
+    func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
+//        let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("") as! RecurringBillingViewController
+//        self.presentViewController(viewController, animated: true, completion: nil)
     }
 }
 

@@ -89,8 +89,11 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
         self.viewRefreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.viewRefreshControl.addTarget(self, action: #selector(self.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         self.tableView?.addSubview(viewRefreshControl)
+        
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.emptyDataSetSource = self
+        self.tableView.emptyDataSetDelegate = self
         // trick to make table lines disappear
         self.tableView.tableFooterView = UIView()
         
@@ -281,7 +284,7 @@ extension PlansListTableViewController {
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "No plans to show."
+        let str = "No plans to show"
         // let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
         return NSAttributedString(string: str, attributes: bodyAttrs)
     }

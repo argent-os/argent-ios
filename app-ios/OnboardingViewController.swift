@@ -128,7 +128,7 @@ extension OnboardingViewController {
             if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("onboardingCell", forIndexPath: indexPath) as? OnboardingCollectionViewCell {
                 cell.contentImage.image = UIImage(named: "IconIntroBitcoin")
                 
-                cell.contentDescriptionLabel.text = APP_NAME + " provides a POS (Point of Sale) solution for businesses to accept Bitcoin. We convert Bitcoin into USD with the real-time exchange rate and automatically initiate a transfer into the bank account of your choice."
+                cell.contentDescriptionLabel.text = APP_NAME + " provides a Point of Sale solution for businesses to accept Bitcoin. We convert Bitcoin into USD with the real-time exchange rate and automatically initiate a transfer into the bank account of your choice."
                 cell.contentDescriptionLabel.font = UIFont(name: "MyriadPro-Regular", size: 16)
                 cell.contentDescriptionLabel.lineBreakMode = .ByWordWrapping
                 cell.contentDescriptionLabel.numberOfLines = 7

@@ -213,7 +213,7 @@ class BankListModalViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "No banks linked."
+        let str = "No banks linked"
         //let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
         return NSAttributedString(string: str, attributes: bodyAttrs)
     }

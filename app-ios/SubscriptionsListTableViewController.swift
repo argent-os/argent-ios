@@ -83,6 +83,8 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.emptyDataSetSource = self
+        self.tableView.emptyDataSetDelegate = self
         // trick to make table lines disappear
         self.tableView.tableFooterView = UIView()
         
@@ -298,7 +300,7 @@ extension SubscriptionsListTableViewController {
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "No subscriptions to plans."
+        let str = "No subscriptions to plans"
         // let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
         return NSAttributedString(string: str, attributes: bodyAttrs)
     }

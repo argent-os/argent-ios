@@ -214,7 +214,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             enableACHButton.layer.borderColor = UIColor.skyBlue().CGColor
             enableACHButton.layer.borderWidth = 0
             enableACHButton.addTarget(self, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
-            self.view.addSubview(enableACHButton)
+//            self.view.addSubview(enableACHButton)
             
             // View plans Button
             let viewPlansButton = UIButton()
