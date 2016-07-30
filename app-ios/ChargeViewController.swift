@@ -18,7 +18,7 @@ import TransitionTreasury
 import TransitionAnimation
 import Shimmer
 import Crashlytics
-import Money
+import TRCurrencyTextField
 
 class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, UITextFieldDelegate, UINavigationBarDelegate, ModalTransitionDelegate {
     
@@ -26,7 +26,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
     
     var tr_presentTransition: TRViewControllerTransitionDelegate?
 
-    let chargeInputView = UITextField()
+    let chargeInputView = TRCurrencyTextField()
 
     let currencyFormatter = NSNumberFormatter()
     
@@ -43,7 +43,6 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        chargeInputView.becomeFirstResponder()
         configure()
         setupNav()
     }
@@ -107,6 +106,12 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
     
     func configure() {
         
+        chargeInputView.becomeFirstResponder()
+        let countryCode = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
+        chargeInputView.setCountryCode(countryCode)
+        chargeInputView.setLocale(NSLocale.currentLocale())
+        chargeInputView.addWhiteSpaceOnSymbol = false
+        
         // set up pan gesture recognizers tt
         let pan = UIPanGestureRecognizer(target: self, action: #selector(self.interactiveTransition(_:)))
         pan.delegate = self
@@ -134,7 +139,9 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         
         // addDoneToolbar()
         
-        chargeInputView.addTarget(self, action: #selector(self.textField(_:shouldChangeCharactersInRange:replacementString:)), forControlEvents: UIControlEvents.EditingChanged)
+//        chargeInputView.addTarget(self, action: #selector(self.textField(_:shouldChangeCharactersInRange:replacementString:)), forControlEvents: UIControlEvents.EditingChanged)
+        chargeInputView.clearButtonMode = .Never
+        chargeInputView.borderStyle = .None
         chargeInputView.frame = CGRect(x: 0, y: 60, width: screenWidth, height: 100)
         chargeInputView.textAlignment = .Center
         chargeInputView.font = UIFont(name: "MyriadPro-Regular", size: 48)!
@@ -181,32 +188,6 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
 
         currencyFormatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
         currencyFormatter.currencyCode = NSLocale.currentLocale().displayNameForKey(NSLocaleCurrencySymbol, value: NSLocaleCurrencyCode)
-    }
-
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        
-        // Construct the text that will be in the field if this change is accepted
-        let oldText = chargeInputView.text! as NSString
-        var newText = oldText.stringByReplacingCharactersInRange(range, withString: string) as NSString!
-        var newTextString = String(newText)
-        
-        let digits = NSCharacterSet.decimalDigitCharacterSet()
-        var digitText = ""
-        for c in newTextString.unicodeScalars {
-            if digits.longCharacterIsMember(c.value) {
-                digitText.append(c)
-            }
-        }
-        
-        let formatter = NSNumberFormatter()
-        formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
-        formatter.locale = NSLocale.currentLocale()
-        let numberFromField = (NSString(string: digitText).doubleValue)/100
-        newText = formatter.stringFromNumber(numberFromField)
-        
-        textField.text = String(newText)
-        
-        return false
     }
     
     func interactiveTransition(sender: UIPanGestureRecognizer) {
@@ -315,13 +296,9 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         if(chargeInputView.text == "" || chargeInputView.text == "$0.00") {
             showGlobalNotification("Amount invalid", duration: 5.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
         } else {
-            var str = chargeInputView.text
-            str?.removeAtIndex(str!.characters.indices.first!) // remove first letter
-            let floatValue = (str! as NSString).floatValue
-            let amountInCents = Int(floatValue*100)
-
             // print("calling create charge")
-            createCharge(token, amount: amountInCents)
+            let value = Int(chargeInputView.value)
+            createCharge(token, amount: value)
         }
     }
     
@@ -578,7 +555,7 @@ extension ChargeViewController {
         
         // Initialize and style the terms and conditions modal
         formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
-        formSheetController.presentationController?.contentViewSize = CGSizeMake(280, 280)
+        formSheetController.presentationController?.contentViewSize = CGSizeMake(280, 200)
         formSheetController.presentationController?.shouldUseMotionEffect = true
         formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
         formSheetController.presentationController?.containerView?.sizeToFit()
@@ -599,10 +576,7 @@ extension ChargeViewController {
         presentedViewController.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
         presentedViewController.navigationItem.leftItemsSupplementBackButton = true
         
-        var str = chargeInputView.text
-        str?.removeAtIndex(str!.characters.indices.first!) // remove first letter
-        let intValue = Int((str! as NSString).floatValue*100)
-        presentedViewController.detailAmount = intValue
+        presentedViewController.receiptAmount = chargeInputView.text
         self.presentViewController(formSheetController, animated: true, completion: nil)
 
     }

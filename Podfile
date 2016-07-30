@@ -61,13 +61,12 @@ target 'app-ios' do
 	pod 'Shimmer'
 	pod 'UIScrollView-InfiniteScroll'
 	pod 'Whisper'
-	pod 'MTZWhatsNew'
 	pod 'MCMHeaderAnimated'
 	pod 'EasyTipView'
 	pod 'SCLAlertView'
 	pod 'NVActivityIndicatorView'
-	pod 'SwipeView'
-
+	pod 'TRCurrencyTextField'
+	
 	# Fabric
 	pod 'Fabric'
 	pod 'Crashlytics'

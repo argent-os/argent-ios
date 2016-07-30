@@ -23,7 +23,7 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
     
     var informationTextField = UITextField()
 
-    var detailAmount: Int?
+    var receiptAmount: String?
     
     let yesButton = UIButton()
 
@@ -59,17 +59,17 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
             NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 18.0)!
         ]
         
-        titleLabel.frame = CGRect(x: 0, y: 35, width: 300, height: 20)
+        titleLabel.frame = CGRect(x: 0, y: 35, width: 280, height: 20)
         titleLabel.text = "Would you like a receipt?"
         titleLabel.textAlignment = .Center
         titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 18)
         titleLabel.textColor = UIColor.lightBlue()
         self.view.addSubview(titleLabel)
         
-        informationTextField.frame = CGRect(x: 20, y: 105, width: 260, height: 60)
+        informationTextField.frame = CGRect(x: 0, y: 80, width: 280, height: 60)
         informationTextField.textColor = UIColor.lightBlue()
         informationTextField.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
-        informationTextField.layer.cornerRadius = 10
+        informationTextField.layer.cornerRadius = 0
         informationTextField.layer.borderWidth = 0
         informationTextField.textAlignment = .Center
         informationTextField.autocapitalizationType = .None
@@ -77,13 +77,13 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
         informationTextField.keyboardType = .EmailAddress
         informationTextField.becomeFirstResponder()
 
-        submitInformationButton.frame = CGRect(x: 20, y: 230, width: 260, height: 50)
+        submitInformationButton.frame = CGRect(x: 0, y: 140, width: 280, height: 60)
         submitInformationButton.layer.borderColor = UIColor.whiteColor().CGColor
         submitInformationButton.layer.borderWidth = 0
-        submitInformationButton.layer.cornerRadius = 10
+        submitInformationButton.layer.cornerRadius = 0
         submitInformationButton.layer.masksToBounds = true
-        submitInformationButton.setBackgroundColor(UIColor.lightBlue(), forState: .Normal)
-        submitInformationButton.setBackgroundColor(UIColor.lightBlue().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        submitInformationButton.setBackgroundColor(UIColor.brandGreen(), forState: .Normal)
+        submitInformationButton.setBackgroundColor(UIColor.brandGreen().colorWithAlphaComponent(0.5), forState: .Highlighted)
         var attribs: [String: AnyObject] = [:]
         attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
@@ -91,19 +91,20 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
         submitInformationButton.setAttributedTitle(str, forState: .Normal)
         submitInformationButton.addTarget(self, action: #selector(self.configureBeforeSendingReceipt(_:)), forControlEvents: .TouchUpInside)
         
-        yesButton.setBackgroundColor(UIColor.lightBlue(), forState: .Normal)
-        yesButton.frame = CGRect(x: 60, y: 180, width: 180, height: 50)
+        yesButton.setBackgroundColor(UIColor.skyBlue(), forState: .Normal)
+        yesButton.setBackgroundColor(UIColor.skyBlue().lighterColor(), forState: .Highlighted)
+        yesButton.frame = CGRect(x: 0, y: 140, width: 280, height: 60)
         let yesStr = NSAttributedString(string: "Yes please!", attributes: [
-            NSFontAttributeName: UIFont.systemFontOfSize(14, weight: UIFontWeightThin),
+            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 14)!,
             NSForegroundColorAttributeName:UIColor.whiteColor()
         ])
         let yesStr2 = NSAttributedString(string: "Yes please!", attributes: [
-            NSFontAttributeName: UIFont.systemFontOfSize(14, weight: UIFontWeightThin),
+            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 14)!,
             NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.5)
         ])
         yesButton.setAttributedTitle(yesStr, forState: .Normal)
         yesButton.setAttributedTitle(yesStr2, forState: .Highlighted)
-        yesButton.layer.cornerRadius = 10
+        yesButton.layer.cornerRadius = 0
         yesButton.layer.masksToBounds = true
         yesButton.addTarget(self, action: #selector(yesClicked(_:)), forControlEvents: .TouchUpInside)
         addSubviewWithBounce(yesButton, parentView: self, duration: 0.3)
@@ -111,14 +112,14 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
         
         noButton.setBackgroundColor(UIColor.whiteColor(), forState: .Normal)
         noButton.setBackgroundColor(UIColor.whiteColor(), forState: .Highlighted)
-        noButton.frame = CGRect(x: 20, y: 240, width: 260, height: 50)
-        let noStr = NSAttributedString(string: "No thanks", attributes: [
-            NSFontAttributeName: UIFont.systemFontOfSize(14, weight: UIFontWeightMedium),
-            NSForegroundColorAttributeName:UIColor.lightBlue()
+        noButton.frame = CGRect(x: 0, y: 80, width: 280, height: 50)
+        let noStr = NSAttributedString(string: "No thank you", attributes: [
+            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 14)!,
+            NSForegroundColorAttributeName:UIColor.skyBlue()
         ])
-        let noStr2 = NSAttributedString(string: "No thanks", attributes: [
-            NSFontAttributeName: UIFont.systemFontOfSize(14, weight: UIFontWeightMedium),
-            NSForegroundColorAttributeName:UIColor.lightBlue().colorWithAlphaComponent(0.5)
+        let noStr2 = NSAttributedString(string: "No thank you", attributes: [
+            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 14)!,
+            NSForegroundColorAttributeName:UIColor.skyBlue().colorWithAlphaComponent(0.5)
         ])
         noButton.setAttributedTitle(noStr, forState: .Normal)
         noButton.setAttributedTitle(noStr2, forState: .Highlighted)
@@ -136,9 +137,7 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
     }
     
     func noClicked(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true) { 
-            //
-        }
+        self.dismissViewControllerAnimated(true) { }
     }
 
     func submitCreditCard(sender: AnyObject) {
@@ -164,15 +163,15 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
     
     func configureBeforeSendingReceipt(sender: AnyObject) {
         addActivityIndicatorButton(UIActivityIndicatorView(), button: submitInformationButton, color: .White)
-        if informationTextField.text != "" && detailAmount != 0 {
+        if informationTextField.text != "" && receiptAmount != "" {
             print("sending email receipt")
-            self.sendInformation(self, email: informationTextField.text!, amount: detailAmount!)
+            self.sendInformation(self, email: informationTextField.text!, amount: receiptAmount!)
         } else {
             showGlobalNotification("Amount nil or email empty!", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.neonOrange())
         }
     }
     
-    func sendInformation(sender: AnyObject, email: String, amount: Int) {
+    func sendInformation(sender: AnyObject, email: String, amount: String) {
         // SEND REQUEST TO Argent API ENDPOINT TO SEND RECEIPT
         
         User.getProfile { (user, err) in
@@ -180,14 +179,9 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
             let headers : [String : String] = [
                 "Content-Type": "application/json"
             ]
-            
-            let amt = Float(amount)/100
-            let formatter = NSNumberFormatter()
-            formatter.numberStyle = .CurrencyStyle
-            let strAmt = formatter.stringFromNumber(amt) // "$123.44"
 
             let parameters = [
-                "message": "Hello! \n\n This is an email receipt for a recent transaction made on Argent in the amount of " + strAmt! + " on " + NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .ShortStyle)
+                "message": "Hello! \n\n This is an email receipt for a recent transaction made on Argent in the amount of " + amount + " on " + NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .ShortStyle)
             ]
             
             print("customer email is", email)

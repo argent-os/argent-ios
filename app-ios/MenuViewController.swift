@@ -241,7 +241,7 @@ class MenuViewController: UIViewController, ModalTransitionDelegate {
     
     //Changing Status Bar
     override func prefersStatusBarHidden() -> Bool {
-        return true
+        return false
     }
     
     //Changing Status Bar
