@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		278F38ABFB35EDAA24E7A2BC /* Pods_app_watchos_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6959C28B834901781B0C0FCC /* Pods_app_watchos_Extension.framework */; };
+		30008FFF1D4F7811004E44E6 /* AuthViewControllerStepOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30008FFE1D4F7811004E44E6 /* AuthViewControllerStepOne.swift */; };
+		300090011D4F782F004E44E6 /* AuthViewControllerStepTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300090001D4F782F004E44E6 /* AuthViewControllerStepTwo.swift */; };
+		300090031D4F7847004E44E6 /* AuthViewControllerStepThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300090021D4F7847004E44E6 /* AuthViewControllerStepThree.swift */; };
 		30043B3B1D45698100594385 /* BankACHConfirmationModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30043B3A1D45698100594385 /* BankACHConfirmationModalViewController.swift */; };
 		30043B3D1D456B2A00594385 /* BankListModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30043B3C1D456B2A00594385 /* BankListModalViewController.swift */; };
 		300780CD1D29ABD200618984 /* AccountVerificationTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300780CC1D29ABD200618984 /* AccountVerificationTutorialViewController.swift */; };
@@ -234,6 +237,9 @@
 		09792DCB26D2F1A099596766 /* Pods-protonpay-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-protonpay-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-protonpay-ios/Pods-protonpay-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		1F47764297D847A2B25B7D81 /* Pods_argent_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_argent_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B614FB4245DEA1791296CAF /* Pods-app-watchos Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-watchos Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-app-watchos Extension/Pods-app-watchos Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		30008FFE1D4F7811004E44E6 /* AuthViewControllerStepOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthViewControllerStepOne.swift; path = "app-ios/AuthViewControllerStepOne.swift"; sourceTree = SOURCE_ROOT; };
+		300090001D4F782F004E44E6 /* AuthViewControllerStepTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthViewControllerStepTwo.swift; path = "app-ios/AuthViewControllerStepTwo.swift"; sourceTree = SOURCE_ROOT; };
+		300090021D4F7847004E44E6 /* AuthViewControllerStepThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthViewControllerStepThree.swift; path = "app-ios/AuthViewControllerStepThree.swift"; sourceTree = SOURCE_ROOT; };
 		30043B3A1D45698100594385 /* BankACHConfirmationModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankACHConfirmationModalViewController.swift; path = "app-ios/BankACHConfirmationModalViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30043B3C1D456B2A00594385 /* BankListModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankListModalViewController.swift; path = "app-ios/BankListModalViewController.swift"; sourceTree = SOURCE_ROOT; };
 		300780CC1D29ABD200618984 /* AccountVerificationTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountVerificationTutorialViewController.swift; path = "app-ios/AccountVerificationTutorialViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -450,6 +456,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		30008FFD1D4F77E6004E44E6 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				30008FFE1D4F7811004E44E6 /* AuthViewControllerStepOne.swift */,
+				300090001D4F782F004E44E6 /* AuthViewControllerStepTwo.swift */,
+				300090021D4F7847004E44E6 /* AuthViewControllerStepThree.swift */,
+			);
+			name = Features;
+			sourceTree = "<group>";
+		};
 		3004D6041C9DBE1300499CD0 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
@@ -734,11 +750,12 @@
 		30BECC061C6F92EF00B8A088 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				30008FFD1D4F77E6004E44E6 /* Features */,
 				30718AEB1C8E32E100CB0EEB /* Lock */,
 				30D7B72F1C77880200B64B7F /* Signup */,
+				30C2DAAC1CA43795003AFD8B /* AuthViewController.swift */,
 				30C2DA981CA4373E003AFD8B /* LoginBoxTableViewController.swift */,
 				30C2DA991CA4373E003AFD8B /* LoginViewController.swift */,
-				30C2DAAC1CA43795003AFD8B /* AuthViewController.swift */,
 				300D8BE21CE5461A00FC3B05 /* OnboardingViewController.swift */,
 				308630021CFCDEBD00695215 /* OnboardingCollectionViewCell.swift */,
 				30C2DAAE1CA4379F003AFD8B /* ResetPasswordViewController.swift */,
@@ -1486,6 +1503,7 @@
 				3080730C1CFF6F260070C7FE /* Subscription.swift in Sources */,
 				30C2DAD01CA4386A003AFD8B /* SupportMenuViewController.swift in Sources */,
 				30089F491CFBDE9000A2496B /* MerchantPlanDetailViewController.swift in Sources */,
+				300090011D4F782F004E44E6 /* AuthViewControllerStepTwo.swift in Sources */,
 				30C242C91D144A2400261D55 /* BankManualTutorialViewController.swift in Sources */,
 				30C2DB1D1CA43A05003AFD8B /* paykloud_iosUITests.swift in Sources */,
 				30C2DADB1CA438A5003AFD8B /* ProfileLabelCell.swift in Sources */,
@@ -1560,6 +1578,7 @@
 				30C2DAA61CA4374F003AFD8B /* SignupIndividualViewControllerTwo.swift in Sources */,
 				30C2DAA51CA4374F003AFD8B /* SignupIndividualViewControllerThree.swift in Sources */,
 				30089F471CFA860E00A2496B /* MerchantPlanCell.swift in Sources */,
+				30008FFF1D4F7811004E44E6 /* AuthViewControllerStepOne.swift in Sources */,
 				30879A4F1D12F10300D3DF01 /* BankManualAddViewController.swift in Sources */,
 				30C2DB171CA439F4003AFD8B /* paykloud_iosTests.swift in Sources */,
 				308A348A1CCA803200AAF66F /* History.swift in Sources */,
@@ -1568,6 +1587,7 @@
 				30C2DAC31CA4383B003AFD8B /* NotificationViewController.swift in Sources */,
 				30D526861CDF8675001B41BA /* OptionsCell.swift in Sources */,
 				309E43BE1CA8ADF900279D97 /* WebTermsViewController.swift in Sources */,
+				300090031D4F7847004E44E6 /* AuthViewControllerStepThree.swift in Sources */,
 				306E82301CDAC36400A43505 /* Balance.swift in Sources */,
 				30C2DB1F1CA43A51003AFD8B /* EditProfileViewController.swift in Sources */,
 				308630031CFCDEBD00695215 /* OnboardingCollectionViewCell.swift in Sources */,

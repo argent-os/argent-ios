@@ -107,7 +107,7 @@ class MenuDetailViewController: UIViewController, ModalTransitionDelegate {
         btn2.setAttributedTitle(str2, forState: .Normal)
         btn2.setBackgroundColor(UIColor.offWhite().lighterColor(), forState: .Highlighted)
         btn2.frame = CGRect(x: 35, y: screenHeight*0.32, width: screenWidth-70, height: 120)
-        btn2.setImage(UIImage(named: "IconRuby")?.alpha(0.5), forState: .Highlighted)
+        btn2.setImage(UIImage(named: "IconDiamond")?.alpha(0.5), forState: .Highlighted)
         btn2.layer.cornerRadius = 5
         btn2.backgroundColor = UIColor.whiteColor()
         btn2.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.2).CGColor
@@ -118,7 +118,7 @@ class MenuDetailViewController: UIViewController, ModalTransitionDelegate {
         self.view.bringSubviewToFront(btn2)
         self.view.superview?.bringSubviewToFront(btn2)
         self.view.bringSubviewToFront(btn2)
-        btn2.setImage(UIImage(named: "IconRuby"), inFrame: CGRectMake(18, 18, 64, 64), forState: .Normal)
+        btn2.setImage(UIImage(named: "IconDiamond"), inFrame: CGRectMake(18, 18, 64, 64), forState: .Normal)
 
         let viewPlansImageView = UIImageView()
         viewPlansImageView.backgroundColor = UIColor.whiteColor()

@@ -12,6 +12,7 @@ import CWStatusBarNotification
 import DynamicColor
 import UIKit
 import SCLAlertView
+import LTMorphingLabel
 
 public enum AlertType {
     case Success
@@ -198,6 +199,12 @@ extension UIColor {
     }
     static func darkestBlue() -> UIColor {
         return UIColor(rgba: "#020405")
+    }
+    static func mintGreen() -> UIColor {
+        return UIColor(rgba: "#42d1ae")
+    }
+    static func seaBlue() -> UIColor {
+        return UIColor(rgba: "#1a445c")
     }
     static func mediumBlue() -> UIColor {
         if APP_THEME == "LIGHT" {
@@ -488,6 +495,18 @@ func + (left: NSAttributedString, right: NSAttributedString) -> NSAttributedStri
     result.appendAttributedString(left)
     result.appendAttributedString(right)
     return result
+}
+
+extension UILabel {
+    func adjustAttributedString(text:String, spacing:CGFloat, fontName: String, fontSize: CGFloat, fontColor: UIColor) {
+        let attributedString = NSMutableAttributedString(string: text)
+        attributedString.addAttributes([
+            NSFontAttributeName : UIFont(name: fontName, size: fontSize)!,
+            NSForegroundColorAttributeName : fontColor
+        ], range: NSMakeRange(0, text.characters.count))
+        attributedString.addAttribute(NSKernAttributeName, value: spacing, range: NSMakeRange(0, text.characters.count))
+        self.attributedText = attributedString
+    }
 }
 
 class SKTextField: UITextField {

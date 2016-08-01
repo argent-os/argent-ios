@@ -288,7 +288,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIToolbar.appearance().backgroundColor = UIColor.skyBlue()
                 
         // Tabbar UI
-//        UITabBar.appearance().tintColor = UIColor.slateBlue()
+        UITabBar.appearance().tintColor = UIColor.skyBlue()
 //        UITabBar.appearance().barTintColor = UIColor.whiteColor()
         
         // Globally dark keyboard

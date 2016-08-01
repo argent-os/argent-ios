@@ -101,7 +101,7 @@ class SignupViewControllerZero: UIViewController {
         individualImageView.center = backgroundIndividualImageView.center
         individualImageView.frame = CGRect(x: backgroundIndividualImageView.frame.width/2-40, y: backgroundIndividualImageView.frame.height/2-60, width: 80, height: 80)
         
-        individualCheckbox.frame = CGRect(x: backgroundIndividualImageView.frame.width/2-40, y: backgroundIndividualImageView.frame.height/2-60, width: 80, height: 80)
+        individualCheckbox.frame = CGRect(x: backgroundIndividualImageView.frame.width/2-40, y: backgroundIndividualImageView.frame.height/2-60, width: 81, height: 81)
         individualCheckbox.markType = .Checkmark
         individualCheckbox.stateChangeAnimation = .Spiral
         individualCheckbox.animationDuration = 0.5
@@ -111,13 +111,13 @@ class SignupViewControllerZero: UIViewController {
         
         individualTitle.textColor = UIColor.slateBlue()
         individualTitle.textAlignment = .Center
-        individualTitle.font = UIFont.systemFontOfSize(18)
-        individualTitle.frame = CGRect(x: 0, y: backgroundIndividualImageView.frame.height/2+20, width: screenWidth, height: 40)
+        individualTitle.font = UIFont(name: "MyriadPro-Regular", size: 18)!
+        individualTitle.frame = CGRect(x: 0, y: backgroundIndividualImageView.frame.height/2+22, width: screenWidth, height: 40)
         individualTitle.text = "Individual"
         
         individualSubtitle.textColor = UIColor.slateBlue().colorWithAlphaComponent(0.5)
         individualSubtitle.textAlignment = .Center
-        individualSubtitle.font = UIFont.systemFontOfSize(12)
+        individualSubtitle.font = UIFont(name: "MyriadPro-Regular", size: 12)!
         individualSubtitle.frame = CGRect(x: 0, y: backgroundIndividualImageView.frame.height/2+50, width: screenWidth, height: 40)
         individualSubtitle.text = "Start sending and receiving payments"
         
@@ -133,7 +133,7 @@ class SignupViewControllerZero: UIViewController {
         companyImageView.center = backgroundCompanyImageView.center
         companyImageView.frame = CGRect(x: backgroundCompanyImageView.frame.width/2-40, y: backgroundCompanyImageView.frame.height/2-60, width: 80, height: 80)
         
-        companyCheckbox.frame = CGRect(x: backgroundCompanyImageView.frame.width/2-40, y: backgroundCompanyImageView.frame.height/2-60, width: 80, height: 80)
+        companyCheckbox.frame = CGRect(x: backgroundCompanyImageView.frame.width/2-40, y: backgroundCompanyImageView.frame.height/2-60, width: 81, height: 81)
         companyCheckbox.markType = .Checkmark
         companyCheckbox.stateChangeAnimation = .Spiral
         companyCheckbox.animationDuration = 0.5
@@ -142,13 +142,13 @@ class SignupViewControllerZero: UIViewController {
         
         companyTitle.textColor = UIColor.whiteColor()
         companyTitle.textAlignment = .Center
-        companyTitle.font = UIFont.systemFontOfSize(18)
-        companyTitle.frame = CGRect(x: 0, y: backgroundCompanyImageView.frame.height/2+20, width: screenWidth, height: 40)
+        companyTitle.font = UIFont(name: "MyriadPro-Regular", size: 18)!
+        companyTitle.frame = CGRect(x: 0, y: backgroundCompanyImageView.frame.height/2+22, width: screenWidth, height: 40)
         companyTitle.text = "Company"
         
         companySubtitle.textColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
         companySubtitle.textAlignment = .Center
-        companySubtitle.font = UIFont.systemFontOfSize(12)
+        companySubtitle.font = UIFont(name: "MyriadPro-Regular", size: 12)!
         companySubtitle.frame = CGRect(x: 0, y: backgroundCompanyImageView.frame.height/2+50, width: screenWidth, height: 40)
         companySubtitle.text = "Higher volume limits enabled"
         
@@ -158,7 +158,7 @@ class SignupViewControllerZero: UIViewController {
         pageTitle.textAlignment = .Center
         pageTitle.text = "Let's get started"
         pageTitle.textColor = UIColor.mediumBlue()
-        pageTitle.font = UIFont.systemFontOfSize(18)
+        pageTitle.font = UIFont(name: "MyriadPro-Regular", size: 18)!
         //        self.view.addSubview(pageTitle)
         //        self.view.bringSubviewToFront(pageTitle)
         
@@ -166,7 +166,7 @@ class SignupViewControllerZero: UIViewController {
         pageSubtitle.textAlignment = .Center
         pageSubtitle.text = "Choose entity type"
         pageSubtitle.textColor = UIColor.lightBlue()
-        pageSubtitle.font = UIFont.systemFontOfSize(17, weight: UIFontWeightThin)
+        pageSubtitle.font = UIFont(name: "MyriadPro-Regular", size: 17)!
         self.view.addSubview(pageSubtitle)
         self.view.bringSubviewToFront(pageSubtitle)
         

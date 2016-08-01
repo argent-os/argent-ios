@@ -84,7 +84,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         placeholderMaskImageView.center = CGPointMake(self.view.layer.frame.width/2, self.view.layer.frame.height/2-120)
         searchOverlayMaskView.addSubview(placeholderMaskImageView)
         searchOverlayMaskView.backgroundColor = UIColor.whiteColor()
-        searchOverlayMaskView.frame = CGRect(x: 0, y: 100, width: screenWidth, height: screenHeight-60)
+        searchOverlayMaskView.frame = CGRect(x: 0, y: 60, width: screenWidth, height: screenHeight-60)
         
         // definespresentationcontext screen
         self.definesPresentationContext = true
@@ -102,6 +102,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.view.addSubview(activityIndicator)
         
         tblSearchResults.reloadData()
+        tblSearchResults.showsVerticalScrollIndicator = false
         tblSearchResults.delegate = self
         tblSearchResults.dataSource = self
         tblSearchResults.emptyDataSetSource = self
@@ -147,8 +148,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         CellAnimator.animateCell(cell, withTransform: CellAnimator.TransformTilt, andDuration: 0.3)
         
         cell.imageView?.image = nil
-        cell.indentationWidth = 5; // The amount each indentation will move the text
-        cell.indentationLevel = 2;  // The number of times you indent the text
+        cell.indentationWidth = 2 // The amount each indentation will move the text
+        cell.indentationLevel = 1  // The number of times you indent the text
         cell.textLabel?.textColor = UIColor.darkGrayColor()
         cell.textLabel?.font = UIFont(name: "MyriadPro-Regular", size: 14)
         cell.selectionStyle = UITableViewCellSelectionStyle.Default
@@ -159,7 +160,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.imageView!.backgroundColor = UIColor.clearColor()
         cell.imageView!.layer.cornerRadius = 15
         cell.imageView!.layer.masksToBounds = true
-        
+        //cell.imageView!.image = UIImage(named: "IconCheckFilled")
+
         if shouldShowSearchResults {
             // After filtering
             let pic = filteredArray[indexPath.row].picture
@@ -172,12 +174,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 imageView.backgroundColor = UIColor.clearColor()
                 imageView.layer.cornerRadius = 15
                 imageView.layer.masksToBounds = true
-                //                let priority = DISPATCH_QUEUE_PRIORITY_HIGH
-                //                dispatch_async(dispatch_get_global_queue(priority, 0)) {
-                //                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                //                        cell.imageView!. // load image async // (NSURL(string: pic)!, placeholderImage: UIImage(named: "ic_tab_account"))
-                //                    })
-                //                }
+                let priority = DISPATCH_QUEUE_PRIORITY_HIGH
             }
             
             let business_name = filteredArray[indexPath.row].business_name
@@ -202,12 +199,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 imageView.backgroundColor = UIColor.clearColor()
                 imageView.layer.cornerRadius = 15
                 imageView.layer.masksToBounds = true
-                //                let priority = DISPATCH_QUEUE_PRIORITY_HIGH
-                //                dispatch_async(dispatch_get_global_queue(priority, 0)) {
-                //                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                //                        cell.imageView!. // load image async // (NSURL(string: pic)!, placeholderImage: UIImage(named: "ic_tab_account"))
-                //                    })
-                //                }
+                let priority = DISPATCH_QUEUE_PRIORITY_HIGH
             }
             
 //            let business_name = dataArray[indexPath.row].business_name
@@ -320,7 +312,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchController.searchBar.placeholder = "Enter username or full name"
         tblSearchResults.reloadData()
         searchOverlayMaskView.removeFromSuperview()
-        self.tblSearchResults.scrollEnabled = true
+        self.tblSearchResults.scrollEnabled = false
         self.tblSearchResults.alwaysBounceVertical = true
         tblSearchResults.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight-42)
     }

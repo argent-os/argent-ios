@@ -6,15 +6,17 @@
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
 //
 
+import UIKit
 import LTMorphingLabel
 import Foundation
 import TransitionTreasury
 import TransitionAnimation
 
-class AuthViewController: UIViewController, LTMorphingLabelDelegate, ModalTransitionDelegate  {
+class AuthViewController: UIPageViewController, UIPageViewControllerDelegate, LTMorphingLabelDelegate, ModalTransitionDelegate  {
     
     private var i = -1
-    private var textArray = [
+    
+    private var textArray2 = [
         "Welcome to " + APP_NAME,
         APP_NAME + "'e hoş geldiniz",
         "Bienvenue à " + APP_NAME,
@@ -27,19 +29,29 @@ class AuthViewController: UIViewController, LTMorphingLabelDelegate, ModalTransi
         "Benvenuto a " + APP_NAME
     ]
     
+    private var textArray3 = [
+        "AUTOMATE RECURRING PAYMENTS",
+        "ACCEPT ONE-TIME PAYMENTS"
+    ]
+    
     internal var tr_presentTransition: TRViewControllerTransitionDelegate?
 
-    let lbl = LTMorphingLabel(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 100.0))
+    let lbl = UILabel()
+
+    let lblDetail = UILabel()
+
+    let lblSubtext = LTMorphingLabel(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 100.0))
+
     let imageView = UIImageView()
     
     private var text: String {
-        i = i >= textArray.count - 1 ? 0 : i + 1
-        return textArray[i]
+        i = i >= textArray3.count - 1 ? 0 : i + 1
+        return textArray3[i]
     }
     
-    func changeText(sender: AnyObject) {
-        lbl.text = text
-    }
+//    func changeText(sender: AnyObject) {
+//        lblSubtext.text = text
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -59,11 +71,13 @@ class AuthViewController: UIViewController, LTMorphingLabelDelegate, ModalTransi
     
     func configureView() {
         
-        self.view.backgroundColor = UIColor.globalBackground()        // Set background image
-        let backgroundView: UIImageView = UIImageView(image: UIImage(named: "BackgroundBusiness1"))
-        backgroundView.contentMode = UIViewContentMode.ScaleAspectFill
-        backgroundView.frame = self.view.bounds
-        self.view!.addSubview(backgroundView)
+        // Set up paging
+        dataSource = self
+        delegate = self
+        
+        setViewControllers([getStepOne()], direction: .Forward, animated: false, completion: nil)
+        
+        view.backgroundColor = UIColor.darkBlue()
         
         // screen width and height:
         let screen = UIScreen.mainScreen().bounds
@@ -71,70 +85,81 @@ class AuthViewController: UIViewController, LTMorphingLabelDelegate, ModalTransi
         let screenHeight = screen.size.height
         
         // UI
-        let loginButton = UIButton(frame: CGRect(x: 10, y: screenHeight-60-10, width: screenWidth/2-20, height: 60.0))
-        loginButton.setBackgroundColor(UIColor.mediumBlue().colorWithAlphaComponent(0.2), forState: .Normal)
-        loginButton.setBackgroundColor(UIColor.mediumBlue().colorWithAlphaComponent(0.8), forState: .Highlighted)
-        loginButton.tintColor = UIColor(rgba: "#fff")
-        loginButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
-        loginButton.setTitleColor(UIColor.offWhite(), forState: .Highlighted)
-        loginButton.titleLabel?.font = UIFont.systemFontOfSize(16)
-        loginButton.setTitle("Log in", forState: .Normal)
-        loginButton.layer.cornerRadius = 5
-        loginButton.layer.borderWidth = 2
-        loginButton.layer.borderColor = UIColor(rgba: "#fffa").CGColor
+        let loginButton = UIButton(frame: CGRect(x: 10, y: screenHeight-60-50, width: screenWidth/2-20, height: 60.0))
+        loginButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
+        loginButton.setBackgroundColor(UIColor.darkBlue().darkerColor(), forState: .Highlighted)
+        loginButton.tintColor = UIColor.darkBlue()
+        loginButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        loginButton.setTitleColor(UIColor.whiteColor().lighterColor(), forState: .Highlighted)
+        loginButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 17)!
+        loginButton.setTitle("Login", forState: .Normal)
+        loginButton.layer.cornerRadius = 8
+        loginButton.layer.borderWidth = 1
+        loginButton.layer.borderColor = UIColor.whiteColor().CGColor
         loginButton.layer.masksToBounds = true
         loginButton.addTarget(self, action: #selector(AuthViewController.login(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(loginButton)
         
-        let signupButton = UIButton(frame: CGRect(x: screenWidth*0.5+10, y: screenHeight-60-10, width: screenWidth/2-20, height: 60.0))
+        let signupButton = UIButton(frame: CGRect(x: screenWidth*0.5+10, y: screenHeight-60-50, width: screenWidth/2-20, height: 60.0))
         signupButton.setBackgroundColor(UIColor.whiteColor(), forState: .Normal)
-        signupButton.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
+        signupButton.setBackgroundColor(UIColor.offWhite().darkerColor(), forState: .Highlighted)
         signupButton.setTitle("Sign up", forState: .Normal)
         signupButton.setTitleColor(UIColor.darkGrayColor(), forState: .Normal)
         signupButton.setTitleColor(UIColor.blackColor(), forState: .Highlighted)
-        signupButton.titleLabel?.font = UIFont.systemFontOfSize(16)
-        signupButton.layer.cornerRadius = 5
-        signupButton.layer.borderWidth = 2
+        signupButton.titleLabel?.font =  UIFont(name: "MyriadPro-Regular", size: 17)!
+        signupButton.layer.cornerRadius = 8
+        signupButton.layer.borderWidth = 1
         signupButton.layer.borderColor = UIColor(rgba: "#fff8").CGColor
         signupButton.layer.masksToBounds = true
         signupButton.addTarget(self, action: #selector(AuthViewController.signup(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(signupButton)
         
-        let imageName = "LogoOutline"
+        let imageName = "LogoOutlineGradient"
         let image = UIImage(named: imageName)
         imageView.image = image
         imageView.layer.masksToBounds = true
         imageView.tag = 7577
-        imageView.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
-        imageView.frame.origin.y = screenHeight*0.14 // 14 down from the top
+        imageView.frame = CGRect(x: 0, y: 0, width: 75, height: 75)
+        imageView.frame.origin.y = screenHeight*0.15
         imageView.frame.origin.x = (self.view.bounds.size.width - imageView.frame.size.width) / 2.0 // centered left to right.
         
-        let attributedString = NSMutableAttributedString(string: "Welcome to Argent")
         // Set range of string length to exactly 8, the number of characters
-        attributedString.addAttribute(NSFontAttributeName, value: "HelveticaNeue-Light", range: NSRange(location: 0, length: 15))
-        lbl.morphingEffect = .Scale
-        lbl.delegate = self
-        lbl.morphingEnabled = true
-        lbl.text = text
+        lbl.frame = CGRect(x: 0, y: screenHeight*0.33, width: screenWidth, height: 40)
+        lbl.font = UIFont(name: "MyriadPro-Regular", size: 23)
         lbl.tag = 7578
-        lbl.frame.origin.y = screenHeight*0.40 // 20 down from the top
         lbl.textAlignment = NSTextAlignment.Center
         lbl.textColor = UIColor.whiteColor()
-        lbl.font = UIFont.systemFontOfSize(16)
+        lbl.adjustAttributedString("ARGENT", spacing: 4, fontName: "MyriadPro-Regular", fontSize: 23, fontColor: UIColor.whiteColor())
         view.addSubview(lbl)
-        _ = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: #selector(AuthViewController.changeText(_:)), userInfo: nil, repeats: true)
+        
+//        _ = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: #selector(AuthViewController.changeText(_:)), userInfo: nil, repeats: true)
 
-
-        _ = NSMutableAttributedString(string: "Tap to view app features.")
+        let dividerView = UIImageView()
+        dividerView.image = UIImage(named: "Divider")?.alpha(0.3)
+        dividerView.frame = CGRect(x: 100, y: screenHeight*0.39, width: screenWidth-200, height: 1)
+        self.view.addSubview(dividerView)
+        
+//        // Set range of string length to exactly 8, the number of characters
+//        lblSubtext.font = UIFont(name: "MyriadPro-Regular", size: 17)
+//        lblSubtext.text = "ARGENT"
+//        lblSubtext.tag = 7579
+//        lblSubtext.font.morphingEffect = .Scale
+//        lblSubtext.font.delegate = self
+//        lblSubtext.font.morphingEnabled = true
+//        lblSubtext.frame.origin.y = screenHeight*0.35 // 20 down from the top
+//        lblSubtext.textAlignment = NSTextAlignment.Center
+//        lblSubtext.textColor = UIColor.whiteColor()
+//        view.addSubview(lblSubtext)
+        
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 100.0))
         button.tag = 7579
-        button.frame.origin.y = screenHeight*0.44 // 20 down from the top
+        button.frame.origin.y = screenHeight*0.35 // 20 down from the top
         button.backgroundColor = UIColor.clearColor()
-        button.setTitle("Tap to view app features.", forState: .Normal)
+        button.setTitle("View Features", forState: .Normal)
         button.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.7), forState: .Normal)
-        button.titleLabel?.font = UIFont.systemFontOfSize(12)
+        button.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 12)!
         button.addTarget(self, action: #selector(self.goToTutorial(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        view.addSubview(button)
+//        view.addSubview(button)
     }
     
     //Changing Status Bar
@@ -190,6 +215,67 @@ extension AuthViewController {
     
     func morphingOnProgress(label: LTMorphingLabel, progress: Float) {
         
+    }
+    
+}
+
+extension AuthViewController {
+    
+    func getStepZero() -> AuthViewController {
+        return storyboard!.instantiateViewControllerWithIdentifier("authViewController") as! AuthViewController
+    }
+    
+    func getStepOne() -> AuthViewControllerStepOne {
+        return storyboard!.instantiateViewControllerWithIdentifier("authStepOne") as! AuthViewControllerStepOne
+    }
+    
+    func getStepTwo() -> AuthViewControllerStepTwo {
+        return storyboard!.instantiateViewControllerWithIdentifier("authStepTwo") as! AuthViewControllerStepTwo
+    }
+    
+    func getStepThree() -> AuthViewControllerStepThree {
+        return storyboard!.instantiateViewControllerWithIdentifier("authStepThree") as! AuthViewControllerStepThree
+    }
+    
+}
+
+extension AuthViewController: UIPageViewControllerDataSource {
+    
+    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+        if viewController.isKindOfClass(AuthViewControllerStepThree) {
+            return getStepTwo()
+        } else if viewController.isKindOfClass(AuthViewControllerStepTwo) {
+            return getStepOne()
+        } else if viewController.isKindOfClass(AuthViewControllerStepOne) {
+            return nil
+        } else if viewController.isKindOfClass(AuthViewController) {
+            return nil
+        } else {
+            return nil
+        }
+    }
+    
+    
+    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+        if viewController.isKindOfClass(AuthViewController) {
+            return getStepOne()
+        } else if viewController.isKindOfClass(AuthViewControllerStepOne) {
+            return getStepTwo()
+        } else if viewController.isKindOfClass(AuthViewControllerStepTwo) {
+            return getStepThree()
+        } else if viewController.isKindOfClass(AuthViewControllerStepThree) {
+            return nil
+        } else {
+            return nil
+        }
+    }
+    
+    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+        return 3
+    }
+    
+    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+        return 0
     }
     
 }

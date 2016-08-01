@@ -104,13 +104,13 @@ class MenuViewController: UIViewController, ModalTransitionDelegate {
         addSubviewWithFade(viewTerminalImageView, parentView: self, duration: 0.5)
         
         let btn1 = CenteredButton()
-        let str1 = NSAttributedString(string: "  Point of Sale Terminal", attributes: [
+        let str1 = NSAttributedString(string: "  Accept Payment", attributes: [
             NSForegroundColorAttributeName : UIColor.lightBlue(),
             NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 17)!
         ])
         btn1.setAttributedTitle(str1, forState: .Normal)
         btn1.setBackgroundColor(UIColor.offWhite().lighterColor(), forState: .Highlighted)
-        btn1.setImage(UIImage(named: "IconHoldCard")?.alpha(0.5), forState: .Highlighted)
+        btn1.setImage(UIImage(named: "IconCard")?.alpha(0.5), forState: .Highlighted)
         btn1.frame = CGRect(x: 35, y: screenHeight*0.1, width: screenWidth-70, height: 120)
         btn1.layer.cornerRadius = 5
         btn1.layer.masksToBounds = true
@@ -122,7 +122,7 @@ class MenuViewController: UIViewController, ModalTransitionDelegate {
         self.view.bringSubviewToFront(btn1)
         self.view.superview?.bringSubviewToFront(btn1)
         self.view.bringSubviewToFront(btn1)
-        btn1.setImage(UIImage(named: "IconHoldCard"), inFrame: CGRectMake(18, 18, 64, 64), forState: .Normal)
+        btn1.setImage(UIImage(named: "IconCard"), inFrame: CGRectMake(18, 18, 64, 64), forState: .Normal)
 
         addPlanImageView.backgroundColor = UIColor.whiteColor()
         addPlanImageView.layer.cornerRadius = 5
@@ -131,14 +131,13 @@ class MenuViewController: UIViewController, ModalTransitionDelegate {
         addSubviewWithFade(addPlanImageView, parentView: self, duration: 0.7)
         
         let btn2 = CenteredButton()
-        btn2.imageEdgeInsets = UIEdgeInsets(top: 30, left: 30, bottom: 30, right: 30)
         let str2 = NSAttributedString(string: "  Create Plan", attributes: [
             NSForegroundColorAttributeName : UIColor.lightBlue(),
             NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 17)!
         ])
         btn2.setAttributedTitle(str2, forState: .Normal)
         btn2.setBackgroundColor(UIColor.offWhite().lighterColor(), forState: .Highlighted)
-        btn2.setImage(UIImage(named: "IconWand")?.alpha(0.5), forState: .Highlighted)
+        btn2.setImage(UIImage(named: "IconRecur")?.alpha(0.5), forState: .Highlighted)
         btn2.frame = CGRect(x: 35, y: screenHeight*0.32, width: screenWidth-70, height: 120)
         btn2.layer.cornerRadius = 5
         btn2.layer.masksToBounds = true
@@ -150,7 +149,7 @@ class MenuViewController: UIViewController, ModalTransitionDelegate {
         self.view.bringSubviewToFront(btn2)
         self.view.superview?.bringSubviewToFront(btn2)
         self.view.bringSubviewToFront(btn2)
-        btn2.setImage(UIImage(named: "IconWand"), inFrame: CGRectMake(18, 18, 64, 64), forState: .Normal)
+        btn2.setImage(UIImage(named: "IconRecur"), inFrame: CGRectMake(18, 18, 64, 64), forState: .Normal)
 
         inviteImageView.backgroundColor = UIColor.whiteColor()
         inviteImageView.layer.cornerRadius = 5
@@ -165,7 +164,7 @@ class MenuViewController: UIViewController, ModalTransitionDelegate {
         ])
         btn3.setAttributedTitle(str3, forState: .Normal)
         btn3.setBackgroundColor(UIColor.offWhite().lighterColor(), forState: .Highlighted)
-        btn3.setImage(UIImage(named: "LogoOutlineDark")?.alpha(0.5), forState: .Highlighted)
+        btn3.setImage(UIImage(named: "IconPlus")?.alpha(0.5), forState: .Highlighted)
         btn3.frame = CGRect(x: 35, y: screenHeight*0.54, width: screenWidth-70, height: 120)
         btn3.layer.cornerRadius = 5
         btn3.layer.masksToBounds = true
@@ -177,7 +176,7 @@ class MenuViewController: UIViewController, ModalTransitionDelegate {
         self.view.bringSubviewToFront(btn3)
         self.view.superview?.bringSubviewToFront(btn3)
         self.view.bringSubviewToFront(btn3)
-        btn3.setImage(UIImage(named: "LogoOutlineDark"), inFrame: CGRectMake(18, 18, 64, 64), forState: .Normal)
+        btn3.setImage(UIImage(named: "IconPlus"), inFrame: CGRectMake(18, 18, 64, 64), forState: .Normal)
 
         setupNav()
 
