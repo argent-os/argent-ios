@@ -49,17 +49,16 @@ class AuthViewControllerStepFour: UIPageViewController, UIPageViewControllerDele
         lblDetail.adjustAttributedString("APPLE PAY", spacing: 4, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.whiteColor())
         view.addSubview(lblDetail)
         
-        //        // Set range of string length to exactly 8, the number of characters
-        //        lblSubtext.font = UIFont(name: "MyriadPro-Regular", size: 17)
-        //        lblSubtext.text = "ARGENT"
-        //        lblSubtext.tag = 7579
-        //        lblSubtext.font.morphingEffect = .Scale
-        //        lblSubtext.font.delegate = self
-        //        lblSubtext.font.morphingEnabled = true
-        //        lblSubtext.frame.origin.y = screenHeight*0.35 // 20 down from the top
-        //        lblSubtext.textAlignment = NSTextAlignment.Center
-        //        lblSubtext.textColor = UIColor.whiteColor()
-        //        view.addSubview(lblSubtext)
+        let lblBody = UILabel()
+        // Set range of string length to exactly 8, the number of characters
+        lblBody.frame = CGRect(x: 50, y: screenHeight*0.40, width: screenWidth-100, height: 200)
+        lblBody.numberOfLines = 0
+        lblBody.alpha = 0.9
+        lblBody.adjustAttributedString("Receive payments or pay others with one of the world's most secure payment systems.", spacing: 2, fontName: "HelveticaNeue-Light", fontSize: 14, fontColor: UIColor.whiteColor())
+        lblBody.tag = 7579
+        lblBody.textAlignment = NSTextAlignment.Center
+        lblBody.textColor = UIColor.whiteColor()
+        view.addSubview(lblBody)
         
     }
     

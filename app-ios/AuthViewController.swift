@@ -187,10 +187,6 @@ extension AuthViewController {
 
 extension AuthViewController {
     
-    func getStepZero() -> AuthViewController {
-        return storyboard!.instantiateViewControllerWithIdentifier("authViewController") as! AuthViewController
-    }
-    
     func getStepOne() -> AuthViewControllerStepOne {
         return storyboard!.instantiateViewControllerWithIdentifier("authStepOne") as! AuthViewControllerStepOne
     }
