@@ -1,5 +1,5 @@
 //
-//  AuthViewControllerStepOne.swift
+//  AuthViewControllerStepFour.swift
 //  app-ios
 //
 //  Created by Sinan Ulkuatam on 8/1/16.
@@ -7,9 +7,8 @@
 //
 
 import Foundation
-import Shimmer
 
-class AuthViewControllerStepOne: UIPageViewController, UIPageViewControllerDelegate {
+class AuthViewControllerStepFour: UIPageViewController, UIPageViewControllerDelegate {
     
     let lbl = UILabel()
     
@@ -21,7 +20,7 @@ class AuthViewControllerStepOne: UIPageViewController, UIPageViewControllerDeleg
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Border radius on uiview
@@ -37,7 +36,7 @@ class AuthViewControllerStepOne: UIPageViewController, UIPageViewControllerDeleg
         let screenHeight = screen.size.height
         
         self.view.backgroundColor = UIColor.globalBackground()        // Set background image
-        let backgroundView: UIImageView = UIImageView(image: UIImage(named: "BackgroundIntro"))
+        let backgroundView: UIImageView = UIImageView(image: UIImage(named: "BackgroundWalkthroughThree"))
         backgroundView.contentMode = UIViewContentMode.ScaleAspectFill
         backgroundView.frame = self.view.bounds
         self.view!.addSubview(backgroundView)
@@ -47,15 +46,8 @@ class AuthViewControllerStepOne: UIPageViewController, UIPageViewControllerDeleg
         lblDetail.tag = 7579
         lblDetail.textAlignment = NSTextAlignment.Center
         lblDetail.textColor = UIColor.whiteColor()
-        lblDetail.adjustAttributedString("SWIPE TO LEARN MORE", spacing: 4, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.whiteColor())
+        lblDetail.adjustAttributedString("APPLE PAY", spacing: 4, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.whiteColor())
         view.addSubview(lblDetail)
-        
-        let shimmeringView = FBShimmeringView()
-        shimmeringView.frame = CGRect(x: 0, y: 280, width: screenWidth, height: screenHeight*0.84) // shimmeringView.bounds
-        shimmeringView.contentView = lblDetail
-        shimmeringView.shimmering = true
-        addSubviewWithFade(shimmeringView, parentView: self, duration: 1)
-        addSubviewWithFade(lblDetail, parentView: self, duration: 1)
         
         //        // Set range of string length to exactly 8, the number of characters
         //        lblSubtext.font = UIFont(name: "MyriadPro-Regular", size: 17)
@@ -68,7 +60,7 @@ class AuthViewControllerStepOne: UIPageViewController, UIPageViewControllerDeleg
         //        lblSubtext.textAlignment = NSTextAlignment.Center
         //        lblSubtext.textColor = UIColor.whiteColor()
         //        view.addSubview(lblSubtext)
-
+        
     }
     
     //Changing Status Bar

@@ -29,11 +29,6 @@ class AuthViewController: UIPageViewController, UIPageViewControllerDelegate, LT
         "Benvenuto a " + APP_NAME
     ]
     
-    private var textArray3 = [
-        "AUTOMATE RECURRING PAYMENTS",
-        "ACCEPT ONE-TIME PAYMENTS"
-    ]
-    
     internal var tr_presentTransition: TRViewControllerTransitionDelegate?
 
     let lbl = UILabel()
@@ -45,8 +40,8 @@ class AuthViewController: UIPageViewController, UIPageViewControllerDelegate, LT
     let imageView = UIImageView()
     
     private var text: String {
-        i = i >= textArray3.count - 1 ? 0 : i + 1
-        return textArray3[i]
+        i = i >= textArray2.count - 1 ? 0 : i + 1
+        return textArray2[i]
     }
     
 //    func changeText(sender: AnyObject) {
@@ -138,42 +133,13 @@ class AuthViewController: UIPageViewController, UIPageViewControllerDelegate, LT
         dividerView.image = UIImage(named: "Divider")?.alpha(0.3)
         dividerView.frame = CGRect(x: 100, y: screenHeight*0.39, width: screenWidth-200, height: 1)
         self.view.addSubview(dividerView)
-        
-//        // Set range of string length to exactly 8, the number of characters
-//        lblSubtext.font = UIFont(name: "MyriadPro-Regular", size: 17)
-//        lblSubtext.text = "ARGENT"
-//        lblSubtext.tag = 7579
-//        lblSubtext.font.morphingEffect = .Scale
-//        lblSubtext.font.delegate = self
-//        lblSubtext.font.morphingEnabled = true
-//        lblSubtext.frame.origin.y = screenHeight*0.35 // 20 down from the top
-//        lblSubtext.textAlignment = NSTextAlignment.Center
-//        lblSubtext.textColor = UIColor.whiteColor()
-//        view.addSubview(lblSubtext)
-        
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 100.0))
-        button.tag = 7579
-        button.frame.origin.y = screenHeight*0.35 // 20 down from the top
-        button.backgroundColor = UIColor.clearColor()
-        button.setTitle("View Features", forState: .Normal)
-        button.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.7), forState: .Normal)
-        button.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 12)!
-        button.addTarget(self, action: #selector(self.goToTutorial(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-//        view.addSubview(button)
+    
     }
     
     //Changing Status Bar
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
-    
-    
-    func goToTutorial(sender: AnyObject!) {
-        let viewController:UIViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateViewControllerWithIdentifier("onboardingVC") as! OnboardingViewController
-        viewController.modalTransitionStyle = .CrossDissolve
-        self.presentViewController(viewController, animated: true, completion: nil)
-    }
-    
 
     // Set the ID in the storyboard in order to enable transition!
     func signup(sender:AnyObject!) {
@@ -237,12 +203,18 @@ extension AuthViewController {
         return storyboard!.instantiateViewControllerWithIdentifier("authStepThree") as! AuthViewControllerStepThree
     }
     
+    func getStepFour() -> AuthViewControllerStepFour {
+        return storyboard!.instantiateViewControllerWithIdentifier("authStepFour") as! AuthViewControllerStepFour
+    }
+    
 }
 
 extension AuthViewController: UIPageViewControllerDataSource {
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-        if viewController.isKindOfClass(AuthViewControllerStepThree) {
+        if viewController.isKindOfClass(AuthViewControllerStepFour) {
+            return getStepThree()
+        } else if viewController.isKindOfClass(AuthViewControllerStepThree) {
             return getStepTwo()
         } else if viewController.isKindOfClass(AuthViewControllerStepTwo) {
             return getStepOne()
@@ -264,6 +236,8 @@ extension AuthViewController: UIPageViewControllerDataSource {
         } else if viewController.isKindOfClass(AuthViewControllerStepTwo) {
             return getStepThree()
         } else if viewController.isKindOfClass(AuthViewControllerStepThree) {
+            return getStepFour()
+        } else if viewController.isKindOfClass(AuthViewControllerStepThree) {
             return nil
         } else {
             return nil
@@ -271,7 +245,7 @@ extension AuthViewController: UIPageViewControllerDataSource {
     }
     
     func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return 3
+        return 4
     }
     
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {

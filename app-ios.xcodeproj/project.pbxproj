@@ -11,6 +11,7 @@
 		30008FFF1D4F7811004E44E6 /* AuthViewControllerStepOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30008FFE1D4F7811004E44E6 /* AuthViewControllerStepOne.swift */; };
 		300090011D4F782F004E44E6 /* AuthViewControllerStepTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300090001D4F782F004E44E6 /* AuthViewControllerStepTwo.swift */; };
 		300090031D4F7847004E44E6 /* AuthViewControllerStepThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300090021D4F7847004E44E6 /* AuthViewControllerStepThree.swift */; };
+		300090071D4FA062004E44E6 /* AuthViewControllerStepFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300090061D4FA062004E44E6 /* AuthViewControllerStepFour.swift */; };
 		30043B3B1D45698100594385 /* BankACHConfirmationModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30043B3A1D45698100594385 /* BankACHConfirmationModalViewController.swift */; };
 		30043B3D1D456B2A00594385 /* BankListModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30043B3C1D456B2A00594385 /* BankListModalViewController.swift */; };
 		300780CD1D29ABD200618984 /* AccountVerificationTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300780CC1D29ABD200618984 /* AccountVerificationTutorialViewController.swift */; };
@@ -20,7 +21,6 @@
 		30089F491CFBDE9000A2496B /* MerchantPlanDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30089F481CFBDE9000A2496B /* MerchantPlanDetailViewController.swift */; };
 		3008AA441CF89B6C00AFE855 /* SupportCategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3008AA431CF89B6C00AFE855 /* SupportCategoryTableViewController.swift */; };
 		3008AA461CF8BC3900AFE855 /* SearchMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3008AA451CF8BC3900AFE855 /* SearchMessageViewController.swift */; };
-		300D8BE31CE5461A00FC3B05 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300D8BE21CE5461A00FC3B05 /* OnboardingViewController.swift */; };
 		300E422B1CB47428004316CF /* BankConnectedListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E422A1CB47428004316CF /* BankConnectedListTableViewController.swift */; };
 		300E422D1CB56E10004316CF /* Plaid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E422C1CB56E10004316CF /* Plaid.swift */; };
 		300E42311CB7123E004316CF /* CreditCardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300E42301CB7123E004316CF /* CreditCardListViewController.swift */; };
@@ -52,7 +52,6 @@
 		3080730C1CFF6F260070C7FE /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080730B1CFF6F250070C7FE /* Subscription.swift */; };
 		3083FA701D3E4E3600D09B19 /* myriad_pro_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3083FA6F1D3E4E3600D09B19 /* myriad_pro_regular.ttf */; };
 		3083FA711D3E4E3600D09B19 /* myriad_pro_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3083FA6F1D3E4E3600D09B19 /* myriad_pro_regular.ttf */; };
-		308630031CFCDEBD00695215 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308630021CFCDEBD00695215 /* OnboardingCollectionViewCell.swift */; };
 		30879A4F1D12F10300D3DF01 /* BankManualAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30879A4E1D12F10300D3DF01 /* BankManualAddViewController.swift */; };
 		308A348A1CCA803200AAF66F /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A34891CCA803200AAF66F /* History.swift */; };
 		309544F51CD295AE003007B2 /* ParallaxHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309544F41CD295AE003007B2 /* ParallaxHeader.swift */; };
@@ -240,6 +239,7 @@
 		30008FFE1D4F7811004E44E6 /* AuthViewControllerStepOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthViewControllerStepOne.swift; path = "app-ios/AuthViewControllerStepOne.swift"; sourceTree = SOURCE_ROOT; };
 		300090001D4F782F004E44E6 /* AuthViewControllerStepTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthViewControllerStepTwo.swift; path = "app-ios/AuthViewControllerStepTwo.swift"; sourceTree = SOURCE_ROOT; };
 		300090021D4F7847004E44E6 /* AuthViewControllerStepThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthViewControllerStepThree.swift; path = "app-ios/AuthViewControllerStepThree.swift"; sourceTree = SOURCE_ROOT; };
+		300090061D4FA062004E44E6 /* AuthViewControllerStepFour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthViewControllerStepFour.swift; path = "app-ios/AuthViewControllerStepFour.swift"; sourceTree = SOURCE_ROOT; };
 		30043B3A1D45698100594385 /* BankACHConfirmationModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankACHConfirmationModalViewController.swift; path = "app-ios/BankACHConfirmationModalViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30043B3C1D456B2A00594385 /* BankListModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankListModalViewController.swift; path = "app-ios/BankListModalViewController.swift"; sourceTree = SOURCE_ROOT; };
 		300780CC1D29ABD200618984 /* AccountVerificationTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountVerificationTutorialViewController.swift; path = "app-ios/AccountVerificationTutorialViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -250,7 +250,6 @@
 		3008AA431CF89B6C00AFE855 /* SupportCategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SupportCategoryTableViewController.swift; path = "app-ios/SupportCategoryTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		3008AA451CF8BC3900AFE855 /* SearchMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = SearchMessageViewController.swift; path = "app-ios/SearchMessageViewController.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		300B66F61CA4635800E24AF1 /* RESideMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RESideMenu.framework; path = "Pods/../build/Debug-iphoneos/RESideMenu.framework"; sourceTree = "<group>"; };
-		300D8BE21CE5461A00FC3B05 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingViewController.swift; path = "app-ios/OnboardingViewController.swift"; sourceTree = SOURCE_ROOT; };
 		300E422A1CB47428004316CF /* BankConnectedListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankConnectedListTableViewController.swift; path = "app-ios/BankConnectedListTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		300E422C1CB56E10004316CF /* Plaid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Plaid.swift; path = "app-ios/Plaid.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		300E42301CB7123E004316CF /* CreditCardListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreditCardListViewController.swift; path = "app-ios/CreditCardListViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -286,7 +285,6 @@
 		308073091CFF393F0070C7FE /* PlansListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlansListTableViewController.swift; path = "app-ios/PlansListTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		3080730B1CFF6F250070C7FE /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Subscription.swift; path = "app-ios/Subscription.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3083FA6F1D3E4E3600D09B19 /* myriad_pro_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = myriad_pro_regular.ttf; sourceTree = "<group>"; };
-		308630021CFCDEBD00695215 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingCollectionViewCell.swift; path = "app-ios/OnboardingCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		30879A4E1D12F10300D3DF01 /* BankManualAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankManualAddViewController.swift; path = "app-ios/BankManualAddViewController.swift"; sourceTree = SOURCE_ROOT; };
 		308A34891CCA803200AAF66F /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = History.swift; path = "app-ios/History.swift"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		309544F41CD295AE003007B2 /* ParallaxHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParallaxHeader.swift; path = "app-ios/ParallaxHeader.swift"; sourceTree = SOURCE_ROOT; };
@@ -462,6 +460,7 @@
 				30008FFE1D4F7811004E44E6 /* AuthViewControllerStepOne.swift */,
 				300090001D4F782F004E44E6 /* AuthViewControllerStepTwo.swift */,
 				300090021D4F7847004E44E6 /* AuthViewControllerStepThree.swift */,
+				300090061D4FA062004E44E6 /* AuthViewControllerStepFour.swift */,
 			);
 			name = Features;
 			sourceTree = "<group>";
@@ -756,8 +755,6 @@
 				30C2DAAC1CA43795003AFD8B /* AuthViewController.swift */,
 				30C2DA981CA4373E003AFD8B /* LoginBoxTableViewController.swift */,
 				30C2DA991CA4373E003AFD8B /* LoginViewController.swift */,
-				300D8BE21CE5461A00FC3B05 /* OnboardingViewController.swift */,
-				308630021CFCDEBD00695215 /* OnboardingCollectionViewCell.swift */,
 				30C2DAAE1CA4379F003AFD8B /* ResetPasswordViewController.swift */,
 				30C2DAB01CA437A9003AFD8B /* PresentedTableViewController.swift */,
 				30C2DAB21CA437B2003AFD8B /* TermsViewController.swift */,
@@ -1525,7 +1522,6 @@
 				30C2DAA81CA4374F003AFD8B /* SignupViewControllerOne.swift in Sources */,
 				3008AA461CF8BC3900AFE855 /* SearchMessageViewController.swift in Sources */,
 				30FF6FD11CEE3F9300A46A1E /* TransferToBankViewController.swift in Sources */,
-				300D8BE31CE5461A00FC3B05 /* OnboardingViewController.swift in Sources */,
 				30CF714D1D04CAE1007B5E17 /* MenuDetailViewController.swift in Sources */,
 				30C2DABF1CA43823003AFD8B /* HomeViewController.swift in Sources */,
 				30C2DAA71CA4374F003AFD8B /* SignupViewControllerFour.swift in Sources */,
@@ -1548,6 +1544,7 @@
 				306DF0091CD991CB00864CAE /* Customer.swift in Sources */,
 				30CF714A1D0485F2007B5E17 /* PersonInformationEntryModalViewController.swift in Sources */,
 				30D526821CDF7762001B41BA /* ActionData.swift in Sources */,
+				300090071D4FA062004E44E6 /* AuthViewControllerStepFour.swift in Sources */,
 				30C2DAA91CA4374F003AFD8B /* SignupViewControllerThree.swift in Sources */,
 				30D5268A1CDFAEC3001B41BA /* PayMerchantViewController.swift in Sources */,
 				300E42331CB71362004316CF /* Card.swift in Sources */,
@@ -1590,7 +1587,6 @@
 				300090031D4F7847004E44E6 /* AuthViewControllerStepThree.swift in Sources */,
 				306E82301CDAC36400A43505 /* Balance.swift in Sources */,
 				30C2DB1F1CA43A51003AFD8B /* EditProfileViewController.swift in Sources */,
-				308630031CFCDEBD00695215 /* OnboardingCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -70,25 +70,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return presenter
     }()
     
-    // Onboarding
-    func skipOnboarding(notification: NSNotification) {
-        // Allows the user to skip the onboarding
-        // process page if they clicked on it
-        // accidentaly or do not want to complete it
-        if let appContentVC = UIStoryboard(name: "Auth", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("authViewController") as? UIViewController {
-            let overlayView: UIView = UIScreen.mainScreen().snapshotViewAfterScreenUpdates(false)
-            appContentVC.view.addSubview(overlayView)
-            self.window?.rootViewController = appContentVC
-            Answers.logCustomEventWithName("Onboarding Skip",
-                                           customAttributes: [:])
-            UIView.animateWithDuration(0.4, delay: 0.0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: { () -> Void in
-                overlayView.alpha = 0
-                }, completion: { (finished) -> Void in
-                    overlayView.removeFromSuperview()
-            })
-        }
-    }
-    
     // 3D Touch
     func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: Bool -> ()) {
         if shortcutItem.type == "com.argentapp.ios.dashboard" {
@@ -153,9 +134,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([STPAPIClient.self, Crashlytics.self])
         Answers.logCustomEventWithName("Application Launched",
                                        customAttributes: [:])
-        
-        // Setup skip onboarding notification
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.skipOnboarding(_:)), name: "kDismissOnboardingNotification", object: nil)
         
         // Screen Dimming Enable
         let dim = KeychainSwift().getBool("screenAlive")
