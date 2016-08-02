@@ -475,7 +475,7 @@ extension HomeViewController {
     }
     
     func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
-        let str = "Create your first billing plan"
+        let str = "Create a recurring billing plan"
         // let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)]
         return NSAttributedString(string: str, attributes: inverseCalloutAttrs)
     }

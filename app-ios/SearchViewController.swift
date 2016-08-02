@@ -84,7 +84,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         placeholderMaskImageView.center = CGPointMake(self.view.layer.frame.width/2, self.view.layer.frame.height/2-120)
         searchOverlayMaskView.addSubview(placeholderMaskImageView)
         searchOverlayMaskView.backgroundColor = UIColor.whiteColor()
-        searchOverlayMaskView.frame = CGRect(x: 0, y: 60, width: screenWidth, height: screenHeight-60)
+        searchOverlayMaskView.frame = CGRect(x: 0, y: 100, width: screenWidth, height: screenHeight-60)
         
         // definespresentationcontext screen
         self.definesPresentationContext = true
@@ -327,7 +327,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         addSubviewWithFade(searchOverlayMaskView, parentView: self, duration: 0.3)
         self.tblSearchResults.scrollEnabled = false
         self.tblSearchResults.alwaysBounceVertical = false
-        tblSearchResults.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 180)
+//        tblSearchResults.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 180)
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {

@@ -31,14 +31,14 @@ class BankManualTutorialViewController: UIViewController {
 //        self.navigationController?.navigationBar.translucent = true
 //        self.navigationController?.navigationBar.barTintColor = UIColor.lightGrayColor()
         
-        titleLabel.frame = CGRect(x: 0, y: 35, width: 300, height: 20)
+        titleLabel.frame = CGRect(x: 0, y: 35, width: 280, height: 20)
         titleLabel.text = "Example Check"
         titleLabel.textAlignment = .Center
-        titleLabel.font = UIFont.systemFontOfSize(18, weight: UIFontWeightLight)
+        titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 18)
         titleLabel.textColor = UIColor.lightBlue()
         self.view.addSubview(titleLabel)
         
-        exampleImage.frame = CGRect(x: 50, y: 80, width: 200, height: 200)
+        exampleImage.frame = CGRect(x: 40, y: 40, width: 200, height: 200)
         exampleImage.image = UIImage(named: "IconCheckExample")
         exampleImage.contentMode = .ScaleAspectFit
         self.view.addSubview(exampleImage)

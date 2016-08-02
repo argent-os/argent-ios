@@ -80,19 +80,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         } else if shortcutItem.type == "com.argentapp.ios.search" {
             if let tabBarController = window?.rootViewController as? UITabBarController {
-                tabBarController.selectedIndex = 1
-                Answers.logCustomEventWithName("3D Touch to Search",
-                                               customAttributes: [:])
-            }
-        } else if shortcutItem.type == "com.argentapp.ios.menu" {
-            if let tabBarController = window?.rootViewController as? UITabBarController {
                 tabBarController.selectedIndex = 2
-                Answers.logCustomEventWithName("3D Touch to Menu",
+                Answers.logCustomEventWithName("3D Touch to Search",
                                                customAttributes: [:])
             }
         } else if shortcutItem.type == "com.argentapp.ios.account" {
             if let tabBarController = window?.rootViewController as? UITabBarController {
-                tabBarController.selectedIndex = 4
+                tabBarController.selectedIndex = 3
                 Answers.logCustomEventWithName("3D Touch to Account",
                                                customAttributes: [:])
             }

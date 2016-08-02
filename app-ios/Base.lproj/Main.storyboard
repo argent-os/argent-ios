@@ -286,7 +286,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="isA-Ko-UWX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-423" y="-2336"/>
+            <point key="canvasLocation" x="-557" y="-2482"/>
         </scene>
         <!--Passcode Settings View Controller-->
         <scene sceneID="ONW-xd-G0k">
@@ -1429,7 +1429,7 @@ support request</string>
                         <viewControllerLayoutGuide type="bottom" id="Mv2-J1-WVg"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Wlq-Lz-if3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1478,7 +1478,7 @@ support request</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="ic_tab_home" selectedImage="ic_tab_home" id="RW7-a0-lvA"/>
+                    <tabBarItem key="tabBarItem" title="Dashboard" image="ic_tab_dash" selectedImage="ic_tab_dash" id="RW7-a0-lvA"/>
                     <navigationItem key="navigationItem" title="Balance" id="w3e-6C-5LA" userLabel="nav"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -2596,10 +2596,10 @@ policy agreement. Tap to view</string>
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="UFB-DJ-qrH"/>
-                        <segue destination="HMN-2X-Cie" kind="relationship" relationship="viewControllers" id="Ua5-Do-cmZ"/>
-                        <segue destination="A13-xJ-Wch" kind="relationship" relationship="viewControllers" id="m0d-gd-RWW"/>
                         <segue destination="D1r-HM-gkI" kind="relationship" relationship="viewControllers" id="FmW-X6-6Aa"/>
+                        <segue destination="HMN-2X-Cie" kind="relationship" relationship="viewControllers" id="Ua5-Do-cmZ"/>
                         <segue destination="tfH-Yx-qca" kind="relationship" relationship="viewControllers" id="ZGI-bE-yuI"/>
+                        <segue destination="A13-xJ-Wch" kind="relationship" relationship="viewControllers" id="m0d-gd-RWW"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aDS-lz-Xbg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3442,11 +3442,11 @@ policy agreement. Tap to view</string>
             </objects>
             <point key="canvasLocation" x="-372" y="-4325"/>
         </scene>
-        <!--Menu-->
+        <!--More-->
         <scene sceneID="Xt7-vW-s52">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="A13-xJ-Wch" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Menu" image="ic_tab_menu" selectedImage="ic_tab_menu" id="Wbg-GP-L9N"/>
+                    <tabBarItem key="tabBarItem" title="More" image="ic_tab_more" selectedImage="ic_tab_more_filled" id="Wbg-GP-L9N"/>
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nWN-qs-ITK">
@@ -3968,26 +3968,27 @@ policy agreement. Tap to view</string>
         <image name="IconTouchSecure" width="128" height="128"/>
         <image name="ic_close_light" width="43" height="43"/>
         <image name="ic_tab_account" width="25" height="25"/>
-        <image name="ic_tab_home" width="25" height="25"/>
-        <image name="ic_tab_menu" width="25" height="25"/>
+        <image name="ic_tab_dash" width="25" height="25"/>
+        <image name="ic_tab_more" width="25" height="25"/>
+        <image name="ic_tab_more_filled" width="25" height="25"/>
         <image name="ic_tab_notify" width="25" height="25"/>
         <image name="ic_tab_search" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rLo-0p-I9d"/>
-        <segue reference="agi-3I-cSC"/>
-        <segue reference="VI5-hp-Gm2"/>
-        <segue reference="ipn-3I-3vc"/>
-        <segue reference="m3z-fp-Nlm"/>
-        <segue reference="igQ-zk-tCm"/>
-        <segue reference="aks-Yo-Spb"/>
-        <segue reference="Ecj-JT-gqY"/>
-        <segue reference="fEJ-lR-z9I"/>
-        <segue reference="7cu-FP-MoG"/>
+        <segue reference="A1R-09-1HJ"/>
+        <segue reference="UFB-DJ-qrH"/>
         <segue reference="m0d-gd-RWW"/>
         <segue reference="zQh-Po-kj4"/>
         <segue reference="wgV-xY-MTp"/>
-        <segue reference="YDb-8b-gnI"/>
+        <segue reference="VI5-hp-Gm2"/>
+        <segue reference="agi-3I-cSC"/>
+        <segue reference="rLo-0p-I9d"/>
+        <segue reference="m3z-fp-Nlm"/>
+        <segue reference="igQ-zk-tCm"/>
+        <segue reference="aks-Yo-Spb"/>
+        <segue reference="7cu-FP-MoG"/>
+        <segue reference="fEJ-lR-z9I"/>
+        <segue reference="ipn-3I-3vc"/>
         <segue reference="tsA-Cg-VzQ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
