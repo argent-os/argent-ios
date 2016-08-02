@@ -23,6 +23,8 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
 
     @IBOutlet weak var rateCell: UITableViewCell!
     
+    @IBOutlet weak var versionCell: UILabel!
+    
     private var verifiedLabel = UILabel()
 
     private var verifiedImage = UIImageView()
@@ -190,6 +192,9 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
     }
     
     func configureView() {
+        
+        let appVersionString: String = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
+        versionCell.text = "Version " + appVersionString
         
         self.view.backgroundColor = UIColor.globalBackground()
         let screen = UIScreen.mainScreen().bounds

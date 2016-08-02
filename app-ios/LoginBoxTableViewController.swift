@@ -41,7 +41,9 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
         let screen = UIScreen.mainScreen().bounds
         let _ = screen.size.width
         
-        addToolbarButton()
+        loginTableView.tableFooterView = UIView()
+        
+//        addToolbarButton()
         
         self.usernameTextField.delegate = self
         self.passwordTextField.delegate = self
@@ -52,6 +54,7 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
         let str = NSAttributedString(string: "Username or Email", attributes: [NSForegroundColorAttributeName:UIColor.lightBlue()])
         usernameTextField.attributedPlaceholder = str
         usernameTextField.textRectForBounds(CGRectMake(0, 0, 0, 0))
+        usernameTextField.font = UIFont(name: "MyriadPro-Regular", size: 15)!
         usernameTextField.tintColor = UIColor.lightBlue()
         
         passwordTextField.tag = 63632
@@ -59,6 +62,7 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
         passwordTextField.attributedPlaceholder = str2
         passwordTextField.textRectForBounds(CGRectMake(0, 0, 0, 0))
         passwordTextField.clearsOnBeginEditing = false
+        passwordTextField.font = UIFont(name: "MyriadPro-Regular", size: 15)!
         passwordTextField.tintColor = UIColor.lightBlue()
         
         loginTableView.separatorColor = UIColor.paleBlue().colorWithAlphaComponent(0.5)

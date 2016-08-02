@@ -26,6 +26,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, WCSessionDeleg
     
     @IBOutlet weak var loginBox: UIView!
     
+    @IBOutlet weak var loginButton: UIButton!
+    
     let onePasswordButton = UIImageView()
 
     let imageView = UIImageView()
@@ -48,6 +50,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, WCSessionDeleg
     
     func configureView() {
         
+        loginButton.layer.cornerRadius = 3
+        loginButton.layer.masksToBounds = true
+        loginButton.backgroundColor = UIColor.oceanBlue()
+        loginButton.addTarget(LoginBoxTableViewController(), action: #selector(LoginBoxTableViewController.login(_:)), forControlEvents: .TouchUpInside)
+        
         self.view.backgroundColor = UIColor.globalBackground()
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
@@ -57,8 +64,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, WCSessionDeleg
         let backgroundView: UIImageView = UIImageView(image: UIImage(named: "BackgroundBlueDark"))
         backgroundView.contentMode = UIViewContentMode.ScaleToFill
         backgroundView.frame = self.view.bounds
-        self.view!.addSubview(backgroundView)
-        self.view.sendSubviewToBack(backgroundView)
+        //        self.view!.addSubview(backgroundView)
+        //        self.view.sendSubviewToBack(backgroundView)
+        
+        self.view.backgroundColor = UIColor.mediumBlue()
         
         activityIndicator.center = self.view.center
         activityIndicator.startAnimating()
@@ -110,7 +119,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, WCSessionDeleg
         // Login box, set height of container to match embedded tableview
         let containerFrame: CGRect = self.loginBox.frame
         loginBox.frame = containerFrame
-        loginBox.layer.cornerRadius = 10
+        loginBox.layer.cornerRadius = 3
         loginBox.layer.borderColor = UIColor.offWhite().colorWithAlphaComponent(0.15).CGColor
         loginBox.layer.borderWidth = 1
         loginBox.layer.masksToBounds = true
@@ -132,6 +141,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, WCSessionDeleg
         imageView.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
         imageView.frame.origin.y = screenHeight*0.14 // 12% down from the top
         imageView.frame.origin.x = (self.view.bounds.size.width - imageView.frame.size.width) / 2.0 // centered left to right.
+        
     }
 
     func goToReset(sender: AnyObject) {

@@ -206,6 +206,9 @@ extension UIColor {
     static func seaBlue() -> UIColor {
         return UIColor(rgba: "#1a445c")
     }
+    static func oceanBlue() -> UIColor {
+        return UIColor(rgba: "#2381a4")
+    }
     static func mediumBlue() -> UIColor {
         if APP_THEME == "LIGHT" {
             return UIColor(rgba: "#2c3441")

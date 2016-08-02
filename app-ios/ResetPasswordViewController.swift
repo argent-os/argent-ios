@@ -32,8 +32,10 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
         let backgroundView: UIImageView = UIImageView(image: UIImage(named: "BackgroundBlueDark"))
         backgroundView.contentMode = UIViewContentMode.ScaleAspectFill
         backgroundView.frame = self.view.bounds
-        self.view!.addSubview(backgroundView)
-        self.view.sendSubviewToBack(backgroundView)
+//        self.view!.addSubview(backgroundView)
+//        self.view.sendSubviewToBack(backgroundView)
+        
+        self.view.backgroundColor = UIColor.mediumBlue()
         
         // Add button to keyboard
         addToolbarButton()
@@ -96,7 +98,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
         UIToolbar.appearance().barTintColor = UIColor.whiteColor()
 
         done.setTitleTextAttributes([
-            NSFontAttributeName : UIFont.systemFontOfSize(15, weight: UIFontWeightLight),
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!,
             NSForegroundColorAttributeName : UIColor.mediumBlue()
             ], forState: .Normal)
         
