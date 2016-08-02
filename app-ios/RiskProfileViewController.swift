@@ -89,7 +89,7 @@ class RiskProfileViewController: UIViewController {
         previewButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         previewButton.setTitleColor(UIColor.offWhite(), forState: .Highlighted)
         previewButton.setBackgroundColor(UIColor.skyBlue(), forState: .Normal)
-        previewButton.setBackgroundColor(UIColor.skyBlue().darkerColor(), forState: .Highlighted)
+        previewButton.setBackgroundColor(UIColor.skyBlue().lighterColor(), forState: .Highlighted)
         var attribs: [String: AnyObject] = [:]
         attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)!
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()

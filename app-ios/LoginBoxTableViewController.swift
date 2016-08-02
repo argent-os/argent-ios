@@ -43,12 +43,8 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
         
         loginTableView.tableFooterView = UIView()
         
-//        addToolbarButton()
-        
         self.usernameTextField.delegate = self
         self.passwordTextField.delegate = self
-        
-        // usernameTextField.becomeFirstResponder()
         
         usernameTextField.tag = 63631
         let str = NSAttributedString(string: "Username or Email", attributes: [NSForegroundColorAttributeName:UIColor.lightBlue()])
@@ -56,7 +52,8 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
         usernameTextField.textRectForBounds(CGRectMake(0, 0, 0, 0))
         usernameTextField.font = UIFont(name: "MyriadPro-Regular", size: 15)!
         usernameTextField.tintColor = UIColor.lightBlue()
-        
+        usernameTextField.addTarget(LoginViewController(), action: #selector(LoginViewController().textFieldDidChange(_:)), forControlEvents: .EditingChanged)
+
         passwordTextField.tag = 63632
         let str2 = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName:UIColor.lightBlue()])
         passwordTextField.attributedPlaceholder = str2
@@ -112,7 +109,7 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
     }
     
     func login(sender: AnyObject) {
-        
+
         activityIndicator.center = tableView.center
         activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true

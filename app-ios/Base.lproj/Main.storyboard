@@ -3977,7 +3977,7 @@ policy agreement. Tap to view</string>
         <image name="ic_tab_search" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mwT-xt-Ez4"/>
+        <segue reference="dtT-zy-VVd"/>
         <segue reference="YDb-8b-gnI"/>
         <segue reference="m0d-gd-RWW"/>
         <segue reference="zQh-Po-kj4"/>

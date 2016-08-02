@@ -151,9 +151,8 @@ class AuthViewController: UIPageViewController, UIPageViewControllerDelegate, LT
     // Set the ID in the storyboard in order to enable transition!
     func login(sender:AnyObject!) {
         let model = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-        model.modalDelegate = self
-        tr_presentViewController(model, method: TRPresentTransitionMethod.Fade, statusBarStyle: .LightContent, completion: {
-        })
+        
+        self.presentViewController(model, animated: true, completion: nil)
     }
 
     // MARK: - Modal tt delegate

@@ -44,11 +44,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate, WCSessionDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureView()
     }
     
     func configureView() {
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"keyboardWillAppear:", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:"keyboardWillDisappear:", name: UIKeyboardWillHideNotification, object: nil)
         
         loginButton.layer.cornerRadius = 3
         loginButton.layer.masksToBounds = true
@@ -147,12 +149,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, WCSessionDeleg
 
     func goToReset(sender: AnyObject) {
         performSegueWithIdentifier("resetPasswordView", sender: sender)
-    }
-    
-    //Calls this function when the tap is recognized.
-    func dismissKeyboard() {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
-        view.endEditing(true)
     }
     
     // Set the ID in the storyboard in order to enable transition!
@@ -308,11 +304,10 @@ class HTTPManager: Alamofire.Manager {
 
 extension LoginViewController {
     func textFieldDidChange(textField: UITextField) {
-        print("changing")
         if textField.text?.characters.count > 0 {
             loginButton.userInteractionEnabled = true
             loginButton.setBackgroundColor(UIColor.oceanBlue(), forState: .Normal)
-            loginButton.setBackgroundColor(UIColor.oceanBlue().lighterColor(), forState: .Highlighted)
+            loginButton.setBackgroundColor(UIColor.oceanBlue().darkerColor(), forState: .Highlighted)
             loginButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         } else {
             loginButton.userInteractionEnabled = false
@@ -320,6 +315,34 @@ extension LoginViewController {
             loginButton.setBackgroundColor(UIColor.oceanBlue().colorWithAlphaComponent(0.3), forState: .Highlighted)
             loginButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.5), forState: .Normal)
         }
+    }
+}
+
+extension LoginViewController {
+    
+    //Calls this function when the tap is recognized.
+    func dismissKeyboard() {
+        loginButton.userInteractionEnabled = false
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        loginButton.setBackgroundColor(UIColor.oceanBlue().colorWithAlphaComponent(0.3), forState: .Normal)
+        loginButton.setBackgroundColor(UIColor.oceanBlue().colorWithAlphaComponent(0.3), forState: .Highlighted)
+        loginButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.5), forState: .Normal)
+        
+        view.endEditing(true)
+    }
+    
+    func keyboardWillAppear(notification: NSNotification){
+        loginButton.userInteractionEnabled = true
+        loginButton.setBackgroundColor(UIColor.oceanBlue(), forState: .Normal)
+        loginButton.setBackgroundColor(UIColor.oceanBlue().darkerColor(), forState: .Highlighted)
+        loginButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+    }
+    
+    func keyboardWillDisappear(notification: NSNotification){
+        loginButton.userInteractionEnabled = false
+        loginButton.setBackgroundColor(UIColor.oceanBlue().colorWithAlphaComponent(0.3), forState: .Normal)
+        loginButton.setBackgroundColor(UIColor.oceanBlue().colorWithAlphaComponent(0.3), forState: .Highlighted)
+        loginButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.5), forState: .Normal)
     }
 }
 
