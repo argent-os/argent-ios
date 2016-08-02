@@ -52,7 +52,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, WCSessionDeleg
         
         loginButton.layer.cornerRadius = 3
         loginButton.layer.masksToBounds = true
-        loginButton.backgroundColor = UIColor.oceanBlue()
+        loginButton.backgroundColor = UIColor.oceanBlue().colorWithAlphaComponent(0.5)
+        loginButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.3), forState: .Normal)
         loginButton.addTarget(LoginBoxTableViewController(), action: #selector(LoginBoxTableViewController.login(_:)), forControlEvents: .TouchUpInside)
         
         self.view.backgroundColor = UIColor.globalBackground()
@@ -221,6 +222,7 @@ extension LoginViewController {
             let password = loginDictionary?[AppExtensionPasswordKey] as? String
             
             self.activityIndicator.center = self.view.center
+            self.activityIndicator.bounds.origin.y = 150
             self.activityIndicator.startAnimating()
             self.activityIndicator.hidesWhenStopped = true
             self.view.addSubview(self.activityIndicator)
@@ -302,6 +304,23 @@ class HTTPManager: Alamofire.Manager {
         let manager = HTTPManager(configuration: configuration,serverTrustPolicyManager: ServerTrustPolicyManager(policies: serverTrustPolicies))
         return manager
     }()
+}
+
+extension LoginViewController {
+    func textFieldDidChange(textField: UITextField) {
+        print("changing")
+        if textField.text?.characters.count > 0 {
+            loginButton.userInteractionEnabled = true
+            loginButton.setBackgroundColor(UIColor.oceanBlue(), forState: .Normal)
+            loginButton.setBackgroundColor(UIColor.oceanBlue().lighterColor(), forState: .Highlighted)
+            loginButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        } else {
+            loginButton.userInteractionEnabled = false
+            loginButton.setBackgroundColor(UIColor.oceanBlue().colorWithAlphaComponent(0.3), forState: .Normal)
+            loginButton.setBackgroundColor(UIColor.oceanBlue().colorWithAlphaComponent(0.3), forState: .Highlighted)
+            loginButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.5), forState: .Normal)
+        }
+    }
 }
 
 

@@ -64,7 +64,8 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
         passwordTextField.clearsOnBeginEditing = false
         passwordTextField.font = UIFont(name: "MyriadPro-Regular", size: 15)!
         passwordTextField.tintColor = UIColor.lightBlue()
-        
+        passwordTextField.addTarget(LoginViewController(), action: #selector(LoginViewController().textFieldDidChange(_:)), forControlEvents: .EditingChanged)
+
         loginTableView.separatorColor = UIColor.paleBlue().colorWithAlphaComponent(0.5)
         loginTableView.backgroundColor = UIColor.whiteColor()
         

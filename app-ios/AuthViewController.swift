@@ -81,7 +81,7 @@ class AuthViewController: UIPageViewController, UIPageViewControllerDelegate, LT
         
         // UI
         let loginButton = UIButton(frame: CGRect(x: 10, y: screenHeight-60-50, width: screenWidth/2-20, height: 60.0))
-        loginButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
+        loginButton.setBackgroundColor(UIColor.darkBlue().colorWithAlphaComponent(0.5), forState: .Normal)
         loginButton.setBackgroundColor(UIColor.darkBlue().darkerColor(), forState: .Highlighted)
         loginButton.tintColor = UIColor.darkBlue()
         loginButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
