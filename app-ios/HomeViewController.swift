@@ -80,7 +80,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.7)
                 ])
             lblSubtext.attributedText = subtext
-            self.headerView.addSubview(lblAccountAvailable)
+            self.view.addSubview(lblAccountAvailable)
 //            addSubviewWithFade(lblAccountAvailable, parentView: self, duration: 0.8)
         }
         if(sender.selectedSegmentIndex == 1) {
@@ -90,7 +90,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.7)
                 ])
             lblSubtext.attributedText = subtext
-            self.headerView.addSubview(lblAccountPending)
+            self.view.addSubview(lblAccountPending)
 //            addSubviewWithFade(lblAccountPending, parentView: self, duration: 0.8)
         }
     }
@@ -152,10 +152,11 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     // VIEW DID APPEAR
     override func viewDidAppear(animated: Bool) {
-        headerView.addSubview(balanceSwitch)
-        headerView.bringSubviewToFront(balanceSwitch)
-//        self.view.addSubview(balanceSwitch)
-//        self.view.bringSubviewToFront(balanceSwitch)
+        self.view.addSubview(balanceSwitch)
+        self.view.bringSubviewToFront(balanceSwitch)
+        self.view.addSubview(tutorialButton)
+        self.view.bringSubviewToFront(tutorialButton)
+        self.view.addSubview(dateRangeSegment)
         UITextField.appearance().keyboardAppearance = .Light
     }
     
@@ -282,10 +283,10 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 formatter.locale = NSLocale.currentLocale() // This is the default
                 
                 self.lblAccountPending.attributedText = formatCurrency(String(pendingBalance), fontName: "MyriadPro-Regular", superSize: 16, fontSize: 32, offsetSymbol: 10, offsetCents: 10)
-                self.headerView.addSubview(self.lblAccountPending)
+                self.view.addSubview(self.lblAccountPending)
 //                addSubviewWithFade(self.lblAccountPending, parentView: self, duration: 1)
                 self.lblAccountAvailable.attributedText = formatCurrency(String(availableBalance), fontName: "MyriadPro-Regular", superSize: 16, fontSize: 32, offsetSymbol: 10, offsetCents: 10)
-                self.headerView.addSubview(self.lblSubtext)
+                self.view.addSubview(self.lblSubtext)
 //                addSubviewWithFade(self.lblSubtext, parentView: self, duration: 0.5)
             })
             
@@ -376,10 +377,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     // MARK: TableView Delegate
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.accountHistoryArray?.count > 0 {
-            self.headerView.addSubview(self.dateRangeSegment)
-            self.headerView.bringSubviewToFront(self.dateRangeSegment)
-        }
         return self.accountHistoryArray?.count ?? 0
     }
     
@@ -447,13 +444,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 80.0
     }
-    
-    // Scrollview
-    
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        // TODO: Implement table scroll to top on scrolldown
-    }
-    
 }
 
 extension HomeViewController {
@@ -540,8 +530,8 @@ extension HomeViewController {
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-        UITabBar.appearance().shadowImage = UIImage()
-        UITabBar.appearance().backgroundImage = UIImage()
+//        UITabBar.appearance().shadowImage = UIImage()
+//        UITabBar.appearance().backgroundImage = UIImage()
         
         self.view.backgroundColor = UIColor.darkestBlue()
         
@@ -558,6 +548,15 @@ extension HomeViewController {
         backgroundImageView.frame = CGRect(x: 0, y: -2, width: screenWidth, height: screenHeight+4)
         backgroundImageView.image = UIImage(named: "BackgroundGradientBlue")
         addSubviewWithFade(backgroundImageView, parentView: self, duration: 0.5)
+        
+        tableView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight-45)
+        tableView.tableHeaderView = headerView
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorColor = UIColor.lightBlue().colorWithAlphaComponent(0.3)
+        tableView.showsVerticalScrollIndicator = false
+        tableView.backgroundColor = UIColor.clearColor()
+        addSubviewWithFade(tableView, parentView: self, duration: 1)
         
         if let tabBarController = window?.rootViewController as? UITabBarController {
             for item in tabBarController.tabBar.items! {
@@ -603,23 +602,20 @@ extension HomeViewController {
         graph.enableBezierCurve = true
         graph.colorTouchInputLine = UIColor.lightBlue()
         graph.layer.masksToBounds = true
-        headerView.addSubview(graph)
-//        addSubviewWithFade(graph, parentView: self, duration: 0.5)
+        addSubviewWithFade(graph, parentView: self, duration: 0.5)
+        self.view.bringSubviewToFront(graph)
+        self.headerView.bringSubviewToFront(graph)
         
         // split the date segments
         let horizontalSplitter = UIView()
         horizontalSplitter.backgroundColor = UIColor.clearColor()
         horizontalSplitter.frame = CGRect(x: 15.0, y: 260.0, width: screenWidth - 15.0, height: 1)
-//        self.view.addSubview(horizontalSplitter)
         headerView.addSubview(horizontalSplitter)
         
         dateRangeSegment.frame = CGRect(x: 45.0, y: 230.0, width: view.bounds.width - 90.0, height: 30.0)
-        //        var y_co: CGFloat = self.view.frame.size.height - 100.0
-        //        dateRangeSegment.frame = CGRectMake(10, y_co, width-20, 50.0)
         dateRangeSegment.selectedSegmentIndex = 2
         dateRangeSegment.removeBorders()
         dateRangeSegment.addTarget(self, action: #selector(HomeViewController.dateRangeSegmentControl(_:)), forControlEvents: .ValueChanged)
-//        addSubviewWithFade(dateRangeSegment, parentView: self, duration: 0.5)
         
         tutorialButton.frame = CGRect(x: screenWidth-40, y: 41, width: 20, height: 20)
         tutorialButton.setImage(UIImage(named: "ic_question"), forState: .Normal)
@@ -627,27 +623,6 @@ extension HomeViewController {
         tutorialButton.setTitleColor(UIColor.redColor(), forState: .Normal)
         tutorialButton.addTarget(self, action: #selector(HomeViewController.presentTutorial(_:)), forControlEvents: .TouchUpInside)
         tutorialButton.addTarget(self, action: #selector(HomeViewController.presentTutorial(_:)), forControlEvents: .TouchUpOutside)
-        headerView.addSubview(tutorialButton)
-        headerView.bringSubviewToFront(tutorialButton)
-//        self.view.addSubview(tutorialButton)
-//        self.view.bringSubviewToFront(tutorialButton)
-        
-        logoView.frame = CGRect(x: 20, y: 41, width: 30, height: 30)
-        logoView.image = UIImage(named: "LogoOutline")
-        logoView.alpha = 0.8
-        //logoView.addTarget(self, action: #selector(HomeViewController.presentTutorial(_:)), forControlEvents: .TouchUpInside)
-        //logoView.addTarget(self, action: #selector(HomeViewController.presentTutorial(_:)), forControlEvents: .TouchUpOutside)
-//        self.view.addSubview(logoView)
-//        self.view.bringSubviewToFront(logoView)
-        
-        tableView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight-45)
-        tableView.tableHeaderView = headerView
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.separatorColor = UIColor.lightBlue().colorWithAlphaComponent(0.3)
-        tableView.showsVerticalScrollIndicator = false
-        tableView.backgroundColor = UIColor.clearColor()
-        addSubviewWithFade(tableView, parentView: self, duration: 1)
         
         lblAccountAvailable.textColor = UIColor.whiteColor()
         lblAccountAvailable.frame = CGRect(x: 0, y: 31, width: screenWidth, height: 60)
@@ -657,7 +632,7 @@ extension HomeViewController {
             NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.7)
             ])
         lblAccountAvailable.attributedText = str0
-        ///////
+
         lblAccountPending.textColor = UIColor.whiteColor()
         lblAccountPending.frame = CGRect(x: 0, y: 31, width: screenWidth, height: 60)
         lblAccountPending.textAlignment = .Center
@@ -666,7 +641,7 @@ extension HomeViewController {
             NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.7)
             ])
         lblAccountPending.attributedText = str1
-        ///////
+
         lblSubtext.textColor = UIColor.whiteColor()
         lblSubtext.frame = CGRect(x: 0, y: 55, width: screenWidth, height: 60)
         lblSubtext.alpha = 0.5
@@ -689,6 +664,60 @@ extension HomeViewController {
             }, loadingView: loadingView)
         tableView.dg_setPullToRefreshFillColor(UIColor.clearColor())
         tableView.dg_setPullToRefreshBackgroundColor(UIColor.clearColor())
+    }
+}
+
+extension HomeViewController {
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        // TODO: Implement table scroll to top on scrolldown
+        print(tableView.contentOffset.y)
+        
+        if tableView.contentOffset.y > 0 {
+            self.view.bringSubviewToFront(tableView)
+            
+            UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                self.dateRangeSegment.alpha = 0.5
+            }, completion: nil)
+        } else {
+            self.view.bringSubviewToFront(dateRangeSegment)
+            self.view.bringSubviewToFront(graph)
+            self.view.bringSubviewToFront(tutorialButton)
+            self.view.bringSubviewToFront(balanceSwitch)
+            self.view.bringSubviewToFront(lblAccountPending)
+            self.view.bringSubviewToFront(lblAccountAvailable)
+            self.view.bringSubviewToFront(lblSubtext)
+            
+            UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                self.dateRangeSegment.alpha = 1.0
+            }, completion: nil)
+        }
+        if tableView.contentOffset.y > 50 {
+            UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                self.graph.alpha = 0.5
+                }, completion: nil)
+        } else {
+            UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                self.graph.alpha = 1.0
+                }, completion: nil)
+        }
+        
+        if tableView.contentOffset.y > 150 {
+            UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                self.tutorialButton.alpha = 0.5
+                self.balanceSwitch.alpha = 0.5
+                self.lblAccountPending.alpha = 0.5
+                self.lblAccountAvailable.alpha = 0.5
+                self.lblSubtext.alpha = 0.5
+            }, completion: nil)
+        } else {
+            UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                self.tutorialButton.alpha = 1.0
+                self.balanceSwitch.alpha = 1.0
+                self.lblAccountPending.alpha = 1.0
+                self.lblAccountAvailable.alpha = 1.0
+                self.lblSubtext.alpha = 1.0
+            }, completion: nil)
+        }
     }
 }
 

@@ -200,6 +200,9 @@ extension UIColor {
     static func darkestBlue() -> UIColor {
         return UIColor(rgba: "#020405")
     }
+    static func deepBlue() -> UIColor {
+        return UIColor(rgba: "#131d32")
+    }
     static func mintGreen() -> UIColor {
         return UIColor(rgba: "#42d1ae")
     }

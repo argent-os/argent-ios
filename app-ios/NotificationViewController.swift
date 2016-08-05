@@ -100,7 +100,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
         
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 65))
-        navBar.barTintColor = UIColor.seaBlue()
+        navBar.barTintColor = UIColor.oceanBlue()
         navBar.tintColor = UIColor.whiteColor()
         navBar.translucent = false
         navBar.titleTextAttributes = [

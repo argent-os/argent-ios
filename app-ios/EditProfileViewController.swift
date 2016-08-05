@@ -81,7 +81,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
         tableView.showsVerticalScrollIndicator = false
         
         self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 60)
-        self.navigationController?.navigationBar.backgroundColor = UIColor.skyBlue()
+        self.navigationController?.navigationBar.backgroundColor = UIColor.oceanBlue()
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
         self.navigationItem.title = "Edit Profile"
@@ -316,7 +316,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
 
         let saveRow = LabelRowFormer<FormLabelCell>() { [weak self] in
             if let x = self {
-                $0.backgroundColor = UIColor.skyBlue()
+                $0.backgroundColor = UIColor.oceanBlue()
                 $0.titleLabel.textColor = UIColor.whiteColor()
                 $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 16)!
                 $0.tintColor = UIColor.whiteColor()

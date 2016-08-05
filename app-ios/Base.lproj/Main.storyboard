@@ -48,6 +48,7 @@
             <string>MyriadPro-Regular</string>
             <string>MyriadPro-Regular</string>
             <string>MyriadPro-Regular</string>
+            <string>MyriadPro-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -87,8 +88,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="8A1-cO-cow"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="b3j-hU-muC" id="Nr5-LI-kzK"/>
@@ -1267,8 +1266,25 @@ support request</string>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" tag="9090" contentMode="scaleToFill" selectionStyle="none" indentationLevel="3" indentationWidth="0.0" textLabel="e0Z-gR-lTp" rowHeight="60" style="IBUITableViewCellStyleDefault" id="AXA-lJ-R4D">
+                                        <rect key="frame" x="0.0" y="1174" width="1024" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AXA-lJ-R4D" id="4lw-cT-pwe">
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="59.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Send Invite" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="e0Z-gR-lTp">
+                                                    <rect key="frame" x="196" y="0.0" width="632" height="59.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                                    <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationLevel="3" indentationWidth="0.0" textLabel="KiS-i1-Th0" detailTextLabel="Zum-Qm-nbL" rowHeight="70" style="IBUITableViewCellStyleValue1" id="7ct-DZ-7BF">
-                                        <rect key="frame" x="0.0" y="1174" width="1024" height="70"/>
+                                        <rect key="frame" x="0.0" y="1234" width="1024" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7ct-DZ-7BF" id="8ap-H5-SHz">
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="69.5"/>
@@ -1305,6 +1321,7 @@ support request</string>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPadPro"/>
                     <connections>
+                        <outlet property="inviteCell" destination="AXA-lJ-R4D" id="hJW-0F-3Mx"/>
                         <outlet property="rateCell" destination="jza-Cj-Ty0" id="JxO-dt-NXf"/>
                         <outlet property="shareCell" destination="QNN-j1-GwY" id="gfm-1S-Hih"/>
                         <outlet property="versionCell" destination="KiS-i1-Th0" id="N26-ro-joU"/>
@@ -1447,7 +1464,7 @@ support request</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="97T-hV-39n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-274" y="-1641"/>
+            <point key="canvasLocation" x="-38" y="-1641"/>
         </scene>
         <!--History Detail View Controller-->
         <scene sceneID="cYy-QS-kul">
@@ -2589,7 +2606,6 @@ policy agreement. Tap to view</string>
                 <tabBarController storyboardIdentifier="RootViewController" automaticallyAdjustsScrollViewInsets="NO" id="FFu-uW-Oqz" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="KNb-GY-NSK"/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="dfY-4f-GNo">
                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="49"/>
@@ -3348,7 +3364,7 @@ policy agreement. Tap to view</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mWi-GT-iFP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2035" y="-1892"/>
+            <point key="canvasLocation" x="2233" y="-1892"/>
         </scene>
         <!--Search Message View Controller-->
         <scene sceneID="fgo-wE-cP1">
@@ -3977,7 +3993,7 @@ policy agreement. Tap to view</string>
         <image name="ic_tab_search" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dtT-zy-VVd"/>
+        <segue reference="A1R-09-1HJ"/>
         <segue reference="YDb-8b-gnI"/>
         <segue reference="m0d-gd-RWW"/>
         <segue reference="zQh-Po-kj4"/>

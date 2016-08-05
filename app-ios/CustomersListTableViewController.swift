@@ -97,15 +97,15 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
         // let screenHeight = screen.size.height
         
         let headerView = UIView()
-        headerView.backgroundColor = UIColor.offWhite()
+        headerView.backgroundColor = UIColor.oceanBlue()
         headerView.frame = CGRect(x: 0, y: 10, width: screenWidth, height: 60)
         self.tableView.tableHeaderView = headerView
         let headerViewTitle: UILabel = UILabel()
         headerViewTitle.frame = CGRect(x: 0, y: 20, width: screenWidth, height: 35)
         headerViewTitle.text = "Customers"
-        headerViewTitle.font = UIFont.systemFontOfSize(16)
+        headerViewTitle.font = UIFont(name: "MyriadPro-Regular", size: 17)!
         headerViewTitle.textAlignment = .Center
-        headerViewTitle.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.7)
+        headerViewTitle.textColor = UIColor.whiteColor()
         headerView.addSubview(headerViewTitle)
         
         self.tableView.separatorColor = UIColor.lightBlue().colorWithAlphaComponent(0.3)

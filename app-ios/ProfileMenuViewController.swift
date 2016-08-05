@@ -23,6 +23,8 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
 
     @IBOutlet weak var rateCell: UITableViewCell!
     
+    @IBOutlet weak var inviteCell: UITableViewCell!
+    
     @IBOutlet weak var versionCell: UILabel!
     
     private var verifiedLabel = UILabel()
@@ -230,6 +232,14 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         // Add action to rate cell to return to activity menu
         let rateGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.openStoreProductWithiTunesItemIdentifier(_:)))
         rateCell.addGestureRecognizer(rateGesture)
+        
+        // Add action to invite user
+        let inviteGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.inviteUser(_:)))
+        inviteCell.addGestureRecognizer(inviteGesture)
+    }
+    
+    func inviteUser(sender: AnyObject) {
+        self.presentViewController(AddCustomerViewController(), animated: true, completion: nil)
     }
     
     func openStoreProductWithiTunesItemIdentifier(sender: AnyObject) {

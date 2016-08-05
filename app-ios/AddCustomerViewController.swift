@@ -31,8 +31,8 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
     private func setupNav() {
         let navigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 50)) // Offset by 20 pixels vertically to take the status bar into account
         
-        navigationBar.backgroundColor = UIColor.offWhite()
-        navigationBar.tintColor = UIColor.mediumBlue()
+        navigationBar.backgroundColor = UIColor.clearColor()
+        navigationBar.tintColor = UIColor.whiteColor()
         navigationBar.delegate = self
         
         // Create a navigation item with a title
@@ -68,45 +68,62 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-        self.view.backgroundColor = UIColor.offWhite()
+//        self.view.backgroundColor = UIColor.offWhite()
+        let backgroundImageView = UIImageView(image: UIImage(named: "BackgroundWalkthroughTwo"), highlightedImage: nil)
+        backgroundImageView.frame = CGRectMake(0, 0, screenWidth, screenHeight)
+        backgroundImageView.contentMode = .ScaleAspectFill
+        backgroundImageView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        backgroundImageView.layer.masksToBounds = true
+        backgroundImageView.clipsToBounds = true
+        // backgroundImageView.addSubview(visualEffectView)
+        self.view.sendSubviewToBack(backgroundImageView)
+        self.view.addSubview(backgroundImageView)
         
-        title = ""
+        let imageView = UIImageView()
+        let imageName = "LogoOutlineGradient"
+        let image = UIImage(named: imageName)
+        imageView.image = image
+        imageView.layer.masksToBounds = true
+        imageView.tag = 7577
+        imageView.frame = CGRect(x: 0, y: 0, width: 75, height: 75)
+        imageView.frame.origin.y = screenHeight*0.15
+        imageView.frame.origin.x = (self.view.bounds.size.width - imageView.frame.size.width) / 2.0 // centered left to right.
+        addSubviewWithFade(imageView, parentView: self, duration: 0.3)
+
+        let lbl = UILabel()
+        // Set range of string length to exactly 8, the number of characters
+        lbl.frame = CGRect(x: 0, y: screenHeight*0.33, width: screenWidth, height: 40)
+        lbl.font = UIFont(name: "MyriadPro-Regular", size: 23)
+        lbl.tag = 7578
+        lbl.textAlignment = NSTextAlignment.Center
+        lbl.textColor = UIColor.whiteColor()
+        lbl.adjustAttributedString("ARGENT", spacing: 4, fontName: "MyriadPro-Regular", fontSize: 23, fontColor: UIColor.whiteColor())
+        addSubviewWithFade(lbl, parentView: self, duration: 0.3)
+
+        let dividerView = UIImageView()
+        dividerView.image = UIImage(named: "Divider")?.alpha(0.3)
+        dividerView.frame = CGRect(x: 100, y: screenHeight*0.39, width: screenWidth-200, height: 1)
+        addSubviewWithFade(dividerView, parentView: self, duration: 0.3)
         
-        let backgroundGradient = UIImageView()
-//        backgroundGradient.backgroundColor = UIColor.mediumBlue()
-        backgroundGradient.image = UIImage(named: "BackgroundBusinessBlurDark")
-        backgroundGradient.frame = CGRect(x: 0, y: screenHeight-250, width: screenWidth, height: 250)
-        backgroundGradient.contentMode = .ScaleToFill
-        self.view.addSubview(backgroundGradient)
-        
-        let mainImage = UIImageView()
-        mainImage.image = UIImage(named: "LogoOutlineDark")
-        mainImage.frame = CGRect(x: screenWidth/2-35, y: 130, width: 70, height: 70)
-        mainImage.contentMode = .ScaleAspectFit
-        let _ = Timeout(0.1) {
-            addSubviewWithBounce(mainImage, parentView: self, duration: 0.3)
-        }
-        
-        let mainTitle = UILabel()
-        mainTitle.frame = CGRect(x: 0, y: 220, width: screenWidth, height: 40)
-        mainTitle.textColor = UIColor.darkGrayColor()
-        mainTitle.textAlignment = .Center
-        mainTitle.text = "Send Invitation"
-        mainTitle.font = UIFont(name: "MyriadPro-Regular", size: 20)
-        let _ = Timeout(0.2) {
-            addSubviewWithBounce(mainTitle, parentView: self, duration: 0.3)
-        }
-        
-        let mainBody = UILabel()
-        mainBody.frame = CGRect(x:40, y: 240, width: screenWidth-80, height: 80)
-        mainBody.textColor = UIColor.lightBlue()
-        mainBody.textAlignment = .Center
-        mainBody.text = "Invite new users, customers, merchants, or friends to " + APP_NAME + " today.  The more the merrier! 🎉"
-        mainBody.numberOfLines = 5
-        mainBody.font = UIFont(name: "MyriadPro-Regular", size: 14)
-        let _ = Timeout(0.3) {
-            addSubviewWithBounce(mainBody, parentView: self, duration: 0.3)
-        }
+        let lblDetail = UILabel()
+        // Set range of string length to exactly 8, the number of characters
+        lblDetail.frame = CGRect(x: 0, y: screenHeight*0.39, width: screenWidth, height: 40)
+        lblDetail.tag = 7579
+        lblDetail.textAlignment = NSTextAlignment.Center
+        lblDetail.textColor = UIColor.whiteColor()
+        lblDetail.adjustAttributedString("INVITATION", spacing: 4, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.whiteColor())
+        addSubviewWithFade(lblDetail, parentView: self, duration: 0.3)
+
+        let lblBody = UILabel()
+        // Set range of string length to exactly 8, the number of characters
+        lblBody.frame = CGRect(x: 50, y: screenHeight*0.40, width: screenWidth-100, height: 200)
+        lblBody.numberOfLines = 0
+        lblBody.alpha = 0.9
+        lblBody.adjustAttributedString("Spread the joy. Invite new users, customers, or friends to " + APP_NAME + " today.", spacing: 2, fontName: "HelveticaNeue-Light", fontSize: 14, fontColor: UIColor.whiteColor())
+        lblBody.tag = 7579
+        lblBody.textAlignment = NSTextAlignment.Center
+        lblBody.textColor = UIColor.whiteColor()
+        addSubviewWithFade(lblBody, parentView: self, duration: 0.3)
         
         let emailButton: DKCircleButton = DKCircleButton(frame: CGRectMake(45, screenHeight-180, 90, 90))
         emailButton.center = CGPointMake(self.view.layer.frame.width*0.3, screenHeight-130)
@@ -123,7 +140,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         emailButton.setAttributedTitle(str0, forState: .Normal)
         emailButton.addTarget(self, action: #selector(AddCustomerViewController.sendEmailButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         let _ = Timeout(0.4) {
-            addSubviewWithBounce(emailButton, parentView: self, duration: 0.3)
+            addSubviewWithFade(emailButton, parentView: self, duration: 0.3)
         }
         
         let smsButton: DKCircleButton = DKCircleButton(frame: CGRectMake(screenWidth/2+45, screenHeight-180, 90, 90))
@@ -140,12 +157,12 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
             ])
         smsButton.setAttributedTitle(str1, forState: .Normal)
         smsButton.addTarget(self, action: #selector(AddCustomerViewController.sendSMSButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        let _ = Timeout(0.6) {
-            addSubviewWithBounce(smsButton, parentView: self, duration: 0.3)
+        let _ = Timeout(0.4) {
+            addSubviewWithFade(smsButton, parentView: self, duration: 0.3)
         }
         
         self.navigationItem.title = ""
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.darkGrayColor()]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
     }
 

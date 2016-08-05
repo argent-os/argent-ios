@@ -91,6 +91,9 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
         scrollView.showsVerticalScrollIndicator = false
         scrollView.scrollEnabled = true
         scrollView.userInteractionEnabled = true
+        scrollView.bounces = true
+        scrollView.alwaysBounceVertical = true
+        scrollView.decelerationRate = 0.3
         scrollView.contentSize = CGSizeMake(screenWidth, screenHeight*1.2)
         self.view!.addSubview(scrollView)
         

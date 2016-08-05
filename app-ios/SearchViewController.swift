@@ -64,7 +64,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.Default
+        return UIStatusBarStyle.LightContent
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
     
     override func didReceiveMemoryWarning() {
@@ -77,6 +81,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
+        let headerSplashView = UIView()
+        headerSplashView.backgroundColor = UIColor.oceanBlue()
+        headerSplashView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 20)
+//        self.view.addSubview(headerSplashView)
+        
         let placeholderMaskImageView = UIImageView()
         placeholderMaskImageView.image = UIImage(named: "PlaceholderSearch")
         placeholderMaskImageView.contentMode = .ScaleAspectFit
@@ -88,11 +97,23 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         // definespresentationcontext screen
         self.definesPresentationContext = true
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.view.backgroundColor = UIColor.oceanBlue()
         
-        self.navigationItem.title = "Search"
+        var image: UIImage = UIImage(named: "LogoOutline")!
+        let imgView = UIImageView(image: image)
+        imgView.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
+        imgView.contentMode = .ScaleAspectFit
+        imgView.clipsToBounds = true
+//        self.navigationItem.titleView = imgView
+        self.navigationItem.titleView?.frame = CGRect(x: -100, y: 0, width: screenWidth, height: 35)
+        
+        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 40)
+        self.navigationController?.view.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 40)
+        self.navigationController?.navigationBar.backgroundColor = UIColor.oceanBlue()
+        self.navigationController?.navigationBar.tintColor = UIColor.oceanBlue()
+        self.navigationController?.navigationBar.barTintColor = UIColor.oceanBlue()
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSForegroundColorAttributeName : UIColor.lightBlue(),
+            NSForegroundColorAttributeName : UIColor.whiteColor(),
             NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 17)!
         ]
         
@@ -282,15 +303,24 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchController.searchBar.sizeToFit()
         searchController.searchBar.frame = CGRect(x: 0, y: 0, width: screenWidth, height:40)
         searchController.searchBar.translucent = true
-        searchController.searchBar.backgroundColor = UIColor.whiteColor()
+        searchController.searchBar.backgroundColor = UIColor.oceanBlue()
         searchController.searchBar.searchBarStyle = .Minimal
-        searchController.searchBar.tintColor = UIColor.mediumBlue()
-        searchController.searchBar.barStyle = .Black
+        searchController.searchBar.tintColor = UIColor.whiteColor()
+        searchController.searchBar.barStyle = .Default
         searchController.searchBar.showsScopeBar = true
+        
+        UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).textColor = UIColor.whiteColor()
+        UILabel.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).textColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
+        UIButton.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).tintColor = UIColor.whiteColor()
+
+        UISearchBar.appearance().setImage(UIImage(named: "ic_search"), forSearchBarIcon: UISearchBarIcon.Search, state: UIControlState.Normal)
+
+        // Search Bar UI
         
         // Place the search bar view to the tableview headerview.
         tblSearchResults.tableHeaderView = searchController.searchBar
         tblSearchResults.bringSubviewToFront(searchController.searchBar)
+
     }
     
     
