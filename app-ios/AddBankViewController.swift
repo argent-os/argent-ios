@@ -58,7 +58,7 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         
         viewAccountsButton.frame = CGRect(x: 0, y: screenHeight-230, width: screenWidth, height: 60)
         viewAccountsButton.layer.cornerRadius = 0
-        viewAccountsButton.layer.borderColor = UIColor.skyBlue().colorWithAlphaComponent(0.5).CGColor
+        viewAccountsButton.layer.borderColor = UIColor.oceanBlue().colorWithAlphaComponent(0.5).CGColor
         viewAccountsButton.layer.borderWidth = 0
         viewAccountsButton.clipsToBounds = true
         viewAccountsButton.setTitleColor(UIColor.darkBlue(), forState: .Normal)
@@ -67,7 +67,7 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         viewAccountsButton.setBackgroundColor(UIColor.whiteColor().darkerColor(), forState: .Highlighted)
         var attribs: [String: AnyObject] = [:]
         attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)!
-        attribs[NSForegroundColorAttributeName] = UIColor.lightBlue()
+        attribs[NSForegroundColorAttributeName] = UIColor.oceanBlue()
         let str = NSAttributedString(string: "View Accounts", attributes: attribs)
         viewAccountsButton.setAttributedTitle(str, forState: .Normal)
         self.view.addSubview(viewAccountsButton)
@@ -75,13 +75,13 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
 
         manualConnectBankButton.frame = CGRect(x: 0, y: screenHeight-170, width: screenWidth, height: 60)
         manualConnectBankButton.layer.cornerRadius = 0
-        manualConnectBankButton.layer.borderColor = UIColor.skyBlue().colorWithAlphaComponent(0.5).CGColor
+        manualConnectBankButton.layer.borderColor = UIColor.oceanBlue().colorWithAlphaComponent(0.5).CGColor
         manualConnectBankButton.layer.borderWidth = 0
         manualConnectBankButton.clipsToBounds = true
         manualConnectBankButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         manualConnectBankButton.setTitleColor(UIColor.offWhite(), forState: .Highlighted)
-        manualConnectBankButton.setBackgroundColor(UIColor.skyBlue(), forState: .Normal)
-        manualConnectBankButton.setBackgroundColor(UIColor.skyBlue().darkerColor(), forState: .Highlighted)
+        manualConnectBankButton.setBackgroundColor(UIColor.oceanBlue(), forState: .Normal)
+        manualConnectBankButton.setBackgroundColor(UIColor.oceanBlue().lighterColor(), forState: .Highlighted)
         var attribs3: [String: AnyObject] = [:]
         attribs3[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)!
         attribs3[NSForegroundColorAttributeName] = UIColor.whiteColor()
@@ -97,8 +97,8 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         directLoginButton.clipsToBounds = true
         directLoginButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         directLoginButton.setTitleColor(UIColor.offWhite(), forState: .Highlighted)
-        directLoginButton.setBackgroundColor(UIColor.mediumBlue(), forState: .Normal)
-        directLoginButton.setBackgroundColor(UIColor.mediumBlue().darkerColor(), forState: .Highlighted)
+        directLoginButton.setBackgroundColor(UIColor.seaBlue(), forState: .Normal)
+        directLoginButton.setBackgroundColor(UIColor.seaBlue().lighterColor(), forState: .Highlighted)
         directLoginButton.addTarget(self, action: #selector(self.goToLoginBank(_:)), forControlEvents: .TouchUpInside)
         var attribs2: [String: AnyObject] = [:]
         attribs2[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)!
@@ -107,9 +107,9 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         directLoginButton.setAttributedTitle(str2, forState: .Normal)
         self.view.addSubview(directLoginButton)
 
-        pageIcon.image = UIImage(named: "IconBankBlue")
+        pageIcon.image = UIImage(named: "IconBank")
         pageIcon.contentMode = .ScaleAspectFit
-        pageIcon.frame = CGRect(x: screenWidth/2-50, y: 150, width: 100, height: 100)
+        pageIcon.frame = CGRect(x: screenWidth/2-75, y: 75, width: 150, height: 150)
         self.view.addSubview(pageIcon)
         
         pageHeader.text = "Bank Linking"

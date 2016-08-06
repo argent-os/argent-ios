@@ -18,7 +18,6 @@ class ParallaxHeaderView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.lightBlue()
         
         // The container view is needed to extend the visible area for the image view
         // to include that below the navigation bar. If this container view isn't present
@@ -26,7 +25,9 @@ class ParallaxHeaderView: UIView {
         // effect would not work correctly
         
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.backgroundColor = UIColor.lightBlue()
+        containerView.backgroundColor = UIColor.whiteColor()
+        self.backgroundColor = UIColor.whiteColor()
+        
         self.addSubview(containerView)
         self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[containerView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["containerView" : containerView]))
         self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[containerView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["containerView" : containerView]))
@@ -38,19 +39,22 @@ class ParallaxHeaderView: UIView {
         imageView.clipsToBounds = true
         imageView.contentMode = .ScaleAspectFill
 
-        self.containerView.backgroundColor = UIColor.darkBlue()
+        self.containerView.backgroundColor = UIColor.whiteColor()
 
         User.getProfile({ (user, error) in
             if user?.picture != nil && user?.picture != "" {
-                let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
-                imageView.image = img
+                // for user profile picture as background
+                // let img = UIImage(data: NSData(contentsOfURL: NSURL(string: (user?.picture)!)!)!)!
+                // imageView.image = img
                 
                 // Blurview
                 let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
                 visualEffectView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
-                
+                // imageView.addSubview(visualEffectView)
+
+                let img = UIImage(named: "BackgroundWhite")
+                imageView.image = img
                 self.containerView.addSubview(imageView)
-                imageView.addSubview(visualEffectView)
                 
                 self.containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[imageView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["imageView" : imageView]))
                 self.bottomLayoutConstraint = NSLayoutConstraint(item: imageView, attribute: .Bottom, relatedBy: .Equal, toItem: self.containerView, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
@@ -58,9 +62,9 @@ class ParallaxHeaderView: UIView {
                 self.heightLayoutConstraint = NSLayoutConstraint(item: imageView, attribute: .Height, relatedBy: .Equal, toItem: self.containerView, attribute: .Height, multiplier: 1.0, constant: 0.0)
                 self.containerView.addConstraint(self.heightLayoutConstraint)
             } else {
-                let img = UIImage(named: "BackgroundBlueDark")
+                let img = UIImage(named: "BackgroundWhite")
                 imageView.image = img
-
+                
                 self.containerView.addSubview(imageView)
                 
                 self.containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[imageView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["imageView" : imageView]))

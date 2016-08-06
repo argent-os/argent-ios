@@ -58,7 +58,7 @@ class ConfigureAppViewController: FormViewController, UIApplicationDelegate {
         let configurePOSRowScreenAlive = SwitchRowFormer<FormSwitchCell>() {
             $0.titleLabel.text = "Keep screen alive"
             $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 14)!
-            $0.switchButton.onTintColor = UIColor.skyBlue()
+            $0.switchButton.onTintColor = UIColor.oceanBlue()
             }.configure() { cell in
                 cell.rowHeight = 60
                 if(KeychainSwift().getBool("screenAlive") == true) {
@@ -79,7 +79,7 @@ class ConfigureAppViewController: FormViewController, UIApplicationDelegate {
         let configureCenterMenuRow = SwitchRowFormer<FormSwitchCell>() {
             $0.titleLabel.text = "Hide center menu text"
             $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 14)!
-            $0.switchButton.onTintColor = UIColor.skyBlue()
+            $0.switchButton.onTintColor = UIColor.oceanBlue()
             }.configure() { cell in
                 cell.rowHeight = 60
                 if(KeychainSwift().getBool("hideCenterMenuText") == true) {
@@ -98,7 +98,7 @@ class ConfigureAppViewController: FormViewController, UIApplicationDelegate {
         let configureThemeRow = SwitchRowFormer<FormSwitchCell>() {
             $0.titleLabel.text = "Alternate Theme"
             $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 14)!
-            $0.switchButton.onTintColor = UIColor.skyBlue()
+            $0.switchButton.onTintColor = UIColor.oceanBlue()
             }.configure() { cell in
                 cell.rowHeight = 60
                 if(KeychainSwift().get("theme") == "DARK") {

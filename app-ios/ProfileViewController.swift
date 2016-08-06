@@ -22,6 +22,14 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let app: UIApplication = UIApplication.sharedApplication()
+        let statusBarHeight: CGFloat = app.statusBarFrame.size.height
+        let statusBarView: UIView = UIView(frame: CGRectMake(0, -statusBarHeight, UIScreen.mainScreen().bounds.size.width, statusBarHeight))
+        statusBarView.backgroundColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.addSubview(statusBarView)
+        
+        // THIS SETS STATUS BAR COLOR
+        self.navigationController?.navigationBar.barStyle = .Default
         // Transparent navigation bar
         self.navigationController?.navigationBar.barTintColor = UIColor.lightBlue()
         self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()

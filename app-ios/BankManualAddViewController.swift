@@ -186,24 +186,24 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
         helpButton.layer.masksToBounds = true
         helpButton.addTarget(self, action: #selector(self.showTutorialModal(_:)), forControlEvents: .TouchUpInside)
         var attribs2: [String: AnyObject] = [:]
-        attribs2[NSFontAttributeName] = UIFont.systemFontOfSize(14)
-        attribs2[NSForegroundColorAttributeName] = UIColor.lightBlue()
-        let str2 = NSAttributedString(string: "Example Check", attributes: attribs2)
+        attribs2[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)
+        attribs2[NSForegroundColorAttributeName] = UIColor.oceanBlue()
+        let str2 = NSAttributedString(string: "Show Example", attributes: attribs2)
         helpButton.setAttributedTitle(str2, forState: .Normal)
         scrollView.addSubview(helpButton)
         scrollView.bringSubviewToFront(helpButton)
         
         addBankButton.frame = CGRect(x: 0, y: screenHeight-110, width: screenWidth, height: 60)
         addBankButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        addBankButton.setBackgroundColor(UIColor.skyBlue(), forState: .Normal)
-        addBankButton.setBackgroundColor(UIColor.skyBlue().darkerColor(), forState: .Highlighted)
-        addBankButton.layer.borderColor = UIColor.skyBlue().CGColor
+        addBankButton.setBackgroundColor(UIColor.oceanBlue(), forState: .Normal)
+        addBankButton.setBackgroundColor(UIColor.oceanBlue().lighterColor(), forState: .Highlighted)
+        addBankButton.layer.borderColor = UIColor.oceanBlue().CGColor
         addBankButton.layer.borderWidth = 0
         addBankButton.layer.cornerRadius = 0
         addBankButton.layer.masksToBounds = true
         addBankButton.addTarget(self, action: #selector(linkBankToStripe(_:)), forControlEvents: .TouchUpInside)
         var attribs: [String: AnyObject] = [:]
-        attribs[NSFontAttributeName] = UIFont.systemFontOfSize(14)
+        attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
         let str = NSAttributedString(string: "Link Bank", attributes: attribs)
         addBankButton.setAttributedTitle(str, forState: .Normal)

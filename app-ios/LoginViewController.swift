@@ -54,7 +54,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, WCSessionDeleg
         
         loginButton.layer.cornerRadius = 3
         loginButton.layer.masksToBounds = true
-        loginButton.backgroundColor = UIColor.oceanBlue().colorWithAlphaComponent(0.5)
+        loginButton.backgroundColor = UIColor.skyBlue().colorWithAlphaComponent(0.5)
         loginButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.3), forState: .Normal)
         loginButton.addTarget(LoginBoxTableViewController(), action: #selector(LoginBoxTableViewController.login(_:)), forControlEvents: .TouchUpInside)
         
@@ -306,13 +306,13 @@ extension LoginViewController {
     func textFieldDidChange(textField: UITextField) {
         if textField.text?.characters.count > 0 {
             loginButton.userInteractionEnabled = true
-            loginButton.setBackgroundColor(UIColor.oceanBlue(), forState: .Normal)
-            loginButton.setBackgroundColor(UIColor.oceanBlue().darkerColor(), forState: .Highlighted)
+            loginButton.setBackgroundColor(UIColor.skyBlue(), forState: .Normal)
+            loginButton.setBackgroundColor(UIColor.skyBlue().darkerColor(), forState: .Highlighted)
             loginButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         } else {
             loginButton.userInteractionEnabled = false
-            loginButton.setBackgroundColor(UIColor.oceanBlue().colorWithAlphaComponent(0.3), forState: .Normal)
-            loginButton.setBackgroundColor(UIColor.oceanBlue().colorWithAlphaComponent(0.3), forState: .Highlighted)
+            loginButton.setBackgroundColor(UIColor.skyBlue().colorWithAlphaComponent(0.3), forState: .Normal)
+            loginButton.setBackgroundColor(UIColor.skyBlue().colorWithAlphaComponent(0.3), forState: .Highlighted)
             loginButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.5), forState: .Normal)
         }
     }
@@ -324,8 +324,8 @@ extension LoginViewController {
     func dismissKeyboard() {
         loginButton.userInteractionEnabled = false
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
-        loginButton.setBackgroundColor(UIColor.oceanBlue().colorWithAlphaComponent(0.3), forState: .Normal)
-        loginButton.setBackgroundColor(UIColor.oceanBlue().colorWithAlphaComponent(0.3), forState: .Highlighted)
+        loginButton.setBackgroundColor(UIColor.skyBlue().colorWithAlphaComponent(0.3), forState: .Normal)
+        loginButton.setBackgroundColor(UIColor.skyBlue().colorWithAlphaComponent(0.3), forState: .Highlighted)
         loginButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.5), forState: .Normal)
         
         view.endEditing(true)
@@ -333,15 +333,15 @@ extension LoginViewController {
     
     func keyboardWillAppear(notification: NSNotification){
         loginButton.userInteractionEnabled = true
-        loginButton.setBackgroundColor(UIColor.oceanBlue(), forState: .Normal)
-        loginButton.setBackgroundColor(UIColor.oceanBlue().darkerColor(), forState: .Highlighted)
+        loginButton.setBackgroundColor(UIColor.skyBlue(), forState: .Normal)
+        loginButton.setBackgroundColor(UIColor.skyBlue().darkerColor(), forState: .Highlighted)
         loginButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
     }
     
     func keyboardWillDisappear(notification: NSNotification){
         loginButton.userInteractionEnabled = false
-        loginButton.setBackgroundColor(UIColor.oceanBlue().colorWithAlphaComponent(0.3), forState: .Normal)
-        loginButton.setBackgroundColor(UIColor.oceanBlue().colorWithAlphaComponent(0.3), forState: .Highlighted)
+        loginButton.setBackgroundColor(UIColor.skyBlue().colorWithAlphaComponent(0.3), forState: .Normal)
+        loginButton.setBackgroundColor(UIColor.skyBlue().colorWithAlphaComponent(0.3), forState: .Highlighted)
         loginButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.5), forState: .Normal)
     }
 }

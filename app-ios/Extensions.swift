@@ -207,10 +207,10 @@ extension UIColor {
         return UIColor(rgba: "#42d1ae")
     }
     static func seaBlue() -> UIColor {
-        return UIColor(rgba: "#1a445c")
+        return UIColor(rgba: "#001c51")
     }
     static func oceanBlue() -> UIColor {
-        return UIColor(rgba: "#2381a4")
+        return UIColor(rgba: "#0f4e9b")
     }
     static func mediumBlue() -> UIColor {
         if APP_THEME == "LIGHT" {
@@ -501,6 +501,16 @@ func + (left: NSAttributedString, right: NSAttributedString) -> NSAttributedStri
     result.appendAttributedString(left)
     result.appendAttributedString(right)
     return result
+}
+
+func adjustAttributedString(text:String, spacing:CGFloat, fontName: String, fontSize: CGFloat, fontColor: UIColor) -> NSAttributedString {
+    let attributedString = NSMutableAttributedString(string: text)
+    attributedString.addAttributes([
+        NSFontAttributeName : UIFont(name: fontName, size: fontSize)!,
+        NSForegroundColorAttributeName : fontColor
+        ], range: NSMakeRange(0, text.characters.count))
+    attributedString.addAttribute(NSKernAttributeName, value: spacing, range: NSMakeRange(0, text.characters.count))
+    return attributedString
 }
 
 extension UILabel {

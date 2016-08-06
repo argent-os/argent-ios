@@ -15,7 +15,7 @@ class HistoryCustomCell: UITableViewCell {
     @IBOutlet weak var lblDate: UILabel!
     
     @IBOutlet weak var img: UIImageView!
-    
+        
     // @IBOutlet weak var lblCreditDebit: UILabel!
 
     override func awakeFromNib() {

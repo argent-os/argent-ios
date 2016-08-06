@@ -66,6 +66,7 @@ target 'app-ios' do
 	pod 'SCLAlertView'
 	pod 'NVActivityIndicatorView'
 	pod 'TRCurrencyTextField'
+	pod 'XLPagerTabStrip'
 	
 	# Fabric
 	pod 'Fabric'

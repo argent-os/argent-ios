@@ -58,17 +58,16 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Set nav back button white
         self.searchController.searchBar.hidden = false
         
-        if searchController.searchBar.text != "" {
-            searchController.searchBar.becomeFirstResponder()
+        if let text = searchController.searchBar.text {
+            print(text.characters.count)
+            if text.characters.count > 0 {
+                searchController.searchBar.becomeFirstResponder()
+            }
         }
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
-    }
-    
-    override func prefersStatusBarHidden() -> Bool {
-        return true
+        return .Default
     }
     
     override func didReceiveMemoryWarning() {
@@ -81,15 +80,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-        let headerSplashView = UIView()
-        headerSplashView.backgroundColor = UIColor.oceanBlue()
-        headerSplashView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 20)
-//        self.view.addSubview(headerSplashView)
-        
         let placeholderMaskImageView = UIImageView()
-        placeholderMaskImageView.image = UIImage(named: "PlaceholderSearch")
+        placeholderMaskImageView.image = UIImage(named: "LogoOutlineDark")?.alpha(0.5)
         placeholderMaskImageView.contentMode = .ScaleAspectFit
-        placeholderMaskImageView.frame = CGRect(x: searchOverlayMaskView.layer.frame.width/2-140, y: searchOverlayMaskView.layer.frame.height/2, width: 280, height: 280)
+        placeholderMaskImageView.frame = CGRect(x: searchOverlayMaskView.layer.frame.width/2-60, y: searchOverlayMaskView.layer.frame.height/2, width: 120, height: 120)
         placeholderMaskImageView.center = CGPointMake(self.view.layer.frame.width/2, self.view.layer.frame.height/2-120)
         searchOverlayMaskView.addSubview(placeholderMaskImageView)
         searchOverlayMaskView.backgroundColor = UIColor.whiteColor()
@@ -97,23 +91,23 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         // definespresentationcontext screen
         self.definesPresentationContext = true
-        self.view.backgroundColor = UIColor.oceanBlue()
+        self.view.backgroundColor = UIColor.whiteColor()
         
-        var image: UIImage = UIImage(named: "LogoOutline")!
-        let imgView = UIImageView(image: image)
-        imgView.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
-        imgView.contentMode = .ScaleAspectFit
-        imgView.clipsToBounds = true
-//        self.navigationItem.titleView = imgView
-        self.navigationItem.titleView?.frame = CGRect(x: -100, y: 0, width: screenWidth, height: 35)
-        
-        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 40)
-        self.navigationController?.view.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 40)
-        self.navigationController?.navigationBar.backgroundColor = UIColor.oceanBlue()
-        self.navigationController?.navigationBar.tintColor = UIColor.oceanBlue()
-        self.navigationController?.navigationBar.barTintColor = UIColor.oceanBlue()
+        let app: UIApplication = UIApplication.sharedApplication()
+        let statusBarHeight: CGFloat = app.statusBarFrame.size.height
+        let statusBarView: UIView = UIView(frame: CGRectMake(0, -statusBarHeight, UIScreen.mainScreen().bounds.size.width, statusBarHeight))
+        statusBarView.backgroundColor = UIColor.offWhite()
+        self.navigationController?.navigationBar.addSubview(statusBarView)
+
+        // THIS SETS STATUS BAR COLOR
+        self.navigationController?.navigationBar.barStyle = .Default
+        self.setNeedsStatusBarAppearanceUpdate()
+        self.navigationController?.navigationBarHidden = false
+//        self.navigationItem.title = "Search and Pay"
+        self.navigationController?.navigationBar.barTintColor = UIColor.clearColor()
+        self.navigationController?.navigationBar.backgroundColor = UIColor.offWhite()
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSForegroundColorAttributeName : UIColor.whiteColor(),
+            NSForegroundColorAttributeName : UIColor.lightBlue(),
             NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 17)!
         ]
         
@@ -130,7 +124,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tblSearchResults.emptyDataSetDelegate = self
         // A little trick for removing the cell separators
         tblSearchResults.tableFooterView = UIView()
-        tblSearchResults.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight-42)
+        tblSearchResults.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight-40)
         self.view.addSubview(tblSearchResults)
         
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
@@ -292,7 +286,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func configureSearchController() {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
-        //let screenHeight = screen.size.height
+        let screenHeight = screen.size.height
+        
         // Initialize and perform a minimum configuration to the search controller.
         searchController = UISearchController(searchResultsController: nil)
         // searchController.searchBar.scopeButtonTitles = ["Merchants", "Users"]
@@ -301,29 +296,18 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = ""
         searchController.searchBar.sizeToFit()
-        searchController.searchBar.frame = CGRect(x: 0, y: 0, width: screenWidth, height:40)
         searchController.searchBar.translucent = true
-        searchController.searchBar.backgroundColor = UIColor.oceanBlue()
+        searchController.searchBar.backgroundColor = UIColor.clearColor()
         searchController.searchBar.searchBarStyle = .Minimal
-        searchController.searchBar.tintColor = UIColor.whiteColor()
-        searchController.searchBar.barStyle = .Default
+        searchController.searchBar.tintColor = UIColor.mediumBlue()
+        searchController.searchBar.barStyle = .Black
         searchController.searchBar.showsScopeBar = true
-        
-        UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).textColor = UIColor.whiteColor()
-        UILabel.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).textColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
-        UIButton.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).tintColor = UIColor.whiteColor()
+        searchController.hidesNavigationBarDuringPresentation = false
 
-        UISearchBar.appearance().setImage(UIImage(named: "ic_search"), forSearchBarIcon: UISearchBarIcon.Search, state: UIControlState.Normal)
-
-        // Search Bar UI
-        
-        // Place the search bar view to the tableview headerview.
-        tblSearchResults.tableHeaderView = searchController.searchBar
-        tblSearchResults.bringSubviewToFront(searchController.searchBar)
+        self.navigationController?.navigationBar.addSubview(self.searchController.searchBar)
 
     }
-    
-    
+
     // MARK: UISearchBarDelegate functions
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
@@ -342,9 +326,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchController.searchBar.placeholder = "Enter username or full name"
         tblSearchResults.reloadData()
         searchOverlayMaskView.removeFromSuperview()
-        self.tblSearchResults.scrollEnabled = false
-        self.tblSearchResults.alwaysBounceVertical = true
-        tblSearchResults.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight-42)
+        
+        self.view.addSubview(tblSearchResults)
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
@@ -355,9 +338,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchController.searchBar.placeholder = ""
         loadUserAccounts()
         addSubviewWithFade(searchOverlayMaskView, parentView: self, duration: 0.3)
-        self.tblSearchResults.scrollEnabled = false
-        self.tblSearchResults.alwaysBounceVertical = false
-//        tblSearchResults.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 180)
+
+        tblSearchResults.removeFromSuperview()
+        
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
@@ -367,6 +350,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         self.view.endEditing(true)
         searchController.searchBar.resignFirstResponder()
+        
+        self.view.addSubview(tblSearchResults)
     }
     
     
@@ -434,17 +419,18 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: DZNEmptyDataSet delegate
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "Search Argent"
-        return NSAttributedString(string: str, attributes: headerAttrs)
+        let str = adjustAttributedString("ARGENT", spacing: 4, fontName: "MyriadPro-Regular", fontSize: 17, fontColor: UIColor.lightBlue())
+        return str
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "Find merchants & users"
-        return NSAttributedString(string: str, attributes: bodyAttrs)
+        let str = adjustAttributedString("SEARCH AND PAY", spacing: 4, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.lightBlue())
+
+        return str
     }
     
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
-        return UIImage(named: "IconEmptySearch")
+        return UIImage(named: "LogoOutlineDark")?.alpha(0.5)
     }
     
     func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {

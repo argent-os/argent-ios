@@ -79,17 +79,23 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         
+        let app: UIApplication = UIApplication.sharedApplication()
+        let statusBarHeight: CGFloat = app.statusBarFrame.size.height
+        let statusBarView: UIView = UIView(frame: CGRectMake(0, -statusBarHeight, UIScreen.mainScreen().bounds.size.width, statusBarHeight))
+        statusBarView.backgroundColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.addSubview(statusBarView)
+        
         self.verifiedLabel.contentMode = .Center
         self.verifiedLabel.textAlignment = .Center
-        self.verifiedLabel.textColor = UIColor.whiteColor()
+        self.verifiedLabel.textColor = UIColor.lightBlue()
         self.verifiedLabel.font = UIFont(name: "MyriadPro-Regular", size: 14)
         self.verifiedLabel.layer.cornerRadius = 5
-        self.verifiedLabel.layer.borderColor = UIColor.whiteColor().CGColor
+        self.verifiedLabel.layer.borderColor = UIColor.lightBlue().CGColor
         self.verifiedLabel.layer.borderWidth = 1
         let verifyTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.showTutorialModal(_:)))
         self.verifiedLabel.addGestureRecognizer(verifyTap)
         self.verifiedLabel.userInteractionEnabled = true
-        addSubviewWithFade(self.verifiedLabel, parentView: self, duration: 0.8)
+        addSubviewWithFade(self.verifiedLabel, parentView: self, duration: 1)
         self.view.bringSubviewToFront(self.verifiedLabel)
 
         Account.getStripeAccount { (acct, err) in
@@ -100,7 +106,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                 // if array has values
                 if !unwrappedOptionalArray.isEmpty {
                     self.verifiedLabel.text = "How to Verify"
-                    self.verifiedLabel.frame = CGRect(x: 120, y: 98, width: screenWidth-240, height: 30)
+                    self.verifiedLabel.frame = CGRect(x: 110, y: 100, width: screenWidth-220, height: 30)
                     self.locationLabel.textAlignment = NSTextAlignment.Center
                     
                     var fields_required: [String] = unwrappedOptionalArray
@@ -153,12 +159,12 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                     
                     let _ = Timeout(10) {
                         if acct?.transfers_enabled == false {
-                            showGlobalNotification("Transfers disabled until more account information is provided", duration: 10.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.iosBlue())
+                            showGlobalNotification("Transfers disabled until more account information is provided", duration: 10.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.oceanBlue())
                         }
                     }
                 } else {
                     self.verifiedButton.frame = CGRect(x:screenWidth/2-15, y: 110, width: 25, height: 25)
-                    self.verifiedButton.setImage(UIImage(named: "IconSuccessWhite"), forState: .Normal)
+                    self.verifiedButton.setImage(UIImage(named: "IconSuccess"), forState: .Normal)
                     self.verifiedButton.setTitle("Tuts", forState: .Normal)
                     self.verifiedButton.setTitleColor(UIColor.redColor(), forState: .Normal)
                     self.verifiedButton.addTarget(self, action: #selector(self.presentTutorial(_:)), forControlEvents: .TouchUpInside)
@@ -198,7 +204,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         let appVersionString: String = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
         versionCell.text = "Version " + appVersionString
         
-        self.view.backgroundColor = UIColor.globalBackground()
+        self.view.backgroundColor = UIColor.whiteColor()
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         
@@ -207,7 +213,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.frame = CGRect(x: 0, y: 100, width: screenWidth, height: 100)
-        loadingView.tintColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
+        loadingView.tintColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
         tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
             self!.configureHeader()
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
@@ -215,9 +221,6 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                 self!.loadProfile()
                 self!.configureHeader()
                 self!.tableView.tableHeaderView = ParallaxHeaderView.init(frame: CGRectMake(0, 0, CGRectGetWidth(self!.view.bounds), 220));
-                self!.opaqueView.frame = CGRectMake(0, 150, screenWidth, 70)
-                self!.opaqueView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
-                addSubviewWithFade(self!.opaqueView, parentView: self!, duration: 0.5)
             })
             }, loadingView: loadingView)
         tableView.dg_setPullToRefreshFillColor(UIColor.clearColor())
@@ -309,50 +312,51 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         self.locationLabel.textAlignment = NSTextAlignment.Center
         self.locationLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
         self.locationLabel.numberOfLines = 0
-        self.locationLabel.textColor = UIColor.whiteColor()
+        self.locationLabel.textColor = UIColor.lightBlue()
 
-        splitter.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.1)
+        splitter.backgroundColor = UIColor.lightBlue().colorWithAlphaComponent(0.1)
         splitter.frame = CGRect(x: screenWidth*0.333-0.5, y: 150, width: 1, height: 70)
         let _ = Timeout(0.05) {
-            addSubviewWithFade(self.splitter, parentView: self, duration: 1.2)
+//            addSubviewWithFade(self.splitter, parentView: self, duration: 1.2)
         }
         
-        splitter2.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.1)
+        splitter2.backgroundColor = UIColor.lightBlue().colorWithAlphaComponent(0.1)
         splitter2.frame = CGRect(x: screenWidth*0.666-0.5, y: 150, width: 1, height: 70)
         let _ = Timeout(0.1) {
-            addSubviewWithFade(self.splitter2, parentView: self, duration: 1.2)
+//            addSubviewWithFade(self.splitter2, parentView: self, duration: 1.2)
         }
         
-        self.subscriptionsCountLabel.frame = CGRectMake(20, 150, 80, 70)
-        self.subscriptionsCountLabel.textAlignment = NSTextAlignment.Center
-        self.subscriptionsCountLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
-        self.subscriptionsCountLabel.numberOfLines = 0
-        self.subscriptionsCountLabel.textColor = UIColor.whiteColor().colorWithAlphaComponent(0.75)
-        self.view.bringSubviewToFront(subscriptionsCountLabel)
 
-        self.customersCountLabel.frame = CGRectMake(screenWidth*0.5-40, 150, 80, 70)
+        self.customersCountLabel.frame = CGRectMake(40, 130, 80, 70)
         self.customersCountLabel.textAlignment = NSTextAlignment.Center
         self.customersCountLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
         self.customersCountLabel.numberOfLines = 0
-        self.customersCountLabel.textColor = UIColor.whiteColor().colorWithAlphaComponent(0.75)
+        self.customersCountLabel.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.75)
         self.view.bringSubviewToFront(customersCountLabel)
 
-        self.plansCountLabel.frame = CGRectMake(screenWidth-100, 150, 80, 70)
+        self.subscriptionsCountLabel.frame = CGRectMake(screenWidth*0.5-40, 130, 80, 70)
+        self.subscriptionsCountLabel.textAlignment = NSTextAlignment.Center
+        self.subscriptionsCountLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
+        self.subscriptionsCountLabel.numberOfLines = 0
+        self.subscriptionsCountLabel.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.75)
+        self.view.bringSubviewToFront(subscriptionsCountLabel)
+        
+        self.plansCountLabel.frame = CGRectMake(screenWidth-120, 130, 80, 70)
         self.plansCountLabel.textAlignment = NSTextAlignment.Center
         self.plansCountLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
         self.plansCountLabel.numberOfLines = 0
-        self.plansCountLabel.textColor = UIColor.whiteColor().colorWithAlphaComponent(0.75)
+        self.plansCountLabel.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.75)
         self.view.bringSubviewToFront(plansCountLabel)
         
         self.opaqueView.frame = CGRectMake(0, 150, screenWidth, 70)
         self.opaqueView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
-        addSubviewWithFade(opaqueView, parentView: self, duration: 0.5)
+//        addSubviewWithFade(opaqueView, parentView: self, duration: 0.5)
     }
     
     func reloadUserData() {
         self.loadCustomerList { (customers: [Customer]?, NSError) in
             if(customers!.count == 0) {
-                self.customersCountLabel.text = "No customers"
+                self.customersCountLabel.text = "0\ncustomers"
             } else if(customers!.count < 2 && customers!.count > 0) {
                 self.customersCountLabel.text = String(customers!.count) + "\ncustomer"
             } else if(customers!.count > 98) {
@@ -367,7 +371,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         
         self.loadPlanList("100", starting_after: "") { (plans, error) in
             if(plans!.count == 0) {
-                self.plansCountLabel.text = "No plans"
+                self.plansCountLabel.text = "0\nplans"
             } else if(plans!.count < 2 && plans!.count > 0) {
                 self.plansCountLabel.text = String(plans!.count) + "\nplan"
             } else if(plans!.count > 98) {
@@ -382,7 +386,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         
         self.loadSubscriptionList { (subscriptions: [Subscription]?, NSError) in
             if(subscriptions!.count == 0) {
-                self.subscriptionsCountLabel.text = "No subs"
+                self.subscriptionsCountLabel.text = "0\nsubscriptions"
             } else if(subscriptions!.count < 2 && subscriptions!.count > 0) {
                 self.subscriptionsCountLabel.text = String(subscriptions!.count) + "\nsubscription"
             } else if(subscriptions!.count > 98) {
@@ -414,8 +418,8 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         }
         
         self.navBar.titleTextAttributes = [
-            NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 16.0)!
+            NSForegroundColorAttributeName : UIColor.darkBlue(),
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 17.0)!
         ]
         self.navBar.setItems([navItem], animated: false)
         let _ = Timeout(0.1) {
@@ -614,8 +618,8 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
 
     // User profile image view scroll effects
     override func scrollViewDidScroll(scrollView: UIScrollView) {
-        let headerView = self.tableView.tableHeaderView as! ParallaxHeaderView
-        headerView.scrollViewDidScroll(scrollView)
+        let headerView = self.tableView.tableHeaderView
+//        headerView.scrollViewDidScroll(scrollView)
     }
 }
 
@@ -628,7 +632,7 @@ extension ProfileMenuViewController {
         
         // Initialize and style the terms and conditions modal
         formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
-        formSheetController.presentationController?.contentViewSize = CGSizeMake(300, UIScreen.mainScreen().bounds.height-150)
+        formSheetController.presentationController?.contentViewSize = CGSizeMake(300, UIScreen.mainScreen().bounds.height-130)
         formSheetController.presentationController?.shouldUseMotionEffect = true
         formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor()
         formSheetController.presentationController?.containerView?.sizeToFit()
@@ -638,7 +642,7 @@ extension ProfileMenuViewController {
         formSheetController.presentationController?.shouldCenterVertically = true
         formSheetController.presentationController?.shouldCenterHorizontally = true
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
-        formSheetController.contentViewCornerRadius = 10
+        formSheetController.contentViewCornerRadius = 5
         formSheetController.allowDismissByPanningPresentedView = true
         formSheetController.interactivePanGestureDismissalDirection = .All;
         

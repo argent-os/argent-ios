@@ -71,7 +71,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     private let notification = CWStatusBarNotification()
     
     private var gradient: CGGradient?
-    
+
+    private var gradientBottom: CGGradient?
+
     func indexChanged(sender: AnyObject) {
         if(sender.selectedSegmentIndex == 0) {
             lblAccountPending.removeFromSuperview()
@@ -116,7 +118,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     private func addInfiniteScroll() {
         // Add infinite scroll handler
         // change indicator view style to white
-        self.tableView.infiniteScrollIndicatorStyle = .Gray
+        self.tableView.infiniteScrollIndicatorStyle = .White
         
         // Add infinite scroll handler
         self.tableView.addInfiniteScrollWithHandler { (scrollView) -> Void in
@@ -156,7 +158,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         self.view.bringSubviewToFront(balanceSwitch)
         self.view.addSubview(tutorialButton)
         self.view.bringSubviewToFront(tutorialButton)
-        self.view.addSubview(dateRangeSegment)
         UITextField.appearance().keyboardAppearance = .Light
     }
     
@@ -315,7 +316,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                     // Track user action
                     Answers.logCustomEventWithName("User logged in", customAttributes: nil)
                     
-                    showGlobalNotification("Welcome " + (user?.first_name)! + "!", duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.darkestBlue())
+//                    showGlobalNotification("Welcome " + (user?.first_name)! + "!", duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.darkestBlue())
                 }
                 
                 if(error != nil) {
@@ -377,6 +378,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     // MARK: TableView Delegate
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.accountHistoryArray?.count > 0 {
+            self.view.addSubview(dateRangeSegment)
+        }
         return self.accountHistoryArray?.count ?? 0
     }
     
@@ -386,26 +390,60 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         
         let cell = self.tableView.dequeueReusableCellWithIdentifier("idCellCustomHistory") as! HistoryCustomCell
         
-        CellAnimator.animateCell(cell, withTransform: CellAnimator.TransformTilt, andDuration: 0.3)
+//        CellAnimator.animateCell(cell, withTransform: CellAnimator.TransformTilt, andDuration: 0.3)
         
         let item = self.accountHistoryArray?[indexPath.row]
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         cell.backgroundColor = UIColor.whiteColor()
         cell.lblAmount?.text = ""
         cell.lblDate?.text = ""
+        
+//        let countryCode = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
+//        NSUserDefaults.standardUserDefaults().setValue(countryCode, forKey: "userCountry")
+//        cell.flagImg.image = UIImage(flagImageWithCountryCode: NSLocale.autoupdatingCurrentLocale().objectForKey(NSLocaleCountryCode) as! String)
+//        cell.flagImg.layer.cornerRadius = 10
+//        cell.flagImg.layer.masksToBounds = true
+//        cell.flagImg.contentMode = .ScaleAspectFit
+//        cell.flagImg.frame = CGRect(x: 0, y: 20, width: 25, height: 25)
+        
+
+
         if let amount = item?.amount {
-            let currencyText = formatCurrency(amount, fontName: "MyriadPro-Regular", superSize: 12, fontSize: 22, offsetSymbol: 6, offsetCents: 6)
+            let currencyText = formatCurrency(amount, fontName: "MyriadPro-Regular", superSize: 17, fontSize: 17, offsetSymbol: 0, offsetCents: 0)
+            
+            if let type = item?.type {
+                if type == "charge" {
+                    let chargeType = adjustAttributedString(" Charged", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                    cell.lblAmount.attributedText = currencyText + chargeType
+                    cell.img.image = UIImage(named: "IconCheckFilled")
+                } else if type == "refund" || type == "application_fee_refund" {
+                    let chargeType = adjustAttributedString(" Refunded", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                    cell.lblAmount.attributedText = currencyText + chargeType
+                    cell.img.image = UIImage(named: "ic_refund")
+                } else if type == "adjustment" {
+                    let chargeType = adjustAttributedString(" Adjustment", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                    cell.lblAmount.attributedText = currencyText + chargeType
+                    cell.img.image = UIImage(named: "ic_adjust")
+                } else if type == "transfer" {
+                    let chargeType = adjustAttributedString(" Bank Transfer", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                    cell.lblAmount.attributedText = currencyText + chargeType
+                    cell.img.image = UIImage(named: "ic_transfer")
+                } else if type == "transfer_failure" {
+                    let chargeType = adjustAttributedString(" Transfer failure", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                    cell.lblAmount.attributedText = currencyText + chargeType
+                    cell.img.image = UIImage(named: "ic_alert")
+                } else {
+                    cell.lblAmount.attributedText = currencyText
+                    cell.img.image = UIImage(named: "IconCheckFilled")
+                }
+            }
             
             if Double(amount)!/100 < 0 {
                 // cell.lblCreditDebit?.text = "Debit"
-                cell.img.image = UIImage(named: "ic_red_dot")
-                cell.lblAmount.attributedText = currencyText // + NSAttributedString(string: "  Auto transfer created")
-                cell.lblAmount?.textColor = UIColor.lightBlue()
+                cell.lblAmount?.textColor = UIColor.darkBlue()
             } else {
                 // cell.lblCreditDebit?.text = "Credit"
-                cell.img.image = UIImage(named: "ic_green_dot")
-                cell.lblAmount.attributedText = currencyText
-                cell.lblAmount?.textColor = UIColor.lightBlue()
+                cell.lblAmount?.textColor = UIColor.darkBlue()
             }
             
             // Identify System Fonts
@@ -424,10 +462,10 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 dateFormatter.dateFormat = "MMM dd"
                 let formatted_date = dateFormatter.stringFromDate(converted_date)
                 cell.lblDate?.layer.cornerRadius = 10
-                cell.lblDate?.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
-                cell.lblDate?.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
+                cell.lblDate?.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.3).CGColor
+                cell.lblDate?.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.6)
                 cell.lblDate?.layer.borderWidth = 0
-                cell.lblDate?.font = UIFont(name: "MyriadPro-Regular", size: 13)
+                cell.lblDate?.font = UIFont(name: "MyriadPro-Regular", size: 11)
                 cell.lblDate?.text = String(formatted_date) //+ " / uid " + uid
             } else {
                 
@@ -497,7 +535,7 @@ extension HomeViewController {
 extension UISegmentedControl {
     func removeBorders() {
         setTitleTextAttributes([
-            NSForegroundColorAttributeName : UIColor.lightBlue().colorWithAlphaComponent(0.8),
+            NSForegroundColorAttributeName : UIColor.whiteColor().colorWithAlphaComponent(0.5),
             NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 11)!
             ],
                                forState: .Normal)
@@ -530,9 +568,6 @@ extension HomeViewController {
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-//        UITabBar.appearance().shadowImage = UIImage()
-//        UITabBar.appearance().backgroundImage = UIImage()
-        
         self.view.backgroundColor = UIColor.darkestBlue()
         
         // put all content in headerview
@@ -546,7 +581,7 @@ extension HomeViewController {
         
         // add background image view to take up entire screen, make header color transparent to give parallax effect
         backgroundImageView.frame = CGRect(x: 0, y: -2, width: screenWidth, height: screenHeight+4)
-        backgroundImageView.image = UIImage(named: "BackgroundGradientBlue")
+        backgroundImageView.image = UIImage(named: "BackgroundGradientBlueDark")
         addSubviewWithFade(backgroundImageView, parentView: self, duration: 0.5)
         
         tableView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight-45)
@@ -578,33 +613,49 @@ extension HomeViewController {
         balanceSwitch.addTarget(self, action: #selector(HomeViewController.indexChanged(_:)), forControlEvents: .ValueChanged)
         
         graph.dataSource = self
-        graph.frame = CGRect(x: 0, y: 80, width: screenWidth, height: 150)
+        graph.frame = CGRect(x: 0, y: 100, width: screenWidth, height: 120)
         graph.colorTop = UIColor.clearColor()
         graph.colorBottom = UIColor.clearColor()
-        graph.colorPoint = UIColor.darkBlue()
+        graph.colorPoint = UIColor.clearColor()
         graph.colorBackgroundPopUplabel = UIColor.whiteColor()
         graph.delegate = self
-        let gradientColors : [CGColor] = [UIColor.neonBlue().CGColor, UIColor.neonYellow().CGColor, UIColor.neonPink().CGColor]
+        let gradientColors : [CGColor] = [UIColor.whiteColor().CGColor, UIColor(rgba: "#b5ebff").CGColor, UIColor(rgba: "#2b82df").CGColor]
+        let gradientColorsBottom : [CGColor] = [UIColor.whiteColor().colorWithAlphaComponent(0.3).CGColor, UIColor.whiteColor().colorWithAlphaComponent(0.1).CGColor, UIColor.whiteColor().colorWithAlphaComponent(0).CGColor]
         let colorspace = CGColorSpaceCreateDeviceRGB()
-        let locations: [CGFloat] = [0.0, 0.5, 1.0]
+        let locations: [CGFloat] = [0.0, 0.3, 1.0]
         self.gradient = CGGradientCreateWithColors(colorspace, gradientColors, locations)
+        self.gradientBottom = CGGradientCreateWithColors(colorspace, gradientColorsBottom, locations)
         graph.gradientLine = self.gradient!
-        graph.layer.shadowColor = UIColor.blackColor().colorWithAlphaComponent(0.5).CGColor
-        graph.layer.shadowOffset = CGSize(width: 2, height: 10)
-        graph.layer.shadowRadius = 5
-        graph.layer.shadowOpacity = 1
+        graph.gradientBottom = self.gradientBottom!
+        graph.colorLine = UIColor.whiteColor()
+//        graph.layer.shadowColor = UIColor.darkBlue().colorWithAlphaComponent(0.5).CGColor
+//        graph.layer.shadowColor = UIColor.clearColor().colorWithAlphaComponent(0.5).CGColor
+//        graph.layer.shadowOffset = CGSize(width: 2, height: 10)
+//        graph.layer.shadowRadius = 5
+//        graph.layer.shadowOpacity = 1
         graph.gradientLineDirection = .Vertical
-        graph.widthLine = 4
+        graph.widthLine = 2
         graph.displayDotsWhileAnimating = true
         graph.enablePopUpReport = true
-        graph.noDataLabelColor = UIColor.lightBlue()
         graph.enableTouchReport = true
+        graph.widthTouchInputLine = 4
+        graph.alphaTouchInputLine = 0.5
+        graph.colorTouchInputLine = UIColor.skyBlue()
         graph.enableBezierCurve = true
-        graph.colorTouchInputLine = UIColor.lightBlue()
+        graph.alwaysDisplayDots = true
+        graph.animationGraphStyle = BEMLineAnimation.Draw
+        graph.noDataLabelColor = UIColor.whiteColor()
+        graph.sizePoint = 5.0
         graph.layer.masksToBounds = true
         addSubviewWithFade(graph, parentView: self, duration: 0.5)
         self.view.bringSubviewToFront(graph)
         self.headerView.bringSubviewToFront(graph)
+        
+        let graphOutlineView = UIImageView()
+        graphOutlineView.image = UIImage(named: "GraphOutlineLong")
+        graphOutlineView.frame = CGRect(x: 0, y: 20, width: screenWidth, height: 300)
+        graphOutlineView.contentMode = .Center
+//        addSubviewWithFade(graphOutlineView, parentView: self, duration: 1)
         
         // split the date segments
         let horizontalSplitter = UIView()
@@ -618,7 +669,7 @@ extension HomeViewController {
         dateRangeSegment.addTarget(self, action: #selector(HomeViewController.dateRangeSegmentControl(_:)), forControlEvents: .ValueChanged)
         
         tutorialButton.frame = CGRect(x: screenWidth-40, y: 41, width: 20, height: 20)
-        tutorialButton.setImage(UIImage(named: "ic_question"), forState: .Normal)
+        tutorialButton.setImage(UIImage(named: "ic_question_light"), forState: .Normal)
         tutorialButton.setTitle("Tuts", forState: .Normal)
         tutorialButton.setTitleColor(UIColor.redColor(), forState: .Normal)
         tutorialButton.addTarget(self, action: #selector(HomeViewController.presentTutorial(_:)), forControlEvents: .TouchUpInside)
@@ -669,8 +720,7 @@ extension HomeViewController {
 
 extension HomeViewController {
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        // TODO: Implement table scroll to top on scrolldown
-        print(tableView.contentOffset.y)
+        // print(tableView.contentOffset.y)
         
         if tableView.contentOffset.y > 0 {
             self.view.bringSubviewToFront(tableView)

@@ -11,17 +11,21 @@ import SwiftyJSON
 import Alamofire
 
 class History {
-    
+
     let id: String
     let amount: String
     let created: String
+    let currency: String
+    let type: String
     
-    required init(id: String, amount: String, created: String) {
+    required init(id: String, amount: String, created: String, currency: String, type: String) {
         self.id = id
         self.amount = amount
         self.created = created
+        self.currency = currency
+        self.type = type
     }
-    
+
     class func getAccountHistory(limit: String, starting_after: String, completionHandler: ([History]?, NSError?) -> Void) {
         // request to api to get data as json, put in list and table
         
@@ -62,7 +66,9 @@ class History {
                                     let id = history["id"].stringValue
                                     let amount = history["amount"].stringValue
                                     let created = history["created"].stringValue
-                                    let item = History(id: id, amount: amount, created: created)
+                                    let currency = history["currency"].stringValue
+                                    let type = history["type"].stringValue
+                                    let item = History(id: id, amount: amount, created: created, currency: currency, type: type)
                                     historyItemsArray.append(item)
                                 }
                                 completionHandler(historyItemsArray, response.result.error)

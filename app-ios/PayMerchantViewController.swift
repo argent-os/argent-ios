@@ -62,16 +62,25 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         _ = screen.size.width
         _ = screen.size.height
         
+        if let bn = detailUser?.business_name {
+            merchantLabel.text = "Transfer to " + bn
+        } else if let fn = detailUser?.first_name, ln = detailUser?.last_name {
+            merchantLabel.text = "Transfer to " + fn + " " + ln
+        } else if let un = detailUser?.username {
+            merchantLabel.text = "Transer to @" + un
+        } else {
+            merchantLabel.text = "Send Transfer"
+        }
+        
         merchantLabel.frame = CGRect(x: 0, y: 35, width: 280, height: 20)
-        // merchantLabel.text = "Pay " + (detailUser?.first_name)!
         merchantLabel.textAlignment = .Center
-        merchantLabel.font = UIFont(name: "MyriadPro-Regular", size: 14)
-        merchantLabel.textColor = UIColor.lightGrayColor()
+        merchantLabel.font = UIFont(name: "MyriadPro-Regular", size: 17)!
+        merchantLabel.textColor = UIColor.oceanBlue()
         self.view.addSubview(merchantLabel)
         
         chargeInputView.delegate = self
-        chargeInputView.frame = CGRect(x: 0, y: 75, width: 280, height: 100)
-        chargeInputView.textColor = UIColor.lightBlue()
+        chargeInputView.frame = CGRect(x: 0, y: 85, width: 280, height: 100)
+        chargeInputView.textColor = UIColor.seaBlue()
         chargeInputView.backgroundColor = UIColor.clearColor()
         chargeInputView.font = UIFont(name: "MyriadPro-Regular", size: 48)
         chargeInputView.textAlignment = .Center
@@ -88,8 +97,8 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
         let str = NSAttributedString(string: "Select Payment Option", attributes: attribs)
-        selectPaymentOptionButton.setBackgroundColor(UIColor.skyBlue(), forState: .Normal)
-        selectPaymentOptionButton.setBackgroundColor(UIColor.skyBlue().lighterColor(), forState: .Highlighted)
+        selectPaymentOptionButton.setBackgroundColor(UIColor.oceanBlue(), forState: .Normal)
+        selectPaymentOptionButton.setBackgroundColor(UIColor.oceanBlue().lighterColor(), forState: .Highlighted)
         selectPaymentOptionButton.setAttributedTitle(str, forState: .Normal)
         selectPaymentOptionButton.addTarget(self, action: #selector(PayMerchantViewController.showPayModal(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(selectPaymentOptionButton)

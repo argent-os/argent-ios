@@ -98,7 +98,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             //            userImageView.layer.cornerRadius = userImageView.frame.size.height/2
             userImageView.layer.cornerRadius = 10
             userImageView.layer.borderWidth = 0
-            userImageView.layer.borderColor = UIColor(rgba: "#fffa").CGColor
+            userImageView.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.5).CGColor
             addSubviewWithFade(userImageView, parentView: self, duration: 0.8)
             self.view.bringSubviewToFront(userImageView)
             
@@ -121,8 +121,8 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             // Send message button
             let sendMessageButton = UIButton()
             sendMessageButton.frame = CGRect(x: 115, y: 165, width: 200, height: 40.0)
-            sendMessageButton.setTitleColor(UIColor.skyBlue(), forState: .Normal)
-            sendMessageButton.setTitleColor(UIColor.skyBlue().lighterColor(), forState: .Highlighted)
+            sendMessageButton.setTitleColor(UIColor.oceanBlue(), forState: .Normal)
+            sendMessageButton.setTitleColor(UIColor.oceanBlue().lighterColor(), forState: .Highlighted)
             sendMessageButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
             sendMessageButton.setBackgroundColor(UIColor.clearColor().lighterColor(), forState: .Highlighted)
             sendMessageButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 14)!
@@ -130,7 +130,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             sendMessageButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
             sendMessageButton.addTarget(self, action: #selector(SearchDetailViewController.showMessageView(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             //sendMessageButton.layer.cornerRadius = 10
-            sendMessageButton.layer.borderColor = UIColor.skyBlue().CGColor
+            sendMessageButton.layer.borderColor = UIColor.oceanBlue().CGColor
             sendMessageButton.layer.borderWidth = 0
             sendMessageButton.addTarget(self, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
             addSubviewWithFade(sendMessageButton, parentView: self, duration: 0.8)
@@ -202,8 +202,8 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             // Enable ACH Button
             let enableACHButton = UIButton()
             enableACHButton.frame = CGRect(x: 35, y: cardView.layer.frame.height-40,  width: self.view.layer.frame.width-70, height: 60.0)
-            enableACHButton.setTitleColor(UIColor.skyBlue(), forState: .Normal)
-            enableACHButton.setTitleColor(UIColor.skyBlue().lighterColor(), forState: .Highlighted)
+            enableACHButton.setTitleColor(UIColor.oceanBlue(), forState: .Normal)
+            enableACHButton.setTitleColor(UIColor.oceanBlue().lighterColor(), forState: .Highlighted)
             enableACHButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
             enableACHButton.setBackgroundColor(UIColor.whiteColor().lighterColor(), forState: .Highlighted)
             enableACHButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 14)!
@@ -211,7 +211,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             enableACHButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
             enableACHButton.addTarget(self, action: #selector(SearchDetailViewController.showACHModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             //enableACHButton.layer.cornerRadius = 10
-            enableACHButton.layer.borderColor = UIColor.skyBlue().CGColor
+            enableACHButton.layer.borderColor = UIColor.oceanBlue().CGColor
             enableACHButton.layer.borderWidth = 0
             enableACHButton.addTarget(self, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
 //            self.view.addSubview(enableACHButton)
@@ -221,14 +221,14 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             viewPlansButton.frame = CGRect(x: 35, y: cardView.layer.frame.height+19,  width: self.view.layer.frame.width-70, height: 60.0)
             viewPlansButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
             viewPlansButton.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
-            viewPlansButton.setBackgroundColor(UIColor.skyBlue(), forState: .Normal)
-            viewPlansButton.setBackgroundColor(UIColor.skyBlue().lighterColor(), forState: .Highlighted)
+            viewPlansButton.setBackgroundColor(UIColor.oceanBlue(), forState: .Normal)
+            viewPlansButton.setBackgroundColor(UIColor.oceanBlue().lighterColor(), forState: .Highlighted)
             viewPlansButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 14)!
             viewPlansButton.setTitle("View Plans", forState: .Normal)
             viewPlansButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
             viewPlansButton.addTarget(self, action: #selector(SearchDetailViewController.viewPlansModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             //viewPlansButton.layer.cornerRadius = 10
-            viewPlansButton.layer.borderColor = UIColor.skyBlue().CGColor
+            viewPlansButton.layer.borderColor = UIColor.oceanBlue().CGColor
             viewPlansButton.layer.borderWidth = 0
             viewPlansButton.addTarget(self, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
             self.view.addSubview(viewPlansButton)
@@ -249,11 +249,11 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             payButton.layer.borderWidth = 0
             payButton.layer.masksToBounds = true
             payButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
-            payButton.setBackgroundColor(UIColor.mediumBlue().lighterColor(), forState: .Highlighted)
+            payButton.setBackgroundColor(UIColor.seaBlue().lighterColor(), forState: .Highlighted)
             payButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
             payButton.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
-            payButton.layer.borderColor = UIColor.mediumBlue().CGColor
-            payButton.layer.borderWidth = 1.5
+            payButton.layer.borderColor = UIColor.seaBlue().CGColor
+            payButton.layer.borderWidth = 0
             payButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
             payButton.addTarget(self, action: #selector(SearchDetailViewController.payMerchantModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             self.view.addSubview(payButton)
@@ -262,7 +262,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             rectShape.position = payButton.center
             rectShape.path = UIBezierPath(roundedRect: payButton.bounds, byRoundingCorners: [.BottomLeft, .BottomRight], cornerRadii: CGSize(width: 10, height: 10)).CGPath
             
-            payButton.layer.backgroundColor = UIColor.mediumBlue().CGColor
+            payButton.layer.backgroundColor = UIColor.seaBlue().CGColor
             //Here I'm masking the textView's layer with rectShape layer
             payButton.layer.mask = rectShape
             

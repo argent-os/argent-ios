@@ -48,9 +48,9 @@ class IdentityVerificationSplashViewController: UIViewController {
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-        pageIcon.image = UIImage(named: "IconCheckFilled")
+        pageIcon.image = UIImage(named: "IconIdentity")
         pageIcon.contentMode = .ScaleAspectFit
-        pageIcon.frame = CGRect(x: screenWidth/2-50, y: 200, width: 100, height: 100)
+        pageIcon.frame = CGRect(x: screenWidth/2-60, y: 125, width: 120, height: 120)
         self.view.addSubview(pageIcon)
         
         pageHeader.text = "Identity Verification"
@@ -71,13 +71,13 @@ class IdentityVerificationSplashViewController: UIViewController {
         
         goToVerifyButton.layer.cornerRadius = 0
         goToVerifyButton.frame = CGRect(x: 0, y: screenHeight-100, width: screenWidth, height: 50)
-        goToVerifyButton.layer.borderColor = UIColor.skyBlue().colorWithAlphaComponent(0.5).CGColor
+        goToVerifyButton.layer.borderColor = UIColor.oceanBlue().colorWithAlphaComponent(0.5).CGColor
         goToVerifyButton.layer.borderWidth = 0
         goToVerifyButton.clipsToBounds = true
         goToVerifyButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         goToVerifyButton.setTitleColor(UIColor.offWhite(), forState: .Highlighted)
-        goToVerifyButton.setBackgroundColor(UIColor.skyBlue(), forState: .Normal)
-        goToVerifyButton.setBackgroundColor(UIColor.skyBlue().lighterColor(), forState: .Highlighted)
+        goToVerifyButton.setBackgroundColor(UIColor.oceanBlue(), forState: .Normal)
+        goToVerifyButton.setBackgroundColor(UIColor.oceanBlue().lighterColor(), forState: .Highlighted)
         var attribs: [String: AnyObject] = [:]
         attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)!
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()

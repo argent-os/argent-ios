@@ -83,7 +83,7 @@ class AccountVerificationTutorialViewController: UIViewController {
         self.view.addSubview(tutSubText1)
         
         tutImage2.frame = CGRect(x: 35, y: 170, width: 50, height: 50)
-        tutImage2.image = UIImage(named: "IconBank")
+        tutImage2.image = UIImage(named: "IconBankSmall")
         tutImage2.contentMode = .ScaleAspectFit
         self.view.addSubview(tutImage2)
         tutText2.frame = CGRect(x: 90, y: 160, width: 210, height: 50)
@@ -119,10 +119,10 @@ class AccountVerificationTutorialViewController: UIViewController {
         tutImage4.contentMode = .ScaleAspectFit
         self.view.addSubview(tutImage4)
         self.view.bringSubviewToFront(tutImage4)
-        tutText4.frame = CGRect(x: 0, y: 370, width: 300, height: 60)
-        tutText4.numberOfLines = 3
-        tutText4.font = UIFont.systemFontOfSize(15)
-        tutText4.text = "Congratulations, you are now ready to \n start accepting payments!"
+        tutText4.frame = CGRect(x: 20, y: 370, width: 260, height: 80)
+        tutText4.numberOfLines = 0
+        tutText4.font = UIFont.systemFontOfSize(13)
+        tutText4.text = "Security is our top priority, all bank account and social security data are securely transmitted with 256-bit encryption and never stored on our servers."
         tutText4.textAlignment = .Center
         tutText4.textColor = UIColor.lightBlue()
         self.view.addSubview(tutText4)
@@ -134,20 +134,43 @@ class AccountVerificationTutorialViewController: UIViewController {
             self.view.sendSubviewToBack(bottomColorView)
         }
         
-        exitButton.frame = CGRect(x: 20, y: UIScreen.mainScreen().bounds.height-220, width: 260, height: 50)
+        exitButton.frame = CGRect(x: 20, y: UIScreen.mainScreen().bounds.height-200, width: 260, height: 50)
         exitButton.layer.borderColor = UIColor.whiteColor().CGColor
         exitButton.layer.borderWidth = 0
-        exitButton.layer.cornerRadius = 10
+        exitButton.layer.cornerRadius = 5
         exitButton.layer.masksToBounds = true
         var attribs: [String: AnyObject] = [:]
         attribs[NSFontAttributeName] = UIFont.systemFontOfSize(14)
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
         let str = NSAttributedString(string: "Exit Tutorial", attributes: attribs)
-        exitButton.setBackgroundColor(UIColor.lightBlue(), forState: .Normal)
-        exitButton.setBackgroundColor(UIColor.lightBlue().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        exitButton.setBackgroundColor(UIColor.oceanBlue(), forState: .Normal)
+        exitButton.setBackgroundColor(UIColor.oceanBlue().lighterColor(), forState: .Highlighted)
         exitButton.setAttributedTitle(str, forState: .Normal)
         exitButton.addTarget(self, action: #selector(self.close(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(exitButton)
+        
+        if self.view.layer.frame.height < 600 {
+            // iphone5 and below
+            tutImage4.removeFromSuperview()
+            bottomColorView.removeFromSuperview()
+            
+            tutImage1.frame = CGRect(x: 35, y: 70, width: 50, height: 50)
+            tutText1.frame = CGRect(x: 90, y: 60, width: 210, height: 50)
+            tutSubText1.frame = CGRect(x: 90, y: 80, width: 210, height: 50)
+            
+            tutImage2.frame = CGRect(x: 35, y: 130, width: 50, height: 50)
+            tutText2.frame = CGRect(x: 90, y: 120, width: 210, height: 50)
+            tutSubText2.frame = CGRect(x: 90, y: 140, width: 210, height: 50)
+            
+            tutImage3.frame = CGRect(x: 35, y: 190, width: 50, height: 50)
+            tutText3.frame = CGRect(x: 90, y: 180, width: 210, height: 50)
+            tutSubText3.frame = CGRect(x: 90, y: 200, width: 210, height: 50)
+            
+            tutText4.frame = CGRect(x: 20, y: 270, width: 260, height: 80)
+        } else {
+            // iphone6
+
+        }
     }
     
     override func viewDidDisappear(animated: Bool) {
