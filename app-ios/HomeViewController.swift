@@ -413,23 +413,27 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             
             if let type = item?.type {
                 if type == "charge" {
-                    let chargeType = adjustAttributedString(" Charged", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                    let chargeType = adjustAttributedString("  Charged", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
                     cell.lblAmount.attributedText = currencyText + chargeType
                     cell.img.image = UIImage(named: "IconCheckFilled")
                 } else if type == "refund" || type == "application_fee_refund" {
-                    let chargeType = adjustAttributedString(" Refunded", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                    let chargeType = adjustAttributedString("  Refunded", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
                     cell.lblAmount.attributedText = currencyText + chargeType
                     cell.img.image = UIImage(named: "ic_refund")
+                } else if type == "payment" {
+                    let chargeType = adjustAttributedString("  Payment", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                    cell.lblAmount.attributedText = currencyText + chargeType
+                    cell.img.image = UIImage(named: "IconCheckFilled")
                 } else if type == "adjustment" {
                     let chargeType = adjustAttributedString(" Adjustment", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
                     cell.lblAmount.attributedText = currencyText + chargeType
                     cell.img.image = UIImage(named: "ic_adjust")
                 } else if type == "transfer" {
-                    let chargeType = adjustAttributedString(" Bank Transfer", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                    let chargeType = adjustAttributedString("  Bank Transfer", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
                     cell.lblAmount.attributedText = currencyText + chargeType
                     cell.img.image = UIImage(named: "ic_transfer")
                 } else if type == "transfer_failure" {
-                    let chargeType = adjustAttributedString(" Transfer failure", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                    let chargeType = adjustAttributedString("  Transfer failure", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
                     cell.lblAmount.attributedText = currencyText + chargeType
                     cell.img.image = UIImage(named: "ic_alert")
                 } else {
@@ -567,6 +571,13 @@ extension HomeViewController {
         
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
+        
+        let app: UIApplication = UIApplication.sharedApplication()
+        let statusBarHeight: CGFloat = app.statusBarFrame.size.height
+        let statusBarView: UIView = UIView(frame: CGRectMake(0, -statusBarHeight, UIScreen.mainScreen().bounds.size.width, statusBarHeight))
+        statusBarView.backgroundColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.addSubview(statusBarView)
+        self.navigationController?.navigationBar.bringSubviewToFront(statusBarView)
         
         self.view.backgroundColor = UIColor.darkestBlue()
         

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="myriad_pro_regular.ttf">
+            <string>MyriadPro-Regular</string>
+            <string>MyriadPro-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="oDl-FD-Txh" customClass="AmountInputCell" customModule="Argent">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oDl-FD-Txh" id="oDp-Vq-Gb9">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="15" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1Jd-kv-JWY" customClass="TRCurrencyTextField">
+                        <rect key="frame" x="115" y="0.0" width="190" height="44"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blo-yf-duB">
+                        <rect key="frame" x="15" y="0.0" width="92" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="92" id="CIA-h0-AjU"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="blo-yf-duB" firstAttribute="bottom" secondItem="1Jd-kv-JWY" secondAttribute="bottom" id="AhF-nN-VUv"/>
+                    <constraint firstItem="1Jd-kv-JWY" firstAttribute="leading" secondItem="blo-yf-duB" secondAttribute="trailing" constant="8" symbolic="YES" id="Ud8-Wc-AfZ"/>
+                    <constraint firstItem="blo-yf-duB" firstAttribute="top" secondItem="1Jd-kv-JWY" secondAttribute="top" id="VEl-uU-258"/>
+                    <constraint firstItem="blo-yf-duB" firstAttribute="centerY" secondItem="oDp-Vq-Gb9" secondAttribute="centerY" id="fXH-y2-V8u"/>
+                    <constraint firstItem="blo-yf-duB" firstAttribute="top" secondItem="oDp-Vq-Gb9" secondAttribute="top" id="jEo-8J-Z1d"/>
+                    <constraint firstItem="blo-yf-duB" firstAttribute="leading" secondItem="oDp-Vq-Gb9" secondAttribute="leadingMargin" constant="7" id="vpA-l0-3OJ"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="1Jd-kv-JWY" secondAttribute="trailing" constant="7" id="yaq-df-TJK"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="regularTextField" destination="1Jd-kv-JWY" id="PZy-xC-API"/>
+                <outlet property="titleLabel" destination="blo-yf-duB" id="vvI-83-Cj8"/>
+            </connections>
+            <point key="canvasLocation" x="320" y="43"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -173,7 +173,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         let CellIdentifier: String = "Cell"
         let cell = UITableViewCell(style: .Subtitle, reuseIdentifier: CellIdentifier)
         
-        CellAnimator.animateCell(cell, withTransform: CellAnimator.TransformTilt, andDuration: 0.3)
+//        CellAnimator.animateCell(cell, withTransform: CellAnimator.TransformTilt, andDuration: 0.3)
 
         let item = self.notificationsArray?[indexPath.row]
         cell.textLabel?.text = ""
@@ -302,7 +302,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
                     cell.textLabel?.text = text
             }
             cell.textLabel?.font = UIFont(name: "MyriadPro-Regular", size: 14)!
-            cell.textLabel?.textColor = UIColor.lightBlue()
+            cell.textLabel?.textColor = UIColor.mediumBlue()
         }
         if let date = item?.created
         {
@@ -311,7 +311,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
                 dateFormatter.timeStyle = .MediumStyle
                 let formatted_date = dateFormatter.stringFromDate(converted_date)
                 cell.detailTextLabel?.font = UIFont(name: "MyriadPro-Regular", size: 11)!
-                cell.detailTextLabel?.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
+                cell.detailTextLabel?.textColor = UIColor.lightBlue()
                 cell.detailTextLabel?.text = String(formatted_date) //+ " / uid " + uid
             } else {
 

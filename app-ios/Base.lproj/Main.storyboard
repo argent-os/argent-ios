@@ -3320,8 +3320,8 @@ policy agreement. Tap to view</string>
         <!--Search-->
         <scene sceneID="9Zo-cs-g3Z">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBarsWhenKeyboardAppears="YES" id="HMN-2X-Cie" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Search" image="ic_tab_search" id="U4p-ue-j3d"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HMN-2X-Cie" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Search" image="ic_tab_globe" id="U4p-ue-j3d"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Bcq-gQ-TaG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -3962,10 +3962,10 @@ policy agreement. Tap to view</string>
         <image name="ic_close_light" width="43" height="43"/>
         <image name="ic_tab_account" width="25" height="25"/>
         <image name="ic_tab_dash" width="25" height="25"/>
+        <image name="ic_tab_globe" width="25" height="25"/>
         <image name="ic_tab_more" width="25" height="25"/>
         <image name="ic_tab_more_filled" width="25" height="25"/>
         <image name="ic_tab_notify" width="25" height="25"/>
-        <image name="ic_tab_search" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="mwT-xt-Ez4"/>

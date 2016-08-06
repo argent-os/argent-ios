@@ -59,7 +59,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.searchController.searchBar.hidden = false
         
         if let text = searchController.searchBar.text {
-            print(text.characters.count)
             if text.characters.count > 0 {
                 searchController.searchBar.becomeFirstResponder()
             }
@@ -81,9 +80,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let screenHeight = screen.size.height
         
         let placeholderMaskImageView = UIImageView()
-        placeholderMaskImageView.image = UIImage(named: "LogoOutlineDark")?.alpha(0.5)
+        placeholderMaskImageView.image = UIImage(named: "IconEmptyTableSearch")?.alpha(0.5)
         placeholderMaskImageView.contentMode = .ScaleAspectFit
-        placeholderMaskImageView.frame = CGRect(x: searchOverlayMaskView.layer.frame.width/2-60, y: searchOverlayMaskView.layer.frame.height/2, width: 120, height: 120)
+        placeholderMaskImageView.frame = CGRect(x: searchOverlayMaskView.layer.frame.width/2-150, y: searchOverlayMaskView.layer.frame.height/2, width: 300, height: 300)
         placeholderMaskImageView.center = CGPointMake(self.view.layer.frame.width/2, self.view.layer.frame.height/2-120)
         searchOverlayMaskView.addSubview(placeholderMaskImageView)
         searchOverlayMaskView.backgroundColor = UIColor.whiteColor()
