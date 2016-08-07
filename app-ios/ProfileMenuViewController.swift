@@ -162,9 +162,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                             showGlobalNotification("Transfers disabled until more account information is provided", duration: 10.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.oceanBlue())
                         }
                     }
-                } else if let disabled_reason = acct?.verification_disabled_reason {
-                    print(acct)
-                    print(disabled_reason)
+                } else if let disabled_reason = acct?.verification_disabled_reason where acct?.verification_disabled_reason != "" {
                     self.locationLabel.removeFromSuperview()
                     self.verifiedLabel.layer.borderWidth = 0
                     self.verifiedLabel.frame = CGRect(x: 30, y: 100, width: screenWidth-60, height: 30)
@@ -179,9 +177,6 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                         self.verifiedButton.removeFromSuperview()
                         self.verifiedLabel.text = "Account rejected | Reason: Other"
                     } else if disabled_reason == "other" {
-                        self.verifiedButton.removeFromSuperview()
-                        self.verifiedLabel.text = "System maintenance, transfers disabled"
-                    } else {
                         self.verifiedButton.removeFromSuperview()
                         self.verifiedLabel.text = "System maintenance, transfers disabled"
                     }
