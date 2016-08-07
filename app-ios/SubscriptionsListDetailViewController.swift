@@ -115,7 +115,7 @@ class SubscriptionsListDetailViewController: UIViewController, UINavigationBarDe
         navigationBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 60)
         navigationBar.backgroundColor = UIColor.clearColor()
         // this changes color of close button
-        navigationBar.tintColor = UIColor.oceanBlue()
+        navigationBar.tintColor = UIColor.whiteColor()
         navigationBar.delegate = self
         
         // Create a navigation item with a title

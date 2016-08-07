@@ -260,8 +260,8 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
                 NSForegroundColorAttributeName : UIColor.darkBlue(),
                 NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 11)!
             ])
-            let attrText = formatCurrency(String(amount), fontName: "HelveticaNeue", superSize: 11, fontSize: 15, offsetSymbol: 2, offsetCents: 2) +  NSAttributedString(string: " per ") + intervalAttributedString
-            cell.detailTextLabel?.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
+            let attrText = formatCurrency(String(amount), fontName: "MyriadPro-Regular", superSize: 11, fontSize: 15, offsetSymbol: 2, offsetCents: 2) +  NSAttributedString(string: " per ") + intervalAttributedString
+            cell.detailTextLabel?.textColor = UIColor.darkBlue()
             cell.detailTextLabel?.attributedText = attrText
 
         }
