@@ -79,7 +79,7 @@ class CustomersListDetailViewController: UIViewController, UINavigationBarDelega
         
         customerEmailTitleLabel.frame = CGRect(x: 40, y: 20, width: screenWidth-80, height: 100)
         customerEmailTitleLabel.text = customerEmail
-        customerEmailTitleLabel.font = UIFont(name: "DINAlternate-Bold", size: 24)
+        customerEmailTitleLabel.font = UIFont(name: "MyriadPro-Regular", size: 24)!
         customerEmailTitleLabel.textAlignment = .Center
         customerEmailTitleLabel.textColor = UIColor.lightBlue()
         addSubviewWithBounce(customerEmailTitleLabel, parentView: self, duration: 0.3)
@@ -93,7 +93,7 @@ class CustomersListDetailViewController: UIViewController, UINavigationBarDelega
         let headerViewTitle: UILabel = UILabel()
         headerViewTitle.frame = CGRect(x: 0, y: 20, width: screenWidth, height: 35)
         headerViewTitle.text = "Subscriptions"
-        headerViewTitle.font = UIFont.systemFontOfSize(16)
+        headerViewTitle.font = UIFont(name: "MyriadPro-Regular", size: 17)
         headerViewTitle.textAlignment = .Center
         headerViewTitle.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.7)
         headerView.addSubview(headerViewTitle)
@@ -134,7 +134,9 @@ class CustomersListDetailViewController: UIViewController, UINavigationBarDelega
         // Offset by 20 pixels vertically to take the status bar into account
         navigationBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 60)
         navigationBar.backgroundColor = UIColor.clearColor()
-        navigationBar.tintColor = UIColor.whiteColor()
+        
+        // sets color of close icon
+        navigationBar.tintColor = UIColor.oceanBlue()
         navigationBar.delegate = self
         
         // Create a navigation item with a title
@@ -142,7 +144,7 @@ class CustomersListDetailViewController: UIViewController, UINavigationBarDelega
         
         // Create left and right button for navigation item
         let leftButton = UIBarButtonItem(image: UIImage(named: "IconCloseLight"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ChargeViewController.returnToMenu(_:)))
-        let font = UIFont(name: "DINAlternate-Bold", size: 14)
+        let font = UIFont(name: "MyriadPro-Regular", size: 14)
         leftButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
         // Create two buttons for the navigation item
         navigationItem.leftBarButtonItem = leftButton
@@ -160,7 +162,7 @@ class CustomersListDetailViewController: UIViewController, UINavigationBarDelega
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+        return UIStatusBarStyle.Default
     }
     
 }
@@ -187,7 +189,7 @@ extension CustomersListDetailViewController {
             let strName = name
             cell.textLabel?.attributedText = NSAttributedString(string: strName + " ", attributes: [
                 NSForegroundColorAttributeName : UIColor.mediumBlue(),
-                NSFontAttributeName : UIFont.systemFontOfSize(14, weight: UIFontWeightLight)
+                NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 14)!
                 ])
         }
         if let amount = item.plan_amount, interval = item.plan_interval, qty = item.quantity, status = item.status {
@@ -195,7 +197,7 @@ extension CustomersListDetailViewController {
                 NSForegroundColorAttributeName : UIColor.lightBlue().colorWithAlphaComponent(0.5),
                 NSFontAttributeName : UIFont.systemFontOfSize(11, weight: UIFontWeightRegular)
                 ])
-            let attrText = formatCurrency(String(amount), fontName: "HelveticaNeue", superSize: 11, fontSize: 15, offsetSymbol: 2, offsetCents: 2) +  NSAttributedString(string: " per ") + intervalAttributedString
+            let attrText = formatCurrency(String(amount), fontName: "MyriadPro-Regular", superSize: 11, fontSize: 15, offsetSymbol: 2, offsetCents: 2) +  NSAttributedString(string: " per ") + intervalAttributedString
             cell.detailTextLabel?.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
             cell.detailTextLabel?.attributedText = attrText
             

@@ -174,6 +174,7 @@ class BankACHConfirmationModalViewController: UIViewController {
             
             print(token)
             // print("calling create charge")
+            // TODO: ACH TEMPORARY REMOVE 1000 PLACEHOLDER
             createBackendChargeWithBankAccount(token, amount: 1000)//amountInCents)
         }
     }

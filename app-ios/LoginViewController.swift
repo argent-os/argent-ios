@@ -49,8 +49,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, WCSessionDeleg
     
     func configureView() {
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"keyboardWillAppear:", name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"keyboardWillDisappear:", name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(LoginViewController.keyboardWillAppear(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(LoginViewController.keyboardWillDisappear(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
         loginButton.layer.cornerRadius = 3
         loginButton.layer.masksToBounds = true

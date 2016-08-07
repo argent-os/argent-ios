@@ -95,42 +95,42 @@ class ConfigureAppViewController: FormViewController, UIApplicationDelegate {
                     KeychainSwift().set(false, forKey: "hideCenterMenuText", withAccess: .None)
                 }
         }
-        let configureThemeRow = SwitchRowFormer<FormSwitchCell>() {
-            $0.titleLabel.text = "Alternate Theme"
-            $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 14)!
-            $0.switchButton.onTintColor = UIColor.oceanBlue()
-            }.configure() { cell in
-                cell.rowHeight = 60
-                if(KeychainSwift().get("theme") == "DARK") {
-                    cell.switched = true
-                } else {
-                    cell.switched = false
-                }
-                cell.update()
-            }.onSwitchChanged { on in
-                if(on.boolValue == true) {
-                    KeychainSwift().set("DARK", forKey: "theme", withAccess: .None)
-                } else {
-                    KeychainSwift().set("LIGHT", forKey: "theme", withAccess: .None)
-                }
-                let alert = UIAlertController(title: "Notice", message: "The app theme will update on next application launch", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Got it", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
-        }
-        let configurePOSRowExit = SwitchRowFormer<FormSwitchCell>() {
-            $0.titleLabel.text = "Allow exit"
-            $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 14)!
-            }.configure() { cell in
-                cell.rowHeight = 60
-                cell.switched = false
-                cell.update()
-            }.onSwitchChanged { on in
-                if(on.boolValue == true) {
-                    // prompt to turn on
-                } else {
-                    // deregister
-                }
-        }
+//        let configureThemeRow = SwitchRowFormer<FormSwitchCell>() {
+//            $0.titleLabel.text = "Alternate Theme"
+//            $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 14)!
+//            $0.switchButton.onTintColor = UIColor.oceanBlue()
+//            }.configure() { cell in
+//                cell.rowHeight = 60
+//                if(KeychainSwift().get("theme") == "DARK") {
+//                    cell.switched = true
+//                } else {
+//                    cell.switched = false
+//                }
+//                cell.update()
+//            }.onSwitchChanged { on in
+//                if(on.boolValue == true) {
+//                    KeychainSwift().set("DARK", forKey: "theme", withAccess: .None)
+//                } else {
+//                    KeychainSwift().set("LIGHT", forKey: "theme", withAccess: .None)
+//                }
+//                let alert = UIAlertController(title: "Notice", message: "The app theme will update on next application launch", preferredStyle: UIAlertControllerStyle.Alert)
+//                alert.addAction(UIAlertAction(title: "Got it", style: UIAlertActionStyle.Default, handler: nil))
+//                self.presentViewController(alert, animated: true, completion: nil)
+//        }
+//        let configurePOSRowExit = SwitchRowFormer<FormSwitchCell>() {
+//            $0.titleLabel.text = "Allow exit"
+//            $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 14)!
+//            }.configure() { cell in
+//                cell.rowHeight = 60
+//                cell.switched = false
+//                cell.update()
+//            }.onSwitchChanged { on in
+//                if(on.boolValue == true) {
+//                    // prompt to turn on
+//                } else {
+//                    // deregister
+//                }
+//        }
         
         
         // Create Headers

@@ -254,7 +254,7 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
                     switch response.result {
                     case .Success:
                         if let value = response.result.value {
-                            let data = JSON(value)
+                            //let data = JSON(value)
                             if response.response?.statusCode == 200 {
                                 Answers.logCustomEventWithName("Manual link bank to Stripe success",
                                     customAttributes: [:])

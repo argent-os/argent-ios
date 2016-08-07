@@ -636,8 +636,6 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
 
     // User profile image view scroll effects
     override func scrollViewDidScroll(scrollView: UIScrollView) {
-        let headerView = self.tableView.tableHeaderView
-//        headerView.scrollViewDidScroll(scrollView)
     }
 }
 

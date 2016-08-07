@@ -107,15 +107,18 @@ class MenuChildViewControllerTwo: UIViewController, IndicatorInfoProvider {
     }
     
     func viewCustomersButtonSelected(sender: AnyObject) {
-        self.presentViewController(CustomersListTableViewController(), animated: true) { }
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("CustomersListTableViewController") as! CustomersListTableViewController
+        self.presentViewController(vc, animated: true) { }
     }
     
     func viewPlansButtonSelected(sender: AnyObject) {
-        self.presentViewController(PlansListTableViewController(), animated: true) { }
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PlansListTableViewController") as! PlansListTableViewController
+        self.presentViewController(vc, animated: true) { }
     }
     
     func viewSubscriptionsButtonSelected(sender: AnyObject) {
-        self.presentViewController(SubscriptionsListTableViewController(), animated: true) { }
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SubscriptionsListTableViewController") as! SubscriptionsListTableViewController
+        self.presentViewController(vc, animated: true) { }
     }
     
     // MARK: - IndicatorInfoProvider

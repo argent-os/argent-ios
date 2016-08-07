@@ -13,8 +13,10 @@ import TransitionAnimation
 import Shimmer
 import KeychainSwift
 import XLPagerTabStrip
+import Crashlytics
+import MessageUI
 
-class MenuViewController: ButtonBarPagerTabStripViewController {
+class MenuViewController: ButtonBarPagerTabStripViewController, MFMailComposeViewControllerDelegate {
 
     private let viewTerminalImageView = UIView()
 
@@ -24,6 +26,8 @@ class MenuViewController: ButtonBarPagerTabStripViewController {
     
     let blueInstagramColor = UIColor.oceanBlue()
     
+    let appVersionString: String = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureMainMenu()
@@ -57,17 +61,33 @@ class MenuViewController: ButtonBarPagerTabStripViewController {
             oldCell?.label.textColor = .blackColor()
             newCell?.label.textColor = self?.blueInstagramColor
         }
-        
-        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
-        visualEffectView.frame = CGRectMake(0, 0, screenWidth, screenHeight)
-        let backgroundImageView = UIImageView(image: UIImage(), highlightedImage: nil)
-        backgroundImageView.frame = CGRectMake(0, 0, screenWidth, screenHeight)
-        backgroundImageView.contentMode = .ScaleAspectFill
-        backgroundImageView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-        backgroundImageView.layer.masksToBounds = true
-        backgroundImageView.clipsToBounds = true
 
         setupNav()
+        
+        let versionLabel = UILabel()
+        versionLabel.frame = CGRect(x: 0, y: screenHeight-185, width: screenWidth, height: 40)
+        versionLabel.textAlignment = .Center
+        versionLabel.font = UIFont(name: "MyriadPro-Regular", size: 13)!
+        versionLabel.textColor = UIColor.lightBlue().lighterColor()
+        versionLabel.text = "Version " + appVersionString
+        self.view.addSubview(versionLabel)
+        
+        let feedbackButton = UIButton()
+        feedbackButton.frame = CGRect(x: 0, y: screenHeight-160, width: screenWidth, height: 40)
+        let str = NSAttributedString(string: "Send Feedback", attributes: [
+            NSForegroundColorAttributeName : UIColor.lightBlue().lighterColor(),
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 13)!
+        ])
+        let str2 = NSAttributedString(string: "Send Feedback", attributes: [
+            NSForegroundColorAttributeName : UIColor.lightBlue().darkerColor(),
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 13)!
+        ])
+        feedbackButton.backgroundColor = UIColor.clearColor()
+        feedbackButton.layer.borderColor = UIColor.clearColor().CGColor
+        feedbackButton.setAttributedTitle(str, forState: .Normal)
+        feedbackButton.setAttributedTitle(str2, forState: .Highlighted)
+        feedbackButton.addTarget(self, action: #selector(sendEmailButtonTapped(_:)), forControlEvents: .TouchUpInside)
+        self.view.addSubview(feedbackButton)
 
     }
     
@@ -120,4 +140,45 @@ class MenuViewController: ButtonBarPagerTabStripViewController {
         let child_2 = MenuChildViewControllerTwo(itemInfo: "OVERVIEW")
         return [child_1, child_2]
     }
+}
+
+extension MenuViewController {
+    
+    // MARK: Email Composition
+    
+    @IBAction func sendEmailButtonTapped(sender: AnyObject) {
+        Answers.logInviteWithMethod("Email feedback",
+                                    customAttributes: nil)
+        
+        let mailComposeViewController = configuredMailComposeViewController()
+        if MFMailComposeViewController.canSendMail() {
+            self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+        } else {
+            self.showSendMailErrorAlert()
+        }
+    }
+    
+    func configuredMailComposeViewController() -> MFMailComposeViewController {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
+        
+        mailComposerVC.setToRecipients(["support@argent-tech.com"])
+        mailComposerVC.setSubject("Re: Feedback for " + APP_NAME + " | Version " + self.appVersionString)
+        mailComposerVC.setMessageBody("", isHTML: false)
+        
+        return mailComposerVC
+    }
+    
+    func showSendMailErrorAlert() {
+        let sendMailErrorAlert = UIAlertController(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", preferredStyle: .Alert)
+        sendMailErrorAlert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(sendMailErrorAlert, animated: true, completion: nil)
+    }
+    
+    // MARK: MFMailComposeViewControllerDelegate Method
+    
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
 }

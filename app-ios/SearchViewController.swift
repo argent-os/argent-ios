@@ -188,7 +188,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 imageView.backgroundColor = UIColor.clearColor()
                 imageView.layer.cornerRadius = 15
                 imageView.layer.masksToBounds = true
-                let priority = DISPATCH_QUEUE_PRIORITY_HIGH
+                //let priority = DISPATCH_QUEUE_PRIORITY_HIGH
             }
             
             let business_name = filteredArray[indexPath.row].business_name
@@ -213,7 +213,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 imageView.backgroundColor = UIColor.clearColor()
                 imageView.layer.cornerRadius = 15
                 imageView.layer.masksToBounds = true
-                let priority = DISPATCH_QUEUE_PRIORITY_HIGH
+                //let priority = DISPATCH_QUEUE_PRIORITY_HIGH
             }
             
 //            let business_name = dataArray[indexPath.row].business_name
@@ -283,9 +283,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func configureSearchController() {
-        let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
-        let screenHeight = screen.size.height
+        //let screen = UIScreen.mainScreen().bounds
+        //let screenWidth = screen.size.width
+        //let screenHeight = screen.size.height
         
         // Initialize and perform a minimum configuration to the search controller.
         searchController = UISearchController(searchResultsController: nil)
@@ -310,9 +310,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: UISearchBarDelegate functions
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
-        let screenHeight = screen.size.height
         // Setup the Scope Bar
         searchBar.setShowsCancelButton(true, animated: true)
         for ob: UIView in ((searchBar.subviews[0] )).subviews {
@@ -330,9 +327,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
-        let screenHeight = screen.size.height
         shouldShowSearchResults = false
         searchController.searchBar.placeholder = ""
         loadUserAccounts()

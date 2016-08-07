@@ -57,7 +57,7 @@ class SubscriptionsListDetailViewController: UIViewController, UINavigationBarDe
         
         subscriptionTitleLabel.frame = CGRect(x: 40, y: 50, width: screenWidth-80, height: 100)
         subscriptionTitleLabel.text = subscriptionName
-        subscriptionTitleLabel.font = UIFont(name: "ArialRoundedMTBold", size: 24)
+        subscriptionTitleLabel.font = UIFont(name: "MyriadPro-Regular", size: 24)
         subscriptionTitleLabel.textAlignment = .Center
         subscriptionTitleLabel.textColor = UIColor.whiteColor()
         let _ = Timeout(0.3) {
@@ -90,7 +90,7 @@ class SubscriptionsListDetailViewController: UIViewController, UINavigationBarDe
         
         subscriptionIntervalLabel.frame = CGRect(x: 40, y: 170, width: screenWidth-80, height: 100)
         subscriptionIntervalLabel.text = "per " + subscriptionInterval!
-        subscriptionIntervalLabel.font = UIFont(name: "DINAlternate-Bold", size: 12)
+        subscriptionIntervalLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
         subscriptionIntervalLabel.textAlignment = .Center
         subscriptionIntervalLabel.textColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
         let _ = Timeout(0.5) {
@@ -99,7 +99,7 @@ class SubscriptionsListDetailViewController: UIViewController, UINavigationBarDe
         
         subscriptionStatusLabel.frame = CGRect(x: 40, y: 220, width: screenWidth-80, height: 200)
         subscriptionStatusLabel.numberOfLines = 8
-        subscriptionStatusLabel.font = UIFont(name: "DINAlternate-Bold", size: 12)
+        subscriptionStatusLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
         subscriptionStatusLabel.textAlignment = .Center
         subscriptionStatusLabel.textColor = UIColor.whiteColor().colorWithAlphaComponent(0.7)
         let _ = Timeout(0.7) {
@@ -115,7 +115,7 @@ class SubscriptionsListDetailViewController: UIViewController, UINavigationBarDe
         navigationBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 60)
         navigationBar.backgroundColor = UIColor.clearColor()
         // this changes color of close button
-        navigationBar.tintColor = UIColor.whiteColor()
+        navigationBar.tintColor = UIColor.oceanBlue()
         navigationBar.delegate = self
         
         // Create a navigation item with a title
@@ -123,7 +123,7 @@ class SubscriptionsListDetailViewController: UIViewController, UINavigationBarDe
         
         // Create left and right button for navigation item
         let leftButton = UIBarButtonItem(image: UIImage(named: "IconCloseLight"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ChargeViewController.returnToMenu(_:)))
-        let font = UIFont(name: "DINAlternate-Bold", size: 14)
+        let font = UIFont(name: "MyriadPro-Regular", size: 14)
         leftButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
         // Create two buttons for the navigation item
         navigationItem.leftBarButtonItem = leftButton

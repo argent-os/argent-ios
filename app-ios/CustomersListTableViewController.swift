@@ -251,7 +251,7 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
             ])
         }
         
-        let closeView: UIView = self.viewWithImageName("ic_close_light");
+        let closeView: UIView = self.viewWithImageName("IconCloseLight");
         
         cell.setSwipeGestureWithView(closeView, color:  UIColor.brandRed(), mode: .Exit, state: .State3) {
             (cell : MCSwipeTableViewCell!, state : MCSwipeTableViewCellState!, mode : MCSwipeTableViewCellMode!) in
