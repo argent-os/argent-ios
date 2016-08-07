@@ -45,7 +45,7 @@ class MenuChildViewControllerTwo: UIViewController, IndicatorInfoProvider {
         
         let btnViewCustomers = UIButton()
         let str1 = NSAttributedString(string: "View Customers", attributes: [
-            NSForegroundColorAttributeName : UIColor.oceanBlue(),
+            NSForegroundColorAttributeName : UIColor.darkBlue(),
             NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!
             ])
         btnViewCustomers.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
@@ -67,7 +67,7 @@ class MenuChildViewControllerTwo: UIViewController, IndicatorInfoProvider {
         
         let btnViewPlans = UIButton()
         let str2 = NSAttributedString(string: "View Plans", attributes: [
-            NSForegroundColorAttributeName : UIColor.oceanBlue(),
+            NSForegroundColorAttributeName : UIColor.darkBlue(),
             NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!
             ])
         btnViewPlans.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
@@ -87,7 +87,7 @@ class MenuChildViewControllerTwo: UIViewController, IndicatorInfoProvider {
         
         let btnViewSubscriptions = UIButton()
         let str3 = NSAttributedString(string: "View Subscriptions", attributes: [
-            NSForegroundColorAttributeName : UIColor.oceanBlue(),
+            NSForegroundColorAttributeName : UIColor.darkBlue(),
             NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!
             ])
         btnViewSubscriptions.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)

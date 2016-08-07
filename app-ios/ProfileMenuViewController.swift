@@ -318,7 +318,6 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                         let locationStr: NSMutableAttributedString = NSMutableAttributedString(string: "")
                         locationStr.appendAttributedString(attachmentString)
                         self.locationLabel.attributedText = locationStr
-                        showGlobalNotification("Account is not verified", duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.bitcoinOrange())
                     }
                     addSubviewWithFade(self.locationLabel, parentView: self, duration: 0)
                 } else {

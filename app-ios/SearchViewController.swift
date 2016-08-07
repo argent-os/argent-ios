@@ -412,7 +412,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: DZNEmptyDataSet delegate
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = adjustAttributedString("ARGENT", spacing: 4, fontName: "MyriadPro-Regular", fontSize: 17, fontColor: UIColor.lightBlue())
+        let str = adjustAttributedString("\nARGENT", spacing: 4, fontName: "MyriadPro-Regular", fontSize: 17, fontColor: UIColor.lightBlue())
         return str
     }
     
@@ -423,7 +423,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
-        return UIImage(named: "LogoOutlineDark")?.alpha(0.5)
+        return UIImage(named: "IconEmptySearchPay")
     }
     
     func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {

@@ -88,7 +88,26 @@ class MenuViewController: ButtonBarPagerTabStripViewController, MFMailComposeVie
         feedbackButton.setAttributedTitle(str2, forState: .Highlighted)
         feedbackButton.addTarget(self, action: #selector(sendEmailButtonTapped(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(feedbackButton)
-
+        
+        let verificationLabel = UILabel()
+        verificationLabel.frame = CGRect(x: 15, y: screenHeight-235, width: screenWidth-30, height: 40)
+        verificationLabel.textAlignment = .Center
+        verificationLabel.font = UIFont(name: "MyriadPro-Regular", size: 13)!
+        verificationLabel.layer.borderColor = UIColor.oceanBlue().CGColor
+        verificationLabel.layer.borderWidth = 1
+        verificationLabel.layer.cornerRadius = 3
+        verificationLabel.textColor = UIColor.oceanBlue()
+        self.checkIfVerified({ (bool, err) in
+            if bool == true {
+                verificationLabel.text = "Account Status: Verified"
+                addSubviewWithFade(verificationLabel, parentView: self, duration: 0.5)
+                verificationLabel.textColor = UIColor.brandGreen()
+                verificationLabel.layer.borderColor = UIColor.brandGreen().CGColor
+            } else {
+                verificationLabel.text = "Account Status: Pending Verification"
+                addSubviewWithFade(verificationLabel, parentView: self, duration: 0.5)
+            }
+        })
     }
     
     func setupNav() {
@@ -106,6 +125,23 @@ class MenuViewController: ButtonBarPagerTabStripViewController, MFMailComposeVie
             NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!
         ]
         
+    }
+    
+    func checkIfVerified(completionHandler: (Bool, NSError?) -> ()){
+        Account.getStripeAccount { (acct, err) in
+            let fields = acct?.verification_fields_needed
+            let disabled = acct?.verification_disabled_reason
+            let _ = fields.map { (unwrappedOptionalArray) -> Void in
+                // if array has values
+                if !unwrappedOptionalArray.isEmpty || disabled != "" {
+                    // print("checking if empty... false")
+                    completionHandler(false, nil)
+                } else {
+                    // print("checking if empty... true")
+                    completionHandler(true, nil)
+                }
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
