@@ -1425,12 +1425,42 @@ support request</string>
                     <view key="view" contentMode="scaleToFill" id="Wlq-Lz-if3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kR3-ew-epP" customClass="ButtonBarView" customModule="XLPagerTabStrip">
+                                <rect key="frame" x="0.0" y="64" width="600" height="40"/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="VFd-59-EWF"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Rxs-bf-YoX">
+                                    <size key="itemSize" width="40" height="40"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BQX-cs-BcJ">
+                                <rect key="frame" x="0.0" y="112" width="600" height="439"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kR3-ew-epP" firstAttribute="top" secondItem="uhz-kd-xkO" secondAttribute="bottom" id="7tg-Ic-ipu"/>
+                            <constraint firstItem="kR3-ew-epP" firstAttribute="leading" secondItem="BQX-cs-BcJ" secondAttribute="leading" id="ApZ-dR-sob"/>
+                            <constraint firstItem="BQX-cs-BcJ" firstAttribute="bottom" secondItem="Mv2-J1-WVg" secondAttribute="top" id="WiE-LT-31d"/>
+                            <constraint firstItem="BQX-cs-BcJ" firstAttribute="top" secondItem="kR3-ew-epP" secondAttribute="bottom" constant="8" symbolic="YES" id="hFS-aR-zax"/>
+                            <constraint firstAttribute="trailing" secondItem="kR3-ew-epP" secondAttribute="trailing" id="jUy-lq-wa4"/>
+                            <constraint firstItem="kR3-ew-epP" firstAttribute="trailing" secondItem="BQX-cs-BcJ" secondAttribute="trailing" id="jho-TW-Xhv"/>
+                            <constraint firstItem="kR3-ew-epP" firstAttribute="leading" secondItem="Wlq-Lz-if3" secondAttribute="leading" id="rbv-HI-fEd"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="vd3-ef-jnj"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
+                        <outlet property="barButtonView" destination="kR3-ew-epP" id="A1Q-1w-8q1"/>
                         <segue destination="4oC-TM-jI5" kind="presentation" identifier="chargeView" id="uG4-vF-WlK"/>
                         <segue destination="SDr-Sd-KOe" kind="presentation" identifier="addPlanView" id="E98-FC-SfF"/>
                         <segue destination="dhF-jf-B2R" kind="presentation" identifier="addCustomerView" id="Vb3-e8-F7w"/>
@@ -1560,7 +1590,7 @@ support request</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i4Y-CU-mTs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1773" y="-1746"/>
+            <point key="canvasLocation" x="-1593" y="-1762"/>
         </scene>
         <!--Login Box Table View Controller-->
         <scene sceneID="VTT-x8-ndO">

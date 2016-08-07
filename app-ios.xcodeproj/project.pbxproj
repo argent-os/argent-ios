@@ -14,6 +14,8 @@
 		300090071D4FA062004E44E6 /* AuthViewControllerStepFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300090061D4FA062004E44E6 /* AuthViewControllerStepFour.swift */; };
 		300090091D566857004E44E6 /* AmountInputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 300090081D566857004E44E6 /* AmountInputCell.xib */; };
 		3000900B1D566896004E44E6 /* AmountInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3000900A1D566896004E44E6 /* AmountInputCell.swift */; };
+		3000900F1D56BF3F004E44E6 /* MenuChildViewControllerOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3000900E1D56BF3F004E44E6 /* MenuChildViewControllerOne.swift */; };
+		300090111D56BF7E004E44E6 /* MenuChildViewControllerTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300090101D56BF7E004E44E6 /* MenuChildViewControllerTwo.swift */; };
 		30043B3B1D45698100594385 /* BankACHConfirmationModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30043B3A1D45698100594385 /* BankACHConfirmationModalViewController.swift */; };
 		30043B3D1D456B2A00594385 /* BankListModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30043B3C1D456B2A00594385 /* BankListModalViewController.swift */; };
 		300780CD1D29ABD200618984 /* AccountVerificationTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300780CC1D29ABD200618984 /* AccountVerificationTutorialViewController.swift */; };
@@ -244,6 +246,8 @@
 		300090061D4FA062004E44E6 /* AuthViewControllerStepFour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthViewControllerStepFour.swift; path = "app-ios/AuthViewControllerStepFour.swift"; sourceTree = SOURCE_ROOT; };
 		300090081D566857004E44E6 /* AmountInputCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AmountInputCell.xib; path = "app-ios/AmountInputCell.xib"; sourceTree = SOURCE_ROOT; };
 		3000900A1D566896004E44E6 /* AmountInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AmountInputCell.swift; path = "app-ios/AmountInputCell.swift"; sourceTree = SOURCE_ROOT; };
+		3000900E1D56BF3F004E44E6 /* MenuChildViewControllerOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuChildViewControllerOne.swift; path = "app-ios/MenuChildViewControllerOne.swift"; sourceTree = SOURCE_ROOT; };
+		300090101D56BF7E004E44E6 /* MenuChildViewControllerTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuChildViewControllerTwo.swift; path = "app-ios/MenuChildViewControllerTwo.swift"; sourceTree = SOURCE_ROOT; };
 		30043B3A1D45698100594385 /* BankACHConfirmationModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankACHConfirmationModalViewController.swift; path = "app-ios/BankACHConfirmationModalViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30043B3C1D456B2A00594385 /* BankListModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankListModalViewController.swift; path = "app-ios/BankListModalViewController.swift"; sourceTree = SOURCE_ROOT; };
 		300780CC1D29ABD200618984 /* AccountVerificationTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountVerificationTutorialViewController.swift; path = "app-ios/AccountVerificationTutorialViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -469,6 +473,15 @@
 			name = Features;
 			sourceTree = "<group>";
 		};
+		3000900D1D56BF2D004E44E6 /* Children */ = {
+			isa = PBXGroup;
+			children = (
+				3000900E1D56BF3F004E44E6 /* MenuChildViewControllerOne.swift */,
+				300090101D56BF7E004E44E6 /* MenuChildViewControllerTwo.swift */,
+			);
+			name = Children;
+			sourceTree = "<group>";
+		};
 		3004D6041C9DBE1300499CD0 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
@@ -618,6 +631,7 @@
 		306DF00C1CDA482200864CAE /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				3000900D1D56BF2D004E44E6 /* Children */,
 				30CF714B1D04CAA3007B5E17 /* Detail */,
 				30089F3D1CF9312000A2496B /* Main */,
 			);
@@ -1504,6 +1518,7 @@
 				30C2DAE51CA4392E003AFD8B /* AddBankViewController.swift in Sources */,
 				30C2DAC11CA43836003AFD8B /* ProfileViewController.swift in Sources */,
 				3000900B1D566896004E44E6 /* AmountInputCell.swift in Sources */,
+				3000900F1D56BF3F004E44E6 /* MenuChildViewControllerOne.swift in Sources */,
 				30C2DAEF1CA43951003AFD8B /* AddCustomerViewController.swift in Sources */,
 				3080730C1CFF6F260070C7FE /* Subscription.swift in Sources */,
 				30C2DAD01CA4386A003AFD8B /* SupportMenuViewController.swift in Sources */,
@@ -1566,6 +1581,7 @@
 				30C2DAD91CA4389E003AFD8B /* ProfileImageCell.swift in Sources */,
 				30C2DA9B1CA4373E003AFD8B /* LoginViewController.swift in Sources */,
 				30CF71511D05B066007B5E17 /* CustomersListDetailViewController.swift in Sources */,
+				300090111D56BF7E004E44E6 /* MenuChildViewControllerTwo.swift in Sources */,
 				30C2DAAA1CA4374F003AFD8B /* SignupViewControllerTwo.swift in Sources */,
 				30D5267D1CDE3736001B41BA /* ConfigureAppViewController.swift in Sources */,
 				3020A68A1D45072000B24B44 /* BankACHConnectedCell.swift in Sources */,

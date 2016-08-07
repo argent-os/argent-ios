@@ -127,14 +127,14 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.view.addSubview(tblSearchResults)
         
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
-        loadingView.tintColor = UIColor.whiteColor()
+        loadingView.tintColor = UIColor.oceanBlue()
         tblSearchResults.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
                 self?.tblSearchResults.dg_stopLoading()
                 self?.loadUserAccounts()
             })
             }, loadingView: loadingView)
-        tblSearchResults.dg_setPullToRefreshFillColor(UIColor.mediumBlue())
+        tblSearchResults.dg_setPullToRefreshFillColor(UIColor.whiteColor())
         tblSearchResults.dg_setPullToRefreshBackgroundColor(UIColor.whiteColor())
     }
     

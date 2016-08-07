@@ -12,12 +12,17 @@ import TransitionTreasury
 import TransitionAnimation
 import Shimmer
 import KeychainSwift
+import XLPagerTabStrip
 
-class MenuViewController: UIViewController {
+class MenuViewController: ButtonBarPagerTabStripViewController {
 
     private let viewTerminalImageView = UIView()
 
     private let addPlanImageView = UIView()
+    
+    @IBOutlet weak var barButtonView: ButtonBarView!
+    
+    let blueInstagramColor = UIColor.oceanBlue()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,64 +35,38 @@ class MenuViewController: UIViewController {
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
+        barButtonView.backgroundColor = UIColor.whiteColor()
+        
+        // change selected bar color
+//        settings.style.buttonBarBackgroundColor = UIColor.redColor()
+        settings.style.buttonBarItemBackgroundColor = UIColor.whiteColor()
+//        settings.style.selectedBarBackgroundColor = UIColor.greenColor()
+        settings.style.buttonBarItemFont = UIFont(name: "MyriadPro-Regular", size: 14)!
+        settings.style.selectedBarHeight = 20
+        settings.style.buttonBarMinimumLineSpacing = 10
+//        settings.style.buttonBarItemTitleColor = UIColor.greenColor()
+        settings.style.buttonBarItemsShouldFillAvailiableWidth = true
+        settings.style.buttonBarLeftContentInset = 40
+        settings.style.buttonBarRightContentInset = 40
+        
+        changeCurrentIndexProgressive = { [weak self] (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
+            guard changeCurrentIndex == true else { return }
+            oldCell?.label.textColor = .blackColor()
+            newCell?.label.textColor = self?.blueInstagramColor
+        }
+        
         let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
         visualEffectView.frame = CGRectMake(0, 0, screenWidth, screenHeight)
         let backgroundImageView = UIImageView(image: UIImage(), highlightedImage: nil)
-        backgroundImageView.backgroundColor = UIColor.offWhite()
+//        backgroundImageView.backgroundColor = UIColor.offWhite()
         backgroundImageView.frame = CGRectMake(0, 0, screenWidth, screenHeight)
         backgroundImageView.contentMode = .ScaleAspectFill
         backgroundImageView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         backgroundImageView.layer.masksToBounds = true
         backgroundImageView.clipsToBounds = true
         // backgroundImageView.addSubview(visualEffectView)
-        self.view.sendSubviewToBack(backgroundImageView)
-        self.view.addSubview(backgroundImageView)
-        
-        let btn1 = UIButton()
-        let str1 = NSAttributedString(string: "Accept Payment", attributes: [
-            NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!
-        ])
-        btn1.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
-        btn1.contentEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
-        btn1.contentHorizontalAlignment = .Left
-        btn1.setAttributedTitle(str1, forState: .Normal)
-        btn1.setBackgroundColor(UIColor.deepBlue().lighterColor(), forState: .Highlighted)
-        btn1.frame = CGRect(x: 15, y: 30, width: screenWidth-30, height: 60)
-        btn1.layer.cornerRadius = 3
-        btn1.layer.masksToBounds = true
-        btn1.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.2).CGColor
-        btn1.layer.borderWidth = 1
-        btn1.backgroundColor = UIColor.deepBlue()
-        btn1.addTarget(self, action: #selector(terminalButtonSelected(_:)), forControlEvents: .TouchUpInside)
-        self.view.addSubview(btn1)
-        self.view.bringSubviewToFront(btn1)
-        self.view.superview?.bringSubviewToFront(btn1)
-        self.view.bringSubviewToFront(btn1)
-//        btn1.setImage(UIImage(named: "IconCard"), inFrame: CGRectMake(18, 18, 64, 64), forState: .Normal)
-//        btn1.imageEdgeInsets = UIEdgeInsets(top: 0.0, left: btn1.frame.width-20, bottom: 0.0, right: 10.0)
-
-        let btn2 = UIButton()
-        let str2 = NSAttributedString(string: "Create Plan", attributes: [
-            NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!
-            ])
-        btn2.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
-        btn2.contentEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
-        btn2.contentHorizontalAlignment = .Left
-        btn2.setAttributedTitle(str2, forState: .Normal)
-        btn2.setBackgroundColor(UIColor.oceanBlue().lighterColor(), forState: .Highlighted)
-        btn2.frame = CGRect(x: 15, y: 100, width: screenWidth-30, height: 60)
-        btn2.layer.cornerRadius = 3
-        btn2.layer.masksToBounds = true
-        btn2.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.2).CGColor
-        btn2.layer.borderWidth = 1
-        btn2.backgroundColor = UIColor.oceanBlue()
-        btn2.addTarget(self, action: #selector(planButtonSelected(_:)), forControlEvents: .TouchUpInside)
-        self.view.addSubview(btn2)
-        self.view.bringSubviewToFront(btn2)
-        self.view.superview?.bringSubviewToFront(btn2)
-        self.view.bringSubviewToFront(btn2)
+//        self.view.sendSubviewToBack(backgroundImageView)
+//        self.view.addSubview(backgroundImageView)
 
         setupNav()
 
@@ -109,21 +88,7 @@ class MenuViewController: UIViewController {
         ]
         
     }
-    
-    func terminalButtonSelected(sender: AnyObject) {
-        print("charge selected")
-        self.performSegueWithIdentifier("chargeView", sender: self)
-    }
-    
-    func planButtonSelected(sender: AnyObject) {
-        print("plan selected")
-        self.performSegueWithIdentifier("addPlanView", sender: self)
-    }
-    
-    func inviteButtonSelected(sender: AnyObject) {
-        self.performSegueWithIdentifier("addCustomerView", sender: self)
-    }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -148,13 +113,12 @@ class MenuViewController: UIViewController {
             self.presentViewController(rootViewController, animated: true, completion: nil)
         }
     }
-}
 
-extension MenuViewController: UIGestureRecognizerDelegate {
-    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
-        if let ges = gestureRecognizer as? UIPanGestureRecognizer {
-            return ges.velocityInView(ges.view).y != 0
-        }
-        return false
+    // MARK: - PagerTabStripDataSource
+    
+    override func viewControllersForPagerTabStrip(pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
+        let child_1 = MenuChildViewControllerOne(itemInfo: "MAIN")
+        let child_2 = MenuChildViewControllerTwo(itemInfo: "OVERVIEW")
+        return [child_1, child_2]
     }
 }

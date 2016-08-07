@@ -214,6 +214,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             showGraphActivityIndicator()
             History.getHistoryArrays({ (_1d, _2w, _1m, _3m, _6m, _1y, _5y, err) in
                 self.arrayOfValues = _2w!
+                for index in 0..<self.arrayOfValues.count {
+                    self.arrayOfValues[index] = self.arrayOfValues[index].floatValue/100
+                }
                 self.activityIndicator.stopAnimating()
                 self.graph.reloadGraph()
             })
@@ -222,6 +225,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             showGraphActivityIndicator()
             History.getHistoryArrays({ (_1d, _2w, _1m, _3m, _6m, _1y, _5y, err) in
                 self.arrayOfValues = _1m!
+                for index in 0..<self.arrayOfValues.count {
+                    self.arrayOfValues[index] = self.arrayOfValues[index].floatValue/100
+                }
                 self.activityIndicator.stopAnimating()
                 self.graph.reloadGraph()
             })
@@ -230,6 +236,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             showGraphActivityIndicator()
             History.getHistoryArrays({ (_1d, _2w, _1m, _3m, _6m, _1y, _5y, err) in
                 self.arrayOfValues = _3m!
+                for index in 0..<self.arrayOfValues.count {
+                    self.arrayOfValues[index] = self.arrayOfValues[index].floatValue/100
+                }
                 self.activityIndicator.stopAnimating()
                 self.graph.reloadGraph()
             })
@@ -238,6 +247,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             showGraphActivityIndicator()
             History.getHistoryArrays({ (_1d, _2w, _1m, _3m, _6m, _1y, _5y, err) in
                 self.arrayOfValues = _6m!
+                for index in 0..<self.arrayOfValues.count {
+                    self.arrayOfValues[index] = self.arrayOfValues[index].floatValue/100
+                }
                 self.activityIndicator.stopAnimating()
                 self.graph.reloadGraph()
             })
@@ -246,6 +258,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             showGraphActivityIndicator()
             History.getHistoryArrays({ (_1d, _2w, _1m, _3m, _6m, _1y, _5y, err) in
                 self.arrayOfValues = _1y!
+                for index in 0..<self.arrayOfValues.count {
+                    self.arrayOfValues[index] = self.arrayOfValues[index].floatValue/100
+                }
                 self.activityIndicator.stopAnimating()
                 self.graph.reloadGraph()
             })
@@ -284,11 +299,10 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 formatter.locale = NSLocale.currentLocale() // This is the default
                 
                 self.lblAccountPending.attributedText = formatCurrency(String(pendingBalance), fontName: "MyriadPro-Regular", superSize: 16, fontSize: 32, offsetSymbol: 10, offsetCents: 10)
-                self.view.addSubview(self.lblAccountPending)
-//                addSubviewWithFade(self.lblAccountPending, parentView: self, duration: 1)
+                addSubviewWithFade(self.lblAccountPending, parentView: self, duration: 1)
+                
                 self.lblAccountAvailable.attributedText = formatCurrency(String(availableBalance), fontName: "MyriadPro-Regular", superSize: 16, fontSize: 32, offsetSymbol: 10, offsetCents: 10)
-                self.view.addSubview(self.lblSubtext)
-//                addSubviewWithFade(self.lblSubtext, parentView: self, duration: 0.5)
+                addSubviewWithFade(self.lblSubtext, parentView: self, duration: 0.5)
             })
             
             // Get user account history
@@ -305,6 +319,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             
             History.getHistoryArrays({ (_1d, _2w, _1m, _3m, _6m, _1y, _5y, err) in
                 self.arrayOfValues = _3m!
+                for index in 0..<self.arrayOfValues.count {
+                    self.arrayOfValues[index] = self.arrayOfValues[index].floatValue/100
+                }
                 self.graph.reloadGraph()
             })
             
@@ -316,7 +333,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                     // Track user action
                     Answers.logCustomEventWithName("User logged in", customAttributes: nil)
                     
-//                    showGlobalNotification("Welcome " + (user?.first_name)! + "!", duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.darkestBlue())
+                    // showGlobalNotification("Welcome " + (user?.first_name)! + "!", duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.darkestBlue())
                 }
                 
                 if(error != nil) {
@@ -390,23 +407,13 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         
         let cell = self.tableView.dequeueReusableCellWithIdentifier("idCellCustomHistory") as! HistoryCustomCell
         
-//        CellAnimator.animateCell(cell, withTransform: CellAnimator.TransformTilt, andDuration: 0.3)
+        // CellAnimator.animateCell(cell, withTransform: CellAnimator.TransformTilt, andDuration: 0.3)
         
         let item = self.accountHistoryArray?[indexPath.row]
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         cell.backgroundColor = UIColor.whiteColor()
         cell.lblAmount?.text = ""
         cell.lblDate?.text = ""
-        
-//        let countryCode = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
-//        NSUserDefaults.standardUserDefaults().setValue(countryCode, forKey: "userCountry")
-//        cell.flagImg.image = UIImage(flagImageWithCountryCode: NSLocale.autoupdatingCurrentLocale().objectForKey(NSLocaleCountryCode) as! String)
-//        cell.flagImg.layer.cornerRadius = 10
-//        cell.flagImg.layer.masksToBounds = true
-//        cell.flagImg.contentMode = .ScaleAspectFit
-//        cell.flagImg.frame = CGRect(x: 0, y: 20, width: 25, height: 25)
-        
-
 
         if let amount = item?.amount {
             let currencyText = formatCurrency(amount, fontName: "MyriadPro-Regular", superSize: 17, fontSize: 17, offsetSymbol: 0, offsetCents: 0)
@@ -639,11 +646,6 @@ extension HomeViewController {
         graph.gradientLine = self.gradient!
         graph.gradientBottom = self.gradientBottom!
         graph.colorLine = UIColor.whiteColor()
-//        graph.layer.shadowColor = UIColor.darkBlue().colorWithAlphaComponent(0.5).CGColor
-//        graph.layer.shadowColor = UIColor.clearColor().colorWithAlphaComponent(0.5).CGColor
-//        graph.layer.shadowOffset = CGSize(width: 2, height: 10)
-//        graph.layer.shadowRadius = 5
-//        graph.layer.shadowOpacity = 1
         graph.gradientLineDirection = .Vertical
         graph.widthLine = 2
         graph.displayDotsWhileAnimating = true
@@ -661,6 +663,11 @@ extension HomeViewController {
         addSubviewWithFade(graph, parentView: self, duration: 0.5)
         self.view.bringSubviewToFront(graph)
         self.headerView.bringSubviewToFront(graph)
+        //        graph.layer.shadowColor = UIColor.darkBlue().colorWithAlphaComponent(0.5).CGColor
+        //        graph.layer.shadowColor = UIColor.clearColor().colorWithAlphaComponent(0.5).CGColor
+        //        graph.layer.shadowOffset = CGSize(width: 2, height: 10)
+        //        graph.layer.shadowRadius = 5
+        //        graph.layer.shadowOpacity = 1
         
         let graphOutlineView = UIImageView()
         graphOutlineView.image = UIImage(named: "GraphOutlineLong")
