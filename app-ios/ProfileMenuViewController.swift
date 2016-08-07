@@ -162,8 +162,31 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                             showGlobalNotification("Transfers disabled until more account information is provided", duration: 10.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.oceanBlue())
                         }
                     }
+                } else if let disabled_reason = acct?.verification_disabled_reason {
+                    print(acct)
+                    print(disabled_reason)
+                    self.locationLabel.removeFromSuperview()
+                    self.verifiedLabel.layer.borderWidth = 0
+                    self.verifiedLabel.frame = CGRect(x: 30, y: 100, width: screenWidth-60, height: 30)
+                    addSubviewWithFade(self.verifiedLabel, parentView: self, duration: 1)
+                    if disabled_reason == "rejected.fraud" {
+                        self.verifiedButton.removeFromSuperview()
+                        self.verifiedLabel.text = "Account rejected: Fraud detected"
+                    } else if disabled_reason == "rejected.terms_of_service" {
+                        self.verifiedButton.removeFromSuperview()
+                        self.verifiedLabel.text = "Account rejected: Terms of Service"
+                    } else if disabled_reason == "rejected.other" {
+                        self.verifiedButton.removeFromSuperview()
+                        self.verifiedLabel.text = "Account rejected | Reason: Other"
+                    } else if disabled_reason == "other" {
+                        self.verifiedButton.removeFromSuperview()
+                        self.verifiedLabel.text = "System maintenance, transfers disabled"
+                    } else {
+                        self.verifiedButton.removeFromSuperview()
+                        self.verifiedLabel.text = "System maintenance, transfers disabled"
+                    }
                 } else {
-                    self.verifiedButton.frame = CGRect(x:screenWidth/2-15, y: 110, width: 25, height: 25)
+                    self.verifiedButton.frame = CGRect(x:screenWidth/2-13, y: 110, width: 26, height: 26)
                     self.verifiedButton.setImage(UIImage(named: "IconSuccess"), forState: .Normal)
                     self.verifiedButton.setTitle("Tuts", forState: .Normal)
                     self.verifiedButton.setTitleColor(UIColor.redColor(), forState: .Normal)
@@ -297,10 +320,10 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                         // locationStr.appendAttributedString(attachmentString)
                         self.locationLabel.attributedText = locationStr
                     } else {
-                        let locationStr: NSMutableAttributedString = NSMutableAttributedString(string: "Unknown")
+                        let locationStr: NSMutableAttributedString = NSMutableAttributedString(string: "")
                         locationStr.appendAttributedString(attachmentString)
                         self.locationLabel.attributedText = locationStr
-                        showGlobalNotification("Profile Incomplete", duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandYellow())
+                        showGlobalNotification("Account is not verified", duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.bitcoinOrange())
                     }
                     addSubviewWithFade(self.locationLabel, parentView: self, duration: 0)
                 } else {

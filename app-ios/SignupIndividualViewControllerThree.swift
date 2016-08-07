@@ -130,8 +130,6 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
 
         finishButton.userInteractionEnabled = false
         
-        showGlobalNotification("Signing up...", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.skyBlue())
-        
         if(self.switchTermsAndPrivacy.on.boolValue == false) {
             // Display error if terms of service and privacy policy not accepted
             displayErrorAlertMessage("Terms of Service and Privacy Policy were not accepted, could not create account");
@@ -182,11 +180,11 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
 
                         
                         if(response.response?.statusCode == 200) {
-                            showGlobalNotification("Success!", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.skyBlue())
+                            showGlobalNotification("Success!", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
 
                             // go to main view
                         } else {
-                            showGlobalNotification("Error occurred", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
+                            showGlobalNotification("Error occurred", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.brandRed())
                         }
                         
                         switch response.result {
@@ -208,7 +206,7 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
                         case .Failure(let error):
                             print(error)
                             self.finishButton.userInteractionEnabled = true
-                            showGlobalNotification(error.localizedDescription, duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
+                            showGlobalNotification(error.localizedDescription, duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.brandRed())
                             Answers.logSignUpWithMethod("Signup | type: " + self.userLegalEntityType,
                                 success: false,
                                 customAttributes: nil)
@@ -263,12 +261,12 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
                 if loginDictionary == nil {
                     if error!.code != Int(AppExtensionErrorCodeCancelledByUser) {
                         print("Error invoking 1Password App Extension for find login: \(error)")
-                        self.goToAuth()
+                        self.goToAuth(self)
                     }
-                    self.goToAuth()
+                    self.goToAuth(self)
                     return
                 }
-                self.goToAuth()
+                self.goToAuth(self)
                 print("Success 1Password")
             }
         }
@@ -282,7 +280,7 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
                 let alertController = UIAlertController(title: "1Password is not installed", message: "Get 1Password from the App Store for " + APP_NAME + " Single Sign On", preferredStyle: UIAlertControllerStyle.Alert)
                 
                 let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) in
-                    self.goToAuth()
+                    self.goToAuth(self)
                 })
                 alertController.addAction(cancelAction)
                 
@@ -296,16 +294,21 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
             }
         }))
         refreshAlert.addAction(UIAlertAction(title: "No Thank You", style: .Cancel, handler: { (action: UIAlertAction!) in
-            self.goToAuth()
+            self.goToAuth(self)
         }))
         presentViewController(refreshAlert, animated: true, completion: nil)
     }
     
-    func goToAuth() {
-        self.presentViewController(AuthViewController(), animated: true, completion: {
-            showGlobalNotification("Welcome to " + APP_NAME + "!", duration: 4, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
-        })
+    // Return to auth view func
+    func goToAuth(sender: AnyObject) {
+        // Normally identifiers are started with capital letters, exception being authViewController, make sure UIStoryboard name is Auth, not Main
+        let viewController:AuthViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateViewControllerWithIdentifier("authViewController") as! AuthViewController
+        self.presentViewController(viewController, animated: true, completion: nil)
+        let _ = Timeout(0.5) {
+            showGlobalNotification("Welcome to " + APP_NAME + "!", duration: 4, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.oceanBlue())
+        }
     }
+    
     
     func displayErrorAlertMessage(alertMessage:String) {
         showAlert(.Error, title: "Error", msg: alertMessage)

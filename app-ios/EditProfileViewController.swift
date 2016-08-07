@@ -74,7 +74,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
         self.view.addSubview(statusBarBackground)
         
         tableView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height-3)
-        tableView.contentInset.top = 40
+        tableView.contentInset.top = 60
         tableView.contentInset.bottom = 60
         tableView.contentOffset.y = 0
         tableView.backgroundColor = UIColor.offWhite()
@@ -382,7 +382,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
         let profileSection = SectionFormer(rowFormer: firstNameRow, lastNameRow, usernameRow, emailRow)
             .set(headerViewFormer: createHeader("Profile information"))
         let businessSection = SectionFormer(rowFormer: businessName, businessAddressRow, businessAddressZipRow, businessAddressCityRow, businessAddressStateRow, ssnRow, einRow)
-            .set(headerViewFormer: createHeader("Business information"))
+            .set(headerViewFormer: createHeader("Verification information"))
         let saveSection = SectionFormer(rowFormer: saveRow)
         let deleteSection = SectionFormer(rowFormer: deleteRow)
             .set(headerViewFormer: createHeader("Delete account?"))
