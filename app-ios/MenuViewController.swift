@@ -37,14 +37,17 @@ class MenuViewController: ButtonBarPagerTabStripViewController {
         
         barButtonView.backgroundColor = UIColor.whiteColor()
         
+        // THIS SETS STATUS BAR COLOR
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
+        
         // change selected bar color
-//        settings.style.buttonBarBackgroundColor = UIColor.redColor()
+        settings.style.buttonBarBackgroundColor = UIColor.whiteColor()
         settings.style.buttonBarItemBackgroundColor = UIColor.whiteColor()
-//        settings.style.selectedBarBackgroundColor = UIColor.greenColor()
+        settings.style.selectedBarBackgroundColor = UIColor.whiteColor()
+        settings.style.buttonBarItemTitleColor = UIColor.skyBlue()
         settings.style.buttonBarItemFont = UIFont(name: "MyriadPro-Regular", size: 14)!
         settings.style.selectedBarHeight = 20
-        settings.style.buttonBarMinimumLineSpacing = 10
-//        settings.style.buttonBarItemTitleColor = UIColor.greenColor()
+        settings.style.buttonBarMinimumLineSpacing = 5
         settings.style.buttonBarItemsShouldFillAvailiableWidth = true
         settings.style.buttonBarLeftContentInset = 40
         settings.style.buttonBarRightContentInset = 40
@@ -58,15 +61,11 @@ class MenuViewController: ButtonBarPagerTabStripViewController {
         let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
         visualEffectView.frame = CGRectMake(0, 0, screenWidth, screenHeight)
         let backgroundImageView = UIImageView(image: UIImage(), highlightedImage: nil)
-//        backgroundImageView.backgroundColor = UIColor.offWhite()
         backgroundImageView.frame = CGRectMake(0, 0, screenWidth, screenHeight)
         backgroundImageView.contentMode = .ScaleAspectFill
         backgroundImageView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         backgroundImageView.layer.masksToBounds = true
         backgroundImageView.clipsToBounds = true
-        // backgroundImageView.addSubview(visualEffectView)
-//        self.view.sendSubviewToBack(backgroundImageView)
-//        self.view.addSubview(backgroundImageView)
 
         setupNav()
 
@@ -103,7 +102,7 @@ class MenuViewController: ButtonBarPagerTabStripViewController {
     
     //Changing Status Bar
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .Default
+        return .LightContent
     }
     
     

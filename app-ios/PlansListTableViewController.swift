@@ -118,11 +118,22 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
         self.tableView.separatorColor = UIColor.lightBlue().colorWithAlphaComponent(0.3)
     }
     
+    //Changing Status Bar
+    override func prefersStatusBarHidden() -> Bool {
+        return false
+    }
+    
+    //Changing Status Bar
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
+    
     private func setupNav() {
         // Offset by 20 pixels vertically to take the status bar into account
         navigationBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 60)
         navigationBar.backgroundColor = UIColor.clearColor()
-        navigationBar.tintColor = UIColor.lightBlue()
+        // this changes color of close button
+        navigationBar.tintColor = UIColor.whiteColor()
         navigationBar.delegate = self
         
         // Create a navigation item with a title
@@ -130,7 +141,7 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
         navigationItem.title = ""
         
         // Create left and right button for navigation item
-        let leftButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ChargeViewController.returnToMenu(_:)))
+        let leftButton = UIBarButtonItem(image: UIImage(named: "IconCloseLight"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ChargeViewController.returnToMenu(_:)))
         let font = UIFont(name: "DINAlternate-Bold", size: 14)
         leftButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
         // Create two buttons for the navigation item
@@ -212,28 +223,26 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let CellIdentifier: String = "cell";
         var cell: MCSwipeTableViewCell! = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as! MCSwipeTableViewCell!;
-        cell = MCSwipeTableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: CellIdentifier);
-        cell!.selectionStyle = UITableViewCellSelectionStyle.Gray;
-        cell!.contentView.backgroundColor = UIColor.whiteColor();
-        cell.textLabel?.tintColor = UIColor.lightBlue()
-        cell.detailTextLabel?.tintColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
+        cell = MCSwipeTableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: CellIdentifier)
+        cell!.selectionStyle = UITableViewCellSelectionStyle.Gray
+        cell!.contentView.backgroundColor = UIColor.whiteColor()
+        
         cell.tag = indexPath.row
         
         let item = self.plansArray?[indexPath.row]
         if let name = item?.name {
             let strName = name
             cell.textLabel?.attributedText = NSAttributedString(string: strName + " ", attributes: [
-                NSForegroundColorAttributeName : UIColor.mediumBlue(),
-                NSFontAttributeName : UIFont.systemFontOfSize(14, weight: UIFontWeightLight)
+                NSForegroundColorAttributeName : UIColor.darkBlue(),
+                NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!
                 ])
         }
         if let amount = item?.amount, interval = item?.interval {
             let intervalAttributedString = NSAttributedString(string: interval, attributes: [
-                NSForegroundColorAttributeName : UIColor.lightBlue().colorWithAlphaComponent(0.5),
-                NSFontAttributeName : UIFont.systemFontOfSize(11, weight: UIFontWeightRegular)
+                NSForegroundColorAttributeName : UIColor.mediumBlue(),
+                NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 11)!
                 ])
             let attrText = formatCurrency(String(amount), fontName: "HelveticaNeue", superSize: 11, fontSize: 15, offsetSymbol: 2, offsetCents: 2) +  NSAttributedString(string: " per ") + intervalAttributedString
-            cell.detailTextLabel?.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
             cell.detailTextLabel?.attributedText = attrText
             
         }

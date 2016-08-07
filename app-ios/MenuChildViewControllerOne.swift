@@ -1,5 +1,5 @@
 //
-//  MenuChildOne.swift
+//  MenuChildViewControllerOne.swift
 //  app-ios
 //
 //  Created by Sinan Ulkuatam on 8/6/16.
@@ -36,6 +36,13 @@ class MenuChildViewControllerOne: UIViewController, IndicatorInfoProvider {
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
+        let scrollView = UIScrollView()
+        scrollView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight+100)
+        scrollView.bounces = true
+        scrollView.alwaysBounceVertical = true
+        scrollView.scrollEnabled = true
+        self.view.addSubview(scrollView)
+        
         let btnAcceptPayment = UIButton()
         let str1 = NSAttributedString(string: "Accept Payment", attributes: [
             NSForegroundColorAttributeName : UIColor.whiteColor(),
@@ -53,10 +60,8 @@ class MenuChildViewControllerOne: UIViewController, IndicatorInfoProvider {
         btnAcceptPayment.layer.borderWidth = 1
         btnAcceptPayment.backgroundColor = UIColor.seaBlue()
         btnAcceptPayment.addTarget(self, action: #selector(terminalButtonSelected(_:)), forControlEvents: .TouchUpInside)
-        self.view.addSubview(btnAcceptPayment)
-        self.view.bringSubviewToFront(btnAcceptPayment)
-        self.view.superview?.bringSubviewToFront(btnAcceptPayment)
-        self.view.bringSubviewToFront(btnAcceptPayment)
+        scrollView.addSubview(btnAcceptPayment)
+        scrollView.bringSubviewToFront(btnAcceptPayment)
         //        btnAcceptPayment.setImage(UIImage(named: "IconCard"), inFrame: CGRectMake(18, 18, 64, 64), forState: .Normal)
         //        btnAcceptPayment.imageEdgeInsets = UIEdgeInsets(top: 0.0, left: btnAcceptPayment.frame.width-20, bottom: 0.0, right: 10.0)
         
@@ -77,10 +82,8 @@ class MenuChildViewControllerOne: UIViewController, IndicatorInfoProvider {
         btnCreatePlan.layer.borderWidth = 1
         btnCreatePlan.backgroundColor = UIColor.oceanBlue()
         btnCreatePlan.addTarget(self, action: #selector(planButtonSelected(_:)), forControlEvents: .TouchUpInside)
-        self.view.addSubview(btnCreatePlan)
-        self.view.bringSubviewToFront(btnCreatePlan)
-        self.view.superview?.bringSubviewToFront(btnCreatePlan)
-        self.view.bringSubviewToFront(btnCreatePlan)
+        scrollView.addSubview(btnCreatePlan)
+        scrollView.bringSubviewToFront(btnCreatePlan)
     }
     
     func terminalButtonSelected(sender: AnyObject) {

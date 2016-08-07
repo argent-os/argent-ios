@@ -1428,7 +1428,7 @@ support request</string>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kR3-ew-epP" customClass="ButtonBarView" customModule="XLPagerTabStrip">
                                 <rect key="frame" x="0.0" y="64" width="600" height="40"/>
-                                <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.2489114828" green="0.42724018050000001" blue="0.98369586470000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="VFd-59-EWF"/>
@@ -3998,19 +3998,19 @@ policy agreement. Tap to view</string>
         <image name="ic_tab_notify" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mwT-xt-Ez4"/>
-        <segue reference="UFB-DJ-qrH"/>
         <segue reference="m0d-gd-RWW"/>
+        <segue reference="mwT-xt-Ez4"/>
         <segue reference="Bot-Tn-1ZP"/>
         <segue reference="wgV-xY-MTp"/>
-        <segue reference="VI5-hp-Gm2"/>
-        <segue reference="agi-3I-cSC"/>
+        <segue reference="UFB-DJ-qrH"/>
         <segue reference="rLo-0p-I9d"/>
         <segue reference="m3z-fp-Nlm"/>
         <segue reference="igQ-zk-tCm"/>
         <segue reference="aks-Yo-Spb"/>
         <segue reference="7cu-FP-MoG"/>
         <segue reference="fEJ-lR-z9I"/>
+        <segue reference="agi-3I-cSC"/>
+        <segue reference="VI5-hp-Gm2"/>
         <segue reference="ipn-3I-3vc"/>
         <segue reference="tsA-Cg-VzQ"/>
     </inferredMetricsTieBreakers>

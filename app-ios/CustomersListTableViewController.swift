@@ -116,16 +116,17 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
         // Offset by 20 pixels vertically to take the status bar into account
         navigationBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 60)
         navigationBar.backgroundColor = UIColor.clearColor()
-        navigationBar.tintColor = UIColor.lightBlue()
+        // this changes color of buttons
+        navigationBar.tintColor = UIColor.whiteColor()
         navigationBar.delegate = self
         
         // Create a navigation item with a title
         let navigationItem = UINavigationItem()
         
         // Create left and right button for navigation item
-        let leftButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ChargeViewController.returnToMenu(_:)))
+        let leftButton = UIBarButtonItem(image: UIImage(named: "IconCloseLight"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ChargeViewController.returnToMenu(_:)))
         let font = UIFont(name: "DINAlternate-Bold", size: 14)
-        leftButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+        leftButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.whiteColor()], forState: UIControlState.Normal)
         // Create two buttons for the navigation item
         navigationItem.leftBarButtonItem = leftButton
         
@@ -135,6 +136,16 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
         
         // Make the navigation bar a subview of the current view controller
         self.view.addSubview(navigationBar)
+    }
+    
+    //Changing Status Bar
+    override func prefersStatusBarHidden() -> Bool {
+        return false
+    }
+    
+    //Changing Status Bar
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
     
     func loadCustomerList(limit: String, starting_after: String) {
@@ -223,9 +234,9 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
         let CellIdentifier: String = "cell";
         var cell: MCSwipeTableViewCell! = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as! MCSwipeTableViewCell!;
         
-        cell = MCSwipeTableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: CellIdentifier);
-        cell!.selectionStyle = UITableViewCellSelectionStyle.Gray;
-        cell!.contentView.backgroundColor = UIColor.whiteColor();
+        cell = MCSwipeTableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: CellIdentifier)
+        cell!.selectionStyle = UITableViewCellSelectionStyle.Blue
+        cell!.contentView.backgroundColor = UIColor.whiteColor()
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
 
         cell.tag = indexPath.row
@@ -235,13 +246,9 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
             cell.textLabel?.textAlignment = .Center
             cell.textLabel?.frame = CGRect(x: 0, y: 0, width: self.view.layer.frame.width, height: 50)
             cell.textLabel?.attributedText = NSAttributedString(string: email, attributes: [
-                NSForegroundColorAttributeName : UIColor.lightBlue(),
-                NSFontAttributeName : UIFont.systemFontOfSize(14, weight: UIFontWeightLight)
+                NSForegroundColorAttributeName : UIColor.darkBlue(),
+                NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!
             ])
-//            cell.detailTextLabel?.attributedText = NSAttributedString(string: email, attributes: [
-//                NSForegroundColorAttributeName : UIColor.lightBlue().colorWithAlphaComponent(0.5),
-//                NSFontAttributeName : UIFont.systemFontOfSize(11, weight: UIFontWeightRegular)
-//            ])
         }
         
         let closeView: UIView = self.viewWithImageName("ic_close_light");

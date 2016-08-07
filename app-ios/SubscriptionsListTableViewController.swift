@@ -110,16 +110,17 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
         // Offset by 20 pixels vertically to take the status bar into account
         navigationBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 60)
         navigationBar.backgroundColor = UIColor.clearColor()
-        navigationBar.tintColor = UIColor.lightBlue()
+        // this changes color of close button
+        navigationBar.tintColor = UIColor.whiteColor()
         navigationBar.delegate = self
         
         // Create a navigation item with a title
         let navigationItem = UINavigationItem()
         
         // Create left and right button for navigation item
-        let leftButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ChargeViewController.returnToMenu(_:)))
+        let leftButton = UIBarButtonItem(image: UIImage(named: "IconCloseLight"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ChargeViewController.returnToMenu(_:)))
         let font = UIFont(name: "DINAlternate-Bold", size: 14)
-        leftButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+        leftButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.whiteColor()], forState: UIControlState.Normal)
         // Create two buttons for the navigation item
         navigationItem.leftBarButtonItem = leftButton
         
@@ -129,6 +130,16 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
         
         // Make the navigation bar a subview of the current view controller
         self.view.addSubview(navigationBar)
+    }
+    
+    //Changing Status Bar
+    override func prefersStatusBarHidden() -> Bool {
+        return false
+    }
+    
+    //Changing Status Bar
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
     
     func loadSubscriptionList() {
@@ -225,10 +236,9 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
         let CellIdentifier: String = "cell";
         var cell: MCSwipeTableViewCell! = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as! MCSwipeTableViewCell!;
         cell = MCSwipeTableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: CellIdentifier);
-        cell!.selectionStyle = UITableViewCellSelectionStyle.Gray;
-        cell!.contentView.backgroundColor = UIColor.whiteColor();
-        cell.textLabel?.tintColor = UIColor.lightBlue()
-        cell.detailTextLabel?.tintColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
+        cell!.selectionStyle = UITableViewCellSelectionStyle.Blue
+        cell!.contentView.backgroundColor = UIColor.whiteColor()
+        
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         
         cell.tag = indexPath.row
@@ -242,13 +252,13 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
             ])
             cell.textLabel?.attributedText = NSAttributedString(string: strName + " ", attributes: [
                 NSForegroundColorAttributeName : UIColor.mediumBlue(),
-                NSFontAttributeName : UIFont.systemFontOfSize(14, weight: UIFontWeightLight)
+                NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!
                 ]) + strStatus
         }
         if let amount = item?.plan_amount, interval = item?.plan_interval {
             let intervalAttributedString = NSAttributedString(string: interval, attributes: [
-                NSForegroundColorAttributeName : UIColor.lightBlue().colorWithAlphaComponent(0.5),
-                NSFontAttributeName : UIFont.systemFontOfSize(11, weight: UIFontWeightRegular)
+                NSForegroundColorAttributeName : UIColor.darkBlue(),
+                NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 11)!
             ])
             let attrText = formatCurrency(String(amount), fontName: "HelveticaNeue", superSize: 11, fontSize: 15, offsetSymbol: 2, offsetCents: 2) +  NSAttributedString(string: " per ") + intervalAttributedString
             cell.detailTextLabel?.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
