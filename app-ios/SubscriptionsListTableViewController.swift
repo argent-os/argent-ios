@@ -11,10 +11,9 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 import CWStatusBarNotification
-import MCSwipeTableViewCell
 import DZNEmptyDataSet
 
-class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableViewCellDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UINavigationBarDelegate {
+class SubscriptionsListTableViewController: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UINavigationBarDelegate {
     
     let navigationBar = UINavigationBar()
 
@@ -233,62 +232,32 @@ class SubscriptionsListTableViewController: UITableViewController, MCSwipeTableV
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let CellIdentifier: String = "cell";
-        var cell: MCSwipeTableViewCell! = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as! MCSwipeTableViewCell!;
-        cell = MCSwipeTableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: CellIdentifier);
-        cell!.selectionStyle = UITableViewCellSelectionStyle.Blue
-        cell!.contentView.backgroundColor = UIColor.whiteColor()
+
+        self.tableView.registerNib(UINib(nibName: "SubscriptionListCell", bundle: nil), forCellReuseIdentifier: "planCell")
+        
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("planCell") as! SubscriptionListCell
+        
+        cell.selectionStyle = UITableViewCellSelectionStyle.Blue
+        cell.contentView.backgroundColor = UIColor.whiteColor()
         
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         
         cell.tag = indexPath.row
         
         let item = self.subscriptionsArray?[indexPath.row]
-        if let name = item?.plan_name, status = item?.status {
-            let strName = name
-            let strStatus = NSAttributedString(string: status, attributes: [
-                NSFontAttributeName: UIFont.systemFontOfSize(11),
-                NSForegroundColorAttributeName:UIColor.brandGreen()
-            ])
-            cell.textLabel?.attributedText = NSAttributedString(string: strName + " ", attributes: [
-                NSForegroundColorAttributeName : UIColor.mediumBlue(),
-                NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!
-                ]) + strStatus
-        }
-        if let amount = item?.plan_amount, interval = item?.plan_interval {
-            let intervalAttributedString = NSAttributedString(string: interval, attributes: [
-                NSForegroundColorAttributeName : UIColor.darkBlue(),
-                NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 11)!
-            ])
-            let attrText = formatCurrency(String(amount), fontName: "MyriadPro-Regular", superSize: 11, fontSize: 15, offsetSymbol: 2, offsetCents: 2) +  NSAttributedString(string: " per ") + intervalAttributedString
-            cell.detailTextLabel?.textColor = UIColor.darkBlue()
-            cell.detailTextLabel?.attributedText = attrText
-
+        if let name = item?.plan_name, status = item?.status, amount = item?.plan_amount, interval = item?.plan_interval  {
+            
+            let strAmount = currencyStringFromNumber(Double(amount)/100)
+            let intervalAttributedString = adjustAttributedString(strAmount + " per " + interval, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.darkBlue())
+            
+            let strStatus = adjustAttributedString(" " + status.uppercaseString, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.iosBlue())
+            let strName = adjustAttributedString(name, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue())
+            let splitter = NSAttributedString(string: " | ")
+            cell.titleLabel.attributedText = strName + strStatus
+            cell.subLabel.attributedText = intervalAttributedString
         }
         
         let closeView: UIView = self.viewWithImageName("IconCloseLight");
-        
-        cell.setSwipeGestureWithView(closeView, color:  UIColor.brandRed(), mode: .Exit, state: .State3) {
-            (cell : MCSwipeTableViewCell!, state : MCSwipeTableViewCellState!, mode : MCSwipeTableViewCellMode!) in
-            let item = self.subscriptionsArray?[cell.tag]
-            if let id = item?.id {
-                print("Did swipe" + id);
-                let alertController = UIAlertController(title: "Confirm deletion", message: "Are you sure?  This action cannot be undone.", preferredStyle: UIAlertControllerStyle.Alert)
-                
-                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-                alertController.addAction(cancelAction)
-                
-                let OKAction = UIAlertAction(title: "Continue", style: .Default) { (action) in
-                    // send request to delete, on completion reload table data!
-                    Subscription.deleteSubscription(id, completionHandler: { (bool, err) in
-                        print("deleted subscription ", bool)
-                        self.loadSubscriptionList()
-                    })
-                }
-                alertController.addAction(OKAction)
-                self.presentViewController(alertController, animated: true, completion: nil)
-            }
-        };
         
         return cell;
     }

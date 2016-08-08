@@ -195,6 +195,7 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
             }
             
             var parameters = [:]
+            
             if self.planId != "" {
                 Answers.logCustomEventWithName("Credit Card Recurring Payment Signup",
                     customAttributes: [:])
@@ -212,50 +213,53 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
                 ]
             }
             
-            let headers = [
-                "Authorization": "Bearer " + String(userAccessToken),
-                "Content-Type": "application/json"
-            ]
-
-            print(token)
-            print("posting to url", url)
-            print("the parameters are", parameters)
-            
-            // for invalid character 0 be sure the content type is application/json and enconding is .JSON
-            Alamofire.request(.POST, url!,
-                parameters: parameters as? [String : AnyObject],
-                encoding:.JSON,
-                headers: headers)
-                .responseJSON { response in
-                    switch response.result {
-                    case .Success:
-                        showGlobalNotification("Paid " + (self.detailUser?.username)! + " successfully!", duration: 5.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
-                        if let value = response.result.value {
-                            //let json = JSON(value)
-                            // print(json)
-                            print(PKPaymentAuthorizationStatus.Success)
-                            completion(PKPaymentAuthorizationStatus.Success)
-                            self.submitCreditCardButton.userInteractionEnabled = true
-                            Answers.logCustomEventWithName("Credit Card Modal Entry Success",
-                                customAttributes: [:])
-                            let _ = Timeout(1.5) {
-                                self.dismissViewControllerAnimated(true, completion: {
-                                    print("dismissed")
-                                })
-                                self.dismissKeyboard(self)
+            let uat = userAccessToken
+            let _ = uat.map { (unwrapped_access_token) -> Void in
+                let headers = [
+                    "Authorization": "Bearer " + String(unwrapped_access_token),
+                    "Content-Type": "application/json"
+                ]
+                
+                // print(token)
+                // print("posting to url", url)
+                // print("the parameters are", parameters)
+                
+                // for invalid character 0 be sure the content type is application/json and enconding is .JSON
+                Alamofire.request(.POST, url!,
+                    parameters: parameters as? [String : AnyObject],
+                    encoding:.JSON,
+                    headers: headers)
+                    .responseJSON { response in
+                        switch response.result {
+                        case .Success:
+                            showGlobalNotification("Paid " + (self.detailUser?.username)! + " successfully!", duration: 5.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
+                            if let value = response.result.value {
+                                //let json = JSON(value)
+                                // print(json)
+                                print(PKPaymentAuthorizationStatus.Success)
+                                completion(PKPaymentAuthorizationStatus.Success)
+                                self.submitCreditCardButton.userInteractionEnabled = true
+                                Answers.logCustomEventWithName("Credit Card Modal Entry Success",
+                                    customAttributes: [:])
+                                let _ = Timeout(1.5) {
+                                    self.dismissViewControllerAnimated(true, completion: {
+                                        print("dismissed")
+                                    })
+                                    self.dismissKeyboard(self)
+                                }
                             }
+                        case .Failure(let error):
+                            print(PKPaymentAuthorizationStatus.Failure)
+                            completion(PKPaymentAuthorizationStatus.Failure)
+                            self.submitCreditCardButton.userInteractionEnabled = true
+                            showGlobalNotification("Error paying " + (self.detailUser?.username)!, duration: 5.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.neonOrange())
+                            Answers.logCustomEventWithName("Credit Card Entry Modal Failure",
+                                customAttributes: [
+                                    "error": error.localizedDescription
+                                ])
+                            print(error)
                         }
-                    case .Failure(let error):
-                        print(PKPaymentAuthorizationStatus.Failure)
-                        completion(PKPaymentAuthorizationStatus.Failure)
-                        self.submitCreditCardButton.userInteractionEnabled = true
-                        showGlobalNotification("Error paying " + (self.detailUser?.username)!, duration: 5.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.neonOrange())
-                        Answers.logCustomEventWithName("Credit Card Entry Modal Failure",
-                            customAttributes: [
-                                "error": error.localizedDescription
-                            ])
-                        print(error)
-                    }
+                }
             }
         }
     }

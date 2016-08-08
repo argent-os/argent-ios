@@ -198,9 +198,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     item.image = image.imageWithRenderingMode(.AlwaysOriginal)
                     if UIApplication.sharedApplication().applicationIconBadgeNumber != 0 {
                         UIApplication.sharedApplication().applicationIconBadgeNumber = 0
-                        tabBarController.tabBar.items![3].badgeValue = "1"
+                        tabBarController.tabBar.items![1].badgeValue = "1"
                         let _ = Timeout(5) {
-                            tabBarController.tabBar.items![3].badgeValue = nil
+                            tabBarController.tabBar.items![1].badgeValue = nil
                         }
                     }
                     
@@ -234,9 +234,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
         let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
-        
-        print("is reachable", isReachable.boolValue)
-        print("needs connection", needsConnection.boolValue)
         
         if isReachable.boolValue == false{
             showGlobalNotification("No network connection", duration: 200, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
@@ -408,49 +405,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
-//    func notify() {
-//        switch PermissionScope().statusNotifications() {
-//        case .Unknown:
-//            self.pscope.show({ finished, results in
-//                print(results)
-//                print(finished)
-//                // Enable push notifications
-//                if #available(iOS 8.0, *) {
-//                    let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-//                    UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-//                    UIApplication.sharedApplication().registerForRemoteNotifications()
-//                } else {
-//                    let settings = UIRemoteNotificationType.Alert.union(UIRemoteNotificationType.Badge).union(UIRemoteNotificationType.Sound)
-//                    UIApplication.sharedApplication().registerForRemoteNotificationTypes(settings)
-//                }
-//                }, cancelled: { (results) -> Void in
-//                    print("cancelled")
-//                    print(results)
-//            })
-//        case .Unauthorized, .Disabled:
-//            self.pscope.show({ finished, results in
-//                print(results)
-//                print(finished)
-//                // Enable push notifications
-//                if #available(iOS 8.0, *) {
-//                    let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-//                    UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-//                    UIApplication.sharedApplication().registerForRemoteNotifications()
-//                } else {
-//                    let settings = UIRemoteNotificationType.Alert.union(UIRemoteNotificationType.Badge).union(UIRemoteNotificationType.Sound)
-//                    UIApplication.sharedApplication().registerForRemoteNotificationTypes(settings)
-//                }
-//                }, cancelled: { (results) -> Void in
-//                    print("cancelled")
-//                    print(results)
-//            })
-//        case .Authorized:
-//            // If permission is granted, post to endpoint
-//            Answers.logCustomEventWithName("Permission Notifications Authorized in AppDelegate",
-//                                           customAttributes: [:])
-//        }
-//    }
     
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

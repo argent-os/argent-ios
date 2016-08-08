@@ -34,6 +34,8 @@
 		3020A6881D44FEA000B24B44 /* BankACHConnectedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3020A6871D44FEA000B24B44 /* BankACHConnectedCell.xib */; };
 		3020A68A1D45072000B24B44 /* BankACHConnectedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3020A6891D45072000B24B44 /* BankACHConnectedCell.swift */; };
 		302624B91CF2573800EF80D8 /* CountryPicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 302624B81CF2573800EF80D8 /* CountryPicker.bundle */; };
+		30307ACE1D58B4FA003EC61A /* SubscriptionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30307ACC1D58B4FA003EC61A /* SubscriptionListCell.swift */; };
+		30307ACF1D58B4FA003EC61A /* SubscriptionListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30307ACD1D58B4FA003EC61A /* SubscriptionListCell.xib */; };
 		304468F01CAA0BFC008CAE7D /* notify.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468ED1CAA0BFC008CAE7D /* notify.caf */; };
 		304468F11CAA0BFC008CAE7D /* pop.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468EE1CAA0BFC008CAE7D /* pop.caf */; };
 		304468F21CAA0BFC008CAE7D /* tone.caf in Resources */ = {isa = PBXBuildFile; fileRef = 304468EF1CAA0BFC008CAE7D /* tone.caf */; };
@@ -272,6 +274,8 @@
 		3020A6891D45072000B24B44 /* BankACHConnectedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankACHConnectedCell.swift; path = "app-ios/BankACHConnectedCell.swift"; sourceTree = SOURCE_ROOT; };
 		302624B81CF2573800EF80D8 /* CountryPicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = CountryPicker.bundle; path = "app-ios/bundles/CountryPicker.bundle"; sourceTree = SOURCE_ROOT; };
 		302624BA1CF26ECB00EF80D8 /* Argent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Argent.entitlements; sourceTree = "<group>"; };
+		30307ACC1D58B4FA003EC61A /* SubscriptionListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SubscriptionListCell.swift; path = "app-ios/SubscriptionListCell.swift"; sourceTree = SOURCE_ROOT; };
+		30307ACD1D58B4FA003EC61A /* SubscriptionListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SubscriptionListCell.xib; path = "app-ios/SubscriptionListCell.xib"; sourceTree = SOURCE_ROOT; };
 		304468ED1CAA0BFC008CAE7D /* notify.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = notify.caf; sourceTree = "<group>"; };
 		304468EE1CAA0BFC008CAE7D /* pop.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pop.caf; sourceTree = "<group>"; };
 		304468EF1CAA0BFC008CAE7D /* tone.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = tone.caf; sourceTree = "<group>"; };
@@ -547,6 +551,8 @@
 			children = (
 				308073051CFF38D20070C7FE /* SubscriptionsListTableViewController.swift */,
 				30CF714E1D052D54007B5E17 /* SubscriptionsListDetailViewController.swift */,
+				30307ACC1D58B4FA003EC61A /* SubscriptionListCell.swift */,
+				30307ACD1D58B4FA003EC61A /* SubscriptionListCell.xib */,
 			);
 			name = Subscriptions;
 			sourceTree = "<group>";
@@ -1332,6 +1338,7 @@
 				30C2DA911CA436E6003AFD8B /* PasscodeLockView.xib in Resources */,
 				304468F21CAA0BFC008CAE7D /* tone.caf in Resources */,
 				30C2DA591CA43665003AFD8B /* App.entitlements in Resources */,
+				30307ACF1D58B4FA003EC61A /* SubscriptionListCell.xib in Resources */,
 				30C2DAD71CA43898003AFD8B /* ProfileFieldCell.xib in Resources */,
 				30C2DB221CA43B62003AFD8B /* Main.storyboard in Resources */,
 				30C2DA771CA436B8003AFD8B /* chime2.caf in Resources */,
@@ -1522,6 +1529,7 @@
 				30C2DAEF1CA43951003AFD8B /* AddCustomerViewController.swift in Sources */,
 				3080730C1CFF6F260070C7FE /* Subscription.swift in Sources */,
 				30C2DAD01CA4386A003AFD8B /* SupportMenuViewController.swift in Sources */,
+				30307ACE1D58B4FA003EC61A /* SubscriptionListCell.swift in Sources */,
 				30089F491CFBDE9000A2496B /* MerchantPlanDetailViewController.swift in Sources */,
 				300090011D4F782F004E44E6 /* AuthViewControllerStepTwo.swift in Sources */,
 				30C242C91D144A2400261D55 /* BankManualTutorialViewController.swift in Sources */,

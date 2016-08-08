@@ -44,10 +44,7 @@ class MenuChildViewControllerOne: UIViewController, IndicatorInfoProvider {
         self.view.addSubview(scrollView)
         
         let btnAcceptPayment = UIButton()
-        let str1 = NSAttributedString(string: "Accept Payment", attributes: [
-            NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!
-            ])
+        let str1 = adjustAttributedString("CREATE CHARGE", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.whiteColor())
         btnAcceptPayment.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnAcceptPayment.contentEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnAcceptPayment.contentHorizontalAlignment = .Left
@@ -66,10 +63,7 @@ class MenuChildViewControllerOne: UIViewController, IndicatorInfoProvider {
         //        btnAcceptPayment.imageEdgeInsets = UIEdgeInsets(top: 0.0, left: btnAcceptPayment.frame.width-20, bottom: 0.0, right: 10.0)
         
         let btnCreatePlan = UIButton()
-        let str2 = NSAttributedString(string: "Create Plan", attributes: [
-            NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!
-            ])
+        let str2 = adjustAttributedString("CREATE PLAN", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.whiteColor())
         btnCreatePlan.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnCreatePlan.contentEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnCreatePlan.contentHorizontalAlignment = .Left

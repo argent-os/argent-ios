@@ -44,14 +44,9 @@ class MenuChildViewControllerTwo: UIViewController, IndicatorInfoProvider {
         self.view.addSubview(scrollView)
         
         let btnViewCustomers = UIButton()
-        let str1 = NSAttributedString(string: "View Customers", attributes: [
-            NSForegroundColorAttributeName : UIColor.darkBlue(),
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!
-            ])
-        let str1w = NSAttributedString(string: "View Customers", attributes: [
-            NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!
-            ])
+        let str1 = adjustAttributedString("VIEW CUSTOMERS", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.darkBlue())
+        let str1w = adjustAttributedString("VIEW CUSTOMERS", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.whiteColor())
+
         btnViewCustomers.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnViewCustomers.contentEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnViewCustomers.contentHorizontalAlignment = .Left
@@ -71,14 +66,9 @@ class MenuChildViewControllerTwo: UIViewController, IndicatorInfoProvider {
         //        btnViewCustomers.imageEdgeInsets = UIEdgeInsets(top: 0.0, left: btnViewCustomers.frame.width-20, bottom: 0.0, right: 10.0)
         
         let btnViewPlans = UIButton()
-        let str2 = NSAttributedString(string: "View Plans", attributes: [
-            NSForegroundColorAttributeName : UIColor.darkBlue(),
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!
-            ])
-        let str2w = NSAttributedString(string: "View Plans", attributes: [
-            NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!
-            ])
+        let str2 = adjustAttributedString("VIEW PLANS", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.darkBlue())
+        let str2w = adjustAttributedString("VIEW PLANS", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.whiteColor())
+
         btnViewPlans.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnViewPlans.contentEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnViewPlans.contentHorizontalAlignment = .Left
@@ -96,14 +86,9 @@ class MenuChildViewControllerTwo: UIViewController, IndicatorInfoProvider {
         scrollView.bringSubviewToFront(btnViewPlans)
         
         let btnViewSubscriptions = UIButton()
-        let str3 = NSAttributedString(string: "View Subscriptions", attributes: [
-            NSForegroundColorAttributeName : UIColor.darkBlue(),
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!
-            ])
-        let str3w = NSAttributedString(string: "View Subscriptions", attributes: [
-            NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!
-            ])
+        let str3 = adjustAttributedString("VIEW SUBSCRIPTIONS", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.darkBlue())
+        let str3w = adjustAttributedString("VIEW SUBSCRIPTIONS", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.whiteColor())
+
         btnViewSubscriptions.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnViewSubscriptions.contentEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnViewSubscriptions.contentHorizontalAlignment = .Left

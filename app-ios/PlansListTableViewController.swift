@@ -249,19 +249,16 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
         
         let item = self.plansArray?[indexPath.row]
         if let name = item?.name {
-            let strName = name
-            cell.textLabel?.attributedText = NSAttributedString(string: strName + " ", attributes: [
-                NSForegroundColorAttributeName : UIColor.darkBlue(),
-                NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!
-                ])
+            let strName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue())
+
+            cell.textLabel?.attributedText = strName
         }
         if let amount = item?.amount, interval = item?.interval {
-            let intervalAttributedString = NSAttributedString(string: interval, attributes: [
-                NSForegroundColorAttributeName : UIColor.mediumBlue(),
-                NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 11)!
-                ])
-            let attrText = formatCurrency(String(amount), fontName: "HelveticaNeue", superSize: 11, fontSize: 15, offsetSymbol: 2, offsetCents: 2) +  NSAttributedString(string: " per ") + intervalAttributedString
-            cell.detailTextLabel?.attributedText = attrText
+            let strAmount = currencyStringFromNumber(Double(amount)!/100)
+            let intervalAttributedString = adjustAttributedString(strAmount + " per " + interval, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.darkBlue())
+            
+            let splitter = NSAttributedString(string: " per ")
+            cell.detailTextLabel!.attributedText = intervalAttributedString
             
         }
     

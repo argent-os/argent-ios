@@ -150,8 +150,7 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
     
     func loadCustomerList(limit: String, starting_after: String) {
         Customer.getCustomerList(limit, starting_after: starting_after, completionHandler: { (customers, error) in
-            if error != nil
-            {
+            if error != nil {
                 let alert = UIAlertController(title: "Error", message: "Could not load customers \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
@@ -162,8 +161,7 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
             let now = NSDate()
             let updateString = "Last Updated at " + self.dateFormatter.stringFromDate(now)
             self.viewRefreshControl.attributedTitle = NSAttributedString(string: updateString)
-            if self.viewRefreshControl.refreshing
-            {
+            if self.viewRefreshControl.refreshing {
                 self.viewRefreshControl.endRefreshing()
             }
             self.tableView?.reloadData()
@@ -188,8 +186,7 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
         return dateFormatter.stringFromDate(date)
     }
     
-    func refresh(sender:AnyObject)
-    {
+    func refresh(sender:AnyObject) {
         self.loadCustomerList("100", starting_after: "")
     }
     
@@ -245,10 +242,10 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
         if let email = item?.email {
             cell.textLabel?.textAlignment = .Center
             cell.textLabel?.frame = CGRect(x: 0, y: 0, width: self.view.layer.frame.width, height: 50)
-            cell.textLabel?.attributedText = NSAttributedString(string: email, attributes: [
-                NSForegroundColorAttributeName : UIColor.darkBlue(),
-                NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!
-            ])
+            
+            let strEmail = adjustAttributedString(email, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.darkBlue())
+
+            cell.textLabel?.attributedText = strEmail
         }
         
         let closeView: UIView = self.viewWithImageName("IconCloseLight");

@@ -37,29 +37,33 @@ class SubscriptionsListDetailViewController: UIViewController, UINavigationBarDe
         layoutViews()
         setupNav()
     }
+
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.Default
+    }
     
     func layoutViews() {
         
-        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
+        self.navigationController?.navigationBar.tintColor = UIColor.darkBlue()
         self.navigationController?.navigationBar.topItem!.backBarButtonItem = UIBarButtonItem(title: "Back", style: .Plain, target: nil, action: nil)
         
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-        let backgroundImageView = UIImageView()
-        backgroundImageView.image = UIImage(named: "BackgroundBusinessBlurDark")
-        backgroundImageView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
-        backgroundImageView.layer.cornerRadius = 0
-        backgroundImageView.layer.masksToBounds = true
-        addSubviewWithBounce(backgroundImageView, parentView: self, duration: 0.5)
-        self.view.sendSubviewToBack(backgroundImageView)
+//        let backgroundImageView = UIImageView()
+//        backgroundImageView.image = UIImage(named: "BackgroundBusinessBlurDark")
+//        backgroundImageView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
+//        backgroundImageView.layer.cornerRadius = 0
+//        backgroundImageView.layer.masksToBounds = true
+//        addSubviewWithBounce(backgroundImageView, parentView: self, duration: 0.5)
+//        self.view.sendSubviewToBack(backgroundImageView)
         
         subscriptionTitleLabel.frame = CGRect(x: 40, y: 50, width: screenWidth-80, height: 100)
         subscriptionTitleLabel.text = subscriptionName
         subscriptionTitleLabel.font = UIFont(name: "MyriadPro-Regular", size: 24)
         subscriptionTitleLabel.textAlignment = .Center
-        subscriptionTitleLabel.textColor = UIColor.whiteColor()
+        subscriptionTitleLabel.textColor = UIColor.darkBlue()
         let _ = Timeout(0.3) {
             addSubviewWithBounce(self.subscriptionTitleLabel, parentView: self, duration: 0.3)
         }
@@ -69,7 +73,7 @@ class SubscriptionsListDetailViewController: UIViewController, UINavigationBarDe
         circleView.frame = CGRect(x: screenWidth/2-60, y: 140, width: 120, height: 120)
         circleView.backgroundColor = UIColor.clearColor()
         circleView.layer.cornerRadius = circleView.frame.height/2
-        circleView.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.5).CGColor
+        circleView.layer.borderColor = UIColor.darkBlue().colorWithAlphaComponent(0.5).CGColor
         circleView.layer.borderWidth = 1
         let _ = Timeout(0.5) {
             addSubviewWithBounce(self.circleView, parentView: self, duration: 0.6)
@@ -79,7 +83,7 @@ class SubscriptionsListDetailViewController: UIViewController, UINavigationBarDe
         subscriptionAmountLabel.frame = CGRect(x: 40, y: 115, width: screenWidth-80, height: 150)
         subscriptionAmountLabel.attributedText = formatCurrency(subscriptionAmount!, fontName: "DINAlternate-Bold", superSize: 16, fontSize: 24, offsetSymbol: 5, offsetCents: 5)
         subscriptionAmountLabel.textAlignment = .Center
-        subscriptionAmountLabel.textColor = UIColor.whiteColor().colorWithAlphaComponent(1)
+        subscriptionAmountLabel.textColor = UIColor.darkBlue().colorWithAlphaComponent(1)
         let _ = Timeout(0.5) {
             addSubviewWithBounce(self.subscriptionAmountLabel, parentView: self, duration: 0.3)
         }
@@ -92,7 +96,7 @@ class SubscriptionsListDetailViewController: UIViewController, UINavigationBarDe
         subscriptionIntervalLabel.text = "per " + subscriptionInterval!
         subscriptionIntervalLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
         subscriptionIntervalLabel.textAlignment = .Center
-        subscriptionIntervalLabel.textColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
+        subscriptionIntervalLabel.textColor = UIColor.darkBlue().colorWithAlphaComponent(0.5)
         let _ = Timeout(0.5) {
             addSubviewWithBounce(self.subscriptionIntervalLabel, parentView: self, duration: 0.3)
         }
@@ -101,7 +105,7 @@ class SubscriptionsListDetailViewController: UIViewController, UINavigationBarDe
         subscriptionStatusLabel.numberOfLines = 8
         subscriptionStatusLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
         subscriptionStatusLabel.textAlignment = .Center
-        subscriptionStatusLabel.textColor = UIColor.whiteColor().colorWithAlphaComponent(0.7)
+        subscriptionStatusLabel.textColor = UIColor.darkBlue().colorWithAlphaComponent(0.7)
         let _ = Timeout(0.7) {
             addSubviewWithBounce(self.subscriptionStatusLabel, parentView: self, duration: 0.3)
         }
@@ -115,7 +119,7 @@ class SubscriptionsListDetailViewController: UIViewController, UINavigationBarDe
         navigationBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 60)
         navigationBar.backgroundColor = UIColor.clearColor()
         // this changes color of close button
-        navigationBar.tintColor = UIColor.whiteColor()
+        navigationBar.tintColor = UIColor.darkBlue()
         navigationBar.delegate = self
         
         // Create a navigation item with a title
@@ -129,7 +133,7 @@ class SubscriptionsListDetailViewController: UIViewController, UINavigationBarDe
         navigationItem.leftBarButtonItem = leftButton
         
         // Assign the navigation item to the navigation bar
-        navigationBar.titleTextAttributes = [NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.lightBlue()]
+        navigationBar.titleTextAttributes = [NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.darkBlue()]
         navigationBar.items = [navigationItem]
         
         // Make the navigation bar a subview of the current view controller
@@ -138,10 +142,6 @@ class SubscriptionsListDetailViewController: UIViewController, UINavigationBarDe
     
     func returnToMenu(sender: AnyObject) {
         self.dismissViewControllerAnimated(true) { }
-    }
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
     }
     
 }

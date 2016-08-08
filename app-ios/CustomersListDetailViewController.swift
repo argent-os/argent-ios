@@ -78,13 +78,16 @@ class CustomersListDetailViewController: UIViewController, UINavigationBarDelega
         self.view.addSubview(tableView)
         
         customerEmailTitleLabel.frame = CGRect(x: 40, y: 20, width: screenWidth-80, height: 100)
-        customerEmailTitleLabel.text = customerEmail
-        customerEmailTitleLabel.font = UIFont(name: "MyriadPro-Regular", size: 24)!
+        customerEmailTitleLabel.attributedText = adjustAttributedString(customerEmail!, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 19, fontColor: UIColor.darkBlue())
         customerEmailTitleLabel.textAlignment = .Center
-        customerEmailTitleLabel.textColor = UIColor.lightBlue()
         addSubviewWithBounce(customerEmailTitleLabel, parentView: self, duration: 0.3)
         
         self.getCustomerInformation()
+        
+        let splitterView = UIView()
+        splitterView.backgroundColor = UIColor.lightBlue().colorWithAlphaComponent(0.3)
+        splitterView.frame = CGRect(x: 40, y: 100, width: screenWidth-80, height: 1)
+        self.view.addSubview(splitterView)
         
         let headerView = UIView()
         headerView.backgroundColor = UIColor.whiteColor()
@@ -92,10 +95,8 @@ class CustomersListDetailViewController: UIViewController, UINavigationBarDelega
         self.tableView.tableHeaderView = headerView
         let headerViewTitle: UILabel = UILabel()
         headerViewTitle.frame = CGRect(x: 0, y: 20, width: screenWidth, height: 35)
-        headerViewTitle.text = "Subscriptions"
-        headerViewTitle.font = UIFont(name: "MyriadPro-Regular", size: 17)
+        headerViewTitle.attributedText = adjustAttributedString("SUBSCRIPTIONS", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.lightBlue())
         headerViewTitle.textAlignment = .Center
-        headerViewTitle.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.7)
         headerView.addSubview(headerViewTitle)
         
         self.viewRefreshControl.backgroundColor = UIColor.clearColor()
@@ -193,14 +194,9 @@ extension CustomersListDetailViewController {
                 ])
         }
         if let amount = item.plan_amount, interval = item.plan_interval, qty = item.quantity, status = item.status {
-            let intervalAttributedString = NSAttributedString(string: interval, attributes: [
-                NSForegroundColorAttributeName : UIColor.darkBlue(),
-                NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 11)!
-                ])
-            let attrText = formatCurrency(String(amount), fontName: "MyriadPro-Regular", superSize: 11, fontSize: 15, offsetSymbol: 2, offsetCents: 2) +  NSAttributedString(string: " per ") + intervalAttributedString
             cell.detailTextLabel?.textColor = UIColor.darkBlue()
-            cell.detailTextLabel?.attributedText = attrText
-            
+            let amountStr = currencyStringFromNumber(Double(amount)/100)
+            cell.detailTextLabel?.attributedText = adjustAttributedString(amountStr + " per " + interval, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.darkBlue())
         }
         
         return cell

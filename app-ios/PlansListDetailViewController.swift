@@ -99,9 +99,9 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
         let updatePlanButton = UIButton(frame: CGRect(x: 0, y: screenHeight-60, width: screenWidth, height: 60.0))
         updatePlanButton.setBackgroundColor(UIColor.oceanBlue(), forState: .Normal)
         updatePlanButton.setBackgroundColor(UIColor.oceanBlue().lighterColor(), forState: .Highlighted)
-        updatePlanButton.tintColor = UIColor(rgba: "#fff")
-        updatePlanButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
-        updatePlanButton.setTitleColor(UIColor(rgba: "#fffe"), forState: .Highlighted)
+        updatePlanButton.tintColor = UIColor.whiteColor()
+        updatePlanButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        updatePlanButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
         updatePlanButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 16)
         updatePlanButton.setTitle("Update Plan", forState: .Normal)
         updatePlanButton.layer.cornerRadius = 0

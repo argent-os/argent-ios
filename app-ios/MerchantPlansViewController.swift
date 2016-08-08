@@ -458,7 +458,7 @@ extension MerchantPlansViewController: STPPaymentCardTextFieldDelegate, PKPaymen
             self.paymentSuccessSignal!.emit()
             
             print("success")
-            controller.dismissViewControllerAnimated(true, completion: nil)
+            controller.dismissViewControllerAnimated(true, completion: { })
         }
     }
     
@@ -493,56 +493,60 @@ extension MerchantPlansViewController: STPPaymentCardTextFieldDelegate, PKPaymen
             }
             
             let amountInCents = Float(amount)!
-            print(amountInCents)
             
-            let headers = [
-                "Authorization": "Bearer " + String(userAccessToken),
-                "Content-Type": "application/json"
-            ]
             let parameters : [String : AnyObject] = [
                 "token": String(token) ?? "",
                 "amount": amountInCents,
                 "plan_id": planId
             ]
             
-            // for invalid character 0 be sure the content type is application/json and enconding is .JSON
-            Alamofire.request(.POST, url,
-                parameters: parameters,
-                encoding:.JSON,
-                headers: headers)
-                .responseJSON { response in
-                    switch response.result {
-                    case .Success:
-                        if let value = response.result.value {
-                            let json = JSON(value)
-                            print(PKPaymentAuthorizationStatus.Success)
-                            completion(PKPaymentAuthorizationStatus.Success)
-                            showGlobalNotification("Successfully subscribed to plan", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.brandGreen())
-
-                            guard let amount = self.plansArray![self.globalTag!].amount else {
-                                return
+            let uat = userAccessToken
+            let _ = uat.map { (unwrapped_access_token) -> Void in
+                
+                let headers = [
+                    "Authorization": "Bearer " + String(unwrapped_access_token),
+                    "Content-Type": "application/json"
+                ]
+                
+                // for invalid character 0 be sure the content type is application/json and enconding is .JSON
+                Alamofire.request(.POST, url,
+                    parameters: parameters,
+                    encoding:.JSON,
+                    headers: headers)
+                    .responseJSON { response in
+                        switch response.result {
+                        case .Success:
+                            if let value = response.result.value {
+                                let json = JSON(value)
+                                print(PKPaymentAuthorizationStatus.Success)
+                                completion(PKPaymentAuthorizationStatus.Success)
+                                showGlobalNotification("Successfully subscribed to plan", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.brandGreen())
+                                
+                                guard let amount = self.plansArray![self.globalTag!].amount else {
+                                    return
+                                }
+                                guard let interval = self.plansArray![self.globalTag!].interval else {
+                                    return
+                                }
+                                
+                                Answers.logPurchaseWithPrice(decimalWithString(self.currencyFormatter, string: amount),
+                                    currency: "USD",
+                                    success: true,
+                                    itemName: "Payment",
+                                    itemType: "Merchant Recurring Payment Signup",
+                                    itemId: "sku-###",
+                                    customAttributes: [
+                                        "method": self.paymentMethod,
+                                        "interval": interval
+                                    ])
                             }
-                            guard let interval = self.plansArray![self.globalTag!].interval else {
-                                return
-                            }
-                            
-                            Answers.logPurchaseWithPrice(decimalWithString(self.currencyFormatter, string: amount),
-                                currency: "USD",
-                                success: true,
-                                itemName: "Payment",
-                                itemType: "Merchant Recurring Payment Signup",
-                                itemId: "sku-###",
-                                customAttributes: [
-                                    "method": self.paymentMethod,
-                                    "interval": interval
-                            ])
+                        case .Failure(let error):
+                            print(PKPaymentAuthorizationStatus.Failure)
+                            completion(PKPaymentAuthorizationStatus.Failure)
+                            showGlobalNotification("Failed to subscribe to plan", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.brandRed())
+                            print(error)
                         }
-                    case .Failure(let error):
-                        print(PKPaymentAuthorizationStatus.Failure)
-                        completion(PKPaymentAuthorizationStatus.Failure)
-                        showGlobalNotification("Failed to subscribe to plan", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.brandRed())
-                        print(error)
-                    }
+                }
             }
         }
     }

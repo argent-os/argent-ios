@@ -274,45 +274,49 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         User.getProfile { (user, NSError) in
             let url = API_URL + "/stripe/" + (user?.id)! + "/charge/" + (self.detailUser?.username)!
             
-            let headers = [
-                "Authorization": "Bearer " + String(userAccessToken),
-                "Content-Type": "application/json"
-            ]
             let parameters : [String : AnyObject] = [
                 "token": String(token) ?? "",
                 "amount": amountInCents
             ]
             
-            // for invalid character 0 be sure the content type is application/json and enconding is .JSON
-            Alamofire.request(.POST, url,
-                parameters: parameters,
-                encoding:.JSON,
-                headers: headers)
-                .responseJSON { response in
-                    switch response.result {
-                    case .Success:
-                        if let value = response.result.value {
-                            //let json = JSON(value)
-                            print(PKPaymentAuthorizationStatus.Success)
-                            completion(PKPaymentAuthorizationStatus.Success)
-                            Answers.logPurchaseWithPrice(decimalWithString(self.currencyFormatter, string: String(floatValue)),
-                                currency: "USD",
-                                success: true,
-                                itemName: "Payment",
-                                itemType: "Merchant One-Time Sale",
-                                itemId: "sku-###",
-                                customAttributes: [
-                                    "method": self.paymentMethod
-                                ])
-                            self.dismissViewControllerAnimated(true, completion: {
-                                //
-                            })
+            let uat = userAccessToken
+            let _ = uat.map { (unwrapped_access_token) -> Void in
+                let headers = [
+                    "Authorization": "Bearer " + String(unwrapped_access_token),
+                    "Content-Type": "application/json"
+                ]
+                // for invalid character 0 be sure the content type is application/json and enconding is .JSON
+                Alamofire.request(.POST, url,
+                    parameters: parameters,
+                    encoding:.JSON,
+                    headers: headers)
+                    .validate(contentType: ["application/json"])
+                    .responseJSON { response in
+                        switch response.result {
+                        case .Success:
+                            if let value = response.result.value {
+                                //let json = JSON(value)
+                                print(PKPaymentAuthorizationStatus.Success)
+                                completion(PKPaymentAuthorizationStatus.Success)
+                                Answers.logPurchaseWithPrice(decimalWithString(self.currencyFormatter, string: String(floatValue)),
+                                    currency: "USD",
+                                    success: true,
+                                    itemName: "Payment",
+                                    itemType: "Merchant One-Time Sale",
+                                    itemId: "sku-###",
+                                    customAttributes: [
+                                        "method": self.paymentMethod
+                                    ])
+                                self.dismissViewControllerAnimated(true, completion: {
+                                    //
+                                })
+                            }
+                        case .Failure(let error):
+                            print(PKPaymentAuthorizationStatus.Failure)
+                            completion(PKPaymentAuthorizationStatus.Failure)
+                            print(error)
                         }
-                    case .Failure(let error):
-                        print(PKPaymentAuthorizationStatus.Failure)
-                        completion(PKPaymentAuthorizationStatus.Failure)
-                        print(error)
-                    }
+                }
             }
         }
     }
