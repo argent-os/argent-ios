@@ -48,11 +48,16 @@ class MenuChildViewControllerTwo: UIViewController, IndicatorInfoProvider {
             NSForegroundColorAttributeName : UIColor.darkBlue(),
             NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!
             ])
+        let str1w = NSAttributedString(string: "View Customers", attributes: [
+            NSForegroundColorAttributeName : UIColor.whiteColor(),
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!
+            ])
         btnViewCustomers.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnViewCustomers.contentEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnViewCustomers.contentHorizontalAlignment = .Left
         btnViewCustomers.setAttributedTitle(str1, forState: .Normal)
-        btnViewCustomers.setBackgroundColor(UIColor.whiteColor().lighterColor(), forState: .Highlighted)
+        btnViewCustomers.setAttributedTitle(str1w, forState: .Highlighted)
+        btnViewCustomers.setBackgroundColor(UIColor.oceanBlue(), forState: .Highlighted)
         btnViewCustomers.frame = CGRect(x: 15, y: 30, width: screenWidth-30, height: 60)
         btnViewCustomers.layer.cornerRadius = 3
         btnViewCustomers.layer.masksToBounds = true
@@ -70,11 +75,16 @@ class MenuChildViewControllerTwo: UIViewController, IndicatorInfoProvider {
             NSForegroundColorAttributeName : UIColor.darkBlue(),
             NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!
             ])
+        let str2w = NSAttributedString(string: "View Plans", attributes: [
+            NSForegroundColorAttributeName : UIColor.whiteColor(),
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!
+            ])
         btnViewPlans.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnViewPlans.contentEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnViewPlans.contentHorizontalAlignment = .Left
         btnViewPlans.setAttributedTitle(str2, forState: .Normal)
-        btnViewPlans.setBackgroundColor(UIColor.whiteColor().lighterColor(), forState: .Highlighted)
+        btnViewPlans.setAttributedTitle(str2w, forState: .Highlighted)
+        btnViewPlans.setBackgroundColor(UIColor.oceanBlue(), forState: .Highlighted)
         btnViewPlans.frame = CGRect(x: 15, y: 100, width: screenWidth-30, height: 60)
         btnViewPlans.layer.cornerRadius = 3
         btnViewPlans.layer.masksToBounds = true
@@ -90,11 +100,16 @@ class MenuChildViewControllerTwo: UIViewController, IndicatorInfoProvider {
             NSForegroundColorAttributeName : UIColor.darkBlue(),
             NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!
             ])
+        let str3w = NSAttributedString(string: "View Subscriptions", attributes: [
+            NSForegroundColorAttributeName : UIColor.whiteColor(),
+            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!
+            ])
         btnViewSubscriptions.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnViewSubscriptions.contentEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnViewSubscriptions.contentHorizontalAlignment = .Left
         btnViewSubscriptions.setAttributedTitle(str3, forState: .Normal)
-        btnViewSubscriptions.setBackgroundColor(UIColor.whiteColor().lighterColor(), forState: .Highlighted)
+        btnViewSubscriptions.setAttributedTitle(str3w, forState: .Highlighted)
+        btnViewSubscriptions.setBackgroundColor(UIColor.oceanBlue(), forState: .Highlighted)
         btnViewSubscriptions.frame = CGRect(x: 15, y: 170, width: screenWidth-30, height: 60)
         btnViewSubscriptions.layer.cornerRadius = 3
         btnViewSubscriptions.layer.masksToBounds = true

@@ -73,6 +73,7 @@
 		30A5A3F21CF5F0EC00C9EEC2 /* IdentityVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A5A3F11CF5F0EC00C9EEC2 /* IdentityVerificationViewController.swift */; };
 		30AF67391CA498A3006B83DA /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AF67381CA498A3006B83DA /* PassKit.framework */; };
 		30B576931CC7D1CF005BCA5A /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B576921CC7D1CE005BCA5A /* SearchDetailViewController.swift */; };
+		30C0DF5D1D578C06000B9DD7 /* PlansListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0DF5C1D578C06000B9DD7 /* PlansListDetailViewController.swift */; };
 		30C242C91D144A2400261D55 /* BankManualTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C242C81D144A2400261D55 /* BankManualTutorialViewController.swift */; };
 		30C2DA551CA43655003AFD8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA541CA43655003AFD8B /* Assets.xcassets */; };
 		30C2DA591CA43665003AFD8B /* App.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 30C2DA581CA43665003AFD8B /* App.entitlements */; };
@@ -310,6 +311,7 @@
 		30AF67371CA498A2006B83DA /* app-watchos Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "app-watchos Extension.entitlements"; sourceTree = "<group>"; };
 		30AF67381CA498A3006B83DA /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.2.sdk/System/Library/Frameworks/PassKit.framework; sourceTree = DEVELOPER_DIR; };
 		30B576921CC7D1CE005BCA5A /* SearchDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchDetailViewController.swift; path = "app-ios/SearchDetailViewController.swift"; sourceTree = SOURCE_ROOT; };
+		30C0DF5C1D578C06000B9DD7 /* PlansListDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlansListDetailViewController.swift; path = "app-ios/PlansListDetailViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C242C81D144A2400261D55 /* BankManualTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BankManualTutorialViewController.swift; path = "app-ios/BankManualTutorialViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30C2DA541CA43655003AFD8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "app-ios/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		30C2DA561CA4365D003AFD8B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "app-ios/Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -526,6 +528,7 @@
 			isa = PBXGroup;
 			children = (
 				308073091CFF393F0070C7FE /* PlansListTableViewController.swift */,
+				30C0DF5C1D578C06000B9DD7 /* PlansListDetailViewController.swift */,
 			);
 			name = Plans;
 			sourceTree = "<group>";
@@ -1546,6 +1549,7 @@
 				30C2DAA71CA4374F003AFD8B /* SignupViewControllerFour.swift in Sources */,
 				30C2DB131CA439E1003AFD8B /* Timeout.swift in Sources */,
 				30D526781CDBB4A0001B41BA /* Bitcoin.swift in Sources */,
+				30C0DF5D1D578C06000B9DD7 /* PlansListDetailViewController.swift in Sources */,
 				30960F071CE4EA5700749695 /* ProfilePictureViewController.swift in Sources */,
 				30C2DACB1CA4385C003AFD8B /* ProfileMenuViewController.swift in Sources */,
 				30FF6FD51CF221A200A46A1E /* Account.swift in Sources */,

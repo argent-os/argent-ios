@@ -49,7 +49,7 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
         navigationItem.rightBarButtonItem = stepButton
         navigationItem.rightBarButtonItem?.tintColor = UIColor.lightBlue()
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([
-            NSFontAttributeName: UIFont.systemFontOfSize(17, weight: UIFontWeightLight),
+            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!,
             NSForegroundColorAttributeName:UIColor.lightBlue()
             ], forState: .Normal)
         
@@ -114,7 +114,7 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
         navBar.shadowImage = UIImage()
         navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont.systemFontOfSize(17, weight: UIFontWeightLight),
+            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!,
             NSForegroundColorAttributeName:UIColor.lightBlue()
         ]
         self.view.addSubview(navBar)

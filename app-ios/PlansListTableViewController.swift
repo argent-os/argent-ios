@@ -22,6 +22,8 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
     
     var viewRefreshControl = UIRefreshControl()
     
+    var selectedRow: Int?
+
     var dateFormatter = NSDateFormatter()
     
     override func viewDidLoad() {
@@ -207,6 +209,25 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
         return self.plansArray?.count ?? 0
     }
     
+    // MARK SEGUE
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "viewPlanDetail" {
+            let id = plansArray![self.selectedRow!].id
+            
+            let destination = segue.destinationViewController as! PlansListDetailViewController
+            destination.planId = id
+        }
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        self.selectedRow = indexPath.row
+        performSegueWithIdentifier("viewPlanDetail", sender: self)
+    }
+    
     // MARK DELEGATE MCTABLEVIEWCELL
     
     func viewWithImageName(name: String) -> UIView {
@@ -216,17 +237,14 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
         return imageView;
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    }
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let CellIdentifier: String = "cell";
         var cell: MCSwipeTableViewCell! = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as! MCSwipeTableViewCell!;
         cell = MCSwipeTableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: CellIdentifier)
-        cell!.selectionStyle = UITableViewCellSelectionStyle.Gray
+        cell!.selectionStyle = UITableViewCellSelectionStyle.Blue
         cell!.contentView.backgroundColor = UIColor.whiteColor()
-        
+        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+
         cell.tag = indexPath.row
         
         let item = self.plansArray?[indexPath.row]

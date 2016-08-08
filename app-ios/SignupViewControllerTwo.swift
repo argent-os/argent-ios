@@ -32,7 +32,7 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
         navigationItem.rightBarButtonItem = stepButton
         navigationItem.rightBarButtonItem?.tintColor = UIColor.lightBlue()
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([
-            NSFontAttributeName: UIFont.systemFontOfSize(17, weight: UIFontWeightLight),
+            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!,
             NSForegroundColorAttributeName:UIColor.lightBlue()
             ], forState: .Normal)
         
@@ -91,7 +91,7 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
         // Programatically set the input fields
         usernameTextField.tag = 123
         usernameTextField.textAlignment = NSTextAlignment.Center
-        usernameTextField.font = UIFont.systemFontOfSize(17, weight: UIFontWeightLight)
+        usernameTextField.font = UIFont(name: "MyriadPro-Regular", size: 17)!
         usernameTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         usernameTextField.layer.borderWidth = 1
         usernameTextField.layer.cornerRadius = 10
@@ -109,7 +109,7 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
         
         emailTextField.tag = 124
         emailTextField.textAlignment = NSTextAlignment.Center
-        emailTextField.font = UIFont.systemFontOfSize(17, weight: UIFontWeightLight)
+        emailTextField.font = UIFont(name: "MyriadPro-Regular", size: 17)!
         emailTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         emailTextField.layer.borderWidth = 1
         emailTextField.layer.cornerRadius = 10
@@ -127,7 +127,7 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
         
         phoneNumberTextField.tag = 125
         phoneNumberTextField.textAlignment = NSTextAlignment.Center
-        phoneNumberTextField.font = UIFont.systemFontOfSize(17, weight: UIFontWeightLight)
+        phoneNumberTextField.font = UIFont(name: "MyriadPro-Regular", size: 17)!
         phoneNumberTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         phoneNumberTextField.layer.borderWidth = 1
         phoneNumberTextField.layer.cornerRadius = 10
@@ -158,7 +158,7 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
         navBar.shadowImage = UIImage()
         navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont.systemFontOfSize(17, weight: UIFontWeightLight),
+            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!,
             NSForegroundColorAttributeName:UIColor.lightBlue()
         ]
         self.view.addSubview(navBar)

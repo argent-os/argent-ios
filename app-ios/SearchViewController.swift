@@ -80,7 +80,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let screenHeight = screen.size.height
         
         let placeholderMaskImageView = UIImageView()
-        placeholderMaskImageView.image = UIImage(named: "IconEmptyTableSearch")?.alpha(0.5)
+        placeholderMaskImageView.image = UIImage(named: "IconEmptyTableSearch")
         placeholderMaskImageView.contentMode = .ScaleAspectFit
         placeholderMaskImageView.frame = CGRect(x: searchOverlayMaskView.layer.frame.width/2-150, y: searchOverlayMaskView.layer.frame.height/2, width: 300, height: 300)
         placeholderMaskImageView.center = CGPointMake(self.view.layer.frame.width/2, self.view.layer.frame.height/2-120)

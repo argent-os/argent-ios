@@ -35,7 +35,7 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
         navigationItem.rightBarButtonItem = stepButton
         navigationItem.rightBarButtonItem?.tintColor = UIColor.lightBlue()
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([
-            NSFontAttributeName: UIFont.systemFontOfSize(17, weight: UIFontWeightLight),
+            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!,
             NSForegroundColorAttributeName:UIColor.lightBlue()
             ], forState: .Normal)
         
@@ -91,7 +91,7 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
         // Programatically set the input fields
         usernameTextField.tag = 123
         usernameTextField.textAlignment = NSTextAlignment.Center
-        usernameTextField.font = UIFont.systemFontOfSize(17, weight: UIFontWeightLight)
+        usernameTextField.font = UIFont(name: "MyriadPro-Regular", size: 17)!
         usernameTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         usernameTextField.layer.borderWidth = 1
         usernameTextField.layer.cornerRadius = 10
@@ -109,7 +109,7 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
         
         emailTextField.tag = 124
         emailTextField.textAlignment = NSTextAlignment.Center
-        emailTextField.font = UIFont.systemFontOfSize(17, weight: UIFontWeightLight)
+        emailTextField.font = UIFont(name: "MyriadPro-Regular", size: 17)!
         emailTextField.backgroundColor = UIColor.clearColor()
         emailTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         emailTextField.layer.borderWidth = 1
@@ -127,7 +127,7 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
         
         dobTextField.tag = 125
         dobTextField.textAlignment = NSTextAlignment.Center
-        dobTextField.font = UIFont.systemFontOfSize(17, weight: UIFontWeightLight)
+        dobTextField.font = UIFont(name: "MyriadPro-Regular", size: 17)!
         dobTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         dobTextField.layer.borderWidth = 1
         dobTextField.layer.cornerRadius = 10
@@ -157,7 +157,7 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
         navBar.shadowImage = UIImage()
         navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont.systemFontOfSize(17, weight: UIFontWeightLight),
+            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!,
             NSForegroundColorAttributeName:UIColor.lightBlue()
         ]
         self.view.addSubview(navBar)

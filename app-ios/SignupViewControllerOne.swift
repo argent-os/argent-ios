@@ -38,7 +38,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         navigationItem.rightBarButtonItem = stepButton
         navigationItem.rightBarButtonItem?.tintColor = UIColor.lightBlue()
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([
-            NSFontAttributeName: UIFont.systemFontOfSize(14),
+            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 14)!,
             NSForegroundColorAttributeName:UIColor.lightBlue()
             ], forState: .Normal)
         
@@ -99,7 +99,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         // Programatically set the input fields
         firstNameTextField.tag = 28346
         firstNameTextField.textAlignment = NSTextAlignment.Center
-        firstNameTextField.font = UIFont.systemFontOfSize(17, weight: UIFontWeightLight)
+        firstNameTextField.font = UIFont(name: "MyriadPro-Regular", size: 17)!
         firstNameTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         firstNameTextField.layer.borderWidth = 1
         firstNameTextField.layer.cornerRadius = 10
@@ -117,7 +117,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         
         lastNameTextField.tag = 28347
         lastNameTextField.textAlignment = NSTextAlignment.Center
-        lastNameTextField.font = UIFont.systemFontOfSize(17, weight: UIFontWeightLight)
+        lastNameTextField.font = UIFont(name: "MyriadPro-Regular", size: 17)!
         lastNameTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         lastNameTextField.layer.borderWidth = 1
         lastNameTextField.layer.cornerRadius = 10
@@ -135,7 +135,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         
         businessNameTextField.tag = 28348
         businessNameTextField.textAlignment = NSTextAlignment.Center
-        businessNameTextField.font = UIFont.systemFontOfSize(17, weight: UIFontWeightLight)
+        businessNameTextField.font = UIFont(name: "MyriadPro-Regular", size: 17)!
         businessNameTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         businessNameTextField.layer.borderWidth = 1
         businessNameTextField.layer.cornerRadius = 10
@@ -153,7 +153,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
 
         dobTextField.tag = 28349
         dobTextField.textAlignment = NSTextAlignment.Center
-        dobTextField.font = UIFont.systemFontOfSize(17, weight: UIFontWeightLight)
+        dobTextField.font = UIFont(name: "MyriadPro-Regular", size: 17)!
         dobTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         dobTextField.layer.borderWidth = 1
         dobTextField.layer.cornerRadius = 10
@@ -177,11 +177,11 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
         navBar.shadowImage = UIImage()
         navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont.systemFontOfSize(14),
+            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!,
             NSForegroundColorAttributeName:UIColor.lightBlue()
         ]
         self.view.addSubview(navBar)
-        let navItem = UINavigationItem(title: "Company / Rep Information")
+        let navItem = UINavigationItem(title: "Company Rep Info")
         navItem.leftBarButtonItem?.tintColor = UIColor.mediumBlue()
         navBar.setItems([navItem], animated: true)
         

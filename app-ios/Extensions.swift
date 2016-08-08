@@ -546,7 +546,7 @@ class CenteredButton: UIButton {
     override func titleRectForContentRect(contentRect: CGRect) -> CGRect {
         let rect = super.titleRectForContentRect(contentRect)
         
-        return CGRectMake(0, CGRectGetHeight(contentRect) - CGRectGetHeight(rect)-18,
+        return CGRectMake(0, CGRectGetHeight(contentRect) - CGRectGetHeight(rect)-12,
                           CGRectGetWidth(contentRect), CGRectGetHeight(rect))
     }
     

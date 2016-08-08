@@ -106,11 +106,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, WCSessionDeleg
         let resetPasswordButton = UIButton()
         resetPasswordButton.frame = CGRect(x: 0, y: screenHeight-60, width: screenWidth, height: 40)
         let str0 = NSAttributedString(string: "Forgot Password?", attributes: [
-                NSFontAttributeName: UIFont.systemFontOfSize(12),
+            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 12)!,
                 NSForegroundColorAttributeName:UIColor.whiteColor()
             ])
         let str1 = NSAttributedString(string: "Forgot Password?", attributes: [
-            NSFontAttributeName: UIFont.systemFontOfSize(12),
+            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 12)!,
             NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.5)
             ])
         resetPasswordButton.setAttributedTitle(str0, forState: .Normal)

@@ -60,7 +60,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
          // Offset by 20 pixels vertically to take the status bar into account
         navigationBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 50)
         navigationBar.backgroundColor = UIColor.clearColor()
-        navigationBar.tintColor = UIColor.lightBlue()
+        navigationBar.tintColor = UIColor.whiteColor()
         navigationBar.delegate = self
         
         // Create a navigation item with a title
@@ -133,7 +133,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         let headerView = UIImageView()
         headerView.image = UIImage(named: "BackgroundSwipeDown")
         headerView.contentMode = .ScaleAspectFill
-        headerView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 140)
+        headerView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 100)
         self.view.addSubview(headerView)
         self.view.sendSubviewToBack(headerView)
         
@@ -145,10 +145,12 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         chargeInputView.frame = CGRect(x: 0, y: 60, width: screenWidth, height: 100)
         chargeInputView.textAlignment = .Center
         chargeInputView.font = UIFont(name: "MyriadPro-Regular", size: 48)!
-        chargeInputView.textColor = UIColor.lightBlue()
+        chargeInputView.textColor = UIColor.whiteColor()
         chargeInputView.placeholder = "$0.00"
+        chargeInputView.maxDigits = 5
         chargeInputView.keyboardType = UIKeyboardType.NumberPad
         chargeInputView.backgroundColor = UIColor.clearColor()
+        chargeInputView.tintColor = UIColor.whiteColor()
         let _ = Timeout(0.2) {
             addSubviewWithBounce(self.chargeInputView, parentView: self, duration: 0.3)
         }
@@ -494,7 +496,8 @@ extension ChargeViewController {
     func payWithBitcoin(sender: AnyObject) {
         addActivityIndicatorView(UIActivityIndicatorView(), view: self.view, color: .Gray)
         
-        let navigationController = self.storyboard!.instantiateViewControllerWithIdentifier("qrFormSheetController") as! UINavigationController
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let navigationController = storyboard.instantiateViewControllerWithIdentifier("qrFormSheetController") as! UINavigationController
         let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
         
         self.view.endEditing(true)
@@ -550,7 +553,9 @@ extension ChargeViewController {
     // MARK: Personal Information receipt modal
     
     func showPersonalInformationModal(sender: AnyObject, amount: Int) {
-        let navigationController = self.storyboard!.instantiateViewControllerWithIdentifier("personalInformationEntryModalNavigationController") as! UINavigationController
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let navigationController = storyboard.instantiateViewControllerWithIdentifier("personalInformationEntryModalNavigationController") as! UINavigationController
         let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
         
         // Initialize and style the terms and conditions modal

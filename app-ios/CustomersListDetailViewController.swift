@@ -143,7 +143,7 @@ class CustomersListDetailViewController: UIViewController, UINavigationBarDelega
         let navigationItem = UINavigationItem()
         
         // Create left and right button for navigation item
-        let leftButton = UIBarButtonItem(image: UIImage(named: "IconCloseLight"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ChargeViewController.returnToMenu(_:)))
+        let leftButton = UIBarButtonItem(image: UIImage(named: "IconCloseLight"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.returnToMenu(_:)))
         let font = UIFont(name: "MyriadPro-Regular", size: 14)
         leftButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
         // Create two buttons for the navigation item
@@ -194,11 +194,11 @@ extension CustomersListDetailViewController {
         }
         if let amount = item.plan_amount, interval = item.plan_interval, qty = item.quantity, status = item.status {
             let intervalAttributedString = NSAttributedString(string: interval, attributes: [
-                NSForegroundColorAttributeName : UIColor.lightBlue().colorWithAlphaComponent(0.5),
-                NSFontAttributeName : UIFont.systemFontOfSize(11, weight: UIFontWeightRegular)
+                NSForegroundColorAttributeName : UIColor.darkBlue(),
+                NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 11)!
                 ])
             let attrText = formatCurrency(String(amount), fontName: "MyriadPro-Regular", superSize: 11, fontSize: 15, offsetSymbol: 2, offsetCents: 2) +  NSAttributedString(string: " per ") + intervalAttributedString
-            cell.detailTextLabel?.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
+            cell.detailTextLabel?.textColor = UIColor.darkBlue()
             cell.detailTextLabel?.attributedText = attrText
             
         }
