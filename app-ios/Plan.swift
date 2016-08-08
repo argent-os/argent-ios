@@ -176,7 +176,7 @@ class Plan {
         }
     }
     
-    class func updatePlan(id: String, dic: NSDictionary, completionHandler: (Bool?, NSError?) -> Void) {
+    class func updatePlan(id: String, dic: Dictionary<String, AnyObject>, completionHandler: (Bool?, NSError?) -> Void) {
         // request to api to get data as json, put in list and table
         
         // check for token, get profile id based on token and make the request
@@ -186,18 +186,18 @@ class Plan {
                     print(error)
                 }
                 
-                let parameters : [String : AnyObject] = [:]
+                let parameters : [String : AnyObject] = dic
                 
                 let headers = [
                     "Authorization": "Bearer " + (userAccessToken as! String),
-                    "Content-Type": "application/x-www-form-urlencoded"
+                    "Content-Type": "application/json"
                 ]
                 
                 let user_id = (user?.id)
                 
-                var endpoint = API_URL + "/stripe/" + user_id! + "/plans/" + id
+                let endpoint = API_URL + "/stripe/" + user_id! + "/plans/" + id
                 
-                Alamofire.request(.PUT, endpoint, parameters: parameters, encoding: .URL, headers: headers)
+                Alamofire.request(.PUT, endpoint, parameters: parameters, encoding: .JSON, headers: headers)
                     .validate().responseJSON { response in
                         switch response.result {
                         case .Success:

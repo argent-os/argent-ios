@@ -130,6 +130,8 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
                     $0.rowHeight = 60
                     $0.cell.tintColor = UIColor.oceanBlue()
                     $0.selectedIndex = 0
+                    self.dic["amount"] = plan!["amount"].stringValue
+
             }
             
             let planNameRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
@@ -144,6 +146,7 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
                 }.configure {
                     $0.placeholder = plan!["name"].stringValue
                     $0.rowHeight = 60
+                    self.dic["name"] = $0.text
                 }.onTextChanged { [weak self] in
                     self?.dic["name"] = $0
             }
@@ -154,10 +157,10 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
                 $0.titleLabel.textColor = UIColor.mediumBlue()
                 }.configure {
                     $0.segmentTitles = ["USD"]
+                    self.dic["currency"] = plan!["currency"].stringValue
                     $0.rowHeight = 60
                     $0.cell.tintColor = UIColor.oceanBlue()
                     $0.selectedIndex = 0
-                    self.dic["currency"] = $0.segmentTitles[$0.selectedIndex]
             }
         
             let planIntervalRow = SegmentedRowFormer<FormSegmentedCell>() {
@@ -166,25 +169,25 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
                 $0.titleLabel.textColor = UIColor.mediumBlue()
                 }.configure {
                     $0.segmentTitles = [plan!["interval"].stringValue]
+                    self.dic["interval"] = plan!["interval"].stringValue
                     $0.rowHeight = 60
                     $0.cell.tintColor = UIColor.oceanBlue()
                     $0.selectedIndex = 0
             }
             
-            let planTrialPeriodRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
+            let planTrialPeriodRow = SegmentedRowFormer<FormSegmentedCell>() {
                 $0.titleLabel.text = "Trial"
                 $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 15)!
                 $0.titleLabel.textColor = UIColor.mediumBlue()
-                $0.textField.font = UIFont(name: "MyriadPro-Regular", size: 15)!
-                $0.textField.autocorrectionType = .No
-                $0.textField.autocapitalizationType = .None
-                $0.textField.keyboardType = .NumberPad
-                $0.textField.inputAccessoryView = self?.formerInputAccessoryView
                 }.configure {
-                    $0.placeholder = plan!["trial_period_days"].stringValue
+                    if plan!["trial_period_days"].stringValue == "" {
+                        $0.segmentTitles = ["0 days"]
+                    } else {
+                        $0.segmentTitles = [plan!["trial_period_days"].stringValue + " days"]
+                    }
                     $0.rowHeight = 60
-                }.onTextChanged { [weak self] in
-                    self?.dic["trial_period_days"] = $0
+                    $0.cell.tintColor = UIColor.oceanBlue()
+                    $0.selectedIndex = 0
             }
             
             let planStatementDescriptionRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
@@ -197,10 +200,11 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
                 $0.textField.returnKeyType = .Done
                 $0.textField.inputAccessoryView = self?.formerInputAccessoryView
                 }.configure {
-                    $0.placeholder = plan!["statement_descriptor"].stringValue
+                    $0.placeholder = plan!["statement_descriptor"].stringValue ?? "(22 characters) Statement Descriptor"
                     $0.rowHeight = 60
+                    self.dic["statement_descriptor"] = $0.text ?? ""
                 }.onTextChanged { [weak self] in
-                    self?.dic["statement_descriptor"] = $0
+                    self?.dic["statement_descriptor"] = $0 ?? ""
             }
             
             let planIntervalCountRow = SegmentedRowFormer<FormSegmentedCell>() {
@@ -209,6 +213,7 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
                 $0.titleLabel.textColor = UIColor.mediumBlue()
                 }.configure {
                     $0.segmentTitles = [plan!["interval_count"].stringValue]
+                    self.dic["interval_count"] = plan!["interval_count"].stringValue
                     $0.rowHeight = 60
                     $0.cell.tintColor = UIColor.oceanBlue()
                     $0.selectedIndex = 0
@@ -239,7 +244,7 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
     }
     
     func updatePlanButtonTapped(sender: AnyObject) {
-        Plan.updatePlan("id_here", dic: dic) { (bool, err) in
+        Plan.updatePlan(planId!, dic: dic) { (bool, err) in
             if bool == true {
                 if let msg = self.dic["name"] {
                     showAlert(.Success, title: "Success", msg: (msg as! String) + " plan updated!")
