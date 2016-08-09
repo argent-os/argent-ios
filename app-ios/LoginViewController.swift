@@ -70,7 +70,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, WCSessionDeleg
         //        self.view!.addSubview(backgroundView)
         //        self.view.sendSubviewToBack(backgroundView)
         
-        self.view.backgroundColor = UIColor.mediumBlue()
+        self.view.backgroundColor = UIColor.deepBlue()
         
         activityIndicator.center = self.view.center
         activityIndicator.startAnimating()

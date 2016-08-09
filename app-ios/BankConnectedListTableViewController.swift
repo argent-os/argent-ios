@@ -461,7 +461,7 @@ extension BankConnectedListTableViewController {
     }
     
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
-        return UIImage(named: "IconBank")
+        return UIImage(named: "IconCustomBank")
     }
     
     func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {

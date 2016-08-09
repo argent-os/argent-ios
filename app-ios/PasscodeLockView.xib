@@ -42,7 +42,7 @@
                     </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="highlightBackgroundColor">
-                            <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="value" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="string" keyPath="passcodeSign" value="5"/>
                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -67,7 +67,7 @@
                     </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="highlightBackgroundColor">
-                            <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="value" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="string" keyPath="passcodeSign" value="8"/>
                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -92,7 +92,7 @@
                     </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="highlightBackgroundColor">
-                            <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="value" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="string" keyPath="passcodeSign" value="9"/>
                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -117,7 +117,7 @@
                     </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="highlightBackgroundColor">
-                            <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="value" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="string" keyPath="passcodeSign" value="4"/>
                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -142,7 +142,7 @@
                     </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="highlightBackgroundColor">
-                            <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="value" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="string" keyPath="passcodeSign" value="7"/>
                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -167,7 +167,7 @@
                     </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="highlightBackgroundColor">
-                            <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="value" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="string" keyPath="passcodeSign" value="0"/>
                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -210,7 +210,7 @@
                     </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="highlightBackgroundColor">
-                            <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="value" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="string" keyPath="passcodeSign" value="6"/>
                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -235,7 +235,7 @@
                     </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="highlightBackgroundColor">
-                            <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="value" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="string" keyPath="passcodeSign" value="1"/>
                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -263,7 +263,7 @@
                     </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="highlightBackgroundColor">
-                            <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="value" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="string" keyPath="passcodeSign" value="2"/>
                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -291,7 +291,7 @@
                     </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="highlightBackgroundColor">
-                            <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="value" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="string" keyPath="passcodeSign" value="3"/>
                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">

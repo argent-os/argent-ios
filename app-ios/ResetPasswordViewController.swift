@@ -35,7 +35,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
 //        self.view!.addSubview(backgroundView)
 //        self.view.sendSubviewToBack(backgroundView)
         
-        self.view.backgroundColor = UIColor.mediumBlue()
+        self.view.backgroundColor = UIColor.deepBlue()
         
         // Add button to keyboard
         addToolbarButton()

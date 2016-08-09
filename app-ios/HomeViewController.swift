@@ -420,27 +420,27 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             
             if let type = item?.type {
                 if type == "charge" {
-                    let chargeType = adjustAttributedString("  Charged", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                    let chargeType = adjustAttributedString("  Charged", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0)
                     cell.lblAmount.attributedText = currencyText + chargeType
                     cell.img.image = UIImage(named: "IconCheckFilled")
                 } else if type == "refund" || type == "application_fee_refund" {
-                    let chargeType = adjustAttributedString("  Refunded", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                    let chargeType = adjustAttributedString("  Refunded", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0)
                     cell.lblAmount.attributedText = currencyText + chargeType
                     cell.img.image = UIImage(named: "ic_refund")
                 } else if type == "payment" {
-                    let chargeType = adjustAttributedString("  Payment", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                    let chargeType = adjustAttributedString("  Payment", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0)
                     cell.lblAmount.attributedText = currencyText + chargeType
                     cell.img.image = UIImage(named: "IconCheckFilled")
                 } else if type == "adjustment" {
-                    let chargeType = adjustAttributedString(" Adjustment", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                    let chargeType = adjustAttributedString(" Adjustment", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0)
                     cell.lblAmount.attributedText = currencyText + chargeType
                     cell.img.image = UIImage(named: "ic_adjust")
                 } else if type == "transfer" {
-                    let chargeType = adjustAttributedString("  Bank Transfer", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                    let chargeType = adjustAttributedString("  Bank Transfer", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0)
                     cell.lblAmount.attributedText = currencyText + chargeType
                     cell.img.image = UIImage(named: "ic_transfer")
                 } else if type == "transfer_failure" {
-                    let chargeType = adjustAttributedString("  Transfer failure", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                    let chargeType = adjustAttributedString("  Transfer failure", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0)
                     cell.lblAmount.attributedText = currencyText + chargeType
                     cell.img.image = UIImage(named: "ic_alert")
                 } else {
@@ -637,7 +637,7 @@ extension HomeViewController {
         graph.colorPoint = UIColor.clearColor()
         graph.colorBackgroundPopUplabel = UIColor.whiteColor()
         graph.delegate = self
-        let gradientColors : [CGColor] = [UIColor.whiteColor().CGColor, UIColor(rgba: "#b5ebff").CGColor, UIColor(rgba: "#2b82df").CGColor]
+        let gradientColors : [CGColor] = [UIColor.whiteColor().CGColor, UIColor(rgba: "#b5ebff").CGColor, UIColor.pastelSkyBlue().CGColor]
         let gradientColorsBottom : [CGColor] = [UIColor.whiteColor().colorWithAlphaComponent(0.3).CGColor, UIColor.whiteColor().colorWithAlphaComponent(0.1).CGColor, UIColor.whiteColor().colorWithAlphaComponent(0).CGColor]
         let colorspace = CGColorSpaceCreateDeviceRGB()
         let locations: [CGFloat] = [0.0, 0.3, 1.0]

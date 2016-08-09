@@ -412,12 +412,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: DZNEmptyDataSet delegate
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = adjustAttributedString("\nARGENT", spacing: 4, fontName: "MyriadPro-Regular", fontSize: 17, fontColor: UIColor.lightBlue())
+        let str = adjustAttributedStringNoLineSpacing("\nARGENT", spacing: 4, fontName: "MyriadPro-Regular", fontSize: 17, fontColor: UIColor.lightBlue())
         return str
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = adjustAttributedString("SEARCH AND PAY", spacing: 4, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.lightBlue())
+        let str = adjustAttributedStringNoLineSpacing("SEARCH AND PAY", spacing: 4, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.lightBlue())
 
         return str
     }

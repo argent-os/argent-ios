@@ -285,7 +285,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                 if account.ssn_last_4.toBool() == true {
                     $0.placeholder = "provided"
                 } else {
-                    $0.placeholder = "xxxx For transfers of $20,000+"
+                    $0.placeholder = "····"
                 }
                 $0.text = Profile.sharedInstance.ssn
                 NSUserDefaults.standardUserDefaults().setValue($0.text, forKey: "ssn_last_4")

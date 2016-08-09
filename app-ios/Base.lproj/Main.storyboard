@@ -336,7 +336,7 @@
                                 <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Change passcode">
-                                    <color key="titleColor" red="0.2489114828" green="0.42724018050000001" blue="0.98369586470000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.26660439120000001" green="0.46146957919999998" blue="0.76670673079999996" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="changePasscodeButtonTap:" destination="Wgs-dC-FHb" eventType="touchUpInside" id="Hbu-Ng-77s"/>
@@ -348,7 +348,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconTouchSecure" translatesAutoresizingMaskIntoConstraints="NO" id="c79-qa-XdE">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconCustomLock" translatesAutoresizingMaskIntoConstraints="NO" id="c79-qa-XdE">
                                 <rect key="frame" x="0.0" y="72" width="414" height="72"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="72" id="NFu-yR-xLk"/>
@@ -359,8 +359,9 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="KdU-nO-utg"/>
                                 </constraints>
-                                <string key="text">We use TouchID as the default setting
-with a fallback to PIN Code for older devices</string>
+                                <string key="text">We use TouchID as the default 
+setting with a fallback to PIN 
+code for older devices</string>
                                 <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
                                 <color key="textColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -420,8 +421,8 @@ with a fallback to PIN Code for older devices</string>
                                     <constraint firstAttribute="height" constant="89" id="ZOq-cc-uvF"/>
                                 </constraints>
                                 <string key="text">We are always here to assist you. 
-Please select a category that best fits your 
-support request</string>
+Please select a category that 
+best fits your request.</string>
                                 <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="16"/>
                                 <color key="textColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -441,7 +442,7 @@ support request</string>
                                 <color key="textColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconSupport" translatesAutoresizingMaskIntoConstraints="NO" id="gVF-Rr-B0G">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IconCustomHelp" translatesAutoresizingMaskIntoConstraints="NO" id="gVF-Rr-B0G">
                                 <rect key="frame" x="162" y="63" width="90" height="110"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="90" id="BwZ-Li-idl"/>
@@ -4011,8 +4012,8 @@ policy agreement. Tap to view</string>
         </scene>
     </scenes>
     <resources>
-        <image name="IconSupport" width="227" height="256"/>
-        <image name="IconTouchSecure" width="128" height="128"/>
+        <image name="IconCustomHelp" width="171" height="171"/>
+        <image name="IconCustomLock" width="171" height="171"/>
         <image name="ic_close_light" width="43" height="43"/>
         <image name="ic_tab_account" width="25" height="25"/>
         <image name="ic_tab_dash" width="25" height="25"/>

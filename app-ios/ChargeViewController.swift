@@ -299,34 +299,36 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
             showGlobalNotification("Amount invalid", duration: 5.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
         } else {
             // print("calling create charge")
-            let value = Int(chargeInputView.value)
+            let value = Int(Float(chargeInputView.value)*100)
+            print(value)
             createCharge(token, amount: value)
         }
     }
     
     func createCharge(token: STPToken, amount: Int) {
         
-        // print("creating backend token")
         User.getProfile { (user, NSError) in
+            
             let url = API_URL + "/stripe/" + (user?.id)! + "/charge/"
             
-            let headers = [
-                "Authorization": "Bearer " + String(userAccessToken),
-                "Content-Type": "application/json"
-            ]
             let parameters : [String : AnyObject] = [
                 "token": String(token) ?? "",
                 "amount": amount
             ]
             
-            // print(token)
-            
-            // for invalid character 0 be sure the content type is application/json and enconding is .JSON
-            Alamofire.request(.POST, url,
-                parameters: parameters,
-                encoding:.JSON,
-                headers: headers)
-                .responseJSON { response in
+            let uat = userAccessToken
+            let _ = uat.map { (unwrapped_access_token) -> Void in
+                let headers = [
+                    "Authorization": "Bearer " + String(unwrapped_access_token),
+                    "Content-Type": "application/json"
+                ]
+                
+                // for invalid character 0 be sure the content type is application/json and enconding is .JSON
+                Alamofire.request(.POST, url,
+                    parameters: parameters,
+                    encoding:.JSON,
+                    headers: headers)
+                    .responseJSON { response in
                     switch response.result {
                     case .Success:
                         if let value = response.result.value {
@@ -362,6 +364,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
 
                         print(error)
                     }
+                }
             }
         }
     }

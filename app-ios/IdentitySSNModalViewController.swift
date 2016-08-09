@@ -30,29 +30,35 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
         
         // This will set to only one instance
         
-        self.view.backgroundColor = UIColor.offWhite()
+        self.view.backgroundColor = UIColor.whiteColor()
         
         // screen width and height:
         let screen = UIScreen.mainScreen().bounds
-        _ = screen.size.width
+        let screenWidth = screen.size.width
         _ = screen.size.height
         
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.barTintColor = UIColor.lightGrayColor()
         
+        let imageFingerprint = UIImageView()
+        imageFingerprint.frame = CGRect(x: 140-30, y: 0, width: 60, height: 60)
+        imageFingerprint.contentMode = .ScaleAspectFit
+        imageFingerprint.frame.origin.y = 25
+        self.view.addSubview(imageFingerprint)
+        
         titleLabel.frame = CGRect(x: 0, y: 35, width: 280, height: 20)
-        titleLabel.text = "Enter your SSN"
+        titleLabel.text = ""
         titleLabel.textAlignment = .Center
         titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 18)
         titleLabel.textColor = UIColor.lightBlue()
         self.view.addSubview(titleLabel)
         
-        ssnTextField.frame = CGRect(x: 10, y: 70, width: 260, height: 150)
-        ssnTextField.placeholder = "xxx-xx-xxxx"
+        ssnTextField.frame = CGRect(x: 10, y: 65, width: 260, height: 150)
+        ssnTextField.placeholder = "123-45-6789"
         ssnTextField.alpha = 0.8
         ssnTextField.textAlignment = .Center
-        ssnTextField.font = UIFont(name: "MyriadPro-Regular", size: 20)
-        ssnTextField.textColor = UIColor.lightBlue()
+        ssnTextField.font = UIFont(name: "MyriadPro-Regular", size: 30)
+        ssnTextField.textColor = UIColor.darkBlue()
 //        ssnTextField.mask = "###-##-####"
         ssnTextField.mask = "#########"
         ssnTextField.delegate = self
@@ -65,8 +71,8 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
         submitSSNButton.layer.borderWidth = 0
         submitSSNButton.layer.cornerRadius = 0
         submitSSNButton.layer.masksToBounds = true
-        submitSSNButton.setBackgroundColor(UIColor.iosBlue(), forState: .Normal)
-        submitSSNButton.setBackgroundColor(UIColor.iosBlue().lighterColor(), forState: .Highlighted)
+        submitSSNButton.setBackgroundColor(UIColor.pastelBlue(), forState: .Normal)
+        submitSSNButton.setBackgroundColor(UIColor.pastelBlue().darkerColor(), forState: .Highlighted)
         var attribs: [String: AnyObject] = [:]
         attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 15)
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
@@ -85,8 +91,12 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
         Account.getStripeAccount { (acct, err) in
             //
             if (acct?.pin)! == true {
-                self.titleLabel.text = "Your SSN is already provided"
+                imageFingerprint.image = UIImage(named: "IconSuccess")
+                imageFingerprint.frame = CGRect(x: 140-30, y: 90, width: 60, height: 60)
+                self.titleLabel.text = "SSN is provided"
+                self.titleLabel.frame = CGRect(x: 0, y: 155, width: 280, height: 20)
             } else {
+                imageFingerprint.image = UIImage(named: "IconFingerprint")
                 self.view.addSubview(self.ssnTextField)
                 self.view.addSubview(self.submitSSNButton)
             }

@@ -57,12 +57,12 @@ class ChargePaymentSelectionViewController: UIViewController {
             NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 18)!
             ])
         payWithCardButton.setAttributedTitle(str1, forState: .Normal)
-        payWithCardButton.setBackgroundColor(UIColor.iosBlue(), forState: .Normal)
-        payWithCardButton.setBackgroundColor(UIColor.iosBlue().lighterColor(), forState: .Highlighted)
+        payWithCardButton.setBackgroundColor(UIColor.deepBlue(), forState: .Normal)
+        payWithCardButton.setBackgroundColor(UIColor.deepBlue().lighterColor(), forState: .Highlighted)
         payWithCardButton.frame = CGRect(x: 15, y: 80, width: screenWidth-30, height: 80)
         payWithCardButton.setImage(UIImage(named: "LogoCard"), forState: .Normal)
         payWithCardButton.setImage(UIImage(named: "LogoCard")?.alpha(0.5), forState: .Highlighted)
-        payWithCardButton.layer.cornerRadius = 10
+        payWithCardButton.layer.cornerRadius = 3
         payWithCardButton.layer.masksToBounds = true
         payWithCardButton.backgroundColor = UIColor.iosBlue()
         payWithCardButton.addTarget(self, action: #selector(self.payWithCard(_:)), forControlEvents: .TouchUpInside)
@@ -82,7 +82,7 @@ class ChargePaymentSelectionViewController: UIViewController {
         payWithBitcoinButton.frame = CGRect(x: 15, y: 180, width: screenWidth-30, height: 80)
         payWithBitcoinButton.setImage(UIImage(named: "LogoBitcoin"), forState: .Normal)
         payWithBitcoinButton.setImage(UIImage(named: "LogoBitcoin")?.alpha(0.5), forState: .Highlighted)
-        payWithBitcoinButton.layer.cornerRadius = 10
+        payWithBitcoinButton.layer.cornerRadius = 3
         payWithBitcoinButton.layer.masksToBounds = true
         payWithBitcoinButton.backgroundColor = UIColor.whiteColor()
         payWithBitcoinButton.addTarget(self, action: #selector(self.payWithBitcoin(_:)), forControlEvents: .TouchUpInside)

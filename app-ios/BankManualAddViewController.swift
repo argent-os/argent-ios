@@ -70,7 +70,7 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
     
     func configure() {
         
-        self.view.backgroundColor = UIColor.offWhite()
+        self.view.backgroundColor = UIColor.whiteColor()
 
         addToolbarButton()
         addHelpButton()
@@ -101,7 +101,7 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
         infoLabel.frame = CGRect(x: 20, y: 80, width: screenWidth-40, height: 70)
         infoLabel.backgroundColor = UIColor.whiteColor()
         infoLabel.textColor = UIColor.lightBlue()
-        infoLabel.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.2).CGColor
+        infoLabel.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.4).CGColor
         infoLabel.layer.borderWidth = 1
         infoLabel.layer.cornerRadius = 5
         infoLabel.layer.masksToBounds = true
@@ -135,7 +135,7 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
         routingTextField.frame = CGRect(x: 20, y: 170, width: screenWidth-40, height: 70)
         routingTextField.backgroundColor = UIColor.whiteColor()
         routingTextField.textColor = UIColor.lightBlue()
-        routingTextField.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.2).CGColor
+        routingTextField.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.4).CGColor
         routingTextField.layer.borderWidth = 1
         routingTextField.layer.cornerRadius = 5
         routingTextField.layer.masksToBounds = true
@@ -158,7 +158,7 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
         accountTextField.frame = CGRect(x: 20, y: 260, width: screenWidth-40, height: 70)
         accountTextField.backgroundColor = UIColor.whiteColor()
         accountTextField.textColor = UIColor.lightBlue()
-        accountTextField.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.2).CGColor
+        accountTextField.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.4).CGColor
         accountTextField.layer.borderWidth = 1
         accountTextField.layer.cornerRadius = 5
         accountTextField.layer.masksToBounds = true

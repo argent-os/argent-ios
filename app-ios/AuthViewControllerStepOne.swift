@@ -40,18 +40,30 @@ class AuthViewControllerStepOne: UIPageViewController, UIPageViewControllerDeleg
         let backgroundView: UIImageView = UIImageView(image: UIImage(named: "BackgroundIntro"))
         backgroundView.contentMode = UIViewContentMode.ScaleAspectFill
         backgroundView.frame = self.view.bounds
-        self.view!.addSubview(backgroundView)
+//        self.view!.addSubview(backgroundView)
+        
+        self.view.backgroundColor = UIColor.whiteColor()
+        
+        let imageName = "LogoOutlineDark"
+        let image = UIImage(named: imageName)
+        imageView.image = image
+        imageView.layer.masksToBounds = true
+        imageView.tag = 7577
+        imageView.frame = CGRect(x: 0, y: 0, width: 75, height: 75)
+        imageView.frame.origin.y = 130
+        imageView.frame.origin.x = (self.view.bounds.size.width - imageView.frame.size.width) / 2.0 // centered left to right.
+        self.view.addSubview(imageView)
         
         // Set range of string length to exactly 8, the number of characters
-        lblDetail.frame = CGRect(x: 0, y: screenHeight*0.39, width: screenWidth, height: 40)
+        lblDetail.frame = CGRect(x: 0, y: 280, width: screenWidth, height: 40)
         lblDetail.tag = 7579
         lblDetail.textAlignment = NSTextAlignment.Center
-        lblDetail.textColor = UIColor.whiteColor()
-        lblDetail.adjustAttributedString("SWIPE TO LEARN MORE", spacing: 4, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.whiteColor())
+        lblDetail.textColor = UIColor.darkBlue()
+        lblDetail.adjustAttributedString("SWIPE TO LEARN MORE", spacing: 4, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.darkBlue())
         view.addSubview(lblDetail)
         
         let shimmeringView = FBShimmeringView()
-        shimmeringView.frame = CGRect(x: 0, y: 280, width: screenWidth, height: screenHeight*0.84) // shimmeringView.bounds
+        shimmeringView.frame = CGRect(x: 0, y: 300, width: screenWidth, height: screenHeight*0.88) // shimmeringView.bounds
         shimmeringView.contentView = lblDetail
         shimmeringView.shimmering = true
         addSubviewWithFade(shimmeringView, parentView: self, duration: 1)
@@ -66,7 +78,7 @@ class AuthViewControllerStepOne: UIPageViewController, UIPageViewControllerDeleg
         //        lblSubtext.font.morphingEnabled = true
         //        lblSubtext.frame.origin.y = screenHeight*0.35 // 20 down from the top
         //        lblSubtext.textAlignment = NSTextAlignment.Center
-        //        lblSubtext.textColor = UIColor.whiteColor()
+        //        lblSubtext.textColor = UIColor.darkBlue()
         //        view.addSubview(lblSubtext)
 
     }
@@ -77,6 +89,5 @@ class AuthViewControllerStepOne: UIPageViewController, UIPageViewControllerDeleg
     }
     
     override func viewDidAppear(animated: Bool) {
-        addSubviewWithFade(imageView, parentView: self, duration: 0.8)
     }
 }

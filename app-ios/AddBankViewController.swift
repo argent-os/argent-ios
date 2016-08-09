@@ -107,25 +107,23 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         directLoginButton.setAttributedTitle(str2, forState: .Normal)
         self.view.addSubview(directLoginButton)
 
-        pageIcon.image = UIImage(named: "IconBank")
+        pageIcon.image = UIImage(named: "IconCustomBank")
         pageIcon.contentMode = .ScaleAspectFit
-        pageIcon.frame = CGRect(x: screenWidth/2-75, y: 75, width: 150, height: 150)
+        pageIcon.frame = CGRect(x: screenWidth/2-60, y: 125, width: 120, height: 120)
         self.view.addSubview(pageIcon)
         
-        pageHeader.text = "Bank Linking"
-        pageHeader.textColor = UIColor.lightBlue()
-        pageHeader.font = UIFont(name: "MyriadPro-Regular", size: 24)
+        let headerAttributedString = adjustAttributedString("Bank Linking", spacing: 0, fontName: "MyriadPro-Regular", fontSize: 24, fontColor: UIColor.lightBlue(), lineSpacing: 0.0)
+        pageHeader.attributedText = headerAttributedString
         pageHeader.textAlignment = .Center
-        pageHeader.frame = CGRect(x: 0, y: 250, width: screenWidth, height: 30)
+        pageHeader.frame = CGRect(x: 0, y: 260, width: screenWidth, height: 30)
         self.view.addSubview(pageHeader)
         
-        pageDescription.text = "Link to any US bank account \nusing one of the methods below"
+        let descriptionAttributedString = adjustAttributedString("Connect to any US Bank account \n using one of the methods below. \n We do not store this information \non our servers.", spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.lightBlue(), lineSpacing: 0.0)
+        pageDescription.attributedText = descriptionAttributedString
         pageDescription.numberOfLines = 0
         pageDescription.lineBreakMode = .ByWordWrapping
-        pageDescription.textColor = UIColor.lightBlue()
-        pageDescription.font = UIFont(name: "MyriadPro-Regular", size: 15)
         pageDescription.textAlignment = .Center
-        pageDescription.frame = CGRect(x: 0, y: 285, width: screenWidth, height: 50)
+        pageDescription.frame = CGRect(x: 0, y: 280, width: screenWidth, height: 120)
         self.view.addSubview(pageDescription)
         
         self.navigationItem.title = "Bank Account"

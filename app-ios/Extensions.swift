@@ -207,10 +207,31 @@ extension UIColor {
         return UIColor(rgba: "#42d1ae")
     }
     static func seaBlue() -> UIColor {
-        return UIColor(rgba: "#001c51")
+        return UIColor(rgba: "#395e7b")
     }
     static func oceanBlue() -> UIColor {
-        return UIColor(rgba: "#004790")
+        return UIColor(rgba: "#4a7da7")
+    }
+    static func pastelBlue() -> UIColor {
+        return UIColor(rgba: "#497ea8")
+    }
+    static func pastelSkyBlue() -> UIColor {
+        return UIColor(rgba: "#92cfff")
+    }
+    static func pastelYellow() -> UIColor {
+        return UIColor(rgba: "#ffd377")
+    }
+    static func pastelLightBlue() -> UIColor {
+        return UIColor(rgba: "#eef9ff")
+    }
+    static func pastelRed() -> UIColor {
+        return UIColor(rgba: "#f3b0ae")
+    }
+    static func pastelGreen() -> UIColor {
+        return UIColor(rgba: "#b2ddc9")
+    }
+    static func pastelBlueGray() -> UIColor {
+        return UIColor(rgba: "#d8e3ea")
     }
     static func mediumBlue() -> UIColor {
         if APP_THEME == "LIGHT" {
@@ -503,8 +524,23 @@ func + (left: NSAttributedString, right: NSAttributedString) -> NSAttributedStri
     return result
 }
 
-func adjustAttributedString(text:String, spacing:CGFloat, fontName: String, fontSize: CGFloat, fontColor: UIColor) -> NSAttributedString {
+func adjustAttributedString(text:String, spacing:CGFloat, fontName: String, fontSize: CGFloat, fontColor: UIColor, lineSpacing: CGFloat) -> NSAttributedString {
     let attributedString = NSMutableAttributedString(string: text)
+    let paragraphStyle = NSMutableParagraphStyle()
+    paragraphStyle.lineSpacing = lineSpacing // Whatever line spacing you want in points
+
+    attributedString.addAttributes([
+        NSParagraphStyleAttributeName : paragraphStyle,
+        NSFontAttributeName : UIFont(name: fontName, size: fontSize)!,
+        NSForegroundColorAttributeName : fontColor
+        ], range: NSMakeRange(0, text.characters.count))
+    attributedString.addAttribute(NSKernAttributeName, value: spacing, range: NSMakeRange(0, text.characters.count))
+    return attributedString
+}
+
+func adjustAttributedStringNoLineSpacing(text:String, spacing:CGFloat, fontName: String, fontSize: CGFloat, fontColor: UIColor) -> NSAttributedString {
+    let attributedString = NSMutableAttributedString(string: text)
+    
     attributedString.addAttributes([
         NSFontAttributeName : UIFont(name: fontName, size: fontSize)!,
         NSForegroundColorAttributeName : fontColor
@@ -512,6 +548,7 @@ func adjustAttributedString(text:String, spacing:CGFloat, fontName: String, font
     attributedString.addAttribute(NSKernAttributeName, value: spacing, range: NSMakeRange(0, text.characters.count))
     return attributedString
 }
+
 
 extension UILabel {
     func adjustAttributedString(text:String, spacing:CGFloat, fontName: String, fontSize: CGFloat, fontColor: UIColor) {

@@ -35,29 +35,35 @@ class AuthViewControllerStepThree: UIPageViewController, UIPageViewControllerDel
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-        self.view.backgroundColor = UIColor.globalBackground()        // Set background image
-        let backgroundView: UIImageView = UIImageView(image: UIImage(named: "BackgroundWalkthroughTwo"))
-        backgroundView.contentMode = UIViewContentMode.ScaleAspectFill
-        backgroundView.frame = self.view.bounds
-        self.view!.addSubview(backgroundView)
+        self.view.backgroundColor = UIColor.whiteColor()
+        
+        let imageName = "IconCustomUsers"
+        let image = UIImage(named: imageName)
+        imageView.image = image
+        imageView.layer.masksToBounds = true
+        imageView.tag = 7577
+        imageView.frame = CGRect(x: 0, y: 0, width: 130, height: 130)
+        imageView.frame.origin.y = 80
+        imageView.frame.origin.x = (self.view.bounds.size.width - imageView.frame.size.width) / 2.0 // centered left to right.
+        self.view.addSubview(imageView)
         
         // Set range of string length to exactly 8, the number of characters
-        lblDetail.frame = CGRect(x: 0, y: screenHeight*0.39, width: screenWidth, height: 40)
+        lblDetail.frame = CGRect(x: 0, y: 270, width: screenWidth, height: 40)
         lblDetail.tag = 7579
         lblDetail.textAlignment = NSTextAlignment.Center
         lblDetail.textColor = UIColor.whiteColor()
-        lblDetail.adjustAttributedString("ACCEPT BITCOIN", spacing: 4, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.whiteColor())
+        lblDetail.adjustAttributedString("SEARCH & PAY", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.darkBlue().colorWithAlphaComponent(0.75))
         view.addSubview(lblDetail)
         
         let lblBody = UILabel()
         // Set range of string length to exactly 8, the number of characters
-        lblBody.frame = CGRect(x: 50, y: screenHeight*0.40, width: screenWidth-100, height: 200)
+        lblBody.frame = CGRect(x: 90, y: 260, width: screenWidth-180, height: 200)
         lblBody.numberOfLines = 0
         lblBody.alpha = 0.9
-        lblBody.adjustAttributedString("Use our point of sale terminal to accept Bitcoin in-person from any individual or client.", spacing: 2, fontName: "HelveticaNeue-Light", fontSize: 14, fontColor: UIColor.whiteColor())
+        let atrString = adjustAttributedString("Search users and pay them instantly with either Apple Pay or credit card.", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.darkBlue(), lineSpacing: 9.0)
+        lblBody.attributedText = atrString
         lblBody.tag = 7579
         lblBody.textAlignment = NSTextAlignment.Center
-        lblBody.textColor = UIColor.whiteColor()
         view.addSubview(lblBody)
         
     }

@@ -93,9 +93,13 @@ class SignupViewControllerZero: UIViewController {
         
         // Individual Section
         
-        backgroundIndividualImageView.backgroundColor = UIColor.offWhite()
+        backgroundIndividualImageView.backgroundColor = UIColor.whiteColor()
         backgroundIndividualImageView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight/2)
         self.view.addSubview(backgroundIndividualImageView)
+        
+        // THIS SETS STATUS BAR COLOR
+        self.navigationController?.navigationBar.barStyle = .Default
+        self.setNeedsStatusBarAppearanceUpdate()
         
         individualImageView.image = UIImage(named: "IconIndividual")
         individualImageView.center = backgroundIndividualImageView.center
@@ -125,11 +129,11 @@ class SignupViewControllerZero: UIViewController {
         //// Company Section
         
         
-        backgroundCompanyImageView.backgroundColor = UIColor.darkBlue()
+        backgroundCompanyImageView.backgroundColor = UIColor.mediumBlue()
         backgroundCompanyImageView.frame = CGRect(x: 0, y: screenHeight/2, width: screenWidth, height: screenHeight/2)
         self.view.addSubview(backgroundCompanyImageView)
         
-        companyImageView.image = UIImage(named: "IconBusinessBuilding")
+        companyImageView.image = UIImage(named: "IconBusiness")
         companyImageView.center = backgroundCompanyImageView.center
         companyImageView.frame = CGRect(x: backgroundCompanyImageView.frame.width/2-40, y: backgroundCompanyImageView.frame.height/2-60, width: 80, height: 80)
         
@@ -139,14 +143,15 @@ class SignupViewControllerZero: UIViewController {
         companyCheckbox.animationDuration = 0.5
         companyCheckbox.addTarget(self, action: #selector(checkState(_:)), forControlEvents: .ValueChanged)
         companyCheckbox.tintColor = UIColor.whiteColor()
-        
+        companyCheckbox.secondaryTintColor = UIColor.whiteColor()
+
         companyTitle.textColor = UIColor.whiteColor()
         companyTitle.textAlignment = .Center
         companyTitle.font = UIFont(name: "MyriadPro-Regular", size: 18)!
         companyTitle.frame = CGRect(x: 0, y: backgroundCompanyImageView.frame.height/2+22, width: screenWidth, height: 40)
         companyTitle.text = "Company"
         
-        companySubtitle.textColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
+        companySubtitle.textColor = UIColor.whiteColor()
         companySubtitle.textAlignment = .Center
         companySubtitle.font = UIFont(name: "MyriadPro-Regular", size: 12)!
         companySubtitle.frame = CGRect(x: 0, y: backgroundCompanyImageView.frame.height/2+50, width: screenWidth, height: 40)

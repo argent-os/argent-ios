@@ -35,29 +35,35 @@ class AuthViewControllerStepFour: UIPageViewController, UIPageViewControllerDele
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
-        self.view.backgroundColor = UIColor.globalBackground()        // Set background image
-        let backgroundView: UIImageView = UIImageView(image: UIImage(named: "BackgroundWalkthroughThree"))
-        backgroundView.contentMode = UIViewContentMode.ScaleAspectFill
-        backgroundView.frame = self.view.bounds
-        self.view!.addSubview(backgroundView)
+        self.view.backgroundColor = UIColor.whiteColor()
+        
+        let imageName = "IconCustomCloudData"
+        let image = UIImage(named: imageName)
+        imageView.image = image
+        imageView.layer.masksToBounds = true
+        imageView.tag = 7577
+        imageView.frame = CGRect(x: 0, y: 0, width: 130, height: 130)
+        imageView.frame.origin.y = 80
+        imageView.frame.origin.x = (self.view.bounds.size.width - imageView.frame.size.width) / 2.0 // centered left to right.
+        self.view.addSubview(imageView)
         
         // Set range of string length to exactly 8, the number of characters
-        lblDetail.frame = CGRect(x: 0, y: screenHeight*0.39, width: screenWidth, height: 40)
+        lblDetail.frame = CGRect(x: 0, y: 270, width: screenWidth, height: 40)
         lblDetail.tag = 7579
         lblDetail.textAlignment = NSTextAlignment.Center
         lblDetail.textColor = UIColor.whiteColor()
-        lblDetail.adjustAttributedString("APPLE PAY", spacing: 4, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.whiteColor())
+        lblDetail.adjustAttributedString("SECURITY", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.darkBlue().colorWithAlphaComponent(0.75))
         view.addSubview(lblDetail)
         
         let lblBody = UILabel()
         // Set range of string length to exactly 8, the number of characters
-        lblBody.frame = CGRect(x: 50, y: screenHeight*0.40, width: screenWidth-100, height: 200)
+        lblBody.frame = CGRect(x: 90, y: 260, width: screenWidth-180, height: 200)
         lblBody.numberOfLines = 0
         lblBody.alpha = 0.9
-        lblBody.adjustAttributedString("Receive payments or pay others with one of the world's most secure payment systems.", spacing: 2, fontName: "HelveticaNeue-Light", fontSize: 14, fontColor: UIColor.whiteColor())
+        let atrText = adjustAttributedString("We use end-to-end 256-bit TLS (SSL) encryption and bank-grade security.", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.darkBlue(), lineSpacing: 9.0)
+        lblBody.attributedText = atrText
         lblBody.tag = 7579
         lblBody.textAlignment = NSTextAlignment.Center
-        lblBody.textColor = UIColor.whiteColor()
         view.addSubview(lblBody)
         
     }
@@ -68,6 +74,5 @@ class AuthViewControllerStepFour: UIPageViewController, UIPageViewControllerDele
     }
     
     override func viewDidAppear(animated: Bool) {
-        addSubviewWithFade(imageView, parentView: self, duration: 0.8)
     }
 }

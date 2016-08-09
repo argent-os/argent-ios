@@ -58,25 +58,29 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate,
         addHelpButton()
         
         let titleDocumentLabel = UILabel()
-        titleDocumentLabel.text = "Identity Document Verification"
+        let titleAttributedString = adjustAttributedString("IDENTITY DOCUMENT", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue().colorWithAlphaComponent(0.75), lineSpacing: 0.0)
+        titleDocumentLabel.attributedText = titleAttributedString
         titleDocumentLabel.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.75)
+        titleDocumentLabel.textAlignment = .Center
         titleDocumentLabel.font = UIFont(name: "MyriadPro-Regular", size: 13)!
-        titleDocumentLabel.frame = CGRect(x: 30, y: 80, width: 300, height: 30)
+        titleDocumentLabel.frame = CGRect(x: 0, y: 75, width: screenWidth, height: 30)
         addSubviewWithFade(titleDocumentLabel, parentView: self, duration: 0.5)
         
         let splitView = UIView()
-        splitView.frame = CGRect(x: 20, y: 420, width: screenWidth, height: 1)
+        splitView.frame = CGRect(x: 80, y: 420, width: screenWidth-160, height: 1)
         splitView.backgroundColor = UIColor.lightBlue().colorWithAlphaComponent(0.2)
         addSubviewWithFade(splitView, parentView: self, duration: 0.5)
         
         let ssnTitleLabel = UILabel()
-        ssnTitleLabel.text = "Social Security Verification"
+        let ssnAttributedString = adjustAttributedString("SOCIAL SECURITY", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue().colorWithAlphaComponent(0.75), lineSpacing: 0.0)
+        ssnTitleLabel.attributedText = ssnAttributedString
+        ssnTitleLabel.textAlignment = .Center
         ssnTitleLabel.font = UIFont(name: "MyriadPro-Regular", size: 13)!
         ssnTitleLabel.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.75)
-        ssnTitleLabel.frame = CGRect(x: 30, y: 430, width: 300, height: 30)
+        ssnTitleLabel.frame = CGRect(x: 00, y: 435, width: screenWidth, height: 30)
         addSubviewWithFade(ssnTitleLabel, parentView: self, duration: 0.5)
         
-        self.view.backgroundColor = UIColor.offWhite()
+        self.view.backgroundColor = UIColor.whiteColor()
         
 //        self.navigationItem.title = ""
 //        self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
@@ -95,7 +99,7 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate,
         passportCardButton.setAttributedTitle(str0, forState: .Normal)
         passportCardButton.setTitleColor(UIColor.mediumBlue(), forState: .Normal)
         passportCardButton.setTitleColor(UIColor.darkBlue(), forState: .Highlighted)
-        passportCardButton.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.2).CGColor
+        passportCardButton.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.4).CGColor
         passportCardButton.layer.borderWidth = 1
         passportCardButton.layer.cornerRadius = 5
         passportCardButton.layer.masksToBounds = true
@@ -114,7 +118,7 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate,
         self.identityCardButton.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
         self.identityCardButton.setTitleColor(UIColor.mediumBlue(), forState: .Normal)
         self.identityCardButton.setTitleColor(UIColor.darkBlue(), forState: .Highlighted)
-        self.identityCardButton.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.2).CGColor
+        self.identityCardButton.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.4).CGColor
         self.identityCardButton.layer.borderWidth = 1
         self.identityCardButton.layer.cornerRadius = 5
         self.identityCardButton.layer.masksToBounds = true
@@ -131,14 +135,14 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate,
         self.driversLicenseButton.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
         self.driversLicenseButton.setTitleColor(UIColor.mediumBlue(), forState: .Normal)
         self.driversLicenseButton.setTitleColor(UIColor.darkBlue(), forState: .Highlighted)
-        self.driversLicenseButton.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.2).CGColor
+        self.driversLicenseButton.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.4).CGColor
         self.driversLicenseButton.layer.borderWidth = 1
         self.driversLicenseButton.layer.cornerRadius = 5
         self.driversLicenseButton.layer.masksToBounds = true
         self.driversLicenseButton.backgroundColor = UIColor.whiteColor()
         self.driversLicenseButton.addTarget(self, action: #selector(IdentityVerificationViewController.openCamera(_:)), forControlEvents: .TouchUpInside)
         
-        self.socialSecurityButton.frame = CGRect(x: 30, y: 460, width: screenWidth-60, height: 80)
+        self.socialSecurityButton.frame = CGRect(x: 30, y: 470, width: screenWidth-60, height: 80)
         let str3 = NSAttributedString(string: "Social Security Number", attributes: [
             NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 15)!,
             NSForegroundColorAttributeName:UIColor.lightBlue()
@@ -149,7 +153,7 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate,
         self.socialSecurityButton.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
         self.socialSecurityButton.setTitleColor(UIColor.mediumBlue(), forState: .Normal)
         self.socialSecurityButton.setTitleColor(UIColor.darkBlue(), forState: .Highlighted)
-        self.socialSecurityButton.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.2).CGColor
+        self.socialSecurityButton.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.4).CGColor
         self.socialSecurityButton.layer.borderWidth = 1
         self.socialSecurityButton.layer.cornerRadius = 5
         self.socialSecurityButton.layer.masksToBounds = true
@@ -163,6 +167,8 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate,
             self.driversLicenseButton.frame = CGRect(x: 30, y: 240, width: screenWidth-60, height: 60)
             
             self.socialSecurityButton.frame = CGRect(x: 30, y: 320, width: screenWidth-60, height: 60)
+            
+            splitView.removeFromSuperview()
         }
     }
     
@@ -191,7 +197,7 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate,
             let overlayView = UIView()
             overlayView.frame = CGRect(x: 20, y: screenHeight*0.25, width: screenWidth-40, height: 210)
             overlayView.layer.cornerRadius = 5
-            overlayView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
+            overlayView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
             self.imagePickerController.view.addSubview(overlayView)
 
             let overlayText = UILabel()
