@@ -203,7 +203,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdendifier, forIndexPath: indexPath) as! MerchantPlanCell
         
-        CellAnimator.animateCell(cell, withTransform: CellAnimator.TransformTilt, andDuration: 0.3)
+        // CellAnimator.animateCell(cell, withTransform: CellAnimator.TransformTilt, andDuration: 0.3)
         
         if let name = plansArray![indexPath.row].name {
             cell.planNameLabel.text = name
@@ -214,7 +214,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
             let fcDIN = formatCurrency(amount, fontName: "DINAlternate-Bold", superSize: 11, fontSize: 14, offsetSymbol: 2, offsetCents: 2)
             
             let attrs: [String: AnyObject] = [
-                NSForegroundColorAttributeName : UIColor.lightBlue().colorWithAlphaComponent(0.2),
+                NSForegroundColorAttributeName : UIColor.darkBlue(),
                 NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 12)!
             ]
             
@@ -230,19 +230,19 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
             
             switch interval {
             case "day":
-                let interval = NSAttributedString(string: " / day", attributes: attrs)
+                let interval = NSAttributedString(string: " per day", attributes: attrs)
                 cell.planAmountLabel.attributedText = fcMYR + interval
             case "week":
-                let interval = NSAttributedString(string: " / wk", attributes: attrs)
+                let interval = NSAttributedString(string: " per wk", attributes: attrs)
                 cell.planAmountLabel.attributedText = fcMYR + interval
             case "month":
-                let interval = NSAttributedString(string: " / mo", attributes: attrs)
+                let interval = NSAttributedString(string: " per mo", attributes: attrs)
                 cell.planAmountLabel.attributedText = fcMYR + interval
             case "year":
-                let interval = NSAttributedString(string: " / yr", attributes: attrs)
+                let interval = NSAttributedString(string: " per yr", attributes: attrs)
                 cell.planAmountLabel.attributedText = fcMYR + interval
             default:
-                let interval = NSAttributedString(string: " / " + interval, attributes: attrs)
+                let interval = NSAttributedString(string: " per " + interval, attributes: attrs)
                 cell.planAmountLabel.attributedText = fcMYR + interval
             }
         }

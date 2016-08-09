@@ -129,13 +129,13 @@ class SignupViewControllerZero: UIViewController {
         //// Company Section
         
         
-        backgroundCompanyImageView.backgroundColor = UIColor.mediumBlue()
+        backgroundCompanyImageView.backgroundColor = UIColor.pastelBlue()
         backgroundCompanyImageView.frame = CGRect(x: 0, y: screenHeight/2, width: screenWidth, height: screenHeight/2)
         self.view.addSubview(backgroundCompanyImageView)
         
         companyImageView.image = UIImage(named: "IconBusiness")
         companyImageView.center = backgroundCompanyImageView.center
-        companyImageView.frame = CGRect(x: backgroundCompanyImageView.frame.width/2-40, y: backgroundCompanyImageView.frame.height/2-60, width: 80, height: 80)
+        companyImageView.frame = CGRect(x: backgroundCompanyImageView.frame.width/2-40-1, y: backgroundCompanyImageView.frame.height/2-60-1, width: 82, height: 82)
         
         companyCheckbox.frame = CGRect(x: backgroundCompanyImageView.frame.width/2-40, y: backgroundCompanyImageView.frame.height/2-60, width: 81, height: 81)
         companyCheckbox.markType = .Checkmark
@@ -161,7 +161,6 @@ class SignupViewControllerZero: UIViewController {
         
         pageTitle.frame = CGRect(x: 0, y: 30, width: screenWidth, height: 40)
         pageTitle.textAlignment = .Center
-        pageTitle.text = "Let's get started"
         pageTitle.textColor = UIColor.mediumBlue()
         pageTitle.font = UIFont(name: "MyriadPro-Regular", size: 18)!
         //        self.view.addSubview(pageTitle)

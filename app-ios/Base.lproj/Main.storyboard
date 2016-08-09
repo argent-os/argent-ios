@@ -50,6 +50,8 @@
             <string>MyriadPro-Regular</string>
             <string>MyriadPro-Regular</string>
             <string>MyriadPro-Regular</string>
+            <string>MyriadPro-Regular</string>
+            <string>MyriadPro-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -663,7 +665,7 @@ best fits your request.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DXL-Fw-E8I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5562" y="-3670"/>
+            <point key="canvasLocation" x="5634" y="-3521"/>
         </scene>
         <!--Web Terms View Controller-->
         <scene sceneID="yDm-hE-Mge">
@@ -1723,7 +1725,7 @@ best fits your request.</string>
                                     <constraint firstAttribute="height" constant="25" id="uww-XC-Xrw"/>
                                 </constraints>
                                 <color key="tintColor" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" image="ic_close_light">
+                                <state key="normal" image="IconClose">
                                     <color key="titleColor" red="0.16433394209999999" green="0.62479090969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
@@ -2530,8 +2532,8 @@ policy agreement. Tap to view</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="b1I-RA-B3O"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="20"/>
+                                <color key="textColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your username or email below" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMN-PE-ehn">
@@ -2539,8 +2541,8 @@ policy agreement. Tap to view</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="wNE-gv-Acw"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" white="1" alpha="0.64886853448275861" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="12"/>
+                                <color key="textColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RfJ-9a-IFG">
@@ -2558,7 +2560,7 @@ policy agreement. Tap to view</string>
                                     <constraint firstAttribute="width" constant="25" id="IcY-Jh-fFJ"/>
                                     <constraint firstAttribute="height" constant="25" id="ogR-6Z-WTy"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="ic_close_light"/>
+                                <state key="normal" backgroundImage="IconClose"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2746,7 +2748,7 @@ policy agreement. Tap to view</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EYn-Ls-vjQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6231" y="-4390"/>
+            <point key="canvasLocation" x="5919" y="-4314"/>
         </scene>
         <!--Web Privacy View Controller-->
         <scene sceneID="ht7-o5-pHb">
@@ -4012,6 +4014,7 @@ policy agreement. Tap to view</string>
         </scene>
     </scenes>
     <resources>
+        <image name="IconClose" width="24" height="24"/>
         <image name="IconCustomHelp" width="171" height="171"/>
         <image name="IconCustomLock" width="171" height="171"/>
         <image name="ic_close_light" width="43" height="43"/>
@@ -4024,19 +4027,19 @@ policy agreement. Tap to view</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="m0d-gd-RWW"/>
-        <segue reference="A1R-09-1HJ"/>
+        <segue reference="dtT-zy-VVd"/>
         <segue reference="UFB-DJ-qrH"/>
         <segue reference="Bot-Tn-1ZP"/>
         <segue reference="wgV-xY-MTp"/>
-        <segue reference="rLo-0p-I9d"/>
-        <segue reference="m3z-fp-Nlm"/>
         <segue reference="igQ-zk-tCm"/>
-        <segue reference="aks-Yo-Spb"/>
-        <segue reference="7cu-FP-MoG"/>
-        <segue reference="fEJ-lR-z9I"/>
+        <segue reference="m3z-fp-Nlm"/>
+        <segue reference="rLo-0p-I9d"/>
         <segue reference="agi-3I-cSC"/>
         <segue reference="VI5-hp-Gm2"/>
         <segue reference="ipn-3I-3vc"/>
+        <segue reference="aks-Yo-Spb"/>
+        <segue reference="fEJ-lR-z9I"/>
+        <segue reference="7cu-FP-MoG"/>
         <segue reference="tsA-Cg-VzQ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

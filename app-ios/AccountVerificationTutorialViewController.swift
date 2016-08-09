@@ -149,7 +149,7 @@ class AccountVerificationTutorialViewController: UIViewController {
         exitButton.addTarget(self, action: #selector(self.close(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(exitButton)
         
-        if self.view.layer.frame.height < 600 {
+        if self.view.layer.frame.height < 667.0 {
             // iphone5 and below
             tutImage4.removeFromSuperview()
             bottomColorView.removeFromSuperview()
@@ -167,9 +167,13 @@ class AccountVerificationTutorialViewController: UIViewController {
             tutSubText3.frame = CGRect(x: 90, y: 200, width: 210, height: 50)
             
             tutText4.frame = CGRect(x: 20, y: 270, width: 260, height: 80)
-        } else {
-            // iphone6
-
+        } else if self.view.layer.frame.height > 667.0 {
+            // iphone6+
+            tutImage4.frame = CGRect(x: 0, y: 390, width: 300, height: 60)
+            tutText4.frame = CGRect(x: 20, y: 440, width: 260, height: 80)
+        } else if self.view.layer.frame.height <= 480.0 {
+            tutText4.removeFromSuperview()
+            tutImage4.removeFromSuperview()
         }
     }
     

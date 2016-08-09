@@ -35,14 +35,14 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
 //        self.view!.addSubview(backgroundView)
 //        self.view.sendSubviewToBack(backgroundView)
         
-        self.view.backgroundColor = UIColor.deepBlue()
+        self.view.backgroundColor = UIColor.whiteColor()
         
         // Add button to keyboard
         addToolbarButton()
         
         // Focuses view controller on first name text input
         emailTextField.becomeFirstResponder()
-        emailTextField.tintColor = UIColor.whiteColor()
+        emailTextField.tintColor = UIColor.darkBlue()
         
         // Add action to close button to return to auth view
         closeButton.addTarget(self, action: #selector(ResetPasswordViewController.goToLogin(_:)), forControlEvents: UIControlEvents.TouchUpInside)
@@ -66,13 +66,13 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
         emailTextField.borderInactiveColor = UIColor.clearColor() // color with alpha
         emailTextField.backgroundColor = UIColor.clearColor()
         emailTextField.placeholder = "Username or Email"
-        emailTextField.placeholderColor = UIColor.whiteColor()
+        emailTextField.placeholderColor = UIColor.darkBlue()
         emailTextField.autocapitalizationType = UITextAutocapitalizationType.None
         emailTextField.autocorrectionType = UITextAutocorrectionType.No
         emailTextField.keyboardType = UIKeyboardType.EmailAddress
         emailTextField.returnKeyType = UIReturnKeyType.Next
         emailTextField.clearButtonMode = UITextFieldViewMode.WhileEditing
-        emailTextField.textColor = UIColor.whiteColor()
+        emailTextField.textColor = UIColor.darkBlue()
         emailTextField.frame = CGRect(x: screenWidth/2-150, y: screenHeight*0.30, width: 300, height: 50)
         emailTextField.returnKeyType = UIReturnKeyType.Next
         view.addSubview(emailTextField)
@@ -181,7 +181,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
     
     //Changing Status Bar
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+        return .Default
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

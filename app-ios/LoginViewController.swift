@@ -37,7 +37,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, WCSessionDeleg
     private let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.White)
 
     override func viewDidAppear(animated: Bool) {
-        addSubviewWithFade(imageView, parentView: self, duration: 0.8)
         NSUserDefaults.standardUserDefaults().setBool(false,forKey:"userLoggedIn");
         NSUserDefaults.standardUserDefaults().synchronize();
     }
@@ -54,7 +53,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, WCSessionDeleg
         
         loginButton.layer.cornerRadius = 3
         loginButton.layer.masksToBounds = true
-        loginButton.backgroundColor = UIColor.skyBlue().colorWithAlphaComponent(0.5)
+        loginButton.backgroundColor = UIColor.pastelBlue().colorWithAlphaComponent(0.5)
         loginButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.3), forState: .Normal)
         loginButton.addTarget(LoginBoxTableViewController(), action: #selector(LoginBoxTableViewController.login(_:)), forControlEvents: .TouchUpInside)
         
@@ -70,7 +69,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate, WCSessionDeleg
         //        self.view!.addSubview(backgroundView)
         //        self.view.sendSubviewToBack(backgroundView)
         
-        self.view.backgroundColor = UIColor.deepBlue()
+        self.view.backgroundColor = UIColor.whiteColor()
+        
+        let signInLabel = UILabel()
+        signInLabel.adjustAttributedString("SIGN IN", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.darkBlue().colorWithAlphaComponent(0.75))
+        signInLabel.textAlignment = .Center
+        signInLabel.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 60)
+        signInLabel.frame.origin.y = 200 // 12% down from the top
+//        addSubviewWithFade(signInLabel, parentView: self, duration: 0.3)
         
         activityIndicator.center = self.view.center
         activityIndicator.startAnimating()
@@ -81,14 +87,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate, WCSessionDeleg
         NSUserDefaults.standardUserDefaults().setValue("", forKey: "userAccessToken")
         NSUserDefaults.standardUserDefaults().synchronize()
         
-        UITextField.appearance().keyboardAppearance = .Dark
+        UITextField.appearance().keyboardAppearance = .Light
         
         // Add action to close button to return to auth view
         closeButton.addTarget(self, action: #selector(LoginViewController.goToAuth(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         closeButton.addTarget(self, action: #selector(LoginViewController.goToAuth(_:)), forControlEvents: UIControlEvents.TouchUpOutside)
         
-        onePasswordButton.frame = CGRect(x: 0, y: screenHeight-140, width: screenWidth, height: 50)
-        onePasswordButton.image = UIImage(named: "onepassword-button-light")
+        onePasswordButton.frame = CGRect(x: 0, y: screenHeight-140, width: screenWidth, height: 40)
+        onePasswordButton.image = UIImage(named: "onepassword-button-dark")
         onePasswordButton.contentMode = .ScaleAspectFit
         onePasswordButton.userInteractionEnabled = true
         self.view.addSubview(onePasswordButton)
@@ -107,11 +113,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, WCSessionDeleg
         resetPasswordButton.frame = CGRect(x: 0, y: screenHeight-60, width: screenWidth, height: 40)
         let str0 = NSAttributedString(string: "Forgot Password?", attributes: [
             NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 12)!,
-                NSForegroundColorAttributeName:UIColor.whiteColor()
+                NSForegroundColorAttributeName:UIColor.pastelBlue()
             ])
         let str1 = NSAttributedString(string: "Forgot Password?", attributes: [
             NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 12)!,
-            NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.5)
+            NSForegroundColorAttributeName:UIColor.pastelBlue().colorWithAlphaComponent(0.5)
             ])
         resetPasswordButton.setAttributedTitle(str0, forState: .Normal)
         resetPasswordButton.setAttributedTitle(str1, forState: .Highlighted)
@@ -123,7 +129,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, WCSessionDeleg
         let containerFrame: CGRect = self.loginBox.frame
         loginBox.frame = containerFrame
         loginBox.layer.cornerRadius = 3
-        loginBox.layer.borderColor = UIColor.offWhite().colorWithAlphaComponent(0.15).CGColor
+        loginBox.layer.borderColor =  UIColor.paleBlue().colorWithAlphaComponent(0.5).CGColor
         loginBox.layer.borderWidth = 1
         loginBox.layer.masksToBounds = true
         
@@ -137,14 +143,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate, WCSessionDeleg
         let keyboardTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
         view.addGestureRecognizer(keyboardTap)
         
-        let image = UIImage(named: "LogoOutline")
+        let image = UIImage(named: "LogoOutlineDark")
         imageView.image = image
         imageView.layer.masksToBounds = true
         imageView.tag = 42312
-        imageView.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
-        imageView.frame.origin.y = screenHeight*0.14 // 12% down from the top
+        imageView.frame = CGRect(x: 0, y: 0, width: 70, height: 70)
+        imageView.frame.origin.y = screenHeight*0.15 // 12% down from the top
         imageView.frame.origin.x = (self.view.bounds.size.width - imageView.frame.size.width) / 2.0 // centered left to right.
+        addSubviewWithFade(imageView, parentView: self, duration: 0.3)
         
+        if self.view.layer.frame.height <= 480.0 {
+            imageView.removeFromSuperview()
+        }
     }
 
     func goToReset(sender: AnyObject) {
@@ -156,7 +166,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, WCSessionDeleg
     {
         // Normally identifiers are started with capital letters, exception being authViewController, make sure UIStoryboard name is Auth, not Main
         let viewController:AuthViewController = UIStoryboard(name: "Auth", bundle: nil).instantiateViewControllerWithIdentifier("authViewController") as! AuthViewController
-        viewController.modalTransitionStyle = .CrossDissolve
+        viewController.modalTransitionStyle = .CoverVertical
         self.presentViewController(viewController, animated: true, completion: nil)
     }
 
@@ -167,7 +177,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, WCSessionDeleg
     
     //Changing Status Bar
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+        return .Default
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -306,13 +316,13 @@ extension LoginViewController {
     func textFieldDidChange(textField: UITextField) {
         if textField.text?.characters.count > 0 {
             loginButton.userInteractionEnabled = true
-            loginButton.setBackgroundColor(UIColor.skyBlue(), forState: .Normal)
-            loginButton.setBackgroundColor(UIColor.skyBlue().darkerColor(), forState: .Highlighted)
+            loginButton.setBackgroundColor(UIColor.pastelBlue(), forState: .Normal)
+            loginButton.setBackgroundColor(UIColor.pastelBlue().darkerColor(), forState: .Highlighted)
             loginButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         } else {
             loginButton.userInteractionEnabled = false
-            loginButton.setBackgroundColor(UIColor.skyBlue().colorWithAlphaComponent(0.3), forState: .Normal)
-            loginButton.setBackgroundColor(UIColor.skyBlue().colorWithAlphaComponent(0.3), forState: .Highlighted)
+            loginButton.setBackgroundColor(UIColor.pastelBlue().colorWithAlphaComponent(0.3), forState: .Normal)
+            loginButton.setBackgroundColor(UIColor.pastelBlue().colorWithAlphaComponent(0.3), forState: .Highlighted)
             loginButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.5), forState: .Normal)
         }
     }
@@ -324,8 +334,8 @@ extension LoginViewController {
     func dismissKeyboard() {
         loginButton.userInteractionEnabled = false
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
-        loginButton.setBackgroundColor(UIColor.skyBlue().colorWithAlphaComponent(0.3), forState: .Normal)
-        loginButton.setBackgroundColor(UIColor.skyBlue().colorWithAlphaComponent(0.3), forState: .Highlighted)
+        loginButton.setBackgroundColor(UIColor.pastelBlue().colorWithAlphaComponent(0.3), forState: .Normal)
+        loginButton.setBackgroundColor(UIColor.pastelBlue().colorWithAlphaComponent(0.3), forState: .Highlighted)
         loginButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.5), forState: .Normal)
         
         view.endEditing(true)
@@ -333,15 +343,15 @@ extension LoginViewController {
     
     func keyboardWillAppear(notification: NSNotification){
         loginButton.userInteractionEnabled = true
-        loginButton.setBackgroundColor(UIColor.skyBlue(), forState: .Normal)
-        loginButton.setBackgroundColor(UIColor.skyBlue().darkerColor(), forState: .Highlighted)
+        loginButton.setBackgroundColor(UIColor.pastelBlue(), forState: .Normal)
+        loginButton.setBackgroundColor(UIColor.pastelBlue().darkerColor(), forState: .Highlighted)
         loginButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
     }
     
     func keyboardWillDisappear(notification: NSNotification){
         loginButton.userInteractionEnabled = false
-        loginButton.setBackgroundColor(UIColor.skyBlue().colorWithAlphaComponent(0.3), forState: .Normal)
-        loginButton.setBackgroundColor(UIColor.skyBlue().colorWithAlphaComponent(0.3), forState: .Highlighted)
+        loginButton.setBackgroundColor(UIColor.pastelBlue().colorWithAlphaComponent(0.3), forState: .Normal)
+        loginButton.setBackgroundColor(UIColor.pastelBlue().colorWithAlphaComponent(0.3), forState: .Highlighted)
         loginButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.5), forState: .Normal)
     }
 }

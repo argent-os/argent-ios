@@ -190,8 +190,7 @@ class SignupViewControllerOne: UIViewController, UITextFieldDelegate, UIScrollVi
     }
     
     // Add send toolbar
-    func addToolbarButton()
-    {
+    func addToolbarButton() {
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let sendToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, screenWidth, 50))

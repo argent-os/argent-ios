@@ -138,8 +138,7 @@ class BankListModalViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.tableFooterView = UIView()
         tableView.reloadData()
         tableView.showsVerticalScrollIndicator = false
-        print(self.view.frame.height)
-        tableView.frame = CGRect(x: 0, y: 10, width: 280, height: 390)
+        tableView.frame = CGRect(x: 0, y: 0, width: 280, height: 390)
         self.view.addSubview(tableView)
         
         self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle

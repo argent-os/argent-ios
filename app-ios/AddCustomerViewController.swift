@@ -69,7 +69,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         let screenHeight = screen.size.height
         
 //        self.view.backgroundColor = UIColor.offWhite()
-        let backgroundImageView = UIImageView(image: UIImage(named: "BackgroundWalkthroughTwo"), highlightedImage: nil)
+        let backgroundImageView = UIImageView(image: UIImage(named: "BackgroundGradientBlueDark"), highlightedImage: nil)
         backgroundImageView.frame = CGRectMake(0, 0, screenWidth, screenHeight)
         backgroundImageView.contentMode = .ScaleAspectFill
         backgroundImageView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
@@ -101,7 +101,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         addSubviewWithFade(lbl, parentView: self, duration: 0.3)
 
         let dividerView = UIImageView()
-        dividerView.image = UIImage(named: "Divider")?.alpha(0.3)
+        dividerView.image = UIImage(named: "DividerWhite")?.alpha(0.5)
         dividerView.frame = CGRect(x: 100, y: screenHeight*0.39, width: screenWidth-200, height: 1)
         addSubviewWithFade(dividerView, parentView: self, duration: 0.3)
         

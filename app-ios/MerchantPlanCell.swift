@@ -34,15 +34,15 @@ class MerchantPlanCell: UITableViewCell {
     
         planNameLabel.frame = CGRect(x: 20, y: 20, width: 180, height: 20)
         planNameLabel.font = UIFont(name: "MyriadPro-Regular", size: 16)
-        planNameLabel.textColor = UIColor.lightBlue()
+        planNameLabel.textColor = UIColor.darkBlue()
         
         planAmountLabel.frame = CGRect(x: 20, y: 40, width: 180, height: 20)
         planAmountLabel.textColor = UIColor.lightBlue()
         
         planButton.frame = CGRect(x: self.contentView.frame.size.width-95, y: 25, width: 80, height: 30)
         planButton.buttonState = AvePurchaseButtonState.Normal
-        planButton.normalColor = UIColor.iosBlue()
-        planButton.tintColor = UIColor.iosBlue()
+        planButton.normalColor = UIColor.pastelBlue()
+        planButton.tintColor = UIColor.pastelBlue()
         planButton.confirmationColor = UIColor.brandGreen()
         // planButton.sizeToFit()
     }

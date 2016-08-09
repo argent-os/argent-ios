@@ -51,7 +51,7 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
         usernameTextField.attributedPlaceholder = str
         usernameTextField.textRectForBounds(CGRectMake(0, 0, 0, 0))
         usernameTextField.font = UIFont(name: "MyriadPro-Regular", size: 15)!
-        usernameTextField.tintColor = UIColor.lightBlue()
+        usernameTextField.tintColor = UIColor.pastelBlue()
         usernameTextField.addTarget(LoginViewController(), action: #selector(LoginViewController().textFieldDidChange(_:)), forControlEvents: .EditingChanged)
 
         passwordTextField.tag = 63632
@@ -60,7 +60,7 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
         passwordTextField.textRectForBounds(CGRectMake(0, 0, 0, 0))
         passwordTextField.clearsOnBeginEditing = false
         passwordTextField.font = UIFont(name: "MyriadPro-Regular", size: 15)!
-        passwordTextField.tintColor = UIColor.lightBlue()
+        passwordTextField.tintColor = UIColor.pastelBlue()
         passwordTextField.addTarget(LoginViewController(), action: #selector(LoginViewController().textFieldDidChange(_:)), forControlEvents: .EditingChanged)
 
         loginTableView.separatorColor = UIColor.paleBlue().colorWithAlphaComponent(0.5)

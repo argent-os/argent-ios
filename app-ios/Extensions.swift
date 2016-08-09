@@ -224,6 +224,9 @@ extension UIColor {
     static func pastelLightBlue() -> UIColor {
         return UIColor(rgba: "#eef9ff")
     }
+    static func pastelDarkBlue() -> UIColor {
+        return UIColor(rgba: "#3d8fcf")
+    }
     static func pastelRed() -> UIColor {
         return UIColor(rgba: "#f3b0ae")
     }
@@ -232,6 +235,18 @@ extension UIColor {
     }
     static func pastelBlueGray() -> UIColor {
         return UIColor(rgba: "#d8e3ea")
+    }
+    static func brandGreen() -> UIColor {
+        return UIColor(rgba: "#5dc4a6")
+    }
+    static func brandRed() -> UIColor {
+        return UIColor(rgba: "#e84c4c")
+    }
+    static func offWhite() -> UIColor {
+        return UIColor(rgba: "#f5f7fa")
+    }
+    static func iosBlue() -> UIColor {
+        return UIColor(rgba: "#007aff")
     }
     static func mediumBlue() -> UIColor {
         if APP_THEME == "LIGHT" {
@@ -280,34 +295,6 @@ extension UIColor {
             return UIColor(rgba: "#e5df1f")
         } else {
             return UIColor(rgba: "#e5df1f")
-        }
-    }
-    static func brandGreen() -> UIColor {
-        if APP_THEME == "LIGHT" {
-            return UIColor(rgba: "#1ecc70")
-        } else {
-            return UIColor(rgba: "#0f49de")
-        }
-    }
-    static func brandRed() -> UIColor {
-        if APP_THEME == "LIGHT" {
-            return UIColor(rgba: "#e84c4c")
-        } else {
-            return UIColor(rgba: "#fd0981")
-        }
-    }
-    static func offWhite() -> UIColor {
-        if APP_THEME == "LIGHT" {
-            return UIColor(rgba: "#f5f7fa")
-        } else {
-            return UIColor(rgba: "#f5f7fa")
-        }
-    }
-    static func iosBlue() -> UIColor {
-        if APP_THEME == "LIGHT" {
-            return UIColor(rgba: "#007aff")
-        } else {
-            return UIColor(rgba: "#007aff")
         }
     }
     static func neonBlue() -> UIColor {

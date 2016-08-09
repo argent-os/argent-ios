@@ -66,6 +66,14 @@ class AuthViewControllerStepFour: UIPageViewController, UIPageViewControllerDele
         lblBody.textAlignment = NSTextAlignment.Center
         view.addSubview(lblBody)
         
+        // iphone6+ check
+        if self.view.layer.frame.height > 667.0 {
+            lblBody.frame = CGRect(x: 90, y: 280, width: screenWidth-180, height: 200)
+            lblDetail.frame = CGRect(x: 0, y: 290, width: screenWidth, height: 40)
+        } else if self.view.layer.frame.height <= 480.0 {
+            lblBody.frame = CGRect(x: 90, y: 235, width: screenWidth-180, height: 200)
+            lblDetail.frame = CGRect(x: 0, y: 250, width: screenWidth, height: 40)
+        }
     }
     
     //Changing Status Bar

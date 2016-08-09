@@ -49,13 +49,13 @@ class MenuChildViewControllerOne: UIViewController, IndicatorInfoProvider {
         btnAcceptPayment.contentEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnAcceptPayment.contentHorizontalAlignment = .Left
         btnAcceptPayment.setAttributedTitle(str1, forState: .Normal)
-        btnAcceptPayment.setBackgroundColor(UIColor.deepBlue().lighterColor(), forState: .Highlighted)
+        btnAcceptPayment.setBackgroundColor(UIColor.pastelBlue().darkerColor(), forState: .Normal)
+        btnAcceptPayment.setBackgroundColor(UIColor.pastelBlue().lighterColor(), forState: .Highlighted)
         btnAcceptPayment.frame = CGRect(x: 15, y: 30, width: screenWidth-30, height: 60)
         btnAcceptPayment.layer.cornerRadius = 3
         btnAcceptPayment.layer.masksToBounds = true
         btnAcceptPayment.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.2).CGColor
         btnAcceptPayment.layer.borderWidth = 1
-        btnAcceptPayment.backgroundColor = UIColor.seaBlue()
         btnAcceptPayment.addTarget(self, action: #selector(terminalButtonSelected(_:)), forControlEvents: .TouchUpInside)
         scrollView.addSubview(btnAcceptPayment)
         scrollView.bringSubviewToFront(btnAcceptPayment)

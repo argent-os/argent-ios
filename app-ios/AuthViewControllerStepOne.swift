@@ -69,9 +69,14 @@ class AuthViewControllerStepOne: UIPageViewController, UIPageViewControllerDeleg
         addSubviewWithFade(shimmeringView, parentView: self, duration: 1)
         addSubviewWithFade(lblDetail, parentView: self, duration: 1)
         
+        if self.view.layer.frame.height <= 480.0 {
+            lblDetail.frame = CGRect(x: 0, y: 320, width: screenWidth, height: 40)
+            shimmeringView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight+70) // shimmeringView.bounds
+        }
+        
         //        // Set range of string length to exactly 8, the number of characters
         //        lblSubtext.font = UIFont(name: "MyriadPro-Regular", size: 17)
-        //        lblSubtext.text = "ARGENT"
+        //        lblSubtext.text = APP_NAME
         //        lblSubtext.tag = 7579
         //        lblSubtext.font.morphingEffect = .Scale
         //        lblSubtext.font.delegate = self

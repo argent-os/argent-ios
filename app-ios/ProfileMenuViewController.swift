@@ -264,7 +264,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
     }
     
     func openStoreProductWithiTunesItemIdentifier(sender: AnyObject) {
-        showGlobalNotification("Loading App Store", duration: 1, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.mediumBlue())
+        showGlobalNotification("Loading App Store", duration: 1, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.pastelBlue())
         
         let storeViewController = SKStoreProductViewController()
         storeViewController.delegate = self

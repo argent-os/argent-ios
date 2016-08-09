@@ -68,10 +68,10 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
         // During startup (viewDidLoad or in storyboard) do:
         self.tableView.allowsMultipleSelectionDuringEditing = false
         self.tableView.showsVerticalScrollIndicator = false
-        self.tableView.backgroundColor = UIColor.offWhite()
+        self.tableView.backgroundColor = UIColor.whiteColor()
         
         self.navigationItem.title = "Connected Banks"
-        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 60)
+        //self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 60)
         
         let indicator = UIActivityIndicatorView()
         addActivityIndicatorView(indicator, view: self.tableView, color: UIActivityIndicatorViewStyle.Gray)
@@ -229,7 +229,7 @@ extension BankConnectedListTableViewController {
         
         cell.background.layer.cornerRadius = 5
         cell.background.clipsToBounds = true
-        cell.backgroundColor = UIColor.offWhite()
+        cell.backgroundColor = UIColor.whiteColor()
         tableView.separatorColor = UIColor.lightBlue().colorWithAlphaComponent(0.3)
         cell.selectionStyle = UITableViewCellSelectionStyle.Blue;
         cell.textLabel?.tintColor = UIColor.lightBlue()
@@ -245,7 +245,7 @@ extension BankConnectedListTableViewController {
                     NSForegroundColorAttributeName : UIColor.lightBlue(),
                     NSFontAttributeName : UIFont.systemFontOfSize(16, weight: UIFontWeightRegular)
                     ])
-                cell.header.backgroundColor = UIColor.offWhite()
+                cell.header.backgroundColor = UIColor.whiteColor()
                 cell.bankLogoImageView.image = UIImage(named: "bank_avatar_stripe")
                 cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName

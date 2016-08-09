@@ -257,7 +257,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIToolbar.appearance().backgroundColor = UIColor.skyBlue()
                 
         // Tabbar UI
-        UITabBar.appearance().tintColor = UIColor.pastelSkyBlue()
+        UITabBar.appearance().tintColor = UIColor.pastelDarkBlue()
         // UITabBar.appearance().barTintColor = UIColor.whiteColor()
         
         // Page Control UI

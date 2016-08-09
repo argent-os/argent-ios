@@ -115,7 +115,7 @@ class AuthViewController: UIPageViewController, UIPageViewControllerDelegate, LT
         lbl.tag = 7578
         lbl.textAlignment = NSTextAlignment.Center
         lbl.textColor = UIColor.darkBlue()
-        lbl.adjustAttributedString("ARGENT", spacing: 4, fontName: "MyriadPro-Regular", fontSize: 23, fontColor: UIColor.darkBlue())
+        lbl.adjustAttributedString(APP_NAME.uppercaseString, spacing: 4, fontName: "MyriadPro-Regular", fontSize: 23, fontColor: UIColor.darkBlue())
         view.addSubview(lbl)
         
 //        _ = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: #selector(AuthViewController.changeText(_:)), userInfo: nil, repeats: true)
@@ -125,6 +125,13 @@ class AuthViewController: UIPageViewController, UIPageViewControllerDelegate, LT
         dividerView.frame = CGRect(x: 100, y: 265, width: screenWidth-200, height: 1)
         self.view.addSubview(dividerView)
     
+        print(self.view.layer.frame.height)
+        if self.view.layer.frame.height > 667.0 {
+            dividerView.frame = CGRect(x: 100, y: 285, width: screenWidth-200, height: 1)
+        } else if self.view.layer.frame.height <= 480.0 {
+            dividerView.frame = CGRect(x: 100, y: 245, width: screenWidth-200, height: 1)
+            lbl.frame = CGRect(x: 0, y: 200, width: screenWidth, height: 40)
+        }
     }
     
     //Changing Status Bar
