@@ -723,7 +723,7 @@ best fits your request.</string>
         <!--Profile-->
         <scene sceneID="pCQ-kF-NQE">
             <objects>
-                <viewController title="Profile" id="QT1-zk-YMS" customClass="ProfileViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" title="Profile" id="QT1-zk-YMS" customClass="ProfileViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9gY-er-fKy"/>
                         <viewControllerLayoutGuide type="bottom" id="qbv-YN-1RU"/>
@@ -1377,7 +1377,7 @@ best fits your request.</string>
         <!--Notifications-->
         <scene sceneID="jQl-QQ-Qt4">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="D1r-HM-gkI" customClass="NotificationsViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NotificationsViewController" hidesBottomBarWhenPushed="YES" id="D1r-HM-gkI" customClass="NotificationsViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zeF-hV-Ot7"/>
                         <viewControllerLayoutGuide type="bottom" id="5xt-Ah-NiE"/>

@@ -76,6 +76,7 @@ class ConfigureAppViewController: FormViewController, UIApplicationDelegate {
                     UIApplication.sharedApplication().idleTimerDisabled = false
                 }
         }
+        
         let configureCenterMenuRow = SwitchRowFormer<FormSwitchCell>() {
             $0.titleLabel.text = "Hide center menu text"
             $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 14)!
@@ -95,6 +96,52 @@ class ConfigureAppViewController: FormViewController, UIApplicationDelegate {
                     KeychainSwift().set(false, forKey: "hideCenterMenuText", withAccess: .None)
                 }
         }
+        
+        let configureConsumerModeRow = SwitchRowFormer<FormSwitchCell>() {
+            $0.titleLabel.text = "Minimal Mode"
+            $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 14)!
+            $0.switchButton.onTintColor = UIColor.oceanBlue()
+            }.configure() { cell in
+                cell.rowHeight = 60
+                if(KeychainSwift().getBool("minimalMode") == true) {
+                    cell.switched = true
+                } else {
+                    cell.switched = false
+                }
+                cell.update()
+            }.onSwitchChanged { on in
+                if(on.boolValue == true) {
+                    KeychainSwift().set(true, forKey: "minimalMode", withAccess: .None)
+                    if let tabBarController = self.tabBarController {
+                        print(tabBarController.viewControllers?.count)
+                        if tabBarController.viewControllers?.count < 4 {
+                            return
+                        } else {
+                            tabBarController.viewControllers?.removeAtIndex(0)
+                            tabBarController.viewControllers?.removeAtIndex(0)
+                        }
+                    }
+                } else {
+                    KeychainSwift().set(false, forKey: "minimalMode", withAccess: .None)
+                    var controllerArray = [UIViewController]()
+                    let storyBoard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+                    let controller1 = storyBoard.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
+                    let controller2 = storyBoard.instantiateViewControllerWithIdentifier("NotificationsViewController") as! NotificationsViewController
+                    let controller3 = storyBoard.instantiateViewControllerWithIdentifier("SearchViewController") as! SearchViewController
+                    let controller4 = storyBoard.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
+                    let controller5 = storyBoard.instantiateViewControllerWithIdentifier("MenuViewController") as! MenuViewController
+                    
+                    if self.tabBarController!.viewControllers?.count < 4 {
+                        self.tabBarController?.viewControllers?.insert(controller1, atIndex: 0)
+                        self.tabBarController?.viewControllers?.insert(controller2, atIndex: 1)
+                        for item in self.tabBarController!.tabBar.items! {
+                            item.title = ""
+                            item.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
+                        }
+                    }
+                }
+        }
+
 //        let configureThemeRow = SwitchRowFormer<FormSwitchCell>() {
 //            $0.titleLabel.text = "Alternate Theme"
 //            $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 14)!
@@ -145,7 +192,7 @@ class ConfigureAppViewController: FormViewController, UIApplicationDelegate {
         
         // Create SectionFormers
         
-        let titleSection = SectionFormer(rowFormer: configurePOSRowScreenAlive).set(headerViewFormer: createHeader("App Settings"))
+        let titleSection = SectionFormer(rowFormer: configurePOSRowScreenAlive, configureConsumerModeRow).set(headerViewFormer: createHeader("App Settings"))
         former.append(sectionFormer: titleSection)
     }
     
