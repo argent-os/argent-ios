@@ -180,7 +180,7 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
 
                         
                         if(response.response?.statusCode == 200) {
-                            showGlobalNotification("Success!", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
+                            showGlobalNotification("Success!", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.brandGreen())
 
                             // go to main view
                         } else {

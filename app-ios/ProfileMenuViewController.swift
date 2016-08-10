@@ -9,7 +9,6 @@
 import UIKit
 import Foundation
 import SafariServices
-import DGElasticPullToRefresh
 import CWStatusBarNotification
 import StoreKit
 import Crashlytics
@@ -64,6 +63,8 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
 
     private let opaqueView = UIView()
     
+    private let refreshControlView = UIRefreshControl()
+
     private var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
 
     override func viewDidLoad() {
@@ -81,7 +82,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         let app: UIApplication = UIApplication.sharedApplication()
         let statusBarHeight: CGFloat = app.statusBarFrame.size.height
         let statusBarView: UIView = UIView(frame: CGRectMake(0, -statusBarHeight, UIScreen.mainScreen().bounds.size.width, statusBarHeight))
-        statusBarView.backgroundColor = UIColor.whiteColor()
+        statusBarView.backgroundColor = UIColor.clearColor()
         self.navigationController?.navigationBar.addSubview(statusBarView)
         
         self.verifiedLabel.contentMode = .Center
@@ -94,7 +95,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         let verifyTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.showTutorialModal(_:)))
         self.verifiedLabel.addGestureRecognizer(verifyTap)
         self.verifiedLabel.userInteractionEnabled = true
-        addSubviewWithFade(self.verifiedLabel, parentView: self, duration: 1)
+        self.view.addSubview(self.verifiedLabel)
         self.view.bringSubviewToFront(self.verifiedLabel)
 
         Account.getStripeAccount { (acct, err) in
@@ -165,7 +166,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                     self.locationLabel.removeFromSuperview()
                     self.verifiedLabel.layer.borderWidth = 0
                     self.verifiedLabel.frame = CGRect(x: 30, y: 100, width: screenWidth-60, height: 30)
-                    addSubviewWithFade(self.verifiedLabel, parentView: self, duration: 1)
+                    self.view.addSubview(self.verifiedLabel)
                     if disabled_reason == "rejected.fraud" {
                         self.verifiedButton.removeFromSuperview()
                         self.verifiedLabel.text = "Account rejected: Fraud detected"
@@ -186,7 +187,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                     self.verifiedButton.setTitleColor(UIColor.redColor(), forState: .Normal)
                     self.verifiedButton.addTarget(self, action: #selector(self.presentTutorial(_:)), forControlEvents: .TouchUpInside)
                     self.verifiedButton.addTarget(self, action: #selector(self.presentTutorial(_:)), forControlEvents: .TouchUpOutside)
-                    addSubviewWithFade(self.verifiedButton, parentView: self, duration: 0.8)
+                    self.view.addSubview(self.verifiedButton)
                     self.view.bringSubviewToFront(self.verifiedButton)
                 }
             }
@@ -216,36 +217,41 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         }
     }
     
+    func refresh(sender:AnyObject) {
+        self.configureView()
+        self.validateAccount()
+        self.loadProfile()
+        self.configureHeader()
+        self.reloadUserData()
+        self.tableView.tableHeaderView = ParallaxHeaderView.init(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 220));
+        self.view.sendSubviewToBack(self.tableView.tableHeaderView!)
+        let _ = Timeout(0.3) {
+            self.refreshControlView.endRefreshing()
+        }
+    }
+    
     func configureView() {
         
         let appVersionString: String = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
         versionCell.text = "Version " + appVersionString
         
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.view.backgroundColor = UIColor.clearColor()
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         
         self.view.bringSubviewToFront(tableView)
         self.tableView.tableHeaderView = ParallaxHeaderView.init(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 220));
         
-        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
-        loadingView.frame = CGRect(x: 0, y: 100, width: screenWidth, height: 100)
-        loadingView.tintColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
-        tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
-            self!.configureHeader()
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
-                self?.tableView.dg_stopLoading()
-                self!.loadProfile()
-                self!.configureHeader()
-                self!.tableView.tableHeaderView = ParallaxHeaderView.init(frame: CGRectMake(0, 0, CGRectGetWidth(self!.view.bounds), 220));
-            })
-            }, loadingView: loadingView)
-        tableView.dg_setPullToRefreshFillColor(UIColor.clearColor())
-        tableView.dg_setPullToRefreshBackgroundColor(UIColor.clearColor())
-        
+        refreshControlView.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControlView.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControlView) // not required when using UITableViewController
+
         configureHeader()
+        
         loadProfile()
         
+        reloadUserData()
+
         // Add action to share cell to return to activity menu
         shareCell.targetForAction(Selector("share:"), withSender: self)
         
@@ -286,6 +292,8 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         
+        reloadUserData()
+        
         let attachment: NSTextAttachment = NSTextAttachment()
         attachment.image = UIImage(named: "IconPinWhiteTiny")
         let attachmentString: NSAttributedString = NSAttributedString(attachment: attachment)
@@ -302,7 +310,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                         locationStr.appendAttributedString(attachmentString)
                         self.locationLabel.attributedText = locationStr
                     }
-                    addSubviewWithFade(self.locationLabel, parentView: self, duration: 0)
+                    self.view.addSubview(self.locationLabel)
                 } else {
                     // profile information is required, show tutorial button
                 }
@@ -332,7 +340,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         self.customersCountLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
         self.customersCountLabel.numberOfLines = 0
         self.customersCountLabel.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.75)
-        addSubviewWithFade(customersCountLabel, parentView: self, duration: 0.2)
+        self.view.addSubview(customersCountLabel)
         self.view.bringSubviewToFront(customersCountLabel)
 
         self.subscriptionsCountLabel.frame = CGRectMake(screenWidth*0.5-45, 130, 90, 70)
@@ -340,7 +348,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         self.subscriptionsCountLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
         self.subscriptionsCountLabel.numberOfLines = 0
         self.subscriptionsCountLabel.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.75)
-        addSubviewWithFade(self.subscriptionsCountLabel, parentView: self, duration: 0.2)
+        self.view.addSubview(self.subscriptionsCountLabel)
         self.view.bringSubviewToFront(subscriptionsCountLabel)
         
         self.plansCountLabel.frame = CGRectMake(screenWidth-120, 130, 80, 70)
@@ -348,7 +356,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         self.plansCountLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
         self.plansCountLabel.numberOfLines = 0
         self.plansCountLabel.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.75)
-        addSubviewWithFade(self.plansCountLabel, parentView: self, duration: 0.2)
+        self.view.addSubview(self.plansCountLabel)
         self.view.bringSubviewToFront(plansCountLabel)
         
         self.opaqueView.frame = CGRectMake(0, 150, screenWidth, 70)
@@ -417,7 +425,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         ]
         self.navBar.setItems([navItem], animated: false)
         let _ = Timeout(0.1) {
-            addSubviewWithFade(self.navBar, parentView: self, duration: 0.8)
+            self.view.addSubview(self.navBar)
         }
     }
     

@@ -25,8 +25,8 @@ class ParallaxHeaderView: UIView {
         // effect would not work correctly
         
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.backgroundColor = UIColor.whiteColor()
-        self.backgroundColor = UIColor.whiteColor()
+        containerView.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clearColor()
         
         self.addSubview(containerView)
         self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[containerView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["containerView" : containerView]))
@@ -39,7 +39,7 @@ class ParallaxHeaderView: UIView {
         imageView.clipsToBounds = true
         imageView.contentMode = .ScaleAspectFill
 
-        self.containerView.backgroundColor = UIColor.whiteColor()
+        self.containerView.backgroundColor = UIColor.clearColor()
 
         User.getProfile({ (user, error) in
             if user?.picture != nil && user?.picture != "" {

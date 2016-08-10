@@ -205,7 +205,7 @@ class SignupViewControllerFour: UIViewController, UITextFieldDelegate {
                                 let msg = json["message"].stringValue
                                 if msg != "" {
                                     let message = String(json["message"])
-                                    showGlobalNotification(message, duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
+                                    showGlobalNotification(message, duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.brandGreen())
                                 }
                                 
                                 Answers.logSignUpWithMethod("Signup | type: " + self.userLegalEntityType,

@@ -9,7 +9,6 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import DGElasticPullToRefresh
 import DZNEmptyDataSet
 import CellAnimator
 
@@ -23,6 +22,8 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
     
     private var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
+    private var refreshControlView = UIRefreshControl()
+    
     override func viewDidAppear(animated: Bool) {
         self.childViewControllerForStatusBarStyle()?.setNeedsStatusBarAppearanceUpdate()
         if notificationsArray?.count == 0 {
@@ -34,6 +35,11 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         super.viewDidLoad()
         configureView()
         addInfiniteScroll()
+    }
+    
+    func refresh(sender: UIRefreshControl) {
+        refreshControlView.endRefreshing()
+        self.loadNotificationItems("100", starting_after: "")
     }
     
     private func addInfiniteScroll() {
@@ -72,6 +78,10 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
         
+        refreshControlView.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControlView.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControlView) // not required when using UITableViewController
+
         activityIndicator.center = tableView.center
         activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true
@@ -86,19 +96,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         
         self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         self.dateFormatter.timeStyle = NSDateFormatterStyle.LongStyle
-        
-        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
-        loadingView.frame = CGRect(x: 0, y: 65, width: screenWidth, height: 100)
-        loadingView.tintColor = UIColor.whiteColor()
-        tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
-                self?.tableView.dg_stopLoading()
-                self!.loadNotificationItems("100", starting_after: "")
-            })
-            }, loadingView: loadingView)
-        tableView.dg_setPullToRefreshFillColor(UIColor.seaBlue())
-        tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
-        
+
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 65))
         navBar.barTintColor = UIColor.oceanBlue()
         navBar.tintColor = UIColor.whiteColor()

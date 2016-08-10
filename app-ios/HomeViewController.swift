@@ -11,7 +11,6 @@ import SnapKit
 import SwiftyJSON
 import Stripe
 import BEMSimpleLineGraph
-import DGElasticPullToRefresh
 import DZNEmptyDataSet
 import CWStatusBarNotification
 import CellAnimator
@@ -75,6 +74,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 
     private var gradientBottom: CGGradient?
 
+    private var refreshControlView = UIRefreshControl()
+    
     func indexChanged(sender: AnyObject) {
         if(sender.selectedSegmentIndex == 0) {
             lblAccountPending.removeFromSuperview()
@@ -589,6 +590,11 @@ extension HomeViewController {
         
         self.view.backgroundColor = UIColor.darkestBlue()
         
+        refreshControlView.tintColor = UIColor.whiteColor()
+        refreshControlView.frame = CGRect(x: screenWidth/2-15, y: 30, width: 30, height: 30)
+        refreshControlView.addTarget(self, action: #selector(self.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControlView) // not required when using UITableViewController
+
         // put all content in headerview
         headerView.backgroundColor = UIColor.clearColor()
         headerView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 280)
@@ -721,19 +727,6 @@ extension HomeViewController {
             NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.7)
             ])
         lblSubtext.attributedText = subtext
-        
-        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
-        loadingView.frame = CGRect(x: 0, y: 100, width: screenWidth, height: 100)
-        loadingView.tintColor = UIColor.whiteColor()
-        tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
-                self?.tableView.dg_stopLoading()
-                self?.loadAccountHistory("100", starting_after: "", completionHandler: { (_: [History]?, NSError) in
-                })
-            })
-            }, loadingView: loadingView)
-        tableView.dg_setPullToRefreshFillColor(UIColor.clearColor())
-        tableView.dg_setPullToRefreshBackgroundColor(UIColor.clearColor())
     }
 }
 
@@ -794,6 +787,14 @@ extension HomeViewController {
     // EasyTipView Delegate
     func easyTipViewDidDismiss(tipView: EasyTipView) {
         print("dismissed")
+    }
+}
+
+
+extension HomeViewController {
+    func refresh(sender: UIRefreshControl) {
+        refreshControlView.endRefreshing()
+        self.loadAccountHistory("100", starting_after: "", completionHandler: { (_: [History]?, NSError) in })
     }
 }
 
