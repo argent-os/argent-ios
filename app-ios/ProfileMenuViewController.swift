@@ -237,13 +237,12 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         
         self.view.backgroundColor = UIColor.clearColor()
         let screen = UIScreen.mainScreen().bounds
-        let screenWidth = screen.size.width
         
         self.view.bringSubviewToFront(tableView)
         self.tableView.tableHeaderView = ParallaxHeaderView.init(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 220));
         
         refreshControlView.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControlView.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControlView.addTarget(self, action: #selector(ProfileMenuViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshControlView) // not required when using UITableViewController
 
         configureHeader()

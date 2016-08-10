@@ -37,7 +37,6 @@ target 'app-ios' do
 	pod 'JVFloatLabeledTextField'
 	pod 'CountryPicker'
 	pod 'FlagKit'
-	pod 'DGElasticPullToRefresh'
 	pod 'QRCode'
 	pod 'XLActionController'
 	pod 'GaugeKit'

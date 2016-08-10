@@ -9,7 +9,6 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import DGElasticPullToRefresh
 import TransitionTreasury
 import TransitionAnimation
 import CellAnimator
@@ -38,9 +37,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     private var searchOverlayMaskView = UIView()
     
-    deinit {
-        tblSearchResults.dg_removePullToRefresh()
-    }
+    private var refreshControlView = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,6 +85,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchOverlayMaskView.backgroundColor = UIColor.whiteColor()
         searchOverlayMaskView.frame = CGRect(x: 0, y: 100, width: screenWidth, height: screenHeight-60)
         
+        refreshControlView.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControlView.addTarget(self, action: #selector(SearchViewController.refresh(_:) as (SearchViewController) -> (UIRefreshControl) -> ()), forControlEvents: UIControlEvents.ValueChanged)
+        self.tblSearchResults.addSubview(refreshControlView) // not required when using UITableViewController
+
         // definespresentationcontext screen
         self.definesPresentationContext = true
         self.view.backgroundColor = UIColor.whiteColor()
@@ -125,17 +126,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tblSearchResults.tableFooterView = UIView()
         tblSearchResults.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight-40)
         self.view.addSubview(tblSearchResults)
-        
-        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
-        loadingView.tintColor = UIColor.oceanBlue()
-        tblSearchResults.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
-                self?.tblSearchResults.dg_stopLoading()
-                self?.loadUserAccounts()
-            })
-            }, loadingView: loadingView)
-        tblSearchResults.dg_setPullToRefreshFillColor(UIColor.whiteColor())
-        tblSearchResults.dg_setPullToRefreshBackgroundColor(UIColor.whiteColor())
     }
     
     // MARK: UITableView Delegate and Datasource functions
@@ -438,6 +428,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 }
 
-extension UITableView {
-    public override func dg_stopScrollingAnimation() {}
+extension SearchViewController {
+    func refresh(sender: UIRefreshControl) {
+        refreshControlView.endRefreshing()
+        self.loadUserAccounts()
+    }
 }
+

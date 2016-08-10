@@ -79,7 +79,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         let screenHeight = screen.size.height
         
         refreshControlView.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControlView.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControlView.addTarget(self, action: #selector(NotificationsViewController.refresh(_:) as (NotificationsViewController) -> (UIRefreshControl) -> ()), forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshControlView) // not required when using UITableViewController
 
         activityIndicator.center = tableView.center
