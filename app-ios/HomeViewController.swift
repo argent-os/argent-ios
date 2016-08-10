@@ -809,19 +809,19 @@ extension HomeViewController {
         
         print("showing merchant mode modal")
         // Initialize and style the terms and conditions modal
-        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = false
         formSheetController.presentationController?.contentViewSize = CGSizeMake(280, 280)
         formSheetController.presentationController?.shouldUseMotionEffect = true
-        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
+        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.pastelDarkBlue().colorWithAlphaComponent(0.5)
         formSheetController.presentationController?.containerView?.sizeToFit()
-//        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
-        formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = false
+        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = false
+        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
+        formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
         formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.CenterVertically
         formSheetController.presentationController?.shouldCenterHorizontally = true
         formSheetController.presentationController?.portraitTopInset = 100
         formSheetController.contentViewCornerRadius = 5
-        formSheetController.allowDismissByPanningPresentedView = false
+        formSheetController.allowDismissByPanningPresentedView = true
         formSheetController.interactivePanGestureDismissalDirection = .All;
         
         let presentedViewController = navigationController.viewControllers.first as! MerchantModeModalViewController

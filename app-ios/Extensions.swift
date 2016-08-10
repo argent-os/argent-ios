@@ -25,8 +25,6 @@ public enum AlertType {
     case Warning
     case Edit
     case Bitcoin
-    case Individual
-    case Business
 }
 
 public func showAlert(type: AlertType, title: String, msg: String) {
@@ -66,14 +64,6 @@ public func showAlert(type: AlertType, title: String, msg: String) {
             break
         case .Bitcoin:
             let alertViewIcon = UIImage(named: "ic_shiny_bitcoin") // Replace the IconImage text with the image name
-            alertView.showInfo(title, subTitle: msg, circleIconImage: alertViewIcon)
-            break
-        case .Individual:
-            let alertViewIcon = UIImage(named: "IconIndividual") // Replace the IconImage text with the image name
-            alertView.showInfo(title, subTitle: msg, circleIconImage: alertViewIcon)
-            break
-        case .Business:
-            let alertViewIcon = UIImage(named: "IconBusiness") // Replace the IconImage text with the image name
             alertView.showInfo(title, subTitle: msg, circleIconImage: alertViewIcon)
             break
     }

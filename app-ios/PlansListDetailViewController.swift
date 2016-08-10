@@ -246,13 +246,9 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
     func updatePlanButtonTapped(sender: AnyObject) {
         Plan.updatePlan(planId!, dic: dic) { (bool, err) in
             if bool == true {
-                if let msg = self.dic["name"] {
-                    showAlert(.Success, title: "Success", msg: (msg as! String) + " plan updated!")
-                    self.amountInputView.text = ""
-                    self.perIntervalLabel.text = ""
-                }
+                showAlert(.Success, title: "Success", msg: "Plan updated")
             } else {
-                showAlert(.Error, title: "Error", msg: "Error")
+                showAlert(.Error, title: "Error", msg: "Error updating plan")
             }
         }
     }

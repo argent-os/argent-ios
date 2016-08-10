@@ -110,6 +110,12 @@ class MenuViewController: ButtonBarPagerTabStripViewController, MFMailComposeVie
                 verificationLabel.text = "Account Status: Pending Verification"
                 addSubviewWithFade(verificationLabel, parentView: self, duration: 0.5)
             }
+            
+            // iphone4 check
+            if self.view.layer.frame.height <= 480.0 {
+                verificationLabel.frame = CGRect(x: 15, y: screenHeight-205, width: screenWidth-30, height: 40)
+                verificationLabel.layer.borderWidth = 0
+            }
         })
     }
     

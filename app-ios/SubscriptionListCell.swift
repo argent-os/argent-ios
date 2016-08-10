@@ -18,7 +18,7 @@ final class SubscriptionListCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        planSwitch.onTintColor = UIColor.brandGreen()
     }
     
 }

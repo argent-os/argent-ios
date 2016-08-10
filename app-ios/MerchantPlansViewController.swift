@@ -131,14 +131,14 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.tableFooterView = UIView()
         tableView.reloadData()
         tableView.showsVerticalScrollIndicator = false
-        print(self.view.frame.height)
-        tableView.frame = CGRect(x: 0, y: 10, width: 280, height: 390)
+        tableView.separatorColor = UIColor.paleBlue().colorWithAlphaComponent(0.5)
+        tableView.frame = CGRect(x: 0, y: 10, width: 310, height: self.view.frame.height*0.75)
         self.view.addSubview(tableView)
         
         self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         self.dateFormatter.timeStyle = NSDateFormatterStyle.LongStyle
         
-        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: 280, height: 50))
+        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: 310, height: 50))
         navBar.barTintColor = UIColor.whiteColor()
         navBar.translucent = false
         navBar.titleTextAttributes = [
@@ -592,7 +592,7 @@ extension MerchantPlansViewController {
         formSheetController.presentationController?.shouldUseMotionEffect = true
         formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
         formSheetController.presentationController?.containerView?.sizeToFit()
-        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
+        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Light
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
         formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.CenterVertically

@@ -48,6 +48,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
     
     override func viewDidLoad() {
         self.navigationController?.navigationBar.tintColor = UIColor.darkGrayColor()
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
         super.viewDidLoad()
         User.getProfile { (user, err) in
             let user = user
@@ -58,6 +59,28 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                 }
             }
         }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.Default
+        
+        let app: UIApplication = UIApplication.sharedApplication()
+        let statusBarHeight: CGFloat = app.statusBarFrame.size.height
+        let statusBarView: UIView = UIView(frame: CGRectMake(0, -statusBarHeight, UIScreen.mainScreen().bounds.size.width, statusBarHeight))
+        statusBarView.backgroundColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.addSubview(statusBarView)
+        self.navigationController?.navigationBar.bringSubviewToFront(statusBarView)
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!,
+            NSForegroundColorAttributeName: UIColor.whiteColor()
+        ]
     }
     
     // MARK: Private

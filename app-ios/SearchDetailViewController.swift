@@ -322,22 +322,19 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
         let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
         
         // Initialize and style the view plans modal
-        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
-        formSheetController.presentationController?.contentViewSize = CGSizeMake(280, screenHeight*0.6)
+        formSheetController.presentationController?.contentViewSize = CGSizeMake(310, screenHeight*0.75)
         formSheetController.presentationController?.shouldUseMotionEffect = true
-        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor()
+        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.pastelDarkBlue().colorWithAlphaComponent(0.5)
         formSheetController.presentationController?.containerView?.sizeToFit()
         formSheetController.presentationController?.shouldCenterVertically = true
         formSheetController.presentationController?.shouldCenterHorizontally = true
-        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
+        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = false
+        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Light
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
         formSheetController.contentViewCornerRadius = 10
         formSheetController.allowDismissByPanningPresentedView = true
         formSheetController.interactivePanGestureDismissalDirection = .All;
-        
-        // Blur will be applied to all MZFormSheetPresentationControllers by default
-        MZFormSheetPresentationController.appearance().shouldApplyBackgroundBlurEffect = true
         
         let presentedViewController = navigationController.viewControllers.first as! MerchantPlansViewController
         
@@ -360,18 +357,15 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
         formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
         formSheetController.presentationController?.contentViewSize = CGSizeMake(280, 280)
         formSheetController.presentationController?.shouldUseMotionEffect = true
-        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor()
+        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.pastelDarkBlue().colorWithAlphaComponent(0.5)
         formSheetController.presentationController?.containerView?.sizeToFit()
-        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
+        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Light
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
         formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.AlwaysAboveKeyboard
         formSheetController.contentViewCornerRadius = 10
         formSheetController.allowDismissByPanningPresentedView = true
         formSheetController.interactivePanGestureDismissalDirection = .All;
-        
-        // Blur will be applied to all MZFormSheetPresentationControllers by default
-        MZFormSheetPresentationController.appearance().shouldApplyBackgroundBlurEffect = true
         
         let presentedViewController = navigationController.viewControllers.first as! PayMerchantViewController
 
@@ -428,9 +422,9 @@ extension SearchDetailViewController {
         formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
         formSheetController.presentationController?.contentViewSize = CGSizeMake(280, 400)
         formSheetController.presentationController?.shouldUseMotionEffect = true
-        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
+        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.pastelDarkBlue().colorWithAlphaComponent(0.5)
         formSheetController.presentationController?.containerView?.sizeToFit()
-        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
+        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Light
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
         formSheetController.presentationController?.shouldCenterVertically = true
         formSheetController.presentationController?.shouldCenterHorizontally = true
