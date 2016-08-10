@@ -167,6 +167,7 @@
 		30DB59761CA46CB0007FEE1E /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DB59751CA46CB0007FEE1E /* ComplicationController.swift */; };
 		30DB59781CA46CB0007FEE1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30DB59771CA46CB0007FEE1E /* Assets.xcassets */; };
 		30DB597C1CA46CB0007FEE1E /* app-watchos.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 30DB595A1CA46CB0007FEE1E /* app-watchos.app */; };
+		30F253BF1D5AC7030096E437 /* MerchantModeModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F253BE1D5AC7030096E437 /* MerchantModeModalViewController.swift */; };
 		30FF6FD11CEE3F9300A46A1E /* TransferToBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FF6FD01CEE3F9300A46A1E /* TransferToBankViewController.swift */; };
 		30FF6FD51CF221A200A46A1E /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FF6FD41CF221A200A46A1E /* Account.swift */; };
 		ADE75F43B0A9DEFF223342BC /* Pods_app_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 996F775E972E0316411A5150 /* Pods_app_ios.framework */; };
@@ -413,6 +414,7 @@
 		30DB59791CA46CB0007FEE1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30DB59841CA46DCC007FEE1E /* ObjC-Bridging-Header-WatchOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjC-Bridging-Header-WatchOS.h"; sourceTree = "<group>"; };
 		30DB59851CA472D0007FEE1E /* app-watchos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "app-watchos.entitlements"; sourceTree = "<group>"; };
+		30F253BE1D5AC7030096E437 /* MerchantModeModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MerchantModeModalViewController.swift; path = "app-ios/MerchantModeModalViewController.swift"; sourceTree = SOURCE_ROOT; };
 		30FB540A1C6A58B40004A538 /* Argent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Argent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB541E1C6A58B40004A538 /* app-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "app-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FB54291C6A58B40004A538 /* app-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "app-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -873,6 +875,7 @@
 				30CF713A1D012B1E007B5E17 /* CreditCardEntryModalViewController.swift */,
 				30CF71491D0485F2007B5E17 /* PersonInformationEntryModalViewController.swift */,
 				30CF71381D01238A007B5E17 /* IdentitySSNModalViewController.swift */,
+				30F253BE1D5AC7030096E437 /* MerchantModeModalViewController.swift */,
 				30043B3C1D456B2A00594385 /* BankListModalViewController.swift */,
 				30043B3A1D45698100594385 /* BankACHConfirmationModalViewController.swift */,
 			);
@@ -1553,6 +1556,7 @@
 				30C2DAA81CA4374F003AFD8B /* SignupViewControllerOne.swift in Sources */,
 				3008AA461CF8BC3900AFE855 /* SearchMessageViewController.swift in Sources */,
 				30FF6FD11CEE3F9300A46A1E /* TransferToBankViewController.swift in Sources */,
+				30F253BF1D5AC7030096E437 /* MerchantModeModalViewController.swift in Sources */,
 				30C2DABF1CA43823003AFD8B /* HomeViewController.swift in Sources */,
 				30C2DAA71CA4374F003AFD8B /* SignupViewControllerFour.swift in Sources */,
 				30C2DB131CA439E1003AFD8B /* Timeout.swift in Sources */,

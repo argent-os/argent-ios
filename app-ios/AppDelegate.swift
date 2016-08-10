@@ -181,9 +181,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Check internet connection status
         checkNetworkStatus()
         
-        // initialize rootviewcontroller *important
-//        let viewController = UIStoryboard(name: "Auth", bundle: nil).instantiateViewControllerWithIdentifier("authViewController")
-//        self.window!.rootViewController = viewController
         // Assign the init view controller of the app
         firstTime()
 

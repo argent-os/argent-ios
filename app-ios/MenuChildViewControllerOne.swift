@@ -8,11 +8,16 @@
 
 import Foundation
 import XLPagerTabStrip
+import KeychainSwift
 
 class MenuChildViewControllerOne: UIViewController, IndicatorInfoProvider {
     
     var itemInfo: IndicatorInfo = "View"
     
+    let btnAcceptPayment = UIButton()
+
+    let btnCreatePlan = UIButton()
+
     init(itemInfo: IndicatorInfo) {
         self.itemInfo = itemInfo
         super.init(nibName: nil, bundle: nil)
@@ -43,7 +48,6 @@ class MenuChildViewControllerOne: UIViewController, IndicatorInfoProvider {
         scrollView.scrollEnabled = true
         self.view.addSubview(scrollView)
         
-        let btnAcceptPayment = UIButton()
         let str1 = adjustAttributedString("CREATE CHARGE", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.whiteColor(), lineSpacing: 0.0)
         btnAcceptPayment.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnAcceptPayment.contentEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
@@ -62,7 +66,6 @@ class MenuChildViewControllerOne: UIViewController, IndicatorInfoProvider {
         //        btnAcceptPayment.setImage(UIImage(named: "IconCard"), inFrame: CGRectMake(18, 18, 64, 64), forState: .Normal)
         //        btnAcceptPayment.imageEdgeInsets = UIEdgeInsets(top: 0.0, left: btnAcceptPayment.frame.width-20, bottom: 0.0, right: 10.0)
         
-        let btnCreatePlan = UIButton()
         let str2 = adjustAttributedString("CREATE PLAN", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.whiteColor(), lineSpacing: 0.0)
         btnCreatePlan.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnCreatePlan.contentEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
@@ -78,6 +81,7 @@ class MenuChildViewControllerOne: UIViewController, IndicatorInfoProvider {
         btnCreatePlan.addTarget(self, action: #selector(planButtonSelected(_:)), forControlEvents: .TouchUpInside)
         scrollView.addSubview(btnCreatePlan)
         scrollView.bringSubviewToFront(btnCreatePlan)
+        
     }
     
     func terminalButtonSelected(sender: AnyObject) {

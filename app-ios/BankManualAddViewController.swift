@@ -394,6 +394,5 @@ extension BankManualAddViewController {
         Answers.logCustomEventWithName("Bank Security Tutorial Presented",
                                        customAttributes: [:])
         
-        // TODO: Remove Gecco and AnimatedSwitch
     }
 }

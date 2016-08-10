@@ -397,7 +397,6 @@ extension IdentityVerificationViewController {
         Answers.logCustomEventWithName("Identity Security Tutorial Presented",
                                        customAttributes: [:])
         
-        // TODO: Remove Gecco and AnimatedSwitch
     }
 }
 

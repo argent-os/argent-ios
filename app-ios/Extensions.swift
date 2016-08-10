@@ -13,6 +13,9 @@ import DynamicColor
 import UIKit
 import SCLAlertView
 import LTMorphingLabel
+import KeychainSwift
+
+let globalNotification = CWStatusBarNotification()
 
 public enum AlertType {
     case Success
@@ -22,6 +25,8 @@ public enum AlertType {
     case Warning
     case Edit
     case Bitcoin
+    case Individual
+    case Business
 }
 
 public func showAlert(type: AlertType, title: String, msg: String) {
@@ -63,10 +68,24 @@ public func showAlert(type: AlertType, title: String, msg: String) {
             let alertViewIcon = UIImage(named: "ic_shiny_bitcoin") // Replace the IconImage text with the image name
             alertView.showInfo(title, subTitle: msg, circleIconImage: alertViewIcon)
             break
+        case .Individual:
+            let alertViewIcon = UIImage(named: "IconIndividual") // Replace the IconImage text with the image name
+            alertView.showInfo(title, subTitle: msg, circleIconImage: alertViewIcon)
+            break
+        case .Business:
+            let alertViewIcon = UIImage(named: "IconBusiness") // Replace the IconImage text with the image name
+            alertView.showInfo(title, subTitle: msg, circleIconImage: alertViewIcon)
+            break
     }
 }
 
-let globalNotification = CWStatusBarNotification()
+extension UIViewController {
+    public func showSystemAlert(title: String, message: String, actionTitle: String) {
+        let systemAlert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        systemAlert.addAction(UIAlertAction(title: actionTitle, style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(systemAlert, animated: true, completion: nil)
+    }
+}
 
 let headerAttrs: [String: AnyObject] = [
     NSForegroundColorAttributeName : UIColor.lightBlue(),
@@ -617,7 +636,6 @@ class CenteredButton: UIButton {
 }
 
 extension UIButton {
-    
     func setImage(image: UIImage?, inFrame frame: CGRect?, forState state: UIControlState) {
         self.setImage(image, forState: state)
         
@@ -630,5 +648,4 @@ extension UIButton {
             )
         }
     }
-    
 }

@@ -66,8 +66,8 @@ class AccountVerificationTutorialViewController: UIViewController {
         titleLabel.textColor = UIColor.lightBlue()
         self.view.addSubview(titleLabel)
         
-        tutImage1.frame = CGRect(x: 35, y: 90, width: 50, height: 50)
-        tutImage1.image = UIImage(named: "IconSettings")
+        tutImage1.frame = CGRect(x: 30, y: 90, width: 50, height: 50)
+        tutImage1.image = UIImage(named: "IconCustomSettings")
         tutImage1.contentMode = .ScaleAspectFit
         self.view.addSubview(tutImage1)
         tutText1.frame = CGRect(x: 90, y: 80, width: 210, height: 50)
@@ -82,8 +82,8 @@ class AccountVerificationTutorialViewController: UIViewController {
         tutSubText1.font = UIFont.systemFontOfSize(12)
         self.view.addSubview(tutSubText1)
         
-        tutImage2.frame = CGRect(x: 35, y: 170, width: 50, height: 50)
-        tutImage2.image = UIImage(named: "IconBankSmall")
+        tutImage2.frame = CGRect(x: 30, y: 170, width: 50, height: 50)
+        tutImage2.image = UIImage(named: "IconCustomBank")
         tutImage2.contentMode = .ScaleAspectFit
         self.view.addSubview(tutImage2)
         tutText2.frame = CGRect(x: 90, y: 160, width: 210, height: 50)
@@ -98,8 +98,8 @@ class AccountVerificationTutorialViewController: UIViewController {
         tutSubText2.font = UIFont.systemFontOfSize(12)
         self.view.addSubview(tutSubText2)
         
-        tutImage3.frame = CGRect(x: 35, y: 250, width: 50, height: 50)
-        tutImage3.image = UIImage(named: "IconPerson")
+        tutImage3.frame = CGRect(x: 30, y: 250, width: 50, height: 50)
+        tutImage3.image = UIImage(named: "IconCustomIdentity")
         tutImage3.contentMode = .ScaleAspectFit
         self.view.addSubview(tutImage3)
         tutText3.frame = CGRect(x: 90, y: 240, width: 210, height: 50)
@@ -108,7 +108,7 @@ class AccountVerificationTutorialViewController: UIViewController {
         tutText3.textColor = UIColor.lightBlue()
         self.view.addSubview(tutText3)
         tutSubText3.frame = CGRect(x: 90, y: 260, width: 210, height: 50)
-        tutSubText3.text = "One document and SSN"
+        tutSubText3.text = "One document and Social"
         tutSubText3.textAlignment = .Left
         tutSubText3.textColor = UIColor.lightBlue()
         tutSubText3.font = UIFont.systemFontOfSize(12)

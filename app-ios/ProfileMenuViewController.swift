@@ -16,6 +16,7 @@ import Crashlytics
 import Whisper
 import MZFormSheetPresentationController
 import EasyTipView
+import KeychainSwift
 
 class ProfileMenuViewController: UITableViewController, SKStoreProductViewControllerDelegate {
     
@@ -54,8 +55,6 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
     private var splitter = UIView()
 
     private var splitter2 = UIView()
-
-    private var settingsIcon = UIImageView()
 
     private var verifiedButton:UIButton = UIButton()
 
@@ -159,7 +158,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                     
                     let _ = Timeout(10) {
                         if acct?.transfers_enabled == false {
-                            showGlobalNotification("Transfers disabled until more account information is provided", duration: 10.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.oceanBlue())
+                            //showGlobalNotification("Transfers disabled until more account information is provided", duration: 10.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.oceanBlue())
                         }
                     }
                 } else if let disabled_reason = acct?.verification_disabled_reason where acct?.verification_disabled_reason != "" {
@@ -282,26 +281,10 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         viewController.dismissViewControllerAnimated(true, completion: nil)
     }
 
-    override func viewDidAppear(animated: Bool) {
-//        self.tableView.tableHeaderView!.addSubview(settingsIcon)
-//        self.tableView.tableHeaderView!.bringSubviewToFront(settingsIcon)
-    }
-    
     func configureHeader() {
         
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
-        
-//        settingsIcon.frame = CGRectMake(0, -20, 22, 22)
-//        settingsIcon.image = UIImage(named: "IconSettingsWhite")
-//        settingsIcon.contentMode = .ScaleAspectFit
-//        settingsIcon.alpha = 0.9
-//        settingsIcon.center = CGPointMake(self.view.frame.size.width-25, -20)
-//        settingsIcon.userInteractionEnabled = true
-//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.goToEdit(_:)))
-//        tap.numberOfTapsRequired = 1
-//        settingsIcon.addGestureRecognizer(tap)
-
         
         let attachment: NSTextAttachment = NSTextAttachment()
         attachment.image = UIImage(named: "IconPinWhiteTiny")
@@ -311,7 +294,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                 if bool == true {
                     // the account does not require information, display location
                     if let address_city = acct?.address_city where address_city != "", let address_country = acct?.address_country {
-                        let locationStr: NSMutableAttributedString = NSMutableAttributedString(string: address_city + ", " + address_country)
+                        let locationStr = adjustAttributedStringNoLineSpacing(address_city.uppercaseString + ", " + address_country.uppercaseString, spacing: 0.5, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
                         // locationStr.appendAttributedString(attachmentString)
                         self.locationLabel.attributedText = locationStr
                     } else {
@@ -349,13 +332,15 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         self.customersCountLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
         self.customersCountLabel.numberOfLines = 0
         self.customersCountLabel.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.75)
+        addSubviewWithFade(customersCountLabel, parentView: self, duration: 0.2)
         self.view.bringSubviewToFront(customersCountLabel)
 
-        self.subscriptionsCountLabel.frame = CGRectMake(screenWidth*0.5-40, 130, 80, 70)
+        self.subscriptionsCountLabel.frame = CGRectMake(screenWidth*0.5-45, 130, 90, 70)
         self.subscriptionsCountLabel.textAlignment = NSTextAlignment.Center
         self.subscriptionsCountLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
         self.subscriptionsCountLabel.numberOfLines = 0
         self.subscriptionsCountLabel.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.75)
+        addSubviewWithFade(self.subscriptionsCountLabel, parentView: self, duration: 0.2)
         self.view.bringSubviewToFront(subscriptionsCountLabel)
         
         self.plansCountLabel.frame = CGRectMake(screenWidth-120, 130, 80, 70)
@@ -363,6 +348,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         self.plansCountLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
         self.plansCountLabel.numberOfLines = 0
         self.plansCountLabel.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.75)
+        addSubviewWithFade(self.plansCountLabel, parentView: self, duration: 0.2)
         self.view.bringSubviewToFront(plansCountLabel)
         
         self.opaqueView.frame = CGRectMake(0, 150, screenWidth, 70)
@@ -373,46 +359,37 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
     func reloadUserData() {
         self.loadCustomerList { (customers: [Customer]?, NSError) in
             if(customers!.count == 0) {
-                self.customersCountLabel.text = "0\ncustomers"
+                self.customersCountLabel.attributedText = adjustAttributedStringNoLineSpacing("0\nCustomers", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
             } else if(customers!.count < 2 && customers!.count > 0) {
-                self.customersCountLabel.text = String(customers!.count) + "\ncustomer"
+                self.customersCountLabel.attributedText = adjustAttributedStringNoLineSpacing(String(customers!.count) + "\nCustomer", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
             } else if(customers!.count > 98) {
-                self.customersCountLabel.text = "100+\ncustomers"
+                self.customersCountLabel.attributedText = adjustAttributedStringNoLineSpacing("100+\nCustomers", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
             } else {
-                self.customersCountLabel.text = String(customers!.count) + "\ncustomers"
-            }
-            let _ = Timeout(0.3) {
-                addSubviewWithFade(self.customersCountLabel, parentView: self, duration: 0.8)
+                self.customersCountLabel.attributedText = adjustAttributedStringNoLineSpacing(String(customers!.count) + "\nCustomers", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
             }
         }
         
         self.loadPlanList("100", starting_after: "") { (plans, error) in
             if(plans!.count == 0) {
-                self.plansCountLabel.text = "0\nplans"
+                self.plansCountLabel.attributedText = adjustAttributedStringNoLineSpacing("0\nPlans", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
             } else if(plans!.count < 2 && plans!.count > 0) {
-                self.plansCountLabel.text = String(plans!.count) + "\nplan"
+                self.plansCountLabel.attributedText = adjustAttributedStringNoLineSpacing(String(plans!.count) + "\nPlan", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
             } else if(plans!.count > 98) {
-                self.plansCountLabel.text = "100+\nplans"
+                self.plansCountLabel.attributedText = adjustAttributedStringNoLineSpacing("100+\nPlans", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
             } else {
-                self.plansCountLabel.text = String(plans!.count) + "\nplans"
-            }
-            let _ = Timeout(0.3) {
-                addSubviewWithFade(self.plansCountLabel, parentView: self, duration: 0.8)
+                self.plansCountLabel.attributedText = adjustAttributedStringNoLineSpacing(String(plans!.count) + "\nPlans", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
             }
         }
         
         self.loadSubscriptionList { (subscriptions: [Subscription]?, NSError) in
             if(subscriptions!.count == 0) {
-                self.subscriptionsCountLabel.text = "0\nsubscriptions"
+                self.subscriptionsCountLabel.attributedText = adjustAttributedStringNoLineSpacing("0\nSubscriptions", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
             } else if(subscriptions!.count < 2 && subscriptions!.count > 0) {
-                self.subscriptionsCountLabel.text = String(subscriptions!.count) + "\nsubscription"
+                self.subscriptionsCountLabel.attributedText = adjustAttributedStringNoLineSpacing(String(subscriptions!.count) + "\nSubscription", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
             } else if(subscriptions!.count > 98) {
-                self.subscriptionsCountLabel.text = "100+\nsubscriptions"
+                self.subscriptionsCountLabel.attributedText = adjustAttributedStringNoLineSpacing("100+\nSubscriptions", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
             } else {
-                self.subscriptionsCountLabel.text = String(subscriptions!.count) + "\nsubscriptions"
-            }
-            let _ = Timeout(0.3) {
-                addSubviewWithFade(self.subscriptionsCountLabel, parentView: self, duration: 0.8)
+                self.subscriptionsCountLabel.attributedText = adjustAttributedStringNoLineSpacing(String(subscriptions!.count) + "\nSubscriptions", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
             }
         }
     }

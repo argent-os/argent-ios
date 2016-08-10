@@ -26,7 +26,6 @@ target 'app-ios' do
 	pod 'BEMSimpleLineGraph'
 	pod 'CWStatusBarNotification'
 	pod 'SnapKit'
-	pod 'Gecco'
 	pod 'DZNEmptyDataSet'
 	pod 'Former'
 	pod 'KMPlaceholderTextView'
@@ -67,7 +66,7 @@ target 'app-ios' do
 	pod 'NVActivityIndicatorView'
 	pod 'TRCurrencyTextField'
 	pod 'XLPagerTabStrip'
-	
+
 	# Fabric
 	pod 'Fabric'
 	pod 'Crashlytics'

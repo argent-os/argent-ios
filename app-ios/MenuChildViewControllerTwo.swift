@@ -8,11 +8,18 @@
 
 import Foundation
 import XLPagerTabStrip
+import KeychainSwift
 
 class MenuChildViewControllerTwo: UIViewController, IndicatorInfoProvider {
     
     var itemInfo: IndicatorInfo = "View"
     
+    let btnViewCustomers = UIButton()
+
+    let btnViewPlans = UIButton()
+
+    let btnViewSubscriptions = UIButton()
+
     init(itemInfo: IndicatorInfo) {
         self.itemInfo = itemInfo
         super.init(nibName: nil, bundle: nil)
@@ -43,10 +50,8 @@ class MenuChildViewControllerTwo: UIViewController, IndicatorInfoProvider {
         scrollView.scrollEnabled = true
         self.view.addSubview(scrollView)
         
-        let btnViewCustomers = UIButton()
         let str1 = adjustAttributedString("VIEW CUSTOMERS", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.darkBlue(), lineSpacing: 0.0)
         let str1w = adjustAttributedString("VIEW CUSTOMERS", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.whiteColor(), lineSpacing: 0.0)
-
         btnViewCustomers.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnViewCustomers.contentEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnViewCustomers.contentHorizontalAlignment = .Left
@@ -65,10 +70,8 @@ class MenuChildViewControllerTwo: UIViewController, IndicatorInfoProvider {
         //        btnViewCustomers.setImage(UIImage(named: "IconCard"), inFrame: CGRectMake(18, 18, 64, 64), forState: .Normal)
         //        btnViewCustomers.imageEdgeInsets = UIEdgeInsets(top: 0.0, left: btnViewCustomers.frame.width-20, bottom: 0.0, right: 10.0)
         
-        let btnViewPlans = UIButton()
         let str2 = adjustAttributedString("VIEW PLANS", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.darkBlue(), lineSpacing: 0.0)
         let str2w = adjustAttributedString("VIEW PLANS", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.whiteColor(), lineSpacing: 0.0)
-
         btnViewPlans.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnViewPlans.contentEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnViewPlans.contentHorizontalAlignment = .Left
@@ -85,7 +88,6 @@ class MenuChildViewControllerTwo: UIViewController, IndicatorInfoProvider {
         scrollView.addSubview(btnViewPlans)
         scrollView.bringSubviewToFront(btnViewPlans)
         
-        let btnViewSubscriptions = UIButton()
         let str3 = adjustAttributedString("VIEW SUBSCRIPTIONS", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.darkBlue(), lineSpacing: 0.0)
         let str3w = adjustAttributedString("VIEW SUBSCRIPTIONS", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.whiteColor(), lineSpacing: 0.0)
 

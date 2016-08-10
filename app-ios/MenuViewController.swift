@@ -33,6 +33,9 @@ class MenuViewController: ButtonBarPagerTabStripViewController, MFMailComposeVie
         configureMainMenu()
     }
     
+    override func viewDidAppear(animated: Bool) {
+    }
+    
     func configureMainMenu() {
         
         let screen = UIScreen.mainScreen().bounds
@@ -173,7 +176,7 @@ class MenuViewController: ButtonBarPagerTabStripViewController, MFMailComposeVie
     
     override func viewControllersForPagerTabStrip(pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         let child_1 = MenuChildViewControllerOne(itemInfo: "MAIN")
-        let child_2 = MenuChildViewControllerTwo(itemInfo: "OVERVIEW")
+        let child_2 = MenuChildViewControllerTwo(itemInfo: "ADMIN")
         return [child_1, child_2]
     }
 }

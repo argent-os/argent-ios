@@ -95,7 +95,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         let done: UIBarButtonItem = UIBarButtonItem(title: "Reset Password", style: UIBarButtonItemStyle.Done, target: self, action: #selector(ResetPasswordViewController.resetButtonTapped(_:)))
         
-        UIToolbar.appearance().barTintColor = UIColor.whiteColor()
+        UIToolbar.appearance().barTintColor = UIColor.brandGreen()
 
         done.setTitleTextAttributes([
             NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!,

@@ -12,13 +12,14 @@ import SwiftyJSON
 import Stripe
 import BEMSimpleLineGraph
 import DGElasticPullToRefresh
-import Gecco
 import DZNEmptyDataSet
 import CWStatusBarNotification
 import CellAnimator
 import Crashlytics
 import WatchConnectivity
 import EasyTipView
+import MZFormSheetPresentationController
+import KeychainSwift
 
 var userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
 
@@ -158,7 +159,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         self.view.bringSubviewToFront(balanceSwitch)
         self.view.addSubview(tutorialButton)
         self.view.bringSubviewToFront(tutorialButton)
-        UITextField.appearance().keyboardAppearance = .Light
+        UITextField.appearance().keyboardAppearance = .Light        
     }
     
     func setupAppleWatch() {
@@ -190,12 +191,12 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     func presentTutorial(sender: AnyObject) {
         
-        tipView.show(forView: self.tutorialButton, withinSuperview: self.view)
+        showMerchantModeModal(self)
         
-        Answers.logCustomEventWithName("Home Tutorial Presented",
+        //tipView.show(forView: self.tutorialButton, withinSuperview: self.view)
+        Answers.logCustomEventWithName("Dashboard Configuration Presented",
                                        customAttributes: [:])
         
-        // TODO: Remove Gecco and AnimatedSwitch
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -514,7 +515,7 @@ extension HomeViewController {
     }
     
     func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
-        let str = "Create a recurring billing plan"
+        let str = "Verify account and create a billing plan"
         // let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)]
         return NSAttributedString(string: str, attributes: inverseCalloutAttrs)
     }
@@ -578,7 +579,7 @@ extension HomeViewController {
         
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
-        
+
         let app: UIApplication = UIApplication.sharedApplication()
         let statusBarHeight: CGFloat = app.statusBarFrame.size.height
         let statusBarView: UIView = UIView(frame: CGRectMake(0, -statusBarHeight, UIScreen.mainScreen().bounds.size.width, statusBarHeight))
@@ -686,8 +687,8 @@ extension HomeViewController {
         dateRangeSegment.removeBorders()
         dateRangeSegment.addTarget(self, action: #selector(HomeViewController.dateRangeSegmentControl(_:)), forControlEvents: .ValueChanged)
         
-        tutorialButton.frame = CGRect(x: screenWidth-40, y: 41, width: 20, height: 20)
-        tutorialButton.setImage(UIImage(named: "ic_question_light"), forState: .Normal)
+        tutorialButton.frame = CGRect(x: screenWidth-43, y: 38, width: 35, height: 35)
+        tutorialButton.setImage(UIImage(named: "ic_adjust_light"), forState: .Normal)
         tutorialButton.setTitle("Tuts", forState: .Normal)
         tutorialButton.setTitleColor(UIColor.redColor(), forState: .Normal)
         tutorialButton.addTarget(self, action: #selector(HomeViewController.presentTutorial(_:)), forControlEvents: .TouchUpInside)
@@ -793,5 +794,43 @@ extension HomeViewController {
     // EasyTipView Delegate
     func easyTipViewDidDismiss(tipView: EasyTipView) {
         print("dismissed")
+    }
+}
+
+
+extension HomeViewController {
+    // MARK: showMerchantModeModal modal
+    
+    func showMerchantModeModal(sender: AnyObject) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let navigationController = storyboard.instantiateViewControllerWithIdentifier("merchantModalNavigationController") as! UINavigationController
+        let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
+        
+        print("showing merchant mode modal")
+        // Initialize and style the terms and conditions modal
+        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = false
+        formSheetController.presentationController?.contentViewSize = CGSizeMake(280, 280)
+        formSheetController.presentationController?.shouldUseMotionEffect = true
+        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
+        formSheetController.presentationController?.containerView?.sizeToFit()
+//        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
+        formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = false
+        formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
+        formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.CenterVertically
+        formSheetController.presentationController?.shouldCenterHorizontally = true
+        formSheetController.presentationController?.portraitTopInset = 100
+        formSheetController.contentViewCornerRadius = 5
+        formSheetController.allowDismissByPanningPresentedView = false
+        formSheetController.interactivePanGestureDismissalDirection = .All;
+        
+        let presentedViewController = navigationController.viewControllers.first as! MerchantModeModalViewController
+        
+        // keep passing along user data to modal
+        presentedViewController.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
+        presentedViewController.navigationItem.leftItemsSupplementBackButton = true
+        
+        // Be sure to update current module on storyboard
+        self.presentViewController(formSheetController, animated: true, completion: nil)
     }
 }
