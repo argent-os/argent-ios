@@ -15,8 +15,9 @@ import Stripe
 import SwiftyJSON
 import CWStatusBarNotification
 import Crashlytics
+import TRCurrencyTextField
 
-class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelegate, PKPaymentAuthorizationViewControllerDelegate, UITextFieldDelegate {
+class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelegate, PKPaymentAuthorizationViewControllerDelegate {
     
     var detailUser: User? {
         didSet {
@@ -25,9 +26,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
     
     let currencyFormatter = NSNumberFormatter()
 
-    let chargeInputView = UITextField()
-
-    let merchantLabel = UILabel()
+    let chargeInputView = TRCurrencyTextField()
 
     let selectPaymentOptionButton:UIButton = UIButton()
     
@@ -40,6 +39,12 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureView()
+        
+        setupNav()
+    }
+
+    private func configureView() {
         // This will set to only one instance
         
         self.view.backgroundColor = UIColor.whiteColor()
@@ -49,45 +54,32 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         self.view.layer.cornerRadius = 10.0
         // border
         self.view.layer.borderColor = UIColor.darkGrayColor().colorWithAlphaComponent(0.2).CGColor
-        self.view.layer.borderWidth = 1
+        self.view.layer.borderWidth = 0
         // drop shadow
         self.view.layer.shadowColor = UIColor.blackColor().CGColor
         self.view.layer.shadowOpacity = 0.8
         self.view.layer.shadowRadius = 3.0
         self.view.layer.shadowOffset = CGSizeMake(2.0, 2.0)
-
         
         // screen width and height:
         let screen = UIScreen.mainScreen().bounds
         _ = screen.size.width
         _ = screen.size.height
         
-        if let bn = detailUser?.business_name {
-            merchantLabel.text = "Transfer to " + bn
-        } else if let fn = detailUser?.first_name, ln = detailUser?.last_name {
-            merchantLabel.text = "Transfer to " + fn + " " + ln
-        } else if let un = detailUser?.username {
-            merchantLabel.text = "Transer to @" + un
-        } else {
-            merchantLabel.text = "Send Transfer"
-        }
-        
-        merchantLabel.frame = CGRect(x: 0, y: 35, width: 280, height: 20)
-        merchantLabel.textAlignment = .Center
-        merchantLabel.font = UIFont(name: "MyriadPro-Regular", size: 17)!
-        merchantLabel.textColor = UIColor.oceanBlue()
-        self.view.addSubview(merchantLabel)
-        
-        chargeInputView.delegate = self
         chargeInputView.frame = CGRect(x: 0, y: 85, width: 280, height: 100)
-        chargeInputView.textColor = UIColor.seaBlue()
+        chargeInputView.borderStyle = .None
+        chargeInputView.textColor = UIColor.brandGreen()
         chargeInputView.backgroundColor = UIColor.clearColor()
         chargeInputView.font = UIFont(name: "MyriadPro-Regular", size: 48)
         chargeInputView.textAlignment = .Center
         chargeInputView.keyboardType = .NumberPad
-        chargeInputView.placeholder = "$0.00"
-        chargeInputView.addTarget(self, action: #selector(PayMerchantViewController.textField(_:shouldChangeCharactersInRange:replacementString:)), forControlEvents: UIControlEvents.EditingChanged)
-
+        let countryCode = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
+        chargeInputView.setCountryCode(countryCode)
+        chargeInputView.setLocale(NSLocale.currentLocale())
+        chargeInputView.addWhiteSpaceOnSymbol = false
+        chargeInputView.maxDigits = 5
+        chargeInputView.clearButtonMode = .Never
+        
         selectPaymentOptionButton.frame = CGRect(x: 0, y: 220, width: 280, height: 60)
         selectPaymentOptionButton.layer.borderColor = UIColor.whiteColor().CGColor
         selectPaymentOptionButton.layer.borderWidth = 0
@@ -96,9 +88,9 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         var attribs: [String: AnyObject] = [:]
         attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
-        let str = NSAttributedString(string: "Select Payment Option", attributes: attribs)
-        selectPaymentOptionButton.setBackgroundColor(UIColor.oceanBlue(), forState: .Normal)
-        selectPaymentOptionButton.setBackgroundColor(UIColor.oceanBlue().lighterColor(), forState: .Highlighted)
+        let str = NSAttributedString(string: "Next", attributes: attribs)
+        selectPaymentOptionButton.setBackgroundColor(UIColor.brandGreen(), forState: .Normal)
+        selectPaymentOptionButton.setBackgroundColor(UIColor.brandGreen().lighterColor(), forState: .Highlighted)
         selectPaymentOptionButton.setAttributedTitle(str, forState: .Normal)
         selectPaymentOptionButton.addTarget(self, action: #selector(PayMerchantViewController.showPayModal(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(selectPaymentOptionButton)
@@ -115,7 +107,54 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PayMerchantViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
-
+    
+    private func setupNav() {
+        let navigationBar = self.navigationController?.navigationBar
+        
+        navigationBar!.backgroundColor = UIColor.offWhite()
+        navigationBar!.tintColor = UIColor.darkBlue()
+        
+        // Create a navigation item with a title
+        let navigationItem = UINavigationItem()
+        
+        // Create left and right button for navigation item
+        let leftButton = UIBarButtonItem(title: "Close", style: .Plain, target: self, action: #selector(self.close(_:)))
+        //        let leftButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.close(_:)))
+        let font = UIFont(name: "MyriadPro-Regular", size: 14)!
+        leftButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+        leftButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.darkBlue()], forState: UIControlState.Highlighted)
+        // Create two buttons for the navigation item
+        navigationItem.leftBarButtonItem = leftButton
+        
+        let str = "Transfer to "
+        if let bn = detailUser?.business_name where detailUser?.business_name != "" {
+            let rightButton = UIBarButtonItem(title: str + bn, style: .Plain, target: self, action: #selector(self.showPayModal(_:)))
+            rightButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+            // Create two buttons for the navigation item
+            navigationItem.rightBarButtonItem = rightButton
+        } else if let fn = detailUser?.first_name, ln = detailUser?.last_name where detailUser?.first_name != "" && detailUser?.last_name != "" {
+            let rightButton = UIBarButtonItem(title: str + fn + " " + ln, style: .Plain, target: self, action: #selector(self.showPayModal(_:)))
+            rightButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+            // Create two buttons for the navigation item
+            navigationItem.rightBarButtonItem = rightButton
+        } else if let un = detailUser?.username {
+            let rightButton = UIBarButtonItem(title: str + "@" + un, style: .Plain, target: self, action: #selector(self.showPayModal(_:)))
+            rightButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+            // Create two buttons for the navigation item
+            navigationItem.rightBarButtonItem = rightButton
+        } else {
+            let rightButton = UIBarButtonItem(title: "Send transfer", style: .Plain, target: self, action: #selector(self.showPayModal(_:)))
+            rightButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+            // Create two buttons for the navigation item
+            navigationItem.rightBarButtonItem = rightButton
+        }
+        
+        // Assign the navigation item to the navigation bar
+        navigationBar!.titleTextAttributes = [NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.darkGrayColor()]
+        navigationBar!.items = [navigationItem]
+        
+    }
+    
     override func viewDidDisappear(animated: Bool) {
         
     }
@@ -125,34 +164,8 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         chargeInputView.becomeFirstResponder()
     }
     
-    func close() -> Void {
+    func close(sender: AnyObject) -> Void {
         self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        
-        // Construct the text that will be in the field if this change is accepted
-        let oldText = chargeInputView.text! as NSString
-        var newText = oldText.stringByReplacingCharactersInRange(range, withString: string) as NSString!
-        var newTextString = String(newText)
-        
-        let digits = NSCharacterSet.decimalDigitCharacterSet()
-        var digitText = ""
-        for c in newTextString.unicodeScalars {
-            if digits.longCharacterIsMember(c.value) {
-                digitText.append(c)
-            }
-        }
-        
-        let formatter = NSNumberFormatter()
-        formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
-        formatter.locale = NSLocale.currentLocale()
-        let numberFromField = (NSString(string: digitText).doubleValue)/100
-        newText = formatter.stringFromNumber(numberFromField)
-        
-        textField.text = String(newText)
-        
-        return false
     }
     
     // MARK: Payment Options Modal
@@ -198,16 +211,14 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         if(chargeInputView.text == "" || chargeInputView.text == "$0.00") {
             showGlobalNotification("Amount invalid", duration: 5.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
         } else {
-            var str = chargeInputView.text
-            str?.removeAtIndex(str!.characters.indices.first!) // remove first letter
-            let floatValue = (str! as NSString).floatValue
-            if(floatValue<1) {
+            let floatValue = Float(chargeInputView.value)*100 // for apple pay
+            let value = Int(Float(chargeInputView.value)*100) // for stripe api
+            if(value<1) {
                 showGlobalNotification("Amount cannot be less than 1", duration: 8.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
             } else {
                 request.paymentSummaryItems = [
                     PKPaymentSummaryItem(label: (detailUser?.first_name)!, amount: NSDecimalNumber(float: floatValue))
                 ]
-                print(request)
                 if (Stripe.canSubmitPaymentRequest(request)) {
                     print("stripe can submit payment request")
                     let paymentController = PKPaymentAuthorizationViewController(paymentRequest: request)
@@ -267,10 +278,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         // SEND REQUEST TO Argent API ENDPOINT TO EXCHANGE STRIPE TOKEN
         
         print("creating backend token")
-        var str = chargeInputView.text
-        str?.removeAtIndex(str!.characters.indices.first!) // remove first letter
-        let floatValue = (str! as NSString).floatValue
-        let amountInCents = Int(floatValue*100)
+        let amountInCents = Int(Float(chargeInputView.value)*100) // for stripe api
         User.getProfile { (user, NSError) in
             let url = API_URL + "/stripe/" + (user?.id)! + "/charge/" + (self.detailUser?.username)!
             
@@ -298,11 +306,11 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
                                 //let json = JSON(value)
                                 print(PKPaymentAuthorizationStatus.Success)
                                 completion(PKPaymentAuthorizationStatus.Success)
-                                Answers.logPurchaseWithPrice(decimalWithString(self.currencyFormatter, string: String(floatValue)),
+                                Answers.logPurchaseWithPrice(decimalWithString(self.currencyFormatter, string: String(Float(self.chargeInputView.value)*100)),
                                     currency: "USD",
                                     success: true,
                                     itemName: "Payment",
-                                    itemType: "Merchant One-Time Sale",
+                                    itemType: "Merchant One-Time Sale Digital",
                                     itemId: "sku-###",
                                     customAttributes: [
                                         "method": self.paymentMethod
@@ -347,12 +355,12 @@ extension PayMerchantViewController {
         
         print("showing credit card modal")
         // Initialize and style the terms and conditions modal
-        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
         formSheetController.presentationController?.contentViewSize = CGSizeMake(280, 280)
         formSheetController.presentationController?.shouldUseMotionEffect = true
-        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
+        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.pastelDarkBlue().colorWithAlphaComponent(075)
         formSheetController.presentationController?.containerView?.sizeToFit()
-        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
+        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = false
+        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Light
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
         formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.AlwaysAboveKeyboard
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom

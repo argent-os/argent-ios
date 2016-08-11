@@ -12,6 +12,7 @@ import SwiftyJSON
 import UIKit
 import Former
 import TRCurrencyTextField
+import CWStatusBarNotification
 
 final class RecurringBillingViewController: FormViewController, UINavigationBarDelegate, UITextFieldDelegate {
     
@@ -274,6 +275,9 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
                 $0.rowHeight = 60
             }.onTextChanged { [weak self] in
                 self?.dic["statement_descriptor"] = $0
+                if $0.characters.count > 22 {
+                    showGlobalNotification("Statement descriptor too long", duration: 5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
+                }
         }
         
         let planIntervalCountRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in

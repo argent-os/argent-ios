@@ -587,11 +587,11 @@ extension MerchantPlansViewController {
         
         print("showing credit card modal")
         // Initialize and style the terms and conditions modal
-        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
         formSheetController.presentationController?.contentViewSize = CGSizeMake(280, 280)
         formSheetController.presentationController?.shouldUseMotionEffect = true
-        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
+        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.pastelDarkBlue().colorWithAlphaComponent(0.75)
         formSheetController.presentationController?.containerView?.sizeToFit()
+        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = false
         formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Light
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom

@@ -16,7 +16,7 @@ import Alamofire
 import SwiftyJSON
 import Crashlytics
 
-class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate, STPPaymentCardTextFieldDelegate {
+class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate, UINavigationBarDelegate, STPPaymentCardTextFieldDelegate {
     
     let creditCardLogoImageView = UIImageView()
     
@@ -41,9 +41,11 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
         
         // This will set to only one instance
         
-        self.view.backgroundColor = UIColor.offWhite()
+        self.view.backgroundColor = UIColor.whiteColor()
         
         configureView()
+        
+        setupNav()
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -59,20 +61,21 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
         
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.barTintColor = UIColor.lightGrayColor()
+        self.navigationController?.navigationItem
         
-        creditCardLogoImageView.frame = CGRect(x: 125, y: 50, width: 30, height: 30)
+        creditCardLogoImageView.frame = CGRect(x: 125, y: 90, width: 30, height: 30)
         creditCardLogoImageView.image = paymentTextField.brandImage
         creditCardLogoImageView.contentMode = .ScaleAspectFit
         self.view.addSubview(creditCardLogoImageView)
         
         let paymentMaskView = UIView()
-        paymentMaskView.backgroundColor = UIColor.offWhite()
-        paymentMaskView.frame = CGRect(x: 0, y: 115, width: 42, height: 40)
+        paymentMaskView.backgroundColor = UIColor.whiteColor()
+        paymentMaskView.frame = CGRect(x: 0, y: 135, width: 42, height: 40)
         self.view.addSubview(paymentMaskView)
         self.view.bringSubviewToFront(paymentMaskView)
         self.view.superview?.bringSubviewToFront(paymentMaskView)
         
-        paymentTextField.frame = CGRect(x: 0, y: 105, width: 260, height: 60)
+        paymentTextField.frame = CGRect(x: 0, y: 125, width: 260, height: 60)
         paymentTextField.textColor = UIColor.lightBlue()
         paymentTextField.textErrorColor = UIColor.brandRed()
         paymentTextField.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
@@ -108,18 +111,46 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
         submitCreditCardButton.layer.mask = rectShape
         
     }
-
-    func submitCreditCard(sender: AnyObject) {
+    
+    private func setupNav() {
+        let navigationBar = self.navigationController?.navigationBar
         
+        navigationBar!.backgroundColor = UIColor.offWhite()
+        navigationBar!.tintColor = UIColor.darkBlue()
+        
+        // Create a navigation item with a title
+        let navigationItem = UINavigationItem()
+        
+        // Create left and right button for navigation item
+        let leftButton = UIBarButtonItem(title: "Close", style: .Plain, target: self, action: #selector(self.close(_:)))
+//        let leftButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.close(_:)))
+        let font = UIFont(name: "MyriadPro-Regular", size: 14)!
+        leftButton.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+        leftButton.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.darkBlue()], forState: UIControlState.Highlighted)
+        // Create two buttons for the navigation item
+        navigationItem.leftBarButtonItem = leftButton
+        
+        let rightButton = UIBarButtonItem(image: UIImage(named: "IconScanCamera"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.scanCard(_:)))
+        rightButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+        // Create two buttons for the navigation item
+        navigationItem.rightBarButtonItem = rightButton
+        
+        // Assign the navigation item to the navigation bar
+        navigationBar!.titleTextAttributes = [NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.darkGrayColor()]
+        navigationBar!.items = [navigationItem]
+
     }
+    
     
     override func viewDidDisappear(animated: Bool) {
     }
     
     override func viewDidAppear(animated: Bool) {
+        paymentTextField.becomeFirstResponder()
+        paymentTextField.canBecomeFocused()
     }
     
-    func close() -> Void {
+    func close(sender: AnyObject) -> Void {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -163,7 +194,7 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
         self.view.endEditing(true)
         paymentTextField.endEditing(true)
     }
-    
+
     func payMerchant(sender: AnyObject) {
         // Function for toolbar button
         // pay merchant
@@ -263,4 +294,46 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
             }
         }
     }
+}
+
+
+extension CreditCardEntryModalViewController: CardIOPaymentViewControllerDelegate {
+    // CARD IO
+    @IBAction func scanCard(sender: AnyObject) {
+        let cardIOVC = CardIOPaymentViewController(paymentDelegate: self)
+        cardIOVC.hideCardIOLogo = true
+        cardIOVC.collectPostalCode = true
+        cardIOVC.allowFreelyRotatingCardGuide = true
+        cardIOVC.guideColor = UIColor.skyBlue()
+        cardIOVC.modalPresentationStyle = .FormSheet
+        presentViewController(cardIOVC, animated: true, completion: nil)
+    }
+    
+    func userDidCancelPaymentViewController(paymentViewController: CardIOPaymentViewController!) {
+        //        resultLabel.text = "Card not entered"
+        paymentViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func didScanCard(cardInfo: CardIOCreditCardInfo) {
+        // The full card number is available as info.cardNumber, but don't log that!
+        // print("Received card info. Number: %@, expiry: %02i/%i, cvv: %@.", cardInfo.redactedCardNumber, cardInfo.expiryMonth, cardInfo.expiryYear, cardInfo.cvv);
+        // Use the card info...
+        // Post to Stripe, make API call here
+    }
+    
+    func userDidProvideCreditCardInfo(cardInfo: CardIOCreditCardInfo!, inPaymentViewController paymentViewController: CardIOPaymentViewController!) {
+        if let info = cardInfo {
+            let card: STPCardParams = STPCardParams()
+            card.number = info.cardNumber
+            card.expMonth = info.expiryMonth
+            card.expYear = info.expiryYear
+            card.cvc = info.cvv
+            paymentTextField.cardParams = card
+            let _ = Timeout(0.2) {
+                self.paymentTextField.endEditing(true)
+            }
+        }
+        paymentViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
 }

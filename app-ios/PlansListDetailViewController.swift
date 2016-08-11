@@ -112,6 +112,13 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
             addSubviewWithFade(updatePlanButton, parentView: self, duration: 0.3)
         }
         
+        let statementDescriptionCharacterCountLabel = UITextField()
+        statementDescriptionCharacterCountLabel.frame = CGRect(x: -20, y: 10, width: screenWidth, height: 60)
+        statementDescriptionCharacterCountLabel.layer.borderWidth = 0
+        statementDescriptionCharacterCountLabel.textColor = UIColor.lightBlue()
+        statementDescriptionCharacterCountLabel.textAlignment = .Right
+        self.view.addSubview(statementDescriptionCharacterCountLabel)
+        
         Plan.getPlan(planId!) { (plan, err) in
             
             // Create RowFomers
@@ -134,22 +141,17 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
 
             }
             
-            let planNameRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
+            let planNameRow = SegmentedRowFormer<FormSegmentedCell>() {
                 $0.titleLabel.text = "Name"
                 $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 15)!
                 $0.titleLabel.textColor = UIColor.mediumBlue()
-                
-                $0.textField.font = UIFont(name: "MyriadPro-Regular", size: 15)!
-                $0.textField.autocorrectionType = .No
-                $0.textField.autocapitalizationType = .Words
-                $0.textField.inputAccessoryView = self?.formerInputAccessoryView
                 }.configure {
-                    $0.placeholder = plan!["name"].stringValue
+                    $0.segmentTitles = [plan!["name"].stringValue]
                     $0.rowHeight = 60
-                    self.dic["name"] = $0.text
-                }.onTextChanged { [weak self] in
-                    self?.dic["name"] = $0
-            }
+                    $0.selectedIndex = 0
+                    $0.cell.tintColor = UIColor.oceanBlue()
+                }
+            
             
             let planCurrencyRow = SegmentedRowFormer<FormSegmentedCell>() {
                 $0.titleLabel.text = "Currency"
@@ -200,11 +202,21 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
                 $0.textField.returnKeyType = .Done
                 $0.textField.inputAccessoryView = self?.formerInputAccessoryView
                 }.configure {
-                    $0.placeholder = plan!["statement_descriptor"].stringValue ?? "(22 characters) Statement Descriptor"
+                    if plan!["statement_descriptor"].stringValue == "" {
+                        $0.placeholder = "(22 characters) Statement Descriptor"
+                    } else {
+                        $0.placeholder = plan!["statement_descriptor"].stringValue
+                    }
                     $0.rowHeight = 60
                     self.dic["statement_descriptor"] = $0.text ?? ""
                 }.onTextChanged { [weak self] in
                     self?.dic["statement_descriptor"] = $0 ?? ""
+                    statementDescriptionCharacterCountLabel.text = String($0.characters.count) + "/22"
+                    if $0.characters.count > 22 {
+                        statementDescriptionCharacterCountLabel.textColor = UIColor.brandRed()
+                    } else {
+                        statementDescriptionCharacterCountLabel.textColor = UIColor.lightBlue()
+                    }
             }
             
             let planIntervalCountRow = SegmentedRowFormer<FormSegmentedCell>() {

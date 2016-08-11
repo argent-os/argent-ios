@@ -354,12 +354,12 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
         let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
         
         // Initialize and style the pay merchant modal
-        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
+        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = false
         formSheetController.presentationController?.contentViewSize = CGSizeMake(280, 280)
         formSheetController.presentationController?.shouldUseMotionEffect = true
-        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.pastelDarkBlue().colorWithAlphaComponent(0.5)
+        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.pastelDarkBlue().colorWithAlphaComponent(0.9)
         formSheetController.presentationController?.containerView?.sizeToFit()
-        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Light
+//        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Light
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
         formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.AlwaysAboveKeyboard

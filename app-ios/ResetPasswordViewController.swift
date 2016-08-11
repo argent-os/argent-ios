@@ -99,7 +99,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate  {
 
         done.setTitleTextAttributes([
             NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!,
-            NSForegroundColorAttributeName : UIColor.mediumBlue()
+            NSForegroundColorAttributeName : UIColor.whiteColor()
             ], forState: .Normal)
         
         var items: [UIBarButtonItem]? = [UIBarButtonItem]()
