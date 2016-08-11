@@ -39,6 +39,8 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
         // This will set to only one instance
         
         configureView()
+        
+        setupNav()
     }
     
     func configureView() {
@@ -126,6 +128,33 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
         noButton.addTarget(self, action: #selector(noClicked(_:)), forControlEvents: .TouchUpInside)
         addSubviewWithBounce(noButton, parentView: self, duration: 0.3)
         
+    }
+    
+    private func setupNav() {
+        let navigationBar = self.navigationController?.navigationBar
+        
+        navigationBar!.backgroundColor = UIColor.offWhite()
+        navigationBar!.tintColor = UIColor.darkBlue()
+        
+        // Create a navigation item with a title
+        let navigationItem = UINavigationItem()
+        
+        // Create left and right button for navigation item
+        let leftButton = UIBarButtonItem(title: "Close", style: .Plain, target: self, action: #selector(self.close(_:)))
+        let font = UIFont(name: "MyriadPro-Regular", size: 17)!
+        leftButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+        leftButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.darkBlue()], forState: UIControlState.Highlighted)
+        // Create two buttons for the navigation item
+        navigationItem.leftBarButtonItem = leftButton
+        
+        // Assign the navigation item to the navigation bar
+        navigationBar!.titleTextAttributes = [NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.darkGrayColor()]
+        navigationBar!.items = [navigationItem]
+        
+    }
+    
+    func close(sender: AnyObject) -> Void {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func yesClicked(sender: AnyObject) {

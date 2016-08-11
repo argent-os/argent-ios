@@ -120,30 +120,30 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         // Create left and right button for navigation item
         let leftButton = UIBarButtonItem(title: "Close", style: .Plain, target: self, action: #selector(self.close(_:)))
         //        let leftButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.close(_:)))
-        let font = UIFont(name: "MyriadPro-Regular", size: 14)!
+        let font = UIFont(name: "MyriadPro-Regular", size: 17)!
         leftButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
         leftButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.darkBlue()], forState: UIControlState.Highlighted)
         // Create two buttons for the navigation item
         navigationItem.leftBarButtonItem = leftButton
         
-        let str = "Transfer to "
+        let str = ""
         if let bn = detailUser?.business_name where detailUser?.business_name != "" {
-            let rightButton = UIBarButtonItem(title: str + bn, style: .Plain, target: self, action: #selector(self.showPayModal(_:)))
+            let rightButton = UIBarButtonItem(title: str + bn, style: .Plain, target: self, action: nil)
             rightButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
             // Create two buttons for the navigation item
             navigationItem.rightBarButtonItem = rightButton
         } else if let fn = detailUser?.first_name, ln = detailUser?.last_name where detailUser?.first_name != "" && detailUser?.last_name != "" {
-            let rightButton = UIBarButtonItem(title: str + fn + " " + ln, style: .Plain, target: self, action: #selector(self.showPayModal(_:)))
+            let rightButton = UIBarButtonItem(title: str + fn + " " + ln, style: .Plain, target: self, action: nil)
             rightButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
             // Create two buttons for the navigation item
             navigationItem.rightBarButtonItem = rightButton
         } else if let un = detailUser?.username {
-            let rightButton = UIBarButtonItem(title: str + "@" + un, style: .Plain, target: self, action: #selector(self.showPayModal(_:)))
+            let rightButton = UIBarButtonItem(title: str + "@" + un, style: .Plain, target: self, action: nil)
             rightButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
             // Create two buttons for the navigation item
             navigationItem.rightBarButtonItem = rightButton
         } else {
-            let rightButton = UIBarButtonItem(title: "Send transfer", style: .Plain, target: self, action: #selector(self.showPayModal(_:)))
+            let rightButton = UIBarButtonItem(title: "Send transfer", style: .Plain, target: self, action: nil)
             rightButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
             // Create two buttons for the navigation item
             navigationItem.rightBarButtonItem = rightButton

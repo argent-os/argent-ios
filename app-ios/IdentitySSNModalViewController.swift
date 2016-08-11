@@ -28,6 +28,12 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureView()
+        
+        setupNav()
+    }
+    
+    private func configureView() {
         // This will set to only one instance
         
         self.view.backgroundColor = UIColor.whiteColor()
@@ -41,25 +47,23 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.navigationBar.barTintColor = UIColor.lightGrayColor()
         
         let imageFingerprint = UIImageView()
-        imageFingerprint.frame = CGRect(x: 140-30, y: 0, width: 60, height: 60)
+        imageFingerprint.frame = CGRect(x: 140-30, y: 60, width: 60, height: 60)
         imageFingerprint.contentMode = .ScaleAspectFit
-        imageFingerprint.frame.origin.y = 25
         self.view.addSubview(imageFingerprint)
         
-        titleLabel.frame = CGRect(x: 0, y: 35, width: 280, height: 20)
         titleLabel.text = ""
         titleLabel.textAlignment = .Center
         titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 18)
         titleLabel.textColor = UIColor.lightBlue()
         self.view.addSubview(titleLabel)
         
-        ssnTextField.frame = CGRect(x: 10, y: 65, width: 260, height: 150)
+        ssnTextField.frame = CGRect(x: 10, y: 85, width: 260, height: 150)
         ssnTextField.placeholder = "123-45-6789"
         ssnTextField.alpha = 0.8
         ssnTextField.textAlignment = .Center
         ssnTextField.font = UIFont(name: "MyriadPro-Regular", size: 30)
         ssnTextField.textColor = UIColor.darkBlue()
-//        ssnTextField.mask = "###-##-####"
+        //        ssnTextField.mask = "###-##-####"
         ssnTextField.mask = "#########"
         ssnTextField.delegate = self
         ssnTextField.keyboardType = .NumberPad
@@ -103,6 +107,32 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    private func setupNav() {
+        let navigationBar = self.navigationController?.navigationBar
+        
+        navigationBar!.backgroundColor = UIColor.offWhite()
+        navigationBar!.tintColor = UIColor.darkBlue()
+        
+        // Create a navigation item with a title
+        let navigationItem = UINavigationItem()
+        
+        // Create left and right button for navigation item
+        let leftButton = UIBarButtonItem(title: "Close", style: .Plain, target: self, action: #selector(self.close(_:)))
+        let font = UIFont(name: "MyriadPro-Regular", size: 17)!
+        leftButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+        leftButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.darkBlue()], forState: UIControlState.Highlighted)
+        // Create two buttons for the navigation item
+        navigationItem.leftBarButtonItem = leftButton
+        
+        // Assign the navigation item to the navigation bar
+        navigationBar!.titleTextAttributes = [NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.darkGrayColor()]
+        navigationBar!.items = [navigationItem]
+        
+    }
+    
+    func close(sender: AnyObject) -> Void {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         return ssnTextField.shouldChangeCharactersInRange(range, replacementString: string)

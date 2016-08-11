@@ -124,9 +124,9 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
         // Create left and right button for navigation item
         let leftButton = UIBarButtonItem(title: "Close", style: .Plain, target: self, action: #selector(self.close(_:)))
 //        let leftButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.close(_:)))
-        let font = UIFont(name: "MyriadPro-Regular", size: 14)!
-        leftButton.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
-        leftButton.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.darkBlue()], forState: UIControlState.Highlighted)
+        let font = UIFont(name: "MyriadPro-Regular", size: 17)!
+        leftButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+        leftButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.darkBlue()], forState: UIControlState.Highlighted)
         // Create two buttons for the navigation item
         navigationItem.leftBarButtonItem = leftButton
         
@@ -141,6 +141,9 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
 
     }
     
+    func close(sender: AnyObject) -> Void {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     override func viewDidDisappear(animated: Bool) {
     }
@@ -148,10 +151,6 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
     override func viewDidAppear(animated: Bool) {
         paymentTextField.becomeFirstResponder()
         paymentTextField.canBecomeFocused()
-    }
-    
-    func close(sender: AnyObject) -> Void {
-        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // STP PAYMENT
