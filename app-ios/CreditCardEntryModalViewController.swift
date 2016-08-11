@@ -150,7 +150,6 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
     
     override func viewDidAppear(animated: Bool) {
         paymentTextField.becomeFirstResponder()
-        paymentTextField.canBecomeFocused()
     }
     
     // STP PAYMENT

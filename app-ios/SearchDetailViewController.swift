@@ -312,6 +312,17 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
     
     // MARK: VIEW PLANS MODAL
     
+    func shouldUseContentViewFrameForPresentationController(presentationController: MZFormSheetPresentationController) -> Bool {
+        return true
+    }
+    
+    func contentViewFrameForPresentationController(presentationController: MZFormSheetPresentationController, currentFrame: CGRect) -> CGRect {
+        var currentFrame = currentFrame
+        currentFrame.size.height = 20
+        currentFrame.origin.y = 50
+        return currentFrame
+    }
+    
     func viewPlansModal(sender: AnyObject) {
         
         let screen = UIScreen.mainScreen().bounds
@@ -328,8 +339,8 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
         formSheetController.presentationController?.containerView?.sizeToFit()
         formSheetController.presentationController?.shouldCenterVertically = true
         formSheetController.presentationController?.shouldCenterHorizontally = true
-        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = false
-        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Light
+        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
+        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
         formSheetController.contentViewCornerRadius = 10
@@ -337,6 +348,9 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
         formSheetController.interactivePanGestureDismissalDirection = .All;
         
         let presentedViewController = navigationController.viewControllers.first as! MerchantPlansViewController
+        
+//        formSheetController.shouldUseContentViewFrameForPresentationController(MZFormSheetPresentationController())
+//        formSheetController.contentViewFrameForPresentationController(MZFormSheetPresentationController(), currentFrame: CGRect(x: 0,y: 0,width: 100,height: 100))
         
         // keep passing along user data to modal
         presentedViewController.detailUser = detailUser
@@ -354,12 +368,12 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
         let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
         
         // Initialize and style the pay merchant modal
-        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = false
         formSheetController.presentationController?.contentViewSize = CGSizeMake(280, 280)
         formSheetController.presentationController?.shouldUseMotionEffect = true
-        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.pastelDarkBlue().colorWithAlphaComponent(0.9)
+        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.pastelDarkBlue().colorWithAlphaComponent(0.75)
         formSheetController.presentationController?.containerView?.sizeToFit()
-//        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Light
+        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
+        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
         formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.AlwaysAboveKeyboard
@@ -419,12 +433,12 @@ extension SearchDetailViewController {
         
         print("showing ach modal")
         // Initialize and style the terms and conditions modal
-        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
         formSheetController.presentationController?.contentViewSize = CGSizeMake(280, 400)
         formSheetController.presentationController?.shouldUseMotionEffect = true
         formSheetController.presentationController?.containerView?.backgroundColor = UIColor.pastelDarkBlue().colorWithAlphaComponent(0.5)
         formSheetController.presentationController?.containerView?.sizeToFit()
-        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Light
+        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
+        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
         formSheetController.presentationController?.shouldCenterVertically = true
         formSheetController.presentationController?.shouldCenterHorizontally = true

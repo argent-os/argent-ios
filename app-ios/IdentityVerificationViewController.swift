@@ -245,7 +245,7 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate,
     func imageUploadRequest(uploadedImage: UIImage)
     {
         
-        showGlobalNotification("Uploading identity verification document", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.iosBlue())
+        showGlobalNotification("Uploading identity verification document", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.pastelBlue())
 
         if(userAccessToken != nil) {
             User.getProfile { (user, NSError) in
@@ -293,7 +293,7 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate,
                                     switch response.result {
                                     case .Success:
                                         print("success")
-                                        showGlobalNotification("Document uploaded!", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
+                                        showGlobalNotification("Document uploaded!", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.pastelBlue())
                                         Answers.logCustomEventWithName("Identity Verification Document Upload Success",
                                             customAttributes: [:])
                                     case .Failure(let error):
@@ -331,13 +331,12 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate,
         
         print("showing ssn modal")
         // Initialize and style the terms and conditions modal
-        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
         formSheetController.presentationController?.contentViewSize = CGSizeMake(280, 280)
         formSheetController.presentationController?.shouldUseMotionEffect = true
         formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
         formSheetController.presentationController?.containerView?.sizeToFit()
+        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
         formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
-        formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
         formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.CenterVertically
         formSheetController.contentViewCornerRadius = 5

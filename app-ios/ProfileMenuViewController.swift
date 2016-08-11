@@ -138,7 +138,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                         fields_required[indexOfPIN] = "SSN or Personal ID Number"
                     }
                     if let indexOfSSNLast4 = fields_required.indexOf("legal_entity.ssn_last_4") {
-                        fields_required[indexOfSSNLast4] = "SSN Last 4"
+                        fields_required[indexOfSSNLast4] = "SSN Information"
                     }
                     if let indexOfEIN = fields_required.indexOf("legal_entity.business_tax_id") {
                         fields_required[indexOfEIN] = "Business Tax ID (EIN)"
@@ -181,6 +181,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                         self.verifiedLabel.text = "System maintenance, transfers disabled"
                     }
                 } else {
+                    self.verifiedLabel.removeFromSuperview()
                     self.verifiedButton.frame = CGRect(x:screenWidth/2-13, y: 110, width: 26, height: 26)
                     self.verifiedButton.setImage(UIImage(named: "IconSuccess"), forState: .Normal)
                     self.verifiedButton.setTitle("Tuts", forState: .Normal)
@@ -630,11 +631,11 @@ extension ProfileMenuViewController {
         let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
         
         // Initialize and style the terms and conditions modal
-        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
         formSheetController.presentationController?.contentViewSize = CGSizeMake(300, UIScreen.mainScreen().bounds.height-130)
         formSheetController.presentationController?.shouldUseMotionEffect = true
         formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor()
         formSheetController.presentationController?.containerView?.sizeToFit()
+        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
         formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
         formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.CenterVertically

@@ -175,8 +175,8 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         
         // Pay button
         payButton.frame = CGRect(x: 0, y: screenHeight-60, width: screenWidth, height: 60.0)
-        payButton.setBackgroundColor(UIColor.skyBlue(), forState: .Normal)
-        payButton.setBackgroundColor(UIColor.skyBlue().lighterColor(), forState: .Highlighted)
+        payButton.setBackgroundColor(UIColor.pastelBlue(), forState: .Normal)
+        payButton.setBackgroundColor(UIColor.pastelBlue().lighterColor(), forState: .Highlighted)
         payButton.tintColor = UIColor(rgba: "#fff")
         payButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
         payButton.setTitleColor(UIColor(rgba: "#fffe"), forState: .Highlighted)
@@ -261,7 +261,7 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         // print(chargeInputView.text)
         
         if chargeInputView.text != "" || chargeInputView.text == "$0.00"  {
-        showGlobalNotification("Paying merchant " + chargeInputView.text!, duration: 1.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
+        showGlobalNotification("Paying merchant " + chargeInputView.text!, duration: 1.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.pastelBlue())
         } else {
             showGlobalNotification("Amount cannot be empty", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.neonOrange())
                 payButton.userInteractionEnabled = true
@@ -438,7 +438,7 @@ extension ChargeViewController: CardIOPaymentViewControllerDelegate {
         cardIOVC.hideCardIOLogo = true
         cardIOVC.collectPostalCode = true
         cardIOVC.allowFreelyRotatingCardGuide = true
-        cardIOVC.guideColor = UIColor.skyBlue()
+        cardIOVC.guideColor = UIColor.pastelBlue()
         cardIOVC.modalPresentationStyle = .FormSheet
         presentViewController(cardIOVC, animated: true, completion: nil)
     }
@@ -506,11 +506,11 @@ extension ChargeViewController {
         self.view.endEditing(true)
         
         // Initialize and style the terms and conditions modal
-        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
         formSheetController.presentationController?.contentViewSize = CGSizeMake(250, 300)
         formSheetController.presentationController?.shouldUseMotionEffect = true
         formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor()
         formSheetController.presentationController?.containerView?.sizeToFit()
+        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
         formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
@@ -563,7 +563,7 @@ extension ChargeViewController {
         
         // Initialize and style the terms and conditions modal
         formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
-        formSheetController.presentationController?.contentViewSize = CGSizeMake(280, 200)
+        formSheetController.presentationController?.contentViewSize = CGSizeMake(280, 250)
         formSheetController.presentationController?.shouldUseMotionEffect = true
         formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
         formSheetController.presentationController?.containerView?.sizeToFit()

@@ -96,9 +96,9 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
             //
             if (acct?.pin)! == true {
                 imageFingerprint.image = UIImage(named: "IconSuccess")
-                imageFingerprint.frame = CGRect(x: 140-30, y: 90, width: 60, height: 60)
+                imageFingerprint.frame = CGRect(x: 140-30, y: 100, width: 60, height: 60)
                 self.titleLabel.text = "SSN is provided"
-                self.titleLabel.frame = CGRect(x: 0, y: 155, width: 280, height: 20)
+                self.titleLabel.frame = CGRect(x: 0, y: 165, width: 280, height: 20)
             } else {
                 imageFingerprint.image = UIImage(named: "IconFingerprint")
                 self.view.addSubview(self.ssnTextField)
@@ -150,11 +150,11 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
             "legal_entity" : legalContent
         ]
         
-        showGlobalNotification("Securely confirming ssn...", duration: 2.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
+        showGlobalNotification("Securely confirming ssn...", duration: 2.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.pastelBlue())
         Account.saveStripeAccount(legalJSON) { (acct, bool, err) in
             if bool {
                 let _ = Timeout(2) {
-                    showGlobalNotification("SSN Confirmed!", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
+                    showGlobalNotification("SSN Confirmed!", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.pastelBlue())
                 }
                 self.dismissViewControllerAnimated(true, completion: nil)
                 Answers.logCustomEventWithName("Identity Verification SSN Upload Success",

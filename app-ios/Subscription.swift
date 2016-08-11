@@ -48,9 +48,9 @@ class Subscription {
                 ]
                 
                 let limit = "100"
-                let user_id = (user?.id)
+                let user_tenant_id = (user?.tenant_id)
                 
-                let endpoint = API_URL + "/stripe/" + user_id! + "/subscriptions?limit=" + limit
+                let endpoint = API_URL + "/scribe/" + user_tenant_id! + "/subscriptions?limit=" + limit
                 
                 Alamofire.request(.GET, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .validate().responseJSON { response in
@@ -85,6 +85,7 @@ class Subscription {
         }
     }
     
+    // Send DELETE Request to cancel subscription
     class func deleteSubscription(id: String, completionHandler: (Bool?, NSError?) -> Void) {
         
         // check for token, get profile id based on token and make the request
@@ -94,7 +95,7 @@ class Subscription {
                     print(error)
                 }
                 
-                let user_id = (user?.id)
+                let user_tenant_id = user?.tenant_id
                 
                 let parameters : [String : AnyObject] = [:]
                 
@@ -103,7 +104,7 @@ class Subscription {
                     "Content-Type": "application/json"
                 ]
                 
-                let endpoint = API_URL + "/stripe/" + user_id! + "/subscriptions/" + id
+                let endpoint = API_URL + "/scribe/" + user_tenant_id! + "/subscriptions/" + id
                 
                 Alamofire.request(.DELETE, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .responseJSON { response in

@@ -104,7 +104,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
         tableView.showsVerticalScrollIndicator = false
         
         self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 60)
-        self.navigationController?.navigationBar.backgroundColor = UIColor.oceanBlue()
+        self.navigationController?.navigationBar.backgroundColor = UIColor.pastelBlue()
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
         self.navigationItem.title = "Edit Profile"
@@ -151,22 +151,18 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                 self.b_last_name = $0
                 Profile.sharedInstance.lastName = $0
         }
-        let usernameRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
+        
+        let usernameRow = SegmentedRowFormer<FormSegmentedCell>() {
             $0.titleLabel.text = "Username"
-            $0.textField.autocorrectionType = .No
-            $0.textField.autocapitalizationType = .None
-            $0.textField.autocapitalizationType = UITextAutocapitalizationType.None
-            $0.textField.autocorrectionType = UITextAutocorrectionType.No
-            $0.textField.inputAccessoryView = self?.formerInputAccessoryView
+            $0.titleLabel.textColor = UIColor.lightBlue()
+            $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 15)!
             }.configure {
+                $0.segmentTitles = ["@"+user.username]
                 $0.rowHeight = 60
-                $0.placeholder = user.username ?? "Enter username"
-                $0.text = user.username ?? Profile.sharedInstance.username
-                self.dic["username"] = $0.text
-            }.onTextChanged {
-                self.dic["username"] = $0
-                Profile.sharedInstance.username = $0
+                $0.cell.tintColor = UIColor.pastelBlue()
+                $0.selectedIndex = 0
         }
+        
         let emailRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
             $0.titleLabel.text = "Email"
             $0.textField.keyboardType = .EmailAddress
@@ -339,7 +335,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
 
         let saveRow = LabelRowFormer<FormLabelCell>() { [weak self] in
             if let x = self {
-                $0.backgroundColor = UIColor.oceanBlue()
+                $0.backgroundColor = UIColor.pastelBlue()
                 $0.titleLabel.textColor = UIColor.whiteColor()
                 $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 16)!
                 $0.tintColor = UIColor.whiteColor()
@@ -402,15 +398,18 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
         // Temporarily remove image section
         // let imageSection = SectionFormer(rowFormer: imageRow)
         //    .set(headerViewFormer: createHeader("Profile Image"))
-        let profileSection = SectionFormer(rowFormer: firstNameRow, lastNameRow, usernameRow, emailRow)
+        let profileSection = SectionFormer(rowFormer: usernameRow, emailRow, firstNameRow, lastNameRow)
             .set(headerViewFormer: createHeader("Profile information"))
-        let businessSection = SectionFormer(rowFormer: businessName, businessAddressRow, businessAddressZipRow, businessAddressCityRow, businessAddressStateRow, ssnRow, einRow)
-            .set(headerViewFormer: createHeader("Verification information"))
+        let verificationSection = SectionFormer(rowFormer: businessAddressRow, businessAddressZipRow, businessAddressCityRow, businessAddressStateRow, ssnRow)
+            .set(headerViewFormer: createHeader("Identity Information"))
+        let businessSection = SectionFormer(rowFormer: businessName, einRow)
+            .set(headerViewFormer: createHeader("Business Information (Optional for individuals)"))
         let saveSection = SectionFormer(rowFormer: saveRow)
+            .set(headerViewFormer: createHeader(""))
         let deleteSection = SectionFormer(rowFormer: deleteRow)
             .set(headerViewFormer: createHeader("Delete account?"))
         
-        former.append(sectionFormer: profileSection, businessSection, saveSection, deleteSection)
+        former.append(sectionFormer: profileSection, verificationSection, businessSection, saveSection, deleteSection)
             .onCellSelected { [weak self] _ in
                 self?.formerInputAccessoryView.update()
         }

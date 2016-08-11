@@ -97,8 +97,8 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
         tableView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
         
         let updatePlanButton = UIButton(frame: CGRect(x: 0, y: screenHeight-60, width: screenWidth, height: 60.0))
-        updatePlanButton.setBackgroundColor(UIColor.oceanBlue(), forState: .Normal)
-        updatePlanButton.setBackgroundColor(UIColor.oceanBlue().lighterColor(), forState: .Highlighted)
+        updatePlanButton.setBackgroundColor(UIColor.pastelBlue(), forState: .Normal)
+        updatePlanButton.setBackgroundColor(UIColor.pastelBlue().lighterColor(), forState: .Highlighted)
         updatePlanButton.tintColor = UIColor.whiteColor()
         updatePlanButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         updatePlanButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
@@ -135,7 +135,7 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
                     let convertedString: String = nf.stringFromNumber(amountNum)!
                     $0.segmentTitles = [convertedString]
                     $0.rowHeight = 60
-                    $0.cell.tintColor = UIColor.oceanBlue()
+                    $0.cell.tintColor = UIColor.pastelBlue()
                     $0.selectedIndex = 0
                     self.dic["amount"] = plan!["amount"].stringValue
 
@@ -149,7 +149,7 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
                     $0.segmentTitles = [plan!["name"].stringValue]
                     $0.rowHeight = 60
                     $0.selectedIndex = 0
-                    $0.cell.tintColor = UIColor.oceanBlue()
+                    $0.cell.tintColor = UIColor.pastelBlue()
                 }
             
             
@@ -161,7 +161,7 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
                     $0.segmentTitles = ["USD"]
                     self.dic["currency"] = plan!["currency"].stringValue
                     $0.rowHeight = 60
-                    $0.cell.tintColor = UIColor.oceanBlue()
+                    $0.cell.tintColor = UIColor.pastelBlue()
                     $0.selectedIndex = 0
             }
         
@@ -173,7 +173,7 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
                     $0.segmentTitles = [plan!["interval"].stringValue]
                     self.dic["interval"] = plan!["interval"].stringValue
                     $0.rowHeight = 60
-                    $0.cell.tintColor = UIColor.oceanBlue()
+                    $0.cell.tintColor = UIColor.pastelBlue()
                     $0.selectedIndex = 0
             }
             
@@ -188,7 +188,7 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
                         $0.segmentTitles = [plan!["trial_period_days"].stringValue + " days"]
                     }
                     $0.rowHeight = 60
-                    $0.cell.tintColor = UIColor.oceanBlue()
+                    $0.cell.tintColor = UIColor.pastelBlue()
                     $0.selectedIndex = 0
             }
             
@@ -227,7 +227,7 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
                     $0.segmentTitles = [plan!["interval_count"].stringValue]
                     self.dic["interval_count"] = plan!["interval_count"].stringValue
                     $0.rowHeight = 60
-                    $0.cell.tintColor = UIColor.oceanBlue()
+                    $0.cell.tintColor = UIColor.pastelBlue()
                     $0.selectedIndex = 0
                 }.onSegmentSelected { (segment, str) in
                     self.dic["interval_count"] = str.lowercaseString

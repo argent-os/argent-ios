@@ -61,14 +61,14 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
             NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 18.0)!
         ]
         
-        titleLabel.frame = CGRect(x: 0, y: 35, width: 280, height: 20)
+        titleLabel.frame = CGRect(x: 0, y: 65, width: 280, height: 30)
         titleLabel.text = "Would you like a receipt?"
         titleLabel.textAlignment = .Center
         titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 18)
-        titleLabel.textColor = UIColor.lightBlue()
+        titleLabel.textColor = UIColor.darkBlue()
         self.view.addSubview(titleLabel)
         
-        informationTextField.frame = CGRect(x: 0, y: 80, width: 280, height: 60)
+        informationTextField.frame = CGRect(x: 0, y: 110, width: 280, height: 60)
         informationTextField.textColor = UIColor.lightBlue()
         informationTextField.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.5).CGColor
         informationTextField.layer.cornerRadius = 0
@@ -79,7 +79,7 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
         informationTextField.keyboardType = .EmailAddress
         informationTextField.becomeFirstResponder()
 
-        submitInformationButton.frame = CGRect(x: 0, y: 140, width: 280, height: 60)
+        submitInformationButton.frame = CGRect(x: 0, y: 190, width: 280, height: 60)
         submitInformationButton.layer.borderColor = UIColor.whiteColor().CGColor
         submitInformationButton.layer.borderWidth = 0
         submitInformationButton.layer.cornerRadius = 0
@@ -93,9 +93,9 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
         submitInformationButton.setAttributedTitle(str, forState: .Normal)
         submitInformationButton.addTarget(self, action: #selector(self.configureBeforeSendingReceipt(_:)), forControlEvents: .TouchUpInside)
         
-        yesButton.setBackgroundColor(UIColor.skyBlue(), forState: .Normal)
-        yesButton.setBackgroundColor(UIColor.skyBlue().lighterColor(), forState: .Highlighted)
-        yesButton.frame = CGRect(x: 0, y: 140, width: 280, height: 60)
+        yesButton.setBackgroundColor(UIColor.pastelBlue(), forState: .Normal)
+        yesButton.setBackgroundColor(UIColor.pastelBlue().lighterColor(), forState: .Highlighted)
+        yesButton.frame = CGRect(x: 0, y: 190, width: 280, height: 60)
         let yesStr = NSAttributedString(string: "Yes please!", attributes: [
             NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 14)!,
             NSForegroundColorAttributeName:UIColor.whiteColor()
@@ -111,17 +111,16 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
         yesButton.addTarget(self, action: #selector(yesClicked(_:)), forControlEvents: .TouchUpInside)
         addSubviewWithBounce(yesButton, parentView: self, duration: 0.3)
         
-        
         noButton.setBackgroundColor(UIColor.whiteColor(), forState: .Normal)
         noButton.setBackgroundColor(UIColor.whiteColor(), forState: .Highlighted)
-        noButton.frame = CGRect(x: 0, y: 80, width: 280, height: 50)
+        noButton.frame = CGRect(x: 0, y: 130, width: 280, height: 50)
         let noStr = NSAttributedString(string: "No thank you", attributes: [
             NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 14)!,
-            NSForegroundColorAttributeName:UIColor.skyBlue()
+            NSForegroundColorAttributeName:UIColor.pastelBlue()
         ])
         let noStr2 = NSAttributedString(string: "No thank you", attributes: [
             NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 14)!,
-            NSForegroundColorAttributeName:UIColor.skyBlue().colorWithAlphaComponent(0.5)
+            NSForegroundColorAttributeName:UIColor.pastelBlue().colorWithAlphaComponent(0.5)
         ])
         noButton.setAttributedTitle(noStr, forState: .Normal)
         noButton.setAttributedTitle(noStr2, forState: .Highlighted)
@@ -168,20 +167,6 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
     func noClicked(sender: AnyObject) {
         self.dismissViewControllerAnimated(true) { }
     }
-
-    func submitCreditCard(sender: AnyObject) {
-        
-    }
-    
-    override func viewDidDisappear(animated: Bool) {
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-    }
-    
-    func close() -> Void {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
     
     //Calls this function when the tap is recognized.
     func dismissKeyboard(sender: AnyObject) {
@@ -217,31 +202,31 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
             // /v1/receipt/8s9g8a0sd9asdjk2/customer?email=john@doe.com
             Alamofire.request(.POST, API_URL + "/receipts/" + (user?.id)! + "/customer?email=" + email, parameters: parameters, encoding: .JSON, headers: headers)
                 .responseJSON { (response) in
-                    switch response.result {
-                    case .Success:
-                        if let value = response.result.value {
-                            //let data = JSON(value)
-                            showGlobalNotification("Receipt sent!", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
-                            self.informationTextField.text = ""
-                            Answers.logCustomEventWithName("Receipt Sent Success",
-                                customAttributes: [
-                                    "to_email": email
-                                ])
-                            self.dismissViewControllerAnimated(true) {
-                                //
-                            }
-                        }
-                    case .Failure(let error):
-                        print(error)
-                        showGlobalNotification("Error sending receipt", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.neonOrange())
-                        Answers.logCustomEventWithName("Receipt Failed to Send",
+                switch response.result {
+                case .Success:
+                    if let value = response.result.value {
+                        //let data = JSON(value)
+                        showGlobalNotification("Receipt sent!", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.pastelBlue())
+                        self.informationTextField.text = ""
+                        Answers.logCustomEventWithName("Receipt Sent Success",
                             customAttributes: [
-                                "error": error.localizedDescription
+                                "to_email": email
                             ])
                         self.dismissViewControllerAnimated(true) {
                             //
                         }
                     }
+                case .Failure(let error):
+                    print(error)
+                    showGlobalNotification("Error sending receipt", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.neonOrange())
+                    Answers.logCustomEventWithName("Receipt Failed to Send",
+                        customAttributes: [
+                            "error": error.localizedDescription
+                        ])
+                    self.dismissViewControllerAnimated(true) {
+                        //
+                    }
+                }
             }
         }
     }    

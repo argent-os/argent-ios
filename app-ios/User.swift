@@ -14,6 +14,7 @@ import Crashlytics
 class User {
     
     let id: String
+    let tenant_id: String
     let username: String
     let email: String
     let first_name: String
@@ -24,8 +25,9 @@ class User {
     let country: String
     let plaid_access_token: String
     
-    required init(id: String, username: String, email: String, first_name: String, last_name: String, business_name: String, picture: String, phone: String, country: String, plaid_access_token: String) {
+    required init(id: String, tenant_id: String, username: String, email: String, first_name: String, last_name: String, business_name: String, picture: String, phone: String, country: String, plaid_access_token: String) {
         self.id = id
+        self.tenant_id = tenant_id
         self.username = username
         self.email = email
         self.first_name = first_name
@@ -64,6 +66,7 @@ class User {
                             }
                             let profile = data
                                 let id = profile["_id"].stringValue
+                                let tenant_id = profile["tenant_id"].stringValue
                                 let username = profile["username"].stringValue
                                 let email = profile["email"].stringValue
                                 let first_name = profile["first_name"].stringValue
@@ -77,7 +80,7 @@ class User {
                                 customAttributes: [
                                     "user": username
                                 ])
-                            let item = User(id: id, username: username, email: email, first_name: first_name, last_name: last_name, business_name: business_name, picture: picture, phone: phone, country: country, plaid_access_token: plaid_access_token)
+                            let item = User(id: id, tenant_id: tenant_id, username: username, email: email, first_name: first_name, last_name: last_name, business_name: business_name, picture: picture, phone: phone, country: country, plaid_access_token: plaid_access_token)
                                 completionHandler(item, response.result.error)
                         }
                     case .Failure(let error):
@@ -116,6 +119,7 @@ class User {
                             let data = JSON(value)
                             let profile = data
                             let id = profile["_id"].stringValue
+                            let tenant_id = profile["tenant_id"].stringValue
                             let username = profile["username"].stringValue
                             let email = profile["email"].stringValue
                             let first_name = profile["first_name"].stringValue
@@ -125,7 +129,7 @@ class User {
                             let phone = profile["phone_number"].stringValue
                             let country = profile["country"].stringValue
                             let plaid_access_token = profile["plaid"]["access_token"].stringValue
-                            let item = User(id: id, username: username, email: email, first_name: first_name, last_name: last_name, business_name: business_name, picture: picture, phone: phone, country: country, plaid_access_token: plaid_access_token)
+                            let item = User(id: id, tenant_id: tenant_id, username: username, email: email, first_name: first_name, last_name: last_name, business_name: business_name, picture: picture, phone: phone, country: country, plaid_access_token: plaid_access_token)
                             Answers.logCustomEventWithName("Profile update success",
                                 customAttributes: [
                                     "user": username
@@ -163,6 +167,7 @@ class User {
                         let users = data["users"].arrayValue
                         for user in users {
                             let id = ""
+                            let tenant_id = ""
                             let username = user["username"].stringValue
                             let email = ""
                             let first_name = user["first_name"].stringValue
@@ -172,7 +177,7 @@ class User {
                             let country = user["country"].stringValue
                             let phone = ""
                             let plaid_access_token = ""
-                            let item = User(id: id, username: username, email: email, first_name: first_name, last_name: last_name, business_name: business_name, picture: picture, phone: phone, country: country, plaid_access_token: plaid_access_token)
+                            let item = User(id: id, tenant_id: tenant_id, username: username, email: email, first_name: first_name, last_name: last_name, business_name: business_name, picture: picture, phone: phone, country: country, plaid_access_token: plaid_access_token)
                             userItemsArray.append(item)
                         }
                         completionHandler(userItemsArray, response.result.error)
@@ -182,8 +187,4 @@ class User {
                 }
         }
     }
-    
-    // Write Stripe handler get account info
-    // Write Stripe handler update account info
-    
 }

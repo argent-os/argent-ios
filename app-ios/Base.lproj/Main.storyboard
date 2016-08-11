@@ -3414,25 +3414,6 @@ policy agreement. Tap to view</string>
             </objects>
             <point key="canvasLocation" x="930" y="-1859"/>
         </scene>
-        <!--Merchant Plan Detail View Controller-->
-        <scene sceneID="5ek-5B-asT">
-            <objects>
-                <viewController storyboardIdentifier="MerchantPlanDetailViewController" id="YN5-Ep-iUS" customClass="MerchantPlanDetailViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="g3t-Wh-9cw"/>
-                        <viewControllerLayoutGuide type="bottom" id="JpC-z5-TPZ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="jgQ-sB-nYt">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="h3G-iu-dIh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="869" y="-4385"/>
-        </scene>
         <!--Merchant Plans View Controller-->
         <scene sceneID="jI3-xe-7ti">
             <objects>
@@ -3448,12 +3429,30 @@ policy agreement. Tap to view</string>
                     </view>
                     <navigationItem key="navigationItem" id="9DG-ld-506"/>
                     <connections>
-                        <segue destination="YN5-Ep-iUS" kind="show" identifier="viewPlanDetail" id="SxF-x7-2m0"/>
+                        <segue destination="GaO-qK-wjj" kind="show" identifier="viewPlanDetail" id="cnQ-wy-BC5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UBb-dW-R5k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="330" y="-4325"/>
+        </scene>
+        <!--Merchant Plan Detail View Controller-->
+        <scene sceneID="E2b-Jj-diZ">
+            <objects>
+                <viewController storyboardIdentifier="MerchantPlanDetailViewController" id="GaO-qK-wjj" customClass="MerchantPlanDetailViewController" customModule="Argent" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mEH-j2-T58"/>
+                        <viewControllerLayoutGuide type="bottom" id="jly-xe-S3d"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LHa-Dy-Jyc">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u8U-gq-BRJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1008" y="-4325"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iGJ-t7-2fC">

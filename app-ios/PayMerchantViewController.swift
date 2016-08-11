@@ -357,16 +357,16 @@ extension PayMerchantViewController {
         // Initialize and style the terms and conditions modal
         formSheetController.presentationController?.contentViewSize = CGSizeMake(280, 280)
         formSheetController.presentationController?.shouldUseMotionEffect = true
-        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.pastelDarkBlue().colorWithAlphaComponent(075)
+        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.pastelDarkBlue().colorWithAlphaComponent(0.75)
         formSheetController.presentationController?.containerView?.sizeToFit()
-        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = false
-        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Light
+        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
+        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
         formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.AlwaysAboveKeyboard
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
         formSheetController.contentViewCornerRadius = 10
-        formSheetController.allowDismissByPanningPresentedView = true
-        formSheetController.interactivePanGestureDismissalDirection = .All;
+        formSheetController.allowDismissByPanningPresentedView = false
+        formSheetController.interactivePanGestureDismissalDirection = .None
         
         // Blur will be applied to all MZFormSheetPresentationControllers by default
         MZFormSheetPresentationController.appearance().shouldApplyBackgroundBlurEffect = true
@@ -407,11 +407,11 @@ extension PayMerchantViewController {
         
         print("showing ach modal")
         // Initialize and style the terms and conditions modal
-        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
         formSheetController.presentationController?.contentViewSize = CGSizeMake(280, 400)
         formSheetController.presentationController?.shouldUseMotionEffect = true
         formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
         formSheetController.presentationController?.containerView?.sizeToFit()
+        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
         formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
         formSheetController.presentationController?.shouldCenterVertically = true

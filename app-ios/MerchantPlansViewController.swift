@@ -65,7 +65,11 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
+        
+        configureView()
+        
+        setupNav()
+        
         addInfiniteScroll()
     }
     
@@ -106,7 +110,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
-    func configure() {
+    func configureView() {
         
         // This will set to only one instance
         
@@ -158,6 +162,35 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         recognizer.delegate = self
         
         self.loadPlans("100", starting_after: "", completionHandler: { _ in })
+    }
+    
+    
+    private func setupNav() {
+        let navigationBar = self.navigationController?.navigationBar
+        
+        navigationBar!.backgroundColor = UIColor.offWhite()
+        navigationBar!.tintColor = UIColor.darkBlue()
+        
+        // Create a navigation item with a title
+        let navigationItem = UINavigationItem()
+        
+        // Create left and right button for navigation item
+        let leftButton = UIBarButtonItem(title: "Close", style: .Plain, target: self, action: #selector(self.close(_:)))
+        //        let leftButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.close(_:)))
+        let font = UIFont(name: "MyriadPro-Regular", size: 17)!
+        leftButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+        leftButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.darkBlue()], forState: UIControlState.Highlighted)
+        // Create two buttons for the navigation item
+        navigationItem.leftBarButtonItem = leftButton
+
+        // Assign the navigation item to the navigation bar
+        navigationBar!.titleTextAttributes = [NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.darkGrayColor()]
+        navigationBar!.items = [navigationItem]
+        
+    }
+    
+    func close(sender: AnyObject) -> Void {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func handleTapBehind(sender: UITapGestureRecognizer) {
@@ -368,11 +401,6 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
 
 extension MerchantPlansViewController: STPPaymentCardTextFieldDelegate, PKPaymentAuthorizationViewControllerDelegate, UITextFieldDelegate {
     
-    func close() -> Void {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    
     // MARK: Payment Options Modal
     
     func showPayModal(sender: AnyObject, tag: Int) {
@@ -579,9 +607,7 @@ extension MerchantPlansViewController {
         guard let planId =  self.plansArray![tag].id else {
             return
         }
-        
-        print("the plan id is ", planId)
-        
+                
         let navigationController = self.storyboard!.instantiateViewControllerWithIdentifier("creditCardEntryModalNavigationController") as! UINavigationController
         let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
         
@@ -591,8 +617,8 @@ extension MerchantPlansViewController {
         formSheetController.presentationController?.shouldUseMotionEffect = true
         formSheetController.presentationController?.containerView?.backgroundColor = UIColor.pastelDarkBlue().colorWithAlphaComponent(0.75)
         formSheetController.presentationController?.containerView?.sizeToFit()
-        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = false
-        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Light
+        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
+        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
         formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.CenterVertically

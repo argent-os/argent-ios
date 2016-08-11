@@ -12,7 +12,7 @@ import MZFormSheetPresentationController
 class MerchantPlanDetailViewController: UIViewController {
     
     var planName:String?
-
+    
     var planAmount:String?
 
     var planInterval:String?
@@ -32,20 +32,22 @@ class MerchantPlanDetailViewController: UIViewController {
     private let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        layoutViews()
+        
+        configureView()
     }
     
-    func layoutViews() {
-                
+    func configureView() {
+        
         self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
         self.navigationController?.navigationBar.topItem!.backBarButtonItem = UIBarButtonItem(title: "Back", style: .Plain, target: nil, action: nil)
         
-        planTitleLabel.frame = CGRect(x: 0, y: 20, width: 310, height: 100)
-        planTitleLabel.text = planName
-        planTitleLabel.font = UIFont(name: "MyriadPro-Regular", size: 24)
+        planTitleLabel.frame = CGRect(x: 0, y: 40, width: 310, height: 100)
+        if let p_name = planName where planName != nil || planName != "" {
+            planTitleLabel.attributedText = adjustAttributedString(p_name.uppercaseString, spacing: 1.5, fontName: "MyriadPro-Regular", fontSize: 19, fontColor: UIColor.lightBlue(), lineSpacing: 0.0)
+        }
         planTitleLabel.textAlignment = .Center
-        planTitleLabel.textColor = UIColor.lightBlue()
         addSubviewWithBounce(planTitleLabel, parentView: self, duration: 0.3)
         
         circleView.frame = CGRect(x: (310-120)/2, y: 130, width: 120, height: 120)
@@ -88,5 +90,4 @@ class MerchantPlanDetailViewController: UIViewController {
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
-
 }
