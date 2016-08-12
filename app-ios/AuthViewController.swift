@@ -87,8 +87,8 @@ class AuthViewController: UIPageViewController, UIPageViewControllerDelegate, LT
         loginButton.setTitleColor(UIColor.darkBlue(), forState: .Normal)
         loginButton.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
         loginButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 15)!
-        loginButton.setAttributedTitle(adjustAttributedString("Login", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0), forState: .Normal)
-        loginButton.setAttributedTitle(adjustAttributedString("Login", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.whiteColor(), lineSpacing: 0.0), forState: .Highlighted)
+        loginButton.setAttributedTitle(adjustAttributedString("Login", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Center), forState: .Normal)
+        loginButton.setAttributedTitle(adjustAttributedString("Login", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Center), forState: .Highlighted)
         loginButton.layer.cornerRadius = 3
         loginButton.layer.borderWidth = 1
         loginButton.layer.borderColor = UIColor.darkBlue().CGColor
@@ -99,7 +99,7 @@ class AuthViewController: UIPageViewController, UIPageViewControllerDelegate, LT
         let signupButton = UIButton(frame: CGRect(x: screenWidth*0.5+10, y: screenHeight-60-35, width: screenWidth/2-20, height: 60.0))
         signupButton.setBackgroundColor(UIColor.darkBlue(), forState: .Normal)
         signupButton.setBackgroundColor(UIColor.offWhite().darkerColor(), forState: .Highlighted)
-        signupButton.setAttributedTitle(adjustAttributedString("Sign Up", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.whiteColor(), lineSpacing: 0.0), forState: .Normal)
+        signupButton.setAttributedTitle(adjustAttributedString("Sign Up", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Center), forState: .Normal)
         signupButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         signupButton.setTitleColor(UIColor.whiteColor().lighterColor(), forState: .Highlighted)
         signupButton.layer.cornerRadius = 3

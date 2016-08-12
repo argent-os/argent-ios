@@ -520,10 +520,11 @@ func + (left: NSAttributedString, right: NSAttributedString) -> NSAttributedStri
     return result
 }
 
-func adjustAttributedString(text:String, spacing:CGFloat, fontName: String, fontSize: CGFloat, fontColor: UIColor, lineSpacing: CGFloat) -> NSAttributedString {
+func adjustAttributedString(text:String, spacing:CGFloat, fontName: String, fontSize: CGFloat, fontColor: UIColor, lineSpacing: CGFloat, alignment: NSTextAlignment) -> NSAttributedString {
     let attributedString = NSMutableAttributedString(string: text)
     let paragraphStyle = NSMutableParagraphStyle()
     paragraphStyle.lineSpacing = lineSpacing // Whatever line spacing you want in points
+    paragraphStyle.alignment = alignment
 
     attributedString.addAttributes([
         NSParagraphStyleAttributeName : paragraphStyle,

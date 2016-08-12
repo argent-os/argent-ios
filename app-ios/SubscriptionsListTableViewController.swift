@@ -248,10 +248,10 @@ class SubscriptionsListTableViewController: UITableViewController, DZNEmptyDataS
         if let name = item?.plan_name, status = item?.status, amount = item?.plan_amount, interval = item?.plan_interval  {
             
             let strAmount = currencyStringFromNumber(Double(amount)/100)
-            let intervalAttributedString = adjustAttributedString(strAmount + " per " + interval, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.darkBlue(), lineSpacing: 0.0)
+            let intervalAttributedString = adjustAttributedString(strAmount + " per " + interval, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
             
-            let strStatus = adjustAttributedString(" " + status.uppercaseString, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.iosBlue(), lineSpacing: 0.0)
-            let strName = adjustAttributedString(name, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0)
+            let strStatus = adjustAttributedString(" " + status.uppercaseString, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.iosBlue(), lineSpacing: 0.0, alignment: .Left)
+            let strName = adjustAttributedString(name, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
             let splitter = NSAttributedString(string: " | ")
             cell.titleLabel.attributedText = strName + strStatus
             cell.subLabel.attributedText = intervalAttributedString

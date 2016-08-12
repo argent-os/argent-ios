@@ -56,7 +56,7 @@ class Account {
     }
     
     class func getStripeAccount(completionHandler: (Account?, NSError?) -> Void) {
-        if(userAccessToken != nil) {
+        if userAccessToken != nil {
             User.getProfile({ (user, error) in
                 if error != nil {
                     print(error)

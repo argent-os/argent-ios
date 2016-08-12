@@ -125,8 +125,8 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
             if(grant == true && token != "") {
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.hidden = true
-                self.performSegueWithIdentifier("homeView", sender: self)
-                
+                self.performSegueWithIdentifier("homeView", sender: self)            
+
                 Answers.logLoginWithMethod("Default",
                                            success: true,
                                            customAttributes: [
@@ -178,7 +178,10 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // IMPORTANT: This allows the rootViewController to be prepared upon login when preparing for segue (transition) to the HomeViewController
-        // Without this the side nav menu will not work!
+        // Without this the nav menu will not work!
+        
+        segue.destinationViewController.hidesBottomBarWhenPushed = false
+        
         switch sender?.tag {
         case 1?:
             // Login button pressed

@@ -69,14 +69,14 @@ class MerchantModeModalViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(imageMerchantBadge)
         
         titleLabel.frame = CGRect(x: 0, y: 100, width: 280, height: 20)
-        titleLabel.attributedText = adjustAttributedString("DASHBOARD MODE", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.lightBlue(), lineSpacing: 0.0)
+        titleLabel.attributedText = adjustAttributedString("DASHBOARD MODE", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Center)
         titleLabel.textAlignment = .Center
         titleLabel.textColor = UIColor.darkBlue()
         self.view.addSubview(titleLabel)
         
         
         let merchantLabel = UILabel()
-        merchantLabel.attributedText = adjustAttributedString("METRICS MODE", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.lightBlue(), lineSpacing: 0.0)
+        merchantLabel.attributedText = adjustAttributedString("METRICS MODE", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
         merchantLabel.frame = CGRect(x: 20, y: 157, width: 280, height: 20)
         merchantSwitch.on = true
         merchantSwitch.onTintColor = UIColor.brandGreen().colorWithAlphaComponent(0.5)
@@ -87,7 +87,7 @@ class MerchantModeModalViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(merchantSwitch)
         
         let consumerLabel = UILabel()
-        consumerLabel.attributedText = adjustAttributedString("MINIMAL MODE", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.lightBlue(), lineSpacing: 0.0)
+        consumerLabel.attributedText = adjustAttributedString("MINIMAL MODE", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
         consumerLabel.frame = CGRect(x: 20, y: 175, width: 280, height: 20)
         consumerSwitch.on = false
         consumerSwitch.addTarget(self, action: #selector(self.consumerSwitchChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
@@ -105,7 +105,7 @@ class MerchantModeModalViewController: UIViewController, UITextFieldDelegate {
         var attribs: [String: AnyObject] = [:]
         attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 15)
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
-        let str = adjustAttributedString("RETURN TO DASHBOARD", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.whiteColor(), lineSpacing: 0.0)
+        let str = adjustAttributedString("RETURN TO DASHBOARD", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Center)
         modeSelectionButton.setAttributedTitle(str, forState: .Normal)
         let rectShape = CAShapeLayer()
         rectShape.bounds = modeSelectionButton.frame

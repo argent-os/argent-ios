@@ -112,13 +112,13 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         pageIcon.frame = CGRect(x: screenWidth/2-60, y: 125, width: 120, height: 120)
         self.view.addSubview(pageIcon)
         
-        let headerAttributedString = adjustAttributedString("Bank Linking", spacing: 0, fontName: "MyriadPro-Regular", fontSize: 24, fontColor: UIColor.lightBlue(), lineSpacing: 0.0)
+        let headerAttributedString = adjustAttributedString("Bank Linking", spacing: 0, fontName: "MyriadPro-Regular", fontSize: 24, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Center)
         pageHeader.attributedText = headerAttributedString
         pageHeader.textAlignment = .Center
         pageHeader.frame = CGRect(x: 0, y: 260, width: screenWidth, height: 30)
         self.view.addSubview(pageHeader)
         
-        let descriptionAttributedString = adjustAttributedString("Connect to any US Bank account \n using one of the methods below. \n We do not store this information \non our servers.", spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.lightBlue(), lineSpacing: 0.0)
+        let descriptionAttributedString = adjustAttributedString("Connect to any US Bank account \n using one of the methods below. \n We do not store this information \non our servers.", spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Center)
         pageDescription.attributedText = descriptionAttributedString
         pageDescription.numberOfLines = 0
         pageDescription.lineBreakMode = .ByWordWrapping

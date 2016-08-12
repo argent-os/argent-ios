@@ -10,11 +10,12 @@ import UIKit
 import Foundation
 import Alamofire
 import SwiftyJSON
-import MCSwipeTableViewCell
 import CellAnimator
 import DZNEmptyDataSet
+import Crashlytics
+import MessageUI
 
-class BankConnectedListTableViewController: UITableViewController, MCSwipeTableViewCellDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+class BankConnectedListTableViewController: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, MFMailComposeViewControllerDelegate {
     
     var banksArray:Array<Bank>?
     
@@ -194,7 +195,20 @@ class BankConnectedListTableViewController: UITableViewController, MCSwipeTableV
                     })
                 }
                 alertController.addAction(OKAction)
-                self.presentViewController(alertController, animated: true, completion: nil)
+                
+                if self.banksArray?.count > 1 {
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                } else {
+                    let alertControllerInvalid = UIAlertController(title: "Notice", message: "Our payment processor requires the default connected bank account to be removed manually. Please contact our support team to remove this bank account.", preferredStyle: UIAlertControllerStyle.Alert)
+                    let cancelInvalidAction = UIAlertAction(title: "Close", style: .Cancel, handler: nil)
+                    alertControllerInvalid.addAction(cancelInvalidAction)
+                    let contactSupportAction = UIAlertAction(title: "Contact", style: .Default) { (action) in
+                        self.sendEmailButtonTapped(self)
+                    }
+                    alertControllerInvalid.addAction(contactSupportAction)
+                    self.presentViewController(alertControllerInvalid, animated: true, completion: nil)
+                    
+                }
             }
         }
     }
@@ -241,97 +255,97 @@ extension BankConnectedListTableViewController {
         if let name = item?.bank_name {
             
             if name.containsString("STRIPE") {
-                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0)
+                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
                 cell.header.backgroundColor = UIColor.whiteColor()
                 cell.bankLogoImageView.image = UIImage(named: "bank_avatar_stripe")
                 cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             } else if name.containsString("BANK OF AMERICA") {
-                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0)
+                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
                 //cell.header.backgroundColor = UIColor.bankBofa()
                 cell.bankLogoImageView.image = UIImage(named: "bank_avatar_bofa")
                 cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             } else if name.containsString("CITI") {
-                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0)
+                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
                 //cell.header.backgroundColor = UIColor.bankCiti()
                 cell.bankLogoImageView.image = UIImage(named: "bank_avatar_citi")
                 cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             } else if name.containsString("WELLS") {
-                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0)
+                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
                 //cell.header.backgroundColor = UIColor.bankWells()
                 cell.bankLogoImageView.image = UIImage(named: "bank_avatar_wells")
                 cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             } else if name.containsString("TD BANK") {
-                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0)
+                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
                 //cell.header.backgroundColor = UIColor.bankTd()
                 cell.bankLogoImageView.image = UIImage(named: "bank_avatar_td")
                 cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             } else if name.containsString("US BANK") {
-                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0)
+                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
                 //cell.header.backgroundColor = UIColor.bankUs()
                 cell.bankLogoImageView.image = UIImage(named: "bank_avatar_us")
                 cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             } else if name.containsString("PNC") {
-                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0)
+                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
                 //cell.header.backgroundColor = UIColor.bankPnc()
                 cell.bankLogoImageView.image = UIImage(named: "bank_avatar_pnc")
                 cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             } else if name.containsString("AMERICAN EXPRESS") {
-                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0)
+                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
                 //cell.header.backgroundColor = UIColor.bankAmex()
                 cell.bankLogoImageView.image = UIImage(named: "bank_avatar_amex")
                 cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             } else if name.containsString("NAVY") {
-                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0)
+                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
                 //cell.header.backgroundColor = UIColor.bankNavy()
                 cell.bankLogoImageView.image = UIImage(named: "bank_avatar_navy")
                 cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             } else if name.containsString("USAA") {
-                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0)
+                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
                 //cell.header.backgroundColor = UIColor.bankUsaa()
                 cell.bankLogoImageView.image = UIImage(named: "bank_avatar_usaa")
                 cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             } else if name.containsString("CHASE") {
-                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0)
+                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
                 //cell.header.backgroundColor = UIColor.bankChase()
                 cell.bankLogoImageView.image = UIImage(named: "bank_avatar_chase")
                 cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             } else if name.containsString("CAPITAL ONE") {
-                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0)
+                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
                 //cell.header.backgroundColor = UIColor.bankCapone()
                 cell.bankLogoImageView.image = UIImage(named: "bank_avatar_capone")
                 cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             } else if name.containsString("SCHWAB") {
-                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0)
+                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
                 //cell.header.backgroundColor = UIColor.bankSchwab()
                 cell.bankLogoImageView.image = UIImage(named: "bank_avatar_schwab")
                 cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             } else if name.containsString("FIDELITY") {
-                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0)
+                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
                 //cell.header.backgroundColor = UIColor.bankFidelity()
                 cell.bankLogoImageView.image = UIImage(named: "bank_avatar_fidelity")
                 cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             } else if name.containsString("SUNTRUST") {
-                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0)
+                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
                 //cell.header.backgroundColor = UIColor.bankSuntrust()
                 cell.bankLogoImageView.image = UIImage(named: "bank_avatar_suntrust")
                 cell.bankLogoImageView.contentMode = .ScaleAspectFit
                 cell.bankTitleLabel.attributedText = bankName
             } else {
-                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0)
+                let bankName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
                 //cell.header.backgroundColor = UIColor.lightBlue()
                 cell.bankLogoImageView.image = UIImage(named: "bank_avatar_default")
                 cell.bankLogoImageView.contentMode = .ScaleAspectFit
@@ -355,22 +369,22 @@ extension BankConnectedListTableViewController {
             
             switch status {
             case "new":
-                let strStatus = adjustAttributedString("NEW ACCOUNT | ENDING IN " + last4, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0)
+                let strStatus = adjustAttributedString("NEW ACCOUNT | ENDING IN " + last4, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
                 cell.bankStatusLabel?.attributedText = strStatus
             case "validated":
-                let strStatus = adjustAttributedString("VALIDATED | ENDING IN " + last4, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0)
+                let strStatus = adjustAttributedString("VALIDATED | ENDING IN " + last4, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
                 cell.bankStatusLabel?.attributedText = strStatus
             case "verified":
-                let strStatus = adjustAttributedString("VERIFIED | ENDING IN " + last4, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0)
+                let strStatus = adjustAttributedString("VERIFIED | ENDING IN " + last4, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
                 cell.bankStatusLabel?.attributedText = strStatus
             case "verification_failed":
-                let strStatus = adjustAttributedString("VERIFICATION FAILURE | ENDING IN " + last4, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0)
+                let strStatus = adjustAttributedString("VERIFICATION FAILURE | ENDING IN " + last4, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
                 cell.bankStatusLabel?.attributedText = strStatus
             case "errored":
-                let strStatus = adjustAttributedString("ERROR OCCURED | ACCOUNT INVALIDATED", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0)
+                let strStatus = adjustAttributedString("ERROR OCCURED | ACCOUNT INVALIDATED", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
                 cell.bankStatusLabel?.attributedText = strStatus
             default:
-                let strStatus = adjustAttributedString(status.uppercaseString + " | ENDING IN " + last4, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0)
+                let strStatus = adjustAttributedString(status.uppercaseString + " | ENDING IN " + last4, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
                 cell.bankStatusLabel?.attributedText = strStatus
             }
             
@@ -408,5 +422,51 @@ extension BankConnectedListTableViewController {
 //        let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("") as! RecurringBillingViewController
 //        self.presentViewController(viewController, animated: true, completion: nil)
     }
+}
+
+
+extension BankConnectedListTableViewController {
+    
+    // MARK: Email Composition
+    
+    @IBAction func sendEmailButtonTapped(sender: AnyObject) {
+        Answers.logCustomEventWithName("Bank removal email",
+                                    customAttributes: nil)
+        
+        let mailComposeViewController = configuredMailComposeViewController()
+        if MFMailComposeViewController.canSendMail() {
+            self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+        } else {
+            self.showSendMailErrorAlert()
+        }
+    }
+    
+    func configuredMailComposeViewController() -> MFMailComposeViewController {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
+        
+        mailComposerVC.setToRecipients(["support@argent-tech.com"])
+        mailComposerVC.setSubject("Re: Bank account removal on " + APP_NAME)
+        if userAccessToken != nil {
+            User.getProfile { (user, err) in
+                mailComposerVC.setMessageBody("Hello, I would like to remove my default bank account on " + APP_NAME + " for account " + (user?.username)!, isHTML: false)
+            }
+        }
+        
+        return mailComposerVC
+    }
+    
+    func showSendMailErrorAlert() {
+        let sendMailErrorAlert = UIAlertController(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", preferredStyle: .Alert)
+        sendMailErrorAlert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(sendMailErrorAlert, animated: true, completion: nil)
+    }
+    
+    // MARK: MFMailComposeViewControllerDelegate Method
+    
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
 }
 

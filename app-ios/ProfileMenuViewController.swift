@@ -152,8 +152,8 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                     
                     // regex to replace legal.entity in the future
                     
-                    var announcement = Announcement(title: "Transfers Disabled | Require info", subtitle:
-                        fields_list, image: UIImage(named: "IconAlertCalm"))
+                    var announcement = Announcement(title: "Identity verification incomplete", subtitle:
+                        "Require " + fields_list, image: UIImage(named: "IconAlertCalm"))
                     announcement.duration = 7
                     Shout(announcement, to: self)
                     

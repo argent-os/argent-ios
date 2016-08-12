@@ -45,7 +45,7 @@ class MerchantPlanDetailViewController: UIViewController {
         
         planTitleLabel.frame = CGRect(x: 0, y: 40, width: 310, height: 100)
         if let p_name = planName where planName != nil || planName != "" {
-            planTitleLabel.attributedText = adjustAttributedString(p_name.uppercaseString, spacing: 1.5, fontName: "MyriadPro-Regular", fontSize: 19, fontColor: UIColor.lightBlue(), lineSpacing: 0.0)
+            planTitleLabel.attributedText = adjustAttributedString(p_name.uppercaseString, spacing: 1.5, fontName: "MyriadPro-Regular", fontSize: 19, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Center)
         }
         planTitleLabel.textAlignment = .Center
         addSubviewWithBounce(planTitleLabel, parentView: self, duration: 0.3)

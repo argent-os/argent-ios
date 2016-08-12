@@ -76,28 +76,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
 
     private var refreshControlView = UIRefreshControl()
     
-    func indexChanged(sender: AnyObject) {
-        if(sender.selectedSegmentIndex == 0) {
-            lblAccountPending.removeFromSuperview()
-            let subtext = NSAttributedString(string: "Available Balance", attributes:[
-                NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 12)!,
-                NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.7)
-                ])
-            lblSubtext.attributedText = subtext
-            self.view.addSubview(lblAccountAvailable)
-//            addSubviewWithFade(lblAccountAvailable, parentView: self, duration: 0.8)
-        }
-        if(sender.selectedSegmentIndex == 1) {
-            lblAccountAvailable.removeFromSuperview()
-            let subtext = NSAttributedString(string: "Pending Balance", attributes:[
-                NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 12)!,
-                NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.7)
-                ])
-            lblSubtext.attributedText = subtext
-            self.view.addSubview(lblAccountPending)
-//            addSubviewWithFade(lblAccountPending, parentView: self, duration: 0.8)
-        }
-    }
+    let tipView = EasyTipView(text: "Welcome to your Argent dashboard, in order to start accepting payments we will require account verification information.  Head to your profile page to learn more, tap to dismiss.", preferences: EasyTipView.globalPreferences)
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -108,13 +87,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureView()
-        
-        loadData()
-        
-        setupAppleWatch()
-        
-        addInfiniteScroll()
+        configureDashboard()
+    
     }
     
     private func addInfiniteScroll() {
@@ -156,10 +130,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     // VIEW DID APPEAR
     override func viewDidAppear(animated: Bool) {
-        self.view.addSubview(balanceSwitch)
-        self.view.bringSubviewToFront(balanceSwitch)
-        self.view.addSubview(tutorialButton)
-        self.view.bringSubviewToFront(tutorialButton)
         UITextField.appearance().keyboardAppearance = .Light        
     }
     
@@ -187,9 +157,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         }
     }
     
-    // Tooltip
-    let tipView = EasyTipView(text: "Welcome to your Argent dashboard, in order to start accepting payments we will require account verification information.  Head to your profile page to learn more, tap to dismiss.", preferences: EasyTipView.globalPreferences)
-    
     func presentTutorial(sender: AnyObject) {
         
         showMerchantModeModal(self)
@@ -198,9 +165,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         Answers.logCustomEventWithName("Dashboard Configuration Presented",
                                        customAttributes: [:])
         
-    }
-    
-    override func viewDidDisappear(animated: Bool) {
     }
     
     func showGraphActivityIndicator() {
@@ -272,6 +236,109 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     //Changing Status Bar
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
+    }
+    
+    func loadNewUser() {
+
+        // IMPORTANT: load new access token on home load, otherwise the old token will be requested to the server
+        userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
+        
+        if String(userAccessToken) == "" || userAccessToken == nil || String(userAccessToken) == "(null)" {
+            self.logout()
+        }
+        
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
+
+        self.view.backgroundColor = UIColor.pastelBlue()
+        
+        self.configureGraph()
+        graph.frame = CGRect(x: 0, y: 70, width: screenWidth, height: 120)
+        
+        // put all content in headerview
+        headerView.backgroundColor = UIColor.clearColor()
+        headerView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 280)
+        
+        // add background image view to take up entire screen, make header color transparent to give parallax effect
+        let backgroundMaskView = UIView()
+        backgroundMaskView.backgroundColor = UIColor.pastelBlue()
+        backgroundMaskView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
+        addSubviewWithFade(backgroundMaskView, parentView: self, duration: 0.3)
+        self.view.sendSubviewToBack(backgroundMaskView)
+        
+        tableView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight-45)
+        tableView.tableHeaderView = headerView
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorColor = UIColor.lightBlue().colorWithAlphaComponent(0.3)
+        tableView.showsVerticalScrollIndicator = false
+        tableView.backgroundColor = UIColor.clearColor()
+        addSubviewWithFade(tableView, parentView: self, duration: 1)
+        
+        if let tabBarController = window?.rootViewController as? UITabBarController {
+            for item in tabBarController.tabBar.items! {
+                if let image = item.image {
+                    item.image = image.imageWithRenderingMode(.AlwaysOriginal)
+                }
+            }
+        }
+        
+        activityIndicator.center = tableView.center
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
+        headerView.addSubview(activityIndicator)
+        
+        if((userAccessToken) != nil) {
+            // Get stripe data
+            loadStripe({ (balance, err) in
+                let pendingBalance = balance.pending
+                let availableBalance = balance.available
+                
+                NSNotificationCenter.defaultCenter().postNotificationName("balance", object: nil, userInfo: ["available_bal":availableBalance,"pending_bal":pendingBalance])
+                
+                let formatter = NSNumberFormatter()
+                formatter.numberStyle = .CurrencyStyle
+                formatter.locale = NSLocale.currentLocale() // This is the default
+                
+                self.lblAccountPending.attributedText = formatCurrency(String(pendingBalance), fontName: "MyriadPro-Regular", superSize: 16, fontSize: 32, offsetSymbol: 10, offsetCents: 10)
+                addSubviewWithFade(self.lblAccountPending, parentView: self, duration: 1)
+                
+                self.lblAccountAvailable.attributedText = formatCurrency(String(availableBalance), fontName: "MyriadPro-Regular", superSize: 16, fontSize: 32, offsetSymbol: 10, offsetCents: 10)
+                addSubviewWithFade(self.lblSubtext, parentView: self, duration: 0.5)
+            })
+            
+            // Get user account history
+            loadAccountHistory("100", starting_after: "", completionHandler: { (historyArr, error) in
+                if error != nil {
+                    print(error)
+                }
+                // sets up the empty data set view after load if no data is present
+                self.tableView.emptyDataSetSource = self
+                self.tableView.emptyDataSetDelegate = self
+                self.tableView.tableFooterView = UIView()
+                self.activityIndicator.stopAnimating()
+            })
+            
+            // Get user profile
+            User.getProfile({ (user, error) in
+                if(error != nil) {
+                    print(error)
+                    // check if user logged in, if not send to login
+                    self.logout()
+                }
+            })
+            
+        } else {
+            // check if user logged in, if not send to login
+            self.logout()
+        }
+        
+        self.dateRangeSegment.removeFromSuperview()
+        self.lblAccountPending.removeFromSuperview()
+        self.lblAccountAvailable.removeFromSuperview()
+        self.balanceSwitch.removeFromSuperview()
+        self.tutorialButton.removeFromSuperview()
+        
     }
     
     func loadData() {
@@ -422,27 +489,27 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             
             if let type = item?.type {
                 if type == "charge" {
-                    let chargeType = adjustAttributedString("  Charged", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0)
+                    let chargeType = adjustAttributedString("  Charged", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
                     cell.lblAmount.attributedText = currencyText + chargeType
                     cell.img.image = UIImage(named: "IconCheckFilled")
                 } else if type == "refund" || type == "application_fee_refund" {
-                    let chargeType = adjustAttributedString("  Refunded", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0)
+                    let chargeType = adjustAttributedString("  Refunded", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
                     cell.lblAmount.attributedText = currencyText + chargeType
                     cell.img.image = UIImage(named: "ic_refund")
                 } else if type == "payment" {
-                    let chargeType = adjustAttributedString("  Payment", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0)
+                    let chargeType = adjustAttributedString("  Payment", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
                     cell.lblAmount.attributedText = currencyText + chargeType
                     cell.img.image = UIImage(named: "IconCheckFilled")
                 } else if type == "adjustment" {
-                    let chargeType = adjustAttributedString(" Adjustment", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0)
+                    let chargeType = adjustAttributedString(" Adjustment", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
                     cell.lblAmount.attributedText = currencyText + chargeType
                     cell.img.image = UIImage(named: "ic_adjust")
                 } else if type == "transfer" {
-                    let chargeType = adjustAttributedString("  Bank Transfer", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0)
+                    let chargeType = adjustAttributedString("  Bank Transfer", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
                     cell.lblAmount.attributedText = currencyText + chargeType
                     cell.img.image = UIImage(named: "ic_transfer")
                 } else if type == "transfer_failure" {
-                    let chargeType = adjustAttributedString("  Transfer failure", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0)
+                    let chargeType = adjustAttributedString("  Transfer failure", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
                     cell.lblAmount.attributedText = currencyText + chargeType
                     cell.img.image = UIImage(named: "ic_alert")
                 } else {
@@ -501,14 +568,13 @@ extension HomeViewController {
     // Delegate: DZNEmptyDataSet
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "Transactions"
-        return NSAttributedString(string: str, attributes: inverseHeaderAttrs)
+        let attrStr = adjustAttributedString("Welcome to " + APP_NAME + "!", spacing: 1.0, fontName: "MyriadPro-Regular", fontSize: 17, fontColor: UIColor.whiteColor(), lineSpacing: 5.0, alignment: .Center)
+        return attrStr
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "No transactions have occurred yet."
-        // let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
-        return NSAttributedString(string: str, attributes: inverseBodyAttrs)
+        let attrStr = adjustAttributedString("This is your income dashboard, from here you will be able to see all received payments and transfers.  We do not require any information to pay others, but in order to receive payments we do require account verification.", spacing: 1.0, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.whiteColor(), lineSpacing: 5.0, alignment: .Center)
+        return attrStr
     }
     
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
@@ -516,9 +582,8 @@ extension HomeViewController {
     }
     
     func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
-        let str = "Verify account and create a billing plan"
-        // let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)]
-        return NSAttributedString(string: str, attributes: inverseCalloutAttrs)
+        let attrStr = adjustAttributedString("Tap here to create your first billing plan!", spacing: 1.0, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.pastelLightBlue(), lineSpacing: 3.0, alignment: .Center)
+        return attrStr
     }
     
     func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
@@ -576,66 +641,8 @@ extension UISegmentedControl {
 }
 
 extension HomeViewController {
-    func configureView() {
-        
-        let screenWidth = screen.size.width
-        let screenHeight = screen.size.height
-
-        let app: UIApplication = UIApplication.sharedApplication()
-        let statusBarHeight: CGFloat = app.statusBarFrame.size.height
-        let statusBarView: UIView = UIView(frame: CGRectMake(0, -statusBarHeight, UIScreen.mainScreen().bounds.size.width, statusBarHeight))
-        statusBarView.backgroundColor = UIColor.whiteColor()
-        self.navigationController?.navigationBar.addSubview(statusBarView)
-        self.navigationController?.navigationBar.bringSubviewToFront(statusBarView)
-        
-        self.view.backgroundColor = UIColor.darkestBlue()
-        
-        refreshControlView.tintColor = UIColor.whiteColor()
-        refreshControlView.frame = CGRect(x: screenWidth/2-15, y: 30, width: 30, height: 30)
-        refreshControlView.addTarget(self, action: #selector(self.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
-        self.tableView.addSubview(refreshControlView) // not required when using UITableViewController
-
-        // put all content in headerview
-        headerView.backgroundColor = UIColor.clearColor()
-        headerView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 280)
-        
-        let footerView = UIView()
-        footerView.frame = CGRect(x: 0, y: screenHeight-100, width: screenWidth, height: 100)
-        footerView.backgroundColor = tableView.backgroundColor
-//        backgroundImageView.addSubview(footerView)
-        
-        // add background image view to take up entire screen, make header color transparent to give parallax effect
-        backgroundImageView.frame = CGRect(x: 0, y: -2, width: screenWidth, height: screenHeight+4)
-        backgroundImageView.image = UIImage(named: "BackgroundGradientBlueDark")
-        addSubviewWithFade(backgroundImageView, parentView: self, duration: 0.5)
-        
-        tableView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight-45)
-        tableView.tableHeaderView = headerView
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.separatorColor = UIColor.lightBlue().colorWithAlphaComponent(0.3)
-        tableView.showsVerticalScrollIndicator = false
-        tableView.backgroundColor = UIColor.clearColor()
-        addSubviewWithFade(tableView, parentView: self, duration: 1)
-        
-        if let tabBarController = window?.rootViewController as? UITabBarController {
-            for item in tabBarController.tabBar.items! {
-                if let image = item.image {
-                    item.image = image.imageWithRenderingMode(.AlwaysOriginal)
-                }
-            }
-        }
-        
-        // Balance Switch
-        balanceSwitch.selectedSegmentIndex = 1
-        balanceSwitch.tintColor = UIColor.whiteColor()
-        balanceSwitch.backgroundColor = UIColor.clearColor()
-        balanceSwitch.frame = CGRect(x: 20, y: 42, width: 40, height: 25)
-        balanceSwitch.alpha = 0.75
-        //autoresizing so it stays at top right (flexible left and flexible bottom margin)
-        balanceSwitch.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-        balanceSwitch.bringSubviewToFront(balanceSwitch)
-        balanceSwitch.addTarget(self, action: #selector(HomeViewController.indexChanged(_:)), forControlEvents: .ValueChanged)
+    
+    func configureGraph() {
         
         graph.dataSource = self
         graph.frame = CGRect(x: 0, y: 100, width: screenWidth, height: 120)
@@ -675,12 +682,74 @@ extension HomeViewController {
         //        graph.layer.shadowOffset = CGSize(width: 2, height: 10)
         //        graph.layer.shadowRadius = 5
         //        graph.layer.shadowOpacity = 1
+    }
+}
+
+extension HomeViewController {
+    func configureView() {
         
-        let graphOutlineView = UIImageView()
-        graphOutlineView.image = UIImage(named: "GraphOutlineLong")
-        graphOutlineView.frame = CGRect(x: 0, y: 20, width: screenWidth, height: 300)
-        graphOutlineView.contentMode = .Center
-//        addSubviewWithFade(graphOutlineView, parentView: self, duration: 1)
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
+
+        self.view.addSubview(balanceSwitch)
+        self.view.bringSubviewToFront(balanceSwitch)
+        self.view.addSubview(tutorialButton)
+        self.view.bringSubviewToFront(tutorialButton)
+        
+        let app: UIApplication = UIApplication.sharedApplication()
+        let statusBarHeight: CGFloat = app.statusBarFrame.size.height
+        let statusBarView: UIView = UIView(frame: CGRectMake(0, -statusBarHeight, UIScreen.mainScreen().bounds.size.width, statusBarHeight))
+        statusBarView.backgroundColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.addSubview(statusBarView)
+        self.navigationController?.navigationBar.bringSubviewToFront(statusBarView)
+        
+        self.view.backgroundColor = UIColor.pastelBlue()
+        
+        self.configureGraph()
+        
+        refreshControlView.tintColor = UIColor.whiteColor()
+        refreshControlView.frame = CGRect(x: screenWidth/2-15, y: 30, width: 30, height: 30)
+        refreshControlView.addTarget(self, action: #selector(self.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControlView) // not required when using UITableViewController
+
+        // put all content in headerview
+        headerView.backgroundColor = UIColor.clearColor()
+        headerView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 280)
+        
+        // add background image view to take up entire screen, make header color transparent to give parallax effect
+        let backgroundMaskView = UIView()
+        backgroundMaskView.backgroundColor = UIColor.pastelBlue()
+        backgroundMaskView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
+        addSubviewWithFade(backgroundMaskView, parentView: self, duration: 0.3)
+        self.view.sendSubviewToBack(backgroundMaskView)
+        
+        tableView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight-45)
+        tableView.tableHeaderView = headerView
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorColor = UIColor.lightBlue().colorWithAlphaComponent(0.3)
+        tableView.showsVerticalScrollIndicator = false
+        tableView.backgroundColor = UIColor.clearColor()
+        addSubviewWithFade(tableView, parentView: self, duration: 1)
+        
+        if let tabBarController = window?.rootViewController as? UITabBarController {
+            for item in tabBarController.tabBar.items! {
+                if let image = item.image {
+                    item.image = image.imageWithRenderingMode(.AlwaysOriginal)
+                }
+            }
+        }
+        
+        // Balance Switch
+        balanceSwitch.selectedSegmentIndex = UISegmentedControlNoSegment
+        balanceSwitch.tintColor = UIColor.whiteColor()
+        balanceSwitch.backgroundColor = UIColor.clearColor()
+        balanceSwitch.frame = CGRect(x: 20, y: 42, width: 40, height: 25)
+        balanceSwitch.alpha = 0.75
+        //autoresizing so it stays at top right (flexible left and flexible bottom margin)
+        balanceSwitch.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
+        balanceSwitch.bringSubviewToFront(balanceSwitch)
+        balanceSwitch.addTarget(self, action: #selector(HomeViewController.indexChanged(_:)), forControlEvents: .ValueChanged)
         
         // split the date segments
         let horizontalSplitter = UIView()
@@ -689,7 +758,7 @@ extension HomeViewController {
         headerView.addSubview(horizontalSplitter)
         
         dateRangeSegment.frame = CGRect(x: 45.0, y: 230.0, width: view.bounds.width - 90.0, height: 30.0)
-        dateRangeSegment.selectedSegmentIndex = 2
+        dateRangeSegment.selectedSegmentIndex = UISegmentedControlNoSegment
         dateRangeSegment.removeBorders()
         dateRangeSegment.addTarget(self, action: #selector(HomeViewController.dateRangeSegmentControl(_:)), forControlEvents: .ValueChanged)
         
@@ -798,6 +867,32 @@ extension HomeViewController {
     }
 }
 
+extension HomeViewController {
+    
+    func indexChanged(sender: AnyObject) {
+        if(sender.selectedSegmentIndex == 0) {
+            lblAccountPending.removeFromSuperview()
+            let subtext = NSAttributedString(string: "Available Balance", attributes:[
+                NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 12)!,
+                NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.7)
+                ])
+            lblSubtext.attributedText = subtext
+            self.view.addSubview(lblAccountAvailable)
+            //            addSubviewWithFade(lblAccountAvailable, parentView: self, duration: 0.8)
+        }
+        if(sender.selectedSegmentIndex == 1) {
+            lblAccountAvailable.removeFromSuperview()
+            let subtext = NSAttributedString(string: "Pending Balance", attributes:[
+                NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 12)!,
+                NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.7)
+                ])
+            lblSubtext.attributedText = subtext
+            self.view.addSubview(lblAccountPending)
+            //            addSubviewWithFade(lblAccountPending, parentView: self, duration: 0.8)
+        }
+    }
+}
+
 
 extension HomeViewController {
     // MARK: showMerchantModeModal modal
@@ -834,4 +929,31 @@ extension HomeViewController {
         // Be sure to update current module on storyboard
         self.presentViewController(formSheetController, animated: true, completion: nil)
     }
+}
+
+extension HomeViewController {
+    
+    func configureDashboard() {
+        History.getAccountHistory("100", starting_after: "") { (historyArray, err) in
+            if historyArray!.count == 0 {
+                
+                self.arrayOfValues = [0,60,10,150,70,240,130,300]
+                
+                self.setupAppleWatch()
+                
+                self.loadNewUser()
+                
+            } else {
+                
+                self.configureView()
+                
+                self.loadData()
+                
+                self.setupAppleWatch()
+                
+                self.addInfiniteScroll()
+            }
+        }
+    }
+    
 }

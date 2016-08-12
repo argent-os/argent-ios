@@ -60,7 +60,7 @@ class AuthViewControllerStepThree: UIPageViewController, UIPageViewControllerDel
         lblBody.frame = CGRect(x: 90, y: 260, width: screenWidth-180, height: 200)
         lblBody.numberOfLines = 0
         lblBody.alpha = 0.9
-        let atrString = adjustAttributedString("Search users and pay them instantly with either Apple Pay or credit card.", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.darkBlue(), lineSpacing: 9.0)
+        let atrString = adjustAttributedString("Search users and pay them instantly with either Apple Pay or credit card.", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.darkBlue(), lineSpacing: 9.0, alignment: .Center)
         lblBody.attributedText = atrString
         lblBody.tag = 7579
         lblBody.textAlignment = NSTextAlignment.Center

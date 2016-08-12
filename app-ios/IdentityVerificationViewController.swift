@@ -58,7 +58,7 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate,
         addHelpButton()
         
         let titleDocumentLabel = UILabel()
-        let titleAttributedString = adjustAttributedString("IDENTITY DOCUMENT", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue().colorWithAlphaComponent(0.75), lineSpacing: 0.0)
+        let titleAttributedString = adjustAttributedString("IDENTITY DOCUMENT", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue().colorWithAlphaComponent(0.75), lineSpacing: 0.0, alignment: .Center)
         titleDocumentLabel.attributedText = titleAttributedString
         titleDocumentLabel.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.75)
         titleDocumentLabel.textAlignment = .Center
@@ -72,7 +72,7 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate,
         addSubviewWithFade(splitView, parentView: self, duration: 0.5)
         
         let ssnTitleLabel = UILabel()
-        let ssnAttributedString = adjustAttributedString("SOCIAL SECURITY", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue().colorWithAlphaComponent(0.75), lineSpacing: 0.0)
+        let ssnAttributedString = adjustAttributedString("SOCIAL SECURITY", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue().colorWithAlphaComponent(0.75), lineSpacing: 0.0, alignment: .Center)
         ssnTitleLabel.attributedText = ssnAttributedString
         ssnTitleLabel.textAlignment = .Center
         ssnTitleLabel.font = UIFont(name: "MyriadPro-Regular", size: 13)!
