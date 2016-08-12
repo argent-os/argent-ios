@@ -96,15 +96,33 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
         tableView.contentOffset.y = 0
         tableView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
         
-        let updatePlanButton = UIButton(frame: CGRect(x: 0, y: screenHeight-60, width: screenWidth, height: 60.0))
+        let deletePlanButton = UIButton()
+        deletePlanButton.frame = CGRect(x: 15, y: screenHeight-125, width: screenWidth-30, height: 50)
+        deletePlanButton.setBackgroundColor(UIColor.brandRed(), forState: .Normal)
+        deletePlanButton.setBackgroundColor(UIColor.brandRed().lighterColor(), forState: .Highlighted)
+        deletePlanButton.tintColor = UIColor.whiteColor()
+        deletePlanButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        deletePlanButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        deletePlanButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 16)
+        deletePlanButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("DELETE PLAN", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor()), forState: .Normal)
+        deletePlanButton.layer.cornerRadius = 3
+        deletePlanButton.layer.masksToBounds = true
+        deletePlanButton.clipsToBounds = true
+        deletePlanButton.addTarget(self, action: #selector(self.deletePlanButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        let _ = Timeout(0.5) {
+            addSubviewWithFade(deletePlanButton, parentView: self, duration: 0.3)
+        }
+        
+        let updatePlanButton = UIButton()
+        updatePlanButton.frame = CGRect(x: 15, y: screenHeight-65, width: screenWidth-30, height: 50)
         updatePlanButton.setBackgroundColor(UIColor.pastelBlue(), forState: .Normal)
         updatePlanButton.setBackgroundColor(UIColor.pastelBlue().lighterColor(), forState: .Highlighted)
         updatePlanButton.tintColor = UIColor.whiteColor()
         updatePlanButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         updatePlanButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
         updatePlanButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 16)
-        updatePlanButton.setTitle("Update Plan", forState: .Normal)
-        updatePlanButton.layer.cornerRadius = 0
+        updatePlanButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("UPDATE PLAN", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor()), forState: .Normal)
+        updatePlanButton.layer.cornerRadius = 3
         updatePlanButton.layer.masksToBounds = true
         updatePlanButton.clipsToBounds = true
         updatePlanButton.addTarget(self, action: #selector(self.updatePlanButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
@@ -254,6 +272,28 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
             
         }
     }
+    
+    func deletePlanButtonTapped(sender: AnyObject) {
+        if let id = planId {
+            let alertController = UIAlertController(title: "Confirm deletion", message: "Are you sure?  This action cannot be undone.", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            
+            let OKAction = UIAlertAction(title: "Continue", style: .Default) { (action) in
+                Plan.deletePlan(id, completionHandler: { (bool, err) in
+                    if bool == true {
+                        showAlert(.Info, title: "Info", msg: "Plan deleted")
+                    } else {
+                        showAlert(.Error, title: "Error", msg: "Error deleting plan")
+                    }
+                })
+            }
+            alertController.addAction(OKAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
+    }
+    
     
     func updatePlanButtonTapped(sender: AnyObject) {
         Plan.updatePlan(planId!, dic: dic) { (bool, err) in

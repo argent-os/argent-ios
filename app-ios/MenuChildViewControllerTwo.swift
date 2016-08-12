@@ -50,8 +50,8 @@ class MenuChildViewControllerTwo: UIViewController, IndicatorInfoProvider {
         scrollView.scrollEnabled = true
         self.view.addSubview(scrollView)
         
-        let str1 = adjustAttributedString("VIEW CUSTOMERS", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
-        let str1w = adjustAttributedString("VIEW CUSTOMERS", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Left)
+        let str1 = adjustAttributedString("VIEW SUBSCRIBERS", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
+        let str1w = adjustAttributedString("VIEW SUBSCRIBERS", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Left)
         btnViewCustomers.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnViewCustomers.contentEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnViewCustomers.contentHorizontalAlignment = .Left

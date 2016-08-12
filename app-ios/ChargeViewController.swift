@@ -177,11 +177,25 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
         payButton.frame = CGRect(x: 0, y: screenHeight-60, width: screenWidth, height: 60.0)
         payButton.setBackgroundColor(UIColor.pastelBlue(), forState: .Normal)
         payButton.setBackgroundColor(UIColor.pastelBlue().lighterColor(), forState: .Highlighted)
-        payButton.tintColor = UIColor(rgba: "#fff")
-        payButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
-        payButton.setTitleColor(UIColor(rgba: "#fffe"), forState: .Highlighted)
+        payButton.tintColor = UIColor.whiteColor()
+        payButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        payButton.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
         payButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 16)!
-        payButton.setTitle("Pay Merchant", forState: .Normal)
+        User.getProfile { (user, err) in
+            Account.getStripeAccount({ (acct, err) in
+                if acct?.transfers_enabled == false {
+                    self.payButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("TRANSFERS NOT ENABLED", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor()), forState: .Normal)
+                    self.payButton.setBackgroundColor(UIColor.neonOrange(), forState: .Normal)
+                    self.payButton.setBackgroundColor(UIColor.neonOrange(), forState: .Highlighted)
+                    self.payButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.5), forState: .Normal)
+                    self.payButton.userInteractionEnabled = false
+                } else if user?.business_name == "" {
+                    self.payButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("PAY " + (user?.username.uppercaseString)!, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor()), forState: .Normal)
+                } else {
+                    self.payButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("PAY " + (user?.business_name.uppercaseString)!, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor()), forState: .Normal)
+                }
+            })
+        }
         payButton.layer.cornerRadius = 0
         payButton.layer.masksToBounds = true
         payButton.clipsToBounds = true

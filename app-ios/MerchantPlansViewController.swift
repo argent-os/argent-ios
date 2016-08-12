@@ -372,7 +372,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "This user does not have any currently available plans."
+        let str = "This user does not have any currently available subscription plans."
         //let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
         return NSAttributedString(string: str, attributes: bodyAttrs)
     }

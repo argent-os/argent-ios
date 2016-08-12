@@ -215,37 +215,37 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
                 case "charge.dispute.closed":
                    cell.textLabel?.text = "Charge dispute is now closed"
                 case "customer.created":
-                   cell.textLabel?.text = "New customer created"
+                   cell.textLabel?.text = "New subscriber created"
                 case "customer.updated":
-                   cell.textLabel?.text = "Customer information updated"
+                   cell.textLabel?.text = "Subscriber information updated"
                 case "customer.deleted":
-                   cell.textLabel?.text = "Customer deleted"
+                   cell.textLabel?.text = "Subscriber deleted"
                 case "customer.card.created":
-                   cell.textLabel?.text = "Customer card added"
+                   cell.textLabel?.text = "Subscriber card added"
                 case "customer.card.updated":
-                   cell.textLabel?.text = "Customer card information updated"
+                   cell.textLabel?.text = "Subscriber card information updated"
                 case "customer.card.deleted":
-                   cell.textLabel?.text = "Customer card deleted"
+                   cell.textLabel?.text = "Subscriber card deleted"
                 case "customer.subscription.created":
-                   cell.textLabel?.text = "Customer subscription created"
+                   cell.textLabel?.text = "Subscriber subscription created"
                 case "customer.subscription.updated":
-                   cell.textLabel?.text = "Customer subscription updated"
+                   cell.textLabel?.text = "Subscriber subscription updated"
                 case "customer.subscription.deleted":
-                   cell.textLabel?.text = "Customer subscription deleted"
+                   cell.textLabel?.text = "Subscriber's subscription deleted"
                 case "customer.subscription.trial_will_end":
-                   cell.textLabel?.text = "Customer subscription trial will end soon"
+                   cell.textLabel?.text = "Subscriber's subscription trial will end soon"
                 case "customer.discount.created":
-                   cell.textLabel?.text = "Customer discount created"
+                   cell.textLabel?.text = "Subscriber discount created"
                 case "customer.discount.updated":
-                   cell.textLabel?.text = "Customer discount updated"
+                   cell.textLabel?.text = "Subscriber discount updated"
                 case "customer.discount.deleted":
-                   cell.textLabel?.text = "Customer discount deleted"
+                   cell.textLabel?.text = "Subscriber discount deleted"
                 case "customer.source.created":
-                    cell.textLabel?.text = "Customer source created"
+                    cell.textLabel?.text = "Subscriber source created"
                 case "customer.source.updated":
-                    cell.textLabel?.text = "Customer source updated"
+                    cell.textLabel?.text = "Subscriber source updated"
                 case "customer.source.deleted":
-                    cell.textLabel?.text = "Customer source deleted"
+                    cell.textLabel?.text = "Subscriber source deleted"
                 case "invoice.created":
                    cell.textLabel?.text = "Invoice created"
                 case "invoice.updated":

@@ -251,7 +251,7 @@ class SubscriptionsListTableViewController: UITableViewController, DZNEmptyDataS
             let intervalAttributedString = adjustAttributedString(strAmount + " per " + interval, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
             
             let strStatus = adjustAttributedString(" " + status.uppercaseString, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.iosBlue(), lineSpacing: 0.0, alignment: .Left)
-            let strName = adjustAttributedString(name, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
+            let strName = adjustAttributedString(name.uppercaseString, spacing: 1.5, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
             let splitter = NSAttributedString(string: " | ")
             cell.titleLabel.attributedText = strName + strStatus
             cell.subLabel.attributedText = intervalAttributedString

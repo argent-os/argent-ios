@@ -182,7 +182,7 @@ class MenuViewController: ButtonBarPagerTabStripViewController, MFMailComposeVie
     
     override func viewControllersForPagerTabStrip(pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         let child_1 = MenuChildViewControllerOne(itemInfo: "MAIN")
-        let child_2 = MenuChildViewControllerTwo(itemInfo: "INSIGHT")
+        let child_2 = MenuChildViewControllerTwo(itemInfo: "OVERVIEW")
         return [child_1, child_2]
     }
 }

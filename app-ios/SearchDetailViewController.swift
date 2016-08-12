@@ -224,7 +224,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             viewPlansButton.setBackgroundColor(UIColor.oceanBlue(), forState: .Normal)
             viewPlansButton.setBackgroundColor(UIColor.oceanBlue().lighterColor(), forState: .Highlighted)
             viewPlansButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 14)!
-            viewPlansButton.setTitle("View Plans", forState: .Normal)
+            viewPlansButton.setAttributedTitle(adjustAttributedString("VIEW SUBSCRIPTION PLANS", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 12, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Left), forState: .Normal)
             viewPlansButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
             viewPlansButton.addTarget(self, action: #selector(SearchDetailViewController.viewPlansModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             //viewPlansButton.layer.cornerRadius = 10
@@ -239,11 +239,13 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             payButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(1), forState: .Normal)
             payButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 14)!
             if detailUser.business_name != "" {
-                payButton.setTitle("Pay " + detailUser.business_name, forState: .Normal)
+                payButton.setAttributedTitle(adjustAttributedString("PAY " + detailUser.business_name.uppercaseString, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 12, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Left), forState: .Normal)
             } else if detailUser.first_name != "" {
-                payButton.setTitle("Pay " + detailUser.first_name, forState: .Normal)
+                payButton.setAttributedTitle(adjustAttributedString("PAY " + detailUser.first_name.uppercaseString, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 12, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Left), forState: .Normal)
+            } else if detailUser.username != "" {
+                payButton.setAttributedTitle(adjustAttributedString("PAY " + detailUser.username.uppercaseString, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 12, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Left), forState: .Normal)
             } else {
-                payButton.setTitle("Pay User", forState: .Normal)
+                payButton.setAttributedTitle(adjustAttributedString("PAY USER", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 12, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Left), forState: .Normal)
             }
             //payButton.layer.cornerRadius = 10
             payButton.layer.borderWidth = 0

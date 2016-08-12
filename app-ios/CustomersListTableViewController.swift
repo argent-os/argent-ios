@@ -102,7 +102,7 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
         self.tableView.tableHeaderView = headerView
         let headerViewTitle: UILabel = UILabel()
         headerViewTitle.frame = CGRect(x: 0, y: 20, width: screenWidth, height: 35)
-        headerViewTitle.text = "Customers"
+        headerViewTitle.text = "Subscribers"
         headerViewTitle.font = UIFont(name: "MyriadPro-Regular", size: 17)!
         headerViewTitle.textAlignment = .Center
         headerViewTitle.textColor = UIColor.whiteColor()
@@ -284,12 +284,12 @@ extension CustomersListTableViewController {
     // Delegate: DZNEmptyDataSet
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "Customers"
+        let str = "Subscribers"
         return NSAttributedString(string: str, attributes: headerAttrs)
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "No customers to show"
+        let str = "No subscribers to show"
         // let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
         return NSAttributedString(string: str, attributes: bodyAttrs)
     }

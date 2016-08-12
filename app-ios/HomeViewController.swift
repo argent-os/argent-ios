@@ -86,15 +86,25 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         configureDashboard()
         
         essentials()
+        
     }
     
     private func essentials() {
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
+        
         // IMPORTANT: load new access token on home load, otherwise the old token will be requested to the server
         userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
         
         if String(userAccessToken) == "" || userAccessToken == nil || String(userAccessToken) == "(null)" {
             self.logout()
         }
+        
+        // add background image view to take up entire screen, make header color transparent to give parallax effect
+        backgroundImageView.frame = CGRect(x: 0, y: -2, width: screenWidth, height: screenHeight+4)
+        backgroundImageView.image = UIImage(named: "BackgroundGradientBlueDark")
+        addSubviewWithFade(backgroundImageView, parentView: self, duration: 0.5)
     }
     
     private func addInfiniteScroll() {

@@ -367,13 +367,13 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
     func reloadUserData() {
         self.loadCustomerList { (customers: [Customer]?, NSError) in
             if(customers!.count == 0) {
-                self.customersCountLabel.attributedText = adjustAttributedStringNoLineSpacing("0\nCustomers", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                self.customersCountLabel.attributedText = adjustAttributedStringNoLineSpacing("0\nSubscribers", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
             } else if(customers!.count < 2 && customers!.count > 0) {
-                self.customersCountLabel.attributedText = adjustAttributedStringNoLineSpacing(String(customers!.count) + "\nCustomer", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                self.customersCountLabel.attributedText = adjustAttributedStringNoLineSpacing(String(customers!.count) + "\nSubscriber", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
             } else if(customers!.count > 98) {
-                self.customersCountLabel.attributedText = adjustAttributedStringNoLineSpacing("100+\nCustomers", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                self.customersCountLabel.attributedText = adjustAttributedStringNoLineSpacing("100+\nSubscribers", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
             } else {
-                self.customersCountLabel.attributedText = adjustAttributedStringNoLineSpacing(String(customers!.count) + "\nCustomers", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                self.customersCountLabel.attributedText = adjustAttributedStringNoLineSpacing(String(customers!.count) + "\nSubscribers", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
             }
         }
         

@@ -134,7 +134,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         addPlanButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
         addPlanButton.setTitleColor(UIColor(rgba: "#fffe"), forState: .Highlighted)
         addPlanButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 16)
-        addPlanButton.setTitle("Create Plan", forState: .Normal)
+        addPlanButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("CREATE PLAN", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor()), forState: .Normal)
         addPlanButton.layer.cornerRadius = 0
         addPlanButton.layer.masksToBounds = true
         addPlanButton.clipsToBounds = true

@@ -119,7 +119,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         lblBody.frame = CGRect(x: 50, y: screenHeight*0.40, width: screenWidth-100, height: 200)
         lblBody.numberOfLines = 0
         lblBody.alpha = 0.9
-        lblBody.adjustAttributedString("Spread the joy. Invite new users, customers, or friends to " + APP_NAME + " today.", spacing: 2, fontName: "HelveticaNeue-Light", fontSize: 14, fontColor: UIColor.whiteColor())
+        lblBody.adjustAttributedString("Spread the joy. Invite new users, subscribers, or friends to " + APP_NAME + " today.", spacing: 2, fontName: "HelveticaNeue-Light", fontSize: 14, fontColor: UIColor.whiteColor())
         lblBody.tag = 7579
         lblBody.textAlignment = NSTextAlignment.Center
         lblBody.textColor = UIColor.whiteColor()
