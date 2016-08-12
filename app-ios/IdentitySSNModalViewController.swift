@@ -142,6 +142,11 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
         
         addActivityIndicatorButton(UIActivityIndicatorView(), button: submitSSNButton, color: .White)
         
+        if ssnTextField.text == "" || ssnTextField.text?.characters.count < 9 {
+            showGlobalNotification("Invalid number provided", duration: 2.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.brandRed())
+            return
+        }
+        
         let legalContent: [String: AnyObject] = [
             "personal_id_number": ssnTextField.text!,
         ]
@@ -150,11 +155,11 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
             "legal_entity" : legalContent
         ]
         
-        showGlobalNotification("Securely confirming ssn...", duration: 2.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.pastelBlue())
+        showGlobalNotification("Securely submitting ssn...", duration: 2.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.pastelBlue())
         Account.saveStripeAccount(legalJSON) { (acct, bool, err) in
             if bool {
                 let _ = Timeout(2) {
-                    showGlobalNotification("SSN Confirmed!", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.pastelBlue())
+                    showGlobalNotification("SSN Submitted!", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.pastelBlue())
                 }
                 self.dismissViewControllerAnimated(true, completion: nil)
                 Answers.logCustomEventWithName("Identity Verification SSN Upload Success",

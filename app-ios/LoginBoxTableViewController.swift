@@ -125,8 +125,13 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
             if(grant == true && token != "") {
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.hidden = true
-                self.performSegueWithIdentifier("homeView", sender: self)            
+                
+                // Performs segue to home, repeats in LoginViewController, @todo: DRY
+                self.performSegueWithIdentifier("homeView", sender: self)
 
+                // Sets access token on login, otherwise will log out
+                userAccessToken = token
+                
                 Answers.logLoginWithMethod("Default",
                                            success: true,
                                            customAttributes: [

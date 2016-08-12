@@ -27,7 +27,7 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
         super.viewDidLoad()
         
         configure()
-        
+                
         Answers.logCustomEventWithName("Notifications Viewed",
                                        customAttributes: [:])
     }
@@ -42,6 +42,8 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
     
     override func viewDidAppear(animated: Bool) {
         self.navigationController?.navigationBar.tintColor = UIColor.darkBlue()
+        
+        showNotificationsDialog()
     }
     
     // MARK: Private
@@ -86,85 +88,8 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
                     cell.switched = (val?.boolValue)!
                     cell.update()
                 }
-            }.onSwitchChanged { on in
-                switch PermissionScope().statusNotifications() {
-                case .Unknown:
-                    // ask
-                    self.pscope.show({ finished, results in
-                        print("got results \(results)")
-                        // Enable push notifications
-                        if #available(iOS 8.0, *) {
-                            let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-                            UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-                            UIApplication.sharedApplication().registerForRemoteNotifications()
-                            Answers.logCustomEventWithName("Permission Notifications in Profile Enabled",
-                                customAttributes: [:])
-                        } else {
-                            let settings = UIRemoteNotificationType.Alert.union(UIRemoteNotificationType.Badge).union(UIRemoteNotificationType.Sound)
-                            UIApplication.sharedApplication().registerForRemoteNotificationTypes(settings)
-                            Answers.logCustomEventWithName("Permission Notifications in Profile Enabled",
-                                customAttributes: [:])
-                        }
-                        }, cancelled: { (results) -> Void in
-                            Answers.logCustomEventWithName("Permission Notifications in Profile Cancelled",
-                                customAttributes: [:])
-                            print("cancelled")
-                    })
-                case .Unauthorized, .Disabled:
-                    // off
-                    if(on.boolValue == false) {
-                        self.updateUserNotificationRegistration(on)
-                        self.deregisterPush(self)
-                        Answers.logCustomEventWithName("Permission Notifications in Profile Unauthorized/Disabled",
-                            customAttributes: [:])
-                    } else {
-                        self.pscope.show({ finished, results in
-                            print(results)
-                            print(finished)
-                            // Enable push notifications
-                            if #available(iOS 8.0, *) {
-                                let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-                                UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-                                UIApplication.sharedApplication().registerForRemoteNotifications()
-                            } else {
-                                let settings = UIRemoteNotificationType.Alert.union(UIRemoteNotificationType.Badge).union(UIRemoteNotificationType.Sound)
-                                UIApplication.sharedApplication().registerForRemoteNotificationTypes(settings)
-                            }
-                            }, cancelled: { (results) -> Void in
-                                print("cancelled")
-                                print(results)
-                        })
-                    }
-                case .Authorized:
-                    // If permission is granted, post to endpoint
-                    Answers.logCustomEventWithName("Permission Notifications Authorized in Profile",
-                        customAttributes: [:])
-                    self.updateUserNotificationRegistration(true)
-                }
-                
-                if(on.boolValue == true) {
-                    showGlobalNotification("Push notifications enabled", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandGreen())
-                    // show on switch changed by default
-                    self.pscope.show({ finished, results in
-                        print(results)
-                        print(finished)
-                        // Enable push notifications
-                        if #available(iOS 8.0, *) {
-                            let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-                            UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-                            UIApplication.sharedApplication().registerForRemoteNotifications()
-                        } else {
-                            let settings = UIRemoteNotificationType.Alert.union(UIRemoteNotificationType.Badge).union(UIRemoteNotificationType.Sound)
-                            UIApplication.sharedApplication().registerForRemoteNotificationTypes(settings)
-                        }
-                        }, cancelled: { (results) -> Void in
-                            print(results)
-                    })
-                } else {
-                    showGlobalNotification("Push notifications disabled", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.neonOrange())
-                    self.updateUserNotificationRegistration(on)
-                    self.deregisterPush(self)
-                }
+            }.onSwitchChanged { state in
+                self.notificationsLogic(state)
         }
         
         // Create Headers
@@ -181,6 +106,110 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
         
         let titleSection = SectionFormer(rowFormer: pushNotificationsRow).set(headerViewFormer: createHeader("Notifications"))
         former.append(sectionFormer: titleSection)
+    }
+    
+    func showNotificationsDialog() {
+        self.pscope.show({ finished, results in
+            print("got results \(results)")
+            // Enable push notifications
+            if #available(iOS 8.0, *) {
+                let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+                UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+                UIApplication.sharedApplication().registerForRemoteNotifications()
+                Answers.logCustomEventWithName("Permission Notifications in Profile Enabled",
+                    customAttributes: [:])
+            } else {
+                let settings = UIRemoteNotificationType.Alert.union(UIRemoteNotificationType.Badge).union(UIRemoteNotificationType.Sound)
+                UIApplication.sharedApplication().registerForRemoteNotificationTypes(settings)
+                Answers.logCustomEventWithName("Permission Notifications in Profile Enabled",
+                    customAttributes: [:])
+            }
+            }, cancelled: { (results) -> Void in
+                Answers.logCustomEventWithName("Permission Notifications in Profile Cancelled",
+                    customAttributes: [:])
+                print("cancelled")
+        })
+    }
+    
+    func notificationsLogic(on: Bool) {
+//        switch PermissionScope().statusNotifications() {
+//        case .Unknown:
+//            // ask
+//            self.pscope.show({ finished, results in
+//                print("got results \(results)")
+//                // Enable push notifications
+//                if #available(iOS 8.0, *) {
+//                    let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+//                    UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+//                    UIApplication.sharedApplication().registerForRemoteNotifications()
+//                    Answers.logCustomEventWithName("Permission Notifications in Profile Enabled",
+//                        customAttributes: [:])
+//                } else {
+//                    let settings = UIRemoteNotificationType.Alert.union(UIRemoteNotificationType.Badge).union(UIRemoteNotificationType.Sound)
+//                    UIApplication.sharedApplication().registerForRemoteNotificationTypes(settings)
+//                    Answers.logCustomEventWithName("Permission Notifications in Profile Enabled",
+//                        customAttributes: [:])
+//                }
+//                }, cancelled: { (results) -> Void in
+//                    Answers.logCustomEventWithName("Permission Notifications in Profile Cancelled",
+//                        customAttributes: [:])
+//                    print("cancelled")
+//            })
+//        case .Unauthorized, .Disabled:
+//            // off
+//            if(on.boolValue == false) {
+//                self.updateUserNotificationRegistration(on)
+//                self.deregisterPush(self)
+//                Answers.logCustomEventWithName("Permission Notifications in Profile Unauthorized/Disabled",
+//                                               customAttributes: [:])
+//            } else {
+//                self.pscope.show({ finished, results in
+//                    print(results)
+//                    print(finished)
+//                    // Enable push notifications
+//                    if #available(iOS 8.0, *) {
+//                        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+//                        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+//                        UIApplication.sharedApplication().registerForRemoteNotifications()
+//                    } else {
+//                        let settings = UIRemoteNotificationType.Alert.union(UIRemoteNotificationType.Badge).union(UIRemoteNotificationType.Sound)
+//                        UIApplication.sharedApplication().registerForRemoteNotificationTypes(settings)
+//                    }
+//                    }, cancelled: { (results) -> Void in
+//                        print("cancelled")
+//                        print(results)
+//                })
+//            }
+//        case .Authorized:
+//            // If permission is granted, post to endpoint
+//            Answers.logCustomEventWithName("Permission Notifications Authorized in Profile",
+//                                           customAttributes: [:])
+//            self.updateUserNotificationRegistration(true)
+//        }
+        
+        if(on.boolValue == true) {
+            showGlobalNotification("Push notifications enabled", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandGreen())
+            // show on switch changed by default
+            self.pscope.show({ finished, results in
+                print(results)
+                print(finished)
+                // Enable push notifications
+                if #available(iOS 8.0, *) {
+                    let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+                    UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+                    UIApplication.sharedApplication().registerForRemoteNotifications()
+                } else {
+                    let settings = UIRemoteNotificationType.Alert.union(UIRemoteNotificationType.Badge).union(UIRemoteNotificationType.Sound)
+                    UIApplication.sharedApplication().registerForRemoteNotificationTypes(settings)
+                }
+                }, cancelled: { (results) -> Void in
+                    print(results)
+            })
+        } else {
+            showGlobalNotification("Push notifications disabled", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.neonOrange())
+            self.updateUserNotificationRegistration(on)
+            self.deregisterPush(self)
+        }
     }
     
     func deregisterPush(sender: AnyObject) {

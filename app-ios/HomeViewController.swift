@@ -84,6 +84,17 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         super.viewDidLoad()
         
         configureDashboard()
+        
+        essentials()
+    }
+    
+    private func essentials() {
+        // IMPORTANT: load new access token on home load, otherwise the old token will be requested to the server
+        userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
+        
+        if String(userAccessToken) == "" || userAccessToken == nil || String(userAccessToken) == "(null)" {
+            self.logout()
+        }
     }
     
     private func addInfiniteScroll() {
@@ -239,13 +250,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
-        
-        // IMPORTANT: load new access token on home load, otherwise the old token will be requested to the server
-        userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
-        
-        if String(userAccessToken) == "" || userAccessToken == nil || String(userAccessToken) == "(null)" {
-            self.logout()
-        }
 
         self.view.backgroundColor = UIColor.pastelBlue()
         
@@ -332,13 +336,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     }
     
     func loadData() {
-        
-        // IMPORTANT: load new access token on home load, otherwise the old token will be requested to the server
-        userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
-        
-        if String(userAccessToken) == "" || userAccessToken == nil || String(userAccessToken) == "(null)" {
-            self.logout()
-        }
         
         activityIndicator.center = tableView.center
         activityIndicator.startAnimating()
@@ -510,7 +507,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             self.view.addSubview(balanceSwitch)
             self.view.addSubview(tutorialButton)
         } else {
-            self.arrayOfValues = [0, 100, 60, 150, 20, 300]
+            self.arrayOfValues = [0, 0]
 
             self.dateRangeSegment.removeFromSuperview()
             self.lblSubtext.removeFromSuperview()

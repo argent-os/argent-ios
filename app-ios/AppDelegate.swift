@@ -61,8 +61,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    let pscope = PermissionScope()
-    
     // Passcode Lock
     lazy var passcodeLockPresenter: PasscodeLockPresenter = {
         let configuration = PasscodeLockConfiguration()
@@ -149,25 +147,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Stripe.setDefaultPublishableKey(STRIPE_PUBLIC_KEY_LIVE)
             Armchair.debugEnabled(false)
         }
-        
-        // Set up permissions scope
-        pscope.addPermission(NotificationsPermission(notificationCategories: nil),
-                             message: APP_NAME + " is requesting permission to send push notifications on account events")
-        pscope.headerLabel.text = "App Request"
-        pscope.bodyLabel.text = "Enabling push notifications"
-        pscope.closeButtonTextColor = UIColor.mediumBlue()
-        pscope.permissionButtonTextColor = UIColor.mediumBlue()
-        pscope.permissionButtonBorderColor = UIColor.mediumBlue()
-        pscope.buttonFont = UIFont.systemFontOfSize(UIFont.systemFontSize())
-        pscope.labelFont = UIFont.systemFontOfSize(UIFont.systemFontSize())
-        pscope.authorizedButtonColor = UIColor.brandGreen()
-        pscope.unauthorizedButtonColor = UIColor.brandRed()
-        pscope.permissionButtonΒorderWidth = 1
-        pscope.permissionButtonCornerRadius = 5
-        pscope.permissionLabelColor = UIColor.mediumBlue()
-        
-        // Register for push notification on every launch
-        // notify()
 
         // Global window attributes
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
@@ -189,8 +168,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Remove the titles and adjust the inset to account for missing title
             // print(UIApplication.sharedApplication().applicationIconBadgeNumber)
             for item in tabBarController.tabBar.items! {
-                item.title = ""
-                item.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
+                //No text and centered UITabBar
+                //item.title = ""
+                //item.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
                 if let image = item.image {
                     item.image = image.imageWithRenderingMode(.AlwaysOriginal)
                     if UIApplication.sharedApplication().applicationIconBadgeNumber != 0 {
@@ -278,9 +258,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func firstTime() {
         // Set up a user entering for the first time
-        // if true it will prompt a pscope
         //
-        // if denied access users can change permissions later
         // display root controller otherwise
         guard let firstTime = NSUserDefaults.standardUserDefaults().valueForKey("firstTime") else {
             // IMPORTANT: load new access token on appdelegate load, otherwise the old token will be requested to the server
@@ -316,27 +294,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window!.rootViewController = rootViewController
             rootViewController.presentViewController(vc, animated: false, completion: { _ in
                 print("showing auth")
-            })
-            
-            // Show dialog with callbacks
-            pscope.show({ finished, results in
-                // Enable push notifications
-                if #available(iOS 8.0, *) {
-                    let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-                    UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-                    UIApplication.sharedApplication().registerForRemoteNotifications()
-                    Answers.logCustomEventWithName("Permission Notifications Enabled",
-                        customAttributes: [:])
-                } else {
-                    let settings = UIRemoteNotificationType.Alert.union(UIRemoteNotificationType.Badge).union(UIRemoteNotificationType.Sound)
-                    UIApplication.sharedApplication().registerForRemoteNotificationTypes(settings)
-                    Answers.logCustomEventWithName("Permission Notifications Enabled",
-                        customAttributes: [:])
-                }
-                }, cancelled: { (results) -> Void in
-                    // print("cancelled")
-                    Answers.logCustomEventWithName("Permission Notifications Cancelled",
-                        customAttributes: [:])
             })
         }
     }
