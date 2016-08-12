@@ -30,10 +30,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     private var screen = UIScreen.mainScreen().bounds
     
-    private var screenWidth = UIScreen.mainScreen().bounds.size.height
-    
-    private var screenHeight = UIScreen.mainScreen().bounds.size.width
-    
     private var balanceSwitch = UISegmentedControl(items: ["A", "P"])
     
     private let dateRangeSegment: UISegmentedControl = UISegmentedControl(items: ["2W", "1M", "3M", "6M", "1Y"])
@@ -88,7 +84,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         super.viewDidLoad()
         
         configureDashboard()
-    
     }
     
     private func addInfiniteScroll() {
@@ -130,7 +125,8 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     // VIEW DID APPEAR
     override func viewDidAppear(animated: Bool) {
-        UITextField.appearance().keyboardAppearance = .Light        
+        UITextField.appearance().keyboardAppearance = .Light
+        self.graph.reloadGraph()
     }
     
     func setupAppleWatch() {
@@ -240,15 +236,16 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     func loadNewUser() {
 
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
+        
         // IMPORTANT: load new access token on home load, otherwise the old token will be requested to the server
         userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
         
         if String(userAccessToken) == "" || userAccessToken == nil || String(userAccessToken) == "(null)" {
             self.logout()
         }
-        
-        let screenWidth = screen.size.width
-        let screenHeight = screen.size.height
 
         self.view.backgroundColor = UIColor.pastelBlue()
         
@@ -258,13 +255,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         // put all content in headerview
         headerView.backgroundColor = UIColor.clearColor()
         headerView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 280)
-        
-        // add background image view to take up entire screen, make header color transparent to give parallax effect
-        let backgroundMaskView = UIView()
-        backgroundMaskView.backgroundColor = UIColor.pastelBlue()
-        backgroundMaskView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
-        addSubviewWithFade(backgroundMaskView, parentView: self, duration: 0.3)
-        self.view.sendSubviewToBack(backgroundMaskView)
         
         tableView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight-45)
         tableView.tableHeaderView = headerView
@@ -397,14 +387,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             // Get user profile
             User.getProfile({ (user, error) in
                 
-                if user?.first_name != "" {
-                    
-                    // Track user action
-                    Answers.logCustomEventWithName("User logged in", customAttributes: nil)
-                    
-                    // showGlobalNotification("Welcome " + (user?.first_name)! + "!", duration: 2.5, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.darkestBlue())
-                }
-                
+                // Track user action
+                Answers.logCustomEventWithName("User logged in", customAttributes: nil)
+
                 if(error != nil) {
                     print(error)
                     // check if user logged in, if not send to login
@@ -447,6 +432,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     // LOGOUT
     func logout() {
+
         // put in api request to log user out
         NSUserDefaults.standardUserDefaults().setValue("", forKey: "userAccessToken")
         NSUserDefaults.standardUserDefaults().synchronize();
@@ -464,8 +450,76 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     
     // MARK: TableView Delegate
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
+        
         if self.accountHistoryArray?.count > 0 {
+            
+            refreshControlView.tintColor = UIColor.whiteColor()
+            refreshControlView.frame = CGRect(x: screenWidth/2-15, y: 30, width: 30, height: 30)
+            refreshControlView.addTarget(self, action: #selector(self.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+            self.tableView.addSubview(refreshControlView) // not required when using UITableViewController
+            
+            // THIS RE-ADDS UI VIEWS AND FIXES BUG WHEN SWITCHING ACCOUNTS
+            dateRangeSegment.frame = CGRect(x: 45.0, y: 230.0, width: view.bounds.width - 90.0, height: 30.0)
+            dateRangeSegment.selectedSegmentIndex = 2
+            dateRangeSegment.removeBorders()
+            dateRangeSegment.addTarget(self, action: #selector(HomeViewController.dateRangeSegmentControl(_:)), forControlEvents: .ValueChanged)
+            
+            // Balance Switch
+            balanceSwitch.selectedSegmentIndex = 1
+            balanceSwitch.tintColor = UIColor.whiteColor()
+            balanceSwitch.backgroundColor = UIColor.clearColor()
+            balanceSwitch.frame = CGRect(x: 20, y: 42, width: 40, height: 25)
+            balanceSwitch.alpha = 0.75
+            //autoresizing so it stays at top right (flexible left and flexible bottom margin)
+            balanceSwitch.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
+            balanceSwitch.bringSubviewToFront(balanceSwitch)
+            balanceSwitch.addTarget(self, action: #selector(HomeViewController.indexChanged(_:)), forControlEvents: .ValueChanged)
+            
+            tutorialButton.frame = CGRect(x: screenWidth-43, y: 38, width: 35, height: 35)
+            tutorialButton.setImage(UIImage(named: "ic_adjust_light"), forState: .Normal)
+            tutorialButton.setTitle("", forState: .Normal)
+            tutorialButton.setTitleColor(UIColor.redColor(), forState: .Normal)
+            tutorialButton.addTarget(self, action: #selector(HomeViewController.presentTutorial(_:)), forControlEvents: .TouchUpInside)
+            tutorialButton.addTarget(self, action: #selector(HomeViewController.presentTutorial(_:)), forControlEvents: .TouchUpOutside)
+            
+            lblAccountAvailable.textColor = UIColor.whiteColor()
+            lblAccountAvailable.frame = CGRect(x: 0, y: 31, width: screenWidth, height: 60)
+            lblAccountAvailable.textAlignment = .Center
+            
+            lblAccountPending.textColor = UIColor.whiteColor()
+            lblAccountPending.frame = CGRect(x: 0, y: 31, width: screenWidth, height: 60)
+            lblAccountPending.textAlignment = .Center
+            
+            lblSubtext.textColor = UIColor.whiteColor()
+            lblSubtext.frame = CGRect(x: 0, y: 55, width: screenWidth, height: 60)
+            lblSubtext.alpha = 0.5
+            lblSubtext.textAlignment = .Center
+            let subtext = NSAttributedString(string: "Pending Balance", attributes:[
+                NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 12)!,
+                NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.7)
+                ])
+            lblSubtext.attributedText = subtext
+            
+            
             self.view.addSubview(dateRangeSegment)
+            self.graph.reloadGraph()
+            self.view.addSubview(lblAccountPending)
+            self.view.addSubview(balanceSwitch)
+            self.view.addSubview(tutorialButton)
+        } else {
+            self.arrayOfValues = [0, 100, 60, 150, 20, 300]
+
+            self.dateRangeSegment.removeFromSuperview()
+            self.lblSubtext.removeFromSuperview()
+            self.lblAccountPending.removeFromSuperview()
+            self.lblAccountAvailable.removeFromSuperview()
+            self.balanceSwitch.removeFromSuperview()
+            self.tutorialButton.removeFromSuperview()
+
+            self.graph.reloadGraph()
         }
         return self.accountHistoryArray?.count ?? 0
     }
@@ -573,7 +627,7 @@ extension HomeViewController {
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let attrStr = adjustAttributedString("This is your income dashboard, from here you will be able to see all received payments and transfers.  We do not require any information to pay others, but in order to receive payments we do require account verification.", spacing: 1.0, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.whiteColor(), lineSpacing: 5.0, alignment: .Center)
+        let attrStr = adjustAttributedString("This is your income dashboard, from here you will be able to see all received payments and transfers.  We do not require any information to pay others, but, in order to receive payments we do require account verification.", spacing: 1.0, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.whiteColor(), lineSpacing: 5.0, alignment: .Center)
         return attrStr
     }
     
@@ -644,6 +698,10 @@ extension HomeViewController {
     
     func configureGraph() {
         
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        //let screenHeight = screen.size.height
+        
         graph.dataSource = self
         graph.frame = CGRect(x: 0, y: 100, width: screenWidth, height: 120)
         graph.colorTop = UIColor.clearColor()
@@ -688,6 +746,7 @@ extension HomeViewController {
 extension HomeViewController {
     func configureView() {
         
+        let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
 
@@ -706,22 +765,10 @@ extension HomeViewController {
         self.view.backgroundColor = UIColor.pastelBlue()
         
         self.configureGraph()
-        
-        refreshControlView.tintColor = UIColor.whiteColor()
-        refreshControlView.frame = CGRect(x: screenWidth/2-15, y: 30, width: 30, height: 30)
-        refreshControlView.addTarget(self, action: #selector(self.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
-        self.tableView.addSubview(refreshControlView) // not required when using UITableViewController
 
         // put all content in headerview
         headerView.backgroundColor = UIColor.clearColor()
         headerView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 280)
-        
-        // add background image view to take up entire screen, make header color transparent to give parallax effect
-        let backgroundMaskView = UIView()
-        backgroundMaskView.backgroundColor = UIColor.pastelBlue()
-        backgroundMaskView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
-        addSubviewWithFade(backgroundMaskView, parentView: self, duration: 0.3)
-        self.view.sendSubviewToBack(backgroundMaskView)
         
         tableView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight-45)
         tableView.tableHeaderView = headerView
@@ -739,63 +786,6 @@ extension HomeViewController {
                 }
             }
         }
-        
-        // Balance Switch
-        balanceSwitch.selectedSegmentIndex = UISegmentedControlNoSegment
-        balanceSwitch.tintColor = UIColor.whiteColor()
-        balanceSwitch.backgroundColor = UIColor.clearColor()
-        balanceSwitch.frame = CGRect(x: 20, y: 42, width: 40, height: 25)
-        balanceSwitch.alpha = 0.75
-        //autoresizing so it stays at top right (flexible left and flexible bottom margin)
-        balanceSwitch.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-        balanceSwitch.bringSubviewToFront(balanceSwitch)
-        balanceSwitch.addTarget(self, action: #selector(HomeViewController.indexChanged(_:)), forControlEvents: .ValueChanged)
-        
-        // split the date segments
-        let horizontalSplitter = UIView()
-        horizontalSplitter.backgroundColor = UIColor.clearColor()
-        horizontalSplitter.frame = CGRect(x: 15.0, y: 260.0, width: screenWidth - 15.0, height: 1)
-        headerView.addSubview(horizontalSplitter)
-        
-        dateRangeSegment.frame = CGRect(x: 45.0, y: 230.0, width: view.bounds.width - 90.0, height: 30.0)
-        dateRangeSegment.selectedSegmentIndex = UISegmentedControlNoSegment
-        dateRangeSegment.removeBorders()
-        dateRangeSegment.addTarget(self, action: #selector(HomeViewController.dateRangeSegmentControl(_:)), forControlEvents: .ValueChanged)
-        
-        tutorialButton.frame = CGRect(x: screenWidth-43, y: 38, width: 35, height: 35)
-        tutorialButton.setImage(UIImage(named: "ic_adjust_light"), forState: .Normal)
-        tutorialButton.setTitle("Tuts", forState: .Normal)
-        tutorialButton.setTitleColor(UIColor.redColor(), forState: .Normal)
-        tutorialButton.addTarget(self, action: #selector(HomeViewController.presentTutorial(_:)), forControlEvents: .TouchUpInside)
-        tutorialButton.addTarget(self, action: #selector(HomeViewController.presentTutorial(_:)), forControlEvents: .TouchUpOutside)
-        
-        lblAccountAvailable.textColor = UIColor.whiteColor()
-        lblAccountAvailable.frame = CGRect(x: 0, y: 31, width: screenWidth, height: 60)
-        lblAccountAvailable.textAlignment = .Center
-        let str0 = NSAttributedString(string: "N/A", attributes:[
-            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 18)!,
-            NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.7)
-            ])
-        lblAccountAvailable.attributedText = str0
-
-        lblAccountPending.textColor = UIColor.whiteColor()
-        lblAccountPending.frame = CGRect(x: 0, y: 31, width: screenWidth, height: 60)
-        lblAccountPending.textAlignment = .Center
-        let str1 = NSAttributedString(string: "N/A", attributes:[
-            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 18)!,
-            NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.7)
-            ])
-        lblAccountPending.attributedText = str1
-
-        lblSubtext.textColor = UIColor.whiteColor()
-        lblSubtext.frame = CGRect(x: 0, y: 55, width: screenWidth, height: 60)
-        lblSubtext.alpha = 0.5
-        lblSubtext.textAlignment = .Center
-        let subtext = NSAttributedString(string: "Pending Balance", attributes:[
-            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 12)!,
-            NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.7)
-            ])
-        lblSubtext.attributedText = subtext
     }
 }
 
@@ -934,11 +924,16 @@ extension HomeViewController {
 extension HomeViewController {
     
     func configureDashboard() {
+        
+        self.view.backgroundColor = UIColor.pastelBlue()
+        
+        showGraphActivityIndicator()
+        
         History.getAccountHistory("100", starting_after: "") { (historyArray, err) in
             if historyArray!.count == 0 {
                 
-                self.arrayOfValues = [0,60,10,150,70,240,130,300]
-                
+                self.addInfiniteScroll()
+
                 self.setupAppleWatch()
                 
                 self.loadNewUser()
@@ -955,5 +950,4 @@ extension HomeViewController {
             }
         }
     }
-    
 }

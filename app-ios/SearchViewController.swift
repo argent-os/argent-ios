@@ -73,13 +73,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func configureView() {
         
-        // IMPORTANT: load new access token on search load, otherwise the old token will be requested to the server
-        userAccessToken = NSUserDefaults.standardUserDefaults().valueForKey("userAccessToken")
-        
-        if String(userAccessToken) == "" || userAccessToken == nil || String(userAccessToken) == "(null)" {
-            self.logout()
-        }
-        
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
@@ -442,22 +435,3 @@ extension SearchViewController {
         self.loadUserAccounts()
     }
 }
-
-extension SearchViewController {
-    func logout() {
-        // put in api request to log user out
-        NSUserDefaults.standardUserDefaults().setValue("", forKey: "userAccessToken")
-        NSUserDefaults.standardUserDefaults().synchronize();
-        
-        // go to login view
-        let sb = UIStoryboard(name: "Auth", bundle: nil)
-        let loginVC = sb.instantiateViewControllerWithIdentifier("authViewController")
-        loginVC.modalTransitionStyle = .CrossDissolve
-        let root = UIApplication.sharedApplication().keyWindow?.rootViewController
-        root!.presentViewController(loginVC, animated: true, completion: { () -> Void in })
-        
-        Answers.logCustomEventWithName("Logged User Out from Search",
-                                       customAttributes: [:])
-    }
-}
-
