@@ -28,7 +28,7 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate,
     
     private let imagePickerController = ImagePickerController()
 
-    let tipView = EasyTipView(text: "All information processed is SHA-256 Bit encrypted with end-to-end SSL. We do not store social security information on our servers.  Social security and identity document data is handled and processed by Stripe, one of the world's top payment processors.", preferences: EasyTipView.globalPreferences)
+    let tipView = EasyTipView(text: "All information transmitted is TLS (SSL) encrypted. We do not store social security information on our servers.  Social security and identity document data is handled and processed by Stripe, one of the world's best payment processors.", preferences: EasyTipView.globalPreferences)
 
     var rightButton = UIBarButtonItem()
 

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
+	<string>en_US</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -83,11 +83,11 @@
 	<array>
 		<dict>
 			<key>UIApplicationShortcutItemIconFile</key>
-			<string>ic_3d_dash</string>
+			<string>ic_3d_home</string>
 			<key>UIApplicationShortcutItemSubtitle</key>
 			<string></string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>Dashboard</string>
+			<string>Home</string>
 			<key>UIApplicationShortcutItemType</key>
 			<string>$(PRODUCT_BUNDLE_IDENTIFIER).dashboard</string>
 		</dict>

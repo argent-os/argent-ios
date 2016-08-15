@@ -189,10 +189,12 @@ class ChargeViewController: UIViewController, STPPaymentCardTextFieldDelegate, U
                     self.payButton.setBackgroundColor(UIColor.neonOrange(), forState: .Highlighted)
                     self.payButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.5), forState: .Normal)
                     self.payButton.userInteractionEnabled = false
-                } else if user?.business_name == "" {
-                    self.payButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("PAY " + (user?.username.uppercaseString)!, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor()), forState: .Normal)
-                } else {
+                } else if user?.business_name != "" {
                     self.payButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("PAY " + (user?.business_name.uppercaseString)!, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor()), forState: .Normal)
+                } else if user?.first_name != "" {
+                    self.payButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("PAY " + (user?.first_name.uppercaseString)!, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor()), forState: .Normal)
+                } else {
+                    self.payButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("PAY " + (user?.username.uppercaseString)!, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor()), forState: .Normal)
                 }
             })
         }

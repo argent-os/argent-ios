@@ -85,7 +85,7 @@ class Subscription {
         }
     }
     
-    // Send DELETE Request to cancel subscription
+    // Send DELETE Request to delete subscription
     class func deleteSubscription(id: String, completionHandler: (Bool?, NSError?) -> Void) {
         
         // check for token, get profile id based on token and make the request
@@ -95,7 +95,7 @@ class Subscription {
                     print(error)
                 }
                 
-                let user_tenant_id = user?.tenant_id
+                let user_id = user?.id
                 
                 let parameters : [String : AnyObject] = [:]
                 
@@ -104,7 +104,46 @@ class Subscription {
                     "Content-Type": "application/json"
                 ]
                 
-                let endpoint = API_URL + "/scribe/" + user_tenant_id! + "/subscriptions/" + id
+                let endpoint = API_URL + "/stripe/" + user_id! + "/subscriptions/" + id + "?type=delete"
+                
+                Alamofire.request(.DELETE, endpoint, parameters: parameters, encoding: .URL, headers: headers)
+                    .responseJSON { response in
+                        switch response.result {
+                        case .Success:
+                            if let value = response.result.value {
+                                //let data = JSON(value)
+                                
+                                completionHandler(true, response.result.error)
+                            }
+                        case .Failure(let error):
+                            print(error)
+                        }
+                }
+            })
+        }
+    }
+    
+    // Send DELETE Request to cancel subscription
+    class func cancelSubscription(id: String, completionHandler: (Bool?, NSError?) -> Void) {
+        
+        // check for token, get profile id based on token and make the request
+        if(userAccessToken != nil) {
+            User.getProfile({ (user, error) in
+                if error != nil {
+                    print(error)
+                }
+                
+                let user_id = user?.id
+                
+                let parameters : [String : AnyObject] = [:]
+                
+                let headers = [
+                    "Authorization": "Bearer " + (userAccessToken as! String),
+                    "Content-Type": "application/json"
+                ]
+                
+                // No type sent in request header, otherwise send ?type=delete to permanently delete subscription
+                let endpoint = API_URL + "/stripe/" + user_id! + "/subscriptions/" + id
                 
                 Alamofire.request(.DELETE, endpoint, parameters: parameters, encoding: .URL, headers: headers)
                     .responseJSON { response in

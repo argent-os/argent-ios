@@ -2,18 +2,16 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "ic_tab_home~universal@1x.png"
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "ic_tab_home~universal@2x.png"
+      "filename" : "IconPaperPlane~universal@2x.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x",
-      "filename" : "ic_tab_home~universal@3x.png"
+      "scale" : "3x"
     }
   ],
   "info" : {

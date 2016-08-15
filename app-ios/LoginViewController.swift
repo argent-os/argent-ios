@@ -143,7 +143,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, WCSessionDeleg
         let keyboardTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
         view.addGestureRecognizer(keyboardTap)
         
-        let image = UIImage(named: "LogoOutlineDark")
+        let image = UIImage(named: "LogoInset")
         imageView.image = image
         imageView.layer.masksToBounds = true
         imageView.tag = 42312
@@ -360,5 +360,3 @@ extension LoginViewController {
         loginButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.5), forState: .Normal)
     }
 }
-
-

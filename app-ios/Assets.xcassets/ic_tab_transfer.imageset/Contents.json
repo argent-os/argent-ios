@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "IconDrawnBank~universal@1x.png"
+      "filename" : "ic_tab_transfer~universal@1x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "IconDrawnBank~universal@2x.png"
+      "filename" : "ic_tab_transfer~universal@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "IconDrawnBank~universal@3x.png"
+      "filename" : "ic_tab_transfer~universal@3x.png"
     }
   ],
   "info" : {

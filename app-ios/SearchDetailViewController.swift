@@ -19,7 +19,7 @@ import TransitionAnimation
 import EasyTipView
 import Crashlytics
 
-class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
+class SearchDetailViewController: UIViewController, UINavigationBarDelegate, UIScrollViewDelegate {
     
     @IBOutlet weak var emailLabel: UILabel!
     
@@ -29,6 +29,8 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
     
     private var tipView = EasyTipView(text: "This is an " + APP_NAME + " user's profile page, from here you can make one-time or recurring payments", preferences: EasyTipView.globalPreferences)
 
+    let scrollView = UIScrollView()
+    
     let tutorialButton = UIButton()
 
     let paymentTextField = STPPaymentCardTextField()
@@ -65,6 +67,17 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
         imageBackground.contentMode = .ScaleToFill
         addSubviewWithFade(imageBackground, parentView: self, duration: 0.8)
         
+        scrollView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
+        scrollView.delegate = self
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.scrollEnabled = true
+        scrollView.userInteractionEnabled = true
+        scrollView.bounces = true
+        scrollView.alwaysBounceVertical = true
+        scrollView.decelerationRate = 0.3
+        scrollView.contentSize = CGSizeMake(screenWidth, screenHeight*1.2)
+        self.view!.addSubview(scrollView)
+        
         // adds a manual credit card entry textfield
         // addSubviewWithFade(paymentTextField)
         
@@ -76,64 +89,72 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
                 emailLabel.text = detailUser.email
             }
             
+            let headerView = UIView()
+            headerView.backgroundColor = UIColor.pastelBlue()
+            headerView.frame = CGRect(x: 0, y: -200, width: screenWidth, height: 400)
+            scrollView.addSubview(headerView)
+            scrollView.sendSubviewToBack(headerView)
+            
             let cardView: UIView = UIView()
             cardView.backgroundColor = UIColor.whiteColor()
-            cardView.frame = CGRectMake(35, 135, screenWidth-70, 270)
+            cardView.frame = CGRectMake(35, 135, screenWidth-70, 200)
             cardView.contentMode = .ScaleToFill
             cardView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
             cardView.layer.masksToBounds = true
             cardView.clipsToBounds = true
             cardView.layer.cornerRadius = 10
             cardView.clipsToBounds = false
-            addSubviewWithShadow(UIColor.lightBlue(), radius: 10.0, offsetX: 0.0, offsetY: 5.0, opacity: 0.2, parentView: self, childView: cardView)
+            cardView.layer.borderWidth = 1
+            cardView.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.2).CGColor
+            scrollView.addSubview(cardView)
+            scrollView.bringSubviewToFront(cardView)
+//            addSubviewWithShadow(UIColor.lightBlue(), radius: 10.0, offsetX: 0.0, offsetY: 5.0, opacity: 0.2, parentView: self, childView: cardView)
             
             let userImageView: UIImageView = UIImageView()
-            userImageView.frame = CGRectMake(55, 150, 50, 50)
+            userImageView.frame = CGRectMake(55, 150, 60, 60)
             userImageView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
-//            userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 245)
+            userImageView.center = CGPointMake(self.view.bounds.size.width / 2, 140)
             userImageView.backgroundColor = UIColor.clearColor()
             userImageView.layer.cornerRadius = userImageView.frame.size.height/2
             userImageView.layer.masksToBounds = true
             userImageView.clipsToBounds = true
-            //            userImageView.layer.cornerRadius = userImageView.frame.size.height/2
-            userImageView.layer.cornerRadius = 10
-            userImageView.layer.borderWidth = 0
+            userImageView.layer.cornerRadius = userImageView.frame.size.height/2
+            userImageView.layer.borderWidth = 2
             userImageView.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.5).CGColor
-            addSubviewWithFade(userImageView, parentView: self, duration: 0.8)
-            self.view.bringSubviewToFront(userImageView)
+            scrollView.addSubview(userImageView)
+            scrollView.bringSubviewToFront(userImageView)
             
             // Name textfield
             if detailUser.business_name != "" {
-                companyTitleLabel.text = detailUser.business_name
+                companyTitleLabel.attributedText = adjustAttributedStringNoLineSpacing(detailUser.business_name.uppercaseString, spacing: 2.0, fontName: "MyriadPro-Regular", fontSize: 17, fontColor: UIColor.whiteColor())
             } else if detailUser.first_name != "" && detailUser.last_name != "" {
-                companyTitleLabel.text = detailUser.first_name + " " + detailUser.last_name
+                companyTitleLabel.attributedText = adjustAttributedStringNoLineSpacing(detailUser.first_name.uppercaseString + " " + detailUser.last_name.uppercaseString, spacing: 2.0, fontName: "MyriadPro-Regular", fontSize: 17, fontColor: UIColor.whiteColor())
             } else {
-                companyTitleLabel.text = detailUser.username
+                companyTitleLabel.attributedText = adjustAttributedStringNoLineSpacing("@" + detailUser.username.uppercaseString, spacing: 2.0, fontName: "MyriadPro-Regular", fontSize: 17, fontColor: UIColor.whiteColor())
             }
-            companyTitleLabel.frame = CGRectMake(115, 100, 200, 130)
-            companyTitleLabel.textAlignment = .Left
-            companyTitleLabel.textColor = UIColor.lightBlue()
-            companyTitleLabel.font = UIFont(name: "MyriadPro-Regular", size: 18)!
+            companyTitleLabel.frame = CGRectMake(0, 10, screenWidth, 130)
+            companyTitleLabel.textAlignment = .Center
             companyTitleLabel.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
             addSubviewWithFade(companyTitleLabel, parentView: self, duration: 0.8)
             self.view.bringSubviewToFront(companyTitleLabel)
             
             // Send message button
             let sendMessageButton = UIButton()
-            sendMessageButton.frame = CGRect(x: 115, y: 165, width: 200, height: 40.0)
+            sendMessageButton.frame = CGRect(x: 50, y: 150, width: 28, height: 28)
             sendMessageButton.setTitleColor(UIColor.oceanBlue(), forState: .Normal)
             sendMessageButton.setTitleColor(UIColor.oceanBlue().lighterColor(), forState: .Highlighted)
             sendMessageButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
             sendMessageButton.setBackgroundColor(UIColor.clearColor().lighterColor(), forState: .Highlighted)
-            sendMessageButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 14)!
-            sendMessageButton.setTitle("Send Message", forState: .Normal)
+            sendMessageButton.setBackgroundImage(UIImage(named: "IconPaperPlane"), forState: .Normal)
+            sendMessageButton.setBackgroundImage(UIImage(named: "IconPaperPlane")?.alpha(0.5), forState: .Highlighted)
             sendMessageButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
             sendMessageButton.addTarget(self, action: #selector(SearchDetailViewController.showMessageView(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             //sendMessageButton.layer.cornerRadius = 10
             sendMessageButton.layer.borderColor = UIColor.oceanBlue().CGColor
             sendMessageButton.layer.borderWidth = 0
             sendMessageButton.addTarget(self, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
-            addSubviewWithFade(sendMessageButton, parentView: self, duration: 0.8)
+            scrollView.addSubview(sendMessageButton)
+            scrollView.bringSubviewToFront(sendMessageButton)
             
             // Share button
             let shareButton = UIButton()
@@ -151,7 +172,8 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             shareButton.addTarget(self, action: #selector(self.shareButtonClicked(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             //shareButton.layer.cornerRadius = 10
             shareButton.addTarget(self, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
-            addSubviewWithFade(shareButton, parentView: self, duration: 0.8)
+            scrollView.addSubview(shareButton)
+            scrollView.bringSubviewToFront(shareButton)
             
             tutorialButton.frame = CGRect(x: self.view.frame.width/2-10, y: 480, width: 20, height: 20)
             tutorialButton.setTitleColor(UIColor.skyBlue(), forState: .Normal)
@@ -181,23 +203,17 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             }
             
             // Title
-            self.navigationController?.navigationBar.tintColor = UIColor.lightBlue()
+            self.view.sendSubviewToBack((self.navigationController?.navigationBar)!)
+            self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
             self.navigationController?.navigationBar.topItem!.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
             //self.navigationController?.navigationBar.topItem!.backBarButtonItem?.tintColor = UIColor.lightBlue()
-            let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 65))
-            navBar.translucent = true
-            navBar.tintColor = UIColor.slateBlue()
-            navBar.backgroundColor = UIColor.clearColor()
-            navBar.shadowImage = UIImage()
-            navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
-            navBar.titleTextAttributes = [
-                NSForegroundColorAttributeName : UIColor.lightBlue(),
-                NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 18)!
+            self.navigationController?.navigationBar.titleTextAttributes = [
+                NSForegroundColorAttributeName : UIColor.whiteColor(),
+                NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 17)!
             ]
-            addSubviewWithFade(navBar, parentView: self, duration: 0.8)
             let navItem = UINavigationItem(title: "@"+detailUser.username)
             navItem.leftBarButtonItem?.tintColor = UIColor.mediumBlue()
-            navBar.setItems([navItem], animated: true)
+//            self.navigationController?.navigationBar.setItems([navItem], animated: true)
             
             // Enable ACH Button
             let enableACHButton = UIButton()
@@ -218,21 +234,21 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             
             // View plans Button
             let viewPlansButton = UIButton()
-            viewPlansButton.frame = CGRect(x: 35, y: cardView.layer.frame.height+19,  width: self.view.layer.frame.width-70, height: 60.0)
-            viewPlansButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-            viewPlansButton.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
-            viewPlansButton.setBackgroundColor(UIColor.oceanBlue(), forState: .Normal)
-            viewPlansButton.setBackgroundColor(UIColor.oceanBlue().lighterColor(), forState: .Highlighted)
+            viewPlansButton.frame = CGRect(x: 35, y: cardView.layer.frame.height+15,  width: self.view.layer.frame.width-70, height: 60.0)
+            viewPlansButton.setTitleColor(UIColor.pastelBlue(), forState: .Normal)
+            viewPlansButton.setTitleColor(UIColor.pastelBlue().lighterColor(), forState: .Highlighted)
+            viewPlansButton.setBackgroundColor(UIColor.whiteColor(), forState: .Normal)
+            viewPlansButton.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
             viewPlansButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 14)!
-            viewPlansButton.setAttributedTitle(adjustAttributedString("VIEW SUBSCRIPTION PLANS", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 12, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Left), forState: .Normal)
+            viewPlansButton.setAttributedTitle(adjustAttributedString("VIEW SUBSCRIPTION PLANS", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 12, fontColor: UIColor.pastelBlue(), lineSpacing: 0.0, alignment: .Left), forState: .Normal)
             viewPlansButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
             viewPlansButton.addTarget(self, action: #selector(SearchDetailViewController.viewPlansModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             //viewPlansButton.layer.cornerRadius = 10
-            viewPlansButton.layer.borderColor = UIColor.oceanBlue().CGColor
+            viewPlansButton.layer.borderColor = UIColor.clearColor().CGColor
             viewPlansButton.layer.borderWidth = 0
             viewPlansButton.addTarget(self, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
-            self.view.addSubview(viewPlansButton)
-            
+            scrollView.addSubview(viewPlansButton)
+            scrollView.bringSubviewToFront(viewPlansButton)
             
             let payButton = UIButton()
             payButton.frame = CGRect(x: 35, y: cardView.layer.frame.height+75,  width: self.view.layer.frame.width-70, height: 60.0)
@@ -250,23 +266,23 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate {
             //payButton.layer.cornerRadius = 10
             payButton.layer.borderWidth = 0
             payButton.layer.masksToBounds = true
-            payButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
-            payButton.setBackgroundColor(UIColor.seaBlue().lighterColor(), forState: .Highlighted)
+            payButton.setBackgroundColor(UIColor.pastelBlue(), forState: .Normal)
+            payButton.setBackgroundColor(UIColor.pastelBlue().lighterColor(), forState: .Highlighted)
             payButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
             payButton.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
-            payButton.layer.borderColor = UIColor.seaBlue().CGColor
+            payButton.layer.borderColor = UIColor.pastelBlue().CGColor
             payButton.layer.borderWidth = 0
             payButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
             payButton.addTarget(self, action: #selector(SearchDetailViewController.payMerchantModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-            self.view.addSubview(payButton)
             let rectShape = CAShapeLayer()
             rectShape.bounds = payButton.frame
             rectShape.position = payButton.center
             rectShape.path = UIBezierPath(roundedRect: payButton.bounds, byRoundingCorners: [.BottomLeft, .BottomRight], cornerRadii: CGSize(width: 10, height: 10)).CGPath
-            
-            payButton.layer.backgroundColor = UIColor.seaBlue().CGColor
+            payButton.layer.backgroundColor = UIColor.pastelBlue().CGColor
             //Here I'm masking the textView's layer with rectShape layer
             payButton.layer.mask = rectShape
+            scrollView.addSubview(payButton)
+            scrollView.bringSubviewToFront(payButton)
             
             if(screenHeight < 500) {
                 cardView.frame = CGRectMake(35, 90, screenWidth-70, screenHeight*0.6)

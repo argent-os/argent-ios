@@ -142,17 +142,6 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         self.dateFormatter.timeStyle = NSDateFormatterStyle.LongStyle
         
-        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: 310, height: 50))
-        navBar.barTintColor = UIColor.whiteColor()
-        navBar.translucent = false
-        navBar.titleTextAttributes = [
-            NSForegroundColorAttributeName : UIColor.lightBlue(),
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!
-        ]
-        self.view.addSubview(navBar);
-        let navItem = UINavigationItem(title: "@" + (detailUser?.username)! + " plans");
-        navBar.setItems([navItem], animated: false);
-        
         // add gesture recognizer to window
         var recognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MerchantPlansViewController.handleTapBehind(_:)))
         recognizer.numberOfTapsRequired = 1
@@ -183,6 +172,29 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         // Create two buttons for the navigation item
         navigationItem.leftBarButtonItem = leftButton
 
+        let str = ""
+        if let bn = detailUser?.business_name where detailUser?.business_name != "" {
+            let rightButton = UIBarButtonItem(title: str + bn, style: .Plain, target: self, action: nil)
+            rightButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+            // Create two buttons for the navigation item
+            navigationItem.rightBarButtonItem = rightButton
+        } else if let fn = detailUser?.first_name, ln = detailUser?.last_name where detailUser?.first_name != "" && detailUser?.last_name != "" {
+            let rightButton = UIBarButtonItem(title: str + fn + " " + ln, style: .Plain, target: self, action: nil)
+            rightButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+            // Create two buttons for the navigation item
+            navigationItem.rightBarButtonItem = rightButton
+        } else if let un = detailUser?.username {
+            let rightButton = UIBarButtonItem(title: str + "@" + un + "'s plans", style: .Plain, target: self, action: nil)
+            rightButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+            // Create two buttons for the navigation item
+            navigationItem.rightBarButtonItem = rightButton
+        } else {
+            let rightButton = UIBarButtonItem(title: "Subscription plans", style: .Plain, target: self, action: nil)
+            rightButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+            // Create two buttons for the navigation item
+            navigationItem.rightBarButtonItem = rightButton
+        }
+        
         // Assign the navigation item to the navigation bar
         navigationBar!.titleTextAttributes = [NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.darkGrayColor()]
         navigationBar!.items = [navigationItem]

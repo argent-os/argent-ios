@@ -211,7 +211,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         if(chargeInputView.text == "" || chargeInputView.text == "$0.00") {
             showGlobalNotification("Amount invalid", duration: 5.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
         } else {
-            let floatValue = Float(chargeInputView.value)*100 // for apple pay
+            let floatValue = Float(chargeInputView.value) // for apple pay
             let value = Int(Float(chargeInputView.value)*100) // for stripe api
             if(value<1) {
                 showGlobalNotification("Amount cannot be less than 1", duration: 8.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())

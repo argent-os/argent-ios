@@ -44,7 +44,7 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
     
     var rightButton = UIBarButtonItem()
     
-    let tipView = EasyTipView(text: "All information processed is SHA-256 Bit encrypted with end-to-end SSL. We do not store bank account information on our servers.", preferences: EasyTipView.globalPreferences)
+    let tipView = EasyTipView(text: "All information transmitted is TLS (SSL) encrypted. We do not store bank account information on our servers.  Bank account data is handled and processed by Stripe, one of the world's best payment processors.", preferences: EasyTipView.globalPreferences)
     
     override func prefersStatusBarHidden() -> Bool {
         return false

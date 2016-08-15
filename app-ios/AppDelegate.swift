@@ -63,11 +63,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // Passcode Lock
     lazy var passcodeLockPresenter: PasscodeLockPresenter = {
+        
         let configuration = PasscodeLockConfiguration()
         let presenter = PasscodeLockPresenter(mainWindow: self.window, configuration: configuration)
         return presenter
     }()
-    
+
     // 3D Touch
     func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: Bool -> ()) {
         if shortcutItem.type == "com.argentapp.ios.dashboard" {
@@ -100,13 +101,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // Default Launch
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-        // Set global app theme
-        if (KeychainSwift().get("theme") == "DARK") {
-            APP_THEME = "DARK"
-        } else {
-            APP_THEME = "LIGHT"
-        }
         
         // It is always best to load Armchair as early as possible
         // because it needs to receive application life-cycle notifications
@@ -149,10 +143,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         // Global window attributes
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.window!.backgroundColor = UIColor.clearColor()
-        self.window!.makeKeyAndVisible()
-        self.window!.makeKeyWindow()
+        self.window?.backgroundColor = UIColor.clearColor()
+        self.window?.makeKeyAndVisible()
+        self.window?.makeKeyWindow()
         
         // Initialize global UI elements ** Must come after setting self.window attributes
         globalUI()
@@ -164,6 +157,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         firstTime()
 
         // Save state tab bar
+        saveTabBarState()
+        
+        // @TODO: Implement check for new version
+        // let appVersionString: String = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
+        
+        return true
+    }
+    
+    func saveTabBarState() -> Bool {
         if let tabBarController = window?.rootViewController as? UITabBarController {
             // Remove the titles and adjust the inset to account for missing title
             // print(UIApplication.sharedApplication().applicationIconBadgeNumber)
@@ -225,17 +227,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // here we establish any global UI elements
         // that affect the entire application such
         // as keyboards, navigation bars, and tabbars
-        
-        // Set notification badge to zero on launch
-        // UIApplication.sharedApplication().applicationIconBadgeNumber = 0
-        
-        // Globally set toolbar
-        UIToolbar.appearance().barTintColor = UIColor.skyBlue()
-        UIToolbar.appearance().backgroundColor = UIColor.skyBlue()
                 
         // Tabbar UI
         UITabBar.appearance().tintColor = UIColor.pastelDarkBlue()
-        // UITabBar.appearance().barTintColor = UIColor.whiteColor()
         
         // Page Control UI
         UIPageControl.appearance().pageIndicatorTintColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)

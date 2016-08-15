@@ -44,7 +44,7 @@ class AuthViewControllerStepOne: UIPageViewController, UIPageViewControllerDeleg
         
         self.view.backgroundColor = UIColor.whiteColor()
         
-        let imageName = "LogoOutlineDark"
+        let imageName = "LogoInset "
         let image = UIImage(named: imageName)
         imageView.image = image
         imageView.layer.masksToBounds = true

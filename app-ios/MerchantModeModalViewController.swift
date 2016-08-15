@@ -62,21 +62,21 @@ class MerchantModeModalViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.navigationBar.barTintColor = UIColor.lightGrayColor()
         
         let imageMerchantBadge = UIImageView()
-        imageMerchantBadge.image = UIImage(named: "IconCustomGraph")
+        imageMerchantBadge.image = UIImage(named: "IconCustomSettings")
         imageMerchantBadge.frame = CGRect(x: 140-35, y: 0, width: 70, height: 70)
         imageMerchantBadge.contentMode = .ScaleAspectFit
         imageMerchantBadge.frame.origin.y = 25
         self.view.addSubview(imageMerchantBadge)
         
-        titleLabel.frame = CGRect(x: 0, y: 100, width: 280, height: 20)
-        titleLabel.attributedText = adjustAttributedString("DASHBOARD MODE", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Center)
+        titleLabel.frame = CGRect(x: 0, y: 110, width: 280, height: 20)
+        titleLabel.attributedText = adjustAttributedString("CONFIGURATION", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Center)
         titleLabel.textAlignment = .Center
         titleLabel.textColor = UIColor.darkBlue()
         self.view.addSubview(titleLabel)
         
         
         let merchantLabel = UILabel()
-        merchantLabel.attributedText = adjustAttributedString("METRICS MODE", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
+        merchantLabel.attributedText = adjustAttributedString("DEFAULT ENABLED", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
         merchantLabel.frame = CGRect(x: 20, y: 157, width: 280, height: 20)
         merchantSwitch.on = true
         merchantSwitch.onTintColor = UIColor.brandGreen().colorWithAlphaComponent(0.5)
@@ -105,7 +105,7 @@ class MerchantModeModalViewController: UIViewController, UITextFieldDelegate {
         var attribs: [String: AnyObject] = [:]
         attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 15)
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
-        let str = adjustAttributedString("RETURN TO DASHBOARD", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Center)
+        let str = adjustAttributedString("RETURN HOME", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Center)
         modeSelectionButton.setAttributedTitle(str, forState: .Normal)
         let rectShape = CAShapeLayer()
         rectShape.bounds = modeSelectionButton.frame

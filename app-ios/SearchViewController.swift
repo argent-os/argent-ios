@@ -63,7 +63,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .Default
+        return .LightContent
     }
     
     override func didReceiveMemoryWarning() {
@@ -97,18 +97,20 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let app: UIApplication = UIApplication.sharedApplication()
         let statusBarHeight: CGFloat = app.statusBarFrame.size.height
         let statusBarView: UIView = UIView(frame: CGRectMake(0, -statusBarHeight, UIScreen.mainScreen().bounds.size.width, statusBarHeight))
-        statusBarView.backgroundColor = UIColor.offWhite()
+        statusBarView.backgroundColor = UIColor.pastelBlue()
         self.navigationController?.navigationBar.addSubview(statusBarView)
 
+        
         // THIS SETS STATUS BAR COLOR
-        self.navigationController?.navigationBar.barStyle = .Default
+        self.navigationController?.navigationBar.barStyle = .Black
         self.setNeedsStatusBarAppearanceUpdate()
         self.navigationController?.navigationBarHidden = false
 //        self.navigationItem.title = "Search and Pay"
-        self.navigationController?.navigationBar.barTintColor = UIColor.clearColor()
-        self.navigationController?.navigationBar.backgroundColor = UIColor.offWhite()
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.backgroundColor = UIColor.pastelBlue()
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSForegroundColorAttributeName : UIColor.lightBlue(),
+            NSForegroundColorAttributeName : UIColor.whiteColor(),
             NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 17)!
         ]
         
@@ -228,10 +230,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         self.shouldShowSearchResults = false
         self.searchController.searchBar.hidden = true
+        self.searchController.searchBar.tintColor = UIColor.whiteColor()
         self.searchController.searchBar.resignFirstResponder()
         self.searchController.searchBar.placeholder = ""
-        searchBarCancelButtonClicked(searchController.searchBar)
-        
+
         let user: User
         if searchController.active && searchController.searchBar.text != "" {
             user = filteredArray[indexPath.row]
@@ -293,7 +295,16 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchController.searchBar.barStyle = .Black
         searchController.searchBar.showsScopeBar = true
         searchController.hidesNavigationBarDuringPresentation = false
-
+        searchController.searchBar.autocorrectionType = .No
+        searchController.searchBar.autocapitalizationType = .None
+        searchController.searchBar.setImage(UIImage(named: "ic_search"), forSearchBarIcon: .Search, state: .Normal)
+        searchController.searchBar.tintColor = UIColor.whiteColor()
+        UILabel.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).textColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
+        UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UISearchBar.classForCoder()]).tintColor = UIColor.whiteColor()
+        UIButton.appearanceWhenContainedInInstancesOfClasses([UISearchBar.classForCoder()]).tintColor = UIColor.whiteColor()
+        UIButton.appearanceWhenContainedInInstancesOfClasses([UISearchBar.classForCoder()]).setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.classForCoder()]).defaultTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(),NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 14)!]
+        
         self.navigationController?.navigationBar.addSubview(self.searchController.searchBar)
 
     }

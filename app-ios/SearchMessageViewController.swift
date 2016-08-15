@@ -42,7 +42,7 @@ class SearchMessageViewController: UIViewController, UINavigationBarDelegate, Na
         // sendToolbar.barStyle = UIBarStyle.Default
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Send", style: UIBarButtonItemStyle.Done, target: self, action: #selector(self.sendMessageAction))
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Send Message", style: UIBarButtonItemStyle.Done, target: self, action: #selector(self.sendMessageAction))
         
         UIToolbar.appearance().barTintColor = UIColor.brandGreen()
         UIToolbar.appearance().backgroundColor = UIColor.brandGreen()

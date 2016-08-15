@@ -1334,7 +1334,7 @@ best fits your request.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Dashboard" image="ic_tab_dash" selectedImage="ic_tab_dash" id="RW7-a0-lvA"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="ic_tab_home" selectedImage="ic_tab_home" id="RW7-a0-lvA"/>
                     <navigationItem key="navigationItem" title="Balance" id="w3e-6C-5LA" userLabel="nav"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -3915,28 +3915,28 @@ policy agreement. Tap to view</string>
         <image name="IconCustomLock" width="171" height="171"/>
         <image name="ic_close_light" width="43" height="43"/>
         <image name="ic_tab_account" width="25" height="25"/>
-        <image name="ic_tab_dash" width="25" height="25"/>
         <image name="ic_tab_globe" width="25" height="25"/>
+        <image name="ic_tab_home" width="25" height="25"/>
         <image name="ic_tab_more" width="25" height="25"/>
         <image name="ic_tab_more_filled" width="25" height="25"/>
         <image name="ic_tab_notify" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="tsA-Cg-VzQ"/>
+        <segue reference="A1R-09-1HJ"/>
+        <segue reference="YDb-8b-gnI"/>
         <segue reference="m0d-gd-RWW"/>
-        <segue reference="mwT-xt-Ez4"/>
         <segue reference="zQh-Po-kj4"/>
         <segue reference="wgV-xY-MTp"/>
-        <segue reference="YDb-8b-gnI"/>
+        <segue reference="aks-Yo-Spb"/>
         <segue reference="igQ-zk-tCm"/>
         <segue reference="m3z-fp-Nlm"/>
         <segue reference="rLo-0p-I9d"/>
         <segue reference="agi-3I-cSC"/>
         <segue reference="VI5-hp-Gm2"/>
         <segue reference="ipn-3I-3vc"/>
-        <segue reference="aks-Yo-Spb"/>
         <segue reference="fEJ-lR-z9I"/>
         <segue reference="7cu-FP-MoG"/>
-        <segue reference="tsA-Cg-VzQ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>

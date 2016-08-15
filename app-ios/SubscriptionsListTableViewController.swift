@@ -32,6 +32,8 @@ class SubscriptionsListTableViewController: UITableViewController, DZNEmptyDataS
         addInfiniteScroll()
     }
     
+    // TODO WRITE SWITCH CHANGED FUNCTION
+    
     private func addInfiniteScroll() {
         // Add infinite scroll handler
         // change indicator view style to white
@@ -279,7 +281,7 @@ extension SubscriptionsListTableViewController {
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = "No subscriptions to plans"
+        let str = "No subscriptions to show"
         // let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody)]
         return NSAttributedString(string: str, attributes: bodyAttrs)
     }
@@ -289,7 +291,7 @@ extension SubscriptionsListTableViewController {
     }
     
     func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
-        let str = "Find a merchant to create one"
+        let str = ""
         // let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleCallout)]
         return NSAttributedString(string: str, attributes: calloutAttrs)
     }

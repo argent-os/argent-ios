@@ -100,11 +100,6 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         if String(userAccessToken) == "" || userAccessToken == nil || String(userAccessToken) == "(null)" {
             self.logout()
         }
-        
-        // add background image view to take up entire screen, make header color transparent to give parallax effect
-        backgroundImageView.frame = CGRect(x: 0, y: -2, width: screenWidth, height: screenHeight+4)
-        backgroundImageView.image = UIImage(named: "BackgroundGradientBlueDark")
-        addSubviewWithFade(backgroundImageView, parentView: self, duration: 0.5)
     }
     
     private func addInfiniteScroll() {
@@ -261,14 +256,14 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         let screenWidth = screen.size.width
         let screenHeight = screen.size.height
 
-        self.view.backgroundColor = UIColor.pastelBlue()
+        self.view.backgroundColor = UIColor.whiteColor()
         
         self.configureGraph()
         graph.frame = CGRect(x: 0, y: 70, width: screenWidth, height: 120)
         
         // put all content in headerview
         headerView.backgroundColor = UIColor.clearColor()
-        headerView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 280)
+        headerView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 120)
         
         tableView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight-45)
         tableView.tableHeaderView = headerView
@@ -287,6 +282,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             }
         }
         
+        activityIndicator.activityIndicatorViewStyle = .Gray
         activityIndicator.center = tableView.center
         activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true
@@ -511,7 +507,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             lblSubtext.attributedText = subtext
             
             
-            self.view.addSubview(dateRangeSegment)
+            //self.view.addSubview(dateRangeSegment)
             self.graph.reloadGraph()
             self.view.addSubview(lblAccountPending)
             self.view.addSubview(balanceSwitch)
@@ -550,7 +546,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             
             if let type = item?.type {
                 if type == "charge" {
-                    let chargeType = adjustAttributedString("  Charged", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
+                    let chargeType = adjustAttributedString("  Received", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
                     cell.lblAmount.attributedText = currencyText + chargeType
                     cell.img.image = UIImage(named: "IconCheckFilled")
                 } else if type == "refund" || type == "application_fee_refund" {
@@ -558,7 +554,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                     cell.lblAmount.attributedText = currencyText + chargeType
                     cell.img.image = UIImage(named: "ic_refund")
                 } else if type == "payment" {
-                    let chargeType = adjustAttributedString("  Payment", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
+                    let chargeType = adjustAttributedString("  Received", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
                     cell.lblAmount.attributedText = currencyText + chargeType
                     cell.img.image = UIImage(named: "IconCheckFilled")
                 } else if type == "adjustment" {
@@ -629,21 +625,21 @@ extension HomeViewController {
     // Delegate: DZNEmptyDataSet
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let attrStr = adjustAttributedString("Welcome to " + APP_NAME + "!", spacing: 1.0, fontName: "MyriadPro-Regular", fontSize: 17, fontColor: UIColor.whiteColor(), lineSpacing: 5.0, alignment: .Center)
+        let attrStr = adjustAttributedString("Welcome to " + APP_NAME + "!", spacing: 1.0, fontName: "MyriadPro-Regular", fontSize: 17, fontColor: UIColor.darkBlue(), lineSpacing: 5.0, alignment: .Center)
         return attrStr
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let attrStr = adjustAttributedString("This is your income dashboard, from here you will be able to see all received payments and transfers.  We do not require any information to pay others, but, in order to receive payments we do require account verification.", spacing: 1.0, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.whiteColor(), lineSpacing: 5.0, alignment: .Center)
+        let attrStr = adjustAttributedString("This is your home screen, from here you will be able to see all received payments and bank transfers.  We do not require any information to pay others, but, in order to receive payments we do require account verification.", spacing: 1.0, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.lightBlue(), lineSpacing: 6.0, alignment: .Center)
         return attrStr
     }
     
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
-        return UIImage(named: "IconEmptyCashCircle")
+        return UIImage(named: "IconCustomArgent")
     }
     
     func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
-        let attrStr = adjustAttributedString("Tap here to create your first billing plan!", spacing: 1.0, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.pastelLightBlue(), lineSpacing: 3.0, alignment: .Center)
+        let attrStr = adjustAttributedString("Tap here to create your first billing plan!", spacing: 1.0, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.skyBlue(), lineSpacing: 3.0, alignment: .Center)
         return attrStr
     }
     
@@ -739,7 +735,7 @@ extension HomeViewController {
         graph.noDataLabelColor = UIColor.whiteColor()
         graph.sizePoint = 5.0
         graph.layer.masksToBounds = true
-        addSubviewWithFade(graph, parentView: self, duration: 0.5)
+        //addSubviewWithFade(graph, parentView: self, duration: 0.5)
         self.view.bringSubviewToFront(graph)
         self.headerView.bringSubviewToFront(graph)
         //        graph.layer.shadowColor = UIColor.darkBlue().colorWithAlphaComponent(0.5).CGColor
@@ -771,11 +767,16 @@ extension HomeViewController {
         
         self.view.backgroundColor = UIColor.pastelBlue()
         
+        // add background image view to take up entire screen, make header color transparent to give parallax effect
+        backgroundImageView.frame = CGRect(x: 0, y: -2, width: screenWidth, height: screenHeight+4)
+        backgroundImageView.image = UIImage(named: "BackgroundGradientBlueDark")
+        addSubviewWithFade(backgroundImageView, parentView: self, duration: 0.5)
+        
         self.configureGraph()
 
         // put all content in headerview
         headerView.backgroundColor = UIColor.clearColor()
-        headerView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 280)
+        headerView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 120)
         
         tableView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight-45)
         tableView.tableHeaderView = headerView
@@ -829,7 +830,7 @@ extension HomeViewController {
                 }, completion: nil)
         }
         
-        if tableView.contentOffset.y > 150 {
+        if tableView.contentOffset.y > 160 {
             UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
                 self.tutorialButton.alpha = 0.5
                 self.balanceSwitch.alpha = 0.5
@@ -931,9 +932,7 @@ extension HomeViewController {
 extension HomeViewController {
     
     func configureDashboard() {
-        
-        self.view.backgroundColor = UIColor.pastelBlue()
-        
+                
         showGraphActivityIndicator()
         
         History.getAccountHistory("100", starting_after: "") { (historyArray, err) in
