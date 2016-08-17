@@ -306,7 +306,7 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
             if bool == true {
                 showAlert(.Success, title: "Success", msg: "Plan updated")
             } else {
-                showAlert(.Error, title: "Error", msg: "Error updating plan")
+                showAlert(.Error, title: "Error", msg: (err?.localizedDescription)!)
             }
         }
     }

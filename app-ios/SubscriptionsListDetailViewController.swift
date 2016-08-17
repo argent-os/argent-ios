@@ -127,6 +127,12 @@ class SubscriptionsListDetailViewController: UIViewController, UINavigationBarDe
         cancelSubscriptionButton.layer.masksToBounds = true
         self.view.addSubview(cancelSubscriptionButton)
         
+        if subscriptionStatus == "canceled" {
+            cancelSubscriptionButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("REOPEN SUBSCRIPTION", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor()), forState: .Normal)
+            cancelSubscriptionButton.removeTarget(self, action: #selector(self.cancelSubscription(_:)), forControlEvents: .TouchUpInside)
+            cancelSubscriptionButton.addTarget(self, action: #selector(self.reopenSubscription(_:)), forControlEvents: .TouchUpInside)
+        }
+        
         // TO DELETE SUBSCRIPTION
         deleteSubscriptionButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
         deleteSubscriptionButton.setBackgroundColor(UIColor.brandRed(), forState: .Highlighted)
@@ -140,6 +146,20 @@ class SubscriptionsListDetailViewController: UIViewController, UINavigationBarDe
         deleteSubscriptionButton.layer.masksToBounds = true
         self.view.addSubview(deleteSubscriptionButton)
         
+    }
+    
+    func alertControllerBackgroundTapped() {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func reopenSubscription(sender: AnyObject) {
+        // send request to cancel
+        let alertController = UIAlertController(title: "Re-opening Subscription", message: "We do not currently support re-opening subscriptions.  However, you can find this account on our search page and re-subscribe.", preferredStyle: UIAlertControllerStyle.Alert)
+
+        self.presentViewController(alertController, animated: true, completion: {
+            alertController.view.superview?.userInteractionEnabled = true
+            alertController.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertControllerBackgroundTapped)))
+        })
     }
     
     func cancelSubscription(sender: AnyObject) {

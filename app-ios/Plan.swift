@@ -61,7 +61,6 @@ class Plan {
                                 let data = JSON(value)
                                 
                                 if data["error"]["message"].stringValue != "" {
-                                    let data = JSON(value)
                                     completionHandler(false, data["error"]["message"].stringValue)
                                     Answers.logCustomEventWithName("Recurring Billing Creation failure",
                                         customAttributes: dic)
@@ -211,8 +210,17 @@ class Plan {
                         switch response.result {
                         case .Success:
                             if let value = response.result.value {
-                                print("success updating plan")
-                                completionHandler(true, response.result.error)
+                                let data = JSON(value)
+                                if data["error"]["message"].stringValue != "" {
+                                    let err: NSError = NSError(domain: data["error"]["message"].stringValue, code: 13, userInfo: nil)
+                                    completionHandler(false, err)
+                                    Answers.logCustomEventWithName("Recurring Billing update failure",
+                                        customAttributes: [:])
+                                } else {
+                                    Answers.logCustomEventWithName("Recurring Billing update success",
+                                        customAttributes: [:])
+                                    completionHandler(true, response.result.error)
+                                }
                             }
                         case .Failure(let error):
                             print(error)
