@@ -47,12 +47,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         loadUserAccounts()
         
         configureSearchController()
-        
     }
 
     
     override func viewDidAppear(animated: Bool) {
-        // Set nav back button white
+        
         self.searchController.searchBar.hidden = false
         
         if let text = searchController.searchBar.text {
@@ -276,13 +275,15 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func configureSearchController() {
-        //let screen = UIScreen.mainScreen().bounds
-        //let screenWidth = screen.size.width
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
         //let screenHeight = screen.size.height
         
         // Initialize and perform a minimum configuration to the search controller.
         searchController = UISearchController(searchResultsController: nil)
         // searchController.searchBar.scopeButtonTitles = ["Merchants", "Users"]
+        searchController.searchBar.layer.frame.origin.x = 5
+        searchController.searchBar.layer.frame.size.width = screenWidth-20
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         searchController.dimsBackgroundDuringPresentation = false
@@ -299,6 +300,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchController.searchBar.autocapitalizationType = .None
         searchController.searchBar.setImage(UIImage(named: "ic_search"), forSearchBarIcon: .Search, state: .Normal)
         searchController.searchBar.tintColor = UIColor.whiteColor()
+        // White placeholder
         UILabel.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).textColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
         UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UISearchBar.classForCoder()]).tintColor = UIColor.whiteColor()
         UIButton.appearanceWhenContainedInInstancesOfClasses([UISearchBar.classForCoder()]).tintColor = UIColor.whiteColor()
@@ -313,15 +315,21 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
         // Setup the Scope Bar
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        searchController.searchBar.layer.frame.size.width = screenWidth-10
+        searchController.searchBar.layer.frame.origin.x = 0
         searchBar.setShowsCancelButton(true, animated: true)
+        // Set cancel button color
         for ob: UIView in ((searchBar.subviews[0] )).subviews {
             if let z = ob as? UIButton {
                 let btn: UIButton = z
-                btn.setTitleColor(UIColor.mediumBlue(), forState: .Normal)
+                btn.setTitleColor(UIColor.whiteColor(), forState: .Normal)
             }
         }
+        
         shouldShowSearchResults = true
-        searchController.searchBar.placeholder = "Enter username or full name"
+
         tblSearchResults.reloadData()
         searchOverlayMaskView.removeFromSuperview()
         
@@ -329,6 +337,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        searchController.searchBar.layer.frame.size.width = screenWidth-10
+        searchController.searchBar.layer.frame.origin.x = 5
         shouldShowSearchResults = false
         searchController.searchBar.placeholder = ""
         loadUserAccounts()

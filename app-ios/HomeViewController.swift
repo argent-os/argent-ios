@@ -444,8 +444,9 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         let sb = UIStoryboard(name: "Auth", bundle: nil)
         let loginVC = sb.instantiateViewControllerWithIdentifier("authViewController")
         loginVC.modalTransitionStyle = .CrossDissolve
-        let root = UIApplication.sharedApplication().keyWindow?.rootViewController
-        root!.presentViewController(loginVC, animated: true, completion: { () -> Void in })
+        if let root = UIApplication.sharedApplication().keyWindow?.rootViewController {
+            root.presentViewController(loginVC, animated: true, completion: { () -> Void in })
+        }
         
         Answers.logCustomEventWithName("Logged User Out from Home",
                                        customAttributes: [:])
@@ -630,7 +631,7 @@ extension HomeViewController {
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let attrStr = adjustAttributedString("This is your home screen, from here you will be able to see all received payments and bank transfers.  We do not require any information to pay others, but, in order to receive payments we do require account verification.", spacing: 1.0, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.lightBlue(), lineSpacing: 6.0, alignment: .Center)
+        let attrStr = adjustAttributedString("This is your home screen. From here you will be able to see all received payments and bank transfers.  We do not require any account information to pay others, but, in order to receive payments we do require account verification.", spacing: 1.0, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.lightBlue(), lineSpacing: 6.0, alignment: .Center)
         return attrStr
     }
     
@@ -914,7 +915,7 @@ extension HomeViewController {
         formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.CenterVertically
         formSheetController.presentationController?.shouldCenterHorizontally = true
         formSheetController.presentationController?.portraitTopInset = 100
-        formSheetController.contentViewCornerRadius = 5
+        formSheetController.contentViewCornerRadius = 15
         formSheetController.allowDismissByPanningPresentedView = true
         formSheetController.interactivePanGestureDismissalDirection = .All;
         
@@ -932,7 +933,7 @@ extension HomeViewController {
 extension HomeViewController {
     
     func configureDashboard() {
-                
+        
         showGraphActivityIndicator()
         
         History.getAccountHistory("100", starting_after: "") { (historyArray, err) in

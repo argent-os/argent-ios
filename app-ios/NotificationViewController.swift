@@ -227,9 +227,9 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
                 case "customer.card.deleted":
                    cell.textLabel?.text = "Subscriber card deleted"
                 case "customer.subscription.created":
-                   cell.textLabel?.text = "Subscriber subscription created"
+                   cell.textLabel?.text = "Subscriber created"
                 case "customer.subscription.updated":
-                   cell.textLabel?.text = "Subscriber subscription updated"
+                   cell.textLabel?.text = "Subscriber info updated"
                 case "customer.subscription.deleted":
                    cell.textLabel?.text = "Subscriber's subscription deleted"
                 case "customer.subscription.trial_will_end":

@@ -146,7 +146,7 @@ class AccountVerificationTutorialViewController: UIViewController {
         exitButton.frame = CGRect(x: 20, y: UIScreen.mainScreen().bounds.height-200, width: 260, height: 50)
         exitButton.layer.borderColor = UIColor.whiteColor().CGColor
         exitButton.layer.borderWidth = 0
-        exitButton.layer.cornerRadius = 5
+        exitButton.layer.cornerRadius = 10
         exitButton.layer.masksToBounds = true
         var attribs: [String: AnyObject] = [:]
         attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)!

@@ -291,18 +291,17 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
                     case .Success:
                         if let value = response.result.value {
                             let data = JSON(value)
-                            Answers.logCustomEventWithName("Link bank to Stripe success",
-                                customAttributes: [:])
-                            if response.response?.statusCode == 200 {
-                                showAlert(.Success, title: "Success", msg: "Your bank account is now linked!")
-
-                                Answers.logCustomEventWithName("Bank account link success",
-                                    customAttributes: [:])
-                            } else {
-                                showAlert(.Error, title: "Error", msg: "Error linking bank account")
+                            
+                            if data["error"]["message"].stringValue != "" {
+                                showAlert(.Error, title: "Error", msg: data["error"]["message"].stringValue)
                                 
                                 Answers.logCustomEventWithName("Bank account link failure",
                                     customAttributes: [:])
+                            } else {
+                                showAlert(.Success, title: "Success", msg: "Your bank account is now linked!")
+                                
+                                Answers.logCustomEventWithName("Link bank to Stripe success",
+                                customAttributes: [:])
                             }
                         }
                     case .Failure(let error):

@@ -7,13 +7,16 @@
 //
 
 import Foundation
+import CWStatusBarNotification
 
 class SubscriptionsListDetailViewController: UIViewController, UINavigationBarDelegate {
     
     let navigationBar = UINavigationBar()
 
+    var subscriptionId:String?
+
     var subscriptionName:String?
-    
+
     var subscriptionAmount:String?
     
     var subscriptionInterval:String?
@@ -27,6 +30,8 @@ class SubscriptionsListDetailViewController: UIViewController, UINavigationBarDe
     var subscriptionAmountLabel = UILabel()
     
     var subscriptionIntervalLabel = UILabel()
+
+    var cancelSubscriptionButton = UIButton()
 
     var deleteSubscriptionButton = UIButton()
     
@@ -59,7 +64,7 @@ class SubscriptionsListDetailViewController: UIViewController, UINavigationBarDe
         
         let pinstripeImageView = UIImageView()
         pinstripeImageView.image = UIImage(named: "IconPinstripe")
-        pinstripeImageView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 15)
+        pinstripeImageView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 10)
         self.view.addSubview(pinstripeImageView)
         self.view.bringSubviewToFront(pinstripeImageView)
         
@@ -112,14 +117,73 @@ class SubscriptionsListDetailViewController: UIViewController, UINavigationBarDe
         self.view.bringSubviewToFront(self.subscriptionStatusLabel)
         subscriptionStatusLabel.text = "Subscription status " + subscriptionStatus!
         
-        deleteSubscriptionButton.setBackgroundColor(UIColor.brandRed(), forState: .Normal)
-        deleteSubscriptionButton.setBackgroundColor(UIColor.brandRed().darkerColor(), forState: .Highlighted)
+        // TO CANCEL SUBSCRIPTION
+        cancelSubscriptionButton.setBackgroundColor(UIColor.pastelBlue(), forState: .Normal)
+        cancelSubscriptionButton.setBackgroundColor(UIColor.pastelBlue().darkerColor(), forState: .Highlighted)
+        cancelSubscriptionButton.frame = CGRect(x: 15, y: screenHeight-125, width: screenWidth-30, height: 50)
+        cancelSubscriptionButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("CANCEL SUBSCRIPTION", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor()), forState: .Normal)
+        cancelSubscriptionButton.addTarget(self, action: #selector(self.cancelSubscription(_:)), forControlEvents: .TouchUpInside)
+        cancelSubscriptionButton.layer.cornerRadius = 3
+        cancelSubscriptionButton.layer.masksToBounds = true
+        self.view.addSubview(cancelSubscriptionButton)
+        
+        // TO DELETE SUBSCRIPTION
+        deleteSubscriptionButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
+        deleteSubscriptionButton.setBackgroundColor(UIColor.brandRed(), forState: .Highlighted)
         deleteSubscriptionButton.frame = CGRect(x: 15, y: screenHeight-65, width: screenWidth-30, height: 50)
-        deleteSubscriptionButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("DELETE SUBSCRIPTION", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor()), forState: .Normal)
+        deleteSubscriptionButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("DELETE SUBSCRIPTION", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.brandRed()), forState: .Normal)
+        deleteSubscriptionButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("DELETE SUBSCRIPTION", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor()), forState: .Highlighted)
+        deleteSubscriptionButton.layer.borderColor = UIColor.brandRed().CGColor
+        deleteSubscriptionButton.layer.borderWidth = 1
+        deleteSubscriptionButton.addTarget(self, action: #selector(self.deleteSubscription(_:)), forControlEvents: .TouchUpInside)
         deleteSubscriptionButton.layer.cornerRadius = 3
         deleteSubscriptionButton.layer.masksToBounds = true
         self.view.addSubview(deleteSubscriptionButton)
         
+    }
+    
+    func cancelSubscription(sender: AnyObject) {
+        // send request to cancel
+        let alertController = UIAlertController(title: "Confirm subscription cancellation", message: "You will have to pay a new charge if you decide to subscribe again.", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        let OKAction = UIAlertAction(title: "Continue", style: .Default) { (action) in
+            Subscription.cancelSubscription(self.subscriptionId!) { (bool, err) in
+                if bool == true {
+                    self.dismissViewControllerAnimated(true, completion: {
+                        showGlobalNotification("Subscription Canceled! Pull down to refresh.", duration: 7.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandGreen())
+                    })
+                } else {
+                    showGlobalNotification("Error canceling subscription", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
+                }
+            }
+        }
+        alertController.addAction(OKAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func deleteSubscription(sender: AnyObject) {
+        // send request to delete, on completion reload table data!
+        let alertController = UIAlertController(title: "Confirm subscription deletion", message: "Are you sure?  This action cannot be undone.", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        let OKAction = UIAlertAction(title: "Continue", style: .Default) { (action) in
+            Subscription.deleteSubscription(self.subscriptionId!) { (bool, err) in
+                if bool == true {
+                    self.dismissViewControllerAnimated(true, completion: {
+                        showGlobalNotification("Subscription deleted! Pull down to refresh.", duration: 7.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandGreen())
+                    })
+                } else {
+                    showGlobalNotification("Error deleting subscription", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
+                }
+            }
+        }
+        alertController.addAction(OKAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
     private func setupNav() {

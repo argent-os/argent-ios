@@ -3186,7 +3186,7 @@ policy agreement. Tap to view</string>
         <scene sceneID="9Zo-cs-g3Z">
             <objects>
                 <navigationController storyboardIdentifier="SearchViewNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="HMN-2X-Cie" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Search" image="ic_tab_globe" id="U4p-ue-j3d"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="ic_tab_search" id="U4p-ue-j3d"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Bcq-gQ-TaG">
@@ -3300,11 +3300,11 @@ policy agreement. Tap to view</string>
             </objects>
             <point key="canvasLocation" x="-372" y="-4325"/>
         </scene>
-        <!--More-->
+        <!--Menu-->
         <scene sceneID="Xt7-vW-s52">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="A13-xJ-Wch" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="More" image="ic_tab_more" selectedImage="ic_tab_more_filled" id="Wbg-GP-L9N"/>
+                    <tabBarItem key="tabBarItem" title="Menu" image="ic_tab_menu" selectedImage="ic_tab_menu_filled" id="Wbg-GP-L9N"/>
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nWN-qs-ITK">
@@ -3915,11 +3915,11 @@ policy agreement. Tap to view</string>
         <image name="IconCustomLock" width="171" height="171"/>
         <image name="ic_close_light" width="43" height="43"/>
         <image name="ic_tab_account" width="25" height="25"/>
-        <image name="ic_tab_globe" width="25" height="25"/>
         <image name="ic_tab_home" width="25" height="25"/>
-        <image name="ic_tab_more" width="25" height="25"/>
-        <image name="ic_tab_more_filled" width="25" height="25"/>
+        <image name="ic_tab_menu" width="25" height="25"/>
+        <image name="ic_tab_menu_filled" width="25" height="25"/>
         <image name="ic_tab_notify" width="25" height="25"/>
+        <image name="ic_tab_search" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="tsA-Cg-VzQ"/>

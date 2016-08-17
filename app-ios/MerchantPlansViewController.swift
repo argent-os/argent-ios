@@ -136,7 +136,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.reloadData()
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorColor = UIColor.paleBlue().colorWithAlphaComponent(0.5)
-        tableView.frame = CGRect(x: 0, y: 10, width: 310, height: self.view.frame.height*0.75)
+        tableView.frame = CGRect(x: 0, y: 10, width: 300, height: 365)
         self.view.addSubview(tableView)
         
         self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
@@ -634,7 +634,7 @@ extension MerchantPlansViewController {
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
         formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.CenterVertically
-        formSheetController.contentViewCornerRadius = 10
+        formSheetController.contentViewCornerRadius = 15
         formSheetController.allowDismissByPanningPresentedView = true
         formSheetController.interactivePanGestureDismissalDirection = .All;
         

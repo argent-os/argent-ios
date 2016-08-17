@@ -100,7 +100,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
         tableView.contentInset.top = 60
         tableView.contentInset.bottom = 60
         tableView.contentOffset.y = 0
-        tableView.backgroundColor = UIColor.offWhite()
+        tableView.backgroundColor = UIColor(rgba: "#efeff4")
         tableView.showsVerticalScrollIndicator = false
         
         self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 60)
@@ -206,7 +206,9 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                 $0.placeholder = account.business_name ?? "Enter business name (required)"
                 $0.text = account.business_name ?? Profile.sharedInstance.businessName
                 b_name = $0.text
-                self.dic["business_name"] = $0.text
+                if $0.text != "" {
+                    self.dic["business_name"] = $0.text
+                }
             }.onTextChanged {
                 self.dic["business_name"] = $0
                 self.b_name = $0
@@ -474,36 +476,72 @@ extension EditProfileViewController {
     }
     
     func saveAccount() {
-        let legalContent: [String: AnyObject] = [
-            "business_name": b_name!,
-            "address": [
-                "city": b_city!,
-                "state": b_state!,
-                "country": b_country!,
-                "line1": b_line1!,
-                "postal_code": b_postal_code!
+        print("business name is ", b_name)
+        if String(b_name) == "" || String(b_name) == "Optional()" {
+            // check for empty business name 
+            // @TODO: FIX DRY
+            let legalContent: [String: AnyObject] = [
+                "address": [
+                    "city": b_city!,
+                    "state": b_state!,
+                    "country": b_country!,
+                    "line1": b_line1!,
+                    "postal_code": b_postal_code!
+                ]
             ]
-        ]
-        
-        let legalJSON: [String: AnyObject] = [
-            "business_name": b_name!,
-            "email": b_email!,            
-            "legal_entity" : legalContent
-        ]
-        
-        User.saveProfile(dic) { (user, bool, err) in
-            print("the dic is", self.dic)
-            if bool == true {
-                Account.saveStripeAccount(legalJSON) { (acct, bool, err) in
-                    print("save acct called")
-                    if bool == true {
-                        showAlert(.Success, title: "Success", msg: "Profile updated")
-                    } else {
-                        showAlert(.Error, title: "Error", msg: (err?.localizedDescription)!)
+            
+            let legalJSON: [String: AnyObject] = [
+                "email": b_email!,
+                "legal_entity" : legalContent
+            ]
+            
+            User.saveProfile(dic) { (user, bool, err) in
+                print("the dic1 is", self.dic)
+                if bool == true {
+                    Account.saveStripeAccount(legalJSON) { (acct, bool, err) in
+                        print("save acct called")
+                        if bool == true {
+                            showAlert(.Success, title: "Success", msg: "Profile updated")
+                        } else {
+                            showAlert(.Error, title: "Error", msg: (err?.localizedDescription)!)
+                        }
                     }
+                } else {
+                    showAlert(.Error, title: "Error", msg: (err?.localizedDescription)!)
                 }
-            } else {
-                showAlert(.Error, title: "Error", msg: (err?.localizedDescription)!)
+            }
+        } else {
+            let legalContent: [String: AnyObject] = [
+                "business_name": b_name!,
+                "address": [
+                    "city": b_city!,
+                    "state": b_state!,
+                    "country": b_country!,
+                    "line1": b_line1!,
+                    "postal_code": b_postal_code!
+                ]
+            ]
+            
+            let legalJSON: [String: AnyObject] = [
+                "business_name": b_name!,
+                "email": b_email!,
+                "legal_entity" : legalContent
+            ]
+            
+            User.saveProfile(dic) { (user, bool, err) in
+                print("the dic2 is", self.dic)
+                if bool == true {
+                    Account.saveStripeAccount(legalJSON) { (acct, bool, err) in
+                        print("save acct called")
+                        if bool == true {
+                            showAlert(.Success, title: "Success", msg: "Profile updated")
+                        } else {
+                            showAlert(.Error, title: "Error", msg: (err?.localizedDescription)!)
+                        }
+                    }
+                } else {
+                    showAlert(.Error, title: "Error", msg: (err?.localizedDescription)!)
+                }
             }
         }
     }

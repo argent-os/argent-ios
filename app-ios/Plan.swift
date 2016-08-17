@@ -58,9 +58,18 @@ class Plan {
                             if let value = response.result.value {
                                 // let data = JSON(value)
                                 // TODO: Update plan handling, response with success and error status codes
-                                completionHandler(true, String(response.result.error))
-                                Answers.logCustomEventWithName("Recurring Billing Creation Plan Success",
-                                    customAttributes: dic)
+                                let data = JSON(value)
+                                
+                                if data["error"]["message"].stringValue != "" {
+                                    let data = JSON(value)
+                                    completionHandler(false, data["error"]["message"].stringValue)
+                                    Answers.logCustomEventWithName("Recurring Billing Creation failure",
+                                        customAttributes: dic)
+                                } else {
+                                    completionHandler(true, String(response.result.error))
+                                    Answers.logCustomEventWithName("Recurring Billing Creation Plan Success",
+                                        customAttributes: dic)
+                                }
                             }
                         case .Failure(let error):
                             print(error)

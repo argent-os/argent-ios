@@ -88,7 +88,7 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
         var attribs: [String: AnyObject] = [:]
         attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
-        let str = NSAttributedString(string: "Next", attributes: attribs)
+        let str = adjustAttributedString("NEXT", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Center)
         selectPaymentOptionButton.setBackgroundColor(UIColor.brandGreen(), forState: .Normal)
         selectPaymentOptionButton.setBackgroundColor(UIColor.brandGreen().lighterColor(), forState: .Highlighted)
         selectPaymentOptionButton.setAttributedTitle(str, forState: .Normal)
@@ -364,7 +364,7 @@ extension PayMerchantViewController {
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
         formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.AlwaysAboveKeyboard
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
-        formSheetController.contentViewCornerRadius = 10
+        formSheetController.contentViewCornerRadius = 15
         formSheetController.allowDismissByPanningPresentedView = false
         formSheetController.interactivePanGestureDismissalDirection = .None
         
@@ -418,7 +418,7 @@ extension PayMerchantViewController {
         formSheetController.presentationController?.shouldCenterHorizontally = true
         formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.CenterVertically
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
-        formSheetController.contentViewCornerRadius = 10
+        formSheetController.contentViewCornerRadius = 15
         formSheetController.allowDismissByPanningPresentedView = true
         formSheetController.interactivePanGestureDismissalDirection = .All;
         

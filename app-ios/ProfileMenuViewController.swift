@@ -111,7 +111,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                     
                     var fields_required: [String] = unwrappedOptionalArray
                     if let indexOfExternalAccount = fields_required.indexOf("external_account") {
-                        fields_required[indexOfExternalAccount] = "Bank Account"
+                        fields_required[indexOfExternalAccount] = "Bank"
                     }
                     if let indexOfFirstName = fields_required.indexOf("legal_entity.first_name") {
                         fields_required[indexOfFirstName] = "First Name"
@@ -153,7 +153,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                     // regex to replace legal.entity in the future
                     
                     var announcement = Announcement(title: "Identity verification incomplete", subtitle:
-                        "Require " + fields_list, image: UIImage(named: "IconAlertCalm"))
+                        fields_list, image: UIImage(named: "IconAlertCalm"))
                     announcement.duration = 7
                     Shout(announcement, to: self)
                     
@@ -562,7 +562,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                 self.userImageView.image = img
                 addSubviewWithFade(self.userImageView, parentView: self, duration: 0.8)
             } else {
-                let img = UIImage(named: "IconCamera")
+                let img = UIImage(named: "IconAnonymous")
                 self.userImageView.image = img
                 addSubviewWithFade(self.userImageView, parentView: self, duration: 0.8)
             }
@@ -642,7 +642,7 @@ extension ProfileMenuViewController {
         formSheetController.presentationController?.shouldCenterVertically = true
         formSheetController.presentationController?.shouldCenterHorizontally = true
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
-        formSheetController.contentViewCornerRadius = 5
+        formSheetController.contentViewCornerRadius = 15
         formSheetController.allowDismissByPanningPresentedView = true
         formSheetController.interactivePanGestureDismissalDirection = .All;
         

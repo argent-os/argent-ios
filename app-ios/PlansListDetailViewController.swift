@@ -11,6 +11,7 @@ import Alamofire
 import SwiftyJSON
 import UIKit
 import Former
+import CWStatusBarNotification
 
 final class PlansListDetailViewController: FormViewController, UINavigationBarDelegate, UITextFieldDelegate {
     
@@ -96,25 +97,8 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
         tableView.contentOffset.y = 0
         tableView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
         
-        let deletePlanButton = UIButton()
-        deletePlanButton.frame = CGRect(x: 15, y: screenHeight-125, width: screenWidth-30, height: 50)
-        deletePlanButton.setBackgroundColor(UIColor.brandRed(), forState: .Normal)
-        deletePlanButton.setBackgroundColor(UIColor.brandRed().lighterColor(), forState: .Highlighted)
-        deletePlanButton.tintColor = UIColor.whiteColor()
-        deletePlanButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        deletePlanButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
-        deletePlanButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 16)
-        deletePlanButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("DELETE PLAN", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor()), forState: .Normal)
-        deletePlanButton.layer.cornerRadius = 3
-        deletePlanButton.layer.masksToBounds = true
-        deletePlanButton.clipsToBounds = true
-        deletePlanButton.addTarget(self, action: #selector(self.deletePlanButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        let _ = Timeout(0.5) {
-            addSubviewWithFade(deletePlanButton, parentView: self, duration: 0.3)
-        }
-        
         let updatePlanButton = UIButton()
-        updatePlanButton.frame = CGRect(x: 15, y: screenHeight-65, width: screenWidth-30, height: 50)
+        updatePlanButton.frame = CGRect(x: 15, y: screenHeight-125, width: screenWidth-30, height: 50)
         updatePlanButton.setBackgroundColor(UIColor.pastelBlue(), forState: .Normal)
         updatePlanButton.setBackgroundColor(UIColor.pastelBlue().lighterColor(), forState: .Highlighted)
         updatePlanButton.tintColor = UIColor.whiteColor()
@@ -128,6 +112,26 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
         updatePlanButton.addTarget(self, action: #selector(self.updatePlanButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         let _ = Timeout(0.5) {
             addSubviewWithFade(updatePlanButton, parentView: self, duration: 0.3)
+        }
+        
+        let deletePlanButton = UIButton()
+        deletePlanButton.frame = CGRect(x: 15, y: screenHeight-65, width: screenWidth-30, height: 50)
+        deletePlanButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
+        deletePlanButton.setBackgroundColor(UIColor.brandRed(), forState: .Highlighted)
+        deletePlanButton.tintColor = UIColor.whiteColor()
+        deletePlanButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        deletePlanButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
+        deletePlanButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 16)
+        deletePlanButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("DELETE PLAN", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.brandRed()), forState: .Normal)
+        deletePlanButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("DELETE PLAN", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor()), forState: .Highlighted)
+        deletePlanButton.layer.cornerRadius = 3
+        deletePlanButton.layer.masksToBounds = true
+        deletePlanButton.layer.borderColor = UIColor.brandRed().CGColor
+        deletePlanButton.layer.borderWidth = 1
+        deletePlanButton.clipsToBounds = true
+        deletePlanButton.addTarget(self, action: #selector(self.deletePlanButtonTapped(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        let _ = Timeout(0.5) {
+            addSubviewWithFade(deletePlanButton, parentView: self, duration: 0.3)
         }
         
         let statementDescriptionCharacterCountLabel = UITextField()
@@ -283,7 +287,9 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
             let OKAction = UIAlertAction(title: "Continue", style: .Default) { (action) in
                 Plan.deletePlan(id, completionHandler: { (bool, err) in
                     if bool == true {
-                        showAlert(.Info, title: "Info", msg: "Plan deleted")
+                        self.dismissViewControllerAnimated(true, completion: {
+                            showGlobalNotification("Plan deleted, pull down to refresh.", duration: 4.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandGreen())
+                        })
                     } else {
                         showAlert(.Error, title: "Error", msg: "Error deleting plan")
                     }

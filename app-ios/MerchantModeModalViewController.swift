@@ -77,11 +77,11 @@ class MerchantModeModalViewController: UIViewController, UITextFieldDelegate {
         
         let merchantLabel = UILabel()
         merchantLabel.attributedText = adjustAttributedString("DEFAULT ENABLED", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
-        merchantLabel.frame = CGRect(x: 20, y: 157, width: 280, height: 20)
+        merchantLabel.frame = CGRect(x: 20, y: 167, width: 280, height: 20)
         merchantSwitch.on = true
         merchantSwitch.onTintColor = UIColor.brandGreen().colorWithAlphaComponent(0.5)
         merchantSwitch.userInteractionEnabled = false
-        merchantSwitch.frame = CGRect(x: 210, y: 150, width: 280, height: 20)
+        merchantSwitch.frame = CGRect(x: 210, y: 160, width: 280, height: 20)
         merchantSwitch.addTarget(self, action: #selector(self.merchantSwitchChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
         self.view.addSubview(merchantLabel)
         self.view.addSubview(merchantSwitch)
@@ -100,8 +100,8 @@ class MerchantModeModalViewController: UIViewController, UITextFieldDelegate {
         modeSelectionButton.layer.borderWidth = 0
         modeSelectionButton.layer.cornerRadius = 0
         modeSelectionButton.layer.masksToBounds = true
-        modeSelectionButton.setBackgroundColor(UIColor.pastelSkyBlue(), forState: .Normal)
-        modeSelectionButton.setBackgroundColor(UIColor.pastelBlueGray(), forState: .Highlighted)
+        modeSelectionButton.setBackgroundColor(UIColor.pastelBlue(), forState: .Normal)
+        modeSelectionButton.setBackgroundColor(UIColor.pastelBlue().darkerColor(), forState: .Highlighted)
         var attribs: [String: AnyObject] = [:]
         attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 15)
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()

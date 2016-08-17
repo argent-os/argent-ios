@@ -238,6 +238,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Globally dark keyboard
         UITextField.appearance().keyboardAppearance = .Light
         
+        // SearchBar
+        UILabel.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).textColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
+
         // Navbar UI
         UINavigationBar.appearance().barStyle = .Black
         // Sets background to a blank/empty image

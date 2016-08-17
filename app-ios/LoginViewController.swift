@@ -143,7 +143,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, WCSessionDeleg
         let keyboardTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard))
         view.addGestureRecognizer(keyboardTap)
         
-        let image = UIImage(named: "LogoInset")
+        let image = UIImage(named: "LogoOutlineDark")
         imageView.image = image
         imageView.layer.masksToBounds = true
         imageView.tag = 42312

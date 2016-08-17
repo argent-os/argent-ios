@@ -97,7 +97,7 @@ class BankACHConfirmationModalViewController: UIViewController {
         var attribs: [String: AnyObject] = [:]
         attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
-        let str = NSAttributedString(string: "Submit", attributes: attribs)
+        let str = adjustAttributedString("SUBMIT", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Center)
         submitACHButton.setAttributedTitle(str, forState: .Normal)
         self.view.addSubview(submitACHButton)
         let rectShape = CAShapeLayer()

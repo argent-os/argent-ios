@@ -57,7 +57,7 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
         titleLabel.textColor = UIColor.lightBlue()
         self.view.addSubview(titleLabel)
         
-        ssnTextField.frame = CGRect(x: 10, y: 85, width: 260, height: 150)
+        ssnTextField.frame = CGRect(x: 10, y: 90, width: 260, height: 150)
         ssnTextField.placeholder = "123-45-6789"
         ssnTextField.alpha = 0.8
         ssnTextField.textAlignment = .Center
@@ -80,7 +80,7 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
         var attribs: [String: AnyObject] = [:]
         attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 15)
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
-        let str = NSAttributedString(string: "Submit", attributes: attribs)
+        let str = adjustAttributedString("SUBMIT", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Center)
         submitSSNButton.setAttributedTitle(str, forState: .Normal)
         submitSSNButton.addTarget(self, action: #selector(self.submitSSN(_:)), forControlEvents: .TouchUpInside)
         let rectShape = CAShapeLayer()

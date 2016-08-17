@@ -180,7 +180,7 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
 
                         
                         if(response.response?.statusCode == 200) {
-                            showGlobalNotification("Success!", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.brandGreen())
+                            showGlobalNotification("Welcome to Argent", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.brandGreen())
 
                             // go to main view
                         } else {
@@ -349,7 +349,7 @@ class SignupIndividualViewControllerThree: UIViewController, UITextFieldDelegate
                 presentationSegue.formSheetPresentationController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
                 presentationSegue.formSheetPresentationController.presentationController?.shouldDismissOnBackgroundViewTap = true
                 presentationSegue.formSheetPresentationController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.Fade
-                presentationSegue.formSheetPresentationController.contentViewCornerRadius = 10
+                presentationSegue.formSheetPresentationController.contentViewCornerRadius = 15
                 presentationSegue.formSheetPresentationController.allowDismissByPanningPresentedView = true
                 presentationSegue.formSheetPresentationController.interactivePanGestureDismissalDirection = .All;
 

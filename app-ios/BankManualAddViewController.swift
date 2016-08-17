@@ -44,7 +44,7 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
     
     var rightButton = UIBarButtonItem()
     
-    let tipView = EasyTipView(text: "All information transmitted is TLS (SSL) encrypted. We do not store bank account information on our servers.  Bank account data is handled and processed by Stripe, one of the world's best payment processors.", preferences: EasyTipView.globalPreferences)
+    let tipView = EasyTipView(text: "All information transmitted is TLS (SSL) encrypted. We do not store bank account information on our servers.  Bank account data is handled and processed by Stripe, one of the world's top payment processors.", preferences: EasyTipView.globalPreferences)
     
     override func prefersStatusBarHidden() -> Bool {
         return false
@@ -254,16 +254,16 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
                     switch response.result {
                     case .Success:
                         if let value = response.result.value {
-                            //let data = JSON(value)
-                            if response.response?.statusCode == 200 {
-                                Answers.logCustomEventWithName("Manual link bank to Stripe success",
+                            let data = JSON(value)
+                            if data["error"]["message"].stringValue != "" {
+                                showAlert(.Error, title: "Error", msg: data["error"]["message"].stringValue)
+                                
+                                Answers.logCustomEventWithName("Bank account link failure",
                                     customAttributes: [:])
-                                showAlert(.Success, title: "Success", msg: "Your bank account is now linked")
-
                             } else {
-                                showAlert(.Error, title: "Error", msg: "Error linking bank account")
-
-                                Answers.logCustomEventWithName("Manual link bank account link failure",
+                                showAlert(.Success, title: "Success", msg: "Your bank account is now linked!")
+                                
+                                Answers.logCustomEventWithName("Link bank to Stripe success",
                                     customAttributes: [:])
                             }
                         }
@@ -338,7 +338,7 @@ extension BankManualAddViewController {
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
         formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.CenterVertically
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
-        formSheetController.contentViewCornerRadius = 10
+        formSheetController.contentViewCornerRadius = 15
         formSheetController.allowDismissByPanningPresentedView = true
         formSheetController.interactivePanGestureDismissalDirection = .All;
         

@@ -115,7 +115,7 @@ class AuthViewController: UIPageViewController, UIPageViewControllerDelegate, LT
         lbl.tag = 7578
         lbl.textAlignment = NSTextAlignment.Center
         lbl.textColor = UIColor.darkBlue()
-        lbl.adjustAttributedString(APP_NAME.uppercaseString, spacing: 4, fontName: "MyriadPro-Regular", fontSize: 23, fontColor: UIColor.darkBlue())
+        lbl.adjustAttributedString(APP_NAME.uppercaseString, spacing: 8, fontName: "MyriadPro-Regular", fontSize: 21, fontColor: UIColor.darkBlue())
         view.addSubview(lbl)
         
 //        _ = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: #selector(AuthViewController.changeText(_:)), userInfo: nil, repeats: true)

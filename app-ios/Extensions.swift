@@ -31,7 +31,7 @@ public func showAlert(type: AlertType, title: String, msg: String) {
     let appearance = SCLAlertView.SCLAppearance(
         showCircularIcon: true,
         fieldCornerRadius : 10,
-        contentViewCornerRadius : 10,
+        contentViewCornerRadius : 15,
         buttonCornerRadius: 10,
         kCircleIconHeight: 57,
         hideWhenBackgroundViewIsTapped: true

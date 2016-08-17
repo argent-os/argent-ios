@@ -97,12 +97,12 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, UIS
             
             let cardView: UIView = UIView()
             cardView.backgroundColor = UIColor.whiteColor()
-            cardView.frame = CGRectMake(35, 135, screenWidth-70, 200)
+            cardView.frame = CGRectMake(40, 135, screenWidth-80, 200)
             cardView.contentMode = .ScaleToFill
             cardView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin]
             cardView.layer.masksToBounds = true
             cardView.clipsToBounds = true
-            cardView.layer.cornerRadius = 10
+            cardView.layer.cornerRadius = 15
             cardView.clipsToBounds = false
             cardView.layer.borderWidth = 1
             cardView.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.2).CGColor
@@ -140,7 +140,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, UIS
             
             // Send message button
             let sendMessageButton = UIButton()
-            sendMessageButton.frame = CGRect(x: 50, y: 150, width: 28, height: 28)
+            sendMessageButton.frame = CGRect(x: 55, y: 150, width: 28, height: 28)
             sendMessageButton.setTitleColor(UIColor.oceanBlue(), forState: .Normal)
             sendMessageButton.setTitleColor(UIColor.oceanBlue().lighterColor(), forState: .Highlighted)
             sendMessageButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
@@ -158,7 +158,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, UIS
             
             // Share button
             let shareButton = UIButton()
-            shareButton.frame = CGRect(x: cardView.frame.width-5, y: 150, width: 20, height: 28)
+            shareButton.frame = CGRect(x: cardView.frame.width, y: 150, width: 20, height: 28)
             shareButton.setTitleColor(UIColor.skyBlue(), forState: .Normal)
             shareButton.setTitleColor(UIColor.skyBlue().lighterColor(), forState: .Highlighted)
             shareButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
@@ -234,7 +234,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, UIS
             
             // View plans Button
             let viewPlansButton = UIButton()
-            viewPlansButton.frame = CGRect(x: 35, y: cardView.layer.frame.height+15,  width: self.view.layer.frame.width-70, height: 60.0)
+            viewPlansButton.frame = CGRect(x: 41, y: cardView.layer.frame.height+15,  width: self.view.layer.frame.width-82, height: 60.0)
             viewPlansButton.setTitleColor(UIColor.pastelBlue(), forState: .Normal)
             viewPlansButton.setTitleColor(UIColor.pastelBlue().lighterColor(), forState: .Highlighted)
             viewPlansButton.setBackgroundColor(UIColor.whiteColor(), forState: .Normal)
@@ -251,7 +251,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, UIS
             scrollView.bringSubviewToFront(viewPlansButton)
             
             let payButton = UIButton()
-            payButton.frame = CGRect(x: 35, y: cardView.layer.frame.height+75,  width: self.view.layer.frame.width-70, height: 60.0)
+            payButton.frame = CGRect(x: 40, y: cardView.layer.frame.height+75,  width: self.view.layer.frame.width-80, height: 60.0)
             payButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(1), forState: .Normal)
             payButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 14)!
             if detailUser.business_name != "" {
@@ -277,7 +277,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, UIS
             let rectShape = CAShapeLayer()
             rectShape.bounds = payButton.frame
             rectShape.position = payButton.center
-            rectShape.path = UIBezierPath(roundedRect: payButton.bounds, byRoundingCorners: [.BottomLeft, .BottomRight], cornerRadii: CGSize(width: 10, height: 10)).CGPath
+            rectShape.path = UIBezierPath(roundedRect: payButton.bounds, byRoundingCorners: [.BottomLeft, .BottomRight], cornerRadii: CGSize(width: 15, height: 15)).CGPath
             payButton.layer.backgroundColor = UIColor.pastelBlue().CGColor
             //Here I'm masking the textView's layer with rectShape layer
             payButton.layer.mask = rectShape
@@ -285,14 +285,14 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, UIS
             scrollView.bringSubviewToFront(payButton)
             
             if(screenHeight < 500) {
-                cardView.frame = CGRectMake(35, 90, screenWidth-70, screenHeight*0.6)
+                cardView.frame = CGRectMake(35, 90, screenWidth-70, 250)
                 userImageView.frame = CGRect(x: 55, y: 110, width: 50, height: 50)
                 userImageView.layer.cornerRadius = 5
-                sendMessageButton.frame = CGRect(x: 55, y: 170,  width: self.view.layer.frame.width-70, height: 50.0)
-                companyTitleLabel.frame = CGRectMake(55, 110, screenWidth, 130)
+                companyTitleLabel.frame = CGRectMake(0, 10, screenWidth, 130)
                 companyTitleLabel.autoresizingMask = [.None, .None]
+                sendMessageButton.frame = CGRect(x: cardView.frame.width-50, y: 110, width: 28, height: 28)
                 shareButton.frame = CGRect(x: cardView.frame.width-5, y: 110, width: 20, height: 28)
-                viewPlansButton.frame = CGRect(x: 35, y: cardView.layer.frame.height-10,  width: self.view.layer.frame.width-70, height: 50.0)
+                viewPlansButton.frame = CGRect(x: 36, y: cardView.layer.frame.height-10,  width: self.view.layer.frame.width-72, height: 50.0)
                 payButton.frame = CGRect(x: 35, y: cardView.layer.frame.height+40,  width: self.view.layer.frame.width-70, height: 50.0)
                 tutorialButton.frame = CGRect(x: self.view.frame.width/2-10, y: 400, width: 20, height: 20)
                 let rectShape = CAShapeLayer()
@@ -351,7 +351,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, UIS
         let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
         
         // Initialize and style the view plans modal
-        formSheetController.presentationController?.contentViewSize = CGSizeMake(310, screenHeight*0.75)
+        formSheetController.presentationController?.contentViewSize = CGSizeMake(300, 370)
         formSheetController.presentationController?.shouldUseMotionEffect = true
         formSheetController.presentationController?.containerView?.backgroundColor = UIColor.pastelDarkBlue().colorWithAlphaComponent(0.5)
         formSheetController.presentationController?.containerView?.sizeToFit()
@@ -361,7 +361,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, UIS
         formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
-        formSheetController.contentViewCornerRadius = 10
+        formSheetController.contentViewCornerRadius = 15
         formSheetController.allowDismissByPanningPresentedView = true
         formSheetController.interactivePanGestureDismissalDirection = .All;
         
@@ -395,7 +395,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, UIS
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
         formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.AlwaysAboveKeyboard
-        formSheetController.contentViewCornerRadius = 10
+        formSheetController.contentViewCornerRadius = 15
         formSheetController.allowDismissByPanningPresentedView = true
         formSheetController.interactivePanGestureDismissalDirection = .All;
         
@@ -462,7 +462,7 @@ extension SearchDetailViewController {
         formSheetController.presentationController?.shouldCenterHorizontally = true
         formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.CenterVertically
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
-        formSheetController.contentViewCornerRadius = 10
+        formSheetController.contentViewCornerRadius = 15
         formSheetController.allowDismissByPanningPresentedView = true
         formSheetController.interactivePanGestureDismissalDirection = .All;
         

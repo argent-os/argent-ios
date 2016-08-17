@@ -80,35 +80,43 @@ class Account {
                             if let value = response.result.value {
                                 
                                 let data = JSON(value)
-                                let acct = data["account"]
-                                let id = acct["id"].stringValue
-                                let business_name = acct["business_name"].stringValue
-                                let business_email = acct["email"].stringValue
-
-                                let legal_entity = acct["legal_entity"]
-                                let business_tax_id = legal_entity["business_tax_id"].stringValue
-                                let business_first_name = legal_entity["first_name"].stringValue
-                                let business_last_name = legal_entity["last_name"].stringValue
-                                let address_line1 = legal_entity["address"]["line1"].stringValue
-                                let address_city = legal_entity["address"]["city"].stringValue
-                                let address_state = legal_entity["address"]["state"].stringValue
-                                let address_country = legal_entity["address"]["country"].stringValue
-                                let address_postal_code = legal_entity["address"]["postal_code"].stringValue
-                                let ssn_last_4 = legal_entity["ssn_last_4_provided"].stringValue
-                                let pin = legal_entity["personal_id_number_provided"].boolValue
-                                let ein = legal_entity["business_tax_id"].stringValue
-                                let type = legal_entity["type"].stringValue
                                 
-                                let transfers_enabled = acct["transfers_enabled"].boolValue
-                                let verification_disabled_reason = acct["verification"]["disabled_reason"].stringValue
-                                
-                                let _ = acct["verification"]["fields_needed"].arrayObject.map { (unwrappedOptionalArray) -> Void in
-                                    // print(unwrappedOptionalArray)
+                                if data["error"]["message"].stringValue != "" {
+                                    let data = JSON(value)
+                                    let err: NSError = NSError(domain: data["error"]["message"].stringValue, code: 11, userInfo: nil)
+                                    completionHandler(nil, err)
+                                } else {
                                     
-                                    let account = Account(id: id, business_first_name: business_first_name, business_last_name: business_last_name, business_email: business_email, business_name: business_name,  business_tax_id: business_tax_id, address_line1: address_line1, address_city: address_city, address_state: address_state, address_country: address_country, address_postal_code: address_postal_code, ssn_last_4: ssn_last_4, pin: pin, ein: ein, type: type, legal_entity: Dictionary<String, AnyObject>(), transfers_enabled: transfers_enabled, verification_fields_needed: unwrappedOptionalArray as! [String], verification_disabled_reason: verification_disabled_reason)
-                                    
-                                    completionHandler(account, response.result.error)
+                                    let acct = data["account"]
+                                    let id = acct["id"].stringValue
+                                    let business_name = acct["business_name"].stringValue
+                                    let business_email = acct["email"].stringValue
 
+                                    let legal_entity = acct["legal_entity"]
+                                    let business_tax_id = legal_entity["business_tax_id"].stringValue
+                                    let business_first_name = legal_entity["first_name"].stringValue
+                                    let business_last_name = legal_entity["last_name"].stringValue
+                                    let address_line1 = legal_entity["address"]["line1"].stringValue
+                                    let address_city = legal_entity["address"]["city"].stringValue
+                                    let address_state = legal_entity["address"]["state"].stringValue
+                                    let address_country = legal_entity["address"]["country"].stringValue
+                                    let address_postal_code = legal_entity["address"]["postal_code"].stringValue
+                                    let ssn_last_4 = legal_entity["ssn_last_4_provided"].stringValue
+                                    let pin = legal_entity["personal_id_number_provided"].boolValue
+                                    let ein = legal_entity["business_tax_id"].stringValue
+                                    let type = legal_entity["type"].stringValue
+                                    
+                                    let transfers_enabled = acct["transfers_enabled"].boolValue
+                                    let verification_disabled_reason = acct["verification"]["disabled_reason"].stringValue
+                                    
+                                    let _ = acct["verification"]["fields_needed"].arrayObject.map { (unwrappedOptionalArray) -> Void in
+                                        // print(unwrappedOptionalArray)
+                                        
+                                        let account = Account(id: id, business_first_name: business_first_name, business_last_name: business_last_name, business_email: business_email, business_name: business_name,  business_tax_id: business_tax_id, address_line1: address_line1, address_city: address_city, address_state: address_state, address_country: address_country, address_postal_code: address_postal_code, ssn_last_4: ssn_last_4, pin: pin, ein: ein, type: type, legal_entity: Dictionary<String, AnyObject>(), transfers_enabled: transfers_enabled, verification_fields_needed: unwrappedOptionalArray as! [String], verification_disabled_reason: verification_disabled_reason)
+                                        
+                                        completionHandler(account, response.result.error)
+
+                                    }
                                 }
                             
                             }
@@ -145,34 +153,42 @@ class Account {
                             if let value = response.result.value {
                                 
                                 let data = JSON(value)
-                                
-                                let acct = data["account"]
-                                let id = acct["id"].stringValue
-                                let business_name = acct["business_name"].stringValue
-                                let business_email = acct["email"].stringValue
 
-                                let legal_entity = acct["legal_entity"]
-                                let business_tax_id = legal_entity["business_tax_id"].stringValue
-                                let business_first_name = legal_entity["first_name"].stringValue
-                                let business_last_name = legal_entity["last_name"].stringValue
-                                let address_line1 = legal_entity["address"]["line1"].stringValue
-                                let address_city = legal_entity["address"]["city"].stringValue
-                                let address_state = legal_entity["address"]["state"].stringValue
-                                let address_country = legal_entity["address"]["country"].stringValue
-                                let address_postal_code = legal_entity["address"]["postal_code"].stringValue
-                                let ssn_last_4 = legal_entity["ssn_last_4_provided"].stringValue
-                                let ein = legal_entity["business_tax_id"].stringValue
-                                let pin = legal_entity["personal_id_number_provided"].boolValue
-                                let type = legal_entity["type"].stringValue
-                                
-                                let transfers_enabled = acct["transfers_enabled"].boolValue
-                                let verification_disabled_reason = acct["verification"]["disabled_reason"].stringValue
-
-                                let verification_fields_needed = [String(acct["verification"]["fields_needed"].arrayObject)]
-                                
-                                let account = Account(id: id, business_first_name: business_first_name, business_last_name: business_last_name, business_email: business_email, business_name: business_name, business_tax_id: business_tax_id, address_line1: address_line1, address_city: address_city, address_state: address_state, address_country: address_country, address_postal_code: address_postal_code, ssn_last_4: ssn_last_4, pin: pin, ein: ein, type: type, legal_entity: Dictionary<String, AnyObject>(), transfers_enabled: transfers_enabled, verification_fields_needed: verification_fields_needed, verification_disabled_reason: verification_disabled_reason)
-                                
-                                completionHandler(account, true, response.result.error)
+                                if data["error"]["message"].stringValue != "" {
+                                    let data = JSON(value)
+                                    let err: NSError = NSError(domain: data["error"]["message"].stringValue, code: 11, userInfo: nil)
+                                    completionHandler(nil, false, err)
+                                } else {
+                                    
+                                    let acct = data["account"]
+                                    let id = acct["id"].stringValue
+                                    let business_name = acct["business_name"].stringValue
+                                    let business_email = acct["email"].stringValue
+                                    
+                                    let legal_entity = acct["legal_entity"]
+                                    let business_tax_id = legal_entity["business_tax_id"].stringValue
+                                    let business_first_name = legal_entity["first_name"].stringValue
+                                    let business_last_name = legal_entity["last_name"].stringValue
+                                    let address_line1 = legal_entity["address"]["line1"].stringValue
+                                    let address_city = legal_entity["address"]["city"].stringValue
+                                    let address_state = legal_entity["address"]["state"].stringValue
+                                    let address_country = legal_entity["address"]["country"].stringValue
+                                    let address_postal_code = legal_entity["address"]["postal_code"].stringValue
+                                    let ssn_last_4 = legal_entity["ssn_last_4_provided"].stringValue
+                                    let ein = legal_entity["business_tax_id"].stringValue
+                                    let pin = legal_entity["personal_id_number_provided"].boolValue
+                                    let type = legal_entity["type"].stringValue
+                                    
+                                    let transfers_enabled = acct["transfers_enabled"].boolValue
+                                    let verification_disabled_reason = acct["verification"]["disabled_reason"].stringValue
+                                    
+                                    let verification_fields_needed = [String(acct["verification"]["fields_needed"].arrayObject)]
+                                    
+                                    let account = Account(id: id, business_first_name: business_first_name, business_last_name: business_last_name, business_email: business_email, business_name: business_name, business_tax_id: business_tax_id, address_line1: address_line1, address_city: address_city, address_state: address_state, address_country: address_country, address_postal_code: address_postal_code, ssn_last_4: ssn_last_4, pin: pin, ein: ein, type: type, legal_entity: Dictionary<String, AnyObject>(), transfers_enabled: transfers_enabled, verification_fields_needed: verification_fields_needed, verification_disabled_reason: verification_disabled_reason)
+                                    
+                                    completionHandler(account, true, response.result.error)
+                                }
+                
                             }
                         case .Failure(let error):
                             print(error)

@@ -204,6 +204,9 @@ class SubscriptionsListTableViewController: UITableViewController, DZNEmptyDataS
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "viewSubscriptionDetail" {
+            guard let id = subscriptionsArray![self.selectedRow!].id else {
+                return
+            }
             guard let name = subscriptionsArray![self.selectedRow!].plan_name else {
                 return
             }
@@ -218,6 +221,7 @@ class SubscriptionsListTableViewController: UITableViewController, DZNEmptyDataS
             }
             
             let destination = segue.destinationViewController as! SubscriptionsListDetailViewController
+            destination.subscriptionId = id
             destination.subscriptionName = name
             destination.subscriptionAmount = String(amount)
             destination.subscriptionInterval = interval
@@ -229,6 +233,7 @@ class SubscriptionsListTableViewController: UITableViewController, DZNEmptyDataS
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         self.selectedRow = indexPath.row
+        
         performSegueWithIdentifier("viewSubscriptionDetail", sender: self)
 
     }
@@ -249,6 +254,16 @@ class SubscriptionsListTableViewController: UITableViewController, DZNEmptyDataS
         let item = self.subscriptionsArray?[indexPath.row]
         if let name = item?.plan_name, status = item?.status, amount = item?.plan_amount, interval = item?.plan_interval  {
             
+            cell.planSwitch.enabled = false
+            cell.planSwitch.addTarget(self, action: #selector(self.planSwitchChanged), forControlEvents: .ValueChanged)
+
+            // configure status
+            if status == "canceled" || status == "past_due" || status == "unpaid" {
+                cell.planSwitch.on = false
+            } else if status == "active" || status == "trialing" {
+                cell.planSwitch.on = true
+            }
+            
             let strAmount = currencyStringFromNumber(Double(amount)/100)
             let intervalAttributedString = adjustAttributedString(strAmount + " per " + interval, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
             
@@ -267,6 +282,56 @@ class SubscriptionsListTableViewController: UITableViewController, DZNEmptyDataS
     func returnToMenu(sender: AnyObject) {
         self.dismissViewControllerAnimated(true) { 
             //
+        }
+    }
+    
+    func planSwitchChanged(sender: UISwitch) {
+        if sender.on == false {
+//            // send request to delete, on completion reload table data!
+//            let alertController = UIAlertController(title: "Confirm cancellation", message: "Are you sure?  If you choose to re-open the subscription a new charge will be created.", preferredStyle: UIAlertControllerStyle.Alert)
+//            
+//            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { action in
+//                sender.setOn(true, animated: true)
+//            }
+//            alertController.addAction(cancelAction)
+//            
+//            let OKAction = UIAlertAction(title: "Continue", style: .Default) { action in
+//                // send request to delete, on completion reload table data!
+//                Subscription.reopenSubscription("", completionHandler: { (bool, err) in
+//                    if bool == true {
+//                        self.dismissViewControllerAnimated(true, completion: {
+//                            showGlobalNotification("Subscription canceled!", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandGreen())
+//                        })
+//                    } else {
+//                        showGlobalNotification("Error canceling subscription", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
+//                    }
+//                })
+//            }
+//            alertController.addAction(OKAction)
+//            self.presentViewController(alertController, animated: true, completion: nil)
+        } else {
+            // send request to delete, on completion reload table data!
+//            let alertController = UIAlertController(title: "Confirm re-subscription", message: "A new charge will be created on your account.", preferredStyle: UIAlertControllerStyle.Alert)
+//            
+//            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { action in
+//                sender.setOn(false, animated: true)
+//            }
+//            alertController.addAction(cancelAction)
+//            
+//            let OKAction = UIAlertAction(title: "Continue", style: .Default) { action in
+//                // send request to delete, on completion reload table data!
+//                Subscription.cancelSubscription("", completionHandler: { (bool, err) in
+//                    if bool == true {
+//                        self.dismissViewControllerAnimated(true, completion: {
+//                            showGlobalNotification("Subscription re-opening canceled!", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandGreen())
+//                        })
+//                    } else {
+//                        showGlobalNotification("Error re-opening subscription", duration: 3.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
+//                    }
+//                })
+//            }
+//            alertController.addAction(OKAction)
+//            self.presentViewController(alertController, animated: true, completion: nil)
         }
     }
     

@@ -89,21 +89,15 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
         var attribs: [String: AnyObject] = [:]
         attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
-        let str = NSAttributedString(string: "Submit", attributes: attribs)
+        let str = adjustAttributedString("SUBMIT", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Center)
         submitInformationButton.setAttributedTitle(str, forState: .Normal)
         submitInformationButton.addTarget(self, action: #selector(self.configureBeforeSendingReceipt(_:)), forControlEvents: .TouchUpInside)
         
         yesButton.setBackgroundColor(UIColor.pastelBlue(), forState: .Normal)
         yesButton.setBackgroundColor(UIColor.pastelBlue().lighterColor(), forState: .Highlighted)
         yesButton.frame = CGRect(x: 0, y: 190, width: 280, height: 60)
-        let yesStr = NSAttributedString(string: "Yes please!", attributes: [
-            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 14)!,
-            NSForegroundColorAttributeName:UIColor.whiteColor()
-        ])
-        let yesStr2 = NSAttributedString(string: "Yes please!", attributes: [
-            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 14)!,
-            NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.5)
-        ])
+        let yesStr = adjustAttributedString("Yes please!", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Center)
+        let yesStr2 = adjustAttributedString("Yes please!", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor().colorWithAlphaComponent(0.8), lineSpacing: 0.0, alignment: .Center)
         yesButton.setAttributedTitle(yesStr, forState: .Normal)
         yesButton.setAttributedTitle(yesStr2, forState: .Highlighted)
         yesButton.layer.cornerRadius = 0
@@ -114,14 +108,8 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
         noButton.setBackgroundColor(UIColor.whiteColor(), forState: .Normal)
         noButton.setBackgroundColor(UIColor.whiteColor(), forState: .Highlighted)
         noButton.frame = CGRect(x: 0, y: 130, width: 280, height: 50)
-        let noStr = NSAttributedString(string: "No thank you", attributes: [
-            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 14)!,
-            NSForegroundColorAttributeName:UIColor.pastelBlue()
-        ])
-        let noStr2 = NSAttributedString(string: "No thank you", attributes: [
-            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 14)!,
-            NSForegroundColorAttributeName:UIColor.pastelBlue().colorWithAlphaComponent(0.5)
-        ])
+        let noStr = adjustAttributedString("No, thank you.", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.pastelBlue(), lineSpacing: 0.0, alignment: .Center)
+        let noStr2 = adjustAttributedString("No, thank you.", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.pastelBlue().darkerColor(), lineSpacing: 0.0, alignment: .Center)
         noButton.setAttributedTitle(noStr, forState: .Normal)
         noButton.setAttributedTitle(noStr2, forState: .Highlighted)
         noButton.addTarget(self, action: #selector(noClicked(_:)), forControlEvents: .TouchUpInside)
