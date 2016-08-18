@@ -74,7 +74,7 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
         codeLabel.textAlignment = .Center
         let str = NSAttributedString(string: countryName, attributes:
             [
-                NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 24)!,
+                NSFontAttributeName: UIFont(name: "SFUIText-Regular", size: 24)!,
                 NSForegroundColorAttributeName:UIColor.lightBlue()
             ])
         codeLabel.attributedText = str
@@ -103,7 +103,7 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
         navBar.shadowImage = UIImage()
         navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!,
+            NSFontAttributeName: UIFont(name: "SFUIText-Regular", size: 17)!,
             NSForegroundColorAttributeName:UIColor.lightBlue()
         ]
         self.view.addSubview(navBar)
@@ -135,7 +135,7 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
         UIToolbar.appearance().backgroundColor = UIColor.brandGreen()
 
         next.setTitleTextAttributes([
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!,
+            NSFontAttributeName : UIFont(name: "SFUIText-Regular", size: 15)!,
             NSForegroundColorAttributeName : UIColor.whiteColor()
             ], forState: .Normal)
         
@@ -181,7 +181,7 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
         codeLabel.textAlignment = .Center
         let str = NSAttributedString(string: name, attributes:
             [
-                NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 24)!,
+                NSFontAttributeName: UIFont(name: "SFUIText-Regular", size: 24)!,
                 NSForegroundColorAttributeName:UIColor.lightBlue()
             ])
         codeLabel.attributedText = str

@@ -93,11 +93,11 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         let lbl = UILabel()
         // Set range of string length to exactly 8, the number of characters
         lbl.frame = CGRect(x: 0, y: screenHeight*0.33, width: screenWidth, height: 40)
-        lbl.font = UIFont(name: "MyriadPro-Regular", size: 23)
+        lbl.font = UIFont(name: "SFUIText-Regular", size: 23)
         lbl.tag = 7578
         lbl.textAlignment = NSTextAlignment.Center
         lbl.textColor = UIColor.whiteColor()
-        lbl.adjustAttributedString("ARGENT", spacing: 4, fontName: "MyriadPro-Regular", fontSize: 23, fontColor: UIColor.whiteColor())
+        lbl.adjustAttributedString("ARGENT", spacing: 4, fontName: "SFUIText-Regular", fontSize: 23, fontColor: UIColor.whiteColor())
         addSubviewWithFade(lbl, parentView: self, duration: 0.3)
 
         let dividerView = UIImageView()
@@ -111,7 +111,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         lblDetail.tag = 7579
         lblDetail.textAlignment = NSTextAlignment.Center
         lblDetail.textColor = UIColor.whiteColor()
-        lblDetail.adjustAttributedString("INVITATION", spacing: 4, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.whiteColor())
+        lblDetail.adjustAttributedString("INVITATION", spacing: 4, fontName: "SFUIText-Regular", fontSize: 13, fontColor: UIColor.whiteColor())
         addSubviewWithFade(lblDetail, parentView: self, duration: 0.3)
 
         let lblBody = UILabel()
@@ -134,7 +134,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         emailButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         let str0 = NSAttributedString(string: "Mail", attributes:
             [
-                NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 12)!,
+                NSFontAttributeName: UIFont(name: "SFUIText-Regular", size: 12)!,
                 NSForegroundColorAttributeName:UIColor.whiteColor()
             ])
         emailButton.setAttributedTitle(str0, forState: .Normal)
@@ -152,7 +152,7 @@ final class AddCustomerViewController: UIViewController, UINavigationBarDelegate
         smsButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         let str1 = NSAttributedString(string: "SMS", attributes:
             [
-                NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 12)!,
+                NSFontAttributeName: UIFont(name: "SFUIText-Regular", size: 12)!,
                 NSForegroundColorAttributeName:UIColor.whiteColor()
             ])
         smsButton.setAttributedTitle(str1, forState: .Normal)

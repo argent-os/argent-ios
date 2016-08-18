@@ -52,7 +52,7 @@ class MenuViewController: ButtonBarPagerTabStripViewController, MFMailComposeVie
         settings.style.buttonBarItemBackgroundColor = UIColor.whiteColor()
         settings.style.selectedBarBackgroundColor = UIColor.whiteColor()
         settings.style.buttonBarItemTitleColor = UIColor.skyBlue()
-        settings.style.buttonBarItemFont = UIFont(name: "MyriadPro-Regular", size: 14)!
+        settings.style.buttonBarItemFont = UIFont(name: "SFUIText-Regular", size: 14)!
         settings.style.selectedBarHeight = 20
         settings.style.buttonBarMinimumLineSpacing = 5
         settings.style.buttonBarItemsShouldFillAvailiableWidth = true
@@ -70,7 +70,7 @@ class MenuViewController: ButtonBarPagerTabStripViewController, MFMailComposeVie
         let versionLabel = UILabel()
         versionLabel.frame = CGRect(x: 0, y: screenHeight-185, width: screenWidth, height: 40)
         versionLabel.textAlignment = .Center
-        versionLabel.font = UIFont(name: "MyriadPro-Regular", size: 13)!
+        versionLabel.font = UIFont(name: "SFUIText-Regular", size: 13)!
         versionLabel.textColor = UIColor.lightBlue().lighterColor()
         versionLabel.text = "Version " + appVersionString
         self.view.addSubview(versionLabel)
@@ -79,11 +79,11 @@ class MenuViewController: ButtonBarPagerTabStripViewController, MFMailComposeVie
         feedbackButton.frame = CGRect(x: 0, y: screenHeight-160, width: screenWidth, height: 40)
         let str = NSAttributedString(string: "Send Feedback", attributes: [
             NSForegroundColorAttributeName : UIColor.lightBlue().lighterColor(),
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 13)!
+            NSFontAttributeName : UIFont(name: "SFUIText-Regular", size: 13)!
         ])
         let str2 = NSAttributedString(string: "Send Feedback", attributes: [
             NSForegroundColorAttributeName : UIColor.lightBlue().darkerColor(),
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 13)!
+            NSFontAttributeName : UIFont(name: "SFUIText-Regular", size: 13)!
         ])
         feedbackButton.backgroundColor = UIColor.clearColor()
         feedbackButton.layer.borderColor = UIColor.clearColor().CGColor
@@ -95,7 +95,7 @@ class MenuViewController: ButtonBarPagerTabStripViewController, MFMailComposeVie
         let verificationLabel = UILabel()
         verificationLabel.frame = CGRect(x: 15, y: screenHeight-235, width: screenWidth-30, height: 40)
         verificationLabel.textAlignment = .Center
-        verificationLabel.font = UIFont(name: "MyriadPro-Regular", size: 13)!
+        verificationLabel.font = UIFont(name: "SFUIText-Regular", size: 13)!
         verificationLabel.layer.borderColor = UIColor.oceanBlue().CGColor
         verificationLabel.layer.borderWidth = 1
         verificationLabel.layer.cornerRadius = 3
@@ -131,7 +131,7 @@ class MenuViewController: ButtonBarPagerTabStripViewController, MFMailComposeVie
         self.navigationController?.navigationBar.barTintColor = UIColor.oceanBlue()
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSForegroundColorAttributeName: UIColor.whiteColor(),
-            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!
+            NSFontAttributeName: UIFont(name: "SFUIText-Regular", size: 17)!
         ]
         
     }

@@ -98,7 +98,7 @@ class SubscriptionsListTableViewController: UITableViewController, DZNEmptyDataS
         let headerViewTitle: UILabel = UILabel()
         headerViewTitle.frame = CGRect(x: 0, y: 20, width: screenWidth, height: 35)
         headerViewTitle.text = "Subscriptions"
-        headerViewTitle.font = UIFont(name: "MyriadPro-Regular", size: 17)!
+        headerViewTitle.font = UIFont(name: "SFUIText-Regular", size: 17)!
         headerViewTitle.textAlignment = .Center
         headerViewTitle.textColor = UIColor.whiteColor()
         headerView.addSubview(headerViewTitle)
@@ -265,10 +265,10 @@ class SubscriptionsListTableViewController: UITableViewController, DZNEmptyDataS
             }
             
             let strAmount = currencyStringFromNumber(Double(amount)/100)
-            let intervalAttributedString = adjustAttributedString(strAmount + " per " + interval, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
+            let intervalAttributedString = adjustAttributedString(strAmount + " per " + interval, spacing: 1, fontName: "SFUIText-Regular", fontSize: 13, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
             
-            let strStatus = adjustAttributedString(" " + status.uppercaseString, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.iosBlue(), lineSpacing: 0.0, alignment: .Left)
-            let strName = adjustAttributedString(name.uppercaseString, spacing: 1.5, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
+            let strStatus = adjustAttributedString(" " + status.uppercaseString, spacing: 1, fontName: "SFUIText-Regular", fontSize: 13, fontColor: UIColor.iosBlue(), lineSpacing: 0.0, alignment: .Left)
+            let strName = adjustAttributedString(name.uppercaseString, spacing: 1.5, fontName: "SFUIText-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
             let splitter = NSAttributedString(string: " | ")
             cell.titleLabel.attributedText = strName + strStatus
             cell.subLabel.attributedText = intervalAttributedString

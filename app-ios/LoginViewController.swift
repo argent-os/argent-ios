@@ -72,7 +72,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, WCSessionDeleg
         self.view.backgroundColor = UIColor.whiteColor()
         
         let signInLabel = UILabel()
-        signInLabel.adjustAttributedString("SIGN IN", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.darkBlue().colorWithAlphaComponent(0.75))
+        signInLabel.adjustAttributedString("SIGN IN", spacing: 2, fontName: "SFUIText-Regular", fontSize: 13, fontColor: UIColor.darkBlue().colorWithAlphaComponent(0.75))
         signInLabel.textAlignment = .Center
         signInLabel.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 60)
         signInLabel.frame.origin.y = 200 // 12% down from the top
@@ -112,11 +112,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, WCSessionDeleg
         let resetPasswordButton = UIButton()
         resetPasswordButton.frame = CGRect(x: 0, y: screenHeight-60, width: screenWidth, height: 40)
         let str0 = NSAttributedString(string: "Forgot Password?", attributes: [
-            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 12)!,
+            NSFontAttributeName: UIFont(name: "SFUIText-Regular", size: 12)!,
                 NSForegroundColorAttributeName:UIColor.pastelBlue()
             ])
         let str1 = NSAttributedString(string: "Forgot Password?", attributes: [
-            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 12)!,
+            NSFontAttributeName: UIFont(name: "SFUIText-Regular", size: 12)!,
             NSForegroundColorAttributeName:UIColor.pastelBlue().colorWithAlphaComponent(0.5)
             ])
         resetPasswordButton.setAttributedTitle(str0, forState: .Normal)

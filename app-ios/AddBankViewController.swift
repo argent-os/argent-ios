@@ -66,7 +66,7 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         viewAccountsButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
         viewAccountsButton.setBackgroundColor(UIColor.whiteColor().darkerColor(), forState: .Highlighted)
         var attribs: [String: AnyObject] = [:]
-        attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)!
+        attribs[NSFontAttributeName] = UIFont(name: "SFUIText-Regular", size: 14)!
         attribs[NSForegroundColorAttributeName] = UIColor.oceanBlue()
         let str = NSAttributedString(string: "View Accounts", attributes: attribs)
         viewAccountsButton.setAttributedTitle(str, forState: .Normal)
@@ -83,7 +83,7 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         manualConnectBankButton.setBackgroundColor(UIColor.oceanBlue(), forState: .Normal)
         manualConnectBankButton.setBackgroundColor(UIColor.oceanBlue().lighterColor(), forState: .Highlighted)
         var attribs3: [String: AnyObject] = [:]
-        attribs3[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)!
+        attribs3[NSFontAttributeName] = UIFont(name: "SFUIText-Regular", size: 14)!
         attribs3[NSForegroundColorAttributeName] = UIColor.whiteColor()
         let str3 = NSAttributedString(string: "Manually Connect", attributes: attribs3)
         manualConnectBankButton.setAttributedTitle(str3, forState: .Normal)
@@ -101,7 +101,7 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         directLoginButton.setBackgroundColor(UIColor.seaBlue().lighterColor(), forState: .Highlighted)
         directLoginButton.addTarget(self, action: #selector(self.goToLoginBank(_:)), forControlEvents: .TouchUpInside)
         var attribs2: [String: AnyObject] = [:]
-        attribs2[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)!
+        attribs2[NSFontAttributeName] = UIFont(name: "SFUIText-Regular", size: 14)!
         attribs2[NSForegroundColorAttributeName] = UIColor.whiteColor()
         let str2 = NSAttributedString(string: "Login to Bank", attributes: attribs2)
         directLoginButton.setAttributedTitle(str2, forState: .Normal)
@@ -112,13 +112,13 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         pageIcon.frame = CGRect(x: screenWidth/2-60, y: 125, width: 120, height: 120)
         self.view.addSubview(pageIcon)
         
-        let headerAttributedString = adjustAttributedString("Bank Linking", spacing: 0, fontName: "MyriadPro-Regular", fontSize: 24, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Center)
+        let headerAttributedString = adjustAttributedString("Bank Linking", spacing: 0, fontName: "SFUIText-Regular", fontSize: 24, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Center)
         pageHeader.attributedText = headerAttributedString
         pageHeader.textAlignment = .Center
         pageHeader.frame = CGRect(x: 0, y: 260, width: screenWidth, height: 30)
         self.view.addSubview(pageHeader)
         
-        let descriptionAttributedString = adjustAttributedString("Connect to any US Bank account \n using one of the methods below. \n We do not store this information \non our servers.", spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Center)
+        let descriptionAttributedString = adjustAttributedString("Connect to any US Bank account \n using one of the methods below. \n We do not store this information \non our servers.", spacing: 0, fontName: "SFUIText-Regular", fontSize: 15, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Center)
         pageDescription.attributedText = descriptionAttributedString
         pageDescription.numberOfLines = 0
         pageDescription.lineBreakMode = .ByWordWrapping
@@ -128,7 +128,7 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         
         self.navigationItem.title = "Bank Account"
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!,
+            NSFontAttributeName: UIFont(name: "SFUIText-Regular", size: 17)!,
             NSForegroundColorAttributeName: UIColor.darkBlue()
         ]
         

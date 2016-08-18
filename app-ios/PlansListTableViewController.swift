@@ -112,7 +112,7 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
         let headerViewTitle: UILabel = UILabel()
         headerViewTitle.frame = CGRect(x: 0, y: 20, width: screenWidth, height: 35)
         headerViewTitle.text = "Plans"
-        headerViewTitle.font = UIFont(name: "MyriadPro-Regular", size: 17)!
+        headerViewTitle.font = UIFont(name: "SFUIText-Regular", size: 17)!
         headerViewTitle.textAlignment = .Center
         headerViewTitle.textColor = UIColor.whiteColor()
         headerView.addSubview(headerViewTitle)
@@ -249,13 +249,13 @@ class PlansListTableViewController: UITableViewController, MCSwipeTableViewCellD
         
         let item = self.plansArray?[indexPath.row]
         if let name = item?.name {
-            let strName = adjustAttributedString(name, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
+            let strName = adjustAttributedString(name, spacing: 0, fontName: "SFUIText-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
 
             cell.textLabel?.attributedText = strName
         }
         if let amount = item?.amount, interval = item?.interval {
             let strAmount = currencyStringFromNumber(Double(amount)!/100)
-            let intervalAttributedString = adjustAttributedString(strAmount + " per " + interval, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
+            let intervalAttributedString = adjustAttributedString(strAmount + " per " + interval, spacing: 1, fontName: "SFUIText-Regular", fontSize: 13, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
             
             let splitter = NSAttributedString(string: " per ")
             cell.detailTextLabel!.attributedText = intervalAttributedString

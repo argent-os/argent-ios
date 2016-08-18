@@ -103,7 +103,7 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
         let headerViewTitle: UILabel = UILabel()
         headerViewTitle.frame = CGRect(x: 0, y: 20, width: screenWidth, height: 35)
         headerViewTitle.text = "Subscribers"
-        headerViewTitle.font = UIFont(name: "MyriadPro-Regular", size: 17)!
+        headerViewTitle.font = UIFont(name: "SFUIText-Regular", size: 17)!
         headerViewTitle.textAlignment = .Center
         headerViewTitle.textColor = UIColor.whiteColor()
         headerView.addSubview(headerViewTitle)
@@ -243,7 +243,7 @@ class CustomersListTableViewController: UITableViewController, MCSwipeTableViewC
             cell.textLabel?.textAlignment = .Center
             cell.textLabel?.frame = CGRect(x: 0, y: 0, width: self.view.layer.frame.width, height: 50)
             
-            let strEmail = adjustAttributedString(email, spacing: 0, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
+            let strEmail = adjustAttributedString(email, spacing: 0, fontName: "SFUIText-Regular", fontSize: 13, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
 
             cell.textLabel?.attributedText = strEmail
         }

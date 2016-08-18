@@ -58,13 +58,13 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.mediumBlue(),
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 18.0)!
+            NSFontAttributeName : UIFont(name: "SFUIText-Regular", size: 18.0)!
         ]
         
         titleLabel.frame = CGRect(x: 0, y: 65, width: 280, height: 30)
         titleLabel.text = "Would you like a receipt?"
         titleLabel.textAlignment = .Center
-        titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 18)
+        titleLabel.font = UIFont(name: "SFUIText-Regular", size: 18)
         titleLabel.textColor = UIColor.darkBlue()
         self.view.addSubview(titleLabel)
         
@@ -87,17 +87,17 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
         submitInformationButton.setBackgroundColor(UIColor.brandGreen(), forState: .Normal)
         submitInformationButton.setBackgroundColor(UIColor.brandGreen().colorWithAlphaComponent(0.5), forState: .Highlighted)
         var attribs: [String: AnyObject] = [:]
-        attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)
+        attribs[NSFontAttributeName] = UIFont(name: "SFUIText-Regular", size: 14)
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
-        let str = adjustAttributedString("SUBMIT", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Center)
+        let str = adjustAttributedString("SUBMIT", spacing: 2, fontName: "SFUIText-Regular", fontSize: 14, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Center)
         submitInformationButton.setAttributedTitle(str, forState: .Normal)
         submitInformationButton.addTarget(self, action: #selector(self.configureBeforeSendingReceipt(_:)), forControlEvents: .TouchUpInside)
         
         yesButton.setBackgroundColor(UIColor.pastelBlue(), forState: .Normal)
         yesButton.setBackgroundColor(UIColor.pastelBlue().lighterColor(), forState: .Highlighted)
         yesButton.frame = CGRect(x: 0, y: 190, width: 280, height: 60)
-        let yesStr = adjustAttributedString("Yes please!", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Center)
-        let yesStr2 = adjustAttributedString("Yes please!", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor().colorWithAlphaComponent(0.8), lineSpacing: 0.0, alignment: .Center)
+        let yesStr = adjustAttributedString("Yes please!", spacing: 2, fontName: "SFUIText-Regular", fontSize: 14, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Center)
+        let yesStr2 = adjustAttributedString("Yes please!", spacing: 2, fontName: "SFUIText-Regular", fontSize: 14, fontColor: UIColor.whiteColor().colorWithAlphaComponent(0.8), lineSpacing: 0.0, alignment: .Center)
         yesButton.setAttributedTitle(yesStr, forState: .Normal)
         yesButton.setAttributedTitle(yesStr2, forState: .Highlighted)
         yesButton.layer.cornerRadius = 0
@@ -108,8 +108,8 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
         noButton.setBackgroundColor(UIColor.whiteColor(), forState: .Normal)
         noButton.setBackgroundColor(UIColor.whiteColor(), forState: .Highlighted)
         noButton.frame = CGRect(x: 0, y: 130, width: 280, height: 50)
-        let noStr = adjustAttributedString("No, thank you.", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.pastelBlue(), lineSpacing: 0.0, alignment: .Center)
-        let noStr2 = adjustAttributedString("No, thank you.", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.pastelBlue().darkerColor(), lineSpacing: 0.0, alignment: .Center)
+        let noStr = adjustAttributedString("No, thank you.", spacing: 2, fontName: "SFUIText-Regular", fontSize: 14, fontColor: UIColor.pastelBlue(), lineSpacing: 0.0, alignment: .Center)
+        let noStr2 = adjustAttributedString("No, thank you.", spacing: 2, fontName: "SFUIText-Regular", fontSize: 14, fontColor: UIColor.pastelBlue().darkerColor(), lineSpacing: 0.0, alignment: .Center)
         noButton.setAttributedTitle(noStr, forState: .Normal)
         noButton.setAttributedTitle(noStr2, forState: .Highlighted)
         noButton.addTarget(self, action: #selector(noClicked(_:)), forControlEvents: .TouchUpInside)
@@ -128,7 +128,7 @@ class PersonInformationEntryModalViewController: UIViewController, UITextFieldDe
         
         // Create left and right button for navigation item
         let leftButton = UIBarButtonItem(title: "Close", style: .Plain, target: self, action: #selector(self.close(_:)))
-        let font = UIFont(name: "MyriadPro-Regular", size: 17)!
+        let font = UIFont(name: "SFUIText-Regular", size: 17)!
         leftButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
         leftButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.darkBlue()], forState: UIControlState.Highlighted)
         // Create two buttons for the navigation item

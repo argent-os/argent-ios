@@ -103,7 +103,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
         navBar.translucent = false
         navBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 17)!
+            NSFontAttributeName : UIFont(name: "SFUIText-Regular", size: 17)!
         ]
         self.view.addSubview(navBar);
         let navItem = UINavigationItem(title: "Notifications");
@@ -299,7 +299,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
                 default:
                     cell.textLabel?.text = text
             }
-            cell.textLabel?.font = UIFont(name: "MyriadPro-Regular", size: 14)!
+            cell.textLabel?.font = UIFont(name: "SFUIText-Regular", size: 14)!
             cell.textLabel?.textColor = UIColor.mediumBlue()
         }
         if let date = item?.created
@@ -308,7 +308,7 @@ class NotificationsViewController: UIViewController, UITableViewDataSource, UITa
                 let converted_date = NSDate(timeIntervalSince1970: Double(date)!)
                 dateFormatter.timeStyle = .MediumStyle
                 let formatted_date = dateFormatter.stringFromDate(converted_date)
-                cell.detailTextLabel?.font = UIFont(name: "MyriadPro-Regular", size: 11)!
+                cell.detailTextLabel?.font = UIFont(name: "SFUIText-Regular", size: 11)!
                 cell.detailTextLabel?.textColor = UIColor.lightBlue()
                 cell.detailTextLabel?.text = String(formatted_date) //+ " / uid " + uid
             } else {

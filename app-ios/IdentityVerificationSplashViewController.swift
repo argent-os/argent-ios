@@ -53,13 +53,13 @@ class IdentityVerificationSplashViewController: UIViewController {
         pageIcon.frame = CGRect(x: screenWidth/2-60, y: 125, width: 120, height: 120)
         self.view.addSubview(pageIcon)
         
-        let headerAttributedString = adjustAttributedString("Identity Verification", spacing: 0, fontName: "MyriadPro-Regular", fontSize: 24, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Center)
+        let headerAttributedString = adjustAttributedString("Identity Verification", spacing: 0, fontName: "SFUIText-Regular", fontSize: 24, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Center)
         pageHeader.attributedText = headerAttributedString
         pageHeader.textAlignment = .Center
         pageHeader.frame = CGRect(x: 0, y: 260, width: screenWidth, height: 30)
         self.view.addSubview(pageHeader)
     
-        let descriptionAttributedString = adjustAttributedString("In order to mitigate end-user risk, \nwe require one identity document\n and social security information. \nWe do not store this information\n on our servers.", spacing: 0, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Center)
+        let descriptionAttributedString = adjustAttributedString("In order to mitigate end-user risk, \nwe require one identity document\n and social security information. \nWe do not store this information\n on our servers.", spacing: 0, fontName: "SFUIText-Regular", fontSize: 15, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Center)
         pageDescription.attributedText = descriptionAttributedString
         pageDescription.numberOfLines = 0
         pageDescription.lineBreakMode = .ByWordWrapping
@@ -77,14 +77,14 @@ class IdentityVerificationSplashViewController: UIViewController {
         goToVerifyButton.setBackgroundColor(UIColor.oceanBlue(), forState: .Normal)
         goToVerifyButton.setBackgroundColor(UIColor.oceanBlue().lighterColor(), forState: .Highlighted)
         var attribs: [String: AnyObject] = [:]
-        attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)!
+        attribs[NSFontAttributeName] = UIFont(name: "SFUIText-Regular", size: 14)!
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
         let str = NSAttributedString(string: "Verify Identity", attributes: attribs)
         goToVerifyButton.setAttributedTitle(str, forState: .Normal)
         
         self.navigationItem.title = "Identity Verification"
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!,
+            NSFontAttributeName: UIFont(name: "SFUIText-Regular", size: 17)!,
             NSForegroundColorAttributeName: UIColor.darkBlue()
         ]
         

@@ -78,7 +78,7 @@ class CustomersListDetailViewController: UIViewController, UINavigationBarDelega
         self.view.addSubview(tableView)
         
         customerEmailTitleLabel.frame = CGRect(x: 40, y: 20, width: screenWidth-80, height: 100)
-        customerEmailTitleLabel.attributedText = adjustAttributedString(customerEmail!, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 19, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Center)
+        customerEmailTitleLabel.attributedText = adjustAttributedString(customerEmail!, spacing: 1, fontName: "SFUIText-Regular", fontSize: 19, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Center)
         customerEmailTitleLabel.textAlignment = .Center
         addSubviewWithBounce(customerEmailTitleLabel, parentView: self, duration: 0.3)
         
@@ -95,7 +95,7 @@ class CustomersListDetailViewController: UIViewController, UINavigationBarDelega
         self.tableView.tableHeaderView = headerView
         let headerViewTitle: UILabel = UILabel()
         headerViewTitle.frame = CGRect(x: 0, y: 20, width: screenWidth, height: 35)
-        headerViewTitle.attributedText = adjustAttributedString("SUBSCRIPTIONS", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Center)
+        headerViewTitle.attributedText = adjustAttributedString("SUBSCRIPTIONS", spacing: 1, fontName: "SFUIText-Regular", fontSize: 13, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Center)
         headerViewTitle.textAlignment = .Center
         headerView.addSubview(headerViewTitle)
         
@@ -145,7 +145,7 @@ class CustomersListDetailViewController: UIViewController, UINavigationBarDelega
         
         // Create left and right button for navigation item
         let leftButton = UIBarButtonItem(image: UIImage(named: "IconCloseLight"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.returnToMenu(_:)))
-        let font = UIFont(name: "MyriadPro-Regular", size: 14)
+        let font = UIFont(name: "SFUIText-Regular", size: 14)
         leftButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
         // Create two buttons for the navigation item
         navigationItem.leftBarButtonItem = leftButton
@@ -190,13 +190,13 @@ extension CustomersListDetailViewController {
             let strName = name
             cell.textLabel?.attributedText = NSAttributedString(string: strName + " ", attributes: [
                 NSForegroundColorAttributeName : UIColor.mediumBlue(),
-                NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 14)!
+                NSFontAttributeName : UIFont(name: "SFUIText-Regular", size: 14)!
                 ])
         }
         if let amount = item.plan_amount, interval = item.plan_interval, qty = item.quantity, status = item.status {
             cell.detailTextLabel?.textColor = UIColor.darkBlue()
             let amountStr = currencyStringFromNumber(Double(amount)/100)
-            cell.detailTextLabel?.attributedText = adjustAttributedString(amountStr + " per " + interval, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
+            cell.detailTextLabel?.attributedText = adjustAttributedString(amountStr + " per " + interval, spacing: 1, fontName: "SFUIText-Regular", fontSize: 13, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
         }
         
         return cell

@@ -34,7 +34,7 @@ class BankManualTutorialViewController: UIViewController {
         titleLabel.frame = CGRect(x: 0, y: 35, width: 280, height: 20)
         titleLabel.text = "Example Check"
         titleLabel.textAlignment = .Center
-        titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 18)
+        titleLabel.font = UIFont(name: "SFUIText-Regular", size: 18)
         titleLabel.textColor = UIColor.lightBlue()
         self.view.addSubview(titleLabel)
         

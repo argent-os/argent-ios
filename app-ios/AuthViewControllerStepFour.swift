@@ -52,7 +52,7 @@ class AuthViewControllerStepFour: UIPageViewController, UIPageViewControllerDele
         lblDetail.tag = 7579
         lblDetail.textAlignment = NSTextAlignment.Center
         lblDetail.textColor = UIColor.whiteColor()
-        lblDetail.adjustAttributedString("SECURITY", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.darkBlue().colorWithAlphaComponent(0.75))
+        lblDetail.adjustAttributedString("SECURITY", spacing: 2, fontName: "SFUIText-Regular", fontSize: 13, fontColor: UIColor.darkBlue().colorWithAlphaComponent(0.75))
         view.addSubview(lblDetail)
         
         let lblBody = UILabel()
@@ -60,7 +60,7 @@ class AuthViewControllerStepFour: UIPageViewController, UIPageViewControllerDele
         lblBody.frame = CGRect(x: 90, y: 260, width: screenWidth-180, height: 200)
         lblBody.numberOfLines = 0
         lblBody.alpha = 0.9
-        let atrText = adjustAttributedString("We use end-to-end 256-bit TLS (SSL) encryption and bank-grade security.", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.darkBlue(), lineSpacing: 9.0, alignment: .Center)
+        let atrText = adjustAttributedString("We use end-to-end 256-bit TLS (SSL) encryption and bank-grade security.", spacing: 1, fontName: "SFUIText-Regular", fontSize: 14, fontColor: UIColor.darkBlue(), lineSpacing: 9.0, alignment: .Center)
         lblBody.attributedText = atrText
         lblBody.tag = 7579
         lblBody.textAlignment = NSTextAlignment.Center

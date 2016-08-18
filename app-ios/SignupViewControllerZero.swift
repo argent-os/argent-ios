@@ -115,13 +115,13 @@ class SignupViewControllerZero: UIViewController {
         
         individualTitle.textColor = UIColor.slateBlue()
         individualTitle.textAlignment = .Center
-        individualTitle.font = UIFont(name: "MyriadPro-Regular", size: 18)!
+        individualTitle.font = UIFont(name: "SFUIText-Regular", size: 18)!
         individualTitle.frame = CGRect(x: 0, y: backgroundIndividualImageView.frame.height/2+22, width: screenWidth, height: 40)
         individualTitle.text = "Individual"
         
         individualSubtitle.textColor = UIColor.slateBlue().colorWithAlphaComponent(0.5)
         individualSubtitle.textAlignment = .Center
-        individualSubtitle.font = UIFont(name: "MyriadPro-Regular", size: 12)!
+        individualSubtitle.font = UIFont(name: "SFUIText-Regular", size: 12)!
         individualSubtitle.frame = CGRect(x: 0, y: backgroundIndividualImageView.frame.height/2+50, width: screenWidth, height: 40)
         individualSubtitle.text = "Start sending and receiving payments"
         
@@ -147,13 +147,13 @@ class SignupViewControllerZero: UIViewController {
 
         companyTitle.textColor = UIColor.whiteColor()
         companyTitle.textAlignment = .Center
-        companyTitle.font = UIFont(name: "MyriadPro-Regular", size: 18)!
+        companyTitle.font = UIFont(name: "SFUIText-Regular", size: 18)!
         companyTitle.frame = CGRect(x: 0, y: backgroundCompanyImageView.frame.height/2+22, width: screenWidth, height: 40)
         companyTitle.text = "Company"
         
         companySubtitle.textColor = UIColor.whiteColor()
         companySubtitle.textAlignment = .Center
-        companySubtitle.font = UIFont(name: "MyriadPro-Regular", size: 12)!
+        companySubtitle.font = UIFont(name: "SFUIText-Regular", size: 12)!
         companySubtitle.frame = CGRect(x: 0, y: backgroundCompanyImageView.frame.height/2+50, width: screenWidth, height: 40)
         companySubtitle.text = "Higher volume limits enabled"
         
@@ -162,7 +162,7 @@ class SignupViewControllerZero: UIViewController {
         pageTitle.frame = CGRect(x: 0, y: 30, width: screenWidth, height: 40)
         pageTitle.textAlignment = .Center
         pageTitle.textColor = UIColor.mediumBlue()
-        pageTitle.font = UIFont(name: "MyriadPro-Regular", size: 18)!
+        pageTitle.font = UIFont(name: "SFUIText-Regular", size: 18)!
         //        self.view.addSubview(pageTitle)
         //        self.view.bringSubviewToFront(pageTitle)
         
@@ -170,7 +170,7 @@ class SignupViewControllerZero: UIViewController {
         pageSubtitle.textAlignment = .Center
         pageSubtitle.text = "Choose entity type"
         pageSubtitle.textColor = UIColor.lightBlue()
-        pageSubtitle.font = UIFont(name: "MyriadPro-Regular", size: 17)!
+        pageSubtitle.font = UIFont(name: "SFUIText-Regular", size: 17)!
         self.view.addSubview(pageSubtitle)
         self.view.bringSubviewToFront(pageSubtitle)
         

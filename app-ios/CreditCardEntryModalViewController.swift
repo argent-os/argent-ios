@@ -95,9 +95,9 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
         submitCreditCardButton.setBackgroundColor(UIColor.lightBlue().lighterColor(), forState: .Normal)
         submitCreditCardButton.setBackgroundColor(UIColor.lightBlue().lighterColor(), forState: .Highlighted)
         var attribs: [String: AnyObject] = [:]
-        attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)
+        attribs[NSFontAttributeName] = UIFont(name: "SFUIText-Regular", size: 14)
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
-        let str = adjustAttributedString("SUBMIT", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Center)
+        let str = adjustAttributedString("SUBMIT", spacing: 2, fontName: "SFUIText-Regular", fontSize: 14, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Center)
         submitCreditCardButton.setAttributedTitle(str, forState: .Normal)
         submitCreditCardButton.addTarget(self, action: #selector(self.save(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(submitCreditCardButton)
@@ -124,7 +124,7 @@ class CreditCardEntryModalViewController: UIViewController, UITextFieldDelegate,
         // Create left and right button for navigation item
         let leftButton = UIBarButtonItem(title: "Close", style: .Plain, target: self, action: #selector(self.close(_:)))
 //        let leftButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.close(_:)))
-        let font = UIFont(name: "MyriadPro-Regular", size: 17)!
+        let font = UIFont(name: "SFUIText-Regular", size: 17)!
         leftButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
         leftButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.darkBlue()], forState: UIControlState.Highlighted)
         // Create two buttons for the navigation item

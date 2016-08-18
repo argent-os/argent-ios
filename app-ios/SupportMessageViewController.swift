@@ -41,7 +41,7 @@ class SupportMessageViewController: UIViewController {
         UIToolbar.appearance().backgroundColor = UIColor.brandGreen()
 
         done.setTitleTextAttributes([
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!,
+            NSFontAttributeName : UIFont(name: "SFUIText-Regular", size: 15)!,
             NSForegroundColorAttributeName : UIColor.whiteColor()
             ], forState: .Normal)
         

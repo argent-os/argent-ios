@@ -73,14 +73,14 @@ class ConfigureNotificationsViewController: FormViewController, UIApplicationDel
         
         self.navigationItem.title = "Notifications"
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!,
+            NSFontAttributeName: UIFont(name: "SFUIText-Regular", size: 17)!,
             NSForegroundColorAttributeName: UIColor.darkBlue()
         ]
         
         // Create RowFomers
         let pushNotificationsRow = SwitchRowFormer<FormSwitchCell>() {
             $0.titleLabel.text = "Push Notifications"
-            $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 14)!
+            $0.titleLabel.font = UIFont(name: "SFUIText-Regular", size: 14)!
             $0.switchButton.onTintColor = UIColor.oceanBlue()
             }.configure() { cell in
                 getPushState { (val, token, error) in

@@ -69,8 +69,8 @@ class SubscriptionsListDetailViewController: UIViewController, UINavigationBarDe
         self.view.bringSubviewToFront(pinstripeImageView)
         
         subscriptionTitleLabel.frame = CGRect(x: 0, y: 40, width: screenWidth, height: 100)
-        subscriptionTitleLabel.attributedText = adjustAttributedString(subscriptionName!.uppercaseString, spacing: 2, fontName: "MyriadPro-Regular", fontSize: 19, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Center)
-        subscriptionTitleLabel.font = UIFont(name: "MyriadPro-Regular", size: 24)
+        subscriptionTitleLabel.attributedText = adjustAttributedString(subscriptionName!.uppercaseString, spacing: 2, fontName: "SFUIText-Regular", fontSize: 19, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Center)
+        subscriptionTitleLabel.font = UIFont(name: "SFUIText-Regular", size: 24)
         subscriptionTitleLabel.textAlignment = .Center
         let _ = Timeout(0.3) {
             addSubviewWithBounce(self.subscriptionTitleLabel, parentView: self, duration: 0.3)
@@ -89,7 +89,7 @@ class SubscriptionsListDetailViewController: UIViewController, UINavigationBarDe
         self.view.bringSubviewToFront(circleView)
         
         subscriptionAmountLabel.frame = CGRect(x: 40, y: 115, width: screenWidth-80, height: 150)
-        subscriptionAmountLabel.attributedText = formatCurrency(subscriptionAmount!, fontName: "MyriadPro-Regular", superSize: 16, fontSize: 24, offsetSymbol: 5, offsetCents: 5)
+        subscriptionAmountLabel.attributedText = formatCurrency(subscriptionAmount!, fontName: "SFUIText-Regular", superSize: 16, fontSize: 24, offsetSymbol: 5, offsetCents: 5)
         subscriptionAmountLabel.textAlignment = .Center
         subscriptionAmountLabel.textColor = UIColor.whiteColor()
         let _ = Timeout(0.5) {
@@ -97,18 +97,18 @@ class SubscriptionsListDetailViewController: UIViewController, UINavigationBarDe
         }
         self.view.bringSubviewToFront(subscriptionAmountLabel)
         if Int(subscriptionAmount!)! > 1000000 {
-            subscriptionAmountLabel.attributedText = formatCurrency(subscriptionAmount!, fontName: "MyriadPro-Regular", superSize: 12, fontSize: 18, offsetSymbol: 3, offsetCents: 3)
+            subscriptionAmountLabel.attributedText = formatCurrency(subscriptionAmount!, fontName: "SFUIText-Regular", superSize: 12, fontSize: 18, offsetSymbol: 3, offsetCents: 3)
         }
         
         subscriptionIntervalLabel.frame = CGRect(x: 40, y: 170, width: screenWidth-80, height: 100)
-        subscriptionIntervalLabel.attributedText = adjustAttributedString("PER " + subscriptionInterval!.uppercaseString, spacing: 2, fontName: "MyriadPro-Regular", fontSize: 12, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Center)
+        subscriptionIntervalLabel.attributedText = adjustAttributedString("PER " + subscriptionInterval!.uppercaseString, spacing: 2, fontName: "SFUIText-Regular", fontSize: 12, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Center)
         let _ = Timeout(0.5) {
             addSubviewWithBounce(self.subscriptionIntervalLabel, parentView: self, duration: 0.3)
         }
         
         subscriptionStatusLabel.frame = CGRect(x: 40, y: 215, width: screenWidth-80, height: 200)
         subscriptionStatusLabel.numberOfLines = 8
-        subscriptionStatusLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
+        subscriptionStatusLabel.font = UIFont(name: "SFUIText-Regular", size: 12)
         subscriptionStatusLabel.textAlignment = .Center
         subscriptionStatusLabel.textColor = UIColor.darkBlue().colorWithAlphaComponent(0.7)
         let _ = Timeout(0.7) {
@@ -121,14 +121,14 @@ class SubscriptionsListDetailViewController: UIViewController, UINavigationBarDe
         cancelSubscriptionButton.setBackgroundColor(UIColor.pastelBlue(), forState: .Normal)
         cancelSubscriptionButton.setBackgroundColor(UIColor.pastelBlue().darkerColor(), forState: .Highlighted)
         cancelSubscriptionButton.frame = CGRect(x: 15, y: screenHeight-125, width: screenWidth-30, height: 50)
-        cancelSubscriptionButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("CANCEL SUBSCRIPTION", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor()), forState: .Normal)
+        cancelSubscriptionButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("CANCEL SUBSCRIPTION", spacing: 1, fontName: "SFUIText-Regular", fontSize: 14, fontColor: UIColor.whiteColor()), forState: .Normal)
         cancelSubscriptionButton.addTarget(self, action: #selector(self.cancelSubscription(_:)), forControlEvents: .TouchUpInside)
         cancelSubscriptionButton.layer.cornerRadius = 3
         cancelSubscriptionButton.layer.masksToBounds = true
         self.view.addSubview(cancelSubscriptionButton)
         
         if subscriptionStatus == "canceled" {
-            cancelSubscriptionButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("REOPEN SUBSCRIPTION", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor()), forState: .Normal)
+            cancelSubscriptionButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("REOPEN SUBSCRIPTION", spacing: 1, fontName: "SFUIText-Regular", fontSize: 14, fontColor: UIColor.whiteColor()), forState: .Normal)
             cancelSubscriptionButton.removeTarget(self, action: #selector(self.cancelSubscription(_:)), forControlEvents: .TouchUpInside)
             cancelSubscriptionButton.addTarget(self, action: #selector(self.reopenSubscription(_:)), forControlEvents: .TouchUpInside)
         }
@@ -137,8 +137,8 @@ class SubscriptionsListDetailViewController: UIViewController, UINavigationBarDe
         deleteSubscriptionButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
         deleteSubscriptionButton.setBackgroundColor(UIColor.brandRed(), forState: .Highlighted)
         deleteSubscriptionButton.frame = CGRect(x: 15, y: screenHeight-65, width: screenWidth-30, height: 50)
-        deleteSubscriptionButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("DELETE SUBSCRIPTION", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.brandRed()), forState: .Normal)
-        deleteSubscriptionButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("DELETE SUBSCRIPTION", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor()), forState: .Highlighted)
+        deleteSubscriptionButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("DELETE SUBSCRIPTION", spacing: 1, fontName: "SFUIText-Regular", fontSize: 14, fontColor: UIColor.brandRed()), forState: .Normal)
+        deleteSubscriptionButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("DELETE SUBSCRIPTION", spacing: 1, fontName: "SFUIText-Regular", fontSize: 14, fontColor: UIColor.whiteColor()), forState: .Highlighted)
         deleteSubscriptionButton.layer.borderColor = UIColor.brandRed().CGColor
         deleteSubscriptionButton.layer.borderWidth = 1
         deleteSubscriptionButton.addTarget(self, action: #selector(self.deleteSubscription(_:)), forControlEvents: .TouchUpInside)
@@ -219,7 +219,7 @@ class SubscriptionsListDetailViewController: UIViewController, UINavigationBarDe
         
         // Create left and right button for navigation item
         let leftButton = UIBarButtonItem(image: UIImage(named: "IconCloseLight"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.returnToMenu(_:)))
-        let font = UIFont(name: "MyriadPro-Regular", size: 14)
+        let font = UIFont(name: "SFUIText-Regular", size: 14)
         leftButton.setTitleTextAttributes([NSFontAttributeName: font!, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
         // Create two buttons for the navigation item
         navigationItem.leftBarButtonItem = leftButton

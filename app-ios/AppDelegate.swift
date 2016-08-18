@@ -110,7 +110,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Tooltips
         var preferences = EasyTipView.Preferences()
-        preferences.drawing.font = UIFont(name: "MyriadPro-Regular", size: 13)!
+        preferences.drawing.font = UIFont(name: "SFUIText-Regular", size: 13)!
         preferences.drawing.foregroundColor = UIColor.whiteColor()
         preferences.drawing.backgroundColor = UIColor.skyBlue()
         preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.Top

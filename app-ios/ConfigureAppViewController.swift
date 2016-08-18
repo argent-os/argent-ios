@@ -50,14 +50,14 @@ class ConfigureAppViewController: FormViewController, UIApplicationDelegate {
         
         self.navigationItem.title = "App Settings"
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!,
+            NSFontAttributeName: UIFont(name: "SFUIText-Regular", size: 17)!,
             NSForegroundColorAttributeName: UIColor.darkBlue()
         ]
         
         // Create RowFomers
         let configurePOSRowScreenAlive = SwitchRowFormer<FormSwitchCell>() {
             $0.titleLabel.text = "Keep screen alive"
-            $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 14)!
+            $0.titleLabel.font = UIFont(name: "SFUIText-Regular", size: 14)!
             $0.switchButton.onTintColor = UIColor.oceanBlue()
             }.configure() { cell in
                 cell.rowHeight = 60
@@ -79,7 +79,7 @@ class ConfigureAppViewController: FormViewController, UIApplicationDelegate {
         
         let configureCenterMenuRow = SwitchRowFormer<FormSwitchCell>() {
             $0.titleLabel.text = "Hide center menu text"
-            $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 14)!
+            $0.titleLabel.font = UIFont(name: "SFUIText-Regular", size: 14)!
             $0.switchButton.onTintColor = UIColor.oceanBlue()
             }.configure() { cell in
                 cell.rowHeight = 60

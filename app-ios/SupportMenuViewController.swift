@@ -18,7 +18,7 @@ class SupportMenuViewController: UIViewController {
         
         self.navigationItem.title = "Contact Support"
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!,
+            NSFontAttributeName: UIFont(name: "SFUIText-Regular", size: 17)!,
             NSForegroundColorAttributeName: UIColor.darkBlue()
         ]
     }

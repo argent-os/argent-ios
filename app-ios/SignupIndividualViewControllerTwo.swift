@@ -35,7 +35,7 @@ class SignupIndividualViewControllerTwo: UIViewController, UITextFieldDelegate, 
         navigationItem.rightBarButtonItem = stepButton
         navigationItem.rightBarButtonItem?.tintColor = UIColor.lightBlue()
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([
-            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!,
+            NSFontAttributeName: UIFont(name: "SFUIText-Regular", size: 17)!,
             NSForegroundColorAttributeName:UIColor.lightBlue()
             ], forState: .Normal)
         
@@ -91,7 +91,7 @@ class SignupIndividualViewControllerTwo: UIViewController, UITextFieldDelegate, 
         // Programatically set the input fields
         passwordTextField.tag = 234
         passwordTextField.textAlignment = NSTextAlignment.Center
-        passwordTextField.font = UIFont(name: "MyriadPro-Regular", size: 17)!
+        passwordTextField.font = UIFont(name: "SFUIText-Regular", size: 17)!
         passwordTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         passwordTextField.layer.borderWidth = 1
         passwordTextField.layer.cornerRadius = 10
@@ -110,7 +110,7 @@ class SignupIndividualViewControllerTwo: UIViewController, UITextFieldDelegate, 
         
         repeatPasswordTextField.tag = 235
         repeatPasswordTextField.textAlignment = NSTextAlignment.Center
-        repeatPasswordTextField.font = UIFont(name: "MyriadPro-Regular", size: 17)!
+        repeatPasswordTextField.font = UIFont(name: "SFUIText-Regular", size: 17)!
         repeatPasswordTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         repeatPasswordTextField.layer.borderWidth = 1
         repeatPasswordTextField.layer.cornerRadius = 10
@@ -145,7 +145,7 @@ class SignupIndividualViewControllerTwo: UIViewController, UITextFieldDelegate, 
         navBar.shadowImage = UIImage()
         navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!,
+            NSFontAttributeName: UIFont(name: "SFUIText-Regular", size: 17)!,
             NSForegroundColorAttributeName:UIColor.lightBlue()
         ]
         self.view.addSubview(navBar)
@@ -169,7 +169,7 @@ class SignupIndividualViewControllerTwo: UIViewController, UITextFieldDelegate, 
         let done: UIBarButtonItem = UIBarButtonItem(title: "Continue", style: UIBarButtonItemStyle.Done, target: self, action: #selector(SignupIndividualViewControllerTwo.nextStep(_:)))
         
         done.setTitleTextAttributes([
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!,
+            NSFontAttributeName : UIFont(name: "SFUIText-Regular", size: 15)!,
             NSForegroundColorAttributeName : UIColor.whiteColor()
             ], forState: .Normal)
         

@@ -71,7 +71,7 @@ class AccountVerificationTutorialViewController: UIViewController {
         titleLabelDetail.frame = CGRect(x: 0, y: 55, width: 300, height: 20)
         titleLabelDetail.text = "To Accept Payments"
         titleLabelDetail.textAlignment = .Center
-        titleLabelDetail.font = UIFont(name: "MyriadPro-Regular", size: 12)!
+        titleLabelDetail.font = UIFont(name: "SFUIText-Regular", size: 12)!
         titleLabelDetail.textColor = UIColor.lightBlue()
         self.view.addSubview(titleLabelDetail)
         
@@ -88,7 +88,7 @@ class AccountVerificationTutorialViewController: UIViewController {
         tutSubText1.text = "In Edit Profile"
         tutSubText1.textAlignment = .Left
         tutSubText1.textColor = UIColor.lightBlue()
-        tutSubText1.font = UIFont(name: "MyriadPro-Regular", size: 12)!
+        tutSubText1.font = UIFont(name: "SFUIText-Regular", size: 12)!
         self.view.addSubview(tutSubText1)
         
         tutImage2.frame = CGRect(x: 30, y: 170, width: 50, height: 50)
@@ -104,7 +104,7 @@ class AccountVerificationTutorialViewController: UIViewController {
         tutSubText2.text = "Direct login or manual entry"
         tutSubText2.textAlignment = .Left
         tutSubText2.textColor = UIColor.lightBlue()
-        tutSubText2.font = UIFont(name: "MyriadPro-Regular", size: 12)!
+        tutSubText2.font = UIFont(name: "SFUIText-Regular", size: 12)!
         self.view.addSubview(tutSubText2)
         
         tutImage3.frame = CGRect(x: 30, y: 250, width: 50, height: 50)
@@ -120,7 +120,7 @@ class AccountVerificationTutorialViewController: UIViewController {
         tutSubText3.text = "One document and social"
         tutSubText3.textAlignment = .Left
         tutSubText3.textColor = UIColor.lightBlue()
-        tutSubText3.font = UIFont(name: "MyriadPro-Regular", size: 12)!
+        tutSubText3.font = UIFont(name: "SFUIText-Regular", size: 12)!
         self.view.addSubview(tutSubText3)
         
         tutImage4.frame = CGRect(x: 0, y: 320, width: 300, height: 60)
@@ -130,7 +130,7 @@ class AccountVerificationTutorialViewController: UIViewController {
         self.view.bringSubviewToFront(tutImage4)
         tutText4.frame = CGRect(x: 30, y: 370, width: 250, height: 80)
         tutText4.numberOfLines = 0
-        tutText4.font = UIFont(name: "MyriadPro-Regular", size: 13)!
+        tutText4.font = UIFont(name: "SFUIText-Regular", size: 13)!
         tutText4.text = "Security is our top priority, all bank account and social security data are securely transmitted with 256-bit encryption and never stored on our servers."
         tutText4.textAlignment = .Center
         tutText4.textColor = UIColor.lightBlue()
@@ -149,7 +149,7 @@ class AccountVerificationTutorialViewController: UIViewController {
         exitButton.layer.cornerRadius = 10
         exitButton.layer.masksToBounds = true
         var attribs: [String: AnyObject] = [:]
-        attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)!
+        attribs[NSFontAttributeName] = UIFont(name: "SFUIText-Regular", size: 14)!
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
         let str = NSAttributedString(string: "Exit Tutorial", attributes: attribs)
         exitButton.setBackgroundColor(UIColor.pastelBlue(), forState: .Normal)

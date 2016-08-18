@@ -67,7 +67,7 @@ class RiskProfileViewController: UIViewController {
         
         pageHeader.text = "Risk Profile"
         pageHeader.textColor = UIColor.lightBlue()
-        pageHeader.font = UIFont(name: "MyriadPro-Regular", size: 24)
+        pageHeader.font = UIFont(name: "SFUIText-Regular", size: 24)
         pageHeader.textAlignment = .Center
         pageHeader.frame = CGRect(x: 0, y: 300, width: screenWidth, height: 30)
         self.view.addSubview(pageHeader)
@@ -76,7 +76,7 @@ class RiskProfileViewController: UIViewController {
         pageDescription.numberOfLines = 0
         pageDescription.lineBreakMode = .ByWordWrapping
         pageDescription.textColor = UIColor.lightBlue()
-        pageDescription.font = UIFont(name: "MyriadPro-Regular", size: 15)
+        pageDescription.font = UIFont(name: "SFUIText-Regular", size: 15)
         pageDescription.textAlignment = .Center
         pageDescription.frame = CGRect(x: 0, y: 335, width: screenWidth, height: 50)
         self.view.addSubview(pageDescription)
@@ -91,7 +91,7 @@ class RiskProfileViewController: UIViewController {
         previewButton.setBackgroundColor(UIColor.skyBlue(), forState: .Normal)
         previewButton.setBackgroundColor(UIColor.skyBlue().lighterColor(), forState: .Highlighted)
         var attribs: [String: AnyObject] = [:]
-        attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)!
+        attribs[NSFontAttributeName] = UIFont(name: "SFUIText-Regular", size: 14)!
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
         let str = NSAttributedString(string: "See Preview", attributes: attribs)
         previewButton.setAttributedTitle(str, forState: .Normal)
@@ -104,7 +104,7 @@ class RiskProfileViewController: UIViewController {
         
         self.navigationItem.title = "Risk Profile"
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!,
+            NSFontAttributeName: UIFont(name: "SFUIText-Regular", size: 17)!,
             NSForegroundColorAttributeName: UIColor.darkBlue()
         ]
     }

@@ -104,8 +104,8 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
         updatePlanButton.tintColor = UIColor.whiteColor()
         updatePlanButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         updatePlanButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
-        updatePlanButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 16)
-        updatePlanButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("UPDATE PLAN", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor()), forState: .Normal)
+        updatePlanButton.titleLabel?.font = UIFont(name: "SFUIText-Regular", size: 16)
+        updatePlanButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("UPDATE PLAN", spacing: 1, fontName: "SFUIText-Regular", fontSize: 14, fontColor: UIColor.whiteColor()), forState: .Normal)
         updatePlanButton.layer.cornerRadius = 3
         updatePlanButton.layer.masksToBounds = true
         updatePlanButton.clipsToBounds = true
@@ -121,9 +121,9 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
         deletePlanButton.tintColor = UIColor.whiteColor()
         deletePlanButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         deletePlanButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(0.5), forState: .Highlighted)
-        deletePlanButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 16)
-        deletePlanButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("DELETE PLAN", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.brandRed()), forState: .Normal)
-        deletePlanButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("DELETE PLAN", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor()), forState: .Highlighted)
+        deletePlanButton.titleLabel?.font = UIFont(name: "SFUIText-Regular", size: 16)
+        deletePlanButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("DELETE PLAN", spacing: 1, fontName: "SFUIText-Regular", fontSize: 14, fontColor: UIColor.brandRed()), forState: .Normal)
+        deletePlanButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("DELETE PLAN", spacing: 1, fontName: "SFUIText-Regular", fontSize: 14, fontColor: UIColor.whiteColor()), forState: .Highlighted)
         deletePlanButton.layer.cornerRadius = 3
         deletePlanButton.layer.masksToBounds = true
         deletePlanButton.layer.borderColor = UIColor.brandRed().CGColor
@@ -148,7 +148,7 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
             let planAmountRow = SegmentedRowFormer<FormSegmentedCell>() {
 
                 $0.titleLabel.text = "Amount"
-                $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 15)!
+                $0.titleLabel.font = UIFont(name: "SFUIText-Regular", size: 15)!
                 $0.titleLabel.textColor = UIColor.mediumBlue()
                 }.configure {
                     let amountNum: Float = Float(plan!["amount"].stringValue)!/100
@@ -165,7 +165,7 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
             
             let planNameRow = SegmentedRowFormer<FormSegmentedCell>() {
                 $0.titleLabel.text = "Name"
-                $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 15)!
+                $0.titleLabel.font = UIFont(name: "SFUIText-Regular", size: 15)!
                 $0.titleLabel.textColor = UIColor.mediumBlue()
                 }.configure {
                     $0.segmentTitles = [plan!["name"].stringValue]
@@ -177,7 +177,7 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
             
             let planCurrencyRow = SegmentedRowFormer<FormSegmentedCell>() {
                 $0.titleLabel.text = "Currency"
-                $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 15)!
+                $0.titleLabel.font = UIFont(name: "SFUIText-Regular", size: 15)!
                 $0.titleLabel.textColor = UIColor.mediumBlue()
                 }.configure {
                     $0.segmentTitles = ["USD"]
@@ -189,7 +189,7 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
         
             let planIntervalRow = SegmentedRowFormer<FormSegmentedCell>() {
                 $0.titleLabel.text = "Interval"
-                $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 15)!
+                $0.titleLabel.font = UIFont(name: "SFUIText-Regular", size: 15)!
                 $0.titleLabel.textColor = UIColor.mediumBlue()
                 }.configure {
                     $0.segmentTitles = [plan!["interval"].stringValue]
@@ -201,7 +201,7 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
             
             let planTrialPeriodRow = SegmentedRowFormer<FormSegmentedCell>() {
                 $0.titleLabel.text = "Trial"
-                $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 15)!
+                $0.titleLabel.font = UIFont(name: "SFUIText-Regular", size: 15)!
                 $0.titleLabel.textColor = UIColor.mediumBlue()
                 }.configure {
                     if plan!["trial_period_days"].stringValue == "" {
@@ -216,7 +216,7 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
             
             let planStatementDescriptionRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
                 $0.titleLabel.text = "Desc"
-                $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 15)!
+                $0.titleLabel.font = UIFont(name: "SFUIText-Regular", size: 15)!
                 $0.titleLabel.textColor = UIColor.mediumBlue()
                 $0.textField.font = .systemFontOfSize(15)
                 $0.textField.autocorrectionType = .No
@@ -243,7 +243,7 @@ final class PlansListDetailViewController: FormViewController, UINavigationBarDe
             
             let planIntervalCountRow = SegmentedRowFormer<FormSegmentedCell>() {
                 $0.titleLabel.text = "Interval"
-                $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 15)!
+                $0.titleLabel.font = UIFont(name: "SFUIText-Regular", size: 15)!
                 $0.titleLabel.textColor = UIColor.mediumBlue()
                 }.configure {
                     $0.segmentTitles = [plan!["interval_count"].stringValue]

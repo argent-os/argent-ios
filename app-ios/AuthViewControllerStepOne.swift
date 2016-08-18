@@ -59,7 +59,7 @@ class AuthViewControllerStepOne: UIPageViewController, UIPageViewControllerDeleg
         lblDetail.tag = 7579
         lblDetail.textAlignment = NSTextAlignment.Center
         lblDetail.textColor = UIColor.darkBlue()
-        lblDetail.adjustAttributedString("SWIPE TO LEARN MORE", spacing: 4, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.darkBlue())
+        lblDetail.adjustAttributedString("SWIPE TO LEARN MORE", spacing: 4, fontName: "SFUIText-Regular", fontSize: 13, fontColor: UIColor.darkBlue())
         view.addSubview(lblDetail)
         
         let shimmeringView = FBShimmeringView()
@@ -75,7 +75,7 @@ class AuthViewControllerStepOne: UIPageViewController, UIPageViewControllerDeleg
         }
         
         //        // Set range of string length to exactly 8, the number of characters
-        //        lblSubtext.font = UIFont(name: "MyriadPro-Regular", size: 17)
+        //        lblSubtext.font = UIFont(name: "SFUIText-Regular", size: 17)
         //        lblSubtext.text = APP_NAME
         //        lblSubtext.tag = 7579
         //        lblSubtext.font.morphingEffect = .Scale

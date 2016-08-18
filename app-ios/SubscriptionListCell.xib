@@ -6,9 +6,9 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="myriad_pro_regular.ttf">
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
+        <mutableArray key="SF-UI-Text-Regular.otf">
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -26,7 +26,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="13" id="EIG-h0-LfC"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
                         <color key="textColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -35,7 +35,7 @@
                     </switch>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blo-yf-duB">
                         <rect key="frame" x="15" y="7" width="240" height="17"/>
-                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
                         <color key="textColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>

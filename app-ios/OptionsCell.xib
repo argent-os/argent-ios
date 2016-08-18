@@ -5,8 +5,8 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="myriad_pro_regular.ttf">
-            <string>MyriadPro-Regular</string>
+        <mutableArray key="SF-UI-Text-Light.otf">
+            <string>SFUIText-Light</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -25,7 +25,7 @@
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Action title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="amS-Rr-sbk">
                         <rect key="frame" x="25" y="15" width="451" height="30"/>
-                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="17"/>
+                        <fontDescription key="fontDescription" name="SFUIText-Light" family="SF UI Text" pointSize="16"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>

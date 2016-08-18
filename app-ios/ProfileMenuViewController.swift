@@ -88,7 +88,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         self.verifiedLabel.contentMode = .Center
         self.verifiedLabel.textAlignment = .Center
         self.verifiedLabel.textColor = UIColor.lightBlue()
-        self.verifiedLabel.font = UIFont(name: "MyriadPro-Regular", size: 14)
+        self.verifiedLabel.font = UIFont(name: "SFUIText-Regular", size: 14)
         self.verifiedLabel.layer.cornerRadius = 5
         self.verifiedLabel.layer.borderColor = UIColor.lightBlue().CGColor
         self.verifiedLabel.layer.borderWidth = 1
@@ -302,7 +302,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                 if bool == true {
                     // the account does not require information, display location
                     if let address_city = acct?.address_city where address_city != "", let address_country = acct?.address_country {
-                        let locationStr = adjustAttributedStringNoLineSpacing(address_city.uppercaseString + ", " + address_country.uppercaseString, spacing: 0.5, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                        let locationStr = adjustAttributedStringNoLineSpacing(address_city.uppercaseString + ", " + address_country.uppercaseString, spacing: 0.5, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
                         // locationStr.appendAttributedString(attachmentString)
                         self.locationLabel.attributedText = locationStr
                     } else {
@@ -318,7 +318,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         }
         self.locationLabel.frame = CGRectMake(0, 58, screenWidth, 70)
         self.locationLabel.textAlignment = NSTextAlignment.Center
-        self.locationLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
+        self.locationLabel.font = UIFont(name: "SFUIText-Regular", size: 12)
         self.locationLabel.numberOfLines = 0
         self.locationLabel.textColor = UIColor.lightBlue()
 
@@ -337,7 +337,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
 
         self.customersCountLabel.frame = CGRectMake(40, 130, 80, 70)
         self.customersCountLabel.textAlignment = NSTextAlignment.Center
-        self.customersCountLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
+        self.customersCountLabel.font = UIFont(name: "SFUIText-Regular", size: 12)
         self.customersCountLabel.numberOfLines = 0
         self.customersCountLabel.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.75)
         self.view.addSubview(customersCountLabel)
@@ -345,7 +345,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
 
         self.subscriptionsCountLabel.frame = CGRectMake(screenWidth*0.5-45, 130, 90, 70)
         self.subscriptionsCountLabel.textAlignment = NSTextAlignment.Center
-        self.subscriptionsCountLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
+        self.subscriptionsCountLabel.font = UIFont(name: "SFUIText-Regular", size: 12)
         self.subscriptionsCountLabel.numberOfLines = 0
         self.subscriptionsCountLabel.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.75)
         self.view.addSubview(self.subscriptionsCountLabel)
@@ -353,7 +353,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         
         self.plansCountLabel.frame = CGRectMake(screenWidth-120, 130, 80, 70)
         self.plansCountLabel.textAlignment = NSTextAlignment.Center
-        self.plansCountLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
+        self.plansCountLabel.font = UIFont(name: "SFUIText-Regular", size: 12)
         self.plansCountLabel.numberOfLines = 0
         self.plansCountLabel.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.75)
         self.view.addSubview(self.plansCountLabel)
@@ -367,37 +367,37 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
     func reloadUserData() {
         self.loadCustomerList { (customers: [Customer]?, NSError) in
             if(customers!.count == 0) {
-                self.customersCountLabel.attributedText = adjustAttributedStringNoLineSpacing("0\nSubscribers", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                self.customersCountLabel.attributedText = adjustAttributedStringNoLineSpacing("0\nSubscribers", spacing: 1, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
             } else if(customers!.count < 2 && customers!.count > 0) {
-                self.customersCountLabel.attributedText = adjustAttributedStringNoLineSpacing(String(customers!.count) + "\nSubscriber", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                self.customersCountLabel.attributedText = adjustAttributedStringNoLineSpacing(String(customers!.count) + "\nSubscriber", spacing: 1, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
             } else if(customers!.count > 98) {
-                self.customersCountLabel.attributedText = adjustAttributedStringNoLineSpacing("100+\nSubscribers", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                self.customersCountLabel.attributedText = adjustAttributedStringNoLineSpacing("100+\nSubscribers", spacing: 1, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
             } else {
-                self.customersCountLabel.attributedText = adjustAttributedStringNoLineSpacing(String(customers!.count) + "\nSubscribers", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                self.customersCountLabel.attributedText = adjustAttributedStringNoLineSpacing(String(customers!.count) + "\nSubscribers", spacing: 1, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
             }
         }
         
         self.loadPlanList("100", starting_after: "") { (plans, error) in
             if(plans!.count == 0) {
-                self.plansCountLabel.attributedText = adjustAttributedStringNoLineSpacing("0\nPlans", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                self.plansCountLabel.attributedText = adjustAttributedStringNoLineSpacing("0\nPlans", spacing: 1, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
             } else if(plans!.count < 2 && plans!.count > 0) {
-                self.plansCountLabel.attributedText = adjustAttributedStringNoLineSpacing(String(plans!.count) + "\nPlan", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                self.plansCountLabel.attributedText = adjustAttributedStringNoLineSpacing(String(plans!.count) + "\nPlan", spacing: 1, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
             } else if(plans!.count > 98) {
-                self.plansCountLabel.attributedText = adjustAttributedStringNoLineSpacing("100+\nPlans", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                self.plansCountLabel.attributedText = adjustAttributedStringNoLineSpacing("100+\nPlans", spacing: 1, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
             } else {
-                self.plansCountLabel.attributedText = adjustAttributedStringNoLineSpacing(String(plans!.count) + "\nPlans", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                self.plansCountLabel.attributedText = adjustAttributedStringNoLineSpacing(String(plans!.count) + "\nPlans", spacing: 1, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
             }
         }
         
         self.loadSubscriptionList { (subscriptions: [Subscription]?, NSError) in
             if(subscriptions!.count == 0) {
-                self.subscriptionsCountLabel.attributedText = adjustAttributedStringNoLineSpacing("0\nSubscriptions", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                self.subscriptionsCountLabel.attributedText = adjustAttributedStringNoLineSpacing("0\nSubscriptions", spacing: 1, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
             } else if(subscriptions!.count < 2 && subscriptions!.count > 0) {
-                self.subscriptionsCountLabel.attributedText = adjustAttributedStringNoLineSpacing(String(subscriptions!.count) + "\nSubscription", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                self.subscriptionsCountLabel.attributedText = adjustAttributedStringNoLineSpacing(String(subscriptions!.count) + "\nSubscription", spacing: 1, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
             } else if(subscriptions!.count > 98) {
-                self.subscriptionsCountLabel.attributedText = adjustAttributedStringNoLineSpacing("100+\nSubscriptions", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                self.subscriptionsCountLabel.attributedText = adjustAttributedStringNoLineSpacing("100+\nSubscriptions", spacing: 1, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
             } else {
-                self.subscriptionsCountLabel.attributedText = adjustAttributedStringNoLineSpacing(String(subscriptions!.count) + "\nSubscriptions", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                self.subscriptionsCountLabel.attributedText = adjustAttributedStringNoLineSpacing(String(subscriptions!.count) + "\nSubscriptions", spacing: 1, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
             }
         }
     }
@@ -421,7 +421,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         
         self.navBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.darkBlue(),
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 17.0)!
+            NSFontAttributeName : UIFont(name: "SFUIText-Regular", size: 17.0)!
         ]
         self.navBar.setItems([navItem], animated: false)
         let _ = Timeout(0.1) {

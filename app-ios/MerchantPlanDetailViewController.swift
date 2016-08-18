@@ -45,7 +45,7 @@ class MerchantPlanDetailViewController: UIViewController {
         
         planTitleLabel.frame = CGRect(x: 0, y: 40, width: 300, height: 100)
         if let p_name = planName where planName != nil || planName != "" {
-            planTitleLabel.attributedText = adjustAttributedString(p_name.uppercaseString, spacing: 1.5, fontName: "MyriadPro-Regular", fontSize: 19, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Center)
+            planTitleLabel.attributedText = adjustAttributedString(p_name.uppercaseString, spacing: 1.5, fontName: "SFUIText-Regular", fontSize: 19, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Center)
         }
         addSubviewWithBounce(planTitleLabel, parentView: self, duration: 0.3)
         
@@ -57,24 +57,24 @@ class MerchantPlanDetailViewController: UIViewController {
         addSubviewWithBounce(circleView, parentView: self, duration: 0.8)
         
         planAmountLabel.frame = CGRect(x: 0, y: 110, width: 300, height: 150)
-        planAmountLabel.attributedText = formatCurrency(planAmount!, fontName: "MyriadPro-Regular", superSize: 16, fontSize: 24, offsetSymbol: 5, offsetCents: 5)
+        planAmountLabel.attributedText = formatCurrency(planAmount!, fontName: "SFUIText-Regular", superSize: 16, fontSize: 24, offsetSymbol: 5, offsetCents: 5)
         planAmountLabel.textAlignment = .Center
         planAmountLabel.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.9)
         addSubviewWithBounce(planAmountLabel, parentView: self, duration: 0.3)
         if Int(planAmount!)! > 1000000 {
-            planAmountLabel.attributedText = formatCurrency(planAmount!, fontName: "MyriadPro-Regular", superSize: 12, fontSize: 18, offsetSymbol: 3, offsetCents: 3)
+            planAmountLabel.attributedText = formatCurrency(planAmount!, fontName: "SFUIText-Regular", superSize: 12, fontSize: 18, offsetSymbol: 3, offsetCents: 3)
         }
         
         planIntervalLabel.frame = CGRect(x: 0, y: 165, width: 300, height: 100)
         planIntervalLabel.text = "per " + planInterval!
-        planIntervalLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
+        planIntervalLabel.font = UIFont(name: "SFUIText-Regular", size: 12)
         planIntervalLabel.textAlignment = .Center
         planIntervalLabel.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.7)
         addSubviewWithBounce(planIntervalLabel, parentView: self, duration: 0.3)
         
         planStatementDescriptorLabel.frame = CGRect(x: 0, y: 215, width: 300, height: 200)
         planStatementDescriptorLabel.numberOfLines = 0
-        planStatementDescriptorLabel.font = UIFont(name: "MyriadPro-Regular", size: 12)
+        planStatementDescriptorLabel.font = UIFont(name: "SFUIText-Regular", size: 12)
         planStatementDescriptorLabel.textAlignment = .Center
         planStatementDescriptorLabel.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.7)
         addSubviewWithBounce(planStatementDescriptorLabel, parentView: self, duration: 0.3)

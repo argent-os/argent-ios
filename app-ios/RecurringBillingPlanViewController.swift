@@ -133,8 +133,8 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         addPlanButton.tintColor = UIColor(rgba: "#fff")
         addPlanButton.setTitleColor(UIColor(rgba: "#fff"), forState: .Normal)
         addPlanButton.setTitleColor(UIColor(rgba: "#fffe"), forState: .Highlighted)
-        addPlanButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 16)
-        addPlanButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("CREATE PLAN", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor()), forState: .Normal)
+        addPlanButton.titleLabel?.font = UIFont(name: "SFUIText-Regular", size: 16)
+        addPlanButton.setAttributedTitle(adjustAttributedStringNoLineSpacing("CREATE PLAN", spacing: 1, fontName: "SFUIText-Regular", fontSize: 14, fontColor: UIColor.whiteColor()), forState: .Normal)
         addPlanButton.layer.cornerRadius = 0
         addPlanButton.layer.masksToBounds = true
         addPlanButton.clipsToBounds = true
@@ -145,14 +145,14 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
 
         let amountLabel = UILabel()
         amountLabel.text = "Amount"
-        amountLabel.font = UIFont(name: "MyriadPro-Regular", size: 15)!
+        amountLabel.font = UIFont(name: "SFUIText-Regular", size: 15)!
         amountLabel.textColor = UIColor.darkBlue()
         amountLabel.frame = CGRect(x: 15, y: 60, width: 200, height: 60)
         self.view.addSubview(amountLabel)
         self.view.bringSubviewToFront(amountLabel)
         
         amountCurrencyField.placeholder = "Amount of the Billing Plan"
-        amountCurrencyField.font = UIFont(name: "MyriadPro-Regular", size: 15)!
+        amountCurrencyField.font = UIFont(name: "SFUIText-Regular", size: 15)!
         amountCurrencyField.textColor = UIColor.darkBlue()
         amountCurrencyField.frame = CGRect(x: 115, y: 60, width: 300, height: 60)
         let countryCode = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as! String
@@ -170,10 +170,10 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
 //        var planAmountValue = 0
 //        let planAmountRow = TextFieldRowFormer<AmountInputCell>(instantiateType: .Nib(nibName: "AmountInputCell")) { [weak self] in
 //            $0.titleLabel.text = "Amount"
-//            $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 15)!
+//            $0.titleLabel.font = UIFont(name: "SFUIText-Regular", size: 15)!
 //            $0.titleLabel.textColor = UIColor.mediumBlue()
 //
-//            $0.regularTextField.font = UIFont(name: "MyriadPro-Regular", size: 15)!
+//            $0.regularTextField.font = UIFont(name: "SFUIText-Regular", size: 15)!
 //            $0.regularTextField.autocorrectionType = .No
 //            $0.regularTextField.autocapitalizationType = .Words
 //            $0.regularTextField.keyboardType = .NumberPad
@@ -187,9 +187,9 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
 //        
         let planNameRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
             $0.titleLabel.text = "Name"
-            $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 15)!
+            $0.titleLabel.font = UIFont(name: "SFUIText-Regular", size: 15)!
             $0.titleLabel.textColor = UIColor.mediumBlue()
-            $0.textField.font = UIFont(name: "MyriadPro-Regular", size: 15)!
+            $0.textField.font = UIFont(name: "SFUIText-Regular", size: 15)!
             $0.textField.autocorrectionType = .No
             $0.textField.autocapitalizationType = .Words
             $0.textField.inputAccessoryView = self?.formerInputAccessoryView
@@ -203,7 +203,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         
 //        let planCurrencyRow = InlinePickerRowFormer<CustomLabelCell, String>(instantiateType: .Nib(nibName: "CustomLabelCell")) {
 //            $0.titleLabel.text = "Currency"
-//            $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 15)!
+//            $0.titleLabel.font = UIFont(name: "SFUIText-Regular", size: 15)!
 //            $0.titleLabel.textColor = UIColor.mediumBlue()
 //            }.configure {
 //                let currencies = ["", "USD"]
@@ -220,7 +220,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         
         let planCurrencyRow = SegmentedRowFormer<FormSegmentedCell>() {
             $0.titleLabel.text = "Currency"
-            $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 15)!
+            $0.titleLabel.font = UIFont(name: "SFUIText-Regular", size: 15)!
             $0.titleLabel.textColor = UIColor.mediumBlue()
             }.configure {
                 $0.segmentTitles = ["USD"]
@@ -234,7 +234,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         
         let planIntervalRow = SegmentedRowFormer<FormSegmentedCell>() {
             $0.titleLabel.text = "Interval"
-            $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 15)!
+            $0.titleLabel.font = UIFont(name: "SFUIText-Regular", size: 15)!
             $0.titleLabel.textColor = UIColor.mediumBlue()
             }.configure {
                 $0.segmentTitles = ["Day", "Week", "Month", "Year"]
@@ -247,9 +247,9 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         
         let planTrialPeriodRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
             $0.titleLabel.text = "Trial"
-            $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 15)!
+            $0.titleLabel.font = UIFont(name: "SFUIText-Regular", size: 15)!
             $0.titleLabel.textColor = UIColor.mediumBlue()
-            $0.textField.font = UIFont(name: "MyriadPro-Regular", size: 15)!
+            $0.textField.font = UIFont(name: "SFUIText-Regular", size: 15)!
             $0.textField.autocorrectionType = .No
             $0.textField.autocapitalizationType = .None
             $0.textField.keyboardType = .NumberPad
@@ -263,7 +263,7 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         
         let planStatementDescriptionRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
             $0.titleLabel.text = "Desc"
-            $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 15)!
+            $0.titleLabel.font = UIFont(name: "SFUIText-Regular", size: 15)!
             $0.titleLabel.textColor = UIColor.mediumBlue()
             $0.textField.font = .systemFontOfSize(15)
             $0.textField.autocorrectionType = .No
@@ -282,9 +282,9 @@ final class RecurringBillingViewController: FormViewController, UINavigationBarD
         
         let planIntervalCountRow = TextFieldRowFormer<ProfileFieldCell>(instantiateType: .Nib(nibName: "ProfileFieldCell")) { [weak self] in
             $0.titleLabel.text = "Count"
-            $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 15)!
+            $0.titleLabel.font = UIFont(name: "SFUIText-Regular", size: 15)!
             $0.titleLabel.textColor = UIColor.mediumBlue()
-            $0.textField.font = UIFont(name: "MyriadPro-Regular", size: 15)!
+            $0.textField.font = UIFont(name: "SFUIText-Regular", size: 15)!
             $0.textField.text = "1"
             $0.textField.autocorrectionType = .No
             $0.textField.autocapitalizationType = .None

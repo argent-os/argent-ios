@@ -110,7 +110,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.navigationController?.navigationBar.backgroundColor = UIColor.pastelBlue()
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 17)!
+            NSFontAttributeName : UIFont(name: "SFUIText-Regular", size: 17)!
         ]
         
         activityIndicator.center = view.center
@@ -157,9 +157,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.indentationWidth = 2 // The amount each indentation will move the text
         cell.indentationLevel = 1  // The number of times you indent the text
         cell.textLabel?.textColor = UIColor.darkGrayColor()
-        cell.textLabel?.font = UIFont(name: "MyriadPro-Regular", size: 14)
+        cell.textLabel?.font = UIFont(name: "SFUIText-Regular", size: 14)
         cell.selectionStyle = UITableViewCellSelectionStyle.Default
-        cell.detailTextLabel?.font = UIFont(name: "MyriadPro-Regular", size: 14)
+        cell.detailTextLabel?.font = UIFont(name: "SFUIText-Regular", size: 14)
         cell.detailTextLabel?.textColor = UIColor.lightBlue()
         
         cell.imageView!.frame = CGRectMake(10, 15, 30, 30)
@@ -305,7 +305,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UISearchBar.classForCoder()]).tintColor = UIColor.whiteColor()
         UIButton.appearanceWhenContainedInInstancesOfClasses([UISearchBar.classForCoder()]).tintColor = UIColor.whiteColor()
         UIButton.appearanceWhenContainedInInstancesOfClasses([UISearchBar.classForCoder()]).setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.classForCoder()]).defaultTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(),NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 14)!]
+        UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.classForCoder()]).defaultTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(),NSFontAttributeName: UIFont(name: "SFUIText-Regular", size: 14)!]
         
         self.navigationController?.navigationBar.addSubview(self.searchController.searchBar)
 
@@ -426,12 +426,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: DZNEmptyDataSet delegate
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = adjustAttributedStringNoLineSpacing("\nARGENT", spacing: 4, fontName: "MyriadPro-Regular", fontSize: 17, fontColor: UIColor.lightBlue())
+        let str = adjustAttributedStringNoLineSpacing("\nARGENT", spacing: 4, fontName: "SFUIText-Regular", fontSize: 17, fontColor: UIColor.lightBlue())
         return str
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let str = adjustAttributedStringNoLineSpacing("SEARCH AND PAY", spacing: 4, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.lightBlue())
+        let str = adjustAttributedStringNoLineSpacing("SEARCH AND PAY", spacing: 4, fontName: "SFUIText-Regular", fontSize: 13, fontColor: UIColor.lightBlue())
 
         return str
     }

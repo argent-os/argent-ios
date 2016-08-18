@@ -126,11 +126,11 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, UIS
             
             // Name textfield
             if detailUser.business_name != "" {
-                companyTitleLabel.attributedText = adjustAttributedStringNoLineSpacing(detailUser.business_name.uppercaseString, spacing: 2.0, fontName: "MyriadPro-Regular", fontSize: 17, fontColor: UIColor.whiteColor())
+                companyTitleLabel.attributedText = adjustAttributedStringNoLineSpacing(detailUser.business_name.uppercaseString, spacing: 2.0, fontName: "SFUIText-Regular", fontSize: 17, fontColor: UIColor.whiteColor())
             } else if detailUser.first_name != "" && detailUser.last_name != "" {
-                companyTitleLabel.attributedText = adjustAttributedStringNoLineSpacing(detailUser.first_name.uppercaseString + " " + detailUser.last_name.uppercaseString, spacing: 2.0, fontName: "MyriadPro-Regular", fontSize: 17, fontColor: UIColor.whiteColor())
+                companyTitleLabel.attributedText = adjustAttributedStringNoLineSpacing(detailUser.first_name.uppercaseString + " " + detailUser.last_name.uppercaseString, spacing: 2.0, fontName: "SFUIText-Regular", fontSize: 17, fontColor: UIColor.whiteColor())
             } else {
-                companyTitleLabel.attributedText = adjustAttributedStringNoLineSpacing("@" + detailUser.username.uppercaseString, spacing: 2.0, fontName: "MyriadPro-Regular", fontSize: 17, fontColor: UIColor.whiteColor())
+                companyTitleLabel.attributedText = adjustAttributedStringNoLineSpacing("@" + detailUser.username.uppercaseString, spacing: 2.0, fontName: "SFUIText-Regular", fontSize: 17, fontColor: UIColor.whiteColor())
             }
             companyTitleLabel.frame = CGRectMake(0, 10, screenWidth, 130)
             companyTitleLabel.textAlignment = .Center
@@ -166,7 +166,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, UIS
             shareButton.setBackgroundImage(UIImage(named: "IconShare"), forState: .Normal)
             shareButton.setBackgroundImage(UIImage(named: "IconShare")?.alpha(0.5), forState: .Highlighted)
             shareButton.contentMode = .ScaleAspectFit
-            shareButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 14)!
+            shareButton.titleLabel?.font = UIFont(name: "SFUIText-Regular", size: 14)!
             shareButton.setTitle("", forState: .Normal)
             shareButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
             shareButton.addTarget(self, action: #selector(self.shareButtonClicked(_:)), forControlEvents: UIControlEvents.TouchUpInside)
@@ -183,7 +183,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, UIS
             tutorialButton.setBackgroundImage(UIImage(named: "ic_question"), forState: .Normal)
             tutorialButton.setBackgroundImage(UIImage(named: "ic_question")?.alpha(0.5), forState: .Highlighted)
             tutorialButton.contentMode = .ScaleAspectFit
-            tutorialButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 14)!
+            tutorialButton.titleLabel?.font = UIFont(name: "SFUIText-Regular", size: 14)!
             tutorialButton.setTitle("", forState: .Normal)
             tutorialButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
             tutorialButton.addTarget(self, action: #selector(self.tutorialButtonClicked(_:)), forControlEvents: UIControlEvents.TouchUpInside)
@@ -209,7 +209,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, UIS
             //self.navigationController?.navigationBar.topItem!.backBarButtonItem?.tintColor = UIColor.lightBlue()
             self.navigationController?.navigationBar.titleTextAttributes = [
                 NSForegroundColorAttributeName : UIColor.whiteColor(),
-                NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 17)!
+                NSFontAttributeName : UIFont(name: "SFUIText-Regular", size: 17)!
             ]
             let navItem = UINavigationItem(title: "@"+detailUser.username)
             navItem.leftBarButtonItem?.tintColor = UIColor.mediumBlue()
@@ -222,7 +222,7 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, UIS
             enableACHButton.setTitleColor(UIColor.oceanBlue().lighterColor(), forState: .Highlighted)
             enableACHButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
             enableACHButton.setBackgroundColor(UIColor.whiteColor().lighterColor(), forState: .Highlighted)
-            enableACHButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 14)!
+            enableACHButton.titleLabel?.font = UIFont(name: "SFUIText-Regular", size: 14)!
             enableACHButton.setTitle("Enable ACH Transfers", forState: .Normal)
             enableACHButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
             enableACHButton.addTarget(self, action: #selector(SearchDetailViewController.showACHModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
@@ -239,8 +239,8 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, UIS
             viewPlansButton.setTitleColor(UIColor.pastelBlue().lighterColor(), forState: .Highlighted)
             viewPlansButton.setBackgroundColor(UIColor.whiteColor(), forState: .Normal)
             viewPlansButton.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
-            viewPlansButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 14)!
-            viewPlansButton.setAttributedTitle(adjustAttributedString("VIEW SUBSCRIPTION PLANS", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 12, fontColor: UIColor.pastelBlue(), lineSpacing: 0.0, alignment: .Left), forState: .Normal)
+            viewPlansButton.titleLabel?.font = UIFont(name: "SFUIText-Regular", size: 14)!
+            viewPlansButton.setAttributedTitle(adjustAttributedString("VIEW SUBSCRIPTION PLANS", spacing: 1, fontName: "SFUIText-Regular", fontSize: 12, fontColor: UIColor.pastelBlue(), lineSpacing: 0.0, alignment: .Left), forState: .Normal)
             viewPlansButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
             viewPlansButton.addTarget(self, action: #selector(SearchDetailViewController.viewPlansModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             //viewPlansButton.layer.cornerRadius = 10
@@ -253,15 +253,15 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, UIS
             let payButton = UIButton()
             payButton.frame = CGRect(x: 40, y: cardView.layer.frame.height+75,  width: self.view.layer.frame.width-80, height: 60.0)
             payButton.setTitleColor(UIColor.whiteColor().colorWithAlphaComponent(1), forState: .Normal)
-            payButton.titleLabel?.font = UIFont(name: "MyriadPro-Regular", size: 14)!
+            payButton.titleLabel?.font = UIFont(name: "SFUIText-Regular", size: 14)!
             if detailUser.business_name != "" {
-                payButton.setAttributedTitle(adjustAttributedString("PAY " + detailUser.business_name.uppercaseString, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 12, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Left), forState: .Normal)
+                payButton.setAttributedTitle(adjustAttributedString("PAY " + detailUser.business_name.uppercaseString, spacing: 1, fontName: "SFUIText-Regular", fontSize: 12, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Left), forState: .Normal)
             } else if detailUser.first_name != "" {
-                payButton.setAttributedTitle(adjustAttributedString("PAY " + detailUser.first_name.uppercaseString, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 12, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Left), forState: .Normal)
+                payButton.setAttributedTitle(adjustAttributedString("PAY " + detailUser.first_name.uppercaseString, spacing: 1, fontName: "SFUIText-Regular", fontSize: 12, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Left), forState: .Normal)
             } else if detailUser.username != "" {
-                payButton.setAttributedTitle(adjustAttributedString("PAY " + detailUser.username.uppercaseString, spacing: 1, fontName: "MyriadPro-Regular", fontSize: 12, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Left), forState: .Normal)
+                payButton.setAttributedTitle(adjustAttributedString("PAY " + detailUser.username.uppercaseString, spacing: 1, fontName: "SFUIText-Regular", fontSize: 12, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Left), forState: .Normal)
             } else {
-                payButton.setAttributedTitle(adjustAttributedString("PAY USER", spacing: 1, fontName: "MyriadPro-Regular", fontSize: 12, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Left), forState: .Normal)
+                payButton.setAttributedTitle(adjustAttributedString("PAY USER", spacing: 1, fontName: "SFUIText-Regular", fontSize: 12, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Left), forState: .Normal)
             }
             //payButton.layer.cornerRadius = 10
             payButton.layer.borderWidth = 0

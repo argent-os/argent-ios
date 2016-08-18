@@ -6,9 +6,9 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="myriad_pro_regular.ttf">
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
+        <mutableArray key="SF-UI-Text-Regular.otf">
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -24,7 +24,7 @@
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="15" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1Jd-kv-JWY" customClass="TRCurrencyTextField">
                         <rect key="frame" x="115" y="0.0" width="190" height="44"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blo-yf-duB">
@@ -32,7 +32,7 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="92" id="CIA-h0-AjU"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>

@@ -166,7 +166,7 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
         // Create left and right button for navigation item
         let leftButton = UIBarButtonItem(title: "Close", style: .Plain, target: self, action: #selector(self.close(_:)))
         //        let leftButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.close(_:)))
-        let font = UIFont(name: "MyriadPro-Regular", size: 17)!
+        let font = UIFont(name: "SFUIText-Regular", size: 17)!
         leftButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
         leftButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.darkBlue()], forState: UIControlState.Highlighted)
         // Create two buttons for the navigation item
@@ -254,13 +254,13 @@ class MerchantPlansViewController: UIViewController, UITableViewDelegate, UITabl
             cell.planNameLabel.text = name
         }
         if let amount = plansArray![indexPath.row].amount, let interval = plansArray![indexPath.row].interval {
-            let fcMYR = formatCurrency(amount, fontName: "MyriadPro-Regular", superSize: 11, fontSize: 14, offsetSymbol: 2, offsetCents: 2)
+            let fcMYR = formatCurrency(amount, fontName: "SFUIText-Regular", superSize: 11, fontSize: 14, offsetSymbol: 2, offsetCents: 2)
             
             let fcDIN = formatCurrency(amount, fontName: "DINAlternate-Bold", superSize: 11, fontSize: 14, offsetSymbol: 2, offsetCents: 2)
             
             let attrs: [String: AnyObject] = [
                 NSForegroundColorAttributeName : UIColor.darkBlue(),
-                NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 12)!
+                NSFontAttributeName : UIFont(name: "SFUIText-Regular", size: 12)!
             ]
             
             let attrs2: [String: AnyObject] = [

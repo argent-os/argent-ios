@@ -186,7 +186,7 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
         helpButton.layer.masksToBounds = true
         helpButton.addTarget(self, action: #selector(self.showTutorialModal(_:)), forControlEvents: .TouchUpInside)
         var attribs2: [String: AnyObject] = [:]
-        attribs2[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)
+        attribs2[NSFontAttributeName] = UIFont(name: "SFUIText-Regular", size: 14)
         attribs2[NSForegroundColorAttributeName] = UIColor.oceanBlue()
         let str2 = NSAttributedString(string: "Show Example", attributes: attribs2)
         helpButton.setAttributedTitle(str2, forState: .Normal)
@@ -203,7 +203,7 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
         addBankButton.layer.masksToBounds = true
         addBankButton.addTarget(self, action: #selector(linkBankToStripe(_:)), forControlEvents: .TouchUpInside)
         var attribs: [String: AnyObject] = [:]
-        attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)
+        attribs[NSFontAttributeName] = UIFont(name: "SFUIText-Regular", size: 14)
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
         let str = NSAttributedString(string: "Link Bank", attributes: attribs)
         addBankButton.setAttributedTitle(str, forState: .Normal)
@@ -294,7 +294,7 @@ class BankManualAddViewController: UIViewController, UIScrollViewDelegate, UINav
         UIToolbar.appearance().backgroundColor = UIColor.brandGreen()
 
         done.setTitleTextAttributes([
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 15)!,
+            NSFontAttributeName : UIFont(name: "SFUIText-Regular", size: 15)!,
             NSForegroundColorAttributeName : UIColor.whiteColor()
             ], forState: .Normal)
         
@@ -371,7 +371,7 @@ extension BankManualAddViewController {
         rightButton = UIBarButtonItem(title: "Encryption", style: .Plain, target: self, action: #selector(self.presentTutorial(_:)))
         rightButton.setTitleTextAttributes([
             NSForegroundColorAttributeName:UIColor.darkBlue(),
-            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!
+            NSFontAttributeName: UIFont(name: "SFUIText-Regular", size: 17)!
         ], forState: UIControlState.Normal)
         // Create two buttons for the navigation item
         navigationItem.rightBarButtonItem = rightButton
@@ -385,7 +385,7 @@ extension BankManualAddViewController {
     
     func presentTutorial(sender: AnyObject) {
         var preferences = EasyTipView.Preferences()
-        preferences.drawing.font = UIFont(name: "MyriadPro-Regular", size: 13)!
+        preferences.drawing.font = UIFont(name: "SFUIText-Regular", size: 13)!
         preferences.drawing.foregroundColor = UIColor.whiteColor()
         preferences.drawing.backgroundColor = UIColor.skyBlue()
         preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.Top

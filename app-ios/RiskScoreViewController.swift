@@ -87,7 +87,7 @@ class RiskScoreViewController: UIViewController {
         lbl.frame = CGRect(x: 50, y: 60, width: self.view.layer.frame.width-100, height: 250)
         lbl.textColor = UIColor.lightBlue()
         lbl.textAlignment = .Center
-        lbl.font = UIFont(name: "MyriadPro-Regular", size: 36)
+        lbl.font = UIFont(name: "SFUIText-Regular", size: 36)
         let _ = Timeout(0.5) {
             addSubviewWithBounce(self.lbl, parentView: self, duration: 0.4)
         }
@@ -97,7 +97,7 @@ class RiskScoreViewController: UIViewController {
         titleLabel.alpha = 0.5
         titleLabel.textColor = UIColor.lightBlue()
         titleLabel.textAlignment = .Center
-        titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 14)
+        titleLabel.font = UIFont(name: "SFUIText-Regular", size: 14)
         let _ = Timeout(0.3) {
             addSubviewWithBounce(self.titleLabel, parentView: self, duration: 0.4)
         }

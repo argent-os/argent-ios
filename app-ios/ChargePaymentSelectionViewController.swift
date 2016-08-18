@@ -54,7 +54,7 @@ class ChargePaymentSelectionViewController: UIViewController {
         let payWithCardButton = CenteredButton()
         let str1 = NSAttributedString(string: "Card", attributes: [
             NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 18)!
+            NSFontAttributeName : UIFont(name: "SFUIText-Regular", size: 18)!
             ])
         payWithCardButton.setAttributedTitle(str1, forState: .Normal)
         payWithCardButton.setBackgroundColor(UIColor.deepBlue(), forState: .Normal)
@@ -74,7 +74,7 @@ class ChargePaymentSelectionViewController: UIViewController {
         let payWithBitcoinButton = CenteredButton()
         let str2 = NSAttributedString(string: "Bitcoin", attributes: [
             NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 18)!
+            NSFontAttributeName : UIFont(name: "SFUIText-Regular", size: 18)!
             ])
         payWithBitcoinButton.setAttributedTitle(str2, forState: .Normal)
         payWithBitcoinButton.setBackgroundColor(UIColor.bitcoinOrange(), forState: .Normal)
@@ -94,7 +94,7 @@ class ChargePaymentSelectionViewController: UIViewController {
         let payWithAlipayButton = CenteredButton()
         let str3 = NSAttributedString(string: "  Alipay", attributes: [
             NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 18)!
+            NSFontAttributeName : UIFont(name: "SFUIText-Regular", size: 18)!
             ])
         payWithAlipayButton.setAttributedTitle(str3, forState: .Normal)
         payWithAlipayButton.setBackgroundColor(UIColor.alipayBlue(), forState: .Normal)

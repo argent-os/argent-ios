@@ -33,7 +33,7 @@ class MerchantPlanCell: UITableViewCell {
         super.layoutSubviews()
     
         planNameLabel.frame = CGRect(x: 20, y: 20, width: 180, height: 20)
-        planNameLabel.font = UIFont(name: "MyriadPro-Regular", size: 16)
+        planNameLabel.font = UIFont(name: "SFUIText-Regular", size: 16)
         planNameLabel.textColor = UIColor.darkBlue()
         
         planAmountLabel.frame = CGRect(x: 20, y: 40, width: 180, height: 20)

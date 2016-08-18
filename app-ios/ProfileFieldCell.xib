@@ -6,8 +6,8 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="myriad_pro_regular.ttf">
-            <string>MyriadPro-Regular</string>
+        <mutableArray key="SF-UI-Text-Regular.otf">
+            <string>SFUIText-Regular</string>
         </mutableArray>
     </customFonts>
     <objects>
@@ -25,7 +25,7 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="92" id="aLo-BV-hBt"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>

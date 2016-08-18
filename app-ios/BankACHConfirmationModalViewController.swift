@@ -69,7 +69,7 @@ class BankACHConfirmationModalViewController: UIViewController {
         let confirmACHText = UILabel()
         confirmACHText.numberOfLines = 0
         confirmACHText.text = "By checking below I agree to the Argent ACH terms of service and I authorize " + business_name + " to electronically debit my account and, if necessary, electronically credit my account to correct erroneous debits. Please screenshot this page for your records."
-        confirmACHText.font = UIFont(name: "MyriadPro-Regular", size: 15)
+        confirmACHText.font = UIFont(name: "SFUIText-Regular", size: 15)
         confirmACHText.textColor = UIColor.mediumBlue()
         confirmACHText.contentMode = .Center
         confirmACHText.textAlignment = .Center
@@ -95,9 +95,9 @@ class BankACHConfirmationModalViewController: UIViewController {
         submitACHButton.setBackgroundColor(UIColor.brandGreen(), forState: .Normal)
         submitACHButton.setBackgroundColor(UIColor.brandGreen().lighterColor(), forState: .Highlighted)
         var attribs: [String: AnyObject] = [:]
-        attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 14)
+        attribs[NSFontAttributeName] = UIFont(name: "SFUIText-Regular", size: 14)
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
-        let str = adjustAttributedString("SUBMIT", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Center)
+        let str = adjustAttributedString("SUBMIT", spacing: 2, fontName: "SFUIText-Regular", fontSize: 14, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Center)
         submitACHButton.setAttributedTitle(str, forState: .Normal)
         self.view.addSubview(submitACHButton)
         let rectShape = CAShapeLayer()

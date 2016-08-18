@@ -149,7 +149,7 @@ class BankListModalViewController: UIViewController, UITableViewDelegate, UITabl
         navBar.translucent = false
         navBar.titleTextAttributes = [
             NSForegroundColorAttributeName : UIColor.lightBlue(),
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 14)!
+            NSFontAttributeName : UIFont(name: "SFUIText-Regular", size: 14)!
         ]
         self.view.addSubview(navBar);
         let navItem = UINavigationItem(title: "Select ACH Bank");

@@ -78,7 +78,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!,
+            NSFontAttributeName: UIFont(name: "SFUIText-Regular", size: 17)!,
             NSForegroundColorAttributeName: UIColor.whiteColor()
         ]
     }
@@ -109,7 +109,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
         self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor()
         self.navigationItem.title = "Edit Profile"
         self.navigationController?.navigationBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!,
+            NSFontAttributeName: UIFont(name: "SFUIText-Regular", size: 17)!,
             NSForegroundColorAttributeName: UIColor.whiteColor()
         ]
         
@@ -155,7 +155,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
         let usernameRow = SegmentedRowFormer<FormSegmentedCell>() {
             $0.titleLabel.text = "Username"
             $0.titleLabel.textColor = UIColor.lightBlue()
-            $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 15)!
+            $0.titleLabel.font = UIFont(name: "SFUIText-Regular", size: 15)!
             }.configure {
                 $0.segmentTitles = ["@"+user.username]
                 $0.rowHeight = 60
@@ -339,7 +339,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
             if let x = self {
                 $0.backgroundColor = UIColor.pastelBlue()
                 $0.titleLabel.textColor = UIColor.whiteColor()
-                $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 16)!
+                $0.titleLabel.font = UIFont(name: "SFUIText-Regular", size: 16)!
                 $0.tintColor = UIColor.whiteColor()
             }
             }.configure {
@@ -354,7 +354,7 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
                 if let x = self {
                     $0.backgroundColor = UIColor.brandRed()
                     $0.titleLabel.textColor = UIColor.whiteColor()
-                    $0.titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 16)!
+                    $0.titleLabel.font = UIFont(name: "SFUIText-Regular", size: 16)!
                     $0.tintColor = UIColor.whiteColor()
                 }
             }.configure {

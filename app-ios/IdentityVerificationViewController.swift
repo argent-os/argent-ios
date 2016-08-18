@@ -58,11 +58,11 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate,
         addHelpButton()
         
         let titleDocumentLabel = UILabel()
-        let titleAttributedString = adjustAttributedString("IDENTITY DOCUMENT", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue().colorWithAlphaComponent(0.75), lineSpacing: 0.0, alignment: .Center)
+        let titleAttributedString = adjustAttributedString("IDENTITY DOCUMENT", spacing: 2, fontName: "SFUIText-Regular", fontSize: 15, fontColor: UIColor.darkBlue().colorWithAlphaComponent(0.75), lineSpacing: 0.0, alignment: .Center)
         titleDocumentLabel.attributedText = titleAttributedString
         titleDocumentLabel.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.75)
         titleDocumentLabel.textAlignment = .Center
-        titleDocumentLabel.font = UIFont(name: "MyriadPro-Regular", size: 13)!
+        titleDocumentLabel.font = UIFont(name: "SFUIText-Regular", size: 13)!
         titleDocumentLabel.frame = CGRect(x: 0, y: 75, width: screenWidth, height: 30)
         addSubviewWithFade(titleDocumentLabel, parentView: self, duration: 0.5)
         
@@ -72,10 +72,10 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate,
         addSubviewWithFade(splitView, parentView: self, duration: 0.5)
         
         let ssnTitleLabel = UILabel()
-        let ssnAttributedString = adjustAttributedString("SOCIAL SECURITY", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 15, fontColor: UIColor.darkBlue().colorWithAlphaComponent(0.75), lineSpacing: 0.0, alignment: .Center)
+        let ssnAttributedString = adjustAttributedString("SOCIAL SECURITY", spacing: 2, fontName: "SFUIText-Regular", fontSize: 15, fontColor: UIColor.darkBlue().colorWithAlphaComponent(0.75), lineSpacing: 0.0, alignment: .Center)
         ssnTitleLabel.attributedText = ssnAttributedString
         ssnTitleLabel.textAlignment = .Center
-        ssnTitleLabel.font = UIFont(name: "MyriadPro-Regular", size: 13)!
+        ssnTitleLabel.font = UIFont(name: "SFUIText-Regular", size: 13)!
         ssnTitleLabel.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.75)
         ssnTitleLabel.frame = CGRect(x: 00, y: 435, width: screenWidth, height: 30)
         addSubviewWithFade(ssnTitleLabel, parentView: self, duration: 0.5)
@@ -93,7 +93,7 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate,
         passportCardButton.setBackgroundColor(UIColor.whiteColor(), forState: .Normal)
         passportCardButton.setBackgroundColor(UIColor.offWhite(), forState: .Highlighted)
         let str0 = NSAttributedString(string: " Passport", attributes: [
-                NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 15)!,
+                NSFontAttributeName: UIFont(name: "SFUIText-Regular", size: 15)!,
                 NSForegroundColorAttributeName:UIColor.lightBlue()
             ])
         passportCardButton.setAttributedTitle(str0, forState: .Normal)
@@ -110,7 +110,7 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate,
         // Add only on US/CA/AU Location
         self.identityCardButton.frame = CGRect(x: 30, y: 210, width: screenWidth-60, height: 80)
         let str1 = NSAttributedString(string: " Identity Card", attributes: [
-            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 15)!,
+            NSFontAttributeName: UIFont(name: "SFUIText-Regular", size: 15)!,
             NSForegroundColorAttributeName:UIColor.lightBlue()
             ])
         self.identityCardButton.setAttributedTitle(str1, forState: .Normal)
@@ -127,7 +127,7 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate,
         
         self.driversLicenseButton.frame = CGRect(x: 30, y: 310, width: screenWidth-60, height: 80)
         let str2 = NSAttributedString(string: " Driver's License", attributes: [
-            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 15)!,
+            NSFontAttributeName: UIFont(name: "SFUIText-Regular", size: 15)!,
             NSForegroundColorAttributeName:UIColor.lightBlue()
             ])
         self.driversLicenseButton.setAttributedTitle(str2, forState: .Normal)
@@ -144,7 +144,7 @@ class IdentityVerificationViewController: UIViewController, ImagePickerDelegate,
         
         self.socialSecurityButton.frame = CGRect(x: 30, y: 470, width: screenWidth-60, height: 80)
         let str3 = NSAttributedString(string: "Social Security Number", attributes: [
-            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 15)!,
+            NSFontAttributeName: UIFont(name: "SFUIText-Regular", size: 15)!,
             NSForegroundColorAttributeName:UIColor.lightBlue()
             ])
         self.socialSecurityButton.setAttributedTitle(str3, forState: .Normal)
@@ -373,7 +373,7 @@ extension IdentityVerificationViewController {
         rightButton = UIBarButtonItem(title: "Encryption", style: .Plain, target: self, action: #selector(self.presentTutorial(_:)))
         rightButton.setTitleTextAttributes([
             NSForegroundColorAttributeName:UIColor.darkBlue(),
-            NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 17)!
+            NSFontAttributeName: UIFont(name: "SFUIText-Regular", size: 17)!
             ], forState: UIControlState.Normal)
         // Create two buttons for the navigation item
         navigationItem.rightBarButtonItem = rightButton
@@ -387,7 +387,7 @@ extension IdentityVerificationViewController {
     
     func presentTutorial(sender: AnyObject) {
         var preferences = EasyTipView.Preferences()
-        preferences.drawing.font = UIFont(name: "MyriadPro-Regular", size: 13)!
+        preferences.drawing.font = UIFont(name: "SFUIText-Regular", size: 13)!
         preferences.drawing.foregroundColor = UIColor.whiteColor()
         preferences.drawing.backgroundColor = UIColor.skyBlue()
         preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.Top

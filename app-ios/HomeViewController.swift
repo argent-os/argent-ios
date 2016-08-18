@@ -300,10 +300,10 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 formatter.numberStyle = .CurrencyStyle
                 formatter.locale = NSLocale.currentLocale() // This is the default
                 
-                self.lblAccountPending.attributedText = formatCurrency(String(pendingBalance), fontName: "MyriadPro-Regular", superSize: 16, fontSize: 32, offsetSymbol: 10, offsetCents: 10)
+                self.lblAccountPending.attributedText = formatCurrency(String(pendingBalance), fontName: "SFUIText-Regular", superSize: 16, fontSize: 32, offsetSymbol: 10, offsetCents: 10)
                 addSubviewWithFade(self.lblAccountPending, parentView: self, duration: 1)
                 
-                self.lblAccountAvailable.attributedText = formatCurrency(String(availableBalance), fontName: "MyriadPro-Regular", superSize: 16, fontSize: 32, offsetSymbol: 10, offsetCents: 10)
+                self.lblAccountAvailable.attributedText = formatCurrency(String(availableBalance), fontName: "SFUIText-Regular", superSize: 16, fontSize: 32, offsetSymbol: 10, offsetCents: 10)
                 addSubviewWithFade(self.lblSubtext, parentView: self, duration: 0.5)
             })
             
@@ -360,10 +360,10 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 formatter.numberStyle = .CurrencyStyle
                 formatter.locale = NSLocale.currentLocale() // This is the default
                 
-                self.lblAccountPending.attributedText = formatCurrency(String(pendingBalance), fontName: "MyriadPro-Regular", superSize: 16, fontSize: 32, offsetSymbol: 10, offsetCents: 10)
+                self.lblAccountPending.attributedText = formatCurrency(String(pendingBalance), fontName: "SFUIText-Regular", superSize: 16, fontSize: 32, offsetSymbol: 10, offsetCents: 10)
                 addSubviewWithFade(self.lblAccountPending, parentView: self, duration: 1)
                 
-                self.lblAccountAvailable.attributedText = formatCurrency(String(availableBalance), fontName: "MyriadPro-Regular", superSize: 16, fontSize: 32, offsetSymbol: 10, offsetCents: 10)
+                self.lblAccountAvailable.attributedText = formatCurrency(String(availableBalance), fontName: "SFUIText-Regular", superSize: 16, fontSize: 32, offsetSymbol: 10, offsetCents: 10)
                 addSubviewWithFade(self.lblSubtext, parentView: self, duration: 0.5)
             })
             
@@ -502,7 +502,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             lblSubtext.alpha = 0.5
             lblSubtext.textAlignment = .Center
             let subtext = NSAttributedString(string: "Pending Balance", attributes:[
-                NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 12)!,
+                NSFontAttributeName: UIFont(name: "SFUIText-Regular", size: 12)!,
                 NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.7)
                 ])
             lblSubtext.attributedText = subtext
@@ -543,31 +543,31 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
         cell.lblDate?.text = ""
 
         if let amount = item?.amount {
-            let currencyText = formatCurrency(amount, fontName: "MyriadPro-Regular", superSize: 17, fontSize: 17, offsetSymbol: 0, offsetCents: 0)
+            let currencyText = formatCurrency(amount, fontName: "SFUIText-Regular", superSize: 17, fontSize: 17, offsetSymbol: 0, offsetCents: 0)
             
             if let type = item?.type {
                 if type == "charge" {
-                    let chargeType = adjustAttributedString("  Received", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
+                    let chargeType = adjustAttributedString("  Received", spacing: 1.2, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
                     cell.lblAmount.attributedText = currencyText + chargeType
                     cell.img.image = UIImage(named: "IconCheckFilled")
                 } else if type == "refund" || type == "application_fee_refund" {
-                    let chargeType = adjustAttributedString("  Refunded", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
+                    let chargeType = adjustAttributedString("  Refunded", spacing: 1.2, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
                     cell.lblAmount.attributedText = currencyText + chargeType
                     cell.img.image = UIImage(named: "ic_refund")
                 } else if type == "payment" {
-                    let chargeType = adjustAttributedString("  Received", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
+                    let chargeType = adjustAttributedString("  Received", spacing: 1.2, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
                     cell.lblAmount.attributedText = currencyText + chargeType
                     cell.img.image = UIImage(named: "IconCheckFilled")
                 } else if type == "adjustment" {
-                    let chargeType = adjustAttributedString(" Adjustment", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
+                    let chargeType = adjustAttributedString(" Adjustment", spacing: 1.2, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
                     cell.lblAmount.attributedText = currencyText + chargeType
                     cell.img.image = UIImage(named: "ic_adjust")
                 } else if type == "transfer" {
-                    let chargeType = adjustAttributedString("  Bank Transfer", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
+                    let chargeType = adjustAttributedString("  Bank Transfer", spacing: 1.2, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
                     cell.lblAmount.attributedText = currencyText + chargeType
                     cell.img.image = UIImage(named: "ic_transfer")
                 } else if type == "transfer_failure" {
-                    let chargeType = adjustAttributedString("  Transfer failure", spacing: 1.2, fontName: "MyriadPro-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
+                    let chargeType = adjustAttributedString("  Transfer failure", spacing: 1.2, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Left)
                     cell.lblAmount.attributedText = currencyText + chargeType
                     cell.img.image = UIImage(named: "ic_alert")
                 } else {
@@ -603,7 +603,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
                 cell.lblDate?.layer.borderColor = UIColor.lightBlue().colorWithAlphaComponent(0.3).CGColor
                 cell.lblDate?.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.6)
                 cell.lblDate?.layer.borderWidth = 0
-                cell.lblDate?.font = UIFont(name: "MyriadPro-Regular", size: 11)
+                cell.lblDate?.font = UIFont(name: "SFUIText-Regular", size: 11)
                 cell.lblDate?.text = String(formatted_date) //+ " / uid " + uid
             } else {
                 
@@ -626,12 +626,12 @@ extension HomeViewController {
     // Delegate: DZNEmptyDataSet
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let attrStr = adjustAttributedString("Welcome to " + APP_NAME + "!", spacing: 1.0, fontName: "MyriadPro-Regular", fontSize: 17, fontColor: UIColor.darkBlue(), lineSpacing: 5.0, alignment: .Center)
+        let attrStr = adjustAttributedString("Welcome to " + APP_NAME + "!", spacing: 1.0, fontName: "SFUIText-Regular", fontSize: 17, fontColor: UIColor.darkBlue(), lineSpacing: 5.0, alignment: .Center)
         return attrStr
     }
     
     func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let attrStr = adjustAttributedString("This is your home screen. From here you will be able to see all received payments and bank transfers.  We do not require any account information to pay others, but, in order to receive payments we do require account verification.", spacing: 1.0, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.lightBlue(), lineSpacing: 6.0, alignment: .Center)
+        let attrStr = adjustAttributedString("This is your home screen. From here you will be able to see all received payments and bank transfers.  We do not require any account information to pay others, but, in order to receive payments we do require account verification.", spacing: 1.0, fontName: "SFUIText-Regular", fontSize: 13, fontColor: UIColor.lightBlue(), lineSpacing: 6.0, alignment: .Center)
         return attrStr
     }
     
@@ -640,7 +640,7 @@ extension HomeViewController {
     }
     
     func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
-        let attrStr = adjustAttributedString("Tap here to create your first billing plan!", spacing: 1.0, fontName: "MyriadPro-Regular", fontSize: 13, fontColor: UIColor.skyBlue(), lineSpacing: 3.0, alignment: .Center)
+        let attrStr = adjustAttributedString("Tap here to create your first billing plan!", spacing: 1.0, fontName: "SFUIText-Regular", fontSize: 13, fontColor: UIColor.skyBlue(), lineSpacing: 3.0, alignment: .Center)
         return attrStr
     }
     
@@ -672,12 +672,12 @@ extension UISegmentedControl {
     func removeBorders() {
         setTitleTextAttributes([
             NSForegroundColorAttributeName : UIColor.whiteColor().colorWithAlphaComponent(0.5),
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 11)!
+            NSFontAttributeName : UIFont(name: "SFUIText-Regular", size: 11)!
             ],
                                forState: .Normal)
         setTitleTextAttributes([
             NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "MyriadPro-Regular", size: 14)!
+            NSFontAttributeName : UIFont(name: "SFUIText-Regular", size: 14)!
             ],
                                forState: .Selected)
         setBackgroundImage(imageWithColor(UIColor.clearColor(), source: "IconEmpty"), forState: .Normal, barMetrics: .Default)
@@ -872,7 +872,7 @@ extension HomeViewController {
         if(sender.selectedSegmentIndex == 0) {
             lblAccountPending.removeFromSuperview()
             let subtext = NSAttributedString(string: "Available Balance", attributes:[
-                NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 12)!,
+                NSFontAttributeName: UIFont(name: "SFUIText-Regular", size: 12)!,
                 NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.7)
                 ])
             lblSubtext.attributedText = subtext
@@ -882,7 +882,7 @@ extension HomeViewController {
         if(sender.selectedSegmentIndex == 1) {
             lblAccountAvailable.removeFromSuperview()
             let subtext = NSAttributedString(string: "Pending Balance", attributes:[
-                NSFontAttributeName: UIFont(name: "MyriadPro-Regular", size: 12)!,
+                NSFontAttributeName: UIFont(name: "SFUIText-Regular", size: 12)!,
                 NSForegroundColorAttributeName:UIColor.whiteColor().colorWithAlphaComponent(0.7)
                 ])
             lblSubtext.attributedText = subtext

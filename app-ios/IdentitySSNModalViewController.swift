@@ -53,7 +53,7 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
         
         titleLabel.text = ""
         titleLabel.textAlignment = .Center
-        titleLabel.font = UIFont(name: "MyriadPro-Regular", size: 18)
+        titleLabel.font = UIFont(name: "SFUIText-Regular", size: 18)
         titleLabel.textColor = UIColor.lightBlue()
         self.view.addSubview(titleLabel)
         
@@ -61,7 +61,7 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
         ssnTextField.placeholder = "123-45-6789"
         ssnTextField.alpha = 0.8
         ssnTextField.textAlignment = .Center
-        ssnTextField.font = UIFont(name: "MyriadPro-Regular", size: 30)
+        ssnTextField.font = UIFont(name: "SFUIText-Regular", size: 30)
         ssnTextField.textColor = UIColor.darkBlue()
         //        ssnTextField.mask = "###-##-####"
         ssnTextField.mask = "#########"
@@ -78,9 +78,9 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
         submitSSNButton.setBackgroundColor(UIColor.pastelBlue(), forState: .Normal)
         submitSSNButton.setBackgroundColor(UIColor.pastelBlue().darkerColor(), forState: .Highlighted)
         var attribs: [String: AnyObject] = [:]
-        attribs[NSFontAttributeName] = UIFont(name: "MyriadPro-Regular", size: 15)
+        attribs[NSFontAttributeName] = UIFont(name: "SFUIText-Regular", size: 15)
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
-        let str = adjustAttributedString("SUBMIT", spacing: 2, fontName: "MyriadPro-Regular", fontSize: 14, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Center)
+        let str = adjustAttributedString("SUBMIT", spacing: 2, fontName: "SFUIText-Regular", fontSize: 14, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Center)
         submitSSNButton.setAttributedTitle(str, forState: .Normal)
         submitSSNButton.addTarget(self, action: #selector(self.submitSSN(_:)), forControlEvents: .TouchUpInside)
         let rectShape = CAShapeLayer()
@@ -118,7 +118,7 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
         
         // Create left and right button for navigation item
         let leftButton = UIBarButtonItem(title: "Close", style: .Plain, target: self, action: #selector(self.close(_:)))
-        let font = UIFont(name: "MyriadPro-Regular", size: 17)!
+        let font = UIFont(name: "SFUIText-Regular", size: 17)!
         leftButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
         leftButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.darkBlue()], forState: UIControlState.Highlighted)
         // Create two buttons for the navigation item

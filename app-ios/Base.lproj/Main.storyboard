@@ -8,49 +8,51 @@
         <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="myriad_pro_regular.ttf">
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
-            <string>MyriadPro-Regular</string>
+        <mutableArray key="SF-UI-Display-Regular.otf">
+            <string>SFUIDisplay-Regular</string>
+        </mutableArray>
+        <mutableArray key="SF-UI-Text-Regular.otf">
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -179,7 +181,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="49" id="QrO-K5-huV"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="21"/>
                                 <color key="textColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -188,7 +190,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="91" id="2xa-LG-obD"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Change passcode">
                                     <color key="titleColor" red="0.26660439120000001" green="0.46146957919999998" blue="0.76670673079999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -217,7 +219,7 @@
                                 <string key="text">We use TouchID as the default 
 setting with a fallback to PIN 
 code for older devices</string>
-                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
                                 <color key="textColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -278,7 +280,7 @@ code for older devices</string>
                                 <string key="text">We are always here to assist you. 
 Please select a category that 
 best fits your request.</string>
-                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
                                 <color key="textColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -293,7 +295,7 @@ best fits your request.</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="39" id="xlM-Hq-OWy"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="21"/>
                                 <color key="textColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -356,7 +358,7 @@ best fits your request.</string>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Application" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dEL-a3-N9P">
                                                     <rect key="frame" x="15" y="0.0" width="364" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                                     <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -376,7 +378,7 @@ best fits your request.</string>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Banking" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gU0-ya-vRc">
                                                     <rect key="frame" x="15" y="0.0" width="364" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                                     <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -396,7 +398,7 @@ best fits your request.</string>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bqR-kb-C0e">
                                                     <rect key="frame" x="15" y="0.0" width="364" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                                     <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -416,7 +418,7 @@ best fits your request.</string>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Suggestions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5Xf-Sb-W48">
                                                     <rect key="frame" x="15" y="0.0" width="364" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                                     <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -436,7 +438,7 @@ best fits your request.</string>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Other" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JrO-gU-QYZ">
                                                     <rect key="frame" x="15" y="0.0" width="364" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                                     <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -635,9 +637,9 @@ best fits your request.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="CONFIGURE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Wye-gI-EmM">
-                                                    <rect key="frame" x="196" y="20" width="55" height="11"/>
+                                                    <rect key="frame" x="196" y="18" width="64" height="13.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="11"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="11"/>
                                                     <color key="textColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -661,9 +663,9 @@ best fits your request.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Security" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1JQ-65-9SC">
-                                                    <rect key="frame" x="196" y="24" width="51" height="15"/>
+                                                    <rect key="frame" x="196" y="22" width="55" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
                                                     <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -687,9 +689,9 @@ best fits your request.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jIw-oj-hGb">
-                                                    <rect key="frame" x="196" y="24" width="79.5" height="15"/>
+                                                    <rect key="frame" x="196" y="22" width="84" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
                                                     <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -713,9 +715,9 @@ best fits your request.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="FINANCIAL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ub5-qt-PZL">
-                                                    <rect key="frame" x="196" y="20" width="50.5" height="11"/>
+                                                    <rect key="frame" x="196" y="18" width="57.5" height="13.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="11"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="11"/>
                                                     <color key="textColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -739,9 +741,9 @@ best fits your request.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Bank Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="60R-Bp-h5a">
-                                                    <rect key="frame" x="196" y="24" width="86" height="15"/>
+                                                    <rect key="frame" x="196" y="22" width="91.5" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
                                                     <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -765,9 +767,9 @@ best fits your request.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Identity Verification" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VOI-wv-uOU">
-                                                    <rect key="frame" x="196" y="24" width="122" height="15"/>
+                                                    <rect key="frame" x="196" y="22" width="128.5" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
                                                     <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -791,9 +793,9 @@ best fits your request.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="SUPPORT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kdh-B2-lUt">
-                                                    <rect key="frame" x="196" y="20" width="43.5" height="11"/>
+                                                    <rect key="frame" x="196" y="18" width="52" height="13.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="11"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="11"/>
                                                     <color key="textColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -817,9 +819,9 @@ best fits your request.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Help Center" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vj9-Yn-tJ9">
-                                                    <rect key="frame" x="196" y="24" width="74.5" height="15"/>
+                                                    <rect key="frame" x="196" y="22" width="79" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
                                                     <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -843,9 +845,9 @@ best fits your request.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Contact Support" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9Wg-bu-lYz">
-                                                    <rect key="frame" x="196" y="24" width="103.5" height="15"/>
+                                                    <rect key="frame" x="196" y="22" width="110" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
                                                     <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -869,9 +871,9 @@ best fits your request.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="LEGAL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LKA-rj-4M0">
-                                                    <rect key="frame" x="196" y="19" width="30" height="11"/>
+                                                    <rect key="frame" x="196" y="17" width="32.5" height="13.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="11"/>
+                                                    <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="11"/>
                                                     <color key="textColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -894,9 +896,9 @@ best fits your request.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Terms &amp; Conditions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FmP-7w-Roc">
-                                                    <rect key="frame" x="196" y="24" width="121" height="15"/>
+                                                    <rect key="frame" x="196" y="22" width="129.5" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
                                                     <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -920,9 +922,9 @@ best fits your request.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Privacy Policy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fUD-eM-piw">
-                                                    <rect key="frame" x="196" y="24" width="85" height="15"/>
+                                                    <rect key="frame" x="196" y="22" width="92" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
                                                     <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -946,9 +948,9 @@ best fits your request.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="SETTINGS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pkn-qc-6CF">
-                                                    <rect key="frame" x="196" y="20" width="45" height="11"/>
+                                                    <rect key="frame" x="196" y="18" width="54" height="13.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="11"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="11"/>
                                                     <color key="textColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -972,9 +974,9 @@ best fits your request.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Edit Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TAq-rh-2me">
-                                                    <rect key="frame" x="196" y="24" width="67.5" height="15"/>
+                                                    <rect key="frame" x="196" y="22" width="72" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
                                                     <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -998,9 +1000,9 @@ best fits your request.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Logout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZJe-bC-57i">
-                                                    <rect key="frame" x="196" y="24" width="45" height="15"/>
+                                                    <rect key="frame" x="196" y="22" width="46" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
                                                     <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1021,9 +1023,9 @@ best fits your request.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="SOCIAL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6Sk-2E-jJR">
-                                                    <rect key="frame" x="196" y="19" width="34" height="11"/>
+                                                    <rect key="frame" x="196" y="17" width="40" height="13.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="11"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="11"/>
                                                     <color key="textColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1048,7 +1050,7 @@ best fits your request.</string>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Rate app" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Izl-dQ-AhV">
                                                     <rect key="frame" x="196" y="0.0" width="632" height="59.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
                                                     <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1065,7 +1067,7 @@ best fits your request.</string>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Share app" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2aT-gv-xzj">
                                                     <rect key="frame" x="196" y="0.0" width="632" height="59.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
                                                     <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1082,7 +1084,7 @@ best fits your request.</string>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Send Invite" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="e0Z-gR-lTp">
                                                     <rect key="frame" x="196" y="0.0" width="632" height="59.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
                                                     <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1097,9 +1099,9 @@ best fits your request.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Version " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KiS-i1-Th0">
-                                                    <rect key="frame" x="196" y="32" width="36.5" height="11"/>
+                                                    <rect key="frame" x="196" y="29" width="46" height="14.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="11"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
                                                     <color key="textColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="0.5" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1562,7 +1564,7 @@ best fits your request.</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="nCB-ZJ-pj2"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
                                 <state key="normal" title="Login">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1668,7 +1670,7 @@ best fits your request.</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Isu-SH-uXe"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Continue"/>
                                 <connections>
@@ -1736,7 +1738,7 @@ best fits your request.</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="mjD-Vi-4lj"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Continue"/>
                                 <connections>
@@ -1802,7 +1804,7 @@ best fits your request.</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="RLD-XD-wEK"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Continue"/>
                                 <connections>
@@ -1817,7 +1819,7 @@ best fits your request.</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="5HZ-h4-A1q"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="12"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
                                 <color key="textColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1859,7 +1861,7 @@ best fits your request.</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="cLW-ez-WEe"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Finish"/>
                                 <connections>
@@ -1942,7 +1944,7 @@ policy agreement. Tap to view</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="g5Y-nM-a8i"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Continue"/>
                                 <connections>
@@ -1992,7 +1994,7 @@ policy agreement. Tap to view</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="UkF-Ho-k3h"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Continue"/>
                                 <connections>
@@ -2007,7 +2009,7 @@ policy agreement. Tap to view</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="voN-ey-wQI"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="12"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
                                 <color key="textColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2050,7 +2052,7 @@ policy agreement. Tap to view</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="MwL-Uq-jyy"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Finish"/>
                                 <connections>
@@ -2359,7 +2361,7 @@ policy agreement. Tap to view</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="b1I-RA-B3O"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="19"/>
                                 <color key="textColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -2368,7 +2370,7 @@ policy agreement. Tap to view</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="wNE-gv-Acw"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="12"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
                                 <color key="textColor" red="0.4823529412" green="0.53725490200000003" blue="0.59999999999999998" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -3923,7 +3925,7 @@ policy agreement. Tap to view</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="tsA-Cg-VzQ"/>
-        <segue reference="A1R-09-1HJ"/>
+        <segue reference="mwT-xt-Ez4"/>
         <segue reference="YDb-8b-gnI"/>
         <segue reference="m0d-gd-RWW"/>
         <segue reference="zQh-Po-kj4"/>
