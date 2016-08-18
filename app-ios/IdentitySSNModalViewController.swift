@@ -57,13 +57,12 @@ class IdentitySSNModalViewController: UIViewController, UITextFieldDelegate {
         titleLabel.textColor = UIColor.lightBlue()
         self.view.addSubview(titleLabel)
         
-        ssnTextField.frame = CGRect(x: 10, y: 90, width: 260, height: 150)
+        ssnTextField.frame = CGRect(x: 0, y: 90, width: 280, height: 150)
         ssnTextField.placeholder = "123-45-6789"
         ssnTextField.alpha = 0.8
         ssnTextField.textAlignment = .Center
-        ssnTextField.font = UIFont(name: "SFUIText-Regular", size: 30)
+        ssnTextField.font = UIFont(name: "SFUIText-Regular", size: 18)
         ssnTextField.textColor = UIColor.darkBlue()
-        //        ssnTextField.mask = "###-##-####"
         ssnTextField.mask = "#########"
         ssnTextField.delegate = self
         ssnTextField.keyboardType = .NumberPad

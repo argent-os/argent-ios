@@ -61,14 +61,14 @@ class AccountVerificationTutorialViewController: UIViewController {
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.barTintColor = UIColor.lightGrayColor()
         
-        titleLabel.frame = CGRect(x: 0, y: 35, width: 300, height: 20)
-        titleLabel.text = "Verification Process"
+        titleLabel.frame = CGRect(x: 0, y: 30, width: 300, height: 20)
+        titleLabel.text = "How to Verify Account"
         titleLabel.textAlignment = .Center
         titleLabel.font = UIFont.systemFontOfSize(17, weight: UIFontWeightRegular)
-        titleLabel.textColor = UIColor.darkBlue()
+        titleLabel.textColor = UIColor.mediumBlue()
         self.view.addSubview(titleLabel)
         
-        titleLabelDetail.frame = CGRect(x: 0, y: 55, width: 300, height: 20)
+        titleLabelDetail.frame = CGRect(x: 0, y: 50, width: 300, height: 20)
         titleLabelDetail.text = "To Accept Payments"
         titleLabelDetail.textAlignment = .Center
         titleLabelDetail.font = UIFont(name: "SFUIText-Regular", size: 12)!
@@ -82,7 +82,7 @@ class AccountVerificationTutorialViewController: UIViewController {
         tutText1.frame = CGRect(x: 90, y: 80, width: 210, height: 50)
         tutText1.text = "Complete your profile"
         tutText1.textAlignment = .Left
-        tutText1.textColor = UIColor.darkBlue()
+        tutText1.textColor = UIColor.mediumBlue()
         self.view.addSubview(tutText1)
         tutSubText1.frame = CGRect(x: 90, y: 100, width: 210, height: 50)
         tutSubText1.text = "In Edit Profile"
@@ -98,7 +98,7 @@ class AccountVerificationTutorialViewController: UIViewController {
         tutText2.frame = CGRect(x: 90, y: 160, width: 210, height: 50)
         tutText2.text = "Add a bank account"
         tutText2.textAlignment = .Left
-        tutText2.textColor = UIColor.darkBlue()
+        tutText2.textColor = UIColor.mediumBlue()
         self.view.addSubview(tutText2)
         tutSubText2.frame = CGRect(x: 90, y: 180, width: 210, height: 50)
         tutSubText2.text = "Direct login or manual entry"
@@ -114,7 +114,7 @@ class AccountVerificationTutorialViewController: UIViewController {
         tutText3.frame = CGRect(x: 90, y: 240, width: 210, height: 50)
         tutText3.text = "Verify your identity"
         tutText3.textAlignment = .Left
-        tutText3.textColor = UIColor.darkBlue()
+        tutText3.textColor = UIColor.mediumBlue()
         self.view.addSubview(tutText3)
         tutSubText3.frame = CGRect(x: 90, y: 260, width: 210, height: 50)
         tutSubText3.text = "One document and social"
@@ -128,7 +128,7 @@ class AccountVerificationTutorialViewController: UIViewController {
         tutImage4.contentMode = .ScaleAspectFit
         self.view.addSubview(tutImage4)
         self.view.bringSubviewToFront(tutImage4)
-        tutText4.frame = CGRect(x: 30, y: 370, width: 250, height: 80)
+        tutText4.frame = CGRect(x: 30, y: 375, width: 250, height: 80)
         tutText4.numberOfLines = 0
         tutText4.font = UIFont(name: "SFUIText-Regular", size: 13)!
         tutText4.text = "Security is our top priority, all bank account and social security data are securely transmitted with 256-bit encryption and never stored on our servers."
@@ -143,17 +143,17 @@ class AccountVerificationTutorialViewController: UIViewController {
             self.view.sendSubviewToBack(bottomColorView)
         }
         
-        exitButton.frame = CGRect(x: 20, y: UIScreen.mainScreen().bounds.height-200, width: 260, height: 50)
+        exitButton.frame = CGRect(x: 0, y: UIScreen.mainScreen().bounds.height-190, width: 300, height: 60)
         exitButton.layer.borderColor = UIColor.whiteColor().CGColor
         exitButton.layer.borderWidth = 0
-        exitButton.layer.cornerRadius = 10
+        exitButton.layer.cornerRadius = 0
         exitButton.layer.masksToBounds = true
         var attribs: [String: AnyObject] = [:]
         attribs[NSFontAttributeName] = UIFont(name: "SFUIText-Regular", size: 14)!
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
         let str = NSAttributedString(string: "Exit Tutorial", attributes: attribs)
-        exitButton.setBackgroundColor(UIColor.pastelBlue(), forState: .Normal)
-        exitButton.setBackgroundColor(UIColor.pastelBlue().darkerColor(), forState: .Highlighted)
+        exitButton.setBackgroundColor(UIColor.brandGreen(), forState: .Normal)
+        exitButton.setBackgroundColor(UIColor.brandGreen().darkerColor(), forState: .Highlighted)
         exitButton.setAttributedTitle(str, forState: .Normal)
         exitButton.addTarget(self, action: #selector(self.close(_:)), forControlEvents: .TouchUpInside)
         self.view.addSubview(exitButton)

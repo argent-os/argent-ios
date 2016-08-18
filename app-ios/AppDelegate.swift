@@ -41,17 +41,17 @@ let STRIPE_PUBLIC_KEY_LIVE = "pk_live_9kfmn7pMRPKAYSpcf1Fmn266"
 // LOCAL TESTING
 //let API_URL = "http://localhost:5001/v1" // Works in simulator
 //let API_URL = "http://192.168.1.182:5001/v1" // Works in MA
-//let API_URL = "http://192.168.1.232:5001/v1" // Works in VA
+let API_URL = "http://192.168.1.232:5001/v1" // Works in VA
 //let API_URL = "http://172.16.0.101:5001/v1" // Works in TR
 
 // API ENDPOINT V1
 //let API_URL = "https://dev.argent.cloud/v1"
 //let API_URL = "https://stage.argent.cloud/v1"
-let API_URL = "https://api.argent.cloud/v1"
+//let API_URL = "https://api.argent.cloud/v1"
 
 // ENVIRONMENT
-//let ENVIRONMENT = "DEV"
-let ENVIRONMENT = "PROD"
+let ENVIRONMENT = "DEV"
+//let ENVIRONMENT = "PROD"
 
 // Pre-production check | Change ENVIRONMENT to PROD, Change API_URL to https://api.argent.cloud/v1
 

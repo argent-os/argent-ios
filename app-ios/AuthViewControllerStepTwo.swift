@@ -60,7 +60,7 @@ class AuthViewControllerStepTwo: UIPageViewController, UIPageViewControllerDeleg
         lblBody.frame = CGRect(x: 90, y: 260, width: screenWidth-180, height: 200)
         lblBody.numberOfLines = 0
         lblBody.alpha = 0.9
-        let atrString = adjustAttributedString("Eliminate the hassle of asking for checks and credit cards on a regular basis.", spacing: 1, fontName: "SFUIText-Regular", fontSize: 14, fontColor: UIColor.darkBlue().lighterColor(), lineSpacing: 9.0, alignment: .Center)
+        let atrString = adjustAttributedString("End the hassle of asking for checks & credit cards on a regular basis.", spacing: 1, fontName: "SFUIText-Regular", fontSize: 14, fontColor: UIColor.darkBlue().lighterColor(), lineSpacing: 9.0, alignment: .Center)
         lblBody.attributedText = atrString
         lblBody.tag = 7579
         lblBody.textAlignment = NSTextAlignment.Center
