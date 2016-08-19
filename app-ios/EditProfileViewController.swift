@@ -154,8 +154,9 @@ final class EditProfileViewController: FormViewController, UINavigationBarDelega
         
         let usernameRow = SegmentedRowFormer<FormSegmentedCell>() {
             $0.titleLabel.text = "Username"
-            $0.titleLabel.textColor = UIColor.lightBlue()
-            $0.titleLabel.font = UIFont(name: "SFUIText-Regular", size: 15)!
+            $0.titleLabel.textColor = UIColor.lightGrayColor()
+            // Be sure to update, as this is not in a custom xib
+            $0.titleLabel.font = UIFont(name: "SFUIText-Regular", size: 14)!
             }.configure {
                 $0.segmentTitles = ["@"+user.username]
                 $0.rowHeight = 60

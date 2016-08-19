@@ -117,7 +117,7 @@ class AccountVerificationTutorialViewController: UIViewController {
         tutText3.textColor = UIColor.mediumBlue()
         self.view.addSubview(tutText3)
         tutSubText3.frame = CGRect(x: 90, y: 260, width: 210, height: 50)
-        tutSubText3.text = "One document and social"
+        tutSubText3.text = "One document, Full SSN Optional"
         tutSubText3.textAlignment = .Left
         tutSubText3.textColor = UIColor.lightBlue()
         tutSubText3.font = UIFont(name: "SFUIText-Regular", size: 12)!

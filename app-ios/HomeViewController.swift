@@ -498,7 +498,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
             lblAccountPending.textAlignment = .Center
             
             lblSubtext.textColor = UIColor.whiteColor()
-            lblSubtext.frame = CGRect(x: 0, y: 55, width: screenWidth, height: 60)
+            lblSubtext.frame = CGRect(x: 0, y: 60, width: screenWidth, height: 60)
             lblSubtext.alpha = 0.5
             lblSubtext.textAlignment = .Center
             let subtext = NSAttributedString(string: "Pending Balance", attributes:[
