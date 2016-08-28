@@ -25,10 +25,8 @@ target 'app-ios' do
 	pod 'BEMCheckBox'
 	pod 'BEMSimpleLineGraph'
 	pod 'CWStatusBarNotification'
-	pod 'SnapKit'
 	pod 'DZNEmptyDataSet'
 	pod 'Former'
-	pod 'KMPlaceholderTextView'
 	pod 'SFDraggableDialogView'
 	pod 'UICountingLabel'
 	pod 'AnimatedSegmentSwitch'
@@ -54,7 +52,6 @@ target 'app-ios' do
 	pod 'EmitterKit'
 	pod 'DynamicColor'
 	pod 'M13Checkbox'
-	pod 'BTNavigationDropdownMenu'
 	pod 'VMaskTextField'
 	pod 'Shimmer'
 	pod 'UIScrollView-InfiniteScroll'
@@ -66,9 +63,18 @@ target 'app-ios' do
 	pod 'TRCurrencyTextField'
 	pod 'XLPagerTabStrip'
 
+	# Animations
+	pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift2'
+
 	# Fabric
 	pod 'Fabric'
 	pod 'Crashlytics'
+
+	# Facebook
+	pod 'FBSDKCoreKit'
+	pod 'FBSDKLoginKit'
+	pod 'FBSDKShareKit'
+	pod 'FBSDKMessengerShareKit'
 
 	# Uninstalled
 	#pod 'HanekeSwift'

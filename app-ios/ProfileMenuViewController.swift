@@ -14,7 +14,6 @@ import StoreKit
 import Crashlytics
 import Whisper
 import MZFormSheetPresentationController
-import EasyTipView
 import KeychainSwift
 
 class ProfileMenuViewController: UITableViewController, SKStoreProductViewControllerDelegate {
@@ -25,11 +24,19 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
     
     @IBOutlet weak var inviteCell: UITableViewCell!
     
-    @IBOutlet weak var versionCell: UILabel!
+    private var menuSegmentBar: UISegmentedControl = UISegmentedControl(items: ["Account", "More"])
+
+    private var shouldShowSection1: Bool? = true
     
+    private var shouldShowSection2: Bool? = false
+    
+    private var maskHeaderView = UIView()
+
     private var verifiedLabel = UILabel()
 
     private var verifiedImage = UIImageView()
+
+    private var verifiedButton:UIButton = UIButton()
 
     private var userImageView: UIImageView = UIImageView()
 
@@ -37,31 +44,9 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
 
     private var notification = CWStatusBarNotification()
 
-    private var customersArray = [Customer]()
-    
-    private var plansArray = [Plan]()
-
-    private var subscriptionsArray = [Subscription]()
-
-    private var customersCountLabel = UILabel()
-    
-    private var plansCountLabel = UILabel()
-
-    private var subscriptionsCountLabel = UILabel()
-
     private var locationLabel = UILabel()
-
-    private var splitter = UIView()
-
-    private var splitter2 = UIView()
-
-    private var verifiedButton:UIButton = UIButton()
-
-    private var tipView = EasyTipView(text: "Your account is now verified! Tap to dismiss.", preferences: EasyTipView.globalPreferences)
     
     private let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 40, width: UIScreen.mainScreen().bounds.size.width, height: 50))
-
-    private let opaqueView = UIView()
     
     private let refreshControlView = UIRefreshControl()
 
@@ -87,11 +72,11 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         
         self.verifiedLabel.contentMode = .Center
         self.verifiedLabel.textAlignment = .Center
-        self.verifiedLabel.textColor = UIColor.lightBlue()
+        self.verifiedLabel.textColor = UIColor.darkBlue()
         self.verifiedLabel.font = UIFont(name: "SFUIText-Regular", size: 14)
         self.verifiedLabel.layer.cornerRadius = 5
-        self.verifiedLabel.layer.borderColor = UIColor.lightBlue().CGColor
-        self.verifiedLabel.layer.borderWidth = 1
+        self.verifiedLabel.layer.borderColor = UIColor.darkBlue().CGColor
+        self.verifiedLabel.layer.borderWidth = 0
         let verifyTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.showTutorialModal(_:)))
         self.verifiedLabel.addGestureRecognizer(verifyTap)
         self.verifiedLabel.userInteractionEnabled = true
@@ -105,8 +90,9 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                 
                 // if array has values
                 if !unwrappedOptionalArray.isEmpty {
-                    self.verifiedLabel.text = "How to Verify"
-                    self.verifiedLabel.frame = CGRect(x: 110, y: 100, width: screenWidth-220, height: 30)
+                    self.verifiedLabel.text = "How to Verify?"
+                    self.verifiedLabel.textColor = UIColor.iosBlue()
+                    self.verifiedLabel.frame = CGRect(x: 110, y: 82, width: screenWidth-220, height: 30)
                     self.locationLabel.textAlignment = NSTextAlignment.Center
                     
                     var fields_required: [String] = unwrappedOptionalArray
@@ -155,7 +141,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                     var announcement = Announcement(title: "Identity verification incomplete", subtitle:
                         fields_list, image: UIImage(named: "IconAlertCalm"))
                     announcement.duration = 7
-                    Shout(announcement, to: self)
+//                    Shout(announcement, to: self)
                     
                     let _ = Timeout(10) {
                         if acct?.transfers_enabled == false {
@@ -180,26 +166,9 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                         self.verifiedButton.removeFromSuperview()
                         self.verifiedLabel.text = "System maintenance, transfers disabled"
                     }
-                } else {
-                    self.verifiedLabel.removeFromSuperview()
-                    self.verifiedButton.frame = CGRect(x:screenWidth/2-13, y: 110, width: 26, height: 26)
-                    self.verifiedButton.setImage(UIImage(named: "IconSuccess"), forState: .Normal)
-                    self.verifiedButton.setTitle("Tuts", forState: .Normal)
-                    self.verifiedButton.setTitleColor(UIColor.redColor(), forState: .Normal)
-                    self.verifiedButton.addTarget(self, action: #selector(self.presentTutorial(_:)), forControlEvents: .TouchUpInside)
-                    self.verifiedButton.addTarget(self, action: #selector(self.presentTutorial(_:)), forControlEvents: .TouchUpOutside)
-                    self.view.addSubview(self.verifiedButton)
-                    self.view.bringSubviewToFront(self.verifiedButton)
                 }
             }
         }
-    }
-    
-    func presentTutorial(sender: AnyObject) {
-        tipView.show(forView: self.verifiedButton, withinSuperview: self.view)
-        
-        Answers.logCustomEventWithName("Profile is verified tutorial presented",
-                                    customAttributes: [:])
     }
     
     func checkIfVerified(completionHandler: (Bool, NSError?) -> ()){
@@ -223,8 +192,11 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         self.validateAccount()
         self.loadProfile()
         self.configureHeader()
-        self.reloadUserData()
-        self.tableView.tableHeaderView = ParallaxHeaderView.init(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 220));
+//        self.tableView.tableHeaderView = ParallaxHeaderView.init(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 220));
+        let screen = UIScreen.mainScreen().bounds
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
+        self.tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 180))
         self.view.sendSubviewToBack(self.tableView.tableHeaderView!)
         let _ = Timeout(0.3) {
             self.refreshControlView.endRefreshing()
@@ -233,14 +205,14 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
     
     func configureView() {
         
-        let appVersionString: String = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
-        versionCell.text = "Version " + appVersionString
-        
         self.view.backgroundColor = UIColor.clearColor()
         let screen = UIScreen.mainScreen().bounds
-        
+        let screenWidth = screen.size.width
+        let screenHeight = screen.size.height
+
         self.view.bringSubviewToFront(tableView)
-        self.tableView.tableHeaderView = ParallaxHeaderView.init(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 220));
+//        self.tableView.tableHeaderView = ParallaxHeaderView.init(frame: CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 220));
+        self.tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 180))
         
         refreshControlView.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControlView.addTarget(self, action: #selector(ProfileMenuViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
@@ -250,8 +222,6 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         
         loadProfile()
         
-        reloadUserData()
-
         // Add action to share cell to return to activity menu
         shareCell.targetForAction(Selector("share:"), withSender: self)
         
@@ -262,6 +232,15 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         // Add action to invite user
         let inviteGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.inviteUser(_:)))
         inviteCell.addGestureRecognizer(inviteGesture)
+        
+        maskHeaderView.frame = CGRect(x: 0, y: 90, width: screenWidth, height: 60)
+        maskHeaderView.backgroundColor = UIColor.whiteColor()
+        self.view.addSubview(maskHeaderView)
+        menuSegmentBar.addTarget(self, action: #selector(self.toggleSegment(_:)), forControlEvents: .ValueChanged)
+        menuSegmentBar.selectedSegmentIndex = 0
+        menuSegmentBar.frame = CGRect(x: 30, y: 120, width: screenWidth-60, height: 30)
+        self.view.addSubview(menuSegmentBar)
+        self.view.bringSubviewToFront(menuSegmentBar)
     }
     
     func inviteUser(sender: AnyObject) {
@@ -292,8 +271,6 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
         
-        reloadUserData()
-        
         let attachment: NSTextAttachment = NSTextAttachment()
         attachment.image = UIImage(named: "IconPinWhiteTiny")
         let attachmentString: NSAttributedString = NSAttributedString(attachment: attachment)
@@ -302,7 +279,7 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                 if bool == true {
                     // the account does not require information, display location
                     if let address_city = acct?.address_city where address_city != "", let address_country = acct?.address_country {
-                        let locationStr = adjustAttributedStringNoLineSpacing(address_city.uppercaseString + ", " + address_country.uppercaseString, spacing: 0.5, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
+                        let locationStr = adjustAttributedStringNoLineSpacing(address_city.uppercaseString + ", " + address_country.uppercaseString, spacing: 0.5, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.darkBlue())
                         // locationStr.appendAttributedString(attachmentString)
                         self.locationLabel.attributedText = locationStr
                     } else {
@@ -316,90 +293,12 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
                 }
             })
         }
-        self.locationLabel.frame = CGRectMake(0, 58, screenWidth, 70)
+        self.locationLabel.frame = CGRectMake(0, 62, screenWidth, 70)
         self.locationLabel.textAlignment = NSTextAlignment.Center
         self.locationLabel.font = UIFont(name: "SFUIText-Regular", size: 12)
         self.locationLabel.numberOfLines = 0
-        self.locationLabel.textColor = UIColor.lightBlue()
-
-        splitter.backgroundColor = UIColor.lightBlue().colorWithAlphaComponent(0.1)
-        splitter.frame = CGRect(x: screenWidth*0.333-0.5, y: 150, width: 1, height: 70)
-        let _ = Timeout(0.05) {
-//            addSubviewWithFade(self.splitter, parentView: self, duration: 1.2)
-        }
+        self.locationLabel.textColor = UIColor.darkBlue()
         
-        splitter2.backgroundColor = UIColor.lightBlue().colorWithAlphaComponent(0.1)
-        splitter2.frame = CGRect(x: screenWidth*0.666-0.5, y: 150, width: 1, height: 70)
-        let _ = Timeout(0.1) {
-//            addSubviewWithFade(self.splitter2, parentView: self, duration: 1.2)
-        }
-        
-
-        self.customersCountLabel.frame = CGRectMake(40, 130, 80, 70)
-        self.customersCountLabel.textAlignment = NSTextAlignment.Center
-        self.customersCountLabel.font = UIFont(name: "SFUIText-Regular", size: 12)
-        self.customersCountLabel.numberOfLines = 0
-        self.customersCountLabel.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.75)
-        self.view.addSubview(customersCountLabel)
-        self.view.bringSubviewToFront(customersCountLabel)
-
-        self.subscriptionsCountLabel.frame = CGRectMake(screenWidth*0.5-45, 130, 90, 70)
-        self.subscriptionsCountLabel.textAlignment = NSTextAlignment.Center
-        self.subscriptionsCountLabel.font = UIFont(name: "SFUIText-Regular", size: 12)
-        self.subscriptionsCountLabel.numberOfLines = 0
-        self.subscriptionsCountLabel.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.75)
-        self.view.addSubview(self.subscriptionsCountLabel)
-        self.view.bringSubviewToFront(subscriptionsCountLabel)
-        
-        self.plansCountLabel.frame = CGRectMake(screenWidth-120, 130, 80, 70)
-        self.plansCountLabel.textAlignment = NSTextAlignment.Center
-        self.plansCountLabel.font = UIFont(name: "SFUIText-Regular", size: 12)
-        self.plansCountLabel.numberOfLines = 0
-        self.plansCountLabel.textColor = UIColor.lightBlue().colorWithAlphaComponent(0.75)
-        self.view.addSubview(self.plansCountLabel)
-        self.view.bringSubviewToFront(plansCountLabel)
-        
-        self.opaqueView.frame = CGRectMake(0, 150, screenWidth, 70)
-        self.opaqueView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
-//        addSubviewWithFade(opaqueView, parentView: self, duration: 0.5)
-    }
-    
-    func reloadUserData() {
-        self.loadCustomerList { (customers: [Customer]?, NSError) in
-            if(customers!.count == 0) {
-                self.customersCountLabel.attributedText = adjustAttributedStringNoLineSpacing("0\nSubscribers", spacing: 1, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
-            } else if(customers!.count < 2 && customers!.count > 0) {
-                self.customersCountLabel.attributedText = adjustAttributedStringNoLineSpacing(String(customers!.count) + "\nSubscriber", spacing: 1, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
-            } else if(customers!.count > 98) {
-                self.customersCountLabel.attributedText = adjustAttributedStringNoLineSpacing("100+\nSubscribers", spacing: 1, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
-            } else {
-                self.customersCountLabel.attributedText = adjustAttributedStringNoLineSpacing(String(customers!.count) + "\nSubscribers", spacing: 1, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
-            }
-        }
-        
-        self.loadPlanList("100", starting_after: "") { (plans, error) in
-            if(plans!.count == 0) {
-                self.plansCountLabel.attributedText = adjustAttributedStringNoLineSpacing("0\nPlans", spacing: 1, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
-            } else if(plans!.count < 2 && plans!.count > 0) {
-                self.plansCountLabel.attributedText = adjustAttributedStringNoLineSpacing(String(plans!.count) + "\nPlan", spacing: 1, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
-            } else if(plans!.count > 98) {
-                self.plansCountLabel.attributedText = adjustAttributedStringNoLineSpacing("100+\nPlans", spacing: 1, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
-            } else {
-                self.plansCountLabel.attributedText = adjustAttributedStringNoLineSpacing(String(plans!.count) + "\nPlans", spacing: 1, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
-            }
-        }
-        
-        self.loadSubscriptionList { (subscriptions: [Subscription]?, NSError) in
-            if(subscriptions!.count == 0) {
-                self.subscriptionsCountLabel.attributedText = adjustAttributedStringNoLineSpacing("0\nSubscriptions", spacing: 1, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
-            } else if(subscriptions!.count < 2 && subscriptions!.count > 0) {
-                self.subscriptionsCountLabel.attributedText = adjustAttributedStringNoLineSpacing(String(subscriptions!.count) + "\nSubscription", spacing: 1, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
-            } else if(subscriptions!.count > 98) {
-                self.subscriptionsCountLabel.attributedText = adjustAttributedStringNoLineSpacing("100+\nSubscriptions", spacing: 1, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
-            } else {
-                self.subscriptionsCountLabel.attributedText = adjustAttributedStringNoLineSpacing(String(subscriptions!.count) + "\nSubscriptions", spacing: 1, fontName: "SFUIText-Regular", fontSize: 11, fontColor: UIColor.lightBlue())
-            }
-        }
     }
     
     // Sets up nav
@@ -568,7 +467,6 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
             }
         })
         
-        reloadUserData()
     }
     
     // Opens edit picture
@@ -581,46 +479,6 @@ class ProfileMenuViewController: UITableViewController, SKStoreProductViewContro
         self.performSegueWithIdentifier("editProfileView", sender: sender)
     }
     
-    // Load user data lists for customer and plan
-    private func loadCustomerList(completionHandler: ([Customer]?, NSError?) -> ()) {
-        Customer.getCustomerList("100", starting_after: "", completionHandler: { (customers, error) in
-            if error != nil {
-                let alert = UIAlertController(title: "Error", message: "Could not load customers \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
-            }
-            self.customersArray = customers!
-            completionHandler(customers!, error)
-        })
-    }
-    
-    private func loadPlanList(limit: String, starting_after: String, completionHandler: ([Plan]?, NSError?) -> ()) {
-        Plan.getPlanList(limit, starting_after: starting_after, completionHandler: { (plans, error) in
-            if error != nil {
-                let alert = UIAlertController(title: "Error", message: "Could not load plans \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
-            }
-            self.plansArray = plans!
-            completionHandler(plans!, error)
-        })
-    }
-    
-    private func loadSubscriptionList(completionHandler: ([Subscription]?, NSError?) -> ()) {
-        Subscription.getSubscriptionList({ (subscriptions, error) in
-            if error != nil {
-                let alert = UIAlertController(title: "Error", message: "Could not load subscriptions \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
-            }
-            self.subscriptionsArray = subscriptions!
-            completionHandler(subscriptions!, error)
-        })
-    }
-
-    // User profile image view scroll effects
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
-    }
 }
 
 extension ProfileMenuViewController {
@@ -659,3 +517,51 @@ extension ProfileMenuViewController {
         self.presentViewController(formSheetController, animated: true, completion: nil)
     }
 }
+
+extension ProfileMenuViewController {
+    func toggleSegment(sender: UISegmentedControl) {
+        self.tableView.beginUpdates()
+        //  change boolean conditions for what to show/hide
+        if menuSegmentBar.selectedSegmentIndex == 0 {
+            self.view.bringSubviewToFront(menuSegmentBar)
+            self.view.bringSubviewToFront(verifiedLabel)
+            self.shouldShowSection1 = true
+            self.shouldShowSection2 = false
+        } else if menuSegmentBar.selectedSegmentIndex == 1 {
+            self.view.bringSubviewToFront(menuSegmentBar)
+            self.view.bringSubviewToFront(verifiedLabel)
+            self.shouldShowSection1 = false
+            self.shouldShowSection2 = true
+        }
+        self.tableView.endUpdates()
+    }
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            if self.shouldShowSection1 == true {
+                return 44.0
+            } else {
+                return 0.0
+            }
+        }
+        else if indexPath.section == 1 {
+            if self.shouldShowSection2 == true {
+                return 44.0
+            } else {
+                return 0.0
+            }
+        } else {
+            return 44.0
+        }
+    }
+}
+
+extension ProfileMenuViewController {
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        if self.tableView.contentOffset.y > 90 {
+            self.view.bringSubviewToFront(menuSegmentBar)
+            self.menuSegmentBar.frame.origin.y = self.tableView.contentOffset.y+30
+            self.maskHeaderView.frame.origin.y = self.tableView.contentOffset.y+20
+        }
+    }
+}
+

@@ -340,6 +340,15 @@ class SignupIndividualViewControllerOne: UIViewController, UITextFieldDelegate, 
 extension SignupIndividualViewControllerOne {
     // Format dob number input textfield
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        if(textField == usernameTextField) {
+            if string == " " {
+                return false
+            } else {
+                return true
+            }
+        }
+        
         if(textField == dobTextField) {
             let newString = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
             let components = newString.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet)

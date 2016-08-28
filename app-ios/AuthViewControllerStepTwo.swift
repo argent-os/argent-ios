@@ -7,14 +7,16 @@
 //
 
 import Foundation
+import UIKit
+import Spring
 
 class AuthViewControllerStepTwo: UIPageViewController, UIPageViewControllerDelegate {
     
     let lbl = UILabel()
     
-    let lblDetail = UILabel()
+    let lblDetail = SpringLabel()
 
-    let lblBody = UILabel()
+    let lblBody = SpringLabel()
 
     let imageView = UIImageView()
     
@@ -39,32 +41,30 @@ class AuthViewControllerStepTwo: UIPageViewController, UIPageViewControllerDeleg
         
         self.view.backgroundColor = UIColor.whiteColor()
         
-        let imageName = "IconCustomPOS"
+        let imageName = "BackgroundIntro2"
         let image = UIImage(named: imageName)
         imageView.image = image
+        imageView.contentMode = .ScaleAspectFill
         imageView.layer.masksToBounds = true
         imageView.tag = 7577
-        imageView.frame = CGRect(x: 0, y: 0, width: 130, height: 130)
-        imageView.frame.origin.y = 80
-        imageView.frame.origin.x = (self.view.bounds.size.width - imageView.frame.size.width) / 2.0 // centered left to right.
+        imageView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight*0.5)
+        imageView.frame.origin.y = 0
         self.view.addSubview(imageView)
         
         // Set range of string length to exactly 8, the number of characters
-        lblDetail.frame = CGRect(x: 0, y: 270, width: screenWidth, height: 40)
+        lblDetail.frame = CGRect(x: 0, y: screenHeight*0.5+20, width: screenWidth, height: 40)
         lblDetail.tag = 7579
         lblDetail.textAlignment = NSTextAlignment.Center
         lblDetail.textColor = UIColor.whiteColor()
-        lblDetail.adjustAttributedString("AUTOMATE RECURRING PAYMENTS", spacing: 2, fontName: "SFUIText-Regular", fontSize: 13, fontColor: UIColor.darkBlue().colorWithAlphaComponent(0.75))
-        view.addSubview(lblDetail)
+        lblDetail.adjustAttributedString("EASY BILLING", spacing: 2, fontName: "SFUIText-SemiBold", fontSize: 13, fontColor: UIColor.darkBlue().colorWithAlphaComponent(0.75))
         
-        lblBody.frame = CGRect(x: 90, y: 260, width: screenWidth-180, height: 200)
+        lblBody.frame = CGRect(x: 20, y: screenHeight*0.5+20, width: screenWidth-40, height: 170)
         lblBody.numberOfLines = 0
         lblBody.alpha = 0.9
-        let atrString = adjustAttributedString("End the hassle of asking for checks & credit cards on a regular basis.", spacing: 1, fontName: "SFUIText-Regular", fontSize: 14, fontColor: UIColor.darkBlue().lighterColor(), lineSpacing: 9.0, alignment: .Center)
+        let atrString = adjustAttributedString("One-time and recurring billing made easy, no need to ask for cash or checks.", spacing: 1, fontName: "SFUIText-Light", fontSize: 14, fontColor: UIColor.darkBlue().lighterColor(), lineSpacing: 9.0, alignment: .Center)
         lblBody.attributedText = atrString
         lblBody.tag = 7579
         lblBody.textAlignment = NSTextAlignment.Center
-        view.addSubview(lblBody)
         
         // iphone6+ check
         if self.view.layer.frame.height > 667.0 {
@@ -82,5 +82,24 @@ class AuthViewControllerStepTwo: UIPageViewController, UIPageViewControllerDeleg
     }
     
     override func viewDidAppear(animated: Bool) {
+        lblDetail.animation = "fadeInUp"
+        lblDetail.duration = 1
+        lblDetail.animate()
+        addSubviewWithFade(lblDetail, parentView: self, duration: 0.3)
+        
+        lblBody.animation = "fadeInUp"
+        lblBody.duration = 1.2
+        lblBody.animate()
+        addSubviewWithFade(lblBody, parentView: self, duration: 0.3)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        lblDetail.animation = "fadeInUp"
+        lblDetail.duration = 3
+        lblDetail.animateTo()
+        
+        lblBody.animation = "fadeInUp"
+        lblBody.duration = 1
+        lblBody.animateTo()
     }
 }

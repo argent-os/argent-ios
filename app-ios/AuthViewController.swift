@@ -11,6 +11,8 @@ import LTMorphingLabel
 import Foundation
 import TransitionTreasury
 import TransitionAnimation
+import FBSDKLoginKit
+import Spring
 
 class AuthViewController: UIPageViewController, UIPageViewControllerDelegate, LTMorphingLabelDelegate, ModalTransitionDelegate  {
     
@@ -31,13 +33,13 @@ class AuthViewController: UIPageViewController, UIPageViewControllerDelegate, LT
     
     internal var tr_presentTransition: TRViewControllerTransitionDelegate?
 
-    let lbl = UILabel()
+    let lbl = SpringLabel()
 
-    let lblDetail = UILabel()
+    let lblDetail = SpringLabel()
 
     let lblSubtext = LTMorphingLabel(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 100.0))
 
-    let imageView = UIImageView()
+    let imageView = SpringImageView()
     
     private var text: String {
         i = i >= textArray2.count - 1 ? 0 : i + 1
@@ -66,6 +68,12 @@ class AuthViewController: UIPageViewController, UIPageViewControllerDelegate, LT
     
     func configureView() {
         
+        // Test Facebook
+//        let fbLoginButton = FBSDKLoginButton()
+//        fbLoginButton.loginBehavior = .SystemAccount
+//        fbLoginButton.center = self.view.center
+//        self.view.addSubview(fbLoginButton)
+
         // Set up paging
         dataSource = self
         delegate = self
@@ -80,65 +88,57 @@ class AuthViewController: UIPageViewController, UIPageViewControllerDelegate, LT
         let screenHeight = screen.size.height
         
         // UI
-        let loginButton = UIButton(frame: CGRect(x: 10, y: screenHeight-60-35, width: screenWidth/2-20, height: 60.0))
+        let loginButton = UIButton(frame: CGRect(x: 15, y: screenHeight-60-28, width: screenWidth-30, height: 60.0))
         loginButton.setBackgroundColor(UIColor.whiteColor(), forState: .Normal)
-        loginButton.setBackgroundColor(UIColor.darkBlue(), forState: .Highlighted)
+        loginButton.setBackgroundColor(UIColor.whiteColor(), forState: .Highlighted)
         loginButton.tintColor = UIColor.darkBlue()
         loginButton.setTitleColor(UIColor.darkBlue(), forState: .Normal)
         loginButton.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
         loginButton.titleLabel?.font = UIFont(name: "SFUIText-Regular", size: 15)!
-        loginButton.setAttributedTitle(adjustAttributedString("Login", spacing: 2, fontName: "SFUIText-Regular", fontSize: 15, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Center), forState: .Normal)
-        loginButton.setAttributedTitle(adjustAttributedString("Login", spacing: 2, fontName: "SFUIText-Regular", fontSize: 15, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Center), forState: .Highlighted)
+        loginButton.setAttributedTitle(adjustAttributedString("Login", spacing: 1, fontName: "SFUIText-Regular", fontSize: 14, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Center), forState: .Normal)
+        loginButton.setAttributedTitle(adjustAttributedString("Login", spacing: 1, fontName: "SFUIText-Regular", fontSize: 14, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Center), forState: .Highlighted)
         loginButton.layer.cornerRadius = 3
-        loginButton.layer.borderWidth = 1
+        loginButton.layer.borderWidth = 0
         loginButton.layer.borderColor = UIColor.darkBlue().CGColor
         loginButton.layer.masksToBounds = true
         loginButton.addTarget(self, action: #selector(AuthViewController.login(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(loginButton)
         
-        let signupButton = UIButton(frame: CGRect(x: screenWidth*0.5+10, y: screenHeight-60-35, width: screenWidth/2-20, height: 60.0))
-        signupButton.setBackgroundColor(UIColor.darkBlue(), forState: .Normal)
-        signupButton.setBackgroundColor(UIColor.offWhite().darkerColor(), forState: .Highlighted)
-        signupButton.setAttributedTitle(adjustAttributedString("Sign Up", spacing: 2, fontName: "SFUIText-Regular", fontSize: 15, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Center), forState: .Normal)
+        let signupButton = UIButton(frame: CGRect(x: 15, y: screenHeight-60-88, width: screenWidth-30, height: 54.0))
+        signupButton.setBackgroundColor(UIColor.pastelBlue(), forState: .Normal)
+        signupButton.setBackgroundColor(UIColor.pastelBlue().darkerColor(), forState: .Highlighted)
+        signupButton.setAttributedTitle(adjustAttributedString("Get Started", spacing: 1, fontName: "SFUIText-Regular", fontSize: 15, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Center), forState: .Normal)
         signupButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         signupButton.setTitleColor(UIColor.whiteColor().lighterColor(), forState: .Highlighted)
-        signupButton.layer.cornerRadius = 3
+        signupButton.layer.cornerRadius = 5
         signupButton.layer.borderWidth = 1
-        signupButton.layer.borderColor = UIColor(rgba: "#fff8").CGColor
+        signupButton.layer.borderColor = UIColor.pastelBlue().CGColor
         signupButton.layer.masksToBounds = true
         signupButton.addTarget(self, action: #selector(AuthViewController.signup(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(signupButton)
-        
-        // Set range of string length to exactly 8, the number of characters
-        lbl.frame = CGRect(x: 0, y: screenHeight*0.33, width: screenWidth, height: 40)
-        lbl.font = UIFont(name: "SFUIText-Regular", size: 23)
-        lbl.tag = 7578
-        lbl.textAlignment = NSTextAlignment.Center
-        lbl.textColor = UIColor.darkBlue()
-        lbl.adjustAttributedString(APP_NAME.uppercaseString, spacing: 8, fontName: "SFUIText-Regular", fontSize: 21, fontColor: UIColor.darkBlue())
-        view.addSubview(lbl)
-        
+
+//        // Set range of string length to exactly 8, the number of characters
+//        lbl.frame = CGRect(x: 0, y: screenHeight*0.33, width: screenWidth, height: 40)
+//        lbl.font = UIFont(name: "SFUIText-Regular", size: 23)
+//        lbl.tag = 7578
+//        lbl.textAlignment = NSTextAlignment.Center
+//        lbl.textColor = UIColor.darkBlue()
+//        lbl.adjustAttributedString(APP_NAME.uppercaseString, spacing: 8, fontName: "SFUIDisplay-Thin", fontSize: 17, fontColor: UIColor.darkBlue())
+//        view.addSubview(lbl)
+//        
 //        _ = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: #selector(AuthViewController.changeText(_:)), userInfo: nil, repeats: true)
 
-        let dividerView = UIImageView()
-        dividerView.image = UIImage(named: "Divider")?.alpha(0.3)
-        dividerView.frame = CGRect(x: 100, y: 265, width: screenWidth-200, height: 1)
-        self.view.addSubview(dividerView)
-    
-        print(self.view.layer.frame.height)
-        if self.view.layer.frame.height > 667.0 {
-            dividerView.frame = CGRect(x: 100, y: 285, width: screenWidth-200, height: 1)
-        } else if self.view.layer.frame.height <= 480.0 {
-            dividerView.frame = CGRect(x: 100, y: 245, width: screenWidth-200, height: 1)
-            lbl.frame = CGRect(x: 0, y: 200, width: screenWidth, height: 40)
-        }
     }
     
     //Changing Status Bar
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .Default
+        return .LightContent
     }
 
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     // Set the ID in the storyboard in order to enable transition!
     func signup(sender:AnyObject!) {
         let viewController:UINavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("SignupNavigationController") as! UINavigationController
@@ -243,4 +243,20 @@ extension AuthViewController: UIPageViewControllerDataSource {
         return 0
     }
     
+}
+
+extension AuthViewController {
+    override func viewWillDisappear(animated: Bool) {
+        lblDetail.animation = "fadeInUp"
+        lblDetail.duration = 3
+        lblDetail.animateTo()
+        
+        lbl.animation = "fadeInUp"
+        lbl.duration = 1
+        lbl.animateTo()
+        
+        imageView.animation = "fadeInUp"
+        imageView.duration = 1
+        imageView.animateTo()
+    }
 }

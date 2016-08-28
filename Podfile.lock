@@ -6,29 +6,38 @@ PODS:
   - AvePurchaseButton (1.0.3)
   - BEMCheckBox (1.2.1)
   - BEMSimpleLineGraph (4.1)
-  - BTNavigationDropdownMenu (0.3)
+  - Bolts (1.7.0):
+    - Bolts/AppLinks (= 1.7.0)
+    - Bolts/Tasks (= 1.7.0)
+  - Bolts/AppLinks (1.7.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.7.0)
   - CardIO (5.3.2)
   - CellAnimator (0.1.3)
   - CountryPicker (1.2.3)
   - Crashlytics (3.7.1):
     - Fabric (~> 1.6.3)
   - CWStatusBarNotification (2.3.4)
-  - DGElasticPullToRefresh (1.0.3)
   - DKCircleButton (1.1)
   - DynamicColor (2.4.0)
   - DZNEmptyDataSet (1.8.1)
   - EasyTipView (0.2.0)
   - EmitterKit (4.0.2)
   - Fabric (1.6.7)
+  - FBSDKCoreKit (4.12.0):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.12.0):
+    - FBSDKCoreKit
+  - FBSDKMessengerShareKit (1.3.2)
+  - FBSDKShareKit (4.12.0):
+    - FBSDKCoreKit
   - FlagKit (1.0.7)
   - Former (1.3.0)
   - GaugeKit (0.3.2)
-  - Gecco (0.2.0)
   - ImagePicker (1.3.0)
   - JGProgressHUD (1.3.2)
   - JVFloatLabeledTextField (1.1.0)
   - KeychainSwift (3.0.16)
-  - KMPlaceholderTextView (1.2.0)
   - LTMorphingLabel (0.2.0)
   - M13Checkbox (2.1.2)
   - MCMHeaderAnimated (0.1.0)
@@ -48,7 +57,7 @@ PODS:
   - SCLAlertView (0.5.8)
   - SFDraggableDialogView (1.1.4)
   - Shimmer (1.0.2)
-  - SnapKit (0.21.0)
+  - Spring (1.0.3)
   - StepSlider (0.1.2)
   - Stripe (7.0.2)
   - SwiftyJSON (2.3.2)
@@ -76,28 +85,28 @@ DEPENDENCIES:
   - AvePurchaseButton
   - BEMCheckBox
   - BEMSimpleLineGraph
-  - BTNavigationDropdownMenu
   - CardIO
   - CellAnimator
   - CountryPicker
   - Crashlytics
   - CWStatusBarNotification
-  - DGElasticPullToRefresh
   - DKCircleButton
   - DynamicColor
   - DZNEmptyDataSet
   - EasyTipView
   - EmitterKit
   - Fabric
+  - FBSDKCoreKit
+  - FBSDKLoginKit
+  - FBSDKMessengerShareKit
+  - FBSDKShareKit
   - FlagKit
   - Former
   - GaugeKit
-  - Gecco
   - ImagePicker
   - JGProgressHUD
   - JVFloatLabeledTextField
   - KeychainSwift
-  - KMPlaceholderTextView
   - LTMorphingLabel
   - M13Checkbox
   - MCMHeaderAnimated
@@ -113,7 +122,7 @@ DEPENDENCIES:
   - SCLAlertView
   - SFDraggableDialogView
   - Shimmer
-  - SnapKit
+  - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift2`)
   - StepSlider
   - Stripe
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
@@ -130,10 +139,16 @@ DEPENDENCIES:
   - XLPagerTabStrip
 
 EXTERNAL SOURCES:
+  Spring:
+    :branch: swift2
+    :git: https://github.com/MengTo/Spring.git
   SwiftyJSON:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
+  Spring:
+    :commit: 18d5c7b74489de8044e34767f856d1e574f0820e
+    :git: https://github.com/MengTo/Spring.git
   SwiftyJSON:
     :commit: 73670b94292b8d8496c398a973f56ac67789ba9f
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
@@ -146,28 +161,29 @@ SPEC CHECKSUMS:
   AvePurchaseButton: 325c181105409b744129e4b6808895a15545caa6
   BEMCheckBox: 264b8b72aa92adbfefa265cc58a0cdb86b207b9f
   BEMSimpleLineGraph: 44fd451f27f8e9cf96f2da5bea27603093576dd1
-  BTNavigationDropdownMenu: c36d20785253699046fdd295698c24b1d1c18f53
+  Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
   CardIO: 92c45caef0d986c4a303a7afba0c9b76ff2b1f6e
   CellAnimator: dfba32e8223bbc1e0d4e16524eb51f475082501b
   CountryPicker: 6f166e2f1cc250f07eba4c587fbe1c0efc21049b
   Crashlytics: 3cdd4c9655be68032a0cf0379e0fb5ef6af22cad
   CWStatusBarNotification: 3fec41edcb0ae3677d9febfcb9632d8bdf52294c
-  DGElasticPullToRefresh: 040f39ae69840b3261d163fe6735c5901bf851e9
   DKCircleButton: 62564c9debae08ad77dabb8d9658dfeb5520f2c4
   DynamicColor: 2f3fd61053684667bad9f03045dcf9a2a5a007ea
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   EasyTipView: e8e64a53438b3ef845f5aae39b5758e16079b6db
   EmitterKit: ac0dced2291745a6dd299a150665e1b3f0844a32
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
+  FBSDKCoreKit: 6e56d5a2a64a755ad4efb5dbeee8f82fb1b99775
+  FBSDKLoginKit: 03f68a8d48c2c8bb81d7eb8097973d483543e1f6
+  FBSDKMessengerShareKit: 41c0b1a667d685c9433f993eb9611b3d5074e1cb
+  FBSDKShareKit: df1491f064cffc8ebcc3fc8b71be94cc190c728e
   FlagKit: dffc62b4c5db33043c89bbda0bda897077d521e5
   Former: 7380ef3b9bdb3bf43d9f0fe99e369987d3068705
   GaugeKit: 4d5c3491521ed2d6e2f83cac5f51d0cd09db8989
-  Gecco: 27ab0f43da3f8e844771cf641992afdd1ea09c62
   ImagePicker: ed649bfeb850b2b8715c9e95a35725c730b5f627
   JGProgressHUD: ccac0ead9b771eac0ebcc2b0800efd7f1e1784dc
   JVFloatLabeledTextField: ea4a3d8387ddd43724c472bb2b8ab39b79af05d4
   KeychainSwift: a5bb85cd498ce2217b55e055ec59e9268d83384c
-  KMPlaceholderTextView: cae8ee889bd38d20587eee6b2623b8218f31b8f5
   LTMorphingLabel: 490aa8e079f9247c7f3130f7d4b1be1d66677377
   M13Checkbox: fbc53145e3ca8ecd1c444a76439bdc0ddb17b008
   MCMHeaderAnimated: eae2bd981f3d57b35c64a202f288afb441900a9c
@@ -184,7 +200,7 @@ SPEC CHECKSUMS:
   SCLAlertView: 653e84d1f9fd95333bc54671fbadb7d0c47fce49
   SFDraggableDialogView: cfe9b80b5fff19f7e0fda86dcabee8b03a4c3b44
   Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
-  SnapKit: 2756fe24b706367af224c9c508d2f9166d03354c
+  Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
   StepSlider: 54466ab1de9002435b6839091f97ff62967fdd7e
   Stripe: d1eae5522cf993590f962ac1829a56c2096cf486
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a

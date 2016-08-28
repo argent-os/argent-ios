@@ -34,10 +34,27 @@
 			</dict>
 		</array>
 	</dict>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb103860543400109</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>103860543400109</string>
+	<key>FacebookDisplayName</key>
+	<string>Argent</string>
 	<key>LSApplicationCategoryType</key>
 	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
 		<string>org-appextension-feature-password-management</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
@@ -75,7 +92,12 @@
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>myriad_pro_regular.ttf</string>
+		<string>SF-UI-Text-Ultrathin.otf</string>
+		<string>SF-UI-Text-Light.otf</string>
+		<string>SF-UI-Text-Regular.otf</string>
+		<string>SF-UI-Text-Semibold.otf</string>
+		<string>SF-UI-Display-Thin.otf</string>
+		<string>SF-UI-Display-Light.otf</string>
 	</array>
 	<key>UIApplicationExitsOnSuspend</key>
 	<true/>

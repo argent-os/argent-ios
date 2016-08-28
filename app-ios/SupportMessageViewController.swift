@@ -71,11 +71,12 @@ class SupportMessageViewController: UIViewController {
                 "message": self.message.text
             ]
             
-            let headers : [String : String] = [
+            let headers = [
+                "Authorization": "Bearer " + String(userAccessToken),
                 "Content-Type": "application/json"
             ]
             
-            Alamofire.request(.POST, API_URL + "/message/" + (user?.id)!, parameters: parameters, encoding: .JSON, headers: headers)
+            Alamofire.request(.POST, API_URL + "/message/support/" + (user?.id)!, parameters: parameters, encoding: .JSON, headers: headers)
                 .responseJSON { (response) in
                     switch response.result {
                     case .Success:

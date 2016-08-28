@@ -50,13 +50,22 @@ class MenuChildViewControllerTwo: UIViewController, IndicatorInfoProvider {
         scrollView.scrollEnabled = true
         self.view.addSubview(scrollView)
         
-        let str1 = adjustAttributedString("VIEW SUBSCRIBERS", spacing: 1, fontName: "SFUIText-Regular", fontSize: 12, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
-        let str1w = adjustAttributedString("VIEW SUBSCRIBERS", spacing: 1, fontName: "SFUIText-Regular", fontSize: 12, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Left)
+        self.loadCustomerList { (customers, err) in
+            if customers?.count > 99 {
+                let str1 = adjustAttributedString("VIEW CUSTOMERS (100+)", spacing: 1, fontName: "SFUIText-Regular", fontSize: 12, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
+                let str1w = adjustAttributedString("VIEW CUSTOMERS (100+)", spacing: 1, fontName: "SFUIText-Regular", fontSize: 12, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Left)
+                self.btnViewCustomers.setAttributedTitle(str1, forState: .Normal)
+                self.btnViewCustomers.setAttributedTitle(str1w, forState: .Highlighted)
+            } else {
+                let str1 = adjustAttributedString("VIEW CUSTOMERS (" + String(customers!.count) + ")", spacing: 1, fontName: "SFUIText-Regular", fontSize: 12, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
+                let str1w = adjustAttributedString("VIEW CUSTOMERS (" + String(customers!.count) + ")", spacing: 1, fontName: "SFUIText-Regular", fontSize: 12, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Left)
+                self.btnViewCustomers.setAttributedTitle(str1, forState: .Normal)
+                self.btnViewCustomers.setAttributedTitle(str1w, forState: .Highlighted)
+            }
+        }
         btnViewCustomers.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnViewCustomers.contentEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnViewCustomers.contentHorizontalAlignment = .Left
-        btnViewCustomers.setAttributedTitle(str1, forState: .Normal)
-        btnViewCustomers.setAttributedTitle(str1w, forState: .Highlighted)
         btnViewCustomers.setBackgroundColor(UIColor.oceanBlue(), forState: .Highlighted)
         btnViewCustomers.frame = CGRect(x: 15, y: 30, width: screenWidth-30, height: 60)
         btnViewCustomers.layer.cornerRadius = 3
@@ -70,13 +79,15 @@ class MenuChildViewControllerTwo: UIViewController, IndicatorInfoProvider {
         //        btnViewCustomers.setImage(UIImage(named: "IconCard"), inFrame: CGRectMake(18, 18, 64, 64), forState: .Normal)
         //        btnViewCustomers.imageEdgeInsets = UIEdgeInsets(top: 0.0, left: btnViewCustomers.frame.width-20, bottom: 0.0, right: 10.0)
         
-        let str2 = adjustAttributedString("VIEW PLANS", spacing: 1, fontName: "SFUIText-Regular", fontSize: 12, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
-        let str2w = adjustAttributedString("VIEW PLANS", spacing: 1, fontName: "SFUIText-Regular", fontSize: 12, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Left)
+        self.loadPlanList("100", starting_after: "") { (plans, err) in
+            let str2 = adjustAttributedString("VIEW PLANS (" + String(plans!.count) + ")", spacing: 1, fontName: "SFUIText-Regular", fontSize: 12, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
+            let str2w = adjustAttributedString("VIEW PLANS (" + String(plans!.count) + ")", spacing: 1, fontName: "SFUIText-Regular", fontSize: 12, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Left)
+            self.btnViewPlans.setAttributedTitle(str2, forState: .Normal)
+            self.btnViewPlans.setAttributedTitle(str2w, forState: .Highlighted)
+        }
         btnViewPlans.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnViewPlans.contentEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnViewPlans.contentHorizontalAlignment = .Left
-        btnViewPlans.setAttributedTitle(str2, forState: .Normal)
-        btnViewPlans.setAttributedTitle(str2w, forState: .Highlighted)
         btnViewPlans.setBackgroundColor(UIColor.oceanBlue(), forState: .Highlighted)
         btnViewPlans.frame = CGRect(x: 15, y: 100, width: screenWidth-30, height: 60)
         btnViewPlans.layer.cornerRadius = 3
@@ -88,14 +99,15 @@ class MenuChildViewControllerTwo: UIViewController, IndicatorInfoProvider {
         scrollView.addSubview(btnViewPlans)
         scrollView.bringSubviewToFront(btnViewPlans)
         
-        let str3 = adjustAttributedString("VIEW SUBSCRIPTIONS", spacing: 1, fontName: "SFUIText-Regular", fontSize: 12, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
-        let str3w = adjustAttributedString("VIEW SUBSCRIPTIONS", spacing: 1, fontName: "SFUIText-Regular", fontSize: 12, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Left)
-
+        self.loadSubscriptionList { (subscriptions, err) in
+            let str3 = adjustAttributedString("VIEW SUBSCRIPTIONS (" + String(subscriptions!.count) + ")", spacing: 1, fontName: "SFUIText-Regular", fontSize: 12, fontColor: UIColor.darkBlue(), lineSpacing: 0.0, alignment: .Left)
+            let str3w = adjustAttributedString("VIEW SUBSCRIPTIONS (" + String(subscriptions!.count) + ")", spacing: 1, fontName: "SFUIText-Regular", fontSize: 12, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Left)
+            self.btnViewSubscriptions.setAttributedTitle(str3, forState: .Normal)
+            self.btnViewSubscriptions.setAttributedTitle(str3w, forState: .Highlighted)
+        }
         btnViewSubscriptions.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnViewSubscriptions.contentEdgeInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 0.0)
         btnViewSubscriptions.contentHorizontalAlignment = .Left
-        btnViewSubscriptions.setAttributedTitle(str3, forState: .Normal)
-        btnViewSubscriptions.setAttributedTitle(str3w, forState: .Highlighted)
         btnViewSubscriptions.setBackgroundColor(UIColor.oceanBlue(), forState: .Highlighted)
         btnViewSubscriptions.frame = CGRect(x: 15, y: 170, width: screenWidth-30, height: 60)
         btnViewSubscriptions.layer.cornerRadius = 3
@@ -123,6 +135,45 @@ class MenuChildViewControllerTwo: UIViewController, IndicatorInfoProvider {
         self.presentViewController(vc, animated: true) { }
     }
     
+    // MARK: DATA
+
+    // Load user data lists for customer and plan
+    private func loadCustomerList(completionHandler: ([Customer]?, NSError?) -> ()) {
+        Customer.getCustomerList("100", starting_after: "", completionHandler: { (customers, error) in
+            if error != nil {
+                let alert = UIAlertController(title: "Error", message: "Could not load customers \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+            print(customers?.count)
+            completionHandler(customers!, error)
+        })
+    }
+
+    private func loadPlanList(limit: String, starting_after: String, completionHandler: ([Plan]?, NSError?) -> ()) {
+        Plan.getPlanList(limit, starting_after: starting_after, completionHandler: { (plans, error) in
+            if error != nil {
+                let alert = UIAlertController(title: "Error", message: "Could not load plans \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+            print(plans?.count)
+            completionHandler(plans!, error)
+        })
+    }
+
+    private func loadSubscriptionList(completionHandler: ([Subscription]?, NSError?) -> ()) {
+        Subscription.getSubscriptionList({ (subscriptions, error) in
+            if error != nil {
+                let alert = UIAlertController(title: "Error", message: "Could not load subscriptions \(error?.localizedDescription)", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+            print(subscriptions?.count)
+            completionHandler(subscriptions!, error)
+        })
+    }
+
     // MARK: - IndicatorInfoProvider
     
     func indicatorInfoForPagerTabStrip(pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {

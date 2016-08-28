@@ -8,14 +8,17 @@
 
 import Foundation
 import Shimmer
+import Spring
 
 class AuthViewControllerStepOne: UIPageViewController, UIPageViewControllerDelegate {
     
-    let lbl = UILabel()
+    let lbl = SpringLabel()
     
-    let lblDetail = UILabel()
+    let lblDetail = SpringLabel()
     
-    let imageView = UIImageView()
+    let shimmeringView = FBShimmeringView()
+
+    let imageView = SpringImageView()
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -52,27 +55,34 @@ class AuthViewControllerStepOne: UIPageViewController, UIPageViewControllerDeleg
         imageView.frame = CGRect(x: 0, y: 0, width: 75, height: 75)
         imageView.frame.origin.y = 130
         imageView.frame.origin.x = (self.view.bounds.size.width - imageView.frame.size.width) / 2.0 // centered left to right.
-        self.view.addSubview(imageView)
         
         // Set range of string length to exactly 8, the number of characters
-        lblDetail.frame = CGRect(x: 0, y: 280, width: screenWidth, height: 40)
+        lblDetail.frame = CGRect(x: 0, y: 260, width: screenWidth, height: 40)
         lblDetail.tag = 7579
         lblDetail.textAlignment = NSTextAlignment.Center
         lblDetail.textColor = UIColor.darkBlue()
-        lblDetail.adjustAttributedString("SWIPE TO LEARN MORE", spacing: 4, fontName: "SFUIText-Regular", fontSize: 13, fontColor: UIColor.darkBlue())
-        view.addSubview(lblDetail)
+        lblDetail.adjustAttributedString("Swipe to learn more", spacing: 4, fontName: "SFUIDisplay-Thin", fontSize: 12, fontColor: UIColor.darkBlue())
         
-        let shimmeringView = FBShimmeringView()
-        shimmeringView.frame = CGRect(x: 0, y: 300, width: screenWidth, height: screenHeight*0.88) // shimmeringView.bounds
+        shimmeringView.frame = CGRect(x: 0, y: 300, width: screenWidth, height: screenHeight*0.85) // shimmeringView.bounds
         shimmeringView.contentView = lblDetail
         shimmeringView.shimmering = true
-        addSubviewWithFade(shimmeringView, parentView: self, duration: 1)
-        addSubviewWithFade(lblDetail, parentView: self, duration: 1)
         
         if self.view.layer.frame.height <= 480.0 {
             lblDetail.frame = CGRect(x: 0, y: 320, width: screenWidth, height: 40)
             shimmeringView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight+70) // shimmeringView.bounds
+        } else if self.view.layer.frame.height > 667.0 {
+            shimmeringView.frame = CGRect(x: 0, y: 300, width: screenWidth, height: screenHeight*0.88) // shimmeringView.bounds
         }
+        
+        // Set range of string length to exactly 8, the number of characters
+        lbl.frame = CGRect(x: 0, y: 215, width: screenWidth, height: 40)
+        lbl.font = UIFont(name: "SFUIText-Regular", size: 23)
+        lbl.tag = 7578
+        lbl.textAlignment = NSTextAlignment.Center
+        lbl.textColor = UIColor.darkBlue()
+        lbl.adjustAttributedString(APP_NAME.uppercaseString, spacing: 8, fontName: "SFUIDisplay-Thin", fontSize: 17, fontColor: UIColor.darkBlue())
+        
+        //        _ = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: #selector(AuthViewController.changeText(_:)), userInfo: nil, repeats: true)
         
         //        // Set range of string length to exactly 8, the number of characters
         //        lblSubtext.font = UIFont(name: "SFUIText-Regular", size: 17)
@@ -94,5 +104,34 @@ class AuthViewControllerStepOne: UIPageViewController, UIPageViewControllerDeleg
     }
     
     override func viewDidAppear(animated: Bool) {
+        lblDetail.animation = "fadeInUp"
+        lblDetail.duration = 1
+        lblDetail.animate()
+        addSubviewWithFade(lblDetail, parentView: self, duration: 0.3)
+        addSubviewWithFade(shimmeringView, parentView: self, duration: 1)
+
+        lbl.animation = "fadeInUp"
+        lbl.duration = 1.2
+        lbl.animate()
+        addSubviewWithFade(lbl, parentView: self, duration: 0.3)
+        
+        imageView.animation = "fadeInUp"
+        imageView.duration = 1
+        imageView.animate()
+        addSubviewWithFade(imageView, parentView: self, duration: 0.3)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        lblDetail.animation = "fadeIn"
+        lblDetail.duration = 3
+        lblDetail.animateTo()
+        
+        lbl.animation = "fadeIn"
+        lbl.duration = 3
+        lbl.animateTo()
+        
+        imageView.animation = "fadeIn"
+        imageView.duration = 3
+        imageView.animateTo()
     }
 }

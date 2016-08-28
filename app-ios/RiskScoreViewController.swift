@@ -78,7 +78,7 @@ class RiskScoreViewController: UIViewController {
         l.maxValue = 100
         addSubviewWithFade(l, parentView: self, duration: 0.3)
 
-        c.frame = CGRect(x: 50, y: 80, width: self.view.layer.frame.width-100, height: 250)
+        c.frame = CGRect(x: 50, y: 75, width: self.view.layer.frame.width-100, height: 250)
         c.image = UIImage(named: "BackgroundCircleWhite")
         c.contentMode = .ScaleAspectFill
         addSubviewWithFade(c, parentView: self, duration: 0.5)
@@ -102,13 +102,13 @@ class RiskScoreViewController: UIViewController {
             addSubviewWithBounce(self.titleLabel, parentView: self, duration: 0.4)
         }
         
-        bg.frame = CGRect(x: 0, y: 0, width: self.view.frame.width+1, height: self.view.frame.height-250)
-        bg.image = UIImage(named: "BackgroundGradientOffWhiteCurved")
-        bg.contentMode = .ScaleAspectFill
-        addSubviewWithFade(bg, parentView: self, duration: 0.5)
-        self.view.sendSubviewToBack(bg)
+//        bg.frame = CGRect(x: 0, y: 0, width: self.view.frame.width+1, height: self.view.frame.height-250)
+//        bg.image = UIImage(named: "BackgroundGradientOffWhiteCurved")
+//        bg.contentMode = .ScaleAspectFill
+//        addSubviewWithFade(bg, parentView: self, duration: 0.5)
+//        self.view.sendSubviewToBack(bg)
         
-        info.frame = CGRect(x: self.view.frame.width/2-13, y: self.view.frame.height-136, width: 26, height: 26)
+        info.frame = CGRect(x: self.view.frame.width/2-10, y: self.view.frame.height-165, width: 20, height: 20)
         info.setBackgroundImage(UIImage(named: "ic_question"), forState: .Normal)
         info.contentMode = .ScaleAspectFit
         info.addTarget(self, action: #selector(RiskScoreViewController.showTutorial(_:)), forControlEvents: .TouchUpInside)

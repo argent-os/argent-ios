@@ -246,6 +246,15 @@ class SignupViewControllerTwo: UIViewController, UITextFieldDelegate, UIScrollVi
     
     // Format phone number input textfield
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        if(textField == usernameTextField) {
+            if string == " " {
+                return false
+            } else {
+                return true
+            }
+        }
+        
         if(textField == phoneNumberTextField) {
             let newString = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
             let components = newString.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet)

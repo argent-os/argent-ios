@@ -50,7 +50,7 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
         let str = NSAttributedString(string: "Username or Email", attributes: [NSForegroundColorAttributeName:UIColor.lightBlue()])
         usernameTextField.attributedPlaceholder = str
         usernameTextField.textRectForBounds(CGRectMake(0, 0, 0, 0))
-        usernameTextField.font = UIFont(name: "SFUIText-Regular", size: 13)!
+        usernameTextField.font = UIFont.systemFontOfSize(13)
         usernameTextField.tintColor = UIColor.pastelBlue()
         usernameTextField.addTarget(LoginViewController(), action: #selector(LoginViewController().textFieldDidChange(_:)), forControlEvents: .EditingChanged)
 
@@ -59,7 +59,7 @@ class LoginBoxTableViewController: UITableViewController, UITextFieldDelegate, W
         passwordTextField.attributedPlaceholder = str2
         passwordTextField.textRectForBounds(CGRectMake(0, 0, 0, 0))
         passwordTextField.clearsOnBeginEditing = false
-        passwordTextField.font = UIFont(name: "SFUIText-Regular", size: 13)!
+        passwordTextField.font = UIFont.systemFontOfSize(13)
         passwordTextField.tintColor = UIColor.pastelBlue()
         passwordTextField.addTarget(LoginViewController(), action: #selector(LoginViewController().textFieldDidChange(_:)), forControlEvents: .EditingChanged)
 

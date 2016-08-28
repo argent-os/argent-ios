@@ -22,6 +22,13 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadUserAccount()
+        
+        configureView()
+    }
+    
+    private func configureView() {
+        
         let app: UIApplication = UIApplication.sharedApplication()
         let statusBarHeight: CGFloat = app.statusBarFrame.size.height
         let statusBarView: UIView = UIView(frame: CGRectMake(0, -statusBarHeight, UIScreen.mainScreen().bounds.size.width, statusBarHeight))
@@ -41,7 +48,6 @@ class ProfileViewController: UIViewController {
             NSFontAttributeName : UIFont.systemFontOfSize(14, weight: UIFontWeightLight)
         ]
         
-        loadUserAccount()
     }
     
     private func loadUserAccount() {

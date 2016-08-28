@@ -20,6 +20,11 @@ import Fabric
 import Crashlytics
 import Armchair
 import EasyTipView
+import FBSDKCoreKit
+import FBSDKLoginKit
+import FBSDKShareKit
+import FBSDKMessengerShareKit
+
 
 // THEME
 var APP_THEME = "LIGHT"
@@ -43,6 +48,8 @@ let STRIPE_PUBLIC_KEY_LIVE = "pk_live_9kfmn7pMRPKAYSpcf1Fmn266"
 //let API_URL = "http://192.168.1.182:5001/v1" // Works in MA
 //let API_URL = "http://192.168.1.232:5001/v1" // Works in VA
 //let API_URL = "http://172.16.0.101:5001/v1" // Works in TR
+//let API_URL = "http://216.12.10.118:5001/v1" // Works in CVILLE
+
 
 // API ENDPOINT V1
 //let API_URL = "https://dev.argent.cloud/v1"
@@ -99,14 +106,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+    }
+    
     // Default Launch
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        //    for family in UIFont.familyNames() {
+        //        print("\(family)")
+        //        
+        //        for name in UIFont.fontNamesForFamilyName(family) {
+        //            print("   \(name)")
+        //        }
+        //    }
         
         // It is always best to load Armchair as early as possible
         // because it needs to receive application life-cycle notifications
         // NOTE: The appID call always has to go before any other Armchair calls
         Armchair.appID(APP_ID)
-        Armchair.debugEnabled(true)
+        
+        // Facebook Launch
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
         // Tooltips
         var preferences = EasyTipView.Preferences()
@@ -232,8 +253,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().tintColor = UIColor.pastelDarkBlue()
         
         // Page Control UI
-        UIPageControl.appearance().pageIndicatorTintColor = UIColor.lightBlue().colorWithAlphaComponent(0.5)
-        UIPageControl.appearance().currentPageIndicatorTintColor = UIColor.darkBlue()
+        UIPageControl.appearance().pageIndicatorTintColor = UIColor.pastelBlue().colorWithAlphaComponent(0.5)
+        UIPageControl.appearance().currentPageIndicatorTintColor = UIColor.pastelBlue()
         
         // Globally dark keyboard
         UITextField.appearance().keyboardAppearance = .Light
@@ -401,6 +422,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         /*
          Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
          */
+        
+        // Facebook
+        FBSDKAppEvents.activateApp()
         
         Answers.logCustomEventWithName("Application Did Become Active",
                                        customAttributes: [:])

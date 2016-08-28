@@ -370,6 +370,7 @@ public func convertStringToDictionary(text: String) -> [String:AnyObject]? {
     return nil
 }
 
+
 func addSubviewWithBounce(view: UIView, parentView: UIViewController, duration: NSTimeInterval) {
     view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001)
     parentView.view.addSubview(view)
@@ -384,6 +385,7 @@ func addSubviewWithBounce(view: UIView, parentView: UIViewController, duration: 
             })
     })
 }
+
 
 func addSubviewWithFade(view: UIView, parentView: UIViewController, duration: NSTimeInterval) {
     view.alpha = 0.0

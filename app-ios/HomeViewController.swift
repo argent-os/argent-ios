@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SnapKit
 import SwiftyJSON
 import Stripe
 import BEMSimpleLineGraph
@@ -142,7 +141,7 @@ class HomeViewController: UIViewController, BEMSimpleLineGraphDelegate, BEMSimpl
     // VIEW DID APPEAR
     override func viewDidAppear(animated: Bool) {
         UITextField.appearance().keyboardAppearance = .Light
-        self.graph.reloadGraph()
+        //self.graph.reloadGraph()
     }
     
     func setupAppleWatch() {
