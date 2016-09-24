@@ -215,22 +215,6 @@ class SearchDetailViewController: UIViewController, UINavigationBarDelegate, UIS
             navItem.leftBarButtonItem?.tintColor = UIColor.mediumBlue()
 //            self.navigationController?.navigationBar.setItems([navItem], animated: true)
             
-            // Enable ACH Button
-            let enableACHButton = UIButton()
-            enableACHButton.frame = CGRect(x: 35, y: cardView.layer.frame.height-40,  width: self.view.layer.frame.width-70, height: 60.0)
-            enableACHButton.setTitleColor(UIColor.oceanBlue(), forState: .Normal)
-            enableACHButton.setTitleColor(UIColor.oceanBlue().lighterColor(), forState: .Highlighted)
-            enableACHButton.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
-            enableACHButton.setBackgroundColor(UIColor.whiteColor().lighterColor(), forState: .Highlighted)
-            enableACHButton.titleLabel?.font = UIFont(name: "SFUIText-Regular", size: 14)!
-            enableACHButton.setTitle("Enable ACH Transfers", forState: .Normal)
-            enableACHButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
-            enableACHButton.addTarget(self, action: #selector(SearchDetailViewController.showACHModal(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-            //enableACHButton.layer.cornerRadius = 10
-            enableACHButton.layer.borderColor = UIColor.oceanBlue().CGColor
-            enableACHButton.layer.borderWidth = 0
-            enableACHButton.addTarget(self, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
-//            self.view.addSubview(enableACHButton)
             
             // View plans Button
             let viewPlansButton = UIButton()
@@ -437,56 +421,7 @@ extension SearchDetailViewController {
 }
 
 extension SearchDetailViewController {
-    func showACHAgreementModal(sender: UIButton) {
-
-    }
-}
-
-extension SearchDetailViewController {
-    // MARK: ACH modal
-    
-    func showACHModal(sender: AnyObject) {
-        let navigationController = self.storyboard!.instantiateViewControllerWithIdentifier("bankListModalNavigationController") as! UINavigationController
-        let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
-        
-        print("showing ach modal")
-        // Initialize and style the terms and conditions modal
-        formSheetController.presentationController?.contentViewSize = CGSizeMake(280, 400)
-        formSheetController.presentationController?.shouldUseMotionEffect = true
-        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.pastelDarkBlue().colorWithAlphaComponent(0.5)
-        formSheetController.presentationController?.containerView?.sizeToFit()
-        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
-        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
-        formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
-        formSheetController.presentationController?.shouldCenterVertically = true
-        formSheetController.presentationController?.shouldCenterHorizontally = true
-        formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.CenterVertically
-        formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
-        formSheetController.contentViewCornerRadius = 15
-        formSheetController.allowDismissByPanningPresentedView = true
-        formSheetController.interactivePanGestureDismissalDirection = .All;
-        
-        // Blur will be applied to all MZFormSheetPresentationControllers by default
-        MZFormSheetPresentationController.appearance().shouldApplyBackgroundBlurEffect = true
-        
-        let presentedViewController = navigationController.viewControllers.first as! BankListModalViewController
-        
-        // keep passing along user data to modal
-        presentedViewController.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
-        presentedViewController.navigationItem.leftItemsSupplementBackButton = true
-        
-        // send detail user information for delegated charge
-        presentedViewController.detailUser = detailUser
-        
-//        var str = ""
-//        str.removeAtIndex(str.characters.indices.first!) // remove first letter
-        let amount = Float(123.00) //(str as NSString).floatValue
-        presentedViewController.detailAmount = amount
-        presentedViewController.paymentType = "once"
-        presentedViewController.planId = ""
-        // send an empty plan id as this is a onetime payment
-        
-        // Be sure to update current module on storyboard
-        self.presentViewController(formSheetController, animated: true, completion: nil)
+    func showACHScreen(sender: UIButton) {
+        self.performSegueWithIdentifier("plaidLinkWebView", sender: self)
     }
 }

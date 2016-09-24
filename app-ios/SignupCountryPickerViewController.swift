@@ -9,12 +9,14 @@
 import Foundation
 import CountryPicker
 import FlagKit
+import UIKit
+import Spring
 
 class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate, UITextFieldDelegate {
     
-    let codeLabel:UILabel = UILabel()
+    let codeLabel:SpringLabel = SpringLabel()
 
-    let flagImg:UIImageView = UIImageView()
+    let flagImg:SpringImageView = SpringImageView()
     
     let countryPicker:CountryPicker = CountryPicker()
     
@@ -29,9 +31,29 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
     }
     
     override func viewDidAppear(animated: Bool) {
-        addSubviewWithBounce(codeLabel, parentView: self, duration: 0.7)
-        addSubviewWithBounce(flagImg, parentView: self, duration: 0.9)
+        codeLabel.animation = "fadeInUp"
+        codeLabel.duration = 1.2
+        codeLabel.animate()
+        addSubviewWithFade(codeLabel, parentView: self, duration: 0.7)
+        
+        flagImg.animation = "fadeInUp"
+        flagImg.duration = 1
+        flagImg.animate()
+        addSubviewWithFade(flagImg, parentView: self, duration: 0.9)
+        
         addSubviewWithFade(countryPicker, parentView: self, duration: 0.3)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        codeLabel.animation = "fadeInUp"
+        codeLabel.duration = 2
+        codeLabel.animateTo()
+        addSubviewWithFade(codeLabel, parentView: self, duration: 0.7)
+        
+        flagImg.animation = "fadeInUp"
+        flagImg.duration = 2.5
+        flagImg.animateTo()
+        addSubviewWithFade(flagImg, parentView: self, duration: 0.9)
     }
     
     override func viewDidLoad() {
@@ -74,7 +96,7 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
         codeLabel.textAlignment = .Center
         let str = NSAttributedString(string: countryName, attributes:
             [
-                NSFontAttributeName: UIFont(name: "SFUIText-Ultrathin", size: 24)!,
+                NSFontAttributeName: UIFont(name: "SFUIText-Light", size: 24)!,
                 NSForegroundColorAttributeName:UIColor.lightBlue()
             ])
         codeLabel.attributedText = str
@@ -194,9 +216,16 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
             flagImg.frame = CGRect(x: screenWidth/2-15, y: screenHeight*0.22, width: 30, height: 30)
             codeLabel.frame = CGRect(x: 0, y: screenHeight*0.28, width: screenWidth, height: 50)
         }
+
+        codeLabel.animation = "fadeInUp"
+        codeLabel.duration = 1.2
+        codeLabel.animate()
+        addSubviewWithFade(codeLabel, parentView: self, duration: 0.7)
         
-        addSubviewWithBounce(codeLabel, parentView: self, duration: 0.3)
-        addSubviewWithBounce(flagImg, parentView: self, duration: 0.3)
+        flagImg.animation = "fadeInUp"
+        flagImg.duration = 1
+        flagImg.animate()
+        addSubviewWithFade(flagImg, parentView: self, duration: 0.9)
         
         if code == "US" {
             // print("country supported")
@@ -207,8 +236,15 @@ class SignupCountryPickerViewController:UIViewController, CountryPickerDelegate,
         } else {
             print("this country is not currently supported")
             toolBar.removeFromSuperview()
-            addSubviewWithBounce(unsupportedTextLabel, parentView: self, duration: 0.4)
-            addSubviewWithBounce(unsupportedImageView, parentView: self, duration: 0.4)
+            codeLabel.animation = "fadeIn"
+            codeLabel.duration = 1.7
+            codeLabel.animate()
+            addSubviewWithFade(unsupportedImageView, parentView: self, duration: 0.7)
+            
+            flagImg.animation = "fadeIn"
+            flagImg.duration = 1.5
+            flagImg.animate()
+            addSubviewWithFade(unsupportedTextLabel, parentView: self, duration: 0.9)
         }
     }
 }

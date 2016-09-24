@@ -180,12 +180,12 @@ class PayMerchantViewController: UIViewController, STPPaymentCardTextFieldDelega
                 self.paymentMethod = "Apple Pay"
             }
         }))
-//        actionController.addAction(Action("ACH Transfer", style: .Default, handler: { action in
-//            let _ = Timeout(0.5) {
-//                self.showACHModal(self)
-//                self.paymentMethod = "ACH"
-//            }
-//        }))
+        actionController.addAction(Action("Bank Account", style: .Default, handler: { action in
+            let _ = Timeout(0.5) {
+                self.showACHModal(self)
+                self.paymentMethod = "ACH"
+            }
+        }))
         actionController.addAction(Action("Credit or Debit Card", style: .Default, handler: { action in
             let _ = Timeout(0.5) {
                 self.showCreditCardModal(self)
@@ -407,20 +407,18 @@ extension PayMerchantViewController {
         
         print("showing ach modal")
         // Initialize and style the terms and conditions modal
-        formSheetController.presentationController?.contentViewSize = CGSizeMake(280, 400)
+        formSheetController.presentationController?.contentViewSize = CGSizeMake(280, 280)
         formSheetController.presentationController?.shouldUseMotionEffect = true
-        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
+        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.pastelDarkBlue().colorWithAlphaComponent(0.75)
         formSheetController.presentationController?.containerView?.sizeToFit()
         formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
         formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
-        formSheetController.presentationController?.shouldCenterVertically = true
-        formSheetController.presentationController?.shouldCenterHorizontally = true
-        formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.CenterVertically
+        formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.AlwaysAboveKeyboard
         formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
         formSheetController.contentViewCornerRadius = 15
-        formSheetController.allowDismissByPanningPresentedView = true
-        formSheetController.interactivePanGestureDismissalDirection = .All;
+        formSheetController.allowDismissByPanningPresentedView = false
+        formSheetController.interactivePanGestureDismissalDirection = .None
         
         // Blur will be applied to all MZFormSheetPresentationControllers by default
         MZFormSheetPresentationController.appearance().shouldApplyBackgroundBlurEffect = true
@@ -444,10 +442,10 @@ extension PayMerchantViewController {
             presentedViewController.detailAmount = amount
             presentedViewController.paymentType = "once"
             presentedViewController.planId = ""
-            // send an empty plan id as this is a onetime payment
             
             // Be sure to update current module on storyboard
             self.presentViewController(formSheetController, animated: true, completion: nil)
         }
     }
 }
+

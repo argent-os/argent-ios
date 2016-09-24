@@ -192,8 +192,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // print(UIApplication.sharedApplication().applicationIconBadgeNumber)
             for item in tabBarController.tabBar.items! {
                 //No text and centered UITabBar
-                //item.title = ""
-                //item.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
+                item.title = ""
+                item.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
                 if let image = item.image {
                     item.image = image.imageWithRenderingMode(.AlwaysOriginal)
                     if UIApplication.sharedApplication().applicationIconBadgeNumber != 0 {

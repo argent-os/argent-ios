@@ -28,9 +28,7 @@ class RiskProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        KeychainSwift().set("", forKey: "riskScore")
-        let score = KeychainSwift().get("riskScore")
-
+        
         configure()
     }
     
@@ -106,7 +104,7 @@ class RiskProfileViewController: UIViewController {
         pageHeader.frame = CGRect(x: 0, y: 260, width: screenWidth, height: 30)
         self.view.addSubview(pageHeader)
         
-        let descriptionAttributedString = adjustAttributedString("Welcome to risk-profiling. \n From here you will be able \nto see a comprehensive \nrisk-profile analysis on your\ncurrent financial standing.", spacing: 0, fontName: "SFUIText-Regular", fontSize: 15, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Center)
+        let descriptionAttributedString = adjustAttributedString("With risk-profiling you will be able \nto see a comprehensive \nrisk-profile analysis based on \nyour current financial standing.", spacing: 0, fontName: "SFUIText-Regular", fontSize: 15, fontColor: UIColor.lightBlue(), lineSpacing: 0.0, alignment: .Center)
         pageDescription.attributedText = descriptionAttributedString
         pageDescription.numberOfLines = 0
         pageDescription.lineBreakMode = .ByWordWrapping
@@ -148,7 +146,7 @@ class RiskProfileViewController: UIViewController {
                     "Content-Type": "application/json"
                 ]
                 
-                let parameters = ["upgrade_to": "risk"]
+                let parameters = [ "upgrade_to" : "risk" ]
                 
                 Alamofire.request(.POST, endpoint, parameters: parameters, encoding: .JSON, headers: headers).responseJSON {
                     response in

@@ -2,7 +2,7 @@
 //  BankListModalViewController.swift
 //  app-ios
 //
-//  Created by Sinan Ulkuatam on 7/24/16.
+//  Created by Sinan Ulkuatam on 9/23/16.
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
 //
 
@@ -85,6 +85,7 @@ class BankListModalViewController: UIViewController, UITableViewDelegate, UITabl
         configure()
         setupBankCell()
         addInfiniteScroll()
+        setupNav()
     }
     
     private func addInfiniteScroll() {
@@ -143,17 +144,6 @@ class BankListModalViewController: UIViewController, UITableViewDelegate, UITabl
         
         self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         self.dateFormatter.timeStyle = NSDateFormatterStyle.LongStyle
-        
-        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: 280, height: 50))
-        navBar.barTintColor = UIColor.whiteColor()
-        navBar.translucent = false
-        navBar.titleTextAttributes = [
-            NSForegroundColorAttributeName : UIColor.lightBlue(),
-            NSFontAttributeName : UIFont(name: "SFUIText-Regular", size: 14)!
-        ]
-        self.view.addSubview(navBar);
-        let navItem = UINavigationItem(title: "Select ACH Bank");
-        navBar.setItems([navItem], animated: false);
         
         // add gesture recognizer to window
         let recognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MerchantPlansViewController.handleTapBehind(_:)))
@@ -239,38 +229,6 @@ class BankListModalViewController: UIViewController, UITableViewDelegate, UITabl
 }
 
 extension BankListModalViewController {
-    
-    func configureView() {
-        
-        // Remove extra splitters in table
-        self.tableView.tableFooterView = UIView()
-        
-        // During startup (viewDidLoad or in storyboard) do:
-        self.tableView.allowsMultipleSelectionDuringEditing = false
-        self.tableView.showsVerticalScrollIndicator = false
-        self.tableView.backgroundColor = UIColor.whiteColor()
-        
-        self.navigationItem.title = "Connected Banks"
-        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 60)
-        
-        let indicator = UIActivityIndicatorView()
-        addActivityIndicatorView(indicator, view: self.tableView, color: UIActivityIndicatorViewStyle.Gray)
-        
-        self.dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
-        self.dateFormatter.timeStyle = NSDateFormatterStyle.LongStyle
-        
-        self.bankRefreshControl.backgroundColor = UIColor.clearColor()
-        
-        self.bankRefreshControl.tintColor = UIColor.lightBlue()
-        self.bankRefreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: [
-            NSFontAttributeName: UIFont.systemFontOfSize(13),
-            NSForegroundColorAttributeName:UIColor.lightBlue()
-            ])
-        self.bankRefreshControl.addTarget(self, action: #selector(self.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
-        self.tableView.addSubview(bankRefreshControl)
-        
-        self.loadBankAccounts()
-    }
     
     //Changing Status Bar
     override func prefersStatusBarHidden() -> Bool {
@@ -407,9 +365,9 @@ extension BankListModalViewController {
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
+        
         let cell = self.tableView.dequeueReusableCellWithIdentifier("connectedBankACHCell", forIndexPath: indexPath) as! BankACHConnectedCell
-
+        
         cell.backgroundColor = UIColor.whiteColor()
         tableView.separatorColor = UIColor.lightBlue().colorWithAlphaComponent(0.3)
         cell.selectionStyle = UITableViewCellSelectionStyle.Blue;
@@ -612,5 +570,41 @@ extension BankListModalViewController {
         
         return cell
     }
+    
+}
 
+extension BankListModalViewController {
+    private func setupNav() {
+        let navigationBar = self.navigationController?.navigationBar
+        
+        navigationBar!.backgroundColor = UIColor.offWhite()
+        navigationBar!.tintColor = UIColor.darkBlue()
+        
+        // Create a navigation item with a title
+        let navigationItem = UINavigationItem()
+        
+        // Create left and right button for navigation item
+        let leftButton = UIBarButtonItem(title: "Close", style: .Plain, target: self, action: #selector(self.close(_:)))
+        //        let leftButton = UIBarButtonItem(image: UIImage(named: "IconClose"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.close(_:)))
+        let font = UIFont(name: "SFUIText-Regular", size: 17)!
+        leftButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+        leftButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.darkBlue()], forState: UIControlState.Highlighted)
+        // Create two buttons for the navigation item
+        navigationItem.leftBarButtonItem = leftButton
+        
+        
+        let rightButton = UIBarButtonItem(title: "Bank Selection", style: .Plain, target: nil, action: nil)
+        rightButton.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.mediumBlue()], forState: UIControlState.Normal)
+        // Create two buttons for the navigation item
+        navigationItem.rightBarButtonItem = rightButton
+        
+        // Assign the navigation item to the navigation bar
+        navigationBar!.titleTextAttributes = [NSFontAttributeName: font, NSForegroundColorAttributeName:UIColor.darkGrayColor()]
+        navigationBar!.items = [navigationItem]
+        
+    }
+    
+    func close(sender: AnyObject) -> Void {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }

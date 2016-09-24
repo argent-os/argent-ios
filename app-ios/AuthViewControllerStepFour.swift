@@ -62,7 +62,7 @@ class AuthViewControllerStepFour: UIPageViewController, UIPageViewControllerDele
         lblBody.frame = CGRect(x: 20, y: screenHeight*0.5+20, width: screenWidth-40, height: 170)
         lblBody.numberOfLines = 0
         lblBody.alpha = 0.9
-        let atrText = adjustAttributedString("The business owner.  We promise to deliver satisfaction and help your business grow.", spacing: 1, fontName: "SFUIText-Light", fontSize: 14, fontColor: UIColor.darkBlue(), lineSpacing: 9.0, alignment: .Center)
+        let atrText = adjustAttributedString("We promise to deliver satisfaction and help you achieve your payment needs.", spacing: 1, fontName: "SFUIText-Light", fontSize: 14, fontColor: UIColor.darkBlue(), lineSpacing: 9.0, alignment: .Center)
         lblBody.attributedText = atrText
         lblBody.tag = 7579
         lblBody.textAlignment = NSTextAlignment.Center

@@ -35,22 +35,12 @@ class RiskScoreViewController: UIViewController {
         super.viewDidLoad()
 
         configureView()
+        
         setData()
     }
     
     override func viewDidAppear(animated: Bool) {
-        Answers.logCustomEventWithName("Risk Interest",
-                                       customAttributes: ["type": "risk_profile_demo_view"])
     }
-    
-    //Changing Status Bar
-//    override func prefersStatusBarHidden() -> Bool {
-//        return false
-//    }
-//    
-//    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-//        return .LightContent
-//    }
     
     
     func configureView() {
@@ -85,7 +75,7 @@ class RiskScoreViewController: UIViewController {
         self.view.sendSubviewToBack(c)
         
         lbl.frame = CGRect(x: 50, y: 60, width: self.view.layer.frame.width-100, height: 250)
-        lbl.textColor = UIColor.lightBlue()
+        lbl.textColor = UIColor.darkBlue()
         lbl.textAlignment = .Center
         lbl.font = UIFont(name: "SFUIText-Regular", size: 36)
         let _ = Timeout(0.5) {
@@ -93,9 +83,9 @@ class RiskScoreViewController: UIViewController {
         }
         
         titleLabel.frame = CGRect(x: 50, y: 100, width: self.view.layer.frame.width-100, height: 250)
-        titleLabel.text = "Risk Score"
+        titleLabel.text = "Your Score"
         titleLabel.alpha = 0.5
-        titleLabel.textColor = UIColor.lightBlue()
+        titleLabel.textColor = UIColor.darkBlue()
         titleLabel.textAlignment = .Center
         titleLabel.font = UIFont(name: "SFUIText-Regular", size: 14)
         let _ = Timeout(0.3) {
@@ -121,9 +111,9 @@ class RiskScoreViewController: UIViewController {
     func setData() {
         let score = KeychainSwift().get("riskScore")
         if score != nil, let floatScore = Float(score!) {
-            lbl.text = String(Int(floatScore*100))
-            g.rate = CGFloat(floatScore)*100
-            l.rate = CGFloat(floatScore)*100
+            lbl.text = String(Int(1.0-floatScore*100))
+            g.rate = CGFloat(1.0-floatScore)*100
+            l.rate = CGFloat(1.0-floatScore)*100
             
             if(g.rate == 100) {
                 g.startColor = UIColor.lightBlue()
@@ -153,12 +143,13 @@ class RiskScoreViewController: UIViewController {
                 titleLabel.text = "Poor Risk Score"
             }
         } else {
-            lbl.text = "91"
-            g.startColor = UIColor.neonGreen()
-            l.startColor = UIColor.neonGreen()
-            l.endColor = UIColor.skyBlue()
-            g.rate = 91
-            l.rate = 100
+            // static data
+             lbl.text = "N/A"
+             g.startColor = UIColor.neonGreen()
+             l.startColor = UIColor.neonGreen()
+             l.endColor = UIColor.skyBlue()
+             g.rate = 0
+             l.rate = 0
         }
 
     }
@@ -168,7 +159,7 @@ class RiskScoreViewController: UIViewController {
     func showTutorial(sender: AnyObject) {
         tipView.show(forView: self.info, withinSuperview: self.view)
         
-        Answers.logCustomEventWithName("Profile is verified tutorial presented",
+        Answers.logCustomEventWithName("Risk profile tutorial presented",
                                        customAttributes: [:])
     }
     

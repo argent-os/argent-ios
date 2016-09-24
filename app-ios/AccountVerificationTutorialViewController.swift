@@ -85,7 +85,7 @@ class AccountVerificationTutorialViewController: UIViewController {
         tutText1.textColor = UIColor.mediumBlue()
         self.view.addSubview(tutText1)
         tutSubText1.frame = CGRect(x: 90, y: 100, width: 210, height: 50)
-        tutSubText1.text = "In Edit Profile"
+        tutSubText1.text = "In 'Profile'"
         tutSubText1.textAlignment = .Left
         tutSubText1.textColor = UIColor.lightBlue()
         tutSubText1.font = UIFont(name: "SFUIText-Regular", size: 12)!

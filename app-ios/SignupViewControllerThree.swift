@@ -89,7 +89,7 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate, UIScroll
         // Programatically set the input fields
         passwordTextField.tag = 234
         passwordTextField.textAlignment = NSTextAlignment.Center
-        passwordTextField.font = UIFont(name: "SFUIText-Regular", size: 17)!
+        passwordTextField.font = UIFont.systemFontOfSize(17)
         passwordTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         passwordTextField.layer.borderWidth = 1
         passwordTextField.layer.cornerRadius = 10
@@ -108,7 +108,7 @@ class SignupViewControllerThree: UIViewController, UITextFieldDelegate, UIScroll
         
         repeatPasswordTextField.tag = 235
         repeatPasswordTextField.textAlignment = NSTextAlignment.Center
-        repeatPasswordTextField.font = UIFont(name: "SFUIText-Regular", size: 17)!
+        repeatPasswordTextField.font = UIFont.systemFontOfSize(17)
         repeatPasswordTextField.layer.borderColor = UIColor.whiteColor().colorWithAlphaComponent(0.0).CGColor
         repeatPasswordTextField.layer.borderWidth = 1
         repeatPasswordTextField.layer.cornerRadius = 10

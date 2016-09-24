@@ -2,7 +2,7 @@
 //  BankACHConfirmationModalViewController.swift
 //  app-ios
 //
-//  Created by Sinan Ulkuatam on 7/25/16.
+//  Created by Sinan Ulkuatam on 9/23/16.
 //  Copyright © 2016 Sinan Ulkuatam. All rights reserved.
 //
 
@@ -16,6 +16,8 @@ import M13Checkbox
 
 class BankACHConfirmationModalViewController: UIViewController {
     
+    let currencyFormatter: NSNumberFormatter = NSNumberFormatter()
+    
     var bankId:String?
     
     var bankFingerprint:String?
@@ -25,9 +27,9 @@ class BankACHConfirmationModalViewController: UIViewController {
     var bankAccountHolderType:String?
     
     var bankRoutingNumer:String?
-
+    
     var bankVerificationStatus:String?
-
+    
     var bankName:String?
     
     var bankLast4:String?
@@ -41,13 +43,13 @@ class BankACHConfirmationModalViewController: UIViewController {
     var submitACHButton = UIButton()
     
     var detailUser: User?
-
+    
     var detailAmount: Float?
-
+    
     var planId: String?
-
+    
     var paymentType: String?
-
+    
     private let activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
     
     override func viewDidLoad() {
@@ -65,29 +67,72 @@ class BankACHConfirmationModalViewController: UIViewController {
         guard let business_name = detailUser?.business_name else {
             return
         }
+    
+        currencyFormatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        currencyFormatter.currencyCode = NSLocale.currentLocale().displayNameForKey(NSLocaleCurrencySymbol, value: NSLocaleCurrencyCode)
+        
+        let bankImage = UIImageView()
+        bankImage.contentMode = .Center
+        bankImage.contentMode = .ScaleAspectFit
+        bankImage.userInteractionEnabled = true
+        bankImage.frame = CGRect(x: 105, y: 80, width: 70, height: 70)
+        addSubviewWithFade(bankImage, parentView: self, duration: 1)
+        
+        if bankName!.containsString("STRIPE") {
+            bankImage.image = UIImage(named: "bank_avatar_stripe")
+        } else if bankName!.containsString("BANK OF AMERICA") {
+            bankImage.image = UIImage(named: "bank_avatar_bofa")
+        } else if bankName!.containsString("CITI") {
+            bankImage.image = UIImage(named: "bank_avatar_citi")
+        } else if bankName!.containsString("WELLS") {
+            bankImage.image = UIImage(named: "bank_avatar_wells")
+        } else if bankName!.containsString("TD BANK") {
+            bankImage.image = UIImage(named: "bank_avatar_td")
+        } else if bankName!.containsString("US BANK") {
+            bankImage.image = UIImage(named: "bank_avatar_us")
+        } else if bankName!.containsString("PNC") {
+            bankImage.image = UIImage(named: "bank_avatar_pnc")
+        } else if bankName!.containsString("AMERICAN EXPRESS") {
+            bankImage.image = UIImage(named: "bank_avatar_amex")
+        } else if bankName!.containsString("NAVY") {
+            bankImage.image = UIImage(named: "bank_avatar_navy")
+        } else if bankName!.containsString("USAA") {
+            bankImage.image = UIImage(named: "bank_avatar_usaa")
+        } else if bankName!.containsString("CHASE") {
+            bankImage.image = UIImage(named: "bank_avatar_chase")
+        } else if bankName!.containsString("CAPITAL ONE") {
+            bankImage.image = UIImage(named: "bank_avatar_capone")
+        } else if bankName!.containsString("SCHWAB") {
+            bankImage.image = UIImage(named: "bank_avatar_schwab")
+        } else if bankName!.containsString("FIDELITY") {
+            bankImage.image = UIImage(named: "bank_avatar_fidelity")
+        } else if bankName!.containsString("SUNTRUST") {
+            bankImage.image = UIImage(named: "bank_avatar_suntrust")
+        } else {
+            bankImage.image = UIImage(named: "bank_avatar_default")
+        }
         
         let confirmACHText = UILabel()
         confirmACHText.numberOfLines = 0
-        confirmACHText.text = "By checking below I agree to the Argent ACH terms of service and I authorize " + business_name + " to electronically debit my account and, if necessary, electronically credit my account to correct erroneous debits. Please screenshot this page for your records."
-        confirmACHText.font = UIFont(name: "SFUIText-Regular", size: 15)
+        confirmACHText.attributedText = adjustAttributedString("ENDING IN " + bankLast4!, spacing: 2, fontName: "SFUIText-Regular", fontSize: 14, fontColor: UIColor.mediumBlue(), lineSpacing: 0.0, alignment: .Center)
         confirmACHText.textColor = UIColor.mediumBlue()
         confirmACHText.contentMode = .Center
         confirmACHText.textAlignment = .Center
         confirmACHText.lineBreakMode = .ByWordWrapping
         confirmACHText.userInteractionEnabled = true
-        confirmACHText.frame = CGRect(x: 30, y: 50, width: 220, height: 130)
+        confirmACHText.frame = CGRect(x: 30, y: 110, width: 220, height: 130)
         addSubviewWithFade(confirmACHText, parentView: self, duration: 1)
         
-        consentACHCheckbox.frame = CGRect(x: 105, y: 220, width: 70, height: 70)
-        consentACHCheckbox.markType = .Checkmark
-        consentACHCheckbox.stateChangeAnimation = .Spiral
-        consentACHCheckbox.animationDuration = 0.5
-        consentACHCheckbox.addTarget(self, action: #selector(checkState(_:)), forControlEvents: .ValueChanged)
-        consentACHCheckbox.tintColor = UIColor.brandGreen()
-        consentACHCheckbox.secondaryTintColor = UIColor.brandGreen().colorWithAlphaComponent(0.5)
-        addSubviewWithBounce(consentACHCheckbox, parentView: self, duration: 0.8)
+//        consentACHCheckbox.frame = CGRect(x: 105, y: 220, width: 70, height: 70)
+//        consentACHCheckbox.markType = .Checkmark
+//        consentACHCheckbox.stateChangeAnimation = .Spiral
+//        consentACHCheckbox.animationDuration = 0.5
+//        consentACHCheckbox.addTarget(self, action: #selector(checkState(_:)), forControlEvents: .ValueChanged)
+//        consentACHCheckbox.tintColor = UIColor.brandGreen()
+//        consentACHCheckbox.secondaryTintColor = UIColor.brandGreen().colorWithAlphaComponent(0.5)
+//        addSubviewWithBounce(consentACHCheckbox, parentView: self, duration: 0.8)
         
-        submitACHButton.frame = CGRect(x: 0, y: 340, width: 280, height: 60)
+        submitACHButton.frame = CGRect(x: 0, y: 220, width: 280, height: 60)
         submitACHButton.layer.borderColor = UIColor.whiteColor().CGColor
         submitACHButton.layer.borderWidth = 0
         submitACHButton.layer.cornerRadius = 0
@@ -97,8 +142,17 @@ class BankACHConfirmationModalViewController: UIViewController {
         var attribs: [String: AnyObject] = [:]
         attribs[NSFontAttributeName] = UIFont(name: "SFUIText-Regular", size: 14)
         attribs[NSForegroundColorAttributeName] = UIColor.whiteColor()
-        let str = adjustAttributedString("SUBMIT", spacing: 2, fontName: "SFUIText-Regular", fontSize: 14, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Center)
-        submitACHButton.setAttributedTitle(str, forState: .Normal)
+        
+        // TODO: FIX HACKINESS
+        if paymentType == "once" {
+            let str = adjustAttributedString("PAY " + currencyStringFromNumber(Double(detailAmount!)), spacing: 2, fontName: "SFUIText-Regular", fontSize: 14, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Center)
+            submitACHButton.setAttributedTitle(str, forState: .Normal)
+
+        } else if paymentType == "recurring" {
+            let str = adjustAttributedString("PAY " + currencyStringFromNumber(Double(detailAmount!/100)), spacing: 2, fontName: "SFUIText-Regular", fontSize: 14, fontColor: UIColor.whiteColor(), lineSpacing: 0.0, alignment: .Center)
+            submitACHButton.setAttributedTitle(str, forState: .Normal)
+
+        }
         self.view.addSubview(submitACHButton)
         let rectShape = CAShapeLayer()
         rectShape.bounds = submitACHButton.frame
@@ -108,78 +162,15 @@ class BankACHConfirmationModalViewController: UIViewController {
         //Here I'm masking the textView's layer with rectShape layer
         submitACHButton.layer.mask = rectShape
         submitACHButton.addTarget(self, action: #selector(self.submit(_:)), forControlEvents: .TouchUpInside)
-
-    }
-    
-    func checkState(sender: AnyObject) {
         
     }
     
     func submit(sender: AnyObject) {
-        print(bankVerificationStatus)
-        let bank: STPBankAccountParams = STPBankAccountParams()
-        bank.accountHolderName = bankAccountHolderName
-        bank.accountNumber = "000123456789" // request from user for verification, fill in last 4 digits in textfield
-        bank.country = bankCountry
-        bank.currency = bankCurrency
-        bank.routingNumber = bankRoutingNumer
-        print(bankAccountHolderType)
-        bank.accountHolderType = .Company
-        var token = STPAPIClient.sharedClient().createTokenWithBankAccount(bank) { (tok, err) in
-            print(tok)
-            print("creating token", tok)
-            self.createBackendChargeWithToken(tok, completion: { (status) in
-                print("num 2", tok)
-                print(status)
-            })
-        }
-//        if bankAccountHolderType! == "individual" {
-//            print("bank account type individual")
-//            bank.accountHolderType = .Individual
-//            var token = STPAPIClient.sharedClient().createTokenWithBankAccount(bank) { (tok, err) in
-//                print(tok)
-//                print("creating token", tok)
-//                self.createBackendChargeWithToken(tok, completion: { (status) in
-//                    print("num 2", tok)
-//                    print(status)
-//                })
-//            }
-//        } else if bankAccountHolderType! == "company" {
-//            print("bank account type company")
-//            bank.accountHolderType = .Company
-//            var token = STPAPIClient.sharedClient().createTokenWithBankAccount(bank) { (tok, err) in
-//                print(tok)
-//                print("creating token", tok)
-//                self.createBackendChargeWithToken(tok, completion: { (status) in
-//                    print("num 2", tok)
-//                    print(status)
-//                })
-//            }
-//        } else {
-//            showGlobalNotification("Error loading bank details", duration: 5.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
-//        }
+        createBackendChargeWithBankAccount(Int(self.detailAmount!*100))
     }
     
-    func createBackendChargeWithToken(token: STPToken!, completion: PKPaymentAuthorizationStatus -> ()) {
-        // SEND REQUEST TO API ENDPOINT TO EXCHANGE STRIPE TOKEN
-        
-        // print("creating backend charge with token")
-        if 0 != 0 { // chargeInputView.text == "" || chargeInputView.text == "$0.00" {
-            showGlobalNotification("Amount invalid", duration: 5.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.StatusBarNotification, color: UIColor.brandRed())
-        } else {
-            var str = "100" // chargeInputView.text
-            str.removeAtIndex(str.characters.indices.first!) // remove first letter
-            let floatValue = (str as NSString).floatValue
-            let amountInCents = Int(floatValue*100)
-            
-            print(token)
-            // print("calling create charge")
-            // TODO: ACH TEMPORARY REMOVE 1000 PLACEHOLDER
-            createBackendChargeWithBankAccount(token, amount: 1000)//amountInCents)
-        }
-    }
-    
-    func createBackendChargeWithBankAccount(token: STPToken, amount: Int) {
+
+    func createBackendChargeWithBankAccount(amount: Int) {
         print("creating bank ach charge")
         User.getProfile { (user, NSError) in
             print(self.detailUser?.username)
@@ -200,7 +191,7 @@ class BankACHConfirmationModalViewController: UIViewController {
                 Answers.logCustomEventWithName("ACH Recurring Payment Signup",
                     customAttributes: [:])
                 parameters = [
-                    "token": String(token) ?? "",
+                    "source": self.bankId!,
                     "amount": amountInCents,
                     "plan_id": self.planId!
                 ]
@@ -208,13 +199,14 @@ class BankACHConfirmationModalViewController: UIViewController {
                 Answers.logCustomEventWithName("ACH Single Payment",
                     customAttributes: [:])
                 parameters = [
-                    "token": String(token) ?? "",
+                    "source": self.bankId!,
                     "amount": amountInCents,
                 ]
             }
             
+            // Be sure to unwrap the userAccessToken or [SyntaxError: Unexpected token :] will occur
             let headers = [
-                "Authorization": "Bearer " + String(userAccessToken),
+                "Authorization": "Bearer " + String(userAccessToken!),
                 "Content-Type": "application/json"
             ]
             
@@ -230,7 +222,7 @@ class BankACHConfirmationModalViewController: UIViewController {
                 .responseJSON { response in
                     switch response.result {
                     case .Success:
-                        showGlobalNotification("Paid " + (self.detailUser?.username)! + " successfully!", duration: 5.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.brandGreen())
+                        showGlobalNotification("Paid " + (self.detailUser?.username)! + " successfully!", duration: 5.0, inStyle: CWNotificationAnimationStyle.Top, outStyle: CWNotificationAnimationStyle.Top, notificationStyle: CWNotificationStyle.NavigationBarNotification, color: UIColor.skyBlue())
                         if let value = response.result.value {
                             //let json = JSON(value)
                             // print(json)

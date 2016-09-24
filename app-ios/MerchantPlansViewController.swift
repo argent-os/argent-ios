@@ -425,6 +425,13 @@ extension MerchantPlansViewController: STPPaymentCardTextFieldDelegate, PKPaymen
                 self.showApplePayModal(self, tag: tag)
             }
         }))
+        actionController.addAction(Action("Bank Account", style: .Default, handler: { action in
+            let _ = Timeout(0.5) {
+                print("showing ach modal")
+                self.paymentMethod = "Bank Account"
+                self.showACHModal(self, tag: tag)
+            }
+        }))
         actionController.addAction(Action("Credit or Debit Card", style: .Default, handler: { action in
             let _ = Timeout(0.5) {
                 print("showing credit card modal")
@@ -659,3 +666,58 @@ extension MerchantPlansViewController {
 
     }
 }
+
+
+extension MerchantPlansViewController {
+    // MARK: ACH modal
+    
+    func showACHModal(sender: AnyObject, tag: Int) {
+        let navigationController = self.storyboard!.instantiateViewControllerWithIdentifier("bankListModalNavigationController") as! UINavigationController
+        let formSheetController = MZFormSheetPresentationViewController(contentViewController: navigationController)
+        
+        guard let amount = plansArray![tag].amount else {
+            return
+        }
+        
+        guard let planId =  self.plansArray![tag].id else {
+            return
+        }
+        
+        print("showing ach modal")
+        // Initialize and style the terms and conditions modal
+        formSheetController.presentationController?.contentViewSize = CGSizeMake(280, 280)
+        formSheetController.presentationController?.shouldUseMotionEffect = true
+        formSheetController.presentationController?.containerView?.backgroundColor = UIColor.pastelDarkBlue().colorWithAlphaComponent(0.75)
+        formSheetController.presentationController?.containerView?.sizeToFit()
+        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
+        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
+        formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
+        formSheetController.presentationController?.movementActionWhenKeyboardAppears = MZFormSheetActionWhenKeyboardAppears.AlwaysAboveKeyboard
+        formSheetController.contentViewControllerTransitionStyle = MZFormSheetPresentationTransitionStyle.SlideFromBottom
+        formSheetController.contentViewCornerRadius = 15
+        formSheetController.allowDismissByPanningPresentedView = false
+        formSheetController.interactivePanGestureDismissalDirection = .None
+        
+        // Blur will be applied to all MZFormSheetPresentationControllers by default
+        MZFormSheetPresentationController.appearance().shouldApplyBackgroundBlurEffect = true
+        
+        let presentedViewController = navigationController.viewControllers.first as! BankListModalViewController
+        
+        // keep passing along user data to modal
+        presentedViewController.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
+        presentedViewController.navigationItem.leftItemsSupplementBackButton = true
+        
+        // send detail user information for delegated charge
+        presentedViewController.detailUser = detailUser
+        
+        presentedViewController.detailUser = detailUser
+        presentedViewController.detailAmount = Float(amount)
+        presentedViewController.paymentType = "recurring"
+        presentedViewController.planId = planId
+        
+        // Be sure to update current module on storyboard
+        self.presentViewController(formSheetController, animated: true, completion: nil)
+        
+    }
+}
+

@@ -37,12 +37,12 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
+        
+        configureView()
     }
     
     override func viewDidAppear(animated: Bool) {
         self.navigationController?.navigationBar.tintColor = UIColor.darkBlue()
-//        addBankButton.addTarget(self, action: #selector(AddBankViewController.displayBanks(_:)), forControlEvents: .TouchUpInside)
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,7 +50,7 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         // Dispose of any resources that can be recreated.
     }
     
-    func configure() {
+    func configureView() {
         
         let screen = UIScreen.mainScreen().bounds
         let screenWidth = screen.size.width
@@ -99,7 +99,7 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         directLoginButton.setTitleColor(UIColor.offWhite(), forState: .Highlighted)
         directLoginButton.setBackgroundColor(UIColor.seaBlue(), forState: .Normal)
         directLoginButton.setBackgroundColor(UIColor.seaBlue().lighterColor(), forState: .Highlighted)
-        directLoginButton.addTarget(self, action: #selector(self.goToLoginBank(_:)), forControlEvents: .TouchUpInside)
+        directLoginButton.addTarget(self, action: #selector(self.goToWebLoginBank(_:)), forControlEvents: .TouchUpInside)
         var attribs2: [String: AnyObject] = [:]
         attribs2[NSFontAttributeName] = UIFont(name: "SFUIText-Regular", size: 14)!
         attribs2[NSForegroundColorAttributeName] = UIColor.whiteColor()
@@ -148,8 +148,12 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         self.performSegueWithIdentifier("bankManualView", sender: self)
     }
     
-    func goToLoginBank(sender: AnyObject) {
-        // self.performSegueWithIdentifier("bankLoginView", sender: self)
+}
+
+extension AddBankViewController {
+    
+    // NATIVE PLAID LINK
+    func goToNativeLoginBank(sender: AnyObject) {
         displayBanks(sender)
     }
     
@@ -161,7 +165,7 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
         } else if ENVIRONMENT == "PROD" {
             plaidLink = PLDLinkNavigationViewController(environment: .Production, product: .Auth)
         }
-
+        
         plaidLink!.linkDelegate = self
         plaidLink!.providesPresentationContextTransitionStyle = true
         plaidLink!.definesPresentationContext = true
@@ -179,8 +183,9 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
             self.linkBankToStripe(stripeBankToken)
             self.updateUserPlaidToken(accessToken)
             //print("updating user plaid token ", accessToken)
-        }, accessToken: accessToken)
+            }, accessToken: accessToken)
     }
+    
     
     func linkPlaidBankAccount(publicToken: String, completionHandler: (String, String) -> Void, accessToken: String) {
         // ** NOTE: this access_token is actually the public_token sent to the API
@@ -301,7 +306,7 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
                                 showAlert(.Success, title: "Success", msg: "Your bank account is now linked!")
                                 
                                 Answers.logCustomEventWithName("Link bank to Stripe success",
-                                customAttributes: [:])
+                                    customAttributes: [:])
                             }
                         }
                     case .Failure(let error):
@@ -319,8 +324,18 @@ class AddBankViewController: UIViewController, PLDLinkNavigationControllerDelega
     func linkNavigationControllerDidFinishWithBankNotListed(navigationController: PLDLinkNavigationViewController!) {
         print("Manually enter bank info?")
     }
+    
     func linkNavigationControllerDidCancel(navigationController: PLDLinkNavigationViewController!) {
         dismissViewControllerAnimated(true) {
         }
+    }
+    
+}
+
+extension AddBankViewController {
+    
+    // WEB PLAID LINK
+    func goToWebLoginBank(sender: AnyObject) {
+        self.performSegueWithIdentifier("bankLoginView", sender: self)
     }
 }
