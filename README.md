@@ -20,3 +20,5 @@ Argent for iOS
   <li>In-app customer support integration</li>
   <li>Configurable app themes</li>
 </ul>
+
+<p>Anyone who would be interested in turning this into an Ethereum-based payments app can contact me here: <a href="mailto:sku3hh@virginia.edu">sku3hh@virginia.edu</a></p>	
