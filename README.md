@@ -1,4 +1,4 @@
 # argent-ios
 Argent for iOS
 
-![Screenshot](demo.png)
+![demo](demo.png){:height="50%" width="50%"}
