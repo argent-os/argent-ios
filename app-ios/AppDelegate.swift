@@ -25,36 +25,34 @@ import FBSDKLoginKit
 import FBSDKShareKit
 import FBSDKMessengerShareKit
 
+// Be sure to implement your own keys for Stripe and Plaid.  
+// Remember to not expose private keys on an API in Git repositories (the ones below are public keys).
 
 // THEME
 var APP_THEME = "LIGHT"
 
 // CONFIG
-let MERCHANT_ID = "merchant.com.argentapp.pay.v3"
-let APP_URL = "https://itunes.apple.com/us/app/argent/id1110084542?mt=8"
-let APP_ID = "1110084542"
+let MERCHANT_ID = "{stripe-merchant-id}"
+let APP_URL = "{app-url}"
+let APP_ID = "{app-id}"
 let APP_NAME = "Argent"
 
 // PLAID
-let PLAID_PUBLIC_KEY_TEST = "fb32b0520292ad69be7b4d1ade4bd3"
-let PLAID_PUBLIC_KEY_LIVE = "fb32b0520292ad69be7b4d1ade4bd3"
+let PLAID_PUBLIC_KEY_TEST = "{plaid-key-test}"
+let PLAID_PUBLIC_KEY_LIVE = "{plaid-key-live}"
 
 // STRIPE
-let STRIPE_PUBLIC_KEY_TEST = "pk_test_6MOTlPN5JrNS5dIN4DUeKFDA"
-let STRIPE_PUBLIC_KEY_LIVE = "pk_live_9kfmn7pMRPKAYSpcf1Fmn266"
+let STRIPE_PUBLIC_KEY_TEST = "{stripe-pk-test}"
+let STRIPE_PUBLIC_KEY_LIVE = "{stripe-pk-live}"
 
 // LOCAL TESTING
-//let API_URL = "http://localhost:5001/v1" // Works in simulator
-//let API_URL = "http://192.168.1.182:5001/v1" // Works in MA
-//let API_URL = "http://192.168.1.232:5001/v1" // Works in VA
-//let API_URL = "http://172.16.0.101:5001/v1" // Works in TR
-//let API_URL = "http://216.12.10.118:5001/v1" // Works in CVILLE
-
+let API_URL = "http://localhost:5001/v1" // Works in simulator
+//let API_URL = "http://{your-ip-here}/v1" // Works in local device testing
 
 // API ENDPOINT V1
-//let API_URL = "https://dev.argent.cloud/v1"
-//let API_URL = "https://stage.argent.cloud/v1"
-let API_URL = "https://api.argent.cloud/v1"
+//let API_URL = "https://dev.{url}.com/v1"
+//let API_URL = "https://stage.{url}.com/v1"
+//let API_URL = "https://api.{production-url}.com/v1"
 
 // ENVIRONMENT
 //let ENVIRONMENT = "DEV"
