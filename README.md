@@ -1,4 +1,4 @@
 # argent-ios
 Argent for iOS
 
-<img src="demo.png" width="200">
+<img src="demo.png" width="400">
