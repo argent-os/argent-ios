@@ -234,14 +234,14 @@
 			containerPortal = 30FB54021C6A58B40004A538 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 30FB54091C6A58B40004A538;
-			remoteInfo = "timekloud-ios";
+			remoteInfo = "argent-ios";
 		};
 		30FB542A1C6A58B40004A538 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 30FB54021C6A58B40004A538 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 30FB54091C6A58B40004A538;
-			remoteInfo = "timekloud-ios";
+			remoteInfo = "argent-ios";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -1126,7 +1126,7 @@
 				30C2DA541CA43655003AFD8B /* Assets.xcassets */,
 			);
 			name = "app-ios";
-			path = "timekloud-ios";
+			path = "argent-ios";
 			sourceTree = "<group>";
 		};
 		30FB54211C6A58B40004A538 /* app-iosTests */ = {
@@ -1136,7 +1136,7 @@
 				30C2DB181CA439FA003AFD8B /* Info.plist */,
 			);
 			name = "app-iosTests";
-			path = "timekloud-iosTests";
+			path = "argent-iosTests";
 			sourceTree = "<group>";
 		};
 		30FB542C1C6A58B50004A538 /* app-iosUITests */ = {
@@ -1146,7 +1146,7 @@
 				30C2DB1C1CA43A05003AFD8B /* paykloud_iosUITests.swift */,
 			);
 			name = "app-iosUITests";
-			path = "timekloud-iosUITests";
+			path = "argent-iosUITests";
 			sourceTree = "<group>";
 		};
 		725FEE2455E80C94BBA37597 /* Pods */ = {
@@ -1239,7 +1239,7 @@
 				30DB597B1CA46CB0007FEE1E /* PBXTargetDependency */,
 			);
 			name = "app-ios";
-			productName = "timekloud-ios";
+			productName = "argent-ios";
 			productReference = 30FB540A1C6A58B40004A538 /* Argent.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -1257,7 +1257,7 @@
 				30FB54201C6A58B40004A538 /* PBXTargetDependency */,
 			);
 			name = "app-iosTests";
-			productName = "timekloud-iosTests";
+			productName = "argent-iosTests";
 			productReference = 30FB541E1C6A58B40004A538 /* app-iosTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -1275,7 +1275,7 @@
 				30FB542B1C6A58B40004A538 /* PBXTargetDependency */,
 			);
 			name = "app-iosUITests";
-			productName = "timekloud-iosUITests";
+			productName = "argent-iosUITests";
 			productReference = 30FB54291C6A58B40004A538 /* app-iosTests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
