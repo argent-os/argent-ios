@@ -6,7 +6,7 @@ Argent for iOS
 <h2>Features List</h2>
 <br>
 <ul>
-  <li>Recurring and One-time payments using credit/debit card or Apple Pay</li>
+  <li>Recurring and one-time payments using credit/debit card or Apple Pay</li>
   <li>In-person payment terminal, credit, debit cards and Bitcoin accepted</li>
   <li>Credit/debit card scanning to pay users</li>
   <li>TouchID and secure app access</li>
